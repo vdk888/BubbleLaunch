@@ -1,0 +1,9 @@
+{
+  "name": "bubble-waitlist",
+  "version": "1.0.0",
+  "description": "Bubble waitlist landing page",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
