@@ -2,15 +2,15 @@ const translations = {
   // Navigation
   'nav.vision': {
     en: 'Vision',
-    fr: 'Notre Vision',
+    fr: 'Vision',
   },
   'nav.approach': {
     en: 'Approach',
-    fr: 'Notre Approche',
+    fr: 'Approche',
   },
   'nav.values': {
     en: 'Values',
-    fr: 'Nos Valeurs',
+    fr: 'Valeurs',
   },
   'nav.join': {
     en: 'Join',
@@ -19,12 +19,12 @@ const translations = {
 
   // Hero Section
   'hero.title': {
-    en: 'Bubble',
-    fr: 'Bubble',
+    en: 'Bubble. ',
+    fr: 'Bubble. ',
   },
   'hero.tagline': {
-    en: 'Transparent by Design',
-    fr: 'Transparent by Design',
+    en: ' Transparent by Design.',
+    fr: ' Transparent by Design.',
   },
   'hero.subtitle': {
     en: 'We\'re building the personal investment solution we want to see in the world: honest, clear, and accessible to all.',
@@ -38,7 +38,7 @@ const translations = {
   // Vision Section
   'vision.title': {
     en: 'Our Vision',
-    fr: 'Notre Vision',
+    fr: 'Vision',
   },
   'vision.paragraph1': {
     en: 'We believe the world needs a better approach to finance - one that\'s honest, clear, and truly accessible to everyone. The current system is needlessly complex, expensive, and too often works against the people it claims to serve.',
@@ -52,7 +52,7 @@ const translations = {
   // What We're Building Section
   'building.title': {
     en: 'What We\'re Building',
-    fr: 'Notre Démarche',
+    fr: 'Objectif',
   },
   'building.platform.title': {
     en: 'A Cost-Efficient Investment Platform',
@@ -74,7 +74,7 @@ const translations = {
   // Values Section
   'values.title': {
     en: 'Our Commitments',
-    fr: 'Notre Engagement',
+    fr: 'Nos Engagements',
   },
   'values.transparency.title': {
     en: 'Radical Transparency',
@@ -112,7 +112,7 @@ const translations = {
   // Waitlist Section
   'waitlist.title': {
     en: 'Join Our Waitlist',
-    fr: 'Je joins la liste d\'attente',
+    fr: 'Je rejoins la liste d\'attente',
   },
   'waitlist.subtitle': {
     en: 'Be the first to know when our beta version launches. Join our waitlist for early access and a chance to shape the future of our platform.',
@@ -149,7 +149,7 @@ const translations = {
     fr: '© 2024 Bubble. Tous droits réservés.',
   },
   'footer.tagline': {
-    en: 'Transparent by Design',
-    fr: 'Transparent by Design',
+    en: 'Transparent by Design.',
+    fr: 'Transparent by Design.',
   },
 };
