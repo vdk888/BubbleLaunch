@@ -73,4 +73,30 @@ document.addEventListener('DOMContentLoaded', function() {
             waitlistForm.reset();
         });
     }
+
+    // Chat interface functionality
+    const chatInput = document.querySelector('.chat-input');
+    const chatSubmit = document.querySelector('.chat-submit');
+    const suggestionButtons = document.querySelectorAll('.chat-suggestion-btn');
+
+    suggestionButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            chatInput.value = button.textContent;
+            chatInput.focus();
+        });
+    });
+
+    chatSubmit.addEventListener('click', () => {
+        if (chatInput.value.trim()) {
+            alert('This is a placeholder response. Chat functionality will be implemented in the future.');
+            chatInput.value = '';
+        }
+    });
+
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && chatInput.value.trim()) {
+            alert('This is a placeholder response. Chat functionality will be implemented in the future.');
+            chatInput.value = '';
+        }
+    });
 });

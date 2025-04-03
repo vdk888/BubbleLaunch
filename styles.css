@@ -1,10 +1,10 @@
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
-  --primary: #3B82F6;
-  --primary-hover: #2563EB;
-  --card: #111111;
-  --border: #222222;
+  --background: #FFFFFF;
+  --foreground: #000000;
+  --primary: #333333;
+  --primary-hover: #444444;
+  --card: #F8F8F8;
+  --border: #EEEEEE;
 }
 
 * {
@@ -319,6 +319,100 @@ form button {
 
 form button:hover {
   background-color: var(--primary-hover);
+}
+
+/* Chat Interface */
+.chat-section {
+  margin: 2rem auto;
+  max-width: 800px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.chat-suggestion-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  padding: 0.75rem 1.25rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 400;
+  transition: all 0.2s ease;
+}
+
+.chat-suggestion-btn:hover {
+  background: var(--border);
+}
+
+.chat-input-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.chat-submit {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.chat-submit:hover {
+  background: var(--primary-hover);
+}
+
+@media (max-width: 768px) {
+  .chat-section {
+    margin: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .chat-suggestions {
+    flex-direction: column;
+  }
+  
+  .chat-suggestion-btn {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .chat-input-container {
+    flex-direction: column;
+  }
+  
+  .chat-submit {
+    width: 100%;
+    padding: 1rem;
+  }
 }
 
 /* Footer */
