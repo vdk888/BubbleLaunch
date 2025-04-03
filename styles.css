@@ -1,10 +1,10 @@
 :root {
-  --background: #FFFFFF;
-  --foreground: #000000;
-  --primary: #333333;
-  --primary-hover: #666666;
-  --card: #F8F8F8;
-  --border: #EEEEEE;
+  --background: #000000;
+  --foreground: #ffffff;
+  --primary: #3B82F6;
+  --primary-hover: #2563EB;
+  --card: #111111;
+  --border: #222222;
 }
 
 * {
@@ -319,98 +319,6 @@ form button {
 
 form button:hover {
   background-color: var(--primary-hover);
-}
-
-/* Chat Interface */
-.chat-placeholder {
-  position: relative;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px;
-  margin: 2rem auto;
-  max-width: 600px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.chat-placeholder:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.chat-bubble {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  background: var(--primary);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.chat-bubble:hover {
-  background: var(--primary-hover);
-  transform: scale(1.1);
-}
-
-.chat-bubble svg {
-  width: 24px;
-  height: 24px;
-  fill: white;
-}
-
-.chat-interface {
-  display: none;
-  position: fixed;
-  bottom: 100px;
-  right: 30px;
-  width: 360px;
-  height: 480px;
-  background: var(--background);
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-}
-
-.chat-interface.active {
-  display: block;
-}
-
-.chat-header {
-  padding: 20px;
-  border-bottom: 1px solid var(--border);
-  font-weight: 500;
-}
-
-.chat-messages {
-  height: 340px;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.chat-suggestions {
-  padding: 20px;
-  border-top: 1px solid var(--border);
-}
-
-.chat-suggestion {
-  padding: 8px 16px;
-  margin: 8px 0;
-  background: var(--card);
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.chat-suggestion:hover {
-  background: var(--border);
 }
 
 /* Footer */

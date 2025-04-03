@@ -73,25 +73,4 @@ document.addEventListener('DOMContentLoaded', function() {
             waitlistForm.reset();
         });
     }
-
-    // Chat interface functionality
-    const chatPlaceholder = document.querySelector('.chat-placeholder');
-    const chatBubble = document.querySelector('.chat-bubble');
-    const chatInterface = document.querySelector('.chat-interface');
-    const chatSuggestions = document.querySelectorAll('.chat-suggestion');
-
-    function toggleChat() {
-        chatInterface.classList.toggle('active');
-    }
-
-    chatPlaceholder.addEventListener('click', toggleChat);
-    chatBubble.addEventListener('click', toggleChat);
-
-    chatSuggestions.forEach(suggestion => {
-        suggestion.addEventListener('click', () => {
-            const newMessage = document.createElement('p');
-            newMessage.textContent = suggestion.textContent;
-            document.querySelector('.chat-messages').appendChild(newMessage);
-        });
-    });
 });
