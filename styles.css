@@ -241,6 +241,7 @@ section h2 {
   justify-content: center;
   font-weight: 700;
   flex-shrink: 0;
+  color: #FFFFFF;
 }
 
 .value-content h3 {
