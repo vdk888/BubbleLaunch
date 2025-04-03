@@ -1,0 +1,36 @@
+I'd like to redesign my Bubble waitlist landing page to better align with our "Transparent by Design" brand vision. Could you help implement these specific changes:
+
+1. COLOR SCHEME:
+   - Switch to a light theme with white backgrounds (#FFFFFF)
+   - Black text (#000000) for main content
+   - Dark grey (#333333) for buttons and interactive elements
+   - Button text should be white (#FFFFFF) for better contrast
+   - Hover state for buttons: slightly lighter grey (#444444)
+   - Replace all blue highlights/accents with the dark grey (#333333) and if there is a text in it originally, then the text should be white 
+
+2. TYPOGRAPHY:
+   - Switch to the Inter font family (available on Google Fonts)
+   - Use lighter font weights (300 or 400) for regular text
+   - Ensure proper spacing and line height for readability
+   - Maintain the modern, clean aesthetic similar to OpenAI's website
+
+3. CHATBOT INTEGRATION:
+   - Make the chatbot a central feature of the experience, not just a widget
+   - Create a prominent chat interface in the hero section after "We're building the solution we want to see in the world: honest, clear, accessible to all"
+   - The chat interface should include:
+     * A clean white input area with light grey border
+     * Placeholder text: "Ask us about Bubble's approach to transparent finance..."
+     * 3-4 suggested question buttons above the input (e.g., "How does Bubble ensure transparency?", "What fees do you charge?", "How is wealth distributed?")
+     * The design should mirror OpenAI's clean chat interface but in our light theme
+   - No floating chat button should appear but make the chat part of the main UI
+
+4. VISUAL HIERARCHY:
+   - Ensure the chatbot section has proper spacing and doesn't crowd the hero section
+   - Maintain clear visual separation between sections
+   - Add subtle shadows or borders to create depth without being too heavy
+
+5. RESPONSIVE CONSIDERATIONS:
+   - Ensure the chatbot interface works well on mobile
+   - Adjust spacing and sizing appropriately across device sizes
+
+Could you update the HTML, CSS and any necessary JavaScript to implement these changes while maintaining the existing functionality and content structure? do not remove core lines from the current structure, keep it as much as possible but by adding the new features and changing the colour / font design 
