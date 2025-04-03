@@ -27,8 +27,8 @@ const translations = {
     fr: 'Transparent by Design',
   },
   'hero.subtitle': {
-    en: 'We\'re building the solution we want to see in the world: honest, clear, and accessible to all.',
-    fr: 'Nous souhaitons créer la solution que nous voudrions voir dans le monde : honnête, claire et accessible à tous.',
+    en: 'We\'re building the personal investment solution we want to see in the world: honest, clear, and accessible to all.',
+    fr: 'Nous souhaitons créer la solution personnalisée d\'investissement que nous voudrions voir dans le monde : honnête, claire et accessible à tous.',
   },
   'hero.cta': {
     en: 'Join Our Waitlist',
