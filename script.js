@@ -1,25 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Chat widget functionality
-    const chatWidget = document.querySelector('.chat-widget');
-    const chatInterface = document.querySelector('.chat-interface');
-    
-    chatWidget.addEventListener('click', function() {
-        chatWidget.classList.toggle('active');
-    });
-
-    document.addEventListener('click', function(e) {
-        if (!chatWidget.contains(e.target) && !chatInterface.contains(e.target)) {
-            chatWidget.classList.remove('active');
-        }
-    });
-
-    const chatSuggestions = document.querySelectorAll('.chat-suggestion');
-    chatSuggestions.forEach(suggestion => {
-        suggestion.addEventListener('click', function() {
-            // Placeholder for future chat functionality
-            console.log('Selected:', suggestion.textContent);
-        });
-    });
     // Default language
     let currentLanguage = 'en';
 
