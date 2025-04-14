@@ -81,7 +81,7 @@ const translations = {
     fr: 'Une Transparence Radicale',
   },
   'values.transparency.description': {
-    en: 'No hidden fees, no confusing terms, no surprise costs. What you see is what you get.',
+    en: 'We want to eliminate hidden fees, confusing terms, and surprise costs. What you see is what you get.',
     fr: 'Nous voulons mettre fin aux frais cachés, aux termes confus, et aux coûts surprises. Ce que vous voyez est ce que vous obtenez.',
   },
   'values.longterm.title': {
@@ -107,6 +107,32 @@ const translations = {
   'values.humancentered.description': {
     en: 'Technology should adapt to humans, not the other way around. Simplicity is our goal.',
     fr: 'Nous pensons que c\'est à la technologie de s\'adapter aux humains, et non l\'inverse. La simplicité est notre objectif.',
+  },
+
+  // Chat Section
+  'chat.question1': {
+    en: 'How does Bubble ensure transparency?',
+    fr: 'Comment Bubble garantit-il la transparence ?',
+  },
+  'chat.question2': {
+    en: 'What fees do you charge?',
+    fr: 'Quels sont vos frais ?',
+  },
+  'chat.question3': {
+    en: 'How is wealth distributed?',
+    fr: 'Comment la richesse est-elle distribuée ?',
+  },
+  'chat.question4': {
+    en: 'What makes Bubble different?',
+    fr: 'Qu\'est-ce qui rend Bubble différent ?',
+  },
+  'chat.placeholder': {
+    en: 'Ask us about Bubble\'s approach to transparent finance...',
+    fr: 'Posez-nous une question sur l\'approche transparente de Bubble en finance...',
+  },
+  'chat.button': {
+    en: 'Ask',
+    fr: 'Demander',
   },
 
   // Waitlist Section
@@ -145,8 +171,8 @@ const translations = {
 
   // Footer
   'footer.copyright': {
-    en: '© 2024 Bubble. All rights reserved.',
-    fr: '© 2024 Bubble. Tous droits réservés.',
+    en: ' 2024 Bubble. All rights reserved.',
+    fr: ' 2024 Bubble. Tous droits réservés.',
   },
   'footer.tagline': {
     en: 'Transparent by Design.',
