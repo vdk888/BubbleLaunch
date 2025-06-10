@@ -217,7 +217,10 @@ section h2 {
 .values-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 2.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 @media (min-width: 768px) {
@@ -228,20 +231,34 @@ section h2 {
 
 .value-item {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: flex-start;
+  transition: transform 0.3s ease;
 }
 
 .value-number {
-  width: 3rem;
-  height: 3rem;
-  background-color: var(--primary);
+  width: 3.75rem; /* 60px */
+  height: 3.75rem; /* 60px */
+  background: linear-gradient(145deg, #f8f8f8, #ffffff);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   flex-shrink: 0;
-  color: #FFFFFF;
+  color: var(--primary);
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 
+              0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.value-item:hover .value-number {
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12), 
+              0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 .value-content h3 {

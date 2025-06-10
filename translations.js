@@ -203,8 +203,8 @@ const translations = {
 
   // Footer
   'footer.copyright': {
-    en: '© 2024 Bubble. Revolutionizing investment.',
-    fr: '© 2024 Bubble. Révolutionner l\'investissement.',
+    en: '© 2025 Bubble. Transparent by design.',
+    fr: '© 2025 Bubble. Transparent by design.',
   },
   'footer.tagline': {
     en: 'The AI era changes everything. Let\'s change with it.',
