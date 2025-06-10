@@ -100,37 +100,37 @@ const translations = {
     en: 'Our Approach',
     fr: 'Notre Approche',
   },
-  'approach.automation.title': {
-    en: 'Intelligent Automation',
-    fr: 'Automatisation Intelligente',
+  'approach.automate.title': {
+    en: 'Automate',
+    fr: 'Automatiser',
   },
-  'approach.automation.description': {
-    en: 'AI handles portfolio optimization, data analysis, and rebalancing, allowing us to significantly reduce operational costs.',
-    fr: 'L\'IA gère l\'optimisation de portefeuille, l\'analyse de données et le rééquilibrage, ce qui nous permet de réduire significativement les coûts opérationnels.',
+  'approach.automate.description': {
+    en: 'We automate what a fund manager does: asset allocation, portfolio rebalancing, and strategy execution. But instead of a human, it\'s quantitative code running automatically.',
+    fr: 'Nous automatisons ce que fait un gérant de fonds : allocation d\'actifs, rééquilibrage de portefeuille, et exécution de stratégies. Mais au lieu d\'un humain, c\'est du code quantitatif qui s\'exécute automatiquement.',
   },
-  'approach.transparency.title': {
-    en: 'Absolute Clarity',
-    fr: 'Clarté Absolue',
+  'approach.clarify.title': {
+    en: 'Clarify',
+    fr: 'Clarifier',
   },
-  'approach.transparency.description': {
+  'approach.clarify.description': {
     en: 'All our strategies are visible and explainable. Our fees are fixed and predictable. No gray areas.',
     fr: 'Toutes nos stratégies sont visibles et explicables. Nos frais sont fixes et prévisibles. Pas de zones d\'ombre.',
   },
-  'approach.wealth.title': {
-    en: 'Sharing Model',
-    fr: 'Modèle de Partage',
+  'approach.share.title': {
+    en: 'Share',
+    fr: 'Partager',
   },
-  'approach.wealth.description': {
-    en: 'We cap individual wealth at €5M within the company. Beyond that, everything benefits the team through a collective fund.',
+  'approach.share.description': {
+    en: 'We cap individual wealth at €5M in the company. Beyond that, everything benefits the team through a collective fund.',
     fr: 'Nous plafonnons la richesse individuelle à 5M€ dans l\'entreprise. Au-delà, tout bénéficie à l\'équipe via un fonds collectif.',
   },
-  'approach.education.title': {
-    en: 'AI-Powered Education',
-    fr: 'Éducation par l\'IA',
+  'approach.educate.title': {
+    en: 'Educate',
+    fr: 'Éduquer',
   },
-  'approach.education.description': {
-    en: 'Our AI accompanies you in your financial learning, making expertise accessible to everyone.',
-    fr: 'Notre IA vous accompagne dans votre apprentissage financier, rendant l\'expertise accessible à tous.',
+  'approach.educate.description': {
+    en: 'Our AI explains financial concepts simply and helps you understand your portfolio\'s performance in real-time.',
+    fr: 'Notre IA explique les concepts financiers simplement et vous aide à comprendre la performance de votre portefeuille en temps réel.',
   },
   'approach.philosophy': {
     en: 'Our goal is not to claim we beat the market, but to optimize your portfolio according to your objectives, with transparency and at lower cost.',
