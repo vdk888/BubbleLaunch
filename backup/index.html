@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble.  -  Transparent by Design. </title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="brand">
+                <div class="logo">Bubble.</div>
+                <div class="tagline" data-translate="hero.tagline">Transparent by Design.</div>
+            </div>
+            <nav>
+                <a href="#vision" data-translate="nav.vision">Vision</a>
+                <a href="#approach" data-translate="nav.approach">Approach</a>
+                <a href="#values" data-translate="nav.values">Values</a>
+                <a href="#waitlist" data-translate="nav.join">Join</a>
+                <div class="language-switcher">
+                    <button id="en-switch" class="active">EN</button>
+                    <span>|</span>
+                    <button id="fr-switch">FR</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 data-translate="hero.title">Bubble.</h1>
+            <p class="hero-tagline" data-translate="hero.tagline">Transparent by Design.</p>
+            <p class="hero-subtitle" data-translate="hero.subtitle">We're building the personal investment solution we want to see in the world: honest, clear, and accessible to all.</p>
+            
+            <div class="chat-section">
+                <div class="chat-suggestions">
+                    <button class="chat-suggestion-btn" data-translate="chat.question1">How does Bubble ensure transparency?</button>
+                    <button class="chat-suggestion-btn" data-translate="chat.question2">What fees do you charge?</button>
+                    <button class="chat-suggestion-btn" data-translate="chat.question3">How is wealth distributed?</button>
+                    <button class="chat-suggestion-btn" data-translate="chat.question4">What makes Bubble different?</button>
+                </div>
+                <div class="chat-input-container">
+                    <input type="text" class="chat-input" placeholder="Ask us about Bubble's approach to transparent finance..." data-translate="chat.placeholder">
+                    <button class="chat-submit" data-translate="chat.button">Ask</button>
+                </div>
+            </div>
+
+            <a href="#waitlist" class="cta-button" data-translate="hero.cta">Join Our Waitlist</a>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="vision" class="vision">
+        <div class="container">
+            <h2 data-translate="vision.title">Our Vision</h2>
+            <p data-translate="vision.paragraph1">We believe the world needs a better approach to finance - one that's honest, clear, and truly accessible to everyone. The current system is needlessly complex, expensive, and too often works against the people it claims to serve.</p>
+            <p data-translate="vision.paragraph2">Think of the current system as a family trying to build something together, where one member hoards 90% of the resources. We're redistributing those resources to build something better together.</p>
+        </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section id="approach" class="approach">
+        <div class="container">
+            <h2 data-translate="building.title">What We're Building</h2>
+            <div class="platform-card">
+                <h3 data-translate="building.platform.title">A Cost-Efficient Investment Platform</h3>
+                <p data-translate="building.platform.description1">We're creating the investment tool we've always wanted for ourselves - an intelligent, automated system built on modern technologies that eliminates unnecessary fees and complexity.</p>
+                <p data-translate="building.platform.description2">Our platform leverages data-driven approaches to optimize portfolio allocation while keeping costs dramatically lower than traditional or online investment services. We're putting our own money here first.</p>
+            </div>
+            <p class="tagline" data-translate="building.tagline">This isn't about selling you something - it's first about creating the investment tool we wish existed for ourselves and sharing it with you.</p>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section id="values" class="values">
+        <div class="container">
+            <h2 data-translate="values.title">Our Commitments</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-number">1</div>
+                    <div class="value-content">
+                        <h3 data-translate="values.transparency.title">Radical Transparency</h3>
+                        <p data-translate="values.transparency.description">We want to eliminate hidden fees, confusing terms, and surprise costs. What you see is what you get.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-number">2</div>
+                    <div class="value-content">
+                        <h3 data-translate="values.longterm.title">Long-Term Thinking</h3>
+                        <p data-translate="values.longterm.description">Building sustainable growth rather than chasing quick profits. We focus on what lasts.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-number">3</div>
+                    <div class="value-content">
+                        <h3 data-translate="values.fairwealth.title">Fair Wealth Distribution</h3>
+                        <p data-translate="values.fairwealth.description">We've capped wealth accumulation for each shareholder within our company.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-number">4</div>
+                    <div class="value-content">
+                        <h3 data-translate="values.humancentered.title">Human-Centered Design</h3>
+                        <p data-translate="values.humancentered.description">Technology should adapt to humans, not the other way around. Simplicity is our goal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist Section -->
+    <section id="waitlist" class="waitlist">
+        <div class="container">
+            <h2 data-translate="waitlist.title">Join Our Waitlist</h2>
+            <p class="waitlist-subtitle" data-translate="waitlist.subtitle">Be the first to know when our beta version launches. Join our waitlist for early access and a chance to shape the future of our platform.</p>
+            <p class="waitlist-note" data-translate="waitlist.free">Joining is completely free - no credit card required, no obligation. We genuinely want your input to create and make this better. You can back out anytime.</p>
+
+            <div class="form-container">
+                <h3 data-translate="waitlist.form.title">Get Early Access</h3>
+                <form id="waitlist-form">
+                    <div class="form-group">
+                        <label for="name" data-translate="waitlist.form.name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-translate="waitlist.form.email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comments" data-translate="waitlist.form.comments">What frustrates you about the current financial system? (Optional)</label>
+                        <textarea id="comments" name="comments"></textarea>
+                    </div>
+                    <button type="submit" data-translate="waitlist.form.button">Join Waitlist</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-left">
+                <div class="footer-logo">Bubble</div>
+                <div class="footer-copyright" data-translate="footer.copyright"> 2024 Bubble. All rights reserved.</div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-tagline" data-translate="footer.tagline">Transparent by Design</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
