@@ -194,6 +194,7 @@ nav a:hover {
 section {
   padding: 5rem 0;
   overflow: hidden;
+  position: relative;
 }
 
 section h2 {
@@ -214,6 +215,90 @@ section h2 {
 }
 
 /* Approach Section */
+.approach {
+  background-color: var(--background);
+}
+
+.approach-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin: 3rem 0;
+}
+
+.approach-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.approach-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.approach-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f5f5f7 0%, #e5e5e9 100%);
+  color: var(--primary);
+  font-size: 24px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  position: relative;
+  flex-shrink: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.approach-item:hover .approach-number {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f5 100%);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.approach-content {
+  flex: 1;
+  padding-top: 0.5rem;
+}
+
+.approach-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+}
+
+.approach-content p {
+  color: #666;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.philosophy-box {
+  max-width: 800px;
+  margin: 4rem auto 0;
+  padding: 2rem;
+  background: rgba(245, 245, 247, 0.6);
+  border-radius: 16px;
+  text-align: center;
+  font-style: italic;
+  color: #555;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
 .platform-card, .feature-item {
   background: white;
   border-radius: 12px;
