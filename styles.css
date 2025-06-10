@@ -1,3 +1,30 @@
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade-in animation class */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.fade-in.fade-in-visible {
+  animation-play-state: running;
+}
+
+/* Staggered animations */
+.fade-in:nth-child(2) { animation-delay: 0.1s; }
+.fade-in:nth-child(3) { animation-delay: 0.2s; }
+.fade-in:nth-child(4) { animation-delay: 0.3s; }
+
 :root {
   --background: #FFFFFF;
   --foreground: #000000;
@@ -137,6 +164,7 @@ nav a:hover {
   font-size: 1.25rem;
   color: var(--primary);
   font-weight: 500;
+  font-style: italic;
   margin-bottom: 1.5rem;
 }
 
@@ -164,7 +192,8 @@ nav a:hover {
 
 /* Common section styles */
 section {
-  padding: 4rem 0;
+  padding: 5rem 0;
+  overflow: hidden;
 }
 
 section h2 {
@@ -185,12 +214,13 @@ section h2 {
 }
 
 /* Approach Section */
-.platform-card {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+.platform-card, .feature-item {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform, box-shadow;
 }
 
 .platform-card h3 {
