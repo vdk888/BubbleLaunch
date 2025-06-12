@@ -98,25 +98,70 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatInput = document.querySelector('.chat-input');
     const chatSubmit = document.querySelector('.chat-submit');
     const suggestionButtons = document.querySelectorAll('.chat-suggestion-btn');
+    const chatMessages = document.querySelector('.chat-messages');
+
+    function addMessageToChat(message, sender) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('chat-message', `${sender}-message`);
+        const formattedMessage = message.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                                        .replace(/^- (.*)/gm, '<li>$1</li>')
+                                        .replace(/(\r\n|\n|\r)/g, '<br>');
+        messageElement.innerHTML = formattedMessage;
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+    }
+
+    function showTypingIndicator() {
+        const typingIndicator = document.createElement('div');
+        typingIndicator.classList.add('chat-message', 'bot-message', 'typing-indicator');
+        typingIndicator.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+        chatMessages.appendChild(typingIndicator);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+        const typingIndicator = document.querySelector('.typing-indicator');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
+    }
+
+    async function handleUserMessage(displayMessageOverride, promptMessageOverride) {
+        const displayMessage = displayMessageOverride || chatInput.value.trim();
+        const promptMessage = promptMessageOverride || displayMessage;
+
+        if (!promptMessage) return;
+
+        addMessageToChat(displayMessage, 'user');
+        chatInput.value = '';
+        showTypingIndicator();
+
+        try {
+            const botReply = await sendMessageToBot(promptMessage);
+            removeTypingIndicator();
+            addMessageToChat(botReply, 'bot');
+        } catch (error) {
+            removeTypingIndicator();
+            addMessageToChat('Sorry, something went wrong. Please try again.', 'bot');
+        }
+    }
 
     suggestionButtons.forEach(button => {
         button.addEventListener('click', () => {
-            chatInput.value = button.textContent;
-            chatInput.focus();
+            const key = button.getAttribute('data-translate');
+            const promptMessage = translations[key]['en']; // Always send English prompt for consistency
+            const displayMessage = button.textContent;
+            handleUserMessage(displayMessage, promptMessage);
         });
     });
 
-    chatSubmit.addEventListener('click', () => {
-        if (chatInput.value.trim()) {
-            alert('This is a placeholder response. Chat functionality will be implemented in the future.');
-            chatInput.value = '';
-        }
-    });
+    chatSubmit.addEventListener('click', () => handleUserMessage());
 
     chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' && chatInput.value.trim()) {
-            alert('This is a placeholder response. Chat functionality will be implemented in the future.');
-            chatInput.value = '';
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleUserMessage();
         }
     });
 });
