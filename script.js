@@ -99,17 +99,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatSubmit = document.querySelector('.chat-submit');
     const suggestionButtons = document.querySelectorAll('.chat-suggestion-btn');
     const chatMessages = document.querySelector('.chat-messages');
+    const chatSection = document.querySelector('.chat-section');
 
     function addMessageToChat(message, sender) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('chat-message', `${sender}-message`);
+        
+        // Format markdown-like syntax
         const formattedMessage = message.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                                         .replace(/\*(.*?)\*/g, '<em>$1</em>')
                                         .replace(/^- (.*)/gm, '<li>$1</li>')
                                         .replace(/(\r\n|\n|\r)/g, '<br>');
+        
         messageElement.innerHTML = formattedMessage;
-        chatMessages.appendChild(messageElement);
-        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+        
+        // Add with a slight delay for animation effect
+        setTimeout(() => {
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+            
+            // Add focus effect to chat section when new message appears
+            chatSection.classList.add('chat-active');
+            setTimeout(() => chatSection.classList.remove('chat-active'), 1000);
+        }, sender === 'bot' ? 300 : 0);
     }
 
     function showTypingIndicator() {
@@ -118,6 +130,9 @@ document.addEventListener('DOMContentLoaded', function() {
         typingIndicator.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
         chatMessages.appendChild(typingIndicator);
         chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        // Add subtle pulsing effect to chat section while typing
+        chatSection.classList.add('chat-thinking');
     }
 
     function removeTypingIndicator() {
@@ -125,6 +140,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (typingIndicator) {
             typingIndicator.remove();
         }
+        // Remove the thinking effect
+        chatSection.classList.remove('chat-thinking');
     }
 
     async function handleUserMessage(displayMessageOverride, promptMessageOverride) {
@@ -133,6 +150,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!promptMessage) return;
 
+        // Enhance chat section when user interacts
+        chatSection.classList.add('chat-active');
+        
+        // Disable input while processing
+        chatInput.disabled = true;
+        chatSubmit.disabled = true;
+        chatSubmit.classList.add('processing');
+        
         addMessageToChat(displayMessage, 'user');
         chatInput.value = '';
         showTypingIndicator();
@@ -144,6 +169,15 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             removeTypingIndicator();
             addMessageToChat('Sorry, something went wrong. Please try again.', 'bot');
+        } finally {
+            // Re-enable input after processing
+            chatInput.disabled = false;
+            chatSubmit.disabled = false;
+            chatSubmit.classList.remove('processing');
+            chatInput.focus();
+            
+            // Remove active state after a delay
+            setTimeout(() => chatSection.classList.remove('chat-active'), 1000);
         }
     }
 
@@ -152,16 +186,42 @@ document.addEventListener('DOMContentLoaded', function() {
             const key = button.getAttribute('data-translate');
             const promptMessage = translations[key]['en']; // Always send English prompt for consistency
             const displayMessage = button.textContent;
+            
+            // Add visual feedback when clicking a suggestion
+            button.classList.add('active');
+            setTimeout(() => button.classList.remove('active'), 300);
+            
             handleUserMessage(displayMessage, promptMessage);
         });
     });
 
-    chatSubmit.addEventListener('click', () => handleUserMessage());
+    chatSubmit.addEventListener('click', () => {
+        // Add click effect
+        chatSubmit.classList.add('clicked');
+        setTimeout(() => chatSubmit.classList.remove('clicked'), 300);
+        handleUserMessage();
+    });
 
     chatInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
+            chatSubmit.classList.add('clicked');
+            setTimeout(() => chatSubmit.classList.remove('clicked'), 300);
             handleUserMessage();
         }
     });
+    
+    // Add focus effect when clicking on the chat input
+    chatInput.addEventListener('focus', () => {
+        chatSection.classList.add('chat-focus');
+    });
+    
+    chatInput.addEventListener('blur', () => {
+        chatSection.classList.remove('chat-focus');
+    });
+    
+    // Initialize with a welcome message after a short delay
+    setTimeout(() => {
+        addMessageToChat('Hello! I\'m your Bubble assistant. How can I help you today?', 'bot');
+    }, 1000);
 });
