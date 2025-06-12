@@ -534,6 +534,54 @@ section h2 {
   font-size: 0.875rem;
 }
 
+/* Form Messages */
+.form-message {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 10px 0;
+  font-size: 0.95rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.form-message.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+.form-message.error {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+}
+
+/* Loading state */
+button.loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+button.loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 0.8s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Form Styles */
 .form-container {
   max-width: 500px;
   margin: 0 auto;
@@ -741,6 +789,16 @@ footer .container {
   text-align: center;
 }
 
+.manifesto h2 {
+  text-align: center;
+  margin: 0 auto 0.5rem;
+  color: #333;
+  font-size: 2.2rem;
+  font-weight: 700;
+  width: 100%;
+  display: block;
+}
+
 .manifesto p {
   font-size: 1.1rem;
   line-height: 1.8;
@@ -749,6 +807,40 @@ footer .container {
   text-align: justify;
   text-justify: inter-word;
   hyphens: auto;
+}
+
+.manifesto-tagline {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #555;
+  text-align: center;
+  margin: 0 auto 2.5rem;
+  max-width: 800px;
+  line-height: 1.5;
+  font-style: italic;
+  padding: 0 2rem;
+  display: block;
+  box-sizing: border-box;
+}
+
+.manifesto-tagline::before,
+.manifesto-tagline::after {
+  content: '—';
+  color: var(--primary);
+  margin: 0 0.75rem;
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .manifesto-tagline {
+    font-size: 1.2rem;
+    margin: -0.5rem auto 2rem;
+  }
+  
+  .manifesto-tagline::before,
+  .manifesto-tagline::after {
+    margin: 0 0.5rem;
+  }
 }
 
 .insight-box {
