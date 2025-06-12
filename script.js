@@ -58,19 +58,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const nameInput = document.getElementById('name');
             const emailInput = document.getElementById('email');
+            const profileInput = document.getElementById('profile');
             const commentsInput = document.getElementById('comments');
 
             const formData = {
                 name: nameInput.value,
                 email: emailInput.value,
+                profile: profileInput.value,
                 comments: commentsInput.value
             };
 
-            // For now, just show an alert - we'll implement real API later
-            alert('Thank you for joining our waitlist! We\'ll be in touch soon.');
-
-            // Clear the form
-            waitlistForm.reset();
+            fetch('/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(async response => {
+                const data = await response.json();
+                if (!response.ok) {
+                    const error = new Error(data.error || 'Something went wrong');
+                    throw error;
+                }
+                return data;
+            })
+            .then(data => {
+                alert(data.message);
+                waitlistForm.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message);
+            });
         });
     }
 
