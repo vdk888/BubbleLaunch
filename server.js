@@ -42,8 +42,8 @@ We offer a sophisticated robo-advisor that provides:
 Your tone should be confident, enthusiastic, and slightly revolutionary. You are here to challenge the status quo and build trust with users.`;
 
 const models = [
-    'mistralai/mistral-7b-mistralai/magistral-small-2506',
-    'google/gemini-google/gemini-2.0-flash-lite-001',
+    'mistralai/magistral-small-2506',
+    'google/gemini-2.0-flash-001',
     'openai/gpt-4.1-mini',
 ];
 
