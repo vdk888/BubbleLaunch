@@ -71,6 +71,16 @@ header .container {
   align-items: center;
 }
 
+.logo svg {
+  height: 2em;
+  width: auto;
+  margin-right: 0.35em;
+}
+.footer-logo svg {
+  height: 1.7em;
+  width: auto;
+  margin-right: 0.35em;
+}
 .logo {
   font-size: 1.5rem;
   font-weight: 700;
