@@ -41,12 +41,12 @@ const translations = {
     fr: 'Notre Constat',
   },
   'manifesto.paragraph1': {
-    en: 'When AI can provide more reliable and faster financial advice than a traditional manager, value no longer lies in exclusive knowledge ownership.',
+    en: 'When an AI can provide more reliable and faster financial advice than a traditional manager, value no longer lies in the exclusive possession of knowledge.',
     fr: 'Quand une IA peut donner des conseils financiers plus fiables et rapides qu\'un gérant traditionnel, la valeur ne réside plus dans la détention exclusive du savoir.',
   },
   'manifesto.paragraph2': {
-    en: 'LLMs are radically transforming access to financial expertise. We\'re seizing this revolution to redistribute capital traditionally captured by intermediaries who have become obsolete.',
-    fr: 'Les LLMs transforment radicalement l\'accès à l\'expertise financière. Nous saisissons cette révolution pour redistribuer le capital traditionnellement capté par des intermédiaires devenus obsolètes.',
+    en: 'LLMs are radically transforming access to financial expertise. We\'re seizing this revolution to pop the finance bubble and redistribute capital traditionally captured by obsolete intermediaries.',
+    fr: 'Les LLMs transforment radicalement l\'accès à l\'expertise financière. Nous saisissons cette révolution pour percer la bulle financière et redistribuer le capital traditionnellement capté par des intermédiaires devenus obsolètes.',
   },
   'manifesto.insight': {
     en: 'Our ethics: freeing capital from excessive fees to put it back in your hands, so you can invest it in what you truly believe in.',
@@ -207,7 +207,7 @@ const translations = {
     fr: '© 2025 Bubble. Transparent by design.',
   },
   'footer.tagline': {
-    en: 'The AI era changes everything. Let\'s change with it.',
-    fr: 'L\'ère de l\'IA change tout. Changeons avec elle.',
+    en: "Popping the finance bubble in the AI era.",
+    fr: "Percer la bulle financière à l'ère de l'IA.",
   },
 };
