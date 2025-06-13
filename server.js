@@ -45,6 +45,7 @@ Keep your response reasonably short to be more engaging and always try to be con
 At the end of your response, always add a call to action to encourage the user to take action, or ask if they are interested in learning more by opening the dialogue with a new question.`;
 
 const models = [
+    'deepseek/deepseek-r1-0528:free', 
     'openai/gpt-4.1-mini',
     'mistralai/magistral-small-2506',
     'google/gemini-2.0-flash-001',
