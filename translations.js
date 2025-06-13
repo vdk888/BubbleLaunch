@@ -121,8 +121,8 @@ const translations = {
     fr: 'Partager',
   },
   'approach.share.description': {
-    en: 'We cap individual wealth at €5M in the company. Beyond that, everything benefits the team through a collective fund.',
-    fr: 'Nous plafonnons la richesse individuelle à 5M€ dans l\'entreprise. Au-delà, tout bénéficie à l\'équipe via un fonds collectif.',
+    en: 'Because AI now makes expertise accessible to everyone, we\'re seizing this window to build a model where these efficiency gains allow us to give back what was historically captured by costly intermediaries.',
+    fr: 'Parce que l\'IA rend désormais l\'expertise accessible à tous, nous saisissons cette fenêtre pour construire un modèle où ce gain d\'efficacité nous permet de vous redonner ce qui était historiquement capté par des intermédiaires coûteux.',
   },
   'approach.educate.title': {
     en: 'Educate',
