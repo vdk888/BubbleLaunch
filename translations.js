@@ -75,8 +75,8 @@ const translations = {
     fr: 'Structure de Coûts Repensée',
   },
   'vision.cost.description': {
-    en: 'Fixed subscription (e.g. $10/month) instead of a percentage of your assets. Automation allows us to drastically reduce fees.',
-    fr: 'Abonnement fixe (ex: 10€/mois) plutôt qu\'un pourcentage de vos actifs. L\'automatisation nous permet de réduire drastiquement les frais.',
+    en: 'A fixed subscription (€10/month) instead of a percentage of your assets like traditional managers (2% fees), made possible through automation. This makes professional-grade investing accessible to small and large portfolios alike.',
+    fr: 'Un abonnement fixe (10€/mois) plutôt qu\'un pourcentage de vos actifs comme chez un gestionnaire traditionnel (2% de frais), rendu possible par l\'automatisation. Résultat : l\'investissement de pointe devient accessible aux petits comme aux gros portefeuilles.',
   },
   'vision.ai.title': {
     en: 'Accessible AI Expertise',
