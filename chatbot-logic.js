@@ -1,11 +1,12 @@
-async function sendMessageToBot(message) {
+// Function to handle sending a message to the chatbot
+async function sendMessageToBot(message, language = 'en') {
     try {
         const response = await fetch('/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ message }),
+            body: JSON.stringify({ message, language }),
         });
 
         if (!response.ok) {

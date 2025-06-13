@@ -167,9 +167,10 @@ document.addEventListener('DOMContentLoaded', function() {
         showTypingIndicator();
 
         try {
-            const botReply = await sendMessageToBot(promptMessage);
+            // Send the message to the bot with current language
+            const botResponse = await sendMessageToBot(promptMessage, currentLanguage);
             removeTypingIndicator();
-            addMessageToChat(botReply, 'bot');
+            addMessageToChat(botResponse, 'bot');
         } catch (error) {
             removeTypingIndicator();
             addMessageToChat('Sorry, something went wrong. Please try again.', 'bot');

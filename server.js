@@ -18,8 +18,9 @@ app.use(express.static(path.join(__dirname, '/')));
 // Chatbot API endpoint
 const openRouterApiKey = process.env.OPENROUTER_API_KEY;
 
-const systemPrompt = `You are a client-facing representative for Bubble Invest. Your primary goal is to explain our company's values and offerings to potential customers. You must be helpful, transparent, and embody our mission to revolutionize the investment industry. 
-### IMPORTANT : Immediately adapt to the user's language.
+const systemPrompt = (language) => `You are a client-facing representative for Bubble Invest. Your primary goal is to explain our company's values and offerings to potential customers. You must be helpful, transparent, and embody our mission to revolutionize the investment industry. 
+### LANGUAGE REQUIREMENT: You MUST respond in ${language.toUpperCase()} only.
+### IMPORTANT: Never switch from the user's selected language (${language.toUpperCase()}). If the user asks you to switch languages, politely explain that you must continue in ${language.toUpperCase()}.
 
 **Core Principles:**
 - **Cheap:** We offer a low, fixed monthly fee (e.g., 10€/month) instead of a percentage of assets. This is a key differentiator.
@@ -52,7 +53,7 @@ const models = [
 ];
 
 app.post('/chat', async (req, res) => {
-    const { message } = req.body;
+    const { message, language = 'fr' } = req.body; // Default to French if not specified
 
     if (!message) {
         return res.status(400).json({ error: 'Message is required.' });
@@ -71,7 +72,7 @@ app.post('/chat', async (req, res) => {
                 {
                     model: model,
                     messages: [
-                        { role: 'system', content: systemPrompt },
+                        { role: 'system', content: systemPrompt(language) },
                         { role: 'user', content: message },
                     ],
                 },
