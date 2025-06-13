@@ -87,10 +87,11 @@ header .container {
 }
 
 .tagline {
-  margin-left: 0.5rem;
+  margin-left: 1.25rem;
   font-size: 0.875rem;
   color: var(--primary);
   display: none;
+  padding-left: 0.75rem;
 }
 
 @media (min-width: 640px) {
