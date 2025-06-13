@@ -23,8 +23,8 @@ const translations = {
     fr: 'Bubble.',
   },
   'hero.tagline': {
-    en: 'Investment rethought for the AI era.',
-    fr: 'L\'investissement repensé pour l\'ère de l\'IA.',
+    en: 'Investment optimized in the AI era.',
+    fr: 'L\'investissement optimisé à l\'ère de l\'IA.',
   },
   'hero.subtitle': {
     en: 'In a world where AI transforms access to financial expertise, we\'re building the investment tool we wanted for ourselves: transparent, efficient, and accessible.',
