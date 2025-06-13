@@ -1,8 +1,6 @@
 <svg width="512" height="1024" viewBox="0 0 512 1024" xmlns="http://www.w3.org/2000/svg">
-  <!-- White background -->
-  <rect x="0" y="0" width="512" height="1024" fill="#fff" />
   <!-- Black open circle -->
-  <circle cx="256" cy="600" r="180" fill="none" stroke="#000" stroke-width="32" stroke-linecap="round" stroke-dasharray="900 180" stroke-dashoffset="60" />
+  <circle cx="256" cy="600" r="170" fill="none" stroke="#000" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="900 180" stroke-dashoffset="60" />
   <!-- Black dot -->
-  <circle cx="370" cy="430" r="36" fill="#000" />
+  <circle cx="380" cy="435" r="40" fill="#000" />
 </svg>
