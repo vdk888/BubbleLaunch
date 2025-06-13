@@ -24,7 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
         translatableElements.forEach(element => {
             const key = element.getAttribute('data-translate');
             if (translations[key] && translations[key][lang]) {
-                element.textContent = translations[key][lang];
+                if (element.tagName === 'INPUT' && element.type === 'text' && key === 'chat.placeholder') {
+                    element.placeholder = translations[key][lang];
+                } else {
+                    element.textContent = translations[key][lang];
+                }
             }
         });
 
