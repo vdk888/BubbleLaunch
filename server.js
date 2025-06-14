@@ -11,7 +11,7 @@ const port = process.env.PORT || 8080;
 
 // Notion client
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
-const databaseId = process.env.NOTION_DATABASE_ID;
+const databaseId = process.env.NOTION_DATABASE_ID_WAITLIST;
 const openRouterApiKey = process.env.OPENROUTER_API_KEY;
 
 // Middleware
