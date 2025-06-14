@@ -112,6 +112,7 @@ const models = [
 ];
 
 app.post('/api/chat', async (req, res) => {
+    console.log('POST /api/chat hit on Replit server'); // Debug log
     if (!req.session.messageCount) {
         req.session.messageCount = 0;
     }
@@ -210,6 +211,12 @@ app.post('/subscribe', async (req, res) => {
         console.error('Error adding to Notion:', error);
         res.status(500).json({ error: 'Failed to subscribe. Please try again later.' });
     }
+});
+
+// Test POST route
+app.post('/test-post', (req, res) => {
+    console.log('POST /test-post hit on Replit server');
+    res.status(200).send('POST test successful on Replit');
 });
 
 // Serve index.html for the root
