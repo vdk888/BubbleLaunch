@@ -151,8 +151,8 @@ const translations = {
     fr: 'Que devient le métier de gérant ?',
   },
   'chat.question4': {
-    en: 'Your wealth-capping model?',
-    fr: 'Votre modèle de richesse plafonnée ?',
+    en: 'How does Bubble work?',
+    fr: 'Comment fonctionne Bubble ?',
   },
   'chat.placeholder': {
     en: 'Ask us about the future of investment...',
