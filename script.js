@@ -225,8 +225,33 @@ document.addEventListener('DOMContentLoaded', function() {
         chatSection.classList.remove('chat-focus');
     });
     
-    // Initialize with a welcome message after a short delay
-    setTimeout(() => {
-        addMessageToChat('Hello! I\'m your Bubble assistant. How can I help you today?', 'bot');
-    }, 1000);
+    // Function to show welcome message
+    function showWelcomeMessage() {
+        // Clear any existing welcome messages
+        const existingWelcome = document.querySelector('.welcome-message');
+        if (existingWelcome) {
+            existingWelcome.remove();
+        }
+        
+        const welcomeMessages = {
+            'en': 'Hello! I\'m your Bubble assistant. How can I help you today?',
+            'fr': 'Bonjour ! Je suis votre assistant Bubble. Comment puis-je vous aider aujourd\'hui ?'
+        };
+        
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('chat-message', 'bot-message', 'welcome-message');
+        messageElement.textContent = welcomeMessages[currentLanguage] || welcomeMessages['en'];
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    // Show initial welcome message
+    setTimeout(showWelcomeMessage, 1000);
+    
+    // Update welcome message when language changes
+    const originalUpdateLanguage = window.updateLanguage;
+    window.updateLanguage = function(lang) {
+        originalUpdateLanguage(lang);
+        showWelcomeMessage();
+    };
 });
