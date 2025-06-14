@@ -140,11 +140,55 @@ document.addEventListener('DOMContentLoaded', function() {
                                         .replace(/^- (.*)/gm, '<li>$1</li>')
                                         .replace(/(\r\n|\n|\r)/g, '<br>');
         
-        messageElement.innerHTML = formattedMessage;
-        
         // Add with a slight delay for animation effect
         setTimeout(() => {
             chatMessages.appendChild(messageElement);
+            
+            // If it's a bot message, animate it word by word
+            if (sender === 'bot') {
+                // Create a container for the animated text
+                messageElement.innerHTML = '';
+                const words = formattedMessage.split(' ');
+                let wordIndex = 0;
+                
+                // Function to add words one by one
+                const typeNextWord = () => {
+                    if (wordIndex < words.length) {
+                        // Add the next word with a space
+                        if (wordIndex > 0) {
+                            messageElement.innerHTML += ' ';
+                        }
+                        
+                        // Handle HTML tags (like <strong>, <em>, <br>, etc.)
+                        if (words[wordIndex].startsWith('<') && !words[wordIndex].startsWith('<br')) {
+                            // For HTML tags, add them immediately without animation
+                            let tagContent = words[wordIndex];
+                            while (wordIndex + 1 < words.length && !words[wordIndex].includes('>')) {
+                                wordIndex++;
+                                tagContent += ' ' + words[wordIndex];
+                            }
+                            messageElement.innerHTML += tagContent;
+                        } else {
+                            messageElement.innerHTML += words[wordIndex];
+                        }
+                        
+                        // Scroll to the bottom as words are added
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                        
+                        wordIndex++;
+                        // Random typing speed between 30-70ms for natural effect
+                        const typingSpeed = Math.floor(Math.random() * 40) + 30;
+                        setTimeout(typeNextWord, typingSpeed);
+                    }
+                };
+                
+                // Start the typing animation
+                typeNextWord();
+            } else {
+                // For user messages, show immediately
+                messageElement.innerHTML = formattedMessage;
+            }
+            
             chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
             
             // Add focus effect to chat section when new message appears
@@ -341,8 +385,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 isFullscreen = true;
                 chatSection.classList.add('fullscreen');
                 fullscreenToggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M1.5 1a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 .5 7H0a.5.5 0 0 1 0-1h.5a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5zm10 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5H15a.5.5 0 0 1 0 1h-2.5A1.5 1.5 0 0 1 11 5.5v-4a.5.5 0 0 1 .5-.5zM0 10.5a.5.5 0 0 1 .5-.5H3a1.5 1.5 0 0 1 1.5 1.5v2.5a.5.5 0 0 1-1 0v-2.5a.5.5 0 0 0-.5-.5H.5a.5.5 0 0 1-.5-.5zm11 0a.5.5 0 0 1 .5-.5h2.5a.5.5 0 0 1 .5.5v2.5a.5.5 0 0 1-1 0v-2.5a.5.5 0 0 0-.5-.5h-2.5a.5.5 0 0 1-.5-.5z"/></svg>';
+                
+                // Scroll to bottom of chat section with focus on input
+                setTimeout(() => {
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    chatInput.focus();
+                }, 300);
             }
         });
+        
+        // Function to ensure chat input is visible at the bottom of the screen
+        const scrollChatToBottom = () => {
+            if (isFullscreen) {
+                const chatInputContainer = document.querySelector('.chat-input-container');
+                if (chatInputContainer) {
+                    chatInputContainer.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                }
+            }
+        };
+        
+        // Call scrollChatToBottom when entering fullscreen mode
+        fullscreenToggleBtn.addEventListener('click', scrollChatToBottom);
     }
 
     // Update welcome message when language changes
