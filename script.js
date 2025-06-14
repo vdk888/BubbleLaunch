@@ -123,7 +123,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatSubmit = document.querySelector('.chat-submit');
     const suggestionButtons = document.querySelectorAll('.chat-suggestion-btn');
     const chatMessages = document.querySelector('.chat-messages');
+    const chatSuggestionsContainer = document.querySelector('.chat-suggestions');
+    const toggleSuggestionsBtn = document.getElementById('toggle-suggestions-btn');
     const chatSection = document.querySelector('.chat-section');
+    let firstMessageSent = false;
 
     function addMessageToChat(message, sender) {
         const messageElement = document.createElement('div');
@@ -173,6 +176,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const promptMessage = promptMessageOverride || displayMessage;
 
         if (!promptMessage) return;
+
+        if (!firstMessageSent) {
+            if (chatSuggestionsContainer) chatSuggestionsContainer.style.display = 'none';
+            if (toggleSuggestionsBtn) toggleSuggestionsBtn.style.display = 'block'; // Or 'inline-block' or '' depending on desired layout
+            firstMessageSent = true;
+        }
 
         // Enhance chat section when user interacts
         chatSection.classList.add('chat-active');
@@ -276,6 +285,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Show initial welcome message
     setTimeout(showWelcomeMessage, 1000);
     
+    if (toggleSuggestionsBtn) {
+        toggleSuggestionsBtn.addEventListener('click', () => {
+            if (chatSuggestionsContainer) {
+                const isHidden = chatSuggestionsContainer.style.display === 'none';
+                chatSuggestionsContainer.style.display = isHidden ? 'flex' : 'none'; // Assuming suggestions use flex display
+                // Update button text if needed (e.g., Show/Hide Suggestions)
+                // toggleSuggestionsBtn.textContent = isHidden ? (translations['chat.hideSuggestions']?.[currentLanguage] || 'Hide Suggestions') : (translations['chat.showSuggestions']?.[currentLanguage] || 'Show Suggestions');
+            }
+        });
+    }
+
     // Update welcome message when language changes
     const originalUpdateLanguage = window.updateLanguage;
     window.updateLanguage = function(lang) {
