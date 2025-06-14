@@ -40,7 +40,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 en: "The use of AI, fee transparency, the wealth-sharing model..."
             };
             commentsTextarea.placeholder = placeholders[lang] || placeholders['fr'];
+            console.log('Set placeholder to:', commentsTextarea.placeholder, 'for lang:', lang);
         }
+
+        // Update select option translations for profile selector
+        const profileOptions = document.querySelectorAll('#profile option[data-translate]');
+        profileOptions.forEach(option => {
+            const key = option.getAttribute('data-translate');
+            if (translations[key] && translations[key][lang]) {
+                option.textContent = translations[key][lang];
+            }
+        });
 
         // Store the language preference
         localStorage.setItem('bubbleLanguage', lang);

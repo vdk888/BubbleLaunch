@@ -192,6 +192,38 @@ const translations = {
     en: 'Your profile (optional)',
     fr: 'Votre profil (optionnel)',
   },
+  'waitlist.profile.placeholder': {
+    en: 'Select your profile',
+    fr: 'Sélectionnez votre profil',
+  },
+  'waitlist.profile.investor_beginner': {
+    en: 'Beginner Investor',
+    fr: 'Investisseur débutant',
+  },
+  'waitlist.profile.investor_experienced': {
+    en: 'Experienced Investor',
+    fr: 'Investisseur expérimenté',
+  },
+  'waitlist.profile.tech_professional': {
+    en: 'Tech Professional',
+    fr: 'Professionnel tech',
+  },
+  'waitlist.profile.finance_professional': {
+    en: 'Finance Professional',
+    fr: 'Professionnel finance',
+  },
+  'waitlist.profile.entrepreneur': {
+    en: 'Entrepreneur',
+    fr: 'Entrepreneur',
+  },
+  'waitlist.profile.student': {
+    en: 'Student',
+    fr: 'Étudiant',
+  },
+  'waitlist.profile.other': {
+    en: 'Other',
+    fr: 'Autre',
+  },
   'waitlist.form.comments': {
     en: 'What interests you about our approach (optional)',
     fr: 'Ce qui vous intéresse dans notre approche (optionnel)',
