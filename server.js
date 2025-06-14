@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const { Client } = require('@notionhq/client');
 const axios = require('axios');
@@ -16,6 +17,12 @@ const openRouterApiKey = process.env.OPENROUTER_API_KEY;
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/')));
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'your-super-secret-key-that-should-be-in-env',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Set to true if using https
+}));
 
 // Document loading functions
 let missionDocument = '';
@@ -98,13 +105,23 @@ Keep your response reasonably short to be more engaging and always try to be con
 4. If the user expresses interest, provide a brief explanation of what they can expect after signing up.`;
 
 const models = [
-    'deepseek/deepseek-r1-0528:free', 
+    'google/gemini-2.0-flash-001',
     'openai/gpt-4.1-mini',
     'mistralai/magistral-small-2506',
-    'google/gemini-2.0-flash-001',
+    'deepseek/deepseek-r1-0528:free', 
 ];
 
-app.post('/chat', async (req, res) => {
+app.post('/api/chat', async (req, res) => {
+    if (!req.session.messageCount) {
+        req.session.messageCount = 0;
+    }
+
+    if (req.session.messageCount >= 10) {
+        return res.status(429).json({ error: 'Message limit reached' });
+    }
+
+    req.session.messageCount++;
+
     const { message, language = 'fr' } = req.body; // Default to French if not specified
 
     if (!message) {

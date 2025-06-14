@@ -187,20 +187,28 @@ document.addEventListener('DOMContentLoaded', function() {
         showTypingIndicator();
 
         try {
-            // Send the message to the bot with current language
             const botResponse = await sendMessageToBot(promptMessage, currentLanguage);
             removeTypingIndicator();
             addMessageToChat(botResponse, 'bot');
-        } catch (error) {
-            removeTypingIndicator();
-            addMessageToChat('Sorry, something went wrong. Please try again.', 'bot');
-        } finally {
-            // Re-enable input after processing
+            // Re-enable on success
             chatInput.disabled = false;
             chatSubmit.disabled = false;
+        } catch (error) {
+            removeTypingIndicator();
+            if (error.message === 'Message limit reached') {
+                addMessageToChat('You have reached the message limit for this session.', 'bot');
+                // Inputs remain disabled
+            } else {
+                addMessageToChat('Sorry, an error occurred. Please try again.', 'bot');
+                // Re-enable on other errors
+                chatInput.disabled = false;
+                chatSubmit.disabled = false;
+            }
+        } finally {
             chatSubmit.classList.remove('processing');
-            chatInput.focus();
-            
+            if (!chatInput.disabled) {
+                chatInput.focus();
+            }
             // Remove active state after a delay
             setTimeout(() => chatSection.classList.remove('chat-active'), 1000);
         }
