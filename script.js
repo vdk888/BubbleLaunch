@@ -126,7 +126,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatSuggestionsContainer = document.querySelector('.chat-suggestions');
     const toggleSuggestionsBtn = document.getElementById('toggle-suggestions-btn');
     const chatSection = document.querySelector('.chat-section');
+    const fullscreenToggleBtn = document.getElementById('fullscreen-toggle-btn');
     let firstMessageSent = false;
+    let isFullscreen = false;
 
     function addMessageToChat(message, sender) {
         const messageElement = document.createElement('div');
@@ -292,6 +294,53 @@ document.addEventListener('DOMContentLoaded', function() {
                 chatSuggestionsContainer.style.display = isHidden ? 'flex' : 'none'; // Assuming suggestions use flex display
                 // Update button text if needed (e.g., Show/Hide Suggestions)
                 // toggleSuggestionsBtn.textContent = isHidden ? (translations['chat.hideSuggestions']?.[currentLanguage] || 'Hide Suggestions') : (translations['chat.showSuggestions']?.[currentLanguage] || 'Show Suggestions');
+            }
+        });
+    }
+    
+    // Fullscreen toggle functionality for mobile
+    if (fullscreenToggleBtn) {
+        // Initially hide the fullscreen button on desktop
+        if (window.innerWidth > 768) {
+            fullscreenToggleBtn.style.display = 'none';
+        }
+        
+        // Show fullscreen button when user interacts with chat on mobile
+        const showFullscreenButton = () => {
+            if (window.innerWidth <= 768) {
+                fullscreenToggleBtn.style.display = 'flex';
+            }
+        };
+        
+        // Event listeners to show the fullscreen button
+        chatInput.addEventListener('focus', showFullscreenButton);
+        chatInput.addEventListener('click', showFullscreenButton);
+        chatSection.addEventListener('click', showFullscreenButton);
+        
+        // Toggle fullscreen mode
+        fullscreenToggleBtn.addEventListener('click', () => {
+            isFullscreen = !isFullscreen;
+            chatSection.classList.toggle('fullscreen', isFullscreen);
+            
+            // Update the button icon based on state
+            if (isFullscreen) {
+                fullscreenToggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M1.5 1a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 .5 7H0a.5.5 0 0 1 0-1h.5a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5zm10 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5H15a.5.5 0 0 1 0 1h-2.5A1.5 1.5 0 0 1 11 5.5v-4a.5.5 0 0 1 .5-.5zM0 10.5a.5.5 0 0 1 .5-.5H3a1.5 1.5 0 0 1 1.5 1.5v2.5a.5.5 0 0 1-1 0v-2.5a.5.5 0 0 0-.5-.5H.5a.5.5 0 0 1-.5-.5zm11 0a.5.5 0 0 1 .5-.5h2.5a.5.5 0 0 1 .5.5v2.5a.5.5 0 0 1-1 0v-2.5a.5.5 0 0 0-.5-.5h-2.5a.5.5 0 0 1-.5-.5z"/></svg>';
+            } else {
+                fullscreenToggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M5.5 0a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 4.5 6h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5zm5 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 10 4.5v-4a.5.5 0 0 1 .5-.5zM0 10.5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 6 11.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zm10 1a1.5 1.5 0 0 1 1.5-1.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4z"/></svg>';
+            }
+            
+            // Scroll chat messages to bottom when toggling fullscreen
+            setTimeout(() => {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 300);
+        });
+        
+        // Also make chat fullscreen when user starts interacting with it
+        chatInput.addEventListener('focus', () => {
+            if (window.innerWidth <= 768 && !isFullscreen) {
+                isFullscreen = true;
+                chatSection.classList.add('fullscreen');
+                fullscreenToggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M1.5 1a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 .5 7H0a.5.5 0 0 1 0-1h.5a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5zm10 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5H15a.5.5 0 0 1 0 1h-2.5A1.5 1.5 0 0 1 11 5.5v-4a.5.5 0 0 1 .5-.5zM0 10.5a.5.5 0 0 1 .5-.5H3a1.5 1.5 0 0 1 1.5 1.5v2.5a.5.5 0 0 1-1 0v-2.5a.5.5 0 0 0-.5-.5H.5a.5.5 0 0 1-.5-.5zm11 0a.5.5 0 0 1 .5-.5h2.5a.5.5 0 0 1 .5.5v2.5a.5.5 0 0 1-1 0v-2.5a.5.5 0 0 0-.5-.5h-2.5a.5.5 0 0 1-.5-.5z"/></svg>';
             }
         });
     }
