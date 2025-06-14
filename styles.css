@@ -252,6 +252,31 @@ nav a:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Chat Suggestions Container - ensure flex display for proper toggling */
+.chat-suggestions {
+  display: flex; /* Or 'block' if you prefer them stacked and not wrapping */
+  flex-wrap: wrap;
+  gap: 0.75rem; /* Matches existing gap for suggestion buttons */
+  margin-bottom: 1rem; /* Add some space below suggestions if they are visible */
+}
+
+/* Toggle Suggestions Button Styling */
+#toggle-suggestions-btn {
+  /* display: none; /* Initially hidden by inline style in HTML, JS controls this */
+  width: 100%; /* Make it full width */
+  margin-top: 1rem; /* Space above the button */
+  margin-bottom: 0.5rem; /* Space below the button before the input */
+  padding: 0.75rem 1rem; /* Adjust padding as needed */
+  font-weight: 500; /* Slightly less bold than main CTA */
+  background-color: #f0f0f0; /* A slightly different background */
+  color: var(--primary);
+  border: 1px solid var(--border);
+}
+
+#toggle-suggestions-btn:hover {
+  background-color: #e9e9e9;
+}
+
 /* Common section styles */
 section {
   padding: 6rem 0;
