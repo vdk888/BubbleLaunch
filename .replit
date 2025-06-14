@@ -1,4 +1,4 @@
-run = "python -m http.server 8080"
+run = "node server.js"
 entrypoint = "index.html"
 
 [nix]
