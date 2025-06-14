@@ -32,6 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
+        // Set placeholder for waitlist comments textarea based on language
+        const commentsTextarea = document.querySelector('textarea#comments[data-translate="waitlist.form.comments"]');
+        if (commentsTextarea) {
+            const placeholders = {
+                fr: "L'utilisation de l'IA, la transparence des frais, le modèle de partage des richesses...",
+                en: "The use of AI, fee transparency, the wealth-sharing model..."
+            };
+            commentsTextarea.placeholder = placeholders[lang] || placeholders['fr'];
+        }
+
         // Store the language preference
         localStorage.setItem('bubbleLanguage', lang);
     }
