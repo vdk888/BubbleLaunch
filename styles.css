@@ -993,22 +993,13 @@ form button:hover {
 
 @media (max-width: 768px) {
   .chat-section {
-    width: 100vw; /* Full viewport width */
-    margin: 0; /* Remove horizontal margins */
-    padding: 1rem; /* Adjust padding for full width */
-    max-height: 80vh; /* Optionally increase max height a bit */
-    border-radius: 0; /* Remove border radius for flush edges */
-    left: 50%; /* Re-center if transform was used */
-    transform: translateX(-50%); /* Re-center if transform was used */
+    margin: 1.5rem;
+    padding: 1.5rem;
+    max-height: 70vh;
     display: flex;
     flex-direction: column;
   }
-
-  .message-content {
-    font-size: 0.9rem; /* Reduce font size for messages on mobile */
-    text-align: left; /* Align message text to the left on mobile */
-  }
-
+  
   .chat-messages {
     flex: 1;
     max-height: none;
