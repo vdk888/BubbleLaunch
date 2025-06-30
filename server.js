@@ -1,10 +1,10 @@
-require('dotenv').config();
-const express = require('express');
-const session = require('express-session');
-const path = require('path');
-const { Client } = require('@notionhq/client');
-const axios = require('axios');
-const fs = require('fs').promises;
+require("dotenv").config();
+const express = require("express");
+const session = require("express-session");
+const path = require("path");
+const { Client } = require("@notionhq/client");
+const axios = require("axios");
+const fs = require("fs").promises;
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -16,46 +16,52 @@ const openRouterApiKey = process.env.OPENROUTER_API_KEY;
 
 // Middleware
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '/')));
-app.use(session({
-  secret: process.env.SESSION_SECRET || 'your-super-secret-key-that-should-be-in-env',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false } // Set to true if using https
-}));
+app.use(express.static(path.join(__dirname, "/")));
+app.use(
+  session({
+    secret:
+      process.env.SESSION_SECRET ||
+      "your-super-secret-key-that-should-be-in-env",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }, // Set to true if using https
+  }),
+);
 
 // Document loading functions
-let missionDocument = '';
-let elevatorPitch = '';
-let strategicPoints = '';
+let missionDocument = "";
+let elevatorPitch = "";
+let strategicPoints = "";
 
 async function loadDocument(fileName) {
-    try {
-        const filePath = path.join(__dirname, fileName);
-        return await fs.readFile(filePath, 'utf-8');
-    } catch (error) {
-        console.error(`Error loading ${fileName}:`, error);
-        return `[${fileName} could not be loaded]`;
-    }
+  try {
+    const filePath = path.join(__dirname, fileName);
+    return await fs.readFile(filePath, "utf-8");
+  } catch (error) {
+    console.error(`Error loading ${fileName}:`, error);
+    return `[${fileName} could not be loaded]`;
+  }
 }
 
 async function loadAllDocuments() {
-    try {
-        [missionDocument, elevatorPitch, strategicPoints] = await Promise.all([
-            loadDocument('mission_texte.txt'),
-            loadDocument('Elevatorpitch5min.md'),
-            loadDocument('PointsdeDépartStratégiquesBubble.md')
-        ]);
-        console.log('All documents loaded successfully');
-    } catch (error) {
-        console.error('Error loading documents:', error);
-    }
+  try {
+    [missionDocument, elevatorPitch, strategicPoints] = await Promise.all([
+      loadDocument("mission_texte.txt"),
+      loadDocument("Elevatorpitch5min.md"),
+      loadDocument("PointsdeDépartStratégiquesBubble.md"),
+    ]);
+    console.log("All documents loaded successfully");
+  } catch (error) {
+    console.error("Error loading documents:", error);
+  }
 }
 
 // Load documents when server starts
 loadAllDocuments().catch(console.error);
 
-const systemPrompt = (language) => `You are a client-facing representative for Bubble. Your primary goal is to explain our company's values and offerings to potential customers. You must be helpful, transparent, and embody our mission to revolutionize the investment industry. 
+const systemPrompt = (
+  language,
+) => `You are a client-facing representative for Bubble. Your primary goal is to explain our company's values and offerings to potential customers. You must be helpful, transparent, and embody our mission to revolutionize the investment industry. 
 
 ### COMPANY DOCUMENTS:
 
@@ -105,125 +111,136 @@ Keep your response reasonably short to be more engaging and always try to be con
 4. If the user expresses interest, provide a brief explanation of what they can expect after signing up.`;
 
 const models = [
-    'google/gemini-2.0-flash-001',
-    'openai/gpt-4.1-mini',
-    'mistralai/magistral-small-2506',
-    'deepseek/deepseek-r1-0528:free', 
+  "google/gemini-2.0-flash-001",
+  "openai/gpt-4.1-mini",
+  "mistralai/magistral-small-2506",
+  "deepseek/deepseek-r1-0528:free",
 ];
 
-app.post('/api/chat', async (req, res) => {
-    console.log('POST /api/chat hit on Replit server'); // Debug log
-    if (!req.session.messageCount) {
-        req.session.messageCount = 0;
+app.post("/api/chat", async (req, res) => {
+  console.log("POST /api/chat hit on Replit server"); // Debug log
+  if (!req.session.messageCount) {
+    req.session.messageCount = 0;
+  }
+
+  if (req.session.messageCount >= 10) {
+    return res.status(429).json({ error: "Message limit reached" });
+  }
+
+  req.session.messageCount++;
+
+  const { message, language = "fr" } = req.body; // Default to French if not specified
+
+  if (!message) {
+    return res.status(400).json({ error: "Message is required." });
+  }
+
+  if (!openRouterApiKey || openRouterApiKey === "YOUR_API_KEY_HERE") {
+    return res.status(500).json({
+      error:
+        "OpenRouter API key not configured on the server. Please add it to the .env file.",
+    });
+  }
+
+  let lastError = null;
+
+  for (const model of models) {
+    try {
+      const response = await axios.post(
+        "https://openrouter.ai/api/v1/chat/completions",
+        {
+          model: model,
+          messages: [
+            { role: "system", content: systemPrompt(language) },
+            { role: "user", content: message },
+          ],
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + openRouterApiKey,
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      if (response.data.choices && response.data.choices.length > 0) {
+        return res.json({ reply: response.data.choices[0].message.content });
+      }
+    } catch (error) {
+      lastError = error;
+      console.error(
+        "Error with model " + model + ":",
+        error.response ? error.response.data : error.message,
+      );
     }
+  }
 
-    if (req.session.messageCount >= 10) {
-        return res.status(429).json({ error: 'Message limit reached' });
-    }
-
-    req.session.messageCount++;
-
-    const { message, language = 'fr' } = req.body; // Default to French if not specified
-
-    if (!message) {
-        return res.status(400).json({ error: 'Message is required.' });
-    }
-
-    if (!openRouterApiKey || openRouterApiKey === 'YOUR_API_KEY_HERE') {
-        return res.status(500).json({ error: 'OpenRouter API key not configured on the server. Please add it to the .env file.' });
-    }
-
-    let lastError = null;
-
-    for (const model of models) {
-        try {
-            const response = await axios.post(
-                'https://openrouter.ai/api/v1/chat/completions',
-                {
-                    model: model,
-                    messages: [
-                        { role: 'system', content: systemPrompt(language) },
-                        { role: 'user', content: message },
-                    ],
-                },
-                {
-                    headers: {
-                        'Authorization': 'Bearer ' + openRouterApiKey,
-                        'Content-Type': 'application/json'
-                    }
-                }
-            );
-
-            if (response.data.choices && response.data.choices.length > 0) {
-                return res.json({ reply: response.data.choices[0].message.content });
-            }
-        } catch (error) {
-            lastError = error;
-            console.error('Error with model ' + model + ':', error.response ? error.response.data : error.message);
-        }
-    }
-
-    res.status(500).json({ error: 'All LLM providers failed. Please try again later.', details: lastError?.message });
+  res.status(500).json({
+    error: "All LLM providers failed. Please try again later.",
+    details: lastError?.message,
+  });
 });
 
 // API endpoint for form submission
-app.post('/subscribe', async (req, res) => {
-    const { name, email, profile, comments } = req.body;
+app.post("/subscribe", async (req, res) => {
+  const { name, email, profile, comments } = req.body;
 
-    if (!name || !email) {
-        return res.status(400).json({ error: 'Name and email are required.' });
-    }
+  if (!name || !email) {
+    return res.status(400).json({ error: "Name and email are required." });
+  }
 
-    try {
-        await notion.pages.create({
-            parent: { database_id: databaseId },
-            properties: {
-                'Nom': { 
-                    title: [
-                        {
-                            text: {
-                                content: name,
-                            },
-                        },
-                    ],
-                },
-                'Email': {
-                    email: email,
-                },
-                'Profil': {
-                    select: {
-                        name: profile || 'other',
-                    },
-                },
-                'Commentaires': {
-                    rich_text: [
-                        {
-                            text: {
-                                content: comments || '',
-                            },
-                        },
-                    ],
-                },
+  try {
+    await notion.pages.create({
+      parent: { database_id: databaseId },
+      properties: {
+        Nom: {
+          title: [
+            {
+              text: {
+                content: name,
+              },
             },
-        });
-        res.status(201).json({ message: 'Successfully subscribed!' });
-    } catch (error) {
-        console.error('Error adding to Notion:', error);
-        res.status(500).json({ error: 'Failed to subscribe. Please try again later.' });
-    }
+          ],
+        },
+        Email: {
+          email: email,
+        },
+        Profil: {
+          select: {
+            name: profile || "other",
+          },
+        },
+        Commentaires: {
+          rich_text: [
+            {
+              text: {
+                content: comments || "",
+              },
+            },
+          ],
+        },
+      },
+    });
+    res.status(201).json({ message: "Successfully subscribed!" });
+  } catch (error) {
+    console.error("Error adding to Notion:", error);
+    res
+      .status(500)
+      .json({ error: "Failed to subscribe. Please try again later." });
+  }
 });
 
 // Test POST route
-app.post('/test-post', (req, res) => {
-    console.log('POST /test-post hit on Replit server');
-    res.status(200).send('POST test successful on Replit');
+app.post("/test-post", (req, res) => {
+  console.log("POST /test-post hit on Replit server");
+  res.status(200).send("POST test successful on Replit");
 });
 
 // Serve index.html for the root
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.listen(port, () => {
-  console.log('Server running at http://localhost:' + port);
+  console.log("Server running at http://localhost:" + port);
 });
