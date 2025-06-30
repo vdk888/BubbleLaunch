@@ -257,16 +257,28 @@ const translations = {
     fr: 'Points Clés'
   },
   'assessment.summary_point1': {
-    en: 'Lower Costs',
-    fr: 'Coûts Réduits'
+    en: 'Lower Costs:',
+    fr: 'Coûts Réduits :'
+  },
+   'assessment.summary_point1_desc': {
+    en: 'Our fixed fee model provides significant savings over time.',
+    fr: 'Notre modèle de frais fixes offre des économies significatives dans le temps.'
   },
   'assessment.summary_point2': {
-    en: 'Higher Returns',
-    fr: 'Rendements Supérieurs'
+    en: 'Higher Returns:',
+    fr: 'Rendements Supérieurs :'
+  },
+  'assessment.summary_point2_desc': {
+    en: 'Lower costs and automated strategies lead to better long-term growth.',
+    fr: 'Des coûts réduits et des stratégies automatisées conduisent à une meilleure croissance à long terme.'
   },
   'assessment.summary_point3': {
-    en: 'Full Transparency',
-    fr: 'Transparence Totale'
+    en: 'Full Transparency:',
+    fr: 'Transparence Totale :'
+  },
+  'assessment.summary_point3_desc': {
+    en: "Understand exactly what you're paying for and why.",
+    fr: 'Comprenez exactement ce que vous payez et pourquoi.'
   },
 
   // Footer
