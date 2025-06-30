@@ -1,237 +1,273 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const sliderWrapper = document.querySelector('.charts-slider-wrapper');
     const slider = document.querySelector('.charts-slider');
     const slides = document.querySelectorAll('.chart-slide');
-    const prevButton = document.querySelector('.slider-arrow.prev');
-    const nextButton = document.querySelector('.slider-arrow.next');
     const dotsContainer = document.querySelector('.slider-dots');
+    const descriptionItems = document.querySelectorAll('.chart-description-item');
+    const insightTile = document.querySelector('.insight-tile');
 
-    if (!slider || !slides.length || !prevButton || !nextButton || !dotsContainer) {
-        console.error('Slider elements not found. Chart slider will not be initialized.');
+    if (!slider || !slides.length || !sliderWrapper) {
         return;
     }
 
     let currentIndex = 0;
     let charts = [];
     let chartsInitialized = false;
+    let slideInterval;
+    const slideDuration = 5000;
 
-    const showSlide = (index) => {
-        slider.style.transform = `translateX(-${index * 100}%)`;
-        updateDots(index);
-        currentIndex = index;
+    const updateSlider = () => {
+        const slideWidth = slides[0].offsetWidth;
+        const computedStyle = window.getComputedStyle(slider);
+        const gap = parseFloat(computedStyle.getPropertyValue('gap'));
+        const offset = currentIndex * (slideWidth + gap);
+        slider.style.transform = `translateX(-${offset}px)`;
+        updateDots();
+        updateDescription();
     };
 
-    const updateDots = (index) => {
+    const showSlide = (index) => {
+        currentIndex = index;
+        updateSlider();
+    };
+
+    const updateDots = () => {
         const dots = document.querySelectorAll('.slider-dot');
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+    };
+
+    const updateDescription = () => {
+        descriptionItems.forEach((item, i) => {
+            item.classList.toggle('active-description', i === currentIndex);
         });
     };
 
     const createDots = () => {
+        if (!dotsContainer) return;
         dotsContainer.innerHTML = '';
         slides.forEach((_, i) => {
             const dot = document.createElement('button');
             dot.classList.add('slider-dot');
             dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-            dot.addEventListener('click', () => showSlide(i));
+            dot.addEventListener('click', () => {
+                showSlide(i);
+                resetInterval();
+            });
             dotsContainer.appendChild(dot);
         });
     };
 
-    const numberCounter = (animation) => {
-        const chart = animation.chart;
-        const ctx = chart.ctx;
-        ctx.font = '600 12px Inter, sans-serif';
-        ctx.fillStyle = '#2D3748'; // Use new text color
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'bottom';
+    const startInterval = () => {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider();
+        }, slideDuration);
+    };
 
-        chart.data.datasets.forEach((dataset, i) => {
-            const meta = chart.getDatasetMeta(i);
-            meta.data.forEach((bar, index) => {
-                const value = chart.scales.y.getValueForPixel(bar.y);
-                if (bar.height < 15) return;
-                const formattedValue = new Intl.NumberFormat('fr-FR', {
-                    style: 'currency',
-                    currency: 'EUR',
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0
-                }).format(value);
-                ctx.fillText(formattedValue, bar.x, bar.y - 5);
-            });
+    const resetInterval = () => {
+        startInterval();
+    };
+
+    const typeInsight = (element, text, callback) => {
+        let i = 0;
+        element.innerHTML = ''; // Clear content before typing
+        element.style.opacity = 1;
+        const typingInterval = setInterval(() => {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+            } else {
+                clearInterval(typingInterval);
+                if (callback) callback();
+            }
+        }, 30); // Typing speed: 30ms per character
+    };
+
+    let insightAnimationRunning = false;
+    let insightAnimationTimeout;
+
+    const initKeyInsightsAnimation = () => {
+        if (insightAnimationRunning) return; // Prevent re-triggering if already running
+        insightAnimationRunning = true;
+
+        const insightItems = document.querySelectorAll('.insight-item');
+        const lang = document.documentElement.lang || 'en';
+
+        // Clear existing content and reset opacity for all items
+        insightItems.forEach(item => {
+            item.innerHTML = '';
+            item.style.opacity = 0;
+        });
+
+        let i = 0;
+        function animateNextInsight() {
+            if (i < insightItems.length) {
+                const item = insightItems[i];
+                const key = item.getAttribute('data-translate');
+                const text = translations[key][lang];
+
+                typeInsight(item, text, () => {
+                    insightAnimationTimeout = setTimeout(() => {
+                        i++;
+                        animateNextInsight();
+                    }, 500); // Pause between bullet points
+                });
+            } else {
+                insightAnimationRunning = false;
+            }
+        }
+        animateNextInsight();
+    };
+
+    // Function to stop and reset the insight animation
+    const resetKeyInsightsAnimation = () => {
+        insightAnimationRunning = false;
+        clearTimeout(insightAnimationTimeout);
+        const insightItems = document.querySelectorAll('.insight-item');
+        insightItems.forEach(item => {
+            item.innerHTML = '';
+            item.style.opacity = 0;
         });
     };
 
     const createCharts = () => {
         const performanceChartCtx = document.getElementById('performanceChart').getContext('2d');
-        const costChartCtx = document.getElementById('costChart').getContext('2d');
+        const portfolioEvolutionCtx = document.getElementById('portfolioEvolutionChart').getContext('2d');
 
-        // Create gradients for Performance Chart
-        const bubbleGradient = performanceChartCtx.createLinearGradient(0, 0, 0, 300);
-        bubbleGradient.addColorStop(0, '#4A5FFF');
-        bubbleGradient.addColorStop(1, '#7B6EF5');
-
-        const traditionalGradient = performanceChartCtx.createLinearGradient(0, 0, 0, 300);
-        traditionalGradient.addColorStop(0, '#B0C4DE');
-        traditionalGradient.addColorStop(1, '#E6F3FF');
+        const textColor = '#6b7280';
+        const gridColor = 'rgba(107, 114, 128, 0.2)';
+        const bubbleColor = '#afbff4';
+        const traditionalColor = '#6b7280';
 
         const performanceData = {
-            labels: ['10 ans', '20 ans', '30 ans'],
-            datasets: [{
-                label: 'Bubble',
-                data: [257462, 665877, 1725201],
-                backgroundColor: bubbleGradient,
-                borderRadius: 8
-            }, {
-                label: 'Concurrent',
-                data: [215893, 466096, 1006266],
-                backgroundColor: traditionalGradient,
-                borderRadius: 8
-            }]
+            labels: ['10 years', '20 years', '30 years'],
+            datasets: [
+                { label: 'Bubble', data: [391000, 771000, 1521000], backgroundColor: bubbleColor, borderRadius: 8 },
+                { label: 'Traditional', data: [338000, 615000, 1213000], backgroundColor: traditionalColor, borderRadius: 8 }
+            ]
         };
 
-        // Create gradients for Cost Chart
-        const bubbleLineGradient = costChartCtx.createLinearGradient(0, 0, 0, 300);
-        bubbleLineGradient.addColorStop(0, '#4A5FFF');
-        bubbleLineGradient.addColorStop(1, '#7B6EF5');
-
-        const traditionalLineGradient = costChartCtx.createLinearGradient(0, 0, 0, 300);
-        traditionalLineGradient.addColorStop(0, '#B0C4DE');
-        traditionalLineGradient.addColorStop(1, '#E6F3FF');
-
-        const bubbleFillGradient = costChartCtx.createLinearGradient(0, 0, 0, 300);
-        bubbleFillGradient.addColorStop(0, 'rgba(74, 95, 255, 0.3)');
-        bubbleFillGradient.addColorStop(1, 'rgba(123, 110, 245, 0.05)');
-
-        const traditionalFillGradient = costChartCtx.createLinearGradient(0, 0, 0, 300);
-        traditionalFillGradient.addColorStop(0, 'rgba(176, 196, 222, 0.3)');
-        traditionalFillGradient.addColorStop(1, 'rgba(230, 243, 255, 0.05)');
-
-        const costData = {
+        const evolutionData = {
             labels: Array.from({ length: 31 }, (_, i) => i),
-            datasets: [{
-                label: 'Bubble (Fixe)',
-                data: Array.from({ length: 31 }, (_, i) => 120 * i), // 10*12
-                borderColor: bubbleLineGradient,
-                backgroundColor: bubbleFillGradient,
-                fill: true,
-                tension: 0.4,
-                pointRadius: 0
-            }, {
-                label: 'Concurrent (2% AUM)',
-                data: Array.from({ length: 31 }, (_, i) => {
-                    let fees = 0;
-                    const initialInvestment = 100000;
-                    for (let j = 1; j <= i; j++) {
-                        fees += (initialInvestment * Math.pow(1.07, j)) * 0.02;
-                    }
-                    return fees;
-                }),
-                borderColor: traditionalLineGradient,
-                backgroundColor: traditionalFillGradient,
-                fill: true,
-                tension: 0.4,
-                pointRadius: 0
-            }]
+            datasets: [
+                { 
+                    label: 'Bubble', 
+                    data: Array.from({ length: 31 }, (_, i) => 200000 * Math.pow(1.07, i) - 120 * i), 
+                    borderColor: bubbleColor, 
+                    backgroundColor: 'rgba(175, 191, 244, 0.1)',
+                    fill: true, 
+                    tension: 0.4, 
+                    pointRadius: 0 
+                },
+                { 
+                    label: 'Traditional', 
+                    data: (() => {
+                        let values = [200000];
+                        for (let i = 1; i <= 30; i++) {
+                            values.push(values[i-1] * (1.07 - 0.02));
+                        }
+                        return values;
+                    })(),
+                    borderColor: traditionalColor, 
+                    backgroundColor: 'rgba(107, 114, 128, 0.1)',
+                    fill: true, 
+                    tension: 0.4, 
+                    pointRadius: 0 
+                }
+            ]
         };
 
-        const chartOptions = {
+        const baseOptions = {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
                 legend: { display: false },
                 tooltip: {
-                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                    titleColor: '#2D3748',
-                    bodyColor: '#2D3748',
-                    borderColor: 'rgba(74, 95, 255, 0.1)',
-                    borderWidth: 1,
-                    padding: 10,
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleColor: '#ffffff',
+                    bodyColor: '#ffffff',
+                    padding: 12,
                     cornerRadius: 8,
-                    displayColors: false,
+                    callbacks: {
+                        label: (context) => `${context.dataset.label}: ${new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(context.parsed.y)}`
+                    }
                 }
             },
             scales: {
-                x: {
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        color: '#2D3748'
-                    }
-                },
-                y: {
-                    grid: {
-                        color: 'rgba(226, 232, 240, 0.8)',
-                        borderDash: [3, 3],
-                        drawBorder: false,
-                    },
-                    ticks: {
-                        color: '#2D3748',
-                        callback: value => '€' + (value / 1000) + 'k'
-                    }
+                x: { grid: { display: false }, ticks: { color: textColor, font: { family: 'Inter, sans-serif' } } },
+                y: { 
+                    grid: { color: gridColor, borderDash: [3, 3], drawBorder: false }, 
+                    ticks: { 
+                        color: textColor, 
+                        font: { family: 'Inter, sans-serif' }, 
+                        callback: (value) => `${new Intl.NumberFormat('fr-FR').format(value / 1000)}k€`
+                    } 
                 }
             }
         };
 
-        const performanceChart = new Chart(performanceChartCtx, {
-            type: 'bar',
-            data: performanceData,
-            options: {
-                ...chartOptions,
-                animation: {
-                    duration: 1500,
-                    easing: 'easeOutQuart',
-                    onProgress: numberCounter
-                }
-            }
-        });
-
-        const costChart = new Chart(costChartCtx, {
-            type: 'line',
-            data: costData,
-            options: {
-                ...chartOptions,
-                animation: {
-                    duration: 1500,
-                    easing: 'easeOutQuart'
-                }
-            }
-        });
-
-        charts = [performanceChart, costChart];
+        charts.push(new Chart(performanceChartCtx, { type: 'bar', data: performanceData, options: baseOptions }));
+        charts.push(new Chart(portfolioEvolutionCtx, { type: 'line', data: evolutionData, options: baseOptions }));
     };
 
-    const initSliderAndCharts = () => {
+    const init = () => {
         if (chartsInitialized) return;
         chartsInitialized = true;
-
         createDots();
         createCharts();
-        showSlide(0);
+        updateSlider();
+        startInterval();
 
-        prevButton.addEventListener('click', () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
-            showSlide(currentIndex);
-        });
+        // Event listeners for prev/next buttons (if they are ever re-enabled)
+        const prevButton = document.querySelector('.slider-arrow.prev');
+        const nextButton = document.querySelector('.slider-arrow.next');
+        if(prevButton) prevButton.addEventListener('click', () => { currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1; updateSlider(); resetInterval(); });
+        if(nextButton) nextButton.addEventListener('click', () => { currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0; updateSlider(); resetInterval(); });
 
-        nextButton.addEventListener('click', () => {
-            currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
-            showSlide(currentIndex);
-        });
+        sliderWrapper.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        sliderWrapper.addEventListener('mouseleave', () => startInterval());
+
+        let touchStartX = 0;
+        slider.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, { passive: true });
+        slider.addEventListener('touchend', e => {
+            const touchEndX = e.changedTouches[0].screenX;
+            if (touchEndX < touchStartX - 50) currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+            else if (touchEndX > touchStartX + 50) currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+            updateSlider();
+            resetInterval();
+        }, { passive: true });
     };
 
     const chartObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                initSliderAndCharts();
+                init();
                 observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.1 });
 
-    const chartContainer = document.querySelector('.charts-section-container');
-    if (chartContainer) {
-        chartObserver.observe(chartContainer);
+    if (sliderWrapper) {
+        chartObserver.observe(sliderWrapper);
     }
+
+    const insightObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                initKeyInsightsAnimation();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    if (insightTile) {
+        insightObserver.observe(insightTile);
+    }
+
+    // Listen for custom languageChanged event
+    document.addEventListener('languageChanged', () => {
+        resetKeyInsightsAnimation();
+        initKeyInsightsAnimation();
+    });
 });

@@ -279,153 +279,199 @@ nav a:hover {
 
 /* Charts Section */
 .charts-section-container {
-    margin-top: 4rem;
-    padding: 3rem 0;
-    background-color: var(--card);
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    padding: 6rem 0;
+    background-color: #FFFFFF;
+}
+
+.charts-slider-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .charts-slider-container {
     position: relative;
     overflow: hidden;
-    margin: 0 auto;
-    max-width: 900px; /* Limit width for better focus */
 }
 
 .charts-slider {
     display: flex;
-    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    gap: 2rem; /* Add spacing between slides */
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .chart-slide {
     min-width: 100%;
     box-sizing: border-box;
-    padding: 0 10px;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
 
-.chart-slide h3 {
-    text-align: center;
-    color: #2D3748;
-    font-weight: 600;
+.chart-title {
+    font-weight: 700;
+    font-size: 1.6rem;
     margin-bottom: 1.5rem;
+    color: #667eea;
+    text-align: center;
 }
 
 .chart-container {
     height: 400px;
-    background: rgba(74, 95, 255, 0.02);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(74, 95, 255, 0.1);
+    background-color: #FFFFFF;
     border-radius: 16px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 8px 32px rgba(74, 95, 255, 0.08);
-    position: relative;
 }
 
-.chart-explanation {
-    font-size: 0.9rem;
-    color: #4A5568; /* Slightly darker text */
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.5;
-}
-
+/* Slider Navigation */
 .slider-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1.5rem;
-    gap: 1rem;
-}
-
-.slider-arrow {
-    background: #fff;
-    border: 1px solid #E2E8F0;
-    color: #4A5568;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    transition: all 0.2s ease;
-}
-
-.slider-arrow:hover {
-    background-color: var(--primary);
-    color: white;
-    border-color: var(--primary);
+    display: none;
 }
 
 .slider-dots {
     display: flex;
-    gap: 0.75rem;
-    margin: 0 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 2rem;
 }
 
 .slider-dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    background-color: #ccc;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    background: rgba(107, 114, 128, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .slider-dot.active {
-    background-color: var(--primary);
+    width: 16px;
+    height: 16px;
+    background: rgba(102, 126, 234, 0.3);
+    border: 1px solid #667eea;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
+
+/* Chart Descriptions */
+.chart-descriptions {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.chart-description-item {
+    display: none;
+}
+
+.chart-description-item.active-description {
+    display: block;
+}
+
+.chart-description-item .chart-description {
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto 0.5rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+.chart-description-item .chart-note {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #666;
+    max-width: 600px;
+    margin: 1rem auto 0;
+    line-height: 1.4;
+}
+
 
 /* Key Insights Section */
 .key-insights-container {
-    margin-top: 4rem;
+    margin-top: 6rem;
     padding: 0 2rem;
     text-align: center;
 }
 
 .key-insights-container h3 {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+    color: #667eea;
 }
 
-.insights-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
-
-@media (min-width: 768px) {
-    .insights-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-.insight-card {
-    background-color: var(--background);
-    padding: 1.5rem;
-    border-radius: 12px;
+.insight-tile {
+    background-color: #FFFFFF;
+    padding: 2rem;
+    border-radius: 16px;
     border: 1px solid var(--border);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
 }
 
-.insight-card strong {
-    display: block;
+.insight-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.insight-item {
     font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #007AFF; /* Digital Blue for insight titles */
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 1rem;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-.insight-card p {
-    font-size: 0.95rem;
-    color: #444;
-    line-height: 1.5;
+.insight-item:last-child {
+    margin-bottom: 0;
+}
+
+.typing-animation {
+    display: inline-block;
+    border-right: 0.15em solid #667eea;
+    animation: typing 1.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #667eea; }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .chart-slide {
+        padding: 1.5rem;
+    }
+    .chart-container {
+        height: 300px;
+    }
+    .chart-title {
+        font-size: 1.4rem;
+    }
+    .chart-description-item .chart-description {
+        font-size: 0.9rem;
+    }
+    .chart-description-item .chart-note {
+        font-size: 0.8rem;
+    }
+    .insights-grid {
+        gap: 1.5rem;
+    }
+    .insight-card {
+        padding: 1.5rem;
+    }
 }
 
 /* Common section styles */

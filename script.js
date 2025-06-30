@@ -54,6 +54,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Store the language preference
         localStorage.setItem('bubbleLanguage', lang);
+
+        // Dispatch a custom event for other modules to react to language change
+        const event = new CustomEvent('languageChanged', { detail: { lang: lang } });
+        document.dispatchEvent(event);
     }
 
     // Set up event listeners for language switches

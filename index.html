@@ -74,45 +74,49 @@
 
             <!-- Charts Section -->
             <div class="charts-section-container">
-
-                <div class="charts-slider-container">
-                    <div class="charts-slider">
-                        <div class="chart-slide">
-                            <h3 data-translate="charts.portfolio_title">Portfolio Value Comparison Over Time</h3>
-                            <div class="chart-container">
-                                <canvas id="performanceChart"></canvas>
+                <div class="charts-slider-wrapper">
+                    <div class="charts-slider-container">
+                        <div class="charts-slider">
+                            <div class="chart-slide" data-chart-title-key="charts.fee_impact_title">
+                                <h3 class="chart-title" data-translate="charts.fee_impact_title">Fee Structure Impact: The 30-Year Reality</h3>
+                                <div class="chart-container">
+                                    <canvas id="performanceChart"></canvas>
+                                </div>
                             </div>
-                            <p class="chart-explanation" data-translate="assessment.performance_explanation">Over 30 years, a portfolio with Bubble could outperform a traditional one by over 73%, thanks to lower fees and optimized strategies.</p>
+                            <div class="chart-slide" data-chart-title-key="charts.subscription_advantage_title">
+                                <h3 class="chart-title" data-translate="charts.subscription_advantage_title">Why Subscription Beats Percentage Fees</h3>
+                                <div class="chart-container">
+                                    <canvas id="portfolioEvolutionChart"></canvas>
+                                </div>
+                            </div>
                         </div>
-                        <div class="chart-slide">
-                            <h3 data-translate="charts.cost_title">Cost Impact: Fixed Subscription vs % AUM Fees</h3>
-                            <div class="chart-container">
-                                <canvas id="costChart"></canvas>
-                            </div>
-                            <p class="chart-explanation" data-translate="assessment.cost_explanation">With a fixed subscription, you could save over €317,000 in fees over 30 years compared to traditional percentage-based fees.</p>
+                        <div class="slider-nav">
+                            <button class="slider-arrow prev" aria-label="Previous chart">&#10094;</button>
+                            <button class="slider-arrow next" aria-label="Next chart">&#10095;</button>
                         </div>
                     </div>
-                    <div class="slider-nav">
-                        <button class="slider-arrow prev" aria-label="Previous chart">&lt;</button>
-                        <div class="slider-dots"></div>
-                        <button class="slider-arrow next" aria-label="Next chart">&gt;</button>
+                    <div class="slider-dots"></div>
+                </div>
+
+                <div class="chart-descriptions">
+                    <div class="chart-description-item active-description" data-slide-index="0">
+                        <p class="chart-description" data-translate="charts.fee_impact_desc">Starting with 200 000€, Bubble's fixed fee model results in 308 000€ more wealth compared to traditional 2% annual fees over 30 years.</p>
+                        <p class="chart-note" data-translate="charts.fee_impact_note">Based on 200 000€ initial investment with 7% annual returns. Bubble: 10€/month fixed fees (3 600€ total over 30 years). Traditional: 2% annual fees (308 000€ total over 30 years). Charts show net portfolio values after all fees.</p>
+                    </div>
+                    <div class="chart-description-item" data-slide-index="1">
+                        <p class="chart-description" data-translate="charts.subscription_advantage_desc">While traditional fees grow exponentially with your portfolio, Bubble's 10€/month stays constant, maximizing your wealth accumulation.</p>
+                        <p class="chart-note" data-translate="charts.subscription_advantage_note">Cumulative fees comparison over time. Fixed subscription remains constant while percentage-based fees grow exponentially with portfolio value.</p>
                     </div>
                 </div>
+
                 <div class="key-insights-container">
                     <h3 data-translate="assessment.summary_title">Key Insights</h3>
-                    <div class="insights-grid">
-                        <div class="insight-card">
-                            <strong data-translate="assessment.summary_point1">Lower Costs:</strong>
-                            <p data-translate="assessment.summary_point1_desc">Our fixed fee model provides significant savings over time.</p>
-                        </div>
-                        <div class="insight-card">
-                            <strong data-translate="assessment.summary_point2">Higher Returns:</strong>
-                            <p data-translate="assessment.summary_point2_desc">Lower costs and automated strategies lead to better long-term growth.</p>
-                        </div>
-                        <div class="insight-card">
-                            <strong data-translate="assessment.summary_point3">Full Transparency:</strong>
-                            <p data-translate="assessment.summary_point3_desc">Understand exactly what you're paying for and why.</p>
-                        </div>
+                    <div class="insight-tile">
+                        <ul class="insight-list">
+                            <li class="insight-item" data-translate="insights.lower_costs"></li>
+                            <li class="insight-item" data-translate="insights.higher_returns"></li>
+                            <li class="insight-item" data-translate="insights.full_transparency"></li>
+                        </ul>
                     </div>
                 </div>
             </div>

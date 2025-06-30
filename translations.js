@@ -236,49 +236,45 @@ const translations = {
     en: 'Our Assessment',
     fr: 'Notre Analyse'
   },
-  'charts.portfolio_title': {
-      en: 'Portfolio Value Comparison Over Time',
-      fr: 'Comparaison de la Valeur du Portefeuille dans le Temps'
+  'charts.fee_impact_title': {
+    en: 'Fee Structure Impact: The 30-Year Reality',
+    fr: 'Impact de la Structure de Frais : La Réalité sur 30 Ans'
   },
-  'charts.cost_title': {
-      en: 'Cost Impact: Fixed Subscription vs % AUM Fees',
-      fr: 'Impact des Coûts : Abonnement Fixe vs Frais en % AUM'
+  'charts.fee_impact_desc': {
+    en: "Starting with 200 000€, Bubble's fixed fee model results in 308 000€ more wealth compared to traditional 2% annual fees over 30 years.",
+    fr: "Avec 200 000€ de départ, le modèle de frais fixes de Bubble génère 308 000€ de richesse supplémentaire par rapport aux frais traditionnels de 2% annuels sur 30 ans."
   },
-  'assessment.performance_explanation': {
-    en: 'Over 30 years, a portfolio with Bubble could outperform a traditional one by over 73%, thanks to lower fees and optimized strategies.',
-    fr: 'Sur 30 ans, un portefeuille avec Bubble pourrait surperformer un traditionnel de plus de 73%, grâce à des frais réduits et des stratégies optimisées.'
+  'charts.fee_impact_note': {
+    en: "Based on 200 000€ initial investment with 7% annual returns. Bubble: 10€/month fixed fees (3 600€ total over 30 years). Traditional: 2% annual fees (308 000€ total over 30 years). Charts show net portfolio values after all fees.",
+    fr: "Basé sur un investissement initial de 200 000€ avec 7% de rendement annuel. Bubble : 10€/mois de frais fixes (3 600€ au total sur 30 ans). Traditionnel : 2% de frais annuels (308 000€ au total sur 30 ans). Les graphiques montrent les valeurs nettes du portefeuille après tous les frais."
   },
-  'assessment.cost_explanation': {
-    en: 'With a fixed subscription, you could save over €317,000 in fees over 30 years compared to traditional percentage-based fees.',
-    fr: 'Avec un abonnement fixe, vous pourriez économiser plus de 317 000€ en frais sur 30 ans par rapport aux frais traditionnels en pourcentage.'
+  'charts.subscription_advantage_title': {
+    en: 'Why Subscription Beats Percentage Fees',
+    fr: "Pourquoi l'Abonnement Bat les Frais en Pourcentage"
+  },
+  'charts.subscription_advantage_desc': {
+    en: "While traditional fees grow exponentially with your portfolio, Bubble's 10€/month stays constant, maximizing your wealth accumulation.",
+    fr: "Tandis que les frais traditionnels croissent exponentiellement avec votre portefeuille, les 10€/mois de Bubble restent constants, maximisant votre accumulation de richesse."
+  },
+  'charts.subscription_advantage_note': {
+    en: "This chart shows the same portfolio performance data as the previous chart, but highlights how the cumulative impact of fees creates an exponential wealth gap over time. While €10/month stays constant, 2% annual fees compound dramatically.",
+    fr: "Ce graphique montre les mêmes données de performance de portefeuille que le graphique précédent, mais met en évidence comment l'impact cumulé des frais crée un écart de richesse exponentiel dans le temps. Tandis que 10€/mois restent constants, les frais annuels de 2% se composent de façon dramatique."
   },
   'assessment.summary_title': {
     en: 'Key Insights',
     fr: 'Points Clés'
   },
-  'assessment.summary_point1': {
-    en: 'Lower Costs:',
-    fr: 'Coûts Réduits :'
+  'insights.lower_costs': {
+    en: '• Lower Costs: Our fixed fee model provides significant savings over time.',
+    fr: '• Coûts Réduits : Notre modèle de frais fixes offre des économies significatives dans le temps.'
   },
-   'assessment.summary_point1_desc': {
-    en: 'Our fixed fee model provides significant savings over time.',
-    fr: 'Notre modèle de frais fixes offre des économies significatives dans le temps.'
+  'insights.higher_returns': {
+    en: '• Higher Returns: Lower costs and automated strategies lead to better long-term growth.',
+    fr: '• Rendements Supérieurs : Des coûts réduits et des stratégies automatisées conduisent à une meilleure croissance à long terme.'
   },
-  'assessment.summary_point2': {
-    en: 'Higher Returns:',
-    fr: 'Rendements Supérieurs :'
-  },
-  'assessment.summary_point2_desc': {
-    en: 'Lower costs and automated strategies lead to better long-term growth.',
-    fr: 'Des coûts réduits et des stratégies automatisées conduisent à une meilleure croissance à long terme.'
-  },
-  'assessment.summary_point3': {
-    en: 'Full Transparency:',
-    fr: 'Transparence Totale :'
-  },
-  'assessment.summary_point3_desc': {
-    en: "Understand exactly what you're paying for and why.",
-    fr: 'Comprenez exactement ce que vous payez et pourquoi.'
+  'insights.full_transparency': {
+    en: '• Full Transparency: Understand exactly what you\'re paying for and why.',
+    fr: '• Transparence Totale : Comprenez exactement ce que vous payez et pourquoi.'
   },
 
   // Footer
