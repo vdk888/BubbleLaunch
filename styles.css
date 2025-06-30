@@ -277,6 +277,162 @@ nav a:hover {
   background-color: #e9e9e9;
 }
 
+/* Charts Section */
+.charts-section-container {
+    margin-top: 4rem;
+    padding: 3rem 0;
+    background-color: var(--card);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.charts-section-container h2 {
+    margin-bottom: 2rem;
+}
+
+.charts-slider-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.charts-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.chart-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 0 1rem;
+}
+
+.chart-slide h3 {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+.chart-container {
+    background: var(--background);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border);
+    height: 400px;
+    position: relative;
+}
+
+.chart-explanation {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 1.5rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+/* Slider Navigation */
+.slider-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.slider-arrow {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--primary);
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.slider-arrow:hover {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.slider-dots {
+    display: flex;
+    gap: 0.75rem;
+    margin: 0 1rem;
+}
+
+.slider-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.slider-dot.active {
+    background-color: var(--primary);
+}
+
+/* Key Insights Section */
+.key-insights-container {
+    margin-top: 4rem;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.key-insights-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--primary);
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .insights-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.insight-card {
+    background-color: var(--background);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.insight-card strong {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #007AFF; /* Digital Blue for insight titles */
+}
+
+.insight-card p {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.5;
+}
+
 /* Common section styles */
 section {
   padding: 6rem 0;

@@ -232,11 +232,47 @@ const translations = {
     en: 'Join the List',
     fr: 'Rejoindre la Liste',
   },
+  'assessment.title': {
+    en: 'Our Assessment',
+    fr: 'Notre Analyse'
+  },
+  'charts.portfolio_title': {
+      en: 'Portfolio Value Comparison Over Time',
+      fr: 'Comparaison de la Valeur du Portefeuille dans le Temps'
+  },
+  'charts.cost_title': {
+      en: 'Cost Impact: Fixed Subscription vs % AUM Fees',
+      fr: 'Impact des Coûts : Abonnement Fixe vs Frais en % AUM'
+  },
+  'assessment.performance_explanation': {
+    en: 'Over 30 years, a portfolio with Bubble could outperform a traditional one by over 73%, thanks to lower fees and optimized strategies.',
+    fr: 'Sur 30 ans, un portefeuille avec Bubble pourrait surperformer un traditionnel de plus de 73%, grâce à des frais réduits et des stratégies optimisées.'
+  },
+  'assessment.cost_explanation': {
+    en: 'With a fixed subscription, you could save over €317,000 in fees over 30 years compared to traditional percentage-based fees.',
+    fr: 'Avec un abonnement fixe, vous pourriez économiser plus de 317 000€ en frais sur 30 ans par rapport aux frais traditionnels en pourcentage.'
+  },
+  'assessment.summary_title': {
+    en: 'Key Insights',
+    fr: 'Points Clés'
+  },
+  'assessment.summary_point1': {
+    en: 'Lower Costs',
+    fr: 'Coûts Réduits'
+  },
+  'assessment.summary_point2': {
+    en: 'Higher Returns',
+    fr: 'Rendements Supérieurs'
+  },
+  'assessment.summary_point3': {
+    en: 'Full Transparency',
+    fr: 'Transparence Totale'
+  },
 
   // Footer
   'footer.copyright': {
-    en: '© 2025 Bubble. Transparent by design.',
-    fr: '© 2025 Bubble. Transparent by design.',
+    en: ' 2025 Bubble. Transparent by design.',
+    fr: ' 2025 Bubble. Transparent by design.',
   },
   'footer.tagline': {
     en: "Popping the finance bubble in the AI era.",

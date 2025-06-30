@@ -71,31 +71,49 @@
             <div class="insight-box">
                 <p data-translate="manifesto.insight">Notre éthique : libérer le capital des frais exorbitants pour le remettre entre vos mains, afin que vous puissiez l'investir dans ce en quoi vous croyez vraiment.</p>
             </div>
-        </div>
-    </section>
 
-    <!-- Vision Section -->
-    <section id="vision" class="vision fade-in">
-        <div class="container">
-            <h2 data-translate="vision.title">Ce Que Nous Construisons</h2>
-            <div class="platform-card">
-                <h3 data-translate="vision.platform.title">Un Agent IA d'Investissement Complet</h3>
-                <p data-translate="vision.platform.description1">Nous développons l'outil que nous utilisons pour notre propre argent : un système intelligent qui optimise les portefeuilles via des stratégies quantitatives transparentes et des backtests rigoureux.</p>
-                <p data-translate="vision.platform.description2">Notre plateforme intègre un véritable agent IA capable de jouer le rôle d'un gérant complet : conseils personnalisés, trading automatique, et éducation financière accessible.</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-item">
-                    <h4 data-translate="vision.cost.title">Structure de Coûts Repensée</h4>
-                    <p data-translate="vision.cost.description">Abonnement fixe (ex: 10€/mois) plutôt qu'un pourcentage de vos actifs. L'automatisation nous permet de réduire drastiquement les frais.</p>
+            <!-- Charts Section -->
+            <div class="charts-section-container">
+                <h2 data-translate="assessment.title">Our Assessment</h2>
+                <div class="charts-slider-container">
+                    <div class="charts-slider">
+                        <div class="chart-slide">
+                            <h3 data-translate="charts.portfolio_title">Portfolio Value Comparison Over Time</h3>
+                            <div class="chart-container">
+                                <canvas id="performanceChart"></canvas>
+                            </div>
+                            <p class="chart-explanation" data-translate="assessment.performance_explanation">Over 30 years, a portfolio with Bubble could outperform a traditional one by over 73%, thanks to lower fees and optimized strategies.</p>
+                        </div>
+                        <div class="chart-slide">
+                            <h3 data-translate="charts.cost_title">Cost Impact: Fixed Subscription vs % AUM Fees</h3>
+                            <div class="chart-container">
+                                <canvas id="costChart"></canvas>
+                            </div>
+                            <p class="chart-explanation" data-translate="assessment.cost_explanation">With a fixed subscription, you could save over €317,000 in fees over 30 years compared to traditional percentage-based fees.</p>
+                        </div>
+                    </div>
+                    <div class="slider-nav">
+                        <button class="slider-arrow prev" aria-label="Previous chart">&lt;</button>
+                        <div class="slider-dots"></div>
+                        <button class="slider-arrow next" aria-label="Next chart">&gt;</button>
+                    </div>
                 </div>
-                <div class="feature-item">
-                    <h4 data-translate="vision.ai.title">Expertise IA Accessible</h4>
-                    <p data-translate="vision.ai.description">Notre IA conversationnelle vous donne accès au même niveau d'analyse qu'un professionnel, sans les frais traditionnels.</p>
-                </div>
-                <div class="feature-item">
-                    <h4 data-translate="vision.crypto.title">Actifs Diversifiés</h4>
-                    <p data-translate="vision.crypto.description">Nos portefeuilles intègrent les cryptomonnaies pour s'adapter à l'évolution du paysage financier.</p>
+                <div class="key-insights-container">
+                    <h3 data-translate="assessment.summary_title">Key Insights</h3>
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <strong data-translate="assessment.summary_point1">Lower Costs</strong>
+                            <p>Our fixed fee model provides significant savings over time.</p>
+                        </div>
+                        <div class="insight-card">
+                            <strong data-translate="assessment.summary_point2">Higher Returns</strong>
+                            <p>Lower costs and automated strategies lead to better long-term growth.</p>
+                        </div>
+                        <div class="insight-card">
+                            <strong data-translate="assessment.summary_point3">Full Transparency</strong>
+                            <p>Understand exactly what you're paying for and why.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -138,6 +156,33 @@
             
             <div class="philosophy-box">
                 <p data-translate="approach.philosophy">Notre objectif n'est pas de prétendre battre le marché, mais d'optimiser votre portefeuille selon vos objectifs, avec transparence et à moindre coût.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="vision" class="vision fade-in">
+        <div class="container">
+            <h2 data-translate="vision.title">Ce Que Nous Construisons</h2>
+            <div class="platform-card">
+                <h3 data-translate="vision.platform.title">Un Agent IA d'Investissement Complet</h3>
+                <p data-translate="vision.platform.description1">Nous développons l'outil que nous utilisons pour notre propre argent : un système intelligent qui optimise les portefeuilles via des stratégies quantitatives transparentes et des backtests rigoureux.</p>
+                <p data-translate="vision.platform.description2">Notre plateforme intègre un véritable agent IA capable de jouer le rôle d'un gérant complet : conseils personnalisés, trading automatique, et éducation financière accessible.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h4 data-translate="vision.cost.title">Structure de Coûts Repensée</h4>
+                    <p data-translate="vision.cost.description">Abonnement fixe (ex: 10€/mois) plutôt qu'un pourcentage de vos actifs. L'automatisation nous permet de réduire drastiquement les frais.</p>
+                </div>
+                <div class="feature-item">
+                    <h4 data-translate="vision.ai.title">Expertise IA Accessible</h4>
+                    <p data-translate="vision.ai.description">Notre IA conversationnelle vous donne accès au même niveau d'analyse qu'un professionnel, sans les frais traditionnels.</p>
+                </div>
+                <div class="feature-item">
+                    <h4 data-translate="vision.crypto.title">Actifs Diversifiés</h4>
+                    <p data-translate="vision.crypto.description">Nos portefeuilles intègrent les cryptomonnaies pour s'adapter à l'évolution du paysage financier.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -197,7 +242,9 @@
 
     <script src="translations.js"></script>
     <script src="chatbot-logic.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
     <script src="animations.js"></script>
+    <script src="charts.js"></script>
 </body>
 </html>
