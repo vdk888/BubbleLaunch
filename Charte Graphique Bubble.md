@@ -281,23 +281,35 @@ Quand l'espace horizontal est insuffisant :
 
 ## **8\. Interface Utilisateur**
 
+## **8\. Interface Utilisateur**
+
 ### **Boutons**
 
 #### **Bouton Principal (CTA)**
 
-* **Arrière-plan** : Dégradé `linear-gradient(135deg, #333333 0%, #444444 100%)`  
-* **Couleur texte** : Blanc  
-* **Padding** : 1.1rem 2.5rem  
-* **Border-radius** : 8px  
-* **Poids police** : 600  
-* **Ombre** : `0 4px 12px rgba(0, 0, 0, 0.1)`
+* ### **Arrière-plan : Dégradé `linear-gradient(135deg, #333333 0%, #444444 100%)`**
+
+* ### **Couleur texte : Blanc**
+
+* ### **Padding : 1.1rem 2.5rem**
+
+* ### **Border-radius : 8px**
+
+* ### **Poids police : 600**
+
+* ### **Ombre : `0 4px 12px rgba(0, 0, 0, 0.1)`**
+
+* ### **État hover : Arrière-plan `#6b7280` (gris moderne utilisé dans les graphiques)**
 
 #### **Bouton Secondaire**
 
-* **Arrière-plan** : `rgba(255, 255, 255, 0.6)`  
-* **Bordure** : `1px solid rgba(255, 255, 255, 0.3)`  
-* **Couleur texte** : var(--primary)  
-* **Backdrop-filter** : `blur(4px)`
+* ### **Arrière-plan : `rgba(255, 255, 255, 0.6)`**
+
+* ### **Bordure : `1px solid rgba(255, 255, 255, 0.3)`**
+
+* ### **Couleur texte : var(--primary)**
+
+* ### **Backdrop-filter : `blur(4px)`**
 
 ### **Champs de Saisie**
 
@@ -428,9 +440,26 @@ Quand l'espace horizontal est insuffisant :
   \--foreground: \#000000;  
   \--primary: \#333333;  
   \--primary-hover: \#444444;  
+  \--cta-hover: \#6b7280; /\* Couleur hover pour boutons CTA uniquement \*/  
   \--card: \#F8F8F8;  
   \--border: \#EEEEEE;  
   \--text-secondary: \#666666;  
+}
+
+/\* Styles CTA \- COULEUR ORIGINALE INCHANGÉE \*/  
+.cta-button, .chat-submit, button\[type="submit"\] {  
+  background: linear-gradient(135deg, \#333333 0%, \#444444 100%);  
+  color: white;  
+  padding: 1.1rem 2.5rem;  
+  border-radius: 8px;  
+  font-weight: 600;  
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  
+  transition: background 0.3s ease;  
+}
+
+/\* SEUL LE HOVER CHANGE VERS LE GRIS \*/  
+.cta-button:hover, .chat-submit:hover, button\[type="submit"\]:hover {  
+  background: \#6b7280;  
 }
 
 ---
