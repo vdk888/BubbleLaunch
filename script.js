@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const fullscreenToggleBtn = document.getElementById("fullscreen-toggle-btn");
   let firstMessageSent = false;
   let isFullscreen = false;
+  let stopTyping = false;
 
   function addMessageToChat(message, sender) {
     const messageElement = document.createElement("div");
@@ -169,49 +170,62 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // If it's a bot message, animate it word by word
         if (sender === "bot") {
-          // Create a container for the animated text
-          messageElement.innerHTML = "";
-          const words = formattedMessage.split(" ");
+          messageElement.innerHTML = ''; // Clear previous content
+
+          const textSpan = document.createElement('span');
+          const stopButton = document.createElement('button');
+          stopButton.className = 'stop-button';
+          stopButton.textContent = translations['chat.stop_generation'][currentLanguage];
+          
+          messageElement.appendChild(textSpan);
+          messageElement.appendChild(stopButton);
+
+          // Show the stop button
+          setTimeout(() => stopButton.classList.add('visible'), 100);
+
+          stopButton.addEventListener('click', () => {
+            stopTyping = true;
+            stopButton.classList.remove('visible');
+          });
+
+          const words = formattedMessage.split(' ');
           let wordIndex = 0;
 
-          // Function to add words one by one
           const typeNextWord = () => {
+            if (stopTyping) {
+              // Re-enable inputs if generation is stopped by user
+              chatInput.disabled = false;
+              chatSubmit.disabled = false;
+              chatSubmit.classList.remove("processing");
+              chatInput.focus();
+              return;
+            }
+
             if (wordIndex < words.length) {
-              // Add the next word with a space
-              if (wordIndex > 0) {
-                messageElement.innerHTML += " ";
-              }
-
+              if (wordIndex > 0) textSpan.innerHTML += ' ';
+              
               // Handle HTML tags (like <strong>, <em>, <br>, etc.)
-              if (
-                words[wordIndex].startsWith("<") &&
-                !words[wordIndex].startsWith("<br")
-              ) {
-                // For HTML tags, add them immediately without animation
+              if (words[wordIndex].startsWith('<') && !words[wordIndex].startsWith('<br')) {
                 let tagContent = words[wordIndex];
-                while (
-                  wordIndex + 1 < words.length &&
-                  !words[wordIndex].includes(">")
-                ) {
+                while (wordIndex + 1 < words.length && !words[wordIndex].includes('>')) {
                   wordIndex++;
-                  tagContent += " " + words[wordIndex];
+                  tagContent += ' ' + words[wordIndex];
                 }
-                messageElement.innerHTML += tagContent;
+                textSpan.innerHTML += tagContent;
               } else {
-                messageElement.innerHTML += words[wordIndex];
+                textSpan.innerHTML += words[wordIndex];
               }
 
-              // Scroll to the bottom as words are added
               chatMessages.scrollTop = chatMessages.scrollHeight;
-
               wordIndex++;
-              // Random typing speed between 30-70ms for natural effect
               const typingSpeed = Math.floor(Math.random() * 40) + 30;
               setTimeout(typeNextWord, typingSpeed);
+            } else {
+              // Typing finished, hide the button
+              stopButton.classList.remove('visible');
             }
           };
 
-          // Start the typing animation
           typeNextWord();
         } else {
           // For user messages, show immediately
@@ -257,6 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
     displayMessageOverride,
     promptMessageOverride,
   ) {
+    stopTyping = false; // Reset the flag for a new message
     const displayMessage = displayMessageOverride || chatInput.value.trim();
     const promptMessage = promptMessageOverride || displayMessage;
 

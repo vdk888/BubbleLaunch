@@ -138,29 +138,31 @@ const translations = {
   },
 
   // Chat Section
-  "chat.question1": {
-    en: "Why is AI a game-changer?",
-    fr: "Pourquoi l'IA change-t-elle la donne ?",
-  },
-  "chat.question2": {
-    en: "How do you reduce fees?",
-    fr: "Comment réduisez-vous les frais ?",
-  },
-  "chat.question3": {
-    en: "What happens to fund managers?",
-    fr: "Que devient le métier de gérant ?",
-  },
-  "chat.question4": {
-    en: "How does Bubble work?",
-    fr: "Comment fonctionne Bubble ?",
+  "chat.rotatingPlaceholders": {
+    en: [
+      "Ask us why AI is a game-changer...",
+      "Ask us how we reduce fees...",
+      "Ask us what happens to fund managers...",
+      "Ask us how Bubble works..."
+    ],
+    fr: [
+      "Demandez-nous pourquoi l'IA change la donne...",
+      "Demandez-nous comment nous réduisons les frais...",
+      "Demandez-nous ce qui arrive aux gérants de fonds...",
+      "Demandez-nous comment fonctionne Bubble..."
+    ]
   },
   "chat.placeholder": {
-    en: "Ask us about the future of investment...",
-    fr: "Posez-nous vos questions sur l'avenir de l'investissement...",
+    en: "Ask us why AI is a game-changer...",
+    fr: "Demandez-nous pourquoi l'IA change la donne..."
   },
   "chat.button": {
     en: "Ask",
     fr: "Demander",
+  },
+  "chat.stop_generation": {
+    en: "Stop Generation",
+    fr: "Arrêter la Génération",
   },
 
   // Waitlist Section
@@ -285,5 +287,11 @@ const translations = {
   "footer.tagline": {
     en: "Popping the finance bubble in the AI era.",
     fr: "Percer la bulle financière à l'ère de l'IA.",
+  },
+
+  // Floating Bubble
+  "floating_bubble.text": {
+    en: "Have questions? Chat with our AI",
+    fr: "Des questions ? Discutez avec notre IA"
   },
 };
