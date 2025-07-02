@@ -172,22 +172,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // If it's a bot message, animate it word by word
         if (sender === "bot") {
           messageElement.innerHTML = ''; // Clear previous content
-
-          const textSpan = document.createElement('span');
-          const stopButton = document.createElement('button');
-          stopButton.className = 'stop-button';
-          stopButton.textContent = translations['chat.stop_generation'][currentLanguage];
+          messageElement.textContent = ''; // Ensure no content remains
           
+          const textSpan = document.createElement('span');
           messageElement.appendChild(textSpan);
-          messageElement.appendChild(stopButton);
-
-          // Show the stop button
-          setTimeout(() => stopButton.classList.add('visible'), 100);
-
-          stopButton.addEventListener('click', () => {
-            stopTyping = true;
-            stopButton.classList.remove('visible');
-          });
 
           const words = formattedMessage.split(' ');
           let wordIndex = 0;
@@ -297,10 +285,21 @@ document.addEventListener("DOMContentLoaded", function () {
     chatSubmit.classList.add("processing");
     chatSubmit.setAttribute("aria-label", "Stop generation");
 
-    // Add user message to chat
+    // Add user message to chat first
     addMessageToChat(displayMessage, "user");
     chatInput.value = "";
     showTypingIndicator();
+
+    // Create a new message element for the bot's response
+    // But don't append it yet - we'll do that when we get the first chunk
+    const botMessageElement = document.createElement("div");
+    botMessageElement.classList.add("chat-message", "bot-message");
+    const botMessageContent = document.createElement("span");
+    botMessageElement.appendChild(botMessageContent);
+    
+    // Store the abort function for the current request
+    const abortController = currentAbortController;
+    let isStreaming = false;
 
     try {
       const response = await fetch("/api/chat", {
@@ -312,7 +311,7 @@ document.addEventListener("DOMContentLoaded", function () {
           message: promptMessage, 
           language: currentLanguage 
         }),
-        signal: currentAbortController.signal
+        signal: abortController.signal
       });
 
       if (response.status === 429) {
@@ -324,52 +323,109 @@ document.addEventListener("DOMContentLoaded", function () {
         throw new Error(errorData.error || "An error occurred");
       }
 
-      const data = await response.json();
+      // Handle streaming response
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let botMessage = "";
+      let buffer = "";
       
+      // Remove typing indicator since we're showing the response
       removeTypingIndicator();
-      if (!stopTyping) {
-        addMessageToChat(data.reply, "bot");
-      } else {
-        // If stopped by user, show a message
-        addMessageToChat("Generation stopped by user.", "bot");
+      
+      // Now that we have the first chunk, append the bot message element
+      chatMessages.appendChild(botMessageElement);
+      isStreaming = true;
+      
+      // Process the stream
+      while (true) {
+        if (stopTyping) {
+          // Abort the request when stop is clicked
+          abortController.abort();
+          throw new DOMException('The operation was aborted.', 'AbortError');
+        }
+        
+        const { done, value } = await reader.read();
+        if (done) break;
+        
+        // Decode the chunk and process each line
+        const chunk = decoder.decode(value, { stream: true });
+        buffer += chunk;
+        
+        // Process complete SSE messages
+        const lines = buffer.split('\n\n');
+        buffer = lines.pop() || ""; // Keep the last incomplete line in the buffer
+        
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            try {
+              const data = JSON.parse(line.substring(6).trim());
+              
+              if (data.done) {
+                // End of stream
+                break;
+              } else if (data.error) {
+                throw new Error(data.error);
+              } else if (data.content) {
+                // Append content to the message
+                botMessage += data.content;
+                botMessageContent.textContent = botMessage;
+                
+                // Auto-scroll to the bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+              }
+            } catch (e) {
+              console.error('Error parsing SSE data:', e);
+            }
+          }
+        }
       }
       
     } catch (error) {
       // Only show error if it's not an abort error (user cancellation)
       if (error.name !== 'AbortError') {
-        removeTypingIndicator();
-        if (error.message === "Message limit reached") {
-          addMessageToChat(
-            "You have reached the message limit for this session.",
-            "bot",
-          );
-        } else {
-          console.error("Chat error:", error);
-          addMessageToChat("Sorry, an error occurred. Please try again.", "bot");
+        console.error("Chat error:", error);
+        
+        // Only show error if we haven't started streaming yet
+        if (!isStreaming) {
+          if (error.message === "Message limit reached") {
+            addMessageToChat(
+              "You have reached the message limit for this session.",
+              "bot",
+            );
+          } else {
+            addMessageToChat("Sorry, an error occurred. Please try again.", "bot");
+          }
         }
-      } else if (stopTyping) {
-        // User stopped the generation
-        removeTypingIndicator();
-        addMessageToChat("Generation stopped.", "bot");
+      }
+      
+      // Remove the partial message if it exists and was added
+      if (isStreaming && botMessageElement && botMessageElement.parentNode) {
+        // Only remove if it's empty or we're stopping
+        if (stopTyping || botMessageContent.textContent === '') {
+          botMessageElement.remove();
+        }
       }
     } finally {
-      // Reset UI state
-      chatSubmit.classList.remove("processing");
-      chatSubmit.setAttribute("aria-label", "Submit question");
-      chatInput.disabled = false;
-      chatSubmit.disabled = false;
-      currentAbortController = null;
-      
-      if (!chatInput.disabled) {
-        chatInput.focus();
-      }
-      
-      // Remove active state after a delay if not already removed
-      setTimeout(() => {
-        if (chatSection) {
-          chatSection.classList.remove("chat-active");
+      // Always clean up the UI
+      if (stopTyping || !chatSubmit.classList.contains("processing")) {
+        chatSubmit.classList.remove("processing");
+        chatSubmit.setAttribute("aria-label", "Submit question");
+        chatInput.disabled = false;
+        chatSubmit.disabled = false;
+        currentAbortController = null;
+        stopTyping = false;
+        
+        if (!chatInput.disabled) {
+          chatInput.focus();
         }
-      }, 1000);
+        
+        // Remove active state after a delay if not already removed
+        setTimeout(() => {
+          if (chatSection) {
+            chatSection.classList.remove("chat-active");
+          }
+        }, 1000);
+      }
     }
   }
 
@@ -391,15 +447,26 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add click effect
     chatSubmit.classList.add("clicked");
     setTimeout(() => chatSubmit.classList.remove("clicked"), 300);
-    handleUserMessage();
+    
+    // Check if we're currently processing (showing stop button)
+    if (chatSubmit.classList.contains("processing")) {
+      // Stop the current generation
+      stopTyping = true;
+      if (currentAbortController) {
+        currentAbortController.abort();
+        currentAbortController = null;
+      }
+    } else {
+      // Handle new message
+      handleUserMessage();
+    }
   });
 
   chatInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      chatSubmit.classList.add("clicked");
-      setTimeout(() => chatSubmit.classList.remove("clicked"), 300);
-      handleUserMessage();
+      // Trigger the click event on the submit button to handle both submit and stop cases
+      chatSubmit.click();
     }
   });
 

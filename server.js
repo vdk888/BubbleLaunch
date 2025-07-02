@@ -117,8 +117,83 @@ const models = [
   "deepseek/deepseek-r1-0528:free",
 ];
 
+// Helper function to handle streaming response
+async function streamResponse(res, model, messages, headers) {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'post',
+      url: 'https://openrouter.ai/api/v1/chat/completions',
+      data: {
+        model: model,
+        messages: messages,
+        stream: true
+      },
+      responseType: 'stream',
+      headers: headers
+    })
+    .then(response => {
+      // Set headers for SSE (Server-Sent Events)
+      res.setHeader('Content-Type', 'text/event-stream');
+      res.setHeader('Cache-Control', 'no-cache');
+      res.setHeader('Connection', 'keep-alive');
+      res.flushHeaders();
+
+      let fullResponse = '';
+      let buffer = '';
+
+      response.data.on('data', chunk => {
+        const lines = chunk.toString().split('\n').filter(line => line.trim() !== '');
+        
+        for (const line of lines) {
+          const message = line.replace(/^data: /, '').trim();
+          
+          if (message === '[DONE]') {
+            res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
+            res.end();
+            resolve(fullResponse);
+            return;
+          }
+          
+          try {
+            const parsed = JSON.parse(message);
+            if (parsed.choices && parsed.choices[0].delta.content) {
+              const content = parsed.choices[0].delta.content;
+              fullResponse += content;
+              res.write(`data: ${JSON.stringify({ content })}\n\n`);
+            }
+          } catch (e) {
+            console.error('Error parsing message:', e);
+          }
+        }
+      });
+
+      response.data.on('end', () => {
+        if (!res.writableEnded) {
+          res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
+          res.end();
+          resolve(fullResponse);
+        }
+      });
+
+      response.data.on('error', err => {
+        console.error('Stream error:', err);
+        if (!res.writableEnded) {
+          res.write(`data: ${JSON.stringify({ error: 'Stream error occurred' })}\n\n`);
+          res.end();
+        }
+        reject(err);
+      });
+    })
+    .catch(error => {
+      console.error('Request failed:', error);
+      reject(error);
+    });
+  });
+}
+
 app.post("/api/chat", async (req, res) => {
-  console.log("POST /api/chat hit on Replit server"); // Debug log
+  console.log("POST /api/chat hit on server");
+  
   if (!req.session.messageCount) {
     req.session.messageCount = 0;
   }
@@ -129,7 +204,7 @@ app.post("/api/chat", async (req, res) => {
 
   req.session.messageCount++;
 
-  const { message, language = "fr" } = req.body; // Default to French if not specified
+  const { message, language = "fr" } = req.body;
 
   if (!message) {
     return res.status(400).json({ error: "Message is required." });
@@ -137,48 +212,47 @@ app.post("/api/chat", async (req, res) => {
 
   if (!openRouterApiKey || openRouterApiKey === "YOUR_API_KEY_HERE") {
     return res.status(500).json({
-      error:
-        "OpenRouter API key not configured on the server. Please add it to the .env file.",
+      error: "OpenRouter API key not configured on the server. Please add it to the .env file.",
     });
   }
 
-  let lastError = null;
+  const messages = [
+    { role: "system", content: systemPrompt(language) },
+    { role: "user", content: message },
+  ];
 
-  for (const model of models) {
-    try {
-      const response = await axios.post(
-        "https://openrouter.ai/api/v1/chat/completions",
-        {
-          model: model,
-          messages: [
-            { role: "system", content: systemPrompt(language) },
-            { role: "user", content: message },
-          ],
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + openRouterApiKey,
-            "Content-Type": "application/json",
-          },
-        },
-      );
+  const headers = {
+    'Authorization': `Bearer ${openRouterApiKey}`,
+    'Content-Type': 'application/json'
+  };
 
-      if (response.data.choices && response.data.choices.length > 0) {
-        return res.json({ reply: response.data.choices[0].message.content });
+  try {
+    for (const model of models) {
+      try {
+        await streamResponse(res, model, messages, headers);
+        return; // If we get here, streaming was successful
+      } catch (error) {
+        console.error(`Error with model ${model}:`, error.message);
+        // Try the next model
       }
-    } catch (error) {
-      lastError = error;
-      console.error(
-        "Error with model " + model + ":",
-        error.response ? error.response.data : error.message,
-      );
+    }
+    
+    // If we've tried all models and none worked
+    if (!res.headersSent) {
+      res.status(500).json({
+        error: "All LLM providers failed. Please try again later.",
+        details: error?.message,
+      });
+    }
+  } catch (error) {
+    console.error('Error in chat endpoint:', error);
+    if (!res.headersSent) {
+      res.status(500).json({
+        error: "An error occurred while processing your request.",
+        details: error.message,
+      });
     }
   }
-
-  res.status(500).json({
-    error: "All LLM providers failed. Please try again later.",
-    details: lastError?.message,
-  });
 });
 
 // API endpoint for form submission

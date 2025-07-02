@@ -490,28 +490,66 @@ nav a:hover {
 }
 
 /* Stop Generation Button */
-.stop-button {
-  background: #6b7280;
+.chat-submit.processing {
+  background: #ef4444;
   color: white;
   border: none;
   border-radius: 6px;
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.2s ease;
   margin-top: 10px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
+  opacity: 1;
 }
 
-.stop-button.visible {
+.chat-submit.processing:hover {
+  background: #dc2626;
+}
+
+/* Stop icon for the button */
+.chat-submit.processing::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* Normal state transition */
+.chat-submit {
+  transition: all 0.3s ease;
   opacity: 1;
   visibility: visible;
 }
 
-.stop-button:hover {
-  background: #4b5563;
+.chat-submit.processing {
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
+}
+
+.chat-submit.processing:hover {
+  background: #dc2626;
+}
+
+/* Stop icon for the button */
+.chat-submit.processing::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  margin-right: 6px;
+  vertical-align: middle;
 }
 
 /* Floating Chat Bubble */

@@ -1,107 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Ensure translations and chat input are ready before starting placeholder animation
-  const waitForTranslations = () => new Promise(resolve => {
-    // Quick check if translations are already available
-    if (typeof translations !== 'undefined' &&
-        translations['chat.rotatingPlaceholders'] &&
-        Object.keys(translations['chat.rotatingPlaceholders']).length) {
-      return resolve();
-    }
-    // Otherwise poll until available (max 3s)
-    const start = Date.now();
-    const checker = setInterval(() => {
-      if (typeof translations !== 'undefined' &&
-          translations['chat.rotatingPlaceholders'] &&
-          Object.keys(translations['chat.rotatingPlaceholders']).length) {
-        clearInterval(checker);
-        return resolve();
-      }
-      // Abort after 3 seconds to avoid infinite loop but still resolve to allow page to function
-      if (Date.now() - start > 3000) {
-        clearInterval(checker);
-        return resolve();
+  const chatInput = document.querySelector('.chat-input');
+  if (!chatInput) return;
+
+  let placeholderInterval;
+  let currentPlaceholderIndex = 0;
+  let isTyping = false;
+
+  const typePlaceholder = (text, callback) => {
+    let i = 0;
+    chatInput.placeholder = '';
+    isTyping = true;
+
+    const typing = setInterval(() => {
+      if (i < text.length) {
+        chatInput.placeholder += text.charAt(i);
+        i++;
+      } else {
+        clearInterval(typing);
+        isTyping = false;
+        if (callback) callback();
       }
     }, 50);
+  };
+
+  const rotatePlaceholders = () => {
+    const lang = document.documentElement.lang || 'fr';
+    const placeholders = translations['chat.rotatingPlaceholders'][lang];
+    if (!placeholders || !placeholders.length || isTyping) return;
+
+    typePlaceholder(placeholders[currentPlaceholderIndex], () => {
+      setTimeout(() => {
+        currentPlaceholderIndex = (currentPlaceholderIndex + 1) % placeholders.length;
+      }, 2000); // Wait 2 seconds before typing the next one
+    });
+  };
+
+  const startPlaceholderRotation = () => {
+    if (placeholderInterval) clearInterval(placeholderInterval);
+    // Initial call
+    rotatePlaceholders();
+    // Subsequent calls
+    placeholderInterval = setInterval(rotatePlaceholders, 4000); // Rotate every 4 seconds (2s typing + 2s pause)
+  };
+
+  const stopPlaceholderRotation = () => {
+    clearInterval(placeholderInterval);
+    isTyping = false; // Reset typing state
+    // Potentially restore a default placeholder if needed
+    // const lang = document.documentElement.lang || 'fr';
+    // chatInput.placeholder = translations['chat.placeholder'][lang];
+  };
+
+  chatInput.addEventListener('focus', stopPlaceholderRotation);
+  chatInput.addEventListener('blur', () => {
+    if (chatInput.value === '') {
+      startPlaceholderRotation();
+    }
   });
 
-  const waitForChatInput = () => new Promise(resolve => {
-    const input = document.querySelector('.chat-input');
-    if (input) return resolve(input);
-    const observer = new MutationObserver(() => {
-      const el = document.querySelector('.chat-input');
-      if (el) {
-        observer.disconnect();
-        resolve(el);
-      }
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-  });
-
-  Promise.all([waitForTranslations(), waitForChatInput()]).then(([_, chatInput]) => {
-    let placeholderInterval;
-    let currentPlaceholderIndex = 0;
-    let isTyping = false;
-
-    const typePlaceholder = (text, callback) => {
-      let i = 0;
-      chatInput.placeholder = '';
-      isTyping = true;
-
-      const typing = setInterval(() => {
-        if (i < text.length) {
-          chatInput.placeholder += text.charAt(i);
-          i++;
-        } else {
-          clearInterval(typing);
-          isTyping = false;
-          if (callback) callback();
-        }
-      }, 50);
-    };
-
-    const rotatePlaceholders = () => {
-      const lang = document.documentElement.lang || 'fr';
-      const placeholders = translations['chat.rotatingPlaceholders'][lang];
-      if (!placeholders || !placeholders.length) return;
-      if (isTyping) return;
-
-      typePlaceholder(placeholders[currentPlaceholderIndex], () => {
-        setTimeout(() => {
-          currentPlaceholderIndex = (currentPlaceholderIndex + 1) % placeholders.length;
-          if (document.activeElement !== chatInput) {
-            startPlaceholderRotation();
-          }
-        }, 2000);
-      });
-    };
-
-    const startPlaceholderRotation = () => {
-      clearInterval(placeholderInterval);
-      placeholderInterval = setInterval(rotatePlaceholders, 4000);
-      rotatePlaceholders();
-    };
-
-    const stopPlaceholderRotation = () => {
-      clearInterval(placeholderInterval);
-      isTyping = false;
-    };
-
-    chatInput.addEventListener('focus', stopPlaceholderRotation);
-    chatInput.addEventListener('blur', () => {
-      if (chatInput.value === '') {
-        startPlaceholderRotation();
-      }
-    });
-
-    // Initial start
+  // Start rotation if the input is not focused and empty
+  if (document.activeElement !== chatInput && chatInput.value === '') {
     startPlaceholderRotation();
+  }
 
-    // Handle language change
-    document.addEventListener('languageChanged', () => {
-      stopPlaceholderRotation();
-      currentPlaceholderIndex = 0;
-      if (document.activeElement !== chatInput && chatInput.value === '') {
-        startPlaceholderRotation();
-      }
-    });
+  // Handle language change
+  document.addEventListener('languageChanged', () => {
+    stopPlaceholderRotation();
+    currentPlaceholderIndex = 0;
+    if (document.activeElement !== chatInput && chatInput.value === '') {
+      startPlaceholderRotation();
+    }
   });
+});
