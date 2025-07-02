@@ -151,6 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let firstMessageSent = false;
   let isFullscreen = false;
   let stopTyping = false;
+  let currentAbortController = null;
 
   function addMessageToChat(message, sender) {
     const messageElement = document.createElement("div");
@@ -271,7 +272,10 @@ document.addEventListener("DOMContentLoaded", function () {
     displayMessageOverride,
     promptMessageOverride,
   ) {
-    stopTyping = false; // Reset the flag for a new message
+    // Reset stop typing flag and create new abort controller
+    stopTyping = false;
+    currentAbortController = new AbortController();
+    
     const displayMessage = displayMessageOverride || chatInput.value.trim();
     const promptMessage = promptMessageOverride || displayMessage;
 
@@ -280,7 +284,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!firstMessageSent) {
       if (chatSuggestionsContainer)
         chatSuggestionsContainer.style.display = "none";
-      if (toggleSuggestionsBtn) toggleSuggestionsBtn.style.display = "block"; // Or 'inline-block' or '' depending on desired layout
+      if (toggleSuggestionsBtn) toggleSuggestionsBtn.style.display = "block";
       firstMessageSent = true;
     }
 
@@ -289,44 +293,83 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Disable input while processing
     chatInput.disabled = true;
-    chatSubmit.disabled = true;
+    chatSubmit.disabled = false; // Keep enabled for stop button
     chatSubmit.classList.add("processing");
+    chatSubmit.setAttribute("aria-label", "Stop generation");
 
+    // Add user message to chat
     addMessageToChat(displayMessage, "user");
     chatInput.value = "";
     showTypingIndicator();
 
     try {
-      const botResponse = await sendMessageToBot(
-        promptMessage,
-        currentLanguage,
-      );
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          message: promptMessage, 
+          language: currentLanguage 
+        }),
+        signal: currentAbortController.signal
+      });
+
+      if (response.status === 429) {
+        throw new Error("Message limit reached");
+      }
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "An error occurred");
+      }
+
+      const data = await response.json();
+      
       removeTypingIndicator();
-      addMessageToChat(botResponse, "bot");
-      // Re-enable on success
-      chatInput.disabled = false;
-      chatSubmit.disabled = false;
-    } catch (error) {
-      removeTypingIndicator();
-      if (error.message === "Message limit reached") {
-        addMessageToChat(
-          "You have reached the message limit for this session.",
-          "bot",
-        );
-        // Inputs remain disabled
+      if (!stopTyping) {
+        addMessageToChat(data.reply, "bot");
       } else {
-        addMessageToChat("Sorry, an error occurred. Please try again.", "bot");
-        // Re-enable on other errors
-        chatInput.disabled = false;
-        chatSubmit.disabled = false;
+        // If stopped by user, show a message
+        addMessageToChat("Generation stopped by user.", "bot");
+      }
+      
+    } catch (error) {
+      // Only show error if it's not an abort error (user cancellation)
+      if (error.name !== 'AbortError') {
+        removeTypingIndicator();
+        if (error.message === "Message limit reached") {
+          addMessageToChat(
+            "You have reached the message limit for this session.",
+            "bot",
+          );
+        } else {
+          console.error("Chat error:", error);
+          addMessageToChat("Sorry, an error occurred. Please try again.", "bot");
+        }
+      } else if (stopTyping) {
+        // User stopped the generation
+        removeTypingIndicator();
+        addMessageToChat("Generation stopped.", "bot");
       }
     } finally {
+      // Reset UI state
       chatSubmit.classList.remove("processing");
+      chatSubmit.setAttribute("aria-label", "Submit question");
+      chatInput.disabled = false;
+      chatSubmit.disabled = false;
+      currentAbortController = null;
+      
       if (!chatInput.disabled) {
         chatInput.focus();
       }
-      // Remove active state after a delay
-      setTimeout(() => chatSection.classList.remove("chat-active"), 1000);
+      
+      // Remove active state after a delay if not already removed
+      setTimeout(() => {
+        if (chatSection) {
+          chatSection.classList.remove("chat-active");
+        }
+      }, 1000);
     }
   }
 
