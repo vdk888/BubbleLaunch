@@ -156,14 +156,6 @@ const translations = {
     en: "Ask us why AI is a game-changer...",
     fr: "Demandez-nous pourquoi l'IA change la donne..."
   },
-  "chat.button": {
-    en: "Ask",
-    fr: "Demander",
-  },
-  "chat.stop_generation": {
-    en: "Stop Generation",
-    fr: "Arrêter la Génération",
-  },
 
   // Waitlist Section
   "waitlist.title": {
@@ -234,10 +226,8 @@ const translations = {
     en: "Join the List",
     fr: "Rejoindre la Liste",
   },
-  "assessment.title": {
-    en: "Our Assessment",
-    fr: "Notre Analyse",
-  },
+
+  // Charts & Sliders
   "charts.fee_impact_title": {
     en: "The Reality of Traditional Fees Over 30 Years",
     fr: "La Réalité des Frais Traditionnels sur 30 ans",
@@ -247,8 +237,8 @@ const translations = {
     fr: "Avec 200 000€ de départ, le modèle de frais fixes de Bubble génère 308 000€ de richesse supplémentaire par rapport aux frais traditionnels de 2% annuels sur 30 ans.",
   },
   "charts.fee_impact_note": {
-    en: "Based on 200 000€ initial investment with 7% annual returns. Bubble: 10€/month fixed fees (3 600€ total over 30 years). Traditional: 2% annual fees (308 000€ total over 30 years). Charts show net portfolio values after all fees.",
-    fr: "Basé sur un investissement initial de 200 000€ avec 7% de rendement annuel. Bubble : 10€/mois de frais fixes (3 600€ au total sur 30 ans). Traditionnel : 2% de frais annuels (308 000€ au total sur 30 ans). Les graphiques montrent les valeurs nettes du portefeuille après tous les frais.",
+    en: "Based on 200 000€ initial investment with 7% annual returns. Bubble: 10€/month fixed fees. Traditional: 2% annual fees.",
+    fr: "Basé sur un investissement initial de 200 000€ avec 7% de rendement annuel. Bubble : 10€/mois de frais fixes. Traditionnel : 2% de frais annuels.",
   },
   "charts.subscription_advantage_title": {
     en: "Why Subscription Beats Percentage Fees",
@@ -259,34 +249,80 @@ const translations = {
     fr: "Tandis que les frais traditionnels croissent exponentiellement avec votre portefeuille, les 10€/mois de Bubble restent constants, maximisant votre accumulation de richesse.",
   },
   "charts.subscription_advantage_note": {
-    en: "This chart shows the same portfolio performance data as the previous chart, but highlights how the cumulative impact of fees creates an exponential wealth gap over time. While €10/month stays constant, 2% annual fees compound dramatically.",
-    fr: "Ce graphique montre les mêmes données de performance de portefeuille que le graphique précédent, mais met en évidence comment l'impact cumulé des frais crée un écart de richesse exponentiel dans le temps. Tandis que 10€/mois restent constants, les frais annuels de 2% se composent de façon dramatique.",
+    en: "Cumulative fees comparison over time. Fixed subscription remains constant while percentage-based fees grow exponentially.",
+    fr: "Comparaison des frais cumulés. L'abonnement fixe reste constant tandis que les frais en pourcentage croissent de manière exponentielle.",
   },
-  "assessment.summary_title": {
+
+  // --- Corrected "Clarity" Slide ---
+  "charts.clarity_title": {
+    en: "Absolute Clarity is a Necessity",
+    fr: "Une Clarté Absolue s'Impose",
+  },
+  "clarity.before.tile1": { en: "📦 Black Box", fr: "📦 Boîte Noire" },
+  "clarity.after.tile1": { en: "✨ Open Strategies", fr: "✨ Stratégies Ouvertes" },
+  "clarity.before.tile2": { en: "💸 Hidden Fees", fr: "💸 Frais Cachés" },
+  "clarity.after.tile2": { en: "📊 Predictable Costs", fr: "📊 Coûts Prévisibles" },
+  "clarity.before.tile3": { en: "🤔 Biased Advice", fr: "🤔 Conseil Biaisé" },
+  "clarity.after.tile3": { en: "🤖 Objective Analysis", fr: "🤖 Analyse Objective" },
+  "charts.clarity_desc": {
+    en: "A point-by-point comparison: traditional opacity vs. Bubble's transparency.",
+    fr: "Comparaison point par point : l'opacité traditionnelle face à la transparence de Bubble."
+  },
+  "charts.clarity_note": {
+    en: "This visual illustrates how we replace every grey area of traditional finance with clear, measurable data, making every decision traceable and every cost predictable.",
+    fr: "Ce visuel illustre comment nous remplaçons chaque zone d'ombre de la finance classique par des données claires et mesurables, rendant chaque décision traçable et chaque coût prévisible."
+  },
+
+  // --- Corrected "Automation" Slide ---
+  "charts.automation_title": {
+    en: "Automation is the Only Way Forward",
+    fr: "L'Automatisation est la Seule Voie",
+  },
+  "automation.before.tile1": { en: "⏰ Limited Access", fr: "⏰ Accès Limité" },
+  "automation.after.tile1": { en: "🤖 24/7 AI Agent", fr: "🤖 Agent IA 24/7" },
+  "automation.before.tile2": { en: "⚙️ Manual Operations", fr: "⚙️ Opérations Manuelles" },
+  "automation.after.tile2": { en: "⚡ Instant Execution", fr: "⚡ Exécution Instantanée" },
+  "automation.before.tile3": { en: "🧩 Fragmented System", fr: "🧩 Système Fragmenté" },
+  "automation.after.tile3": { en: "🔗 Unified Platform", fr: "🔗 Plateforme Unifiée" },
+  "charts.automation_desc": {
+      en: "Replacing manual processes with an efficient, unified AI system.",
+      fr: "Le remplacement des processus manuels par un système IA unifié et efficace."
+  },
+  "charts.automation_note": {
+      en: "Automation allows us to drastically reduce costs and human error, while offering a level of service and responsiveness unattainable by traditional players.",
+      fr: "L'automatisation nous permet de réduire drastiquement les coûts et les erreurs humaines, tout en offrant un niveau de service et une réactivité inaccessibles aux acteurs traditionnels."
+  },
+
+  // Key Insights Section
+  "key_insights.title": {
     en: "Key Insights",
     fr: "Points Clés",
   },
-  "insights.lower_costs": {
-    en: "💰 <b>Lower Costs:</b> Our fixed fee model provides significant savings over time.",
-    fr: "💰 <b>Coûts Réduits :</b> Notre modèle de frais fixes offre des économies significatives dans le temps.",
+  "key_insights.intro": {
+    en: "AI radically transforms the customer experience by automating expertise and democratizing access to professional-quality financial advice.",
+    fr: "L'IA transforme radicalement l'expérience client en automatisant l'expertise et en démocratisant l'accès aux conseils financiers de qualité professionnelle.",
   },
-  "insights.higher_returns": {
-    en: "📈 <b>Higher Returns:</b> Lower costs and automated strategies lead to better long-term growth.",
-    fr: "📈 <b>Rendements Supérieurs :</b> Des coûts réduits et des stratégies automatisées conduisent à une meilleure croissance à long terme.",
+  "key_insights.bullet1": {
+    en: "Today, you juggle between banks, costly managers, and limited robo-advisors.",
+    fr: "Aujourd'hui, vous jonglez entre banques, gestionnaires coûteux et robo-advisors limités.",
   },
-  "insights.full_transparency": {
-    en: "🔍 <b>Full Transparency:</b> Understand exactly what you're paying for and why.",
-    fr: "🔍 <b>Transparence Totale :</b> Comprenez exactement ce que vous payez et pourquoi.",
+  "key_insights.bullet2": {
+    en: "Bubble unifies everything: a 24/7 banker, expert analyst, and automated manager in one tool.",
+    fr: "Bubble unifie tout : un banquier 24/7, un analyste expert et un gestionnaire automatisé en un seul outil.",
+  },
+  "key_insights.bullet3": {
+    en: "Designed for ourselves, Bubble combines professional strategies, like risk parity, with total transparency.",
+    fr: "Conçu pour nous-mêmes, Bubble combine des stratégies professionnelles, comme la parité des risques, avec une transparence totale.",
   },
 
   // Footer
   "footer.copyright": {
-    en: " 2025 Bubble. Transparent by design.",
-    fr: " 2025 Bubble. Transparent by design.",
+    en: "© 2025 Bubble. Transparent by design.",
+    fr: "© 2025 Bubble. Transparent by design.",
   },
   "footer.tagline": {
-    en: "Popping the finance bubble in the AI era.",
-    fr: "Percer la bulle financière à l'ère de l'IA.",
+    en: "The AI era changes everything. Let's change with it.",
+    fr: "L'ère de l'IA change tout. Changeons avec elle.",
   },
 
   // Floating Bubble

@@ -1945,3 +1945,114 @@ footer .container {
   line-height: 1.7;
   text-align: left;
 }
+
+/* Clarity Grid Styles */
+.clarity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.clarity-tile {
+    padding: 1.5rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.clarity-tile.before {
+    background-color: #fdecec;
+    color: #c53030;
+    border: 1px solid #fbdada;
+}
+
+.clarity-tile.after {
+    background-color: #e6fffa;
+    color: #2c7a7b;
+    border: 1px solid #b2f5ea;
+}
+
+/* Automation Flow Styles */
+.automation-flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.automation-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+}
+
+.automation-tile {
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    transition: all 0.4s ease;
+}
+
+.before-column .automation-tile {
+    background-color: #fff5f5;
+    color: #c53030;
+}
+
+.after-column .automation-tile {
+    background-color: #f0fff4;
+    color: #2f855a;
+}
+
+.automation-center {
+    font-size: 3rem;
+    color: var(--primary);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Sequential Animation for Automation */
+.automation-column.before-column, .automation-center, .automation-column.after-column .automation-tile {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.chart-slide.active-slide .automation-column.before-column {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+.chart-slide.active-slide .automation-center {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+}
+
+.chart-slide.active-slide .automation-column.after-column .automation-tile:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.8s;
+}
+
+.chart-slide.active-slide .automation-column.after-column .automation-tile:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1s;
+}
+
+.chart-slide.active-slide .automation-column.after-column .automation-tile:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.2s;
+}

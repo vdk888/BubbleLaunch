@@ -16,6 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let slideInterval;
   const slideDuration = 5000;
 
+  // --- Helper Functions (defined at top level of DOMContentLoaded) ---
+
+  const showSlide = (index) => {
+    currentIndex = index;
+    updateSlider();
+  };
+
   const updateSlider = () => {
     const slideWidth = slides[0].offsetWidth;
     const computedStyle = window.getComputedStyle(slider);
@@ -24,11 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     slider.style.transform = `translateX(-${offset}px)`;
     updateDots();
     updateDescription();
-  };
-
-  const showSlide = (index) => {
-    currentIndex = index;
-    updateSlider();
+    updateSlideAnimations();
   };
 
   const updateDots = () => {
@@ -41,6 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const updateDescription = () => {
     descriptionItems.forEach((item, i) => {
       item.classList.toggle("active-description", i === currentIndex);
+    });
+  };
+
+  const updateSlideAnimations = () => {
+    slides.forEach((slide, i) => {
+        slide.classList.toggle("active-slide", i === currentIndex);
     });
   };
 
@@ -72,40 +81,42 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const typeInsight = (element, text, callback) => {
-    // Typing animation that renders HTML tags as HTML, not text
-    let current = 0;
-    element.innerHTML = "";
-    element.style.opacity = 1;
-    let buffer = "";
-    function typeNext() {
-      if (current >= text.length) {
-        if (buffer) element.insertAdjacentHTML("beforeend", buffer);
-        if (callback) callback();
-        return;
-      }
-      if (text[current] === "<") {
-        // Complete any buffer before tag
-        if (buffer) {
-          element.insertAdjacentHTML("beforeend", buffer);
-          buffer = "";
-        }
-        // Copy tag as a chunk
-        let tagEnd = text.indexOf(">", current);
-        if (tagEnd !== -1) {
-          const tagChunk = text.slice(current, tagEnd + 1);
-          element.insertAdjacentHTML("beforeend", tagChunk);
-          current = tagEnd + 1;
+    let charIndex = 0;
+    let currentHtml = ""; // This will build the HTML string
+    element.innerHTML = ""; // Clear content initially
+    element.style.opacity = 1; // Ensure element is visible
+
+    function typeNextChar() {
+      if (charIndex < text.length) {
+        if (text[charIndex] === '<') {
+          // Found the start of an HTML tag
+          const tagEndIndex = text.indexOf('>', charIndex);
+          if (tagEndIndex !== -1) {
+            // Extract the full tag (e.g., "<b>" or "</b>")
+            const tag = text.substring(charIndex, tagEndIndex + 1);
+            currentHtml += tag; // Add the whole tag to the HTML string
+            charIndex = tagEndIndex + 1; // Move index past the tag
+          } else {
+            // Malformed tag, treat as regular character (shouldn't happen with valid HTML)
+            currentHtml += text.charAt(charIndex);
+            charIndex++;
+          }
         } else {
-          buffer += text[current];
-          current++;
+          // It's a regular character, add it
+          currentHtml += text.charAt(charIndex);
+          charIndex++;
         }
+
+        element.innerHTML = currentHtml; // Update the element's content
+        setTimeout(typeNextChar, 20); // Adjust typing speed here
       } else {
-        buffer += text[current];
-        current++;
+        // All characters typed, call callback if provided
+        if (callback) {
+          callback();
+        }
       }
-      setTimeout(typeNext, 30);
     }
-    typeNext();
+    typeNextChar(); // Start the typing animation
   };
 
   let insightAnimationRunning = false;
@@ -130,6 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const item = insightItems[i];
         const key = item.getAttribute("data-translate");
         const text = translations[key][lang];
+        console.log(`Typing insight: Key=${key}, Lang=${lang}, Text="${text}"`);
 
         typeInsight(item, text, () => {
           insightAnimationTimeout = setTimeout(() => {
@@ -269,6 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   };
 
+  // --- Main Initialization Function ---
   const init = () => {
     if (chartsInitialized) return;
     chartsInitialized = true;
@@ -351,6 +364,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (insightTile) {
     insightObserver.observe(insightTile);
+
+    // Add hover event listeners
+    insightTile.addEventListener("mouseenter", () => {
+      initKeyInsightsAnimation();
+    });
+
+    insightTile.addEventListener("mouseleave", () => {
+      resetKeyInsightsAnimation();
+    });
   }
 
   // Listen for custom languageChanged event
