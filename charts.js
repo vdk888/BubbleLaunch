@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     element.innerHTML = ""; // Clear content initially
     element.style.opacity = 1; // Ensure element is visible
 
-    function typeNextChar() {
+    function typeNextCharInsight() {
       if (charIndex < text.length) {
         if (text[charIndex] === '<') {
           // Found the start of an HTML tag
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         element.innerHTML = currentHtml; // Update the element's content
-        setTimeout(typeNextChar, 20); // Adjust typing speed here
+        setTimeout(typeNextCharInsight, 20); // Adjust typing speed here
       } else {
         // All characters typed, call callback if provided
         if (callback) {
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
-    typeNextChar(); // Start the typing animation
+    typeNextCharInsight(); // Start the typing animation
   };
 
   let insightAnimationRunning = false;
