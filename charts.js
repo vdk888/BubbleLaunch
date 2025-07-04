@@ -121,9 +121,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let insightAnimationRunning = false;
   let insightAnimationTimeout;
+  let insightAnimationCompleted = false;
+  let isHoveringInsights = false;
+
+  // Function to show static content initially
+  const showStaticInsights = () => {
+    const insightItems = document.querySelectorAll(".insight-item");
+    const lang = document.documentElement.lang || "en";
+    
+    insightItems.forEach((item) => {
+      const key = item.getAttribute("data-translate");
+      const text = translations[key][lang];
+      item.innerHTML = text;
+      item.style.opacity = 1;
+    });
+  };
 
   const initKeyInsightsAnimation = () => {
-    if (insightAnimationRunning) return; // Prevent re-triggering if already running
+    if (insightAnimationRunning || insightAnimationCompleted) return; // Prevent re-triggering if already running or completed
     insightAnimationRunning = true;
 
     const insightItems = document.querySelectorAll(".insight-item");
@@ -151,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       } else {
         insightAnimationRunning = false;
+        insightAnimationCompleted = true; // Mark as completed
       }
     }
     animateNextInsight();
@@ -158,13 +174,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Function to stop and reset the insight animation
   const resetKeyInsightsAnimation = () => {
-    insightAnimationRunning = false;
-    clearTimeout(insightAnimationTimeout);
-    const insightItems = document.querySelectorAll(".insight-item");
-    insightItems.forEach((item) => {
-      item.innerHTML = "";
-      item.style.opacity = 0;
-    });
+    if (!isHoveringInsights) { // Only reset if not hovering
+      insightAnimationRunning = false;
+      insightAnimationCompleted = false;
+      clearTimeout(insightAnimationTimeout);
+      showStaticInsights(); // Show static content instead of empty
+    }
   };
 
   const createCharts = () => {
@@ -363,21 +378,32 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   if (insightTile) {
+    // Show static content initially
+    showStaticInsights();
+    
     insightObserver.observe(insightTile);
 
-    // Add hover event listeners
+    // Add hover event listeners with improved logic
     insightTile.addEventListener("mouseenter", () => {
-      initKeyInsightsAnimation();
+      isHoveringInsights = true;
+      if (!insightAnimationCompleted) {
+        initKeyInsightsAnimation();
+      }
     });
 
     insightTile.addEventListener("mouseleave", () => {
+      isHoveringInsights = false;
       resetKeyInsightsAnimation();
     });
   }
 
   // Listen for custom languageChanged event
   document.addEventListener("languageChanged", () => {
+    insightAnimationCompleted = false; // Reset completion state on language change
     resetKeyInsightsAnimation();
-    initKeyInsightsAnimation();
+    showStaticInsights(); // Always show static content after language change
+    if (isHoveringInsights) {
+      initKeyInsightsAnimation();
+    }
   });
 });

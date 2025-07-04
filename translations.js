@@ -253,44 +253,44 @@ const translations = {
     fr: "Comparaison des frais cumulés. L'abonnement fixe reste constant tandis que les frais en pourcentage croissent de manière exponentielle.",
   },
 
-  // --- Corrected "Clarity" Slide ---
+  // --- Enhanced "Clarity" Slide ---
   "charts.clarity_title": {
     en: "Absolute Clarity is a Necessity",
     fr: "Une Clarté Absolue s'Impose",
   },
-  "clarity.before.tile1": { en: "📦 Black Box", fr: "📦 Boîte Noire" },
-  "clarity.after.tile1": { en: "✨ Open Strategies", fr: "✨ Stratégies Ouvertes" },
-  "clarity.before.tile2": { en: "💸 Hidden Fees", fr: "💸 Frais Cachés" },
-  "clarity.after.tile2": { en: "📊 Predictable Costs", fr: "📊 Coûts Prévisibles" },
-  "clarity.before.tile3": { en: "🤔 Biased Advice", fr: "🤔 Conseil Biaisé" },
-  "clarity.after.tile3": { en: "🤖 Objective Analysis", fr: "🤖 Analyse Objective" },
+  "clarity.before.tile1": { en: "🔒 Black Box Decisions", fr: "🔒 Décisions Opaques" },
+  "clarity.after.tile1": { en: "📖 Every Strategy Explained", fr: "📖 Chaque Stratégie Expliquée" },
+  "clarity.before.tile2": { en: "💸 Hidden Fee Structure", fr: "💸 Structure de Frais Cachée" },
+  "clarity.after.tile2": { en: "💎 Fixed €10/Month", fr: "💎 Fixe 10€/Mois" },
+  "clarity.before.tile3": { en: "🎭 Conflicted Advice", fr: "🎭 Conseils Biaisés" },
+  "clarity.after.tile3": { en: "🤖 Pure AI Objectivity", fr: "🤖 Objectivité IA Pure" },
   "charts.clarity_desc": {
-    en: "A point-by-point comparison: traditional opacity vs. Bubble's transparency.",
-    fr: "Comparaison point par point : l'opacité traditionnelle face à la transparence de Bubble."
+    en: "Every aspect of traditional finance opacity replaced by crystal-clear transparency.",
+    fr: "Chaque aspect de l'opacité financière traditionnelle remplacé par une transparence cristalline."
   },
   "charts.clarity_note": {
-    en: "This visual illustrates how we replace every grey area of traditional finance with clear, measurable data, making every decision traceable and every cost predictable.",
-    fr: "Ce visuel illustre comment nous remplaçons chaque zone d'ombre de la finance classique par des données claires et mesurables, rendant chaque décision traçable et chaque coût prévisible."
+    en: "While traditional managers hide behind complex fee structures and black-box strategies, Bubble makes every decision visible, every cost predictable, and every outcome traceable.",
+    fr: "Alors que les gestionnaires traditionnels se cachent derrière des structures de frais complexes et des stratégies opaques, Bubble rend chaque décision visible, chaque coût prévisible, et chaque résultat traçable."
   },
 
-  // --- Corrected "Automation" Slide ---
+  // --- Enhanced "Automation" Slide ---
   "charts.automation_title": {
     en: "Automation is the Only Way Forward",
     fr: "L'Automatisation est la Seule Voie",
   },
-  "automation.before.tile1": { en: "⏰ Limited Access", fr: "⏰ Accès Limité" },
-  "automation.after.tile1": { en: "🤖 24/7 AI Agent", fr: "🤖 Agent IA 24/7" },
-  "automation.before.tile2": { en: "⚙️ Manual Operations", fr: "⚙️ Opérations Manuelles" },
-  "automation.after.tile2": { en: "⚡ Instant Execution", fr: "⚡ Exécution Instantanée" },
-  "automation.before.tile3": { en: "🧩 Fragmented System", fr: "🧩 Système Fragmenté" },
-  "automation.after.tile3": { en: "🔗 Unified Platform", fr: "🔗 Plateforme Unifiée" },
+  "automation.before.tile1": { en: "⏰ 9-5 Human Limitations", fr: "⏰ Limites Humaines 9h-17h" },
+  "automation.after.tile1": { en: "🚀 24/7 AI Vigilance", fr: "🚀 Vigilance IA 24/7" },
+  "automation.before.tile2": { en: "📞 Manual Processes", fr: "📞 Processus Manuels" },
+  "automation.after.tile2": { en: "⚡ Instant Optimization", fr: "⚡ Optimisation Instantanée" },
+  "automation.before.tile3": { en: "🏢 Fragmented Services", fr: "🏢 Services Fragmentés" },
+  "automation.after.tile3": { en: "🎯 One Unified Platform", fr: "🎯 Une Plateforme Unifiée" },
   "charts.automation_desc": {
-      en: "Replacing manual processes with an efficient, unified AI system.",
-      fr: "Le remplacement des processus manuels par un système IA unifié et efficace."
+      en: "From human limitations to AI-powered efficiency: the future of investment management.",
+      fr: "Des limites humaines à l'efficacité boostée par l'IA : l'avenir de la gestion d'investissement."
   },
   "charts.automation_note": {
-      en: "Automation allows us to drastically reduce costs and human error, while offering a level of service and responsiveness unattainable by traditional players.",
-      fr: "L'automatisation nous permet de réduire drastiquement les coûts et les erreurs humaines, tout en offrant un niveau de service et une réactivité inaccessibles aux acteurs traditionnels."
+      en: "AI doesn't sleep, doesn't have conflicts of interest, and processes market data faster than any human team. This isn't just automation—it's intelligence amplification that benefits you directly.",
+      fr: "L'IA ne dort jamais, n'a pas de conflits d'intérêts, et traite les données de marché plus vite qu'aucune équipe humaine. Ce n'est pas juste de l'automatisation—c'est une amplification d'intelligence qui vous bénéficie directement."
   },
 
   // Key Insights Section

@@ -1950,29 +1950,36 @@ footer .container {
 .clarity-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    padding: 1rem;
+    gap: 2rem;
+    padding: 2rem;
+    align-items: center;
 }
 
 .clarity-tile {
-    padding: 1.5rem;
-    border-radius: 12px;
-    font-size: 1.1rem;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    font-size: 1.2rem;
     font-weight: 600;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .clarity-tile.before {
-    background-color: #fdecec;
-    color: #c53030;
-    border: 1px solid #fbdada;
+    background-color: #F5F5F5;
+    color: #666666;
+    border: 1px solid #DDDDDD;
 }
 
 .clarity-tile.after {
-    background-color: #e6fffa;
-    color: #2c7a7b;
-    border: 1px solid #b2f5ea;
+    background-color: #F8F6FF;
+    color: #5B21B6;
+    border: 1px solid #E8E5FF;
 }
 
 /* Automation Flow Styles */
@@ -1980,38 +1987,79 @@ footer .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 2rem;
+    padding: 2rem;
 }
 
 .automation-column {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
     flex: 1;
 }
 
 .automation-tile {
-    padding: 1rem;
-    border-radius: 8px;
+    padding: 1.5rem;
+    border-radius: 16px;
     text-align: center;
-    font-weight: 500;
-    transition: all 0.4s ease;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .before-column .automation-tile {
-    background-color: #fff5f5;
-    color: #c53030;
+    background-color: #F5F5F5;
+    color: #666666;
+    border: 1px solid #DDDDDD;
 }
 
 .after-column .automation-tile {
-    background-color: #f0fff4;
-    color: #2f855a;
+    background-color: #F8F6FF;
+    color: #5B21B6;
+    border: 1px solid #E8E5FF;
 }
 
 .automation-center {
-    font-size: 3rem;
+    font-size: 4rem;
     color: var(--primary);
     animation: pulse 2s infinite;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hover effects for tiles */
+.clarity-tile:hover,
+.automation-tile:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.clarity-tile.before:hover {
+    background-color: #F0F0F0;
+    border-color: #CCCCCC;
+}
+
+.clarity-tile.after:hover {
+    background-color: #F3F0FF;
+    border-color: #DDD6FF;
+}
+
+.before-column .automation-tile:hover {
+    background-color: #F0F0F0;
+    border-color: #CCCCCC;
+}
+
+.after-column .automation-tile:hover {
+    background-color: #F3F0FF;
+    border-color: #DDD6FF;
 }
 
 @keyframes pulse {
@@ -2055,4 +2103,54 @@ footer .container {
     opacity: 1;
     transform: translateY(0);
     transition-delay: 1.2s;
+}
+
+/* Responsive design for clarity and automation slides */
+@media (max-width: 768px) {
+  .clarity-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .clarity-tile {
+    padding: 1.5rem;
+    font-size: 1.1rem;
+    min-height: 100px;
+  }
+  
+  .automation-flow {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .automation-center {
+    font-size: 3rem;
+    padding: 0.5rem;
+  }
+  
+  .automation-tile {
+    padding: 1.2rem;
+    font-size: 1rem;
+    min-height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .clarity-tile {
+    padding: 1.2rem;
+    font-size: 1rem;
+    min-height: 90px;
+  }
+  
+  .automation-center {
+    font-size: 2.5rem;
+  }
+  
+  .automation-tile {
+    padding: 1rem;
+    font-size: 0.95rem;
+    min-height: 70px;
+  }
 }
