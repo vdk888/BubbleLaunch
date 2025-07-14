@@ -868,7 +868,7 @@ nav a:hover {
     padding: 1.5rem;
   }
   .chart-container {
-    height: 300px;
+    height: 250px; /* Reduced height for mobile */
   }
   .chart-title {
     font-size: 1.4rem;
@@ -2108,33 +2108,50 @@ footer .container {
 /* Responsive design for clarity and automation slides */
 @media (max-width: 768px) {
   .clarity-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem;
-  }
-  
-  .clarity-tile {
-    padding: 1.5rem;
-    font-size: 1.1rem;
-    min-height: 100px;
-  }
-  
-  .automation-flow {
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 1.5rem;
-  }
-  
-  .automation-center {
-    font-size: 3rem;
-    padding: 0.5rem;
-  }
-  
-  .automation-tile {
-    padding: 1.2rem;
-    font-size: 1rem;
-    min-height: 80px;
-  }
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+
+    .clarity-tile {
+        font-size: 1rem;
+        padding: 1.5rem 1rem;
+        /* Add a subtle transition for a smoother feel */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Add a hover effect for interactivity on mobile */
+    .clarity-tile:active {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .automation-flow {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+
+    .automation-center {
+        transform: rotate(90deg);
+        margin: 1rem 0;
+    }
+
+    .robot-icon {
+        font-size: 3rem;
+        /* Add a subtle animation to draw attention */
+        animation: robot-pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes robot-pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+    }
+}
 }
 
 @media (max-width: 480px) {
