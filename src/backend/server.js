@@ -6,7 +6,6 @@ const { Client } = require("@notionhq/client");
 const axios = require("axios");
 const fs = require("fs").promises;
 const { getPublishedPosts, getPostBySlug } = require("./services/blogService");
-const { initializeTelegramBot, processWebhookUpdate } = require("./services/telegramService");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -390,22 +389,6 @@ app.get("/blog/:slug", async (req, res) => {
   }
 });
 
-// Telegram webhook route
-const telegramToken = process.env.TELEGRAM_BOT_TOKEN;
-if (telegramToken) {
-  const webhookPath = `/telegram/webhook/${telegramToken}`;
-  console.log(`Setting up Telegram webhook at: ${webhookPath}`);
-  
-  app.post(webhookPath, (req, res) => {
-    try {
-      processWebhookUpdate(req.body);
-      res.sendStatus(200);
-    } catch (error) {
-      console.error('Error processing Telegram webhook:', error);
-      res.sendStatus(500);
-    }
-  });
-}
 
 // Serve index.html for the root
 app.get("/", (req, res) => {
@@ -419,9 +402,6 @@ app.get("/", (req, res) => {
 app.use(express.static(path.join(__dirname, "../frontend"), {
   index: false // This prevents express.static from serving index.html
 }));
-
-// Initialize Telegram bot
-initializeTelegramBot();
 
 app.listen(port, () => {
   console.log("Server running at http://localhost:" + port);
