@@ -5,6 +5,8 @@ const path = require("path");
 const { Client } = require("@notionhq/client");
 const axios = require("axios");
 const fs = require("fs").promises;
+const { getPublishedPosts, getPostBySlug } = require("./services/blogService");
+const { initializeTelegramBot, processWebhookUpdate } = require("./services/telegramService");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -309,6 +311,102 @@ app.post("/test-post", (req, res) => {
   res.status(200).send("POST test successful on Replit");
 });
 
+// API endpoint to get blog posts as JSON
+app.get("/api/blog/posts", async (req, res) => {
+  try {
+    const posts = await getPublishedPosts();
+    res.json(posts);
+  } catch (error) {
+    console.error("Error fetching blog posts for API:", error);
+    res.status(500).json({ error: "Failed to fetch blog posts" });
+  }
+});
+
+// API endpoint to get a single blog post by slug
+app.get("/api/blog/post/:slug", async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const post = await getPostBySlug(slug);
+    
+    if (!post) {
+      return res.status(404).json({ error: "Blog post not found" });
+    }
+    
+    res.json(post);
+  } catch (error) {
+    console.error("Error fetching blog post by slug:", error);
+    res.status(500).json({ error: "Failed to fetch blog post" });
+  }
+});
+
+// Blog routes
+app.get("/blog", async (req, res) => {
+  try {
+    const posts = await getPublishedPosts();
+    const blogIndexPath = path.join(__dirname, "../frontend/pages/blog.html");
+    
+    // Check if blog.html exists, if not serve a simple response for now
+    try {
+      await fs.access(blogIndexPath);
+      res.sendFile(blogIndexPath);
+    } catch {
+      // Temporary response until we create the blog page
+      res.send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Bubble Blog</title>
+          <style>body{font-family:Inter,sans-serif;max-width:800px;margin:0 auto;padding:20px;}</style>
+        </head>
+        <body>
+          <h1>Bubble Blog</h1>
+          <p>Blog functionality is being set up...</p>
+          <a href="/">← Back to Bubble</a>
+          <h2>Posts (${posts.length})</h2>
+          ${posts.map(post => `
+            <div style="border-bottom:1px solid #eee;padding:20px 0;">
+              <h3><a href="/blog/${post.slug}">${post.title}</a></h3>
+              <p>${post.summary}</p>
+              <small>${post.publishedDate}</small>
+            </div>
+          `).join('')}
+        </body>
+        </html>
+      `);
+    }
+  } catch (error) {
+    console.error("Error fetching blog posts:", error);
+    res.status(500).send("Error loading blog");
+  }
+});
+
+app.get("/blog/:slug", async (req, res) => {
+  try {
+    const blogPostPath = path.join(__dirname, "../frontend/pages/blog-post.html");
+    res.sendFile(blogPostPath);
+  } catch (error) {
+    console.error("Error serving blog post page:", error);
+    res.status(500).send("Error loading blog post");
+  }
+});
+
+// Telegram webhook route
+const telegramToken = process.env.TELEGRAM_BOT_TOKEN;
+if (telegramToken) {
+  const webhookPath = `/telegram/webhook/${telegramToken}`;
+  console.log(`Setting up Telegram webhook at: ${webhookPath}`);
+  
+  app.post(webhookPath, (req, res) => {
+    try {
+      processWebhookUpdate(req.body);
+      res.sendStatus(200);
+    } catch (error) {
+      console.error('Error processing Telegram webhook:', error);
+      res.sendStatus(500);
+    }
+  });
+}
+
 // Serve index.html for the root
 app.get("/", (req, res) => {
   console.log("Root route hit, serving index.html");
@@ -321,6 +419,9 @@ app.get("/", (req, res) => {
 app.use(express.static(path.join(__dirname, "../frontend"), {
   index: false // This prevents express.static from serving index.html
 }));
+
+// Initialize Telegram bot
+initializeTelegramBot();
 
 app.listen(port, () => {
   console.log("Server running at http://localhost:" + port);

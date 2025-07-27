@@ -12,6 +12,10 @@ const translations = {
     en: "Approach",
     fr: "Approche",
   },
+  "nav.blog": {
+    en: "Blog",
+    fr: "Blog",
+  },
   "nav.join": {
     en: "Join Us",
     fr: "Nous Rejoindre",
@@ -329,5 +333,31 @@ const translations = {
   "floating_bubble.text": {
     en: "Have questions? Chat with our AI",
     fr: "Des questions ? Discutez avec notre IA"
+  },
+
+  // Blog Section
+  "blog.title": {
+    en: "Thoughts on Intelligent Investing",
+    fr: "Pensées sur l'investissement intelligent"
+  },
+  "blog.subtitle": {
+    en: "Explore our insights on AI, finance, and the future of investing. In-depth analysis to understand the ongoing revolution.",
+    fr: "Explorez nos réflexions sur l'IA, la finance et l'avenir de l'investissement. Des analyses approfondies pour comprendre la révolution en cours."
+  },
+  "blog.all_posts": {
+    en: "All Articles",
+    fr: "Tous nos articles"
+  },
+  "blog.loading": {
+    en: "Loading articles...",
+    fr: "Chargement des articles..."
+  },
+  "blog.no_posts": {
+    en: "No articles yet",
+    fr: "Aucun article pour le moment"
+  },
+  "blog.coming_soon": {
+    en: "Our first articles are coming soon. Stay tuned!",
+    fr: "Nos premiers articles arrivent bientôt. Restez connectés !"
   },
 };

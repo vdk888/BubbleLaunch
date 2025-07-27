@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - Bubble</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/images/bubble-favicon.svg" />
+    <link rel="stylesheet" href="../assets/styles/styles.css" />
+    <link rel="stylesheet" href="../assets/styles/blog.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="brand">
+          <div
+            class="logo"
+            style="display: flex; align-items: center; gap: 0.18em"
+          >
+            <span style="display: flex; align-items: center"
+              ><svg
+                width="36"
+                height="36"
+                viewBox="0 0 72 72"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="display: inline-block; vertical-align: middle"
+              >
+                <circle
+                  cx="36"
+                  cy="41"
+                  r="26"
+                  stroke="#000"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-dasharray="145 29"
+                  stroke-dashoffset="10"
+                />
+                <circle cx="59" cy="21" r="6" fill="#000" /></svg></span
+            ><span>Bubble.</span>
+          </div>
+          <div class="tagline" data-translate="hero.tagline">
+            L'investissement repensé.
+          </div>
+        </div>
+        <nav>
+          <a href="/#manifesto" data-translate="nav.manifesto">Manifeste</a>
+          <a href="/#vision" data-translate="nav.vision">Vision</a>
+          <a href="/#approach" data-translate="nav.approach">Approche</a>
+          <a href="/blog" data-translate="nav.blog" class="active">Blog</a>
+          <a href="/#waitlist" data-translate="nav.join">Nous rejoindre</a>
+          <div class="language-switcher">
+            <button id="en-switch" class="active">EN</button>
+            <span>|</span>
+            <button id="fr-switch">FR</button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="blog-main">
+      <div class="container">
+        <!-- Blog Hero Section -->
+        <section class="blog-hero">
+          <div class="blog-hero-content">
+            <h1 class="blog-title" data-translate="blog.title">
+              Pensées sur l'investissement intelligent
+            </h1>
+            <p class="blog-subtitle" data-translate="blog.subtitle">
+              Explorez nos réflexions sur l'IA, la finance et l'avenir de l'investissement. 
+              Des analyses approfondies pour comprendre la révolution en cours.
+            </p>
+          </div>
+        </section>
+
+        <!-- Featured Post Section -->
+        <section class="featured-post" id="featured-post">
+          <!-- Will be populated by JavaScript -->
+        </section>
+
+        <!-- Blog Posts Grid -->
+        <section class="blog-posts">
+          <h2 class="section-title" data-translate="blog.all_posts">Tous nos articles</h2>
+          <div class="posts-grid" id="posts-grid">
+            <!-- Will be populated by JavaScript -->
+          </div>
+          
+          <!-- Loading State -->
+          <div class="loading-state" id="loading-state">
+            <div class="loading-animation">
+              <div class="loading-bubble"></div>
+              <div class="loading-bubble"></div>
+              <div class="loading-bubble"></div>
+            </div>
+            <p data-translate="blog.loading">Chargement des articles...</p>
+          </div>
+          
+          <!-- Empty State -->
+          <div class="empty-state" id="empty-state" style="display: none;">
+            <div class="empty-icon">📝</div>
+            <h3 data-translate="blog.no_posts">Aucun article pour le moment</h3>
+            <p data-translate="blog.coming_soon">
+              Nos premiers articles arrivent bientôt. Restez connectés !
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-left">
+          <div
+            class="footer-logo"
+            style="display: flex; align-items: center; gap: 0.18em"
+          >
+            <span style="display: flex; align-items: center"
+              ><svg
+                width="30"
+                height="30"
+                viewBox="0 0 72 72"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="display: inline-block; vertical-align: middle"
+              >
+                <circle
+                  cx="36"
+                  cy="41"
+                  r="26"
+                  stroke="#000"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-dasharray="145 29"
+                  stroke-dashoffset="10"
+                />
+                <circle cx="59" cy="21" r="6" fill="#000" /></svg></span
+            ><span>Bubble.</span>
+          </div>
+          <div class="footer-copyright" data-translate="footer.copyright">
+            © 2025 Bubble. Transparent by design.
+          </div>
+        </div>
+        <div class="footer-right">
+          <div class="footer-tagline" data-translate="footer.tagline">
+            L'ère de l'IA change tout. Changeons avec elle.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../i18n/translations.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/blog.js"></script>
+  </body>
+</html>

@@ -54,29 +54,48 @@ The project has been reorganized into a clean structure:
 
 1. **AI Chatbot** - Multilingual assistant (EN/FR) that explains Bubble's investment philosophy using company documents
 2. **Waitlist System** - Notion-powered form submissions with profile selection
-3. **Internationalization** - Complete EN/FR language support with dynamic switching
-4. **Rate Limiting** - Session-based limit of 10 messages per user to manage costs
-5. **Streaming Responses** - Real-time chat experience with typing indicators
-6. **Fallback System** - Automatic model switching if primary LLM fails
+3. **Blog System** - Complete blog functionality with Notion CMS and Telegram publishing
+4. **Internationalization** - Complete EN/FR language support with dynamic switching
+5. **Rate Limiting** - Session-based limit of 10 messages per user to manage costs
+6. **Streaming Responses** - Real-time chat experience with typing indicators
+7. **Fallback System** - Automatic model switching if primary LLM fails
 
 ### API Endpoints
 
+**Main Application:**
 - `POST /api/chat` - Chat endpoint with streaming responses and rate limiting
 - `POST /subscribe` - Waitlist subscription endpoint (integrates with Notion)
-- `POST /test-post` - Test endpoint for debugging
 - `GET /` - Serves main landing page
+
+**Blog System:**
+- `GET /blog` - Blog index page with all published posts
+- `GET /blog/:slug` - Individual blog post page
+- `GET /api/blog/posts` - JSON API for all published blog posts
+- `GET /api/blog/post/:slug` - JSON API for individual blog post
+- `POST /telegram/webhook/:token` - Telegram webhook for blog publishing
+
+**Other:**
+- `POST /test-post` - Test endpoint for debugging
 - Static file serving for all frontend assets
 
 ### Environment Variables
 
-Required in `.env`:
-- `NOTION_TOKEN` - Notion API authentication token
+**Required in `.env`:**
+- `NOTION_TOKEN` - Notion API authentication token (waitlist)
 - `NOTION_DATABASE_ID_WAITLIST` - Notion database ID for waitlist entries  
 - `OPENROUTER_API_KEY` - OpenRouter API key for LLM access
 
-Optional:
+**Blog-specific (required for blog functionality):**
+- `NOTION_BLOG_API_KEY` - Notion API token for blog database
+- `NOTION_BLOG_DATABASE_ID` - Notion database ID for blog posts
+
+**Telegram-specific (required for Telegram publishing):**
+- `TELEGRAM_BOT_TOKEN` - Telegram bot token for publishing
+
+**Optional:**
 - `SESSION_SECRET` - Express session secret (has default fallback)
-- `PORT` - Server port (defaults to 3002)
+- `PORT` - Server port (defaults to 3000)
+- `WEBHOOK_URL` - Webhook URL for Telegram bot (for production)
 
 ### Content Documents
 
@@ -106,8 +125,38 @@ When working with this codebase, note these key file paths:
 - Frontend entry: `src/frontend/index.html:315` (served by server)
 - Static files: `src/backend/server.js:321-323` (static file serving configuration)
 
+### Blog System
+
+**Architecture:**
+The blog system is fully integrated into the Bubble website with the same styling and branding.
+
+**Content Management:**
+- Uses Notion as CMS for blog posts
+- Posts have properties: Title, Slug, Summary, Status (Published/Draft), Published Date, Featured Image
+- Supports markdown content conversion to HTML
+- Featured images and rich content support
+
+**Publishing Workflow:**
+1. **Telegram Bot Integration** - Chat with bot to brainstorm ideas
+2. **AI-Generated Content** - Use `/publish` command to generate blog post from conversation
+3. **Automatic Publishing** - Post is created in Notion and immediately available on website
+4. **Review and Edit** - Further editing can be done directly in Notion
+
+**Frontend Pages:**
+- `src/frontend/pages/blog.html` - Blog index with featured post and post grid
+- `src/frontend/pages/blog-post.html` - Individual blog post template
+- `src/frontend/assets/styles/blog.css` - Blog-specific styling
+- `src/frontend/js/blog.js` - Blog index functionality
+- `src/frontend/js/blog-post.js` - Individual post functionality
+
+**Key Services:**
+- `src/backend/services/blogService.js` - Notion blog operations
+- `src/backend/services/telegramService.js` - Telegram bot and publishing
+
 ### Notes
 
-- The `helpers/PersonalBlogBuilder-main` directory contains a separate Astro-based blog project unrelated to the main Bubble application
-- The project uses a clean separation between frontend and backend code
-- All company branding and content is in French with English translations available
+- The `helpers/PersonalBlogBuilder-main` directory contains the original template that inspired the blog system
+- Blog styling matches Bubble's design system (Inter font, minimalist aesthetic)
+- The project uses clean separation between frontend and backend code
+- All content supports full EN/FR internationalization
+- Blog posts support featured images, code blocks, and rich markdown content
