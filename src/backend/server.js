@@ -7,7 +7,7 @@ const axios = require("axios");
 const fs = require("fs").promises;
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 // Notion client
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
@@ -16,7 +16,6 @@ const openRouterApiKey = process.env.OPENROUTER_API_KEY;
 
 // Middleware
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "/")));
 app.use(
   session({
     secret:
@@ -35,7 +34,7 @@ let strategicPoints = "";
 
 async function loadDocument(fileName) {
   try {
-    const filePath = path.join(__dirname, fileName);
+    const filePath = path.join(__dirname, "../../docs/company", fileName);
     return await fs.readFile(filePath, "utf-8");
   } catch (error) {
     console.error(`Error loading ${fileName}:`, error);
@@ -312,8 +311,16 @@ app.post("/test-post", (req, res) => {
 
 // Serve index.html for the root
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  console.log("Root route hit, serving index.html");
+  const filePath = path.join(__dirname, "../frontend/pages/index.html");
+  console.log("File path:", filePath);
+  res.sendFile(filePath);
 });
+
+// Serve static files (CSS, JS, images) but not index.html
+app.use(express.static(path.join(__dirname, "../frontend"), {
+  index: false // This prevents express.static from serving index.html
+}));
 
 app.listen(port, () => {
   console.log("Server running at http://localhost:" + port);

@@ -2,9 +2,9 @@
   "name": "bubble-waitlist",
   "version": "1.0.0",
   "description": "Bubble waitlist landing page",
-  "main": "server.js",
+  "main": "src/backend/server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node src/backend/server.js"
   },
   "dependencies": {
     "@google/genai": "^1.7.0",
