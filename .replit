@@ -1,5 +1,5 @@
 run = "npm start"
-entrypoint = "index.html"
+entrypoint = "src/backend/server.js"
 
 [nix]
 channel = "stable-22_11"
@@ -25,4 +25,5 @@ pattern = "**/*.js"
 start = "typescript-language-server --stdio"
 
 [deployment]
+run = "npm start"
 deploymentTarget = "cloudrun"
