@@ -1,6 +1,7 @@
 const { Client } = require("@notionhq/client");
 const { NotionToMarkdown } = require("notion-to-md");
 const { marked } = require("marked");
+const freepikService = require("./freepikService");
 
 // Initialize Notion client
 const blogApiKey = process.env.NOTION_BLOG_API_KEY;
@@ -159,7 +160,7 @@ async function getPublishedPosts() {
             ],
         });
 
-        const posts = response.results.map(page => {
+        const posts = await Promise.all(response.results.map(async page => {
             const properties = page.properties;
             
             // Extract bilingual titles using correct property names
@@ -202,9 +203,6 @@ async function getPublishedPosts() {
             const publishedDateProperty = properties['Publication Date'];
             const publishedDate = publishedDateProperty?.date?.start || null;
             
-            // No Featured Image property in database
-            const featuredImage = null;
-
             // Extract status
             const statusProperty = properties.Status;
             const status = statusProperty?.select?.name || 'Draft';
@@ -212,6 +210,42 @@ async function getPublishedPosts() {
             // Extract tags
             const tagsProperty = properties['Topic Tags'];
             const tags = tagsProperty?.multi_select?.map(tag => tag.name) || [];
+            
+            // Generate featured image using Freepik API or use fallback
+            let featuredImage = null;
+            try {
+                featuredImage = await freepikService.generateArticleImage(
+                    titleFR, // Use French title as primary
+                    summaryFR, // Use French summary as primary
+                    tags
+                );
+                
+                // If no image generated, use a fallback placeholder
+                if (!featuredImage) {
+                    // Create a simple placeholder URL based on theme
+                    const isFinanceTheme = tags.some(tag => 
+                        ['finance', 'investment', 'trading', 'market'].includes(tag.toLowerCase())
+                    );
+                    const isAITheme = tags.some(tag => 
+                        ['ai', 'intelligence', 'technology', 'tech'].includes(tag.toLowerCase())
+                    );
+                    
+                    if (isFinanceTheme && isAITheme) {
+                        featuredImage = 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=450&fit=crop'; // AI + Finance
+                    } else if (isFinanceTheme) {
+                        featuredImage = 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&h=450&fit=crop'; // Finance
+                    } else if (isAITheme) {
+                        featuredImage = 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=450&fit=crop'; // AI
+                    } else {
+                        featuredImage = 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=450&fit=crop'; // Business
+                    }
+                    console.log(`📷 Using fallback image for "${titleFR}": ${featuredImage}`);
+                }
+            } catch (error) {
+                console.error(`Failed to generate image for article "${titleFR}":`, error);
+                // Default fallback
+                featuredImage = 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=450&fit=crop';
+            }
 
             return {
                 id: page.id,
@@ -230,7 +264,7 @@ async function getPublishedPosts() {
                 tags,
                 url: `/blog/${slug}`
             };
-        });
+        }));
 
         return posts;
     } catch (error) {
@@ -343,9 +377,6 @@ async function getPostBySlug(slug) {
         const publishedDateProperty = properties['Publication Date'];
         const publishedDate = publishedDateProperty?.date?.start || null;
         
-        // No Featured Image property in database
-        const featuredImage = null;
-
         // Extract status
         const statusProperty = properties.Status;
         const status = statusProperty?.select?.name || 'Draft';
@@ -353,6 +384,41 @@ async function getPostBySlug(slug) {
         // Extract tags
         const tagsProperty = properties['Topic Tags'];
         const tags = tagsProperty?.multi_select?.map(tag => tag.name) || [];
+        
+        // Generate featured image using Freepik API or use fallback
+        let featuredImage = null;
+        try {
+            featuredImage = await freepikService.generateArticleImage(
+                titleFR, // Use French title as primary
+                summaryFR, // Use French summary as primary
+                tags
+            );
+            
+            // If no image generated, use a fallback placeholder
+            if (!featuredImage) {
+                const isFinanceTheme = tags.some(tag => 
+                    ['finance', 'investment', 'trading', 'market'].includes(tag.toLowerCase())
+                );
+                const isAITheme = tags.some(tag => 
+                    ['ai', 'intelligence', 'technology', 'tech'].includes(tag.toLowerCase())
+                );
+                
+                if (isFinanceTheme && isAITheme) {
+                    featuredImage = 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=450&fit=crop';
+                } else if (isFinanceTheme) {
+                    featuredImage = 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&h=450&fit=crop';
+                } else if (isAITheme) {
+                    featuredImage = 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=450&fit=crop';
+                } else {
+                    featuredImage = 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=450&fit=crop';
+                }
+                console.log(`📷 Using fallback image for "${titleFR}": ${featuredImage}`);
+            }
+        } catch (error) {
+            console.error(`Failed to generate image for article "${titleFR}":`, error);
+            // Default fallback
+            featuredImage = 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=450&fit=crop';
+        }
 
         // Extract bilingual content (concatenate all rich text blocks)
         const contentFRProperty = properties['Content FR'];

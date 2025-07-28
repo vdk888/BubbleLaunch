@@ -6,6 +6,7 @@ const { Client } = require("@notionhq/client");
 const axios = require("axios");
 const fs = require("fs").promises;
 const { getPublishedPosts, getPostBySlug } = require("./services/blogService");
+const freepikService = require("./services/freepikService");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -338,6 +339,64 @@ app.get("/api/blog/post/:slug", async (req, res) => {
   }
 });
 
+// Test route for Freepik API connection
+app.get("/api/test-freepik-connection", async (req, res) => {
+  try {
+    console.log('🔍 Testing Freepik API connection...');
+    const isConnected = await freepikService.testConnection();
+    
+    res.json({
+      success: isConnected,
+      message: isConnected ? "Freepik API connection successful" : "Freepik API connection failed",
+      apiKeyPresent: !!process.env.FREEPIK_API_KEY
+    });
+  } catch (error) {
+    console.error("Error testing Freepik connection:", error);
+    res.status(500).json({ 
+      error: "Failed to test Freepik connection",
+      details: error.message
+    });
+  }
+});
+
+// Test route for Freepik image generation
+app.post("/api/test-image-generation", async (req, res) => {
+  try {
+    const { title, summary, tags } = req.body;
+    
+    if (!title) {
+      return res.status(400).json({ error: "Title is required" });
+    }
+    
+    console.log(`🧪 Testing image generation for: "${title}"`);
+    
+    const imageUrl = await freepikService.generateArticleImage(
+      title,
+      summary || "Test article summary for image generation",
+      tags || ["test", "ai", "finance"]
+    );
+    
+    if (imageUrl) {
+      res.json({ 
+        success: true, 
+        imageUrl: imageUrl,
+        message: "Image generated successfully"
+      });
+    } else {
+      res.json({ 
+        success: false, 
+        message: "Image generation failed or service not available"
+      });
+    }
+  } catch (error) {
+    console.error("❌ Error testing image generation:", error);
+    res.status(500).json({ 
+      error: "Failed to generate test image",
+      details: error.message
+    });
+  }
+});
+
 // Blog routes
 app.get("/blog", async (req, res) => {
   try {
@@ -389,6 +448,11 @@ app.get("/blog/:slug", async (req, res) => {
   }
 });
 
+
+// Test route for image generation page
+app.get("/test-image", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/pages/test-image-generation.html"));
+});
 
 // Serve index.html for the root
 app.get("/", (req, res) => {

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Image Generation - Bubble</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        button {
+            background: #1a1a1a;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #333;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 2rem;
+            padding: 1rem;
+            border-radius: 6px;
+            display: none;
+        }
+        .result.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .result.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .generated-image {
+            margin-top: 1rem;
+            border-radius: 8px;
+            max-width: 100%;
+            height: auto;
+        }
+        .loading {
+            display: none;
+            margin-top: 1rem;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Test Image Generation</h1>
+        <p>Test the Freepik API integration for blog article image generation</p>
+        
+        <div style="margin-bottom: 2rem;">
+            <button type="button" id="testConnectionBtn" style="background: #28a745; margin-bottom: 1rem;">
+                Test API Connection
+            </button>
+            <div id="connectionResult" style="display: none; padding: 1rem; border-radius: 6px; margin-bottom: 1rem;"></div>
+        </div>
+        
+        <form id="imageForm">
+            <div class="form-group">
+                <label for="title">Article Title *</label>
+                <input type="text" id="title" name="title" required 
+                       placeholder="e.g., L'IA révolutionne l'investissement financier">
+            </div>
+            
+            <div class="form-group">
+                <label for="summary">Article Summary</label>
+                <textarea id="summary" name="summary" 
+                          placeholder="Brief description of the article content..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="tags">Tags (comma-separated)</label>
+                <input type="text" id="tags" name="tags" 
+                       placeholder="e.g., AI, finance, investment, technology">
+            </div>
+            
+            <button type="submit" id="generateBtn">Generate Image</button>
+        </form>
+        
+        <div class="loading" id="loading">
+            🔄 Generating image... This may take up to 30 seconds.
+        </div>
+        
+        <div class="result" id="result">
+            <div id="resultMessage"></div>
+            <img id="generatedImage" class="generated-image" style="display: none;">
+        </div>
+    </div>
+
+    <script>
+        // Test API connection
+        document.getElementById('testConnectionBtn').addEventListener('click', async function() {
+            const btn = this;
+            const result = document.getElementById('connectionResult');
+            
+            btn.disabled = true;
+            btn.textContent = 'Testing...';
+            result.style.display = 'none';
+            
+            try {
+                const response = await fetch('/api/test-freepik-connection');
+                const data = await response.json();
+                
+                result.style.display = 'block';
+                if (data.success) {
+                    result.className = 'result success';
+                    result.innerHTML = `✅ ${data.message}<br><small>API Key: ${data.apiKeyPresent ? 'Present' : 'Missing'}</small>`;
+                } else {
+                    result.className = 'result error';
+                    result.innerHTML = `❌ ${data.message}<br><small>API Key: ${data.apiKeyPresent ? 'Present' : 'Missing'}</small>`;
+                }
+            } catch (error) {
+                result.style.display = 'block';
+                result.className = 'result error';
+                result.textContent = '❌ Connection test failed: ' + error.message;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Test API Connection';
+            }
+        });
+
+        document.getElementById('imageForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const title = formData.get('title');
+            const summary = formData.get('summary');
+            const tagsString = formData.get('tags');
+            const tags = tagsString ? tagsString.split(',').map(tag => tag.trim()) : [];
+            
+            const generateBtn = document.getElementById('generateBtn');
+            const loading = document.getElementById('loading');
+            const result = document.getElementById('result');
+            const resultMessage = document.getElementById('resultMessage');
+            const generatedImage = document.getElementById('generatedImage');
+            
+            // Reset UI
+            result.style.display = 'none';
+            generatedImage.style.display = 'none';
+            loading.style.display = 'block';
+            generateBtn.disabled = true;
+            generateBtn.textContent = 'Generating...';
+            
+            try {
+                const response = await fetch('/api/test-image-generation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        title,
+                        summary,
+                        tags
+                    })
+                });
+                
+                const data = await response.json();
+                
+                loading.style.display = 'none';
+                result.style.display = 'block';
+                
+                if (data.success && data.imageUrl) {
+                    result.className = 'result success';
+                    resultMessage.textContent = `✅ ${data.message}`;
+                    generatedImage.src = data.imageUrl;
+                    generatedImage.style.display = 'block';
+                } else {
+                    result.className = 'result error';
+                    resultMessage.textContent = `❌ ${data.message || 'Image generation failed'}`;
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                loading.style.display = 'none';
+                result.style.display = 'block';
+                result.className = 'result error';
+                resultMessage.textContent = '❌ Network error occurred';
+            } finally {
+                generateBtn.disabled = false;
+                generateBtn.textContent = 'Generate Image';
+            }
+        });
+    </script>
+</body>
+</html>
