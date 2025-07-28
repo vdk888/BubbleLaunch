@@ -22,41 +22,95 @@ function getSamplePosts() {
 }
 
 /**
- * Format plain text content with basic HTML formatting
+ * Format plain text content with enhanced HTML formatting
  */
 function formatPlainTextContent(content) {
     if (!content) return '';
     
     return content
-        // Convert double line breaks to paragraphs
+        // Split by double line breaks for paragraphs
         .split('\n\n')
         .map(paragraph => {
             if (!paragraph.trim()) return '';
             
-            // Format bold text (between ** or __)
-            paragraph = paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            paragraph = paragraph.replace(/__(.*?)__/g, '<strong>$1</strong>');
-            
-            // Format italic text (between * or _)
-            paragraph = paragraph.replace(/\*(.*?)\*/g, '<em>$1</em>');
-            paragraph = paragraph.replace(/_(.*?)_/g, '<em>$1</em>');
+            // Trim whitespace
+            paragraph = paragraph.trim();
             
             // Check if it's a heading (starts with #)
-            if (paragraph.startsWith('# ')) {
-                return `<h1>${paragraph.substring(2)}</h1>`;
-            } else if (paragraph.startsWith('## ')) {
-                return `<h2>${paragraph.substring(3)}</h2>`;
+            if (paragraph.startsWith('#### ')) {
+                const title = paragraph.substring(5).trim();
+                return `<h4>${formatInlineContent(title)}</h4>`;
             } else if (paragraph.startsWith('### ')) {
-                return `<h3>${paragraph.substring(4)}</h3>`;
-            } else if (paragraph.startsWith('#### ')) {
-                return `<h4>${paragraph.substring(5)}</h4>`;
+                const title = paragraph.substring(4).trim();
+                return `<h3>${formatInlineContent(title)}</h3>`;
+            } else if (paragraph.startsWith('## ')) {
+                const title = paragraph.substring(3).trim();
+                return `<h2>${formatInlineContent(title)}</h2>`;
+            } else if (paragraph.startsWith('# ')) {
+                const title = paragraph.substring(2).trim();
+                return `<h1>${formatInlineContent(title)}</h1>`;
+            }
+            
+            // Check for list items
+            if (paragraph.includes('\n- ') || paragraph.startsWith('- ')) {
+                const listItems = paragraph.split('\n')
+                    .filter(line => line.trim())
+                    .map(line => {
+                        if (line.trim().startsWith('- ')) {
+                            const itemContent = line.substring(line.indexOf('- ') + 2).trim();
+                            return `<li>${formatInlineContent(itemContent)}</li>`;
+                        }
+                        return `<p>${formatInlineContent(line.trim())}</p>`;
+                    })
+                    .join('\n');
+                
+                if (listItems.includes('<li>')) {
+                    return `<ul>\n${listItems}\n</ul>`;
+                }
+                return listItems;
+            }
+            
+            // Check for numbered lists
+            if (paragraph.includes('\n1. ') || /^\d+\.\s/.test(paragraph)) {
+                const listItems = paragraph.split('\n')
+                    .filter(line => line.trim())
+                    .map(line => {
+                        if (/^\d+\.\s/.test(line.trim())) {
+                            const itemContent = line.replace(/^\d+\.\s/, '').trim();
+                            return `<li>${formatInlineContent(itemContent)}</li>`;
+                        }
+                        return `<p>${formatInlineContent(line.trim())}</p>`;
+                    })
+                    .join('\n');
+                
+                if (listItems.includes('<li>')) {
+                    return `<ol>\n${listItems}\n</ol>`;
+                }
+                return listItems;
             }
             
             // Regular paragraph
-            return `<p>${paragraph.replace(/\n/g, '<br>')}</p>`;
+            return `<p>${formatInlineContent(paragraph.replace(/\n/g, ' '))}</p>`;
         })
         .filter(p => p)
-        .join('\n');
+        .join('\n\n');
+}
+
+/**
+ * Format inline content (bold, italic, links)
+ */
+function formatInlineContent(text) {
+    return text
+        // Format bold text (between ** or __)
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/__(.*?)__/g, '<strong>$1</strong>')
+        // Format italic text (between * or _) - but not if it's inside bold
+        .replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '<em>$1</em>')
+        .replace(/(?<!_)_([^_]+)_(?!_)/g, '<em>$1</em>')
+        // Format links [text](url)
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+        // Format inline code `code`
+        .replace(/`([^`]+)`/g, '<code>$1</code>');
 }
 
 /**
