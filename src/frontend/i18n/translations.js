@@ -337,12 +337,12 @@ const translations = {
 
   // Blog Section
   "blog.title": {
-    en: "Thoughts on Intelligent Investing",
-    fr: "Pensées sur l'investissement intelligent"
+    en: "The Bubble Blog: Building in Public",
+    fr: "Le Blog Bubble : Construire en Public"
   },
   "blog.subtitle": {
-    en: "Explore our insights on AI, finance, and the future of investing. In-depth analysis to understand the ongoing revolution.",
-    fr: "Explorez nos réflexions sur l'IA, la finance et l'avenir de l'investissement. Des analyses approfondies pour comprendre la révolution en cours."
+    en: "Welcome to our blog where we share everything: our thoughts on AI-driven finance, our product-building experiments, our doubts, and our quest to create the investment tool we desperately wanted.",
+    fr: "Bienvenue sur notre blog où nous partageons tout : nos réflexions sur l'IA financière, nos expériences de construction produit, nos doutes et notre quête pour créer l'outil d'investissement que nous voulions depuis toujours."
   },
   "blog.all_posts": {
     en: "All Articles",
