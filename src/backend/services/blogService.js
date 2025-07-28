@@ -50,7 +50,7 @@ async function getPublishedPosts() {
                                 },
                             },
                             {
-                                property: 'Published Date',
+                                property: 'Publication Date',
                                 date: {
                                     on_or_before: new Date().toISOString(),
                                 },
@@ -61,7 +61,7 @@ async function getPublishedPosts() {
             },
             sorts: [
                 {
-                    property: 'Published Date',
+                    property: 'Publication Date',
                     direction: 'descending',
                 },
             ],
@@ -71,24 +71,22 @@ async function getPublishedPosts() {
             const properties = page.properties;
             
             // Extract title
-            const titleProperty = properties.Title || properties.Name;
+            const titleProperty = properties.Title;
             const title = titleProperty?.title?.[0]?.text?.content || 'Untitled';
             
-            // Extract slug
-            const slugProperty = properties.Slug;
-            const slug = slugProperty?.rich_text?.[0]?.text?.content || title.toLowerCase().replace(/\s+/g, '-');
+            // Generate slug from title (no Slug property in database)
+            const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
             
-            // Extract summary
-            const summaryProperty = properties.Summary;
+            // Extract summary from Content Summary
+            const summaryProperty = properties['Content Summary'];
             const summary = summaryProperty?.rich_text?.[0]?.text?.content || '';
             
-            // Extract published date
-            const publishedDateProperty = properties['Published Date'];
+            // Extract published date from Publication Date
+            const publishedDateProperty = properties['Publication Date'];
             const publishedDate = publishedDateProperty?.date?.start || null;
             
-            // Extract featured image
-            const imageProperty = properties['Featured Image'];
-            const featuredImage = imageProperty?.files?.[0]?.file?.url || imageProperty?.files?.[0]?.external?.url || null;
+            // No Featured Image property in database
+            const featuredImage = null;
 
             // Extract status
             const statusProperty = properties.Status;
@@ -383,24 +381,22 @@ async function getAllPosts() {
             const properties = page.properties;
             
             // Extract title
-            const titleProperty = properties.Title || properties.Name;
+            const titleProperty = properties.Title;
             const title = titleProperty?.title?.[0]?.text?.content || 'Untitled';
             
-            // Extract slug
-            const slugProperty = properties.Slug;
-            const slug = slugProperty?.rich_text?.[0]?.text?.content || title.toLowerCase().replace(/\s+/g, '-');
+            // Generate slug from title (no Slug property in database)
+            const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
             
-            // Extract summary
-            const summaryProperty = properties.Summary;
+            // Extract summary from Content Summary
+            const summaryProperty = properties['Content Summary'];
             const summary = summaryProperty?.rich_text?.[0]?.text?.content || '';
             
-            // Extract published date
-            const publishedDateProperty = properties['Published Date'];
+            // Extract published date from Publication Date
+            const publishedDateProperty = properties['Publication Date'];
             const publishedDate = publishedDateProperty?.date?.start || null;
             
-            // Extract featured image
-            const imageProperty = properties['Featured Image'];
-            const featuredImage = imageProperty?.files?.[0]?.file?.url || imageProperty?.files?.[0]?.external?.url || null;
+            // No Featured Image property in database
+            const featuredImage = null;
 
             // Extract status
             const statusProperty = properties.Status;
