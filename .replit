@@ -1,4 +1,5 @@
-run = "npm start"
+# Install dependencies and start the server
+run = "npm install && npm start"
 entrypoint = "src/backend/server.js"
 
 [nix]
@@ -25,5 +26,6 @@ pattern = "**/*.js"
 start = "typescript-language-server --stdio"
 
 [deployment]
-run = "npm start"
+# For deployment, we'll let the build process handle dependencies
+run = "npm install --production && npm start"
 deploymentTarget = "cloudrun"
