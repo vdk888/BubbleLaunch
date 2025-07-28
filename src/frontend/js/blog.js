@@ -1,43 +1,63 @@
 // Blog functionality for Bubble
+let currentLanguage = 'fr'; // Default to French
+let allPosts = []; // Store all posts for language switching
+
 document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize language
+    currentLanguage = localStorage.getItem('selectedLanguage') || 'fr';
+    updateLanguageButtons();
+    
+    // Load posts
     await loadBlogPosts();
+    
+    // Add language switcher event listeners
+    document.getElementById('fr-switch').addEventListener('click', () => switchLanguage('fr'));
+    document.getElementById('en-switch').addEventListener('click', () => switchLanguage('en'));
 });
+
+function switchLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('selectedLanguage', lang);
+    updateLanguageButtons();
+    
+    // Re-render posts with new language
+    renderPosts();
+}
+
+function updateLanguageButtons() {
+    const frBtn = document.getElementById('fr-switch');
+    const enBtn = document.getElementById('en-switch');
+    
+    frBtn.classList.toggle('active', currentLanguage === 'fr');
+    enBtn.classList.toggle('active', currentLanguage === 'en');
+}
 
 async function loadBlogPosts() {
     const loadingState = document.getElementById('loading-state');
     const emptyState = document.getElementById('empty-state');
     const postsGrid = document.getElementById('posts-grid');
-    const featuredPost = document.getElementById('featured-post');
     
     try {
-        // Fetch posts from the API (we'll create this endpoint)
+        // Fetch posts from the API
         const response = await fetch('/api/blog/posts');
         
         if (!response.ok) {
             throw new Error('Failed to fetch blog posts');
         }
         
-        const posts = await response.json();
+        allPosts = await response.json();
         
         // Hide loading state
         loadingState.style.display = 'none';
         
-        if (posts.length === 0) {
-            // Hide featured post section
-            featuredPost.style.display = 'none';
+        if (allPosts.length === 0) {
             // Show empty state
             emptyState.style.display = 'block';
             return;
         }
         
-        // Display featured post (first post)
-        if (posts.length > 0) {
-            displayFeaturedPost(posts[0], featuredPost);
-        }
-        
-        // Display remaining posts in grid
-        const remainingPosts = posts.slice(1);
-        displayPostsGrid(remainingPosts, postsGrid);
+        // Render posts with current language
+        renderPosts();
         
     } catch (error) {
         console.error('Error loading blog posts:', error);
@@ -47,36 +67,58 @@ async function loadBlogPosts() {
         postsGrid.innerHTML = `
             <div class="error-state" style="grid-column: 1/-1; text-align: center; padding: 4rem 0;">
                 <div style="font-size: 2rem; margin-bottom: 1rem;">⚠️</div>
-                <h3 style="color: #666; margin-bottom: 0.5rem;">Erreur de chargement</h3>
-                <p style="color: #888;">Impossible de charger les articles. Veuillez réessayer plus tard.</p>
+                <h3 style="color: #666; margin-bottom: 0.5rem;">${currentLanguage === 'fr' ? 'Erreur de chargement' : 'Loading Error'}</h3>
+                <p style="color: #888;">${currentLanguage === 'fr' ? 'Impossible de charger les articles. Veuillez réessayer plus tard.' : 'Unable to load articles. Please try again later.'}</p>
                 <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #1a1a1a; color: white; border: none; border-radius: 4px; cursor: pointer;">
-                    Réessayer
+                    ${currentLanguage === 'fr' ? 'Réessayer' : 'Retry'}
                 </button>
             </div>
         `;
     }
 }
 
+function renderPosts() {
+    const featuredPost = document.getElementById('featured-post');
+    const postsGrid = document.getElementById('posts-grid');
+    
+    if (allPosts.length === 0) return;
+    
+    // Display featured post (first post)
+    displayFeaturedPost(allPosts[0], featuredPost);
+    
+    // Display remaining posts in grid
+    const remainingPosts = allPosts.slice(1);
+    displayPostsGrid(remainingPosts, postsGrid);
+}
+
 function displayFeaturedPost(post, container) {
     const formattedDate = formatDate(post.publishedDate);
+    const title = post.title[currentLanguage] || post.title.fr;
+    const summary = post.summary[currentLanguage] || post.summary.fr;
+    
+    const featuredTag = currentLanguage === 'fr' ? 'Article principal' : 'Featured Article';
+    const readMoreText = currentLanguage === 'fr' ? 'Lire l\'article' : 'Read Article';
+    const defaultSummary = currentLanguage === 'fr' ? 
+        'Découvrez nos dernières réflexions sur l\'investissement intelligent.' :
+        'Discover our latest thoughts on intelligent investing.';
     
     container.innerHTML = `
         <div class="featured-card">
             <div class="featured-image">
                 ${post.featuredImage ? 
-                    `<img src="${post.featuredImage}" alt="${post.title}" loading="lazy">` :
+                    `<img src="${post.featuredImage}" alt="${title}" loading="lazy">` :
                     `<div class="post-image-placeholder">📝</div>`
                 }
             </div>
             <div class="featured-content">
                 <div class="featured-meta">
                     <span class="post-date">${formattedDate}</span>
-                    <span class="featured-tag">Article principal</span>
+                    <span class="featured-tag">${featuredTag}</span>
                 </div>
-                <h2>${post.title}</h2>
-                <p>${post.summary || 'Découvrez nos dernières réflexions sur l\'investissement intelligent.'}</p>
+                <h2>${title}</h2>
+                <p>${summary || defaultSummary}</p>
                 <a href="/blog/${post.slug}" class="read-more-btn">
-                    Lire l'article
+                    ${readMoreText}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
@@ -88,9 +130,13 @@ function displayFeaturedPost(post, container) {
 
 function displayPostsGrid(posts, container) {
     if (posts.length === 0) {
+        const emptyMessage = currentLanguage === 'fr' ? 
+            'Plus d\'articles arrivent bientôt...' : 
+            'More articles coming soon...';
+            
         container.innerHTML = `
             <div style="grid-column: 1/-1; text-align: center; padding: 2rem 0;">
-                <p style="color: #888;">Plus d'articles arrivent bientôt...</p>
+                <p style="color: #888;">${emptyMessage}</p>
             </div>
         `;
         return;
@@ -101,29 +147,38 @@ function displayPostsGrid(posts, container) {
 
 function createPostCard(post) {
     const formattedDate = formatDate(post.publishedDate);
+    const title = post.title[currentLanguage] || post.title.fr;
+    const summary = post.summary[currentLanguage] || post.summary.fr;
+    
+    const postTag = currentLanguage === 'fr' ? 'Article' : 'Article';
+    const defaultSummary = currentLanguage === 'fr' ? 
+        'Découvrez cet article sur l\'investissement intelligent.' :
+        'Discover this article on intelligent investing.';
     
     return `
         <a href="/blog/${post.slug}" class="post-card">
             <div class="post-image">
                 ${post.featuredImage ? 
-                    `<img src="${post.featuredImage}" alt="${post.title}" loading="lazy">` :
+                    `<img src="${post.featuredImage}" alt="${title}" loading="lazy">` :
                     `<div class="post-image-placeholder">📝</div>`
                 }
             </div>
             <div class="post-content">
                 <div class="post-meta">
                     <span class="post-date">${formattedDate}</span>
-                    <span class="post-tag">Article</span>
+                    <span class="post-tag">${postTag}</span>
                 </div>
-                <h3 class="post-title">${post.title}</h3>
-                <p class="post-summary">${post.summary || 'Découvrez cet article sur l\'investissement intelligent.'}</p>
+                <h3 class="post-title">${title}</h3>
+                <p class="post-summary">${summary || defaultSummary}</p>
             </div>
         </a>
     `;
 }
 
 function formatDate(dateString) {
-    if (!dateString) return 'Date inconnue';
+    if (!dateString) {
+        return currentLanguage === 'fr' ? 'Date inconnue' : 'Unknown date';
+    }
     
     const date = new Date(dateString);
     const now = new Date();
@@ -132,12 +187,15 @@ function formatDate(dateString) {
     
     // If less than 7 days ago, show relative time
     if (diffDays === 1) {
-        return 'Hier';
+        return currentLanguage === 'fr' ? 'Hier' : 'Yesterday';
     } else if (diffDays < 7) {
-        return `Il y a ${diffDays} jours`;
+        return currentLanguage === 'fr' ? 
+            `Il y a ${diffDays} jours` : 
+            `${diffDays} days ago`;
     } else {
         // Otherwise show formatted date
-        return date.toLocaleDateString('fr-FR', {
+        const locale = currentLanguage === 'fr' ? 'fr-FR' : 'en-US';
+        return date.toLocaleDateString(locale, {
             year: 'numeric',
             month: 'long',
             day: 'numeric'

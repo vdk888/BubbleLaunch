@@ -22,6 +22,44 @@ function getSamplePosts() {
 }
 
 /**
+ * Format plain text content with basic HTML formatting
+ */
+function formatPlainTextContent(content) {
+    if (!content) return '';
+    
+    return content
+        // Convert double line breaks to paragraphs
+        .split('\n\n')
+        .map(paragraph => {
+            if (!paragraph.trim()) return '';
+            
+            // Format bold text (between ** or __)
+            paragraph = paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            paragraph = paragraph.replace(/__(.*?)__/g, '<strong>$1</strong>');
+            
+            // Format italic text (between * or _)
+            paragraph = paragraph.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            paragraph = paragraph.replace(/_(.*?)_/g, '<em>$1</em>');
+            
+            // Check if it's a heading (starts with #)
+            if (paragraph.startsWith('# ')) {
+                return `<h1>${paragraph.substring(2)}</h1>`;
+            } else if (paragraph.startsWith('## ')) {
+                return `<h2>${paragraph.substring(3)}</h2>`;
+            } else if (paragraph.startsWith('### ')) {
+                return `<h3>${paragraph.substring(4)}</h3>`;
+            } else if (paragraph.startsWith('#### ')) {
+                return `<h4>${paragraph.substring(5)}</h4>`;
+            }
+            
+            // Regular paragraph
+            return `<p>${paragraph.replace(/\n/g, '<br>')}</p>`;
+        })
+        .filter(p => p)
+        .join('\n');
+}
+
+/**
  * Fetches published blog posts from the Notion database.
  */
 async function getPublishedPosts() {
@@ -70,16 +108,41 @@ async function getPublishedPosts() {
         const posts = response.results.map(page => {
             const properties = page.properties;
             
-            // Extract title
-            const titleProperty = properties.Title;
-            const title = titleProperty?.title?.[0]?.text?.content || 'Untitled';
+            // Extract bilingual titles using correct property names
+            const titleFRProperty = properties['Title FR'];
             
-            // Generate slug from title (no Slug property in database)
-            const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            let titleFR = 'Untitled';
+            // Title FR is a title property, not rich_text
+            if (titleFRProperty?.title && Array.isArray(titleFRProperty.title)) {
+                titleFR = titleFRProperty.title.map(block => block.plain_text || block.text?.content || '').join('');
+            }
+            if (!titleFR || titleFR === '') {
+                titleFR = 'Untitled';
+            }
             
-            // Extract summary from Content Summary
-            const summaryProperty = properties['Content Summary'];
-            const summary = summaryProperty?.rich_text?.[0]?.text?.content || '';
+            const titleENProperty = properties['Title EN'];
+            let titleEN = '';
+            if (titleENProperty?.rich_text && Array.isArray(titleENProperty.rich_text)) {
+                titleEN = titleENProperty.rich_text.map(block => block.text?.content || block.plain_text || '').join('');
+            }
+            if (!titleEN) titleEN = titleFR;
+            
+            // Generate slug from French title (primary)
+            const slug = titleFR.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            
+            // Extract bilingual summaries using correct property names
+            const summaryFRProperty = properties['Content Summary FR'];
+            let summaryFR = '';
+            if (summaryFRProperty?.rich_text && Array.isArray(summaryFRProperty.rich_text)) {
+                summaryFR = summaryFRProperty.rich_text.map(block => block.text?.content || block.plain_text || '').join('');
+            }
+            
+            const summaryENProperty = properties['Content Summary EN'];
+            let summaryEN = '';
+            if (summaryENProperty?.rich_text && Array.isArray(summaryENProperty.rich_text)) {
+                summaryEN = summaryENProperty.rich_text.map(block => block.text?.content || block.plain_text || '').join('');
+            }
+            if (!summaryEN) summaryEN = summaryFR;
             
             // Extract published date from Publication Date
             const publishedDateProperty = properties['Publication Date'];
@@ -94,9 +157,15 @@ async function getPublishedPosts() {
 
             return {
                 id: page.id,
-                title,
+                title: {
+                    fr: titleFR,
+                    en: titleEN
+                },
                 slug,
-                summary,
+                summary: {
+                    fr: summaryFR,
+                    en: summaryEN
+                },
                 publishedDate,
                 featuredImage,
                 status,
@@ -159,8 +228,12 @@ async function getPostBySlug(slug) {
         // Find the post whose generated slug matches the requested slug
         let matchingPage = null;
         for (const page of response.results) {
-            const titleProperty = page.properties.Title;
-            const title = titleProperty?.title?.[0]?.text?.content || 'Untitled';
+            const titleFRProperty = page.properties['Title FR'];
+            let title = 'Untitled';
+            // Title FR is a title property, not rich_text
+            if (titleFRProperty?.title && Array.isArray(titleFRProperty.title)) {
+                title = titleFRProperty.title.map(block => block.plain_text || block.text?.content || '').join('');
+            }
             const generatedSlug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
             
             if (generatedSlug === slug) {
@@ -175,13 +248,39 @@ async function getPostBySlug(slug) {
 
         const properties = matchingPage.properties;
         
-        // Extract basic info
-        const titleProperty = properties.Title;
-        const title = titleProperty?.title?.[0]?.text?.content || 'Untitled';
+        // Extract bilingual titles using correct property names
+        const titleFRProperty = properties['Title FR'];
+        let titleFR = 'Untitled';
+        // Title FR is a title property, not rich_text
+        if (titleFRProperty?.title && Array.isArray(titleFRProperty.title)) {
+            titleFR = titleFRProperty.title.map(block => block.plain_text || block.text?.content || '').join('');
+        }
+        if (!titleFR || titleFR === '') {
+            titleFR = 'Untitled';
+        }
         
-        const summaryProperty = properties['Content Summary'];
-        const summary = summaryProperty?.rich_text?.[0]?.text?.content || '';
+        const titleENProperty = properties['Title EN'];
+        let titleEN = '';
+        if (titleENProperty?.rich_text && Array.isArray(titleENProperty.rich_text)) {
+            titleEN = titleENProperty.rich_text.map(block => block.text?.content || block.plain_text || '').join('');
+        }
+        if (!titleEN) titleEN = titleFR;
         
+        // Extract bilingual summaries using correct property names
+        const summaryFRProperty = properties['Content Summary FR'];
+        let summaryFR = '';
+        if (summaryFRProperty?.rich_text && Array.isArray(summaryFRProperty.rich_text)) {
+            summaryFR = summaryFRProperty.rich_text.map(block => block.text?.content || block.plain_text || '').join('');
+        }
+        
+        const summaryENProperty = properties['Content Summary EN'];
+        let summaryEN = '';
+        if (summaryENProperty?.rich_text && Array.isArray(summaryENProperty.rich_text)) {
+            summaryEN = summaryENProperty.rich_text.map(block => block.text?.content || block.plain_text || '').join('');
+        }
+        if (!summaryEN) summaryEN = summaryFR;
+        
+        // Extract published date from Publication Date
         const publishedDateProperty = properties['Publication Date'];
         const publishedDate = publishedDateProperty?.date?.start || null;
         
@@ -192,23 +291,49 @@ async function getPostBySlug(slug) {
         const statusProperty = properties.Status;
         const status = statusProperty?.select?.name || 'Draft';
 
-        // Get the page content and convert to markdown
-        const mdBlocks = await n2m.pageToMarkdown(matchingPage.id);
-        const markdownContent = n2m.toMarkdownString(mdBlocks);
+        // Extract bilingual content (concatenate all rich text blocks)
+        const contentFRProperty = properties['Content FR'];
+        const contentFR = contentFRProperty?.rich_text?.map(block => block.text?.content || '').join('') || '';
         
-        // Convert markdown to HTML
-        const htmlContent = marked(markdownContent.parent);
+        const contentENProperty = properties['Content EN'];
+        const contentEN = contentENProperty?.rich_text?.map(block => block.text?.content || '').join('') || contentFR;
+
+        // Get the page content and convert to markdown (fallback if Content FR/EN are empty)
+        let markdownContentFR = contentFR;
+        let markdownContentEN = contentEN;
+        
+        // If Content FR/EN properties are empty, extract from Notion page content
+        if (!contentFR && !contentEN) {
+            const mdBlocks = await n2m.pageToMarkdown(matchingPage.id);
+            const markdownContent = n2m.toMarkdownString(mdBlocks);
+            markdownContentFR = markdownContent.parent;
+            markdownContentEN = markdownContent.parent; // Fallback to same content
+        }
+        
+        // Convert markdown to HTML for both languages
+        // Apply basic formatting to plain text content
+        const htmlContentFR = contentFR ? formatPlainTextContent(markdownContentFR) : marked(markdownContentFR);
+        const htmlContentEN = contentEN ? formatPlainTextContent(markdownContentEN) : marked(markdownContentEN);
 
         return {
             id: matchingPage.id,
-            title,
+            title: {
+                fr: titleFR,
+                en: titleEN
+            },
             slug,
-            summary,
+            summary: {
+                fr: summaryFR,
+                en: summaryEN
+            },
+            content: {
+                fr: htmlContentFR,
+                en: htmlContentEN
+            },
             publishedDate,
             featuredImage,
             status,
-            content: htmlContent,
-            markdownContent: markdownContent.parent
+            url: `/blog/${slug}`
         };
     } catch (error) {
         console.error('Error fetching post by slug:', error);
@@ -216,285 +341,7 @@ async function getPostBySlug(slug) {
     }
 }
 
-/**
- * Creates a new blog post in Notion with specified status and scheduling
- */
-async function createBlogPost(title, content, options = {}) {
-    if (!isBlogConfigured) {
-        throw new Error('Blog functionality not configured - NOTION_BLOG_API_KEY and NOTION_BLOG_DATABASE_ID environment variables are required.');
-    }
-
-    try {
-        // Extract options with defaults
-        const {
-            status = 'Published',
-            summary = '',
-            publishedDate = null,
-            slug: customSlug = null
-        } = options;
-
-        // Generate slug from title if not provided
-        const slug = customSlug || title.toLowerCase()
-            .replace(/[^a-z0-9\s-]/g, '')
-            .replace(/\s+/g, '-')
-            .trim();
-
-        // Set published date
-        let dateToUse = publishedDate;
-        if (!dateToUse) {
-            if (status === 'Published') {
-                dateToUse = new Date().toISOString().split('T')[0];
-            } else if (status === 'Scheduled') {
-                // Default to tomorrow if no date provided for scheduled posts
-                const tomorrow = new Date();
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                dateToUse = tomorrow.toISOString().split('T')[0];
-            }
-        }
-
-        // Convert markdown content to Notion blocks
-        const blocks = await markdownToNotionBlocks(content);
-
-        const properties = {
-            Title: {
-                title: [
-                    {
-                        text: {
-                            content: title,
-                        },
-                    },
-                ],
-            },
-            Slug: {
-                rich_text: [
-                    {
-                        text: {
-                            content: slug,
-                        },
-                    },
-                ],
-            },
-            Status: {
-                select: {
-                    name: status,
-                },
-            },
-        };
-
-        // Add summary if provided
-        if (summary) {
-            properties.Summary = {
-                rich_text: [
-                    {
-                        text: {
-                            content: summary,
-                        },
-                    },
-                ],
-            };
-        }
-
-        // Add published date if provided
-        if (dateToUse) {
-            properties['Published Date'] = {
-                date: {
-                    start: dateToUse,
-                },
-            };
-        }
-
-        const response = await notion.pages.create({
-            parent: { database_id: blogDatabaseId },
-            properties,
-            children: blocks,
-        });
-
-        console.log(`Blog post created: ${title} (${slug}) - Status: ${status}`);
-        return {
-            id: response.id,
-            url: `https://www.notion.so/${response.id.replace(/-/g, '')}`,
-            slug,
-            status,
-            publishedDate: dateToUse
-        };
-    } catch (error) {
-        console.error('Error creating blog post:', error);
-        throw new Error('Failed to create blog post');
-    }
-}
-
-/**
- * Updates a blog post status (useful for publishing drafts)
- */
-async function updateBlogPostStatus(pageId, status, publishedDate = null) {
-    if (!isBlogConfigured) {
-        throw new Error('Blog functionality not configured - NOTION_BLOG_API_KEY and NOTION_BLOG_DATABASE_ID environment variables are required.');
-    }
-
-    try {
-        const properties = {
-            Status: {
-                select: {
-                    name: status,
-                },
-            },
-        };
-
-        // Set published date if publishing or scheduling
-        if ((status === 'Published' || status === 'Scheduled') && !publishedDate) {
-            publishedDate = new Date().toISOString().split('T')[0];
-        }
-
-        if (publishedDate) {
-            properties['Published Date'] = {
-                date: {
-                    start: publishedDate,
-                },
-            };
-        }
-
-        await notion.pages.update({
-            page_id: pageId,
-            properties,
-        });
-
-        console.log(`Blog post status updated to: ${status}`);
-        return { success: true, status, publishedDate };
-    } catch (error) {
-        console.error('Error updating blog post status:', error);
-        throw new Error('Failed to update blog post status');
-    }
-}
-
-/**
- * Gets all posts regardless of status (for admin/Claude use)
- */
-async function getAllPosts() {
-    if (!isBlogConfigured) {
-        return [];
-    }
-
-    try {
-        const response = await notion.databases.query({
-            database_id: blogDatabaseId,
-            sorts: [
-                {
-                    property: 'Published Date',
-                    direction: 'descending',
-                },
-            ],
-        });
-
-        const posts = response.results.map(page => {
-            const properties = page.properties;
-            
-            // Extract title
-            const titleProperty = properties.Title;
-            const title = titleProperty?.title?.[0]?.text?.content || 'Untitled';
-            
-            // Generate slug from title (no Slug property in database)
-            const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-            
-            // Extract summary from Content Summary
-            const summaryProperty = properties['Content Summary'];
-            const summary = summaryProperty?.rich_text?.[0]?.text?.content || '';
-            
-            // Extract published date from Publication Date
-            const publishedDateProperty = properties['Publication Date'];
-            const publishedDate = publishedDateProperty?.date?.start || null;
-            
-            // No Featured Image property in database
-            const featuredImage = null;
-
-            // Extract status
-            const statusProperty = properties.Status;
-            const status = statusProperty?.select?.name || 'Draft';
-
-            return {
-                id: page.id,
-                title,
-                slug,
-                summary,
-                publishedDate,
-                featuredImage,
-                status,
-                url: `/blog/${slug}`
-            };
-        });
-
-        return posts;
-    } catch (error) {
-        console.error('Error fetching all posts:', error);
-        throw new Error('Failed to fetch all posts');
-    }
-}
-
-/**
- * Converts Markdown content to Notion blocks (simplified version)
- */
-async function markdownToNotionBlocks(markdownContent) {
-    const blocks = [];
-    const lines = markdownContent.split('\n');
-    let inCodeBlock = false;
-    let codeContent = '';
-
-    for (const line of lines) {
-        if (line.startsWith('```')) {
-            if (inCodeBlock) {
-                // End of code block
-                blocks.push({
-                    object: 'block',
-                    type: 'code',
-                    code: {
-                        rich_text: [{ type: 'text', text: { content: codeContent.trim() } }],
-                        language: 'javascript'
-                    }
-                });
-                codeContent = '';
-                inCodeBlock = false;
-            } else {
-                // Start of code block
-                inCodeBlock = true;
-            }
-        } else if (inCodeBlock) {
-            codeContent += line + '\n';
-        } else if (line.startsWith('# ')) {
-            // Heading 1
-            blocks.push({
-                object: 'block',
-                type: 'heading_1',
-                heading_1: {
-                    rich_text: [{ type: 'text', text: { content: line.substring(2) } }]
-                }
-            });
-        } else if (line.startsWith('## ')) {
-            // Heading 2
-            blocks.push({
-                object: 'block',
-                type: 'heading_2',
-                heading_2: {
-                    rich_text: [{ type: 'text', text: { content: line.substring(3) } }]
-                }
-            });
-        } else if (line.trim() !== '') {
-            // Regular paragraph
-            blocks.push({
-                object: 'block',
-                type: 'paragraph',
-                paragraph: {
-                    rich_text: [{ type: 'text', text: { content: line } }]
-                }
-            });
-        }
-    }
-
-    return blocks;
-}
-
 module.exports = {
     getPublishedPosts,
-    getPostBySlug,
-    createBlogPost,
-    updateBlogPostStatus,
-    getAllPosts
+    getPostBySlug
 };

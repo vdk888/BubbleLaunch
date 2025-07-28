@@ -1,5 +1,16 @@
 // Individual Blog Post functionality
+let currentLanguage = 'fr'; // Default to French
+let currentPost = null; // Store current post for language switching
+
 document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize language
+    currentLanguage = localStorage.getItem('selectedLanguage') || 'fr';
+    updateLanguageButtons();
+    
+    // Add language switcher event listeners
+    document.getElementById('fr-switch').addEventListener('click', () => switchLanguage('fr'));
+    document.getElementById('en-switch').addEventListener('click', () => switchLanguage('en'));
+    
     const slug = getSlugFromUrl();
     if (slug) {
         await loadBlogPost(slug);
@@ -7,6 +18,25 @@ document.addEventListener('DOMContentLoaded', async () => {
         showError();
     }
 });
+
+function switchLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('selectedLanguage', lang);
+    updateLanguageButtons();
+    
+    // Re-render post with new language
+    if (currentPost) {
+        displayBlogPost(currentPost);
+    }
+}
+
+function updateLanguageButtons() {
+    const frBtn = document.getElementById('fr-switch');
+    const enBtn = document.getElementById('en-switch');
+    
+    frBtn.classList.toggle('active', currentLanguage === 'fr');
+    enBtn.classList.toggle('active', currentLanguage === 'en');
+}
 
 function getSlugFromUrl() {
     const pathParts = window.location.pathname.split('/');
@@ -33,13 +63,13 @@ async function loadBlogPost(slug) {
             throw new Error('Failed to fetch blog post');
         }
         
-        const post = await response.json();
+        currentPost = await response.json();
         
         // Hide loading state
         loadingState.style.display = 'none';
         
         // Display the post
-        displayBlogPost(post);
+        displayBlogPost(currentPost);
         blogPost.style.display = 'block';
         
     } catch (error) {
@@ -50,20 +80,29 @@ async function loadBlogPost(slug) {
 }
 
 function displayBlogPost(post) {
+    // Get language-specific content
+    const title = post.title[currentLanguage] || post.title.fr;
+    const summary = post.summary[currentLanguage] || post.summary.fr;
+    const content = post.content[currentLanguage] || post.content.fr;
+    
     // Update page title and meta
-    document.title = `${post.title} - Bubble Blog`;
-    document.getElementById('post-title').textContent = `${post.title} - Bubble Blog`;
-    document.getElementById('post-description').setAttribute('content', post.summary || 'Découvrez cet article sur l\'investissement intelligent.');
+    document.title = `${title} - Bubble Blog`;
+    document.getElementById('post-title').textContent = `${title} - Bubble Blog`;
+    
+    const defaultSummary = currentLanguage === 'fr' ? 
+        'Découvrez cet article sur l\'investissement intelligent.' :
+        'Discover this article on intelligent investing.';
+    document.getElementById('post-description').setAttribute('content', summary || defaultSummary);
     
     // Update breadcrumb
-    document.getElementById('breadcrumb-title').textContent = post.title;
+    document.getElementById('breadcrumb-title').textContent = title;
     
     // Update article header
-    document.getElementById('article-title').textContent = post.title;
+    document.getElementById('article-title').textContent = title;
     document.getElementById('post-date').textContent = formatDate(post.publishedDate);
     
-    if (post.summary) {
-        document.getElementById('article-summary').textContent = post.summary;
+    if (summary) {
+        document.getElementById('article-summary').textContent = summary;
     } else {
         document.getElementById('article-summary').style.display = 'none';
     }
@@ -73,27 +112,33 @@ function displayBlogPost(post) {
         const imageContainer = document.getElementById('featured-image-container');
         const image = document.getElementById('featured-image');
         image.src = post.featuredImage;
-        image.alt = post.title;
+        image.alt = title;
         imageContainer.style.display = 'block';
     }
     
     // Update content
     const contentDiv = document.getElementById('article-content');
-    contentDiv.innerHTML = post.content;
+    contentDiv.innerHTML = content;
     
     // Calculate and display reading time
-    const readingTime = calculateReadingTime(post.content);
-    document.getElementById('reading-time').textContent = `${readingTime} min de lecture`;
+    const readingTime = calculateReadingTime(content);
+    const readingTimeText = currentLanguage === 'fr' ? 
+        `${readingTime} min de lecture` : 
+        `${readingTime} min read`;
+    document.getElementById('reading-time').textContent = readingTimeText;
     
     // Enhance content (add syntax highlighting, etc.)
     enhanceContent();
 }
 
 function formatDate(dateString) {
-    if (!dateString) return 'Date inconnue';
+    if (!dateString) {
+        return currentLanguage === 'fr' ? 'Date inconnue' : 'Unknown date';
+    }
     
     const date = new Date(dateString);
-    return date.toLocaleDateString('fr-FR', {
+    const locale = currentLanguage === 'fr' ? 'fr-FR' : 'en-US';
+    return date.toLocaleDateString(locale, {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
