@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     currentLanguage = localStorage.getItem('selectedLanguage') || 'fr';
     updateLanguageButtons();
     
+    // Update static text translations on page load
+    updateStaticTranslations();
+    
     // Add language switcher event listeners
     document.getElementById('fr-switch').addEventListener('click', () => switchLanguage('fr'));
     document.getElementById('en-switch').addEventListener('click', () => switchLanguage('en'));
@@ -24,10 +27,23 @@ function switchLanguage(lang) {
     localStorage.setItem('selectedLanguage', lang);
     updateLanguageButtons();
     
+    // Update static text translations
+    updateStaticTranslations();
+    
     // Re-render post with new language
     if (currentPost) {
         displayBlogPost(currentPost);
     }
+}
+
+function updateStaticTranslations() {
+    // Update all elements with data-translate attributes
+    document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[key] && translations[key][currentLanguage]) {
+            element.textContent = translations[key][currentLanguage];
+        }
+    });
 }
 
 function updateLanguageButtons() {
@@ -120,6 +136,9 @@ function displayBlogPost(post) {
     const contentDiv = document.getElementById('article-content');
     contentDiv.innerHTML = content;
     
+    // Update tags
+    updatePostTags(post.tags || []);
+    
     // Calculate and display reading time
     const readingTime = calculateReadingTime(content);
     const readingTimeText = currentLanguage === 'fr' ? 
@@ -129,6 +148,19 @@ function displayBlogPost(post) {
     
     // Enhance content (add syntax highlighting, etc.)
     enhanceContent();
+}
+
+function updatePostTags(tags) {
+    const tagsContainer = document.getElementById('post-tags');
+    if (!tagsContainer) return;
+    
+    if (tags.length === 0) {
+        tagsContainer.style.display = 'none';
+        return;
+    }
+    
+    tagsContainer.style.display = 'block';
+    tagsContainer.innerHTML = tags.map(tag => `<span class="tag">${tag}</span>`).join('');
 }
 
 function formatDate(dateString) {

@@ -72,15 +72,15 @@
             <div class="loading-bubble"></div>
             <div class="loading-bubble"></div>
           </div>
-          <p>Chargement de l'article...</p>
+          <p data-translate="blog.loading">Chargement de l'article...</p>
         </div>
 
         <!-- Error State -->
         <div class="error-state" id="error-state" style="display: none;">
           <div class="error-icon">❌</div>
-          <h2>Article introuvable</h2>
-          <p>Cet article n'existe pas ou a été supprimé.</p>
-          <a href="/blog" class="back-to-blog-btn">← Retour au blog</a>
+          <h2 data-translate="blog.notFound">Article introuvable</h2>
+          <p data-translate="blog.notFoundText">Cet article n'existe pas ou a été supprimé.</p>
+          <a href="/blog" class="back-to-blog-btn" data-translate="blog.backToBlog">← Retour au blog</a>
         </div>
 
         <!-- Article Content -->
@@ -89,7 +89,7 @@
           <nav class="breadcrumb">
             <a href="/blog">Blog</a>
             <span>→</span>
-            <span id="breadcrumb-title">Article</span>
+            <span id="breadcrumb-title" data-translate="blog.article">Article</span>
           </nav>
 
           <!-- Article Header -->
@@ -116,11 +116,10 @@
           <footer class="post-footer">
             <div class="post-footer-content">
               <div class="post-tags" id="post-tags">
-                <span class="tag">Investissement</span>
-                <span class="tag">IA</span>
+                <!-- Tags will be populated dynamically -->
               </div>
               <div class="post-actions">
-                <a href="/blog" class="back-to-blog-btn">← Retour au blog</a>
+                <a href="/blog" class="back-to-blog-btn" data-translate="blog.backToBlog">← Retour au blog</a>
               </div>
             </div>
           </footer>

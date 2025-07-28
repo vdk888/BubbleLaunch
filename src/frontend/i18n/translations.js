@@ -360,4 +360,26 @@ const translations = {
     en: "Our first articles are coming soon. Stay tuned!",
     fr: "Nos premiers articles arrivent bientôt. Restez connectés !"
   },
+  
+  // Blog Post Page
+  "blog.loading": {
+    en: "Loading article...",
+    fr: "Chargement de l'article..."
+  },
+  "blog.notFound": {
+    en: "Article not found",
+    fr: "Article introuvable"
+  },
+  "blog.notFoundText": {
+    en: "This article doesn't exist or has been deleted.",
+    fr: "Cet article n'existe pas ou a été supprimé."
+  },
+  "blog.backToBlog": {
+    en: "← Back to Blog",
+    fr: "← Retour au blog"
+  },
+  "blog.article": {
+    en: "Article",
+    fr: "Article"
+  },
 };

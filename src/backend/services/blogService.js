@@ -154,6 +154,10 @@ async function getPublishedPosts() {
             // Extract status
             const statusProperty = properties.Status;
             const status = statusProperty?.select?.name || 'Draft';
+            
+            // Extract tags
+            const tagsProperty = properties['Topic Tags'];
+            const tags = tagsProperty?.multi_select?.map(tag => tag.name) || [];
 
             return {
                 id: page.id,
@@ -169,6 +173,7 @@ async function getPublishedPosts() {
                 publishedDate,
                 featuredImage,
                 status,
+                tags,
                 url: `/blog/${slug}`
             };
         });
@@ -290,6 +295,10 @@ async function getPostBySlug(slug) {
         // Extract status
         const statusProperty = properties.Status;
         const status = statusProperty?.select?.name || 'Draft';
+        
+        // Extract tags
+        const tagsProperty = properties['Topic Tags'];
+        const tags = tagsProperty?.multi_select?.map(tag => tag.name) || [];
 
         // Extract bilingual content (concatenate all rich text blocks)
         const contentFRProperty = properties['Content FR'];
@@ -333,6 +342,7 @@ async function getPostBySlug(slug) {
             publishedDate,
             featuredImage,
             status,
+            tags,
             url: `/blog/${slug}`
         };
     } catch (error) {

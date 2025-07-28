@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     currentLanguage = localStorage.getItem('selectedLanguage') || 'fr';
     updateLanguageButtons();
     
+    // Update static text translations on page load
+    updateStaticTranslations();
+    
     // Load posts
     await loadBlogPosts();
     
@@ -20,8 +23,21 @@ function switchLanguage(lang) {
     localStorage.setItem('selectedLanguage', lang);
     updateLanguageButtons();
     
+    // Update static text translations
+    updateStaticTranslations();
+    
     // Re-render posts with new language
     renderPosts();
+}
+
+function updateStaticTranslations() {
+    // Update all elements with data-translate attributes
+    document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[key] && translations[key][currentLanguage]) {
+            element.textContent = translations[key][currentLanguage];
+        }
+    });
 }
 
 function updateLanguageButtons() {
