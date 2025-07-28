@@ -120,41 +120,33 @@ async function getPostBySlug(slug) {
     }
 
     try {
+        // Since we don't have a Slug property, we need to get all published posts
+        // and find the one whose generated slug matches the requested slug
         const response = await notion.databases.query({
             database_id: blogDatabaseId,
             filter: {
-                and: [
+                or: [
                     {
-                        or: [
+                        property: 'Status',
+                        select: {
+                            equals: 'Published',
+                        },
+                    },
+                    {
+                        and: [
                             {
                                 property: 'Status',
                                 select: {
-                                    equals: 'Published',
+                                    equals: 'Scheduled',
                                 },
                             },
                             {
-                                and: [
-                                    {
-                                        property: 'Status',
-                                        select: {
-                                            equals: 'Scheduled',
-                                        },
-                                    },
-                                    {
-                                        property: 'Published Date',
-                                        date: {
-                                            on_or_before: new Date().toISOString(),
-                                        },
-                                    },
-                                ],
+                                property: 'Publication Date',
+                                date: {
+                                    on_or_before: new Date().toISOString(),
+                                },
                             },
                         ],
-                    },
-                    {
-                        property: 'Slug',
-                        rich_text: {
-                            equals: slug,
-                        },
                     },
                 ],
             },
@@ -164,35 +156,51 @@ async function getPostBySlug(slug) {
             return null;
         }
 
-        const page = response.results[0];
-        const properties = page.properties;
+        // Find the post whose generated slug matches the requested slug
+        let matchingPage = null;
+        for (const page of response.results) {
+            const titleProperty = page.properties.Title;
+            const title = titleProperty?.title?.[0]?.text?.content || 'Untitled';
+            const generatedSlug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            
+            if (generatedSlug === slug) {
+                matchingPage = page;
+                break;
+            }
+        }
+
+        if (!matchingPage) {
+            return null;
+        }
+
+        const properties = matchingPage.properties;
         
         // Extract basic info
-        const titleProperty = properties.Title || properties.Name;
+        const titleProperty = properties.Title;
         const title = titleProperty?.title?.[0]?.text?.content || 'Untitled';
         
-        const summaryProperty = properties.Summary;
+        const summaryProperty = properties['Content Summary'];
         const summary = summaryProperty?.rich_text?.[0]?.text?.content || '';
         
-        const publishedDateProperty = properties['Published Date'];
+        const publishedDateProperty = properties['Publication Date'];
         const publishedDate = publishedDateProperty?.date?.start || null;
         
-        const imageProperty = properties['Featured Image'];
-        const featuredImage = imageProperty?.files?.[0]?.file?.url || imageProperty?.files?.[0]?.external?.url || null;
+        // No Featured Image property in database
+        const featuredImage = null;
 
         // Extract status
         const statusProperty = properties.Status;
         const status = statusProperty?.select?.name || 'Draft';
 
         // Get the page content and convert to markdown
-        const mdBlocks = await n2m.pageToMarkdown(page.id);
+        const mdBlocks = await n2m.pageToMarkdown(matchingPage.id);
         const markdownContent = n2m.toMarkdownString(mdBlocks);
         
         // Convert markdown to HTML
         const htmlContent = marked(markdownContent.parent);
 
         return {
-            id: page.id,
+            id: matchingPage.id,
             title,
             slug,
             summary,
