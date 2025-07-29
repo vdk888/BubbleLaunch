@@ -29,3 +29,7 @@ start = "typescript-language-server --stdio"
 # For deployment, we'll let the build process handle dependencies
 run = "npm install --production && npm start"
 deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 8080
+externalPort = 80
