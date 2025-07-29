@@ -338,7 +338,7 @@ const translations = {
   // Blog Section
   "blog.title": {
     en: "The Bubble Blog: Building in Public",
-    fr: "Le Blog Bubble : Construire en Public"
+    fr: "Le Blog Bubble : Construire Publiquement"
   },
   "blog.subtitle": {
     en: "Welcome to our blog where we share everything: our thoughts on AI-driven finance, our product-building experiments, our doubts, and our quest to create the investment tool we desperately wanted.",
