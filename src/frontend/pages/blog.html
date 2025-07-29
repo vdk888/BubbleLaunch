@@ -46,18 +46,46 @@
             L'investissement repensé.
           </div>
         </div>
-        <nav>
-          <a href="/#manifesto" data-translate="nav.manifesto">Manifeste</a>
-          <a href="/#vision" data-translate="nav.vision">Vision</a>
-          <a href="/#approach" data-translate="nav.approach">Approche</a>
-          <a href="/blog" data-translate="nav.blog" class="active">Blog</a>
-          <a href="/#waitlist" data-translate="nav.join">Nous rejoindre</a>
-          <div class="language-switcher">
-            <button id="en-switch" class="active">EN</button>
+        <div class="header-right">
+          <!-- Hamburger Menu Button (Mobile Only) -->
+          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+          
+          <!-- Desktop Navigation -->
+          <nav class="desktop-nav">
+            <a href="/#manifesto" data-translate="nav.manifesto">Manifeste</a>
+            <a href="/#vision" data-translate="nav.vision">Vision</a>
+            <a href="/#approach" data-translate="nav.approach">Approche</a>
+            <a href="/blog" data-translate="nav.blog" class="active">Blog</a>
+            <a href="/#waitlist" data-translate="nav.join">Nous rejoindre</a>
+            <div class="language-switcher">
+              <button id="en-switch" class="active">EN</button>
+              <span>|</span>
+              <button id="fr-switch">FR</button>
+            </div>
+          </nav>
+          
+          <!-- Mobile Language Switcher -->
+          <div class="mobile-language-switcher">
+            <button id="en-switch-mobile" class="active">EN</button>
             <span>|</span>
-            <button id="fr-switch">FR</button>
+            <button id="fr-switch-mobile">FR</button>
           </div>
-        </nav>
+        </div>
+        
+        <!-- Mobile Navigation Overlay -->
+        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+          <nav class="mobile-nav">
+            <a href="/#manifesto" data-translate="nav.manifesto">Manifeste</a>
+            <a href="/#vision" data-translate="nav.vision">Vision</a>
+            <a href="/#approach" data-translate="nav.approach">Approche</a>
+            <a href="/blog" data-translate="nav.blog" class="active">Blog</a>
+            <a href="/#waitlist" data-translate="nav.join">Nous rejoindre</a>
+          </nav>
+        </div>
       </div>
     </header>
 
