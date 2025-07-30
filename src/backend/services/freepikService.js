@@ -1,4 +1,6 @@
 const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
 
 class FreepikService {
     constructor() {
@@ -7,6 +9,10 @@ class FreepikService {
         this.isRateLimited = false;
         this.rateLimitResetTime = null;
         this.imageCache = new Map(); // Simple in-memory cache
+        this.cacheFile = path.join(__dirname, '../cache/freepik-images.json');
+        
+        // Load persistent cache on startup
+        this.loadPersistentCache();
         
         // Debug environment loading
         console.log('🔧 FreepikService initialized:');
@@ -80,8 +86,9 @@ class FreepikService {
             
             if (imageUrl) {
                 console.log(`✅ Successfully generated image: ${imageUrl}`);
-                // Cache the result
+                // Cache the result in memory and persistently
                 this.imageCache.set(cacheKey, imageUrl);
+                this.savePersistentCache();
                 return imageUrl;
             }
             
@@ -649,6 +656,14 @@ class FreepikService {
      */
     clearCache() {
         this.imageCache.clear();
+        try {
+            if (fs.existsSync(this.cacheFile)) {
+                fs.unlinkSync(this.cacheFile);
+                console.log('🧹 Freepik image cache cleared from disk');
+            }
+        } catch (error) {
+            console.warn('⚠️ Failed to clear persistent cache file:', error.message);
+        }
         console.log('🧹 Freepik image cache cleared');
     }
 
@@ -660,6 +675,45 @@ class FreepikService {
             size: this.imageCache.size,
             keys: Array.from(this.imageCache.keys())
         };
+    }
+
+    /**
+     * Load persistent cache from disk
+     */
+    loadPersistentCache() {
+        try {
+            // Ensure cache directory exists
+            const cacheDir = path.dirname(this.cacheFile);
+            if (!fs.existsSync(cacheDir)) {
+                fs.mkdirSync(cacheDir, { recursive: true });
+                console.log(`📁 Created cache directory: ${cacheDir}`);
+            }
+
+            // Load existing cache if it exists
+            if (fs.existsSync(this.cacheFile)) {
+                const cacheData = JSON.parse(fs.readFileSync(this.cacheFile, 'utf8'));
+                this.imageCache = new Map(Object.entries(cacheData));
+                console.log(`📦 Loaded ${this.imageCache.size} cached images from disk`);
+            } else {
+                console.log('📦 No existing cache file found, starting with empty cache');
+            }
+        } catch (error) {
+            console.warn('⚠️ Failed to load persistent cache:', error.message);
+            this.imageCache = new Map(); // Fallback to empty cache
+        }
+    }
+
+    /**
+     * Save persistent cache to disk
+     */
+    savePersistentCache() {
+        try {
+            const cacheData = Object.fromEntries(this.imageCache);
+            fs.writeFileSync(this.cacheFile, JSON.stringify(cacheData, null, 2));
+            console.log(`💾 Saved ${this.imageCache.size} cached images to disk`);
+        } catch (error) {
+            console.warn('⚠️ Failed to save persistent cache:', error.message);
+        }
     }
 
     /**
