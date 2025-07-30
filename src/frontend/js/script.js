@@ -45,9 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Set placeholder for waitlist comments textarea based on language
-    const commentsTextarea = document.querySelector(
-      'textarea#comments[data-translate="waitlist.form.comments"]',
-    );
+    const commentsTextarea = document.querySelector('textarea#comments');
     if (commentsTextarea) {
       const placeholders = {
         fr: "L'utilisation de l'IA, la transparence des frais, le modèle de partage des richesses...",
