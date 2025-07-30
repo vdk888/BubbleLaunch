@@ -343,18 +343,101 @@ app.get("/api/blog/post/:slug", async (req, res) => {
 app.get("/api/test-freepik-connection", async (req, res) => {
   try {
     console.log('🔍 Testing Freepik API connection...');
+    
+    // Debug environment variables
+    console.log('🔧 Environment check:');
+    console.log('  - FREEPIK_API_KEY present:', !!process.env.FREEPIK_API_KEY);
+    console.log('  - FREEPIK_API_KEY length:', process.env.FREEPIK_API_KEY?.length || 0);
+    console.log('  - FREEPIK_API_KEY preview:', process.env.FREEPIK_API_KEY ? `${process.env.FREEPIK_API_KEY.substring(0, 8)}...` : 'none');
+    
     const isConnected = await freepikService.testConnection();
     
     res.json({
       success: isConnected,
       message: isConnected ? "Freepik API connection successful" : "Freepik API connection failed",
-      apiKeyPresent: !!process.env.FREEPIK_API_KEY
+      apiKeyPresent: !!process.env.FREEPIK_API_KEY,
+      apiKeyLength: process.env.FREEPIK_API_KEY?.length || 0,
+      debug: {
+        baseUrl: 'https://api.freepik.com/v1',
+        endpoint: '/ai/text-to-image'
+      }
     });
   } catch (error) {
     console.error("Error testing Freepik connection:", error);
     res.status(500).json({ 
       error: "Failed to test Freepik connection",
-      details: error.message
+      details: error.message,
+      stack: error.stack
+    });
+  }
+});
+
+// Direct API test endpoint for debugging
+app.get("/api/test-freepik-direct", async (req, res) => {
+  try {
+    console.log('🧪 Making direct Freepik API test...');
+    
+    const apiKey = process.env.FREEPIK_API_KEY;
+    const baseUrl = 'https://api.freepik.com/v1';
+    
+    console.log('Direct test config:', {
+      hasApiKey: !!apiKey,
+      apiKeyLength: apiKey?.length,
+      baseUrl,
+      endpoint: '/ai/text-to-image'
+    });
+    
+    if (!apiKey) {
+      return res.json({
+        success: false,
+        error: 'No API key found',
+        debug: { envVars: Object.keys(process.env).filter(k => k.includes('FREEPIK')) }
+      });
+    }
+    
+    const response = await axios.post(
+      `${baseUrl}/ai/text-to-image`,
+      { prompt: "Simple blue background" },
+      {
+        headers: {
+          'x-freepik-api-key': apiKey,
+          'Content-Type': 'application/json'
+        },
+        timeout: 15000
+      }
+    );
+    
+    console.log('✅ Direct API response:', {
+      status: response.status,
+      headers: response.headers,
+      data: response.data
+    });
+    
+    res.json({
+      success: true,
+      message: 'Direct API call successful',
+      response: {
+        status: response.status,
+        data: response.data
+      }
+    });
+    
+  } catch (error) {
+    console.error('❌ Direct API test failed:');
+    console.error('Status:', error.response?.status);
+    console.error('Headers:', error.response?.headers);
+    console.error('Data:', error.response?.data);
+    console.error('Message:', error.message);
+    
+    res.json({
+      success: false,
+      error: 'Direct API call failed',
+      details: {
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        data: error.response?.data,
+        message: error.message
+      }
     });
   }
 });
@@ -392,6 +475,102 @@ app.post("/api/test-image-generation", async (req, res) => {
     console.error("❌ Error testing image generation:", error);
     res.status(500).json({ 
       error: "Failed to generate test image",
+      details: error.message
+    });
+  }
+});
+
+// Clear Freepik image cache and regenerate images
+app.post("/api/clear-image-cache", async (req, res) => {
+  try {
+    console.log('🧹 Clearing Freepik image cache...');
+    
+    // Clear the cache
+    freepikService.clearCache();
+    
+    // Get cache stats
+    const cacheStats = freepikService.getCacheStats();
+    
+    res.json({ 
+      success: true, 
+      message: "Image cache cleared successfully",
+      cacheStats: cacheStats
+    });
+  } catch (error) {
+    console.error("❌ Error clearing image cache:", error);
+    res.status(500).json({ 
+      error: "Failed to clear image cache",
+      details: error.message
+    });
+  }
+});
+
+// Get Freepik cache statistics
+app.get("/api/image-cache-stats", async (req, res) => {
+  try {
+    const cacheStats = freepikService.getCacheStats();
+    
+    res.json({ 
+      success: true, 
+      cacheStats: cacheStats
+    });
+  } catch (error) {
+    console.error("❌ Error getting cache stats:", error);
+    res.status(500).json({ 
+      error: "Failed to get cache statistics",
+      details: error.message
+    });
+  }
+});
+
+// Force regenerate images for all blog posts
+app.post("/api/regenerate-all-images", async (req, res) => {
+  try {
+    console.log('🔄 Force regenerating all blog images...');
+    
+    // Clear the cache first
+    freepikService.clearCache();
+    
+    // Get all published posts
+    const posts = await getPublishedPosts();
+    
+    // Force regenerate images for each post
+    const regenerationPromises = posts.map(async (post) => {
+      try {
+        console.log(`🎨 Regenerating image for: "${post.title.fr}"`);
+        const newImageUrl = await freepikService.generateArticleImage(
+          post.title.fr, 
+          post.summary.fr, 
+          post.tags,
+          post.id, // Pass the article ID
+          true // bypassCache = true
+        );
+        return { 
+          title: post.title.fr, 
+          success: !!newImageUrl, 
+          imageUrl: newImageUrl 
+        };
+      } catch (error) {
+        console.error(`Failed to regenerate image for "${post.title.fr}":`, error);
+        return { 
+          title: post.title.fr, 
+          success: false, 
+          error: error.message 
+        };
+      }
+    });
+    
+    const results = await Promise.all(regenerationPromises);
+    
+    res.json({ 
+      success: true, 
+      message: `Regenerated images for ${results.length} articles`,
+      results: results
+    });
+  } catch (error) {
+    console.error("❌ Error regenerating images:", error);
+    res.status(500).json({ 
+      error: "Failed to regenerate images",
       details: error.message
     });
   }
@@ -452,6 +631,11 @@ app.get("/blog/:slug", async (req, res) => {
 // Test route for image generation page
 app.get("/test-image", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/pages/test-image-generation.html"));
+});
+
+// Clear cache management page
+app.get("/clear-cache", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/pages/clear-cache.html"));
 });
 
 // Serve index.html for the root

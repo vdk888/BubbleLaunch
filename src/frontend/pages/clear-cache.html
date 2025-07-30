@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Image Cache - Bubble</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 2rem;
+        }
+        button {
+            background: #1a1a1a;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-bottom: 1rem;
+        }
+        button:hover {
+            background: #333;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 6px;
+            display: none;
+        }
+        .result.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .result.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .cache-stats {
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            color: #0d47a1;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧹 Image Cache Management</h1>
+        <p>Use this tool to clear the Freepik image cache and force regeneration of new, unique images for blog articles.</p>
+        
+        <button id="clearCacheBtn">Clear Image Cache</button>
+        <button id="getCacheStatsBtn">Get Cache Statistics</button>
+        <button id="regenerateImagesBtn" style="background: #dc3545;">Force Regenerate All Images</button>
+        
+        <div id="result" class="result"></div>
+        <div id="cacheStats" class="cache-stats" style="display: none;"></div>
+        
+        <div style="margin-top: 2rem;">
+            <h3>Instructions:</h3>
+            <ol>
+                <li><strong>Clear Image Cache:</strong> Removes cached images so new ones can be generated</li>
+                <li><strong>Get Cache Statistics:</strong> Shows what's currently cached</li>
+                <li><strong>Force Regenerate All Images:</strong> Clears cache AND immediately generates new unique images for all articles</li>
+                <li>After using any option, refresh your blog page to see changes</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        const clearCacheBtn = document.getElementById('clearCacheBtn');
+        const getCacheStatsBtn = document.getElementById('getCacheStatsBtn');
+        const regenerateImagesBtn = document.getElementById('regenerateImagesBtn');
+        const result = document.getElementById('result');
+        const cacheStats = document.getElementById('cacheStats');
+
+        // Clear cache function
+        clearCacheBtn.addEventListener('click', async function() {
+            clearCacheBtn.disabled = true;
+            clearCacheBtn.textContent = 'Clearing...';
+            result.style.display = 'none';
+            
+            try {
+                const response = await fetch('/api/clear-image-cache', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                result.style.display = 'block';
+                if (data.success) {
+                    result.className = 'result success';
+                    result.innerHTML = `✅ ${data.message}<br><small>Cache size before: ${data.cacheStats.size} items</small>`;
+                } else {
+                    result.className = 'result error';
+                    result.textContent = `❌ ${data.message || 'Failed to clear cache'}`;
+                }
+            } catch (error) {
+                result.style.display = 'block';
+                result.className = 'result error';
+                result.textContent = '❌ Network error: ' + error.message;
+            } finally {
+                clearCacheBtn.disabled = false;
+                clearCacheBtn.textContent = 'Clear Image Cache';
+            }
+        });
+
+        // Get cache stats function
+        getCacheStatsBtn.addEventListener('click', async function() {
+            getCacheStatsBtn.disabled = true;
+            getCacheStatsBtn.textContent = 'Loading...';
+            
+            try {
+                const response = await fetch('/api/image-cache-stats');
+                const data = await response.json();
+                
+                if (data.success) {
+                    cacheStats.style.display = 'block';
+                    cacheStats.innerHTML = `
+                        <h4>📊 Cache Statistics</h4>
+                        <p><strong>Cached Items:</strong> ${data.cacheStats.size}</p>
+                        <p><strong>Cache Keys:</strong></p>
+                        <ul>${data.cacheStats.keys.map(key => `<li>${key.substring(0, 60)}${key.length > 60 ? '...' : ''}</li>`).join('')}</ul>
+                    `;
+                } else {
+                    cacheStats.style.display = 'block';
+                    cacheStats.innerHTML = '❌ Failed to get cache statistics';
+                }
+            } catch (error) {
+                cacheStats.style.display = 'block';
+                cacheStats.innerHTML = '❌ Network error: ' + error.message;
+            } finally {
+                getCacheStatsBtn.disabled = false;
+                getCacheStatsBtn.textContent = 'Get Cache Statistics';
+            }
+        });
+
+        // Force regenerate all images function
+        regenerateImagesBtn.addEventListener('click', async function() {
+            if (!confirm('This will regenerate ALL blog images and may take several minutes. Continue?')) {
+                return;
+            }
+            
+            regenerateImagesBtn.disabled = true;
+            regenerateImagesBtn.textContent = 'Regenerating...';
+            result.style.display = 'none';
+            cacheStats.style.display = 'none';
+            
+            try {
+                const response = await fetch('/api/regenerate-all-images', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                result.style.display = 'block';
+                if (data.success) {
+                    result.className = 'result success';
+                    const successCount = data.results.filter(r => r.success).length;
+                    const failCount = data.results.filter(r => !r.success).length;
+                    result.innerHTML = `
+                        ✅ ${data.message}<br>
+                        <small>✅ ${successCount} successful, ❌ ${failCount} failed</small><br>
+                        <details style="margin-top: 1rem;">
+                            <summary>View Results</summary>
+                            <ul style="text-align: left; margin-top: 0.5rem;">
+                                ${data.results.map(r => `<li>${r.success ? '✅' : '❌'} ${r.title}</li>`).join('')}
+                            </ul>
+                        </details>
+                    `;
+                } else {
+                    result.className = 'result error';
+                    result.textContent = `❌ ${data.message || 'Failed to regenerate images'}`;
+                }
+            } catch (error) {
+                result.style.display = 'block';
+                result.className = 'result error';
+                result.textContent = '❌ Network error: ' + error.message;
+            } finally {
+                regenerateImagesBtn.disabled = false;
+                regenerateImagesBtn.textContent = 'Force Regenerate All Images';
+            }
+        });
+    </script>
+</body>
+</html>

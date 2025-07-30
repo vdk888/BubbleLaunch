@@ -217,12 +217,16 @@ async function getPublishedPosts() {
                 featuredImage = await freepikService.generateArticleImage(
                     titleFR, // Use French title as primary
                     summaryFR, // Use French summary as primary
-                    tags
+                    tags,
+                    page.id // Pass the unique Notion page ID
                 );
                 
-                // If no image generated, use a fallback placeholder
+                // If no image generated, use a unique fallback placeholder based on article ID
                 if (!featuredImage) {
-                    // Create a simple placeholder URL based on theme
+                    // Create unique fallback images based on article ID hash
+                    const articleHash = Math.abs(page.id.replace(/-/g, '').split('').reduce((hash, char, index) => 
+                        ((hash << 3) + hash) + char.charCodeAt(0) + index, 0));
+                    
                     const isFinanceTheme = tags.some(tag => 
                         ['finance', 'investment', 'trading', 'market'].includes(tag.toLowerCase())
                     );
@@ -230,16 +234,37 @@ async function getPublishedPosts() {
                         ['ai', 'intelligence', 'technology', 'tech'].includes(tag.toLowerCase())
                     );
                     
+                    // Different image sets for different themes
+                    let imagePool = [];
                     if (isFinanceTheme && isAITheme) {
-                        featuredImage = 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=450&fit=crop'; // AI + Finance
+                        imagePool = [
+                            'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=450&fit=crop',
+                            'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&h=450&fit=crop',
+                            'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=450&fit=crop'
+                        ];
                     } else if (isFinanceTheme) {
-                        featuredImage = 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&h=450&fit=crop'; // Finance
+                        imagePool = [
+                            'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&h=450&fit=crop',
+                            'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=450&fit=crop',
+                            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop'
+                        ];
                     } else if (isAITheme) {
-                        featuredImage = 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=450&fit=crop'; // AI
+                        imagePool = [
+                            'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=450&fit=crop',
+                            'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=450&fit=crop',
+                            'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=450&fit=crop'
+                        ];
                     } else {
-                        featuredImage = 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=450&fit=crop'; // Business
+                        imagePool = [
+                            'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=450&fit=crop',
+                            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop',
+                            'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=800&h=450&fit=crop'
+                        ];
                     }
-                    console.log(`📷 Using fallback image for "${titleFR}": ${featuredImage}`);
+                    
+                    // Select image based on article ID hash
+                    featuredImage = imagePool[articleHash % imagePool.length];
+                    console.log(`📷 Using unique fallback image for "${titleFR}" (hash: ${articleHash}): ${featuredImage}`);
                 }
             } catch (error) {
                 console.error(`Failed to generate image for article "${titleFR}":`, error);
@@ -391,11 +416,16 @@ async function getPostBySlug(slug) {
             featuredImage = await freepikService.generateArticleImage(
                 titleFR, // Use French title as primary
                 summaryFR, // Use French summary as primary
-                tags
+                tags,
+                matchingPage.id // Pass the unique Notion page ID
             );
             
-            // If no image generated, use a fallback placeholder
+            // If no image generated, use a unique fallback placeholder based on article ID
             if (!featuredImage) {
+                // Create unique fallback images based on article ID hash
+                const articleHash = Math.abs(matchingPage.id.replace(/-/g, '').split('').reduce((hash, char, index) => 
+                    ((hash << 3) + hash) + char.charCodeAt(0) + index, 0));
+                
                 const isFinanceTheme = tags.some(tag => 
                     ['finance', 'investment', 'trading', 'market'].includes(tag.toLowerCase())
                 );
@@ -403,16 +433,37 @@ async function getPostBySlug(slug) {
                     ['ai', 'intelligence', 'technology', 'tech'].includes(tag.toLowerCase())
                 );
                 
+                // Different image sets for different themes
+                let imagePool = [];
                 if (isFinanceTheme && isAITheme) {
-                    featuredImage = 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=450&fit=crop';
+                    imagePool = [
+                        'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=450&fit=crop',
+                        'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&h=450&fit=crop',
+                        'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=450&fit=crop'
+                    ];
                 } else if (isFinanceTheme) {
-                    featuredImage = 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&h=450&fit=crop';
+                    imagePool = [
+                        'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&h=450&fit=crop',
+                        'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=450&fit=crop',
+                        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop'
+                    ];
                 } else if (isAITheme) {
-                    featuredImage = 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=450&fit=crop';
+                    imagePool = [
+                        'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=450&fit=crop',
+                        'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=450&fit=crop',
+                        'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=450&fit=crop'
+                    ];
                 } else {
-                    featuredImage = 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=450&fit=crop';
+                    imagePool = [
+                        'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=450&fit=crop',
+                        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop',
+                        'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=800&h=450&fit=crop'
+                    ];
                 }
-                console.log(`📷 Using fallback image for "${titleFR}": ${featuredImage}`);
+                
+                // Select image based on article ID hash
+                featuredImage = imagePool[articleHash % imagePool.length];
+                console.log(`📷 Using unique fallback image for "${titleFR}" (hash: ${articleHash}): ${featuredImage}`);
             }
         } catch (error) {
             console.error(`Failed to generate image for article "${titleFR}":`, error);

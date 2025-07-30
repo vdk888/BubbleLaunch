@@ -15,6 +15,12 @@ This starts the Express server on port 3000 (or PORT from environment).
 npm install
 ```
 
+**Development mode (for debugging):**
+```bash
+# Enable debug mode for better error logging
+DEBUG=* npm start
+```
+
 **Important:** The user should run the terminal commands manually in a separate terminal window. Do not run the server in the background - let the user execute `npm start` themselves to maintain control over the application.
 
 ## Architecture Overview
@@ -161,3 +167,18 @@ These documents form the knowledge base for the AI assistant's responses about B
 - Keep frontend JavaScript modular and organized
 - Maintain bilingual support in all user-facing content
 - Follow existing naming conventions and file structure
+
+### Development and Debugging
+
+**No formal test framework** is configured. Testing is done manually through:
+- Browser testing of the frontend interface
+- Manual API endpoint testing
+- Cross-language testing (EN/FR)
+
+**No lint/build scripts** are available. The project runs directly with Node.js without build steps.
+
+**Debugging tips:**
+- Use `DEBUG=*` environment variable for verbose logging
+- Check browser console for frontend JavaScript errors
+- Monitor server logs for API and backend issues
+- Verify environment variables are properly set in `.env`

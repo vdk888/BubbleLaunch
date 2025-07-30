@@ -99,9 +99,30 @@
             <button type="button" id="testConnectionBtn" style="background: #28a745; margin-bottom: 1rem;">
                 Test API Connection
             </button>
+            <button type="button" id="testDirectBtn" style="background: #17a2b8; margin-bottom: 1rem; margin-left: 1rem;">
+                Test Direct API
+            </button>
             <div id="connectionResult" style="display: none; padding: 1rem; border-radius: 6px; margin-bottom: 1rem;"></div>
         </div>
         
+        <div style="margin-bottom: 2rem; padding: 1rem; background: #e3f2fd; border-radius: 8px;">
+            <h3 style="margin-top: 0; color: #1976d2;">Quick Test Examples</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <button type="button" class="example-btn" onclick="loadExample(1)" style="padding: 0.5rem; background: #42a5f5; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                    AI + Finance
+                </button>
+                <button type="button" class="example-btn" onclick="loadExample(2)" style="padding: 0.5rem; background: #66bb6a; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                    Investment Tech
+                </button>
+                <button type="button" class="example-btn" onclick="loadExample(3)" style="padding: 0.5rem; background: #ab47bc; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                    Cryptocurrency
+                </button>
+                <button type="button" class="example-btn" onclick="loadExample(4)" style="padding: 0.5rem; background: #ff7043; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                    Fintech Innovation
+                </button>
+            </div>
+        </div>
+
         <form id="imageForm">
             <div class="form-group">
                 <label for="title">Article Title *</label>
@@ -135,6 +156,74 @@
     </div>
 
     <script>
+        // Load example data
+        function loadExample(exampleNum) {
+            const titleInput = document.getElementById('title');
+            const summaryInput = document.getElementById('summary');
+            const tagsInput = document.getElementById('tags');
+            
+            const examples = {
+                1: {
+                    title: "L'Intelligence Artificielle Révolutionne la Gestion de Portefeuille",
+                    summary: "Comment les algorithmes d'IA transforment l'investissement moderne avec des analyses prédictives et une gestion automatisée des risques pour optimiser les rendements.",
+                    tags: "AI, artificial intelligence, portfolio management, algorithmic trading, machine learning, fintech"
+                },
+                2: {
+                    title: "The Future of Robo-Advisors in Wealth Management",
+                    summary: "Exploring how automated investment platforms are democratizing wealth management through intelligent algorithms and data-driven portfolio optimization.",
+                    tags: "robo-advisor, investment technology, automated investing, wealth management, digital finance"
+                },
+                3: {
+                    title: "Cryptocurrency and DeFi: The Next Financial Revolution",
+                    summary: "Analyzing the impact of decentralized finance protocols and digital assets on traditional banking and investment strategies.",
+                    tags: "cryptocurrency, DeFi, blockchain, bitcoin, digital assets, web3, smart contracts"
+                },
+                4: {
+                    title: "Fintech Startups Disrupting Traditional Banking",
+                    summary: "How innovative financial technology companies are transforming banking services with mobile-first solutions and AI-powered financial products.",
+                    tags: "fintech, innovation, digital banking, financial technology, startup, disruption"
+                }
+            };
+            
+            const example = examples[exampleNum];
+            if (example) {
+                titleInput.value = example.title;
+                summaryInput.value = example.summary;
+                tagsInput.value = example.tags;
+            }
+        }
+
+        // Test Direct API
+        document.getElementById('testDirectBtn').addEventListener('click', async function() {
+            const btn = this;
+            const result = document.getElementById('connectionResult');
+            
+            btn.disabled = true;
+            btn.textContent = 'Testing Direct...';
+            result.style.display = 'none';
+            
+            try {
+                const response = await fetch('/api/test-freepik-direct');
+                const data = await response.json();
+                
+                result.style.display = 'block';
+                if (data.success) {
+                    result.className = 'result success';
+                    result.innerHTML = `✅ ${data.message}<br><pre>${JSON.stringify(data.response, null, 2)}</pre>`;
+                } else {
+                    result.className = 'result error';
+                    result.innerHTML = `❌ ${data.error}<br><pre>${JSON.stringify(data.details, null, 2)}</pre>`;
+                }
+            } catch (error) {
+                result.style.display = 'block';
+                result.className = 'result error';
+                result.textContent = '❌ Network error: ' + error.message;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Test Direct API';
+            }
+        });
+
         // Test API connection
         document.getElementById('testConnectionBtn').addEventListener('click', async function() {
             const btn = this;
