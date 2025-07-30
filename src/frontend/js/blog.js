@@ -13,9 +13,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Load posts
     await loadBlogPosts();
     
-    // Add language switcher event listeners
+    // Add language switcher event listeners for desktop
     document.getElementById('fr-switch').addEventListener('click', () => switchLanguage('fr'));
     document.getElementById('en-switch').addEventListener('click', () => switchLanguage('en'));
+    
+    // Add language switcher event listeners for mobile
+    document.getElementById('fr-switch-mobile').addEventListener('click', () => switchLanguage('fr'));
+    document.getElementById('en-switch-mobile').addEventListener('click', () => switchLanguage('en'));
 });
 
 function switchLanguage(lang) {
@@ -41,11 +45,21 @@ function updateStaticTranslations() {
 }
 
 function updateLanguageButtons() {
+    // Desktop language buttons
     const frBtn = document.getElementById('fr-switch');
     const enBtn = document.getElementById('en-switch');
     
+    // Mobile language buttons
+    const frBtnMobile = document.getElementById('fr-switch-mobile');
+    const enBtnMobile = document.getElementById('en-switch-mobile');
+    
+    // Update desktop buttons
     frBtn.classList.toggle('active', currentLanguage === 'fr');
     enBtn.classList.toggle('active', currentLanguage === 'en');
+    
+    // Update mobile buttons
+    frBtnMobile.classList.toggle('active', currentLanguage === 'fr');
+    enBtnMobile.classList.toggle('active', currentLanguage === 'en');
 }
 
 async function loadBlogPosts() {

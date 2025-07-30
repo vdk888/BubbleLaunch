@@ -2,9 +2,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // Default language
   let currentLanguage = "en";
 
-  // Get language buttons
+  // Get language buttons (desktop)
   const enButton = document.getElementById("en-switch");
   const frButton = document.getElementById("fr-switch");
+  
+  // Get mobile language buttons
+  const enButtonMobile = document.getElementById("en-switch-mobile");
+  const frButtonMobile = document.getElementById("fr-switch-mobile");
 
   // Get all translatable elements
   const translatableElements = document.querySelectorAll("[data-translate]");
@@ -13,9 +17,13 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateLanguage(lang) {
     currentLanguage = lang;
 
-    // Update active state on buttons
+    // Update active state on desktop buttons
     enButton.classList.toggle("active", lang === "en");
     frButton.classList.toggle("active", lang === "fr");
+    
+    // Update active state on mobile buttons
+    if (enButtonMobile) enButtonMobile.classList.toggle("active", lang === "en");
+    if (frButtonMobile) frButtonMobile.classList.toggle("active", lang === "fr");
 
     // Update HTML lang attribute
     document.documentElement.lang = lang;
@@ -75,9 +83,13 @@ document.addEventListener("DOMContentLoaded", function () {
     document.dispatchEvent(event);
   }
 
-  // Set up event listeners for language switches
+  // Set up event listeners for desktop language switches
   enButton.addEventListener("click", () => updateLanguage("en"));
   frButton.addEventListener("click", () => updateLanguage("fr"));
+  
+  // Set up event listeners for mobile language switches
+  if (enButtonMobile) enButtonMobile.addEventListener("click", () => updateLanguage("en"));
+  if (frButtonMobile) frButtonMobile.addEventListener("click", () => updateLanguage("fr"));
 
   // Check for stored language preference
   const storedLanguage = localStorage.getItem("bubbleLanguage");
@@ -661,36 +673,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Sync mobile and desktop language switchers
-  const enButtonMobile = document.getElementById('en-switch-mobile');
-  const frButtonMobile = document.getElementById('fr-switch-mobile');
-
-  if (enButtonMobile && frButtonMobile) {
-    // Mobile language button event listeners
-    enButtonMobile.addEventListener('click', function() {
-      updateLanguage('en');
-      // Update mobile button states
-      enButtonMobile.classList.add('active');
-      frButtonMobile.classList.remove('active');
-    });
-
-    frButtonMobile.addEventListener('click', function() {
-      updateLanguage('fr');
-      // Update mobile button states
-      frButtonMobile.classList.add('active');
-      enButtonMobile.classList.remove('active');
-    });
-
-    // Override the original updateLanguage function to sync both sets of buttons
-    const originalUpdateLanguageFn = updateLanguage;
-    updateLanguage = function(lang) {
-      originalUpdateLanguageFn(lang);
-      
-      // Sync mobile language switcher
-      if (enButtonMobile && frButtonMobile) {
-        enButtonMobile.classList.toggle('active', lang === 'en');
-        frButtonMobile.classList.toggle('active', lang === 'fr');
-      }
-    };
-  }
 });
