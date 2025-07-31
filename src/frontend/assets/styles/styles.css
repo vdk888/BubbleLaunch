@@ -2454,51 +2454,124 @@ footer .container {
 
 /* Responsive design for clarity and automation slides */
 @media (max-width: 768px) {
+  /* Mobile-optimized clarity slide - compact before/after comparison */
   .clarity-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 1rem;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    max-height: 400px; /* Limit height to prevent excessive scrolling */
+  }
 
-    .clarity-tile {
-        font-size: 1rem;
-        padding: 1.5rem 1rem;
-        /* Add a subtle transition for a smoother feel */
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+  .clarity-comparison {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.8rem;
+    background: rgba(248, 248, 248, 0.8);
+    border-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.3;
+  }
 
-    /* Add a hover effect for interactivity on mobile */
-    .clarity-tile:active {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    }
+  .clarity-before {
+    flex: 1;
+    color: #666;
+    text-align: center;
+    padding: 0.5rem;
+    background: #f5f5f5;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
 
-    .automation-flow {
-        flex-direction: column;
-        gap: 1.5rem;
-        padding: 1rem;
-    }
+  .clarity-arrow {
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin: 0 0.3rem;
+  }
 
-    .automation-center {
-        transform: rotate(90deg);
-        margin: 1rem 0;
-    }
+  .clarity-after {
+    flex: 1;
+    color: #5B21B6;
+    text-align: center;
+    padding: 0.5rem;
+    background: #F8F6FF;
+    border-radius: 8px;
+    border: 1px solid #E8E5FF;
+  }
 
-    .robot-icon {
-        font-size: 3rem;
-        /* Add a subtle animation to draw attention */
-        animation: robot-pulse 2s infinite ease-in-out;
-    }
+  /* Mobile-optimized automation slide - compact before/after comparison */
+  .automation-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    max-height: 400px; /* Limit height to prevent excessive scrolling */
+  }
 
-    @keyframes robot-pulse {
-        0%, 100% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.1);
-        }
-    }
+  .automation-comparison {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.8rem;
+    background: rgba(248, 248, 248, 0.8);
+    border-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.3;
+  }
+
+  .automation-before {
+    flex: 1;
+    color: #666;
+    text-align: center;
+    padding: 0.5rem;
+    background: #f5f5f5;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+
+  .automation-arrow {
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin: 0 0.3rem;
+  }
+
+  .automation-after {
+    flex: 1;
+    color: #5B21B6;
+    text-align: center;
+    padding: 0.5rem;
+    background: #F8F6FF;
+    border-radius: 8px;
+    border: 1px solid #E8E5FF;
+  }
+
+  /* Hide original desktop layouts on mobile */
+  .clarity-grid {
+    display: none !important;
+  }
+  
+  .automation-flow {
+    display: none !important;
+  }
+  
+  /* Show mobile versions on mobile */
+  .clarity-mobile-comparisons,
+  .automation-mobile-comparisons {
+    display: flex !important;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    max-height: 300px; /* Significantly reduced height */
+  }
 }
+
+/* Ensure mobile versions are hidden on desktop */
+@media (min-width: 769px) {
+  .clarity-mobile-comparisons,
+  .automation-mobile-comparisons {
+    display: none !important;
+  }
 }
 
 @media (max-width: 480px) {
