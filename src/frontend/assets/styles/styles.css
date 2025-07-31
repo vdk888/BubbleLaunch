@@ -2324,9 +2324,9 @@ footer .container {
 }
 
 .clarity-tile.after {
-    background-color: #F8F6FF;
-    color: #5B21B6;
-    border: 1px solid #E8E5FF;
+    background-color: rgba(102, 126, 234, 0.08);
+    color: #667eea;
+    border: 1px solid rgba(102, 126, 234, 0.2);
 }
 
 /* Automation Flow Styles */
@@ -2367,9 +2367,9 @@ footer .container {
 }
 
 .after-column .automation-tile {
-    background-color: #F8F6FF;
-    color: #5B21B6;
-    border: 1px solid #E8E5FF;
+    background-color: rgba(102, 126, 234, 0.08);
+    color: #667eea;
+    border: 1px solid rgba(102, 126, 234, 0.2);
 }
 
 .automation-center {
@@ -2395,8 +2395,8 @@ footer .container {
 }
 
 .clarity-tile.after:hover {
-    background-color: #F3F0FF;
-    border-color: #DDD6FF;
+    background-color: rgba(102, 126, 234, 0.12);
+    border-color: rgba(102, 126, 234, 0.3);
 }
 
 .before-column .automation-tile:hover {
@@ -2405,8 +2405,8 @@ footer .container {
 }
 
 .after-column .automation-tile:hover {
-    background-color: #F3F0FF;
-    border-color: #DDD6FF;
+    background-color: rgba(102, 126, 234, 0.12);
+    border-color: rgba(102, 126, 234, 0.3);
 }
 
 @keyframes pulse {
@@ -2465,23 +2465,27 @@ footer .container {
 
   .clarity-comparison {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.4rem;
     align-items: center;
-    padding: 0.8rem;
+    padding: 0.6rem;
     background: rgba(248, 248, 248, 0.8);
-    border-radius: 12px;
-    font-size: 0.9rem;
-    line-height: 1.3;
+    border-radius: 10px;
+    min-height: 50px; /* Prevent cropping */
   }
 
   .clarity-before {
     flex: 1;
     color: #666;
     text-align: center;
-    padding: 0.5rem;
+    padding: 0.4rem;
     background: #f5f5f5;
     border-radius: 8px;
     border: 1px solid #ddd;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .clarity-arrow {
@@ -2492,12 +2496,17 @@ footer .container {
 
   .clarity-after {
     flex: 1;
-    color: #5B21B6;
+    color: #667eea;
     text-align: center;
-    padding: 0.5rem;
-    background: #F8F6FF;
+    padding: 0.4rem;
+    background: rgba(102, 126, 234, 0.08);
     border-radius: 8px;
-    border: 1px solid #E8E5FF;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    font-size: 0.8rem;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Mobile-optimized automation slide - compact before/after comparison */
@@ -2511,23 +2520,27 @@ footer .container {
 
   .automation-comparison {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.4rem;
     align-items: center;
-    padding: 0.8rem;
+    padding: 0.6rem;
     background: rgba(248, 248, 248, 0.8);
-    border-radius: 12px;
-    font-size: 0.9rem;
-    line-height: 1.3;
+    border-radius: 10px;
+    min-height: 50px; /* Prevent cropping */
   }
 
   .automation-before {
     flex: 1;
     color: #666;
     text-align: center;
-    padding: 0.5rem;
+    padding: 0.4rem;
     background: #f5f5f5;
     border-radius: 8px;
     border: 1px solid #ddd;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .automation-arrow {
@@ -2538,12 +2551,17 @@ footer .container {
 
   .automation-after {
     flex: 1;
-    color: #5B21B6;
+    color: #667eea;
     text-align: center;
-    padding: 0.5rem;
-    background: #F8F6FF;
+    padding: 0.4rem;
+    background: rgba(102, 126, 234, 0.08);
     border-radius: 8px;
-    border: 1px solid #E8E5FF;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    font-size: 0.8rem;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Hide original desktop layouts on mobile */
@@ -2563,6 +2581,27 @@ footer .container {
     gap: 1rem;
     padding: 1rem;
     max-height: 300px; /* Significantly reduced height */
+  }
+  
+  /* SVG icon styling for tiles */
+  .clarity-before svg,
+  .clarity-after svg,
+  .automation-before svg,
+  .automation-after svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 0.3rem;
+    flex-shrink: 0;
+  }
+  
+  .clarity-before svg,
+  .automation-before svg {
+    fill: #666;
+  }
+  
+  .clarity-after svg,
+  .automation-after svg {
+    fill: #667eea;
   }
 }
 
