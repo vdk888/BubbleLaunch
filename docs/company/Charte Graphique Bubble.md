@@ -132,11 +132,25 @@ Quand l'espace horizontal est insuffisant :
 * **RGB** : `102, 102, 102`  
 * **Usage** : Textes secondaires, descriptions
 
+### **Palette Spécialisée - Graphiques et Visualisations**
+
+#### **Violet Principal (Graphiques)**
+
+* **Hex** : `#667eea`  
+* **RGB** : `102, 126, 234`  
+* **Usage** : Éléments de charts, slides visuelles, points d'accent dans les graphiques, états "après transformation"
+* **Variantes** :
+  - **Arrière-plan clair** : `rgba(102, 126, 234, 0.08)` - Pour les cartes et zones colorées
+  - **Bordures** : `rgba(102, 126, 234, 0.2)` - Pour les contours et séparateurs
+  - **Hover** : `rgba(102, 126, 234, 0.12)` - Pour les états de survol
+  - **Active dots** : `rgba(102, 126, 234, 0.3)` - Pour les indicateurs de navigation
+
 ### **Règles d'Usage**
 
 * **Contraste minimum** : Toujours respecter un ratio de 4.5:1 pour l'accessibilité  
 * **Dominante** : Le blanc et les gris clairs dominent pour une sensation de transparence  
 * **Accents** : Le noir et gris foncé pour les éléments importants
+* **Graphiques** : Le violet `#667eea` pour tous les éléments de transformation, points d'accent, et états "après" dans les comparaisons visuelles
 
 ---
 
@@ -335,6 +349,19 @@ Quand l'espace horizontal est insuffisant :
 * **Hover** : Translation verticale \+ ombre renforcée  
 * **Padding** : 2rem à 3rem
 
+### **Graphiques et Slides de Présentation**
+
+#### **Slides de Comparaison (Avant/Après)**
+* **État "Avant"** : Gris moyen `#666666` sur fond gris clair `#f5f5f5`
+* **État "Après"** : Violet `#667eea` sur fond violet très clair `rgba(102, 126, 234, 0.08)`
+* **Séparateur** : Flèche ou icône en couleur primaire `#333333`
+* **Usage** : Slides de transformation, comparaisons visuelles
+
+#### **Indicateurs de Navigation (Slider)**
+* **Dots inactifs** : Gris clair avec transparence
+* **Dot actif** : Violet `rgba(102, 126, 234, 0.3)` 
+* **Usage** : Navigation entre slides, indicateurs de progression
+
 ---
 
 ## **10\. Déclinaisons par Support**
@@ -444,6 +471,11 @@ Quand l'espace horizontal est insuffisant :
   \--card: \#F8F8F8;  
   \--border: \#EEEEEE;  
   \--text-secondary: \#666666;  
+  \--chart-primary: \#667eea; /\* Violet principal pour graphiques et visualisations \*/  
+  \--chart-bg-light: rgba(102, 126, 234, 0.08); /\* Arrière-plan clair pour cartes colorées \*/  
+  \--chart-border: rgba(102, 126, 234, 0.2); /\* Bordures et contours \*/  
+  \--chart-hover: rgba(102, 126, 234, 0.12); /\* États de survol \*/  
+  \--chart-active: rgba(102, 126, 234, 0.3); /\* Indicateurs actifs \*/  
 }
 
 /\* Styles CTA \- COULEUR ORIGINALE INCHANGÉE \*/  
