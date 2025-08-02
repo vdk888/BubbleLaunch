@@ -576,6 +576,57 @@ app.post("/api/regenerate-all-images", async (req, res) => {
   }
 });
 
+// Generate image for a specific article (to be called when publishing)
+app.post("/api/generate-article-image", async (req, res) => {
+  try {
+    const { articleId, title, summary, tags, forceRegenerate } = req.body;
+    
+    if (!articleId || !title) {
+      return res.status(400).json({ 
+        success: false, 
+        error: "articleId and title are required" 
+      });
+    }
+    
+    // Check if image already exists in cache (unless force regenerate)
+    if (!forceRegenerate) {
+      const cachedImage = freepikService.getCachedImage(articleId);
+      if (cachedImage) {
+        return res.json({ 
+          success: true, 
+          imageUrl: cachedImage,
+          fromCache: true
+        });
+      }
+    }
+    
+    // Generate new image
+    const imageUrl = await freepikService.generateArticleImage(
+      title,
+      summary || '',
+      tags || [],
+      articleId,
+      forceRegenerate
+    );
+    
+    if (imageUrl) {
+      res.json({ 
+        success: true, 
+        imageUrl,
+        fromCache: false
+      });
+    } else {
+      res.status(500).json({ 
+        success: false, 
+        error: "Failed to generate image" 
+      });
+    }
+  } catch (error) {
+    console.error("Error generating article image:", error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 // Blog routes
 app.get("/blog", async (req, res) => {
   try {
@@ -653,4 +704,19 @@ app.use(express.static(path.join(__dirname, "../frontend"), {
 
 app.listen(port, () => {
   console.log("Server running at http://localhost:" + port);
+});
+
+// Graceful shutdown to save cache
+process.on('SIGINT', () => {
+  console.log('\n🛑 Shutting down gracefully...');
+  // Save Freepik cache before exiting
+  freepikService.savePersistentCache();
+  process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+  console.log('\n🛑 Shutting down gracefully...');
+  // Save Freepik cache before exiting
+  freepikService.savePersistentCache();
+  process.exit(0);
 });

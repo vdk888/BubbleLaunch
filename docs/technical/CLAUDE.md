@@ -21,6 +21,15 @@ npm install
 DEBUG=* npm start
 ```
 
+**Docker build and run:**
+```bash
+# Build Docker image
+docker build -t bubble-waitlist .
+
+# Run Docker container
+docker run -p 3000:3000 --env-file .env bubble-waitlist
+```
+
 **Important:** The user should run the terminal commands manually in a separate terminal window. Do not run the server in the background - let the user execute `npm start` themselves to maintain control over the application.
 
 ## Architecture Overview
@@ -182,3 +191,37 @@ These documents form the knowledge base for the AI assistant's responses about B
 - Check browser console for frontend JavaScript errors
 - Monitor server logs for API and backend issues
 - Verify environment variables are properly set in `.env`
+
+### Deployment
+
+**Docker deployment:**
+- Dockerfile configured with Node.js 18 Alpine
+- Exposes port 3000
+- Production-ready with non-root user
+
+**Environment setup:**
+1. Copy `.env.example` to `.env`
+2. Fill in required environment variables
+3. Ensure Notion databases are properly configured
+4. Set up OpenRouter API access
+
+### Common Development Tasks
+
+**Adding new translations:**
+- Update `src/frontend/i18n/translations.js` with new keys in both `en` and `fr` objects
+- Use `translations[currentLang].key` in JavaScript code
+
+**Adding new API endpoints:**
+- Add route handler in `src/backend/server.js`
+- Follow existing pattern for error handling and response format
+- Consider rate limiting for resource-intensive endpoints
+
+**Modifying chat behavior:**
+- Update system prompt in `src/backend/server.js:79`
+- Adjust model fallback order in `src/backend/server.js:198`
+- Modify rate limits in session configuration
+
+**Working with Notion integration:**
+- Waitlist submissions: `src/backend/server.js:259`
+- Blog system: `src/backend/services/blogService.js`
+- Ensure proper error handling for API failures

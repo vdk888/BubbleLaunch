@@ -20,11 +20,29 @@ class FreepikService {
         console.log('  - API Key length:', this.apiKey?.length || 0);
         console.log('  - API Key preview:', this.apiKey ? `${this.apiKey.substring(0, 8)}...` : 'none');
         console.log('  - Base URL:', this.baseUrl);
+        console.log('  - Cache file location:', this.cacheFile);
+        console.log('  - Cache size:', this.imageCache.size);
         
         if (!this.apiKey) {
             console.warn('❌ Freepik API key not found. Image generation will be disabled.');
             console.warn('   Make sure FREEPIK_API_KEY is set in your .env file');
         }
+    }
+
+    /**
+     * Check if an image is already cached for an article
+     * @param {string} articleId - Unique article ID from Notion
+     * @returns {string|null} - Cached image URL or null if not found
+     */
+    getCachedImage(articleId) {
+        if (!articleId) return null;
+        
+        const cacheKey = `article-${articleId}`;
+        if (this.imageCache.has(cacheKey)) {
+            console.log(`📦 Found cached image for article ID: ${articleId}`);
+            return this.imageCache.get(cacheKey);
+        }
+        return null;
     }
 
     /**

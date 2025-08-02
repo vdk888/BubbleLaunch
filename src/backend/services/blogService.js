@@ -214,12 +214,27 @@ async function getPublishedPosts() {
             // Generate featured image using Freepik API or use fallback
             let featuredImage = null;
             try {
-                featuredImage = await freepikService.generateArticleImage(
-                    titleFR, // Use French title as primary
-                    summaryFR, // Use French summary as primary
-                    tags,
-                    page.id // Pass the unique Notion page ID
-                );
+                // Check if image exists in Notion properties first
+                const featuredImageProperty = properties['Featured Image'];
+                if (featuredImageProperty?.url) {
+                    // Use existing image from Notion
+                    featuredImage = featuredImageProperty.url;
+                    console.log(`📸 Using existing featured image from Notion for "${titleFR}"`);
+                } else {
+                    // Check if image is already cached
+                    featuredImage = freepikService.getCachedImage(page.id);
+                    
+                    if (!featuredImage) {
+                        // Generate new image only if not cached
+                        console.log(`🎨 No cached image found for "${titleFR}", generating new one...`);
+                        featuredImage = await freepikService.generateArticleImage(
+                            titleFR, // Use French title as primary
+                            summaryFR, // Use French summary as primary
+                            tags,
+                            page.id // Pass the unique Notion page ID
+                        );
+                    }
+                }
                 
                 // If no image generated, use a unique fallback placeholder based on article ID
                 if (!featuredImage) {
