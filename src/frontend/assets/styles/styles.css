@@ -803,13 +803,19 @@ header .container {
   line-height: 1.6;
   color: #444;
   margin-bottom: 1rem;
-  opacity: 0;
+  opacity: 1; /* Visible by default */
   overflow: hidden;
   white-space: normal;
   word-break: break-word;
   display: flex;
   align-items: flex-start;
   text-align: justify;
+  transition: opacity 0.3s ease; /* Smooth opacity transitions */
+}
+
+/* Special class for animation control */
+.insight-item.animating {
+  opacity: 0;
 }
 
 /* Chat Input Placeholder Animation */

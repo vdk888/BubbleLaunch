@@ -131,9 +131,11 @@ document.addEventListener("DOMContentLoaded", () => {
     
     insightItems.forEach((item) => {
       const key = item.getAttribute("data-translate");
-      const text = translations[key][lang];
-      item.innerHTML = text;
-      item.style.opacity = 1;
+      if (key && translations[key] && translations[key][lang]) {
+        const text = translations[key][lang];
+        item.innerHTML = text;
+        item.classList.remove("animating"); // Ensure item is visible
+      }
     });
   };
 
@@ -144,10 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const insightItems = document.querySelectorAll(".insight-item");
     const lang = document.documentElement.lang || "en";
 
-    // Clear existing content and reset opacity for all items
+    // Initially hide all items for animation using CSS class
     insightItems.forEach((item) => {
-      item.innerHTML = "";
-      item.style.opacity = 0;
+      item.classList.add("animating");
     });
 
     let i = 0;
@@ -158,15 +159,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const text = translations[key][lang];
         console.log(`Typing insight: Key=${key}, Lang=${lang}, Text="${text}"`);
 
+        // Clear only the current item's content and make it visible
+        item.innerHTML = "";
+        item.classList.remove("animating"); // Remove animating class to show item
+
         typeInsight(item, text, () => {
+          // After typing is complete, keep the item visible and move to next
           insightAnimationTimeout = setTimeout(() => {
             i++;
             animateNextInsight();
-          }, 500); // Pause between bullet points
+          }, 800); // Pause between bullet points
         });
       } else {
         insightAnimationRunning = false;
         insightAnimationCompleted = true; // Mark as completed
+        
+        // Ensure all items remain visible at the end
+        insightItems.forEach((item) => {
+          item.classList.remove("animating");
+        });
       }
     }
     animateNextInsight();
@@ -368,7 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const insightObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !insightAnimationCompleted) {
           initKeyInsightsAnimation();
           observer.unobserve(entry.target);
         }
@@ -393,17 +404,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     insightTile.addEventListener("mouseleave", () => {
       isHoveringInsights = false;
-      resetKeyInsightsAnimation();
+      // Only reset if animation hasn't completed
+      if (!insightAnimationCompleted) {
+        resetKeyInsightsAnimation();
+      }
     });
   }
 
   // Listen for custom languageChanged event
   document.addEventListener("languageChanged", () => {
     insightAnimationCompleted = false; // Reset completion state on language change
-    resetKeyInsightsAnimation();
-    showStaticInsights(); // Always show static content after language change
-    if (isHoveringInsights) {
-      initKeyInsightsAnimation();
+    insightAnimationRunning = false;
+    clearTimeout(insightAnimationTimeout);
+    showStaticInsights(); // Show content in new language immediately
+    
+    // Re-observe the intersection observer for new language
+    if (insightTile && !insightAnimationCompleted) {
+      insightObserver.observe(insightTile);
     }
   });
 });

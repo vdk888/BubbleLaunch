@@ -531,12 +531,12 @@ class FreepikService {
     /**
      * Generate image using Freepik API
      * @param {string} prompt - Image generation prompt
-     * @param {string} title - Article title (optional, for model selection)
-     * @param {string} summary - Article summary (optional, for model selection)
-     * @param {Array} tags - Article tags (optional, for model selection)
+     * @param {string} _title - Article title (optional, for model selection) - Currently unused but kept for future use
+     * @param {string} _summary - Article summary (optional, for model selection) - Currently unused but kept for future use
+     * @param {Array} _tags - Article tags (optional, for model selection) - Currently unused but kept for future use
      * @returns {Promise<string|null>} - Generated image URL
      */
-    async generateImage(prompt, title = "", summary = "", tags = []) {
+    async generateImage(prompt, _title = "", _summary = "", _tags = []) {
         if (!this.apiKey) {
             console.log('Freepik API not configured, skipping image generation');
             return null;
