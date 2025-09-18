@@ -91,8 +91,8 @@ class FreepikService {
                 console.log(`🚫 Cache bypassed for: "${articleTitle}"`);
             }
 
-            // Use a working static prompt for now
-            const prompt = "Modern fintech illustration with blue colors, AI technology, professional style, no people";
+            // Generate intelligent prompt based on article content
+            const prompt = this.createImagePrompt(articleTitle, articleSummary, tags);
             
             console.log(`🎨 Generating image for article: "${articleTitle}"`);
             console.log(`📝 Using prompt: "${prompt}"`);
