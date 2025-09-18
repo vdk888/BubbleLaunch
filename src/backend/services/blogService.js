@@ -28,9 +28,15 @@ function getSamplePosts() {
 function formatPlainTextContent(content) {
     if (!content) return '';
     
-    return content
+    // Pre-process the content to handle different line break patterns
+    const processedContent = content
+        .replace(/\r\n/g, '\n')  // Normalize Windows line breaks
+        .replace(/\r/g, '\n')   // Normalize old Mac line breaks
+        .trim();
+    
+    return processedContent
         // Split by double line breaks for paragraphs
-        .split('\n\n')
+        .split(/\n\s*\n/)
         .map(paragraph => {
             if (!paragraph.trim()) return '';
             
@@ -52,46 +58,116 @@ function formatPlainTextContent(content) {
                 return `<h1>${formatInlineContent(title)}</h1>`;
             }
             
-            // Check for list items
-            if (paragraph.includes('\n- ') || paragraph.startsWith('- ')) {
-                const listItems = paragraph.split('\n')
-                    .filter(line => line.trim())
-                    .map(line => {
-                        if (line.trim().startsWith('- ')) {
-                            const itemContent = line.substring(line.indexOf('- ') + 2).trim();
-                            return `<li>${formatInlineContent(itemContent)}</li>`;
-                        }
-                        return `<p>${formatInlineContent(line.trim())}</p>`;
-                    })
-                    .join('\n');
+            // Check for list items - improved handling (supports both - and • bullets)
+            if (paragraph.includes('\n- ') || paragraph.startsWith('- ') || 
+                paragraph.includes('\n• ') || paragraph.startsWith('• ') ||
+                paragraph.includes('\n* ') || paragraph.startsWith('* ') ||
+                paragraph.includes(' • ') || /\s•\s/.test(paragraph)) {
+                // First try splitting by line breaks, then by bullet characters if inline
+                let lines = paragraph.split('\n').filter(line => line.trim());
                 
-                if (listItems.includes('<li>')) {
-                    return `<ul>\n${listItems}\n</ul>`;
+                // If no line breaks but contains bullets, split by bullet chars
+                if (lines.length === 1 && (paragraph.includes(' • ') || /\s•\s/.test(paragraph))) {
+                    lines = paragraph.split(/\s*•\s*/).filter(item => item.trim());
+                    // Add bullet prefix back
+                    lines = lines.map((line, index) => index === 0 ? line : '• ' + line);
                 }
-                return listItems;
+                
+                const listItems = [];
+                let currentItem = '';
+                
+                for (const line of lines) {
+                    const trimmedLine = line.trim();
+                    if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('• ') || trimmedLine.startsWith('* ')) {
+                        // Save previous item if exists
+                        if (currentItem.trim()) {
+                            listItems.push(`<li>${formatInlineContent(currentItem.trim())}</li>`);
+                        }
+                        // Start new item - handle different bullet types
+                        if (trimmedLine.startsWith('- ')) {
+                            currentItem = trimmedLine.substring(2).trim();
+                        } else if (trimmedLine.startsWith('• ')) {
+                            currentItem = trimmedLine.substring(2).trim();
+                        } else if (trimmedLine.startsWith('* ')) {
+                            currentItem = trimmedLine.substring(2).trim();
+                        }
+                    } else if (currentItem) {
+                        // Continue current item on new line
+                        currentItem += ' ' + trimmedLine;
+                    } else if (trimmedLine) {
+                        // Not part of a list but has content, could be first item without bullet
+                        if (listItems.length === 0) {
+                            currentItem = trimmedLine;
+                        } else {
+                            listItems.push(`<p>${formatInlineContent(trimmedLine)}</p>`);
+                        }
+                    }
+                }
+                
+                // Add the last item
+                if (currentItem.trim()) {
+                    listItems.push(`<li>${formatInlineContent(currentItem.trim())}</li>`);
+                }
+                
+                const hasListItems = listItems.some(item => item.includes('<li>'));
+                if (hasListItems) {
+                    return `<ul>\n${listItems.join('\n')}\n</ul>`;
+                }
+                return listItems.join('\n');
             }
             
-            // Check for numbered lists
-            if (paragraph.includes('\n1. ') || /^\d+\.\s/.test(paragraph)) {
-                const listItems = paragraph.split('\n')
-                    .filter(line => line.trim())
-                    .map(line => {
-                        if (/^\d+\.\s/.test(line.trim())) {
-                            const itemContent = line.replace(/^\d+\.\s/, '').trim();
-                            return `<li>${formatInlineContent(itemContent)}</li>`;
-                        }
-                        return `<p>${formatInlineContent(line.trim())}</p>`;
-                    })
-                    .join('\n');
+            // Check for numbered lists - improved handling with better detection
+            if (paragraph.includes('\n1. ') || paragraph.includes('\n2. ') || /^\d+\.\s/.test(paragraph)) {
+                const lines = paragraph.split('\n').filter(line => line.trim());
+                const listItems = [];
+                let currentItem = '';
                 
-                if (listItems.includes('<li>')) {
-                    return `<ol>\n${listItems}\n</ol>`;
+                for (const line of lines) {
+                    const trimmedLine = line.trim();
+                    if (/^\d+\.\s/.test(trimmedLine)) {
+                        // Save previous item if exists
+                        if (currentItem.trim()) {
+                            listItems.push(`<li>${formatInlineContent(currentItem.trim())}</li>`);
+                        }
+                        // Start new item - remove the number and dot
+                        currentItem = trimmedLine.replace(/^\d+\.\s/, '').trim();
+                    } else if (currentItem) {
+                        // Continue current item on new line
+                        currentItem += ' ' + trimmedLine;
+                    } else {
+                        // Not part of a list, treat as paragraph
+                        listItems.push(`<p>${formatInlineContent(trimmedLine)}</p>`);
+                    }
                 }
-                return listItems;
+                
+                // Add the last item
+                if (currentItem.trim()) {
+                    listItems.push(`<li>${formatInlineContent(currentItem.trim())}</li>`);
+                }
+                
+                const hasListItems = listItems.some(item => item.includes('<li>'));
+                if (hasListItems) {
+                    return `<ol>\n${listItems.join('\n')}\n</ol>`;
+                }
+                return listItems.join('\n');
             }
             
-            // Regular paragraph
-            return `<p>${formatInlineContent(paragraph.replace(/\n/g, ' '))}</p>`;
+            // Regular paragraph - preserve intentional line breaks but merge single line breaks
+            const processedParagraph = paragraph
+                .replace(/\n\n+/g, '</p><p>')  // Double line breaks become new paragraphs
+                .replace(/\n/g, ' ')           // Single line breaks become spaces
+                .trim();
+            
+            if (processedParagraph.includes('</p><p>')) {
+                // Multiple paragraphs
+                const paragraphs = processedParagraph.split('</p><p>');
+                return paragraphs
+                    .map(p => `<p>${formatInlineContent(p)}</p>`)
+                    .join('\n');
+            } else {
+                // Single paragraph
+                return `<p>${formatInlineContent(processedParagraph)}</p>`;
+            }
         })
         .filter(p => p)
         .join('\n\n');
@@ -102,7 +178,10 @@ function formatPlainTextContent(content) {
  */
 function formatInlineContent(text) {
     return text
-        // Format bold text (between ** or __)
+        // Format hashtag bold text (#text# or ##text##)
+        .replace(/##([^#]+)##/g, '<strong>$1</strong>')
+        .replace(/#([^#\s]+)#/g, '<strong>$1</strong>')
+        // Format markdown bold text (between ** or __)
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/__(.*?)__/g, '<strong>$1</strong>')
         // Format italic text (between * or _) - but not if it's inside bold
@@ -111,7 +190,9 @@ function formatInlineContent(text) {
         // Format links [text](url)
         .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
         // Format inline code `code`
-        .replace(/`([^`]+)`/g, '<code>$1</code>');
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        // Clean up any remaining single hashtags that aren't part of headings
+        .replace(/(?<!^|\s)#(\w+)/g, '$1');
 }
 
 /**
