@@ -130,6 +130,32 @@ function displayBlogPost(post) {
         image.src = post.featuredImage;
         image.alt = title;
         imageContainer.style.display = 'block';
+        
+        // Add regenerate button (only in development or with special access)
+        if (window.location.hostname === 'localhost' || window.location.search.includes('dev=true')) {
+            let regenerateBtn = document.getElementById('regenerate-image-btn');
+            if (!regenerateBtn) {
+                regenerateBtn = document.createElement('button');
+                regenerateBtn.id = 'regenerate-image-btn';
+                regenerateBtn.textContent = 'Regenerate Image';
+                regenerateBtn.onclick = regeneratePostImage;
+                regenerateBtn.style.cssText = `
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    padding: 8px 12px;
+                    background: rgba(0, 0, 0, 0.7);
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-size: 12px;
+                    z-index: 10;
+                `;
+                imageContainer.style.position = 'relative';
+                imageContainer.appendChild(regenerateBtn);
+            }
+        }
     }
     
     // Update content
@@ -279,3 +305,43 @@ document.querySelectorAll('nav a[href^="/#"]').forEach(link => {
         window.location.href = '/' + this.getAttribute('href').substring(1);
     });
 });
+
+// Function to regenerate image for current post
+async function regeneratePostImage() {
+    if (!currentPost) return;
+    
+    const slug = getSlugFromUrl();
+    const regenerateBtn = document.getElementById('regenerate-image-btn');
+    
+    if (regenerateBtn) {
+        regenerateBtn.disabled = true;
+        regenerateBtn.textContent = 'Regenerating...';
+    }
+    
+    try {
+        const response = await fetch(`/api/regenerate-image/${slug}`, {
+            method: 'POST'
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            // Reload the post to get the new image
+            await loadBlogPost(slug);
+            alert('Image regenerated successfully!');
+        } else {
+            alert('Failed to regenerate image: ' + result.error);
+        }
+    } catch (error) {
+        console.error('Error regenerating image:', error);
+        alert('Error regenerating image');
+    } finally {
+        if (regenerateBtn) {
+            regenerateBtn.disabled = false;
+            regenerateBtn.textContent = 'Regenerate Image';
+        }
+    }
+}
+
+// Make function available globally
+window.regeneratePostImage = regeneratePostImage;

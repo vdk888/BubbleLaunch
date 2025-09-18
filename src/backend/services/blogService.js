@@ -432,7 +432,8 @@ async function getPostBySlug(slug) {
                 titleFR, // Use French title as primary
                 summaryFR, // Use French summary as primary
                 tags,
-                matchingPage.id // Pass the unique Notion page ID
+                matchingPage.id, // Pass the unique Notion page ID
+                false // Don't bypass cache by default
             );
             
             // If no image generated, use a unique fallback placeholder based on article ID

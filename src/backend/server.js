@@ -576,6 +576,49 @@ app.post("/api/regenerate-all-images", async (req, res) => {
   }
 });
 
+// Force regenerate image for a specific blog post by slug
+app.post("/api/regenerate-image/:slug", async (req, res) => {
+  try {
+    const { slug } = req.params;
+    console.log(`🔄 Force regenerating image for post: ${slug}`);
+    
+    // Get the post details
+    const post = await getPostBySlug(slug);
+    if (!post) {
+      return res.status(404).json({ 
+        success: false, 
+        error: "Post not found" 
+      });
+    }
+    
+    // Force regenerate the image
+    const newImageUrl = await freepikService.generateArticleImage(
+      post.title.fr,
+      post.summary.fr, 
+      post.tags,
+      post.id,
+      true // bypassCache = true
+    );
+    
+    res.json({
+      success: true,
+      message: `Image regenerated for "${post.title.fr}"`,
+      imageUrl: newImageUrl,
+      post: {
+        slug,
+        title: post.title.fr
+      }
+    });
+    
+  } catch (error) {
+    console.error('Error regenerating single post image:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: error.message 
+    });
+  }
+});
+
 // Generate image for a specific article (to be called when publishing)
 app.post("/api/generate-article-image", async (req, res) => {
   try {
