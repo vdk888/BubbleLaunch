@@ -35,8 +35,16 @@ function formatPlainTextContent(content) {
         .trim();
     
     return processedContent
-        // Split by double line breaks for paragraphs
+        // Split by double line breaks for paragraphs, but also handle single line breaks between different content types
         .split(/\n\s*\n/)
+        .flatMap(paragraph => {
+            // If paragraph is too long and has mixed content, try to split it better
+            if (paragraph.length > 1000 && (paragraph.includes('•') || paragraph.includes('#'))) {
+                // Split on clear content boundaries
+                return paragraph.split(/(?=\n[A-Z])/g).filter(p => p.trim());
+            }
+            return [paragraph];
+        })
         .map(paragraph => {
             if (!paragraph.trim()) return '';
             
@@ -59,10 +67,15 @@ function formatPlainTextContent(content) {
             }
             
             // Check for list items - improved handling (supports both - and • bullets)
-            if (paragraph.includes('\n- ') || paragraph.startsWith('- ') || 
+            // Only treat as list if it has proper structure (not just random bullets in text)
+            const hasProperListStructure = (
+                paragraph.includes('\n- ') || paragraph.startsWith('- ') || 
                 paragraph.includes('\n• ') || paragraph.startsWith('• ') ||
                 paragraph.includes('\n* ') || paragraph.startsWith('* ') ||
-                paragraph.includes(' • ') || /\s•\s/.test(paragraph)) {
+                (paragraph.includes(' • ') && paragraph.split(' • ').length <= 6) // Limit inline bullets
+            );
+            
+            if (hasProperListStructure) {
                 // First try splitting by line breaks, then by bullet characters if inline
                 let lines = paragraph.split('\n').filter(line => line.trim());
                 
@@ -171,6 +184,34 @@ function formatPlainTextContent(content) {
         })
         .filter(p => p)
         .join('\n\n');
+    
+    // Post-process to merge consecutive numbered lists
+    return mergeConsecutiveNumberedLists(result);
+}
+
+/**
+ * Merge consecutive numbered lists to maintain sequential numbering
+ */
+function mergeConsecutiveNumberedLists(content) {
+    // Keep merging until no more consecutive lists are found
+    let result = content;
+    let hasChanges = true;
+    
+    while (hasChanges) {
+        const before = result;
+        // Pattern to find consecutive <ol> elements with optional whitespace/paragraphs between
+        result = result.replace(/(<ol[^>]*>[\s\S]*?<\/ol>)(\s*(?:<p>\s*<\/p>\s*)*\s*)(<ol[^>]*>[\s\S]*?<\/ol>)/g, (match, firstList, spacing, secondList) => {
+            // Extract the content between <ol> tags
+            const firstContent = firstList.replace(/<\/?ol[^>]*>/g, '');
+            const secondContent = secondList.replace(/<\/?ol[^>]*>/g, '');
+            
+            // Merge into a single list
+            return `<ol>\n${firstContent}\n${secondContent}\n</ol>`;
+        });
+        hasChanges = (result !== before);
+    }
+    
+    return result;
 }
 
 /**

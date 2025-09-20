@@ -345,20 +345,64 @@ header {
   margin-bottom: 1.5rem;
 }
 
+#article-content p:empty {
+  display: none;
+}
+
+/* Prevent overly long paragraphs from looking stacked */
+#article-content p {
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Add spacing between different content types */
+#article-content h1 + p,
+#article-content h2 + p,
+#article-content h3 + p,
+#article-content h4 + p {
+  margin-top: 1rem;
+}
+
+#article-content ul + p,
+#article-content ol + p {
+  margin-top: 1.5rem;
+}
+
+#article-content p + ul,
+#article-content p + ol {
+  margin-top: 1rem;
+}
+
 #article-content ul,
 #article-content ol {
   margin: 1.5rem 0;
   padding-left: 1.5rem;
 }
 
+/* Ensure global numbering continues across multiple ol elements */
+#article-content {
+  counter-reset: global-list-counter;
+}
+
 #article-content ol {
-  list-style-type: decimal;
-  counter-reset: list-counter;
+  counter-reset: none !important;
+  list-style: none !important;
+  list-style-type: none !important;
 }
 
 #article-content ol li {
+  counter-increment: global-list-counter;
+  list-style: none !important;
+  list-style-type: none !important;
   display: list-item;
-  list-style-position: outside;
+}
+
+#article-content ol li::before {
+  content: counter(global-list-counter) ". ";
+  font-weight: inherit;
+  margin-right: 0.5rem;
+  color: inherit;
 }
 
 #article-content ul {
