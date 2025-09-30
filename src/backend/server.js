@@ -7,7 +7,14 @@ const axios = require("axios");
 const fs = require("fs").promises;
 const { getPublishedPosts, getPostBySlug } = require("./services/blogService");
 const freepikService = require("./services/freepikService");
-const { getPublishedReferences, getReferencesGroupedByTheme, exploreKnowledgeGardenStructure } = require("./services/knowledgeGardenService");
+const { 
+  getPublishedReferences, 
+  getReferencesGroupedByTheme, 
+  exploreKnowledgeGardenStructure,
+  getEnrichedPublishedReferences,
+  getEnrichedReferencesGroupedBySourceType,
+  clearEnrichmentCache
+} = require("./services/knowledgeGardenService");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -340,14 +347,33 @@ app.get("/api/blog/post/:slug", async (req, res) => {
   }
 });
 
-// API endpoint to get knowledge garden references
+// API endpoint to get knowledge garden references (with LLM enrichment)
 app.get("/api/knowledge-garden/references", async (req, res) => {
   try {
-    const references = await getPublishedReferences();
-    res.json(references);
+    // Check if enrichment is requested (default: true)
+    const useEnrichment = req.query.enrich !== 'false';
+    
+    if (useEnrichment) {
+      const references = await getEnrichedPublishedReferences();
+      res.json(references);
+    } else {
+      const references = await getPublishedReferences();
+      res.json(references);
+    }
   } catch (error) {
     console.error("Error fetching knowledge garden references:", error);
     res.status(500).json({ error: "Failed to fetch references" });
+  }
+});
+
+// API endpoint to get enriched references grouped by source type (Books/Articles)
+app.get("/api/knowledge-garden/references-by-source-type", async (req, res) => {
+  try {
+    const groupedReferences = await getEnrichedReferencesGroupedBySourceType();
+    res.json(groupedReferences);
+  } catch (error) {
+    console.error("Error fetching references grouped by source type:", error);
+    res.status(500).json({ error: "Failed to fetch grouped references by source type" });
   }
 });
 
@@ -370,6 +396,17 @@ app.get("/api/knowledge-garden/explore", async (req, res) => {
   } catch (error) {
     console.error("Error exploring knowledge garden structure:", error);
     res.status(500).json({ error: "Failed to explore database structure" });
+  }
+});
+
+// API endpoint to clear enrichment cache (for testing)
+app.post("/api/knowledge-garden/clear-cache", (req, res) => {
+  try {
+    clearEnrichmentCache();
+    res.json({ success: true, message: "Enrichment cache cleared" });
+  } catch (error) {
+    console.error("Error clearing enrichment cache:", error);
+    res.status(500).json({ error: "Failed to clear cache" });
   }
 });
 

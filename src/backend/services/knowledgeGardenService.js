@@ -1,4 +1,5 @@
 const { Client } = require("@notionhq/client");
+const LLMEnrichmentService = require("./llmEnrichmentService");
 
 // Initialize Notion client using the existing blog API key
 const knowledgeGardenApiKey = process.env.NOTION_BLOG_API_KEY;
@@ -8,6 +9,9 @@ const knowledgeGardenDatabaseId = "1ffcfc520644805b8bb9c9207fb2cb31";
 const isKnowledgeGardenConfigured = knowledgeGardenApiKey && knowledgeGardenDatabaseId;
 
 const notion = isKnowledgeGardenConfigured ? new Client({ auth: knowledgeGardenApiKey }) : null;
+
+// Initialize LLM enrichment service
+const llmEnrichment = new LLMEnrichmentService();
 
 /**
  * Fetches published references from the Knowledge Garden database
@@ -100,6 +104,105 @@ async function getPublishedReferences() {
         }
         
         throw new Error('Failed to fetch knowledge garden references');
+    }
+}
+
+/**
+ * Fetches published references with LLM enrichment
+ * Includes enhanced abstracts, purchase links, and type detection
+ */
+async function getEnrichedPublishedReferences() {
+    try {
+        console.log('🤖 Fetching and enriching published references...');
+        
+        // Get base references from Notion
+        const baseReferences = await getPublishedReferences();
+        
+        if (baseReferences.length === 0) {
+            return [];
+        }
+
+        // Check which references need enrichment
+        const needsEnrichment = baseReferences.filter(ref => llmEnrichment.needsEnrichment(ref));
+        
+        if (needsEnrichment.length > 0) {
+            console.log(`📝 Found ${needsEnrichment.length} references needing enrichment`);
+            
+            // Enrich references that need it
+            const enrichedRefs = await llmEnrichment.enrichReferences(needsEnrichment);
+            
+            // Create a map for quick lookup
+            const enrichedMap = new Map();
+            enrichedRefs.forEach(ref => {
+                const key = `${ref.title}_${ref.author || 'no_author'}`;
+                enrichedMap.set(key, ref);
+            });
+            
+            // Merge enriched data with base references
+            const finalReferences = baseReferences.map(ref => {
+                const key = `${ref.title}_${ref.author || 'no_author'}`;
+                return enrichedMap.get(key) || ref;
+            });
+            
+            console.log(`✅ Enrichment complete: ${finalReferences.length} references ready`);
+            return finalReferences;
+        } else {
+            console.log('✅ All references already enriched');
+            return baseReferences;
+        }
+        
+    } catch (error) {
+        console.error('❌ Error in enriched references:', error);
+        
+        // Fallback to base references without enrichment
+        console.log('🔄 Falling back to base references without enrichment');
+        return await getPublishedReferences();
+    }
+}
+
+/**
+ * Get enriched references grouped by source type (Books/Articles)
+ */
+async function getEnrichedReferencesGroupedBySourceType() {
+    try {
+        const references = await getEnrichedPublishedReferences();
+        
+        const groupedReferences = references.reduce((groups, reference) => {
+            // Use the original sourceType from Notion (Book/Article)
+            const sourceType = reference.sourceType || 'Unknown';
+            
+            // Only allow Book and Article - filter out everything else
+            let normalizedType;
+            if (sourceType === 'Book') {
+                normalizedType = 'Book';
+            } else if (sourceType === 'Article') {
+                normalizedType = 'Article';
+            } else {
+                // Skip items that aren't books or articles
+                return groups;
+            }
+            
+            if (!groups[normalizedType]) {
+                groups[normalizedType] = [];
+            }
+            
+            groups[normalizedType].push(reference);
+            return groups;
+        }, {});
+
+        // Convert to array format expected by frontend
+        return Object.entries(groupedReferences).map(([sourceType, references]) => ({
+            sourceType,
+            count: references.length,
+            references: references.sort((a, b) => {
+                // Sort by title alphabetically
+                return (a.title || '').localeCompare(b.title || '');
+            })
+        }));
+        
+    } catch (error) {
+        console.error('❌ Error grouping enriched references by source type:', error);
+        throw new Error('Failed to group enriched references by source type');
     }
 }
 
@@ -200,5 +303,8 @@ function extractDateProperty(property) {
 module.exports = {
     getPublishedReferences,
     getReferencesGroupedByTheme,
-    exploreKnowledgeGardenStructure
+    exploreKnowledgeGardenStructure,
+    getEnrichedPublishedReferences,
+    getEnrichedReferencesGroupedBySourceType,
+    clearEnrichmentCache: () => llmEnrichment.clearCache()
 };

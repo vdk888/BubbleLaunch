@@ -25,6 +25,8 @@ This is **Bubble**, a fintech startup revolutionizing investment through AI-powe
 - **`server.js`** - Main Express server with all API endpoints
 - **`services/blogService.js`** - Notion CMS integration for blog content management
 - **`services/freepikService.js`** - AI image generation service for blog articles
+- **`services/knowledgeGardenService.js`** - Knowledge Garden references management with LLM enrichment
+- **`services/llmEnrichmentService.js`** - AI-powered reference enrichment for legal compliance
 
 ### Frontend Structure (`src/frontend/`)
 - **`pages/`** - HTML pages (index.html, blog.html, blog-post.html)
@@ -33,6 +35,7 @@ This is **Bubble**, a fintech startup revolutionizing investment through AI-powe
   - `chatbot-logic.js` - AI chatbot implementation
   - `blog.js` - Blog listing functionality
   - `blog-post.js` - Individual blog post rendering
+  - `references.js` - Knowledge Garden references display with enriched metadata
   - `animations.js` - UI animations and effects
   - `floating-bubble.js` - Interactive bubble elements
 - **`i18n/translations.js`** - Internationalization (French/English)
@@ -55,7 +58,10 @@ The application requires several environment variables in `.env`:
 
 ### Database Schema (Notion)
 **Waitlist Database:** Properties include Nom (title), Email, Profil (select), Commentaires (rich_text)
+
 **Blog Database:** Bilingual content with Title FR (title), Title EN (rich_text), Content Summary FR/EN, Content FR/EN, Status (select), Publication Date, Topic Tags (multi_select)
+
+**Knowledge Garden Database:** Reference management with Name (title), Author, Source Type (select), Category (multi_select), Topics (multi_select), Drive URL, AI summary, Bubble Blog (multi_select), Status (select), Date. Automatically enriched with LLM-generated metadata for legal compliance.
 
 ### Content Management
 - Blog posts support bilingual content (French primary, English secondary)
@@ -90,8 +96,46 @@ The application requires several environment variables in `.env`:
 - Thematic fallback images based on article tags
 - Cache management endpoints for debugging
 
+### LLM Enrichment System
+The application features an intelligent reference enrichment system for the Knowledge Garden:
+
+**Architecture:**
+- **Hybrid Polling Approach:** On-demand enrichment when API is called + background processing
+- **Cost Optimization:** Uses cheapest models first (GPT-4o-mini → GPT-4o → Claude-3-Haiku)
+- **Legal Compliance:** Generates legitimate purchase/access links instead of sharing copyrighted content
+- **Intelligent Caching:** Avoids re-processing already enriched references
+
+**Enrichment Features:**
+- **Type Detection:** Automatically categorizes Books vs Articles vs Papers vs Websites
+- **Legal Links Generation:** Amazon purchase links, publisher sites, DOI links, library catalogs
+- **Cost-Optimized Summaries:** Uses existing Notion AI summaries instead of generating new ones
+- **Key Insights:** Strategic takeaways for investors and finance professionals  
+- **Accessibility Analysis:** Determines legal access methods and availability
+
+**API Endpoints:**
+- `/api/knowledge-garden/references` - Basic or enriched references (default: enriched)
+- `/api/knowledge-garden/references-by-source-type` - Enriched references grouped by type
+- `/api/knowledge-garden/references-by-theme` - References grouped by categories
+- `/api/knowledge-garden/explore` - Database structure exploration
+- `/api/knowledge-garden/clear-cache` - Clear enrichment cache (testing only)
+
+**Data Flow:**
+1. References marked as "Published" in Notion Knowledge Garden
+2. System detects un-enriched references on API calls
+3. LLM analyzes title/author to generate metadata and legal links (uses existing Notion AI summaries)
+4. Legal compliance check ensures no copyrighted PDFs are shared
+5. Results cached to avoid re-processing
+6. Frontend displays enriched references with proper purchase links
+
+**Cost Optimization:**
+- **Leverages Notion AI:** Uses existing AI summaries instead of generating new ones
+- **Reduced Token Usage:** ~50% fewer output tokens per reference
+- **Focused Prompts:** Only generates essential metadata and legal links
+- **Intelligent Caching:** Prevents redundant API calls for already enriched references
+
 ### Deployment Considerations
 - Designed for cloud deployment (includes Dockerfile and replit.nix)
 - Graceful shutdown handling for cache persistence
 - Environment-specific configurations
 - Static file serving with proper routing
+- LLM enrichment scales automatically with reference volume

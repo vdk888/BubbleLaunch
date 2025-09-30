@@ -80,17 +80,15 @@ class ReferencesComponent {
         try {
             console.log('📚 Fetching references from Knowledge Garden...');
             
-            // Fetch all references
-            const response = await fetch('/api/knowledge-garden/references');
+            // Fetch enriched references grouped by source type
+            const response = await fetch('/api/knowledge-garden/references-by-source-type');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             
-            this.references = await response.json();
+            this.groupedReferences = await response.json();
             
-            // Group by source type (Books/Articles)
-            this.groupedReferences = this.groupBySourceType(this.references);
-            console.log(`✅ Loaded ${this.references.length} references in ${Object.keys(this.groupedReferences).length} source types`);
+            console.log(`✅ Loaded enriched references in ${this.groupedReferences.length} source types`);
             
         } catch (error) {
             console.error('❌ Error loading references:', error);
@@ -121,7 +119,7 @@ class ReferencesComponent {
             return;
         }
 
-        if (Object.keys(this.groupedReferences).length === 0) {
+        if (!this.groupedReferences || this.groupedReferences.length === 0) {
             this.renderEmpty(container);
             return;
         }
@@ -132,10 +130,10 @@ class ReferencesComponent {
 
     getReferencesHTML() {
         // Sort source types to show Books first, then Articles
-        const sourceTypes = Object.keys(this.groupedReferences).sort((a, b) => {
-            if (a === 'Book' && b !== 'Book') return -1;
-            if (b === 'Book' && a !== 'Book') return 1;
-            return a.localeCompare(b);
+        const sortedGroups = [...this.groupedReferences].sort((a, b) => {
+            if (a.sourceType === 'Book' && b.sourceType !== 'Book') return -1;
+            if (b.sourceType === 'Book' && a.sourceType !== 'Book') return 1;
+            return a.sourceType.localeCompare(b.sourceType);
         });
         
         return `
@@ -149,13 +147,13 @@ class ReferencesComponent {
             </div>
             
             <div class="references-categories">
-                ${sourceTypes.map(sourceType => this.getSourceTypeHTML(sourceType)).join('')}
+                ${sortedGroups.map(group => this.getSourceTypeHTML(group)).join('')}
             </div>
         `;
     }
 
-    getSourceTypeHTML(sourceType) {
-        const references = this.groupedReferences[sourceType];
+    getSourceTypeHTML(group) {
+        const { sourceType, count, references } = group;
         const sourceTypeIcon = this.getSourceTypeIcon(sourceType);
         const translatedSourceType = this.translateSourceType(sourceType);
         
@@ -165,7 +163,7 @@ class ReferencesComponent {
                     <h3 class="category-title">
                         <span class="source-type-icon-large">${sourceTypeIcon}</span>
                         <span class="source-type-name" data-translate-source-type="${sourceType}">${translatedSourceType}</span>
-                        <span class="category-count">(${references.length})</span>
+                        <span class="category-count">(${count})</span>
                     </h3>
                     <button class="category-toggle" aria-expanded="true">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -183,8 +181,48 @@ class ReferencesComponent {
         `;
     }
 
+    getBestAvailableLink(reference) {
+        // Manual override for known references while LLM enrichment is being fixed
+        const manualLinks = {
+            'Ego Is the Enemy': 'https://www.amazon.com/Ego-Enemy-Ryan-Holiday/dp/1591847818',
+            'Warren Buffett Accounting Book': 'https://www.amazon.com/Warren-Buffett-Accounting-Book-Stig/dp/1939370159',
+            'The dawn of the post-literate society': reference.url, // Keep original for articles
+            'The death of corporate job': reference.url, // Keep original for articles  
+            'Sam Altman ': 'https://blog.samaltman.com' // Author's blog
+        };
+        
+        // Use manual link if available
+        if (manualLinks[reference.title]) {
+            return manualLinks[reference.title];
+        }
+        
+        // Prioritize legal purchase links over original URL
+        if (reference.legalLinks) {
+            // For books: prioritize Amazon, then Google Books, then publisher
+            if (reference.sourceType === 'Book') {
+                if (reference.legalLinks.amazon) return reference.legalLinks.amazon;
+                if (reference.legalLinks.google_books) return reference.legalLinks.google_books;
+                if (reference.legalLinks.publisher) return reference.legalLinks.publisher;
+                if (reference.legalLinks.worldcat) return reference.legalLinks.worldcat;
+            }
+            
+            // For articles: prioritize DOI, then journal, then publisher
+            if (reference.sourceType === 'Article') {
+                if (reference.legalLinks.doi_link) return reference.legalLinks.doi_link;
+                if (reference.legalLinks.journal) return reference.legalLinks.journal;
+                if (reference.legalLinks.publisher) return reference.legalLinks.publisher;
+                if (reference.legalLinks.author_page) return reference.legalLinks.author_page;
+            }
+        }
+        
+        // Fallback to original URL if no legal links available
+        return reference.url || null;
+    }
+
     getReferenceHTML(reference) {
-        const hasLink = reference.url && reference.url !== '';
+        // Get the best available link (prioritize legal links over original URL)
+        const bestLink = this.getBestAvailableLink(reference);
+        const hasLink = bestLink && bestLink !== '';
         const sourceTypeIcon = this.getSourceTypeIcon(reference.sourceType);
         
         return `
@@ -195,7 +233,7 @@ class ReferencesComponent {
                 </div>
                 
                 <div class="reference-content">
-                    ${hasLink ? `<a href="${reference.url}" target="_blank" rel="noopener noreferrer" class="reference-link">` : '<div class="reference-no-link">'}
+                    ${hasLink ? `<a href="${bestLink}" target="_blank" rel="noopener noreferrer" class="reference-link">` : '<div class="reference-no-link">'}
                         <h4 class="reference-title">${this.sanitizeHTML(reference.title)}</h4>
                     ${hasLink ? '</a>' : '</div>'}
                     
@@ -214,7 +252,7 @@ class ReferencesComponent {
                 
                 ${hasLink ? `
                     <div class="reference-footer">
-                        <a href="${reference.url}" target="_blank" rel="noopener noreferrer" class="reference-link-indicator">
+                        <a href="${bestLink}" target="_blank" rel="noopener noreferrer" class="reference-link-indicator">
                             <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                                 <path d="M8.5 1.5L15 8L8.5 14.5M14.5 8H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
