@@ -1,0 +1,441 @@
+/* References Section Styles for Bubble Blog */
+
+/* Main References Section */
+.references-section {
+  margin-top: 6rem;
+  padding: 4rem 0;
+  border-top: 1px solid #EEEEEE;
+}
+
+/* References Header */
+.references-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  padding: 0 1rem;
+}
+
+.references-title {
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.references-subtitle {
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+/* Categories Grid */
+.references-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Category Container */
+.reference-category {
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  background: #FFFFFF;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.reference-category:hover {
+  border-color: #D1D1D1;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.reference-category.collapsed .category-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.reference-category.collapsed .category-toggle svg {
+  transform: rotate(-90deg);
+}
+
+/* Category Header */
+.category-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  background: #FAFAFA;
+  border-bottom: 1px solid #E5E5E5;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.category-header:hover {
+  background: #F5F5F5;
+}
+
+.category-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333333;
+  margin: 0;
+}
+
+.category-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+/* Category Icon Colors */
+.category-value-investing { background: #E3F2FD; color: #1976D2; }
+.category-behavioral { background: #E8F5E8; color: #388E3C; }
+.category-asset-management { background: #FFEBEE; color: #D32F2F; }
+.category-analysis { background: #F3E5F5; color: #7B1FA2; }
+.category-market-theory { background: #FFF3E0; color: #F57C00; }
+.category-risk { background: #FFFDE7; color: #F9A825; }
+.category-economics { background: #FCE4EC; color: #C2185B; }
+.category-strategy { background: #F5F5F5; color: #616161; }
+.category-general { background: #F0F0F0; color: #424242; }
+
+.category-count {
+  font-size: 0.9rem;
+  color: #666666;
+  font-weight: 400;
+}
+
+.category-toggle {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  color: #666666;
+}
+
+.category-toggle:hover {
+  background: #E5E5E5;
+  color: #333333;
+}
+
+.category-toggle svg {
+  transition: transform 0.3s ease;
+}
+
+/* Category Content */
+.category-content {
+  padding: 0 2rem 2rem;
+  transition: max-height 0.3s ease;
+  overflow: hidden;
+}
+
+/* References Grid */
+.references-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Reference Card */
+.reference-card {
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  background: #FFFFFF;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.reference-card:hover {
+  border-color: #D1D1D1;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  transform: translateY(-5px);
+}
+
+/* Reference Header */
+.reference-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.source-type-icon {
+  font-size: 1.1rem;
+}
+
+.source-type {
+  font-size: 0.85rem;
+  color: #666666;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Reference Content */
+.reference-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.reference-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.reference-link:hover .reference-title {
+  color: #2196F3;
+}
+
+.reference-no-link {
+  margin-bottom: 1rem;
+}
+
+.reference-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333333;
+  line-height: 1.4;
+  margin: 0 0 0.5rem 0;
+  transition: color 0.2s ease;
+}
+
+.reference-author {
+  font-size: 0.9rem;
+  color: #666666;
+  margin: 0 0 0.75rem 0;
+  font-style: italic;
+}
+
+.reference-summary {
+  font-size: 0.9rem;
+  color: #555555;
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+  flex: 1;
+}
+
+/* Hashtags */
+.reference-hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  margin-bottom: 1rem;
+}
+
+.hashtag {
+  background: #F8F8F8;
+  color: #666666;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid #EEEEEE;
+  transition: all 0.2s ease;
+}
+
+.hashtag:hover {
+  background: #EEEEEE;
+  color: #333333;
+  transform: translateY(-1px);
+}
+
+.hashtag-more {
+  background: #F3F4F6;
+  color: #6B7280;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid #E5E7EB;
+}
+
+/* Source Type Icon Large (for headers) */
+.source-type-icon-large {
+  font-size: 1.3rem;
+  margin-right: 0.5rem;
+}
+
+/* SVG Source Icons */
+.source-icon {
+  width: 20px;
+  height: 20px;
+  fill: #333333;
+  transition: fill 0.2s ease;
+}
+
+.source-type-icon-large .source-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.category-header:hover .source-icon {
+  fill: #2196F3;
+}
+
+.reference-header .source-icon {
+  width: 16px;
+  height: 16px;
+  fill: #666666;
+}
+
+/* Reference Footer */
+.reference-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.reference-link-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #333333;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.reference-card:hover .reference-link-indicator {
+  color: #444444;
+}
+
+.reference-link-indicator svg {
+  transition: transform 0.2s ease;
+}
+
+.reference-card:hover .reference-link-indicator svg {
+  transform: translateX(2px);
+}
+
+/* Error and Empty States */
+.references-error,
+.references-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #666666;
+}
+
+.references-error .error-icon,
+.references-empty .empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.references-error h3,
+.references-empty h3 {
+  font-size: 1.25rem;
+  color: #333333;
+  margin-bottom: 0.5rem;
+}
+
+.references-error p,
+.references-empty p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.retry-button {
+  background: #2196F3;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.retry-button:hover {
+  background: #1976D2;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .references-section {
+    margin-top: 4rem;
+    padding: 3rem 0;
+  }
+
+  .references-header {
+    margin-bottom: 3rem;
+  }
+
+  .references-categories {
+    gap: 1.5rem;
+  }
+
+  .category-header {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .category-content {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .references-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .reference-card {
+    padding: 1.25rem;
+  }
+
+  .category-title {
+    font-size: 1.1rem;
+  }
+
+  .reference-title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .references-header {
+    padding: 0 1.5rem;
+  }
+
+  .references-categories {
+    padding: 0 1rem;
+  }
+
+  .category-header {
+    padding: 1rem 1.25rem;
+  }
+
+  .category-content {
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  .reference-card {
+    padding: 1rem;
+  }
+}

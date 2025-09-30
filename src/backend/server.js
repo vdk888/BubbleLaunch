@@ -7,6 +7,7 @@ const axios = require("axios");
 const fs = require("fs").promises;
 const { getPublishedPosts, getPostBySlug } = require("./services/blogService");
 const freepikService = require("./services/freepikService");
+const { getPublishedReferences, getReferencesGroupedByTheme, exploreKnowledgeGardenStructure } = require("./services/knowledgeGardenService");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -336,6 +337,39 @@ app.get("/api/blog/post/:slug", async (req, res) => {
   } catch (error) {
     console.error("Error fetching blog post by slug:", error);
     res.status(500).json({ error: "Failed to fetch blog post" });
+  }
+});
+
+// API endpoint to get knowledge garden references
+app.get("/api/knowledge-garden/references", async (req, res) => {
+  try {
+    const references = await getPublishedReferences();
+    res.json(references);
+  } catch (error) {
+    console.error("Error fetching knowledge garden references:", error);
+    res.status(500).json({ error: "Failed to fetch references" });
+  }
+});
+
+// API endpoint to get references grouped by theme
+app.get("/api/knowledge-garden/references-by-theme", async (req, res) => {
+  try {
+    const groupedReferences = await getReferencesGroupedByTheme();
+    res.json(groupedReferences);
+  } catch (error) {
+    console.error("Error fetching grouped references:", error);
+    res.status(500).json({ error: "Failed to fetch grouped references" });
+  }
+});
+
+// API endpoint to explore knowledge garden database structure
+app.get("/api/knowledge-garden/explore", async (req, res) => {
+  try {
+    const structure = await exploreKnowledgeGardenStructure();
+    res.json(structure);
+  } catch (error) {
+    console.error("Error exploring knowledge garden structure:", error);
+    res.status(500).json({ error: "Failed to explore database structure" });
   }
 });
 
