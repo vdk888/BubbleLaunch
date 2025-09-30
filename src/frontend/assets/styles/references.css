@@ -57,8 +57,7 @@
 }
 
 .reference-category.collapsed .category-content {
-  overflow: hidden;
-  transition: max-height 0.3s ease;
+  display: none;
 }
 
 .reference-category.collapsed .category-toggle svg {
