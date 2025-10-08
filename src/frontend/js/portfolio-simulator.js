@@ -1,6 +1,13 @@
 /**
  * Portfolio Simulator - Interactive Chart & Metrics
  * Fetches real ETF data and calculates portfolio strategies
+ *
+ * ADDING NEW STRATEGIES:
+ * 1. Add strategy config to STRATEGY_CONFIG below (set isBest: true for the optimal one)
+ * 2. Ensure backend API returns data with matching dataKey (e.g., 'newStrategyName')
+ * 3. Add corresponding pill button in portfolio-simulator.html with data-strategy attribute
+ * 4. Add tooltip text in HTML to explain the new strategy
+ * 5. Update metrics calculation if needed (updateMetrics function)
  */
 
 (function () {
@@ -8,8 +15,75 @@
 
   let portfolioChart = null;
   let currentStrategy = 'equalWeight';
-  let currentPeriod = 10;
+  let currentPeriod = 20;
   let portfolioData = null;
+
+  // Strategy Configuration - Easily extensible for future additions
+  // To add a new strategy: add entry here + ensure backend provides the data
+  const STRATEGY_CONFIG = {
+    equalWeight: {
+      labelKey: 'simulator.strategy.equalWeight',
+      dataKey: 'equalWeight',
+      color: '#6B7280',
+      borderWidth: 2,
+      borderDash: [5, 5],
+      order: 3,
+      isBest: false,
+    },
+    simpleRiskParity: {
+      labelKey: 'simulator.strategy.simpleRiskParity',
+      dataKey: 'simpleRP',
+      color: '#333333',
+      borderWidth: 2.5,
+      borderDash: [],
+      order: 2,
+      isBest: false,
+    },
+    optimizedRiskParity: {
+      labelKey: 'simulator.strategy.optimizedRiskParity',
+      dataKey: 'optimizedRP',
+      color: '#667eea', // Brand violet for best strategy
+      borderWidth: 3,
+      borderDash: [],
+      order: 1,
+      isBest: true, // Marks this as the highlighted "best" strategy
+    },
+  };
+
+  /**
+   * Get translated label for strategy
+   */
+  function getStrategyLabel(labelKey) {
+    const lang = localStorage.getItem('preferredLanguage') || 'fr';
+    return window.translations && window.translations[labelKey]
+      ? window.translations[labelKey][lang]
+      : labelKey;
+  }
+
+  /**
+   * Get translated ETF labels
+   */
+  function getETFLabels() {
+    const lang = localStorage.getItem('preferredLanguage') || 'fr';
+    const t = window.translations || {};
+
+    return {
+      spy: t['simulator.etf.spy'] ? t['simulator.etf.spy'][lang] : 'SPY (S&P 500)',
+      ief: t['simulator.etf.ief'] ? t['simulator.etf.ief'][lang] : 'IEF (Obligations)',
+      gld: t['simulator.etf.gld'] ? t['simulator.etf.gld'][lang] : 'GLD (Or)',
+      yAxisTitle: t['simulator.chart.yAxisTitle'] ? t['simulator.chart.yAxisTitle'][lang] : 'Valeur (Base 100)',
+    };
+  }
+
+  /**
+   * Convert hex color to rgba with opacity
+   */
+  function hexToRgba(hex, opacity) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+  }
 
   /**
    * Fetch portfolio data from API
@@ -34,17 +108,20 @@
    * Format chart data based on strategy
    */
   function formatChartData(data, strategy) {
+    const lang = localStorage.getItem('preferredLanguage') || 'fr';
+    const locale = lang === 'en' ? 'en-US' : 'fr-FR';
     const labels = data.data.map(d => {
       const date = new Date(d.date);
-      return date.toLocaleDateString('fr-FR', { year: 'numeric', month: 'short' });
+      return date.toLocaleDateString(locale, { year: 'numeric', month: 'short' });
     });
 
     const datasets = [];
+    const etfLabels = getETFLabels();
 
     // Always show the 3 ETFs (background - more visible)
     datasets.push(
       {
-        label: 'SPY (S&P 500)',
+        label: etfLabels.spy,
         data: data.data.map(d => d.SPY),
         borderColor: 'rgba(102, 126, 234, 0.4)', // More visible
         backgroundColor: 'rgba(102, 126, 234, 0.05)',
@@ -55,7 +132,7 @@
         order: 6, // Behind all portfolios
       },
       {
-        label: 'IEF (Obligations)',
+        label: etfLabels.ief,
         data: data.data.map(d => d.IEF),
         borderColor: 'rgba(107, 114, 128, 0.4)', // More visible
         backgroundColor: 'rgba(107, 114, 128, 0.05)',
@@ -66,7 +143,7 @@
         order: 5, // Behind all portfolios
       },
       {
-        label: 'GLD (Or)',
+        label: etfLabels.gld,
         data: data.data.map(d => d.GLD),
         borderColor: 'rgba(156, 163, 175, 0.4)', // More visible
         backgroundColor: 'rgba(156, 163, 175, 0.05)',
@@ -78,45 +155,26 @@
       }
     );
 
-    // Always show all 3 portfolio strategies with visual hierarchy
-    // 1. Equal Weight (baseline - dashed line, medium prominence)
-    const isEqualWeightActive = strategy === 'equalWeight';
-    datasets.push({
-      label: 'Allocation Égale',
-      data: data.data.map(d => d.equalWeight),
-      borderColor: '#6B7280', // Medium gray
-      backgroundColor: 'rgba(107, 114, 128, 0.1)',
-      borderWidth: isEqualWeightActive ? 3 : 2,
-      borderDash: [5, 5],
-      pointRadius: 0,
-      tension: 0.4,
-      order: 3, // Draw first (behind others)
-    });
+    // Always show all portfolio strategies using STRATEGY_CONFIG
+    // This makes it easy to add/modify strategies in the future
+    Object.entries(STRATEGY_CONFIG).forEach(([strategyKey, config]) => {
+      const isActive = strategy === strategyKey;
 
-    // 2. Simple Risk Parity (better - solid line, more prominent)
-    const isSimpleRPActive = strategy === 'simpleRiskParity';
-    datasets.push({
-      label: 'Risk Parity Simple',
-      data: data.data.map(d => d.simpleRP || d.equalWeight), // Fallback if simpleRP not available
-      borderColor: '#333333', // Dark gray
-      backgroundColor: 'rgba(51, 51, 51, 0.1)',
-      borderWidth: isSimpleRPActive ? 3.5 : 2.5,
-      pointRadius: 0,
-      tension: 0.4,
-      order: 2, // Draw second
-    });
+      // Make selected portfolio very prominent, others faded but visible
+      const opacity = isActive ? 1.0 : 0.3;
+      const borderWidthMultiplier = isActive ? 1.5 : 0.7;
 
-    // 3. Optimized (best - highlighted with brand color, most prominent)
-    const isOptimizedActive = strategy === 'optimizedRiskParity';
-    datasets.push({
-      label: '✨ Optimisé (Risk Parity)',
-      data: data.data.map(d => d.optimizedRP),
-      borderColor: '#667eea', // Brand violet - stands out
-      backgroundColor: 'rgba(102, 126, 234, 0.15)',
-      borderWidth: isOptimizedActive ? 4 : 3, // Thickest line
-      pointRadius: 0,
-      tension: 0.4,
-      order: 1, // Draw last (on top)
+      datasets.push({
+        label: getStrategyLabel(config.labelKey),
+        data: data.data.map(d => d[config.dataKey] || d.equalWeight), // Fallback to equalWeight
+        borderColor: isActive ? config.color : hexToRgba(config.color, opacity),
+        backgroundColor: hexToRgba(config.color, isActive ? 0.15 : 0.05),
+        borderWidth: config.borderWidth * borderWidthMultiplier,
+        borderDash: config.borderDash,
+        pointRadius: 0,
+        tension: 0.4,
+        order: isActive ? 0 : config.order, // Active always on top
+      });
     });
 
     return { labels, datasets };
@@ -204,7 +262,7 @@
               },
               title: {
                 display: true,
-                text: 'Valeur (Base 100)',
+                text: getETFLabels().yAxisTitle,
                 font: { size: 11, family: 'Inter, sans-serif', weight: '500' },
                 color: '#374151',
               },
@@ -298,6 +356,14 @@
       updateChart(portfolioData, strategy);
       updateMetrics(portfolioData, strategy);
     }
+
+    // Analytics tracking (if available)
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'strategy_changed', {
+        event_category: 'Portfolio Simulator',
+        event_label: strategy,
+      });
+    }
   }
 
   /**
@@ -310,6 +376,14 @@
     if (portfolioData) {
       updateChart(portfolioData, currentStrategy);
       updateMetrics(portfolioData, currentStrategy);
+    }
+
+    // Analytics tracking (if available)
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'period_changed', {
+        event_category: 'Portfolio Simulator',
+        event_label: `${period} years`,
+      });
     }
   }
 
@@ -355,6 +429,13 @@
   } else {
     initializeSimulator();
   }
+
+  // Listen for language changes and update chart
+  window.addEventListener('languageChanged', () => {
+    if (portfolioData && portfolioChart) {
+      updateChart(portfolioData, currentStrategy);
+    }
+  });
 
   // Cleanup on page unload
   window.addEventListener('beforeunload', () => {

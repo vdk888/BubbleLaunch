@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simulateur de Portefeuille - Bubble | Comparez les Stratégies d'Investissement</title>
-    <meta name="description" content="Comparez 3 stratégies d'investissement avec 20 ans de données historiques réelles. Découvrez comment l'allocation optimisée peut améliorer vos rendements tout en réduisant les risques." />
+    <meta name="description" content="Comparez 3 stratégies d'investissement avec 10 ans de données historiques réelles. Découvrez comment l'allocation optimisée peut améliorer vos rendements tout en réduisant les risques." />
     <meta name="keywords" content="portfolio, investissement, risk parity, allocation, ETF, SPY, IEF, GLD, optimisation" />
 
     <!-- Open Graph / Social Media -->
@@ -399,42 +399,35 @@
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <span data-translate="simulator.back">Retour</span>
+          Retour
         </a>
-        <div style="display: flex; align-items: center; gap: 1rem;">
-          <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="32" height="32" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="36" cy="41" r="26" stroke="#000000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
-              <circle cx="59" cy="21" r="6" fill="#000000"/>
-            </svg>
-            <span style="font-weight: 700; color: #000000; font-size: 1.25rem;">Bubble.</span>
-          </div>
-          <div class="language-switcher">
-            <button id="en-switch" class="active">EN</button>
-            <span>|</span>
-            <button id="fr-switch">FR</button>
-          </div>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="32" height="32" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="41" r="26" stroke="#000000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+            <circle cx="59" cy="21" r="6" fill="#000000"/>
+          </svg>
+          <span style="font-weight: 700; color: #000000; font-size: 1.25rem;">Bubble.</span>
         </div>
       </div>
 
       <!-- Title Section -->
       <div style="text-align: center; margin-bottom: 3rem;">
-        <h1 class="simulator-title" data-translate="simulator.title">Simulateur de Portefeuille</h1>
-        <p class="simulator-subtitle" data-translate="simulator.subtitle">
+        <h1 class="simulator-title">Simulateur de Portefeuille</h1>
+        <p class="simulator-subtitle">
           Comparez différentes stratégies d'investissement avec 10 ans de données historiques réelles
         </p>
       </div>
 
       <!-- Strategy Selector -->
       <div class="strategy-selector" id="strategySelector">
-        <h2 class="section-title" data-translate="simulator.strategySelector.title">Choisissez votre stratégie</h2>
-        <p class="section-description" data-translate="simulator.strategySelector.description">
+        <h2 class="section-title">Choisissez votre stratégie</h2>
+        <p class="section-description">
           Comparez trois approches d'allocation de portefeuille sur actions (SPY), obligations (IEF) et or (GLD)
         </p>
 
         <div class="strategy-pills">
           <button class="strategy-pill active" data-strategy="equalWeight">
-            <div class="strategy-tooltip" data-translate="simulator.strategy.equalWeight.tooltip">
+            <div class="strategy-tooltip">
               Approche simple : 33.3% sur chaque actif (actions, obligations, or). Facile à comprendre et à répliquer, mais ne tient pas compte des différences de risque entre actifs.
             </div>
             <div class="pill-icon">
@@ -446,13 +439,13 @@
               </svg>
             </div>
             <div class="pill-content">
-              <div class="pill-title" data-translate="simulator.strategy.equalWeight">Allocation Égale</div>
-              <div class="pill-subtitle" data-translate="simulator.strategy.equalWeight.subtitle">33.3% chacun</div>
+              <div class="pill-title">Allocation Égale</div>
+              <div class="pill-subtitle">33.3% chacun</div>
             </div>
           </button>
 
           <button class="strategy-pill" data-strategy="simpleRiskParity">
-            <div class="strategy-tooltip" data-translate="simulator.strategy.simpleRiskParity.tooltip">
+            <div class="strategy-tooltip">
               Pondère les actifs par l'inverse de leur volatilité. Les actifs plus volatils reçoivent moins de poids, équilibrant ainsi la contribution au risque total du portefeuille.
             </div>
             <div class="pill-icon">
@@ -464,13 +457,13 @@
               </svg>
             </div>
             <div class="pill-content">
-              <div class="pill-title" data-translate="simulator.strategy.simpleRiskParity">Risk Parity Simple</div>
-              <div class="pill-subtitle" data-translate="simulator.strategy.simpleRiskParity.subtitle">Pondéré par volatilité</div>
+              <div class="pill-title">Risk Parity Simple</div>
+              <div class="pill-subtitle">Pondéré par volatilité</div>
             </div>
           </button>
 
           <button class="strategy-pill" data-strategy="optimizedRiskParity">
-            <div class="strategy-tooltip" data-translate="simulator.strategy.optimizedRiskParity.tooltip">
+            <div class="strategy-tooltip">
               Version avancée utilisant la volatilité EWMA et les corrélations entre actifs. Ajuste dynamiquement les allocations pour optimiser le ratio rendement/risque du portefeuille.
             </div>
             <div class="pill-icon">
@@ -479,8 +472,8 @@
               </svg>
             </div>
             <div class="pill-content">
-              <div class="pill-title" data-translate="simulator.strategy.optimizedRiskParity">Optimisé</div>
-              <div class="pill-subtitle" data-translate="simulator.strategy.optimizedRiskParity.subtitle">EWMA + corrélations</div>
+              <div class="pill-title">Optimisé</div>
+              <div class="pill-subtitle">EWMA + corrélations</div>
             </div>
           </button>
         </div>
@@ -490,13 +483,12 @@
       <div class="main-chart-area" id="mainChartArea">
         <div class="chart-card">
           <div class="chart-header">
-            <h3 class="chart-title" data-translate="simulator.chart.title">Performance Historique</h3>
+            <h3 class="chart-title">Performance Historique</h3>
             <div class="chart-controls">
-              <button class="time-period-btn" data-period="1" data-translate="simulator.chart.period.1y">1 an</button>
-              <button class="time-period-btn" data-period="3" data-translate="simulator.chart.period.3y">3 ans</button>
-              <button class="time-period-btn" data-period="5" data-translate="simulator.chart.period.5y">5 ans</button>
-              <button class="time-period-btn" data-period="10" data-translate="simulator.chart.period.10y">10 ans</button>
-              <button class="time-period-btn active" data-period="20" data-translate="simulator.chart.period.20y">20 ans</button>
+              <button class="time-period-btn" data-period="1">1 an</button>
+              <button class="time-period-btn" data-period="3">3 ans</button>
+              <button class="time-period-btn" data-period="5">5 ans</button>
+              <button class="time-period-btn active" data-period="10">10 ans</button>
             </div>
           </div>
 
@@ -505,7 +497,7 @@
           </div>
 
           <div style="text-align: center; margin-top: 1rem;">
-            <p style="font-size: 0.875rem; color: #6B7280;" data-translate="simulator.chart.disclaimer">
+            <p style="font-size: 0.875rem; color: #6B7280;">
               Données basées sur l'historique réel des ETFs SPY, IEF et GLD (Base 100)
             </p>
           </div>
@@ -514,89 +506,87 @@
 
       <!-- Performance Metrics Grid -->
       <div class="metrics-grid" id="metricsGrid">
-        <h3 class="metrics-section-title" data-translate="simulator.metrics.title">Statistiques de Performance</h3>
+        <h3 class="metrics-section-title">Statistiques de Performance</h3>
 
         <div class="metrics-cards">
           <div class="metric-card highlight">
-            <div class="metric-tooltip" data-translate="simulator.metric.totalReturn.tooltip">
+            <div class="metric-tooltip">
               Le gain ou la perte totale du portefeuille depuis le début de la période, avant inflation et frais.
             </div>
-            <div class="metric-card-label" data-translate="simulator.metric.totalReturn">Rendement Total</div>
+            <div class="metric-card-label">Rendement Total</div>
             <div class="metric-card-value" id="totalReturn">--</div>
-            <div class="metric-card-subtitle" data-translate="simulator.metric.totalReturn.subtitle">sur la période</div>
+            <div class="metric-card-subtitle">sur la période</div>
           </div>
 
           <div class="metric-card">
-            <div class="metric-tooltip" data-translate="simulator.metric.annualReturn.tooltip">
+            <div class="metric-tooltip">
               Le taux de croissance annuel composé (CAGR). Un rendement de 8% signifie que votre capital double environ tous les 9 ans.
             </div>
-            <div class="metric-card-label" data-translate="simulator.metric.annualReturn">Rendement Annuel</div>
+            <div class="metric-card-label">Rendement Annuel</div>
             <div class="metric-card-value" id="annualReturn">--</div>
-            <div class="metric-card-subtitle" data-translate="simulator.metric.annualReturn.subtitle">CAGR moyen</div>
+            <div class="metric-card-subtitle">CAGR moyen</div>
           </div>
 
           <div class="metric-card">
-            <div class="metric-tooltip" data-translate="simulator.metric.volatility.tooltip">
+            <div class="metric-tooltip">
               Mesure des fluctuations du portefeuille. Une volatilité de 15% signifie que 68% du temps, les rendements varient de ±15% autour de la moyenne.
             </div>
-            <div class="metric-card-label" data-translate="simulator.metric.volatility">Volatilité</div>
+            <div class="metric-card-label">Volatilité</div>
             <div class="metric-card-value" id="volatility">--</div>
-            <div class="metric-card-subtitle" data-translate="simulator.metric.volatility.subtitle">écart-type annuel</div>
+            <div class="metric-card-subtitle">écart-type annuel</div>
           </div>
 
           <div class="metric-card">
-            <div class="metric-tooltip" data-translate="simulator.metric.sharpeRatio.tooltip">
+            <div class="metric-tooltip">
               Rendement ajusté au risque. Un ratio > 1 est bon, > 2 est excellent. Compare le rendement obtenu par rapport au risque pris.
             </div>
-            <div class="metric-card-label" data-translate="simulator.metric.sharpeRatio">Ratio Sharpe</div>
+            <div class="metric-card-label">Ratio Sharpe</div>
             <div class="metric-card-value" id="sharpeRatio">--</div>
-            <div class="metric-card-subtitle" data-translate="simulator.metric.sharpeRatio.subtitle">rendement/risque</div>
+            <div class="metric-card-subtitle">rendement/risque</div>
           </div>
 
           <div class="metric-card">
-            <div class="metric-tooltip" data-translate="simulator.metric.maxDrawdown.tooltip">
+            <div class="metric-tooltip">
               La plus forte baisse depuis un sommet. -20% signifie qu'à un moment, le portefeuille a perdu 20% de sa valeur maximale.
             </div>
-            <div class="metric-card-label" data-translate="simulator.metric.maxDrawdown">Drawdown Max</div>
+            <div class="metric-card-label">Drawdown Max</div>
             <div class="metric-card-value" id="maxDrawdown">--</div>
-            <div class="metric-card-subtitle" data-translate="simulator.metric.maxDrawdown.subtitle">perte maximale</div>
+            <div class="metric-card-subtitle">perte maximale</div>
           </div>
 
           <div class="metric-card">
-            <div class="metric-tooltip" data-translate="simulator.metric.calmarRatio.tooltip">
+            <div class="metric-tooltip">
               Rapport entre le rendement annuel et le drawdown maximal. Plus ce ratio est élevé, meilleure est la stratégie.
             </div>
-            <div class="metric-card-label" data-translate="simulator.metric.calmarRatio">Calmar Ratio</div>
+            <div class="metric-card-label">Calmar Ratio</div>
             <div class="metric-card-value" id="calmarRatio">--</div>
-            <div class="metric-card-subtitle" data-translate="simulator.metric.calmarRatio.subtitle">rendement/drawdown</div>
+            <div class="metric-card-subtitle">rendement/drawdown</div>
           </div>
         </div>
       </div>
 
       <!-- Call to Action - Chat for Help -->
       <div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #FAFAFA 0%, #F8F8F8 100%); border-radius: 16px; text-align: center; border: 1px solid #EEEEEE;">
-        <h3 style="font-size: 1.25rem; font-weight: 700; color: #1F2937; margin-bottom: 0.5rem;" data-translate="simulator.help.title">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #1F2937; margin-bottom: 0.5rem;">
           Besoin d'aide pour comprendre ces données ?
         </h3>
-        <p style="color: #6B7280; margin-bottom: 1.5rem; line-height: 1.6;" data-translate="simulator.help.description">
+        <p style="color: #6B7280; margin-bottom: 1.5rem; line-height: 1.6;">
           Notre chatbot IA peut vous expliquer chaque stratégie, métrique et vous aider à comprendre quelle approche correspond le mieux à votre profil d'investisseur.
         </p>
-        <button onclick="document.querySelector('.floating-bubble-inner').click()" style="background: linear-gradient(135deg, #333333 0%, #444444 100%); color: white; padding: 1rem 2rem; border: none; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;" data-translate="simulator.help.button">
+        <button onclick="document.querySelector('.floating-bubble-inner').click()" style="background: linear-gradient(135deg, #333333 0%, #444444 100%); color: white; padding: 1rem 2rem; border: none; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
           💬 Discuter avec notre IA
         </button>
       </div>
 
       <!-- Disclaimer -->
       <div style="margin-top: 2rem; text-align: center; padding: 1rem;">
-        <p style="font-size: 0.75rem; color: #9CA3AF; line-height: 1.5;" data-translate-html="simulator.disclaimer">
+        <p style="font-size: 0.75rem; color: #9CA3AF; line-height: 1.5;">
           <strong>Avertissement :</strong> Les performances passées ne préjugent pas des performances futures. Ces simulations sont basées sur des données historiques et ne constituent pas un conseil en investissement. Consultez un conseiller financier avant toute décision d'investissement.
         </p>
       </div>
     </div>
 
     <!-- Scripts -->
-    <script src="../i18n/translations.js"></script>
-    <script src="../js/script.js"></script>
     <script src="../js/portfolio-simulator.js"></script>
   </body>
 </html>

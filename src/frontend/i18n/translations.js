@@ -412,4 +412,224 @@ const translations = {
     en: "Discover the books and articles that inspire our approach to smart investing.",
     fr: "Découvrez les livres et articles qui inspirent notre approche de l'investissement intelligent."
   },
+
+  // Portfolio Simulator
+  "simulator.title": {
+    en: "Portfolio Simulator",
+    fr: "Simulateur de Portefeuille"
+  },
+  "simulator.subtitle": {
+    en: "Compare different investment strategies with 20 years of real historical data",
+    fr: "Comparez différentes stratégies d'investissement avec 20 ans de données historiques réelles"
+  },
+  "simulator.back": {
+    en: "Back",
+    fr: "Retour"
+  },
+  "simulator.strategies.title": {
+    en: "Choose your strategy",
+    fr: "Choisissez votre stratégie"
+  },
+  "simulator.strategies.description": {
+    en: "Compare three portfolio allocation approaches on stocks (SPY), bonds (IEF) and gold (GLD)",
+    fr: "Comparez trois approches d'allocation de portefeuille sur actions (SPY), obligations (IEF) et or (GLD)"
+  },
+  "simulator.strategy.equalWeight": {
+    en: "Equal Allocation",
+    fr: "Allocation Égale"
+  },
+  "simulator.strategy.equalWeight.subtitle": {
+    en: "33.3% each",
+    fr: "33.3% chacun"
+  },
+  "simulator.strategy.equalWeight.tooltip": {
+    en: "Simple approach: 33.3% on each asset (stocks, bonds, gold). Easy to understand and replicate, but doesn't account for risk differences between assets.",
+    fr: "Approche simple : 33.3% sur chaque actif (actions, obligations, or). Facile à comprendre et à répliquer, mais ne tient pas compte des différences de risque entre actifs."
+  },
+  "simulator.strategy.simpleRP": {
+    en: "Risk Parity",
+    fr: "Risk Parity"
+  },
+  "simulator.strategy.simpleRP.subtitle": {
+    en: "Balanced risk",
+    fr: "Risque équilibré"
+  },
+  "simulator.strategy.simpleRP.tooltip": {
+    en: "Weights assets by the inverse of their volatility. More volatile assets receive less weight, balancing the risk contribution to the total portfolio.",
+    fr: "Pondère les actifs par l'inverse de leur volatilité. Les actifs plus volatils reçoivent moins de poids, équilibrant ainsi la contribution au risque total du portefeuille."
+  },
+  "simulator.strategy.simpleRiskParity": {
+    en: "Risk Parity",
+    fr: "Risk Parity"
+  },
+  "simulator.strategy.simpleRiskParity.subtitle": {
+    en: "Balanced risk",
+    fr: "Risque équilibré"
+  },
+  "simulator.strategy.simpleRiskParity.tooltip": {
+    en: "Weights assets by the inverse of their volatility. More volatile assets receive less weight, balancing the risk contribution to the total portfolio.",
+    fr: "Pondère les actifs par l'inverse de leur volatilité. Les actifs plus volatils reçoivent moins de poids, équilibrant ainsi la contribution au risque total du portefeuille."
+  },
+  "simulator.strategy.optimized": {
+    en: "✨ Optimized",
+    fr: "✨ Optimisé"
+  },
+  "simulator.strategy.optimized.subtitle": {
+    en: "Best performance",
+    fr: "Meilleure performance"
+  },
+  "simulator.strategy.optimized.tooltip": {
+    en: "Advanced version using EWMA volatility and correlations between assets. Dynamically adjusts allocations to optimize the portfolio's return/risk ratio.",
+    fr: "Version avancée utilisant la volatilité EWMA et les corrélations entre actifs. Ajuste dynamiquement les allocations pour optimiser le ratio rendement/risque du portefeuille."
+  },
+  "simulator.strategy.optimizedRiskParity": {
+    en: "✨ Optimized",
+    fr: "✨ Optimisé"
+  },
+  "simulator.strategy.optimizedRiskParity.subtitle": {
+    en: "Best performance",
+    fr: "Meilleure performance"
+  },
+  "simulator.strategy.optimizedRiskParity.tooltip": {
+    en: "Advanced version using EWMA volatility and correlations between assets. Dynamically adjusts allocations to optimize the portfolio's return/risk ratio.",
+    fr: "Version avancée utilisant la volatilité EWMA et les corrélations entre actifs. Ajuste dynamiquement les allocations pour optimiser le ratio rendement/risque du portefeuille."
+  },
+  "simulator.chart.title": {
+    en: "Historical Performance",
+    fr: "Performance Historique"
+  },
+  "simulator.chart.period.1y": {
+    en: "1 year",
+    fr: "1 an"
+  },
+  "simulator.chart.period.3y": {
+    en: "3 years",
+    fr: "3 ans"
+  },
+  "simulator.chart.period.5y": {
+    en: "5 years",
+    fr: "5 ans"
+  },
+  "simulator.chart.period.10y": {
+    en: "10 years",
+    fr: "10 ans"
+  },
+  "simulator.chart.period.20y": {
+    en: "20 years",
+    fr: "20 ans"
+  },
+  "simulator.chart.disclaimer": {
+    en: "Data based on real historical data of ETFs SPY, IEF and GLD (Base 100)",
+    fr: "Données basées sur l'historique réel des ETFs SPY, IEF et GLD (Base 100)"
+  },
+  "simulator.metrics.title": {
+    en: "Performance Statistics",
+    fr: "Statistiques de Performance"
+  },
+  "simulator.metric.totalReturn": {
+    en: "Total Return",
+    fr: "Rendement Total"
+  },
+  "simulator.metric.totalReturn.subtitle": {
+    en: "over period",
+    fr: "sur la période"
+  },
+  "simulator.metric.totalReturn.tooltip": {
+    en: "The total gain or loss of the portfolio since the beginning of the period, before inflation and fees.",
+    fr: "Le gain ou la perte totale du portefeuille depuis le début de la période, avant inflation et frais."
+  },
+  "simulator.metric.annualReturn": {
+    en: "Annual Return",
+    fr: "Rendement Annuel"
+  },
+  "simulator.metric.annualReturn.subtitle": {
+    en: "Average CAGR",
+    fr: "CAGR moyen"
+  },
+  "simulator.metric.annualReturn.tooltip": {
+    en: "The compound annual growth rate (CAGR). An 8% return means your capital doubles approximately every 9 years.",
+    fr: "Le taux de croissance annuel composé (CAGR). Un rendement de 8% signifie que votre capital double environ tous les 9 ans."
+  },
+  "simulator.metric.volatility": {
+    en: "Volatility",
+    fr: "Volatilité"
+  },
+  "simulator.metric.volatility.subtitle": {
+    en: "annual std dev",
+    fr: "écart-type annuel"
+  },
+  "simulator.metric.volatility.tooltip": {
+    en: "Measure of portfolio fluctuations. A volatility of 15% means that 68% of the time, returns vary by ±15% around the average.",
+    fr: "Mesure des fluctuations du portefeuille. Une volatilité de 15% signifie que 68% du temps, les rendements varient de ±15% autour de la moyenne."
+  },
+  "simulator.metric.sharpe": {
+    en: "Sharpe Ratio",
+    fr: "Ratio Sharpe"
+  },
+  "simulator.metric.sharpe.subtitle": {
+    en: "return/risk",
+    fr: "rendement/risque"
+  },
+  "simulator.metric.sharpe.tooltip": {
+    en: "Risk-adjusted return. A ratio > 1 is good, > 2 is excellent. Compares the return obtained relative to the risk taken.",
+    fr: "Rendement ajusté au risque. Un ratio > 1 est bon, > 2 est excellent. Compare le rendement obtenu par rapport au risque pris."
+  },
+  "simulator.metric.maxDrawdown": {
+    en: "Max Drawdown",
+    fr: "Drawdown Max"
+  },
+  "simulator.metric.maxDrawdown.subtitle": {
+    en: "maximum loss",
+    fr: "perte maximale"
+  },
+  "simulator.metric.maxDrawdown.tooltip": {
+    en: "The largest drop from a peak. -20% means that at one point, the portfolio lost 20% of its maximum value.",
+    fr: "La plus forte baisse depuis un sommet. -20% signifie qu'à un moment, le portefeuille a perdu 20% de sa valeur maximale."
+  },
+  "simulator.metric.calmar": {
+    en: "Calmar Ratio",
+    fr: "Calmar Ratio"
+  },
+  "simulator.metric.calmar.subtitle": {
+    en: "return/drawdown",
+    fr: "rendement/drawdown"
+  },
+  "simulator.metric.calmar.tooltip": {
+    en: "Ratio between annual return and maximum drawdown. The higher this ratio, the better the strategy.",
+    fr: "Rapport entre le rendement annuel et le drawdown maximal. Plus ce ratio est élevé, meilleure est la stratégie."
+  },
+  "simulator.help.title": {
+    en: "Need help understanding this data?",
+    fr: "Besoin d'aide pour comprendre ces données ?"
+  },
+  "simulator.help.description": {
+    en: "Our AI chatbot can explain each strategy, metric and help you understand which approach best fits your investor profile.",
+    fr: "Notre chatbot IA peut vous expliquer chaque stratégie, métrique et vous aider à comprendre quelle approche correspond le mieux à votre profil d'investisseur."
+  },
+  "simulator.help.button": {
+    en: "💬 Chat with our AI",
+    fr: "💬 Discuter avec notre IA"
+  },
+  "simulator.disclaimer": {
+    en: "<strong>Warning:</strong> Past performance does not guarantee future performance. These simulations are based on historical data and do not constitute investment advice. Consult a financial advisor before making any investment decision.",
+    fr: "<strong>Avertissement :</strong> Les performances passées ne préjugent pas des performances futures. Ces simulations sont basées sur des données historiques et ne constituent pas un conseil en investissement. Consultez un conseiller financier avant toute décision d'investissement."
+  },
+
+  // ETF Labels for Chart
+  "simulator.etf.spy": {
+    en: "SPY (S&P 500)",
+    fr: "SPY (S&P 500)"
+  },
+  "simulator.etf.ief": {
+    en: "IEF (Bonds)",
+    fr: "IEF (Obligations)"
+  },
+  "simulator.etf.gld": {
+    en: "GLD (Gold)",
+    fr: "GLD (Or)"
+  },
+  "simulator.chart.yAxisTitle": {
+    en: "Value (Base 100)",
+    fr: "Valeur (Base 100)"
+  },
 };

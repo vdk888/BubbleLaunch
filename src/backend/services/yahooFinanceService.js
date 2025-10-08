@@ -24,10 +24,10 @@ const cache = {
 
 /**
  * Calculate date range for historical data
- * @param {number} years - Number of years to fetch (default: 10)
+ * @param {number} years - Number of years to fetch (default: 20)
  * @returns {Object} {startDate, endDate} in YYYY-MM-DD format
  */
-function getDateRange(years = 10) {
+function getDateRange(years = 20) {
   const endDate = new Date();
   const startDate = new Date();
   startDate.setFullYear(startDate.getFullYear() - years);
@@ -95,10 +95,10 @@ async function fetchTickerData(ticker, startDate, endDate) {
 /**
  * Fetch historical data for multiple tickers
  * @param {Array<string>} tickers - Array of ticker symbols
- * @param {number} years - Number of years of history (default: 10)
+ * @param {number} years - Number of years of history (default: 20)
  * @returns {Promise<Object>} Object with ticker symbols as keys and price arrays as values
  */
-async function fetchETFData(tickers = Object.keys(ETF_CONFIG), years = 10) {
+async function fetchETFData(tickers = Object.keys(ETF_CONFIG), years = 20) {
   // Check cache
   if (
     cache.timestamp &&

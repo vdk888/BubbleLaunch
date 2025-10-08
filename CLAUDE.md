@@ -50,16 +50,18 @@ This is **Bubble**, a fintech startup revolutionizing investment through AI-powe
   - `portfolioService.js` - Portfolio calculation algorithms
 
 ### Frontend Structure (`src/frontend/`)
-- **`pages/`** - HTML pages (index.html, blog.html, blog-post.html)
+- **`pages/`** - HTML pages (index.html, blog.html, blog-post.html, portfolio-simulator.html)
 - **`js/`** - Modular JavaScript components:
-  - `script.js` - Main application logic
+  - `script.js` - Main application logic (includes bilingual support via `data-translate-html`)
   - `chatbot-logic.js` - AI chatbot implementation
   - `blog.js` - Blog listing functionality
   - `blog-post.js` - Individual blog post rendering
   - `references.js` - Knowledge Garden references display with enriched metadata
+  - `portfolio-simulator.js` - Interactive portfolio comparison tool
+  - `portfolio-preview.js` - Landing page portfolio chart
   - `animations.js` - UI animations and effects
   - `floating-bubble.js` - Interactive bubble elements
-- **`i18n/translations.js`** - Internationalization (French/English)
+- **`i18n/translations.js`** - Internationalization (French/English) - includes all portfolio simulator translations
 - **`assets/`** - Static resources (styles, images)
 
 ### Key Integrations
@@ -92,9 +94,15 @@ The application requires several environment variables in `.env`:
 - Status-based publishing (Published/Scheduled with date validation)
 
 ### Frontend Features
-- Responsive multilingual design with language toggle
-- Interactive AI chatbot with streaming responses
-- Dynamic blog system with bilingual content rendering
+- **Responsive multilingual design** with language toggle (FR/EN)
+- **Interactive AI chatbot** with streaming responses
+- **Dynamic blog system** with bilingual content rendering
+- **Portfolio Simulator** - Interactive comparison of 3 investment strategies with 20 years of real ETF data (SPY, IEF, GLD)
+  - Real-time strategy switching with prominent visual feedback
+  - 6 performance metrics with educational tooltips
+  - Time period selection (1Y, 3Y, 5Y, 10Y, 20Y)
+  - Fully bilingual with dynamic chart label translation
+  - See [docs/PORTFOLIO_SIMULATOR.md](docs/PORTFOLIO_SIMULATOR.md) for details
 - Real-time form validation and submission
 - Animated UI elements and smooth transitions
 

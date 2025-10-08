@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Get all translatable elements
   const translatableElements = document.querySelectorAll("[data-translate]");
+  const translatableHtmlElements = document.querySelectorAll("[data-translate-html]");
 
   // Function to update language
   function updateLanguage(lang) {
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update active state on desktop buttons
     enButton.classList.toggle("active", lang === "en");
     frButton.classList.toggle("active", lang === "fr");
-    
+
     // Update active state on mobile buttons
     if (enButtonMobile) enButtonMobile.classList.toggle("active", lang === "en");
     if (frButtonMobile) frButtonMobile.classList.toggle("active", lang === "fr");
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update HTML lang attribute
     document.documentElement.lang = lang;
 
-    // Update all translatable elements
+    // Update all translatable elements (text only)
     translatableElements.forEach((element) => {
       const key = element.getAttribute("data-translate");
       if (translations[key] && translations[key][lang]) {
@@ -41,6 +42,14 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           element.textContent = translations[key][lang];
         }
+      }
+    });
+
+    // Update all translatable HTML elements (allows HTML tags)
+    translatableHtmlElements.forEach((element) => {
+      const key = element.getAttribute("data-translate-html");
+      if (translations[key] && translations[key][lang]) {
+        element.innerHTML = translations[key][lang];
       }
     });
 

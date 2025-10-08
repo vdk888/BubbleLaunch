@@ -112,8 +112,7 @@
       data: formatChartData(data),
       options: {
         responsive: true,
-        maintainAspectRatio: true,
-        aspectRatio: 2,
+        maintainAspectRatio: false,
         animation: {
           duration: 2000,
           easing: 'easeInOutQuart',

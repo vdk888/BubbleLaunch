@@ -55,16 +55,18 @@ async function getPreviewData(req, res) {
  * Generate preview data (helper function)
  */
 async function generatePreviewData() {
-  // Fetch 10 years of data for 3 ETFs
-  const rawData = await yahooFinanceService.fetchETFData(["SPY", "IEF", "GLD"], 10);
+  // Fetch 20 years of data for 3 ETFs
+  const rawData = await yahooFinanceService.fetchETFData(["SPY", "IEF", "GLD"], 20);
   const priceData = yahooFinanceService.normalizeToBase100(rawData);
 
   // Calculate portfolios
   const equalWeight = portfolioService.calculateEqualWeight(priceData);
+  const simpleRP = portfolioService.calculateSimpleRiskParity(priceData);
   const optimizedRP = portfolioService.calculateOptimizedRiskParity(priceData);
 
   // Calculate metrics
   const equalWeightMetrics = portfolioService.calculateMetrics(equalWeight);
+  const simpleRPMetrics = portfolioService.calculateMetrics(simpleRP);
   const optimizedRPMetrics = portfolioService.calculateMetrics(optimizedRP);
 
   // Combine data for chart (monthly data to reduce size)
@@ -83,6 +85,7 @@ async function generatePreviewData() {
         IEF: Math.round(iefPoint.price * 100) / 100,
         GLD: Math.round(gldPoint.price * 100) / 100,
         equalWeight: Math.round(equalWeight[i].value * 100) / 100,
+        simpleRP: Math.round(simpleRP[i].value * 100) / 100,
         optimizedRP: Math.round(optimizedRP[i].value * 100) / 100,
       });
     }
@@ -95,6 +98,10 @@ async function generatePreviewData() {
         totalReturn: Math.round(equalWeightMetrics.totalReturn * 10000) / 100, // Convert to percentage
         sharpeRatio: Math.round(equalWeightMetrics.sharpeRatio * 100) / 100,
       },
+      simpleRP: {
+        totalReturn: Math.round(simpleRPMetrics.totalReturn * 10000) / 100,
+        sharpeRatio: Math.round(simpleRPMetrics.sharpeRatio * 100) / 100,
+      },
       optimizedRP: {
         totalReturn: Math.round(optimizedRPMetrics.totalReturn * 10000) / 100,
         sharpeRatio: Math.round(optimizedRPMetrics.sharpeRatio * 100) / 100,
@@ -105,13 +112,13 @@ async function generatePreviewData() {
 
 /**
  * Get ETF historical data
- * Query params: tickers (comma-separated), period (years, default: 10)
+ * Query params: tickers (comma-separated), period (years, default: 20)
  */
 async function getETFData(req, res) {
   try {
     const tickersParam = req.query.tickers || "SPY,IEF,GLD";
     const tickers = tickersParam.split(",").map((t) => t.trim());
-    const period = parseInt(req.query.period) || 10;
+    const period = parseInt(req.query.period) || 20;
 
     console.log(`📈 Fetching ${period}Y data for ${tickers.join(", ")}`);
 
