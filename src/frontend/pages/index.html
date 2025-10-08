@@ -507,6 +507,37 @@
           </p>
         </div>
 
+        <!-- Portfolio Simulator Preview -->
+        <div class="portfolio-preview-card fade-in" id="portfolio-preview">
+          <h3 data-translate="vision.portfolio.title">
+            Découvrez l'Optimisation de Portefeuille
+          </h3>
+          <p data-translate="vision.portfolio.description">
+            Visualisez comment nos stratégies quantitatives surpassent les approches traditionnelles sur 10 ans de données historiques.
+          </p>
+
+          <div class="chart-container">
+            <canvas id="portfolioPreviewChart"></canvas>
+          </div>
+
+          <div class="portfolio-metrics">
+            <div class="metric-item">
+              <div class="metric-label" data-translate="vision.portfolio.equal_weight">Allocation Égale</div>
+              <div class="metric-value" id="equalWeightReturn">--</div>
+            </div>
+            <div class="metric-item highlight">
+              <div class="metric-label" data-translate="vision.portfolio.optimized">🎯 Optimisé</div>
+              <div class="metric-value" id="optimizedReturn">--</div>
+            </div>
+          </div>
+
+          <div class="cta-container">
+            <a href="/portfolio-simulator" class="cta-button" data-translate="vision.portfolio.cta">
+              Essayer le Simulateur →
+            </a>
+          </div>
+        </div>
+
         <div class="features-grid">
           <div class="feature-item">
             <h4 data-translate="vision.cost.title">
@@ -676,6 +707,7 @@
     <script src="js/chatbot-logic.js"></script>
     <script src="js/chatbot-animations.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/portfolio-preview.js"></script>
     <script src="js/script.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/charts.js"></script>

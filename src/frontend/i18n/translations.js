@@ -98,6 +98,26 @@ const translations = {
     en: "Our portfolios integrate cryptocurrencies to adapt to the evolving financial landscape.",
     fr: "Nos portefeuilles intègrent les cryptomonnaies pour s'adapter à l'évolution du paysage financier.",
   },
+  "vision.portfolio.title": {
+    en: "Discover Portfolio Optimization",
+    fr: "Découvrez l'Optimisation de Portefeuille",
+  },
+  "vision.portfolio.description": {
+    en: "See how our quantitative strategies outperform traditional approaches over 10 years of historical data.",
+    fr: "Visualisez comment nos stratégies quantitatives surpassent les approches traditionnelles sur 10 ans de données historiques.",
+  },
+  "vision.portfolio.equal_weight": {
+    en: "Equal Allocation",
+    fr: "Allocation Égale",
+  },
+  "vision.portfolio.optimized": {
+    en: "🎯 Optimized",
+    fr: "🎯 Optimisé",
+  },
+  "vision.portfolio.cta": {
+    en: "Try the Simulator →",
+    fr: "Essayer le Simulateur →",
+  },
 
   // Approach Section
   "approach.title": {

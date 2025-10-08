@@ -21,12 +21,33 @@ This is **Bubble**, a fintech startup revolutionizing investment through AI-powe
 
 ## Architecture & Key Components
 
-### Backend Structure (`src/backend/`)
-- **`server.js`** - Main Express server with all API endpoints
-- **`services/blogService.js`** - Notion CMS integration for blog content management
-- **`services/freepikService.js`** - AI image generation service for blog articles
-- **`services/knowledgeGardenService.js`** - Knowledge Garden references management with LLM enrichment
-- **`services/llmEnrichmentService.js`** - AI-powered reference enrichment for legal compliance
+### Backend Structure (`src/backend/`) - **Modular MVC Architecture**
+
+#### Core Files
+- **`server.js`** - Minimal application entry point (~35 lines)
+- **`config/`** - Environment and middleware configuration
+  - `env.js` - Environment variable validation
+  - `express.js` - Express middleware setup
+- **`routes/`** - Route definitions (separated by feature)
+  - `index.js` - Route aggregator
+  - `chat.routes.js`, `waitlist.routes.js`, `blog.routes.js`, etc.
+- **`controllers/`** - Business logic layer
+  - `chat.controller.js` - AI chatbot logic
+  - `waitlist.controller.js` - Subscription handling
+  - `blog.controller.js` - Blog and image management
+  - `knowledge-garden.controller.js` - References management
+  - `portfolio.controller.js` - Portfolio simulator
+- **`middleware/`** - Custom middleware
+  - `session.js` - Session configuration
+  - `rate-limiter.js` - Chat rate limiting
+  - `error-handler.js` - Centralized error handling
+- **`services/`** - External integrations and calculations
+  - `blogService.js` - Notion CMS integration
+  - `freepikService.js` - AI image generation
+  - `knowledgeGardenService.js` - References with LLM enrichment
+  - `llmEnrichmentService.js` - AI metadata generation
+  - `yahooFinanceService.js` - ETF historical data fetching
+  - `portfolioService.js` - Portfolio calculation algorithms
 
 ### Frontend Structure (`src/frontend/`)
 - **`pages/`** - HTML pages (index.html, blog.html, blog-post.html)
@@ -42,9 +63,10 @@ This is **Bubble**, a fintech startup revolutionizing investment through AI-powe
 - **`assets/`** - Static resources (styles, images)
 
 ### Key Integrations
-- **Notion API** - Content management for both waitlist database and blog posts
-- **OpenRouter API** - LLM provider with fallback model rotation
+- **Notion API** - Content management for waitlist, blog posts, and Knowledge Garden
+- **OpenRouter API** - LLM provider with fallback model rotation (Gemini, GPT-4.1, Mistral, DeepSeek)
 - **Freepik API** - Automated blog image generation with intelligent caching
+- **Yahoo Finance API** - ETF historical data for portfolio simulator
 - **Express Sessions** - Chat rate limiting (10 messages per session)
 
 ### Environment Configuration
@@ -133,9 +155,44 @@ The application features an intelligent reference enrichment system for the Know
 - **Focused Prompts:** Only generates essential metadata and legal links
 - **Intelligent Caching:** Prevents redundant API calls for already enriched references
 
+### Portfolio Simulator
+The application includes a **lightweight portfolio simulator** integrated into the main Bubble project:
+
+**Architecture:**
+- **Simplified from anim-main**: Reduced from 9 strategies (4000+ lines) to 3 strategies (~400 lines)
+- **Vanilla JS Implementation**: No React dependency, built with native JavaScript
+- **Yahoo Finance Integration**: Fetches 10 years of historical data for SPY, IEF, GLD
+- **Caching Strategy**: Pre-calculated preview data (19KB JSON) for fast landing page loading
+
+**Strategies Implemented:**
+1. **Equal Weight**: Simple 33.3% allocation (baseline)
+2. **Simple Risk Parity**: Inverse volatility weighting with 60-day rolling window
+3. **Optimized Risk Parity**: EWMA volatility (λ=0.94) + correlation adjustment ← Best performer
+
+**API Endpoints:**
+- `GET /api/portfolio/preview-data` - Pre-calculated chart data for landing page snapshot
+- `GET /api/portfolio/etf-data?tickers=SPY,IEF,GLD&period=10` - Historical prices
+- `POST /api/portfolio/calculate` - Calculate strategy on-demand
+
+**Performance Metrics:**
+- Total Return, Annualized Return, Volatility (annualized)
+- Sharpe Ratio (2% risk-free rate), Maximum Drawdown
+- Historical data: ~2,500 daily data points (10 years)
+
+**Data Flow:**
+1. User requests preview data → Check cache → Return cached JSON (< 50ms)
+2. If cache missing → Fetch Yahoo Finance → Calculate portfolios → Cache results → Return
+3. Interactive simulator → Fetch ETF data → User selects strategy → Calculate → Display
+
+**Frontend Integration (TODO):**
+- `portfolio-preview.js` - Animated chart snapshot in "What We're Building" section
+- `portfolio-simulator.html` - Standalone interactive page at `/portfolio-simulator`
+- Chart.js for lightweight visualization matching Bubble's design system
+
 ### Deployment Considerations
 - Designed for cloud deployment (includes Dockerfile and replit.nix)
 - Graceful shutdown handling for cache persistence
 - Environment-specific configurations
 - Static file serving with proper routing
 - LLM enrichment scales automatically with reference volume
+- Yahoo Finance API caching (24h TTL) to respect rate limits
