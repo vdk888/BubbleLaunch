@@ -56,30 +56,37 @@
   }
 
   /**
-   * Handle input submission - opens floating bubble chat and sends message
+   * Handle input submission - opens main chatbot and sends message
    */
   function handleSubmit() {
     const message = inputField.value.trim();
     if (!message) return;
 
-    // Open the floating bubble chat
-    const floatingBubble = document.querySelector('.floating-bubble-inner');
-    if (floatingBubble) {
-      floatingBubble.click(); // Opens the chat window
+    // Find the main chatbot section
+    const chatSection = document.querySelector('.chat-section');
+    const mainChatInput = document.querySelector('.chat-input');
+    const mainChatSubmit = document.querySelector('.chat-submit');
 
-      // Wait for chat to open, then populate and send message
+    if (chatSection && mainChatInput && mainChatSubmit) {
+      // Scroll to chatbot section smoothly
+      chatSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Wait for scroll, then populate and send message
       setTimeout(() => {
-        const miniChatInput = document.querySelector('.mini-chat-input');
-        const miniChatSend = document.querySelector('.mini-chat-send');
+        // Populate input
+        mainChatInput.value = message;
 
-        if (miniChatInput && miniChatSend) {
-          miniChatInput.value = message;
-          miniChatSend.click(); // Send the message
+        // Focus the input (triggers fullscreen on mobile if needed)
+        mainChatInput.focus();
+
+        // Small delay to ensure input is focused, then submit
+        setTimeout(() => {
+          mainChatSubmit.click(); // Send the message
 
           // Clear the floating input
           inputField.value = '';
-        }
-      }, 100);
+        }, 100);
+      }, 500); // Wait for smooth scroll
     }
   }
 

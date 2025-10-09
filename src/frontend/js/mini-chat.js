@@ -33,19 +33,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const addMessage = (text, isUser = false) => {
     const messageDiv = document.createElement('div');
     messageDiv.className = `mini-chat-message ${isUser ? 'user' : 'bot'}`;
-    
+
     const contentDiv = document.createElement('div');
     contentDiv.className = 'message-content';
-    contentDiv.textContent = text;
-    
+
+    if (isUser) {
+      contentDiv.textContent = text;
+    } else {
+      // Bot message starts with typing indicator
+      contentDiv.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+    }
+
     messageDiv.appendChild(contentDiv);
     chatMessages.appendChild(messageDiv);
-    
+
     // Scroll to bottom
     chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    return contentDiv; // Return for updating with streamed response
   };
 
-  // Handle send message
+  // Handle send message with SSE streaming
   const sendMessage = async () => {
     const message = chatInput.value.trim();
     if (!message || isProcessing) return;
@@ -53,56 +61,97 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add user message
     addMessage(message, true);
     chatInput.value = '';
-    
-    // Show typing indicator
+    chatInput.disabled = true;
+    sendButton.disabled = true;
+
     isProcessing = true;
-    const typingIndicator = document.createElement('div');
-    typingIndicator.className = 'mini-chat-message bot typing-indicator';
-    typingIndicator.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-    chatMessages.appendChild(typingIndicator);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    const botMessageContent = addMessage('', false);
 
     try {
       // Create new AbortController for this request
       currentAbortController = new AbortController();
-      
-      // Call your chatbot API here
+
+      // Get current language
+      const lang = document.documentElement.lang || 'en';
+
+      // Call chatbot API with SSE streaming
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ message, language: lang }),
         signal: currentAbortController.signal
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'An error occurred.');
       }
 
-      const data = await response.json();
-      
-      // Remove typing indicator
-      typingIndicator.remove();
-      
-      // Add bot response
-      if (data.reply) {
-        addMessage(data.reply);
-      } else {
-        addMessage('I apologize, but I encountered an error processing your request.');
+      // Handle SSE streaming response
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let isFirstChunk = true;
+      let fullResponse = '';
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop(); // Keep the last partial line in the buffer
+
+        for (const line of lines) {
+          if (line.startsWith('data:')) {
+            const data = line.substring(5).trim();
+            if (data === '[DONE]') {
+              break;
+            }
+            try {
+              const parsed = JSON.parse(data);
+              if (parsed.done) {
+                break;
+              }
+              if (parsed.content) {
+                if (isFirstChunk) {
+                  // Replace typing indicator with first chunk
+                  botMessageContent.textContent = parsed.content;
+                  isFirstChunk = false;
+                } else {
+                  // Append subsequent chunks
+                  botMessageContent.textContent += parsed.content;
+                }
+                fullResponse += parsed.content;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+              }
+            } catch (e) {
+              console.error('Error parsing SSE data:', e);
+            }
+          }
+        }
       }
+
+      // If no content received, show error
+      if (!fullResponse) {
+        botMessageContent.textContent = 'I apologize, but I encountered an error processing your request.';
+      }
+
     } catch (error) {
       if (error.name === 'AbortError') {
-        typingIndicator.remove();
-        addMessage('Request was cancelled.');
+        botMessageContent.textContent = 'Request was cancelled.';
       } else {
         console.error('Error:', error);
-        typingIndicator.remove();
-        addMessage('Sorry, I encountered an error. Please try again.');
+        botMessageContent.textContent = error.message || 'Sorry, I encountered an error. Please try again.';
       }
     } finally {
       isProcessing = false;
       currentAbortController = null;
+      chatInput.disabled = false;
+      sendButton.disabled = false;
+      chatInput.focus();
     }
   };
 
