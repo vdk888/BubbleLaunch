@@ -1,7 +1,7 @@
 # Bubble Project - Current Status
 
 **Last Updated**: 2025-10-09
-**Version**: 1.3 - Production-ready with glassmorphism UI
+**Version**: 1.4 - Production-ready with comprehensive responsive design
 
 ---
 
@@ -121,6 +121,32 @@ BubbleLaunch/
 
 ## 📝 Recent Changes (2025-10-09)
 
+### Comprehensive Responsive Design (v1.4)
+- ✅ **Portfolio Simulator Mobile**:
+  - Enhanced strategy pills with touch-friendly controls (44px min)
+  - Optimized chart heights (400px → 350px tablet, 300px mobile, 250px small)
+  - Tablet & mobile-specific layouts with landscape support
+  - Touch device optimizations (no hover effects, active states)
+  - Small mobile: Back button icon-only, compact layouts
+- ✅ **Main Page Mobile**:
+  - Icon sizing: 24px → 20px @ 768px, 18px @ 480px
+  - Portfolio metrics: Adjusted padding, centered labels
+  - Chart container height scaling by device
+- ✅ **Chart Slides Carousel**:
+  - Enhanced slider dots with 44px touch targets
+  - Improved mobile padding and font sizes
+  - Better chart descriptions on mobile
+- ✅ **Chat Interface Mobile**:
+  - iOS keyboard-friendly (16px font prevents zoom)
+  - Adjusts height on focus (70vh → 50vh with keyboard)
+  - Touch-optimized buttons (44px minimum)
+  - Small mobile: Compact message bubbles
+- ✅ **Accessibility**:
+  - `@media (hover: none)` removes hover effects on touch
+  - `@media (prefers-reduced-motion)` disables animations
+  - `@media (prefers-contrast: high)` increases border widths
+- ✅ **Tile Border-Radius**: All tiles now 24px (previously 16px)
+
 ### Glassmorphism UI Enhancement
 - ✅ Floating chat input (15% opacity, 20px blur)
 - ✅ Smart scroll detection (shows when "Join us" button disappears)
@@ -130,7 +156,7 @@ BubbleLaunch/
 - ✅ All CTA buttons → pill shape (border-radius: 50px)
 - ✅ Submit buttons → circular gray gradient (40px × 40px)
 - ✅ Upward arrow icon for all submit buttons
-- ✅ Removed emoji from "Chat with our AI" button
+- ✅ Strategy icons added (equal, AI, scale)
 
 ### Form Enhancement
 - ✅ Profile select dropdown → glassmorphism styling
@@ -142,12 +168,13 @@ BubbleLaunch/
 - ✅ All pages load Inter font weights 400-800
 - ✅ Consistent font-family across entire site
 
-### UX Improvements
-- ✅ Chat placeholders: "Ask us" → "Ask me"
-- ✅ More personal, conversational tone
+### Documentation
+- ✅ Updated CLAUDE.md with responsive improvements
+- ✅ Enhanced Charte Graphique with responsive design principles
+- ✅ Updated PROJECT_STATUS.md to v1.4
 
 ### Cleanup
-- ✅ Removed backup files (portfolio-simulator.html.backup)
+- ✅ Removed backup files
 - ✅ Removed .DS_Store files
 - ✅ Archived outdated documentation
 - ✅ Created comprehensive .gitignore
@@ -207,7 +234,8 @@ BubbleLaunch/
 - **Buttons**: Pill-shaped (50px radius)
 - **Inputs**: Glassmorphism with blur
 - **Submit**: Circular (40px) gray gradient
-- **Cards**: 16-20px border-radius
+- **Cards/Tiles**: 24px border-radius (unified)
+- **Touch Targets**: 44px minimum on mobile
 
 ---
 
@@ -217,7 +245,7 @@ BubbleLaunch/
 1. Add analytics (Google Analytics 4 or Plausible)
 2. SEO optimization (meta tags, schema.org)
 3. Cross-browser testing
-4. Mobile responsive testing
+4. ~~Mobile responsive testing~~ ✅ Completed (v1.4)
 5. Performance audit (Lighthouse)
 
 ### Medium-Term (1 month)

@@ -45,7 +45,7 @@
 /* Category Container */
 .reference-category {
   border: 1px solid #E5E5E5;
-  border-radius: 12px;
+  border-radius: 24px;
   background: #FFFFFF;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -154,7 +154,7 @@
 /* Reference Card */
 .reference-card {
   border: 1px solid #E5E5E5;
-  border-radius: 8px;
+  border-radius: 24px;
   background: #FFFFFF;
   padding: 1.5rem;
   transition: all 0.3s ease;
@@ -361,19 +361,22 @@
 }
 
 .retry-button {
-  background: #2196F3;
+  background: linear-gradient(135deg, #333333 0%, #444444 100%);
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
+  padding: 0.875rem 1.5rem;
+  border-radius: 50px;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .retry-button:hover {
-  background: #1976D2;
+  background: #6b7280;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* Mobile Responsive */

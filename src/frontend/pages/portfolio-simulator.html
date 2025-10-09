@@ -379,15 +379,385 @@
         transform: translateX(-50%) translateY(0);
       }
 
+      /* Tablet Responsiveness (768px - 1024px) */
+      @media (max-width: 1024px) and (min-width: 769px) {
+        .simulator-container {
+          padding: 2rem 1.5rem;
+        }
+
+        .strategy-pills {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .strategy-pill {
+          padding: 1.25rem;
+        }
+
+        .pill-icon img {
+          width: 28px;
+          height: 28px;
+        }
+
+        .chart-canvas-wrapper {
+          height: 350px;
+        }
+
+        #portfolioChart {
+          max-height: 350px;
+        }
+      }
+
+      /* Mobile Responsiveness (max 768px) */
       @media (max-width: 768px) {
+        .simulator-container {
+          padding: 1.5rem 1rem;
+        }
+
+        .simulator-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+
+        .simulator-header > div:last-child {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .simulator-title {
+          font-size: 1.75rem;
+          line-height: 1.2;
+        }
+
+        .simulator-subtitle {
+          font-size: 1rem;
+          padding: 0 0.5rem;
+        }
+
+        /* Strategy Pills Mobile */
+        .section-title {
+          font-size: 1.3rem;
+        }
+
+        .section-description {
+          font-size: 0.95rem;
+        }
+
+        .strategy-pills {
+          grid-template-columns: 1fr;
+          gap: 0.75rem;
+        }
+
+        .strategy-pill {
+          padding: 1rem;
+          flex-direction: row;
+          gap: 0.75rem;
+        }
+
+        .pill-icon img {
+          width: 28px;
+          height: 28px;
+        }
+
+        .pill-title {
+          font-size: 1rem;
+        }
+
+        .pill-subtitle {
+          font-size: 0.85rem;
+        }
+
+        /* Hide tooltips on mobile to prevent overflow */
+        .strategy-tooltip {
+          display: none;
+        }
+
+        /* Chart Area Mobile */
+        .chart-card {
+          padding: 1.25rem 1rem;
+        }
+
+        .chart-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .chart-title {
+          font-size: 1.1rem;
+        }
+
+        .chart-controls {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .time-period-btn {
+          flex: 1;
+          padding: 0.6rem 0.5rem;
+          font-size: 0.8rem;
+        }
+
+        .chart-canvas-wrapper {
+          height: 300px;
+        }
+
+        #portfolioChart {
+          max-height: 300px;
+        }
+
+        /* Metrics Mobile */
+        .metrics-grid {
+          margin-bottom: 2rem;
+        }
+
+        .metrics-section-title {
+          font-size: 1.1rem;
+          margin-bottom: 1rem;
+        }
+
         .metrics-cards {
           grid-template-columns: 1fr;
+          gap: 0.75rem;
+        }
+
+        .metric-card {
+          padding: 1.25rem 1rem;
+        }
+
+        .metric-card-label {
+          font-size: 0.8rem;
+        }
+
+        .metric-card-value {
+          font-size: 1.5rem;
         }
 
         .metric-tooltip {
           width: 200px;
           font-size: 0.75rem;
           padding: 0.5rem 0.75rem;
+        }
+
+        /* Asset Allocation Mobile */
+        .allocation-section-title {
+          font-size: 1.1rem;
+        }
+
+        .allocation-bars {
+          gap: 0.75rem;
+        }
+
+        .allocation-bar {
+          padding: 0.75rem;
+        }
+
+        .allocation-label {
+          font-size: 0.9rem;
+        }
+
+        .allocation-value {
+          font-size: 1.25rem;
+        }
+
+        /* Back Button Mobile */
+        .back-button {
+          padding: 0.6rem 1.25rem !important;
+          font-size: 0.95rem !important;
+        }
+
+        .back-button svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      /* Small Mobile Devices (max 480px) */
+      @media (max-width: 480px) {
+        .simulator-container {
+          padding: 1rem 0.75rem;
+        }
+
+        .simulator-title {
+          font-size: 1.5rem;
+        }
+
+        .simulator-subtitle {
+          font-size: 0.9rem;
+        }
+
+        .section-title {
+          font-size: 1.2rem;
+        }
+
+        .section-description {
+          font-size: 0.875rem;
+        }
+
+        .strategy-pill {
+          padding: 0.875rem;
+        }
+
+        .pill-icon img {
+          width: 24px;
+          height: 24px;
+        }
+
+        .pill-title {
+          font-size: 0.95rem;
+        }
+
+        .pill-subtitle {
+          font-size: 0.8rem;
+        }
+
+        .chart-card {
+          padding: 1rem 0.75rem;
+        }
+
+        .chart-title {
+          font-size: 1rem;
+        }
+
+        .time-period-btn {
+          padding: 0.5rem 0.4rem;
+          font-size: 0.75rem;
+        }
+
+        .chart-canvas-wrapper {
+          height: 250px;
+        }
+
+        #portfolioChart {
+          max-height: 250px;
+        }
+
+        .metrics-section-title {
+          font-size: 1rem;
+        }
+
+        .metric-card {
+          padding: 1rem 0.875rem;
+        }
+
+        .metric-card-label {
+          font-size: 0.75rem;
+        }
+
+        .metric-card-value {
+          font-size: 1.3rem;
+        }
+
+        .allocation-bar {
+          padding: 0.625rem;
+        }
+
+        .allocation-label {
+          font-size: 0.85rem;
+        }
+
+        .allocation-value {
+          font-size: 1.1rem;
+        }
+
+        .back-button {
+          padding: 0.5rem 1rem !important;
+          font-size: 0.875rem !important;
+        }
+
+        .back-button span {
+          display: none;
+        }
+
+        .back-button svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      /* Touch Device Optimizations */
+      @media (hover: none) and (pointer: coarse) {
+        .strategy-pill,
+        .time-period-btn,
+        .metric-card,
+        .back-button {
+          min-height: 44px;
+          min-width: 44px;
+        }
+
+        .strategy-pill:hover {
+          transform: none;
+        }
+
+        .strategy-pill:active {
+          transform: scale(0.98);
+          background: rgba(102, 126, 234, 0.12);
+        }
+
+        .time-period-btn:active {
+          background: rgba(102, 126, 234, 0.15);
+        }
+
+        .metric-card:hover {
+          transform: none;
+        }
+
+        .allocation-bar:hover {
+          transform: none;
+        }
+
+        /* Remove hover tooltips on touch devices */
+        .strategy-tooltip,
+        .metric-tooltip {
+          display: none;
+        }
+      }
+
+      /* Reduced Motion Preference */
+      @media (prefers-reduced-motion: reduce) {
+        .strategy-pill,
+        .metric-card,
+        .allocation-bar,
+        .time-period-btn,
+        .chart-card {
+          transition: none;
+        }
+
+        .strategy-pill:hover,
+        .metric-card:hover,
+        .allocation-bar:hover {
+          transform: none;
+        }
+      }
+
+      /* High Contrast Mode */
+      @media (prefers-contrast: high) {
+        .strategy-pill {
+          border-width: 3px;
+        }
+
+        .strategy-pill.active {
+          border-width: 4px;
+        }
+
+        .metric-card,
+        .chart-card {
+          border-width: 2px;
+        }
+      }
+
+      /* Landscape Mobile Optimization */
+      @media (max-width: 768px) and (orientation: landscape) {
+        .chart-canvas-wrapper {
+          height: 280px;
+        }
+
+        #portfolioChart {
+          max-height: 280px;
+        }
+
+        .strategy-pills {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         }
       }
     </style>

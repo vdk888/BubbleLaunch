@@ -192,7 +192,7 @@ header {
 /* Featured Image */
 .post-featured-image {
   margin: 3rem 0;
-  border-radius: 12px;
+  border-radius: 24px;
   overflow: hidden;
   aspect-ratio: 16/9;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -208,7 +208,7 @@ header {
 @media (max-width: 768px) {
   .post-featured-image {
     margin: 2rem 0;
-    border-radius: 8px;
+    border-radius: 20px;
     aspect-ratio: 4/3;
   }
 }
@@ -216,7 +216,7 @@ header {
 @media (max-width: 480px) {
   .post-featured-image {
     margin: 1.5rem 0;
-    border-radius: 6px;
+    border-radius: 16px;
   }
 }
 

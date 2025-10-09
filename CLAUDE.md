@@ -214,15 +214,20 @@ The application includes a **lightweight, interactive portfolio simulator** inte
 - **Bilingual**: Language switcher updates all text, chart labels, and tooltips dynamically
 
 **Recent Updates** (2025-10-09):
+- **Comprehensive Responsive Design**: All pages now fully responsive for mobile, tablet, and desktop
+  - Portfolio simulator: Enhanced strategy pills with touch-friendly controls, optimized chart heights
+  - Main page: Icon sizing adjusted for mobile (24px → 20px @ 768px, 18px @ 480px)
+  - Chart slides: Improved touch targets (44px minimum), better carousel navigation
+  - Chat interface: iOS keyboard-friendly (16px font prevents zoom), adjusts height on focus
+  - Touch devices: Removed hover effects, added active states, 44px minimum touch targets
+  - Small mobile (≤480px): Back button shows icon only, compact layouts
+- **Tile Border-Radius Standardization**: All tiles now use 24px border-radius (previously 16px)
 - **Glassmorphism UI**: Added floating chat input with transparent design (15% white opacity, 20px blur)
 - **Button Design Unification**: All CTA buttons now pill-shaped (border-radius: 50px)
 - **Submit Buttons**: Circular gray gradient buttons (40px × 40px) with upward arrow icon
-- **Chat Placeholders**: Changed "Ask us" → "Ask me" for more personal feel
+- **Strategy Icons**: Added SVG icons to portfolio tiles (equal, AI, scale)
 - **Form Inputs**: Enhanced with glassmorphism styling matching floating input
 - **Font Consistency**: All pages load Inter font weights 400-800
-- Fixed tile sizing on main page (clarity/automation tiles now fill properly)
-- Updated portfolio preview title: "Discover Our Portfolio Optimization"
-- CTA button text: "Try Our Simulator" (FR: "Essayez notre Simulateur")
 
 **Future Enhancements** (See [PORTFOLIO_SIMULATOR.md](docs/PORTFOLIO_SIMULATOR.md)):
 - **Short-term**: Analytics integration, SEO optimization, cross-browser testing

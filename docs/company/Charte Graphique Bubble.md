@@ -233,9 +233,11 @@ Quand l'espace horizontal est insuffisant :
 
 #### **Rayons de Bordure**
 
-* **Standard** : 8px à 16px  
-* **Cartes importantes** : 16px à 20px  
-* **Boutons** : 8px à 12px
+* **Tiles et cartes** : 24px (standard unifié pour tous les tiles)
+* **Boutons CTA** : 50px (forme de pilule)
+* **Boutons submit** : 50% (circulaire)
+* **Zone de texte (textarea)** : 20px
+* **Champs de saisie** : 50px (forme de pilule)
 
 ---
 
@@ -255,9 +257,27 @@ Quand l'espace horizontal est insuffisant :
 
 ### **Points de Rupture**
 
-* **Mobile** : \< 768px  
-* **Tablette** : 768px \- 1024px  
+* **Petit mobile** : \< 480px
+* **Mobile** : 481px \- 768px
+* **Tablette** : 769px \- 1024px
 * **Desktop** : \> 1024px
+
+### **Responsive Design Principles**
+
+* **Touch Targets** : Minimum 44px × 44px pour tous les éléments interactifs sur mobile
+* **Font Size Mobile** : 16px minimum pour les champs de saisie (évite le zoom iOS)
+* **Icônes** :
+  - Desktop: 24-32px
+  - Mobile (≤768px): 20-28px
+  - Petit mobile (≤480px): 18-24px
+* **Hauteur des Charts** :
+  - Desktop: 400px
+  - Tablet: 350px
+  - Mobile: 280-300px
+  - Petit mobile: 240-250px
+* **Effets Hover** : Désactivés sur les appareils tactiles (`@media (hover: none)`)
+* **États Active** : Ajoutés pour les appareils tactiles avec `transform: scale(0.98)`
+* **Reduced Motion** : Respecter la préférence utilisateur (`@media (prefers-reduced-motion: reduce)`)
 
 ---
 
