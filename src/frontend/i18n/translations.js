@@ -479,8 +479,8 @@ const translations = {
     fr: "Pondère les actifs par l'inverse de leur volatilité. Les actifs plus volatils reçoivent moins de poids, équilibrant ainsi la contribution au risque total du portefeuille."
   },
   "simulator.strategy.optimized": {
-    en: "✨ Optimized",
-    fr: "✨ Optimisé"
+    en: "Optimized",
+    fr: "Optimisé"
   },
   "simulator.strategy.optimized.subtitle": {
     en: "Best performance",
@@ -491,8 +491,8 @@ const translations = {
     fr: "Version avancée utilisant la volatilité EWMA et les corrélations entre actifs. Ajuste dynamiquement les allocations pour optimiser le ratio rendement/risque du portefeuille."
   },
   "simulator.strategy.optimizedRiskParity": {
-    en: "✨ Optimized",
-    fr: "✨ Optimisé"
+    en: "Optimized",
+    fr: "Optimisé"
   },
   "simulator.strategy.optimizedRiskParity.subtitle": {
     en: "Best performance",
@@ -641,6 +641,18 @@ const translations = {
   "simulator.help.button": {
     en: "Chat with our AI",
     fr: "Discuter avec notre IA"
+  },
+  "simulator.help.mobile.title": {
+    en: "Questions?",
+    fr: "Des questions ?"
+  },
+  "simulator.help.mobile.description": {
+    en: "Tap the chat button to ask our AI about any metric or strategy",
+    fr: "Appuyez sur le chat pour poser vos questions à notre IA"
+  },
+  "simulator.help.mobile.button": {
+    en: "Ask AI",
+    fr: "Poser une question"
   },
   "simulator.disclaimer": {
     en: "<strong>Warning:</strong> Past performance does not guarantee future performance. These simulations are based on historical data and do not constitute investment advice. Consult a financial advisor before making any investment decision.",

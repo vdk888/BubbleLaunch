@@ -473,6 +473,43 @@
           display: none;
         }
 
+        /* Mobile-specific metric tooltip - tap to show below card */
+        .metric-card {
+          cursor: pointer;
+        }
+
+        .metric-tooltip {
+          position: static;
+          transform: none;
+          opacity: 0;
+          max-height: 0;
+          overflow: hidden;
+          transition: all 0.3s ease;
+          width: 100%;
+          margin-top: 0;
+          padding: 0;
+        }
+
+        .metric-card.show-tooltip .metric-tooltip {
+          opacity: 1;
+          max-height: 200px;
+          margin-top: 0.75rem;
+          padding: 0.75rem 1rem;
+        }
+
+        .metric-tooltip::after {
+          display: none;
+        }
+
+        /* Show/hide help sections */
+        .help-section-desktop {
+          display: none !important;
+        }
+
+        .help-section-mobile {
+          display: block !important;
+        }
+
         /* Chart Area Mobile */
         .chart-card {
           padding: 1.25rem 1rem;
@@ -799,8 +836,8 @@
 
       <!-- Strategy Selector -->
       <div class="strategy-selector" id="strategySelector">
-        <h2 class="section-title" data-translate="simulator.strategySelector.title">Choisissez votre stratégie</h2>
-        <p class="section-description" data-translate="simulator.strategySelector.description">
+        <h2 class="section-title" data-translate="simulator.strategies.title">Choisissez votre stratégie</h2>
+        <p class="section-description" data-translate="simulator.strategies.description">
           Comparez trois approches d'allocation de portefeuille sur actions (SPY), obligations (IEF) et or (GLD)
         </p>
 
@@ -826,8 +863,8 @@
               <img src="../assets/images/simul port icons/noun-scale-1021928-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
             </div>
             <div class="pill-content">
-              <div class="pill-title" data-translate="simulator.strategy.simpleRiskParity">Risk Parity Simple</div>
-              <div class="pill-subtitle" data-translate="simulator.strategy.simpleRiskParity.subtitle">Pondéré par volatilité</div>
+              <div class="pill-title" data-translate="simulator.strategy.simpleRiskParity">Risk Parity</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.simpleRiskParity.subtitle">Balanced risk</div>
             </div>
           </button>
 
@@ -839,8 +876,8 @@
               <img src="../assets/images/simul port icons/noun-ai-6480915-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
             </div>
             <div class="pill-content">
-              <div class="pill-title" data-translate="simulator.strategy.optimizedRiskParity">Optimisé</div>
-              <div class="pill-subtitle" data-translate="simulator.strategy.optimizedRiskParity.subtitle">EWMA + corrélations</div>
+              <div class="pill-title" data-translate="simulator.strategy.optimizedRiskParity">Optimized</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.optimizedRiskParity.subtitle">Best performance</div>
             </div>
           </button>
         </div>
@@ -934,7 +971,7 @@
       </div>
 
       <!-- Call to Action - Chat for Help -->
-      <div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #FAFAFA 0%, #F8F8F8 100%); border-radius: 16px; text-align: center; border: 1px solid #EEEEEE;">
+      <div class="help-section-desktop" style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #FAFAFA 0%, #F8F8F8 100%); border-radius: 16px; text-align: center; border: 1px solid #EEEEEE;">
         <h3 style="font-size: 1.25rem; font-weight: 700; color: #1F2937; margin-bottom: 0.5rem;" data-translate="simulator.help.title">
           Besoin d'aide pour comprendre ces données ?
         </h3>
@@ -943,6 +980,22 @@
         </p>
         <button onclick="document.querySelector('.floating-bubble-inner').click()" style="background: linear-gradient(135deg, #333333 0%, #444444 100%); color: white; padding: 1rem 2rem; border: none; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;" data-translate="simulator.help.button">
           Discuter avec notre IA
+        </button>
+      </div>
+
+      <!-- Mobile-only Help Section -->
+      <div class="help-section-mobile" style="display: none; margin-top: 2rem; padding: 1.5rem; background: rgba(102, 126, 234, 0.08); border-radius: 16px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.2);">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #667eea; margin-bottom: 0.75rem;" data-translate="simulator.help.mobile.title">
+          Questions?
+        </h3>
+        <p style="color: #6B7280; margin-bottom: 1.25rem; font-size: 0.95rem; line-height: 1.5;" data-translate="simulator.help.mobile.description">
+          Tap the chat button to ask our AI about any metric or strategy
+        </p>
+        <button onclick="document.querySelector('.floating-bubble-inner').click()" style="background: #667eea; color: white; padding: 0.875rem 1.75rem; border: none; border-radius: 50px; font-weight: 600; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); transition: all 0.3s ease; width: 100%;" data-translate="simulator.help.mobile.button">
+          Ask AI
         </button>
       </div>
 
@@ -958,6 +1011,38 @@
     <script src="../i18n/translations.js"></script>
     <script src="../js/script.js"></script>
     <script src="../js/portfolio-simulator.js"></script>
+
+    <!-- Mobile tooltip tap handler -->
+    <script>
+      // Add tap-to-toggle tooltip functionality for mobile
+      if (window.innerWidth <= 768) {
+        document.addEventListener('DOMContentLoaded', function() {
+          const metricCards = document.querySelectorAll('.metric-card');
+
+          metricCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+              // Don't toggle if clicking on a link or button
+              if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+
+              // Close all other tooltips
+              metricCards.forEach(c => {
+                if (c !== card) c.classList.remove('show-tooltip');
+              });
+
+              // Toggle this tooltip
+              card.classList.toggle('show-tooltip');
+            });
+          });
+
+          // Close tooltips when clicking outside
+          document.addEventListener('click', function(e) {
+            if (!e.target.closest('.metric-card')) {
+              metricCards.forEach(card => card.classList.remove('show-tooltip'));
+            }
+          });
+        });
+      }
+    </script>
 
     <!-- Floating Glassmorphism Chat Input -->
     <div id="floating-chat-input" class="floating-chat-input">
