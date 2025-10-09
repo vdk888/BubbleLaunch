@@ -611,7 +611,7 @@ header .container {
   color: white;
   text-decoration: none;
   padding: 1.1rem 2.5rem;
-  border-radius: 8px;
+  border-radius: 50px;
   font-weight: 600;
   font-size: 1.125rem;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1113,7 +1113,7 @@ header .container {
   flex: 1;
   padding: 0.75rem 1rem;
   border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  border-radius: 50px;
   font-size: 0.9rem;
   transition: all 0.2s ease;
   background: white;
@@ -1126,10 +1126,10 @@ header .container {
 }
 
 .mini-chat-send {
-  background: var(--primary);
+  background: linear-gradient(135deg, rgba(107, 114, 128, 0.9), rgba(107, 114, 128, 0.7));
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 50%;
   width: 40px;
   height: 40px;
   display: flex;
@@ -1141,7 +1141,7 @@ header .container {
 }
 
 .mini-chat-send:hover {
-  background: #4f46e5;
+  background: linear-gradient(135deg, rgba(107, 114, 128, 1), rgba(107, 114, 128, 0.9));
   transform: translateY(-1px);
 }
 
@@ -1613,7 +1613,7 @@ section h2 {
   background: linear-gradient(135deg, #333333 0%, #444444 100%);
   color: white;
   padding: 1rem 2.5rem;
-  border-radius: 8px;
+  border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
   font-size: 1.1rem;
@@ -1890,7 +1890,7 @@ form button {
   background-color: var(--primary);
   color: white;
   border: none;
-  border-radius: 0.25rem;
+  border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -2158,12 +2158,12 @@ form button:hover {
 }
 
 .chat-submit {
-  background: linear-gradient(135deg, #333333 0%, #444444 100%);
+  background: linear-gradient(135deg, rgba(107, 114, 128, 0.9), rgba(107, 114, 128, 0.7));
   color: white;
   border: none;
-  border-radius: 12px;
-  width: 48px;
-  height: 48px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   padding: 0;
   display: flex;
   align-items: center;
@@ -2196,7 +2196,7 @@ form button:hover {
 .chat-submit:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  background: #6b7280;
+  background: linear-gradient(135deg, rgba(107, 114, 128, 1), rgba(107, 114, 128, 0.9));
 }
 
 /* Stop button hover state */
@@ -3246,5 +3246,104 @@ footer .container {
     padding: 1rem;
     font-size: 1rem;
     min-height: 48px;
+  }
+}
+/* ============================================
+   FLOATING GLASSMORPHISM CHAT INPUT
+   ============================================ */
+
+.floating-chat-input {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.floating-chat-input.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+  pointer-events: none;
+}
+
+.floating-input-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50px;
+  padding: 0.75rem 1rem 0.75rem 1.5rem;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  min-width: 400px;
+  max-width: 600px;
+}
+
+.floating-input-field {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #1F2937;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  padding: 0.5rem 0;
+}
+
+.floating-input-field::placeholder {
+  color: rgba(107, 114, 128, 0.7);
+}
+
+.floating-input-submit {
+  background: linear-gradient(135deg, rgba(107, 114, 128, 0.9), rgba(107, 114, 128, 0.7));
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.floating-input-submit:hover {
+  background: linear-gradient(135deg, rgba(107, 114, 128, 1), rgba(107, 114, 128, 0.9));
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.4);
+}
+
+.floating-input-submit:active {
+  transform: scale(0.95);
+}
+
+.floating-input-submit svg {
+  color: white;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .floating-chat-input {
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    transform: none;
+  }
+
+  .floating-chat-input.hidden {
+    transform: translateY(20px);
+  }
+
+  .floating-input-container {
+    min-width: unset;
+    width: 100%;
   }
 }

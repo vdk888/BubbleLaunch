@@ -397,7 +397,7 @@
     <div class="simulator-container">
       <!-- Header with Back Button -->
       <div class="simulator-header">
-        <a href="/" class="back-button">
+        <a href="/" class="back-button" style="display: inline-flex; align-items: center; gap: 0.5rem; background-color: var(--primary); color: white; text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -583,8 +583,8 @@
         <p style="color: #6B7280; margin-bottom: 1.5rem; line-height: 1.6;" data-translate="simulator.help.description">
           Notre chatbot IA peut vous expliquer chaque stratégie, métrique et vous aider à comprendre quelle approche correspond le mieux à votre profil d'investisseur.
         </p>
-        <button onclick="document.querySelector('.floating-bubble-inner').click()" style="background: linear-gradient(135deg, #333333 0%, #444444 100%); color: white; padding: 1rem 2rem; border: none; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;" data-translate="simulator.help.button">
-          💬 Discuter avec notre IA
+        <button onclick="document.querySelector('.floating-bubble-inner').click()" style="background: linear-gradient(135deg, #333333 0%, #444444 100%); color: white; padding: 1rem 2rem; border: none; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;" data-translate="simulator.help.button">
+          Discuter avec notre IA
         </button>
       </div>
 
@@ -600,5 +600,26 @@
     <script src="../i18n/translations.js"></script>
     <script src="../js/script.js"></script>
     <script src="../js/portfolio-simulator.js"></script>
+
+    <!-- Floating Glassmorphism Chat Input -->
+    <div id="floating-chat-input" class="floating-chat-input">
+      <div class="floating-input-container">
+        <input
+          type="text"
+          class="floating-input-field"
+          placeholder="Ask me anything..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Ask a question"
+        />
+        <button class="floating-input-submit" aria-label="Send message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <script src="../js/floating-chat-input.js"></script>
   </body>
 </html>

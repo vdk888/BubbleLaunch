@@ -164,21 +164,21 @@ const translations = {
   // Chat Section
   "chat.rotatingPlaceholders": {
     en: [
-      "Ask us why AI is a game-changer...",
-      "Ask us how we reduce fees...",
-      "Ask us what happens to fund managers...",
-      "Ask us how Bubble works..."
+      "Ask me why AI is a game-changer...",
+      "Ask me how we reduce fees...",
+      "Ask me what happens to fund managers...",
+      "Ask me how Bubble works..."
     ],
     fr: [
-      "Demandez-nous pourquoi l'IA change la donne...",
-      "Demandez-nous comment nous réduisons les frais...",
-      "Demandez-nous ce qui arrive aux gérants de fonds...",
-      "Demandez-nous comment fonctionne Bubble..."
+      "Demandez-moi pourquoi l'IA change la donne...",
+      "Demandez-moi comment nous réduisons les frais...",
+      "Demandez-moi ce qui arrive aux gérants de fonds...",
+      "Demandez-moi comment fonctionne Bubble..."
     ]
   },
   "chat.placeholder": {
-    en: "Ask us why AI is a game-changer...",
-    fr: "Demandez-nous pourquoi l'IA change la donne..."
+    en: "Ask me why AI is a game-changer...",
+    fr: "Demandez-moi pourquoi l'IA change la donne..."
   },
 
   // Waitlist Section
@@ -353,6 +353,10 @@ const translations = {
   "floating_bubble.text": {
     en: "Have questions? Chat with our AI",
     fr: "Des questions ? Discutez avec notre IA"
+  },
+  "floating_input.placeholder": {
+    en: "Ask me anything...",
+    fr: "Posez-moi une question..."
   },
 
   // Blog Section
@@ -631,8 +635,8 @@ const translations = {
     fr: "Notre chatbot IA peut vous expliquer chaque stratégie, métrique et vous aider à comprendre quelle approche correspond le mieux à votre profil d'investisseur."
   },
   "simulator.help.button": {
-    en: "💬 Chat with our AI",
-    fr: "💬 Discuter avec notre IA"
+    en: "Chat with our AI",
+    fr: "Discuter avec notre IA"
   },
   "simulator.disclaimer": {
     en: "<strong>Warning:</strong> Past performance does not guarantee future performance. These simulations are based on historical data and do not constitute investment advice. Consult a financial advisor before making any investment decision.",
