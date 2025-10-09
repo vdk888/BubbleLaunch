@@ -2479,23 +2479,31 @@ footer .container {
 .clarity-tile {
     padding: 2rem 1.5rem;
     border-radius: 16px;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     font-weight: 600;
     text-align: center;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    min-height: 120px;
+    min-height: 140px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    gap: 0.8rem;
+    gap: 1rem;
 }
 
 .clarity-tile .tile-icon {
     width: 32px;
     height: 32px;
     flex-shrink: 0;
+}
+
+.clarity-tile span {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
+    width: 100%;
 }
 
 .clarity-tile.before {
@@ -2527,25 +2535,33 @@ footer .container {
 }
 
 .automation-tile {
-    padding: 1.5rem;
+    padding: 1.8rem 1.5rem;
     border-radius: 16px;
     text-align: center;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    min-height: 100px;
+    min-height: 130px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    gap: 0.8rem;
+    gap: 1rem;
 }
 
 .automation-tile .tile-icon {
     width: 28px;
     height: 28px;
     flex-shrink: 0;
+}
+
+.automation-tile span {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
+    width: 100%;
 }
 
 /* Clarity Flow Styles (similar to automation) */
@@ -2580,28 +2596,7 @@ footer .container {
     filter: none;
 }
 
-/* Ensure consistent tile sizing - override previous settings */
-.clarity-tile {
-    min-height: 120px;
-    padding: 1.5rem;
-    gap: 0.6rem;
-    border-radius: 16px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-align: center;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.automation-tile {
-    min-height: 120px;
-    padding: 1.5rem;
-    gap: 0.6rem;
-}
+/* Removed redundant tile sizing overrides - already defined above */
 
 /* Mobile comparison styles for icons */
 .clarity-before .tile-icon,

@@ -99,8 +99,8 @@ const translations = {
     fr: "Nos portefeuilles intègrent les cryptomonnaies pour s'adapter à l'évolution du paysage financier.",
   },
   "vision.portfolio.title": {
-    en: "Discover Portfolio Optimization",
-    fr: "Découvrez l'Optimisation de Portefeuille",
+    en: "Discover Our Portfolio Optimization",
+    fr: "Découvrez nos Optimisations de Portefeuilles",
   },
   "vision.portfolio.description": {
     en: "See how our quantitative strategies outperform traditional approaches over 10 years of historical data.",
@@ -115,8 +115,8 @@ const translations = {
     fr: "🎯 Optimisé",
   },
   "vision.portfolio.cta": {
-    en: "Try the Simulator →",
-    fr: "Essayer le Simulateur →",
+    en: "Try Our Simulator →",
+    fr: "Essayez notre Simulateur →",
   },
 
   // Approach Section
