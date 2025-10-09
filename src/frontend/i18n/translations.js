@@ -631,28 +631,12 @@ const translations = {
     fr: "Rapport entre le rendement annuel et le drawdown maximal. Plus ce ratio est élevé, meilleure est la stratégie."
   },
   "simulator.help.title": {
-    en: "Need help understanding this data?",
-    fr: "Besoin d'aide pour comprendre ces données ?"
-  },
-  "simulator.help.description": {
-    en: "Our AI chatbot can explain each strategy, metric and help you understand which approach best fits your investor profile.",
-    fr: "Notre chatbot IA peut vous expliquer chaque stratégie, métrique et vous aider à comprendre quelle approche correspond le mieux à votre profil d'investisseur."
-  },
-  "simulator.help.button": {
-    en: "Chat with our AI",
-    fr: "Discuter avec notre IA"
-  },
-  "simulator.help.mobile.title": {
     en: "Questions?",
     fr: "Des questions ?"
   },
-  "simulator.help.mobile.description": {
-    en: "Tap the chat button to ask our AI about any metric or strategy",
-    fr: "Appuyez sur le chat pour poser vos questions à notre IA"
-  },
-  "simulator.help.mobile.button": {
-    en: "Ask AI",
-    fr: "Poser une question"
+  "simulator.help.description": {
+    en: "Tap the chat button to ask anything about strategy, metrics or help you understand investment",
+    fr: "Appuyez sur le chat pour poser vos questions sur les stratégies, métriques ou comprendre l'investissement"
   },
   "simulator.disclaimer": {
     en: "<strong>Warning:</strong> Past performance does not guarantee future performance. These simulations are based on historical data and do not constitute investment advice. Consult a financial advisor before making any investment decision.",

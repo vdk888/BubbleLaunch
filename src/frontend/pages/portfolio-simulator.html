@@ -501,13 +501,17 @@
           display: none;
         }
 
-        /* Show/hide help sections */
-        .help-section-desktop {
-          display: none !important;
+        /* Help section responsive */
+        .help-section {
+          padding: 1.5rem !important;
         }
 
-        .help-section-mobile {
-          display: block !important;
+        .help-section h3 {
+          font-size: 1.1rem !important;
+        }
+
+        .help-section p {
+          font-size: 0.95rem !important;
         }
 
         /* Chart Area Mobile */
@@ -797,6 +801,16 @@
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         }
       }
+
+      /* Purple theme for floating chat submit button on simulator page */
+      .floating-input-submit {
+        background: linear-gradient(135deg, #667eea, #764ba2) !important;
+      }
+
+      .floating-input-submit:hover {
+        background: linear-gradient(135deg, #5a67d8, #6b46c1) !important;
+        transform: scale(1.05);
+      }
     </style>
   </head>
   <body>
@@ -971,32 +985,16 @@
       </div>
 
       <!-- Call to Action - Chat for Help -->
-      <div class="help-section-desktop" style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #FAFAFA 0%, #F8F8F8 100%); border-radius: 16px; text-align: center; border: 1px solid #EEEEEE;">
-        <h3 style="font-size: 1.25rem; font-weight: 700; color: #1F2937; margin-bottom: 0.5rem;" data-translate="simulator.help.title">
-          Besoin d'aide pour comprendre ces données ?
-        </h3>
-        <p style="color: #6B7280; margin-bottom: 1.5rem; line-height: 1.6;" data-translate="simulator.help.description">
-          Notre chatbot IA peut vous expliquer chaque stratégie, métrique et vous aider à comprendre quelle approche correspond le mieux à votre profil d'investisseur.
-        </p>
-        <button onclick="document.querySelector('.floating-bubble-inner').click()" style="background: linear-gradient(135deg, #333333 0%, #444444 100%); color: white; padding: 1rem 2rem; border: none; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;" data-translate="simulator.help.button">
-          Discuter avec notre IA
-        </button>
-      </div>
-
-      <!-- Mobile-only Help Section -->
-      <div class="help-section-mobile" style="display: none; margin-top: 2rem; padding: 1.5rem; background: rgba(102, 126, 234, 0.08); border-radius: 16px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.2);">
+      <div class="help-section" style="margin-top: 3rem; padding: 2rem; background: rgba(102, 126, 234, 0.08); border-radius: 16px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.2);">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
         </svg>
-        <h3 style="font-size: 1.1rem; font-weight: 700; color: #667eea; margin-bottom: 0.75rem;" data-translate="simulator.help.mobile.title">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #667eea; margin-bottom: 0.75rem;" data-translate="simulator.help.title">
           Questions?
         </h3>
-        <p style="color: #6B7280; margin-bottom: 1.25rem; font-size: 0.95rem; line-height: 1.5;" data-translate="simulator.help.mobile.description">
-          Tap the chat button to ask our AI about any metric or strategy
+        <p style="color: #6B7280; line-height: 1.6; font-size: 1rem; max-width: 600px; margin: 0 auto;" data-translate="simulator.help.description">
+          Tap the chat button to ask anything about strategy, metrics or help you understand investment
         </p>
-        <button onclick="document.querySelector('.floating-bubble-inner').click()" style="background: #667eea; color: white; padding: 0.875rem 1.75rem; border: none; border-radius: 50px; font-weight: 600; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); transition: all 0.3s ease; width: 100%;" data-translate="simulator.help.mobile.button">
-          Ask AI
-        </button>
       </div>
 
       <!-- Disclaimer -->
