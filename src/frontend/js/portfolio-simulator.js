@@ -216,6 +216,95 @@
   }
 
   /**
+   * Detect if device is mobile
+   */
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  /**
+   * Get responsive chart options based on screen size
+   */
+  function getResponsiveChartOptions() {
+    const mobile = isMobile();
+    return {
+      responsive: true,
+      maintainAspectRatio: true,
+      aspectRatio: mobile ? 1.2 : 2.5,
+      animation: {
+        duration: 750,
+        easing: 'easeInOutQuart',
+      },
+      interaction: {
+        mode: 'index',
+        intersect: false,
+      },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            boxWidth: mobile ? 10 : 12,
+            padding: mobile ? 8 : 15,
+            font: { size: mobile ? 9 : 11, family: 'Inter, sans-serif' },
+            color: '#374151',
+            usePointStyle: true,
+          },
+        },
+        tooltip: {
+          enabled: !mobile,
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          titleColor: '#1F2937',
+          bodyColor: '#374151',
+          borderColor: '#E5E7EB',
+          borderWidth: 1,
+          padding: 12,
+          callbacks: {
+            label: function (context) {
+              let label = context.dataset.label || '';
+              if (label) {
+                label += ': ';
+              }
+              label += context.parsed.y.toFixed(1);
+              return label;
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: {
+            maxTicksLimit: mobile ? 6 : 12,
+            font: { size: mobile ? 8 : 10, family: 'Inter, sans-serif' },
+            color: '#6B7280',
+            maxRotation: mobile ? 45 : 0,
+            minRotation: mobile ? 45 : 0,
+          },
+        },
+        y: {
+          beginAtZero: false,
+          grid: { color: 'rgba(0, 0, 0, 0.05)' },
+          ticks: {
+            maxTicksLimit: mobile ? 6 : 8,
+            callback: function (value) {
+              return value.toFixed(0);
+            },
+            font: { size: mobile ? 8 : 10, family: 'Inter, sans-serif' },
+            color: '#6B7280',
+          },
+          title: {
+            display: !mobile,
+            text: getETFLabels().yAxisTitle,
+            font: { size: 11, family: 'Inter, sans-serif', weight: '500' },
+            color: '#374151',
+          },
+        },
+      },
+    };
+  }
+
+  /**
    * Create or update chart
    */
   function updateChart(data, strategy) {
@@ -227,83 +316,14 @@
     if (portfolioChart) {
       // Update existing chart
       portfolioChart.data = chartData;
+      portfolioChart.options = getResponsiveChartOptions();
       portfolioChart.update('default');
     } else {
       // Create new chart
       portfolioChart = new Chart(ctx, {
         type: 'line',
         data: chartData,
-        options: {
-          responsive: true,
-          maintainAspectRatio: true,
-          aspectRatio: 2.5,
-          animation: {
-            duration: 750,
-            easing: 'easeInOutQuart',
-          },
-          interaction: {
-            mode: 'index',
-            intersect: false,
-          },
-          plugins: {
-            legend: {
-              display: true,
-              position: 'bottom',
-              labels: {
-                boxWidth: 12,
-                padding: 15,
-                font: { size: 11, family: 'Inter, sans-serif' },
-                color: '#374151',
-                usePointStyle: true,
-              },
-            },
-            tooltip: {
-              backgroundColor: 'rgba(255, 255, 255, 0.95)',
-              titleColor: '#1F2937',
-              bodyColor: '#374151',
-              borderColor: '#E5E7EB',
-              borderWidth: 1,
-              padding: 12,
-              callbacks: {
-                label: function (context) {
-                  let label = context.dataset.label || '';
-                  if (label) {
-                    label += ': ';
-                  }
-                  label += context.parsed.y.toFixed(1);
-                  return label;
-                },
-              },
-            },
-          },
-          scales: {
-            x: {
-              grid: { display: false },
-              ticks: {
-                maxTicksLimit: 12,
-                font: { size: 10, family: 'Inter, sans-serif' },
-                color: '#6B7280',
-              },
-            },
-            y: {
-              beginAtZero: false,
-              grid: { color: 'rgba(0, 0, 0, 0.05)' },
-              ticks: {
-                callback: function (value) {
-                  return value.toFixed(0);
-                },
-                font: { size: 10, family: 'Inter, sans-serif' },
-                color: '#6B7280',
-              },
-              title: {
-                display: true,
-                text: getETFLabels().yAxisTitle,
-                font: { size: 11, family: 'Inter, sans-serif', weight: '500' },
-                color: '#374151',
-              },
-            },
-          },
-        },
+        options: getResponsiveChartOptions(),
       });
     }
   }
@@ -471,6 +491,18 @@
     if (portfolioData && portfolioChart) {
       updateChart(portfolioData, currentStrategy);
     }
+  });
+
+  // Listen for window resize to update chart responsively
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      if (portfolioData && portfolioChart) {
+        portfolioChart.options = getResponsiveChartOptions();
+        portfolioChart.update('none'); // Update without animation
+      }
+    }, 250);
   });
 
   // Cleanup on page unload

@@ -257,12 +257,17 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     };
 
+    // Check if mobile
+    const isMobile = window.innerWidth <= 768;
+    const isSmallMobile = window.innerWidth <= 480;
+
     const baseOptions = {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
         tooltip: {
+          enabled: !isMobile, // Disable tooltips on mobile
           backgroundColor: "rgba(0, 0, 0, 0.8)",
           titleColor: "#ffffff",
           bodyColor: "#ffffff",
@@ -277,15 +282,29 @@ document.addEventListener("DOMContentLoaded", () => {
       scales: {
         x: {
           grid: { display: false },
-          ticks: { color: textColor, font: { family: "Inter, sans-serif" } },
+          ticks: {
+            color: textColor,
+            font: {
+              family: "Inter, sans-serif",
+              size: isSmallMobile ? 9 : (isMobile ? 10 : 12)
+            },
+            maxRotation: isMobile ? 45 : 0,
+            minRotation: isMobile ? 45 : 0,
+          },
         },
         y: {
           grid: { color: gridColor, borderDash: [3, 3], drawBorder: false },
           ticks: {
             color: textColor,
-            font: { family: "Inter, sans-serif" },
+            font: {
+              family: "Inter, sans-serif",
+              size: isSmallMobile ? 9 : (isMobile ? 10 : 12)
+            },
+            maxTicksLimit: isMobile ? 5 : 8,
             callback: (value) =>
-              `${new Intl.NumberFormat("fr-FR").format(value / 1000)}k€`,
+              isSmallMobile
+                ? `${Math.round(value / 1000)}k`
+                : `${new Intl.NumberFormat("fr-FR").format(value / 1000)}k€`,
           },
         },
       },
