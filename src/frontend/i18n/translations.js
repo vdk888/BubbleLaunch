@@ -168,21 +168,21 @@ const translations = {
   },
   "chat.rotatingPlaceholders": {
     en: [
-      "Ask me why AI is a game-changer...",
-      "Ask me how we reduce fees...",
-      "Ask me what happens to fund managers...",
-      "Ask me how Bubble works..."
+      "Why AI changes everything...",
+      "How we reduce fees...",
+      "What happens to fund managers...",
+      "How Bubble works..."
     ],
     fr: [
-      "Demandez-moi pourquoi l'IA change la donne...",
-      "Demandez-moi comment nous réduisons les frais...",
-      "Demandez-moi ce qui arrive aux gérants de fonds...",
-      "Demandez-moi comment fonctionne Bubble..."
+      "Pourquoi l'IA change tout...",
+      "Comment nous réduisons les frais...",
+      "Ce qui arrive aux gérants...",
+      "Comment fonctionne Bubble..."
     ]
   },
   "chat.placeholder": {
-    en: "Ask me why AI is a game-changer...",
-    fr: "Demandez-moi pourquoi l'IA change la donne..."
+    en: "Why AI changes everything...",
+    fr: "Pourquoi l'IA change tout..."
   },
 
   // Waitlist Section
