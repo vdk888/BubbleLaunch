@@ -7,16 +7,30 @@ const {
   clearEnrichmentCache,
 } = require("../services/knowledgeGardenService");
 
+// In-memory cache for references
+let referencesCache = null;
+let groupedReferencesCache = null;
+let cacheTimestamp = null;
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes cache
+
 /**
  * Get knowledge garden references (with optional LLM enrichment)
  */
 async function getReferences(req, res) {
   try {
+    // Check cache first
+    if (referencesCache && cacheTimestamp && Date.now() - cacheTimestamp < CACHE_TTL) {
+      console.log('📦 Serving references from cache');
+      return res.json(referencesCache);
+    }
+
     // Check if enrichment is requested (default: true)
     const useEnrichment = req.query.enrich !== "false";
 
     if (useEnrichment) {
       const references = await getEnrichedPublishedReferences();
+      referencesCache = references;
+      cacheTimestamp = Date.now();
       res.json(references);
     } else {
       const references = await getPublishedReferences();
@@ -33,7 +47,15 @@ async function getReferences(req, res) {
  */
 async function getReferencesGroupedByType(req, res) {
   try {
+    // Check cache first
+    if (groupedReferencesCache && cacheTimestamp && Date.now() - cacheTimestamp < CACHE_TTL) {
+      console.log('📦 Serving grouped references from cache');
+      return res.json(groupedReferencesCache);
+    }
+
     const groupedReferences = await getEnrichedReferencesGroupedBySourceType();
+    groupedReferencesCache = groupedReferences;
+    cacheTimestamp = Date.now();
     res.json(groupedReferences);
   } catch (error) {
     console.error("Error fetching references grouped by source type:", error);
@@ -74,10 +96,15 @@ async function exploreStructure(req, res) {
  */
 function clearCache(req, res) {
   try {
+    // Clear both service and controller caches
     clearEnrichmentCache();
-    res.json({ success: true, message: "Enrichment cache cleared" });
+    referencesCache = null;
+    groupedReferencesCache = null;
+    cacheTimestamp = null;
+    console.log('🧹 Cleared all caches (enrichment + controller)');
+    res.json({ success: true, message: "All caches cleared" });
   } catch (error) {
-    console.error("Error clearing enrichment cache:", error);
+    console.error("Error clearing cache:", error);
     res.status(500).json({ error: "Failed to clear cache" });
   }
 }

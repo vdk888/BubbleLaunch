@@ -14,10 +14,13 @@ class ReferencesComponent {
 
     async init() {
         console.log('🌱 Initializing Knowledge Garden References...');
-        
+
         // Sync with current page language state
         this.syncLanguageState();
-        
+
+        // Show loading state immediately
+        this.renderLoading();
+
         await this.loadReferences();
         this.renderReferences();
     }
@@ -346,7 +349,7 @@ class ReferencesComponent {
             'Article': this.getArticleSVG(),
             'Research': '🔬',
             'Report': '📊',
-            'Video': '🎥',
+            'Video': this.getVideoSVG(),
             'Podcast': '🎧'
         };
         return icons[sourceType] || this.getArticleSVG();
@@ -371,6 +374,12 @@ class ReferencesComponent {
             <path d="m76.281 85.078h-50.266c-1.7266 0-3.125-1.3984-3.125-3.125v-69.156c0-0.86328-0.69922-1.5625-1.5625-1.5625s-1.5625 0.69922-1.5625 1.5625v69.156c0 1.6562 0.66016 3.2461 1.832 4.418s2.7617 1.832 4.418 1.832h50.266c0.86328 0 1.5625-0.69922 1.5625-1.5625s-0.69922-1.5625-1.5625-1.5625z"/>
             <path d="m68.75 90.625h-50.266c-1.7266 0-3.125-1.3984-3.125-3.125v-69.156c0-0.86328-0.69922-1.5625-1.5625-1.5625s-1.5625 0.69922-1.5625 1.5625v69.156c0 1.6562 0.66016 3.2461 1.832 4.418s2.7617 1.832 4.418 1.832h50.266c0.86328 0 1.5625-0.69922 1.5625-1.5625s-0.69922-1.5625-1.5625-1.5625z"/>
             <path d="m38.906 15.484c-0.86328 0-1.5625 0.69922-1.5625 1.5625v18.891c0 0.41406 0.16406 0.8125 0.45703 1.1055s0.69141 0.45703 1.1055 0.45703h16.75c0.41406 0 0.8125-0.16406 1.1055-0.45703s0.45703-0.69141 0.45703-1.1055v-18.891c0-0.41406-0.16406-0.8125-0.45703-1.1055-0.29297-0.29297-0.69141-0.45703-1.1055-0.45703z"/>
+        </svg>`;
+    }
+
+    getVideoSVG() {
+        return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="source-icon">
+            <path d="M8.3,14.8h83.4c4.6,0,8.3,3.7,8.3,8.3v53.8c0,4.6-3.7,8.3-8.3,8.3H8.3C3.7,85.2,0,81.5,0,76.9V23.1C0,18.5,3.7,14.8,8.3,14.8z M57,52.7l-11.5,7.1c-2.3,1.5-4.2,0.4-4.2-2.3V42.5c0-2.8,1.9-3.8,4.2-2.3L57,47.3C59.3,48.8,59.3,51.2,57,52.7z"/>
         </svg>`;
     }
 
@@ -425,11 +434,43 @@ class ReferencesComponent {
         });
     }
 
+    renderLoading() {
+        const container = document.getElementById('references-section');
+        if (!container) return;
+
+        const texts = this.currentLanguage === 'fr'
+            ? {
+                title: 'Nos références',
+                subtitle: 'Découvrez les livres et articles qui inspirent notre approche de l\'investissement intelligent.',
+                loading: 'Chargement des références...'
+              }
+            : {
+                title: 'Our References',
+                subtitle: 'Discover the books and articles that inspire our intelligent investment approach.',
+                loading: 'Loading references...'
+              };
+
+        container.innerHTML = `
+            <div class="references-header">
+                <h2 class="references-title">${texts.title}</h2>
+                <p class="references-subtitle">${texts.subtitle}</p>
+            </div>
+            <div class="references-loading">
+                <div class="loading-spinner">
+                    <div class="spinner-ring"></div>
+                    <div class="spinner-ring"></div>
+                    <div class="spinner-ring"></div>
+                </div>
+                <p class="loading-text">${texts.loading}</p>
+            </div>
+        `;
+    }
+
     renderError() {
         const container = document.getElementById('references-section');
         if (!container) return;
 
-        const texts = this.currentLanguage === 'fr' 
+        const texts = this.currentLanguage === 'fr'
             ? {
                 title: 'Erreur de chargement',
                 message: 'Impossible de charger les références pour le moment.',
