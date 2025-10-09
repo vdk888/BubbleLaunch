@@ -738,6 +738,7 @@ header .container {
   border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+  box-shadow: none;
 }
 
 .slider-dot.active {
@@ -747,6 +748,16 @@ header .container {
   border: 1px solid #667eea;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+  box-shadow: none;
+}
+
+/* Remove backdrop-filter on mobile to eliminate shadow appearance */
+@media (max-width: 768px) {
+  .slider-dot,
+  .slider-dot.active {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 
 /* Chart Descriptions */
@@ -1319,39 +1330,39 @@ header .container {
 
   /* Enhanced slider dots for touch */
   .slider-dots {
-    margin-top: 1.25rem;
-    gap: 12px;
+    margin-top: 1rem;
+    gap: 10px;
   }
 
   .slider-dot {
-    width: 10px;
-    height: 10px;
-    min-width: 40px;
-    min-height: 40px;
+    width: 8px;
+    height: 8px;
+    min-width: 36px;
+    min-height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    box-shadow: none;
+    box-shadow: none !important;
   }
 
   .slider-dot::before {
     content: '';
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: rgba(107, 114, 128, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(107, 114, 128, 0.25);
+    border: 1px solid rgba(107, 114, 128, 0.15);
     transition: all 0.3s ease;
-    box-shadow: none;
+    box-shadow: none !important;
   }
 
   .slider-dot.active::before {
-    width: 14px;
-    height: 14px;
-    background: rgba(102, 126, 234, 0.3);
+    width: 10px;
+    height: 10px;
+    background: rgba(102, 126, 234, 0.35);
     border: 1px solid #667eea;
-    box-shadow: none;
+    box-shadow: none !important;
   }
 }
 
@@ -2591,11 +2602,14 @@ form button:hover {
   .chat-suggestion-btn {
     width: 100%;
     text-align: center;
-    padding: 0.75rem 1rem;
-    font-size: 0.8rem;
-    white-space: nowrap;
+    padding: 0.65rem 0.875rem;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    white-space: normal;
     overflow: hidden;
-    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   .chat-input-container {
@@ -2623,13 +2637,13 @@ form button:hover {
     border: 1px solid rgba(0, 0, 0, 0.1);
     color: var(--primary);
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     font-size: 16px;
     cursor: pointer;
     z-index: 1001;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-    transition: all 0.2s ease;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
     padding: 0;
     display: flex;
     align-items: center;
@@ -2641,12 +2655,12 @@ form button:hover {
     width: 16px;
     height: 16px;
     flex-shrink: 0;
+    display: block;
   }
 
   #fullscreen-toggle-btn:active {
     background: rgba(255, 255, 255, 1);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-    transform: scale(0.95);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   /* Adjust for mobile keyboards */
@@ -2678,8 +2692,9 @@ form button:hover {
   }
 
   .chat-suggestion-btn {
-    padding: 0.65rem 0.875rem;
-    font-size: 0.85rem;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.7rem;
+    line-height: 1.25;
   }
 }
 
