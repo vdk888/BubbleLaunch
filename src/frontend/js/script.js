@@ -535,14 +535,8 @@ document.addEventListener("DOMContentLoaded", function () {
       isFullscreen = !isFullscreen;
       chatSection.classList.toggle("fullscreen", isFullscreen);
 
-      // Update the button icon based on state
-      if (isFullscreen) {
-        fullscreenToggleBtn.innerHTML =
-          '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M1.5 1a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 .5 7H0a.5.5 0 0 1 0-1h.5a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5zm10 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5H15a.5.5 0 0 1 0 1h-2.5A1.5 1.5 0 0 1 11 5.5v-4a.5.5 0 0 1 .5-.5zM0 10.5a.5.5 0 0 1 .5-.5H3a1.5 1.5 0 0 1 1.5 1.5v2.5a.5.5 0 0 1-1 0v-2.5a.5.5 0 0 0-.5-.5H.5a.5.5 0 0 1-.5-.5zm11 0a.5.5 0 0 1 .5-.5h2.5a.5.5 0 0 1 .5.5v2.5a.5.5 0 0 1-1 0v-2.5a.5.5 0 0 0-.5-.5h-2.5a.5.5 0 0 1-.5-.5z"/></svg>';
-      } else {
-        fullscreenToggleBtn.innerHTML =
-          '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M5.5 0a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 4.5 6h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5zm5 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 10 4.5v-4a.5.5 0 0 1 .5-.5zM0 10.5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 6 11.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zm10 1a1.5 1.5 0 0 1 1.5-1.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4z"/></svg>';
-      }
+      // CSS will handle icon switching based on .fullscreen class
+      // No need to manually update innerHTML
 
       // Scroll chat messages to bottom when toggling fullscreen
       setTimeout(() => {
@@ -555,8 +549,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (window.innerWidth <= 768 && !isFullscreen) {
         isFullscreen = true;
         chatSection.classList.add("fullscreen");
-        fullscreenToggleBtn.innerHTML =
-          '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M1.5 1a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 .5 7H0a.5.5 0 0 1 0-1h.5a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5zm10 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5H15a.5.5 0 0 1 0 1h-2.5A1.5 1.5 0 0 1 11 5.5v-4a.5.5 0 0 1 .5-.5zM0 10.5a.5.5 0 0 1 .5-.5H3a1.5 1.5 0 0 1 1.5 1.5v2.5a.5.5 0 0 1-1 0v-2.5a.5.5 0 0 0-.5-.5H.5a.5.5 0 0 1-.5-.5zm11 0a.5.5 0 0 1 .5-.5h2.5a.5.5 0 0 1 .5.5v2.5a.5.5 0 0 1-1 0v-2.5a.5.5 0 0 0-.5-.5h-2.5a.5.5 0 0 1-.5-.5z"/></svg>';
+
+        // CSS will handle icon switching based on .fullscreen class
 
         // Scroll to bottom of chat section with focus on input
         setTimeout(() => {

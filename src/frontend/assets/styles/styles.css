@@ -2738,9 +2738,9 @@ form button:hover {
   }
 
   .chat-suggestion-btn {
-    padding: 0.6rem 0.75rem;
-    font-size: 0.7rem;
-    line-height: 1.25;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.65rem;
+    line-height: 1.2;
   }
 }
 
