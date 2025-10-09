@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Check if there's a login error
+const errorMessage = Astro.url.searchParams.get('error');
+
+// Handle form submission
+if (Astro.request.method === 'POST') {
+  try {
+    const formData = await Astro.request.formData();
+    const password = formData.get('password');
+    
+    // Simple password check - in production, use environment variables
+    const ADMIN_PASSWORD = import.meta.env.ADMIN_PASSWORD || 'changeme';
+    
+    if (password === ADMIN_PASSWORD) {
+      // Set auth cookie and redirect to admin page
+      return new Response('', {
+        status: 302,
+        headers: {
+          'Location': '/admin',
+          'Set-Cookie': `auth_token=${ADMIN_PASSWORD}; Path=/; HttpOnly; SameSite=Strict; Max-Age=86400`
+        }
+      });
+    } else {
+      // Redirect back with error
+      return Astro.redirect('/login?error=invalid');
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    return Astro.redirect('/login?error=unknown');
+  }
+}
+---
+
+<Layout title="Login - Blog Admin">
+  <div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+      <div class="text-center">
+        <h1 class="text-2xl font-bold text-gray-900">Admin Login</h1>
+        <p class="mt-2 text-sm text-gray-600">
+          Enter your password to access the writing tools
+        </p>
+      </div>
+      
+      {errorMessage && (
+        <div class="p-4 text-sm text-red-700 bg-red-100 rounded-md">
+          {errorMessage === 'invalid' 
+            ? 'Invalid password. Please try again.' 
+            : 'An error occurred. Please try again.'}
+        </div>
+      )}
+      
+      <form class="mt-8 space-y-6" method="POST">
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">
+            Password
+          </label>
+          <div class="mt-1">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            />
+          </div>
+        </div>
+        
+        <div>
+          <button
+            type="submit"
+            class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Sign in
+          </button>
+        </div>
+        
+        <div class="text-center">
+          <a href="/blog" class="text-sm text-blue-600 hover:text-blue-500">
+            Return to blog
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</Layout>

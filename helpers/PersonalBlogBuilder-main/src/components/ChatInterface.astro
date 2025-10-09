@@ -1,0 +1,183 @@
+---
+// Basic structure for the chat interface
+// Includes client-side script for interactivity
+---
+
+<div class="flex flex-col h-full max-w-3xl mx-auto p-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700">
+  <h1 class="text-2xl font-bold mb-4 text-center text-gray-800 dark:text-gray-200">AI Blog Assistant</h1>
+
+  {/* Chat Messages Area - Reduced height to ensure buttons are visible */}
+  <div id="chat-messages" class="flex-grow overflow-y-auto mb-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-md border border-gray-200 dark:border-gray-600 scroll-smooth" style="max-height: calc(100vh - 220px);">
+    <!-- Messages will be appended here -->
+    <div class="p-2 text-gray-600 dark:text-gray-400 italic">Initializing chat...</div>
+  </div>
+
+  {/* Input Area */}
+  <div class="flex items-center border-t border-gray-200 dark:border-gray-600 pt-4">
+    <input
+      type="text"
+      id="chat-input"
+      placeholder="Type your message, paste a link, or describe an idea..."
+      class="flex-grow px-4 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white"
+      autocomplete="off"
+    />
+    <button id="send-button" class="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50">
+      Send
+    </button>
+  </div>
+
+  {/* Wrap-up Button - Always visible at the bottom */}
+  <div class="mt-4 text-center sticky bottom-4">
+    <button id="wrap-up-button" class="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50">
+      Wrap Up & Create Notion Post
+    </button>
+  </div>
+</div>
+
+<script>
+  // Add a log to verify this script version is running
+  console.log('ChatInterface.astro script (v2 - hardcoded URL) is running!');
+
+  const chatMessages = document.getElementById('chat-messages') as HTMLDivElement;
+  const chatInput = document.getElementById('chat-input') as HTMLInputElement;
+  const sendButton = document.getElementById('send-button') as HTMLButtonElement;
+  const wrapUpButton = document.getElementById('wrap-up-button') as HTMLButtonElement;
+
+  // Simple in-memory history for this session
+  let conversationHistory: { role: 'user' | 'assistant'; content: string }[] = [];
+
+  function addMessage(sender: 'user' | 'assistant' | 'system', text: string) {
+    const messageWrapper = document.createElement('div');
+    messageWrapper.classList.add('mb-3', 'flex');
+
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('p-3', 'rounded-lg', 'max-w-[80%]', 'shadow-sm');
+
+    // Basic markdown link rendering
+    const linkedText = text.replace(/\(https?:\/\/[^\s]+\)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 underline">$1</a>');
+
+    if (sender === 'user') {
+      messageWrapper.classList.add('justify-end');
+      messageDiv.classList.add('bg-blue-500', 'text-white');
+      messageDiv.innerHTML = linkedText; // Use innerHTML for links
+      conversationHistory.push({ role: 'user', content: text });
+    } else if (sender === 'assistant') {
+      messageWrapper.classList.add('justify-start');
+      messageDiv.classList.add('bg-gray-200', 'dark:bg-gray-600', 'text-gray-800', 'dark:text-gray-100');
+      messageDiv.innerHTML = linkedText; // Use innerHTML for links
+      conversationHistory.push({ role: 'assistant', content: text });
+    } else { // System message
+      messageWrapper.classList.add('justify-center');
+      messageDiv.classList.add('bg-yellow-100', 'dark:bg-yellow-700', 'text-yellow-800', 'dark:text-yellow-200', 'italic', 'text-sm', 'w-full', 'text-center');
+      messageDiv.textContent = text;
+      // Don't add system status messages to history sent to LLM
+    }
+
+    messageWrapper.appendChild(messageDiv);
+
+    // Clear initial message if present
+    if (chatMessages.children.length === 1 && chatMessages.firstElementChild?.textContent?.includes('Initializing chat...')) {
+        chatMessages.innerHTML = '';
+    }
+
+    chatMessages.appendChild(messageWrapper);
+    // Scroll to bottom smoothly
+    chatMessages.scrollTo({
+        top: chatMessages.scrollHeight,
+        behavior: 'smooth'
+    });
+  }
+
+  function setLoadingState(isLoading: boolean) {
+      chatInput.disabled = isLoading;
+      sendButton.disabled = isLoading;
+      wrapUpButton.disabled = isLoading;
+      sendButton.textContent = isLoading ? '...' : 'Send';
+  }
+
+  async function sendMessage() {
+    const messageText = chatInput.value.trim();
+    if (!messageText) return;
+
+    addMessage('user', messageText);
+    chatInput.value = '';
+    setLoadingState(true);
+
+    try {
+      // Hardcode the backend URL temporarily for testing
+      const backendUrl = `https://bubbleblog.replit.app:3000/api/chat`;
+      console.log(`Sending message to (hardcoded): ${backendUrl}`); // Add log for debugging
+      const response = await fetch(backendUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        // Send only the last few messages to manage token limits
+        body: JSON.stringify({ message: messageText, history: conversationHistory.slice(-10) })
+      });
+
+      if (!response.ok) {
+         const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+        throw new Error(errorData.error || `HTTP error ${response.status}`);
+      }
+
+      const data = await response.json();
+      addMessage('assistant', data.reply);
+
+    } catch (error: any) {
+      console.error('Error sending message:', error);
+      addMessage('system', `Error: ${error.message || 'Could not get reply from AI.'}`);
+    } finally {
+       setLoadingState(false);
+       chatInput.focus();
+    }
+  }
+
+  async function wrapUpAndPublish() {
+    if (conversationHistory.length === 0) {
+        addMessage('system', 'Chat history is empty. Please chat first.');
+        return;
+    }
+    addMessage('system', 'Processing request to generate Notion post...');
+    setLoadingState(true);
+    try {
+        const response = await fetch('/api/publish', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ history: conversationHistory }), // Send full history
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({ error: 'Unknown publish error' }));
+            throw new Error(errorData.error || `HTTP error ${response.status}`);
+        }
+
+        const data = await response.json();
+        addMessage('system', `Successfully created Notion page: <a href="${data.notionUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 underline">View Here</a>`);
+        // Reset conversation for a new post
+        // conversationHistory = [];
+        // addMessage('system', 'Ready for a new topic!');
+
+    } catch (error: any) {
+        console.error('Error publishing to Notion:', error);
+        addMessage('system', `Error publishing: ${error.message}`);
+    } finally {
+        setLoadingState(false);
+    }
+  }
+
+  // Event Listeners
+  sendButton.addEventListener('click', sendMessage);
+  chatInput.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) { // Send on Enter, allow Shift+Enter for newline
+      event.preventDefault(); // Prevent default newline insertion
+      sendMessage();
+    }
+  });
+  wrapUpButton.addEventListener('click', wrapUpAndPublish);
+
+  // Initial greeting
+  // Use setTimeout to ensure the initial message removal logic works correctly
+  setTimeout(() => {
+    addMessage('assistant', 'Hello! What topic should we discuss for your next blog post? Feel free to paste links or just describe your ideas.');
+  }, 100);
+
+</script>

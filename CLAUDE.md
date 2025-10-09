@@ -12,12 +12,15 @@ This is **Bubble**, a fintech startup revolutionizing investment through AI-powe
 - `npm start` - Start the development server (runs on port 3000)
 - `node src/backend/server.js` - Direct server start
 
-### Database Migration
-- `./migrate.sh` - Run database migration script
-
 ### Testing
-- No specific test framework is configured in package.json
-- Manual testing endpoints are available at `/test-post` and `/api/test-freepik-connection`
+- **Manual Testing Endpoints**:
+  - `/` - Main landing page
+  - `/portfolio-simulator` - Interactive portfolio simulator
+  - `/blog` - Blog listing
+  - `/test-image-generation` - Freepik image generation test
+  - `/clear-cache` - Clear blog image cache
+  - `/api/test-freepik-connection` - Test Freepik API connectivity
+- No automated test framework configured (manual testing only)
 
 ## Architecture & Key Components
 
@@ -210,7 +213,13 @@ The application includes a **lightweight, interactive portfolio simulator** inte
 - **Time Period Selector**: 1Y, 3Y, 5Y, 10Y, 20Y buttons for flexible analysis
 - **Bilingual**: Language switcher updates all text, chart labels, and tooltips dynamically
 
-**Recent Updates** (2025-01-09):
+**Recent Updates** (2025-10-09):
+- **Glassmorphism UI**: Added floating chat input with transparent design (15% white opacity, 20px blur)
+- **Button Design Unification**: All CTA buttons now pill-shaped (border-radius: 50px)
+- **Submit Buttons**: Circular gray gradient buttons (40px × 40px) with upward arrow icon
+- **Chat Placeholders**: Changed "Ask us" → "Ask me" for more personal feel
+- **Form Inputs**: Enhanced with glassmorphism styling matching floating input
+- **Font Consistency**: All pages load Inter font weights 400-800
 - Fixed tile sizing on main page (clarity/automation tiles now fill properly)
 - Updated portfolio preview title: "Discover Our Portfolio Optimization"
 - CTA button text: "Try Our Simulator" (FR: "Essayez notre Simulateur")

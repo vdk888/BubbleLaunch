@@ -1,0 +1,64 @@
+---
+import BlogLayout from '../layouts/BlogLayout.astro';
+import { getPublishedPosts, type PostInfo } from '../lib/notion';
+
+// Fetch the posts from Notion
+let posts: PostInfo[] = [];
+let fetchError: string | null = null;
+try {
+  posts = await getPublishedPosts();
+} catch (error: any) {
+  console.error('Failed to load posts for blog index:', error);
+  fetchError = 'Failed to load blog posts. Please check the server logs or Notion configuration.';
+}
+
+// Helper to format date
+function formatDate(dateString: string | null): string {
+  if (!dateString) return 'Date not set';
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<BlogLayout title="Bubble Blog" description="A collection of thoughts, ideas, and explorations">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-3xl font-semibold mb-8 text-center">Recent Posts</h1>
+
+    {fetchError && (
+      <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md mb-8" role="alert">
+        <strong class="font-medium">Error:</strong>
+        <span class="ml-1"> {fetchError}</span>
+      </div>
+    )}
+
+    {posts.length === 0 && !fetchError && (
+      <div class="text-center py-12">
+        <p class="text-gray-500">No published posts found yet. Check back soon!</p>
+      </div>
+    )}
+
+    {posts.length > 0 && (
+      <div class="space-y-12">
+        {posts.map((post) => (
+          <article class="border-b border-gray-100 pb-10 last:border-0">
+            <h2 class="text-2xl font-medium mb-2">
+              <a href={`/blog/${post.slug}`} class="text-gray-900 hover:text-gray-600 transition-colors">
+                {post.title}
+              </a>
+            </h2>
+            <p class="text-gray-500 text-sm mb-4">
+              {formatDate(post.publishedDate)}
+            </p>
+            <p class="text-gray-600 mb-4 leading-relaxed">{post.summary}</p>
+            <a href={`/blog/${post.slug}`} class="inline-block text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors">
+              Continue reading →
+            </a>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</BlogLayout>

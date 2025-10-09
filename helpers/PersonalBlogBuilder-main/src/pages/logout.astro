@@ -1,0 +1,10 @@
+---
+// Clear the auth cookie and redirect to login page
+return new Response('', {
+  status: 302,
+  headers: {
+    'Location': '/login',
+    'Set-Cookie': 'auth_token=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0'
+  }
+});
+---

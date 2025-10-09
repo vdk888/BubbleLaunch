@@ -1,0 +1,86 @@
+---
+import EmailSubscriptionForm from '../components/EmailSubscriptionForm.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Personal thoughts and ideas" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<title>{title}</title>
+	</head>
+	<body class="bg-white text-gray-900 font-sans min-h-screen flex flex-col">
+		<header class="border-b border-gray-100 py-6">
+			<div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+				<div>
+					<a href="/blog" class="text-xl font-medium hover:text-gray-600 transition-colors">
+						My Personal Blog
+					</a>
+				</div>
+				<nav>
+					<ul class="flex space-x-6">
+						<li><a href="/blog" class="text-gray-600 hover:text-gray-900 transition-colors">Home</a></li>
+						<li><a href="/blog/about" class="text-gray-600 hover:text-gray-900 transition-colors">About</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		
+		<main class="flex-grow container mx-auto px-4 md:px-6 py-8">
+			<slot />
+		</main>
+		
+		<footer class="border-t border-gray-100 py-6 text-sm text-gray-500">
+			<div class="container mx-auto px-4 md:px-6">
+				<div class="mb-8">
+					<EmailSubscriptionForm />
+				</div>
+				<div class="flex flex-col md:flex-row justify-between items-center">
+					<div>
+						© {new Date().getFullYear()} My Personal Blog. All rights reserved.
+					</div>
+					<div class="mt-4 md:mt-0">
+						<a href="#" class="text-gray-500 hover:text-gray-700 transition-colors">Privacy Policy</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
+
+<style is:global>
+	/* Import global styles */
+	@import '../styles/global.css';
+	
+	:root {
+		--font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	}
+	
+	html {
+		font-family: var(--font-sans);
+		scroll-behavior: smooth;
+	}
+	
+	body {
+		line-height: 1.6;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+	
+	a {
+		text-decoration: none;
+	}
+</style>

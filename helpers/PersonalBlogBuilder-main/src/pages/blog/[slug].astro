@@ -1,0 +1,137 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import { getPublishedPosts, getPostDetails } from '../../lib/notion';
+import { marked } from 'marked'; // Import marked library
+
+// 1. Generate the static paths for all published posts
+export async function getStaticPaths() {
+  let postsData;
+  try {
+    postsData = await getPublishedPosts();
+  } catch (error) {
+    console.error("Error fetching posts for static paths:", error);
+    // Return an empty array or handle error appropriately if posts can't be fetched
+    return [];
+  }
+
+  return postsData.map((post) => ({
+    params: { slug: post.slug }, // The slug will be used in the URL
+    props: { postId: post.id }, // Pass the post ID if needed later, though slug is primary key here
+  }));
+}
+
+// 2. Get the specific post data for the current page
+const { slug } = Astro.params;
+
+// Ensure slug is treated as string
+if (typeof slug !== 'string') {
+  // Handle error or redirect, maybe return a 404
+  throw new Error('Invalid slug parameter.');
+}
+
+let postDetails;
+let renderError: string | null = null;
+try {
+  postDetails = await getPostDetails(slug);
+} catch (error) {
+  console.error(`Error fetching post details for slug ${slug}:`, error);
+  renderError = `Failed to load post content for slug: ${slug}. Please check the logs.`;
+  // Optionally, you could try fetching by ID if you passed it as props
+}
+
+// Handle case where post is not found by slug
+if (!postDetails && !renderError) {
+  // It's better to return a 404 response
+  // Astro doesn't have a built-in redirect/404 here easily, so we show a message
+  renderError = `Blog post with slug "${slug}" not found.`;
+  // In a real app, you might return Astro.redirect('/404') if setup, or render a specific 404 component.
+}
+
+// 3. Render the page with the post content
+const pageTitle = postDetails ? postDetails.title : 'Post Not Found';
+const contentHtml = postDetails ? marked.parse(postDetails.markdownContent) : '<p>Content could not be loaded.</p>';
+---
+
+<BlogLayout title={pageTitle} description={postDetails?.summary || 'Blog post'}>
+  <div class="max-w-2xl mx-auto">
+    {renderError && (
+      <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md mb-8" role="alert">
+        <strong class="font-medium">Error:</strong>
+        <span class="ml-1"> {renderError}</span>
+      </div>
+    )}
+
+    {postDetails && !renderError && (
+      <article>
+        <header class="mb-8 pb-4 border-b border-gray-100">
+          <h1 class="text-3xl font-semibold mb-3">{postDetails.title}</h1>
+          {postDetails.publishedDate && (
+            <p class="text-gray-500 text-sm">
+              {new Date(postDetails.publishedDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </p>
+          )}
+        </header>
+        
+        <div class="prose prose-gray max-w-none">
+          <Fragment set:html={contentHtml} />
+        </div>
+      </article>
+    )}
+
+    <div class="mt-12 pt-6 border-t border-gray-100">
+      <a href="/blog" class="text-blue-600 hover:text-blue-800 transition-colors text-sm font-medium">
+        ← Back to all posts
+      </a>
+    </div>
+  </div>
+</BlogLayout>
+
+<style is:global>
+  /* Add some basic prose styling if Tailwind prose plugin isn't used */
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    margin-bottom: 0.5em;
+    margin-top: 1em;
+  }
+  .prose p {
+    margin-bottom: 1em;
+    line-height: 1.6;
+  }
+  .prose ul, .prose ol {
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+  }
+  .prose li > p {
+    margin-bottom: 0.5em; /* Tighter spacing within list items */
+  }
+  .prose a {
+    color: #2563eb; /* Example blue */
+    text-decoration: underline;
+  }
+  .prose code {
+    background-color: #f3f4f6; /* Light gray */
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: monospace;
+  }
+  .prose pre {
+    background-color: #f3f4f6;
+    padding: 1em;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+  .prose pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+  .prose blockquote {
+    border-left: 4px solid #d1d5db; /* Gray border */
+    padding-left: 1em;
+    margin-left: 0;
+    font-style: italic;
+    color: #4b5563; /* Darker gray */
+  }
+</style>

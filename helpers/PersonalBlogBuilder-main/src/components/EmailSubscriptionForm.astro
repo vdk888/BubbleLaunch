@@ -1,0 +1,131 @@
+---
+// Email subscription form component
+---
+
+<div class="email-subscription bg-gray-50 p-6 rounded-lg border border-gray-200 shadow-sm">
+  <h3 class="text-lg font-medium mb-3">Stay Updated</h3>
+  <p class="text-gray-600 mb-4">Subscribe to receive notifications when new articles are published.</p>
+  
+  <form id="subscription-form" class="subscription-form">
+    <div class="flex flex-col sm:flex-row gap-3">
+      <input
+        type="email"
+        id="subscriber-email"
+        name="email"
+        placeholder="Your email address"
+        required
+        class="flex-grow px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button
+        type="submit"
+        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        Subscribe
+      </button>
+    </div>
+    <div id="subscription-message" class="mt-3 text-sm hidden"></div>
+  </form>
+</div>
+
+<script>
+  // Client-side form handling
+  document.addEventListener('DOMContentLoaded', async () => {
+    // First check if the API is accessible
+    try {
+      const response = await fetch('/api/health');
+      console.log('API health check status:', response.status);
+      if (response.ok) {
+        console.log('API is accessible');
+      } else {
+        console.warn('API health check failed with status:', response.status);
+      }
+    } catch (error) {
+      console.error('API health check error:', error);
+    }
+    const form = document.getElementById('subscription-form') as HTMLFormElement;
+    const messageDiv = document.getElementById('subscription-message') as HTMLDivElement;
+    
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Get form data
+        const emailInput = document.getElementById('subscriber-email') as HTMLInputElement;
+        const email = emailInput.value.trim();
+        
+        // Show loading state
+        const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+        const originalButtonText = submitButton.textContent;
+        submitButton.textContent = 'Subscribing...';
+        submitButton.disabled = true;
+        
+        try {
+          // Send subscription request to API
+          // Use the correct API endpoint path based on the environment
+          // In Replit, we need to use the full URL structure
+          const isReplit = window.location.hostname.includes('replit') || window.location.hostname.includes('repl.co');
+          const apiUrl = isReplit ? '/api/subscribe' : '/api/subscribe';
+          
+          console.log('Environment:', isReplit ? 'Replit' : 'Local');
+          console.log('Sending subscription request to:', apiUrl);
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+          });
+          
+          const data = await response.json();
+          
+          // Show success or error message
+          messageDiv.classList.remove('hidden', 'text-red-600', 'text-green-600');
+          
+          if (response.ok) {
+            // Success
+            messageDiv.textContent = data.message || 'Thank you for subscribing!';
+            messageDiv.classList.add('text-green-600');
+            emailInput.value = ''; // Clear the input
+          } else {
+            // Error
+            messageDiv.textContent = data.error || 'Failed to subscribe. Please try again.';
+            messageDiv.classList.add('text-red-600');
+          }
+        } catch (error) {
+          // Network or other error
+          messageDiv.classList.remove('hidden');
+          messageDiv.textContent = 'An error occurred. Please try again later.';
+          messageDiv.classList.add('text-red-600');
+          
+          // Enhanced error logging
+          console.error('Subscription error:', error);
+          
+          // Try to get more information about the error
+          if (error instanceof Error) {
+            console.error('Error details:', {
+              message: error.message,
+              name: error.name,
+              stack: error.stack
+            });
+          }
+        } finally {
+          // Restore button state
+          submitButton.textContent = originalButtonText;
+          submitButton.disabled = false;
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .email-subscription {
+    max-width: 100%;
+  }
+  
+  @media (min-width: 640px) {
+    .subscription-form {
+      max-width: 500px;
+    }
+  }
+</style>

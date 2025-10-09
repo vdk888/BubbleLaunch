@@ -1,0 +1,48 @@
+{
+  "name": "personal-blog-builder",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "server:dev": "tsx watch server/index.ts",
+    "server:start": "node dist/server/production-server.js",
+    "build:server": "tsc -p tsconfig.server.json",
+    "build:all": "npm run build && npm run build:server",
+    "dev:all": "concurrently \"npm run dev\" \"npm run server:dev\"",
+    "setup:notion": "tsx scripts/setup-notion-db.ts",
+    "start:prod": "npm run build:all && concurrently \"node ./dist/server/entry.mjs\" \"npm run server:start\""
+  },
+  "dependencies": {
+    "@astrojs/node": "^8.3.4",
+    "@astrojs/tailwind": "^5.1.5",
+    "@notionhq/client": "^2.3.0",
+    "@types/marked": "^6.0.0",
+    "astro": "^4.16.18",
+    "axios": "^1.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "marked": "^15.0.11",
+    "node-telegram-bot-api": "^0.66.0",
+    "nodemailer": "^7.0.3",
+    "notion-to-md": "^3.1.8",
+    "openai": "^4.97.0",
+    "rollup": "^4.40.1",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.17.32",
+    "@types/node-telegram-bot-api": "^0.64.8",
+    "@types/nodemailer": "^6.4.17",
+    "concurrently": "^9.1.2",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}
