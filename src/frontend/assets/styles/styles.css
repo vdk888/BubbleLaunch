@@ -1137,17 +1137,28 @@ header .container {
 .mini-chat-input {
   flex: 1;
   padding: 0.75rem 1rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50px;
   font-size: 0.9rem;
   transition: all 0.2s ease;
-  background: white;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 
 .mini-chat-input:focus {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
 }
 
 .mini-chat-send {
@@ -2315,9 +2326,13 @@ form button:hover {
   margin-bottom: 0;
 }
 
-/* Welcome message styling - larger, bold */
+/* Welcome message styling - larger, bold, centered */
 .chat-message.bot:first-child {
   margin-bottom: 0.5rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
 .chat-message.bot:first-child .message-content {
@@ -2325,6 +2340,10 @@ form button:hover {
   font-weight: 700;
   color: #666666;
   line-height: 1.3;
+  text-align: center;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Responsive welcome message font size */
@@ -2432,29 +2451,36 @@ form button:hover {
 .chat-input {
   flex: 1;
   padding: 1rem 1.25rem;
-  border: 1px solid #E5E7EB;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50px;
   font-family: inherit;
   font-size: 1rem;
-  background: #F3F4F6;
+  background: rgba(255, 255, 255, 0.3);
   color: var(--foreground);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: all 0.3s ease;
-  box-shadow: none;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 
 .chat-input:disabled {
   opacity: 0.7;
   cursor: not-allowed;
-  background: #E5E7EB;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .chat-input:focus {
   outline: none;
-  border-color: #D1D5DB;
-  background: #FFFFFF;
-  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
 }
 
 .chat-submit {
