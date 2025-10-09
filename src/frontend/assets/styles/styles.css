@@ -1680,6 +1680,9 @@ section h2 {
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, box-shadow;
+  display: flex;
+  flex-direction: column;
+  min-height: 280px;
 }
 
 .feature-item h4 {
@@ -1687,6 +1690,7 @@ section h2 {
   margin-bottom: 1rem;
   color: var(--primary);
   font-weight: 700;
+  flex-shrink: 0;
 }
 
 .feature-item p {
@@ -1694,6 +1698,7 @@ section h2 {
   line-height: 1.8;
   color: #444;
   margin: 0;
+  flex: 1;
 }
 
 .platform-card:hover,
@@ -1726,6 +1731,10 @@ section h2 {
 @media (min-width: 768px) {
   .values-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -2500,8 +2509,7 @@ footer .container {
 
 .clarity-tile span {
     flex: 1;
-    display: flex;
-    align-items: center;
+    display: block;
     line-height: 1.5;
     width: 100%;
 }
@@ -2558,8 +2566,7 @@ footer .container {
 
 .automation-tile span {
     flex: 1;
-    display: flex;
-    align-items: center;
+    display: block;
     line-height: 1.5;
     width: 100%;
 }
@@ -3103,13 +3110,14 @@ footer .container {
   
   .feature-item {
     padding: 1.5rem;
+    min-height: 240px;
   }
-  
+
   .feature-item h4 {
     font-size: 1.2rem;
     margin-bottom: 0.75rem;
   }
-  
+
   .feature-item p {
     font-size: 1rem;
     line-height: 1.6;

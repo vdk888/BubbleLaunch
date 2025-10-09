@@ -103,8 +103,8 @@ const translations = {
     fr: "Découvrez nos Optimisations de Portefeuilles",
   },
   "vision.portfolio.description": {
-    en: "See how our quantitative strategies outperform traditional approaches over 10 years of historical data.",
-    fr: "Visualisez comment nos stratégies quantitatives surpassent les approches traditionnelles sur 10 ans de données historiques.",
+    en: "See how our quantitative strategies outperform traditional approaches over 20 years of historical data.",
+    fr: "Visualisez comment nos stratégies quantitatives surpassent les approches traditionnelles sur 20 ans de données historiques.",
   },
   "vision.portfolio.equal_weight": {
     en: "Equal Allocation",

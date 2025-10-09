@@ -55,7 +55,20 @@
    */
   function getStrategyLabel(labelKey) {
     const lang = localStorage.getItem('preferredLanguage') || 'fr';
-    return window.translations && window.translations[labelKey]
+
+    // Ensure translations object exists
+    if (!window.translations) {
+      console.warn('Translations not loaded yet, using fallback');
+      // Fallback labels
+      const fallbacks = {
+        'simulator.strategy.equalWeight': lang === 'en' ? 'Equal Allocation' : 'Allocation Égale',
+        'simulator.strategy.simpleRiskParity': 'Risk Parity',
+        'simulator.strategy.optimizedRiskParity': lang === 'en' ? '✨ Optimized' : '✨ Optimisé',
+      };
+      return fallbacks[labelKey] || labelKey;
+    }
+
+    return window.translations[labelKey]
       ? window.translations[labelKey][lang]
       : labelKey;
   }
@@ -68,10 +81,10 @@
     const t = window.translations || {};
 
     return {
-      spy: t['simulator.etf.spy'] ? t['simulator.etf.spy'][lang] : 'SPY (S&P 500)',
-      ief: t['simulator.etf.ief'] ? t['simulator.etf.ief'][lang] : 'IEF (Obligations)',
-      gld: t['simulator.etf.gld'] ? t['simulator.etf.gld'][lang] : 'GLD (Or)',
-      yAxisTitle: t['simulator.chart.yAxisTitle'] ? t['simulator.chart.yAxisTitle'][lang] : 'Valeur (Base 100)',
+      spy: t['simulator.etf.spy'] ? t['simulator.etf.spy'][lang] : (lang === 'en' ? 'SPY (S&P 500)' : 'SPY (S&P 500)'),
+      ief: t['simulator.etf.ief'] ? t['simulator.etf.ief'][lang] : (lang === 'en' ? 'IEF (Bonds)' : 'IEF (Obligations)'),
+      gld: t['simulator.etf.gld'] ? t['simulator.etf.gld'][lang] : (lang === 'en' ? 'GLD (Gold)' : 'GLD (Or)'),
+      yAxisTitle: t['simulator.chart.yAxisTitle'] ? t['simulator.chart.yAxisTitle'][lang] : (lang === 'en' ? 'Value (Base 100)' : 'Valeur (Base 100)'),
     };
   }
 
@@ -102,6 +115,28 @@
       console.error('Error fetching portfolio data:', error);
       return null;
     }
+  }
+
+  /**
+   * Filter data based on selected period
+   */
+  function filterDataByPeriod(data, years) {
+    if (!data || !data.data) return data;
+
+    const allData = data.data;
+    const endDate = new Date(allData[allData.length - 1].date);
+    const startDate = new Date(endDate);
+    startDate.setFullYear(startDate.getFullYear() - years);
+
+    const filteredData = allData.filter(d => {
+      const date = new Date(d.date);
+      return date >= startDate;
+    });
+
+    return {
+      ...data,
+      data: filteredData
+    };
   }
 
   /**
@@ -371,11 +406,12 @@
    */
   function handlePeriodChange(period) {
     currentPeriod = period;
-    // TODO: Filter data based on period
-    // For now, just reload with full data
+
     if (portfolioData) {
-      updateChart(portfolioData, currentStrategy);
-      updateMetrics(portfolioData, currentStrategy);
+      // Filter data based on selected period
+      const filteredData = filterDataByPeriod(portfolioData, period);
+      updateChart(filteredData, currentStrategy);
+      updateMetrics(filteredData, currentStrategy);
     }
 
     // Analytics tracking (if available)
