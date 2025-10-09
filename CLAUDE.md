@@ -95,9 +95,10 @@ The application requires several environment variables in `.env`:
 
 ### Frontend Features
 - **Responsive multilingual design** with language toggle (FR/EN)
-- **Interactive AI chatbot** with streaming responses
+- **Interactive AI chatbot** with streaming responses and glassmorphism floating input
 - **Dynamic blog system** with bilingual content rendering
 - **Portfolio Simulator** - Interactive comparison of 3 investment strategies with 20 years of real ETF data (SPY, IEF, GLD)
+- **Unified button design** - All CTA buttons use pill-shaped design (border-radius: 50px) for consistent brand experience
   - Real-time strategy switching with prominent visual feedback
   - 6 performance metrics with educational tooltips
   - Time period selection (1Y, 3Y, 5Y, 10Y, 20Y)

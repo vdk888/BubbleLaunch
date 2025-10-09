@@ -307,13 +307,23 @@ Quand l'espace horizontal est insuffisant :
 
 * ### **Padding : 1.1rem 2.5rem**
 
-* ### **Border-radius : 8px**
+* ### **Border-radius : 50px** (forme de pilule pour design moderne et cohérent)
 
 * ### **Poids police : 600**
 
 * ### **Ombre : `0 4px 12px rgba(0, 0, 0, 0.1)`**
 
 * ### **État hover : Arrière-plan `#6b7280` (gris moderne utilisé dans les graphiques)**
+
+#### **Boutons de Soumission (Submit)**
+
+* ### **Forme : Circulaire (40px × 40px, border-radius: 50%)**
+
+* ### **Arrière-plan : Dégradé gris `linear-gradient(135deg, rgba(107, 114, 128, 0.9), rgba(107, 114, 128, 0.7))`**
+
+* ### **Icône : Flèche vers le haut (upward arrow)**
+
+* ### **Usage : Tous les boutons de soumission (chat, formulaires, floating input)**
 
 #### **Bouton Secondaire**
 
@@ -478,20 +488,37 @@ Quand l'espace horizontal est insuffisant :
   \--chart-active: rgba(102, 126, 234, 0.3); /\* Indicateurs actifs \*/  
 }
 
-/\* Styles CTA \- COULEUR ORIGINALE INCHANGÉE \*/  
-.cta-button, .chat-submit, button\[type="submit"\] {  
-  background: linear-gradient(135deg, \#333333 0%, \#444444 100%);  
-  color: white;  
-  padding: 1.1rem 2.5rem;  
-  border-radius: 8px;  
-  font-weight: 600;  
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  
-  transition: background 0.3s ease;  
+/\* Styles CTA \- DESIGN PILULE UNIFIÉ \*/
+.cta-button {
+  background: linear-gradient(135deg, \#333333 0%, \#444444 100%);
+  color: white;
+  padding: 1.1rem 2.5rem;
+  border-radius: 50px; /\* Forme de pilule \*/
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
 }
 
-/\* SEUL LE HOVER CHANGE VERS LE GRIS \*/  
-.cta-button:hover, .chat-submit:hover, button\[type="submit"\]:hover {  
-  background: \#6b7280;  
+/\* Boutons de soumission circulaires avec flèche vers le haut \*/
+.chat-submit, .mini-chat-send, .floating-input-submit {
+  background: linear-gradient(135deg, rgba(107, 114, 128, 0.9), rgba(107, 114, 128, 0.7));
+  border-radius: 50%; /\* Circulaire \*/
+  width: 40px;
+  height: 40px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/\* SEUL LE HOVER CHANGE VERS LE GRIS \*/
+.cta-button:hover {
+  background: \#6b7280;
+}
+
+.chat-submit:hover, .mini-chat-send:hover, .floating-input-submit:hover {
+  background: linear-gradient(135deg, \#6b7280, \#6b7280);
+  transform: scale(1.05);
 }
 
 ---

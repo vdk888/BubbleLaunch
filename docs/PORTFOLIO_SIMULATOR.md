@@ -540,5 +540,45 @@ For questions or issues:
 
 ---
 
-**Last Updated**: 2025-01-09
-**Current Version**: v1.2 - Production-ready with UI polish
+### 2025-10-09: Glassmorphism Floating Chat Input & Button Design Unification
+
+#### Glassmorphism Floating Chat Input
+- **New component**: Transparent floating input at bottom center of pages
+- **Design**: Ultra-transparent glassmorphism with 15% white opacity, 20px backdrop blur
+- **Behavior**:
+  - Main page: Shows when "Join us" button scrolls out of view
+  - Simulator page: Always visible
+- **Integration**: Opens main chatbot and sends message when submitted
+- **Styling**: Pill-shaped (border-radius: 50px) with gray circular submit button
+
+#### Site-wide Button Design Unification (Pill Shape)
+- **All CTA buttons updated to border-radius: 50px**:
+  - `.cta-button` (main CTAs like "Join us", "Try our simulator")
+  - `form button` (waitlist form submit)
+  - `.mini-chat-input` (mini chat input field)
+  - Simulator back button (inline styled with pill shape)
+  - "Chat with our AI" button (simulator page)
+- **Submit buttons**: Gray gradient circular design (40px × 40px, border-radius: 50%)
+  - `.chat-submit`, `.mini-chat-send`, `.floating-input-submit`
+  - Upward arrow icon (consistent across all submit buttons)
+- **Emoji removed**: "Chat with our AI" button no longer has 💬 emoji
+
+#### Chat Placeholder Text Updates
+- **Changed "Ask us" → "Ask me"** in all rotating placeholder texts:
+  - EN: "Ask me why AI is a game-changer...", "Ask me how we reduce fees...", etc.
+  - FR: "Demandez-moi pourquoi l'IA change la donne...", "Demandez-moi comment nous réduisons les frais...", etc.
+- **Translation keys updated**: `chat.rotatingPlaceholders` and `chat.placeholder`
+
+#### Files Modified
+| File | Changes |
+|------|---------|
+| `styles.css` | Updated all CTA button border-radius to 50px (lines 614, 1116, 1616, 1893) |
+| `index.html` | Added glassmorphism floating chat input (lines 757-776) |
+| `portfolio-simulator.html` | Added floating input, updated back/chat buttons to pill shape (lines 400, 586, 604-622) |
+| `floating-chat-input.js` | New file: scroll detection and chat integration logic |
+| `translations.js` | Updated chat placeholders (us→me), removed emoji from simulator.help.button |
+
+---
+
+**Last Updated**: 2025-10-09
+**Current Version**: v1.3 - Production-ready with glassmorphism UI and unified button design
