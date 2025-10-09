@@ -498,33 +498,7 @@ document.addEventListener("DOMContentLoaded", function () {
     chatSection.classList.remove("chat-focus");
   });
 
-  // Function to show welcome message
-  function showWelcomeMessage() {
-    // Clear any existing welcome messages
-    const existingWelcome = document.querySelector(".welcome-message");
-    if (existingWelcome) {
-      existingWelcome.remove();
-    }
-
-    const welcomeMessages = {
-      en: "Hello! I'm your Bubble assistant. How can I help you today?",
-      fr: "Bonjour ! Je suis votre assistant Bubble. Comment puis-je vous aider aujourd'hui ?",
-    };
-
-    const messageElement = document.createElement("div");
-    messageElement.classList.add(
-      "chat-message",
-      "bot-message",
-      "welcome-message",
-    );
-    messageElement.textContent =
-      welcomeMessages[currentLanguage] || welcomeMessages["en"];
-    chatMessages.appendChild(messageElement);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
-
-  // Show initial welcome message
-  setTimeout(showWelcomeMessage, 1000);
+  // Welcome message is now in HTML, no need to add it dynamically
 
   if (toggleSuggestionsBtn) {
     toggleSuggestionsBtn.addEventListener("click", () => {
@@ -611,12 +585,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fullscreenToggleBtn.addEventListener("click", scrollChatToBottom);
   }
 
-  // Update welcome message when language changes
-  const originalUpdateLanguage = window.updateLanguage;
-  window.updateLanguage = function (lang) {
-    originalUpdateLanguage(lang);
-    showWelcomeMessage();
-  };
+  // Welcome message updates automatically via data-translate attribute
 
   // Mobile Navigation Hamburger Menu
   const hamburgerMenu = document.getElementById('hamburger-menu');

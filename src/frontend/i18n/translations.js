@@ -162,6 +162,10 @@ const translations = {
   },
 
   // Chat Section
+  "chat.welcome": {
+    en: "Hello, I'm Bubble. How can I help you today?",
+    fr: "Bonjour, je suis Bubble. Comment puis-je vous aider ?"
+  },
   "chat.rotatingPlaceholders": {
     en: [
       "Ask me why AI is a game-changer...",

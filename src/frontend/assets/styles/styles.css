@@ -621,7 +621,7 @@ header .container {
 
 .cta-button {
   display: inline-block;
-  background-color: var(--primary);
+  background: linear-gradient(135deg, #333333 0%, #444444 100%);
   color: white;
   text-decoration: none;
   padding: 1.1rem 2.5rem;
@@ -634,7 +634,7 @@ header .container {
 }
 
 .cta-button:hover {
-  background-color: var(--primary-hover);
+  background: #6b7280;
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
@@ -2169,33 +2169,29 @@ form button:hover {
   background-color: var(--primary-hover);
 }
 
-/* Chat Interface */
+/* Chat Interface - No container, just content */
 .chat-section {
   margin: 2rem auto;
   max-width: 800px;
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 24px;
-  padding: 1.5rem;
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.08),
-    0 1px 2px rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none !important;
+  transition: none;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .chat-section:hover,
 .chat-section:focus-within,
 .chat-section.chat-active,
 .chat-section.chat-focus {
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.12),
-    0 2px 8px rgba(255, 255, 255, 0.2);
-  transform: translateY(-5px);
+  background: none !important;
+  box-shadow: none !important;
+  transform: none;
 }
 
 .chat-section.chat-thinking {
@@ -2205,56 +2201,58 @@ form button:hover {
 @keyframes chat-thinking {
   0% {
     box-shadow:
-      0 4px 24px rgba(0, 0, 0, 0.08),
-      0 1px 2px rgba(255, 255, 255, 0.3);
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
   100% {
     box-shadow:
-      0 8px 32px rgba(var(--primary-rgb), 0.15),
-      0 2px 8px rgba(255, 255, 255, 0.3);
+      0 12px 40px rgba(102, 126, 234, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
 }
 
-/* Glass effect highlight */
-.chat-section::before {
-  content: "";
+/* Removed glass effect pseudo-elements for cleaner transparent design */
+
+/* Fullscreen toggle button - visible on all devices */
+#fullscreen-toggle-btn {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.8) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #9CA3AF;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: none;
+  transition: color 0.2s ease;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
-/* Glass effect side shine */
-.chat-section::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 0) 60%
-  );
-  pointer-events: none;
-  z-index: 1;
-  border-radius: 24px;
+#fullscreen-toggle-btn:hover {
+  color: #6B7280;
+}
+
+#fullscreen-toggle-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: block;
 }
 
 /* Chat messages container */
 .chat-messages {
   max-height: 300px;
   overflow-y: auto;
-  margin-bottom: 1.5rem;
-  padding: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
   border-radius: 24px;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
@@ -2306,12 +2304,49 @@ form button:hover {
 }
 
 .bot-message {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  color: var(--foreground);
+  margin-right: auto;
+  border-top-left-radius: 4px;
+  padding: 0.5rem 0;
+  margin-bottom: 0;
+}
+
+/* Welcome message styling - larger, bold */
+.chat-message.bot:first-child {
+  margin-bottom: 0.5rem;
+}
+
+.chat-message.bot:first-child .message-content {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #666666;
+  line-height: 1.3;
+}
+
+/* Responsive welcome message font size */
+@media (max-width: 768px) {
+  .chat-message.bot:first-child .message-content {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-message.bot:first-child .message-content {
+    font-size: 1.15rem;
+  }
+}
+
+/* Regular bot messages (not welcome) */
+.bot-message:not(:first-child) {
   background: rgba(248, 248, 248, 0.8);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(0, 0, 0, 0.05);
-  color: var(--foreground);
-  margin-right: auto;
+  padding: 1rem;
   border-top-left-radius: 4px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
@@ -2363,32 +2398,28 @@ form button:hover {
 }
 
 .chat-suggestion-btn {
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: var(--primary);
+  background: transparent;
+  border: 1px solid #E5E7EB;
+  color: #374151;
   padding: 0.75rem 1.25rem;
-  border-radius: 20px;
+  border-radius: 50px;
   cursor: pointer;
   font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  font-weight: 400;
+  transition: all 0.2s ease;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
 }
 
 .chat-suggestion-btn:hover {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: #F9FAFB;
+  border-color: #D1D5DB;
 }
 
 .chat-suggestion-btn.active {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: var(--primary);
-  transform: scale(0.97);
-  box-shadow: 0 2px 8px rgba(var(--primary-rgb), 0.2);
+  background: #F3F4F6;
+  border-color: #D1D5DB;
 }
 
 .chat-input-container {
@@ -2400,30 +2431,30 @@ form button:hover {
 
 .chat-input {
   flex: 1;
-  padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 24px;
+  padding: 1rem 1.25rem;
+  border: 1px solid #E5E7EB;
+  border-radius: 50px;
   font-family: inherit;
   font-size: 1rem;
-  background: rgba(255, 255, 255, 0.6);
+  background: #F3F4F6;
   color: var(--foreground);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  box-shadow: none;
 }
 
 .chat-input:disabled {
   opacity: 0.7;
   cursor: not-allowed;
-  background: rgba(255, 255, 255, 0.4);
+  background: #E5E7EB;
 }
 
 .chat-input:focus {
   outline: none;
-  border-color: var(--primary);
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border-color: #D1D5DB;
+  background: #FFFFFF;
+  box-shadow: none;
 }
 
 .chat-submit {
@@ -2438,40 +2469,27 @@ form button:hover {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: none;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
 }
 
-.chat-submit::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  transition: all 0.6s ease;
-  pointer-events: none;
+.chat-submit:hover {
+  background: linear-gradient(135deg, rgba(107, 114, 128, 1), rgba(107, 114, 128, 0.9));
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.4);
 }
 
-.chat-submit:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(135deg, rgba(107, 114, 128, 1), rgba(107, 114, 128, 0.9));
+.chat-submit:active {
+  transform: scale(0.95);
 }
 
 /* Stop button hover state */
 .chat-submit.processing:hover {
-  background: #dc2626; /* Darker red on hover */
-  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+  background: #dc2626;
+  transform: scale(1.05);
 }
 
 .chat-submit .submit-icon,
@@ -2629,39 +2647,7 @@ form button:hover {
     flex-shrink: 0;
   }
 
-  #fullscreen-toggle-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    color: var(--primary);
-    border-radius: 50%;
-    width: 38px;
-    height: 38px;
-    font-size: 16px;
-    cursor: pointer;
-    z-index: 1001;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-    transition: background 0.2s ease, box-shadow 0.2s ease;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  #fullscreen-toggle-btn svg {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    display: block;
-  }
-
-  #fullscreen-toggle-btn:active {
-    background: rgba(255, 255, 255, 1);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
+  /* Fullscreen toggle button styling already defined above */
 
   /* Adjust for mobile keyboards */
   .chat-section:focus-within {
