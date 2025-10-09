@@ -164,38 +164,60 @@ The application features an intelligent reference enrichment system for the Know
 - **Intelligent Caching:** Prevents redundant API calls for already enriched references
 
 ### Portfolio Simulator
-The application includes a **lightweight portfolio simulator** integrated into the main Bubble project:
+**Status**: ✅ **Production-ready** (v1.2) - Fully integrated and deployed
+
+The application includes a **lightweight, interactive portfolio simulator** integrated into the main Bubble project:
 
 **Architecture:**
-- **Simplified from anim-main**: Reduced from 9 strategies (4000+ lines) to 3 strategies (~400 lines)
-- **Vanilla JS Implementation**: No React dependency, built with native JavaScript
-- **Yahoo Finance Integration**: Fetches 10 years of historical data for SPY, IEF, GLD
-- **Caching Strategy**: Pre-calculated preview data (19KB JSON) for fast landing page loading
+- **Simplified from anim-main**: Reduced from 9 strategies (4000+ lines) to 3 core strategies (~1096 lines total)
+- **Vanilla JS Implementation**: No React dependency, built with native JavaScript + Chart.js 4.4.0
+- **Yahoo Finance Integration**: Fetches **20 years** of historical data for SPY (stocks), IEF (bonds), GLD (gold)
+- **Caching Strategy**: Pre-calculated preview data for <500ms landing page loading
+- **Bilingual Support**: Full FR/EN translations for all UI elements, tooltips, and chart labels
 
 **Strategies Implemented:**
-1. **Equal Weight**: Simple 33.3% allocation (baseline)
+1. **Equal Weight** (Allocation Égale): Simple 33.3% allocation (baseline comparison)
 2. **Simple Risk Parity**: Inverse volatility weighting with 60-day rolling window
-3. **Optimized Risk Parity**: EWMA volatility (λ=0.94) + correlation adjustment ← Best performer
+3. **Optimized Risk Parity** ✨: EWMA volatility (λ=0.94) + correlation adjustment ← Highlighted as best performer
 
 **API Endpoints:**
-- `GET /api/portfolio/preview-data` - Pre-calculated chart data for landing page snapshot
-- `GET /api/portfolio/etf-data?tickers=SPY,IEF,GLD&period=10` - Historical prices
-- `POST /api/portfolio/calculate` - Calculate strategy on-demand
+- `GET /api/portfolio/preview-data` - Pre-calculated chart data with all 3 strategies (cached)
+- `POST /api/portfolio/clear-cache` - Clear cache for testing (regenerates on next request)
 
-**Performance Metrics:**
-- Total Return, Annualized Return, Volatility (annualized)
-- Sharpe Ratio (2% risk-free rate), Maximum Drawdown
-- Historical data: ~2,500 daily data points (10 years)
+**Performance Metrics** (6 metrics with educational tooltips):
+- Total Return, Annualized Return (CAGR), Volatility (annualized)
+- Sharpe Ratio (2% risk-free rate), Maximum Drawdown, Calmar Ratio
+- Historical data: 240 monthly data points (20 years: 2005-2025)
 
 **Data Flow:**
-1. User requests preview data → Check cache → Return cached JSON (< 50ms)
-2. If cache missing → Fetch Yahoo Finance → Calculate portfolios → Cache results → Return
-3. Interactive simulator → Fetch ETF data → User selects strategy → Calculate → Display
+1. User lands on page → Preview chart loads from cache → Animated snapshot displays
+2. User clicks "Try Our Simulator" → Standalone page loads
+3. User selects strategy → Chart updates with opacity-based prominence (active: 100%, others: 30%)
+4. User changes time period (1Y/3Y/5Y/10Y/20Y) → Chart filters data accordingly
 
-**Frontend Integration (TODO):**
-- `portfolio-preview.js` - Animated chart snapshot in "What We're Building" section
-- `portfolio-simulator.html` - Standalone interactive page at `/portfolio-simulator`
-- Chart.js for lightweight visualization matching Bubble's design system
+**Frontend Integration:**
+- ✅ [portfolio-preview.js](src/frontend/js/portfolio-preview.js) - Animated chart in "What We're Building" section (landing page)
+- ✅ [portfolio-simulator.html](src/frontend/pages/portfolio-simulator.html) - Full interactive page at `/portfolio-simulator`
+- ✅ [portfolio-simulator.js](src/frontend/js/portfolio-simulator.js) - Strategy switching, metrics calculation, bilingual support
+- ✅ Chart.js for lightweight visualization matching Bubble's design system
+- ✅ "Ask our AI" CTA button connected to main page chatbot via `document.querySelector('.floating-bubble-inner').click()`
+
+**Key Features:**
+- **Enhanced Visual Hierarchy**: Active strategy displayed with 1.5x thicker line, 100% opacity; inactive at 30% opacity
+- **Educational Tooltips**: Hover on strategy pills and metrics for detailed explanations
+- **Responsive Design**: Mobile-optimized with touch-friendly controls
+- **Time Period Selector**: 1Y, 3Y, 5Y, 10Y, 20Y buttons for flexible analysis
+- **Bilingual**: Language switcher updates all text, chart labels, and tooltips dynamically
+
+**Recent Updates** (2025-01-09):
+- Fixed tile sizing on main page (clarity/automation tiles now fill properly)
+- Updated portfolio preview title: "Discover Our Portfolio Optimization"
+- CTA button text: "Try Our Simulator" (FR: "Essayez notre Simulateur")
+
+**Future Enhancements** (See [PORTFOLIO_SIMULATOR.md](docs/PORTFOLIO_SIMULATOR.md)):
+- **Short-term**: Analytics integration, SEO optimization, cross-browser testing
+- **Medium-term**: "Create Your Own" strategy feature (chatbot-guided mixing of strategies), specialized portfolio agent
+- **Long-term**: Expand to 8-10 strategies, 10+ ETFs, blog integration, user accounts with saved portfolios
 
 ### Deployment Considerations
 - Designed for cloud deployment (includes Dockerfile and replit.nix)

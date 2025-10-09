@@ -574,6 +574,18 @@ const translations = {
     en: "Risk-adjusted return. A ratio > 1 is good, > 2 is excellent. Compares the return obtained relative to the risk taken.",
     fr: "Rendement ajusté au risque. Un ratio > 1 est bon, > 2 est excellent. Compare le rendement obtenu par rapport au risque pris."
   },
+  "simulator.metric.sharpeRatio": {
+    en: "Sharpe Ratio",
+    fr: "Ratio Sharpe"
+  },
+  "simulator.metric.sharpeRatio.subtitle": {
+    en: "return/risk",
+    fr: "rendement/risque"
+  },
+  "simulator.metric.sharpeRatio.tooltip": {
+    en: "Risk-adjusted return. A ratio > 1 is good, > 2 is excellent. Compares the return obtained relative to the risk taken.",
+    fr: "Rendement ajusté au risque. Un ratio > 1 est bon, > 2 est excellent. Compare le rendement obtenu par rapport au risque pris."
+  },
   "simulator.metric.maxDrawdown": {
     en: "Max Drawdown",
     fr: "Drawdown Max"
@@ -595,6 +607,18 @@ const translations = {
     fr: "rendement/drawdown"
   },
   "simulator.metric.calmar.tooltip": {
+    en: "Ratio between annual return and maximum drawdown. The higher this ratio, the better the strategy.",
+    fr: "Rapport entre le rendement annuel et le drawdown maximal. Plus ce ratio est élevé, meilleure est la stratégie."
+  },
+  "simulator.metric.calmarRatio": {
+    en: "Calmar Ratio",
+    fr: "Calmar Ratio"
+  },
+  "simulator.metric.calmarRatio.subtitle": {
+    en: "return/drawdown",
+    fr: "rendement/drawdown"
+  },
+  "simulator.metric.calmarRatio.tooltip": {
     en: "Ratio between annual return and maximum drawdown. The higher this ratio, the better the strategy.",
     fr: "Rapport entre le rendement annuel et le drawdown maximal. Plus ce ratio est élevé, meilleure est la stratégie."
   },

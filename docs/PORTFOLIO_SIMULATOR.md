@@ -218,19 +218,217 @@ Calculated client-side in `updateMetrics()`:
 
 ## Future Enhancements
 
-Potential strategies to add (from [simul-plan.md](../simul-plan.md)):
-- **Leveraged Risk Parity**: 1.5x leverage on bonds/gold
-- **Hierarchical Risk Parity (HRP)**: Cluster-based allocation
-- **Momentum Strategy**: Tactical allocation based on trends
-- **60/40 Portfolio**: Classic 60% stocks, 40% bonds
-- **All Weather**: Ray Dalio's strategy
+### Short-Term (1-2 Weeks)
 
-Additional features:
-- User customization (adjust allocations)
-- More ETFs (sector-specific)
-- Export charts/reports as PDF
-- Chat integration ("Ask AI about this strategy")
-- Embed in blog articles
+#### Analytics Integration
+**Goal**: Track simulator usage and engagement metrics
+
+**Implementation**:
+- Add Google Analytics 4 or Plausible Analytics
+- Track events:
+  - `/portfolio-simulator` page views
+  - Strategy pill clicks (equalWeight, simpleRP, optimizedRP)
+  - Time period changes (1Y, 3Y, 5Y, 10Y, 20Y)
+  - "Ask our AI" CTA clicks
+  - Snapshot → Simulator conversion rate
+- **Success Metrics**:
+  - Target: 30%+ click-through from landing snapshot to simulator
+  - Average time on simulator page
+  - Most popular strategy selection
+
+#### SEO Optimization
+**Files**: [portfolio-simulator.html](../src/frontend/pages/portfolio-simulator.html)
+
+**Enhancements**:
+- Enhanced meta descriptions (basic ones already exist)
+- Schema.org structured data for FinancialService
+- OpenGraph images for social sharing
+- Canonical URLs
+- Internal linking from blog articles to simulator
+
+#### Cross-Browser & Mobile Testing
+**Testing Matrix**:
+- **Browsers**: Chrome, Firefox, Safari, Edge
+- **Mobile devices**: iOS Safari, Android Chrome
+- **Responsive breakpoints**: 320px, 768px, 1024px, 1440px
+
+**Test Checklist**:
+- [ ] Chart.js rendering consistency across browsers
+- [ ] Touch interactions on strategy pills
+- [ ] Tooltip positioning on small screens
+- [ ] Language switcher accessibility
+- [ ] Performance on low-end devices
+
+---
+
+### Medium-Term (2-4 Weeks)
+
+#### "Create Your Own" Strategy Feature 🎨
+**Priority**: HIGH (User-requested)
+
+**Concept**: Interactive chatbot-guided custom strategy builder
+
+**User Flow**:
+1. User clicks new strategy pill: **"🎨 Create Your Own"**
+2. Opens chat interface (integrated with existing main page chatbot)
+3. Chatbot asks guided questions:
+   - "What's your investment goal? (growth, stability, balanced)"
+   - "What's your risk tolerance? (conservative, moderate, aggressive)"
+   - "Which of our strategies do you prefer as a base?"
+4. AI suggests custom allocation by mixing existing strategies:
+   - Example: "70% Optimized RP + 30% Equal Weight"
+   - Example (future): "50% Risk Parity + 50% Momentum Strategy"
+5. Chart updates in real-time with custom mixed portfolio
+6. User can save custom strategy to compare with others
+
+**Technical Architecture**:
+- **Frontend**: New `createCustomStrategy()` function in [portfolio-simulator.js](../src/frontend/js/portfolio-simulator.js)
+- **Backend**: New endpoint `/api/portfolio/custom-mix`
+  - **Request**: `{ strategy1: 'optimizedRP', weight1: 0.7, strategy2: 'equalWeight', weight2: 0.3 }`
+  - **Response**: Blended portfolio values (weighted average)
+  - **Logic**: `customValue[i] = (strategy1[i] * weight1) + (strategy2[i] * weight2)`
+- **Chatbot**: New conversation context for portfolio customization
+  - Update chatbot system prompt to include portfolio strategy knowledge
+  - Add portfolio-specific intents (risk tolerance, goals, strategy preferences)
+- **UI**: 4th strategy pill with gradient background + chat icon SVG
+
+**Implementation Steps** (for future sprint):
+1. Add "Create Your Own" pill button in [portfolio-simulator.html](../src/frontend/pages/portfolio-simulator.html)
+2. Update chatbot to handle portfolio customization context
+3. Create backend mixing logic (weighted average of strategies)
+4. Add frontend chart update for custom strategy
+5. Save/load custom strategies (localStorage for MVP, user accounts for v2)
+
+**Evolution for Long-Term**:
+- Once 8-10 strategies exist, users can mix any two strategies
+- Example: "Combine Strategy 5 (Momentum) with Strategy 8 (HRP) at 60/40 split"
+- AI chatbot suggests optimal combinations based on user goals and risk profile
+
+#### Specialized Portfolio Chatbot Agent
+**Current Status**: "Ask our AI" button already connects to main page floating chat bubble ✓
+
+**Enhancement**: Create dedicated portfolio agent with deeper knowledge
+
+**Phase 1 (Current)**:
+- Main chatbot can answer general portfolio questions
+- Context: General Bubble investment knowledge
+
+**Phase 2 (Medium-term implementation)**:
+- Create dedicated portfolio agent endpoint: `/api/chat/portfolio`
+- **Agent training data**:
+  - Risk parity theory and implementation
+  - EWMA (Exponentially Weighted Moving Average) calculations
+  - Correlation matrices and portfolio optimization
+  - Portfolio performance metrics (Sharpe, Calmar, Drawdown)
+- **Agent capabilities**:
+  - Explain specific metrics in user-friendly language
+  - Suggest custom strategies based on user profile
+  - Answer "Why is Optimized RP better than Equal Weight?" questions
+  - Provide educational content about portfolio theory
+
+**Implementation**:
+1. Create specialized system prompt for portfolio agent
+2. Update "Ask our AI" button to use portfolio-specific context
+3. Pass current simulator state to chat (active strategy, timeframe, metrics)
+4. Agent can reference current chart data in responses
+
+#### User Customization Features
+**Goal**: Let users experiment with allocations
+
+**Features**:
+1. **Allocation Sliders**: Manually adjust SPY/IEF/GLD percentages
+   - Constraint: Must sum to 100%
+   - Real-time chart update
+2. **Compare Custom vs Optimized**: Side-by-side comparison chart
+3. **Save Preferences**: LocalStorage for guest users, database for registered users
+4. **Export Results**: Download chart as PNG, metrics table as PDF
+
+---
+
+### Long-Term (1-3 Months)
+
+#### Expand Strategy Library (3 → 10 Strategies)
+**Goal**: Grow from current 3 strategies to 8-10 strategies
+
+**New Strategies to Add**:
+1. **60/40 Portfolio** - Classic: 60% stocks (SPY), 40% bonds (IEF)
+2. **All Weather** - Ray Dalio's strategy (adapted to 3 ETFs)
+3. **Momentum Strategy** - Tactical allocation based on 3/6/12-month trends
+4. **Leveraged Risk Parity** - 1.5x leverage on bonds/gold for higher returns
+5. **Hierarchical Risk Parity (HRP)** - Cluster-based allocation using correlation trees
+6. **Minimum Variance** - Optimization-based (lowest portfolio volatility)
+7. **Maximum Sharpe** - Return optimization (best risk-adjusted returns)
+
+**"Create Your Own" Evolution**:
+- User can mix **any 2 of 10 strategies** with custom weights
+- Example: "Combine Strategy 5 (Momentum) with Strategy 8 (HRP) at 60/40"
+- AI chatbot suggests optimal combinations:
+  - Conservative: "Try 70% All Weather + 30% Minimum Variance"
+  - Aggressive: "Try 50% Momentum + 50% Leveraged Risk Parity"
+
+#### Expand Asset Universe (3 → 10 ETFs)
+**Current**: SPY (stocks), IEF (bonds), GLD (gold)
+**Target**: 5-10 ETFs for broader diversification
+
+**New ETFs to Add**:
+- **Sector-specific**: XLK (Tech), XLV (Healthcare), XLE (Energy)
+- **International**: EFA (EAFE developed markets), EEM (Emerging Markets)
+- **Alternatives**: GBTC or Bitcoin ETF (Crypto), VNQ (Real Estate)
+- **Fixed Income**: TLT (Long-term Treasuries), HYG (High-yield bonds)
+
+**Implementation Considerations**:
+- Update [yahooFinanceService.js](../src/backend/services/yahooFinanceService.js) to fetch more tickers
+- Increase cache file size (more data points)
+- Update chart legend to handle 10+ assets (scrollable or grouped)
+
+#### Blog Integration & Educational Content
+**Goal**: Embed simulator in blog articles for interactive learning
+
+**Articles to Create**:
+1. **"Understanding Risk Parity: A Visual Guide"**
+   - Embedded simulator with pre-selected Risk Parity strategy
+   - Step-by-step explanation with chart annotations
+2. **"Why Equal Allocation Isn't Optimal"**
+   - Interactive comparison: Equal Weight vs Optimized RP
+   - Historical performance analysis
+3. **"The Science Behind Our Portfolio Optimization"**
+   - Technical deep-dive into EWMA and correlation matrices
+   - Formula explanations with real examples from simulator
+4. **"Create Your Perfect Portfolio in 5 Minutes"**
+   - Chatbot-guided tutorial walkthrough
+   - Screenshots + embedded "Create Your Own" feature
+
+**Implementation**:
+- Create embeddable simulator widget (`<iframe>` or web component)
+- Smaller, focused versions for blog articles (single strategy view)
+- Direct deep-links to simulator with pre-selected strategies:
+  - Example: `/portfolio-simulator?strategy=optimizedRP&period=20`
+
+#### Advanced Features
+
+**Export & Download**:
+- Charts as PNG/SVG (using Chart.js built-in methods)
+- Full performance report as PDF (with jsPDF library)
+- Historical data export as CSV
+- Email results to user
+
+**User Accounts**:
+- Save multiple custom strategies per user
+- Track personal portfolio performance over time
+- Portfolio watchlist and alerts
+- Email notifications for rebalancing suggestions
+
+**Backtesting Tools**:
+- Test custom allocations on different historical periods
+- Crisis testing: 2008 financial crisis, 2020 COVID crash, 2022 inflation
+- Monte Carlo simulations for future projections
+- Rolling window analysis (e.g., 5-year rolling Sharpe ratios)
+
+**Real-time Integration** (Future Vision):
+- Connect to user's actual brokerage account (Plaid, Alpaca API)
+- Live portfolio tracking vs optimized strategy
+- Auto-rebalancing recommendations with one-click execution
+- Tax-loss harvesting suggestions
 
 ## Maintenance
 
@@ -312,7 +510,35 @@ For questions or issues:
 - Confirm 20-year data loads by default
 - Ensure selected portfolio is visually prominent
 
+### 2025-01-09: Preview Title Update & Tile Sizing Fixes
+
+#### Portfolio Preview Updates
+- **Title updated**: "Discover Portfolio Optimization" → "Discover Our Portfolio Optimization"
+  - FR: "Découvrez l'Optimisation de Portefeuille" → "Découvrez nos Optimisations de Portefeuilles"
+- **CTA updated**: "Try the Simulator" → "Try Our Simulator"
+  - FR: "Essayer le Simulateur" → "Essayez notre Simulateur"
+- **Translation keys**: `vision.portfolio.title` and `vision.portfolio.cta` updated in [translations.js](../src/frontend/i18n/translations.js)
+
+#### Main Page Tile Sizing Fixes
+- **Clarity tiles** ([styles.css](../src/frontend/assets/styles/styles.css) lines 2480-2507):
+  - Changed `justify-content: center` → `flex-start` (top-aligned content)
+  - Increased `min-height: 120px` → `140px`
+  - Added `flex: 1` to span elements for better space filling
+  - Increased gap to 1rem for better spacing
+- **Automation tiles** (lines 2537-2565):
+  - Changed `justify-content: center` → `flex-start`
+  - Increased `min-height: 100px` → `130px`
+  - Added `flex: 1` to span elements
+  - Increased padding and gap for better visual balance
+- **Result**: Text now fills tiles entirely on main page ("cost structure", "AI expertise", "diversified assets")
+
+#### Files Modified
+| File | Changes |
+|------|---------|
+| `translations.js` | Updated portfolio preview title and CTA text (FR/EN) |
+| `styles.css` | Fixed clarity and automation tile sizing with flexbox improvements |
+
 ---
 
-**Last Updated**: 2025-01-08
-**Current Version**: v1.1 - Bilingual support + 20-year historical data
+**Last Updated**: 2025-01-09
+**Current Version**: v1.2 - Production-ready with UI polish
