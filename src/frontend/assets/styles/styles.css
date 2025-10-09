@@ -1586,6 +1586,19 @@ section h2 {
   font-weight: 500;
   margin-bottom: 0.5rem;
   opacity: 0.8;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.metric-icon {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.metric-item.highlight .metric-icon {
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(46%) sepia(59%) saturate(2068%) hue-rotate(226deg) brightness(97%) contrast(89%);
 }
 
 .metric-item.highlight .metric-label {

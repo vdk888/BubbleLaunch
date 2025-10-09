@@ -107,12 +107,12 @@ const translations = {
     fr: "Visualisez comment nos stratégies quantitatives surpassent les approches traditionnelles sur 20 ans de données historiques.",
   },
   "vision.portfolio.equal_weight": {
-    en: "Equal Allocation",
-    fr: "Allocation Égale",
+    en: "Equal Weight Strategy",
+    fr: "Stratégie Allocation Égale",
   },
   "vision.portfolio.optimized": {
-    en: "🎯 Optimized",
-    fr: "🎯 Optimisé",
+    en: "Optimized Strategy",
+    fr: "Stratégie Optimisée",
   },
   "vision.portfolio.cta": {
     en: "Try Our Simulator →",
