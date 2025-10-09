@@ -53,23 +53,35 @@ This is **Bubble**, a fintech startup revolutionizing investment through AI-powe
   - `portfolioService.js` - Portfolio calculation algorithms
 
 ### Frontend Structure (`src/frontend/`)
-- **`pages/`** - HTML pages (index.html, blog.html, blog-post.html, portfolio-simulator.html)
+- **`pages/`** - HTML pages (index.html, blog.html, blog-post.html, portfolio-simulator.html, clear-cache.html, test-image-generation.html)
 - **`js/`** - Modular JavaScript components:
-  - `script.js` - Main application logic (includes bilingual support via `data-translate-html`)
+  - `script.js` - Main application logic with bilingual support
   - `chatbot-logic.js` - AI chatbot implementation
+  - `chatbot-animations.js` - Message animations and typing indicators
   - `blog.js` - Blog listing functionality
   - `blog-post.js` - Individual blog post rendering
   - `references.js` - Knowledge Garden references display with enriched metadata
-  - `portfolio-simulator.js` - Interactive portfolio comparison tool
-  - `portfolio-preview.js` - Landing page portfolio chart
+  - `portfolio-simulator.js` - Interactive portfolio comparison tool (20-year data, 3 strategies)
+  - `portfolio-preview.js` - Landing page portfolio chart preview
+  - `charts.js` - Shared chart utilities and configurations
   - `animations.js` - UI animations and effects
   - `floating-bubble.js` - Interactive bubble elements
-- **`i18n/translations.js`** - Internationalization (French/English) - includes all portfolio simulator translations
+  - `floating-chat-input.js` - Glassmorphism floating chat input
+  - `mini-chat.js` - Embedded chat widget
+- **`i18n/translations.js`** - Internationalization (French/English)
 - **`assets/`** - Static resources (styles, images)
+  - `styles/styles.css` - Main stylesheet (3,769 lines)
+  - `styles/blog.css` - Blog-specific styles
+  - `styles/blog-post.css` - Blog post styles
+  - `styles/references.css` - Knowledge Garden styles
 
 ### Key Integrations
 - **Notion API** - Content management for waitlist, blog posts, and Knowledge Garden
-- **OpenRouter API** - LLM provider with fallback model rotation (Gemini, GPT-4.1, Mistral, DeepSeek)
+- **OpenRouter API** - LLM provider with fallback model rotation:
+  1. `google/gemini-2.0-flash-001` (primary)
+  2. `openai/gpt-4.1-mini` (fallback)
+  3. `mistralai/magistral-small-2506` (fallback)
+  4. `deepseek/deepseek-r1-0528:free` (final fallback)
 - **Freepik API** - Automated blog image generation with intelligent caching
 - **Yahoo Finance API** - ETF historical data for portfolio simulator
 - **Express Sessions** - Chat rate limiting (10 messages per session)
@@ -78,10 +90,13 @@ This is **Bubble**, a fintech startup revolutionizing investment through AI-powe
 The application requires several environment variables in `.env`:
 - `NOTION_TOKEN` - Waitlist database access
 - `NOTION_DATABASE_ID_WAITLIST` - Waitlist storage
-- `NOTION_BLOG_API_KEY` & `NOTION_BLOG_DATABASE_ID` - Blog CMS
+- `NOTION_BLOG_API_KEY` - Blog CMS (also used for Knowledge Garden)
+- `NOTION_BLOG_DATABASE_ID` - Blog database ID
 - `OPENROUTER_API_KEY` - AI chatbot functionality
 - `FREEPIK_API_KEY` - Blog image generation
 - `SESSION_SECRET` - Session security
+
+**Note:** Knowledge Garden uses `NOTION_BLOG_API_KEY` (shared with blog). The Knowledge Garden database ID is hardcoded in `knowledgeGardenService.js` as `1ffcfc520644805b8bb9c9207fb2cb31`.
 
 ### Database Schema (Notion)
 **Waitlist Database:** Properties include Nom (title), Email, Profil (select), Commentaires (rich_text)

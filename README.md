@@ -59,10 +59,8 @@ Create a `.env` file in the root directory with the following variables:
 # Notion Integration
 NOTION_TOKEN=your_notion_integration_token
 NOTION_DATABASE_ID_WAITLIST=your_waitlist_database_id
-NOTION_BLOG_API_KEY=your_blog_api_key
+NOTION_BLOG_API_KEY=your_blog_api_key  # Also used for Knowledge Garden
 NOTION_BLOG_DATABASE_ID=your_blog_database_id
-NOTION_KNOWLEDGE_GARDEN_API_KEY=your_knowledge_garden_api_key
-NOTION_KNOWLEDGE_GARDEN_DATABASE_ID=your_knowledge_garden_database_id
 
 # AI Services
 OPENROUTER_API_KEY=your_openrouter_api_key
@@ -71,6 +69,8 @@ FREEPIK_API_KEY=your_freepik_api_key
 # Session Security
 SESSION_SECRET=your_random_session_secret
 ```
+
+**Note:** The Knowledge Garden feature uses `NOTION_BLOG_API_KEY` (shared with blog). The Knowledge Garden database ID is hardcoded in `src/backend/services/knowledgeGardenService.js`.
 
 ---
 
@@ -98,20 +98,30 @@ BubbleLaunch/
 │       │   ├── index.html         # Main landing page
 │       │   ├── blog.html          # Blog listing
 │       │   ├── blog-post.html     # Individual blog posts
-│       │   └── portfolio-simulator.html  # Portfolio comparison tool
+│       │   ├── portfolio-simulator.html  # Portfolio comparison tool
+│       │   ├── clear-cache.html   # Cache management
+│       │   └── test-image-generation.html  # Image generation testing
 │       ├── js/
 │       │   ├── script.js          # Main app logic
 │       │   ├── chatbot-logic.js   # AI chatbot with SSE
-│       │   ├── portfolio-simulator.js
-│       │   ├── portfolio-preview.js
-│       │   ├── floating-chat-input.js
+│       │   ├── chatbot-animations.js  # Message animations
+│       │   ├── portfolio-simulator.js  # 20Y data, 3 strategies
+│       │   ├── portfolio-preview.js    # Landing page chart
+│       │   ├── charts.js          # Shared chart utilities
+│       │   ├── floating-chat-input.js  # Glassmorphism floating input
+│       │   ├── floating-bubble.js # Interactive bubble elements
+│       │   ├── mini-chat.js       # Embedded chat widget
+│       │   ├── animations.js      # UI animations
+│       │   ├── blog.js            # Blog listing logic
+│       │   ├── blog-post.js       # Blog post rendering
 │       │   └── references.js      # Knowledge Garden display
 │       ├── i18n/
 │       │   └── translations.js    # FR/EN translations
 │       └── assets/
 │           ├── styles/
-│           │   ├── styles.css     # Main stylesheet (~3350 lines)
+│           │   ├── styles.css     # Main stylesheet (~3770 lines)
 │           │   ├── blog.css
+│           │   ├── blog-post.css
 │           │   └── references.css
 │           └── images/
 │
@@ -164,10 +174,15 @@ BubbleLaunch/
 
 ### AI Chatbot
 - **Streaming Responses** using Server-Sent Events (SSE)
-- **Model Fallback System**: Gemini → GPT-4 → Mistral → DeepSeek
+- **Model Fallback System**:
+  1. `google/gemini-2.0-flash-001` (primary)
+  2. `openai/gpt-4.1-mini` (fallback)
+  3. `mistralai/magistral-small-2506` (fallback)
+  4. `deepseek/deepseek-r1-0528:free` (final fallback)
 - **Rate Limiting**: 10 messages per session
 - **Context-Aware**: Understands Bubble's mission and services
-- **Glassmorphism Floating Input**: Appears on scroll
+- **Glassmorphism Floating Input**: Appears on scroll with 15% opacity, 20px blur
+- **Animations**: Message animations, typing indicators, smooth scroll behavior
 
 ### Blog System
 - **Notion as CMS** - Content managed in Notion databases
@@ -212,23 +227,42 @@ All UI follows the brand guidelines in `docs/company/Charte Graphique Bubble.md`
 
 #### Portfolio Simulator
 - `GET /api/portfolio/preview-data` - Pre-calculated portfolio data (20 years)
+- `GET /api/portfolio/etf-data` - Get ETF historical data with parameters
+- `POST /api/portfolio/calculate` - Calculate portfolio optimization
 - `POST /api/portfolio/clear-cache` - Clear portfolio cache (development)
 
 #### Chat
 - `POST /api/chat` - Stream AI chatbot responses (SSE)
 
 #### Waitlist
-- `POST /api/waitlist/subscribe` - Submit waitlist form to Notion
+- `POST /api/subscribe` - Submit waitlist form to Notion
+- `POST /api/test-post` - Test POST endpoint (development)
 
 #### Blog
 - `GET /api/blog/posts` - Fetch all published blog posts
-- `GET /api/blog/posts/:slug` - Fetch single blog post by slug
-- `GET /api/test-freepik-connection` - Test Freepik API connectivity
+- `GET /api/blog/post/:slug` - Fetch single blog post by slug
+- `GET /api/blog/test-freepik-connection` - Test Freepik API connectivity
+- `POST /api/blog/test-image-generation` - Test image generation
+- `POST /api/blog/clear-image-cache` - Clear Freepik cache
+- `GET /api/blog/image-cache-stats` - Get cache statistics
+- `POST /api/blog/regenerate-all-images` - Regenerate all images
+- `POST /api/blog/regenerate-image/:slug` - Regenerate single image
+- `POST /api/blog/generate-article-image` - Generate image for article
 
 #### Knowledge Garden
 - `GET /api/knowledge-garden/references` - Fetch enriched references
 - `GET /api/knowledge-garden/references-by-source-type` - Group by type
 - `GET /api/knowledge-garden/references-by-theme` - Group by category
+- `GET /api/knowledge-garden/explore` - Database structure exploration
+- `POST /api/knowledge-garden/clear-cache` - Clear enrichment cache
+
+#### Pages
+- `GET /` - Main landing page
+- `GET /blog` - Blog listing page
+- `GET /blog/:slug` - Individual blog post page
+- `GET /portfolio-simulator` - Portfolio simulator page
+- `GET /test-image` - Image generation test page
+- `GET /clear-cache` - Cache management page
 
 ---
 

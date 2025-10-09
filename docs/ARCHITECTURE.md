@@ -85,8 +85,8 @@ Response (JSON API or HTML page)
 ## API Endpoints
 
 ### Waitlist
-- `POST /subscribe` - Add to waitlist
-- `POST /test-post` - Test endpoint
+- `POST /api/subscribe` - Add to waitlist
+- `POST /api/test-post` - Test endpoint
 
 ### Chat
 - `POST /api/chat` - AI chatbot (rate-limited, streaming SSE)
@@ -94,6 +94,7 @@ Response (JSON API or HTML page)
 ### Blog
 - `GET /api/blog/posts` - List all published posts
 - `GET /api/blog/post/:slug` - Get single post
+- `GET /api/blog/test-freepik-connection` - Test Freepik API connectivity
 - `POST /api/blog/test-image-generation` - Test image generation
 - `POST /api/blog/clear-image-cache` - Clear Freepik cache
 - `GET /api/blog/image-cache-stats` - Cache statistics
@@ -118,6 +119,7 @@ Response (JSON API or HTML page)
 - `GET /` - Landing page
 - `GET /blog` - Blog index
 - `GET /blog/:slug` - Individual blog post
+- `GET /portfolio-simulator` - Portfolio simulator page
 - `GET /test-image` - Image generation test page
 - `GET /clear-cache` - Cache management page
 
@@ -132,29 +134,36 @@ src/frontend/
 ├── pages/
 │   ├── index.html               # Landing page
 │   ├── blog.html                # Blog listing
-│   └── blog-post.html           # Individual post
+│   ├── blog-post.html           # Individual post
+│   ├── portfolio-simulator.html # Portfolio simulator ✅
+│   ├── clear-cache.html         # Cache management
+│   └── test-image-generation.html # Image generation testing
 ├── js/
 │   ├── script.js                # Main app logic
 │   ├── chatbot-logic.js         # AI chat implementation
+│   ├── chatbot-animations.js    # Message animations & typing indicators ✅
 │   ├── blog.js                  # Blog listing
 │   ├── blog-post.js             # Post rendering
 │   ├── references.js            # Knowledge Garden display
 │   ├── animations.js            # Scroll animations
 │   ├── floating-bubble.js       # Interactive bubbles
-│   ├── portfolio-preview.js     # (TODO) Animated chart snapshot
-│   └── portfolio-simulator.js   # (TODO) Interactive simulator
+│   ├── floating-chat-input.js   # Glassmorphism floating input ✅
+│   ├── mini-chat.js             # Embedded chat widget ✅
+│   ├── charts.js                # Shared chart utilities ✅
+│   ├── portfolio-preview.js     # Landing page chart preview ✅
+│   └── portfolio-simulator.js   # Full simulator (20Y, 3 strategies) ✅
 ├── i18n/
 │   └── translations.js          # French/English translations
 ├── assets/
 │   ├── styles/
-│   │   ├── styles.css           # Main styles
+│   │   ├── styles.css           # Main styles (~3770 lines)
 │   │   ├── blog.css             # Blog styles
 │   │   ├── blog-post.css        # Post styles
-│   │   ├── references.css       # References styles
-│   │   └── portfolio.css        # (TODO) Simulator styles
+│   │   └── references.css       # References styles
 │   └── images/
 │       ├── blog-icons/
-│       └── slider-icons/
+│       ├── slider-icons/
+│       └── simul port icons/
 ```
 
 ### Frontend Patterns
@@ -175,7 +184,11 @@ src/frontend/
 - **Knowledge Garden**: Reference library with AI summaries
 
 ### 2. OpenRouter API
-- **LLM Provider**: Multi-model fallback (Gemini, GPT-4.1, Mistral, DeepSeek)
+- **LLM Provider**: Multi-model fallback system:
+  1. `google/gemini-2.0-flash-001` (primary)
+  2. `openai/gpt-4.1-mini` (fallback)
+  3. `mistralai/magistral-small-2506` (fallback)
+  4. `deepseek/deepseek-r1-0528:free` (final fallback)
 - **Streaming Responses**: Server-Sent Events for real-time chat
 - **Rate Limiting**: 10 messages per session
 
