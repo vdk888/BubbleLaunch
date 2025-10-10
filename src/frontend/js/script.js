@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
         comments: commentsInput.value,
       };
 
-      fetch("/subscribe", {
+      fetch("/api/subscribe", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
