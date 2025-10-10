@@ -2,6 +2,25 @@ document.addEventListener("DOMContentLoaded", function () {
   // Default language
   let currentLanguage = "en";
 
+  // Mobile logo scroll animation
+  let lastScrollTop = 0;
+  const header = document.querySelector('header');
+  const scrollThreshold = 50; // Scroll threshold in pixels
+
+  window.addEventListener('scroll', function() {
+    if (window.innerWidth <= 768) { // Only on mobile
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > scrollThreshold) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      lastScrollTop = scrollTop;
+    }
+  }, { passive: true });
+
   // Get language buttons (desktop)
   const enButton = document.getElementById("en-switch");
   const frButton = document.getElementById("fr-switch");
