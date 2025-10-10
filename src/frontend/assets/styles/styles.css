@@ -2793,23 +2793,26 @@ form button:hover {
   }
 
   .chat-section.fullscreen .chat-input-container {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 2rem);
-    max-width: 600px;
-    padding: 0.75rem 1rem;
-    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
-    background: rgba(255, 255, 255, 0.98);
-    border-top: 1px solid #E5E7EB;
-    border-radius: 20px 20px 0 0;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1rem !important;
+    padding-bottom: max(1rem, env(safe-area-inset-bottom)) !important;
+    background: #FFFFFF !important;
+    border-top: 1px solid #E5E7EB !important;
+    border-radius: 0 !important;
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
-    gap: 0.5rem;
-    z-index: 10001;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    gap: 0.75rem !important;
+    z-index: 10001 !important;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08) !important;
+    transform: none !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
   }
 
   /* Hide header when chatbot is fullscreen on mobile */
@@ -2830,16 +2833,6 @@ form button:hover {
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;
-  }
-
-  /* Ensure input container is at the bottom and visible */
-  .chat-section.fullscreen .chat-input-container {
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
   }
 
   .chat-message {
