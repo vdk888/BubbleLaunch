@@ -241,12 +241,20 @@ BubbleLaunch/
 
 ## 📈 Next Steps
 
-### Short-Term (1-2 weeks)
-1. Add analytics (Google Analytics 4 or Plausible)
-2. SEO optimization (meta tags, schema.org)
-3. Cross-browser testing
-4. ~~Mobile responsive testing~~ ✅ Completed (v1.4)
-5. Performance audit (Lighthouse)
+### Short-Term (1-2 weeks) - SEO Implementation Priority
+1. **SEO Foundation (Phase 0)** - CRITICAL ✅ [Roadmap Available](docs/SEO_IMPLEMENTATION_ROADMAP.md)
+   - Meta tags, structured data, sitemap
+   - Google Search Console setup
+   - Cookie consent (GDPR/CNIL compliance)
+   - Privacy Policy & Mentions Légales
+2. **SEO On-Page (Phase 1)** - HIGH ✅ [Roadmap Available](docs/SEO_IMPLEMENTATION_ROADMAP.md)
+   - Title tag optimization
+   - Internal linking structure
+   - Image alt text optimization
+3. Add analytics (Google Analytics 4 or Plausible)
+4. Cross-browser testing
+5. ~~Mobile responsive testing~~ ✅ Completed (v1.4)
+6. Performance audit (Lighthouse)
 
 ### Medium-Term (1 month)
 1. "Create Your Own" portfolio strategy feature
@@ -267,6 +275,8 @@ BubbleLaunch/
 
 - **Main Documentation**: [README.md](README.md)
 - **AI Guidance**: [CLAUDE.md](CLAUDE.md)
+- **SEO Strategy**: [docs/SEO_STRATEGY.md](docs/SEO_STRATEGY.md) ✅ NEW
+- **SEO Implementation Roadmap**: [docs/SEO_IMPLEMENTATION_ROADMAP.md](docs/SEO_IMPLEMENTATION_ROADMAP.md) ✅ NEW
 - **Portfolio Simulator**: [docs/PORTFOLIO_SIMULATOR.md](docs/PORTFOLIO_SIMULATOR.md)
 - **Architecture**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 - **Design Guidelines**: [docs/company/Charte Graphique Bubble.md](docs/company/Charte%20Graphique%20Bubble.md)
@@ -284,6 +294,6 @@ For questions or issues:
 
 ---
 
-**Status**: ✅ **Production-Ready**
-**Last Review**: 2025-10-09
-**Next Review Due**: 2025-11-09
+**Status**: ✅ **Production-Ready** | 🎯 **SEO Strategy Documented**
+**Last Review**: 2025-10-10
+**Next Review Due**: 2025-11-10 (after SEO Phase 0 completion)
