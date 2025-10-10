@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!chatInput) return;
 
     let placeholderInterval;
-    let currentPlaceholderIndex = 0;
+    let currentPlaceholderIndex = 1; // Start from index 1 to avoid repeating the initial placeholder
     let isTyping = false;
     let currentTypingInterval = null;
 

@@ -27,12 +27,12 @@ const translations = {
     fr: "Bubble.",
   },
   "hero.tagline": {
-    en: "Investment optimized in the AI era.",
-    fr: "L'investissement optimisé à l'ère de l'IA.",
+    en: "Transparent investment in the AI era.",
+    fr: "L'agent d'investissement transparent.",
   },
   "hero.subtitle": {
-    en: "In a world where AI transforms access to financial expertise, we're building the investment tool we wanted for ourselves: transparent, efficient, and accessible.",
-    fr: "Dans un monde où l'IA transforme l'accès à l'expertise financière, nous créons l'outil d'investissement que nous voulions pour nous-mêmes : transparent, efficace, et accessible.",
+    en: "In a world where AI transforms access to financial expertise, we're building the investment tool we wanted for ourselves: transparent, automated, and accessible.",
+    fr: "Dans un monde où l'IA transforme l'accès à l'expertise financière, nous créons l'outil d'investissement que nous voulions pour nous-mêmes : transparent, automatique, et accessible.",
   },
   "hero.cta": {
     en: "Join Us",
@@ -45,16 +45,16 @@ const translations = {
     fr: "Notre Constat",
   },
   "manifesto.paragraph1": {
-    en: "When an AI can provide more reliable and faster financial advice than a traditional manager, value no longer lies in the exclusive possession of knowledge.",
-    fr: "Quand une IA peut donner des conseils financiers plus fiables et rapides qu'un gérant traditionnel, la valeur ne réside plus dans la détention exclusive du savoir.",
+    en: "Until now, you paid a money manager or a banker for reassuring words and a jargon that few understand. Today, AIs make the \"technical\" vocabulary free, readable, verifiable, and comparable. The elitism of knowledge and obsolete intermediaries are over.",
+    fr: "Jusqu'ici, vous payiez un gérant ou un banquier pour des mots rassurants et un jargon que peu comprennent. Aujourd'hui, les IAs rendent le vocabulaire \"technique\" gratuit, lisible, vérifiable et comparable. Fini l'élitisme du savoir et les intermédiaires obsolètes.",
   },
   "manifesto.paragraph2": {
-    en: "LLMs are radically transforming access to financial expertise. We're seizing this revolution to pop the finance bubble and redistribute capital traditionally captured by obsolete intermediaries.",
-    fr: "Les LLMs transforment radicalement l'accès à l'expertise financière. Nous saisissons cette révolution pour percer la bulle financière et redistribuer le capital traditionnellement capté par des intermédiaires devenus obsolètes.",
+    en: "LLMs democratize expertise and give you the ability to understand and demand evidence. Fees should follow real value: useful advice and measurable outperformance. We pierce the financial bubble, lift the veil on fee opacity, and put value back where it belongs: with you.",
+    fr: "Les LLMs démocratisent l'expertise et vous donnent la capacité de comprendre et d'exiger des preuves. Les frais doivent suivre la valeur réelle: des conseils utiles et une surperformance mesurable. Nous perçons la bulle financière, levons le voile sur l'opacité des frais et remettons la valeur à sa place: chez vous.",
   },
   "manifesto.insight": {
-    en: "Our ethics: freeing capital from excessive fees to put it back in your hands, so you can invest it in what you truly believe in.",
-    fr: "Notre éthique : libérer le capital des frais exorbitants pour le remettre entre vos mains, afin que vous puissiez l'investir dans ce en quoi vous croyez vraiment.",
+    en: "Our ethics: putting power back in your hands so you can break free from the exorbitant fees of now‑obsolete intermediaries. The result: you finance the economy, and the economy pays you interest. That's it.",
+    fr: "Notre éthique : vous redonner le pouvoir pour vous libérer des frais exorbitants d'intermédiaires désormais obsolètes. Résultat : vous financez l'économie, l'économie vous paye des intérêts. C'est tout.",
   },
 
   // Vision Section
@@ -63,52 +63,52 @@ const translations = {
     fr: "Ce Que Nous Construisons",
   },
   "vision.platform.title": {
-    en: "A Complete AI Investment Agent",
-    fr: "Un Agent IA d'Investissement Complet",
+    en: "A Complete Investment Agent",
+    fr: "Un Agent d'Investissement Complet",
   },
   "vision.platform.description1": {
-    en: "We're developing the tool we use for our own money: an intelligent system that optimizes portfolios through transparent quantitative strategies and rigorous backtesting.",
-    fr: "Nous développons l'outil que nous utilisons pour notre propre argent : un système intelligent qui optimise les portefeuilles via des stratégies quantitatives transparentes et des backtests rigoureux.",
+    en: "We're developing the tool we use for our own investments: an automated system that optimizes portfolios through transparent quantitative strategies and rigorous backtests, rebalanced regularly.",
+    fr: "Nous développons l'outil que nous utilisons pour nos investissements personnels : un système automatique qui optimise les portefeuilles via des stratégies quantitatives transparentes et des backtests rigoureux, rééquilibrés régulièrement.",
   },
   "vision.platform.description2": {
-    en: "Our platform integrates a true AI agent capable of playing the complete role of a manager: personalized advice, automated trading, and accessible financial education.",
-    fr: "Notre plateforme intègre un véritable agent IA capable de jouer le rôle d'un gérant complet : conseils personnalisés, trading automatique, et éducation financière accessible.",
+    en: "Our platform includes a full‑fledged AI agent that can act as your private manager: personalized advice, automated trading, and accessible financial education.",
+    fr: "Notre plateforme intègre un véritable agent IA complet capable de jouer le rôle de votre gérant privé : conseils personnalisés, trading automatique, et éducation financière accessible.",
   },
   "vision.cost.title": {
     en: "Rethought Cost Structure",
     fr: "Structure de Coûts Repensée",
   },
   "vision.cost.description": {
-    en: "A fixed subscription (€10/month) instead of a percentage of your assets like traditional managers (2% fees), made possible through automation. This makes professional-grade investing accessible to small and large portfolios alike.",
-    fr: "Un abonnement fixe (10€/mois) plutôt qu'un pourcentage de vos actifs comme chez un gestionnaire traditionnel (2% de frais), rendu possible par l'automatisation. Résultat : l'investissement de pointe devient accessible aux petits comme aux gros portefeuilles.",
+    en: "A fixed cloud-tool subscription (€10/month) instead of a percentage of your assets like a traditional manager (2% fees). The hedge‑fund approach becomes accessible to portfolios of any size.",
+    fr: "Un abonnement fixe pour outil Cloud (10€/mois) plutôt qu'un pourcentage de vos actifs comme chez un gestionnaire traditionnel (2% de frais). L'approche hedge fund devient accessible dans toutes les poches.",
   },
   "vision.ai.title": {
     en: "Accessible AI Expertise",
     fr: "Expertise IA Accessible",
   },
   "vision.ai.description": {
-    en: "Our conversational AI gives you access to the same level of analysis as a professional, without traditional fees.",
-    fr: "Notre IA conversationnelle vous donne accès au même niveau d'analyse qu'un professionnel, sans les frais traditionnels.",
+    en: "Our conversational AI gives you access to the same level of analysis and personalized advice as a professional, without the traditional fees.",
+    fr: "Notre IA conversationnelle vous donne accès au même niveau d'analyse et de conseils personnalisés qu'un professionnel, sans les frais traditionnels.",
   },
   "vision.crypto.title": {
     en: "Diversified Assets",
     fr: "Actifs Diversifiés",
   },
   "vision.crypto.description": {
-    en: "Our portfolios integrate cryptocurrencies to adapt to the evolving financial landscape.",
-    fr: "Nos portefeuilles intègrent les cryptomonnaies pour s'adapter à l'évolution du paysage financier.",
+    en: "Our portfolios integrate all asset classes, including cryptocurrencies.",
+    fr: "Nos portefeuilles intègrent toutes les classes d'actifs, y compris les cryptomonnaies.",
   },
   "vision.portfolio.title": {
     en: "Discover Our Portfolio Simulator",
     fr: "Découvrez Notre Simulateur de Portefeuilles",
   },
   "vision.portfolio.description": {
-    en: "See how our quantitative strategies outperform traditional approaches over 20 years of historical data.",
-    fr: "Visualisez comment nos stratégies quantitatives surpassent les approches traditionnelles sur 20 ans de données historiques.",
+    en: "See how simple quantitative strategies outperform traditional approaches over 20 years of historical data.",
+    fr: "Visualisez comment des stratégies quantitatives simples surpassent les approches traditionnelles sur 20 ans de données historiques.",
   },
   "vision.portfolio.equal_weight": {
     en: "Equal Weight Strategy",
-    fr: "Stratégie Allocation Égale",
+    fr: "Stratégie Equipondérée",
   },
   "vision.portfolio.optimized": {
     en: "Optimized Strategy",
@@ -130,15 +130,15 @@ const translations = {
   },
   "approach.automate.description": {
     en: "We automate what a fund manager does: asset allocation, portfolio rebalancing, and strategy execution. But instead of a human, it's quantitative code running automatically.",
-    fr: "Nous automatisons ce que fait un gérant de fonds : allocation d'actifs, rééquilibrage de portefeuille, et exécution de stratégies. Mais au lieu d'un humain, c'est du code quantitatif qui s'exécute automatiquement.",
+    fr: "Nous automatisons ce que fait un gérant de fonds : allocation d'actifs, rééquilibrage de portefeuille, et exécution de stratégies. Mais au lieu d'un humain qui applique manuellement, c'est votre stratégie programmée qui s'exécute automatiquement.",
   },
   "approach.clarify.title": {
     en: "Clarify",
     fr: "Clarifier",
   },
   "approach.clarify.description": {
-    en: "All our strategies are visible and explainable. Our fees are fixed and predictable. No gray areas.",
-    fr: "Toutes nos stratégies sont visibles et explicables. Nos frais sont fixes et prévisibles. Pas de zones d'ombre.",
+    en: "We lift the veil of opacity over how markets work. All our strategies are visible and explainable. No more blind spots.",
+    fr: "Nous levons le voile d'opacité sur les mécanismes du marché. Toutes nos stratégies sont visibles et explicables. Plus de zones d'ombre.",
   },
   "approach.share.title": {
     en: "Share",
@@ -146,19 +146,19 @@ const translations = {
   },
   "approach.share.description": {
     en: "Because AI now makes expertise accessible to everyone, we're seizing this window to build a model where these efficiency gains allow us to give back what was historically captured by costly intermediaries.",
-    fr: "Parce que l'IA rend désormais l'expertise accessible à tous, nous saisissons cette fenêtre pour construire un modèle où ce gain d'efficacité nous permet de vous redonner ce qui était historiquement capté par des intermédiaires coûteux.",
+    fr: "Parce que l'IA rend désormais l'expertise accessible à tous, nous saisissons cette fenêtre pour construire un modèle où ce gain d'efficacité nous permet de vous rendre ce qui était historiquement capté par des intermédiaires coûteux.",
   },
   "approach.educate.title": {
     en: "Educate",
     fr: "Éduquer",
   },
   "approach.educate.description": {
-    en: "Our AI explains financial concepts simply and helps you understand your portfolio's performance in real-time.",
-    fr: "Notre IA explique les concepts financiers simplement et vous aide à comprendre la performance de votre portefeuille en temps réel.",
+    en: "We explain financial concepts simply and we help you understand your portfolio's performance in real-time.",
+    fr: "Nous expliquons les concepts financiers simplement et nous vous aidons à comprendre la performance de votre portefeuille en temps réel.",
   },
   "approach.philosophy": {
-    en: "Our goal is not to claim we beat the market, but to optimize your portfolio according to your objectives, with transparency and at lower cost.",
-    fr: "Notre objectif n'est pas de prétendre battre le marché, mais d'optimiser votre portefeuille selon vos objectifs, avec transparence et à moindre coût.",
+    en: "We don't claim to beat the market. We give you access to our tool so you can manage your portfolio according to your objectives and at lower cost.",
+    fr: "Nous ne prétendons pas battre le marché. Nous vous donnons accès à notre outil qui permet de gérer votre portefeuille selon vos objectifs et à moindre coût.",
   },
 
   // Chat Section
@@ -168,21 +168,51 @@ const translations = {
   },
   "chat.rotatingPlaceholders": {
     en: [
-      "Why AI changes everything...",
-      "How we reduce fees...",
-      "What happens to fund managers...",
-      "How Bubble works..."
+      "Why is AI a game-changer for investment?",
+      "Break down alpha vs beta vs factors...",
+      "How do you cut fees?",
+      "Compare Sharpe, Sortino, drawdown...",
+      "What is volatility, put simply?",
+      "How to compare two funds?",
+      "Make a stress test for rates, inflation, spreads...",
+      "What is diversification?",
+      "Quantify fee drag and breakeven alpha...",
+      "How to build my starter portfolio?",
+      "Do performance attribution by sector and factor...",
+      "Why rebalance? How often to rebalance?...",
+      "Optimize myb portfolio with constraints and taxes...",
+      "What are the actual fees left?",
+      "Explain liquidity, slippage, execution costs...",
+      "How to read a factsheet?",
+      "Evaluate ESG impact vs tracking error...",
+      "What returns should I expect?",
+      "Compute the VaR and Expected Shortfall..."
     ],
     fr: [
-      "Pourquoi l'IA change tout...",
-      "Comment nous réduisons les frais...",
-      "Ce qui arrive aux gérants...",
-      "Comment fonctionne Bubble..."
+      "Pourquoi l'IA change la donne pour les investissements ?",
+      "Décompose alpha, bêta, facteurs...",
+      "Comment réduisez-vous les frais ?",
+      "Compare Sharpe, Sortino, drawdown...",
+      "C'est quoi la volatilité, simplement ?",
+      "Comment comparer deux fonds ?",
+      "Fais moi un stress test: taux, inflation, spreads...",
+      "C'est quoi la diversification ?",
+      "Mesure l'impact des frais et l'alpha de seuil...",
+      "Comment créer un premier portefeuille ?",
+      "Attribution par secteur, région, facteurs...",
+      "Pourquoi rééquilibrer mon portefeuille et à quelle fréquence ?",
+      "Optimise mon portefeuille avec contraintes et fiscalité...",
+      "Quel frais subsistent vraiment ?",
+      "Explique moi la liquidité, le slippage, les coûts d'exécution...",
+      "Comment lire une fiche produit ?",
+      "Évalue l'ESG vs l'écart de suivi...",
+      "Quelles performances attendre ?",
+      "Calcule la VaR et l'Expected Shortfall..."
     ]
   },
   "chat.placeholder": {
-    en: "Why AI changes everything...",
-    fr: "Pourquoi l'IA change tout..."
+    en: "Why is AI a game-changer?",
+    fr: "Pourquoi l'IA change la donne ?"
   },
   "chat.title": {
     en: "Chat with Bubble",
@@ -305,8 +335,8 @@ const translations = {
     fr: "Chaque aspect de l'opacité financière traditionnelle remplacé par une transparence cristalline."
   },
   "charts.clarity_note": {
-    en: "While traditional managers hide behind complex fee structures and black-box strategies, Bubble makes every decision visible, every cost predictable, and every outcome traceable.",
-    fr: "Alors que les gestionnaires traditionnels se cachent derrière des structures de frais complexes et des stratégies opaques, Bubble rend chaque décision visible, chaque coût prévisible, et chaque résultat traçable."
+    en: "While traditional managers hide behind complex fee structures and black-box strategies, we make every decision visible, every cost predictable, and every outcome traceable.",
+    fr: "Alors que les gestionnaires traditionnels se cachent derrière des structures de frais complexes et des stratégies opaques, nous rendons chaque décision visible, chaque coût prévisible, et chaque résultat traçable."
   },
 
   // --- Enhanced "Automation" Slide ---
@@ -321,8 +351,8 @@ const translations = {
   "automation.before.tile3": { en: "Fragmented Services", fr: "Services Fragmentés" },
   "automation.after.tile3": { en: "One Unified Platform", fr: "Une Plateforme Unifiée" },
   "charts.automation_desc": {
-      en: "From human limitations to AI-powered efficiency: the future of investment management.",
-      fr: "Des limites humaines à l'efficacité boostée par l'IA : l'avenir de la gestion d'investissement."
+      en: "From human limitations to AI-powered efficiency: the future of asset management.",
+      fr: "Des limites humaines à l'efficacité boostée par l'IA : l'avenir de la gestion d'actifs."
   },
   "charts.automation_note": {
       en: "AI doesn't sleep, doesn't have conflicts of interest, and processes market data faster than any human team. This isn't just automation—it's intelligence amplification that benefits you directly.",
@@ -335,20 +365,20 @@ const translations = {
     fr: "Points Clés",
   },
   "key_insights.intro": {
-    en: "AI radically transforms the customer experience by automating expertise and democratizing access to professional-quality financial advice.",
+    en: "AI radically transforms the customer experience by automating expertise and democratizing access to professional‑quality financial advice.",
     fr: "L'IA transforme radicalement l'expérience client en automatisant l'expertise et en démocratisant l'accès aux conseils financiers de qualité professionnelle.",
   },
   "key_insights.bullet1": {
-    en: "Today, you juggle between banks, costly managers, and limited robo-advisors.",
-    fr: "Aujourd'hui, vous jonglez entre banques, gestionnaires coûteux et robo-advisors limités.",
+    en: "Today, you juggle between banks, online platforms, costly managers, and limited robo‑advisors.",
+    fr: "Aujourd'hui, vous jonglez entre banques, plateformes en ligne, gestionnaires coûteux et robo-advisors limités.",
   },
   "key_insights.bullet2": {
-    en: "Bubble unifies everything: a 24/7 banker, expert analyst, and automated manager in one tool.",
-    fr: "Bubble unifie tout : un banquier 24/7, un analyste expert et un gestionnaire automatisé en un seul outil.",
+    en: "Bubble unifies everything: a 24/7 banker, an investment advisor, and an automated private manager in one tool.",
+    fr: "Bubble unifie tout : un banquier 24/7, un conseiller en investissement et un gérant privé automatisé en un seul outil.",
   },
   "key_insights.bullet3": {
-    en: "Designed for ourselves, Bubble combines professional strategies, like risk parity, with total transparency.",
-    fr: "Conçu pour nous-mêmes, Bubble combine des stratégies professionnelles, comme la parité des risques, avec une transparence totale.",
+    en: "Designed for ourselves, Bubble explains professional strategies and applies them for you with total transparency.",
+    fr: "Conçu pour nous-mêmes, Bubble vous explique toutes les stratégies professionnelles et les appliquent pout vous avec une transparence totale.",
   },
 
   // Footer
