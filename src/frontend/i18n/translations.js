@@ -698,4 +698,72 @@ const translations = {
     en: "Value (Base 100)",
     fr: "Valeur (Base 100)"
   },
+
+  // Footer Navigation
+  "footer.nav.product": {
+    en: "Product",
+    fr: "Produit"
+  },
+  "footer.nav.manifesto": {
+    en: "Our Assessment",
+    fr: "Notre Constat"
+  },
+  "footer.nav.approach": {
+    en: "Our Approach",
+    fr: "Notre Approche"
+  },
+  "footer.nav.vision": {
+    en: "What We're Building",
+    fr: "Ce Que Nous Construisons"
+  },
+  "footer.nav.simulator": {
+    en: "Portfolio Simulator",
+    fr: "Simulateur de Portefeuille"
+  },
+  "footer.nav.resources": {
+    en: "Resources",
+    fr: "Ressources"
+  },
+  "footer.nav.blog": {
+    en: "Blog",
+    fr: "Blog"
+  },
+  "footer.nav.join": {
+    en: "Join Us",
+    fr: "Nous Rejoindre"
+  },
+  "footer.nav.legal": {
+    en: "Legal",
+    fr: "Légal"
+  },
+  "footer.nav.privacy": {
+    en: "Privacy Policy",
+    fr: "Politique de Confidentialité"
+  },
+  "footer.nav.cookies": {
+    en: "Cookie Settings",
+    fr: "Gérer les Cookies"
+  },
+
+  // 404 Error Page
+  "error.title": {
+    en: "Page Not Found",
+    fr: "Page non trouvée"
+  },
+  "error.message": {
+    en: "The page you're looking for doesn't exist or has been moved. Return to the homepage to discover our AI investment platform.",
+    fr: "La page que vous recherchez n'existe pas ou a été déplacée. Retournez à l'accueil pour découvrir notre plateforme d'investissement IA."
+  },
+  "error.home": {
+    en: "Back to Home",
+    fr: "Retour à l'accueil"
+  },
+  "error.simulator": {
+    en: "Simulator",
+    fr: "Simulateur"
+  },
+  "error.blog": {
+    en: "Blog",
+    fr: "Blog"
+  },
 };

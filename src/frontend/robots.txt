@@ -1,0 +1,37 @@
+# Bubble Invest - Robots.txt
+# Controls which pages search engines can crawl and index
+
+# Allow all search engines to crawl public pages
+User-agent: *
+Allow: /
+Allow: /portfolio-simulator
+Allow: /blog
+Allow: /blog/*
+
+# Block API endpoints (no SEO value)
+Disallow: /api/
+Disallow: /api/*
+
+# Block internal tools (no SEO value)
+Disallow: /clear-cache
+Disallow: /test-image-generation
+
+# Block private/test pages
+Disallow: /private/
+Disallow: /test/
+
+# Sitemap location
+Sitemap: https://bubbleinvest.org/sitemap.xml
+
+# Crawl-delay for polite bots (1 second between requests)
+Crawl-delay: 1
+
+# Specific rules for aggressive crawlers
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: DotBot
+Crawl-delay: 10

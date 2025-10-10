@@ -100,15 +100,45 @@ function displayBlogPost(post) {
     const title = post.title[currentLanguage] || post.title.fr;
     const summary = post.summary[currentLanguage] || post.summary.fr;
     const content = post.content[currentLanguage] || post.content.fr;
-    
-    // Update page title and meta
-    document.title = `${title} - Bubble Blog`;
-    document.getElementById('post-title').textContent = `${title} - Bubble Blog`;
-    
-    const defaultSummary = currentLanguage === 'fr' ? 
+
+    const defaultSummary = currentLanguage === 'fr' ?
         'Découvrez cet article sur l\'investissement intelligent.' :
         'Discover this article on intelligent investing.';
-    document.getElementById('post-description').setAttribute('content', summary || defaultSummary);
+    const metaSummary = summary || defaultSummary;
+    const metaTitle = `${title} | Blog Bubble`;
+    const currentUrl = `https://bubbleinvest.org/blog/${post.slug}`;
+    const imageUrl = post.imageUrl || 'https://bubbleinvest.org/assets/images/bubble-logo-single.svg';
+
+    // Update page title and SEO meta tags
+    document.title = metaTitle;
+    document.getElementById('post-title').textContent = metaTitle;
+    document.getElementById('post-description').setAttribute('content', metaSummary);
+    document.getElementById('post-keywords').setAttribute('content', post.tags ? post.tags.join(', ') : 'investissement, finance, IA');
+
+    // Update Open Graph meta tags
+    document.getElementById('og-url').setAttribute('content', currentUrl);
+    document.getElementById('og-title').setAttribute('content', metaTitle);
+    document.getElementById('og-description').setAttribute('content', metaSummary);
+    document.getElementById('og-image').setAttribute('content', imageUrl);
+
+    // Update Twitter Card meta tags
+    document.getElementById('twitter-url').setAttribute('content', currentUrl);
+    document.getElementById('twitter-title').setAttribute('content', metaTitle);
+    document.getElementById('twitter-description').setAttribute('content', metaSummary);
+    document.getElementById('twitter-image').setAttribute('content', imageUrl);
+
+    // Update canonical URL
+    document.getElementById('canonical-url').setAttribute('href', currentUrl);
+
+    // Update hreflang tags
+    document.getElementById('hreflang-fr').setAttribute('href', currentUrl);
+    document.getElementById('hreflang-en').setAttribute('href', `${currentUrl}?lang=en`);
+    document.getElementById('hreflang-default').setAttribute('href', currentUrl);
+
+    // Update article published time
+    if (post.publishedDate) {
+        document.getElementById('article-published-time').setAttribute('content', new Date(post.publishedDate).toISOString());
+    }
     
     // Update breadcrumb
     document.getElementById('breadcrumb-title').textContent = title;

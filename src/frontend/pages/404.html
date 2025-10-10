@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>Page non trouvée - Bubble</title>
+  <meta name="description" content="Page non trouvée. Retournez à l'accueil de Bubble pour découvrir notre plateforme d'investissement IA.">
+  <meta name="robots" content="noindex, follow">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/bubble-favicon.svg">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../assets/styles/styles.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    .error-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .error-code {
+      font-size: 8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+
+    .error-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .error-message {
+      font-size: 1.125rem;
+      color: #666;
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+
+    .error-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .error-link {
+      display: inline-block;
+      padding: 0.875rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .error-link-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .error-link-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .error-link-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .error-link-secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .error-bubble-logo {
+      margin-bottom: 2rem;
+      opacity: 0.3;
+    }
+
+    @media (max-width: 768px) {
+      .error-code {
+        font-size: 5rem;
+      }
+
+      .error-title {
+        font-size: 1.5rem;
+      }
+
+      .error-message {
+        font-size: 1rem;
+      }
+
+      .error-links {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .error-link {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="error-container">
+    <svg class="error-bubble-logo" width="100" height="100" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="36" cy="41" r="26" stroke="#667eea" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+      <circle cx="59" cy="21" r="6" fill="#667eea"/>
+    </svg>
+
+    <div class="error-code">404</div>
+    <h1 class="error-title" data-translate="error.title">Page non trouvée</h1>
+    <p class="error-message" data-translate="error.message">
+      La page que vous recherchez n'existe pas ou a été déplacée.
+      Retournez à l'accueil pour découvrir notre plateforme d'investissement IA.
+    </p>
+
+    <div class="error-links">
+      <a href="/" class="error-link error-link-primary" data-translate="error.home">Retour à l'accueil</a>
+      <a href="/portfolio-simulator" class="error-link error-link-secondary" data-translate="error.simulator">Simulateur</a>
+      <a href="/blog" class="error-link error-link-secondary" data-translate="error.blog">Blog</a>
+    </div>
+  </div>
+
+  <!-- Translation Script -->
+  <script src="../i18n/translations.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>

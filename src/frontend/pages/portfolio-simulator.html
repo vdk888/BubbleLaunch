@@ -1067,6 +1067,11 @@
         }
       }
     </style>
+
+    <!-- Cookie Consent (Tarteaucitron) - CNIL/RGPD Compliant -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/tarteaucitron.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/css/tarteaucitron.min.css">
+    <script src="../js/seo/cookie-consent.js"></script>
   </head>
   <body>
     <!-- Simulator Container -->
@@ -1353,6 +1358,59 @@
       </div>
     </div>
 
+    <!-- Footer with Sitemap Links -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-left">
+            <div class="footer-logo" style="display: flex; align-items: center; gap: 0.18em">
+              <span style="display: flex; align-items: center">
+                <svg width="30" height="30" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
+                  <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+                  <circle cx="59" cy="21" r="6" fill="#000"/>
+                </svg>
+              </span>
+              <span>Bubble.</span>
+            </div>
+            <div class="footer-tagline" data-translate="footer.tagline">L'ère de l'IA change tout. Changeons avec elle.</div>
+            <div class="footer-copyright" data-translate="footer.copyright">© 2025 Bubble. Transparent by design.</div>
+          </div>
+
+          <nav class="footer-nav">
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.product">Produit</h4>
+              <ul>
+                <li><a href="/#manifesto" data-translate="footer.nav.manifesto">Notre Constat</a></li>
+                <li><a href="/#approach" data-translate="footer.nav.approach">Notre Approche</a></li>
+                <li><a href="/#vision" data-translate="footer.nav.vision">Ce Que Nous Construisons</a></li>
+                <li><a href="/portfolio-simulator" data-translate="footer.nav.simulator">Simulateur de Portefeuille</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.resources">Ressources</h4>
+              <ul>
+                <li><a href="/blog" data-translate="footer.nav.blog">Blog</a></li>
+                <li><a href="/#waitlist" data-translate="footer.nav.join">Nous Rejoindre</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.legal">Légal</h4>
+              <ul>
+                <li><a href="/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
+                <li><a href="#cookies" id="tarteaucitronRoot" data-translate="footer.nav.cookies">Gérer les Cookies</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <!-- SEO Structured Data -->
+    <script src="../js/seo/structured-data.js"></script>
+
+    <!-- Application Scripts -->
     <script src="../js/floating-chat-input.js"></script>
     <script src="../js/simulator-chat.js"></script>
   </body>

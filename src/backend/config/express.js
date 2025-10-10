@@ -13,6 +13,11 @@ function configureExpress(app) {
   // Session middleware
   app.use(sessionMiddleware);
 
+  // Serve robots.txt from root (SEO)
+  app.get('/robots.txt', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../frontend/robots.txt'));
+  });
+
   // Serve static files (CSS, JS, images) but not index.html
   app.use(
     express.static(path.join(__dirname, "../../frontend"), {

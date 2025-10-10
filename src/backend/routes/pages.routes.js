@@ -107,4 +107,13 @@ router.get("/portfolio-simulator", (req, res) => {
   );
 });
 
+/**
+ * Privacy Policy page (SEO + GDPR compliance)
+ */
+router.get("/privacy", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../../frontend/pages/privacy.html")
+  );
+});
+
 module.exports = router;

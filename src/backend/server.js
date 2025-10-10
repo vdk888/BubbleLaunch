@@ -14,6 +14,11 @@ configureExpress(app);
 // Mount all routes
 app.use(routes);
 
+// 404 handler - must be after all other routes
+app.use((req, res) => {
+  res.status(404).sendFile(require("path").join(__dirname, "../frontend/pages/404.html"));
+});
+
 // Error handling middleware (must be last)
 app.use(errorHandler);
 
