@@ -2644,23 +2644,54 @@ form button:hover {
     right: 0;
     bottom: 0;
     width: 100%;
-    height: 100%;
-    max-height: 100%;
+    height: 100vh;
+    max-height: 100vh;
     margin: 0;
     border-radius: 0;
     z-index: 9999;
     background: #FFFFFF !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    padding: 1rem;
+    padding: 3.5rem 1rem 1rem 1rem;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
-  .chat-messages {
+  .chat-section.fullscreen #fullscreen-toggle-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10000;
+    background: rgba(107, 114, 128, 0.15);
+    border: none;
+    color: #6B7280;
+    width: 44px;
+    height: 44px;
+  }
+
+  .chat-section.fullscreen #fullscreen-toggle-btn:hover {
+    background: rgba(107, 114, 128, 0.25);
+  }
+
+  .chat-section.fullscreen .chat-messages {
     flex: 1;
     max-height: none;
     padding: 0.5rem;
     margin-bottom: 1rem;
+    overflow-y: auto;
+  }
+
+  .chat-section.fullscreen .chat-input-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: #FFFFFF;
+    border-top: 1px solid #E5E7EB;
+    display: flex;
+    gap: 0.75rem;
   }
 
   .chat-message {
