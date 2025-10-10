@@ -45,6 +45,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
+    // Update all elements with data-translate-placeholder attribute
+    document.querySelectorAll('[data-translate-placeholder]').forEach((element) => {
+      const key = element.getAttribute("data-translate-placeholder");
+      if (translations[key] && translations[key][lang]) {
+        element.placeholder = translations[key][lang];
+      }
+    });
+
     // Update all translatable HTML elements (allows HTML tags)
     translatableHtmlElements.forEach((element) => {
       const key = element.getAttribute("data-translate-html");

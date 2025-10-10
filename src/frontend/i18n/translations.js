@@ -184,6 +184,14 @@ const translations = {
     en: "Why AI changes everything...",
     fr: "Pourquoi l'IA change tout..."
   },
+  "chat.title": {
+    en: "Chat with Bubble",
+    fr: "Chat avec Bubble"
+  },
+  "chat.input_placeholder": {
+    en: "Type your message...",
+    fr: "Tapez votre message..."
+  },
 
   // Waitlist Section
   "waitlist.title": {
