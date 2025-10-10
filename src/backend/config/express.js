@@ -22,6 +22,14 @@ function configureExpress(app) {
   app.use(
     express.static(path.join(__dirname, "../../frontend"), {
       index: false, // This prevents express.static from serving index.html
+      setHeaders: (res, filePath) => {
+        // Prevent caching of JS files to avoid stale code issues
+        if (filePath.endsWith('.js')) {
+          res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+          res.setHeader('Pragma', 'no-cache');
+          res.setHeader('Expires', '0');
+        }
+      }
     })
   );
 }
