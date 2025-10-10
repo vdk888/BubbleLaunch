@@ -156,15 +156,32 @@ header .container {
 
 /* Mobile: hide text on scroll */
 @media (max-width: 768px) {
+  .logo {
+    display: flex;
+    align-items: center;
+    width: auto;
+  }
+
   header.scrolled .logo span:last-child {
     opacity: 0;
     width: 0;
     margin: 0;
     overflow: hidden;
+    position: absolute;
+    pointer-events: none;
   }
 
   header.scrolled .logo svg {
     margin-right: 0;
+  }
+
+  header.scrolled .logo {
+    width: auto;
+  }
+
+  header.scrolled .brand {
+    width: auto;
+    min-width: auto;
   }
 }
 
@@ -2781,11 +2798,25 @@ form button:hover {
   .chat-section.fullscreen .chat-input {
     display: block !important;
     visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
 
   .chat-section.fullscreen .chat-submit {
     display: flex !important;
     visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Ensure input container is at the bottom and visible */
+  .chat-section.fullscreen .chat-input-container {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .chat-message {
@@ -2828,15 +2859,32 @@ form button:hover {
   }
 
   .chat-input {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     padding: 0.875rem 1rem;
-    min-height: 48px;
+    min-height: 52px;
     max-height: 120px;
     height: auto;
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    line-height: 1.4;
+    line-height: 1.5;
+    resize: none;
+    overflow-y: auto;
+  }
+
+  /* Style for placeholder to handle long text */
+  .chat-input::placeholder {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    line-height: 1.5;
+    font-size: 0.9rem;
+  }
+
+  /* Collapsed chatbot specific styles */
+  .chat-section:not(.fullscreen) .chat-input {
+    min-height: 52px;
+    padding: 0.75rem 1rem;
   }
 
   .chat-submit {
