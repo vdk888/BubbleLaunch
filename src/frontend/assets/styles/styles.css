@@ -3690,12 +3690,14 @@ footer .container {
     text-align: center;
     gap: 1rem;
     padding: 1.5rem;
+    align-items: center;
   }
-  
+
   .approach-number {
     width: 60px;
     height: 60px;
     font-size: 24px;
+    margin: 0 auto;
   }
   
   .approach-content h3 {

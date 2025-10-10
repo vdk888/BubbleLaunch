@@ -71,8 +71,8 @@ const translations = {
     fr: "Nous développons l'outil que nous utilisons pour nos investissements personnels : un système automatique qui optimise les portefeuilles via des stratégies quantitatives transparentes et des backtests rigoureux, rééquilibrés régulièrement.",
   },
   "vision.platform.description2": {
-    en: "Our platform includes a full‑fledged AI agent that can act as your private manager: personalized advice, automated trading, and accessible financial education.",
-    fr: "Notre plateforme intègre un véritable agent IA complet capable de jouer le rôle de votre gérant privé : conseils personnalisés, trading automatique, et éducation financière accessible.",
+    en: "We've crafted a full‑fledged AI agent that can act as your private manager: personalized advice, automated trading, and accessible financial education.",
+    fr: "Nous avons créé un véritable agent IA complet capable de jouer le rôle de votre gérant privé : conseils personnalisés, trading automatique, et éducation financière accessible.",
   },
   "vision.cost.title": {
     en: "Rethought Cost Structure",
