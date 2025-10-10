@@ -15,6 +15,15 @@ router.get("/", (req, res) => {
 });
 
 /**
+ * Serve index.html for /home (alternative homepage URL for SEO)
+ */
+router.get("/home", (req, res) => {
+  console.log("Home route hit, serving index.html");
+  const filePath = path.join(__dirname, "../../frontend/pages/index.html");
+  res.sendFile(filePath);
+});
+
+/**
  * Blog index page
  */
 router.get("/blog", async (req, res) => {

@@ -21,6 +21,12 @@ router.get('/sitemap.xml', async (req, res) => {
         lastmod: new Date().toISOString().split('T')[0]
       },
       {
+        url: '/home',
+        priority: '1.0',
+        changefreq: 'weekly',
+        lastmod: new Date().toISOString().split('T')[0]
+      },
+      {
         url: '/portfolio-simulator',
         priority: '0.9',
         changefreq: 'monthly',

@@ -4,9 +4,12 @@
 # Allow all search engines to crawl public pages
 User-agent: *
 Allow: /
+Allow: /home
 Allow: /portfolio-simulator
 Allow: /blog
 Allow: /blog/*
+Allow: /privacy
+Allow: /404
 
 # Block API endpoints (no SEO value)
 Disallow: /api/
