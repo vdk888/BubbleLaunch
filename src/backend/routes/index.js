@@ -7,6 +7,12 @@ const blogRoutes = require("./blog.routes");
 const knowledgeGardenRoutes = require("./knowledge-garden.routes");
 const portfolioRoutes = require("./portfolio.routes");
 const pagesRoutes = require("./pages.routes");
+const sitemapRoutes = require("./sitemap.routes");
+
+/**
+ * SEO Routes
+ */
+router.use("/", sitemapRoutes);
 
 /**
  * API Routes

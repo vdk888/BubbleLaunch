@@ -275,8 +275,9 @@ BubbleLaunch/
 
 - **Main Documentation**: [README.md](README.md)
 - **AI Guidance**: [CLAUDE.md](CLAUDE.md)
-- **SEO Strategy**: [docs/SEO_STRATEGY.md](docs/SEO_STRATEGY.md) ✅ NEW
-- **SEO Implementation Roadmap**: [docs/SEO_IMPLEMENTATION_ROADMAP.md](docs/SEO_IMPLEMENTATION_ROADMAP.md) ✅ NEW
+- **SEO Quick Start (€0 Budget)**: [docs/seo/SEO_QUICK_START_€0.md](docs/seo/SEO_QUICK_START_€0.md) ✅ NEW (START HERE!)
+- **SEO Strategy**: [docs/seo/SEO_STRATEGY.md](docs/seo/SEO_STRATEGY.md) ✅ NEW (Deep dive)
+- **SEO Implementation Roadmap**: [docs/seo/SEO_IMPLEMENTATION_ROADMAP.md](docs/seo/SEO_IMPLEMENTATION_ROADMAP.md) ✅ NEW (Full details)
 - **Portfolio Simulator**: [docs/PORTFOLIO_SIMULATOR.md](docs/PORTFOLIO_SIMULATOR.md)
 - **Architecture**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 - **Design Guidelines**: [docs/company/Charte Graphique Bubble.md](docs/company/Charte%20Graphique%20Bubble.md)

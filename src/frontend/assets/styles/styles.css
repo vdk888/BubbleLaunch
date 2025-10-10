@@ -2795,8 +2795,8 @@ form button:hover {
 
   .chat-section.fullscreen .chat-messages {
     flex: 1;
-    height: calc(100vh - 68px);
-    max-height: calc(100vh - 68px);
+    height: calc(100vh - 60px);
+    max-height: calc(100vh - 60px);
     padding: 1rem;
     padding-top: 3.5rem;
     padding-bottom: 1rem;
@@ -2813,12 +2813,13 @@ form button:hover {
     right: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
-    padding: 0.75rem 1rem !important;
-    padding-bottom: max(0.75rem, env(safe-area-inset-bottom)) !important;
+    padding: 0.5rem 0.75rem !important;
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom)) !important;
     background: #FFFFFF !important;
     border-top: 1px solid #E5E7EB !important;
     border-radius: 0 !important;
     display: flex !important;
+    align-items: center !important;
     visibility: visible !important;
     opacity: 1 !important;
     gap: 0.5rem !important;
@@ -2827,8 +2828,6 @@ form button:hover {
     transform: none !important;
     margin: 0 !important;
     box-sizing: border-box !important;
-    min-height: 68px !important;
-    max-height: 68px !important;
   }
 
   /* Hide header when chatbot is fullscreen on mobile */
@@ -2836,12 +2835,16 @@ form button:hover {
     display: none !important;
   }
 
-  /* Ensure input and submit button are visible */
+  /* Ensure input and submit button are visible and compact */
   .chat-section.fullscreen .chat-input {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;
+    padding: 0.625rem 0.875rem !important;
+    font-size: 0.9rem !important;
+    min-height: 44px !important;
+    height: 44px !important;
   }
 
   .chat-section.fullscreen .chat-submit {
@@ -2849,6 +2852,11 @@ form button:hover {
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    flex-shrink: 0 !important;
   }
 
   .chat-message {
