@@ -129,7 +129,7 @@ const translations = {
     fr: "Automatiser",
   },
   "approach.automate.description": {
-    en: "We automate what a fund manager does: asset allocation, portfolio rebalancing, and strategy execution. But instead of a human, it's quantitative code running automatically.",
+    en: "We automate what a fund manager does: asset allocation, portfolio rebalancing, and strategy execution. But instead of a human doing it manually, your programmed strategy runs automatically.",
     fr: "Nous automatisons ce que fait un gérant de fonds : allocation d'actifs, rééquilibrage de portefeuille, et exécution de stratégies. Mais au lieu d'un humain qui applique manuellement, c'est votre stratégie programmée qui s'exécute automatiquement.",
   },
   "approach.clarify.title": {
