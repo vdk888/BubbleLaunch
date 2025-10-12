@@ -635,6 +635,28 @@ class FreepikService {
     }
 
     /**
+     * Delete a specific cached image by article ID
+     * @param {string} articleId - Article ID to remove from cache
+     * @returns {boolean} - True if image was found and deleted
+     */
+    deleteCachedImage(articleId) {
+        if (!articleId) return false;
+
+        const cacheKey = `article-${articleId}`;
+        const hadImage = this.imageCache.has(cacheKey);
+
+        if (hadImage) {
+            this.imageCache.delete(cacheKey);
+            this.savePersistentCache();
+            console.log(`🗑️ Deleted cached image for article ID: ${articleId}`);
+            return true;
+        }
+
+        console.log(`⚠️ No cached image found for article ID: ${articleId}`);
+        return false;
+    }
+
+    /**
      * Clear the image cache (useful for getting fresh images)
      */
     clearCache() {
