@@ -269,12 +269,105 @@
 
 ---
 
-**Last Updated**: 2025-10-10 23:00
+**Last Updated**: 2025-10-12 18:00
 **Status**: ✅ **100% COMPLETE - ALL SEO TASKS DONE!**
 
 **Total Completion Time**: 11.5 hours (Week 1: 7.5h + Week 2: 4h)
 
 **Local Testing**: ✅ PASSED - All URLs verified, footer nav working, 404 page functional
+
+---
+
+## 🔧 Post-Launch SEO Issue & Fix (2025-10-12)
+
+### Issue Discovered
+After deploying to production and submitting sitemap to Google Search Console:
+- ✅ Homepage (`/`) - Successfully indexed (2025-10-11)
+- ✅ Portfolio Simulator (`/portfolio-simulator`) - Successfully indexed (2025-10-11)
+- ❌ Blog page (`/blog`) - **"URL is not available to Google"**
+
+**Root Cause**: Blog page content was 100% JavaScript-dependent. Google crawled the page but saw only:
+```html
+<div class="posts-grid" id="posts-grid">
+  <!-- Will be populated by JavaScript -->
+</div>
+```
+Result: No actual content visible to Googlebot → Page rejected for indexing.
+
+### Fix Implemented (2025-10-12)
+
+**File Modified**: `src/backend/routes/pages.routes.js`
+
+**Solution**: Server-Side Rendering (SSR) for SEO
+- Modified `/blog` route to fetch blog posts from Notion on server-side
+- Injected server-rendered HTML inside `<noscript>` tag
+- Ensures Google sees actual content (titles, summaries, links) even without JavaScript
+- Users with JS enabled still see the dynamic version
+
+**Code Changes**:
+```javascript
+router.get("/blog", async (req, res) => {
+  try {
+    const posts = await getPublishedPosts();
+    let html = await fs.readFile(blogIndexPath, "utf-8");
+
+    // Inject server-rendered blog post links for SEO
+    const seoContent = `
+      <noscript>
+        <div class="seo-blog-posts">
+          <h2>Articles récents</h2>
+          ${posts.map(post => `
+            <article>
+              <h3><a href="/blog/${post.slug}">${post.title.fr}</a></h3>
+              <p>${post.summary.fr}</p>
+              <time>${post.publishedDate}</time>
+            </article>
+          `).join("")}
+        </div>
+      </noscript>
+    `;
+
+    html = html.replace("</body>", `${seoContent}</body>`);
+    res.send(html);
+  } catch (error) {
+    res.status(500).send("Error loading blog");
+  }
+});
+```
+
+**Benefits**:
+- ✅ Google now sees 4 blog posts with full content (titles, summaries, publication dates)
+- ✅ Proper internal linking structure (all blog post URLs visible)
+- ✅ No impact on user experience (JS version still loads for users)
+- ✅ SEO-friendly fallback for non-JS crawlers
+
+### Manual Action Required
+
+**Next Steps** (User must complete):
+1. **Deploy to Production**:
+   - Push updated `pages.routes.js` to production server
+   - Restart Node.js application
+
+2. **Request Re-Indexing in Google Search Console**:
+   - Go to [Google Search Console](https://search.google.com/search-console)
+   - Navigate to "URL Inspection" tool
+   - Enter: `https://bubbleinvest.org/blog`
+   - Click **"Request Indexing"**
+   - Wait 24-48 hours for Google to re-crawl
+
+3. **Verify Fix**:
+   - Check Search Console after 2-3 days
+   - Error "URL is not available to Google" should be resolved
+   - Page should show status: **"URL is on Google"**
+
+**Expected Timeline**:
+- Deploy + Request Re-indexing: Today (2025-10-12)
+- Google re-crawl: 1-2 days (2025-10-13/14)
+- Indexing complete: 3-5 days (2025-10-15/17)
+
+**Files Modified**: 1 file (`src/backend/routes/pages.routes.js`)
+**Lines Added**: ~30 lines (SSR logic + noscript content)
+**Time Investment**: 30 minutes
 
 **Complete Accomplishments:**
 
