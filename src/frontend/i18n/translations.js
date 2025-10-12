@@ -391,6 +391,28 @@ const translations = {
     fr: "L'ère de l'IA change tout. Changeons avec elle.",
   },
 
+  // Blog Preview Section
+  "blogPreview.title": {
+    en: "Latest Insights",
+    fr: "Dernières Réflexions"
+  },
+  "blogPreview.subtitle": {
+    en: "Explore our analysis on AI, investing and quantitative finance",
+    fr: "Explorez nos analyses sur l'IA, l'investissement et la finance quantitative"
+  },
+  "blogPreview.viewAll": {
+    en: "View all articles →",
+    fr: "Voir tous les articles →"
+  },
+  "blogPreview.loading": {
+    en: "Loading articles...",
+    fr: "Chargement des articles..."
+  },
+  "blogPreview.readMore": {
+    en: "Read more",
+    fr: "Lire la suite"
+  },
+
   // Floating Bubble
   "floating_bubble.text": {
     en: "Have questions? Chat with our AI",
