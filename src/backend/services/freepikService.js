@@ -138,110 +138,74 @@ class FreepikService {
      * @returns {string} - Optimized prompt for image generation
      */
     createImagePrompt(title, summary, tags = []) {
-        // Extract key themes and concepts
+        // Extract key themes for context
         const tagContext = tags.length > 0 ? tags.join(', ') : '';
-        
-        // Extract specific keywords from title and summary for uniqueness
         const contentKeywords = this.extractKeywords(title, summary);
-        
-        // Determine the main theme based on title and tags
-        const isFinanceRelated = this.isFinanceTheme(title, summary, tags);
-        const isAIRelated = this.isAITheme(title, summary, tags);
-        const isTechRelated = this.isTechTheme(title, summary, tags);
-        const isInvestmentRelated = this.isInvestmentTheme(title, summary, tags);
-        const isCryptoRelated = this.isCryptoTheme(title, summary, tags);
-        
-        // Enhanced base prompts with stronger tech/finance emphasis
-        let basePrompt = '';
-        
-        if (isFinanceRelated && isAIRelated) {
-            basePrompt = `Modern AI fintech illustration featuring ${contentKeywords}, artificial intelligence in finance, trading algorithms, predictive analytics, digital banking, clean professional style`;
-        } else if (isInvestmentRelated && isTechRelated) {
-            basePrompt = `Investment technology visualization featuring ${contentKeywords}, portfolio optimization, trading platforms, financial analytics, professional style`;
-        } else if (isCryptoRelated) {
-            basePrompt = `Cryptocurrency and blockchain illustration about ${contentKeywords}, digital assets, trading platforms, modern tech design`;
-        } else if (isFinanceRelated) {
-            basePrompt = `Financial technology illustration of ${contentKeywords}, banking, payment systems, data analytics, professional design`;
-        } else if (isAIRelated) {
-            basePrompt = `AI and machine learning visualization of ${contentKeywords}, neural networks, predictive analytics, modern tech style`;
-        } else if (isTechRelated) {
-            basePrompt = `Technology innovation illustration featuring ${contentKeywords}, digital transformation, modern software design`;
-        } else {
-            // Enhanced default with stronger fintech emphasis
-            basePrompt = `Fintech innovation illustration about ${contentKeywords}, financial technology, investment platforms, modern professional style`;
-        }
-        
-        // Add randomized enhanced contextual elements while maintaining tech/finance themes
-        const enhancedElements = this.generateEnhancedVisualElements(title, summary, tags);
-        basePrompt += `, ${enhancedElements.join(', ')}`;
-        
-        // Add randomized tech/finance visual variations for uniqueness
+
+        // Create hash for randomization
         const titleHash = this.getSimpleHash(title);
         const summaryHash = this.getSimpleHash(summary || '');
         const combinedHash = titleHash + summaryHash;
-        
-        // Randomized modern tech/finance color schemes
-        const modernColorSchemes = [
-            'electric blue and silver gradients with neon accents',
-            'deep navy with cyan highlights and metallic elements',
-            'emerald green with gold digital patterns',
-            'sophisticated purple and teal tech gradients',
-            'professional charcoal with bright blue data streams',
-            'futuristic white with holographic blue elements',
-            'corporate dark blue with glowing orange indicators',
-            'premium black with electric green tech details'
-        ];
-        const colorScheme = modernColorSchemes[titleHash % modernColorSchemes.length];
-        
-        // Randomized tech/finance visual styles
-        const techVisualStyles = [
-            'holographic interface elements with floating data panels',
-            'geometric neural network patterns with connection nodes',
-            'isometric technology infrastructure with data flows',
-            'abstract algorithmic visualizations with mathematical precision',
-            'sleek dashboard interfaces with real-time analytics',
-            'futuristic circuit board aesthetics with glowing pathways',
-            'crystalline data structures with transparent layers',
-            'dynamic particle systems representing financial flows'
-        ];
-        const visualStyle = techVisualStyles[summaryHash % techVisualStyles.length];
-        
-        // Randomized modern composition styles
-        const compositionStyles = [
-            'asymmetrical modern layout with dynamic balance',
-            'layered depth with foreground and background elements',
-            'central focus with radiating technological elements',
-            'grid-based systematic organization with tech accents',
-            'flowing organic shapes merged with geometric precision',
-            'minimalist composition with strategic tech highlights',
-            'diagonal dynamic arrangement with motion elements',
-            'circular patterns expanding from central innovation core'
-        ];
-        const composition = compositionStyles[combinedHash % compositionStyles.length];
-        
-        // Randomized lighting and atmosphere
-        const lightingStyles = [
-            'cinematic lighting with dramatic tech shadows',
-            'ambient glow from digital interfaces and screens',
-            'pristine studio lighting with tech product aesthetics',
-            'neon underglow with futuristic atmosphere',
-            'soft volumetric lighting through digital elements',
-            'high-contrast lighting emphasizing tech details',
-            'ethereal backlighting with transparent tech layers',
-            'professional corporate lighting with subtle tech accents'
-        ];
-        const lighting = lightingStyles[(titleHash * 2) % lightingStyles.length];
-        
-        basePrompt += `, featuring ${visualStyle}, ${colorScheme}, ${composition}, ${lighting}`;
-        
-        // Add context from tags if available with tech/finance enhancement
-        if (tagContext) {
-            basePrompt += `, incorporating themes of ${tagContext} with modern technological aesthetic`;
+
+        // Base Bubble brand-aligned prompt
+        let basePrompt = `Create an abstract, tech-inspired illustration for a blog article cover, fully aligned with Bubble's visual identity. `;
+
+        // Add article-specific context subtly
+        if (contentKeywords) {
+            basePrompt += `Visual theme relates to: ${contentKeywords}. `;
         }
-        
-        // Add professional quality specifications
-        basePrompt += `, professional illustration, modern design, business aesthetic, no people, no text, clean style`;
-        
+
+        // Core Bubble visual style (always applied)
+        basePrompt += `Visuals and Style: Flowing shapes and layered translucent gradients, glassmorphism and soft blurs encouraged. `;
+        basePrompt += `Palette strictly based on: dominant white and very light gray, cool blue, cyan, soft purple hex #667eea, black and deep gray for accents—always ensuring strong contrast and accessibility. `;
+        basePrompt += `Composition: smooth transitions, digital light effects, minimal geometric or organic overlays, and soft shadows. `;
+        basePrompt += `Vibe: innovative, digital, artistic, professional—evokes cutting-edge AI technology, modernity, and creativity. `;
+        basePrompt += `No text or logos. Horizontal layout, suitable for website/blog tiles and banners. `;
+        basePrompt += `Tiles and cards should have a unified border-radius of 24px. `;
+
+        // Randomized elements for uniqueness
+        const colorFocus = [
+            'emphasis on soft purple #667eea gradients with white accents',
+            'dominant white with cyan and blue flowing shapes',
+            'cool blue primary with purple and light gray layers',
+            'white and very light gray base with soft purple highlights',
+            'cyan and white translucent shapes with minimal purple',
+            'layered white, light gray, and #667eea transparent gradients'
+        ];
+        const selectedColorFocus = colorFocus[titleHash % colorFocus.length];
+
+        const shapeFluidity = [
+            'highly fluid organic shapes with smooth curves',
+            'balanced mix of geometric and organic flowing forms',
+            'angular geometric patterns with soft rounded edges',
+            'circular and elliptical floating shapes',
+            'wavy flowing ribbons and translucent layers',
+            'crystalline structures with soft transparent edges'
+        ];
+        const selectedShapeFluidity = shapeFluidity[summaryHash % shapeFluidity.length];
+
+        const motifArrangement = [
+            'layered from bottom-left to top-right diagonal',
+            'centered composition with radiating elements',
+            'asymmetrical balance with floating shapes on sides',
+            'horizontal flow from left to right',
+            'scattered distribution with depth perspective',
+            'vertical stacking with transparent overlays'
+        ];
+        const selectedMotifArrangement = motifArrangement[combinedHash % motifArrangement.length];
+
+        basePrompt += `Randomized uniqueness: ${selectedColorFocus}, ${selectedShapeFluidity}, ${selectedMotifArrangement}. `;
+        basePrompt += `Light and airy overall feeling—never crowded or dark. `;
+
+        // Add tags context if available
+        if (tagContext) {
+            basePrompt += `Subtle thematic reference to: ${tagContext}. `;
+        }
+
+        // Expressive value statement (always applied)
+        basePrompt += `Expressive Value Statement: The artwork must radiate clarity and visual lightness, using transparent, floating shapes and a luminous color palette to embody Bubble's core principles: total transparency, openness, ethical innovation, and making finance accessible for everyone. `;
+        basePrompt += `The image should feel welcoming and explainable, as if you can "see through" both the design and the layers—mirroring the way Bubble builds in public.`;
+
         return basePrompt;
     }
 
