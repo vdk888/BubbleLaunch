@@ -836,67 +836,67 @@ class FreepikService {
         let imagePool = [];
 
         if (isFinanceTheme && isAITheme) {
-            // Fintech + AI: Futuristic, digital finance
+            // Fintech + AI: Abstract, flowing gradients with purple/blue
             imagePool = [
-                'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop', // Abstract tech purple/blue
-                'https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1200&h=675&fit=crop', // Digital network purple
-                'https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=1200&h=675&fit=crop', // Abstract data visualization
-                'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=675&fit=crop', // Analytics dashboard
-                'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=675&fit=crop'  // Digital analytics
+                'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop', // Abstract purple/blue gradient
+                'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&h=675&fit=crop', // Smooth gradient flow
+                'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop', // Abstract gradient art
+                'https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=675&fit=crop', // Abstract wavy gradient
+                'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=675&fit=crop'  // Purple blue abstract waves
             ];
         } else if (isFinanceTheme && isDataTheme) {
-            // Finance + Data: Charts, analytics
+            // Finance + Data: Abstract with cool tones
             imagePool = [
-                'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=675&fit=crop', // Analytics dashboard
-                'https://images.unsplash.com/photo-1543286386-713bdd548da4?w=1200&h=675&fit=crop', // Trading charts
-                'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1200&h=675&fit=crop', // Market data
-                'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=675&fit=crop', // Abstract data flow
-                'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=1200&h=675&fit=crop'  // Network visualization
+                'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop', // Abstract gradient
+                'https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=1200&h=675&fit=crop', // Blue abstract shapes
+                'https://images.unsplash.com/photo-1635070041409-e63e783ce3b0?w=1200&h=675&fit=crop', // Gradient layers
+                'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=675&fit=crop', // Abstract flowing shapes
+                'https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=675&fit=crop'  // Wavy gradients
             ];
         } else if (isAITheme && isDataTheme) {
-            // AI + Data: Neural networks, algorithms
+            // AI + Data: Abstract tech gradients
             imagePool = [
-                'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop', // Abstract AI network
-                'https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1200&h=675&fit=crop', // Digital connections
-                'https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=1200&h=675&fit=crop', // Data streams
-                'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=1200&h=675&fit=crop', // Circuit patterns
-                'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop'  // AI visualization
+                'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop', // Purple/blue abstract
+                'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&h=675&fit=crop', // Tech gradient
+                'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop', // Abstract art
+                'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=675&fit=crop', // Flowing waves
+                'https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=1200&h=675&fit=crop'  // Blue abstract
             ];
         } else if (isFinanceTheme) {
-            // Finance only: Clean, professional
+            // Finance: Elegant abstract gradients
             imagePool = [
-                'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1200&h=675&fit=crop', // Market data
-                'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=675&fit=crop', // Abstract finance
-                'https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=1200&h=675&fit=crop', // Calculator minimal
-                'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1200&h=675&fit=crop', // Clean business
-                'https://images.unsplash.com/photo-1604156425963-9be03f86a428?w=1200&h=675&fit=crop'  // Modern office
+                'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop', // Gradient abstract
+                'https://images.unsplash.com/photo-1635070041409-e63e783ce3b0?w=1200&h=675&fit=crop', // Layered gradients
+                'https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=1200&h=675&fit=crop', // Blue abstract
+                'https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=675&fit=crop', // Wavy gradient
+                'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=675&fit=crop'  // Abstract waves
             ];
         } else if (isAITheme) {
-            // AI only: Tech, futuristic
+            // AI: Futuristic abstract gradients
             imagePool = [
-                'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop', // Abstract tech
-                'https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1200&h=675&fit=crop', // Digital network
-                'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=1200&h=675&fit=crop', // Circuit board
-                'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop', // AI abstract
-                'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&h=675&fit=crop'  // Tech gradient
+                'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop', // Purple/blue tech
+                'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&h=675&fit=crop', // Smooth gradient
+                'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop', // Abstract art
+                'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=675&fit=crop', // Flowing abstract
+                'https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=675&fit=crop'  // Gradient waves
             ];
         } else if (isDataTheme) {
-            // Data only: Analytics, visualization
+            // Data: Abstract analytical visuals
             imagePool = [
-                'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=675&fit=crop', // Analytics dashboard
-                'https://images.unsplash.com/photo-1543286386-713bdd548da4?w=1200&h=675&fit=crop', // Charts
-                'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=675&fit=crop', // Data abstract
-                'https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=1200&h=675&fit=crop', // Data flow
-                'https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=1200&h=675&fit=crop'  // Data viz
+                'https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=1200&h=675&fit=crop', // Blue abstract
+                'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop', // Gradient abstract
+                'https://images.unsplash.com/photo-1635070041409-e63e783ce3b0?w=1200&h=675&fit=crop', // Layered gradient
+                'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=675&fit=crop', // Abstract flow
+                'https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=675&fit=crop'  // Wavy abstract
             ];
         } else {
-            // Generic/mixed: Clean, modern, tech
+            // Generic: Abstract, artistic, modern gradients
             imagePool = [
-                'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop', // Abstract purple/blue
-                'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&h=675&fit=crop', // Tech gradient
-                'https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=1200&h=675&fit=crop', // Minimal clean
-                'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1200&h=675&fit=crop', // Business clean
-                'https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1200&h=675&fit=crop'  // Digital network
+                'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop', // Purple/blue gradient
+                'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&h=675&fit=crop', // Smooth gradient
+                'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop', // Abstract gradient art
+                'https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=675&fit=crop', // Wavy gradient
+                'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=675&fit=crop'  // Abstract waves
             ];
         }
 
