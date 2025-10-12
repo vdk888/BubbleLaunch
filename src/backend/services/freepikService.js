@@ -160,7 +160,8 @@ class FreepikService {
         basePrompt += `Palette strictly based on: dominant white and very light gray, cool blue, cyan, soft purple hex #667eea, black and deep gray for accents—always ensuring strong contrast and accessibility. `;
         basePrompt += `Composition: smooth transitions, digital light effects, minimal geometric or organic overlays, and soft shadows. `;
         basePrompt += `Vibe: innovative, digital, artistic, professional—evokes cutting-edge AI technology, modernity, and creativity. `;
-        basePrompt += `No text or logos. Horizontal layout, suitable for website/blog tiles and banners. `;
+        basePrompt += `CRITICAL: Absolutely NO text, NO letters, NO words, NO typography, NO written content of any kind in the image. NO logos, NO symbols with text. Purely abstract visual design only. `;
+        basePrompt += `Horizontal layout, suitable for website/blog tiles and banners. `;
         basePrompt += `Tiles and cards should have a unified border-radius of 24px. `;
 
         // Randomized elements for uniqueness
