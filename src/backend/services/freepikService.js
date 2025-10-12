@@ -56,14 +56,14 @@ class FreepikService {
      */
     async generateArticleImage(articleTitle, articleSummary, tags = [], articleId = null, bypassCache = false) {
         if (!this.apiKey) {
-            console.log('Freepik API not configured, skipping image generation');
-            return null;
+            console.log('Freepik API not configured, using Unsplash fallback');
+            return this.getFallbackImage(tags, articleId);
         }
 
         // Check if we're rate limited
         if (this.isRateLimited) {
-            console.log('⚠️ Freepik API rate limited, skipping image generation');
-            return null;
+            console.log('⚠️ Freepik API rate limited, using Unsplash fallback');
+            return this.getFallbackImage(tags, articleId);
         }
 
         try {
@@ -109,12 +109,21 @@ class FreepikService {
                 this.savePersistentCache();
                 return imageUrl;
             }
-            
-            console.log(`❌ Failed to generate image for: "${articleTitle}"`);
-            return null;
+
+            console.log(`❌ Failed to generate image via Freepik for: "${articleTitle}"`);
+            console.log(`🖼️ Using Unsplash fallback image instead`);
+
+            // Use Unsplash fallback when Freepik fails
+            const fallbackImage = this.getFallbackImage(tags, articleId);
+
+            // Cache the fallback image so we don't regenerate on every request
+            this.imageCache.set(cacheKey, fallbackImage);
+            this.savePersistentCache();
+
+            return fallbackImage;
         } catch (error) {
             console.error('Error generating article image:', error);
-            
+
             // Check if it's a rate limit error
             if (error.response?.data?.message?.includes('API request limit')) {
                 console.log('🚫 Rate limit detected, marking service as rate limited');
@@ -125,8 +134,20 @@ class FreepikService {
                     console.log('✅ Rate limit reset, service available again');
                 }, 24 * 60 * 60 * 1000);
             }
-            
-            return null;
+
+            console.log(`🖼️ Using Unsplash fallback image due to error`);
+
+            // Use Unsplash fallback when error occurs
+            const fallbackImage = this.getFallbackImage(tags, articleId);
+
+            // Cache the fallback image
+            if (articleId) {
+                const cacheKey = `article-${articleId}`;
+                this.imageCache.set(cacheKey, fallbackImage);
+                this.savePersistentCache();
+            }
+
+            return fallbackImage;
         }
     }
 
@@ -784,6 +805,106 @@ class FreepikService {
             
             return false;
         }
+    }
+
+    /**
+     * Get theme-based Unsplash fallback image
+     * Returns high-quality stock images that match Bubble's aesthetic
+     * @param {Array} tags - Article tags for theme detection
+     * @param {string} articleId - Article ID for consistent selection
+     * @returns {string} - Unsplash image URL
+     */
+    getFallbackImage(tags = [], articleId = null) {
+        // Create hash from article ID for consistent selection
+        const articleHash = articleId ? Math.abs(this.getSimpleHash(articleId)) : Math.floor(Math.random() * 1000);
+
+        // Detect themes from tags
+        const isFinanceTheme = tags.some(tag =>
+            ['finance', 'investment', 'trading', 'market', 'portfolio', 'money'].includes(tag.toLowerCase())
+        );
+        const isAITheme = tags.some(tag =>
+            ['ai', 'intelligence', 'technology', 'tech', 'automation', 'robo-advisor'].includes(tag.toLowerCase())
+        );
+        const isDataTheme = tags.some(tag =>
+            ['data', 'analytics', 'analysis', 'statistics', 'research'].includes(tag.toLowerCase())
+        );
+
+        // Curated Unsplash images matching Bubble's aesthetic:
+        // - Tech/AI: Abstract, minimalist, blue/purple tones
+        // - Finance: Professional, clean, modern
+        // - Data: Charts, graphs, analytical
+        let imagePool = [];
+
+        if (isFinanceTheme && isAITheme) {
+            // Fintech + AI: Futuristic, digital finance
+            imagePool = [
+                'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop', // Abstract tech purple/blue
+                'https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1200&h=675&fit=crop', // Digital network purple
+                'https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=1200&h=675&fit=crop', // Abstract data visualization
+                'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=675&fit=crop', // Analytics dashboard
+                'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=675&fit=crop'  // Digital analytics
+            ];
+        } else if (isFinanceTheme && isDataTheme) {
+            // Finance + Data: Charts, analytics
+            imagePool = [
+                'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=675&fit=crop', // Analytics dashboard
+                'https://images.unsplash.com/photo-1543286386-713bdd548da4?w=1200&h=675&fit=crop', // Trading charts
+                'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1200&h=675&fit=crop', // Market data
+                'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=675&fit=crop', // Abstract data flow
+                'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=1200&h=675&fit=crop'  // Network visualization
+            ];
+        } else if (isAITheme && isDataTheme) {
+            // AI + Data: Neural networks, algorithms
+            imagePool = [
+                'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop', // Abstract AI network
+                'https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1200&h=675&fit=crop', // Digital connections
+                'https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=1200&h=675&fit=crop', // Data streams
+                'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=1200&h=675&fit=crop', // Circuit patterns
+                'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop'  // AI visualization
+            ];
+        } else if (isFinanceTheme) {
+            // Finance only: Clean, professional
+            imagePool = [
+                'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1200&h=675&fit=crop', // Market data
+                'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=675&fit=crop', // Abstract finance
+                'https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=1200&h=675&fit=crop', // Calculator minimal
+                'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1200&h=675&fit=crop', // Clean business
+                'https://images.unsplash.com/photo-1604156425963-9be03f86a428?w=1200&h=675&fit=crop'  // Modern office
+            ];
+        } else if (isAITheme) {
+            // AI only: Tech, futuristic
+            imagePool = [
+                'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop', // Abstract tech
+                'https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1200&h=675&fit=crop', // Digital network
+                'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=1200&h=675&fit=crop', // Circuit board
+                'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop', // AI abstract
+                'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&h=675&fit=crop'  // Tech gradient
+            ];
+        } else if (isDataTheme) {
+            // Data only: Analytics, visualization
+            imagePool = [
+                'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=675&fit=crop', // Analytics dashboard
+                'https://images.unsplash.com/photo-1543286386-713bdd548da4?w=1200&h=675&fit=crop', // Charts
+                'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=675&fit=crop', // Data abstract
+                'https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=1200&h=675&fit=crop', // Data flow
+                'https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=1200&h=675&fit=crop'  // Data viz
+            ];
+        } else {
+            // Generic/mixed: Clean, modern, tech
+            imagePool = [
+                'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop', // Abstract purple/blue
+                'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&h=675&fit=crop', // Tech gradient
+                'https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=1200&h=675&fit=crop', // Minimal clean
+                'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1200&h=675&fit=crop', // Business clean
+                'https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1200&h=675&fit=crop'  // Digital network
+            ];
+        }
+
+        // Select image consistently based on article hash
+        const selectedImage = imagePool[articleHash % imagePool.length];
+        console.log(`🖼️ Selected fallback image for article (themes: finance=${isFinanceTheme}, AI=${isAITheme}, data=${isDataTheme}): ${selectedImage}`);
+
+        return selectedImage;
     }
 }
 
