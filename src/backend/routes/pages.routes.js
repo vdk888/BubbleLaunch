@@ -24,7 +24,7 @@ router.get("/home", (req, res) => {
 });
 
 /**
- * Blog index page
+ * Blog index page with server-side rendering for SEO
  */
 router.get("/blog", async (req, res) => {
   try {
@@ -34,39 +34,42 @@ router.get("/blog", async (req, res) => {
       "../../frontend/pages/blog.html"
     );
 
-    // Check if blog.html exists
-    try {
-      await fs.access(blogIndexPath);
-      res.sendFile(blogIndexPath);
-    } catch {
-      // Temporary response until we create the blog page
-      res.send(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Bubble Blog</title>
-          <style>body{font-family:Inter,sans-serif;max-width:800px;margin:0 auto;padding:20px;}</style>
-        </head>
-        <body>
-          <h1>Bubble Blog</h1>
-          <p>Blog functionality is being set up...</p>
-          <a href="/">← Back to Bubble</a>
-          <h2>Posts (${posts.length})</h2>
+    // Read the blog.html template
+    let html = await fs.readFile(blogIndexPath, "utf-8");
+
+    // Inject server-rendered blog post links for SEO (noscript fallback)
+    // This ensures Google sees content even without JavaScript
+    const seoContent = `
+      <!-- SEO: Server-rendered blog post links for search engines -->
+      <noscript>
+        <div class="seo-blog-posts" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+          <h2>Articles récents</h2>
           ${posts
             .map(
               (post) => `
-            <div style="border-bottom:1px solid #eee;padding:20px 0;">
-              <h3><a href="/blog/${post.slug}">${post.title}</a></h3>
-              <p>${post.summary}</p>
-              <small>${post.publishedDate}</small>
-            </div>
+            <article style="margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid #eee;">
+              <h3 style="margin-bottom: 10px;">
+                <a href="/blog/${post.slug}" style="color: #000; text-decoration: none;">
+                  ${post.title.fr || post.title}
+                </a>
+              </h3>
+              <p style="color: #666; margin-bottom: 10px;">
+                ${post.summary.fr || post.summary}
+              </p>
+              <time style="color: #999; font-size: 0.9em;">${post.publishedDate}</time>
+            </article>
           `
             )
             .join("")}
-        </body>
-        </html>
-      `);
-    }
+        </div>
+      </noscript>
+      <!-- End SEO content -->
+    `;
+
+    // Inject before </body> tag
+    html = html.replace("</body>", `${seoContent}</body>`);
+
+    res.send(html);
   } catch (error) {
     console.error("Error fetching blog posts:", error);
     res.status(500).send("Error loading blog");
