@@ -818,16 +818,19 @@ class FreepikService {
         // Create hash from article ID for consistent selection
         const articleHash = articleId ? Math.abs(this.getSimpleHash(articleId)) : Math.floor(Math.random() * 1000);
 
-        // Detect themes from tags
-        const isFinanceTheme = tags.some(tag =>
-            ['finance', 'investment', 'trading', 'market', 'portfolio', 'money'].includes(tag.toLowerCase())
-        );
-        const isAITheme = tags.some(tag =>
-            ['ai', 'intelligence', 'technology', 'tech', 'automation', 'robo-advisor'].includes(tag.toLowerCase())
-        );
-        const isDataTheme = tags.some(tag =>
-            ['data', 'analytics', 'analysis', 'statistics', 'research'].includes(tag.toLowerCase())
-        );
+        // Detect themes from tags (case-insensitive, check if keyword is in tag)
+        const isFinanceTheme = tags.some(tag => {
+            const lowerTag = tag.toLowerCase();
+            return ['finance', 'investment', 'trading', 'market', 'portfolio', 'money', 'financial'].some(keyword => lowerTag.includes(keyword));
+        });
+        const isAITheme = tags.some(tag => {
+            const lowerTag = tag.toLowerCase();
+            return ['ai', 'intelligence', 'technology', 'tech', 'automation', 'robo'].some(keyword => lowerTag.includes(keyword));
+        });
+        const isDataTheme = tags.some(tag => {
+            const lowerTag = tag.toLowerCase();
+            return ['data', 'analytics', 'analysis', 'statistics', 'research'].some(keyword => lowerTag.includes(keyword));
+        });
 
         // Curated Unsplash images matching Bubble's aesthetic:
         // - Tech/AI: Abstract, minimalist, blue/purple tones
