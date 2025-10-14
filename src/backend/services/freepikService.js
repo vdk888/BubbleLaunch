@@ -551,7 +551,28 @@ class FreepikService {
             const base64Data = response.data?.data?.[0]?.base64;
             if (base64Data) {
                 console.log('🎉 Base64 image data received');
-                return `data:image/png;base64,${base64Data}`;
+
+                const reportedMime = this.normalizeMimeType(
+                    response.data?.data?.[0]?.mime ||
+                    response.data?.data?.[0]?.file_type ||
+                    response.data?.mime
+                );
+
+                let detectedMime = reportedMime;
+                if (!detectedMime) {
+                    detectedMime = this.detectMimeTypeFromBase64(base64Data);
+                }
+
+                if (!detectedMime) {
+                    console.warn('⚠️ Unable to detect mime type from Freepik response, defaulting to image/png');
+                    detectedMime = 'image/png';
+                }
+
+                if (reportedMime && reportedMime !== detectedMime) {
+                    console.log(`🛠️ Corrected reported mime type from ${reportedMime} to ${detectedMime}`);
+                }
+
+                return `data:${detectedMime};base64,${base64Data}`;
             }
 
             // Check for direct image URL
@@ -704,6 +725,70 @@ class FreepikService {
     }
 
     /**
+     * Normalize mime type strings returned from the API
+     * @param {string|null|undefined} mime - Mime type string from API
+     * @returns {string|null} - Normalized mime type or null
+     */
+    normalizeMimeType(mime) {
+        if (!mime || typeof mime !== 'string') {
+            return null;
+        }
+
+        const normalized = mime.toLowerCase().trim();
+
+        if (normalized === 'image/jpg') {
+            return 'image/jpeg';
+        }
+
+        if (normalized.startsWith('image/')) {
+            return normalized;
+        }
+
+        return null;
+    }
+
+    /**
+     * Detect mime type from base64 encoded image data by inspecting file signatures
+     * @param {string} base64Data - Base64 encoded image data without data URI prefix
+     * @returns {string|null} - Detected mime type or null if detection fails
+     */
+    detectMimeTypeFromBase64(base64Data) {
+        if (!base64Data || typeof base64Data !== 'string') {
+            return null;
+        }
+
+        try {
+            const buffer = Buffer.from(base64Data, 'base64');
+
+            if (buffer.length >= 3 && buffer[0] === 0xff && buffer[1] === 0xd8 && buffer[2] === 0xff) {
+                return 'image/jpeg';
+            }
+
+            if (buffer.length >= 8 &&
+                buffer[0] === 0x89 && buffer[1] === 0x50 && buffer[2] === 0x4e && buffer[3] === 0x47 &&
+                buffer[4] === 0x0d && buffer[5] === 0x0a && buffer[6] === 0x1a && buffer[7] === 0x0a) {
+                return 'image/png';
+            }
+
+            if (buffer.length >= 4 &&
+                buffer[0] === 0x47 && buffer[1] === 0x49 && buffer[2] === 0x46 && buffer[3] === 0x38) {
+                return 'image/gif';
+            }
+
+            if (buffer.length >= 12 &&
+                buffer[0] === 0x52 && buffer[1] === 0x49 && buffer[2] === 0x46 && buffer[3] === 0x46 &&
+                buffer[8] === 0x57 && buffer[9] === 0x45 && buffer[10] === 0x42 && buffer[11] === 0x50) {
+                return 'image/webp';
+            }
+
+            return null;
+        } catch (error) {
+            console.warn('⚠️ Failed to detect mime type from base64 data:', error.message);
+            return null;
+        }
+    }
+
+    /**
      * Load persistent cache from disk
      */
     loadPersistentCache() {
@@ -718,8 +803,38 @@ class FreepikService {
             // Load existing cache if it exists
             if (fs.existsSync(this.cacheFile)) {
                 const cacheData = JSON.parse(fs.readFileSync(this.cacheFile, 'utf8'));
+                let updatedEntries = 0;
+
+                for (const [key, value] of Object.entries(cacheData)) {
+                    if (typeof value !== 'string' || !value.startsWith('data:')) {
+                        continue;
+                    }
+
+                    const match = value.match(/^data:([^;]+);base64,(.+)$/);
+                    if (!match) {
+                        continue;
+                    }
+
+                    const [, currentMime, base64Payload] = match;
+                    const normalizedMime = this.normalizeMimeType(currentMime) || currentMime;
+                    const detectedMime = this.detectMimeTypeFromBase64(base64Payload);
+
+                    if ((normalizedMime && normalizedMime !== currentMime) ||
+                        (detectedMime && detectedMime !== normalizedMime)) {
+                        const finalMime = detectedMime || normalizedMime;
+                        cacheData[key] = `data:${finalMime};base64,${base64Payload}`;
+                        updatedEntries++;
+                        console.log(`🛠️ Corrected cached mime type for ${key}: ${currentMime} -> ${finalMime}`);
+                    }
+                }
+
                 this.imageCache = new Map(Object.entries(cacheData));
                 console.log(`📦 Loaded ${this.imageCache.size} cached images from disk`);
+
+                if (updatedEntries > 0) {
+                    console.log(`💾 Persisting ${updatedEntries} corrected cache entr${updatedEntries === 1 ? 'y' : 'ies'}`);
+                    this.savePersistentCache();
+                }
             } else {
                 console.log('📦 No existing cache file found, starting with empty cache');
             }
