@@ -64,10 +64,12 @@ async function getPublishedReferences() {
             const category = extractMultiSelectProperty(properties.Category);
             const topics = extractMultiSelectProperty(properties.Topics);
             const url = extractUrlProperty(properties['Drive URL']);
-            const summary = extractTextProperty(properties['AI summary']);
+            const summaryRaw = extractTextProperty(properties['AI summary']);
+            const summary = normalizeSummary(summaryRaw);
             const bubbleBlogStatus = extractMultiSelectProperty(properties['Bubble Blog']);
             const status = extractSelectProperty(properties.Status);
             const date = extractDateProperty(properties.Date);
+            const videoEmbedUrl = sourceType === 'Video' ? extractVideoEmbedUrl(url) : null;
             
             return {
                 id: page.id,
@@ -83,7 +85,9 @@ async function getPublishedReferences() {
                 status: status || 'Draft',
                 date: date || null,
                 createdDate: page.created_time,
-                lastEditedDate: page.last_edited_time
+                lastEditedDate: page.last_edited_time,
+                isVideo: sourceType === 'Video',
+                videoEmbedUrl
             };
         });
 
@@ -123,7 +127,8 @@ async function getEnrichedPublishedReferences() {
         }
 
         // Check which references need enrichment
-        const needsEnrichment = baseReferences.filter(ref => llmEnrichment.needsEnrichment(ref));
+        const enrichmentCandidates = baseReferences.filter(ref => ['Book', 'Article'].includes(ref.sourceType));
+        const needsEnrichment = enrichmentCandidates.filter(ref => llmEnrichment.needsEnrichment(ref));
         
         if (needsEnrichment.length > 0) {
             console.log(`📝 Found ${needsEnrichment.length} references needing enrichment`);
@@ -167,26 +172,19 @@ async function getEnrichedReferencesGroupedBySourceType() {
     try {
         const references = await getEnrichedPublishedReferences();
         
+        const allowedTypes = new Set(['Book', 'Article', 'Video']);
         const groupedReferences = references.reduce((groups, reference) => {
-            // Use the original sourceType from Notion (Book/Article)
             const sourceType = reference.sourceType || 'Unknown';
             
-            // Only allow Book and Article - filter out everything else
-            let normalizedType;
-            if (sourceType === 'Book') {
-                normalizedType = 'Book';
-            } else if (sourceType === 'Article') {
-                normalizedType = 'Article';
-            } else {
-                // Skip items that aren't books or articles
+            if (!allowedTypes.has(sourceType)) {
                 return groups;
             }
             
-            if (!groups[normalizedType]) {
-                groups[normalizedType] = [];
+            if (!groups[sourceType]) {
+                groups[sourceType] = [];
             }
             
-            groups[normalizedType].push(reference);
+            groups[sourceType].push(reference);
             return groups;
         }, {});
 
@@ -195,7 +193,14 @@ async function getEnrichedReferencesGroupedBySourceType() {
             sourceType,
             count: references.length,
             references: references.sort((a, b) => {
-                // Sort by title alphabetically
+                // Videos: sort by most recent date, fallback to title
+                if (sourceType === 'Video') {
+                    const dateA = new Date(a.date || a.createdDate || 0);
+                    const dateB = new Date(b.date || b.createdDate || 0);
+                    if (!isNaN(dateA) && !isNaN(dateB)) {
+                        return dateB - dateA;
+                    }
+                }
                 return (a.title || '').localeCompare(b.title || '');
             })
         }));
@@ -298,6 +303,49 @@ function extractUrlProperty(property) {
 function extractDateProperty(property) {
     if (!property) return null;
     return property.date?.start || null;
+}
+
+function normalizeSummary(summary) {
+    if (!summary) return '';
+    const trimmed = summary.trim();
+    if (trimmed.toLowerCase() === 'no content') {
+        return '';
+    }
+    return trimmed;
+}
+
+function extractVideoEmbedUrl(url) {
+    if (!url) return null;
+
+    try {
+        const parsed = new URL(url);
+        const host = parsed.hostname.toLowerCase();
+
+        if (host.includes('youtube.com')) {
+            if (parsed.pathname === '/watch' && parsed.searchParams.has('v')) {
+                const videoId = parsed.searchParams.get('v');
+                return `https://www.youtube.com/embed/${videoId}`;
+            }
+
+            if (parsed.pathname.startsWith('/embed/')) {
+                const parts = parsed.pathname.split('/');
+                const videoId = parts[2];
+                return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+            }
+        }
+
+        if (host === 'youtu.be') {
+            const videoId = parsed.pathname.replace('/', '');
+            if (videoId) {
+                return `https://www.youtube.com/embed/${videoId}`;
+            }
+        }
+
+        return null;
+    } catch (error) {
+        console.warn('Failed to parse video URL for embed:', error.message);
+        return null;
+    }
 }
 
 module.exports = {

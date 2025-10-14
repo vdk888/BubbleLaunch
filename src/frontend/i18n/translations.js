@@ -477,8 +477,8 @@ const translations = {
     fr: "Nos références"
   },
   "references.subtitle": {
-    en: "Discover the books and articles that inspire our approach to smart investing.",
-    fr: "Découvrez les livres et articles qui inspirent notre approche de l'investissement intelligent."
+    en: "Discover the books, articles, and videos that inspire our approach to smart investing.",
+    fr: "Découvrez les livres, articles et vidéos qui inspirent notre approche de l'investissement intelligent."
   },
 
   // Portfolio Simulator

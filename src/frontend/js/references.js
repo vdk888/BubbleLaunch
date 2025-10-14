@@ -53,10 +53,10 @@ class ReferencesComponent {
         // Update static text that doesn't require re-rendering
         const referenceLinks = document.querySelectorAll('.reference-link-indicator');
         referenceLinks.forEach(link => {
-            const textNode = link.lastChild;
-            if (textNode && textNode.nodeType === Node.TEXT_NODE) {
-                textNode.textContent = this.currentLanguage === 'fr' ? 'Lire' : 'Read';
-            }
+            const label = link.querySelector('.reference-link-label');
+            if (!label) return;
+            const actionType = link.dataset.actionType || 'read';
+            label.textContent = this.getActionLabel(actionType);
         });
 
         // Update source type names
@@ -227,6 +227,12 @@ class ReferencesComponent {
         const bestLink = this.getBestAvailableLink(reference);
         const hasLink = bestLink && bestLink !== '';
         const sourceTypeIcon = this.getSourceTypeIcon(reference.sourceType);
+        const isVideo = reference.sourceType === 'Video';
+        const actionLabel = this.getActionLabel(isVideo ? 'watch' : 'read');
+        const videoEmbedHTML = isVideo ? this.getVideoEmbedHTML(reference) : '';
+        const summaryText = reference.summary && reference.summary.trim() !== '' 
+            ? reference.summary 
+            : (isVideo ? this.getDefaultVideoSummary(reference) : '');
         
         return `
             <div class="reference-card" data-source-type="${reference.sourceType}">
@@ -236,6 +242,7 @@ class ReferencesComponent {
                 </div>
                 
                 <div class="reference-content">
+                    ${videoEmbedHTML}
                     ${hasLink ? `<a href="${bestLink}" target="_blank" rel="noopener noreferrer" class="reference-link">` : '<div class="reference-no-link">'}
                         <h4 class="reference-title">${this.sanitizeHTML(reference.title)}</h4>
                     ${hasLink ? '</a>' : '</div>'}
@@ -245,8 +252,8 @@ class ReferencesComponent {
                         ''
                     }
                     
-                    ${reference.summary ? 
-                        `<p class="reference-summary">${this.sanitizeHTML(reference.summary)}</p>` : 
+                    ${summaryText ? 
+                        `<p class="reference-summary">${this.sanitizeHTML(summaryText)}</p>` : 
                         ''
                     }
                     
@@ -255,11 +262,11 @@ class ReferencesComponent {
                 
                 ${hasLink ? `
                     <div class="reference-footer">
-                        <a href="${bestLink}" target="_blank" rel="noopener noreferrer" class="reference-link-indicator">
+                        <a href="${bestLink}" target="_blank" rel="noopener noreferrer" class="reference-link-indicator" data-action-type="${isVideo ? 'watch' : 'read'}">
                             <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                                 <path d="M8.5 1.5L15 8L8.5 14.5M14.5 8H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            ${this.currentLanguage === 'fr' ? 'Lire' : 'Read'}
+                            <span class="reference-link-label">${actionLabel}</span>
                         </a>
                     </div>
                 ` : ''}
@@ -353,6 +360,63 @@ class ReferencesComponent {
             'Podcast': '🎧'
         };
         return icons[sourceType] || this.getArticleSVG();
+    }
+
+    getVideoEmbedHTML(reference) {
+        if (!reference.videoEmbedUrl) {
+            return '';
+        }
+        
+        const safeUrl = this.getSafeEmbedUrl(reference.videoEmbedUrl);
+        if (!safeUrl) {
+            return '';
+        }
+        
+        return `
+            <div class="reference-video-embed">
+                <div class="video-aspect-ratio">
+                    <iframe 
+                        src="${safeUrl}" 
+                        title="${this.sanitizeHTML(reference.title)}"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+            </div>
+        `;
+    }
+
+    getSafeEmbedUrl(url) {
+        try {
+            const parsed = new URL(url);
+            const host = parsed.hostname.toLowerCase();
+            
+            if ((host === 'www.youtube.com' || host === 'youtube.com') && parsed.pathname.startsWith('/embed/')) {
+                return `https://www.youtube.com${parsed.pathname}${parsed.search}`;
+            }
+            
+            return null;
+        } catch (error) {
+            console.warn('Invalid embed URL skipped:', url);
+            return null;
+        }
+    }
+
+    getActionLabel(actionType) {
+        const isFrench = this.currentLanguage === 'fr';
+        if (actionType === 'watch') {
+            return isFrench ? 'Regarder' : 'Watch';
+        }
+        return isFrench ? 'Lire' : 'Read';
+    }
+
+    getDefaultVideoSummary(reference) {
+        const isFrench = this.currentLanguage === 'fr';
+        if (isFrench) {
+            return "Vidéo sélectionnée pour approfondir ce sujet clé de l'investissement.";
+        }
+        return "Curated video to help you dive deeper into this investing topic.";
     }
 
     getBookSVG() {
