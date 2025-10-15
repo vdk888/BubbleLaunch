@@ -13,7 +13,7 @@ Bubble is a fintech startup revolutionizing investment through AI-powered robo-a
 - **Multilingual Support** (French/English) with seamless language switching
 - **AI Chatbot** with streaming responses powered by OpenRouter LLM
 - **Interactive Portfolio Simulator** - Compare 3 investment strategies with 20 years of real ETF data
-- **Dynamic Blog System** with Notion CMS and AI-generated images (Freepik API)
+- **Dynamic Blog System** with Notion CMS and OpenAI-generated illustrations (gpt-image-1)
 - **Knowledge Garden** - Curated investment references with LLM enrichment
 - **Glassmorphism UI** - Modern, transparent design with floating chat input
 - **Unified Button Design** - Pill-shaped CTAs for consistent brand experience
@@ -27,7 +27,7 @@ Bubble is a fintech startup revolutionizing investment through AI-powered robo-a
 - Node.js v18+ and npm
 - Notion API access (for waitlist, blog, Knowledge Garden)
 - OpenRouter API key (for AI chatbot)
-- Freepik API key (for blog image generation)
+- OpenAI API key (for blog image generation)
 
 ### Installation
 
@@ -64,7 +64,7 @@ NOTION_BLOG_DATABASE_ID=your_blog_database_id
 
 # AI Services
 OPENROUTER_API_KEY=your_openrouter_api_key
-FREEPIK_API_KEY=your_freepik_api_key
+OPENAI_API_KEY=your_openai_api_key
 
 # Session Security
 SESSION_SECRET=your_random_session_secret
@@ -87,7 +87,7 @@ BubbleLaunch/
 │   │   ├── middleware/            # Custom middleware (session, rate limiting, errors)
 │   │   └── services/              # External integrations & calculations
 │   │       ├── blogService.js
-│   │       ├── freepikService.js
+│   │       ├── imageService.js
 │   │       ├── knowledgeGardenService.js
 │   │       ├── llmEnrichmentService.js
 │   │       ├── portfolioService.js
@@ -146,7 +146,7 @@ BubbleLaunch/
 - **Notion API** - Headless CMS for blog & waitlist
 - **OpenRouter** - LLM provider (GPT-4, Gemini, Claude, etc.)
 - **Yahoo Finance API** - Historical ETF data for portfolio simulator
-- **Freepik API** - AI image generation for blog articles
+- **OpenAI Images (gpt-image-1)** - AI image generation for blog articles
 
 ### Frontend
 - **Vanilla JavaScript** - No framework dependencies
@@ -187,7 +187,7 @@ BubbleLaunch/
 ### Blog System
 - **Notion as CMS** - Content managed in Notion databases
 - **Bilingual Content** - French (primary) + English
-- **AI-Generated Images** - Automatic blog image creation with Freepik
+- **AI-Generated Images** - Automatic blog image creation with OpenAI gpt-image-1
 - **Smart Caching** - Persistent image cache to avoid regeneration
 - **SEO-Friendly** - Slug generation, meta tags, publication date validation
 
@@ -241,9 +241,9 @@ All UI follows the brand guidelines in `docs/company/Charte Graphique Bubble.md`
 #### Blog
 - `GET /api/blog/posts` - Fetch all published blog posts
 - `GET /api/blog/post/:slug` - Fetch single blog post by slug
-- `GET /api/blog/test-freepik-connection` - Test Freepik API connectivity
+- `GET /api/blog/test-image-service-connection` - Test OpenAI image service connectivity
 - `POST /api/blog/test-image-generation` - Test image generation
-- `POST /api/blog/clear-image-cache` - Clear Freepik cache
+- `POST /api/blog/clear-image-cache` - Clear OpenAI image cache
 - `GET /api/blog/image-cache-stats` - Get cache statistics
 - `POST /api/blog/regenerate-all-images` - Regenerate all images
 - `POST /api/blog/regenerate-image/:slug` - Regenerate single image

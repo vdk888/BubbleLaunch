@@ -3,7 +3,7 @@ const env = require("./config/env");
 const configureExpress = require("./config/express");
 const routes = require("./routes");
 const errorHandler = require("./middleware/error-handler");
-const freepikService = require("./services/freepikService");
+const imageService = require("./services/imageService");
 
 const app = express();
 const port = env.PORT;
@@ -30,12 +30,12 @@ app.listen(port, () => {
 // Graceful shutdown to save cache
 process.on("SIGINT", () => {
   console.log("\n🛑 Shutting down gracefully...");
-  freepikService.savePersistentCache();
+  imageService.savePersistentCache();
   process.exit(0);
 });
 
 process.on("SIGTERM", () => {
   console.log("\n🛑 Shutting down gracefully...");
-  freepikService.savePersistentCache();
+  imageService.savePersistentCache();
   process.exit(0);
 });

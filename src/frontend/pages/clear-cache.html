@@ -70,7 +70,7 @@
 <body>
     <div class="container">
         <h1>🧹 Image Cache Management</h1>
-        <p>Use this tool to clear the Freepik image cache and force regeneration of new, unique images for blog articles.</p>
+        <p>Use this tool to clear the OpenAI image cache and force regeneration of new, unique images for blog articles.</p>
         
         <button id="clearCacheBtn">Clear Image Cache</button>
         <button id="getCacheStatsBtn">Get Cache Statistics</button>
@@ -104,7 +104,7 @@
             result.style.display = 'none';
             
             try {
-                const response = await fetch('/api/clear-image-cache', {
+                const response = await fetch('/api/blog/clear-image-cache', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -137,7 +137,7 @@
             getCacheStatsBtn.textContent = 'Loading...';
             
             try {
-                const response = await fetch('/api/image-cache-stats');
+                const response = await fetch('/api/blog/image-cache-stats');
                 const data = await response.json();
                 
                 if (data.success) {
@@ -173,7 +173,7 @@
             cacheStats.style.display = 'none';
             
             try {
-                const response = await fetch('/api/regenerate-all-images', {
+                const response = await fetch('/api/blog/regenerate-all-images', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

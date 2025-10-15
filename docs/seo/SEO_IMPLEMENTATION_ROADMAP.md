@@ -310,7 +310,7 @@ Use [CNIL template](https://www.cnil.fr/fr/modele/politique-de-confidentialite) 
 - Notion data collection (waitlist)
 - Google Analytics (if used)
 - Session cookies (chat rate limiting)
-- Freepik API (blog images)
+- OpenAI Images API (blog illustrations)
 
 **Step 4: Create Mentions Légales page**
 

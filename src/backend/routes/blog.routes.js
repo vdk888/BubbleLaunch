@@ -6,8 +6,11 @@ const blogController = require("../controllers/blog.controller");
 router.get("/posts", blogController.getPosts);
 router.get("/post/:slug", blogController.getPost);
 
-// Freepik image generation
-router.get("/test-freepik-connection", blogController.testFreepikConnection);
+// Generated image utilities
+router.get(
+  "/test-image-service-connection",
+  blogController.testImageServiceConnection
+);
 router.post("/test-image-generation", blogController.testImageGeneration);
 router.post("/clear-image-cache", blogController.clearImageCache);
 router.get("/image-cache-stats", blogController.getImageCacheStats);

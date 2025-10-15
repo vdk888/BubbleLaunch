@@ -36,13 +36,13 @@ src/backend/
 │   └── error-handler.js         # Centralized error handling
 ├── services/
 │   ├── blogService.js           # Notion blog CMS integration
-│   ├── freepikService.js        # AI image generation
+│   ├── imageService.js          # AI image generation
 │   ├── knowledgeGardenService.js  # References with LLM enrichment
 │   ├── llmEnrichmentService.js  # AI-powered metadata generation
 │   ├── yahooFinanceService.js   # ETF historical data fetching
 │   └── portfolioService.js      # Portfolio calculation algorithms
 └── cache/
-    ├── freepik-images.json      # Persistent image cache
+    ├── image-service-cache.json # Persistent image cache
     └── portfolio-preview-data.json  # Pre-calculated chart data
 ```
 
@@ -94,9 +94,9 @@ Response (JSON API or HTML page)
 ### Blog
 - `GET /api/blog/posts` - List all published posts
 - `GET /api/blog/post/:slug` - Get single post
-- `GET /api/blog/test-freepik-connection` - Test Freepik API connectivity
+- `GET /api/blog/test-image-service-connection` - Test OpenAI image service connectivity
 - `POST /api/blog/test-image-generation` - Test image generation
-- `POST /api/blog/clear-image-cache` - Clear Freepik cache
+- `POST /api/blog/clear-image-cache` - Clear OpenAI image cache
 - `GET /api/blog/image-cache-stats` - Cache statistics
 - `POST /api/blog/regenerate-all-images` - Regenerate all images
 - `POST /api/blog/regenerate-image/:slug` - Regenerate single image
@@ -192,10 +192,10 @@ src/frontend/
 - **Streaming Responses**: Server-Sent Events for real-time chat
 - **Rate Limiting**: 10 messages per session
 
-### 3. Freepik API
-- **AI Image Generation**: Automated blog cover images
-- **Persistent Caching**: Avoid regeneration
-- **Fallback System**: Thematic Unsplash images
+### 3. OpenAI Image Service (gpt-image-1)
+- **AI Image Generation**: Automated blog cover illustrations via OpenAI
+- **Persistent Caching**: Avoid regeneration using disk + memory cache
+- **Fallback System**: Thematic Unsplash images when API disabled
 
 ### 4. Yahoo Finance API
 - **ETF Historical Data**: 10-year price history
@@ -259,8 +259,8 @@ Return data to client
 
 ## Caching Strategy
 
-### 1. **Freepik Images** (Persistent)
-- **Location**: `cache/freepik-images.json`
+### 1. **OpenAI Images** (Persistent)
+- **Location**: `cache/image-service-cache.json`
 - **TTL**: Permanent (manual clearing)
 - **Size**: ~4 images currently
 - **Strategy**: Save on graceful shutdown
@@ -296,7 +296,7 @@ NOTION_DATABASE_ID_WAITLIST=...
 OPENROUTER_API_KEY=...
 
 # Optional
-FREEPIK_API_KEY=...
+OPENAI_API_KEY=...
 SESSION_SECRET=...
 PORT=3000
 ```
@@ -370,7 +370,7 @@ curl http://localhost:3000/api/portfolio/preview-data
 3. **Environment Variables**: Sensitive keys in `.env`
 4. **CORS**: Will need configuration for production domain
 5. **Input Validation**: Sanitize user inputs (waitlist, chat)
-6. **API Key Rotation**: OpenRouter, Freepik, Notion keys
+6. **API Key Rotation**: OpenRouter, OpenAI, Notion keys
 
 ---
 

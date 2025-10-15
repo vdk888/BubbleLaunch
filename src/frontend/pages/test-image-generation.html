@@ -93,14 +93,14 @@
 <body>
     <div class="container">
         <h1>🎨 Test Image Generation</h1>
-        <p>Test the Freepik API integration for blog article image generation</p>
+        <p>Test the OpenAI image generation pipeline for Bubble blog articles</p>
         
         <div style="margin-bottom: 2rem;">
             <button type="button" id="testConnectionBtn" style="background: #28a745; margin-bottom: 1rem;">
                 Test API Connection
             </button>
             <button type="button" id="testDirectBtn" style="background: #17a2b8; margin-bottom: 1rem; margin-left: 1rem;">
-                Test Direct API
+                Test Sample Generation
             </button>
             <div id="connectionResult" style="display: none; padding: 1rem; border-radius: 6px; margin-bottom: 1rem;"></div>
         </div>
@@ -193,26 +193,36 @@
             }
         }
 
-        // Test Direct API
+        // Test direct OpenAI generation with sample payload
         document.getElementById('testDirectBtn').addEventListener('click', async function() {
             const btn = this;
             const result = document.getElementById('connectionResult');
             
             btn.disabled = true;
-            btn.textContent = 'Testing Direct...';
+            btn.textContent = 'Testing Sample Generation...';
             result.style.display = 'none';
             
             try {
-                const response = await fetch('/api/test-freepik-direct');
+                const response = await fetch('/api/blog/test-image-generation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title: 'Sample OpenAI image generation diagnostic',
+                        summary: 'Quick connectivity test to ensure the OpenAI image pipeline is working end-to-end.',
+                        tags: ['diagnostic', 'openai', 'bubble']
+                    })
+                });
                 const data = await response.json();
-                
+
                 result.style.display = 'block';
-                if (data.success) {
+                if (data.success && data.imageUrl) {
                     result.className = 'result success';
-                    result.innerHTML = `✅ ${data.message}<br><pre>${JSON.stringify(data.response, null, 2)}</pre>`;
+                    result.innerHTML = `✅ ${data.message}<br><small>Image URL generated successfully.</small>`;
                 } else {
                     result.className = 'result error';
-                    result.innerHTML = `❌ ${data.error}<br><pre>${JSON.stringify(data.details, null, 2)}</pre>`;
+                    result.innerHTML = `❌ ${data.error || data.message || 'Generation failed'}<br><pre>${JSON.stringify(data.details || {}, null, 2)}</pre>`;
                 }
             } catch (error) {
                 result.style.display = 'block';
@@ -220,7 +230,7 @@
                 result.textContent = '❌ Network error: ' + error.message;
             } finally {
                 btn.disabled = false;
-                btn.textContent = 'Test Direct API';
+                btn.textContent = 'Test Sample Generation';
             }
         });
 
@@ -234,7 +244,7 @@
             result.style.display = 'none';
             
             try {
-                const response = await fetch('/api/test-freepik-connection');
+                const response = await fetch('/api/blog/test-image-service-connection');
                 const data = await response.json();
                 
                 result.style.display = 'block';
@@ -278,7 +288,7 @@
             generateBtn.textContent = 'Generating...';
             
             try {
-                const response = await fetch('/api/test-image-generation', {
+                const response = await fetch('/api/blog/test-image-generation', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

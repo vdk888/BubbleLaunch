@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Test script to verify Freepik image caching is working correctly
+ * Test script to verify OpenAI image caching is working correctly
  */
 
 const axios = require('axios');
@@ -9,12 +9,12 @@ const axios = require('axios');
 const API_URL = 'http://localhost:3000';
 
 async function testImageCache() {
-    console.log('🧪 Testing Freepik Image Cache\n');
+    console.log('🧪 Testing OpenAI Image Cache\n');
     
     try {
         // Test 1: Check cache stats
         console.log('📊 Getting cache stats...');
-        const statsResponse = await axios.get(`${API_URL}/api/freepik-stats`);
+        const statsResponse = await axios.get(`${API_URL}/api/blog/image-cache-stats`);
         console.log('Cache stats:', statsResponse.data);
         console.log('');
         
@@ -29,7 +29,7 @@ async function testImageCache() {
         console.log('🎨 Generating image for test article...');
         console.log('Article:', testArticle);
         
-        const generateResponse1 = await axios.post(`${API_URL}/api/generate-article-image`, testArticle);
+        const generateResponse1 = await axios.post(`${API_URL}/api/blog/generate-article-image`, testArticle);
         console.log('First generation result:', {
             success: generateResponse1.data.success,
             fromCache: generateResponse1.data.fromCache,
@@ -39,7 +39,7 @@ async function testImageCache() {
         
         // Test 3: Try generating again - should use cache
         console.log('📦 Attempting to generate same image again (should use cache)...');
-        const generateResponse2 = await axios.post(`${API_URL}/api/generate-article-image`, testArticle);
+        const generateResponse2 = await axios.post(`${API_URL}/api/blog/generate-article-image`, testArticle);
         console.log('Second generation result:', {
             success: generateResponse2.data.success,
             fromCache: generateResponse2.data.fromCache,
@@ -55,7 +55,7 @@ async function testImageCache() {
         
         // Test 4: Force regenerate
         console.log('🔄 Force regenerating image...');
-        const forceResponse = await axios.post(`${API_URL}/api/generate-article-image`, {
+        const forceResponse = await axios.post(`${API_URL}/api/blog/generate-article-image`, {
             ...testArticle,
             forceRegenerate: true
         });

@@ -6,7 +6,7 @@ const { Client } = require("@notionhq/client");
 const axios = require("axios");
 const fs = require("fs").promises;
 const { getPublishedPosts, getPostBySlug } = require("./services/blogService");
-const freepikService = require("./services/freepikService");
+const freepikService = require("./services/imageService");
 const { 
   getPublishedReferences, 
   getReferencesGroupedByTheme, 

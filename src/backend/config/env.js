@@ -16,8 +16,8 @@ const env = {
   // OpenRouter (Chat)
   OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY,
 
-  // Freepik (Image generation)
-  FREEPIK_API_KEY: process.env.FREEPIK_API_KEY,
+  // OpenAI (Image generation)
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY || process.env.FREEPIK_API_KEY,
 
   // Session
   SESSION_SECRET: process.env.SESSION_SECRET,

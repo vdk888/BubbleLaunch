@@ -1,7 +1,7 @@
 const { Client } = require("@notionhq/client");
 const { NotionToMarkdown } = require("notion-to-md");
 const { marked } = require("marked");
-const freepikService = require("./freepikService");
+const imageService = require("./imageService");
 
 // Initialize Notion client
 const blogApiKey = process.env.NOTION_BLOG_API_KEY;
@@ -333,7 +333,7 @@ async function getPublishedPosts() {
             const tagsProperty = properties['Topic Tags'];
             const tags = tagsProperty?.multi_select?.map(tag => tag.name) || [];
             
-            // Generate featured image using Freepik API or use fallback
+            // Generate featured image using OpenAI image service or use fallback
             let featuredImage = null;
             try {
                 // Check if image exists in Notion properties first
@@ -344,12 +344,12 @@ async function getPublishedPosts() {
                     console.log(`📸 Using existing featured image from Notion for "${titleFR}"`);
                 } else {
                     // Check if image is already cached
-                    featuredImage = freepikService.getCachedImage(page.id);
+                    featuredImage = imageService.getCachedImage(page.id);
                     
                     if (!featuredImage) {
                         // Generate new image only if not cached
                         console.log(`🎨 No cached image found for "${titleFR}", generating new one...`);
-                        featuredImage = await freepikService.generateArticleImage(
+                        featuredImage = await imageService.generateArticleImage(
                             titleFR, // Use French title as primary
                             summaryFR, // Use French summary as primary
                             tags,
@@ -547,10 +547,10 @@ async function getPostBySlug(slug) {
         const tagsProperty = properties['Topic Tags'];
         const tags = tagsProperty?.multi_select?.map(tag => tag.name) || [];
         
-        // Generate featured image using Freepik API or use fallback
+        // Generate featured image using OpenAI image service or use fallback
         let featuredImage = null;
         try {
-            featuredImage = await freepikService.generateArticleImage(
+            featuredImage = await imageService.generateArticleImage(
                 titleFR, // Use French title as primary
                 summaryFR, // Use French summary as primary
                 tags,

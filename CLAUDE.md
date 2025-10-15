@@ -17,9 +17,9 @@ This is **Bubble**, a fintech startup revolutionizing investment through AI-powe
   - `/` - Main landing page
   - `/portfolio-simulator` - Interactive portfolio simulator
   - `/blog` - Blog listing
-  - `/test-image-generation` - Freepik image generation test
+  - `/test-image-generation` - OpenAI image generation test
   - `/clear-cache` - Clear blog image cache
-  - `/api/test-freepik-connection` - Test Freepik API connectivity
+  - `/api/blog/test-image-service-connection` - Test OpenAI image service connectivity
 - No automated test framework configured (manual testing only)
 
 ## Architecture & Key Components
@@ -46,7 +46,7 @@ This is **Bubble**, a fintech startup revolutionizing investment through AI-powe
   - `error-handler.js` - Centralized error handling
 - **`services/`** - External integrations and calculations
   - `blogService.js` - Notion CMS integration
-  - `freepikService.js` - AI image generation
+  - `imageService.js` - AI image generation
   - `knowledgeGardenService.js` - References with LLM enrichment
   - `llmEnrichmentService.js` - AI metadata generation
   - `yahooFinanceService.js` - ETF historical data fetching
@@ -82,7 +82,7 @@ This is **Bubble**, a fintech startup revolutionizing investment through AI-powe
   2. `openai/gpt-4.1-mini` (fallback)
   3. `mistralai/magistral-small-2506` (fallback)
   4. `deepseek/deepseek-r1-0528:free` (final fallback)
-- **Freepik API** - Automated blog image generation with intelligent caching
+- **OpenAI Images (gpt-image-1)** - Automated blog image generation with intelligent caching
 - **Yahoo Finance API** - ETF historical data for portfolio simulator
 - **Express Sessions** - Chat rate limiting (10 messages per session)
 
@@ -93,7 +93,7 @@ The application requires several environment variables in `.env`:
 - `NOTION_BLOG_API_KEY` - Blog CMS (also used for Knowledge Garden)
 - `NOTION_BLOG_DATABASE_ID` - Blog database ID
 - `OPENROUTER_API_KEY` - AI chatbot functionality
-- `FREEPIK_API_KEY` - Blog image generation
+- `OPENAI_API_KEY` - Blog image generation (OpenAI Images API)
 - `SESSION_SECRET` - Session security
 
 **Note:** Knowledge Garden uses `NOTION_BLOG_API_KEY` (shared with blog). The Knowledge Garden database ID is hardcoded in `knowledgeGardenService.js` as `1ffcfc520644805b8bb9c9207fb2cb31`.
@@ -140,7 +140,7 @@ The application requires several environment variables in `.env`:
 - Integrated rate limiting for abuse prevention
 
 ### Image Generation
-- Freepik API integration with intelligent prompt generation
+- OpenAI image integration with intelligent prompt generation
 - Persistent caching system to avoid regeneration
 - Thematic fallback images based on article tags
 - Cache management endpoints for debugging

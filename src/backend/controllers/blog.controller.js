@@ -1,5 +1,5 @@
 const { getPublishedPosts, getPostBySlug } = require("../services/blogService");
-const freepikService = require("../services/freepikService");
+const imageService = require("../services/imageService");
 
 /**
  * Get all published blog posts (JSON API)
@@ -34,25 +34,27 @@ async function getPost(req, res) {
 }
 
 /**
- * Test Freepik API connection
+ * Test OpenAI image service connectivity
  */
-async function testFreepikConnection(req, res) {
+async function testImageServiceConnection(req, res) {
   try {
-    console.log("🔍 Testing Freepik API connection...");
+    console.log("🔍 Testing OpenAI image service connection...");
 
-    const isConnected = await freepikService.testConnection();
+    const isConnected = await imageService.testConnection();
 
     res.json({
       success: isConnected,
       message: isConnected
-        ? "Freepik API connection successful"
-        : "Freepik API connection failed",
-      apiKeyPresent: !!process.env.FREEPIK_API_KEY,
+        ? "OpenAI image service connection successful"
+        : "OpenAI image service connection failed",
+      apiKeyPresent: !!(
+        process.env.OPENAI_API_KEY || process.env.FREEPIK_API_KEY
+      ),
     });
   } catch (error) {
-    console.error("Error testing Freepik connection:", error);
+    console.error("Error testing OpenAI image service connection:", error);
     res.status(500).json({
-      error: "Failed to test Freepik connection",
+      error: "Failed to test OpenAI image service connection",
       details: error.message,
     });
   }
@@ -71,7 +73,7 @@ async function testImageGeneration(req, res) {
 
     console.log(`🧪 Testing image generation for: "${title}"`);
 
-    const imageUrl = await freepikService.generateArticleImage(
+    const imageUrl = await imageService.generateArticleImage(
       title,
       summary || "Test article summary for image generation",
       tags || ["test", "ai", "finance"]
@@ -99,14 +101,14 @@ async function testImageGeneration(req, res) {
 }
 
 /**
- * Clear Freepik image cache
+ * Clear OpenAI image cache
  */
 async function clearImageCache(req, res) {
   try {
-    console.log("🧹 Clearing Freepik image cache...");
+    console.log("🧹 Clearing OpenAI image cache...");
 
-    freepikService.clearCache();
-    const cacheStats = freepikService.getCacheStats();
+    imageService.clearCache();
+    const cacheStats = imageService.getCacheStats();
 
     res.json({
       success: true,
@@ -127,7 +129,7 @@ async function clearImageCache(req, res) {
  */
 async function getImageCacheStats(req, res) {
   try {
-    const cacheStats = freepikService.getCacheStats();
+    const cacheStats = imageService.getCacheStats();
     res.json({ success: true, cacheStats: cacheStats });
   } catch (error) {
     console.error("❌ Error getting cache stats:", error);
@@ -145,13 +147,13 @@ async function regenerateAllImages(req, res) {
   try {
     console.log("🔄 Force regenerating all blog images...");
 
-    freepikService.clearCache();
+    imageService.clearCache();
     const posts = await getPublishedPosts();
 
     const regenerationPromises = posts.map(async (post) => {
       try {
         console.log(`🎨 Regenerating image for: "${post.title.fr}"`);
-        const newImageUrl = await freepikService.generateArticleImage(
+        const newImageUrl = await imageService.generateArticleImage(
           post.title.fr,
           post.summary.fr,
           post.tags,
@@ -208,7 +210,7 @@ async function regenerateImage(req, res) {
       });
     }
 
-    const newImageUrl = await freepikService.generateArticleImage(
+    const newImageUrl = await imageService.generateArticleImage(
       post.title.fr,
       post.summary.fr,
       post.tags,
@@ -250,7 +252,7 @@ async function generateArticleImage(req, res) {
 
     // Check if image already exists in cache (unless force regenerate)
     if (!forceRegenerate) {
-      const cachedImage = freepikService.getCachedImage(articleId);
+      const cachedImage = imageService.getCachedImage(articleId);
       if (cachedImage) {
         return res.json({
           success: true,
@@ -261,7 +263,7 @@ async function generateArticleImage(req, res) {
     }
 
     // Generate new image
-    const imageUrl = await freepikService.generateArticleImage(
+    const imageUrl = await imageService.generateArticleImage(
       title,
       summary || "",
       tags || [],
@@ -290,7 +292,7 @@ async function generateArticleImage(req, res) {
 module.exports = {
   getPosts,
   getPost,
-  testFreepikConnection,
+  testImageServiceConnection,
   testImageGeneration,
   clearImageCache,
   getImageCacheStats,

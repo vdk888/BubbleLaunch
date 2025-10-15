@@ -613,7 +613,7 @@ tarteaucitron.user.gtagMore = function () { /* add custom code */ };
 **Current issues:**
 - SVG logos used correctly ✅
 - Social share images missing ❌
-- Blog images via Freepik (large files) ⚠️
+- Blog images via OpenAI gpt-image-1 (large files) ⚠️
 
 **Implementation:**
 

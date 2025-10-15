@@ -43,7 +43,7 @@
 4. **Blog System**
    - Notion as headless CMS
    - Bilingual content (FR/EN)
-   - AI-generated images (Freepik API)
+   - AI-generated images (OpenAI gpt-image-1)
    - Smart caching for images
 
 5. **Knowledge Garden**
@@ -103,7 +103,7 @@ BubbleLaunch/
 - **Notion API** - Headless CMS
 - **OpenRouter API** - LLM provider
 - **Yahoo Finance API** - ETF data
-- **Freepik API** - Image generation
+- **OpenAI Images (gpt-image-1)** - Image generation
 
 ### Frontend
 - **Vanilla JavaScript** - No framework
