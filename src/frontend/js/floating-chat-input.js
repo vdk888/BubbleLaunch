@@ -18,6 +18,24 @@
 
   // Determine if we're on the simulator page
   const isSimulatorPage = window.location.pathname.includes('portfolio-simulator');
+  const pageContext = isSimulatorPage ? 'portfolio-simulator' : 'landing';
+
+  function getCurrentLanguage() {
+    return document.documentElement.lang || localStorage.getItem('preferredLanguage') || 'fr';
+  }
+
+  function trackFloatingInputEvent(action, params = {}) {
+    if (typeof window.gtag !== 'function') return;
+    const state = window.bubbleSimulatorState || {};
+    window.gtag('event', action, {
+      event_category: 'Floating Chat Input',
+      language: getCurrentLanguage(),
+      page_context: pageContext,
+      strategy: state.strategy || null,
+      period_years: state.period || null,
+      ...params,
+    });
+  }
 
   if (isSimulatorPage) {
     // Always show on simulator page (no 'hidden' class)
@@ -62,6 +80,10 @@
     const message = inputField.value.trim();
     if (!message) return;
 
+    trackFloatingInputEvent('floating_input_submitted', {
+      characters: message.length,
+    });
+
     // Find the main chatbot section
     const chatSection = document.querySelector('.chat-section');
     const mainChatInput = document.querySelector('.chat-input');
@@ -85,8 +107,17 @@
 
           // Clear the floating input
           inputField.value = '';
+
+          trackFloatingInputEvent('floating_input_forwarded', {
+            success: true,
+          });
         }, 100);
       }, 500); // Wait for smooth scroll
+    } else {
+      trackFloatingInputEvent('floating_input_forwarded', {
+        success: false,
+        reason: 'main_chat_not_found',
+      });
     }
   }
 

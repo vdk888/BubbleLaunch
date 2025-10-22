@@ -18,6 +18,31 @@
   let currentPeriod = 20;
   let portfolioData = null;
 
+  function getCurrentLanguage() {
+    return document.documentElement.lang || localStorage.getItem('preferredLanguage') || 'fr';
+  }
+
+  function trackSimulatorEvent(action, params = {}) {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', action, {
+      event_category: 'Portfolio Simulator',
+      language: getCurrentLanguage(),
+      strategy: currentStrategy,
+      period_years: currentPeriod,
+      ...params,
+    });
+  }
+
+  function updateSimulatorState(data) {
+    window.bubbleSimulatorState = {
+      strategy: currentStrategy,
+      period: currentPeriod,
+      generatedAt: data.generatedAt || null,
+      tickers: data.tickers || [],
+      metrics: data.metrics || {},
+    };
+  }
+
   // Strategy Configuration - Easily extensible for future additions
   // To add a new strategy: add entry here + ensure backend provides the data
   const STRATEGY_CONFIG = {
@@ -366,6 +391,13 @@
 
         updateChart(result, strategy);
         updateMetrics(result, strategy);
+        updateSimulatorState(result);
+
+        trackSimulatorEvent('simulator_data_loaded', {
+          data_points: Array.isArray(result.data) ? result.data.length : 0,
+          period_years: currentPeriod,
+          generated_at: result.generatedAt || null,
+        });
       } else {
         // Show error state
         console.error('Failed to load portfolio data');
@@ -384,15 +416,11 @@
     if (portfolioData) {
       updateChart(portfolioData, strategy);
       updateMetrics(portfolioData, strategy);
+      updateSimulatorState(portfolioData);
     }
 
     // Analytics tracking (if available)
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'strategy_changed', {
-        event_category: 'Portfolio Simulator',
-        event_label: strategy,
-      });
-    }
+    trackSimulatorEvent('strategy_changed', { strategy });
   }
 
   /**
@@ -401,15 +429,11 @@
   function handlePeriodChange(period) {
     currentPeriod = period;
 
+    trackSimulatorEvent('period_selected', { period_years: period });
     loadPortfolioData(currentStrategy, period);
 
     // Analytics tracking (if available)
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'period_changed', {
-        event_category: 'Portfolio Simulator',
-        event_label: `${period} years`,
-      });
-    }
+    trackSimulatorEvent('period_changed', { period_years: period });
   }
 
   /**
@@ -418,6 +442,8 @@
   function initializeSimulator() {
     // Load initial data
     loadPortfolioData(currentStrategy, currentPeriod);
+
+    trackSimulatorEvent('simulator_page_initialized');
 
     // Strategy pills interaction
     const pills = document.querySelectorAll('.strategy-pill');

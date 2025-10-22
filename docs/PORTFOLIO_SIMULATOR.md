@@ -235,6 +235,25 @@ All core metrics are pre-computed on the server and cached with each snapshot:
 - [ ] Browser compatibility (Chrome, Firefox, Safari)
 - [ ] Period buttons fetch the right cached snapshot (1Y/3Y/5Y/10Y/20Y)
 
+## Analytics Instrumentation
+
+Google Analytics 4 events fire automatically when users interact with the simulator (subject to cookie consent):
+
+- `simulator_page_initialized` – first load
+- `strategy_changed` – includes selected strategy and active period
+- `period_selected` / `period_changed` – tracks time horizon intent
+- `simulator_data_loaded` – logs dataset size and snapshot timestamp
+- Chat lifecycle events (`chat_opened`, `chat_message_sent`, `chat_message_completed`, `chat_response_error`, etc.) carry current strategy/period metadata
+- Floating input events (`floating_input_submitted`, `floating_input_forwarded`) capture message length and success state when forwarding to the main chatbot
+
+All payloads share the `Portfolio Simulator` category and automatically append language, strategy, and `period_years` parameters for downstream dashboards.
+
+## SEO Enhancements
+
+- Added `FinancialService` JSON-LD script (provider, languages, free offer, canonical URL).
+- Existing OG/Twitter/canonical tags remain aligned with Bubble’s design system.
+- Before production, replace Google Analytics placeholders in `src/frontend/js/seo/cookie-consent.js` with the live GA4 property IDs.
+
 ### Test URLs
 - Landing page preview: http://localhost:3000/ (scroll to "What We're Building")
 - Full simulator: http://localhost:3000/portfolio-simulator

@@ -27,15 +27,43 @@
   let isProcessing = false;
   let currentAbortController = null;
   let isMinimized = false;
+  let hasTrackedOpen = false;
+
+  function getCurrentLanguage() {
+    return document.documentElement.lang || localStorage.getItem('preferredLanguage') || 'fr';
+  }
+
+  function getSimulatorState() {
+    return window.bubbleSimulatorState || {};
+  }
+
+  function trackChatEvent(action, params = {}) {
+    if (typeof window.gtag !== 'function') return;
+    const state = getSimulatorState();
+    window.gtag('event', action, {
+      event_category: 'Portfolio Simulator Chat',
+      language: getCurrentLanguage(),
+      strategy: state.strategy || null,
+      period_years: state.period || null,
+      ...params,
+    });
+  }
 
   /**
    * Open chat window
    */
-  function openChat() {
+  function openChat(trigger = 'manual') {
+    const wasHidden = chatWindow.classList.contains('hidden');
+
     chatWindow.classList.remove('hidden');
     chatWindow.classList.remove('minimized');
     isMinimized = false;
     setTimeout(() => chatInput.focus(), 300);
+
+    if (wasHidden || !hasTrackedOpen) {
+      trackChatEvent('chat_opened', { trigger });
+      hasTrackedOpen = true;
+    }
   }
 
   /**
@@ -45,9 +73,11 @@
     if (isMinimized) {
       chatWindow.classList.remove('minimized');
       isMinimized = false;
+      trackChatEvent('chat_restored');
     } else {
       chatWindow.classList.add('minimized');
       isMinimized = true;
+      trackChatEvent('chat_minimized');
     }
   }
 
@@ -62,6 +92,7 @@
     if (currentAbortController) {
       currentAbortController.abort();
     }
+    trackChatEvent('chat_closed');
   }
 
   /**
@@ -93,7 +124,7 @@
   /**
    * Send message with SSE streaming
    */
-  async function sendMessage(message) {
+  async function sendMessage(message, source = 'chat_window') {
     if (!message || isProcessing) return;
 
     // Add user message
@@ -105,6 +136,12 @@
     isProcessing = true;
 
     const botMessageContent = addMessage('', false);
+    const sendStartedAt = performance.now();
+
+    trackChatEvent('chat_message_sent', {
+      source,
+      characters: message.length,
+    });
 
     try {
       // Create new AbortController
@@ -181,11 +218,24 @@
     } catch (error) {
       if (error.name === 'AbortError') {
         botMessageContent.textContent = 'Request was cancelled.';
+        trackChatEvent('chat_message_cancelled', { source });
       } else {
         console.error('Error:', error);
         botMessageContent.textContent = error.message || 'Sorry, I encountered an error. Please try again.';
+        trackChatEvent('chat_response_error', {
+          source,
+          error_message: error.message || error.name || 'unknown_error',
+        });
       }
     } finally {
+      const durationMs = performance.now() - sendStartedAt;
+      if (botMessageContent.textContent) {
+        trackChatEvent('chat_message_completed', {
+          source,
+          response_characters: botMessageContent.textContent.length,
+          duration_ms: Math.round(durationMs),
+        });
+      }
       isProcessing = false;
       currentAbortController = null;
       chatInput.disabled = false;
@@ -202,11 +252,11 @@
     if (!message) return;
 
     // Open chat window
-    openChat();
+    openChat('floating_input');
 
     // Send message after a short delay
     setTimeout(() => {
-      sendMessage(message);
+      sendMessage(message, 'floating_input');
       floatingInput.value = '';
     }, 100);
   }
@@ -218,7 +268,7 @@
     const message = chatInput.value.trim();
     if (!message) return;
 
-    sendMessage(message);
+    sendMessage(message, 'chat_window');
     chatInput.value = '';
   }
 
