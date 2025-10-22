@@ -156,7 +156,10 @@ All portfolio visualizations follow Bubble's brand guidelines ([Charte Graphique
 ## API Endpoints
 
 ### GET `/api/portfolio/preview-data`
-Returns pre-calculated portfolio data for all strategies (20 years, monthly).
+Returns cached portfolio data for the simulator.
+
+- `period` (optional query): `1`, `3`, `5`, `10`, or `20`. Defaults to `20`.
+- Response includes chart data sampled monthly, pre-computed metrics, available periods, and timestamps.
 
 **Response:**
 ```json
@@ -164,7 +167,7 @@ Returns pre-calculated portfolio data for all strategies (20 years, monthly).
   "success": true,
   "data": [
     {
-      "date": "2015-10-07",
+      "date": "2015-10-10",
       "SPY": 100,
       "IEF": 100,
       "GLD": 100,
@@ -175,9 +178,18 @@ Returns pre-calculated portfolio data for all strategies (20 years, monthly).
     ...
   ],
   "metrics": {
-    "equalWeight": { "totalReturn": 180.47, "sharpeRatio": 0.94 },
-    "optimizedRP": { "totalReturn": 133.78, "sharpeRatio": 0.52 }
+    "equalWeight": {
+      "totalReturn": 495.09,
+      "annualReturn": 9.2,
+      "volatility": 12.81,
+      "sharpeRatio": 0.71,
+      "maxDrawdown": -35.28
+    },
+    "optimizedRP": { "totalReturn": 378.63, "annualReturn": 8.32, "volatility": 10.94, "sharpeRatio": 0.42, "maxDrawdown": -26.91 }
   },
+  "periodYears": 20,
+  "periodsAvailable": [1, 3, 5, 10, 20],
+  "generatedAt": "2025-10-22T18:25:54.306Z",
   "fromCache": true
 }
 ```
@@ -200,14 +212,14 @@ The cache file lives at `src/backend/cache/portfolio-preview-data.json` and is r
 
 ## Performance Metrics
 
-Calculated client-side in `updateMetrics()`:
+All core metrics are pre-computed on the server and cached with each snapshot:
 
-1. **Total Return**: `(final_value / initial_value - 1) * 100`
-2. **Annualized Return (CAGR)**: `(1 + total_return)^(1/years) - 1`
-3. **Volatility**: `std_dev(monthly_returns) * sqrt(12)`
-4. **Sharpe Ratio**: From API (pre-calculated)
-5. **Max Drawdown**: `max((value - peak) / peak)`
-6. **Calmar Ratio**: `annualized_return / abs(max_drawdown)`
+1. **Total Return**: Final growth over the selected period
+2. **Annualized Return (CAGR)**: Yearly growth rate derived from the cached series
+3. **Volatility**: Annualized standard deviation of daily returns
+4. **Sharpe Ratio**: Excess return vs. 2% risk-free rate divided by volatility
+5. **Max Drawdown**: Largest peak-to-trough decline (negative percentage)
+6. **Calmar Ratio**: Computed client-side as `annualReturn / abs(maxDrawdown)`
 
 ## Testing
 
@@ -221,6 +233,7 @@ Calculated client-side in `updateMetrics()`:
 - [ ] Best strategy (marked `isBest: true`) stands out
 - [ ] Mobile responsive (test on phone/tablet)
 - [ ] Browser compatibility (Chrome, Firefox, Safari)
+- [ ] Period buttons fetch the right cached snapshot (1Y/3Y/5Y/10Y/20Y)
 
 ### Test URLs
 - Landing page preview: http://localhost:3000/ (scroll to "What We're Building")

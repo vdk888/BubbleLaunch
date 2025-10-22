@@ -10,48 +10,81 @@ const portfolioCacheService = require("../services/portfolioCacheService");
  */
 async function getPreviewData(req, res) {
   try {
+    const requestedPeriod = req.query.period
+      ? parseInt(req.query.period, 10)
+      : null;
+
     const previewDataPath = path.join(
       __dirname,
       "../cache/portfolio-preview-data.json"
     );
 
-    const data = await fs.readFile(previewDataPath, "utf-8");
-    const previewData = JSON.parse(data);
+    const periodsPath = path.join(
+      __dirname,
+      "../cache/portfolio-preview-periods.json"
+    );
+
+    let previewData;
+    let periodsPayload;
+
+    try {
+      const [previewRaw, multiRaw] = await Promise.all([
+        fs.readFile(previewDataPath, "utf-8"),
+        fs.readFile(periodsPath, "utf-8"),
+      ]);
+      previewData = JSON.parse(previewRaw);
+      periodsPayload = JSON.parse(multiRaw);
+    } catch (error) {
+      if (error.code !== "ENOENT") {
+        throw error;
+      }
+
+      console.log("📊 Cache miss – regenerating portfolio preview data...");
+      const snapshots = await portfolioCacheService.generateSnapshots();
+      const { defaultSnapshot } =
+        await portfolioCacheService.writeSnapshotsToDisk(snapshots);
+
+      previewData = {
+        data: defaultSnapshot.data,
+        metrics: defaultSnapshot.metrics,
+        generatedAt: snapshots.generatedAt,
+        periodYears: defaultSnapshot.periodYears,
+        periodsAvailable: Object.keys(snapshots.periods).map(Number),
+        tickers: snapshots.tickers,
+      };
+      periodsPayload = snapshots;
+    }
+
+    let responsePayload = { ...previewData };
+
+    if (requestedPeriod && periodsPayload?.periods) {
+      const periodKey = String(requestedPeriod);
+      const periodSnapshot = periodsPayload.periods[periodKey];
+
+      if (periodSnapshot) {
+        responsePayload = {
+          data: periodSnapshot.data,
+          metrics: periodSnapshot.metrics,
+          generatedAt: periodSnapshot.generatedAt,
+          periodYears: periodSnapshot.periodYears,
+          periodsAvailable: Object.keys(periodsPayload.periods).map(Number),
+          tickers: periodsPayload.tickers,
+          fromCache: true,
+        };
+      } else {
+        return res.status(404).json({
+          success: false,
+          error: `No cached data for period ${requestedPeriod} years`,
+        });
+      }
+    }
 
     res.json({
       success: true,
-      ...previewData,
+      ...responsePayload,
       fromCache: true,
     });
   } catch (error) {
-    if (error.code === "ENOENT") {
-      try {
-        console.log("📊 Cache miss – regenerating portfolio preview data...");
-        const snapshots = await portfolioCacheService.generateSnapshots();
-        const { defaultSnapshot } =
-          await portfolioCacheService.writeSnapshotsToDisk(snapshots);
-
-        res.json({
-          success: true,
-          data: defaultSnapshot.data,
-          metrics: defaultSnapshot.metrics,
-          generatedAt: defaultSnapshot.generatedAt,
-          periodYears: defaultSnapshot.periodYears,
-          periodsAvailable: Object.keys(snapshots.periods).map(Number),
-          tickers: snapshots.tickers,
-          fromCache: false,
-        });
-      } catch (generationError) {
-        console.error("Error generating preview data:", generationError);
-        res.status(500).json({
-          success: false,
-          error: "Failed to generate preview data",
-          details: generationError.message,
-        });
-      }
-      return;
-    }
-
     console.error("Error getting preview data:", error);
     res.status(500).json({
       success: false,

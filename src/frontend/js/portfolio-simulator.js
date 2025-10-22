@@ -101,12 +101,13 @@
   /**
    * Fetch portfolio data from API
    */
-  async function fetchPortfolioData(strategy, years) {
+  async function fetchPortfolioData(period) {
     try {
-      const response = await fetch('/api/portfolio/preview-data');
+      const query = period ? `?period=${encodeURIComponent(period)}` : '';
+      const response = await fetch(`/api/portfolio/preview-data${query}`);
       const result = await response.json();
 
-      if (result.success) {
+      if (result.success && result.data) {
         return result;
       } else {
         throw new Error('Failed to fetch portfolio data');
@@ -115,28 +116,6 @@
       console.error('Error fetching portfolio data:', error);
       return null;
     }
-  }
-
-  /**
-   * Filter data based on selected period
-   */
-  function filterDataByPeriod(data, years) {
-    if (!data || !data.data) return data;
-
-    const allData = data.data;
-    const endDate = new Date(allData[allData.length - 1].date);
-    const startDate = new Date(endDate);
-    startDate.setFullYear(startDate.getFullYear() - years);
-
-    const filteredData = allData.filter(d => {
-      const date = new Date(d.date);
-      return date >= startDate;
-    });
-
-    return {
-      ...data,
-      data: filteredData
-    };
   }
 
   /**
@@ -213,6 +192,15 @@
     });
 
     return { labels, datasets };
+  }
+
+  function formatPercentage(value, { withPlus = false } = {}) {
+    if (typeof value !== 'number' || Number.isNaN(value)) {
+      return '—';
+    }
+    const sign = value > 0 ? '+' : '';
+    const formatted = value.toFixed(1);
+    return withPlus && value > 0 ? `${sign}${formatted}%` : `${formatted}%`;
   }
 
   /**
@@ -342,43 +330,27 @@
     if (!metrics) return;
 
     // Total Return
-    document.getElementById('totalReturn').textContent = `+${metrics.totalReturn.toFixed(1)}%`;
+    document.getElementById('totalReturn').textContent = formatPercentage(metrics.totalReturn, { withPlus: true });
 
-    // Annualized Return (estimate from total return and time period)
-    const years = (data.data.length - 1) / 12; // Assuming monthly data
-    const annualizedReturn = (Math.pow(1 + metrics.totalReturn / 100, 1 / years) - 1) * 100;
-    document.getElementById('annualReturn').textContent = `${annualizedReturn.toFixed(1)}%`;
+    // Annualized Return
+    document.getElementById('annualReturn').textContent = formatPercentage(metrics.annualReturn);
 
-    // Volatility (estimate from data variance)
-    const returns = [];
-    for (let i = 1; i < data.data.length; i++) {
-      const prevValue = data.data[i - 1][strategyKey];
-      const currValue = data.data[i][strategyKey];
-      returns.push(((currValue - prevValue) / prevValue) * 100);
-    }
-    const avgReturn = returns.reduce((a, b) => a + b, 0) / returns.length;
-    const variance = returns.reduce((sum, ret) => sum + Math.pow(ret - avgReturn, 2), 0) / returns.length;
-    const monthlyVol = Math.sqrt(variance);
-    const annualVol = monthlyVol * Math.sqrt(12);
-    document.getElementById('volatility').textContent = `${annualVol.toFixed(1)}%`;
+    // Volatility
+    document.getElementById('volatility').textContent = formatPercentage(metrics.volatility);
 
     // Sharpe Ratio
-    document.getElementById('sharpeRatio').textContent = metrics.sharpeRatio.toFixed(2);
+    document.getElementById('sharpeRatio').textContent =
+      typeof metrics.sharpeRatio === 'number' ? metrics.sharpeRatio.toFixed(2) : '—';
 
-    // Max Drawdown (calculate from data)
-    let maxDrawdown = 0;
-    let peak = data.data[0][strategyKey];
-    for (const point of data.data) {
-      const value = point[strategyKey];
-      if (value > peak) peak = value;
-      const drawdown = ((value - peak) / peak) * 100;
-      if (drawdown < maxDrawdown) maxDrawdown = drawdown;
+    // Max Drawdown (already negative percentage)
+    document.getElementById('maxDrawdown').textContent = formatPercentage(metrics.maxDrawdown);
+
+    // Calmar Ratio (annualized return / |max drawdown|)
+    let calmarRatio = '—';
+    if (typeof metrics.annualReturn === 'number' && typeof metrics.maxDrawdown === 'number' && metrics.maxDrawdown !== 0) {
+      calmarRatio = Math.abs(metrics.annualReturn / metrics.maxDrawdown).toFixed(2);
     }
-    document.getElementById('maxDrawdown').textContent = `${maxDrawdown.toFixed(1)}%`;
-
-    // Calmar Ratio (annualized return / max drawdown)
-    const calmarRatio = Math.abs(annualizedReturn / maxDrawdown);
-    document.getElementById('calmarRatio').textContent = calmarRatio.toFixed(2);
+    document.getElementById('calmarRatio').textContent = calmarRatio;
   }
 
   /**
@@ -386,12 +358,14 @@
    */
   async function loadPortfolioData(strategy, period) {
     try {
-      const data = await fetchPortfolioData(strategy, period);
+      const result = await fetchPortfolioData(period);
 
-      if (data) {
-        portfolioData = data;
-        updateChart(data, strategy);
-        updateMetrics(data, strategy);
+      if (result) {
+        portfolioData = result;
+        currentPeriod = result.periodYears || period || currentPeriod;
+
+        updateChart(result, strategy);
+        updateMetrics(result, strategy);
       } else {
         // Show error state
         console.error('Failed to load portfolio data');
@@ -427,12 +401,7 @@
   function handlePeriodChange(period) {
     currentPeriod = period;
 
-    if (portfolioData) {
-      // Filter data based on selected period
-      const filteredData = filterDataByPeriod(portfolioData, period);
-      updateChart(filteredData, currentStrategy);
-      updateMetrics(filteredData, currentStrategy);
-    }
+    loadPortfolioData(currentStrategy, period);
 
     // Analytics tracking (if available)
     if (typeof gtag !== 'undefined') {
