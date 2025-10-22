@@ -87,6 +87,16 @@
           order: 2, // Middle layer
         },
         {
+          label: 'Portefeuille 60/40',
+          data: data.data.map(d => d.sixtyForty ?? d.equalWeight),
+          borderColor: '#4B5563',
+          backgroundColor: 'rgba(75, 85, 99, 0.12)',
+          borderWidth: 2.2,
+          pointRadius: 0,
+          tension: 0.4,
+          order: 1.5,
+        },
+        {
           label: '✨ Optimisé (Risk Parity)',
           data: data.data.map(d => d.optimizedRP),
           borderColor: '#667eea', // Brand chart violet - stands out most

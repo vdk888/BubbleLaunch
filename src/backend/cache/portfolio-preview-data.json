@@ -6,6 +6,7 @@
       "IEF": 100,
       "GLD": 100,
       "equalWeight": 100,
+      "sixtyForty": 100,
       "simpleRP": 100,
       "optimizedRP": 100
     },
@@ -15,6 +16,7 @@
       "IEF": 100.4,
       "GLD": 106.32,
       "equalWeight": 104,
+      "sixtyForty": 103.33,
       "simpleRP": 104,
       "optimizedRP": 104
     },
@@ -24,6 +26,7 @@
       "IEF": 100.76,
       "GLD": 108.08,
       "equalWeight": 105.01,
+      "sixtyForty": 104.01,
       "simpleRP": 105.01,
       "optimizedRP": 105.01
     },
@@ -33,6 +36,7 @@
       "IEF": 100.83,
       "GLD": 121.02,
       "equalWeight": 109.33,
+      "sixtyForty": 104.02,
       "simpleRP": 105.21,
       "optimizedRP": 104.67
     },
@@ -42,6 +46,7 @@
       "IEF": 100.31,
       "GLD": 119.94,
       "equalWeight": 109.57,
+      "sixtyForty": 105.19,
       "simpleRP": 104.78,
       "optimizedRP": 104.37
     },
@@ -51,6 +56,7 @@
       "IEF": 99.95,
       "GLD": 121.56,
       "equalWeight": 110.3,
+      "sixtyForty": 105.62,
       "simpleRP": 104.96,
       "optimizedRP": 105.74
     },
@@ -60,6 +66,7 @@
       "IEF": 98.09,
       "GLD": 137.21,
       "equalWeight": 115,
+      "sixtyForty": 105.06,
       "simpleRP": 105.67,
       "optimizedRP": 105.43
     },
@@ -69,6 +76,7 @@
       "IEF": 98.73,
       "GLD": 139.47,
       "equalWeight": 115.22,
+      "sixtyForty": 103.97,
       "simpleRP": 105.38,
       "optimizedRP": 104.85
     },
@@ -78,6 +86,7 @@
       "IEF": 97.96,
       "GLD": 125.63,
       "equalWeight": 109.74,
+      "sixtyForty": 102.56,
       "simpleRP": 102.31,
       "optimizedRP": 101.95
     },
@@ -87,6 +96,7 @@
       "IEF": 99.88,
       "GLD": 133.65,
       "equalWeight": 113.57,
+      "sixtyForty": 104.26,
       "simpleRP": 104.59,
       "optimizedRP": 104.68
     },
@@ -96,6 +106,7 @@
       "IEF": 101.6,
       "GLD": 133.11,
       "equalWeight": 114.76,
+      "sixtyForty": 106.38,
       "simpleRP": 106.53,
       "optimizedRP": 106.79
     },
@@ -105,6 +116,7 @@
       "IEF": 103.8,
       "GLD": 126.1,
       "equalWeight": 114.12,
+      "sixtyForty": 108.99,
       "simpleRP": 108.32,
       "optimizedRP": 109.26
     },
@@ -114,6 +126,7 @@
       "IEF": 102.29,
       "GLD": 125.39,
       "equalWeight": 114.9,
+      "sixtyForty": 111.13,
       "simpleRP": 109.61,
       "optimizedRP": 109.84
     },
@@ -123,6 +136,7 @@
       "IEF": 104.39,
       "GLD": 134.73,
       "equalWeight": 119.58,
+      "sixtyForty": 113.53,
       "simpleRP": 113.27,
       "optimizedRP": 113.62
     },
@@ -132,6 +146,7 @@
       "IEF": 104.37,
       "GLD": 132.9,
       "equalWeight": 119.13,
+      "sixtyForty": 113.83,
       "simpleRP": 113.46,
       "optimizedRP": 113.49
     },
@@ -141,6 +156,7 @@
       "IEF": 103.06,
       "GLD": 138.33,
       "equalWeight": 120.9,
+      "sixtyForty": 114.01,
       "simpleRP": 113.4,
       "optimizedRP": 112.46
     },
@@ -150,6 +166,7 @@
       "IEF": 105.96,
       "GLD": 141,
       "equalWeight": 122.01,
+      "sixtyForty": 113.82,
       "simpleRP": 114.05,
       "optimizedRP": 113.22
     },
@@ -159,6 +176,7 @@
       "IEF": 105.72,
       "GLD": 142.38,
       "equalWeight": 123.21,
+      "sixtyForty": 115.21,
       "simpleRP": 113.92,
       "optimizedRP": 113.51
     },
@@ -168,6 +186,7 @@
       "IEF": 105.62,
       "GLD": 145.63,
       "equalWeight": 126.46,
+      "sixtyForty": 119.13,
       "simpleRP": 115.81,
       "optimizedRP": 115.61
     },
@@ -177,6 +196,7 @@
       "IEF": 104.54,
       "GLD": 140.27,
       "equalWeight": 125.09,
+      "sixtyForty": 120.09,
       "simpleRP": 115.63,
       "optimizedRP": 114.92
     },
@@ -186,6 +206,7 @@
       "IEF": 103.64,
       "GLD": 137.25,
       "equalWeight": 123.44,
+      "sixtyForty": 119.12,
       "simpleRP": 115.78,
       "optimizedRP": 115.78
     },
@@ -195,6 +216,7 @@
       "IEF": 106.3,
       "GLD": 141,
       "equalWeight": 124.06,
+      "sixtyForty": 117.45,
       "simpleRP": 117.99,
       "optimizedRP": 117.88
     },
@@ -204,6 +226,7 @@
       "IEF": 108.16,
       "GLD": 142.23,
       "equalWeight": 125.62,
+      "sixtyForty": 119.14,
       "simpleRP": 120.03,
       "optimizedRP": 119.13
     },
@@ -213,6 +236,7 @@
       "IEF": 108.58,
       "GLD": 155.21,
       "equalWeight": 131.79,
+      "sixtyForty": 122.39,
       "simpleRP": 125.06,
       "optimizedRP": 126.33
     },
@@ -222,6 +246,7 @@
       "IEF": 110.95,
       "GLD": 163.89,
       "equalWeight": 135.38,
+      "sixtyForty": 123.16,
       "simpleRP": 127.63,
       "optimizedRP": 128.54
     },
@@ -231,6 +256,7 @@
       "IEF": 115.28,
       "GLD": 175.25,
       "equalWeight": 137.47,
+      "sixtyForty": 119.24,
       "simpleRP": 128.68,
       "optimizedRP": 129.04
     },
@@ -240,6 +266,7 @@
       "IEF": 112.47,
       "GLD": 175.73,
       "equalWeight": 139.4,
+      "sixtyForty": 122.99,
       "simpleRP": 129.27,
       "optimizedRP": 131.58
     },
@@ -249,6 +276,7 @@
       "IEF": 118.43,
       "GLD": 197.78,
       "equalWeight": 144.59,
+      "sixtyForty": 117.91,
       "simpleRP": 135,
       "optimizedRP": 138.82
     },
@@ -258,6 +286,7 @@
       "IEF": 117.33,
       "GLD": 204.31,
       "equalWeight": 147.27,
+      "sixtyForty": 119.02,
       "simpleRP": 138,
       "optimizedRP": 139.31
     },
@@ -267,6 +296,7 @@
       "IEF": 121.37,
       "GLD": 198.06,
       "equalWeight": 144.77,
+      "sixtyForty": 117.48,
       "simpleRP": 137.42,
       "optimizedRP": 139.04
     },
@@ -276,6 +306,7 @@
       "IEF": 118.06,
       "GLD": 189.03,
       "equalWeight": 143.02,
+      "sixtyForty": 120.41,
       "simpleRP": 134.26,
       "optimizedRP": 134.42
     },
@@ -285,6 +316,7 @@
       "IEF": 116.69,
       "GLD": 192.15,
       "equalWeight": 143.51,
+      "sixtyForty": 119.69,
       "simpleRP": 132.6,
       "optimizedRP": 133.06
     },
@@ -294,6 +326,7 @@
       "IEF": 117.21,
       "GLD": 195.32,
       "equalWeight": 141.7,
+      "sixtyForty": 114.43,
       "simpleRP": 130.01,
       "optimizedRP": 130.29
     },
@@ -303,6 +336,7 @@
       "IEF": 117.88,
       "GLD": 197.74,
       "equalWeight": 141.39,
+      "sixtyForty": 112.28,
       "simpleRP": 131.05,
       "optimizedRP": 133.12
     },
@@ -312,6 +346,7 @@
       "IEF": 120.68,
       "GLD": 175.1,
       "equalWeight": 135.87,
+      "sixtyForty": 115.38,
       "simpleRP": 128.68,
       "optimizedRP": 128.12
     },
@@ -321,6 +356,7 @@
       "IEF": 120.37,
       "GLD": 186.35,
       "equalWeight": 137.8,
+      "sixtyForty": 112.15,
       "simpleRP": 127.85,
       "optimizedRP": 128.35
     },
@@ -330,6 +366,7 @@
       "IEF": 121.36,
       "GLD": 155.66,
       "equalWeight": 117.96,
+      "sixtyForty": 94.66,
       "simpleRP": 121.06,
       "optimizedRP": 122.62
     },
@@ -339,6 +376,7 @@
       "IEF": 125.39,
       "GLD": 174.41,
       "equalWeight": 124.96,
+      "sixtyForty": 95.21,
       "simpleRP": 127.81,
       "optimizedRP": 130.11
     },
@@ -348,6 +386,7 @@
       "IEF": 135.5,
       "GLD": 179.91,
       "equalWeight": 130.85,
+      "sixtyForty": 100.49,
       "simpleRP": 137.44,
       "optimizedRP": 137.57
     },
@@ -357,6 +396,7 @@
       "IEF": 132.57,
       "GLD": 190.52,
       "equalWeight": 132.78,
+      "sixtyForty": 98.18,
       "simpleRP": 136.28,
       "optimizedRP": 135.84
     },
@@ -366,6 +406,7 @@
       "IEF": 129.1,
       "GLD": 200.6,
       "equalWeight": 132.34,
+      "sixtyForty": 92.03,
       "simpleRP": 134.25,
       "optimizedRP": 135.84
     },
@@ -375,6 +416,7 @@
       "IEF": 132.47,
       "GLD": 195.49,
       "equalWeight": 133.71,
+      "sixtyForty": 96.89,
       "simpleRP": 137.87,
       "optimizedRP": 140.94
     },
@@ -384,6 +426,7 @@
       "IEF": 130.54,
       "GLD": 189.16,
       "equalWeight": 132.14,
+      "sixtyForty": 98.25,
       "simpleRP": 136.85,
       "optimizedRP": 135.49
     },
@@ -393,6 +436,7 @@
       "IEF": 125.5,
       "GLD": 203.15,
       "equalWeight": 136.72,
+      "sixtyForty": 99.11,
       "simpleRP": 139.61,
       "optimizedRP": 140.01
     },
@@ -402,6 +446,7 @@
       "IEF": 126.28,
       "GLD": 198.94,
       "equalWeight": 136.01,
+      "sixtyForty": 100.2,
       "simpleRP": 137.54,
       "optimizedRP": 138.83
     },
@@ -411,6 +456,7 @@
       "IEF": 125.4,
       "GLD": 198.56,
       "equalWeight": 137.41,
+      "sixtyForty": 103.12,
       "simpleRP": 140.05,
       "optimizedRP": 140.88
     },
@@ -420,6 +466,7 @@
       "IEF": 127.91,
       "GLD": 200.02,
       "equalWeight": 140.32,
+      "sixtyForty": 106.98,
       "simpleRP": 140.86,
       "optimizedRP": 141.12
     },
@@ -429,6 +476,7 @@
       "IEF": 129.41,
       "GLD": 209.1,
       "equalWeight": 144.38,
+      "sixtyForty": 108.54,
       "simpleRP": 144.26,
       "optimizedRP": 142.31
     },
@@ -438,6 +486,7 @@
       "IEF": 127.66,
       "GLD": 219.57,
       "equalWeight": 148.03,
+      "sixtyForty": 109.18,
       "simpleRP": 144.22,
       "optimizedRP": 144.76
     },
@@ -447,8 +496,9 @@
       "IEF": 130.86,
       "GLD": 247.32,
       "equalWeight": 159.57,
+      "sixtyForty": 112.67,
       "simpleRP": 151.71,
-      "optimizedRP": 150.8
+      "optimizedRP": 150.79
     },
     {
       "date": "2009-12-24",
@@ -456,6 +506,7 @@
       "IEF": 126.68,
       "GLD": 233.58,
       "equalWeight": 154.24,
+      "sixtyForty": 112.14,
       "simpleRP": 141.31,
       "optimizedRP": 139.01
     },
@@ -465,6 +516,7 @@
       "IEF": 128.83,
       "GLD": 229.64,
       "equalWeight": 152.83,
+      "sixtyForty": 111.55,
       "simpleRP": 139.26,
       "optimizedRP": 141.91
     },
@@ -474,6 +526,7 @@
       "IEF": 129.71,
       "GLD": 235.89,
       "equalWeight": 155.49,
+      "sixtyForty": 112.4,
       "simpleRP": 140.11,
       "optimizedRP": 142.53
     },
@@ -483,6 +536,7 @@
       "IEF": 127.91,
       "GLD": 234.43,
       "equalWeight": 156.54,
+      "sixtyForty": 115.54,
       "simpleRP": 141.9,
       "optimizedRP": 140.7
     },
@@ -492,6 +546,7 @@
       "IEF": 129.46,
       "GLD": 246.41,
       "equalWeight": 161.68,
+      "sixtyForty": 117.29,
       "simpleRP": 146.65,
       "optimizedRP": 152.18
     },
@@ -501,6 +556,7 @@
       "IEF": 133.68,
       "GLD": 255.85,
       "equalWeight": 163.61,
+      "sixtyForty": 114.25,
       "simpleRP": 157.2,
       "optimizedRP": 165.52
     },
@@ -510,6 +566,7 @@
       "IEF": 137.59,
       "GLD": 261.03,
       "equalWeight": 165.81,
+      "sixtyForty": 114.32,
       "simpleRP": 163.25,
       "optimizedRP": 167.46
     },
@@ -519,6 +576,7 @@
       "IEF": 138.54,
       "GLD": 245.27,
       "equalWeight": 161.88,
+      "sixtyForty": 116.52,
       "simpleRP": 157.94,
       "optimizedRP": 161.11
     },
@@ -528,6 +586,7 @@
       "IEF": 144.26,
       "GLD": 260.75,
       "equalWeight": 167.23,
+      "sixtyForty": 115.72,
       "simpleRP": 163.99,
       "optimizedRP": 174.26
     },
@@ -537,6 +596,7 @@
       "IEF": 144.37,
       "GLD": 273.16,
       "equalWeight": 174.37,
+      "sixtyForty": 121.09,
       "simpleRP": 178.85,
       "optimizedRP": 187.47
     },
@@ -546,6 +606,7 @@
       "IEF": 143.67,
       "GLD": 282.13,
       "equalWeight": 178.49,
+      "sixtyForty": 123.27,
       "simpleRP": 175.81,
       "optimizedRP": 166.02
     },
@@ -555,6 +616,7 @@
       "IEF": 141.85,
       "GLD": 289.24,
       "equalWeight": 180.71,
+      "sixtyForty": 123.36,
       "simpleRP": 167.29,
       "optimizedRP": 166.36
     },
@@ -564,6 +626,7 @@
       "IEF": 137.61,
       "GLD": 291.05,
       "equalWeight": 181.79,
+      "sixtyForty": 125.06,
       "simpleRP": 164.71,
       "optimizedRP": 167.06
     },
@@ -573,6 +636,7 @@
       "IEF": 137.48,
       "GLD": 282.73,
       "equalWeight": 180.21,
+      "sixtyForty": 127.24,
       "simpleRP": 165.84,
       "optimizedRP": 163.81
     },
@@ -582,6 +646,7 @@
       "IEF": 137.85,
       "GLD": 296.14,
       "equalWeight": 185.63,
+      "sixtyForty": 128.88,
       "simpleRP": 172.33,
       "optimizedRP": 180.72
     },
@@ -591,6 +656,7 @@
       "IEF": 137.86,
       "GLD": 298.64,
       "equalWeight": 186.22,
+      "sixtyForty": 128.45,
       "simpleRP": 173.94,
       "optimizedRP": 182.28
     },
@@ -600,6 +666,7 @@
       "IEF": 139.3,
       "GLD": 321.62,
       "equalWeight": 195.82,
+      "sixtyForty": 131.64,
       "simpleRP": 186.33,
       "optimizedRP": 184.51
     },
@@ -609,6 +676,7 @@
       "IEF": 143.42,
       "GLD": 319.51,
       "equalWeight": 195.66,
+      "sixtyForty": 131.8,
       "simpleRP": 177.4,
       "optimizedRP": 178.03
     },
@@ -618,6 +686,7 @@
       "IEF": 145.6,
       "GLD": 314.14,
       "equalWeight": 193.22,
+      "sixtyForty": 130.19,
       "simpleRP": 176.86,
       "optimizedRP": 186.51
     },
@@ -627,6 +696,7 @@
       "IEF": 145.38,
       "GLD": 338.84,
       "equalWeight": 202.21,
+      "sixtyForty": 131.6,
       "simpleRP": 190.15,
       "optimizedRP": 201.07
     },
@@ -636,6 +706,7 @@
       "IEF": 154.3,
       "GLD": 371.55,
       "equalWeight": 211.61,
+      "sixtyForty": 127.12,
       "simpleRP": 204.87,
       "optimizedRP": 200.36
     },
@@ -645,6 +716,7 @@
       "IEF": 157.77,
       "GLD": 339.69,
       "equalWeight": 202.32,
+      "sixtyForty": 128.82,
       "simpleRP": 187.97,
       "optimizedRP": 182.77
     },
@@ -654,6 +726,7 @@
       "IEF": 155.74,
       "GLD": 356.95,
       "equalWeight": 209.54,
+      "sixtyForty": 131.86,
       "simpleRP": 190.76,
       "optimizedRP": 193.09
     },
@@ -663,6 +736,7 @@
       "IEF": 158.83,
       "GLD": 355.31,
       "equalWeight": 207.99,
+      "sixtyForty": 129.42,
       "simpleRP": 190.77,
       "optimizedRP": 202.48
     },
@@ -672,15 +746,17 @@
       "IEF": 157.88,
       "GLD": 336.95,
       "equalWeight": 204.89,
+      "sixtyForty": 135.06,
       "simpleRP": 192.38,
       "optimizedRP": 191.98
     },
     {
       "date": "2012-01-26",
-      "SPY": 125.04,
+      "SPY": 125.05,
       "IEF": 159.47,
       "GLD": 360.57,
       "equalWeight": 215.03,
+      "sixtyForty": 138.81,
       "simpleRP": 194.11,
       "optimizedRP": 194.22
     },
@@ -690,6 +766,7 @@
       "IEF": 159.89,
       "GLD": 370.12,
       "equalWeight": 220.02,
+      "sixtyForty": 141.99,
       "simpleRP": 192.09,
       "optimizedRP": 198.79
     },
@@ -699,6 +776,7 @@
       "IEF": 157.19,
       "GLD": 351.89,
       "equalWeight": 214.51,
+      "sixtyForty": 143.54,
       "simpleRP": 181.51,
       "optimizedRP": 186.55
     },
@@ -708,6 +786,7 @@
       "IEF": 160.42,
       "GLD": 347.12,
       "equalWeight": 213.67,
+      "sixtyForty": 144.26,
       "simpleRP": 187.21,
       "optimizedRP": 200.46
     },
@@ -717,6 +796,7 @@
       "IEF": 163.28,
       "GLD": 329.12,
       "equalWeight": 206.07,
+      "sixtyForty": 140.8,
       "simpleRP": 189.5,
       "optimizedRP": 187.85
     },
@@ -726,6 +806,7 @@
       "IEF": 164.66,
       "GLD": 328.99,
       "equalWeight": 206.66,
+      "sixtyForty": 141.67,
       "simpleRP": 191.06,
       "optimizedRP": 196.27
     },
@@ -735,6 +816,7 @@
       "IEF": 167.34,
       "GLD": 337.94,
       "equalWeight": 211.88,
+      "sixtyForty": 145.15,
       "simpleRP": 192.15,
       "optimizedRP": 198.91
     },
@@ -744,6 +826,7 @@
       "IEF": 165.01,
       "GLD": 349.15,
       "equalWeight": 216.54,
+      "sixtyForty": 147.28,
       "simpleRP": 198.14,
       "optimizedRP": 202.14
     },
@@ -753,6 +836,7 @@
       "IEF": 165.85,
       "GLD": 368.12,
       "equalWeight": 224.21,
+      "sixtyForty": 149.55,
       "simpleRP": 205.84,
       "optimizedRP": 207.15
     },
@@ -762,6 +846,7 @@
       "IEF": 164.41,
       "GLD": 355.38,
       "equalWeight": 218.5,
+      "sixtyForty": 147.19,
       "simpleRP": 201.29,
       "optimizedRP": 205.6
     },
@@ -771,6 +856,7 @@
       "IEF": 166.8,
       "GLD": 363.68,
       "equalWeight": 221.84,
+      "sixtyForty": 147.75,
       "simpleRP": 204.28,
       "optimizedRP": 208.58
     },
@@ -780,8 +866,9 @@
       "IEF": 166.07,
       "GLD": 347.4,
       "equalWeight": 216.89,
+      "sixtyForty": 148.75,
       "simpleRP": 202.73,
-      "optimizedRP": 204.15
+      "optimizedRP": 204.14
     },
     {
       "date": "2013-01-29",
@@ -789,6 +876,7 @@
       "IEF": 163.2,
       "GLD": 347.04,
       "equalWeight": 218.75,
+      "sixtyForty": 152.89,
       "simpleRP": 201.58,
       "optimizedRP": 210.3
     },
@@ -798,6 +886,7 @@
       "IEF": 165.29,
       "GLD": 329.81,
       "equalWeight": 214.01,
+      "sixtyForty": 154.28,
       "simpleRP": 197.98,
       "optimizedRP": 197.27
     },
@@ -807,6 +896,7 @@
       "IEF": 166.2,
       "GLD": 333.41,
       "equalWeight": 217.18,
+      "sixtyForty": 157.63,
       "simpleRP": 199.39,
       "optimizedRP": 206.51
     },
@@ -816,6 +906,7 @@
       "IEF": 168.29,
       "GLD": 307.76,
       "equalWeight": 210.5,
+      "sixtyForty": 160.59,
       "simpleRP": 181.24,
       "optimizedRP": 179.33
     },
@@ -825,6 +916,7 @@
       "IEF": 163.51,
       "GLD": 294.68,
       "equalWeight": 206.54,
+      "sixtyForty": 162.27,
       "simpleRP": 178.69,
       "optimizedRP": 182.25
     },
@@ -834,6 +926,7 @@
       "IEF": 158.91,
       "GLD": 256.76,
       "equalWeight": 190.89,
+      "sixtyForty": 157.76,
       "simpleRP": 170.77,
       "optimizedRP": 171.84
     },
@@ -842,7 +935,8 @@
       "SPY": 164.99,
       "IEF": 158.24,
       "GLD": 276.18,
-      "equalWeight": 199.81,
+      "equalWeight": 199.8,
+      "sixtyForty": 162.29,
       "simpleRP": 179.11,
       "optimizedRP": 178.81
     },
@@ -852,6 +946,7 @@
       "IEF": 156.24,
       "GLD": 294.7,
       "equalWeight": 203.78,
+      "sixtyForty": 158.74,
       "simpleRP": 181.83,
       "optimizedRP": 185.39
     },
@@ -861,6 +956,7 @@
       "IEF": 158.72,
       "GLD": 278.01,
       "equalWeight": 200.95,
+      "sixtyForty": 163.15,
       "simpleRP": 181.43,
       "optimizedRP": 179.14
     },
@@ -870,6 +966,7 @@
       "IEF": 160.61,
       "GLD": 281.44,
       "equalWeight": 205.12,
+      "sixtyForty": 168.23,
       "simpleRP": 183.25,
       "optimizedRP": 182.2
     },
@@ -879,6 +976,7 @@
       "IEF": 159.27,
       "GLD": 258.29,
       "equalWeight": 198.41,
+      "sixtyForty": 170.32,
       "simpleRP": 180.53,
       "optimizedRP": 182.51
     },
@@ -888,6 +986,7 @@
       "IEF": 155.77,
       "GLD": 252.47,
       "equalWeight": 196.68,
+      "sixtyForty": 171.38,
       "simpleRP": 179.35,
       "optimizedRP": 178.22
     },
@@ -896,7 +995,8 @@
       "SPY": 175.36,
       "IEF": 159.79,
       "GLD": 264,
-      "equalWeight": 199.72,
+      "equalWeight": 199.71,
+      "sixtyForty": 169.13,
       "simpleRP": 183.3,
       "optimizedRP": 184.88
     },
@@ -906,6 +1006,7 @@
       "IEF": 160.83,
       "GLD": 275.1,
       "equalWeight": 206.71,
+      "sixtyForty": 174.85,
       "simpleRP": 187.61,
       "optimizedRP": 189.65
     },
@@ -915,6 +1016,7 @@
       "IEF": 159.93,
       "GLD": 266.46,
       "equalWeight": 204.04,
+      "sixtyForty": 175.41,
       "simpleRP": 188.18,
       "optimizedRP": 188.68
     },
@@ -924,6 +1026,7 @@
       "IEF": 161.14,
       "GLD": 267.77,
       "equalWeight": 205.31,
+      "sixtyForty": 176.67,
       "simpleRP": 189.66,
       "optimizedRP": 191.54
     },
@@ -933,15 +1036,17 @@
       "IEF": 164.08,
       "GLD": 259.6,
       "equalWeight": 205.01,
+      "sixtyForty": 180.45,
       "simpleRP": 190.29,
       "optimizedRP": 190.66
     },
     {
       "date": "2014-06-30",
       "SPY": 195.31,
-      "IEF": 163.73,
+      "IEF": 163.72,
       "GLD": 276.01,
       "equalWeight": 211.68,
+      "sixtyForty": 182.67,
       "simpleRP": 192.23,
       "optimizedRP": 192.55
     },
@@ -951,6 +1056,7 @@
       "IEF": 163.41,
       "GLD": 269.09,
       "equalWeight": 209.69,
+      "sixtyForty": 183.3,
       "simpleRP": 192.24,
       "optimizedRP": 194.35
     },
@@ -960,15 +1066,17 @@
       "IEF": 166.42,
       "GLD": 267.3,
       "equalWeight": 211.15,
+      "sixtyForty": 186.4,
       "simpleRP": 194.02,
       "optimizedRP": 196.98
     },
     {
       "date": "2014-09-29",
-      "SPY": 198.05,
+      "SPY": 198.04,
       "IEF": 164.83,
       "GLD": 252.27,
       "equalWeight": 205.05,
+      "sixtyForty": 184.76,
       "simpleRP": 191.73,
       "optimizedRP": 194.87
     },
@@ -978,6 +1086,7 @@
       "IEF": 167.87,
       "GLD": 254.58,
       "equalWeight": 207.12,
+      "sixtyForty": 186.5,
       "simpleRP": 196.4,
       "optimizedRP": 200.11
     },
@@ -987,6 +1096,7 @@
       "IEF": 168.72,
       "GLD": 248.24,
       "equalWeight": 208.38,
+      "sixtyForty": 192.39,
       "simpleRP": 191.97,
       "optimizedRP": 191.23
     },
@@ -996,6 +1106,7 @@
       "IEF": 169.21,
       "GLD": 245.03,
       "equalWeight": 208.22,
+      "sixtyForty": 193.93,
       "simpleRP": 191.3,
       "optimizedRP": 194.15
     },
@@ -1005,6 +1116,7 @@
       "IEF": 175.35,
       "GLD": 260.31,
       "equalWeight": 213.1,
+      "sixtyForty": 192.32,
       "simpleRP": 197.15,
       "optimizedRP": 201.74
     },
@@ -1014,7 +1126,8 @@
       "IEF": 171.23,
       "GLD": 249.36,
       "equalWeight": 211.43,
-      "simpleRP": 199.98,
+      "sixtyForty": 196.72,
+      "simpleRP": 199.99,
       "optimizedRP": 204.71
     },
     {
@@ -1023,6 +1136,7 @@
       "IEF": 173.99,
       "GLD": 245.01,
       "equalWeight": 209.34,
+      "sixtyForty": 195.02,
       "simpleRP": 200.29,
       "optimizedRP": 201.93
     },
@@ -1032,6 +1146,7 @@
       "IEF": 172.89,
       "GLD": 244.6,
       "equalWeight": 209.53,
+      "sixtyForty": 195.81,
       "simpleRP": 199.74,
       "optimizedRP": 196.81
     },
@@ -1041,25 +1156,28 @@
       "IEF": 171.41,
       "GLD": 245.74,
       "equalWeight": 210.46,
+      "sixtyForty": 197.11,
       "simpleRP": 200.22,
       "optimizedRP": 201.49
     },
     {
       "date": "2015-06-30",
       "SPY": 209.46,
-      "IEF": 169.37,
+      "IEF": 169.36,
       "GLD": 242.23,
       "equalWeight": 207.02,
+      "sixtyForty": 193.42,
       "simpleRP": 199.87,
       "optimizedRP": 204.03
     },
     {
       "date": "2015-07-30",
       "SPY": 214.51,
-      "IEF": 170.94,
+      "IEF": 170.93,
       "GLD": 224.77,
       "equalWeight": 203.41,
-      "simpleRP": 198.78,
+      "sixtyForty": 197.08,
+      "simpleRP": 198.79,
       "optimizedRP": 196.51
     },
     {
@@ -1068,6 +1186,7 @@
       "IEF": 172.36,
       "GLD": 234.32,
       "equalWeight": 203.15,
+      "sixtyForty": 190.61,
       "simpleRP": 196.02,
       "optimizedRP": 194.07
     },
@@ -1077,6 +1196,7 @@
       "IEF": 174.76,
       "GLD": 232.77,
       "equalWeight": 199.98,
+      "sixtyForty": 185.35,
       "simpleRP": 192.74,
       "optimizedRP": 194
     },
@@ -1086,6 +1206,7 @@
       "IEF": 174.41,
       "GLD": 238.8,
       "equalWeight": 208.97,
+      "sixtyForty": 197.99,
       "simpleRP": 197,
       "optimizedRP": 199.55
     },
@@ -1095,6 +1216,7 @@
       "IEF": 172.87,
       "GLD": 218.26,
       "equalWeight": 201.82,
+      "sixtyForty": 197.75,
       "simpleRP": 191.63,
       "optimizedRP": 191.44
     },
@@ -1104,6 +1226,7 @@
       "IEF": 171.89,
       "GLD": 220.31,
       "equalWeight": 201.86,
+      "sixtyForty": 196.79,
       "simpleRP": 191.45,
       "optimizedRP": 192.03
     },
@@ -1113,6 +1236,7 @@
       "IEF": 177.89,
       "GLD": 230.55,
       "equalWeight": 202.58,
+      "sixtyForty": 190.75,
       "simpleRP": 193.09,
       "optimizedRP": 193.28
     },
@@ -1122,6 +1246,7 @@
       "IEF": 179.12,
       "GLD": 253.87,
       "equalWeight": 212.27,
+      "sixtyForty": 193.95,
       "simpleRP": 198.69,
       "optimizedRP": 198.77
     },
@@ -1131,6 +1256,7 @@
       "IEF": 180.41,
       "GLD": 253.59,
       "equalWeight": 215.52,
+      "sixtyForty": 199.69,
       "simpleRP": 199.71,
       "optimizedRP": 200.87
     },
@@ -1140,6 +1266,7 @@
       "IEF": 180.13,
       "GLD": 266.54,
       "equalWeight": 220.02,
+      "sixtyForty": 200.08,
       "simpleRP": 201.85,
       "optimizedRP": 202.54
     },
@@ -1149,6 +1276,7 @@
       "IEF": 179.95,
       "GLD": 250.18,
       "equalWeight": 215.72,
+      "sixtyForty": 202.19,
       "simpleRP": 201.73,
       "optimizedRP": 202.37
     },
@@ -1158,6 +1286,7 @@
       "IEF": 185.1,
       "GLD": 271.27,
       "equalWeight": 223.73,
+      "sixtyForty": 202.94,
       "simpleRP": 208.19,
       "optimizedRP": 208.69
     },
@@ -1167,6 +1296,7 @@
       "IEF": 185.97,
       "GLD": 278.03,
       "equalWeight": 229.9,
+      "sixtyForty": 209.81,
       "simpleRP": 212.83,
       "optimizedRP": 213.44
     },
@@ -1176,6 +1306,7 @@
       "IEF": 184.32,
       "GLD": 272.26,
       "equalWeight": 227.86,
+      "sixtyForty": 209.93,
       "simpleRP": 212.23,
       "optimizedRP": 215.67
     },
@@ -1185,6 +1316,7 @@
       "IEF": 184.87,
       "GLD": 272.08,
       "equalWeight": 227.77,
+      "sixtyForty": 209.76,
       "simpleRP": 213.27,
       "optimizedRP": 213.25
     },
@@ -1194,6 +1326,7 @@
       "IEF": 181.58,
       "GLD": 260.85,
       "equalWeight": 221.72,
+      "sixtyForty": 206.27,
       "simpleRP": 207,
       "optimizedRP": 206.01
     },
@@ -1203,6 +1336,7 @@
       "IEF": 175.07,
       "GLD": 245.31,
       "equalWeight": 216.92,
+      "sixtyForty": 208.25,
       "simpleRP": 203.24,
       "optimizedRP": 207.68
     },
@@ -1212,6 +1346,7 @@
       "IEF": 172.83,
       "GLD": 234.66,
       "equalWeight": 214.44,
+      "sixtyForty": 210.64,
       "simpleRP": 204.63,
       "optimizedRP": 206.85
     },
@@ -1221,6 +1356,7 @@
       "IEF": 173.66,
       "GLD": 245.68,
       "equalWeight": 219.5,
+      "sixtyForty": 212.95,
       "simpleRP": 211.02,
       "optimizedRP": 212.9
     },
@@ -1230,6 +1366,7 @@
       "IEF": 174.29,
       "GLD": 256.65,
       "equalWeight": 227.65,
+      "sixtyForty": 220.92,
       "simpleRP": 218.98,
       "optimizedRP": 221.61
     },
@@ -1239,6 +1376,7 @@
       "IEF": 175.31,
       "GLD": 255.38,
       "equalWeight": 226.7,
+      "sixtyForty": 219.77,
       "simpleRP": 218.39,
       "optimizedRP": 219.22
     },
@@ -1248,6 +1386,7 @@
       "IEF": 177.22,
       "GLD": 257.97,
       "equalWeight": 229.04,
+      "sixtyForty": 222.05,
       "simpleRP": 219.36,
       "optimizedRP": 219.96
     },
@@ -1257,6 +1396,7 @@
       "IEF": 179.07,
       "GLD": 260.01,
       "equalWeight": 231.31,
+      "sixtyForty": 224.54,
       "simpleRP": 219.06,
       "optimizedRP": 218.37
     },
@@ -1266,6 +1406,7 @@
       "IEF": 178.58,
       "GLD": 255.05,
       "equalWeight": 229.88,
+      "sixtyForty": 225.03,
       "simpleRP": 216.39,
       "optimizedRP": 217.11
     },
@@ -1275,6 +1416,7 @@
       "IEF": 178.83,
       "GLD": 260.29,
       "equalWeight": 233.62,
+      "sixtyForty": 228.58,
       "simpleRP": 219.05,
       "optimizedRP": 222.17
     },
@@ -1284,6 +1426,7 @@
       "IEF": 181.3,
       "GLD": 268.2,
       "equalWeight": 236.41,
+      "sixtyForty": 228.35,
       "simpleRP": 219.32,
       "optimizedRP": 218.01
     },
@@ -1293,6 +1436,7 @@
       "IEF": 179.04,
       "GLD": 263.44,
       "equalWeight": 236.45,
+      "sixtyForty": 231.74,
       "simpleRP": 221.05,
       "optimizedRP": 225.09
     },
@@ -1302,6 +1446,7 @@
       "IEF": 177.96,
       "GLD": 260.62,
       "equalWeight": 237.76,
+      "sixtyForty": 236.01,
       "simpleRP": 221.27,
       "optimizedRP": 226.04
     },
@@ -1311,6 +1456,7 @@
       "IEF": 179.11,
       "GLD": 264.73,
       "equalWeight": 241.35,
+      "sixtyForty": 239.77,
       "simpleRP": 228.55,
       "optimizedRP": 226.36
     },
@@ -1320,6 +1466,7 @@
       "IEF": 178.03,
       "GLD": 264.82,
       "equalWeight": 243.28,
+      "sixtyForty": 243.41,
       "simpleRP": 227.99,
       "optimizedRP": 230.72
     },
@@ -1329,7 +1476,8 @@
       "IEF": 174.43,
       "GLD": 273.33,
       "equalWeight": 249.88,
-      "simpleRP": 227.43,
+      "sixtyForty": 250.9,
+      "simpleRP": 227.42,
       "optimizedRP": 225.77
     },
     {
@@ -1338,6 +1486,7 @@
       "IEF": 173.6,
       "GLD": 268.85,
       "equalWeight": 243.09,
+      "sixtyForty": 241.53,
       "simpleRP": 214.48,
       "optimizedRP": 214.72
     },
@@ -1347,8 +1496,9 @@
       "IEF": 175.03,
       "GLD": 274.33,
       "equalWeight": 242.11,
-      "simpleRP": 212.72,
-      "optimizedRP": 209.85
+      "sixtyForty": 236.19,
+      "simpleRP": 212.71,
+      "optimizedRP": 209.86
     },
     {
       "date": "2018-05-01",
@@ -1356,6 +1506,7 @@
       "IEF": 172.35,
       "GLD": 266.67,
       "equalWeight": 241.35,
+      "sixtyForty": 239.96,
       "simpleRP": 209.86,
       "optimizedRP": 213.19
     },
@@ -1365,6 +1516,7 @@
       "IEF": 174.32,
       "GLD": 265.36,
       "equalWeight": 243.71,
+      "sixtyForty": 244.6,
       "simpleRP": 216.9,
       "optimizedRP": 230.71
     },
@@ -1374,6 +1526,7 @@
       "IEF": 174.66,
       "GLD": 255.77,
       "equalWeight": 241.19,
+      "sixtyForty": 245.74,
       "simpleRP": 221.92,
       "optimizedRP": 224.17
     },
@@ -1383,6 +1536,7 @@
       "IEF": 173.74,
       "GLD": 250.03,
       "equalWeight": 242.59,
+      "sixtyForty": 251.89,
       "simpleRP": 225.65,
       "optimizedRP": 219.83
     },
@@ -1392,8 +1546,9 @@
       "IEF": 175.14,
       "GLD": 246.17,
       "equalWeight": 245.42,
+      "sixtyForty": 259.03,
       "simpleRP": 221.47,
-      "optimizedRP": 217.35
+      "optimizedRP": 217.34
     },
     {
       "date": "2018-09-28",
@@ -1401,6 +1556,7 @@
       "IEF": 173.39,
       "GLD": 243.07,
       "equalWeight": 244.01,
+      "sixtyForty": 258.69,
       "simpleRP": 222.07,
       "optimizedRP": 220.81
     },
@@ -1410,6 +1566,7 @@
       "IEF": 173.67,
       "GLD": 250.72,
       "equalWeight": 236.93,
+      "sixtyForty": 241.31,
       "simpleRP": 208.72,
       "optimizedRP": 208.69
     },
@@ -1419,6 +1576,7 @@
       "IEF": 174.37,
       "GLD": 248.72,
       "equalWeight": 240.38,
+      "sixtyForty": 248.57,
       "simpleRP": 209.39,
       "optimizedRP": 206.88
     },
@@ -1428,6 +1586,7 @@
       "IEF": 180.07,
       "GLD": 261.37,
       "equalWeight": 238.1,
+      "sixtyForty": 235.74,
       "simpleRP": 210.06,
       "optimizedRP": 213.83
     },
@@ -1437,6 +1596,7 @@
       "IEF": 181.25,
       "GLD": 268.92,
       "equalWeight": 248.29,
+      "sixtyForty": 249.32,
       "simpleRP": 220.34,
       "optimizedRP": 224.67
     },
@@ -1446,6 +1606,7 @@
       "IEF": 180.26,
       "GLD": 262.04,
       "equalWeight": 249.11,
+      "sixtyForty": 255.13,
       "simpleRP": 220.14,
       "optimizedRP": 223.94
     },
@@ -1455,6 +1616,7 @@
       "IEF": 184.12,
       "GLD": 262.94,
       "equalWeight": 253.55,
+      "sixtyForty": 261.8,
       "simpleRP": 231.85,
       "optimizedRP": 236.88
     },
@@ -1464,6 +1626,7 @@
       "IEF": 183.52,
       "GLD": 258.55,
       "equalWeight": 253.79,
+      "sixtyForty": 264.99,
       "simpleRP": 234.66,
       "optimizedRP": 240.87
     },
@@ -1473,6 +1636,7 @@
       "IEF": 190.65,
       "GLD": 269.69,
       "equalWeight": 253.81,
+      "sixtyForty": 256.91,
       "simpleRP": 233.96,
       "optimizedRP": 236.98
     },
@@ -1482,6 +1646,7 @@
       "IEF": 192.49,
       "GLD": 287.58,
       "equalWeight": 268.9,
+      "sixtyForty": 272.98,
       "simpleRP": 240.9,
       "optimizedRP": 244.3
     },
@@ -1491,8 +1656,9 @@
       "IEF": 194.3,
       "GLD": 294.05,
       "equalWeight": 271.08,
+      "sixtyForty": 272.65,
       "simpleRP": 244.65,
-      "optimizedRP": 257.07
+      "optimizedRP": 257.06
     },
     {
       "date": "2019-08-30",
@@ -1500,7 +1666,8 @@
       "IEF": 199.71,
       "GLD": 309.87,
       "equalWeight": 277.28,
-      "simpleRP": 248.14,
+      "sixtyForty": 273.24,
+      "simpleRP": 248.13,
       "optimizedRP": 252.47
     },
     {
@@ -1509,6 +1676,7 @@
       "IEF": 197.89,
       "GLD": 300.99,
       "equalWeight": 274.5,
+      "sixtyForty": 273.93,
       "simpleRP": 249.69,
       "optimizedRP": 257.02
     },
@@ -1518,6 +1686,7 @@
       "IEF": 196.47,
       "GLD": 303.99,
       "equalWeight": 279.05,
+      "sixtyForty": 280.6,
       "simpleRP": 254.53,
       "optimizedRP": 260
     },
@@ -1527,6 +1696,7 @@
       "IEF": 196.36,
       "GLD": 297.18,
       "equalWeight": 280.49,
+      "sixtyForty": 287.31,
       "simpleRP": 265.96,
       "optimizedRP": 269.44
     },
@@ -1536,7 +1706,8 @@
       "IEF": 194.53,
       "GLD": 308.04,
       "equalWeight": 286.88,
-      "simpleRP": 274.89,
+      "sixtyForty": 292.64,
+      "simpleRP": 274.9,
       "optimizedRP": 279.56
     },
     {
@@ -1545,6 +1716,7 @@
       "IEF": 201.28,
       "GLD": 321.9,
       "equalWeight": 293.69,
+      "sixtyForty": 295.25,
       "simpleRP": 277.27,
       "optimizedRP": 273.6
     },
@@ -1554,6 +1726,7 @@
       "IEF": 209.5,
       "GLD": 331.73,
       "equalWeight": 291.74,
+      "sixtyForty": 284.2,
       "simpleRP": 261.63,
       "optimizedRP": 259.55
     },
@@ -1563,6 +1736,7 @@
       "IEF": 215.83,
       "GLD": 322.16,
       "equalWeight": 271.14,
+      "sixtyForty": 251.59,
       "simpleRP": 254.55,
       "optimizedRP": 256.39
     },
@@ -1572,6 +1746,7 @@
       "IEF": 215.84,
       "GLD": 344.43,
       "equalWeight": 292.24,
+      "sixtyForty": 276.2,
       "simpleRP": 264,
       "optimizedRP": 261.91
     },
@@ -1581,6 +1756,7 @@
       "IEF": 215.81,
       "GLD": 350.51,
       "equalWeight": 303.68,
+      "sixtyForty": 293.17,
       "simpleRP": 269.56,
       "optimizedRP": 265.06
     },
@@ -1590,6 +1766,7 @@
       "IEF": 216,
       "GLD": 359.17,
       "equalWeight": 308.06,
+      "sixtyForty": 295.8,
       "simpleRP": 262.12,
       "optimizedRP": 267.13
     },
@@ -1599,6 +1776,7 @@
       "IEF": 218.19,
       "GLD": 399.72,
       "equalWeight": 328.3,
+      "sixtyForty": 307.46,
       "simpleRP": 274.09,
       "optimizedRP": 270.54
     },
@@ -1608,6 +1786,7 @@
       "IEF": 216.07,
       "GLD": 398.43,
       "equalWeight": 335.7,
+      "sixtyForty": 321.99,
       "simpleRP": 262.59,
       "optimizedRP": 268.02
     },
@@ -1617,6 +1796,7 @@
       "IEF": 216.78,
       "GLD": 381.81,
       "equalWeight": 325.49,
+      "sixtyForty": 313.45,
       "simpleRP": 255.78,
       "optimizedRP": 252.35
     },
@@ -1626,6 +1806,7 @@
       "IEF": 214.48,
       "GLD": 378.1,
       "equalWeight": 321.64,
+      "sixtyForty": 309.2,
       "simpleRP": 255.14,
       "optimizedRP": 260.13
     },
@@ -1635,6 +1816,7 @@
       "IEF": 214.51,
       "GLD": 359.28,
       "equalWeight": 327.45,
+      "sixtyForty": 330.94,
       "simpleRP": 267.21,
       "optimizedRP": 270.9
     },
@@ -1644,6 +1826,7 @@
       "IEF": 213.86,
       "GLD": 383.06,
       "equalWeight": 339.49,
+      "sixtyForty": 338.47,
       "simpleRP": 276.86,
       "optimizedRP": 276.96
     },
@@ -1653,6 +1836,7 @@
       "IEF": 211.93,
       "GLD": 375.58,
       "equalWeight": 337.95,
+      "sixtyForty": 340.58,
       "simpleRP": 278.25,
       "optimizedRP": 275.62
     },
@@ -1662,8 +1846,9 @@
       "IEF": 205.7,
       "GLD": 346.24,
       "equalWeight": 328.06,
+      "sixtyForty": 341.62,
       "simpleRP": 277.87,
-      "optimizedRP": 287.57
+      "optimizedRP": 287.56
     },
     {
       "date": "2021-04-01",
@@ -1671,7 +1856,8 @@
       "IEF": 202.62,
       "GLD": 349.17,
       "equalWeight": 335.75,
-      "simpleRP": 285.04,
+      "sixtyForty": 354.33,
+      "simpleRP": 285.03,
       "optimizedRP": 290.05
     },
     {
@@ -1680,6 +1866,7 @@
       "IEF": 204.1,
       "GLD": 361.74,
       "equalWeight": 347.1,
+      "sixtyForty": 366.92,
       "simpleRP": 302.39,
       "optimizedRP": 297.51
     },
@@ -1689,6 +1876,7 @@
       "IEF": 204.81,
       "GLD": 385.36,
       "equalWeight": 356.02,
+      "sixtyForty": 368.66,
       "simpleRP": 301.37,
       "optimizedRP": 291.83
     },
@@ -1698,6 +1886,7 @@
       "IEF": 206.56,
       "GLD": 358.27,
       "equalWeight": 351.93,
+      "sixtyForty": 377.21,
       "simpleRP": 299.72,
       "optimizedRP": 304.49
     },
@@ -1707,6 +1896,7 @@
       "IEF": 211.75,
       "GLD": 365.62,
       "equalWeight": 358.83,
+      "sixtyForty": 384.18,
       "simpleRP": 313.9,
       "optimizedRP": 321.54
     },
@@ -1716,6 +1906,7 @@
       "IEF": 209.99,
       "GLD": 365.79,
       "equalWeight": 363.62,
+      "sixtyForty": 393.04,
       "simpleRP": 326.05,
       "optimizedRP": 321.4
     },
@@ -1725,6 +1916,7 @@
       "IEF": 206.64,
       "GLD": 354,
       "equalWeight": 350.57,
+      "sixtyForty": 377.3,
       "simpleRP": 308.05,
       "optimizedRP": 306.65
     },
@@ -1734,6 +1926,7 @@
       "IEF": 205.72,
       "GLD": 359.24,
       "equalWeight": 363.49,
+      "sixtyForty": 397.6,
       "simpleRP": 311.36,
       "optimizedRP": 321.82
     },
@@ -1743,6 +1936,7 @@
       "IEF": 207.97,
       "GLD": 356.76,
       "equalWeight": 362.01,
+      "sixtyForty": 395.97,
       "simpleRP": 322.04,
       "optimizedRP": 334.6
     },
@@ -1752,6 +1946,7 @@
       "IEF": 207.11,
       "GLD": 366.03,
       "equalWeight": 373.31,
+      "sixtyForty": 410.92,
       "simpleRP": 326.91,
       "optimizedRP": 322.92
     },
@@ -1761,6 +1956,7 @@
       "IEF": 202.51,
       "GLD": 362.34,
       "equalWeight": 360.5,
+      "sixtyForty": 390.99,
       "simpleRP": 312.85,
       "optimizedRP": 306.65
     },
@@ -1770,6 +1966,7 @@
       "IEF": 200.79,
       "GLD": 387.43,
       "equalWeight": 363.69,
+      "sixtyForty": 382.02,
       "simpleRP": 317.28,
       "optimizedRP": 331.45
     },
@@ -1779,6 +1976,7 @@
       "IEF": 193.69,
       "GLD": 389.42,
       "equalWeight": 367.78,
+      "sixtyForty": 389.62,
       "simpleRP": 317.82,
       "optimizedRP": 320.36
     },
@@ -1788,6 +1986,7 @@
       "IEF": 184.12,
       "GLD": 374.28,
       "equalWeight": 345.28,
+      "sixtyForty": 360.11,
       "simpleRP": 301.09,
       "optimizedRP": 295.33
     },
@@ -1797,6 +1996,7 @@
       "IEF": 185.6,
       "GLD": 371.27,
       "equalWeight": 342.89,
+      "sixtyForty": 357.32,
       "simpleRP": 293.93,
       "optimizedRP": 294.59
     },
@@ -1806,6 +2006,7 @@
       "IEF": 187.02,
       "GLD": 362.84,
       "equalWeight": 330.3,
+      "sixtyForty": 339.44,
       "simpleRP": 293.53,
       "optimizedRP": 303.43
     },
@@ -1815,6 +2016,7 @@
       "IEF": 188.98,
       "GLD": 353.63,
       "equalWeight": 338.23,
+      "sixtyForty": 358.84,
       "simpleRP": 301.43,
       "optimizedRP": 312.37
     },
@@ -1824,6 +2026,7 @@
       "IEF": 183.18,
       "GLD": 343.33,
       "equalWeight": 327.89,
+      "sixtyForty": 347.57,
       "simpleRP": 295.98,
       "optimizedRP": 293.8
     },
@@ -1833,6 +2036,7 @@
       "IEF": 174.5,
       "GLD": 333.41,
       "equalWeight": 307.61,
+      "sixtyForty": 318.75,
       "simpleRP": 283.42,
       "optimizedRP": 288.46
     },
@@ -1842,6 +2046,7 @@
       "IEF": 171.97,
       "GLD": 327.46,
       "equalWeight": 316.02,
+      "sixtyForty": 337.96,
       "simpleRP": 279.02,
       "optimizedRP": 279.98
     },
@@ -1851,6 +2056,7 @@
       "IEF": 178.18,
       "GLD": 355.27,
       "equalWeight": 335.67,
+      "sixtyForty": 355.41,
       "simpleRP": 293.73,
       "optimizedRP": 289.94
     },
@@ -1860,6 +2066,7 @@
       "IEF": 175.53,
       "GLD": 365.68,
       "equalWeight": 329.16,
+      "sixtyForty": 337.98,
       "simpleRP": 287.69,
       "optimizedRP": 290.74
     },
@@ -1869,6 +2076,7 @@
       "IEF": 183.12,
       "GLD": 391.61,
       "equalWeight": 351.37,
+      "sixtyForty": 360.88,
       "simpleRP": 313.89,
       "optimizedRP": 313
     },
@@ -1878,6 +2086,7 @@
       "IEF": 175.14,
       "GLD": 371.83,
       "equalWeight": 339.55,
+      "sixtyForty": 353.06,
       "simpleRP": 308.38,
       "optimizedRP": 311.53
     },
@@ -1887,6 +2096,7 @@
       "IEF": 183.27,
       "GLD": 397.8,
       "equalWeight": 354.15,
+      "sixtyForty": 362.14,
       "simpleRP": 329.91,
       "optimizedRP": 338.37
     },
@@ -1896,6 +2106,7 @@
       "IEF": 185.3,
       "GLD": 407.65,
       "equalWeight": 356.97,
+      "sixtyForty": 360.89,
       "simpleRP": 337.13,
       "optimizedRP": 348.36
     },
@@ -1905,6 +2116,7 @@
       "IEF": 180.31,
       "GLD": 390.28,
       "equalWeight": 357.29,
+      "sixtyForty": 372.89,
       "simpleRP": 338.52,
       "optimizedRP": 331.93
     },
@@ -1914,6 +2126,7 @@
       "IEF": 177.34,
       "GLD": 383.36,
       "equalWeight": 360.57,
+      "sixtyForty": 383.55,
       "simpleRP": 339.68,
       "optimizedRP": 351.75
     },
@@ -1923,6 +2136,7 @@
       "IEF": 175.11,
       "GLD": 387.02,
       "equalWeight": 363.29,
+      "sixtyForty": 386.68,
       "simpleRP": 345.34,
       "optimizedRP": 356.35
     },
@@ -1932,6 +2146,7 @@
       "IEF": 175.43,
       "GLD": 388.25,
       "equalWeight": 364.72,
+      "sixtyForty": 388.47,
       "simpleRP": 350.71,
       "optimizedRP": 346.49
     },
@@ -1941,6 +2156,7 @@
       "IEF": 168.18,
       "GLD": 364.65,
       "equalWeight": 343.42,
+      "sixtyForty": 365.73,
       "simpleRP": 322.89,
       "optimizedRP": 317.35
     },
@@ -1950,6 +2166,7 @@
       "IEF": 169.6,
       "GLD": 395.58,
       "equalWeight": 354.63,
+      "sixtyForty": 367.06,
       "simpleRP": 329.96,
       "optimizedRP": 338
     },
@@ -1959,6 +2176,7 @@
       "IEF": 176.96,
       "GLD": 413.9,
       "equalWeight": 377.52,
+      "sixtyForty": 395.8,
       "simpleRP": 355.66,
       "optimizedRP": 370.65
     },
@@ -1968,8 +2186,9 @@
       "IEF": 181.68,
       "GLD": 407.7,
       "equalWeight": 381.58,
+      "sixtyForty": 405.89,
       "simpleRP": 364.35,
-      "optimizedRP": 375.18
+      "optimizedRP": 375.19
     },
     {
       "date": "2024-02-02",
@@ -1977,6 +2196,7 @@
       "IEF": 180.8,
       "GLD": 406.57,
       "equalWeight": 391.01,
+      "sixtyForty": 423.71,
       "simpleRP": 376.25,
       "optimizedRP": 373.05
     },
@@ -1986,6 +2206,7 @@
       "IEF": 179.78,
       "GLD": 425.07,
       "equalWeight": 401.9,
+      "sixtyForty": 432.42,
       "simpleRP": 373.94,
       "optimizedRP": 364.63
     },
@@ -1995,6 +2216,7 @@
       "IEF": 178.38,
       "GLD": 455.96,
       "equalWeight": 414.69,
+      "sixtyForty": 437.18,
       "simpleRP": 377.81,
       "optimizedRP": 370.44
     },
@@ -2004,6 +2226,7 @@
       "IEF": 176.43,
       "GLD": 459.06,
       "equalWeight": 414.37,
+      "sixtyForty": 435.13,
       "simpleRP": 361.01,
       "optimizedRP": 354.59
     },
@@ -2013,6 +2236,7 @@
       "IEF": 179.22,
       "GLD": 464.04,
       "equalWeight": 423.73,
+      "sixtyForty": 448.44,
       "simpleRP": 374.51,
       "optimizedRP": 376.98
     },
@@ -2022,6 +2246,7 @@
       "IEF": 180.76,
       "GLD": 476.24,
       "equalWeight": 439.42,
+      "sixtyForty": 469.05,
       "simpleRP": 399.57,
       "optimizedRP": 431.16
     },
@@ -2031,6 +2256,7 @@
       "IEF": 188.28,
       "GLD": 479.59,
       "equalWeight": 428.23,
+      "sixtyForty": 445.41,
       "simpleRP": 368.55,
       "optimizedRP": 356.92
     },
@@ -2040,6 +2266,7 @@
       "IEF": 189.24,
       "GLD": 496.72,
       "equalWeight": 447.6,
+      "sixtyForty": 469.81,
       "simpleRP": 374.28,
       "optimizedRP": 367.73
     },
@@ -2049,15 +2276,17 @@
       "IEF": 188.67,
       "GLD": 529.19,
       "equalWeight": 465.63,
+      "sixtyForty": 482.89,
       "simpleRP": 373.67,
-      "optimizedRP": 375.42
+      "optimizedRP": 375.41
     },
     {
       "date": "2024-11-01",
-      "SPY": 682.88,
+      "SPY": 682.89,
       "IEF": 181.99,
       "GLD": 544.23,
       "equalWeight": 469.7,
+      "sixtyForty": 482.53,
       "simpleRP": 384.58,
       "optimizedRP": 387.4
     },
@@ -2067,6 +2296,7 @@
       "IEF": 184.4,
       "GLD": 525.82,
       "equalWeight": 477.47,
+      "sixtyForty": 507.08,
       "simpleRP": 406.03,
       "optimizedRP": 420.43
     },
@@ -2076,7 +2306,8 @@
       "IEF": 180.57,
       "GLD": 524.88,
       "equalWeight": 471.91,
-      "simpleRP": 385.27,
+      "sixtyForty": 498.39,
+      "simpleRP": 385.26,
       "optimizedRP": 374.74
     },
     {
@@ -2085,6 +2316,7 @@
       "IEF": 183.52,
       "GLD": 569.37,
       "equalWeight": 492.63,
+      "sixtyForty": 508.41,
       "simpleRP": 402.8,
       "optimizedRP": 403.87
     },
@@ -2094,7 +2326,8 @@
       "IEF": 185.69,
       "GLD": 578.55,
       "equalWeight": 485.09,
-      "simpleRP": 393.75,
+      "sixtyForty": 488.9,
+      "simpleRP": 393.76,
       "optimizedRP": 386.38
     },
     {
@@ -2103,6 +2336,7 @@
       "IEF": 188.29,
       "GLD": 590.02,
       "equalWeight": 461.78,
+      "sixtyForty": 439.53,
       "simpleRP": 368.03,
       "optimizedRP": 356.34
     },
@@ -2112,6 +2346,7 @@
       "IEF": 188.14,
       "GLD": 669.86,
       "equalWeight": 511.11,
+      "sixtyForty": 480.46,
       "simpleRP": 357.97,
       "optimizedRP": 339.73
     },
@@ -2121,6 +2356,7 @@
       "IEF": 185.76,
       "GLD": 657.86,
       "equalWeight": 521.56,
+      "sixtyForty": 506.94,
       "simpleRP": 353.68,
       "optimizedRP": 383.38
     },
@@ -2130,6 +2366,7 @@
       "IEF": 188.94,
       "GLD": 658.59,
       "equalWeight": 533.6,
+      "sixtyForty": 527.54,
       "simpleRP": 400.5,
       "optimizedRP": 405.17
     },
@@ -2139,6 +2376,7 @@
       "IEF": 191.13,
       "GLD": 674.97,
       "equalWeight": 543.09,
+      "sixtyForty": 534.35,
       "simpleRP": 445.52,
       "optimizedRP": 446.23
     },
@@ -2148,6 +2386,7 @@
       "IEF": 194.73,
       "GLD": 721.75,
       "equalWeight": 566.55,
+      "sixtyForty": 547.8,
       "simpleRP": 459.73,
       "optimizedRP": 460.42
     },
@@ -2157,6 +2396,7 @@
       "IEF": 193.87,
       "GLD": 789.52,
       "equalWeight": 597.77,
+      "sixtyForty": 563.49,
       "simpleRP": 482.05,
       "optimizedRP": 482.62
     },
@@ -2166,6 +2406,7 @@
       "IEF": 196.57,
       "GLD": 813.19,
       "equalWeight": 607.43,
+      "sixtyForty": 566.15,
       "simpleRP": 488.6,
       "optimizedRP": 488.33
     }
@@ -2177,6 +2418,13 @@
       "volatility": 10.36,
       "sharpeRatio": 0.72,
       "maxDrawdown": -22.06
+    },
+    "sixtyForty": {
+      "totalReturn": 466.15,
+      "annualReturn": 9.07,
+      "volatility": 11.76,
+      "sharpeRatio": 0.6,
+      "maxDrawdown": -28.94
     },
     "simpleRP": {
       "totalReturn": 388.6,
@@ -2193,7 +2441,7 @@
       "maxDrawdown": -23.8
     }
   },
-  "generatedAt": "2025-10-22T18:25:54.306Z",
+  "generatedAt": "2025-10-22T19:10:47.700Z",
   "periodYears": 20,
   "periodsAvailable": [
     1,
@@ -2206,5 +2454,11 @@
     "SPY",
     "IEF",
     "GLD"
+  ],
+  "strategyKeys": [
+    "equalWeight",
+    "sixtyForty",
+    "simpleRP",
+    "optimizedRP"
   ]
 }

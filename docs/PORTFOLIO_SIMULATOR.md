@@ -8,10 +8,11 @@ The Portfolio Simulator is an interactive tool integrated into the Bubble websit
 
 ### Current Implementation
 
-**3 Portfolio Strategies:**
+**4 Portfolio Strategies:**
 1. **Allocation Égale** (Equal Weight) - Baseline: 33.3% each asset
-2. **Risk Parity Simple** - Inverse volatility weighting
-3. **✨ Optimisé** (Currently: Optimized Risk Parity) - EWMA + correlations
+2. **Portefeuille 60/40** - 60% SPY (stocks) / 40% IEF (bonds)
+3. **Risk Parity Simple** - Inverse volatility weighting
+4. **✨ Optimisé** (Currently: Optimized Risk Parity) - EWMA + correlations
 
 **3 Core ETFs:**
 - SPY (S&P 500) - US Stocks
@@ -29,9 +30,10 @@ src/
 │   │   └── portfolio.controller.js      # Request handling
 │   ├── services/
 │   │   ├── yahooFinanceService.js       # ETF data fetching
-│   │   └── portfolioService.js          # Strategy calculations
+│   │   └── portfolioService.js          # Strategy calculations (equal, 60/40, parity)
 │   └── cache/
-│       └── portfolio-preview-data.json  # Pre-calculated data
+│       ├── portfolio-preview-data.json      # Default (20Y) snapshot
+│       └── portfolio-preview-periods.json   # Multi-period cache (1/3/5/10/20Y)
 │
 └── frontend/
     ├── pages/
@@ -115,8 +117,8 @@ module.exports = {
 Regenerate the cached preview data to include the new strategy:
 
 ```bash
-# Run the portfolio calculation script or restart the server
-npm start
+# Regenerate cached snapshots (1/3/5/10/20Y)
+npm run generate:portfolio-cache
 ```
 
 ### Step 5: Update API Response
@@ -224,7 +226,7 @@ All core metrics are pre-computed on the server and cached with each snapshot:
 ## Testing
 
 ### Manual Testing Checklist
-- [ ] All 3 strategies display correctly
+ - [ ] All 4 strategies display correctly
 - [ ] Strategy selector pills work and update chart
 - [ ] Tooltips appear on hover (strategies & metrics)
 - [ ] Chart animates smoothly on strategy change
@@ -348,6 +350,20 @@ For questions or issues:
 - Consult [Charte Graphique Bubble.md](company/Charte Graphique Bubble.md) for design compliance
 
 ## Recent Changes
+
+### 2025-10-22: 60/40 Strategy & Multi-Period Cache Pipeline
+
+- **Backend**
+  - Added `calculateSixtyForty` + reusable fixed-weight helper in [portfolioService.js](../src/backend/services/portfolioService.js) to support classic 60/40 allocations.
+  - Centralized strategy generation in [portfolioCacheService.js](../src/backend/services/portfolioCacheService.js) with dynamic strategy maps, multi-period snapshots, and shared metadata (`strategyKeys`).
+  - `/api/portfolio/preview-data` now serves period-specific caches via `?period=` and returns the strategy roster for clients.
+- **Automation**
+  - `npm run generate:portfolio-cache` regenerates 1/3/5/10/20Y snapshots including the new strategy.
+- **Frontend**
+  - Added 60/40 strategy pill, translations, and chart styling in [`portfolio-simulator.html`](../src/frontend/pages/portfolio-simulator.html) and [`portfolio-simulator.js`](../src/frontend/js/portfolio-simulator.js).
+  - Landing preview chart renders the 60/40 series.
+- **Analytics/Docs**
+  - Translations updated to cover the fourth strategy; documentation refreshed (this file) to describe the expanded pipeline.
 
 ### 2025-01-08: Bilingual Support & 20-Year Data Update
 

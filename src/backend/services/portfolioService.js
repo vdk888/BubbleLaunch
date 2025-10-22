@@ -2,10 +2,11 @@
  * Portfolio Calculation Service
  * Simplified version of anim-main portfolio strategies
  *
- * Implements 3 strategies:
+ * Implements core strategies:
  * 1. Equal Weight - Simple 33.3% allocation
- * 2. Simple Risk Parity - Inverse volatility weighting
- * 3. Optimized Risk Parity - EWMA volatility + correlation adjustment
+ * 2. 60/40 Portfolio - 60% equities (SPY), 40% bonds (IEF)
+ * 3. Simple Risk Parity - Inverse volatility weighting
+ * 4. Optimized Risk Parity - EWMA volatility + correlation adjustment
  */
 
 /**

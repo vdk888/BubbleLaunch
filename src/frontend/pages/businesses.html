@@ -27,6 +27,118 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <style>
+      /* Featured Article Card - Horizontal Layout (Image Left, Content Right) */
+      .featured-article-card {
+        background: white;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(0, 0, 0, 0.04);
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .featured-article-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
+        border-color: rgba(0, 0, 0, 0.08);
+      }
+
+      .featured-article-link {
+        text-decoration: none;
+        color: inherit;
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 0;
+        height: 100%;
+      }
+
+      .featured-article-image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 280px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #E5E7EB 0%, #F3F4F6 100%);
+      }
+
+      .featured-article-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .featured-article-card:hover .featured-article-image img {
+        transform: scale(1.06);
+      }
+
+      .featured-article-content {
+        padding: 2rem 2.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .featured-article-title {
+        font-size: 1.375rem;
+        font-weight: 600;
+        color: #000;
+        margin-bottom: 0.875rem;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+      }
+
+      .featured-article-summary {
+        font-size: 0.9375rem;
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      /* Responsive - Stack vertically on mobile */
+      @media (max-width: 768px) {
+        .featured-article-link {
+          grid-template-columns: 1fr;
+        }
+
+        .featured-article-image {
+          min-height: 220px;
+        }
+
+        .featured-article-content {
+          padding: 1.75rem 1.5rem;
+        }
+
+        .featured-article-title {
+          font-size: 1.25rem;
+        }
+
+        .featured-article-summary {
+          font-size: 0.875rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .featured-article-image {
+          min-height: 200px;
+        }
+
+        .featured-article-content {
+          padding: 1.5rem 1.25rem;
+        }
+
+        .featured-article-title {
+          font-size: 1.125rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -187,27 +299,41 @@
     </section>
 
     <!-- Featured Article Section -->
-    <section id="featured-article" class="vision fade-in" style="background: #f8f8f8; padding: 4rem 0;">
-      <div class="container" style="max-width: 800px;">
-        <h2 style="text-align: center; margin-bottom: 3rem;" data-translate="businesses.article.section_title">Pour aller plus loin</h2>
+    <section id="featured-article" class="blog-preview fade-in">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-translate="businesses.article.section_title">Pour aller plus loin</h2>
+          <p class="section-subtitle">
+            Notre analyse complète du marché du conseil en IA
+          </p>
+        </div>
 
-        <article class="blog-tile" style="max-width: 600px; margin: 0 auto;" data-slug="conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment">
-          <a href="/blog/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment" class="blog-tile-link">
-            <div class="blog-tile-image">
+        <!-- Featured Article Card - Horizontal Layout -->
+        <article class="featured-article-card">
+          <a href="/blog/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment" class="featured-article-link">
+            <!-- Image Section (Left) -->
+            <div class="featured-article-image">
               <img src="/api/blog/image/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment" alt="Conseil en IA" loading="lazy" />
               <span class="blog-tile-category">IA & Conseil</span>
             </div>
-            <div class="blog-tile-content">
+
+            <!-- Content Section (Right) -->
+            <div class="featured-article-content">
               <div class="blog-tile-meta">
                 <time datetime="2025-10-21">21 octobre 2025</time>
               </div>
-              <h3 class="blog-tile-title" data-translate="businesses.article.title">
+
+              <h3 class="featured-article-title" data-translate="businesses.article.title">
                 Conseil en IA : pourquoi nous avons quitté les Big Four et une grande banque privée pour faire différemment
               </h3>
-              <p class="blog-tile-summary" data-translate="businesses.article.summary">
+
+              <p class="featured-article-summary" data-translate="businesses.article.summary">
                 Ex-consultants Deloitte/KPMG et ex-portfolio manager UBS, nous analysons le marché français du conseil IA en finance : taux d'échec 70-85%, budgets gaspillés, POC éternels… Quelle est notre alternative ?
               </p>
-              <span class="blog-tile-cta" data-translate="blogPreview.readMore">Lire la suite →</span>
+
+              <span class="blog-tile-cta" data-translate="businesses.article.cta">
+                Lire l'article complet →
+              </span>
             </div>
           </a>
         </article>

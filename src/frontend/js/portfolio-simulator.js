@@ -96,6 +96,7 @@
       // Fallback labels
       const fallbacks = {
         'simulator.strategy.equalWeight': lang === 'en' ? 'Equal Allocation' : 'Allocation Égale',
+        'simulator.strategy.sixtyForty': lang === 'en' ? '60/40 Balanced' : 'Portefeuille 60/40',
         'simulator.strategy.simpleRiskParity': 'Risk Parity',
         'simulator.strategy.optimizedRiskParity': lang === 'en' ? '✨ Optimized' : '✨ Optimisé',
       };

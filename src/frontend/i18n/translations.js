@@ -507,8 +507,8 @@ const translations = {
     fr: "Choisissez votre stratégie"
   },
   "simulator.strategies.description": {
-    en: "Compare three portfolio allocation approaches on stocks (SPY), bonds (IEF) and gold (GLD)",
-    fr: "Comparez trois approches d'allocation de portefeuille sur actions (SPY), obligations (IEF) et or (GLD)"
+    en: "Compare four portfolio allocation approaches on stocks (SPY), bonds (IEF) and gold (GLD)",
+    fr: "Comparez quatre approches d'allocation de portefeuille sur actions (SPY), obligations (IEF) et or (GLD)"
   },
   "simulator.strategy.equalWeight": {
     en: "Equal Allocation",
@@ -521,6 +521,18 @@ const translations = {
   "simulator.strategy.equalWeight.tooltip": {
     en: "Simple approach: 33.3% on each asset (stocks, bonds, gold). Easy to understand and replicate, but doesn't account for risk differences between assets.",
     fr: "Approche simple : 33.3% sur chaque actif (actions, obligations, or). Facile à comprendre et à répliquer, mais ne tient pas compte des différences de risque entre actifs."
+  },
+  "simulator.strategy.sixtyForty": {
+    en: "60/40 Balanced",
+    fr: "Portefeuille 60/40"
+  },
+  "simulator.strategy.sixtyForty.subtitle": {
+    en: "60% SPY / 40% IEF",
+    fr: "60% SPY / 40% IEF"
+  },
+  "simulator.strategy.sixtyForty.tooltip": {
+    en: "Institutional classic: 60% equities (SPY) and 40% bonds (IEF). Aims to capture long-term growth while cushioning downturns with fixed income.",
+    fr: "Classique institutionnel : 60% actions (SPY) et 40% obligations (IEF). Vise la croissance à long terme tout en amortissant les baisses grâce au revenu fixe."
   },
   "simulator.strategy.simpleRP": {
     en: "Risk Parity",

@@ -1,5 +1,8 @@
 Integration Plan: Portfolio Simulator into Bubble Website
 Based on your requirements, I'll create a comprehensive plan to integrate a lightweight, redesigned portfolio simulator that matches Bubble's brand identity and seamlessly integrates into the existing website.
+
+**Update – 2025-10-22:** Multi-period cache automation is live (`npm run generate:portfolio-cache`), and the classic 60/40 strategy now joins the simulator lineup alongside Equal Weight, Risk Parity, and Optimized RP. Documentation has been refreshed in `docs/PORTFOLIO_SIMULATOR.md`.
+
 🎯 Project Objectives
 Animated Snapshot: Add interactive portfolio chart preview in "What We're Building" section
 Lightweight Rebuild: Simplify anim-main's complexity for better performance and maintainability
@@ -59,13 +62,13 @@ Match existing scroll animations pattern
 Phase 2: Lightweight Portfolio Simulator
 Simplified Version (vs anim-main's 9 strategies):
 Feature	anim-main	Lightweight Version
-Strategies	9 complex strategies	3 strategies: Equal Weight, Simple Risk Parity, Optimized Risk Parity
+Strategies	9 complex strategies	4 strategies: Equal Weight, 60/40, Simple Risk Parity, Optimized Risk Parity
 ETFs	5 ETFs	3 ETFs: SPY, IEF, GLD (core diversification)
 Algorithms	EWMA, DCC-GARCH, regime detection	Simplified: Basic volatility, correlation penalty
 Backend	Separate Express server	Integrated: Use existing Bubble backend
 Frontend	React app (3000+ lines)	Vanilla JS: ~500 lines modular code
 Charts	Recharts library	Chart.js: Smaller bundle, simpler API
-Data	20 years daily	10 years monthly: Faster load, sufficient demo
+Data	20 years daily	20 years daily (cached to monthly snapshots for UI)
 🏗️ Technical Architecture
 File Structure (within existing Bubble project)
 src/
@@ -287,8 +290,8 @@ Daily data (like anim-main): Most accurate, slower loading
 Monthly data (recommended): 95% accurate, 20x faster
 Hybrid: Monthly for preview, daily for simulator
 3. Strategy Complexity
-3 strategies (recommended): Clear differentiation
-5 strategies: Add leveraged + HRP (more impressive but complex)
+4 strategies (current): Equal Weight, 60/40, Risk Parity, Optimized RP
+6+ strategies: Add leveraged, HRP, momentum variants (more impressive but complex)
 4. Educational Content
 Minimal: Just metrics
 Moderate (recommended): Tooltips + brief explanations
