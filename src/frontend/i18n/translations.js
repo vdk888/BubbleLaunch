@@ -1,12 +1,20 @@
 const translations = {
   // Navigation
-  "nav.about": {
-    en: "About",
-    fr: "À propos",
-  },
   "nav.vision": {
     en: "Vision",
     fr: "Vision",
+  },
+  "nav.solution": {
+    en: "Solution",
+    fr: "Solution",
+  },
+  "nav.approach": {
+    en: "Approach",
+    fr: "Approche",
+  },
+  "nav.build": {
+    en: "Product",
+    fr: "Produit",
   },
   "nav.businesses": {
     en: "Businesses",

@@ -94,10 +94,16 @@
           
           <!-- Desktop Navigation -->
           <nav class="desktop-nav">
-            <a href="#about" data-translate="nav.about">À propos</a>
-            <a href="#vision" data-translate="nav.vision">Vision</a>
-            <a href="/businesses" data-translate="nav.businesses">Entreprises</a>
+            <a href="#about" data-translate="nav.vision">Vision</a>
+            <div class="nav-dropdown">
+              <a href="#" class="nav-dropdown-toggle" data-translate="nav.solution">Solution</a>
+              <div class="nav-dropdown-menu">
+                <a href="#approach" data-translate="nav.approach">Approche</a>
+                <a href="#vision" data-translate="nav.build">Construisons</a>
+              </div>
+            </div>
             <a href="/blog" data-translate="nav.blog">Blog</a>
+            <a href="/businesses" data-translate="nav.businesses">Entreprises</a>
             <a href="#waitlist" data-translate="nav.join">Nous rejoindre</a>
             <div class="language-switcher">
               <button id="en-switch" class="active">EN</button>
@@ -117,10 +123,16 @@
         <!-- Mobile Navigation Overlay -->
         <div class="mobile-nav-overlay" id="mobile-nav-overlay">
           <nav class="mobile-nav">
-            <a href="#about" data-translate="nav.about">À propos</a>
-            <a href="#vision" data-translate="nav.vision">Vision</a>
-            <a href="/businesses" data-translate="nav.businesses">Entreprises</a>
+            <a href="#about" data-translate="nav.vision">Vision</a>
+            <div class="mobile-nav-dropdown">
+              <a href="#" class="mobile-nav-dropdown-toggle" data-translate="nav.solution">Solution</a>
+              <div class="mobile-nav-dropdown-menu">
+                <a href="#approach" data-translate="nav.approach">Approche</a>
+                <a href="#vision" data-translate="nav.build">Construisons</a>
+              </div>
+            </div>
             <a href="/blog" data-translate="nav.blog">Blog</a>
+            <a href="/businesses" data-translate="nav.businesses">Entreprises</a>
             <a href="#waitlist" data-translate="nav.join">Nous rejoindre</a>
           </nav>
         </div>
@@ -778,8 +790,9 @@
             <div class="footer-column">
               <h4 data-translate="footer.nav.product">Produit</h4>
               <ul>
-                <li><a href="/#about" data-translate="nav.about">À propos</a></li>
-                <li><a href="/#vision" data-translate="footer.nav.vision">Ce Que Nous Construisons</a></li>
+                <li><a href="/#about" data-translate="nav.vision">Vision</a></li>
+                <li><a href="/#approach" data-translate="nav.approach">Approche</a></li>
+                <li><a href="/#vision" data-translate="nav.build">Construisons</a></li>
                 <li><a href="/portfolio-simulator" data-translate="footer.nav.simulator">Simulateur de Portefeuille</a></li>
               </ul>
             </div>

@@ -625,10 +625,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Toggle mobile menu
     function toggleMobileMenu() {
       const isActive = hamburgerMenu.classList.contains('active');
-      
+
       hamburgerMenu.classList.toggle('active');
       mobileNavOverlay.classList.toggle('active');
-      
+
       // Prevent body scroll when menu is open
       if (!isActive) {
         body.style.overflow = 'hidden';
@@ -639,6 +639,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Hamburger menu click event
     hamburgerMenu.addEventListener('click', toggleMobileMenu);
+
+    // Mobile dropdown accordion functionality
+    const mobileDropdownToggle = document.querySelector('.mobile-nav-dropdown-toggle');
+    const mobileDropdownMenu = document.querySelector('.mobile-nav-dropdown-menu');
+
+    if (mobileDropdownToggle && mobileDropdownMenu) {
+      mobileDropdownToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Toggle active class
+        mobileDropdownToggle.classList.toggle('active');
+        mobileDropdownMenu.classList.toggle('active');
+      });
+
+      // Close dropdown when clicking on a sub-link
+      const mobileDropdownLinks = mobileDropdownMenu.querySelectorAll('a');
+      mobileDropdownLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          // Close the dropdown
+          mobileDropdownToggle.classList.remove('active');
+          mobileDropdownMenu.classList.remove('active');
+
+          // Then close the mobile menu
+          if (hamburgerMenu.classList.contains('active')) {
+            toggleMobileMenu();
+          }
+        });
+      });
+    }
 
     // Close menu when clicking on overlay (outside nav)
     mobileNavOverlay.addEventListener('click', function(e) {
