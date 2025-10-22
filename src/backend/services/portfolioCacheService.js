@@ -8,6 +8,15 @@ const DEFAULT_PERIOD = 20;
 const DEFAULT_TICKERS = ["SPY", "IEF", "GLD"];
 const SAMPLE_INTERVAL_DAYS = 21; // ~ monthly sampling
 
+const STRATEGY_BUILDERS = {
+  equalWeight: portfolioService.calculateEqualWeight,
+  sixtyForty: portfolioService.calculateSixtyForty,
+  simpleRP: portfolioService.calculateSimpleRiskParity,
+  optimizedRP: portfolioService.calculateOptimizedRiskParity,
+};
+
+const STRATEGY_ORDER = ["equalWeight", "sixtyForty", "simpleRP", "optimizedRP"];
+
 function formatPercentage(value) {
   return Math.round(value * 10000) / 100;
 }
@@ -46,6 +55,13 @@ function filterPriceDataByCutoff(priceData, cutoffDate) {
   return filtered;
 }
 
+function resolveStrategyKeys(strategies) {
+  const available = Object.keys(strategies || {});
+  const ordered = STRATEGY_ORDER.filter((key) => available.includes(key));
+  const extras = available.filter((key) => !STRATEGY_ORDER.includes(key));
+  return [...ordered, ...extras];
+}
+
 function buildChartData(tickers, priceData, strategies) {
   if (!tickers.length) return [];
 
@@ -58,11 +74,15 @@ function buildChartData(tickers, priceData, strategies) {
     priceLookups[ticker] = createLookup(priceData[ticker] || [], "price");
   });
 
-  const strategyLookups = {
-    equalWeight: createLookup(strategies.equalWeight, "value"),
-    simpleRP: createLookup(strategies.simpleRP, "value"),
-    optimizedRP: createLookup(strategies.optimizedRP, "value"),
-  };
+  const strategyKeys = resolveStrategyKeys(strategies);
+  const strategyLookups = {};
+
+  strategyKeys.forEach((strategyKey) => {
+    strategyLookups[strategyKey] = createLookup(
+      strategies[strategyKey] || [],
+      "value"
+    );
+  });
 
   const chartData = [];
   const usedDates = new Set();
@@ -78,21 +98,13 @@ function buildChartData(tickers, priceData, strategies) {
       entry[ticker] = Math.round(value * 100) / 100;
     }
 
-    const equalWeight = strategyLookups.equalWeight.get(date);
-    const simpleRP = strategyLookups.simpleRP.get(date);
-    const optimizedRP = strategyLookups.optimizedRP.get(date);
-
-    if (
-      equalWeight === undefined ||
-      simpleRP === undefined ||
-      optimizedRP === undefined
-    ) {
-      return null;
+    for (const strategyKey of strategyKeys) {
+      const value = strategyLookups[strategyKey].get(date);
+      if (value === undefined) {
+        return null;
+      }
+      entry[strategyKey] = Math.round(value * 100) / 100;
     }
-
-    entry.equalWeight = Math.round(equalWeight * 100) / 100;
-    entry.simpleRP = Math.round(simpleRP * 100) / 100;
-    entry.optimizedRP = Math.round(optimizedRP * 100) / 100;
 
     return entry;
   };
@@ -151,11 +163,10 @@ function buildSnapshot({
     cutoffDate
   );
 
-  const filteredStrategies = {
-    equalWeight: filterSeriesByCutoff(strategySeries.equalWeight, cutoffDate),
-    simpleRP: filterSeriesByCutoff(strategySeries.simpleRP, cutoffDate),
-    optimizedRP: filterSeriesByCutoff(strategySeries.optimizedRP, cutoffDate),
-  };
+  const filteredStrategies = {};
+  for (const [strategyKey, series] of Object.entries(strategySeries)) {
+    filteredStrategies[strategyKey] = filterSeriesByCutoff(series, cutoffDate);
+  }
 
   const chartData = buildChartData(
     tickers,
@@ -163,6 +174,7 @@ function buildSnapshot({
     filteredStrategies
   );
   const metrics = calculateStrategyMetrics(filteredStrategies);
+  const strategyKeys = resolveStrategyKeys(filteredStrategies);
 
   return {
     periodYears: years,
@@ -170,10 +182,14 @@ function buildSnapshot({
     tickers,
     data: chartData,
     metrics,
+    strategyKeys,
     rawPoints: {
-      equalWeight: filteredStrategies.equalWeight.length,
-      simpleRP: filteredStrategies.simpleRP.length,
-      optimizedRP: filteredStrategies.optimizedRP.length,
+      ...Object.fromEntries(
+        strategyKeys.map((key) => [
+          key,
+          filteredStrategies[key] ? filteredStrategies[key].length : 0,
+        ])
+      ),
     },
   };
 }
@@ -192,14 +208,25 @@ async function generateSnapshots({
   const rawData = await yahooFinanceService.fetchETFData(tickers, maxYears);
   const normalizedData = yahooFinanceService.normalizeToBase100(rawData);
 
-  const strategySeries = {
-    equalWeight: portfolioService.calculateEqualWeight(normalizedData),
-    simpleRP: portfolioService.calculateSimpleRiskParity(normalizedData),
-    optimizedRP: portfolioService.calculateOptimizedRiskParity(normalizedData),
-  };
+  const strategySeries = {};
+  for (const [strategyKey, builder] of Object.entries(STRATEGY_BUILDERS)) {
+    const series = builder(normalizedData);
+    if (Array.isArray(series) && series.length > 0) {
+      strategySeries[strategyKey] = series;
+    }
+  }
 
-  const latestPoint =
-    strategySeries.equalWeight[strategySeries.equalWeight.length - 1];
+  const referenceSeries =
+    strategySeries.equalWeight ||
+    Object.values(strategySeries).find(
+      (series) => Array.isArray(series) && series.length > 0
+    );
+
+  if (!referenceSeries) {
+    throw new Error("No portfolio strategy data available to build snapshots.");
+  }
+
+  const latestPoint = referenceSeries[referenceSeries.length - 1];
 
   if (!latestPoint) {
     throw new Error("No portfolio data available to build snapshots.");
@@ -225,6 +252,7 @@ async function generateSnapshots({
   return {
     generatedAt,
     tickers,
+    strategyKeys: resolveStrategyKeys(strategySeries),
     periods: snapshots,
   };
 }
@@ -263,6 +291,10 @@ async function writeSnapshotsToDisk(
     periodYears: defaultSnapshot.periodYears,
     periodsAvailable: Object.keys(snapshots.periods).map(Number),
     tickers: snapshots.tickers,
+    strategyKeys:
+      defaultSnapshot.strategyKeys ||
+      snapshots.strategyKeys ||
+      resolveStrategyKeys({}),
   };
 
   const defaultPath = path.join(cacheDir, defaultFilename);

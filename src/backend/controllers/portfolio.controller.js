@@ -55,7 +55,13 @@ async function getPreviewData(req, res) {
       periodsPayload = snapshots;
     }
 
-    let responsePayload = { ...previewData };
+    let responsePayload = {
+      ...previewData,
+      strategyKeys:
+        previewData.strategyKeys ||
+        periodsPayload?.strategyKeys ||
+        Object.keys(previewData.metrics || {}),
+    };
 
     if (requestedPeriod && periodsPayload?.periods) {
       const periodKey = String(requestedPeriod);
@@ -69,6 +75,10 @@ async function getPreviewData(req, res) {
           periodYears: periodSnapshot.periodYears,
           periodsAvailable: Object.keys(periodsPayload.periods).map(Number),
           tickers: periodsPayload.tickers,
+          strategyKeys:
+            periodSnapshot.strategyKeys ||
+            periodsPayload.strategyKeys ||
+            Object.keys(periodSnapshot.metrics || {}),
           fromCache: true,
         };
       } else {

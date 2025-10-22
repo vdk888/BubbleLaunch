@@ -55,6 +55,15 @@
       order: 3,
       isBest: false,
     },
+    sixtyForty: {
+      labelKey: 'simulator.strategy.sixtyForty',
+      dataKey: 'sixtyForty',
+      color: '#4B5563',
+      borderWidth: 2.2,
+      borderDash: [],
+      order: 2,
+      isBest: false,
+    },
     simpleRiskParity: {
       labelKey: 'simulator.strategy.simpleRiskParity',
       dataKey: 'simpleRP',

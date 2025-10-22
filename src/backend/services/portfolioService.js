@@ -82,24 +82,40 @@ function calculateCorrelation(returns1, returns2) {
   return denominator > 0 ? numerator / denominator : 0;
 }
 
-/**
- * Strategy 1: Equal Weight Portfolio
- * Simple 33.3% allocation to each ETF with quarterly rebalancing
- */
-function calculateEqualWeight(priceData) {
+function calculateFixedWeightPortfolio(priceData, weights) {
   const tickers = Object.keys(priceData);
-  const weight = 1.0 / tickers.length;
+  if (tickers.length === 0) return [];
 
-  // Get common dates
-  const allDates = priceData[tickers[0]].map(p => p.date);
+  // Normalize weights (ignore tickers not present)
+  const filteredWeights = {};
+  let weightSum = 0;
+
+  for (const ticker of tickers) {
+    if (weights[ticker] !== undefined) {
+      filteredWeights[ticker] = weights[ticker];
+      weightSum += weights[ticker];
+    }
+  }
+
+  if (weightSum === 0) {
+    return [];
+  }
+
+  // Normalize weights to sum to 1
+  for (const ticker of Object.keys(filteredWeights)) {
+    filteredWeights[ticker] = filteredWeights[ticker] / weightSum;
+  }
+
+  const baseTicker = tickers[0];
+  const allDates = priceData[baseTicker].map((p) => p.date);
   const portfolio = [];
 
   for (const date of allDates) {
     let portfolioValue = 0;
     let hasAllPrices = true;
 
-    for (const ticker of tickers) {
-      const dataPoint = priceData[ticker].find(p => p.date === date);
+    for (const [ticker, weight] of Object.entries(filteredWeights)) {
+      const dataPoint = priceData[ticker].find((p) => p.date === date);
       if (!dataPoint) {
         hasAllPrices = false;
         break;
@@ -113,6 +129,30 @@ function calculateEqualWeight(priceData) {
   }
 
   return portfolio;
+}
+
+/**
+ * Strategy 1: Equal Weight Portfolio
+ * Simple 33.3% allocation to each ETF with quarterly rebalancing
+ */
+function calculateEqualWeight(priceData) {
+  const tickers = Object.keys(priceData);
+  if (tickers.length === 0) return [];
+
+  const equalWeight = 1.0 / tickers.length;
+  const weights = Object.fromEntries(tickers.map((ticker) => [ticker, equalWeight]));
+
+  return calculateFixedWeightPortfolio(priceData, weights);
+}
+
+/**
+ * Strategy 1b: 60/40 Portfolio (60% SPY / 40% IEF)
+ */
+function calculateSixtyForty(priceData) {
+  return calculateFixedWeightPortfolio(priceData, {
+    SPY: 0.6,
+    IEF: 0.4,
+  });
 }
 
 /**
@@ -325,7 +365,9 @@ function calculateMetrics(portfolio) {
 }
 
 module.exports = {
+  calculateFixedWeightPortfolio,
   calculateEqualWeight,
+  calculateSixtyForty,
   calculateSimpleRiskParity,
   calculateOptimizedRiskParity,
   calculateMetrics,
