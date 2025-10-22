@@ -1,7 +1,8 @@
-const yahooFinanceService = require("../services/yahooFinanceService");
-const portfolioService = require("../services/portfolioService");
 const path = require("path");
 const fs = require("fs").promises;
+const yahooFinanceService = require("../services/yahooFinanceService");
+const portfolioService = require("../services/portfolioService");
+const portfolioCacheService = require("../services/portfolioCacheService");
 
 /**
  * Get pre-calculated preview data for landing page snapshot
@@ -14,34 +15,43 @@ async function getPreviewData(req, res) {
       "../cache/portfolio-preview-data.json"
     );
 
-    // Try to read cached preview data
-    try {
-      const data = await fs.readFile(previewDataPath, "utf-8");
-      const previewData = JSON.parse(data);
+    const data = await fs.readFile(previewDataPath, "utf-8");
+    const previewData = JSON.parse(data);
 
-      res.json({
-        success: true,
-        ...previewData,
-        fromCache: true,
-      });
-    } catch (error) {
-      // If cache doesn't exist, generate it
-      console.log("📊 Generating portfolio preview data...");
-      const generatedData = await generatePreviewData();
-
-      // Save to cache
-      await fs.writeFile(
-        previewDataPath,
-        JSON.stringify(generatedData, null, 2)
-      );
-
-      res.json({
-        success: true,
-        ...generatedData,
-        fromCache: false,
-      });
-    }
+    res.json({
+      success: true,
+      ...previewData,
+      fromCache: true,
+    });
   } catch (error) {
+    if (error.code === "ENOENT") {
+      try {
+        console.log("📊 Cache miss – regenerating portfolio preview data...");
+        const snapshots = await portfolioCacheService.generateSnapshots();
+        const { defaultSnapshot } =
+          await portfolioCacheService.writeSnapshotsToDisk(snapshots);
+
+        res.json({
+          success: true,
+          data: defaultSnapshot.data,
+          metrics: defaultSnapshot.metrics,
+          generatedAt: defaultSnapshot.generatedAt,
+          periodYears: defaultSnapshot.periodYears,
+          periodsAvailable: Object.keys(snapshots.periods).map(Number),
+          tickers: snapshots.tickers,
+          fromCache: false,
+        });
+      } catch (generationError) {
+        console.error("Error generating preview data:", generationError);
+        res.status(500).json({
+          success: false,
+          error: "Failed to generate preview data",
+          details: generationError.message,
+        });
+      }
+      return;
+    }
+
     console.error("Error getting preview data:", error);
     res.status(500).json({
       success: false,
@@ -49,65 +59,6 @@ async function getPreviewData(req, res) {
       details: error.message,
     });
   }
-}
-
-/**
- * Generate preview data (helper function)
- */
-async function generatePreviewData() {
-  // Fetch 20 years of data for 3 ETFs
-  const rawData = await yahooFinanceService.fetchETFData(["SPY", "IEF", "GLD"], 20);
-  const priceData = yahooFinanceService.normalizeToBase100(rawData);
-
-  // Calculate portfolios
-  const equalWeight = portfolioService.calculateEqualWeight(priceData);
-  const simpleRP = portfolioService.calculateSimpleRiskParity(priceData);
-  const optimizedRP = portfolioService.calculateOptimizedRiskParity(priceData);
-
-  // Calculate metrics
-  const equalWeightMetrics = portfolioService.calculateMetrics(equalWeight);
-  const simpleRPMetrics = portfolioService.calculateMetrics(simpleRP);
-  const optimizedRPMetrics = portfolioService.calculateMetrics(optimizedRP);
-
-  // Combine data for chart (monthly data to reduce size)
-  const chartData = [];
-  for (let i = 0; i < equalWeight.length; i += 21) {
-    // Sample every 21 days (~monthly)
-    const date = equalWeight[i].date;
-    const spyPoint = priceData.SPY.find((p) => p.date === date);
-    const iefPoint = priceData.IEF.find((p) => p.date === date);
-    const gldPoint = priceData.GLD.find((p) => p.date === date);
-
-    if (spyPoint && iefPoint && gldPoint) {
-      chartData.push({
-        date,
-        SPY: Math.round(spyPoint.price * 100) / 100,
-        IEF: Math.round(iefPoint.price * 100) / 100,
-        GLD: Math.round(gldPoint.price * 100) / 100,
-        equalWeight: Math.round(equalWeight[i].value * 100) / 100,
-        simpleRP: Math.round(simpleRP[i].value * 100) / 100,
-        optimizedRP: Math.round(optimizedRP[i].value * 100) / 100,
-      });
-    }
-  }
-
-  return {
-    data: chartData,
-    metrics: {
-      equalWeight: {
-        totalReturn: Math.round(equalWeightMetrics.totalReturn * 10000) / 100, // Convert to percentage
-        sharpeRatio: Math.round(equalWeightMetrics.sharpeRatio * 100) / 100,
-      },
-      simpleRP: {
-        totalReturn: Math.round(simpleRPMetrics.totalReturn * 10000) / 100,
-        sharpeRatio: Math.round(simpleRPMetrics.sharpeRatio * 100) / 100,
-      },
-      optimizedRP: {
-        totalReturn: Math.round(optimizedRPMetrics.totalReturn * 10000) / 100,
-        sharpeRatio: Math.round(optimizedRPMetrics.sharpeRatio * 100) / 100,
-      },
-    },
-  };
 }
 
 /**
@@ -200,9 +151,27 @@ async function calculatePortfolio(req, res) {
 /**
  * Clear Yahoo Finance cache
  */
-function clearCache(req, res) {
+async function clearCache(req, res) {
   try {
     yahooFinanceService.clearCache();
+    const cacheDir = path.join(__dirname, "../cache");
+    const filesToRemove = [
+      "portfolio-preview-data.json",
+      "portfolio-preview-periods.json",
+    ];
+
+    for (const filename of filesToRemove) {
+      const filePath = path.join(cacheDir, filename);
+      try {
+        await fs.unlink(filePath);
+        console.log(`🧹 Removed cache file ${filename}`);
+      } catch (error) {
+        if (error.code !== "ENOENT") {
+          throw error;
+        }
+      }
+    }
+
     res.json({ success: true, message: "Cache cleared" });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });

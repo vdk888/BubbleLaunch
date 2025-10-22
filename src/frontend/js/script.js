@@ -59,7 +59,15 @@ document.addEventListener("DOMContentLoaded", function () {
         ) {
           element.placeholder = translations[key][lang];
         } else {
-          element.textContent = translations[key][lang];
+          // Check if translation contains HTML tags
+          const translationText = translations[key][lang];
+          if (translationText.includes('<') && translationText.includes('>')) {
+            // Use innerHTML for HTML content
+            element.innerHTML = translationText;
+          } else {
+            // Use textContent for plain text (safer)
+            element.textContent = translationText;
+          }
         }
       }
     });
@@ -96,11 +104,11 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     }
 
-    // Update select option translations for profile selector
-    const profileOptions = document.querySelectorAll(
-      "#profile option[data-translate]",
+    // Update select option translations for ALL select elements (not just profile)
+    const allOptions = document.querySelectorAll(
+      "option[data-translate]",
     );
-    profileOptions.forEach((option) => {
+    allOptions.forEach((option) => {
       const key = option.getAttribute("data-translate");
       if (translations[key] && translations[key][lang]) {
         option.textContent = translations[key][lang];

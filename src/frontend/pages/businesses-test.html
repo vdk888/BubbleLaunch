@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Businesses Page</title>
+    <style>
+        body {
+            font-family: Inter, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: white;
+        }
+        h1 {
+            color: #333;
+        }
+        .test-section {
+            background: #f8f8f8;
+            padding: 2rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Test Page - Businesses</h1>
+
+    <div class="test-section">
+        <h2>1. HTML chargé</h2>
+        <p>✅ Si vous voyez ce texte, le HTML se charge correctement</p>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Test JavaScript</h2>
+        <p id="js-test">❌ JavaScript ne fonctionne pas</p>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Test Traductions</h2>
+        <p>Current language: <span id="lang-test">Loading...</span></p>
+        <button id="test-en">Switch to EN</button>
+        <button id="test-fr">Switch to FR</button>
+    </div>
+
+    <div class="test-section">
+        <h2>4. Lien vers vraie page</h2>
+        <a href="/businesses" style="color: blue; text-decoration: underline;">→ Aller sur /businesses</a>
+    </div>
+
+    <script>
+        // Test 2: JavaScript
+        document.getElementById('js-test').textContent = '✅ JavaScript fonctionne!';
+        document.getElementById('js-test').style.color = 'green';
+
+        // Test 3: Check if translations are loaded
+        if (typeof translations !== 'undefined') {
+            document.getElementById('lang-test').textContent = 'Translations loaded!';
+            document.getElementById('lang-test').style.color = 'green';
+        } else {
+            document.getElementById('lang-test').textContent = 'Translations NOT loaded';
+            document.getElementById('lang-test').style.color = 'red';
+        }
+    </script>
+
+    <script src="../i18n/translations.js"></script>
+    <script>
+        // Recheck after loading translations
+        setTimeout(() => {
+            if (typeof translations !== 'undefined') {
+                document.getElementById('lang-test').textContent = 'Translations loaded! (' + Object.keys(translations).length + ' keys)';
+                document.getElementById('lang-test').style.color = 'green';
+            }
+        }, 100);
+    </script>
+</body>
+</html>

@@ -1,16 +1,16 @@
 const translations = {
   // Navigation
-  "nav.manifesto": {
-    en: "Manifesto",
-    fr: "Manifeste",
+  "nav.about": {
+    en: "About",
+    fr: "À propos",
   },
   "nav.vision": {
     en: "Vision",
     fr: "Vision",
   },
-  "nav.approach": {
-    en: "Approach",
-    fr: "Approche",
+  "nav.businesses": {
+    en: "Businesses",
+    fr: "Entreprises",
   },
   "nav.blog": {
     en: "Blog",
@@ -773,6 +773,478 @@ const translations = {
   "footer.nav.email": {
     en: "Email",
     fr: "Email"
+  },
+
+  // Businesses Page
+  "businesses.tagline": {
+    en: "Financial automation without BS.",
+    fr: "Automatisation financière sans bullshit."
+  },
+  "businesses.hero.title": {
+    en: "AI consulting that truly acts instead of recommending.",
+    fr: "Du conseil en IA qui agit vraiment au lieu de recommander."
+  },
+  "businesses.hero.subtitle": {
+    en: "Former Big Four consultants and portfolio managers. We've seen the dysfunction from the inside.",
+    fr: "Anciens consultants Big Four et portfolio managers. Nous avons vu les dysfonctionnements de l'intérieur."
+  },
+  "businesses.hero.cta": {
+    en: "Let's discuss your project",
+    fr: "Discutons de votre projet"
+  },
+
+  // What We Do Section
+  "businesses.what.title": {
+    en: "What we do",
+    fr: "Ce que nous faisons"
+  },
+  "businesses.what.p1": {
+    en: "We don't sell PowerPoint. We implement automation and AI solutions for finance. Concrete, measurable, in production.",
+    fr: "Nous ne vendons pas de PowerPoint. Nous implémentons des solutions d'automatisation et d'IA pour la finance. Concrètement, mesurable, en production."
+  },
+  "businesses.what.p2": {
+    en: "We deliver in 2 to 4 months, with a fixed price announced from the diagnostic. No eternal POCs, no runaway budgets, no 15-person teams for a dashboard.",
+    fr: "Nous livrons en 2 à 4 mois, avec un prix fixe annoncé dès le diagnostic. Pas de POC éternels, pas de budgets qui s'envolent, pas d'équipes de 15 personnes pour un dashboard."
+  },
+  "businesses.what.p3": {
+    en: "Our stack is pragmatic: Notion, Claude, Make, n8n, Python, JavaScript. We use no-code when it's relevant, we code when it's necessary. The goal is that it works, not that it looks impressive on an architecture diagram.",
+    fr: "Notre stack est pragmatique : Notion, Claude, Make, n8n, Python, JavaScript. On utilise du no-code quand c'est pertinent, on code quand c'est nécessaire. L'objectif c'est que ça marche, pas que ce soit impressionnant sur un schéma d'architecture."
+  },
+  "businesses.what.examples.title": {
+    en: "Concrete examples",
+    fr: "Exemples concrets"
+  },
+  "businesses.what.examples.1": {
+    en: "Automated monthly reporting (15h saved/month)",
+    fr: "Reporting mensuel automatisé (15h gagnées/mois)"
+  },
+  "businesses.what.examples.2": {
+    en: "ESG monitoring of 50 companies (5-7h/week saved)",
+    fr: "Monitoring ESG de 50 sociétés (5-7h/semaine économisées)"
+  },
+  "businesses.what.examples.3": {
+    en: "Automated bank reconciliation (98% matching rate, 4-month ROI)",
+    fr: "Rapprochement bancaire automatique (98% de taux de matching, ROI en 4 mois)"
+  },
+  "businesses.what.examples.4": {
+    en: "Custom performance dashboard (€22k vs €80k from software vendor)",
+    fr: "Dashboard de performance sur-mesure (€22k vs €80k chez un éditeur logiciel)"
+  },
+
+  // Why Section
+  "businesses.why.title": {
+    en: "Why we do this",
+    fr: "Pourquoi nous faisons ça"
+  },
+  "businesses.why.p1": {
+    en: "We worked in the Big Four and institutional portfolio management. We've seen from the inside how €150k-€300k projects turn into PowerPoints that never reach production.",
+    fr: "Nous avons travaillé dans les Big Four et en gestion de portefeuille institutionnel. Nous avons vu de l'intérieur comment des projets à €150k-€300k se transforment en PowerPoints qui ne passent jamais en production."
+  },
+  "businesses.why.p2": {
+    en: "We've also seen how technology, when used well, can truly transform finance. Not with 18-month 'digital transformations'. With pragmatic solutions, delivered fast, that work.",
+    fr: "Nous avons aussi vu comment la technologie, quand elle est bien utilisée, peut vraiment transformer la finance. Pas avec des \"transformations digitales\" de 18 mois. Avec des solutions pragmatiques, livrées vite, qui marchent."
+  },
+  "businesses.why.p3": {
+    en: "We won't lie: Bubble is just starting. We don't have 500 client references. But we have the experience, technical skills, and above all the honesty to say no when a project doesn't match our expertise.",
+    fr: "On ne va pas vous mentir : Bubble démarre. Nous n'avons pas 500 références clients. Mais nous avons l'expérience, les compétences techniques, et surtout l'honnêteté de dire non quand un projet ne correspond pas à notre expertise."
+  },
+  "businesses.why.p4": {
+    en: "We prefer being honest to landing a project we won't be able to deliver.",
+    fr: "Nous préférons être honnêtes que de décrocher un projet que nous ne saurons pas livrer."
+  },
+
+  // Article Section
+  "businesses.article.section_title": {
+    en: "To go further",
+    fr: "Pour aller plus loin"
+  },
+
+  // Problem Section
+  "businesses.problem.title": {
+    en: "The Assessment",
+    fr: "Le Constat"
+  },
+  "businesses.problem.insight": {
+    en: "<strong>70-85% of AI projects fail.</strong> Not from lack of technology, but from excess PowerPoint, over-engineered architectures, and opacity on real costs.",
+    fr: "<strong>70 à 85% des projets IA échouent.</strong> Pas par manque de technologie, mais par excès de PowerPoint, d'architectures sur-complexifiées, et d'opacité sur les coûts réels."
+  },
+  "businesses.problem.p1": {
+    en: "The AI consulting market is exploding. Traditional firms overcharge for 12-18 month 'transformations' at €150k-€300k, delivered 80% in slides and 20% in POCs that never reach production.",
+    fr: "Le marché du conseil en IA explose. Les cabinets traditionnels surfacturent des « transformations » de 12 à 18 mois à €150k-€300k, livrées à 80% en slides et 20% en POCs qui ne passent jamais en production."
+  },
+  "businesses.problem.p2": {
+    en: "Meanwhile, a wave of 'AI reconversion' floods the market: traditional consultants rebranding overnight, 3-month crash courses, freelancers promising the moon without ever shipping code to production.",
+    fr: "Parallèlement, une vague de « reconversion IA » inonde le marché : consultants classiques qui se rebrandent du jour au lendemain, formations express de 3 mois, freelances promettant la lune sans jamais avoir mis du code en production."
+  },
+  "businesses.problem.p3": {
+    en: "<strong>Result:</strong> Companies drown in a sea of indistinguishable offers, between charlatans and real experts. How to sort? How to avoid the eternal POC trap and budgets spiraling out of control?",
+    fr: "<strong>Résultat :</strong> Les entreprises se retrouvent noyées dans une mer d'offres impossibles à distinguer, entre charlatans et vrais experts. Comment trier ? Comment éviter le piège du POC éternel et des budgets qui s'envolent ?"
+  },
+
+  // Vetting Section
+  "businesses.vetting.title": {
+    en: "How to Vet AI Service Providers",
+    fr: "Comment trier les prestataires IA"
+  },
+  "businesses.vetting.red.title": {
+    en: "🚩 Red Flags",
+    fr: "🚩 Red Flags"
+  },
+  "businesses.vetting.red.1": {
+    en: "❌ POC without production date",
+    fr: "❌ POC sans date de mise en production"
+  },
+  "businesses.vetting.red.2": {
+    en: "❌ Vague pricing or 'we'll see as we go'",
+    fr: "❌ Proposition tarifaire floue ou \"on verra en fonction\""
+  },
+  "businesses.vetting.red.3": {
+    en: "❌ Over-complex tech stack (Kubernetes, microservices for an MVP)",
+    fr: "❌ Stack technique sur-complexe (Kubernetes, microservices pour un MVP)"
+  },
+  "businesses.vetting.red.4": {
+    en: "❌ No documented client cases with measurable ROI",
+    fr: "❌ Aucun cas client documenté avec ROI mesurable"
+  },
+  "businesses.vetting.red.5": {
+    en: "❌ Generic marketing talk about 'innovation' without technical substance",
+    fr: "❌ Discours marketing générique sur \"l'innovation\" sans contenu technique"
+  },
+  "businesses.vetting.red.6": {
+    en: "❌ Team with no production experience (only 'architects')",
+    fr: "❌ Équipe sans expérience de mise en production (que des \"architectes\")"
+  },
+  "businesses.vetting.green.title": {
+    en: "✅ Green Flags",
+    fr: "✅ Green Flags"
+  },
+  "businesses.vetting.green.1": {
+    en: "✅ Fixed price announced from diagnostic (€X for Y deliverables)",
+    fr: "✅ Prix fixe annoncé dès le diagnostic (€X pour Y livrables)"
+  },
+  "businesses.vetting.green.2": {
+    en: "✅ Pragmatic stack adapted to need (no-code/low-code when relevant)",
+    fr: "✅ Stack pragmatique adapté au besoin (no-code/low-code quand pertinent)"
+  },
+  "businesses.vetting.green.3": {
+    en: "✅ Clear timeline with measurable milestones (e.g., 2 months → dashboard in prod)",
+    fr: "✅ Planning clair avec jalons mesurables (ex: 2 mois → dashboard en prod)"
+  },
+  "businesses.vetting.green.4": {
+    en: "✅ Client cases with concrete metrics (time saved, costs reduced, errors avoided)",
+    fr: "✅ Cas clients avec métriques concrètes (temps gagné, coûts réduits, erreurs évitées)"
+  },
+  "businesses.vetting.green.5": {
+    en: "✅ Code in production with real clients (not just demos)",
+    fr: "✅ Code en production chez de vrais clients (pas que des démos)"
+  },
+  "businesses.vetting.green.6": {
+    en: "✅ Transparency about AI limitations (doesn't promise the impossible)",
+    fr: "✅ Transparence sur les limites de l'IA (ne promet pas l'impossible)"
+  },
+
+  // Why Bubble Section
+  "businesses.why.title": {
+    en: "Why Bubble",
+    fr: "Pourquoi Bubble"
+  },
+  "businesses.why.intro": {
+    en: "We're not AI theorists who pivoted overnight. We've seen from the inside how Big Four firms and major banks waste millions on 'strategic' projects that never ship.",
+    fr: "Nous ne sommes pas des théoriciens de l'IA reconvertis. Nous avons vu de l'intérieur comment les Big Four et les grandes banques gaspillent des millions en projets « stratégiques » qui n'aboutissent jamais."
+  },
+  "businesses.why.background.title": {
+    en: "🎯 Credible Background",
+    fr: "🎯 Background crédible"
+  },
+  "businesses.why.background.desc": {
+    en: "<strong>Joris:</strong> Ex-Deloitte Partner, UBS Executive Committee, 10+ years in institutional finance<br/><strong>Jade:</strong> Ex-KPMG, €800M AUM portfolio manager, quantitative specialist",
+    fr: "<strong>Joris :</strong> Ex-associé Deloitte, comité exécutif UBS, 10+ ans dans la finance institutionnelle<br/><strong>Jade :</strong> Ex-KPMG, portfolio manager €800M AUM, spécialiste quantitative"
+  },
+  "businesses.why.background.insight": {
+    en: "We've seen the dysfunction from the inside. That's why we left.",
+    fr: "Nous avons vu les dysfonctionnements de l'intérieur. C'est pour ça que nous avons quitté."
+  },
+  "businesses.why.speed.title": {
+    en: "⚡ Execution Speed",
+    fr: "⚡ Rapidité d'exécution"
+  },
+  "businesses.why.speed.desc": {
+    en: "<strong>2-4 months</strong> from diagnostic to production<br/>vs 12-18 months of classic 'digital transformation'",
+    fr: "<strong>2-4 mois</strong> du diagnostic à la mise en production<br/>vs 12-18 mois de \"transformation digitale\" classique"
+  },
+  "businesses.why.speed.example": {
+    en: "<em>Example:</em> Tracking dashboard for €800M AUM manager → 3 months, €22k (vs €80k from software vendor, 6 months deployment)",
+    fr: "<em>Exemple :</em> Dashboard de suivi pour gérant €800M AUM → 3 mois, €22k (vs €80k chez un éditeur, 6 mois de déploiement)"
+  },
+  "businesses.why.pricing.title": {
+    en: "💰 Transparent Pricing",
+    fr: "💰 Pricing transparent"
+  },
+  "businesses.why.pricing.desc": {
+    en: "<strong>€15k-€30k</strong> for a complete project<br/>vs €150k-€300k at Big Four",
+    fr: "<strong>€15k-€30k</strong> pour un projet complet<br/>vs €150k-€300k chez les Big Four"
+  },
+  "businesses.why.pricing.model": {
+    en: "Fixed price from diagnostic. No budget drift, no infinitely billable 'sprints'.",
+    fr: "Prix fixe dès le diagnostic. Pas de dérive budgétaire, pas de \"sprint\" facturable à l'infini."
+  },
+  "businesses.why.stack.title": {
+    en: "🛠️ Pragmatic Stack",
+    fr: "🛠️ Stack pragmatique"
+  },
+  "businesses.why.stack.desc": {
+    en: "<strong>Notion, Claude, Make, Airtable, n8n</strong><br/>No-code/low-code when relevant. Python/React when necessary.",
+    fr: "<strong>Notion, Claude, Make, Airtable, n8n</strong><br/>No-code/low-code quand pertinent. Python/React quand nécessaire."
+  },
+  "businesses.why.stack.philosophy": {
+    en: "We choose tech based on the problem, not on the resume we want to build.",
+    fr: "Nous choisissons la tech selon le problème, pas selon le CV qu'on veut remplir."
+  },
+  "businesses.why.results.title": {
+    en: "📊 Measurable Results",
+    fr: "📊 Résultats mesurables"
+  },
+  "businesses.why.results.desc": {
+    en: "✅ Bank reconciliation automation → 98% accuracy, 4-month ROI<br/>✅ €800M AUM portfolio dashboard → €22k vs €80k from vendor<br/>✅ Internal documentation chatbot → -60% level 1 support tickets",
+    fr: "✅ Automatisation réconciliation bancaire → 98% précision, ROI 4 mois<br/>✅ Dashboard portfolio €800M AUM → €22k vs €80k éditeur<br/>✅ Chatbot documentation interne → -60% tickets support niveau 1"
+  },
+  "businesses.why.honesty.title": {
+    en: "🔍 Radical Honesty",
+    fr: "🔍 Honnêteté radicale"
+  },
+  "businesses.why.honesty.desc": {
+    en: "If your project doesn't have clear ROI, <strong>we'll tell you</strong>. If AI isn't the right solution, we'll propose something else. If we don't know how to do it, we'll refer you to someone competent.",
+    fr: "Si votre projet n'a pas de ROI clair, <strong>nous vous le dirons</strong>. Si l'IA n'est pas la bonne solution, nous proposerons autre chose. Si on ne sait pas faire, on vous orientera vers quelqu'un de compétent."
+  },
+
+  // Services Section
+  "businesses.services.title": {
+    en: "Services & Budgets",
+    fr: "Services & Budgets"
+  },
+  "businesses.services.diagnostic.title": {
+    en: "🔍 Diagnostic & Feasibility",
+    fr: "🔍 Diagnostic & Faisabilité"
+  },
+  "businesses.services.diagnostic.price": {
+    en: "€3k-€5k",
+    fr: "€3k-€5k"
+  },
+  "businesses.services.diagnostic.desc": {
+    en: "Technical audit of your need, quick wins identification, detailed budget estimate. <strong>Deliverable:</strong> 6-12 month roadmap with ROI prioritization.",
+    fr: "Audit technique de votre besoin, identification des quick wins, estimation budgétaire détaillée. <strong>Livrable :</strong> roadmap 6-12 mois avec priorisation ROI."
+  },
+  "businesses.services.diagnostic.duration": {
+    en: "Duration: 1-2 weeks",
+    fr: "Durée : 1-2 semaines"
+  },
+  "businesses.services.automation.title": {
+    en: "⚙️ Simple Automation",
+    fr: "⚙️ Automatisation simple"
+  },
+  "businesses.services.automation.price": {
+    en: "€8k-€12k",
+    fr: "€8k-€12k"
+  },
+  "businesses.services.automation.desc": {
+    en: "Automation of an isolated process (reconciliation, reporting, approval workflow). <strong>Stack:</strong> Make/n8n + Notion/Airtable + OpenAI API.",
+    fr: "Automatisation d'un processus isolé (réconciliation, reporting, workflow d'approbation). <strong>Stack :</strong> Make/n8n + Notion/Airtable + OpenAI API."
+  },
+  "businesses.services.automation.duration": {
+    en: "Duration: 4-8 weeks",
+    fr: "Durée : 4-8 semaines"
+  },
+  "businesses.services.full.title": {
+    en: "🚀 Complete Project",
+    fr: "🚀 Projet complet"
+  },
+  "businesses.services.full.price": {
+    en: "€20k-€30k",
+    fr: "€20k-€30k"
+  },
+  "businesses.services.full.desc": {
+    en: "End-to-end solution with dashboard, API, multiple integrations. <strong>Examples:</strong> portfolio management platform, automated compliance tool, client recommendation system.",
+    fr: "Solution end-to-end avec dashboard, API, intégrations multiples. <strong>Exemples :</strong> plateforme de gestion de portefeuille, outil de compliance automatisé, système de recommandation client."
+  },
+  "businesses.services.full.duration": {
+    en: "Duration: 2-4 months",
+    fr: "Durée : 2-4 mois"
+  },
+  "businesses.services.maintenance.title": {
+    en: "🔧 Maintenance & Support",
+    fr: "🔧 Maintenance & Support"
+  },
+  "businesses.services.maintenance.price": {
+    en: "€500-€1k/month",
+    fr: "€500-€1k/mois"
+  },
+  "businesses.services.maintenance.desc": {
+    en: "Monitoring, bug fixes, minor evolutions, technical support. <strong>SLA:</strong> response < 24h business days, critical resolution < 48h.",
+    fr: "Monitoring, bug fixes, évolutions mineures, support technique. <strong>SLA :</strong> réponse < 24h ouvrées, résolution critique < 48h."
+  },
+
+  // Featured Article Section
+  "businesses.article.title": {
+    en: "AI Consulting: Why We Left the Big Four and Private Banking to Do Things Differently",
+    fr: "Conseil en IA : pourquoi nous avons quitté les Big Four et la grande banque privée pour faire différemment"
+  },
+  "businesses.article.description": {
+    en: "Our comprehensive analysis of the AI consulting market, why 70-85% of projects fail, and how we're building a credible alternative.",
+    fr: "Notre analyse complète du marché du conseil en IA, pourquoi 70-85% des projets échouent, et comment nous construisons une alternative crédible."
+  },
+  "businesses.article.summary": {
+    en: "Former Deloitte/KPMG consultants and a former UBS portfolio manager, we analyze the French AI consulting market in finance: 70-85% failure rates, wasted budgets, endless POCs… What's our alternative?",
+    fr: "Ex-consultants Deloitte/KPMG et ex-portfolio manager UBS, nous analysons le marché français du conseil IA en finance : taux d'échec 70-85%, budgets gaspillés, POC éternels… Quelle est notre alternative ?"
+  },
+  "businesses.article.points.title": {
+    en: "In this article:",
+    fr: "Dans cet article :"
+  },
+  "businesses.article.points.1": {
+    en: "📊 <strong>Market State:</strong> Analysis of AI consulting saturation and project failure statistics",
+    fr: "📊 <strong>État du marché :</strong> Analyse de la saturation du conseil en IA et statistiques d'échec des projets"
+  },
+  "businesses.article.points.2": {
+    en: "🔄 <strong>The Reconversion Bubble:</strong> Why everyone becomes an 'AI consultant' overnight",
+    fr: "🔄 <strong>La bulle de reconversion :</strong> Pourquoi tout le monde devient \"consultant IA\" du jour au lendemain"
+  },
+  "businesses.article.points.3": {
+    en: "🎯 <strong>How to Vet:</strong> Practical guide to identify real experts from charlatans",
+    fr: "🎯 <strong>Comment trier :</strong> Guide pratique pour identifier les vrais experts des charlatans"
+  },
+  "businesses.article.points.4": {
+    en: "💼 <strong>Our Credibility:</strong> Why our Big Four/UBS background gives us unique legitimacy",
+    fr: "💼 <strong>Notre crédibilité :</strong> Pourquoi notre background Big Four/UBS nous donne une légitimité unique"
+  },
+  "businesses.article.points.5": {
+    en: "🚨 <strong>The Deloitte Scandal:</strong> Concrete case of an AI project gone wrong (October 2024, Australia)",
+    fr: "🚨 <strong>Le scandale Deloitte :</strong> Cas concret d'un projet IA qui a déraillé (octobre 2024, Australie)"
+  },
+  "businesses.article.points.6": {
+    en: "🛠️ <strong>Our Approach:</strong> Pragmatic tech stack, transparent pricing, measurable results",
+    fr: "🛠️ <strong>Notre approche :</strong> Tech stack pragmatique, pricing transparent, résultats mesurables"
+  },
+  "businesses.article.cta": {
+    en: "Read full article →",
+    fr: "Lire l'article complet →"
+  },
+
+  // Contact Form
+  "businesses.contact.title": {
+    en: "Let's Discuss Your Project",
+    fr: "Discutons de votre projet"
+  },
+  "businesses.contact.subtitle": {
+    en: "Describe your need in a few lines. We'll respond within 48h with an initial feasibility and budget estimate.",
+    fr: "Décrivez-nous votre besoin en quelques lignes. Nous vous répondons sous 48h avec une première estimation de faisabilité et budget."
+  },
+  "businesses.form.company": {
+    en: "Company",
+    fr: "Entreprise"
+  },
+  "businesses.form.company.placeholder": {
+    en: "Your company name",
+    fr: "Nom de votre entreprise"
+  },
+  "businesses.form.name": {
+    en: "Your name",
+    fr: "Votre nom"
+  },
+  "businesses.form.name.placeholder": {
+    en: "First Last",
+    fr: "Prénom Nom"
+  },
+  "businesses.form.email": {
+    en: "Professional email",
+    fr: "Email professionnel"
+  },
+  "businesses.form.email.placeholder": {
+    en: "your.email@company.com",
+    fr: "votre.email@entreprise.com"
+  },
+  "businesses.form.usecase": {
+    en: "Describe your need",
+    fr: "Décrivez votre besoin"
+  },
+  "businesses.form.usecase.placeholder": {
+    en: "E.g., Automate bank reconciliation for our investment fund (€500M AUM). Currently 3 days/month manual work, ~15% error rate...",
+    fr: "Ex: Automatiser la réconciliation bancaire pour notre fonds d'investissement (€500M AUM). Actuellement 3 jours/mois de travail manuel, ~15% d'erreurs..."
+  },
+  "businesses.form.budget": {
+    en: "Expected budget",
+    fr: "Budget envisagé"
+  },
+  "businesses.form.budget.select": {
+    en: "Select a range",
+    fr: "Sélectionnez une fourchette"
+  },
+  "businesses.form.budget.diagnostic": {
+    en: "€3k-€5k (Diagnostic only)",
+    fr: "€3k-€5k (Diagnostic uniquement)"
+  },
+  "businesses.form.budget.small": {
+    en: "€8k-€12k (Simple automation)",
+    fr: "€8k-€12k (Automatisation simple)"
+  },
+  "businesses.form.budget.medium": {
+    en: "€20k-€30k (Complete project)",
+    fr: "€20k-€30k (Projet complet)"
+  },
+  "businesses.form.budget.large": {
+    en: "€30k+ (Complex project)",
+    fr: "€30k+ (Projet complexe)"
+  },
+  "businesses.form.budget.unknown": {
+    en: "I don't know yet",
+    fr: "Je ne sais pas encore"
+  },
+  "businesses.form.timeline": {
+    en: "Desired timeline",
+    fr: "Timeline souhaitée"
+  },
+  "businesses.form.timeline.select": {
+    en: "When would you like to start?",
+    fr: "Quand souhaitez-vous démarrer ?"
+  },
+  "businesses.form.timeline.urgent": {
+    en: "Urgent (< 1 month)",
+    fr: "Urgent (< 1 mois)"
+  },
+  "businesses.form.timeline.soon": {
+    en: "Soon (1-3 months)",
+    fr: "Prochainement (1-3 mois)"
+  },
+  "businesses.form.timeline.planning": {
+    en: "In planning (3-6 months)",
+    fr: "En planification (3-6 mois)"
+  },
+  "businesses.form.timeline.exploring": {
+    en: "Exploring (6+ months)",
+    fr: "En exploration (6+ mois)"
+  },
+  "businesses.form.submit": {
+    en: "Send my request",
+    fr: "Envoyer ma demande"
+  },
+  "businesses.form.note": {
+    en: "Response within 48h • Free initial diagnostic • No commitment",
+    fr: "Réponse sous 48h • Diagnostic initial gratuit • Aucun engagement"
+  },
+  "businesses.form.success.title": {
+    en: "✅ Message sent!",
+    fr: "✅ Message envoyé !"
+  },
+  "businesses.form.success.message": {
+    en: "We've received your request. A team member will respond within 48h to the address <strong id=\"submitted-email\"></strong>.",
+    fr: "Nous avons bien reçu votre demande. Un membre de notre équipe vous répondra sous 48h à l'adresse <strong id=\"submitted-email\"></strong>."
+  },
+  "businesses.form.error.title": {
+    en: "❌ Sending error",
+    fr: "❌ Erreur d'envoi"
+  },
+  "businesses.form.error.message": {
+    en: "An error occurred. Contact us directly at <a href=\"mailto:contact@bubbleinvest.org\" style=\"color: #667eea; text-decoration: underline;\">contact@bubbleinvest.org</a>",
+    fr: "Une erreur est survenue. Contactez-nous directement à <a href=\"mailto:contact@bubbleinvest.org\" style=\"color: #667eea; text-decoration: underline;\">contact@bubbleinvest.org</a>"
   },
 
   // 404 Error Page

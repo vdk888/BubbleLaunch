@@ -1,7 +1,7 @@
 {
   "data": [
     {
-      "date": "2005-10-10",
+      "date": "2005-10-24",
       "SPY": 100,
       "IEF": 100,
       "GLD": 100,
@@ -10,2169 +10,2201 @@
       "optimizedRP": 100
     },
     {
-      "date": "2005-11-08",
-      "SPY": 103.06,
-      "IEF": 98.84,
-      "GLD": 96.92,
-      "equalWeight": 99.61,
-      "simpleRP": 99.61,
-      "optimizedRP": 99.61
+      "date": "2005-11-22",
+      "SPY": 105.29,
+      "IEF": 100.4,
+      "GLD": 106.32,
+      "equalWeight": 104,
+      "simpleRP": 104,
+      "optimizedRP": 104
     },
     {
-      "date": "2005-12-08",
-      "SPY": 106.24,
-      "IEF": 99.85,
-      "GLD": 109.56,
-      "equalWeight": 105.22,
-      "simpleRP": 105.22,
-      "optimizedRP": 105.22
+      "date": "2005-12-22",
+      "SPY": 106.17,
+      "IEF": 100.76,
+      "GLD": 108.08,
+      "equalWeight": 105.01,
+      "simpleRP": 105.01,
+      "optimizedRP": 105.01
     },
     {
-      "date": "2006-01-10",
-      "SPY": 109.26,
-      "IEF": 100.51,
-      "GLD": 114.12,
-      "equalWeight": 107.96,
-      "simpleRP": 104.88,
-      "optimizedRP": 104.38
+      "date": "2006-01-25",
+      "SPY": 106.14,
+      "IEF": 100.83,
+      "GLD": 121.02,
+      "equalWeight": 109.33,
+      "simpleRP": 105.21,
+      "optimizedRP": 104.67
     },
     {
-      "date": "2006-02-09",
-      "SPY": 107.15,
-      "IEF": 99.87,
-      "GLD": 118.6,
-      "equalWeight": 108.54,
-      "simpleRP": 104.27,
-      "optimizedRP": 103.46
+      "date": "2006-02-24",
+      "SPY": 108.45,
+      "IEF": 100.31,
+      "GLD": 119.94,
+      "equalWeight": 109.57,
+      "simpleRP": 104.78,
+      "optimizedRP": 104.37
     },
     {
-      "date": "2006-03-13",
-      "SPY": 109.2,
-      "IEF": 98.76,
-      "GLD": 114.65,
-      "equalWeight": 107.54,
-      "simpleRP": 103.18,
-      "optimizedRP": 103.18
+      "date": "2006-03-27",
+      "SPY": 109.39,
+      "IEF": 99.95,
+      "GLD": 121.56,
+      "equalWeight": 110.3,
+      "simpleRP": 104.96,
+      "optimizedRP": 105.74
     },
     {
-      "date": "2006-04-11",
-      "SPY": 109.47,
-      "IEF": 98.35,
-      "GLD": 124.57,
-      "equalWeight": 110.8,
-      "simpleRP": 104.5,
-      "optimizedRP": 104.86
-    },
-    {
-      "date": "2006-05-11",
-      "SPY": 111.44,
-      "IEF": 97.58,
-      "GLD": 149.95,
-      "equalWeight": 119.65,
-      "simpleRP": 107.6,
-      "optimizedRP": 106.45
-    },
-    {
-      "date": "2006-06-12",
-      "SPY": 105.52,
-      "IEF": 98.92,
-      "GLD": 126.73,
-      "equalWeight": 110.39,
-      "simpleRP": 103.45,
-      "optimizedRP": 103.57
-    },
-    {
-      "date": "2006-07-12",
-      "SPY": 107.74,
-      "IEF": 98.62,
-      "GLD": 137.05,
-      "equalWeight": 114.47,
-      "simpleRP": 104.1,
-      "optimizedRP": 104.03
-    },
-    {
-      "date": "2006-08-10",
-      "SPY": 108.87,
-      "IEF": 100.27,
-      "GLD": 133.52,
-      "equalWeight": 114.22,
-      "simpleRP": 105.41,
+      "date": "2006-04-26",
+      "SPY": 109.71,
+      "IEF": 98.09,
+      "GLD": 137.21,
+      "equalWeight": 115,
+      "simpleRP": 105.67,
       "optimizedRP": 105.43
     },
     {
-      "date": "2006-09-11",
-      "SPY": 111.47,
-      "IEF": 101.28,
-      "GLD": 123.5,
-      "equalWeight": 112.08,
-      "simpleRP": 105.76,
-      "optimizedRP": 105.73
+      "date": "2006-05-25",
+      "SPY": 107.47,
+      "IEF": 98.73,
+      "GLD": 139.47,
+      "equalWeight": 115.22,
+      "simpleRP": 105.38,
+      "optimizedRP": 104.85
     },
     {
-      "date": "2006-10-10",
-      "SPY": 116.13,
-      "IEF": 102,
-      "GLD": 120.33,
-      "equalWeight": 112.82,
-      "simpleRP": 108.3,
-      "optimizedRP": 109.39
+      "date": "2006-06-26",
+      "SPY": 105.63,
+      "IEF": 97.96,
+      "GLD": 125.63,
+      "equalWeight": 109.74,
+      "simpleRP": 102.31,
+      "optimizedRP": 101.95
     },
     {
-      "date": "2006-11-08",
-      "SPY": 119.26,
-      "IEF": 103.29,
-      "GLD": 129.01,
-      "equalWeight": 117.18,
-      "simpleRP": 111.77,
-      "optimizedRP": 112.59
+      "date": "2006-07-26",
+      "SPY": 107.18,
+      "IEF": 99.88,
+      "GLD": 133.65,
+      "equalWeight": 113.57,
+      "simpleRP": 104.59,
+      "optimizedRP": 104.68
     },
     {
-      "date": "2006-12-08",
-      "SPY": 121.41,
-      "IEF": 104.1,
-      "GLD": 130.99,
-      "equalWeight": 118.83,
-      "simpleRP": 113.52,
-      "optimizedRP": 112.82
+      "date": "2006-08-24",
+      "SPY": 109.56,
+      "IEF": 101.6,
+      "GLD": 133.11,
+      "equalWeight": 114.76,
+      "simpleRP": 106.53,
+      "optimizedRP": 106.79
     },
     {
-      "date": "2007-01-11",
-      "SPY": 122.73,
-      "IEF": 103.28,
-      "GLD": 127.99,
-      "equalWeight": 118,
-      "simpleRP": 112.87,
-      "optimizedRP": 112.65
+      "date": "2006-09-25",
+      "SPY": 112.45,
+      "IEF": 103.8,
+      "GLD": 126.1,
+      "equalWeight": 114.12,
+      "simpleRP": 108.32,
+      "optimizedRP": 109.26
     },
     {
-      "date": "2007-02-12",
-      "SPY": 123.84,
-      "IEF": 103.15,
-      "GLD": 138.63,
-      "equalWeight": 121.87,
-      "simpleRP": 113.89,
-      "optimizedRP": 113.27
+      "date": "2006-10-24",
+      "SPY": 117.03,
+      "IEF": 102.29,
+      "GLD": 125.39,
+      "equalWeight": 114.9,
+      "simpleRP": 109.61,
+      "optimizedRP": 109.84
     },
     {
-      "date": "2007-03-14",
-      "SPY": 120.24,
-      "IEF": 105.61,
-      "GLD": 134.98,
-      "equalWeight": 120.28,
-      "simpleRP": 112.77,
-      "optimizedRP": 112.37
+      "date": "2006-11-22",
+      "SPY": 119.61,
+      "IEF": 104.39,
+      "GLD": 134.73,
+      "equalWeight": 119.58,
+      "simpleRP": 113.27,
+      "optimizedRP": 113.62
     },
     {
-      "date": "2007-04-13",
-      "SPY": 125.95,
-      "IEF": 104.36,
-      "GLD": 143.21,
-      "equalWeight": 124.51,
-      "simpleRP": 114.3,
-      "optimizedRP": 114.24
+      "date": "2006-12-22",
+      "SPY": 120.13,
+      "IEF": 104.37,
+      "GLD": 132.9,
+      "equalWeight": 119.13,
+      "simpleRP": 113.46,
+      "optimizedRP": 113.49
     },
     {
-      "date": "2007-05-14",
-      "SPY": 130.47,
-      "IEF": 105.21,
-      "GLD": 139.92,
-      "equalWeight": 125.2,
-      "simpleRP": 115.03,
-      "optimizedRP": 115.28
+      "date": "2007-01-26",
+      "SPY": 121.31,
+      "IEF": 103.06,
+      "GLD": 138.33,
+      "equalWeight": 120.9,
+      "simpleRP": 113.4,
+      "optimizedRP": 112.46
     },
     {
-      "date": "2007-06-13",
-      "SPY": 131.65,
-      "IEF": 102,
-      "GLD": 136.23,
-      "equalWeight": 123.29,
-      "simpleRP": 114.87,
-      "optimizedRP": 115.62
+      "date": "2007-02-27",
+      "SPY": 119.07,
+      "IEF": 105.96,
+      "GLD": 141,
+      "equalWeight": 122.01,
+      "simpleRP": 114.05,
+      "optimizedRP": 113.22
     },
     {
-      "date": "2007-07-13",
-      "SPY": 134.79,
-      "IEF": 103.27,
-      "GLD": 139.39,
-      "equalWeight": 125.82,
-      "simpleRP": 117.83,
-      "optimizedRP": 118.34
+      "date": "2007-03-28",
+      "SPY": 121.53,
+      "IEF": 105.72,
+      "GLD": 142.38,
+      "equalWeight": 123.21,
+      "simpleRP": 113.92,
+      "optimizedRP": 113.51
     },
     {
-      "date": "2007-08-13",
-      "SPY": 126.42,
-      "IEF": 105.82,
-      "GLD": 139.88,
-      "equalWeight": 124.04,
-      "simpleRP": 118.22,
-      "optimizedRP": 117.67
+      "date": "2007-04-27",
+      "SPY": 128.13,
+      "IEF": 105.62,
+      "GLD": 145.63,
+      "equalWeight": 126.46,
+      "simpleRP": 115.81,
+      "optimizedRP": 115.61
     },
     {
-      "date": "2007-09-12",
-      "SPY": 128.72,
-      "IEF": 109.46,
-      "GLD": 148.74,
-      "equalWeight": 128.97,
-      "simpleRP": 122.61,
-      "optimizedRP": 123.55
+      "date": "2007-05-29",
+      "SPY": 130.46,
+      "IEF": 104.54,
+      "GLD": 140.27,
+      "equalWeight": 125.09,
+      "simpleRP": 115.63,
+      "optimizedRP": 114.92
     },
     {
-      "date": "2007-10-11",
-      "SPY": 135.97,
-      "IEF": 108.1,
-      "GLD": 156.03,
-      "equalWeight": 133.37,
-      "simpleRP": 124.95,
-      "optimizedRP": 125.87
+      "date": "2007-06-27",
+      "SPY": 129.44,
+      "IEF": 103.64,
+      "GLD": 137.25,
+      "equalWeight": 123.44,
+      "simpleRP": 115.78,
+      "optimizedRP": 115.78
     },
     {
-      "date": "2007-11-09",
-      "SPY": 126.94,
-      "IEF": 111.76,
-      "GLD": 173.49,
-      "equalWeight": 137.4,
-      "simpleRP": 129.43,
-      "optimizedRP": 128.36
+      "date": "2007-07-27",
+      "SPY": 124.88,
+      "IEF": 106.3,
+      "GLD": 141,
+      "equalWeight": 124.06,
+      "simpleRP": 117.99,
+      "optimizedRP": 117.88
     },
     {
-      "date": "2007-12-11",
-      "SPY": 129.36,
-      "IEF": 114.09,
-      "GLD": 166.43,
-      "equalWeight": 136.63,
-      "simpleRP": 128.14,
-      "optimizedRP": 130.18
+      "date": "2007-08-27",
+      "SPY": 126.47,
+      "IEF": 108.16,
+      "GLD": 142.23,
+      "equalWeight": 125.62,
+      "simpleRP": 120.03,
+      "optimizedRP": 119.13
     },
     {
-      "date": "2008-01-11",
-      "SPY": 123.23,
-      "IEF": 116.12,
-      "GLD": 187,
-      "equalWeight": 142.11,
-      "simpleRP": 131.91,
-      "optimizedRP": 133.95
+      "date": "2007-09-26",
+      "SPY": 131.6,
+      "IEF": 108.58,
+      "GLD": 155.21,
+      "equalWeight": 131.79,
+      "simpleRP": 125.06,
+      "optimizedRP": 126.33
     },
     {
-      "date": "2008-02-12",
-      "SPY": 118.69,
-      "IEF": 117.92,
-      "GLD": 188.58,
-      "equalWeight": 141.73,
-      "simpleRP": 134.06,
-      "optimizedRP": 135.62
+      "date": "2007-10-25",
+      "SPY": 131.29,
+      "IEF": 110.95,
+      "GLD": 163.89,
+      "equalWeight": 135.38,
+      "simpleRP": 127.63,
+      "optimizedRP": 128.54
     },
     {
-      "date": "2008-03-13",
-      "SPY": 115.75,
-      "IEF": 119.75,
-      "GLD": 207.6,
-      "equalWeight": 147.7,
-      "simpleRP": 140.28,
-      "optimizedRP": 144.55
+      "date": "2007-11-26",
+      "SPY": 121.88,
+      "IEF": 115.28,
+      "GLD": 175.25,
+      "equalWeight": 137.47,
+      "simpleRP": 128.68,
+      "optimizedRP": 129.04
     },
     {
-      "date": "2008-04-14",
-      "SPY": 117.46,
-      "IEF": 120.09,
-      "GLD": 192.34,
-      "equalWeight": 143.29,
-      "simpleRP": 135.83,
-      "optimizedRP": 136.45
+      "date": "2007-12-26",
+      "SPY": 130,
+      "IEF": 112.47,
+      "GLD": 175.73,
+      "equalWeight": 139.4,
+      "simpleRP": 129.27,
+      "optimizedRP": 131.58
     },
     {
-      "date": "2008-05-13",
-      "SPY": 124.13,
-      "IEF": 117.04,
-      "GLD": 180.26,
-      "equalWeight": 140.48,
-      "simpleRP": 131.75,
-      "optimizedRP": 131.8
-    },
-    {
-      "date": "2008-06-12",
-      "SPY": 118.8,
-      "IEF": 114.79,
-      "GLD": 180.71,
-      "equalWeight": 138.1,
-      "simpleRP": 127.39,
-      "optimizedRP": 128.58
-    },
-    {
-      "date": "2008-07-14",
-      "SPY": 108.98,
-      "IEF": 118.23,
-      "GLD": 202.47,
-      "equalWeight": 143.23,
-      "simpleRP": 130.75,
-      "optimizedRP": 131.87
-    },
-    {
-      "date": "2008-08-12",
-      "SPY": 114.87,
-      "IEF": 118.81,
-      "GLD": 169.98,
-      "equalWeight": 134.55,
-      "simpleRP": 127.83,
-      "optimizedRP": 127.8
-    },
-    {
-      "date": "2008-09-11",
-      "SPY": 111.46,
-      "IEF": 121.24,
-      "GLD": 154.27,
-      "equalWeight": 128.99,
-      "simpleRP": 124.99,
-      "optimizedRP": 124.94
-    },
-    {
-      "date": "2008-10-10",
-      "SPY": 79.04,
+      "date": "2008-01-28",
+      "SPY": 117.56,
       "IEF": 118.43,
-      "GLD": 175.68,
-      "equalWeight": 124.38,
-      "simpleRP": 120.5,
-      "optimizedRP": 121.96
+      "GLD": 197.78,
+      "equalWeight": 144.59,
+      "simpleRP": 135,
+      "optimizedRP": 138.82
     },
     {
-      "date": "2008-11-10",
-      "SPY": 82.73,
-      "IEF": 120.29,
-      "GLD": 155.33,
-      "equalWeight": 119.45,
-      "simpleRP": 121.51,
+      "date": "2008-02-27",
+      "SPY": 120.15,
+      "IEF": 117.33,
+      "GLD": 204.31,
+      "equalWeight": 147.27,
+      "simpleRP": 138,
+      "optimizedRP": 139.31
+    },
+    {
+      "date": "2008-03-28",
+      "SPY": 114.88,
+      "IEF": 121.37,
+      "GLD": 198.06,
+      "equalWeight": 144.77,
+      "simpleRP": 137.42,
+      "optimizedRP": 139.04
+    },
+    {
+      "date": "2008-04-28",
+      "SPY": 121.98,
+      "IEF": 118.06,
+      "GLD": 189.03,
+      "equalWeight": 143.02,
+      "simpleRP": 134.26,
+      "optimizedRP": 134.42
+    },
+    {
+      "date": "2008-05-28",
+      "SPY": 121.69,
+      "IEF": 116.69,
+      "GLD": 192.15,
+      "equalWeight": 143.51,
+      "simpleRP": 132.6,
+      "optimizedRP": 133.06
+    },
+    {
+      "date": "2008-06-26",
+      "SPY": 112.58,
+      "IEF": 117.21,
+      "GLD": 195.32,
+      "equalWeight": 141.7,
+      "simpleRP": 130.01,
+      "optimizedRP": 130.29
+    },
+    {
+      "date": "2008-07-28",
+      "SPY": 108.55,
+      "IEF": 117.88,
+      "GLD": 197.74,
+      "equalWeight": 141.39,
+      "simpleRP": 131.05,
+      "optimizedRP": 133.12
+    },
+    {
+      "date": "2008-08-26",
+      "SPY": 111.84,
+      "IEF": 120.68,
+      "GLD": 175.1,
+      "equalWeight": 135.87,
+      "simpleRP": 128.68,
+      "optimizedRP": 128.12
+    },
+    {
+      "date": "2008-09-25",
+      "SPY": 106.66,
+      "IEF": 120.37,
+      "GLD": 186.35,
+      "equalWeight": 137.8,
+      "simpleRP": 127.85,
+      "optimizedRP": 128.35
+    },
+    {
+      "date": "2008-10-24",
+      "SPY": 76.86,
+      "IEF": 121.36,
+      "GLD": 155.66,
+      "equalWeight": 117.96,
+      "simpleRP": 121.06,
       "optimizedRP": 122.62
     },
     {
-      "date": "2008-12-10",
-      "SPY": 80.48,
-      "IEF": 130.45,
-      "GLD": 168.36,
-      "equalWeight": 126.43,
-      "simpleRP": 131.17,
-      "optimizedRP": 131.44
+      "date": "2008-11-24",
+      "SPY": 75.08,
+      "IEF": 125.39,
+      "GLD": 174.41,
+      "equalWeight": 124.96,
+      "simpleRP": 127.81,
+      "optimizedRP": 130.11
     },
     {
-      "date": "2009-01-12",
-      "SPY": 78.29,
-      "IEF": 134.1,
-      "GLD": 170.49,
-      "equalWeight": 127.63,
-      "simpleRP": 134.08,
-      "optimizedRP": 133.18
+      "date": "2008-12-24",
+      "SPY": 77.14,
+      "IEF": 135.5,
+      "GLD": 179.91,
+      "equalWeight": 130.85,
+      "simpleRP": 137.44,
+      "optimizedRP": 137.57
     },
     {
-      "date": "2009-02-11",
-      "SPY": 75.27,
-      "IEF": 130.52,
-      "GLD": 194.83,
-      "equalWeight": 133.54,
-      "simpleRP": 136.55,
-      "optimizedRP": 136.83
+      "date": "2009-01-27",
+      "SPY": 75.25,
+      "IEF": 132.57,
+      "GLD": 190.52,
+      "equalWeight": 132.78,
+      "simpleRP": 136.28,
+      "optimizedRP": 135.84
     },
     {
-      "date": "2009-03-13",
-      "SPY": 68.51,
-      "IEF": 129.99,
-      "GLD": 192.74,
-      "equalWeight": 130.41,
-      "simpleRP": 133.83,
-      "optimizedRP": 135.91
+      "date": "2009-02-26",
+      "SPY": 67.32,
+      "IEF": 129.1,
+      "GLD": 200.6,
+      "equalWeight": 132.34,
+      "simpleRP": 134.25,
+      "optimizedRP": 135.84
     },
     {
-      "date": "2009-04-14",
-      "SPY": 76.49,
-      "IEF": 131.88,
-      "GLD": 184.44,
-      "equalWeight": 130.94,
-      "simpleRP": 135.87,
-      "optimizedRP": 136
+      "date": "2009-03-27",
+      "SPY": 73.17,
+      "IEF": 132.47,
+      "GLD": 195.49,
+      "equalWeight": 133.71,
+      "simpleRP": 137.87,
+      "optimizedRP": 140.94
     },
     {
-      "date": "2009-05-13",
-      "SPY": 80.42,
-      "IEF": 129.47,
-      "GLD": 192.29,
-      "equalWeight": 134.06,
-      "simpleRP": 138.17,
-      "optimizedRP": 137.81
+      "date": "2009-04-28",
+      "SPY": 76.72,
+      "IEF": 130.54,
+      "GLD": 189.16,
+      "equalWeight": 132.14,
+      "simpleRP": 136.85,
+      "optimizedRP": 135.49
     },
     {
-      "date": "2009-06-12",
-      "SPY": 86.22,
-      "IEF": 123.35,
-      "GLD": 194.57,
-      "equalWeight": 134.72,
-      "simpleRP": 135.99,
-      "optimizedRP": 134.49
+      "date": "2009-05-28",
+      "SPY": 81.52,
+      "IEF": 125.5,
+      "GLD": 203.15,
+      "equalWeight": 136.72,
+      "simpleRP": 139.61,
+      "optimizedRP": 140.01
     },
     {
-      "date": "2009-07-14",
-      "SPY": 82.63,
+      "date": "2009-06-26",
+      "SPY": 82.81,
+      "IEF": 126.28,
+      "GLD": 198.94,
+      "equalWeight": 136.01,
+      "simpleRP": 137.54,
+      "optimizedRP": 138.83
+    },
+    {
+      "date": "2009-07-28",
+      "SPY": 88.26,
+      "IEF": 125.4,
+      "GLD": 198.56,
+      "equalWeight": 137.41,
+      "simpleRP": 140.05,
+      "optimizedRP": 140.88
+    },
+    {
+      "date": "2009-08-26",
+      "SPY": 93.02,
+      "IEF": 127.91,
+      "GLD": 200.02,
+      "equalWeight": 140.32,
+      "simpleRP": 140.86,
+      "optimizedRP": 141.12
+    },
+    {
+      "date": "2009-09-25",
+      "SPY": 94.62,
+      "IEF": 129.41,
+      "GLD": 209.1,
+      "equalWeight": 144.38,
+      "simpleRP": 144.26,
+      "optimizedRP": 142.31
+    },
+    {
+      "date": "2009-10-26",
+      "SPY": 96.85,
+      "IEF": 127.66,
+      "GLD": 219.57,
+      "equalWeight": 148.03,
+      "simpleRP": 144.22,
+      "optimizedRP": 144.76
+    },
+    {
+      "date": "2009-11-24",
+      "SPY": 100.55,
+      "IEF": 130.86,
+      "GLD": 247.32,
+      "equalWeight": 159.57,
+      "simpleRP": 151.71,
+      "optimizedRP": 150.8
+    },
+    {
+      "date": "2009-12-24",
+      "SPY": 102.45,
       "IEF": 126.68,
-      "GLD": 191.7,
-      "equalWeight": 133.67,
-      "simpleRP": 136.99,
-      "optimizedRP": 138.57
+      "GLD": 233.58,
+      "equalWeight": 154.24,
+      "simpleRP": 141.31,
+      "optimizedRP": 139.01
     },
     {
-      "date": "2009-08-12",
-      "SPY": 91.93,
-      "IEF": 124.68,
-      "GLD": 196.22,
-      "equalWeight": 137.61,
-      "simpleRP": 138.65,
-      "optimizedRP": 140.09
+      "date": "2010-01-27",
+      "SPY": 100.03,
+      "IEF": 128.83,
+      "GLD": 229.64,
+      "equalWeight": 152.83,
+      "simpleRP": 139.26,
+      "optimizedRP": 141.91
     },
     {
-      "date": "2009-09-11",
-      "SPY": 95.55,
-      "IEF": 128.52,
-      "GLD": 208.53,
-      "equalWeight": 144.2,
-      "simpleRP": 145.51,
-      "optimizedRP": 143.52
+      "date": "2010-02-26",
+      "SPY": 100.86,
+      "IEF": 129.71,
+      "GLD": 235.89,
+      "equalWeight": 155.49,
+      "simpleRP": 140.11,
+      "optimizedRP": 142.53
     },
     {
-      "date": "2009-10-12",
-      "SPY": 98.67,
-      "IEF": 128.97,
-      "GLD": 218.62,
-      "equalWeight": 148.75,
-      "simpleRP": 144.96,
-      "optimizedRP": 143.57
-    },
-    {
-      "date": "2009-11-10",
-      "SPY": 100.42,
-      "IEF": 128.41,
-      "GLD": 228.82,
-      "equalWeight": 152.55,
-      "simpleRP": 146.88,
-      "optimizedRP": 147.4
-    },
-    {
-      "date": "2009-12-10",
-      "SPY": 101.38,
-      "IEF": 128.98,
-      "GLD": 233.95,
-      "equalWeight": 154.77,
-      "simpleRP": 143.95,
-      "optimizedRP": 140.5
-    },
-    {
-      "date": "2010-01-12",
-      "SPY": 104.71,
-      "IEF": 127.15,
-      "GLD": 233.25,
-      "equalWeight": 155.04,
-      "simpleRP": 140.58,
-      "optimizedRP": 137.95
-    },
-    {
-      "date": "2010-02-11",
-      "SPY": 99.62,
-      "IEF": 127.93,
-      "GLD": 226.16,
-      "equalWeight": 151.23,
-      "simpleRP": 137.35,
-      "optimizedRP": 138.61
-    },
-    {
-      "date": "2010-03-15",
-      "SPY": 106.4,
-      "IEF": 128.6,
-      "GLD": 228.75,
-      "equalWeight": 154.58,
-      "simpleRP": 140.64,
-      "optimizedRP": 141.15
-    },
-    {
-      "date": "2010-04-14",
-      "SPY": 112.11,
-      "IEF": 127.68,
-      "GLD": 238.61,
-      "equalWeight": 159.47,
-      "simpleRP": 144.32,
-      "optimizedRP": 145.88
-    },
-    {
-      "date": "2010-05-13",
+      "date": "2010-03-29",
       "SPY": 107.3,
-      "IEF": 131.09,
-      "GLD": 254.51,
-      "equalWeight": 164.3,
-      "simpleRP": 154.34,
-      "optimizedRP": 160.14
+      "IEF": 127.91,
+      "GLD": 234.43,
+      "equalWeight": 156.54,
+      "simpleRP": 141.9,
+      "optimizedRP": 140.7
     },
     {
-      "date": "2010-06-14",
+      "date": "2010-04-28",
+      "SPY": 109.18,
+      "IEF": 129.46,
+      "GLD": 246.41,
+      "equalWeight": 161.68,
+      "simpleRP": 146.65,
+      "optimizedRP": 152.18
+    },
+    {
+      "date": "2010-05-27",
       "SPY": 101.3,
-      "IEF": 134.29,
-      "GLD": 252.48,
-      "equalWeight": 162.69,
-      "simpleRP": 159.27,
-      "optimizedRP": 166.48
+      "IEF": 133.68,
+      "GLD": 255.85,
+      "equalWeight": 163.61,
+      "simpleRP": 157.2,
+      "optimizedRP": 165.52
     },
     {
-      "date": "2010-07-14",
-      "SPY": 101.91,
-      "IEF": 136.81,
-      "GLD": 249.74,
-      "equalWeight": 162.82,
-      "simpleRP": 158.21,
-      "optimizedRP": 158.34
+      "date": "2010-06-28",
+      "SPY": 98.81,
+      "IEF": 137.59,
+      "GLD": 261.03,
+      "equalWeight": 165.81,
+      "simpleRP": 163.25,
+      "optimizedRP": 167.46
     },
     {
-      "date": "2010-08-12",
-      "SPY": 100.97,
-      "IEF": 141.26,
-      "GLD": 250.73,
-      "equalWeight": 164.32,
-      "simpleRP": 161,
-      "optimizedRP": 165.72
+      "date": "2010-07-28",
+      "SPY": 101.84,
+      "IEF": 138.54,
+      "GLD": 245.27,
+      "equalWeight": 161.88,
+      "simpleRP": 157.94,
+      "optimizedRP": 161.11
     },
     {
-      "date": "2010-09-13",
-      "SPY": 104.77,
-      "IEF": 141.02,
-      "GLD": 256.74,
-      "equalWeight": 167.51,
-      "simpleRP": 165.26,
-      "optimizedRP": 182.38
+      "date": "2010-08-26",
+      "SPY": 96.7,
+      "IEF": 144.26,
+      "GLD": 260.75,
+      "equalWeight": 167.23,
+      "simpleRP": 163.99,
+      "optimizedRP": 174.26
     },
     {
-      "date": "2010-10-12",
-      "SPY": 109.34,
-      "IEF": 145.06,
-      "GLD": 278.57,
-      "equalWeight": 177.66,
-      "simpleRP": 181.9,
-      "optimizedRP": 177.88
+      "date": "2010-09-27",
+      "SPY": 105.57,
+      "IEF": 144.37,
+      "GLD": 273.16,
+      "equalWeight": 174.37,
+      "simpleRP": 178.85,
+      "optimizedRP": 187.47
     },
     {
-      "date": "2010-11-10",
-      "SPY": 114.09,
-      "IEF": 144.19,
-      "GLD": 289.72,
-      "equalWeight": 182.67,
-      "simpleRP": 172.28,
-      "optimizedRP": 161.88
+      "date": "2010-10-26",
+      "SPY": 109.68,
+      "IEF": 143.67,
+      "GLD": 282.13,
+      "equalWeight": 178.49,
+      "simpleRP": 175.81,
+      "optimizedRP": 166.02
     },
     {
-      "date": "2010-12-10",
-      "SPY": 116.32,
-      "IEF": 136.56,
-      "GLD": 285.86,
-      "equalWeight": 179.58,
-      "simpleRP": 164.48,
-      "optimizedRP": 165.02
+      "date": "2010-11-24",
+      "SPY": 111.04,
+      "IEF": 141.85,
+      "GLD": 289.24,
+      "equalWeight": 180.71,
+      "simpleRP": 167.29,
+      "optimizedRP": 166.36
     },
     {
-      "date": "2011-01-11",
-      "SPY": 119.7,
-      "IEF": 137.36,
-      "GLD": 284.8,
-      "equalWeight": 180.62,
-      "simpleRP": 164.17,
-      "optimizedRP": 163.78
+      "date": "2010-12-27",
+      "SPY": 116.69,
+      "IEF": 137.61,
+      "GLD": 291.05,
+      "equalWeight": 181.79,
+      "simpleRP": 164.71,
+      "optimizedRP": 167.06
     },
     {
-      "date": "2011-02-10",
-      "SPY": 124.29,
-      "IEF": 134.14,
-      "GLD": 280.45,
-      "equalWeight": 179.63,
-      "simpleRP": 167.97,
-      "optimizedRP": 169.02
+      "date": "2011-01-26",
+      "SPY": 120.42,
+      "IEF": 137.48,
+      "GLD": 282.73,
+      "equalWeight": 180.21,
+      "simpleRP": 165.84,
+      "optimizedRP": 163.81
     },
     {
-      "date": "2011-03-14",
-      "SPY": 122.16,
+      "date": "2011-02-25",
+      "SPY": 122.89,
       "IEF": 137.85,
-      "GLD": 293.14,
-      "equalWeight": 184.38,
-      "simpleRP": 172.88,
-      "optimizedRP": 180.75
+      "GLD": 296.14,
+      "equalWeight": 185.63,
+      "simpleRP": 172.33,
+      "optimizedRP": 180.72
     },
     {
-      "date": "2011-04-12",
-      "SPY": 124.03,
-      "IEF": 136.76,
-      "GLD": 298.94,
-      "equalWeight": 186.58,
-      "simpleRP": 174.37,
-      "optimizedRP": 178.55
+      "date": "2011-03-28",
+      "SPY": 122.17,
+      "IEF": 137.86,
+      "GLD": 298.64,
+      "equalWeight": 186.22,
+      "simpleRP": 173.94,
+      "optimizedRP": 182.28
     },
     {
-      "date": "2011-05-12",
-      "SPY": 127.44,
-      "IEF": 140.57,
-      "GLD": 309.46,
-      "equalWeight": 192.49,
-      "simpleRP": 175.42,
-      "optimizedRP": 169.45
+      "date": "2011-04-27",
+      "SPY": 126.54,
+      "IEF": 139.3,
+      "GLD": 321.62,
+      "equalWeight": 195.82,
+      "simpleRP": 186.33,
+      "optimizedRP": 184.51
     },
     {
-      "date": "2011-06-13",
-      "SPY": 120.47,
-      "IEF": 143.83,
-      "GLD": 311.95,
-      "equalWeight": 192.08,
-      "simpleRP": 174.22,
-      "optimizedRP": 181.68
+      "date": "2011-05-26",
+      "SPY": 124.05,
+      "IEF": 143.42,
+      "GLD": 319.51,
+      "equalWeight": 195.66,
+      "simpleRP": 177.4,
+      "optimizedRP": 178.03
     },
     {
-      "date": "2011-07-13",
-      "SPY": 125,
-      "IEF": 145.47,
-      "GLD": 325.4,
-      "equalWeight": 198.62,
-      "simpleRP": 184.05,
-      "optimizedRP": 196.82
+      "date": "2011-06-27",
+      "SPY": 119.92,
+      "IEF": 145.6,
+      "GLD": 314.14,
+      "equalWeight": 193.22,
+      "simpleRP": 176.86,
+      "optimizedRP": 186.51
     },
     {
-      "date": "2011-08-11",
-      "SPY": 111.24,
-      "IEF": 151.9,
-      "GLD": 360.46,
-      "equalWeight": 207.87,
-      "simpleRP": 209.78,
-      "optimizedRP": 211.67
+      "date": "2011-07-27",
+      "SPY": 122.42,
+      "IEF": 145.38,
+      "GLD": 338.84,
+      "equalWeight": 202.21,
+      "simpleRP": 190.15,
+      "optimizedRP": 201.07
     },
     {
-      "date": "2011-09-12",
-      "SPY": 110.61,
-      "IEF": 156.56,
-      "GLD": 372.96,
-      "equalWeight": 213.38,
-      "simpleRP": 199.06,
-      "optimizedRP": 192.62
+      "date": "2011-08-25",
+      "SPY": 108.99,
+      "IEF": 154.3,
+      "GLD": 371.55,
+      "equalWeight": 211.61,
+      "simpleRP": 204.87,
+      "optimizedRP": 200.36
     },
     {
-      "date": "2011-10-11",
-      "SPY": 114.07,
-      "IEF": 153.89,
-      "GLD": 342.2,
-      "equalWeight": 203.39,
-      "simpleRP": 187,
-      "optimizedRP": 187.27
-    },
-    {
-      "date": "2011-11-09",
-      "SPY": 117.37,
-      "IEF": 156.98,
-      "GLD": 363.25,
-      "equalWeight": 212.53,
-      "simpleRP": 190.67,
-      "optimizedRP": 210.19
-    },
-    {
-      "date": "2011-12-09",
-      "SPY": 120.13,
-      "IEF": 156.38,
-      "GLD": 351.28,
-      "equalWeight": 209.26,
-      "simpleRP": 192.34,
-      "optimizedRP": 199.95
-    },
-    {
-      "date": "2012-01-11",
-      "SPY": 123.91,
-      "IEF": 158.68,
-      "GLD": 337.07,
-      "equalWeight": 206.55,
-      "simpleRP": 190.59,
-      "optimizedRP": 189.32
-    },
-    {
-      "date": "2012-02-10",
-      "SPY": 128.86,
-      "IEF": 158.7,
-      "GLD": 352.84,
-      "equalWeight": 213.46,
-      "simpleRP": 188.4,
-      "optimizedRP": 190.42
-    },
-    {
-      "date": "2012-03-13",
-      "SPY": 134.32,
-      "IEF": 156.91,
-      "GLD": 342.62,
-      "equalWeight": 211.29,
-      "simpleRP": 181.53,
-      "optimizedRP": 181.71
-    },
-    {
-      "date": "2012-04-12",
-      "SPY": 133.69,
-      "IEF": 158.11,
-      "GLD": 343.47,
-      "equalWeight": 211.75,
-      "simpleRP": 183.16,
-      "optimizedRP": 193.37
-    },
-    {
-      "date": "2012-05-11",
-      "SPY": 130.63,
-      "IEF": 161.3,
-      "GLD": 324.17,
-      "equalWeight": 205.37,
-      "simpleRP": 182.41,
-      "optimizedRP": 190.08
-    },
-    {
-      "date": "2012-06-12",
-      "SPY": 128.03,
-      "IEF": 163.4,
-      "GLD": 330.29,
-      "equalWeight": 207.24,
-      "simpleRP": 190.24,
-      "optimizedRP": 195.21
-    },
-    {
-      "date": "2012-07-12",
-      "SPY": 129.27,
-      "IEF": 165.94,
-      "GLD": 322.12,
-      "equalWeight": 205.78,
-      "simpleRP": 187.96,
-      "optimizedRP": 191.91
-    },
-    {
-      "date": "2012-08-10",
-      "SPY": 136.37,
-      "IEF": 164.39,
-      "GLD": 331.81,
-      "equalWeight": 210.86,
-      "simpleRP": 193.54,
-      "optimizedRP": 202.87
-    },
-    {
-      "date": "2012-09-11",
-      "SPY": 139.34,
-      "IEF": 164.33,
-      "GLD": 354.44,
-      "equalWeight": 219.37,
-      "simpleRP": 198.35,
-      "optimizedRP": 199.5
-    },
-    {
-      "date": "2012-10-10",
-      "SPY": 139.47,
-      "IEF": 164.9,
-      "GLD": 360.65,
-      "equalWeight": 221.67,
-      "simpleRP": 206.18,
-      "optimizedRP": 206.57
-    },
-    {
-      "date": "2012-11-12",
-      "SPY": 134.59,
-      "IEF": 166.37,
-      "GLD": 353.49,
-      "equalWeight": 218.15,
-      "simpleRP": 200.6,
-      "optimizedRP": 206.47
-    },
-    {
-      "date": "2012-12-12",
-      "SPY": 139.69,
-      "IEF": 165.4,
-      "GLD": 349.95,
-      "equalWeight": 218.35,
-      "simpleRP": 202.58,
-      "optimizedRP": 203.11
-    },
-    {
-      "date": "2013-01-14",
-      "SPY": 144.08,
-      "IEF": 163.78,
-      "GLD": 341.02,
-      "equalWeight": 216.29,
-      "simpleRP": 202.08,
-      "optimizedRP": 206.15
-    },
-    {
-      "date": "2013-02-13",
-      "SPY": 149.15,
-      "IEF": 162.19,
-      "GLD": 335.76,
-      "equalWeight": 215.7,
-      "simpleRP": 200.68,
-      "optimizedRP": 207.29
-    },
-    {
-      "date": "2013-03-15",
-      "SPY": 153.44,
-      "IEF": 163.32,
-      "GLD": 325.1,
-      "equalWeight": 213.95,
-      "simpleRP": 197.51,
-      "optimizedRP": 200.65
-    },
-    {
-      "date": "2013-04-16",
-      "SPY": 155,
-      "IEF": 166.74,
-      "GLD": 280.35,
-      "equalWeight": 200.69,
-      "simpleRP": 177.88,
-      "optimizedRP": 174.56
-    },
-    {
-      "date": "2013-05-15",
-      "SPY": 163.57,
-      "IEF": 164.8,
-      "GLD": 284.21,
-      "equalWeight": 204.2,
-      "simpleRP": 178.55,
-      "optimizedRP": 179.34
-    },
-    {
-      "date": "2013-06-14",
-      "SPY": 160.68,
-      "IEF": 162.48,
-      "GLD": 283.79,
+      "date": "2011-09-26",
+      "SPY": 109.52,
+      "IEF": 157.77,
+      "GLD": 339.69,
       "equalWeight": 202.32,
-      "simpleRP": 177.32,
-      "optimizedRP": 183.39
+      "simpleRP": 187.97,
+      "optimizedRP": 182.77
     },
     {
-      "date": "2013-07-16",
-      "SPY": 165.83,
+      "date": "2011-10-25",
+      "SPY": 115.94,
+      "IEF": 155.74,
+      "GLD": 356.95,
+      "equalWeight": 209.54,
+      "simpleRP": 190.76,
+      "optimizedRP": 193.09
+    },
+    {
+      "date": "2011-11-23",
+      "SPY": 109.82,
+      "IEF": 158.83,
+      "GLD": 355.31,
+      "equalWeight": 207.99,
+      "simpleRP": 190.77,
+      "optimizedRP": 202.48
+    },
+    {
+      "date": "2011-12-23",
+      "SPY": 119.84,
       "IEF": 157.88,
-      "GLD": 263.65,
-      "equalWeight": 195.78,
-      "simpleRP": 177.37,
-      "optimizedRP": 177.71
-    },
-    {
-      "date": "2013-08-14",
-      "SPY": 167.03,
-      "IEF": 156.35,
-      "GLD": 272.32,
-      "equalWeight": 198.57,
-      "simpleRP": 179.4,
-      "optimizedRP": 178.68
-    },
-    {
-      "date": "2013-09-13",
-      "SPY": 167.62,
-      "IEF": 154.25,
-      "GLD": 269.83,
-      "equalWeight": 197.23,
-      "simpleRP": 177.02,
-      "optimizedRP": 175.59
-    },
-    {
-      "date": "2013-10-14",
-      "SPY": 170.04,
-      "IEF": 157.01,
-      "GLD": 259.3,
-      "equalWeight": 195.45,
-      "simpleRP": 177.33,
-      "optimizedRP": 174.51
-    },
-    {
-      "date": "2013-11-12",
-      "SPY": 176.02,
-      "IEF": 157.01,
-      "GLD": 258.5,
-      "equalWeight": 197.18,
-      "simpleRP": 179.44,
-      "optimizedRP": 182.04
-    },
-    {
-      "date": "2013-12-12",
-      "SPY": 177.19,
-      "IEF": 156.42,
-      "GLD": 249.72,
-      "equalWeight": 194.44,
-      "simpleRP": 176.92,
-      "optimizedRP": 176.61
-    },
-    {
-      "date": "2014-01-14",
-      "SPY": 183.69,
-      "IEF": 156.71,
-      "GLD": 253.09,
-      "equalWeight": 197.83,
-      "simpleRP": 182,
-      "optimizedRP": 182.61
-    },
-    {
-      "date": "2014-02-13",
-      "SPY": 183.03,
-      "IEF": 159.12,
-      "GLD": 264.91,
-      "equalWeight": 202.35,
-      "simpleRP": 183.98,
-      "optimizedRP": 187.37
-    },
-    {
-      "date": "2014-03-17",
-      "SPY": 186.35,
-      "IEF": 159.62,
-      "GLD": 277.9,
-      "equalWeight": 207.96,
-      "simpleRP": 190,
-      "optimizedRP": 192.05
-    },
-    {
-      "date": "2014-04-15",
-      "SPY": 185.03,
-      "IEF": 160.66,
-      "GLD": 264.91,
-      "equalWeight": 203.54,
-      "simpleRP": 187.36,
-      "optimizedRP": 188.2
-    },
-    {
-      "date": "2014-05-15",
-      "SPY": 188.25,
-      "IEF": 162.8,
-      "GLD": 263.39,
-      "equalWeight": 204.81,
-      "simpleRP": 189.46,
-      "optimizedRP": 190.76
-    },
-    {
-      "date": "2014-06-16",
-      "SPY": 195.17,
-      "IEF": 161.68,
-      "GLD": 258.43,
-      "equalWeight": 205.09,
-      "simpleRP": 189.16,
-      "optimizedRP": 192.34
-    },
-    {
-      "date": "2014-07-16",
-      "SPY": 199.81,
-      "IEF": 162.88,
-      "GLD": 263.82,
-      "equalWeight": 208.83,
-      "simpleRP": 190.89,
-      "optimizedRP": 190.39
-    },
-    {
-      "date": "2014-08-14",
-      "SPY": 197.59,
-      "IEF": 164.95,
-      "GLD": 266.65,
-      "equalWeight": 209.73,
-      "simpleRP": 192.69,
-      "optimizedRP": 195.21
-    },
-    {
-      "date": "2014-09-15",
-      "SPY": 200.84,
-      "IEF": 162.74,
-      "GLD": 250.45,
-      "equalWeight": 204.68,
-      "simpleRP": 191.05,
+      "GLD": 336.95,
+      "equalWeight": 204.89,
+      "simpleRP": 192.38,
       "optimizedRP": 191.98
     },
     {
-      "date": "2014-10-14",
-      "SPY": 190.34,
-      "IEF": 168.07,
-      "GLD": 250.35,
-      "equalWeight": 202.92,
-      "simpleRP": 193.19,
-      "optimizedRP": 195.12
+      "date": "2012-01-26",
+      "SPY": 125.04,
+      "IEF": 159.47,
+      "GLD": 360.57,
+      "equalWeight": 215.03,
+      "simpleRP": 194.11,
+      "optimizedRP": 194.22
     },
     {
-      "date": "2014-11-12",
-      "SPY": 206.83,
-      "IEF": 166.16,
-      "GLD": 235.38,
-      "equalWeight": 202.79,
-      "simpleRP": 188.82,
-      "optimizedRP": 187.21
+      "date": "2012-02-27",
+      "SPY": 130.05,
+      "IEF": 159.89,
+      "GLD": 370.12,
+      "equalWeight": 220.02,
+      "simpleRP": 192.09,
+      "optimizedRP": 198.79
     },
     {
-      "date": "2014-12-12",
-      "SPY": 203.71,
-      "IEF": 170.1,
-      "GLD": 247.86,
-      "equalWeight": 207.22,
-      "simpleRP": 190.7,
-      "optimizedRP": 192.38
-    },
-    {
-      "date": "2015-01-14",
-      "SPY": 204.81,
-      "IEF": 173.44,
-      "GLD": 249.04,
-      "equalWeight": 209.09,
-      "simpleRP": 193.38,
-      "optimizedRP": 197.57
-    },
-    {
-      "date": "2015-02-13",
-      "SPY": 213.9,
-      "IEF": 170.9,
-      "GLD": 249.06,
-      "equalWeight": 211.29,
-      "simpleRP": 197.27,
-      "optimizedRP": 200.67
-    },
-    {
-      "date": "2015-03-17",
-      "SPY": 212.05,
-      "IEF": 171.12,
-      "GLD": 232.66,
-      "equalWeight": 205.28,
-      "simpleRP": 196,
-      "optimizedRP": 198.07
-    },
-    {
-      "date": "2015-04-16",
-      "SPY": 215.46,
-      "IEF": 173.98,
-      "GLD": 242.83,
-      "equalWeight": 210.76,
-      "simpleRP": 201.71,
-      "optimizedRP": 201.52
-    },
-    {
-      "date": "2015-05-15",
-      "SPY": 217.58,
-      "IEF": 170.99,
-      "GLD": 248.11,
-      "equalWeight": 212.23,
-      "simpleRP": 202.01,
-      "optimizedRP": 202.21
-    },
-    {
-      "date": "2015-06-16",
-      "SPY": 215.34,
-      "IEF": 168.82,
-      "GLD": 239.22,
-      "equalWeight": 207.79,
-      "simpleRP": 199.34,
-      "optimizedRP": 203.08
-    },
-    {
-      "date": "2015-07-16",
-      "SPY": 218.5,
-      "IEF": 168.82,
-      "GLD": 231.71,
-      "equalWeight": 206.34,
-      "simpleRP": 200.77,
-      "optimizedRP": 203.32
-    },
-    {
-      "date": "2015-08-14",
-      "SPY": 215.53,
-      "IEF": 171.03,
-      "GLD": 225.56,
-      "equalWeight": 204.04,
-      "simpleRP": 199.02,
-      "optimizedRP": 198.35
-    },
-    {
-      "date": "2015-09-15",
-      "SPY": 204.25,
-      "IEF": 170.62,
-      "GLD": 223.56,
-      "equalWeight": 199.48,
-      "simpleRP": 191.99,
-      "optimizedRP": 192.24
-    },
-    {
-      "date": "2015-10-14",
-      "SPY": 206.17,
-      "IEF": 175.16,
-      "GLD": 240.26,
-      "equalWeight": 207.2,
-      "simpleRP": 196.52,
-      "optimizedRP": 196.73
-    },
-    {
-      "date": "2015-11-12",
-      "SPY": 211.91,
-      "IEF": 170.43,
-      "GLD": 219.23,
-      "equalWeight": 200.53,
-      "simpleRP": 188.99,
-      "optimizedRP": 191.04
-    },
-    {
-      "date": "2015-12-14",
-      "SPY": 209.91,
-      "IEF": 171.93,
-      "GLD": 214.88,
-      "equalWeight": 198.91,
-      "simpleRP": 189.73,
-      "optimizedRP": 191.69
-    },
-    {
-      "date": "2016-01-14",
-      "SPY": 199.74,
-      "IEF": 174.35,
-      "GLD": 217.48,
-      "equalWeight": 197.19,
-      "simpleRP": 189.03,
-      "optimizedRP": 188.64
-    },
-    {
-      "date": "2016-02-16",
-      "SPY": 197.5,
-      "IEF": 179.09,
-      "GLD": 242.28,
-      "equalWeight": 206.29,
-      "simpleRP": 194.97,
-      "optimizedRP": 193.75
-    },
-    {
-      "date": "2016-03-16",
-      "SPY": 211.61,
-      "IEF": 177.36,
-      "GLD": 254.57,
+      "date": "2012-03-27",
+      "SPY": 134.44,
+      "IEF": 157.19,
+      "GLD": 351.89,
       "equalWeight": 214.51,
-      "simpleRP": 197.94,
-      "optimizedRP": 198.05
+      "simpleRP": 181.51,
+      "optimizedRP": 186.55
     },
     {
-      "date": "2016-04-15",
-      "SPY": 217.35,
-      "IEF": 180.12,
-      "GLD": 248.93,
-      "equalWeight": 215.47,
-      "simpleRP": 199.76,
-      "optimizedRP": 200.99
+      "date": "2012-04-26",
+      "SPY": 133.48,
+      "IEF": 160.42,
+      "GLD": 347.12,
+      "equalWeight": 213.67,
+      "simpleRP": 187.21,
+      "optimizedRP": 200.46
     },
     {
-      "date": "2016-05-16",
-      "SPY": 216.3,
-      "IEF": 180.27,
-      "GLD": 257.12,
-      "equalWeight": 217.9,
-      "simpleRP": 202.43,
-      "optimizedRP": 202.75
+      "date": "2012-05-25",
+      "SPY": 125.8,
+      "IEF": 163.28,
+      "GLD": 329.12,
+      "equalWeight": 206.07,
+      "simpleRP": 189.5,
+      "optimizedRP": 187.85
     },
     {
-      "date": "2016-06-15",
-      "SPY": 217.32,
-      "IEF": 182.98,
-      "GLD": 261.09,
-      "equalWeight": 220.46,
-      "simpleRP": 205.77,
-      "optimizedRP": 207.28
+      "date": "2012-06-26",
+      "SPY": 126.34,
+      "IEF": 164.66,
+      "GLD": 328.99,
+      "equalWeight": 206.66,
+      "simpleRP": 191.06,
+      "optimizedRP": 196.27
     },
     {
-      "date": "2016-07-15",
-      "SPY": 226.94,
-      "IEF": 183.13,
-      "GLD": 267.76,
-      "equalWeight": 225.95,
-      "simpleRP": 209.93,
-      "optimizedRP": 210.94
+      "date": "2012-07-26",
+      "SPY": 130.35,
+      "IEF": 167.34,
+      "GLD": 337.94,
+      "equalWeight": 211.88,
+      "simpleRP": 192.15,
+      "optimizedRP": 198.91
     },
     {
-      "date": "2016-08-15",
-      "SPY": 230.37,
-      "IEF": 183.6,
-      "GLD": 269.88,
-      "equalWeight": 227.95,
-      "simpleRP": 211.84,
-      "optimizedRP": 214.5
+      "date": "2012-08-24",
+      "SPY": 135.46,
+      "IEF": 165.01,
+      "GLD": 349.15,
+      "equalWeight": 216.54,
+      "simpleRP": 198.14,
+      "optimizedRP": 202.14
     },
     {
-      "date": "2016-09-14",
-      "SPY": 224.13,
-      "IEF": 182.04,
-      "GLD": 266.37,
-      "equalWeight": 224.18,
-      "simpleRP": 209.01,
-      "optimizedRP": 209.8
+      "date": "2012-09-25",
+      "SPY": 138.68,
+      "IEF": 165.85,
+      "GLD": 368.12,
+      "equalWeight": 224.21,
+      "simpleRP": 205.84,
+      "optimizedRP": 207.15
     },
     {
-      "date": "2016-10-13",
-      "SPY": 225.11,
-      "IEF": 181.64,
-      "GLD": 253.39,
-      "equalWeight": 220.05,
-      "simpleRP": 205.69,
-      "optimizedRP": 203.35
+      "date": "2012-10-24",
+      "SPY": 135.71,
+      "IEF": 164.41,
+      "GLD": 355.38,
+      "equalWeight": 218.5,
+      "simpleRP": 201.29,
+      "optimizedRP": 205.6
     },
     {
-      "date": "2016-11-11",
-      "SPY": 228.71,
-      "IEF": 176.25,
-      "GLD": 247.2,
-      "equalWeight": 217.39,
-      "simpleRP": 204,
-      "optimizedRP": 208.34
+      "date": "2012-11-27",
+      "SPY": 135.05,
+      "IEF": 166.8,
+      "GLD": 363.68,
+      "equalWeight": 221.84,
+      "simpleRP": 204.28,
+      "optimizedRP": 208.58
     },
     {
-      "date": "2016-12-13",
-      "SPY": 240.7,
-      "IEF": 172.46,
-      "GLD": 233.16,
-      "equalWeight": 215.44,
-      "simpleRP": 204.31,
-      "optimizedRP": 208.37
+      "date": "2012-12-27",
+      "SPY": 137.2,
+      "IEF": 166.07,
+      "GLD": 347.4,
+      "equalWeight": 216.89,
+      "simpleRP": 202.73,
+      "optimizedRP": 204.15
     },
     {
-      "date": "2017-01-13",
-      "SPY": 241.36,
-      "IEF": 173.93,
-      "GLD": 241.1,
-      "equalWeight": 218.8,
-      "simpleRP": 209.96,
-      "optimizedRP": 211.68
+      "date": "2013-01-29",
+      "SPY": 146.02,
+      "IEF": 163.2,
+      "GLD": 347.04,
+      "equalWeight": 218.75,
+      "simpleRP": 201.58,
+      "optimizedRP": 210.3
     },
     {
-      "date": "2017-02-14",
-      "SPY": 248.43,
-      "IEF": 173.03,
-      "GLD": 246.84,
-      "equalWeight": 222.77,
-      "simpleRP": 214.8,
-      "optimizedRP": 217.4
+      "date": "2013-02-28",
+      "SPY": 146.94,
+      "IEF": 165.29,
+      "GLD": 329.81,
+      "equalWeight": 214.01,
+      "simpleRP": 197.98,
+      "optimizedRP": 197.27
     },
     {
-      "date": "2017-03-16",
-      "SPY": 253.51,
+      "date": "2013-04-01",
+      "SPY": 151.92,
+      "IEF": 166.2,
+      "GLD": 333.41,
+      "equalWeight": 217.18,
+      "simpleRP": 199.39,
+      "optimizedRP": 206.51
+    },
+    {
+      "date": "2013-04-30",
+      "SPY": 155.45,
+      "IEF": 168.29,
+      "GLD": 307.76,
+      "equalWeight": 210.5,
+      "simpleRP": 181.24,
+      "optimizedRP": 179.33
+    },
+    {
+      "date": "2013-05-30",
+      "SPY": 161.44,
+      "IEF": 163.51,
+      "GLD": 294.68,
+      "equalWeight": 206.54,
+      "simpleRP": 178.69,
+      "optimizedRP": 182.25
+    },
+    {
+      "date": "2013-06-28",
+      "SPY": 157,
+      "IEF": 158.91,
+      "GLD": 256.76,
+      "equalWeight": 190.89,
+      "simpleRP": 170.77,
+      "optimizedRP": 171.84
+    },
+    {
+      "date": "2013-07-30",
+      "SPY": 164.99,
+      "IEF": 158.24,
+      "GLD": 276.18,
+      "equalWeight": 199.81,
+      "simpleRP": 179.11,
+      "optimizedRP": 178.81
+    },
+    {
+      "date": "2013-08-28",
+      "SPY": 160.41,
+      "IEF": 156.24,
+      "GLD": 294.7,
+      "equalWeight": 203.78,
+      "simpleRP": 181.83,
+      "optimizedRP": 185.39
+    },
+    {
+      "date": "2013-09-27",
+      "SPY": 166.11,
+      "IEF": 158.72,
+      "GLD": 278.01,
+      "equalWeight": 200.95,
+      "simpleRP": 181.43,
+      "optimizedRP": 179.14
+    },
+    {
+      "date": "2013-10-28",
+      "SPY": 173.31,
+      "IEF": 160.61,
+      "GLD": 281.44,
+      "equalWeight": 205.12,
+      "simpleRP": 183.25,
+      "optimizedRP": 182.2
+    },
+    {
+      "date": "2013-11-26",
+      "SPY": 177.69,
+      "IEF": 159.27,
+      "GLD": 258.29,
+      "equalWeight": 198.41,
+      "simpleRP": 180.53,
+      "optimizedRP": 182.51
+    },
+    {
+      "date": "2013-12-27",
+      "SPY": 181.79,
+      "IEF": 155.77,
+      "GLD": 252.47,
+      "equalWeight": 196.68,
+      "simpleRP": 179.35,
+      "optimizedRP": 178.22
+    },
+    {
+      "date": "2014-01-29",
+      "SPY": 175.36,
+      "IEF": 159.79,
+      "GLD": 264,
+      "equalWeight": 199.72,
+      "simpleRP": 183.3,
+      "optimizedRP": 184.88
+    },
+    {
+      "date": "2014-02-28",
+      "SPY": 184.2,
+      "IEF": 160.83,
+      "GLD": 275.1,
+      "equalWeight": 206.71,
+      "simpleRP": 187.61,
+      "optimizedRP": 189.65
+    },
+    {
+      "date": "2014-03-31",
+      "SPY": 185.73,
+      "IEF": 159.93,
+      "GLD": 266.46,
+      "equalWeight": 204.04,
+      "simpleRP": 188.18,
+      "optimizedRP": 188.68
+    },
+    {
+      "date": "2014-04-30",
+      "SPY": 187.02,
+      "IEF": 161.14,
+      "GLD": 267.77,
+      "equalWeight": 205.31,
+      "simpleRP": 189.66,
+      "optimizedRP": 191.54
+    },
+    {
+      "date": "2014-05-30",
+      "SPY": 191.36,
+      "IEF": 164.08,
+      "GLD": 259.6,
+      "equalWeight": 205.01,
+      "simpleRP": 190.29,
+      "optimizedRP": 190.66
+    },
+    {
+      "date": "2014-06-30",
+      "SPY": 195.31,
+      "IEF": 163.73,
+      "GLD": 276.01,
+      "equalWeight": 211.68,
+      "simpleRP": 192.23,
+      "optimizedRP": 192.55
+    },
+    {
+      "date": "2014-07-30",
+      "SPY": 196.56,
+      "IEF": 163.41,
+      "GLD": 269.09,
+      "equalWeight": 209.69,
+      "simpleRP": 192.24,
+      "optimizedRP": 194.35
+    },
+    {
+      "date": "2014-08-28",
+      "SPY": 199.72,
+      "IEF": 166.42,
+      "GLD": 267.3,
+      "equalWeight": 211.15,
+      "simpleRP": 194.02,
+      "optimizedRP": 196.98
+    },
+    {
+      "date": "2014-09-29",
+      "SPY": 198.05,
+      "IEF": 164.83,
+      "GLD": 252.27,
+      "equalWeight": 205.05,
+      "simpleRP": 191.73,
+      "optimizedRP": 194.87
+    },
+    {
+      "date": "2014-10-28",
+      "SPY": 198.92,
+      "IEF": 167.87,
+      "GLD": 254.58,
+      "equalWeight": 207.12,
+      "simpleRP": 196.4,
+      "optimizedRP": 200.11
+    },
+    {
+      "date": "2014-11-26",
+      "SPY": 208.17,
+      "IEF": 168.72,
+      "GLD": 248.24,
+      "equalWeight": 208.38,
+      "simpleRP": 191.97,
+      "optimizedRP": 191.23
+    },
+    {
+      "date": "2014-12-29",
+      "SPY": 210.41,
+      "IEF": 169.21,
+      "GLD": 245.03,
+      "equalWeight": 208.22,
+      "simpleRP": 191.3,
+      "optimizedRP": 194.15
+    },
+    {
+      "date": "2015-01-29",
+      "SPY": 203.62,
+      "IEF": 175.35,
+      "GLD": 260.31,
+      "equalWeight": 213.1,
+      "simpleRP": 197.15,
+      "optimizedRP": 201.74
+    },
+    {
+      "date": "2015-03-02",
+      "SPY": 213.7,
+      "IEF": 171.23,
+      "GLD": 249.36,
+      "equalWeight": 211.43,
+      "simpleRP": 199.98,
+      "optimizedRP": 204.71
+    },
+    {
+      "date": "2015-03-31",
+      "SPY": 209.03,
+      "IEF": 173.99,
+      "GLD": 245.01,
+      "equalWeight": 209.34,
+      "simpleRP": 200.29,
+      "optimizedRP": 201.93
+    },
+    {
+      "date": "2015-04-30",
+      "SPY": 211.08,
+      "IEF": 172.89,
+      "GLD": 244.6,
+      "equalWeight": 209.53,
+      "simpleRP": 199.74,
+      "optimizedRP": 196.81
+    },
+    {
+      "date": "2015-06-01",
+      "SPY": 214.23,
+      "IEF": 171.41,
+      "GLD": 245.74,
+      "equalWeight": 210.46,
+      "simpleRP": 200.22,
+      "optimizedRP": 201.49
+    },
+    {
+      "date": "2015-06-30",
+      "SPY": 209.46,
+      "IEF": 169.37,
+      "GLD": 242.23,
+      "equalWeight": 207.02,
+      "simpleRP": 199.87,
+      "optimizedRP": 204.03
+    },
+    {
+      "date": "2015-07-30",
+      "SPY": 214.51,
+      "IEF": 170.94,
+      "GLD": 224.77,
+      "equalWeight": 203.41,
+      "simpleRP": 198.78,
+      "optimizedRP": 196.51
+    },
+    {
+      "date": "2015-08-28",
+      "SPY": 202.77,
+      "IEF": 172.36,
+      "GLD": 234.32,
+      "equalWeight": 203.15,
+      "simpleRP": 196.02,
+      "optimizedRP": 194.07
+    },
+    {
+      "date": "2015-09-29",
+      "SPY": 192.41,
+      "IEF": 174.76,
+      "GLD": 232.77,
+      "equalWeight": 199.98,
+      "simpleRP": 192.74,
+      "optimizedRP": 194
+    },
+    {
+      "date": "2015-10-28",
+      "SPY": 213.72,
+      "IEF": 174.41,
+      "GLD": 238.8,
+      "equalWeight": 208.97,
+      "simpleRP": 197,
+      "optimizedRP": 199.55
+    },
+    {
+      "date": "2015-11-27",
+      "SPY": 214.34,
       "IEF": 172.87,
-      "GLD": 246.42,
-      "equalWeight": 224.27,
-      "simpleRP": 216.98,
-      "optimizedRP": 220.31
+      "GLD": 218.26,
+      "equalWeight": 201.82,
+      "simpleRP": 191.63,
+      "optimizedRP": 191.44
     },
     {
-      "date": "2017-04-17",
-      "SPY": 250.44,
-      "IEF": 176.98,
-      "GLD": 258.05,
-      "equalWeight": 228.49,
-      "simpleRP": 218.89,
-      "optimizedRP": 220.57
+      "date": "2015-12-29",
+      "SPY": 213.39,
+      "IEF": 171.89,
+      "GLD": 220.31,
+      "equalWeight": 201.86,
+      "simpleRP": 191.45,
+      "optimizedRP": 192.03
     },
     {
-      "date": "2017-05-16",
-      "SPY": 256.32,
-      "IEF": 176.4,
-      "GLD": 248.36,
-      "equalWeight": 227.03,
-      "simpleRP": 217.34,
-      "optimizedRP": 219.65
+      "date": "2016-01-29",
+      "SPY": 199.32,
+      "IEF": 177.89,
+      "GLD": 230.55,
+      "equalWeight": 202.58,
+      "simpleRP": 193.09,
+      "optimizedRP": 193.28
     },
     {
-      "date": "2017-06-15",
-      "SPY": 260.26,
-      "IEF": 178.98,
-      "GLD": 251.89,
-      "equalWeight": 230.38,
-      "simpleRP": 218.72,
-      "optimizedRP": 220.55
+      "date": "2016-03-01",
+      "SPY": 203.83,
+      "IEF": 179.12,
+      "GLD": 253.87,
+      "equalWeight": 212.27,
+      "simpleRP": 198.69,
+      "optimizedRP": 198.77
     },
     {
-      "date": "2017-07-17",
-      "SPY": 263.42,
-      "IEF": 177.38,
-      "GLD": 247.6,
-      "equalWeight": 229.47,
-      "simpleRP": 214.82,
-      "optimizedRP": 214.43
+      "date": "2016-03-31",
+      "SPY": 212.55,
+      "IEF": 180.41,
+      "GLD": 253.59,
+      "equalWeight": 215.52,
+      "simpleRP": 199.71,
+      "optimizedRP": 200.87
     },
     {
-      "date": "2017-08-15",
-      "SPY": 264.47,
-      "IEF": 178.39,
-      "GLD": 255.39,
-      "equalWeight": 232.75,
-      "simpleRP": 218.1,
-      "optimizedRP": 217.63
+      "date": "2016-04-29",
+      "SPY": 213.39,
+      "IEF": 180.13,
+      "GLD": 266.54,
+      "equalWeight": 220.02,
+      "simpleRP": 201.85,
+      "optimizedRP": 202.54
     },
     {
-      "date": "2017-09-14",
-      "SPY": 268.31,
-      "IEF": 179.64,
-      "GLD": 266.33,
+      "date": "2016-05-31",
+      "SPY": 217.02,
+      "IEF": 179.95,
+      "GLD": 250.18,
+      "equalWeight": 215.72,
+      "simpleRP": 201.73,
+      "optimizedRP": 202.37
+    },
+    {
+      "date": "2016-06-29",
+      "SPY": 214.84,
+      "IEF": 185.1,
+      "GLD": 271.27,
+      "equalWeight": 223.73,
+      "simpleRP": 208.19,
+      "optimizedRP": 208.69
+    },
+    {
+      "date": "2016-07-29",
+      "SPY": 225.71,
+      "IEF": 185.97,
+      "GLD": 278.03,
+      "equalWeight": 229.9,
+      "simpleRP": 212.83,
+      "optimizedRP": 213.44
+    },
+    {
+      "date": "2016-08-29",
+      "SPY": 227,
+      "IEF": 184.32,
+      "GLD": 272.26,
+      "equalWeight": 227.86,
+      "simpleRP": 212.23,
+      "optimizedRP": 215.67
+    },
+    {
+      "date": "2016-09-28",
+      "SPY": 226.35,
+      "IEF": 184.87,
+      "GLD": 272.08,
+      "equalWeight": 227.77,
+      "simpleRP": 213.27,
+      "optimizedRP": 213.25
+    },
+    {
+      "date": "2016-10-27",
+      "SPY": 222.73,
+      "IEF": 181.58,
+      "GLD": 260.85,
+      "equalWeight": 221.72,
+      "simpleRP": 207,
+      "optimizedRP": 206.01
+    },
+    {
+      "date": "2016-11-28",
+      "SPY": 230.36,
+      "IEF": 175.07,
+      "GLD": 245.31,
+      "equalWeight": 216.92,
+      "simpleRP": 203.24,
+      "optimizedRP": 207.68
+    },
+    {
+      "date": "2016-12-28",
+      "SPY": 235.84,
+      "IEF": 172.83,
+      "GLD": 234.66,
+      "equalWeight": 214.44,
+      "simpleRP": 204.63,
+      "optimizedRP": 206.85
+    },
+    {
+      "date": "2017-01-30",
+      "SPY": 239.15,
+      "IEF": 173.66,
+      "GLD": 245.68,
+      "equalWeight": 219.5,
+      "simpleRP": 211.02,
+      "optimizedRP": 212.9
+    },
+    {
+      "date": "2017-03-01",
+      "SPY": 252.01,
+      "IEF": 174.29,
+      "GLD": 256.65,
+      "equalWeight": 227.65,
+      "simpleRP": 218.98,
+      "optimizedRP": 221.61
+    },
+    {
+      "date": "2017-03-30",
+      "SPY": 249.42,
+      "IEF": 175.31,
+      "GLD": 255.38,
+      "equalWeight": 226.7,
+      "simpleRP": 218.39,
+      "optimizedRP": 219.22
+    },
+    {
+      "date": "2017-05-01",
+      "SPY": 251.94,
+      "IEF": 177.22,
+      "GLD": 257.97,
+      "equalWeight": 229.04,
+      "simpleRP": 219.36,
+      "optimizedRP": 219.96
+    },
+    {
+      "date": "2017-05-31",
+      "SPY": 254.85,
+      "IEF": 179.07,
+      "GLD": 260.01,
+      "equalWeight": 231.31,
+      "simpleRP": 219.06,
+      "optimizedRP": 218.37
+    },
+    {
+      "date": "2017-06-29",
+      "SPY": 256,
+      "IEF": 178.58,
+      "GLD": 255.05,
+      "equalWeight": 229.88,
+      "simpleRP": 216.39,
+      "optimizedRP": 217.11
+    },
+    {
+      "date": "2017-07-31",
+      "SPY": 261.75,
+      "IEF": 178.83,
+      "GLD": 260.29,
+      "equalWeight": 233.62,
+      "simpleRP": 219.05,
+      "optimizedRP": 222.17
+    },
+    {
+      "date": "2017-08-29",
+      "SPY": 259.71,
+      "IEF": 181.3,
+      "GLD": 268.2,
+      "equalWeight": 236.41,
+      "simpleRP": 219.32,
+      "optimizedRP": 218.01
+    },
+    {
+      "date": "2017-09-28",
+      "SPY": 266.87,
+      "IEF": 179.04,
+      "GLD": 263.44,
+      "equalWeight": 236.45,
+      "simpleRP": 221.05,
+      "optimizedRP": 225.09
+    },
+    {
+      "date": "2017-10-27",
+      "SPY": 274.71,
+      "IEF": 177.96,
+      "GLD": 260.62,
+      "equalWeight": 237.76,
+      "simpleRP": 221.27,
+      "optimizedRP": 226.04
+    },
+    {
+      "date": "2017-11-28",
+      "SPY": 280.21,
+      "IEF": 179.11,
+      "GLD": 264.73,
+      "equalWeight": 241.35,
+      "simpleRP": 228.55,
+      "optimizedRP": 226.36
+    },
+    {
+      "date": "2017-12-28",
+      "SPY": 287,
+      "IEF": 178.03,
+      "GLD": 264.82,
+      "equalWeight": 243.28,
+      "simpleRP": 227.99,
+      "optimizedRP": 230.72
+    },
+    {
+      "date": "2018-01-30",
+      "SPY": 301.88,
+      "IEF": 174.43,
+      "GLD": 273.33,
+      "equalWeight": 249.88,
+      "simpleRP": 227.43,
+      "optimizedRP": 225.77
+    },
+    {
+      "date": "2018-03-01",
+      "SPY": 286.82,
+      "IEF": 173.6,
+      "GLD": 268.85,
+      "equalWeight": 243.09,
+      "simpleRP": 214.48,
+      "optimizedRP": 214.72
+    },
+    {
+      "date": "2018-04-02",
+      "SPY": 276.96,
+      "IEF": 175.03,
+      "GLD": 274.33,
+      "equalWeight": 242.11,
+      "simpleRP": 212.72,
+      "optimizedRP": 209.85
+    },
+    {
+      "date": "2018-05-01",
+      "SPY": 285.04,
+      "IEF": 172.35,
+      "GLD": 266.67,
+      "equalWeight": 241.35,
+      "simpleRP": 209.86,
+      "optimizedRP": 213.19
+    },
+    {
+      "date": "2018-05-31",
+      "SPY": 291.45,
+      "IEF": 174.32,
+      "GLD": 265.36,
+      "equalWeight": 243.71,
+      "simpleRP": 216.9,
+      "optimizedRP": 230.71
+    },
+    {
+      "date": "2018-06-29",
+      "SPY": 293.13,
+      "IEF": 174.66,
+      "GLD": 255.77,
+      "equalWeight": 241.19,
+      "simpleRP": 221.92,
+      "optimizedRP": 224.17
+    },
+    {
+      "date": "2018-07-31",
+      "SPY": 303.99,
+      "IEF": 173.74,
+      "GLD": 250.03,
+      "equalWeight": 242.59,
+      "simpleRP": 225.65,
+      "optimizedRP": 219.83
+    },
+    {
+      "date": "2018-08-29",
+      "SPY": 314.96,
+      "IEF": 175.14,
+      "GLD": 246.17,
+      "equalWeight": 245.42,
+      "simpleRP": 221.47,
+      "optimizedRP": 217.35
+    },
+    {
+      "date": "2018-09-28",
+      "SPY": 315.56,
+      "IEF": 173.39,
+      "GLD": 243.07,
+      "equalWeight": 244.01,
+      "simpleRP": 222.07,
+      "optimizedRP": 220.81
+    },
+    {
+      "date": "2018-10-29",
+      "SPY": 286.4,
+      "IEF": 173.67,
+      "GLD": 250.72,
+      "equalWeight": 236.93,
+      "simpleRP": 208.72,
+      "optimizedRP": 208.69
+    },
+    {
+      "date": "2018-11-28",
+      "SPY": 298.04,
+      "IEF": 174.37,
+      "GLD": 248.72,
+      "equalWeight": 240.38,
+      "simpleRP": 209.39,
+      "optimizedRP": 206.88
+    },
+    {
+      "date": "2018-12-31",
+      "SPY": 272.86,
+      "IEF": 180.07,
+      "GLD": 261.37,
       "equalWeight": 238.1,
-      "simpleRP": 221.61,
-      "optimizedRP": 224.4
+      "simpleRP": 210.06,
+      "optimizedRP": 213.83
     },
     {
-      "date": "2017-10-13",
-      "SPY": 274.89,
-      "IEF": 178.74,
-      "GLD": 261.39,
-      "equalWeight": 238.34,
-      "simpleRP": 223.36,
-      "optimizedRP": 226.92
+      "date": "2019-01-31",
+      "SPY": 294.7,
+      "IEF": 181.25,
+      "GLD": 268.92,
+      "equalWeight": 248.29,
+      "simpleRP": 220.34,
+      "optimizedRP": 224.67
     },
     {
-      "date": "2017-11-13",
-      "SPY": 278.53,
-      "IEF": 177.21,
-      "GLD": 256.09,
-      "equalWeight": 237.28,
-      "simpleRP": 226.53,
-      "optimizedRP": 229.86
-    },
-    {
-      "date": "2017-12-13",
-      "SPY": 287.61,
-      "IEF": 178.15,
-      "GLD": 251.57,
-      "equalWeight": 239.11,
-      "simpleRP": 226.19,
-      "optimizedRP": 226.59
-    },
-    {
-      "date": "2018-01-16",
-      "SPY": 300.15,
-      "IEF": 175.81,
-      "GLD": 268.46,
-      "equalWeight": 248.14,
-      "simpleRP": 229.85,
-      "optimizedRP": 228.35
-    },
-    {
-      "date": "2018-02-14",
-      "SPY": 292.16,
-      "IEF": 171.24,
-      "GLD": 270.7,
-      "equalWeight": 244.7,
-      "simpleRP": 213.93,
-      "optimizedRP": 214.91
-    },
-    {
-      "date": "2018-03-16",
-      "SPY": 298.34,
-      "IEF": 172.57,
-      "GLD": 263.04,
-      "equalWeight": 244.65,
-      "simpleRP": 214.32,
-      "optimizedRP": 214.8
-    },
-    {
-      "date": "2018-04-17",
-      "SPY": 293.98,
-      "IEF": 173.24,
-      "GLD": 269.69,
-      "equalWeight": 245.63,
-      "simpleRP": 212.26,
-      "optimizedRP": 211.33
-    },
-    {
-      "date": "2018-05-16",
-      "SPY": 296.21,
-      "IEF": 169.89,
-      "GLD": 258.16,
-      "equalWeight": 241.42,
-      "simpleRP": 208.28,
-      "optimizedRP": 213.79
-    },
-    {
-      "date": "2018-06-15",
-      "SPY": 302.88,
-      "IEF": 172.62,
-      "GLD": 256.15,
-      "equalWeight": 243.89,
-      "simpleRP": 217.42,
-      "optimizedRP": 226.51
-    },
-    {
-      "date": "2018-07-17",
-      "SPY": 306.53,
-      "IEF": 173.87,
-      "GLD": 245.47,
-      "equalWeight": 241.96,
-      "simpleRP": 222.51,
-      "optimizedRP": 217.79
-    },
-    {
-      "date": "2018-08-15",
-      "SPY": 307.97,
-      "IEF": 174.4,
-      "GLD": 234.73,
-      "equalWeight": 239.03,
-      "simpleRP": 222.27,
-      "optimizedRP": 216.63
-    },
-    {
-      "date": "2018-09-14",
-      "SPY": 317.91,
-      "IEF": 173.1,
-      "GLD": 238.59,
-      "equalWeight": 243.2,
-      "simpleRP": 218.97,
-      "optimizedRP": 221.97
-    },
-    {
-      "date": "2018-10-15",
-      "SPY": 301.26,
-      "IEF": 171.45,
-      "GLD": 244.88,
-      "equalWeight": 239.2,
-      "simpleRP": 211.68,
-      "optimizedRP": 208.01
-    },
-    {
-      "date": "2018-11-13",
-      "SPY": 298.69,
-      "IEF": 172.16,
-      "GLD": 240.03,
-      "equalWeight": 236.96,
-      "simpleRP": 206.75,
-      "optimizedRP": 206.96
-    },
-    {
-      "date": "2018-12-14",
-      "SPY": 285.96,
-      "IEF": 175.97,
-      "GLD": 247.12,
-      "equalWeight": 236.35,
-      "simpleRP": 207.15,
-      "optimizedRP": 208.57
-    },
-    {
-      "date": "2019-01-16",
-      "SPY": 288.2,
-      "IEF": 178.72,
-      "GLD": 258.12,
-      "equalWeight": 241.68,
-      "simpleRP": 214.88,
-      "optimizedRP": 219.13
-    },
-    {
-      "date": "2019-02-15",
-      "SPY": 306.3,
-      "IEF": 179.94,
-      "GLD": 263.46,
-      "equalWeight": 249.9,
-      "simpleRP": 220.6,
-      "optimizedRP": 225.38
-    },
-    {
-      "date": "2019-03-19",
-      "SPY": 313.23,
-      "IEF": 181.05,
-      "GLD": 260.46,
-      "equalWeight": 251.58,
-      "simpleRP": 221.99,
-      "optimizedRP": 225.56
-    },
-    {
-      "date": "2019-04-17",
-      "SPY": 321.04,
-      "IEF": 181.75,
-      "GLD": 253.92,
-      "equalWeight": 252.24,
-      "simpleRP": 232.56,
-      "optimizedRP": 238.24
-    },
-    {
-      "date": "2019-05-17",
-      "SPY": 317.04,
-      "IEF": 184.99,
-      "GLD": 254.7,
-      "equalWeight": 252.24,
-      "simpleRP": 230.58,
-      "optimizedRP": 229.03
-    },
-    {
-      "date": "2019-06-18",
-      "SPY": 324.32,
-      "IEF": 190.18,
-      "GLD": 268.36,
-      "equalWeight": 260.95,
-      "simpleRP": 237.58,
-      "optimizedRP": 240.4
-    },
-    {
-      "date": "2019-07-18",
-      "SPY": 333.06,
-      "IEF": 191.05,
-      "GLD": 288.11,
-      "equalWeight": 270.74,
-      "simpleRP": 241.92,
-      "optimizedRP": 252.24
-    },
-    {
-      "date": "2019-08-16",
-      "SPY": 321.94,
-      "IEF": 197.99,
-      "GLD": 301.41,
-      "equalWeight": 273.78,
-      "simpleRP": 245.93,
-      "optimizedRP": 251.28
-    },
-    {
-      "date": "2019-09-17",
-      "SPY": 335.39,
-      "IEF": 194.24,
-      "GLD": 298.92,
-      "equalWeight": 276.18,
-      "simpleRP": 249.15,
-      "optimizedRP": 258.13
-    },
-    {
-      "date": "2019-10-16",
-      "SPY": 334.12,
-      "IEF": 195.62,
-      "GLD": 296.41,
-      "equalWeight": 275.38,
-      "simpleRP": 250.54,
-      "optimizedRP": 256.3
-    },
-    {
-      "date": "2019-11-14",
-      "SPY": 346.6,
-      "IEF": 194.83,
-      "GLD": 292.51,
-      "equalWeight": 277.98,
-      "simpleRP": 258.75,
-      "optimizedRP": 269.55
-    },
-    {
-      "date": "2019-12-16",
-      "SPY": 357.74,
-      "IEF": 194,
-      "GLD": 293.52,
-      "equalWeight": 281.75,
-      "simpleRP": 266,
-      "optimizedRP": 276.46
-    },
-    {
-      "date": "2020-01-16",
-      "SPY": 372.35,
-      "IEF": 195.59,
-      "GLD": 308.87,
-      "equalWeight": 292.27,
-      "simpleRP": 282.39,
-      "optimizedRP": 276.15
-    },
-    {
-      "date": "2020-02-18",
-      "SPY": 378.89,
-      "IEF": 199.53,
-      "GLD": 318.58,
-      "equalWeight": 299,
-      "simpleRP": 278.28,
-      "optimizedRP": 273.21
-    },
-    {
-      "date": "2020-03-18",
-      "SPY": 270.05,
-      "IEF": 203.85,
-      "GLD": 297.02,
-      "equalWeight": 256.98,
-      "simpleRP": 242.25,
-      "optimizedRP": 247.21
-    },
-    {
-      "date": "2020-04-17",
-      "SPY": 324.42,
-      "IEF": 214.58,
-      "GLD": 334.75,
-      "equalWeight": 291.25,
-      "simpleRP": 262.3,
-      "optimizedRP": 261.58
-    },
-    {
-      "date": "2020-05-18",
-      "SPY": 333.89,
-      "IEF": 213.84,
-      "GLD": 343.45,
-      "equalWeight": 297.06,
-      "simpleRP": 264.79,
-      "optimizedRP": 263.67
-    },
-    {
-      "date": "2020-06-17",
-      "SPY": 352.74,
-      "IEF": 214.11,
-      "GLD": 343.17,
-      "equalWeight": 303.34,
-      "simpleRP": 251.92,
-      "optimizedRP": 253.36
-    },
-    {
-      "date": "2020-07-17",
-      "SPY": 365.73,
-      "IEF": 215.71,
-      "GLD": 359.13,
-      "equalWeight": 313.52,
-      "simpleRP": 265.67,
-      "optimizedRP": 267.45
-    },
-    {
-      "date": "2020-08-17",
-      "SPY": 384.14,
-      "IEF": 215.18,
-      "GLD": 393.71,
-      "equalWeight": 331.01,
-      "simpleRP": 263.94,
-      "optimizedRP": 264.39
-    },
-    {
-      "date": "2020-09-16",
-      "SPY": 385.17,
-      "IEF": 215.58,
-      "GLD": 388.37,
-      "equalWeight": 329.71,
-      "simpleRP": 258.22,
-      "optimizedRP": 259
-    },
-    {
-      "date": "2020-10-15",
-      "SPY": 396.62,
-      "IEF": 214.93,
-      "GLD": 377.71,
-      "equalWeight": 329.75,
-      "simpleRP": 258.44,
-      "optimizedRP": 259.73
-    },
-    {
-      "date": "2020-11-13",
-      "SPY": 408.72,
-      "IEF": 212.69,
-      "GLD": 373.99,
-      "equalWeight": 331.8,
-      "simpleRP": 267.76,
-      "optimizedRP": 272.37
-    },
-    {
-      "date": "2020-12-15",
-      "SPY": 421.83,
-      "IEF": 212.79,
-      "GLD": 367.19,
-      "equalWeight": 333.94,
-      "simpleRP": 272.17,
-      "optimizedRP": 274.44
-    },
-    {
-      "date": "2021-01-15",
-      "SPY": 430.63,
-      "IEF": 210.24,
-      "GLD": 361.26,
-      "equalWeight": 334.05,
-      "simpleRP": 275.15,
-      "optimizedRP": 281.62
-    },
-    {
-      "date": "2021-02-17",
-      "SPY": 449.76,
-      "IEF": 207.84,
-      "GLD": 351.13,
-      "equalWeight": 336.24,
-      "simpleRP": 275.65,
-      "optimizedRP": 281.79
-    },
-    {
-      "date": "2021-03-18",
-      "SPY": 448.72,
-      "IEF": 201,
-      "GLD": 343.17,
-      "equalWeight": 330.96,
-      "simpleRP": 279.56,
-      "optimizedRP": 289.43
-    },
-    {
-      "date": "2021-04-19",
-      "SPY": 477.48,
-      "IEF": 203.03,
-      "GLD": 350.2,
-      "equalWeight": 343.57,
-      "simpleRP": 294.11,
-      "optimizedRP": 300.31
-    },
-    {
-      "date": "2021-05-18",
-      "SPY": 473.72,
-      "IEF": 202.93,
-      "GLD": 369.52,
-      "equalWeight": 348.72,
-      "simpleRP": 297.62,
-      "optimizedRP": 281.14
-    },
-    {
-      "date": "2021-06-17",
-      "SPY": 485.25,
-      "IEF": 204.58,
-      "GLD": 350.12,
-      "equalWeight": 346.65,
-      "simpleRP": 295.29,
-      "optimizedRP": 308.68
-    },
-    {
-      "date": "2021-07-19",
-      "SPY": 490.3,
-      "IEF": 210.19,
-      "GLD": 358.05,
-      "equalWeight": 352.85,
-      "simpleRP": 306.52,
-      "optimizedRP": 316.34
-    },
-    {
-      "date": "2021-08-17",
-      "SPY": 512.3,
-      "IEF": 209.4,
-      "GLD": 352.48,
-      "equalWeight": 358.06,
-      "simpleRP": 324.93,
-      "optimizedRP": 326.85
-    },
-    {
-      "date": "2021-09-16",
-      "SPY": 515.91,
-      "IEF": 208.45,
-      "GLD": 346.27,
-      "equalWeight": 356.88,
-      "simpleRP": 321.67,
-      "optimizedRP": 324.66
-    },
-    {
-      "date": "2021-10-15",
-      "SPY": 516.06,
-      "IEF": 204.6,
-      "GLD": 349.02,
-      "equalWeight": 356.56,
-      "simpleRP": 306.08,
-      "optimizedRP": 307.27
-    },
-    {
-      "date": "2021-11-15",
-      "SPY": 541.02,
-      "IEF": 203.99,
-      "GLD": 367.7,
-      "equalWeight": 370.9,
-      "simpleRP": 324.08,
-      "optimizedRP": 346.83
-    },
-    {
-      "date": "2021-12-15",
-      "SPY": 544.68,
-      "IEF": 206.56,
-      "GLD": 350.75,
-      "equalWeight": 367.33,
-      "simpleRP": 322.11,
-      "optimizedRP": 322.65
-    },
-    {
-      "date": "2022-01-14",
-      "SPY": 539.77,
-      "IEF": 201.49,
-      "GLD": 358.18,
-      "equalWeight": 366.48,
-      "simpleRP": 321.79,
-      "optimizedRP": 322.93
-    },
-    {
-      "date": "2022-02-15",
-      "SPY": 518.14,
-      "IEF": 197.13,
-      "GLD": 365.38,
-      "equalWeight": 360.22,
-      "simpleRP": 309.17,
-      "optimizedRP": 316.24
-    },
-    {
-      "date": "2022-03-17",
-      "SPY": 512.3,
-      "IEF": 195,
-      "GLD": 381.87,
-      "equalWeight": 363.05,
-      "simpleRP": 310.89,
-      "optimizedRP": 310.69
-    },
-    {
-      "date": "2022-04-18",
-      "SPY": 510.28,
-      "IEF": 185.15,
-      "GLD": 389.72,
-      "equalWeight": 361.72,
-      "simpleRP": 314.85,
-      "optimizedRP": 321.98
-    },
-    {
-      "date": "2022-05-17",
-      "SPY": 475.73,
-      "IEF": 183.79,
-      "GLD": 357.46,
-      "equalWeight": 339,
-      "simpleRP": 292.76,
-      "optimizedRP": 287.2
-    },
-    {
-      "date": "2022-06-16",
-      "SPY": 427.18,
+      "date": "2019-03-04",
+      "SPY": 305.04,
       "IEF": 180.26,
-      "GLD": 364.56,
-      "equalWeight": 324,
-      "simpleRP": 286.25,
-      "optimizedRP": 290.61
+      "GLD": 262.04,
+      "equalWeight": 249.11,
+      "simpleRP": 220.14,
+      "optimizedRP": 223.94
     },
     {
-      "date": "2022-07-19",
-      "SPY": 459.01,
-      "IEF": 183.79,
-      "GLD": 336.8,
-      "equalWeight": 326.53,
-      "simpleRP": 284.57,
-      "optimizedRP": 289.43
+      "date": "2019-04-02",
+      "SPY": 313.59,
+      "IEF": 184.12,
+      "GLD": 262.94,
+      "equalWeight": 253.55,
+      "simpleRP": 231.85,
+      "optimizedRP": 236.88
     },
     {
-      "date": "2022-08-17",
-      "SPY": 499.24,
-      "IEF": 186.27,
-      "GLD": 346.95,
-      "equalWeight": 344.15,
-      "simpleRP": 308.21,
-      "optimizedRP": 316.77
+      "date": "2019-05-02",
+      "SPY": 319.3,
+      "IEF": 183.52,
+      "GLD": 258.55,
+      "equalWeight": 253.79,
+      "simpleRP": 234.66,
+      "optimizedRP": 240.87
     },
     {
-      "date": "2022-09-16",
-      "SPY": 453.01,
-      "IEF": 178.48,
-      "GLD": 328.98,
-      "equalWeight": 320.16,
-      "simpleRP": 285.77,
-      "optimizedRP": 274.49
+      "date": "2019-06-03",
+      "SPY": 301.09,
+      "IEF": 190.65,
+      "GLD": 269.69,
+      "equalWeight": 253.81,
+      "simpleRP": 233.96,
+      "optimizedRP": 236.98
     },
     {
-      "date": "2022-10-17",
-      "SPY": 430.99,
-      "IEF": 171.03,
-      "GLD": 323.88,
-      "equalWeight": 308.63,
-      "simpleRP": 275.39,
-      "optimizedRP": 272.06
+      "date": "2019-07-02",
+      "SPY": 326.64,
+      "IEF": 192.49,
+      "GLD": 287.58,
+      "equalWeight": 268.9,
+      "simpleRP": 240.9,
+      "optimizedRP": 244.3
     },
     {
-      "date": "2022-11-15",
-      "SPY": 468.2,
-      "IEF": 175.1,
-      "GLD": 349.38,
-      "equalWeight": 330.89,
-      "simpleRP": 289.09,
-      "optimizedRP": 285.11
+      "date": "2019-08-01",
+      "SPY": 324.89,
+      "IEF": 194.3,
+      "GLD": 294.05,
+      "equalWeight": 271.08,
+      "simpleRP": 244.65,
+      "optimizedRP": 257.07
     },
     {
-      "date": "2022-12-15",
-      "SPY": 457.79,
-      "IEF": 180.24,
-      "GLD": 349.06,
-      "equalWeight": 329.03,
-      "simpleRP": 293.58,
-      "optimizedRP": 293.32
+      "date": "2019-08-30",
+      "SPY": 322.25,
+      "IEF": 199.71,
+      "GLD": 309.87,
+      "equalWeight": 277.28,
+      "simpleRP": 248.14,
+      "optimizedRP": 252.47
     },
     {
-      "date": "2023-01-18",
-      "SPY": 462.09,
-      "IEF": 182.36,
-      "GLD": 373.82,
-      "equalWeight": 339.42,
-      "simpleRP": 302.43,
-      "optimizedRP": 309.43
+      "date": "2019-10-01",
+      "SPY": 324.62,
+      "IEF": 197.89,
+      "GLD": 300.99,
+      "equalWeight": 274.5,
+      "simpleRP": 249.69,
+      "optimizedRP": 257.02
     },
     {
-      "date": "2023-02-16",
-      "SPY": 481.91,
-      "IEF": 175.66,
-      "GLD": 360.46,
-      "equalWeight": 339.34,
-      "simpleRP": 304.68,
-      "optimizedRP": 304.32
+      "date": "2019-10-30",
+      "SPY": 336.68,
+      "IEF": 196.47,
+      "GLD": 303.99,
+      "equalWeight": 279.05,
+      "simpleRP": 254.53,
+      "optimizedRP": 260
     },
     {
-      "date": "2023-03-20",
-      "SPY": 466.52,
-      "IEF": 181,
-      "GLD": 388.09,
-      "equalWeight": 345.2,
-      "simpleRP": 319.78,
-      "optimizedRP": 330.61
+      "date": "2019-11-29",
+      "SPY": 347.94,
+      "IEF": 196.36,
+      "GLD": 297.18,
+      "equalWeight": 280.49,
+      "simpleRP": 265.96,
+      "optimizedRP": 269.44
     },
     {
-      "date": "2023-04-19",
-      "SPY": 490.69,
-      "IEF": 180.22,
-      "GLD": 391.3,
-      "equalWeight": 354.07,
-      "simpleRP": 329.64,
-      "optimizedRP": 342.07
+      "date": "2019-12-31",
+      "SPY": 358.05,
+      "IEF": 194.53,
+      "GLD": 308.04,
+      "equalWeight": 286.88,
+      "simpleRP": 274.89,
+      "optimizedRP": 279.56
     },
     {
-      "date": "2023-05-18",
-      "SPY": 496.72,
-      "IEF": 180.21,
-      "GLD": 383.87,
-      "equalWeight": 353.6,
-      "simpleRP": 335.12,
-      "optimizedRP": 338.43
+      "date": "2020-01-31",
+      "SPY": 357.91,
+      "IEF": 201.28,
+      "GLD": 321.9,
+      "equalWeight": 293.69,
+      "simpleRP": 277.27,
+      "optimizedRP": 273.6
     },
     {
-      "date": "2023-06-20",
-      "SPY": 519.91,
-      "IEF": 179.09,
-      "GLD": 379.46,
-      "equalWeight": 359.49,
-      "simpleRP": 338.24,
-      "optimizedRP": 340.51
+      "date": "2020-03-03",
+      "SPY": 334,
+      "IEF": 209.5,
+      "GLD": 331.73,
+      "equalWeight": 291.74,
+      "simpleRP": 261.63,
+      "optimizedRP": 259.55
     },
     {
-      "date": "2023-07-20",
-      "SPY": 537.75,
-      "IEF": 178.05,
-      "GLD": 385.77,
-      "equalWeight": 367.19,
-      "simpleRP": 348.22,
-      "optimizedRP": 362.91
+      "date": "2020-04-01",
+      "SPY": 275.44,
+      "IEF": 215.83,
+      "GLD": 322.16,
+      "equalWeight": 271.14,
+      "simpleRP": 254.55,
+      "optimizedRP": 256.39
     },
     {
-      "date": "2023-08-18",
-      "SPY": 519.1,
-      "IEF": 173.38,
-      "GLD": 370.13,
-      "equalWeight": 354.21,
-      "simpleRP": 339.25,
-      "optimizedRP": 343.88
+      "date": "2020-05-01",
+      "SPY": 316.44,
+      "IEF": 215.84,
+      "GLD": 344.43,
+      "equalWeight": 292.24,
+      "simpleRP": 264,
+      "optimizedRP": 261.91
     },
     {
-      "date": "2023-09-19",
-      "SPY": 528.35,
-      "IEF": 172.42,
-      "GLD": 378.34,
-      "equalWeight": 359.7,
-      "simpleRP": 343.13,
-      "optimizedRP": 332.48
+      "date": "2020-06-02",
+      "SPY": 344.74,
+      "IEF": 215.81,
+      "GLD": 350.51,
+      "equalWeight": 303.68,
+      "simpleRP": 269.56,
+      "optimizedRP": 265.06
     },
     {
-      "date": "2023-10-18",
-      "SPY": 513.43,
-      "IEF": 166.44,
-      "GLD": 381.82,
-      "equalWeight": 353.9,
-      "simpleRP": 331.37,
-      "optimizedRP": 340.51
+      "date": "2020-07-01",
+      "SPY": 349,
+      "IEF": 216,
+      "GLD": 359.17,
+      "equalWeight": 308.06,
+      "simpleRP": 262.12,
+      "optimizedRP": 267.13
     },
     {
-      "date": "2023-11-16",
-      "SPY": 537.32,
-      "IEF": 172.66,
-      "GLD": 387.78,
-      "equalWeight": 365.92,
-      "simpleRP": 341.23,
-      "optimizedRP": 352.98
+      "date": "2020-07-31",
+      "SPY": 366.98,
+      "IEF": 218.19,
+      "GLD": 399.72,
+      "equalWeight": 328.3,
+      "simpleRP": 274.09,
+      "optimizedRP": 270.54
     },
     {
-      "date": "2023-12-18",
-      "SPY": 565.55,
-      "IEF": 179.85,
-      "GLD": 396.56,
-      "equalWeight": 380.65,
-      "simpleRP": 365.49,
-      "optimizedRP": 384.18
+      "date": "2020-08-31",
+      "SPY": 392.59,
+      "IEF": 216.07,
+      "GLD": 398.43,
+      "equalWeight": 335.7,
+      "simpleRP": 262.59,
+      "optimizedRP": 268.02
     },
     {
-      "date": "2024-01-19",
-      "SPY": 578.08,
-      "IEF": 178.27,
-      "GLD": 396.73,
-      "equalWeight": 384.36,
-      "simpleRP": 365.36,
-      "optimizedRP": 360.19
+      "date": "2020-09-30",
+      "SPY": 377.89,
+      "IEF": 216.78,
+      "GLD": 381.81,
+      "equalWeight": 325.49,
+      "simpleRP": 255.78,
+      "optimizedRP": 252.35
     },
     {
-      "date": "2024-02-20",
-      "SPY": 595.26,
-      "IEF": 176.75,
-      "GLD": 395.76,
-      "equalWeight": 389.25,
-      "simpleRP": 373.66,
-      "optimizedRP": 370.08
+      "date": "2020-10-29",
+      "SPY": 372.35,
+      "IEF": 214.48,
+      "GLD": 378.1,
+      "equalWeight": 321.64,
+      "simpleRP": 255.14,
+      "optimizedRP": 260.13
     },
     {
-      "date": "2024-03-20",
-      "SPY": 625.62,
-      "IEF": 177.46,
-      "GLD": 426.81,
-      "equalWeight": 409.96,
-      "simpleRP": 375.01,
-      "optimizedRP": 365.46
+      "date": "2020-11-30",
+      "SPY": 408.55,
+      "IEF": 214.51,
+      "GLD": 359.28,
+      "equalWeight": 327.45,
+      "simpleRP": 267.21,
+      "optimizedRP": 270.9
     },
     {
-      "date": "2024-04-19",
-      "SPY": 595.18,
-      "IEF": 173.65,
-      "GLD": 466.6,
-      "equalWeight": 411.81,
-      "simpleRP": 374.26,
-      "optimizedRP": 368.29
+      "date": "2020-12-30",
+      "SPY": 421.55,
+      "IEF": 213.86,
+      "GLD": 383.06,
+      "equalWeight": 339.49,
+      "simpleRP": 276.86,
+      "optimizedRP": 276.96
     },
     {
-      "date": "2024-05-20",
-      "SPY": 637.13,
-      "IEF": 176.5,
-      "GLD": 474.06,
-      "equalWeight": 429.23,
-      "simpleRP": 373.61,
-      "optimizedRP": 363.43
+      "date": "2021-02-01",
+      "SPY": 426.35,
+      "IEF": 211.93,
+      "GLD": 375.58,
+      "equalWeight": 337.95,
+      "simpleRP": 278.25,
+      "optimizedRP": 275.62
     },
     {
-      "date": "2024-06-20",
-      "SPY": 657.49,
-      "IEF": 179.61,
-      "GLD": 460.54,
-      "equalWeight": 432.55,
-      "simpleRP": 388.92,
-      "optimizedRP": 402.25
+      "date": "2021-03-03",
+      "SPY": 432.23,
+      "IEF": 205.7,
+      "GLD": 346.24,
+      "equalWeight": 328.06,
+      "simpleRP": 277.87,
+      "optimizedRP": 287.57
     },
     {
-      "date": "2024-07-22",
-      "SPY": 668.84,
-      "IEF": 180.47,
-      "GLD": 468.23,
-      "equalWeight": 439.18,
-      "simpleRP": 394.83,
-      "optimizedRP": 384.91
+      "date": "2021-04-01",
+      "SPY": 455.47,
+      "IEF": 202.62,
+      "GLD": 349.17,
+      "equalWeight": 335.75,
+      "simpleRP": 285.04,
+      "optimizedRP": 290.05
     },
     {
-      "date": "2024-08-20",
-      "SPY": 673.72,
-      "IEF": 186.95,
-      "GLD": 490.73,
-      "equalWeight": 450.47,
-      "simpleRP": 382.2,
-      "optimizedRP": 366.76
+      "date": "2021-05-03",
+      "SPY": 475.46,
+      "IEF": 204.1,
+      "GLD": 361.74,
+      "equalWeight": 347.1,
+      "simpleRP": 302.39,
+      "optimizedRP": 297.51
     },
     {
-      "date": "2024-09-19",
-      "SPY": 688.53,
-      "IEF": 189.16,
-      "GLD": 504.9,
-      "equalWeight": 460.86,
-      "simpleRP": 375.71,
-      "optimizedRP": 359.63
+      "date": "2021-06-02",
+      "SPY": 477.89,
+      "IEF": 204.81,
+      "GLD": 385.36,
+      "equalWeight": 356.02,
+      "simpleRP": 301.37,
+      "optimizedRP": 291.83
     },
     {
-      "date": "2024-10-18",
-      "SPY": 707.11,
-      "IEF": 184.88,
-      "GLD": 530.44,
-      "equalWeight": 474.14,
-      "simpleRP": 391.9,
-      "optimizedRP": 396.57
+      "date": "2021-07-01",
+      "SPY": 490.97,
+      "IEF": 206.56,
+      "GLD": 358.27,
+      "equalWeight": 351.93,
+      "simpleRP": 299.72,
+      "optimizedRP": 304.49
     },
     {
-      "date": "2024-11-18",
-      "SPY": 711.41,
-      "IEF": 180.79,
-      "GLD": 508.95,
-      "equalWeight": 467.05,
-      "simpleRP": 381.98,
-      "optimizedRP": 391
+      "date": "2021-08-02",
+      "SPY": 499.14,
+      "IEF": 211.75,
+      "GLD": 365.62,
+      "equalWeight": 358.83,
+      "simpleRP": 313.9,
+      "optimizedRP": 321.54
     },
     {
-      "date": "2024-12-18",
-      "SPY": 709.15,
+      "date": "2021-08-31",
+      "SPY": 515.07,
+      "IEF": 209.99,
+      "GLD": 365.79,
+      "equalWeight": 363.62,
+      "simpleRP": 326.05,
+      "optimizedRP": 321.4
+    },
+    {
+      "date": "2021-09-30",
+      "SPY": 491.07,
+      "IEF": 206.64,
+      "GLD": 354,
+      "equalWeight": 350.57,
+      "simpleRP": 308.05,
+      "optimizedRP": 306.65
+    },
+    {
+      "date": "2021-10-29",
+      "SPY": 525.52,
+      "IEF": 205.72,
+      "GLD": 359.24,
+      "equalWeight": 363.49,
+      "simpleRP": 311.36,
+      "optimizedRP": 321.82
+    },
+    {
+      "date": "2021-11-30",
+      "SPY": 521.3,
+      "IEF": 207.97,
+      "GLD": 356.76,
+      "equalWeight": 362.01,
+      "simpleRP": 322.04,
+      "optimizedRP": 334.6
+    },
+    {
+      "date": "2021-12-30",
+      "SPY": 546.79,
+      "IEF": 207.11,
+      "GLD": 366.03,
+      "equalWeight": 373.31,
+      "simpleRP": 326.91,
+      "optimizedRP": 322.92
+    },
+    {
+      "date": "2022-01-31",
+      "SPY": 516.64,
+      "IEF": 202.51,
+      "GLD": 362.34,
+      "equalWeight": 360.5,
+      "simpleRP": 312.85,
+      "optimizedRP": 306.65
+    },
+    {
+      "date": "2022-03-02",
+      "SPY": 502.84,
+      "IEF": 200.79,
+      "GLD": 387.43,
+      "equalWeight": 363.69,
+      "simpleRP": 317.28,
+      "optimizedRP": 331.45
+    },
+    {
+      "date": "2022-03-31",
+      "SPY": 520.24,
+      "IEF": 193.69,
+      "GLD": 389.42,
+      "equalWeight": 367.78,
+      "simpleRP": 317.82,
+      "optimizedRP": 320.36
+    },
+    {
+      "date": "2022-05-02",
+      "SPY": 477.44,
+      "IEF": 184.12,
+      "GLD": 374.28,
+      "equalWeight": 345.28,
+      "simpleRP": 301.09,
+      "optimizedRP": 295.33
+    },
+    {
+      "date": "2022-06-01",
+      "SPY": 471.8,
+      "IEF": 185.6,
+      "GLD": 371.27,
+      "equalWeight": 342.89,
+      "simpleRP": 293.93,
+      "optimizedRP": 294.59
+    },
+    {
+      "date": "2022-07-01",
+      "SPY": 441.04,
+      "IEF": 187.02,
+      "GLD": 362.84,
+      "equalWeight": 330.3,
+      "simpleRP": 293.53,
+      "optimizedRP": 303.43
+    },
+    {
+      "date": "2022-08-02",
+      "SPY": 472.07,
+      "IEF": 188.98,
+      "GLD": 353.63,
+      "equalWeight": 338.23,
+      "simpleRP": 301.43,
+      "optimizedRP": 312.37
+    },
+    {
+      "date": "2022-08-31",
+      "SPY": 457.17,
+      "IEF": 183.18,
+      "GLD": 343.33,
+      "equalWeight": 327.89,
+      "simpleRP": 295.98,
+      "optimizedRP": 293.8
+    },
+    {
+      "date": "2022-09-30",
+      "SPY": 414.91,
+      "IEF": 174.5,
+      "GLD": 333.41,
+      "equalWeight": 307.61,
+      "simpleRP": 283.42,
+      "optimizedRP": 288.46
+    },
+    {
+      "date": "2022-10-31",
+      "SPY": 448.63,
+      "IEF": 171.97,
+      "GLD": 327.46,
+      "equalWeight": 316.02,
+      "simpleRP": 279.02,
+      "optimizedRP": 279.98
+    },
+    {
+      "date": "2022-11-30",
+      "SPY": 473.57,
+      "IEF": 178.18,
+      "GLD": 355.27,
+      "equalWeight": 335.67,
+      "simpleRP": 293.73,
+      "optimizedRP": 289.94
+    },
+    {
+      "date": "2022-12-30",
+      "SPY": 446.28,
+      "IEF": 175.53,
+      "GLD": 365.68,
+      "equalWeight": 329.16,
+      "simpleRP": 287.69,
+      "optimizedRP": 290.74
+    },
+    {
+      "date": "2023-02-01",
+      "SPY": 479.38,
+      "IEF": 183.12,
+      "GLD": 391.61,
+      "equalWeight": 351.37,
+      "simpleRP": 313.89,
+      "optimizedRP": 313
+    },
+    {
+      "date": "2023-03-03",
+      "SPY": 471.67,
+      "IEF": 175.14,
+      "GLD": 371.83,
+      "equalWeight": 339.55,
+      "simpleRP": 308.38,
+      "optimizedRP": 311.53
+    },
+    {
+      "date": "2023-04-03",
+      "SPY": 481.39,
+      "IEF": 183.27,
+      "GLD": 397.8,
+      "equalWeight": 354.15,
+      "simpleRP": 329.91,
+      "optimizedRP": 338.37
+    },
+    {
+      "date": "2023-05-03",
+      "SPY": 477.96,
+      "IEF": 185.3,
+      "GLD": 407.65,
+      "equalWeight": 356.97,
+      "simpleRP": 337.13,
+      "optimizedRP": 348.36
+    },
+    {
+      "date": "2023-06-02",
+      "SPY": 501.27,
       "IEF": 180.31,
-      "GLD": 505.09,
-      "equalWeight": 464.85,
-      "simpleRP": 389.69,
-      "optimizedRP": 376.31
+      "GLD": 390.28,
+      "equalWeight": 357.29,
+      "simpleRP": 338.52,
+      "optimizedRP": 331.93
     },
     {
-      "date": "2025-01-22",
-      "SPY": 736,
-      "IEF": 179.98,
-      "GLD": 537.11,
-      "equalWeight": 484.37,
-      "simpleRP": 393.31,
-      "optimizedRP": 399.18
+      "date": "2023-07-05",
+      "SPY": 521.01,
+      "IEF": 177.34,
+      "GLD": 383.36,
+      "equalWeight": 360.57,
+      "simpleRP": 339.68,
+      "optimizedRP": 351.75
     },
     {
-      "date": "2025-02-21",
-      "SPY": 728.11,
-      "IEF": 182.88,
-      "GLD": 571.54,
-      "equalWeight": 494.18,
-      "simpleRP": 408.98,
-      "optimizedRP": 408.7
+      "date": "2023-08-03",
+      "SPY": 527.73,
+      "IEF": 175.11,
+      "GLD": 387.02,
+      "equalWeight": 363.29,
+      "simpleRP": 345.34,
+      "optimizedRP": 356.35
     },
     {
-      "date": "2025-03-24",
-      "SPY": 698.83,
-      "IEF": 184.89,
-      "GLD": 585.29,
-      "equalWeight": 489.67,
-      "simpleRP": 392.57,
-      "optimizedRP": 378.15
+      "date": "2023-09-01",
+      "SPY": 530.49,
+      "IEF": 175.43,
+      "GLD": 388.25,
+      "equalWeight": 364.72,
+      "simpleRP": 350.71,
+      "optimizedRP": 346.49
     },
     {
-      "date": "2025-04-23",
-      "SPY": 651.77,
-      "IEF": 185.23,
-      "GLD": 641.02,
-      "equalWeight": 492.67,
-      "simpleRP": 350.89,
-      "optimizedRP": 326.43
+      "date": "2023-10-03",
+      "SPY": 497.44,
+      "IEF": 168.18,
+      "GLD": 364.65,
+      "equalWeight": 343.42,
+      "simpleRP": 322.89,
+      "optimizedRP": 317.35
     },
     {
-      "date": "2025-05-22",
-      "SPY": 709.79,
-      "IEF": 184.18,
-      "GLD": 639.88,
-      "equalWeight": 511.28,
-      "simpleRP": 346.44,
-      "optimizedRP": 352.92
+      "date": "2023-11-01",
+      "SPY": 498.7,
+      "IEF": 169.6,
+      "GLD": 395.58,
+      "equalWeight": 354.63,
+      "simpleRP": 329.96,
+      "optimizedRP": 338
     },
     {
-      "date": "2025-06-24",
-      "SPY": 740.82,
-      "IEF": 188.27,
-      "GLD": 646.38,
-      "equalWeight": 525.15,
-      "simpleRP": 357.37,
-      "optimizedRP": 397.33
+      "date": "2023-12-01",
+      "SPY": 541.7,
+      "IEF": 176.96,
+      "GLD": 413.9,
+      "equalWeight": 377.52,
+      "simpleRP": 355.66,
+      "optimizedRP": 370.65
     },
     {
-      "date": "2025-07-24",
-      "SPY": 774.56,
-      "IEF": 187.4,
-      "GLD": 654.99,
-      "equalWeight": 538.98,
-      "simpleRP": 425.87,
-      "optimizedRP": 432.16
+      "date": "2024-01-03",
+      "SPY": 555.37,
+      "IEF": 181.68,
+      "GLD": 407.7,
+      "equalWeight": 381.58,
+      "simpleRP": 364.35,
+      "optimizedRP": 375.18
     },
     {
-      "date": "2025-08-22",
-      "SPY": 787.86,
-      "IEF": 190.49,
-      "GLD": 655.65,
-      "equalWeight": 544.67,
-      "simpleRP": 457.61,
-      "optimizedRP": 450.9
+      "date": "2024-02-02",
+      "SPY": 585.65,
+      "IEF": 180.8,
+      "GLD": 406.57,
+      "equalWeight": 391.01,
+      "simpleRP": 376.25,
+      "optimizedRP": 373.05
     },
     {
-      "date": "2025-09-23",
-      "SPY": 811.96,
-      "IEF": 193.05,
-      "GLD": 731.39,
-      "equalWeight": 578.8,
-      "simpleRP": 477.5,
-      "optimizedRP": 469.77
+      "date": "2024-03-05",
+      "SPY": 600.85,
+      "IEF": 179.78,
+      "GLD": 425.07,
+      "equalWeight": 401.9,
+      "simpleRP": 373.94,
+      "optimizedRP": 364.63
+    },
+    {
+      "date": "2024-04-04",
+      "SPY": 609.72,
+      "IEF": 178.38,
+      "GLD": 455.96,
+      "equalWeight": 414.69,
+      "simpleRP": 377.81,
+      "optimizedRP": 370.44
+    },
+    {
+      "date": "2024-05-03",
+      "SPY": 607.6,
+      "IEF": 176.43,
+      "GLD": 459.06,
+      "equalWeight": 414.37,
+      "simpleRP": 361.01,
+      "optimizedRP": 354.59
+    },
+    {
+      "date": "2024-06-04",
+      "SPY": 627.92,
+      "IEF": 179.22,
+      "GLD": 464.04,
+      "equalWeight": 423.73,
+      "simpleRP": 374.51,
+      "optimizedRP": 376.98
+    },
+    {
+      "date": "2024-07-05",
+      "SPY": 661.24,
+      "IEF": 180.76,
+      "GLD": 476.24,
+      "equalWeight": 439.42,
+      "simpleRP": 399.57,
+      "optimizedRP": 431.16
+    },
+    {
+      "date": "2024-08-05",
+      "SPY": 616.82,
+      "IEF": 188.28,
+      "GLD": 479.59,
+      "equalWeight": 428.23,
+      "simpleRP": 368.55,
+      "optimizedRP": 356.92
+    },
+    {
+      "date": "2024-09-04",
+      "SPY": 656.85,
+      "IEF": 189.24,
+      "GLD": 496.72,
+      "equalWeight": 447.6,
+      "simpleRP": 374.28,
+      "optimizedRP": 367.73
+    },
+    {
+      "date": "2024-10-03",
+      "SPY": 679.03,
+      "IEF": 188.67,
+      "GLD": 529.19,
+      "equalWeight": 465.63,
+      "simpleRP": 373.67,
+      "optimizedRP": 375.42
+    },
+    {
+      "date": "2024-11-01",
+      "SPY": 682.88,
+      "IEF": 181.99,
+      "GLD": 544.23,
+      "equalWeight": 469.7,
+      "simpleRP": 384.58,
+      "optimizedRP": 387.4
+    },
+    {
+      "date": "2024-12-03",
+      "SPY": 722.19,
+      "IEF": 184.4,
+      "GLD": 525.82,
+      "equalWeight": 477.47,
+      "simpleRP": 406.03,
+      "optimizedRP": 420.43
+    },
+    {
+      "date": "2025-01-03",
+      "SPY": 710.27,
+      "IEF": 180.57,
+      "GLD": 524.88,
+      "equalWeight": 471.91,
+      "simpleRP": 385.27,
+      "optimizedRP": 374.74
+    },
+    {
+      "date": "2025-02-05",
+      "SPY": 725,
+      "IEF": 183.52,
+      "GLD": 569.37,
+      "equalWeight": 492.63,
+      "simpleRP": 402.8,
+      "optimizedRP": 403.87
+    },
+    {
+      "date": "2025-03-07",
+      "SPY": 691.04,
+      "IEF": 185.69,
+      "GLD": 578.55,
+      "equalWeight": 485.09,
+      "simpleRP": 393.75,
+      "optimizedRP": 386.38
+    },
+    {
+      "date": "2025-04-07",
+      "SPY": 607.02,
+      "IEF": 188.29,
+      "GLD": 590.02,
+      "equalWeight": 461.78,
+      "simpleRP": 368.03,
+      "optimizedRP": 356.34
+    },
+    {
+      "date": "2025-05-07",
+      "SPY": 675.34,
+      "IEF": 188.14,
+      "GLD": 669.86,
+      "equalWeight": 511.11,
+      "simpleRP": 357.97,
+      "optimizedRP": 339.73
+    },
+    {
+      "date": "2025-06-06",
+      "SPY": 721.06,
+      "IEF": 185.76,
+      "GLD": 657.86,
+      "equalWeight": 521.56,
+      "simpleRP": 353.68,
+      "optimizedRP": 383.38
+    },
+    {
+      "date": "2025-07-09",
+      "SPY": 753.27,
+      "IEF": 188.94,
+      "GLD": 658.59,
+      "equalWeight": 533.6,
+      "simpleRP": 400.5,
+      "optimizedRP": 405.17
+    },
+    {
+      "date": "2025-08-07",
+      "SPY": 763.16,
+      "IEF": 191.13,
+      "GLD": 674.97,
+      "equalWeight": 543.09,
+      "simpleRP": 445.52,
+      "optimizedRP": 446.23
+    },
+    {
+      "date": "2025-09-08",
+      "SPY": 783.17,
+      "IEF": 194.73,
+      "GLD": 721.75,
+      "equalWeight": 566.55,
+      "simpleRP": 459.73,
+      "optimizedRP": 460.42
+    },
+    {
+      "date": "2025-10-07",
+      "SPY": 809.9,
+      "IEF": 193.87,
+      "GLD": 789.52,
+      "equalWeight": 597.77,
+      "simpleRP": 482.05,
+      "optimizedRP": 482.62
+    },
+    {
+      "date": "2025-10-21",
+      "SPY": 812.53,
+      "IEF": 196.57,
+      "GLD": 813.19,
+      "equalWeight": 607.43,
+      "simpleRP": 488.6,
+      "optimizedRP": 488.33
     }
   ],
   "metrics": {
     "equalWeight": {
-      "totalReturn": 495.09,
-      "sharpeRatio": 0.71
+      "totalReturn": 507.43,
+      "annualReturn": 9.46,
+      "volatility": 10.36,
+      "sharpeRatio": 0.72,
+      "maxDrawdown": -22.06
     },
     "simpleRP": {
-      "totalReturn": 387.65,
-      "sharpeRatio": 0.55
+      "totalReturn": 388.6,
+      "annualReturn": 8.27,
+      "volatility": 11.24,
+      "sharpeRatio": 0.56,
+      "maxDrawdown": -20.43
     },
     "optimizedRP": {
-      "totalReturn": 378.63,
-      "sharpeRatio": 0.42
+      "totalReturn": 388.33,
+      "annualReturn": 8.27,
+      "volatility": 14.45,
+      "sharpeRatio": 0.43,
+      "maxDrawdown": -23.8
     }
-  }
+  },
+  "generatedAt": "2025-10-22T18:25:54.306Z",
+  "periodYears": 20,
+  "periodsAvailable": [
+    1,
+    3,
+    5,
+    10,
+    20
+  ],
+  "tickers": [
+    "SPY",
+    "IEF",
+    "GLD"
+  ]
 }

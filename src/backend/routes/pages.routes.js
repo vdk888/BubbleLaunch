@@ -128,4 +128,13 @@ router.get("/privacy", (req, res) => {
   );
 });
 
+/**
+ * Businesses page (B2B consulting services)
+ */
+router.get("/businesses", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../../frontend/pages/businesses.html")
+  );
+});
+
 module.exports = router;
