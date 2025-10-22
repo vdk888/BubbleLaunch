@@ -205,6 +205,144 @@
         font-weight: 700;
       }
 
+      .custom-strategy-panel {
+        margin-top: 2rem;
+        padding: 1.75rem;
+        border-radius: 16px;
+        border: 1px solid rgba(102, 126, 234, 0.2);
+        background: rgba(102, 126, 234, 0.06);
+        box-shadow: 0 12px 32px rgba(102, 126, 234, 0.08);
+        transition: all 0.3s ease;
+      }
+
+      .custom-strategy-panel.hidden {
+        display: none;
+      }
+
+      .custom-strategy-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+        align-items: flex-end;
+        margin-top: 1.5rem;
+      }
+
+      .custom-strategy-field label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #4B5563;
+        margin-bottom: 0.5rem;
+      }
+
+      .custom-strategy-field select,
+      .custom-strategy-field input[type="range"] {
+        width: 100%;
+        border-radius: 12px;
+        border: 1px solid rgba(102, 126, 234, 0.35);
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #1F2937;
+        background: white;
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.08);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .custom-strategy-field input[type="range"] {
+        padding: 0;
+        appearance: none;
+        height: 6px;
+        background: linear-gradient(90deg, #667eea 0%, #8b5cf6 100%);
+        border-radius: 999px;
+        border: none;
+        box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.25);
+      }
+
+      .custom-strategy-field input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 3px solid #667eea;
+        box-shadow: 0 6px 14px rgba(102, 126, 234, 0.35);
+        cursor: pointer;
+      }
+
+      .custom-strategy-field input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 3px solid #667eea;
+        box-shadow: 0 6px 14px rgba(102, 126, 234, 0.35);
+        cursor: pointer;
+      }
+
+      .custom-weight-value {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: #4B5563;
+        margin-top: 0.35rem;
+      }
+
+      .custom-strategy-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+
+      .custom-strategy-actions button {
+        padding: 0.75rem 1.5rem;
+        border-radius: 999px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .custom-strategy-apply {
+        background: linear-gradient(90deg, #667eea 0%, #8b5cf6 100%);
+        color: white;
+        box-shadow: 0 10px 24px rgba(102, 126, 234, 0.35);
+      }
+
+      .custom-strategy-apply:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(102, 126, 234, 0.4);
+      }
+
+      .custom-strategy-reset {
+        background: rgba(255, 255, 255, 0.95);
+        color: #4B5563;
+        border: 1px solid rgba(102, 126, 234, 0.3);
+      }
+
+      .custom-strategy-reset:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 22px rgba(102, 126, 234, 0.25);
+      }
+
+      .custom-strategy-note {
+        margin-top: 1rem;
+        font-size: 0.85rem;
+        color: #4B5563;
+      }
+
+      .custom-strategy-alert {
+        margin-top: 1rem;
+        padding: 0.75rem 1rem;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px dashed rgba(102, 126, 234, 0.35);
+        color: #4B5563;
+        font-size: 0.85rem;
+      }
+
       /* Strategy Tooltips */
       .strategy-pill {
         position: relative;
@@ -1199,6 +1337,67 @@
               <div class="pill-subtitle" data-translate="simulator.strategy.optimizedRiskParity.subtitle">Best performance</div>
             </div>
           </button>
+
+          <button class="strategy-pill" data-strategy="customMix">
+            <div class="strategy-tooltip" data-translate="simulator.strategy.customMix.tooltip">
+              Combinez deux stratégies Bubble avec la pondération de votre choix. Ajustez le curseur pour privilégier la performance ou la stabilité.
+            </div>
+            <div class="pill-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M8 10C8 7.79086 9.79086 6 12 6H20C22.2091 6 24 7.79086 24 10V22C24 24.2091 22.2091 26 20 26H12C9.79086 26 8 24.2091 8 22V10Z" stroke="currentColor" stroke-width="2" opacity="0.7"/>
+                <path d="M12 19L15.5 15.5C16.3284 14.6716 17.6716 14.6716 18.5 15.5L22 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="15.5" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="pill-content">
+              <div class="pill-title" data-translate="simulator.strategy.customMix">Créez votre Mix</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.customMix.subtitle">Mélangez deux stratégies</div>
+            </div>
+          </button>
+        </div>
+
+        <div class="custom-strategy-panel hidden" id="customStrategyPanel">
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: #4B5563;" data-translate="simulator.customMix.title">
+            Custom Strategy Builder
+          </h3>
+          <p style="color: #6B7280; margin-top: 0.5rem;" data-translate="simulator.customMix.description">
+            Select two strategies and choose how much weight to assign to each. We blend them instantly on real data.
+          </p>
+
+          <div class="custom-strategy-alert" id="customStrategyAlert" data-translate="simulator.customMix.cta">
+            Configure your mix below to display results.
+          </div>
+
+          <div class="custom-strategy-grid">
+            <div class="custom-strategy-field">
+              <label for="customStrategyA" data-translate="simulator.customMix.strategyA">Strategy A</label>
+              <select id="customStrategyA"></select>
+            </div>
+            <div class="custom-strategy-field">
+              <label for="customStrategyB" data-translate="simulator.customMix.strategyB">Strategy B</label>
+              <select id="customStrategyB"></select>
+            </div>
+            <div class="custom-strategy-field">
+              <label for="customStrategyWeight" data-translate="simulator.customMix.weightA">Weight for Strategy A</label>
+              <input type="range" id="customStrategyWeight" min="0" max="100" step="5" value="60" />
+              <div class="custom-weight-value">
+                <span id="customStrategyWeightValue">60%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="custom-strategy-actions">
+            <button class="custom-strategy-apply" id="customStrategyApply" data-translate="simulator.customMix.apply">
+              Apply Mix
+            </button>
+            <button class="custom-strategy-reset" id="customStrategyReset" data-translate="simulator.customMix.reset">
+              Reset Mix
+            </button>
+          </div>
+
+          <div class="custom-strategy-note" data-translate="simulator.customMix.note">
+            Your custom mix is saved locally. Adjust the slider to explore risk vs return.
+          </div>
         </div>
       </div>
 

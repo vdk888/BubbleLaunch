@@ -17,6 +17,40 @@
   let currentStrategy = 'equalWeight';
   let currentPeriod = 20;
   let portfolioData = null;
+  const CUSTOM_STRATEGY_STORAGE_KEY = 'bubbleCustomStrategy';
+  const DEFAULT_CUSTOM_STRATEGY = {
+    enabled: false,
+    strategyA: 'optimizedRiskParity',
+    strategyB: 'sixtyForty',
+    weight: 60, // percent for strategy A
+  };
+  let customStrategyState = { ...DEFAULT_CUSTOM_STRATEGY };
+
+  function loadCustomStrategyState() {
+    try {
+      const stored = localStorage.getItem(CUSTOM_STRATEGY_STORAGE_KEY);
+      if (!stored) return;
+      const parsed = JSON.parse(stored);
+      if (!parsed || typeof parsed !== 'object') return;
+      customStrategyState = {
+        ...customStrategyState,
+        ...parsed,
+      };
+    } catch (error) {
+      console.warn('Unable to load custom strategy state:', error);
+    }
+  }
+
+  function persistCustomStrategyState() {
+    try {
+      localStorage.setItem(
+        CUSTOM_STRATEGY_STORAGE_KEY,
+        JSON.stringify(customStrategyState)
+      );
+    } catch (error) {
+      console.warn('Unable to persist custom strategy state:', error);
+    }
+  }
 
   function getCurrentLanguage() {
     return document.documentElement.lang || localStorage.getItem('preferredLanguage') || 'fr';
@@ -81,6 +115,16 @@
       borderDash: [],
       order: 1,
       isBest: true, // Marks this as the highlighted "best" strategy
+    },
+    customMix: {
+      labelKey: 'simulator.strategy.customMix',
+      dataKey: 'customMix',
+      color: '#0ea5e9',
+      borderWidth: 3,
+      borderDash: [],
+      order: 0,
+      isBest: false,
+      isCustom: true,
     },
   };
 
@@ -236,6 +280,192 @@
     const sign = value > 0 ? '+' : '';
     const formatted = value.toFixed(1);
     return withPlus && value > 0 ? `${sign}${formatted}%` : `${formatted}%`;
+  }
+
+  function calculateLocalMetricsFromSeries(series) {
+    if (!Array.isArray(series) || series.length < 2) {
+      return null;
+    }
+
+    const sanitized = series.filter(
+      (value) => typeof value === 'number' && !Number.isNaN(value)
+    );
+
+    if (sanitized.length < 2) {
+      return null;
+    }
+
+    const startValue = sanitized[0];
+    const endValue = sanitized[sanitized.length - 1];
+    if (startValue === 0) {
+      return null;
+    }
+
+    const totalReturn = ((endValue - startValue) / startValue) * 100;
+    const returns = [];
+
+    for (let i = 1; i < sanitized.length; i++) {
+      const prev = sanitized[i - 1];
+      const curr = sanitized[i];
+      if (prev === 0) {
+        return null;
+      }
+      returns.push((curr - prev) / prev);
+    }
+
+    if (returns.length === 0) {
+      return null;
+    }
+
+    const meanReturn = returns.reduce((sum, value) => sum + value, 0) / returns.length;
+    const variance =
+      returns.reduce((sum, value) => sum + Math.pow(value - meanReturn, 2), 0) /
+      returns.length;
+    const monthlyVolatility = Math.sqrt(variance);
+    const annualVolatility = monthlyVolatility * Math.sqrt(12) * 100;
+
+    const years = (sanitized.length - 1) / 12;
+    const annualReturn =
+      years > 0 ? (Math.pow(1 + totalReturn / 100, 1 / years) - 1) * 100 : totalReturn;
+
+    const riskFreeRate = 0.02;
+    const sharpeRatio =
+      annualVolatility > 0
+        ? (annualReturn / 100 - riskFreeRate) / (annualVolatility / 100)
+        : 0;
+
+    let peak = sanitized[0];
+    let maxDrawdown = 0;
+
+    sanitized.forEach((value) => {
+      if (value > peak) {
+        peak = value;
+      }
+      const drawdown = (value - peak) / peak;
+      if (drawdown < maxDrawdown) {
+        maxDrawdown = drawdown;
+      }
+    });
+
+    return {
+      totalReturn,
+      annualReturn,
+      volatility: annualVolatility,
+      sharpeRatio,
+      maxDrawdown: maxDrawdown * 100,
+    };
+  }
+
+  function resetMetricDisplay() {
+    ['totalReturn', 'annualReturn', 'volatility', 'sharpeRatio', 'maxDrawdown', 'calmarRatio'].forEach(
+      (id) => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.textContent = '--';
+        }
+      }
+    );
+  }
+
+  function removeCustomStrategyData(data = portfolioData) {
+    if (!data || !Array.isArray(data.data)) {
+      return;
+    }
+
+    data.data.forEach((row) => {
+      if (row && Object.prototype.hasOwnProperty.call(row, 'customMix')) {
+        delete row.customMix;
+      }
+    });
+
+    if (data.metrics && Object.prototype.hasOwnProperty.call(data.metrics, 'customMix')) {
+      delete data.metrics.customMix;
+    }
+
+    if (Array.isArray(data.strategyKeys)) {
+      data.strategyKeys = data.strategyKeys.filter((key) => key !== 'customMix');
+    }
+  }
+
+  function applyCustomStrategyToData(data) {
+    if (!data || !Array.isArray(data.data)) {
+      return false;
+    }
+
+    const configA = STRATEGY_CONFIG[customStrategyState.strategyA];
+    const configB = STRATEGY_CONFIG[customStrategyState.strategyB];
+
+    if (!configA || !configB) {
+      return false;
+    }
+
+    const weightA = customStrategyState.weight / 100;
+    const weightB = 1 - weightA;
+    const composedSeries = [];
+
+    for (const row of data.data) {
+      if (
+        typeof row[configA.dataKey] !== 'number' ||
+        typeof row[configB.dataKey] !== 'number'
+      ) {
+        return false;
+      }
+
+      const rawValue = weightA * row[configA.dataKey] + weightB * row[configB.dataKey];
+      const rounded = Math.round(rawValue * 100) / 100;
+      row.customMix = rounded;
+      composedSeries.push(rawValue);
+    }
+
+    const metrics = calculateLocalMetricsFromSeries(composedSeries);
+    if (!metrics) {
+      return false;
+    }
+
+    data.metrics = data.metrics || {};
+    data.metrics.customMix = metrics;
+
+    if (Array.isArray(data.strategyKeys)) {
+      if (!data.strategyKeys.includes('customMix')) {
+        data.strategyKeys.push('customMix');
+      }
+    } else {
+      data.strategyKeys = ['customMix'];
+    }
+
+    return true;
+  }
+
+  function refreshCustomStrategyDataset({ forceDisable = false } = {}) {
+    if (!portfolioData) {
+      return;
+    }
+
+    removeCustomStrategyData(portfolioData);
+
+    if (!customStrategyState.enabled || forceDisable) {
+      return;
+    }
+
+    const success = applyCustomStrategyToData(portfolioData);
+    if (!success) {
+      console.warn('Unable to compute custom strategy mix with the selected configuration.');
+      customStrategyState.enabled = false;
+      persistCustomStrategyState();
+      removeCustomStrategyData(portfolioData);
+    }
+  }
+
+  function setActiveStrategyPill(strategyKey) {
+    const pills = document.querySelectorAll('.strategy-pill');
+    pills.forEach((pill) => {
+      const key = pill.getAttribute('data-strategy');
+      if (key === strategyKey) {
+        pill.classList.add('active');
+      } else {
+        pill.classList.remove('active');
+      }
+    });
   }
 
   /**

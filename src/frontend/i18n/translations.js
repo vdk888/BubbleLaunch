@@ -582,6 +582,54 @@ const translations = {
     en: "Advanced version using EWMA volatility and correlations between assets. Dynamically adjusts allocations to optimize the portfolio's return/risk ratio.",
     fr: "Version avancée utilisant la volatilité EWMA et les corrélations entre actifs. Ajuste dynamiquement les allocations pour optimiser le ratio rendement/risque du portefeuille."
   },
+  "simulator.strategy.customMix": {
+    en: "Create Your Mix",
+    fr: "Créez votre Mix"
+  },
+  "simulator.strategy.customMix.subtitle": {
+    en: "Blend two strategies",
+    fr: "Mélangez deux stratégies"
+  },
+  "simulator.strategy.customMix.tooltip": {
+    en: "Combine any two Bubble strategies with your preferred weighting. Adjust the slider to emphasize performance or stability.",
+    fr: "Combinez deux stratégies Bubble avec la pondération de votre choix. Ajustez le curseur pour privilégier la performance ou la stabilité."
+  },
+  "simulator.customMix.title": {
+    en: "Custom Strategy Builder",
+    fr: "Constructeur de Stratégie Personnalisée"
+  },
+  "simulator.customMix.description": {
+    en: "Select two strategies and choose how much weight to assign to each. We blend them instantly on real data.",
+    fr: "Sélectionnez deux stratégies et choisissez la pondération de chacune. Nous les mélangeons instantanément sur les données réelles."
+  },
+  "simulator.customMix.strategyA": {
+    en: "Strategy A",
+    fr: "Stratégie A"
+  },
+  "simulator.customMix.strategyB": {
+    en: "Strategy B",
+    fr: "Stratégie B"
+  },
+  "simulator.customMix.weightA": {
+    en: "Weight for Strategy A",
+    fr: "Poids de la Stratégie A"
+  },
+  "simulator.customMix.apply": {
+    en: "Apply Mix",
+    fr: "Appliquer le Mix"
+  },
+  "simulator.customMix.reset": {
+    en: "Reset Mix",
+    fr: "Réinitialiser"
+  },
+  "simulator.customMix.note": {
+    en: "Your custom mix is saved locally. Adjust the slider to explore risk vs return.",
+    fr: "Votre mix personnalisé est enregistré localement. Ajustez le curseur pour explorer le compromis risque/rendement."
+  },
+  "simulator.customMix.cta": {
+    en: "Configure your mix below to display results.",
+    fr: "Configurez votre mix ci-dessous pour afficher les résultats."
+  },
   "simulator.chart.title": {
     en: "Historical Performance",
     fr: "Performance Historique"
