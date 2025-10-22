@@ -766,6 +766,14 @@ const translations = {
     en: "Cookie Settings",
     fr: "Gérer les Cookies"
   },
+  "footer.nav.contact": {
+    en: "Contact",
+    fr: "Contact"
+  },
+  "footer.nav.email": {
+    en: "Email",
+    fr: "Email"
+  },
 
   // 404 Error Page
   "error.title": {

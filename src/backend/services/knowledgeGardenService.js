@@ -30,7 +30,7 @@ async function getPublishedReferences() {
         const database = await notion.databases.retrieve({ database_id: knowledgeGardenDatabaseId });
         console.log('📊 Database properties:', Object.keys(database.properties));
         
-        // Query for published references
+        // Query for published references (excluding archived pages)
         const response = await notion.databases.query({
             database_id: knowledgeGardenDatabaseId,
             filter: {
@@ -51,9 +51,12 @@ async function getPublishedReferences() {
             ]
         });
 
-        console.log(`📚 Found ${response.results.length} published references`);
+        // Filter out archived pages (Notion includes archived pages in query results by default)
+        const activePages = response.results.filter(page => !page.archived);
 
-        const references = response.results.map(page => {
+        console.log(`📚 Found ${response.results.length} total references (${activePages.length} active, ${response.results.length - activePages.length} archived)`);
+
+        const references = activePages.map(page => {
             const properties = page.properties;
             
             // Extract basic information (using correct property names from database structure)
