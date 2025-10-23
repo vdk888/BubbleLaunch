@@ -62,7 +62,7 @@ Match existing scroll animations pattern
 Phase 2: Lightweight Portfolio Simulator
 Simplified Version (vs anim-main's 9 strategies):
 Feature	anim-main	Lightweight Version
-Strategies	9 complex strategies	4 strategies: Equal Weight, 60/40, Simple Risk Parity, Optimized Risk Parity
+Strategies	9 complex strategies	6 strategies: Equal Weight, 60/40, Momentum Tilt, Hierarchical Risk Parity, Simple Risk Parity, Optimized Risk Parity
 ETFs	5 ETFs	3 ETFs: SPY, IEF, GLD (core diversification)
 Algorithms	EWMA, DCC-GARCH, regime detection	Simplified: Basic volatility, correlation penalty
 Backend	Separate Express server	Integrated: Use existing Bubble backend

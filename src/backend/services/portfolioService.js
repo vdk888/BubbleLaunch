@@ -7,6 +7,8 @@
  * 2. 60/40 Portfolio - 60% equities (SPY), 40% bonds (IEF)
  * 3. Simple Risk Parity - Inverse volatility weighting
  * 4. Optimized Risk Parity - EWMA volatility + correlation adjustment
+ * 5. Momentum Tilt - Return-weighted allocation favouring recent winners
+ * 6. Hierarchical Risk Parity (Simplified minimum variance approximation)
  */
 
 /**
@@ -154,6 +156,152 @@ function calculateSixtyForty(priceData) {
     SPY: 0.6,
     IEF: 0.4,
   });
+}
+
+function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21) {
+  const tickers = Object.keys(priceData);
+  if (tickers.length === 0) return [];
+
+  const allDates = priceData[tickers[0]].map((p) => p.date);
+  const portfolio = [];
+  let currentWeights = Object.fromEntries(tickers.map((ticker) => [ticker, 1 / tickers.length]));
+
+  for (let i = 0; i < allDates.length; i++) {
+    const date = allDates[i];
+
+    if (i >= lookbackDays && i % rebalanceDays === 0) {
+      // Calculate trailing returns over lookback window
+      const trailingReturns = {};
+      let totalPositive = 0;
+      tickers.forEach((ticker) => {
+        const currentPrice = priceData[ticker][i]?.price;
+        const pastPrice = priceData[ticker][i - lookbackDays]?.price;
+        if (!currentPrice || !pastPrice || pastPrice === 0) {
+          trailingReturns[ticker] = 0;
+          return;
+        }
+        const returnValue = (currentPrice - pastPrice) / pastPrice;
+        // Use only positive momentum; floor at zero
+        const positive = Math.max(returnValue, 0);
+        trailingReturns[ticker] = positive;
+        totalPositive += positive;
+      });
+
+      const weights = {};
+      if (totalPositive === 0) {
+        tickers.forEach((ticker) => {
+          weights[ticker] = 1 / tickers.length;
+        });
+      } else {
+        tickers.forEach((ticker) => {
+          weights[ticker] = trailingReturns[ticker] / totalPositive;
+        });
+      }
+
+      currentWeights = weights;
+    }
+
+    const value = tickers.reduce((sum, ticker) => {
+      const point = priceData[ticker][i];
+      if (!point || currentWeights[ticker] === undefined) return sum;
+      return sum + currentWeights[ticker] * point.price;
+    }, 0);
+
+    if (value) {
+      portfolio.push({ date, value });
+    }
+  }
+
+  return portfolio;
+}
+
+function calculateMinimumVarianceWeights(priceData, lookbackDays = 252, rebalanceDays = 21) {
+  const tickers = Object.keys(priceData);
+  if (tickers.length === 0) return [];
+
+  const allDates = priceData[tickers[0]].map((p) => p.date);
+  const returnsData = {};
+  tickers.forEach((ticker) => {
+    returnsData[ticker] = calculateReturns(priceData[ticker]);
+  });
+
+  const portfolio = [];
+  let currentWeights = Object.fromEntries(tickers.map((t) => [t, 1 / tickers.length]));
+
+  for (let i = 0; i < allDates.length; i++) {
+    const date = allDates[i];
+
+    if (i >= lookbackDays && i % rebalanceDays === 0) {
+      const windowReturns = tickers.map((ticker) =>
+        returnsData[ticker].slice(Math.max(0, i - lookbackDays), i)
+      );
+
+      const length = Math.min(...windowReturns.map((series) => series.length));
+      if (length > 2) {
+        // Build covariance matrix
+        const covMatrix = tickers.map(() => Array(tickers.length).fill(0));
+        for (let a = 0; a < tickers.length; a++) {
+          for (let b = a; b < tickers.length; b++) {
+            let sum = 0;
+            for (let k = 0; k < length; k++) {
+              sum += windowReturns[a][k] * windowReturns[b][k];
+            }
+            const cov = sum / length;
+            covMatrix[a][b] = cov;
+            covMatrix[b][a] = cov;
+          }
+        }
+
+        // Invert covariance matrix using pseudo inverse (since small matrix)
+        const det =
+          covMatrix[0][0] * (covMatrix[1][1] * covMatrix[2][2] - covMatrix[1][2] * covMatrix[2][1]) -
+          covMatrix[0][1] * (covMatrix[1][0] * covMatrix[2][2] - covMatrix[1][2] * covMatrix[2][0]) +
+          covMatrix[0][2] * (covMatrix[1][0] * covMatrix[2][1] - covMatrix[1][1] * covMatrix[2][0]);
+
+        if (Math.abs(det) > 1e-12) {
+          const inverse = [];
+          inverse[0] = [];
+          inverse[1] = [];
+          inverse[2] = [];
+
+          inverse[0][0] = (covMatrix[1][1] * covMatrix[2][2] - covMatrix[1][2] * covMatrix[2][1]) / det;
+          inverse[0][1] = (covMatrix[0][2] * covMatrix[2][1] - covMatrix[0][1] * covMatrix[2][2]) / det;
+          inverse[0][2] = (covMatrix[0][1] * covMatrix[1][2] - covMatrix[0][2] * covMatrix[1][1]) / det;
+          inverse[1][0] = (covMatrix[1][2] * covMatrix[2][0] - covMatrix[1][0] * covMatrix[2][2]) / det;
+          inverse[1][1] = (covMatrix[0][0] * covMatrix[2][2] - covMatrix[0][2] * covMatrix[2][0]) / det;
+          inverse[1][2] = (covMatrix[0][2] * covMatrix[1][0] - covMatrix[0][0] * covMatrix[1][2]) / det;
+          inverse[2][0] = (covMatrix[1][0] * covMatrix[2][1] - covMatrix[1][1] * covMatrix[2][0]) / det;
+          inverse[2][1] = (covMatrix[0][1] * covMatrix[2][0] - covMatrix[0][0] * covMatrix[2][1]) / det;
+          inverse[2][2] = (covMatrix[0][0] * covMatrix[1][1] - covMatrix[0][1] * covMatrix[1][0]) / det;
+
+          const ones = [1, 1, 1];
+          const weightsVector = inverse.map((row) =>
+            row.reduce((sum, value, idx) => sum + value * ones[idx], 0)
+          );
+          const weightSum = weightsVector.reduce((sum, value) => sum + value, 0);
+
+          if (weightSum !== 0) {
+            currentWeights = {};
+            tickers.forEach((ticker, idx) => {
+              currentWeights[ticker] = weightsVector[idx] / weightSum;
+            });
+          }
+        }
+      }
+    }
+
+    const portfolioValue = tickers.reduce((sum, ticker) => {
+      const point = priceData[ticker][i];
+      if (!point || currentWeights[ticker] === undefined) return sum;
+      return sum + currentWeights[ticker] * point.price;
+    }, 0);
+
+    if (portfolioValue) {
+      portfolio.push({ date, value: portfolioValue });
+    }
+  }
+
+  return portfolio;
 }
 
 /**
@@ -369,6 +517,8 @@ module.exports = {
   calculateFixedWeightPortfolio,
   calculateEqualWeight,
   calculateSixtyForty,
+  calculateMomentumTilt,
+  calculateMinimumVarianceWeights,
   calculateSimpleRiskParity,
   calculateOptimizedRiskParity,
   calculateMetrics,

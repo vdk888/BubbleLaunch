@@ -209,6 +209,45 @@
     exportElements.metricsBtn.addEventListener('click', handleMetricsExport);
   }
 
+  function applyQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    const strategyParam = params.get('strategy');
+    const periodParam = parseInt(params.get('period'), 10);
+    const mixParam = params.get('mix');
+
+    if (!Number.isNaN(periodParam) && [1, 3, 5, 10, 20].includes(periodParam)) {
+      currentPeriod = periodParam;
+    }
+
+    if (strategyParam && STRATEGY_CONFIG[strategyParam]) {
+      currentStrategy = strategyParam;
+    }
+
+    if (mixParam) {
+      const parts = mixParam.split(',').map((part) => part.trim());
+      if (parts.length >= 2) {
+        const [strategyA, strategyB, weightRaw] = parts;
+        if (
+          STRATEGY_CONFIG[strategyA] &&
+          STRATEGY_CONFIG[strategyB] &&
+          strategyA !== 'customMix' &&
+          strategyB !== 'customMix'
+        ) {
+          const weightValue = parseInt(weightRaw, 10);
+          customStrategyState.strategyA = strategyA;
+          customStrategyState.strategyB = strategyB;
+          if (!Number.isNaN(weightValue)) {
+            customStrategyState.weight = Math.min(95, Math.max(5, weightValue));
+          }
+          customStrategyState.enabled = true;
+          if (!strategyParam || strategyParam === 'customMix') {
+            currentStrategy = 'customMix';
+          }
+        }
+      }
+    }
+  }
+
   function getCurrentLanguage() {
     return document.documentElement.lang || localStorage.getItem('preferredLanguage') || 'fr';
   }
@@ -260,7 +299,25 @@
       color: '#4B5563',
       borderWidth: 2.2,
       borderDash: [],
+      order: 2.5,
+      isBest: false,
+    },
+    momentumTilt: {
+      labelKey: 'simulator.strategy.momentumTilt',
+      dataKey: 'momentumTilt',
+      color: '#14B8A6',
+      borderWidth: 2.4,
+      borderDash: [],
       order: 2,
+      isBest: false,
+    },
+    hierarchicalRiskParity: {
+      labelKey: 'simulator.strategy.hierarchicalRiskParity',
+      dataKey: 'hierarchicalRiskParity',
+      color: '#F59E0B',
+      borderWidth: 2.4,
+      borderDash: [4, 4],
+      order: 1.8,
       isBest: false,
     },
     simpleRiskParity: {
@@ -306,6 +363,8 @@
       const fallbacks = {
         'simulator.strategy.equalWeight': lang === 'en' ? 'Equal Allocation' : 'Allocation Égale',
         'simulator.strategy.sixtyForty': lang === 'en' ? '60/40 Balanced' : 'Portefeuille 60/40',
+        'simulator.strategy.momentumTilt': lang === 'en' ? 'Momentum Tilt' : 'Momentum',
+        'simulator.strategy.hierarchicalRiskParity': lang === 'en' ? 'Hierarchical RP' : 'Risk Parity Hiérarchique',
         'simulator.strategy.simpleRiskParity': 'Risk Parity',
         'simulator.strategy.optimizedRiskParity': lang === 'en' ? '✨ Optimized' : '✨ Optimisé',
       };
@@ -902,6 +961,8 @@
       simpleRiskParity: 'simpleRP',
       optimizedRiskParity: 'optimizedRP',
       sixtyForty: 'sixtyForty',
+      momentumTilt: 'momentumTilt',
+      hierarchicalRiskParity: 'hierarchicalRiskParity',
       customMix: 'customMix',
     }[strategy];
 
@@ -1003,6 +1064,7 @@
    */
   function initializeSimulator() {
     loadCustomStrategyState();
+    applyQueryParams();
     cacheCustomStrategyElements();
     populateCustomStrategyOptions();
     if (customStrategyElements.weight) {
@@ -1012,6 +1074,10 @@
     updateCustomAlert();
     toggleCustomPanel(false);
     initializeExportActions();
+    if (customStrategyState.enabled && currentStrategy === 'customMix') {
+      updateCustomAlert();
+      toggleCustomPanel(true);
+    }
 
     if (customStrategyElements.selectA) {
       customStrategyElements.selectA.addEventListener('change', (event) => {
@@ -1073,6 +1139,7 @@
     });
 
     setActiveStrategyPill(currentStrategy);
+    toggleCustomPanel(currentStrategy === 'customMix');
   }
 
   /**

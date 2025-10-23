@@ -1359,6 +1359,44 @@
             </div>
           </button>
 
+          <button class="strategy-pill" data-strategy="momentumTilt">
+            <div class="strategy-tooltip" data-translate="simulator.strategy.momentumTilt.tooltip">
+              Pondération dynamique en fonction du momentum sur 12 mois. Les actifs avec la meilleure tendance reçoivent davantage de poids.
+            </div>
+            <div class="pill-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M6 20L12.5 13.5L17.5 18.5L26 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M24 10H26V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="pill-content">
+              <div class="pill-title" data-translate="simulator.strategy.momentumTilt">Momentum Tilt</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.momentumTilt.subtitle">Favorise les gagnants récents</div>
+            </div>
+          </button>
+
+          <button class="strategy-pill" data-strategy="hierarchicalRiskParity">
+            <div class="strategy-tooltip" data-translate="simulator.strategy.hierarchicalRiskParity.tooltip">
+              Allocation à variance minimale inspirée du Hierarchical Risk Parity. Balance le risque en tenant compte des corrélations.
+            </div>
+            <div class="pill-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M8 24H24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 16H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16 8L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="16" cy="8" r="2" fill="currentColor"/>
+                <circle cx="12" cy="16" r="2" fill="currentColor"/>
+                <circle cx="20" cy="16" r="2" fill="currentColor"/>
+                <circle cx="12" cy="24" r="2" fill="currentColor"/>
+                <circle cx="20" cy="24" r="2" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="pill-content">
+              <div class="pill-title" data-translate="simulator.strategy.hierarchicalRiskParity">Risk Parity Hiérarchique</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.hierarchicalRiskParity.subtitle">Mix variance minimale</div>
+            </div>
+          </button>
+
           <button class="strategy-pill" data-strategy="simpleRiskParity">
             <div class="strategy-tooltip" data-translate="simulator.strategy.simpleRiskParity.tooltip">
               Pondère les actifs par l'inverse de leur volatilité. Les actifs plus volatils reçoivent moins de poids, équilibrant ainsi la contribution au risque total du portefeuille.

@@ -13,6 +13,8 @@ The Portfolio Simulator is an interactive tool integrated into the Bubble websit
 2. **Portefeuille 60/40** - 60% SPY (stocks) / 40% IEF (bonds)
 3. **Risk Parity Simple** - Inverse volatility weighting
 4. **✨ Optimisé** (Currently: Optimized Risk Parity) - EWMA + correlations
+ 5. **Momentum Tilt** - Positive 12-month momentum overweight
+ 6. **Risk Parity Hiérarchique** - Minimum variance approximation
 - **Mix Personnalisé** - Client-side blend of any two strategies (saved locally)
 - **Export Toolkit** - Chart PNG + metrics CSV downloads (feature flagged)
 
@@ -32,7 +34,7 @@ src/
 │   │   └── portfolio.controller.js      # Request handling
 │   ├── services/
 │   │   ├── yahooFinanceService.js       # ETF data fetching
-│   │   └── portfolioService.js          # Strategy calculations (equal, 60/40, parity)
+│   │   └── portfolioService.js          # Strategy calculations (equal, 60/40, momentum, HRP, parity)
 │   └── cache/
 │       ├── portfolio-preview-data.json      # Default (20Y) snapshot
 │       └── portfolio-preview-periods.json   # Multi-period cache (1/3/5/10/20Y)
@@ -141,6 +143,15 @@ npm run generate:portfolio-cache
 - Status label surfaces success/error feedback; GA4 emits `export_chart_png` and `export_metrics_csv` events with the current strategy/period.
 - Downloads are informational only (legal copy updated accordingly).
 
+## Deep Links & Embeds
+
+- The simulator reads query parameters to preconfigure the view:
+  - `?period=5` selects the 5-year dataset (supports 1/3/5/10/20).
+  - `?strategy=momentumTilt` activates any built-in strategy (`equalWeight`, `sixtyForty`, `momentumTilt`, `hierarchicalRiskParity`, `simpleRiskParity`, `optimizedRiskParity`, `customMix`).
+  - `?mix=strategyA,strategyB,weight` seeds the custom mix (weight in percent for Strategy A). Example: `?strategy=customMix&mix=optimizedRiskParity,sixtyForty,65`.
+- Ideal for embeddings or marketing landing pages—set the iframe `src` to `/portfolio-simulator?strategy=momentumTilt&period=10` to focus the narrative.
+- Custom mix parameters are stored locally, so visitors keep the configuration as they explore the simulator.
+
 ### Step 5: Update API Response
 
 Ensure `portfolio.controller.js` includes your new strategy in the response:
@@ -207,10 +218,25 @@ Returns cached portfolio data for the simulator.
       "sharpeRatio": 0.71,
       "maxDrawdown": -35.28
     },
+    "momentumTilt": {
+      "totalReturn": 522.44,
+      "annualReturn": 9.68,
+      "volatility": 13.15,
+      "sharpeRatio": 0.74,
+      "maxDrawdown": -28.5
+    },
+    "hierarchicalRiskParity": {
+      "totalReturn": 402.31,
+      "annualReturn": 8.52,
+      "volatility": 9.88,
+      "sharpeRatio": 0.59,
+      "maxDrawdown": -21.4
+    },
     "optimizedRP": { "totalReturn": 378.63, "annualReturn": 8.32, "volatility": 10.94, "sharpeRatio": 0.42, "maxDrawdown": -26.91 }
   },
   "periodYears": 20,
   "periodsAvailable": [1, 3, 5, 10, 20],
+  "strategyKeys": ["equalWeight", "sixtyForty", "momentumTilt", "hierarchicalRiskParity", "simpleRP", "optimizedRP"],
   "generatedAt": "2025-10-22T18:25:54.306Z",
   "fromCache": true
 }
@@ -276,7 +302,7 @@ All core metrics are pre-computed on the server and cached with each snapshot:
 ## Testing
 
 ### Manual Testing Checklist
- - [ ] All 4 strategies display correctly
+ - [ ] All 6 strategies display correctly
 - [ ] Strategy selector pills work and update chart
 - [ ] Tooltips appear on hover (strategies & metrics)
 - [ ] Chart animates smoothly on strategy change
@@ -322,16 +348,16 @@ All payloads share the `Portfolio Simulator` category and automatically append l
 - Portfolio simulator now consumes server-side metrics, exposes JSON-LD, and streams GA4 events.
 - Custom Mix builder (client-side blend + analytics) shipped.
 - Dedicated `/api/chat/portfolio` endpoint delivers portfolio-aware conversations with simulator context.
+- Momentum Tilt + Hierarchical Risk Parity strategies added to the cache pipeline and UI.
+- Export toolkit (chart PNG + metrics CSV) available via feature flag with analytics instrumentation.
 
 ### Next Focus
-1. **UX Enhancements & Export Toolkit**
-   - Allocation sliders for manual tweaks, chart/download exports (PNG/PDF/CSV), refined legal copy.
-   - Feature flag the tooling, launch once analytics shows sustained usage.
-2. **Strategy Expansion**
-   - Port additional modules from `anim-main` (Momentum, HRP, Leveraged RP) into the offline cache pipeline.
-   - Ship with translations, tooltips, and landing-page storytelling.
-3. **Embeddable & Content Integration**
+1. **Allocation Sliders & Advanced Exports**
+   - Interactive sliders for manual ETF weights, additional download formats (PDF summaries), and improved legal copy toggle.
+2. **Embeddable & Content Integration**
    - Build an embeddable widget (iframe/web component) for blog posts and dynamic deep-links (e.g., `?strategy=optimizedRP&period=5`).
+3. **Future Strategy Modules**
+   - Evaluate additional anim-main strategies (Leveraged RP, Momentum + drawdown filters) for inclusion once we have demand data.
 
 **Implementation**:
 - Create embeddable simulator widget (`<iframe>` or web component)

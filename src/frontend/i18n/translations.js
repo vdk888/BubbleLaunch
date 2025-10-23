@@ -534,6 +534,30 @@ const translations = {
     en: "Institutional classic: 60% equities (SPY) and 40% bonds (IEF). Aims to capture long-term growth while cushioning downturns with fixed income.",
     fr: "Classique institutionnel : 60% actions (SPY) et 40% obligations (IEF). Vise la croissance à long terme tout en amortissant les baisses grâce au revenu fixe."
   },
+  "simulator.strategy.momentumTilt": {
+    en: "Momentum Tilt",
+    fr: "Momentum"
+  },
+  "simulator.strategy.momentumTilt.subtitle": {
+    en: "Rewards recent winners",
+    fr: "Favorise les gagnants récents"
+  },
+  "simulator.strategy.momentumTilt.tooltip": {
+    en: "Weights ETFs based on 12-month price momentum. Assets with stronger trends receive more allocation, while laggards are underweighted.",
+    fr: "Pondère les ETFs selon leur momentum sur 12 mois. Les actifs aux tendances fortes reçoivent plus d'allocation, les retardataires sont sous-pondérés."
+  },
+  "simulator.strategy.hierarchicalRiskParity": {
+    en: "Hierarchical RP",
+    fr: "Risk Parity Hiérarchique"
+  },
+  "simulator.strategy.hierarchicalRiskParity.subtitle": {
+    en: "Minimum variance mix",
+    fr: "Mix variance minimale"
+  },
+  "simulator.strategy.hierarchicalRiskParity.tooltip": {
+    en: "Simplified hierarchical risk parity using a minimum-variance allocation. Balances assets by covariance rather than simple volatility.",
+    fr: "Version simplifiée de l'Hierarchical Risk Parity via une allocation à variance minimale. Équilibre les actifs selon leur covariance plutôt que la seule volatilité."
+  },
   "simulator.strategy.simpleRP": {
     en: "Risk Parity",
     fr: "Risk Parity"
@@ -1231,8 +1255,8 @@ const translations = {
     fr: "Discutons de votre projet"
   },
   "businesses.contact.subtitle": {
-    en: "Describe your need in a few lines. We'll respond within 48h with an initial feasibility and budget estimate.",
-    fr: "Décrivez-nous votre besoin en quelques lignes. Nous vous répondons sous 48h avec une première estimation de faisabilité et budget."
+    en: "Describe your need in a few lines. We'll respond with an initial feasibility and budget estimate.",
+    fr: "Décrivez-nous votre besoin en quelques lignes. Nous vous répondrons avec une première estimation de faisabilité et budget."
   },
   "businesses.form.title": {
     en: "Contact Request",
@@ -1327,16 +1351,16 @@ const translations = {
     fr: "Envoyer ma demande"
   },
   "businesses.form.note": {
-    en: "Response within 48h • Free initial diagnostic • No commitment",
-    fr: "Réponse sous 48h • Diagnostic initial gratuit • Aucun engagement"
+    en: "Free initial diagnostic • No commitment",
+    fr: "Diagnostic initial gratuit • Aucun engagement"
   },
   "businesses.form.success.title": {
     en: "✅ Message sent!",
     fr: "✅ Message envoyé !"
   },
   "businesses.form.success.message": {
-    en: "We've received your request. A team member will respond within 48h to the address <strong id=\"submitted-email\"></strong>.",
-    fr: "Nous avons bien reçu votre demande. Un membre de notre équipe vous répondra sous 48h à l'adresse <strong id=\"submitted-email\"></strong>."
+    en: "We've received your request. A team member will respond to the address <strong id=\"submitted-email\"></strong>.",
+    fr: "Nous avons bien reçu votre demande. Un membre de notre équipe vous répondra à l'adresse <strong id=\"submitted-email\"></strong>."
   },
   "businesses.form.error.title": {
     en: "❌ Sending error",

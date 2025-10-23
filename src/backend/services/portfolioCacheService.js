@@ -11,11 +11,20 @@ const SAMPLE_INTERVAL_DAYS = 21; // ~ monthly sampling
 const STRATEGY_BUILDERS = {
   equalWeight: portfolioService.calculateEqualWeight,
   sixtyForty: portfolioService.calculateSixtyForty,
+  momentumTilt: portfolioService.calculateMomentumTilt,
+  hierarchicalRiskParity: portfolioService.calculateMinimumVarianceWeights,
   simpleRP: portfolioService.calculateSimpleRiskParity,
   optimizedRP: portfolioService.calculateOptimizedRiskParity,
 };
 
-const STRATEGY_ORDER = ["equalWeight", "sixtyForty", "simpleRP", "optimizedRP"];
+const STRATEGY_ORDER = [
+  "equalWeight",
+  "sixtyForty",
+  "momentumTilt",
+  "hierarchicalRiskParity",
+  "simpleRP",
+  "optimizedRP",
+];
 
 function formatPercentage(value) {
   return Math.round(value * 10000) / 100;
