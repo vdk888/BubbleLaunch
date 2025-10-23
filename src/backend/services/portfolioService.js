@@ -167,6 +167,175 @@ function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21
   let currentWeights = Object.fromEntries(tickers.map((ticker) => [ticker, 1 / tickers.length]));
 
   for (let i = 0; i < allDates.length; i++) {
+    if (i >= lookbackDays && i % rebalanceDays === 0) {
+      const trailingReturns = {};
+      let totalPositive = 0;
+
+      tickers.forEach((ticker) => {
+        const currentPoint = priceData[ticker][i];
+        const pastPoint = priceData[ticker][i - lookbackDays];
+        if (!currentPoint || !pastPoint || pastPoint.price === 0) {
+          trailingReturns[ticker] = 0;
+          return;
+        }
+        const momentum = (currentPoint.price - pastPoint.price) / pastPoint.price;
+        const positiveMomentum = Math.max(momentum, 0);
+        trailingReturns[ticker] = positiveMomentum;
+        totalPositive += positiveMomentum;
+      });
+
+      if (totalPositive === 0) {
+        currentWeights = Object.fromEntries(tickers.map((ticker) => [ticker, 1 / tickers.length]));
+      } else {
+        currentWeights = Object.fromEntries(
+          tickers.map((ticker) => [ticker, trailingReturns[ticker] / totalPositive])
+        );
+      }
+    }
+
+    let portfolioValue = 0;
+    let hasAllPrices = true;
+
+    tickers.forEach((ticker) => {
+      const dataPoint = priceData[ticker][i];
+      if (!dataPoint) {
+        hasAllPrices = false;
+        return;
+      }
+      const weight = currentWeights[ticker] ?? 0;
+      portfolioValue += weight * dataPoint.price;
+    });
+
+    if (hasAllPrices) {
+      portfolio.push({ date: allDates[i], value: portfolioValue });
+    }
+  }
+
+  return portfolio;
+}
+
+function invert3x3(matrix) {
+  const det =
+    matrix[0][0] * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1]) -
+    matrix[0][1] * (matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0]) +
+    matrix[0][2] * (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]);
+
+  if (Math.abs(det) < 1e-12) {
+    return null;
+  }
+
+  const inverse = [
+    [],
+    [],
+    [],
+  ];
+
+  inverse[0][0] = (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1]) / det;
+  inverse[0][1] = (matrix[0][2] * matrix[2][1] - matrix[0][1] * matrix[2][2]) / det;
+  inverse[0][2] = (matrix[0][1] * matrix[1][2] - matrix[0][2] * matrix[1][1]) / det;
+  inverse[1][0] = (matrix[1][2] * matrix[2][0] - matrix[1][0] * matrix[2][2]) / det;
+  inverse[1][1] = (matrix[0][0] * matrix[2][2] - matrix[0][2] * matrix[2][0]) / det;
+  inverse[1][2] = (matrix[0][2] * matrix[1][0] - matrix[0][0] * matrix[1][2]) / det;
+  inverse[2][0] = (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]) / det;
+  inverse[2][1] = (matrix[0][1] * matrix[2][0] - matrix[0][0] * matrix[2][1]) / det;
+  inverse[2][2] = (matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]) / det;
+
+  return inverse;
+}
+
+function calculateMinimumVarianceWeights(priceData, lookbackDays = 252, rebalanceDays = 21) {
+  const tickers = Object.keys(priceData);
+  if (tickers.length === 0) return [];
+
+  const allDates = priceData[tickers[0]].map((p) => p.date);
+  const returnsData = {};
+  tickers.forEach((ticker) => {
+    returnsData[ticker] = calculateReturns(priceData[ticker]);
+  });
+
+  const portfolio = [];
+  let currentWeights = Object.fromEntries(tickers.map((ticker) => [ticker, 1 / tickers.length]));
+
+  for (let i = 0; i < allDates.length; i++) {
+    if (i >= lookbackDays && i % rebalanceDays === 0) {
+      const covMatrix = tickers.map(() => Array(tickers.length).fill(0));
+      let observations = 0;
+
+      for (let k = i; k > i - lookbackDays; k--) {
+        if (k <= 0) continue;
+        const row = tickers.map((ticker) => {
+          const currentPoint = priceData[ticker][k];
+          const previousPoint = priceData[ticker][k - 1];
+          if (!currentPoint || !previousPoint || previousPoint.price === 0) {
+            return 0;
+          }
+          return (currentPoint.price - previousPoint.price) / previousPoint.price;
+        });
+
+        observations += 1;
+
+        for (let a = 0; a < tickers.length; a++) {
+          for (let b = a; b < tickers.length; b++) {
+            const increment = row[a] * row[b];
+            covMatrix[a][b] += increment;
+            if (a !== b) {
+              covMatrix[b][a] += increment;
+            }
+          }
+        }
+      }
+
+      if (observations > 0) {
+        for (let a = 0; a < tickers.length; a++) {
+          for (let b = 0; b < tickers.length; b++) {
+            covMatrix[a][b] /= observations;
+          }
+        }
+
+        const inverse = invert3x3(covMatrix);
+        if (inverse) {
+          const weightsVector = inverse.map((row) => row.reduce((sum, value) => sum + value, 0));
+          const weightSum = weightsVector.reduce((sum, value) => sum + value, 0);
+
+          if (weightSum !== 0) {
+            currentWeights = Object.fromEntries(
+              tickers.map((ticker, idx) => [ticker, weightsVector[idx] / weightSum])
+            );
+          }
+        }
+      }
+    }
+
+    let portfolioValue = 0;
+    let hasAllPrices = true;
+
+    tickers.forEach((ticker) => {
+      const dataPoint = priceData[ticker][i];
+      if (!dataPoint) {
+        hasAllPrices = false;
+        return;
+      }
+      const weight = currentWeights[ticker] ?? 0;
+      portfolioValue += weight * dataPoint.price;
+    });
+
+    if (hasAllPrices) {
+      portfolio.push({ date: allDates[i], value: portfolioValue });
+    }
+  }
+
+  return portfolio;
+}
+
+function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21) {
+  const tickers = Object.keys(priceData);
+  if (tickers.length === 0) return [];
+
+  const allDates = priceData[tickers[0]].map((p) => p.date);
+  const portfolio = [];
+  let currentWeights = Object.fromEntries(tickers.map((ticker) => [ticker, 1 / tickers.length]));
+
+  for (let i = 0; i < allDates.length; i++) {
     const date = allDates[i];
 
     if (i >= lookbackDays && i % rebalanceDays === 0) {
