@@ -901,8 +901,8 @@ const translations = {
     fr: "Automatisation financière sans bullshit."
   },
   "businesses.hero.title": {
-    en: "AI consulting that truly acts instead of recommending.",
-    fr: "Du conseil en IA qui agit vraiment au lieu de recommander."
+    en: "Not just consulting,<br>real solutions.",
+    fr: "Mieux qu'un conseil,<br>des solutions."
   },
   "businesses.hero.subtitle": {
     en: "Former Big Four consultants and portfolio managers. We've seen the dysfunction from the inside.",
@@ -919,16 +919,16 @@ const translations = {
     fr: "Ce que nous faisons"
   },
   "businesses.what.p1": {
-    en: "We don't sell PowerPoint. We implement automation and AI solutions for finance. Concrete, measurable, in production.",
-    fr: "Nous ne vendons pas de PowerPoint. Nous implémentons des solutions d'automatisation et d'IA pour la finance. Concrètement, mesurable, en production."
+    en: "We primarily support SMEs and asset management companies in modernizing their financial processes. At Bubble Invest, there's no selling dreams, endless PowerPoint diagnostics, or magical solutions that only work with an army of consultants. We prefer pragmatic projects: automation and optimization of concrete tasks, with simple or customized tools according to each need.",
+    fr: "Nous accompagnons principalement les PME et sociétés de gestion dans la modernisation de leurs processus financiers. Chez Bubble Invest, il n'est pas question de vendre du rêve, des diagnostics interminables sur PowerPoint ou des solutions magiques possibles qu'avec une armée de consultants. On préfère les projets pragmatiques : automatisation et optimisation de tâches concrètes, avec des outils simples ou personnalisés selon chaque besoin."
   },
   "businesses.what.p2": {
-    en: "We deliver in 2 to 4 months, with a fixed price announced from the diagnostic. No eternal POCs, no runaway budgets, no 15-person teams for a dashboard.",
-    fr: "Nous livrons en 2 à 4 mois, avec un prix fixe annoncé dès le diagnostic. Pas de POC éternels, pas de budgets qui s'envolent, pas d'équipes de 15 personnes pour un dashboard."
+    en: "Like with our Bubble investment product, our goal is also to humbly share what we've learned and discovered: everything that's now possible with current tools (Codex, Claude Code 'vibe coding', low code, front-end/back-end development, n8n-type workflows, custom intelligent agents…), to enable everyone to benefit from these advances, regardless of their technical level.",
+    fr: "Comme pour notre produit d'investissement Bubble, notre objectif est aussi de partager humblement ce que nous avons appris et découvert : tout ce qui est désormais possible avec les outils actuels (Codex, Claude Code \"vibe coding\", low code, développement de front end/back-end, workflows type n8n, agents intelligents sur mesure…), afin de permettre à chacun de tirer parti de ces avancées, quel que soit son niveau technique."
   },
   "businesses.what.p3": {
-    en: "Our stack is pragmatic: Notion, Claude, Make, n8n, Python, JavaScript. We use no-code when it's relevant, we code when it's necessary. The goal is that it works, not that it looks impressive on an architecture diagram.",
-    fr: "Notre stack est pragmatique : Notion, Claude, Make, n8n, Python, JavaScript. On utilise du no-code quand c'est pertinent, on code quand c'est nécessaire. L'objectif c'est que ça marche, pas que ce soit impressionnant sur un schéma d'architecture."
+    en: "In line with our finance experience and technological appetite, we use the most reliable and current intelligent tools with an agility that truly adapts to each client and context.",
+    fr: "En cohérence avec notre expérience en finance et notre appétence technologique, nous utilisons les outils intelligents les plus fiables et actuels avec une agilité qui s'adapte vraiment à chaque client et chaque contexte."
   },
   "businesses.what.examples.title": {
     en: "Concrete examples",
@@ -957,20 +957,90 @@ const translations = {
     fr: "Pourquoi nous faisons ça"
   },
   "businesses.why.p1": {
-    en: "We worked in the Big Four and institutional portfolio management. We've seen from the inside how €150k-€300k projects turn into PowerPoints that never reach production.",
-    fr: "Nous avons travaillé dans les Big Four et en gestion de portefeuille institutionnel. Nous avons vu de l'intérieur comment des projets à €150k-€300k se transforment en PowerPoints qui ne passent jamais en production."
+    en: "After years in consulting firms and asset management, we've observed many pitfalls: six-figure missions that lead nowhere, consultants who disappear after presenting their report, and many promises rarely kept.",
+    fr: "Après des années dans des cabinets de conseil et dans la gestion d'actifs, nous avons observé de nombreux travers : des missions à 6 chiffres qui ne débouchent sur rien, des consultants qui disparaissent après avoir présenté leur rapport, et beaucoup de promesses rarement tenues."
   },
   "businesses.why.p2": {
-    en: "We've also seen how technology, when used well, can truly transform finance. Not with 18-month 'digital transformations'. With pragmatic solutions, delivered fast, that work.",
-    fr: "Nous avons aussi vu comment la technologie, quand elle est bien utilisée, peut vraiment transformer la finance. Pas avec des \"transformations digitales\" de 18 mois. Avec des solutions pragmatiques, livrées vite, qui marchent."
+    en: "At Bubble Invest, we chose to do things differently: focus on honesty and a genuine desire to help—even if it sometimes means saying no to a project.",
+    fr: "Chez Bubble Invest, nous avons choisi de faire autrement : miser sur l'honnêteté et l'envie d'aider vraiment – même si cela signifie parfois dire non à un projet."
   },
   "businesses.why.p3": {
-    en: "We won't lie: Bubble is just starting. We don't have 500 client references. But we have the experience, technical skills, and above all the honesty to say no when a project doesn't match our expertise.",
-    fr: "On ne va pas vous mentir : Bubble démarre. Nous n'avons pas 500 références clients. Mais nous avons l'expérience, les compétences techniques, et surtout l'honnêteté de dire non quand un projet ne correspond pas à notre expertise."
+    en: "We prefer to showcase our experience rather than pretend to know everything. We work with you, without selling you a technological revolution. On each project, we prioritize transparency, even if it means acknowledging our limitations.",
+    fr: "On préfère afficher notre expérience que prétendre tout savoir. Nous agissons avec vous, sans vous vendre une révolution technologique. Sur chaque projet, nous privilégions la transparence, même si cela veut dire reconnaître nos limites."
   },
-  "businesses.why.p4": {
-    en: "We prefer being honest to landing a project we won't be able to deliver.",
-    fr: "Nous préférons être honnêtes que de décrocher un projet que nous ne saurons pas livrer."
+
+  // Examples Section
+  "businesses.examples.title": {
+    en: "Concrete Examples",
+    fr: "Exemples concrets"
+  },
+  "businesses.examples.1": {
+    en: "Quick implementation of simple workflows (custom code or low code) and custom intelligent agents",
+    fr: "Implémentation rapide de workflows simples (custom code ou low code) et d'agents intelligents sur mesure"
+  },
+  "businesses.examples.2": {
+    en: "Revenue recognition process: client invoicing workflow, accounting reconciliation, simplified budget tracking",
+    fr: "Processus de reconnaissance du revenu : workflow de facturation client, rapprochement comptable, suivi budgétaire simplifié"
+  },
+  "businesses.examples.3": {
+    en: "Monthly financial reporting automation: up to 15h/month saved and zero data entry errors.",
+    fr: "Automatisation du reporting financier mensuel : jusqu'à 15h/mois économisées et zéro erreur de saisie."
+  },
+  "businesses.examples.4": {
+    en: "Automated ESG news monitoring: custom digests for a portfolio manager, 5 to 7h/week saved.",
+    fr: "Suivi automatisé de l'actualité ESG : des digest sur-mesure pour un gestionnaire de portefeuille, 5 à 7h/semaine gagnées."
+  },
+  "businesses.examples.5": {
+    en: "Building a personalized dashboard for performance tracking: budget divided by 4 vs a traditional 'vendor' solution.",
+    fr: "Construction d'un dashboard personnalisé pour le suivi de la performance : budget divisé par 4 vs une solution éditeur \"traditionnelle\"."
+  },
+
+  // Values Section
+  "businesses.values.title": {
+    en: "Values and Methodology",
+    fr: "Valeurs et méthodologie"
+  },
+  "businesses.values.pragmatism.title": {
+    en: "Pragmatism",
+    fr: "Pragmatisme"
+  },
+  "businesses.values.pragmatism.text": {
+    en: "Proven and adaptable tools, no technology for technology's sake.",
+    fr: "Outils éprouvés et adaptables, pas de technologie pour la technologie."
+  },
+  "businesses.values.transparency.title": {
+    en: "Transparency",
+    fr: "Transparence"
+  },
+  "businesses.values.transparency.text": {
+    en: "Pricing and timeline announced from the diagnosis, no hidden budgets, no forced sales.",
+    fr: "Tarif et délai annoncés dès le diagnostic, pas de budgets cachés, pas de ventes forcées."
+  },
+  "businesses.values.collaboration.title": {
+    en: "Direct Collaboration",
+    fr: "Collaboration directe"
+  },
+  "businesses.values.collaboration.text": {
+    en: "Simple exchanges, continuous monitoring, support even after delivery through adapted maintenance.",
+    fr: "Échanges simples, suivi continu, accompagnement même après la livraison via une maintenance adaptée."
+  },
+  "businesses.values.humility.title": {
+    en: "Humility",
+    fr: "Humilité"
+  },
+  "businesses.values.humility.text": {
+    en: "We're just starting out, and we don't have 500 clients in our history or a view of the Champs-Élysées—but we take action and remain attentive.",
+    fr: "Nous débutons, et nous n'avons pas 500 clients dans notre historique ou une vue sur les Champs Elysées – mais nous agissons et restons à l'écoute."
+  },
+
+  // Pricing Section
+  "businesses.pricing.title": {
+    en: "Pricing",
+    fr: "Tarifs"
+  },
+  "businesses.pricing.text": {
+    en: "Our projects fall within a realistic range, delivered in 2 to 4 months, with transparent quotes including diagnosis and maintenance phases. We don't seek to compete with large firms on volume, but on the quality and relevance of what we deliver to our clients. Our goal? To make today's tools available to both large and small companies, without discriminatory pricing.",
+    fr: "Nos projets se situent dans une fourchette réaliste, livrés en 2 à 4 mois, avec devis transparent avec une phase de diagnostic et maintenance incluse. Nous ne cherchons pas à rivaliser avec les grands cabinets sur le volume, mais sur la qualité et la pertinence de ce que nous livrons à nos clients. Notre objectif ? Que les outils d'aujourd'hui soit disponible pour les grandes comme les petites entreprises, sans tarifs discriminants."
   },
 
   // Article Section
