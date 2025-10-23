@@ -395,6 +395,7 @@
       /* Strategy Tooltips */
       .strategy-pill {
         position: relative;
+        z-index: 1;
       }
 
       .strategy-tooltip {
@@ -425,6 +426,10 @@
         transform: translateX(-50%);
         border: 6px solid transparent;
         border-bottom-color: rgba(0, 0, 0, 0.9);
+      }
+
+      .strategy-pill:hover {
+        z-index: 20;
       }
 
       .strategy-pill:hover .strategy-tooltip {
