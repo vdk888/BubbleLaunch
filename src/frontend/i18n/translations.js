@@ -630,6 +630,34 @@ const translations = {
     en: "Configure your mix below to display results.",
     fr: "Configurez votre mix ci-dessous pour afficher les résultats."
   },
+  "simulator.export.title": {
+    en: "Exports & Downloads",
+    fr: "Exports & Téléchargements"
+  },
+  "simulator.export.description": {
+    en: "Capture the chart or download the key metrics to review the strategies offline.",
+    fr: "Capturez le graphique ou exportez les métriques pour analyser les stratégies hors ligne."
+  },
+  "simulator.export.chart": {
+    en: "Download Chart (PNG)",
+    fr: "Télécharger le graphique (PNG)"
+  },
+  "simulator.export.metrics": {
+    en: "Export Metrics (CSV)",
+    fr: "Exporter les métriques (CSV)"
+  },
+  "simulator.export.status.ready": {
+    en: "Choose an export to download.",
+    fr: "Choisissez un export à télécharger."
+  },
+  "simulator.export.status.success": {
+    en: "Download started!",
+    fr: "Téléchargement lancé !"
+  },
+  "simulator.export.status.error": {
+    en: "Export failed. Please try again.",
+    fr: "Export impossible. Réessayez."
+  },
   "simulator.chart.title": {
     en: "Historical Performance",
     fr: "Performance Historique"
@@ -767,8 +795,8 @@ const translations = {
     fr: "Appuyez sur le chat pour poser vos questions sur les stratégies, métriques ou comprendre l'investissement"
   },
   "simulator.disclaimer": {
-    en: "<strong>Warning:</strong> Past performance does not guarantee future performance. These simulations are based on historical data and do not constitute investment advice. Consult a financial advisor before making any investment decision.",
-    fr: "<strong>Avertissement :</strong> Les performances passées ne préjugent pas des performances futures. Ces simulations sont basées sur des données historiques et ne constituent pas un conseil en investissement. Consultez un conseiller financier avant toute décision d'investissement."
+    en: "<strong>Warning:</strong> Past performance does not guarantee future performance. These simulations are based on historical data and do not constitute investment advice. Downloads are provided for informational purposes only. Consult a financial advisor before making any investment decision.",
+    fr: "<strong>Avertissement :</strong> Les performances passées ne préjugent pas des performances futures. Ces simulations sont basées sur des données historiques et ne constituent pas un conseil en investissement. Les exports sont fournis uniquement à titre informatif. Consultez un conseiller financier avant toute décision d'investissement."
   },
 
   // ETF Labels for Chart
@@ -1205,6 +1233,10 @@ const translations = {
   "businesses.contact.subtitle": {
     en: "Describe your need in a few lines. We'll respond within 48h with an initial feasibility and budget estimate.",
     fr: "Décrivez-nous votre besoin en quelques lignes. Nous vous répondons sous 48h avec une première estimation de faisabilité et budget."
+  },
+  "businesses.form.title": {
+    en: "Contact Request",
+    fr: "Demande de Contact"
   },
   "businesses.form.company": {
     en: "Company",

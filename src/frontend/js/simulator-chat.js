@@ -151,12 +151,16 @@
       const lang = document.documentElement.lang || 'fr';
 
       // Call chatbot API with SSE streaming
-      const response = await fetch('/api/chat', {
+      const response = await fetch('/api/chat/portfolio', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message, language: lang }),
+        body: JSON.stringify({
+          message,
+          language: lang,
+          context: getSimulatorState(),
+        }),
         signal: currentAbortController.signal
       });
 

@@ -173,6 +173,166 @@ async function streamResponse(res, model, messages, headers) {
 }
 
 /**
+ * Build portfolio-specific context section for the LLM prompt
+ */
+function buildPortfolioContextSection(context = {}, language = "fr") {
+  if (!context || typeof context !== "object") {
+    return "No additional portfolio simulator context was provided.";
+  }
+
+  const {
+    strategy,
+    period,
+    generatedAt,
+    tickers = [],
+    metrics = {},
+    customStrategy,
+  } = context;
+
+  const lines = [];
+
+  if (strategy) {
+    lines.push(`- Active strategy: ${strategy}`);
+  }
+  if (period) {
+    lines.push(`- Time horizon: ${period} years of history`);
+  }
+  if (Array.isArray(tickers) && tickers.length > 0) {
+    lines.push(`- Underlying ETFs: ${tickers.join(", ")}`);
+  }
+
+  const metricsForStrategy =
+    strategy && metrics[strategy] ? metrics[strategy] : null;
+  if (metricsForStrategy) {
+    const {
+      totalReturn,
+      annualReturn,
+      volatility,
+      sharpeRatio,
+      maxDrawdown,
+    } = metricsForStrategy;
+
+    lines.push(
+      "- Key performance metrics:",
+      `  • Total return: ${
+        typeof totalReturn === "number" ? totalReturn.toFixed(1) + "%" : "N/A"
+      }`,
+      `  • Annual return: ${
+        typeof annualReturn === "number" ? annualReturn.toFixed(1) + "%" : "N/A"
+      }`,
+      `  • Volatility: ${
+        typeof volatility === "number" ? volatility.toFixed(1) + "%" : "N/A"
+      }`,
+      `  • Sharpe ratio: ${
+        typeof sharpeRatio === "number" ? sharpeRatio.toFixed(2) : "N/A"
+      }`,
+      `  • Max drawdown: ${
+        typeof maxDrawdown === "number" ? maxDrawdown.toFixed(1) + "%" : "N/A"
+      }`
+    );
+  }
+
+  if (
+    customStrategy &&
+    customStrategy.strategyA &&
+    customStrategy.strategyB
+  ) {
+    lines.push(
+      "- Custom mix details:",
+      `  • Strategy A: ${customStrategy.strategyA}`,
+      `  • Strategy B: ${customStrategy.strategyB}`,
+      `  • Weight for Strategy A: ${
+        typeof customStrategy.weight === "number"
+          ? customStrategy.weight + "%"
+          : "N/A"
+      }`
+    );
+  }
+
+  if (generatedAt) {
+    lines.push(`- Cached dataset generated at: ${generatedAt}`);
+  }
+
+  if (lines.length === 0) {
+    lines.push("No specific simulator state was provided.");
+  }
+
+  return `### PORTFOLIO SIMULATOR CONTEXT (summarized in ${
+    language === "en" ? "English" : "French"
+  }):\n${lines.join(
+    "\n"
+  )}\n\nUse this information to ground your explanations, compare strategies, and help the user interpret the simulator results.`;
+}
+
+/**
+ * Handle portfolio-specific chat with contextual prompt
+ */
+async function handlePortfolioChat(req, res) {
+  console.log("POST /api/chat/portfolio hit on server");
+
+  const { message, language = "fr", context } = req.body;
+
+  if (!message) {
+    return res.status(400).json({ error: "Message is required." });
+  }
+
+  if (!env.OPENROUTER_API_KEY || env.OPENROUTER_API_KEY === "YOUR_API_KEY_HERE") {
+    return res.status(500).json({
+      error:
+        "OpenRouter API key not configured on the server. Please add it to the .env file.",
+    });
+  }
+
+  const portfolioContextSection = buildPortfolioContextSection(context, language);
+
+  const messages = [
+    {
+      role: "system",
+      content: `${systemPrompt(
+        language
+      )}\n\n### ADDITIONAL GUIDELINES FOR PORTFOLIO SIMULATION CONTEXT:\nYou are now acting as Bubble's dedicated portfolio simulator specialist. Leverage the context below to tailor your explanations, discuss strategy trade-offs, and highlight how Bubble automates these quantitative portfolios for clients. Always remain transparent about assumptions and limitations.\n\n${portfolioContextSection}`,
+    },
+    { role: "user", content: message },
+  ];
+
+  const headers = {
+    Authorization: `Bearer ${env.OPENROUTER_API_KEY}`,
+    "Content-Type": "application/json",
+    "HTTP-Referer": env.CHAT_REFERER || "https://bubbleinvest.org",
+    "X-Title": "Bubble Portfolio Chat Assistant",
+  };
+
+  try {
+    for (const model of models) {
+      try {
+        await streamResponse(res, model, messages, headers);
+        console.log(`✅ Portfolio chat streamed using model: ${model}`);
+        return;
+      } catch (error) {
+        console.error(
+          `Error with model ${model} on portfolio chat:`,
+          error.message
+        );
+      }
+    }
+
+    if (!res.headersSent) {
+      res.status(500).json({
+        error: "All portfolio chat models failed. Please try again later.",
+      });
+    }
+  } catch (error) {
+    console.error("Error in portfolio chat endpoint:", error);
+    if (!res.headersSent) {
+      res.status(500).json({
+        error: "An error occurred while processing your request.",
+        details: error.message,
+      });
+    }
+  }
+}
+
+/**
  * Handle chat request with streaming response
  */
 async function handleChat(req, res) {
@@ -230,4 +390,4 @@ async function handleChat(req, res) {
   }
 }
 
-module.exports = { handleChat };
+module.exports = { handleChat, handlePortfolioChat };

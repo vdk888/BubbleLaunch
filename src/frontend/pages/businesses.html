@@ -344,16 +344,17 @@
     <section id="contact-form" class="waitlist fade-in">
       <div class="container">
         <h2 data-translate="businesses.contact.title">Discutons de votre projet</h2>
-        <p data-translate="businesses.contact.subtitle" style="max-width: 700px; margin: 0 auto 3rem; font-size: 1.1rem; color: #666;">
+        <p class="waitlist-subtitle" data-translate="businesses.contact.subtitle" style="max-width: 700px; margin: 0 auto 2rem;">
           Décrivez-nous votre besoin en quelques lignes. Nous vous répondons sous 48h avec une première estimation de faisabilité et budget.
         </p>
 
-        <div style="max-width: 600px; margin: 0 auto;">
-          <form id="business-contact-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div class="form-container">
+          <h3 data-translate="businesses.form.title">Demande de Contact</h3>
+          <form id="business-contact-form">
 
             <!-- Company Name -->
-            <div>
-              <label for="company" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);" data-translate="businesses.form.company">
+            <div class="form-group">
+              <label for="company" data-translate="businesses.form.company">
                 Entreprise
               </label>
               <input
@@ -363,13 +364,12 @@
                 required
                 placeholder="Nom de votre entreprise"
                 data-translate-placeholder="businesses.form.company.placeholder"
-                style="width: 100%; padding: 1rem 1.5rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50px; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(4px); font-size: 16px; transition: all 0.3s ease;"
               />
             </div>
 
             <!-- Contact Name -->
-            <div>
-              <label for="contact-name" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);" data-translate="businesses.form.name">
+            <div class="form-group">
+              <label for="contact-name" data-translate="businesses.form.name">
                 Votre nom
               </label>
               <input
@@ -379,13 +379,12 @@
                 required
                 placeholder="Prénom Nom"
                 data-translate-placeholder="businesses.form.name.placeholder"
-                style="width: 100%; padding: 1rem 1.5rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50px; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(4px); font-size: 16px; transition: all 0.3s ease;"
               />
             </div>
 
             <!-- Email -->
-            <div>
-              <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);" data-translate="businesses.form.email">
+            <div class="form-group">
+              <label for="email" data-translate="businesses.form.email">
                 Email professionnel
               </label>
               <input
@@ -395,13 +394,12 @@
                 required
                 placeholder="votre.email@entreprise.com"
                 data-translate-placeholder="businesses.form.email.placeholder"
-                style="width: 100%; padding: 1rem 1.5rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50px; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(4px); font-size: 16px; transition: all 0.3s ease;"
               />
             </div>
 
             <!-- Use Case -->
-            <div>
-              <label for="use-case" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);" data-translate="businesses.form.usecase">
+            <div class="form-group">
+              <label for="use-case" data-translate="businesses.form.usecase">
                 Décrivez votre besoin
               </label>
               <textarea
@@ -411,20 +409,18 @@
                 rows="5"
                 placeholder="Ex: Automatiser la réconciliation bancaire pour notre fonds d'investissement (€500M AUM). Actuellement 3 jours/mois de travail manuel, ~15% d'erreurs..."
                 data-translate-placeholder="businesses.form.usecase.placeholder"
-                style="width: 100%; padding: 1rem 1.5rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 20px; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(4px); font-size: 16px; resize: vertical; font-family: Inter, sans-serif; transition: all 0.3s ease;"
               ></textarea>
             </div>
 
             <!-- Budget Range -->
-            <div>
-              <label for="budget" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);" data-translate="businesses.form.budget">
+            <div class="form-group">
+              <label for="budget" data-translate="businesses.form.budget">
                 Budget envisagé
               </label>
               <select
                 id="budget"
                 name="budget"
                 required
-                style="width: 100%; padding: 1rem 1.5rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50px; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(4px); font-size: 16px; cursor: pointer; transition: all 0.3s ease;"
               >
                 <option value="" disabled selected data-translate="businesses.form.budget.select">Sélectionnez une fourchette</option>
                 <option value="diagnostic" data-translate="businesses.form.budget.diagnostic">€3k-€5k (Diagnostic uniquement)</option>
@@ -436,15 +432,14 @@
             </div>
 
             <!-- Timeline -->
-            <div>
-              <label for="timeline" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);" data-translate="businesses.form.timeline">
+            <div class="form-group">
+              <label for="timeline" data-translate="businesses.form.timeline">
                 Timeline souhaitée
               </label>
               <select
                 id="timeline"
                 name="timeline"
                 required
-                style="width: 100%; padding: 1rem 1.5rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50px; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(4px); font-size: 16px; cursor: pointer; transition: all 0.3s ease;"
               >
                 <option value="" disabled selected data-translate="businesses.form.timeline.select">Quand souhaitez-vous démarrer ?</option>
                 <option value="urgent" data-translate="businesses.form.timeline.urgent">Urgent (< 1 mois)</option>
@@ -455,15 +450,11 @@
             </div>
 
             <!-- Submit Button -->
-            <button
-              type="submit"
-              class="cta-button"
-              style="width: 100%; padding: 1.2rem; font-size: 1.1rem; cursor: pointer; border: none; background: linear-gradient(135deg, #333333 0%, #444444 100%); color: white; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;"
-            >
-              <span data-translate="businesses.form.submit">Envoyer ma demande</span>
+            <button type="submit" data-translate="businesses.form.submit">
+              Envoyer ma demande
             </button>
 
-            <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 0.5rem;" data-translate="businesses.form.note">
+            <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 1rem;" data-translate="businesses.form.note">
               Réponse sous 48h • Diagnostic initial gratuit • Aucun engagement
             </p>
           </form>

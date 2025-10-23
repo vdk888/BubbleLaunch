@@ -8,11 +8,13 @@ The Portfolio Simulator is an interactive tool integrated into the Bubble websit
 
 ### Current Implementation
 
-**4 Portfolio Strategies:**
+**4 Portfolio Strategies + Custom Builder:**
 1. **Allocation Égale** (Equal Weight) - Baseline: 33.3% each asset
 2. **Portefeuille 60/40** - 60% SPY (stocks) / 40% IEF (bonds)
 3. **Risk Parity Simple** - Inverse volatility weighting
 4. **✨ Optimisé** (Currently: Optimized Risk Parity) - EWMA + correlations
+- **Mix Personnalisé** - Client-side blend of any two strategies (saved locally)
+- **Export Toolkit** - Chart PNG + metrics CSV downloads (feature flagged)
 
 **3 Core ETFs:**
 - SPY (S&P 500) - US Stocks
@@ -121,6 +123,24 @@ Regenerate the cached preview data to include the new strategy:
 npm run generate:portfolio-cache
 ```
 
+## Custom Mix Builder (Client-Side)
+
+- **Access**: Click the **Create Your Mix** pill to open the builder panel.
+- **Inputs**: Pick Strategy A/B, adjust the slider (weight for Strategy A), then press **Apply Mix**.
+- **Storage**: The configuration is saved in `localStorage` (`bubbleCustomStrategy`) so the simulator remembers it between sessions.
+- **Computation**: The blend runs entirely in the browser using cached monthly data; metrics (total return, annual return, volatility, Sharpe, max drawdown, Calmar) are recomputed from the blended series.
+- **Analytics**: Events `custom_strategy_applied` and `custom_strategy_reset` send strategy choices and weights for GA4 dashboards.
+- **Reset**: Use **Reset Mix** to clear the custom series and revert to the base strategies.
+
+## Export Toolkit (Feature Flag)
+
+- Controlled via `FEATURE_FLAGS.exports` in [`portfolio-simulator.js`](../src/frontend/js/portfolio-simulator.js). Toggle off if the download UI should be hidden in production.
+- Provides two buttons below the metrics grid:
+  - **Download Chart (PNG)** – leverages Chart.js `toBase64Image`.
+  - **Export Metrics (CSV)** – serializes `portfolioData.metrics` (custom mix included when enabled).
+- Status label surfaces success/error feedback; GA4 emits `export_chart_png` and `export_metrics_csv` events with the current strategy/period.
+- Downloads are informational only (legal copy updated accordingly).
+
 ### Step 5: Update API Response
 
 Ensure `portfolio.controller.js` includes your new strategy in the response:
@@ -202,6 +222,36 @@ Fetch raw ETF data for custom calculations. Currently exposed but not invoked by
 ### POST `/api/portfolio/calculate`
 Calculate portfolio performance for custom allocations. Available for server-side or scripted jobs; the UI relies on cached aggregates instead of calling this endpoint live.
 
+### POST `/api/chat/portfolio`
+Streams a portfolio-specialized chatbot response. The payload mirrors the general chat endpoint but includes a `context` object so the assistant can reference the user's simulator state.
+
+- **Request body**:
+  ```json
+  {
+    "message": "Why is the optimized strategy outperforming 60/40 over 20 years?",
+    "language": "en",
+    "context": {
+      "strategy": "optimizedRiskParity",
+      "period": 20,
+      "metrics": {
+        "optimizedRiskParity": {
+          "totalReturn": 378.6,
+          "annualReturn": 8.3,
+          "volatility": 10.9,
+          "sharpeRatio": 0.42,
+          "maxDrawdown": -26.9
+        }
+      },
+      "customStrategy": {
+        "strategyA": "optimizedRiskParity",
+        "strategyB": "sixtyForty",
+        "weight": 60
+      }
+    }
+  }
+  ```
+- **Response**: Server-Sent Events stream (`data: { content: "..." }`) identical to `/api/chat`, concluding with `data: { done: true }`.
+
 ## Performance & Caching Strategy
 
 To keep the simulator snappy, the frontend always consumes the pre-generated snapshot from `/api/portfolio/preview-data`. This snapshot contains:
@@ -236,6 +286,7 @@ All core metrics are pre-computed on the server and cached with each snapshot:
 - [ ] Mobile responsive (test on phone/tablet)
 - [ ] Browser compatibility (Chrome, Firefox, Safari)
 - [ ] Period buttons fetch the right cached snapshot (1Y/3Y/5Y/10Y/20Y)
+- [ ] Custom mix builder applies and resets correctly (chart + metrics update)
 
 ## Analytics Instrumentation
 
@@ -247,6 +298,10 @@ Google Analytics 4 events fire automatically when users interact with the simula
 - `simulator_data_loaded` – logs dataset size and snapshot timestamp
 - Chat lifecycle events (`chat_opened`, `chat_message_sent`, `chat_message_completed`, `chat_response_error`, etc.) carry current strategy/period metadata
 - Floating input events (`floating_input_submitted`, `floating_input_forwarded`) capture message length and success state when forwarding to the main chatbot
+- Portfolio chat events include simulator context (`strategy`, `period_years`, `custom_mix_enabled`) so conversations remain tied to the active configuration.
+- Custom builder events:
+  - `custom_strategy_applied` – includes base strategies + weights
+  - `custom_strategy_reset` – fires when the mix is cleared
 
 All payloads share the `Portfolio Simulator` category and automatically append language, strategy, and `period_years` parameters for downstream dashboards.
 
@@ -262,27 +317,21 @@ All payloads share the `Portfolio Simulator` category and automatically append l
 
 ## Roadmap Priorities (2025-10 Snapshot)
 
-1. **Automated Cache Regeneration**
-   - Nightly (or deploy-time) job that fetches ETF history, runs strategy calculators, and emits pre-sliced JSON bundles for 1Y/3Y/5Y/10Y/20Y horizons.
-   - Consolidate outputs under `src/backend/cache/` so the frontend can switch periods without runtime API calls.
-2. **Server-Side Metrics & Multi-Period Delivery**
-   - Port the richer metric helpers from `anim-main` so each cached bundle stores Sharpe, Calmar, total return, etc.
-   - Update `portfolio-simulator.js` to consume the precomputed period files rather than estimating metrics client-side.
-3. **Analytics & SEO Foundation**
-   - Implement GA4/Plausible tracking for strategy + period interactions.
-   - Apply the SEO roadmap: structured data, meta refinements, internal links, and share images.
-4. **Strategy Expansion Pipeline**
-   - Reuse `anim-main` strategy modules (60/40, HRP, Momentum, Leveraged RP) inside the offline cache job.
-   - Surface new strategies incrementally through the `STRATEGY_CONFIG` map with accompanying translations and tooltips.
-5. **“Create Your Own” Strategy MVP**
-   - Introduce a fourth pill that lets users mix two cached strategies client-side; persist selections in `localStorage`.
-   - Defer chatbot handover until the mechanics are proven.
-6. **Portfolio Chatbot Specialization**
-   - Stand up a dedicated `/api/chat/portfolio` endpoint with a portfolio-specific prompt.
-   - Pass active strategy/period context so responses are tailored to the current chart.
-7. **UX Enhancements & Exports**
-   - Add allocation sliders, chart/metric export options, and refined legal copy.
-   - Launch behind feature flags and graduate once analytics shows sustained simulator usage.
+### Recently Completed
+- Automated multi-period cache regeneration (1/3/5/10/20Y) with 60/40 strategy support.
+- Portfolio simulator now consumes server-side metrics, exposes JSON-LD, and streams GA4 events.
+- Custom Mix builder (client-side blend + analytics) shipped.
+- Dedicated `/api/chat/portfolio` endpoint delivers portfolio-aware conversations with simulator context.
+
+### Next Focus
+1. **UX Enhancements & Export Toolkit**
+   - Allocation sliders for manual tweaks, chart/download exports (PNG/PDF/CSV), refined legal copy.
+   - Feature flag the tooling, launch once analytics shows sustained usage.
+2. **Strategy Expansion**
+   - Port additional modules from `anim-main` (Momentum, HRP, Leveraged RP) into the offline cache pipeline.
+   - Ship with translations, tooltips, and landing-page storytelling.
+3. **Embeddable & Content Integration**
+   - Build an embeddable widget (iframe/web component) for blog posts and dynamic deep-links (e.g., `?strategy=optimizedRP&period=5`).
 
 **Implementation**:
 - Create embeddable simulator widget (`<iframe>` or web component)
@@ -362,8 +411,11 @@ For questions or issues:
 - **Frontend**
   - Added 60/40 strategy pill, translations, and chart styling in [`portfolio-simulator.html`](../src/frontend/pages/portfolio-simulator.html) and [`portfolio-simulator.js`](../src/frontend/js/portfolio-simulator.js).
   - Landing preview chart renders the 60/40 series.
+  - Introduced the custom mix builder (two strategy selectors + slider) with client-side metrics and local persistence.
+  - Export toolkit (chart PNG + metrics CSV) available via feature flag, with inline status feedback.
 - **Analytics/Docs**
-  - Translations updated to cover the fourth strategy; documentation refreshed (this file) to describe the expanded pipeline.
+  - Translations updated to cover the fourth strategy, custom builder, and export actions; documentation refreshed (this file) with usage notes.
+  - GA4 now captures `custom_strategy_applied` / `custom_strategy_reset` / `export_*` events alongside existing simulator tracking.
 
 ### 2025-01-08: Bilingual Support & 20-Year Data Update
 

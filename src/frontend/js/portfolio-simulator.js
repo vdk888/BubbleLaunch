@@ -18,6 +18,9 @@
   let currentPeriod = 20;
   let portfolioData = null;
   const CUSTOM_STRATEGY_STORAGE_KEY = 'bubbleCustomStrategy';
+  const FEATURE_FLAGS = {
+    exports: true,
+  };
   const DEFAULT_CUSTOM_STRATEGY = {
     enabled: false,
     strategyA: 'optimizedRiskParity',
@@ -25,6 +28,13 @@
     weight: 60, // percent for strategy A
   };
   let customStrategyState = { ...DEFAULT_CUSTOM_STRATEGY };
+  const customStrategyElements = {};
+  const exportElements = {
+    section: null,
+    chartBtn: null,
+    metricsBtn: null,
+    status: null,
+  };
 
   function loadCustomStrategyState() {
     try {
@@ -52,6 +62,153 @@
     }
   }
 
+  function resolveTranslation(key, fallback) {
+    const lang = getCurrentLanguage();
+    const translations = window.translations?.[key];
+    if (translations && translations[lang]) {
+      return translations[lang];
+    }
+    return fallback;
+  }
+
+  function setExportStatus(statusKey) {
+    if (!exportElements.status) return;
+    const fallbacks = {
+      ready: getCurrentLanguage() === 'en'
+        ? 'Choose an export to download.'
+        : 'Choisissez un export à télécharger.',
+      success: getCurrentLanguage() === 'en'
+        ? 'Download started!'
+        : 'Téléchargement lancé !',
+      error: getCurrentLanguage() === 'en'
+        ? 'Export failed. Please try again.'
+        : 'Export impossible. Réessayez.',
+    };
+    exportElements.status.textContent = resolveTranslation(
+      `simulator.export.status.${statusKey}`,
+      fallbacks[statusKey] || ''
+    );
+  }
+
+  function downloadFile(filename, content, mimeType = 'text/plain') {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
+  function handleChartExport() {
+    if (!portfolioChart) {
+      setExportStatus('error');
+      return;
+    }
+    try {
+      const dataUrl = portfolioChart.toBase64Image('image/png', 1);
+      const filename = `bubble-portfolio-chart-${currentStrategy}-${currentPeriod}y.png`;
+      const link = document.createElement('a');
+      link.href = dataUrl;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setExportStatus('success');
+      trackSimulatorEvent('export_chart_png', {
+        export_strategy: currentStrategy,
+        export_period_years: currentPeriod,
+      });
+    } catch (error) {
+      console.error('Failed to export chart:', error);
+      setExportStatus('error');
+    }
+  }
+
+  function handleMetricsExport() {
+    if (!portfolioData || !portfolioData.metrics) {
+      setExportStatus('error');
+      return;
+    }
+
+    const strategyKeys = Array.isArray(portfolioData.strategyKeys)
+      ? Array.from(new Set(portfolioData.strategyKeys))
+      : Object.keys(portfolioData.metrics);
+
+    if (!strategyKeys || strategyKeys.length === 0) {
+      setExportStatus('error');
+      return;
+    }
+
+    const headers = [
+      'strategy',
+      'totalReturn(%)',
+      'annualReturn(%)',
+      'volatility(%)',
+      'sharpeRatio',
+      'maxDrawdown(%)',
+      'periodYears',
+    ];
+
+    const csvRows = [headers.join(',')];
+
+    strategyKeys.forEach((key) => {
+      const metric = portfolioData.metrics[key];
+      if (!metric) return;
+      const row = [
+        key,
+        typeof metric.totalReturn === 'number' ? metric.totalReturn.toFixed(2) : '',
+        typeof metric.annualReturn === 'number' ? metric.annualReturn.toFixed(2) : '',
+        typeof metric.volatility === 'number' ? metric.volatility.toFixed(2) : '',
+        typeof metric.sharpeRatio === 'number' ? metric.sharpeRatio.toFixed(2) : '',
+        typeof metric.maxDrawdown === 'number' ? metric.maxDrawdown.toFixed(2) : '',
+        currentPeriod,
+      ];
+      csvRows.push(row.join(','));
+    });
+
+    const filename = `bubble-portfolio-metrics-${currentPeriod}y.csv`;
+    try {
+      downloadFile(filename, csvRows.join('\n'), 'text/csv;charset=utf-8;');
+      setExportStatus('success');
+      trackSimulatorEvent('export_metrics_csv', {
+        export_period_years: currentPeriod,
+        strategies_exported: strategyKeys.length,
+      });
+    } catch (error) {
+      console.error('Failed to export metrics:', error);
+      setExportStatus('error');
+    }
+  }
+
+  function initializeExportActions() {
+    if (!FEATURE_FLAGS.exports) {
+      return;
+    }
+
+    exportElements.section = document.getElementById('exportActions');
+    exportElements.chartBtn = document.getElementById('exportChartBtn');
+    exportElements.metricsBtn = document.getElementById('exportMetricsBtn');
+    exportElements.status = document.getElementById('exportStatus');
+
+    if (
+      !exportElements.section ||
+      !exportElements.chartBtn ||
+      !exportElements.metricsBtn ||
+      !exportElements.status
+    ) {
+      return;
+    }
+
+    exportElements.section.classList.remove('hidden');
+    setExportStatus('ready');
+
+    exportElements.chartBtn.addEventListener('click', handleChartExport);
+    exportElements.metricsBtn.addEventListener('click', handleMetricsExport);
+  }
+
   function getCurrentLanguage() {
     return document.documentElement.lang || localStorage.getItem('preferredLanguage') || 'fr';
   }
@@ -63,6 +220,7 @@
       language: getCurrentLanguage(),
       strategy: currentStrategy,
       period_years: currentPeriod,
+      custom_mix_enabled: customStrategyState.enabled,
       ...params,
     });
   }
@@ -74,6 +232,13 @@
       generatedAt: data.generatedAt || null,
       tickers: data.tickers || [],
       metrics: data.metrics || {},
+      customStrategy: customStrategyState.enabled
+        ? {
+            strategyA: customStrategyState.strategyA,
+            strategyB: customStrategyState.strategyB,
+            weight: customStrategyState.weight,
+          }
+        : null,
     };
   }
 
@@ -251,6 +416,13 @@
     // Always show all portfolio strategies using STRATEGY_CONFIG
     // This makes it easy to add/modify strategies in the future
     Object.entries(STRATEGY_CONFIG).forEach(([strategyKey, config]) => {
+      const hasSeries = data.data.some(
+        (point) => typeof point[config.dataKey] === 'number'
+      );
+      if (!hasSeries) {
+        return;
+      }
+
       const isActive = strategy === strategyKey;
 
       // Make selected portfolio very prominent, others faded but visible
@@ -259,7 +431,7 @@
 
       datasets.push({
         label: getStrategyLabel(config.labelKey),
-        data: data.data.map(d => d[config.dataKey] || d.equalWeight), // Fallback to equalWeight
+        data: data.data.map((point) => point[config.dataKey]),
         borderColor: isActive ? config.color : hexToRgba(config.color, opacity),
         backgroundColor: hexToRgba(config.color, isActive ? 0.15 : 0.05),
         borderWidth: config.borderWidth * borderWidthMultiplier,
@@ -468,6 +640,146 @@
     });
   }
 
+  function cacheCustomStrategyElements() {
+    customStrategyElements.panel = document.getElementById('customStrategyPanel');
+    customStrategyElements.alert = document.getElementById('customStrategyAlert');
+    customStrategyElements.selectA = document.getElementById('customStrategyA');
+    customStrategyElements.selectB = document.getElementById('customStrategyB');
+    customStrategyElements.weight = document.getElementById('customStrategyWeight');
+    customStrategyElements.weightValue = document.getElementById('customStrategyWeightValue');
+    customStrategyElements.apply = document.getElementById('customStrategyApply');
+    customStrategyElements.reset = document.getElementById('customStrategyReset');
+  }
+
+  function getBaseStrategyKeys() {
+    return Object.keys(STRATEGY_CONFIG).filter((key) => key !== 'customMix');
+  }
+
+  function populateSelectOptions(selectElement, selectedValue) {
+    if (!selectElement) return;
+
+    const baseKeys = getBaseStrategyKeys();
+    selectElement.innerHTML = '';
+
+    baseKeys.forEach((key) => {
+      const option = document.createElement('option');
+      option.value = key;
+      option.textContent = getStrategyLabel(STRATEGY_CONFIG[key].labelKey);
+      selectElement.appendChild(option);
+    });
+
+    if (!baseKeys.includes(selectedValue)) {
+      selectedValue = baseKeys[0];
+    }
+
+    selectElement.value = selectedValue;
+    return selectedValue;
+  }
+
+  function populateCustomStrategyOptions() {
+    const resolvedA = populateSelectOptions(
+      customStrategyElements.selectA,
+      customStrategyState.strategyA
+    );
+    const resolvedB = populateSelectOptions(
+      customStrategyElements.selectB,
+      customStrategyState.strategyB
+    );
+    if (resolvedA) {
+      customStrategyState.strategyA = resolvedA;
+    }
+    if (resolvedB) {
+      customStrategyState.strategyB = resolvedB;
+    }
+  }
+
+  function updateCustomWeightDisplay(weight) {
+    if (!customStrategyElements.weightValue) return;
+    const strategyBPercent = 100 - weight;
+    customStrategyElements.weightValue.innerHTML = `<strong>${weight}%</strong> A &nbsp;·&nbsp; <span>${strategyBPercent}%</span> B`;
+  }
+
+  function updateCustomAlert() {
+    if (!customStrategyElements.alert) return;
+    customStrategyElements.alert.style.display = customStrategyState.enabled ? 'none' : 'block';
+  }
+
+  function toggleCustomPanel(shouldShow) {
+    if (!customStrategyElements.panel) return;
+    if (shouldShow) {
+      customStrategyElements.panel.classList.remove('hidden');
+      updateCustomAlert();
+    } else {
+      customStrategyElements.panel.classList.add('hidden');
+    }
+  }
+
+  function markCustomStrategyDirty() {
+    customStrategyState.enabled = false;
+    persistCustomStrategyState();
+    removeCustomStrategyData(portfolioData);
+    updateCustomAlert();
+
+    if (currentStrategy === 'customMix') {
+      resetMetricDisplay();
+      if (portfolioData) {
+        updateChart(portfolioData, currentStrategy);
+      }
+    }
+    updateSimulatorState(portfolioData);
+    setExportStatus('ready');
+  }
+
+  function applyCustomStrategyFromInputs() {
+    if (!portfolioData) {
+      return;
+    }
+
+    customStrategyState.strategyA = customStrategyElements.selectA.value;
+    customStrategyState.strategyB = customStrategyElements.selectB.value;
+    customStrategyState.weight = parseInt(customStrategyElements.weight.value, 10);
+    customStrategyState.enabled = true;
+    persistCustomStrategyState();
+
+    refreshCustomStrategyDataset();
+    updateCustomAlert();
+
+    setActiveStrategyPill('customMix');
+    currentStrategy = 'customMix';
+    updateChart(portfolioData, currentStrategy);
+    updateMetrics(portfolioData, currentStrategy);
+    updateSimulatorState(portfolioData);
+    setExportStatus('ready');
+
+    trackSimulatorEvent('custom_strategy_applied', {
+      base_strategy_a: customStrategyState.strategyA,
+      base_strategy_b: customStrategyState.strategyB,
+      weight_a_percent: customStrategyState.weight,
+      weight_b_percent: 100 - customStrategyState.weight,
+    });
+  }
+
+  function resetCustomStrategy() {
+    customStrategyState = { ...DEFAULT_CUSTOM_STRATEGY };
+    persistCustomStrategyState();
+    populateCustomStrategyOptions();
+    if (customStrategyElements.weight) {
+      customStrategyElements.weight.value = customStrategyState.weight;
+    }
+    updateCustomWeightDisplay(customStrategyState.weight);
+    refreshCustomStrategyDataset({ forceDisable: true });
+    updateCustomAlert();
+    if (currentStrategy === 'customMix') {
+      resetMetricDisplay();
+      if (portfolioData) {
+        updateChart(portfolioData, currentStrategy);
+        updateSimulatorState(portfolioData);
+      }
+    }
+    setExportStatus('ready');
+    trackSimulatorEvent('custom_strategy_reset');
+  }
+
   /**
    * Detect if device is mobile
    */
@@ -589,10 +901,15 @@
       equalWeight: 'equalWeight',
       simpleRiskParity: 'simpleRP',
       optimizedRiskParity: 'optimizedRP',
+      sixtyForty: 'sixtyForty',
+      customMix: 'customMix',
     }[strategy];
 
     const metrics = data.metrics[strategyKey];
-    if (!metrics) return;
+    if (!metrics) {
+      resetMetricDisplay();
+      return;
+    }
 
     // Total Return
     document.getElementById('totalReturn').textContent = formatPercentage(metrics.totalReturn, { withPlus: true });
@@ -629,14 +946,17 @@
         portfolioData = result;
         currentPeriod = result.periodYears || period || currentPeriod;
 
-        updateChart(result, strategy);
-        updateMetrics(result, strategy);
-        updateSimulatorState(result);
+        refreshCustomStrategyDataset();
+        updateChart(portfolioData, strategy);
+        updateMetrics(portfolioData, strategy);
+        updateSimulatorState(portfolioData);
+        updateCustomAlert();
+        setExportStatus('ready');
 
         trackSimulatorEvent('simulator_data_loaded', {
-          data_points: Array.isArray(result.data) ? result.data.length : 0,
+          data_points: Array.isArray(portfolioData.data) ? portfolioData.data.length : 0,
           period_years: currentPeriod,
-          generated_at: result.generatedAt || null,
+          generated_at: portfolioData.generatedAt || null,
         });
       } else {
         // Show error state
@@ -652,6 +972,8 @@
    */
   function handleStrategyChange(strategy) {
     currentStrategy = strategy;
+    setActiveStrategyPill(strategy);
+    toggleCustomPanel(strategy === 'customMix');
 
     if (portfolioData) {
       updateChart(portfolioData, strategy);
@@ -680,6 +1002,48 @@
    * Initialize simulator
    */
   function initializeSimulator() {
+    loadCustomStrategyState();
+    cacheCustomStrategyElements();
+    populateCustomStrategyOptions();
+    if (customStrategyElements.weight) {
+      customStrategyElements.weight.value = customStrategyState.weight;
+    }
+    updateCustomWeightDisplay(customStrategyState.weight);
+    updateCustomAlert();
+    toggleCustomPanel(false);
+    initializeExportActions();
+
+    if (customStrategyElements.selectA) {
+      customStrategyElements.selectA.addEventListener('change', (event) => {
+        customStrategyState.strategyA = event.target.value;
+        markCustomStrategyDirty();
+      });
+    }
+
+    if (customStrategyElements.selectB) {
+      customStrategyElements.selectB.addEventListener('change', (event) => {
+        customStrategyState.strategyB = event.target.value;
+        markCustomStrategyDirty();
+      });
+    }
+
+    if (customStrategyElements.weight) {
+      customStrategyElements.weight.addEventListener('input', (event) => {
+        const value = parseInt(event.target.value, 10);
+        customStrategyState.weight = Number.isNaN(value) ? customStrategyState.weight : value;
+        updateCustomWeightDisplay(customStrategyState.weight);
+        markCustomStrategyDirty();
+      });
+    }
+
+    if (customStrategyElements.apply) {
+      customStrategyElements.apply.addEventListener('click', applyCustomStrategyFromInputs);
+    }
+
+    if (customStrategyElements.reset) {
+      customStrategyElements.reset.addEventListener('click', resetCustomStrategy);
+    }
+
     // Load initial data
     loadPortfolioData(currentStrategy, currentPeriod);
 
@@ -689,9 +1053,6 @@
     const pills = document.querySelectorAll('.strategy-pill');
     pills.forEach(pill => {
       pill.addEventListener('click', () => {
-        pills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-
         const strategy = pill.getAttribute('data-strategy');
         console.log('🎯 Selected strategy:', strategy);
         handleStrategyChange(strategy);
@@ -710,6 +1071,8 @@
         handlePeriodChange(period);
       });
     });
+
+    setActiveStrategyPill(currentStrategy);
   }
 
   /**
@@ -723,6 +1086,10 @@
 
   // Listen for language changes and update chart
   window.addEventListener('languageChanged', () => {
+    populateCustomStrategyOptions();
+    updateCustomWeightDisplay(customStrategyState.weight);
+    updateCustomAlert();
+    setExportStatus('ready');
     if (portfolioData && portfolioChart) {
       updateChart(portfolioData, currentStrategy);
     }

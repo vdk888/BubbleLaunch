@@ -1,7 +1,7 @@
 Integration Plan: Portfolio Simulator into Bubble Website
 Based on your requirements, I'll create a comprehensive plan to integrate a lightweight, redesigned portfolio simulator that matches Bubble's brand identity and seamlessly integrates into the existing website.
 
-**Update – 2025-10-22:** Multi-period cache automation is live (`npm run generate:portfolio-cache`), and the classic 60/40 strategy now joins the simulator lineup alongside Equal Weight, Risk Parity, and Optimized RP. Documentation has been refreshed in `docs/PORTFOLIO_SIMULATOR.md`.
+**Update – 2025-10-22:** Multi-period cache automation is live (`npm run generate:portfolio-cache`), the classic 60/40 strategy now joins the simulator lineup alongside Equal Weight, Risk Parity, and Optimized RP, a client-side Custom Mix builder ships with analytics + local persistence, the simulator now talks to a dedicated `/api/chat/portfolio` endpoint that understands the active strategy/period, and an export toolkit (chart PNG + metrics CSV) is feature-flagged in the UI. Documentation has been refreshed in `docs/PORTFOLIO_SIMULATOR.md`.
 
 🎯 Project Objectives
 Animated Snapshot: Add interactive portfolio chart preview in "What We're Building" section
