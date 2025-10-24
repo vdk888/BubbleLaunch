@@ -800,3 +800,13 @@ If you want to accelerate SEO growth:
 **Documentation**: 5 comprehensive guides (~150KB total)
 
 🚀 **Deployment Ready - Google Awaits!**
+
+---
+
+### 2025-10 Follow-Up Priorities (Post-Audit)
+- Launch crawlable `/en/` counterparts for every key page with pre-rendered EN copy, meta tags, and hreflang/canonical parity.
+- Update `/sitemap.xml` and Search Console properties (FR + EN) once bilingual routes are live.
+- Server-render blog post SEO metadata (title, description, OG/Twitter, JSON-LD) to avoid JS-only indexing gaps.
+- Publish the discreet long-form pillar page (`/investissement-ia` + `/en/ai-investment-platform`) and link subtly from manifesto/footer.
+- Localize structured data (`FinancialService`, `FAQPage`, `SoftwareApplication`, `BlogPosting`) with `inLanguage` arrays and EN content while keeping UI copy minimal.
+- Kick off authority outreach (fintech media, AI communities, founder interviews) and add resulting profile URLs to schema `sameAs`.

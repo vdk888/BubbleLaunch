@@ -621,9 +621,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
   const body = document.body;
 
+  console.log('Hamburger menu setup:', { hamburgerMenu: !!hamburgerMenu, mobileNavOverlay: !!mobileNavOverlay });
+
   if (hamburgerMenu && mobileNavOverlay) {
     // Toggle mobile menu
     function toggleMobileMenu() {
+      console.log('toggleMobileMenu called');
       const isActive = hamburgerMenu.classList.contains('active');
 
       hamburgerMenu.classList.toggle('active');
