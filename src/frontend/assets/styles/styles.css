@@ -204,6 +204,18 @@ header .container {
   display: flex;
   align-items: center;
   position: relative;
+  gap: 0;
+}
+
+/* Ensure proper z-index stacking on mobile */
+@media (max-width: 767px) {
+  .header-right {
+    pointer-events: none;
+  }
+
+  .header-right > * {
+    pointer-events: auto;
+  }
 }
 
 /* Desktop Navigation */
@@ -427,6 +439,10 @@ header .container {
   position: relative;
   z-index: 1001;
   transition: all 0.3s ease;
+  /* Ensure it's clickable */
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
 }
 
 .hamburger-line {

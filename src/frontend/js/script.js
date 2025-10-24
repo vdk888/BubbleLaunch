@@ -694,8 +694,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Hamburger menu click event
+    // Hamburger menu click event (both click and touch for better mobile support)
     hamburgerMenu.addEventListener('click', toggleMobileMenu);
+    hamburgerMenu.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      toggleMobileMenu();
+    });
 
     // Mobile dropdown accordion functionality
     const mobileDropdownToggle = document.querySelector('.mobile-nav-dropdown-toggle');
