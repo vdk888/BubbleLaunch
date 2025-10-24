@@ -18,6 +18,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
+    // Add navigation event listeners
+    document.querySelectorAll('nav a[href^="/#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(2);
+            window.location.href = '/' + this.getAttribute('href').substring(1);
+        });
+    });
+
     const slug = getSlugFromUrl();
     if (slug) {
         await loadBlogPost(slug);
@@ -308,15 +317,6 @@ function showError(message = 'Article introuvable') {
         document.querySelector('.error-state p').textContent = 'Impossible de charger cet article. Veuillez réessayer plus tard.';
     }
 }
-
-// Add navigation event listeners
-document.querySelectorAll('nav a[href^="/#"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(2);
-        window.location.href = '/' + this.getAttribute('href').substring(1);
-    });
-});
 
 // Function to regenerate image for current post
 async function regeneratePostImage() {

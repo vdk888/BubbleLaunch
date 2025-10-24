@@ -18,6 +18,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateStaticTranslations();
         renderPosts();
     });
+
+    // Add smooth scrolling for navigation links
+    document.querySelectorAll('nav a[href^="/#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(2);
+
+            // Navigate to home page with hash
+            window.location.href = '/' + this.getAttribute('href').substring(1);
+        });
+    });
 });
 
 function updateStaticTranslations() {
@@ -200,14 +211,3 @@ function formatDate(dateString) {
         });
     }
 }
-
-// Add smooth scrolling for navigation links
-document.querySelectorAll('nav a[href^="/#"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(2);
-        
-        // Navigate to home page with hash
-        window.location.href = '/' + this.getAttribute('href').substring(1);
-    });
-});
