@@ -426,6 +426,18 @@ const translations = {
     en: "Have questions? Chat with our AI",
     fr: "Des questions ? Discutez avec notre IA"
   },
+  "floating_bubble.title": {
+    en: "Bubble AI Assistant",
+    fr: "Assistant IA Bubble"
+  },
+  "floating_bubble.welcome": {
+    en: "Hello! How can I help you today?",
+    fr: "Bonjour ! Comment puis-je vous aider aujourd'hui ?"
+  },
+  "floating_bubble.placeholder": {
+    en: "Type your message...",
+    fr: "Saisissez votre message..."
+  },
   "floating_input.placeholder": {
     en: "Ask me anything...",
     fr: "Posez-moi une question..."
@@ -975,24 +987,24 @@ const translations = {
     fr: "Exemples concrets"
   },
   "businesses.examples.1": {
-    en: "Quick implementation of simple workflows (custom code or low code) and custom intelligent agents",
-    fr: "Implémentation rapide de workflows simples (custom code ou low code) et d'agents intelligents sur mesure"
+    en: "<strong>Quick implementation</strong> of <strong>simple workflows</strong> (custom code or low code) and custom <strong>intelligent agents</strong>",
+    fr: "<strong>Implémentation rapide</strong> de <strong>workflows simples</strong> (custom code ou low code) et d'<strong>agents intelligents</strong> sur mesure"
   },
   "businesses.examples.2": {
-    en: "Revenue recognition process: client invoicing workflow, accounting reconciliation, simplified budget tracking",
-    fr: "Processus de reconnaissance du revenu : workflow de facturation client, rapprochement comptable, suivi budgétaire simplifié"
+    en: "<strong>Revenue recognition process</strong>: client invoicing workflow, <strong>accounting reconciliation</strong>, simplified budget tracking",
+    fr: "<strong>Processus de reconnaissance du revenu</strong> : workflow de facturation client, <strong>rapprochement comptable</strong>, suivi budgétaire simplifié"
   },
   "businesses.examples.3": {
-    en: "Monthly financial reporting automation: up to 15h/month saved and zero data entry errors.",
-    fr: "Automatisation du reporting financier mensuel : jusqu'à 15h/mois économisées et zéro erreur de saisie."
+    en: "Monthly financial reporting automation: up to <strong>15h/month saved</strong> and zero data entry errors.",
+    fr: "Automatisation du reporting financier mensuel : jusqu'à <strong>15h/mois économisées</strong> et zéro erreur de saisie."
   },
   "businesses.examples.4": {
-    en: "Automated ESG news monitoring: custom digests for a portfolio manager, 5 to 7h/week saved.",
-    fr: "Suivi automatisé de l'actualité ESG : des digest sur-mesure pour un gestionnaire de portefeuille, 5 à 7h/semaine gagnées."
+    en: "Automated ESG news monitoring: custom digests for a portfolio manager, <strong>5 to 7h/week saved</strong>.",
+    fr: "Suivi automatisé de l'actualité ESG : des digest sur-mesure pour un gestionnaire de portefeuille, <strong>5 à 7h/semaine gagnées</strong>."
   },
   "businesses.examples.5": {
-    en: "Building a personalized dashboard for performance tracking: budget divided by 4 vs a traditional 'vendor' solution.",
-    fr: "Construction d'un dashboard personnalisé pour le suivi de la performance : budget divisé par 4 vs une solution éditeur \"traditionnelle\"."
+    en: "Building a personalized dashboard for performance tracking: <strong>budget divided by 4</strong> vs a traditional 'vendor' solution.",
+    fr: "Construction d'un dashboard personnalisé pour le suivi de la performance : <strong>budget divisé par 4</strong> vs une solution éditeur \"traditionnelle\"."
   },
 
   // Values Section

@@ -204,6 +204,39 @@
         overflow: hidden;
       }
 
+      /* Why Bubble Section */
+      .why-bubble-section {
+        padding: 5.5rem 0;
+        background: #fff;
+      }
+
+      .why-bubble-wrapper {
+        max-width: 880px;
+        margin: 0 auto;
+      }
+
+      .why-bubble-title {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #000;
+        text-align: center;
+        letter-spacing: -0.01em;
+        margin-bottom: 2.5rem;
+      }
+
+      .why-bubble-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+      }
+
+      .why-bubble-content p {
+        margin: 0;
+        font-size: 1.125rem;
+        line-height: 1.85;
+        color: #333;
+      }
+
       /* Responsive - Stack vertically on mobile */
       @media (max-width: 768px) {
         .featured-article-link {
@@ -225,6 +258,24 @@
         .featured-article-summary {
           font-size: 0.875rem;
         }
+
+        .why-bubble-section {
+          padding: 4rem 0;
+        }
+
+        .why-bubble-title {
+          font-size: 1.75rem;
+          margin-bottom: 2rem;
+        }
+
+        .why-bubble-content {
+          gap: 1.5rem;
+        }
+
+        .why-bubble-content p {
+          font-size: 1.05rem;
+          line-height: 1.75;
+        }
       }
 
       @media (max-width: 480px) {
@@ -238,6 +289,22 @@
 
         .featured-article-title {
           font-size: 1.125rem;
+        }
+
+        .why-bubble-section {
+          padding: 3.5rem 0;
+        }
+
+        .why-bubble-title {
+          font-size: 1.6rem;
+        }
+
+        .why-bubble-content {
+          gap: 1.4rem;
+        }
+
+        .why-bubble-content p {
+          font-size: 1rem;
         }
       }
     </style>
@@ -342,7 +409,7 @@
         <p class="hero-subtitle" style="font-size: 1.2rem; color: #666; max-width: 700px; margin: 0 auto 2.5rem;" data-translate="businesses.hero.subtitle">
           Anciens consultants Big Four et portfolio managers. Nous avons vu les dysfonctionnements de l'intérieur.
         </p>
-        <a href="#contact" class="cta-button" data-translate="businesses.hero.cta">
+        <a href="#waitlist" class="cta-button" data-translate="businesses.hero.cta">
           Discutons de votre projet
         </a>
       </div>
@@ -406,22 +473,24 @@
       </div>
     </section>
 
-    <!-- Why We Started This Section -->
-    <section id="why" class="approach fade-in">
-      <div class="container" style="max-width: 800px;">
-        <h2 data-translate="businesses.why.title">Pourquoi nous faisons cela</h2>
+    <!-- Why Bubble Section -->
+    <section id="why-bubble" class="why-bubble-section fade-in">
+      <div class="container why-bubble-wrapper">
+        <h2 class="why-bubble-title" data-translate="businesses.why.title">Pourquoi Bubble</h2>
 
-        <p data-translate="businesses.why.p1">
-          Après des années dans des cabinets de conseil et dans la gestion d'actifs, nous avons observé de nombreux travers : des missions à 6 chiffres qui ne débouchent sur rien, des consultants qui disparaissent après avoir présenté leur rapport, et beaucoup de promesses rarement tenues.
-        </p>
+        <div class="why-bubble-content">
+          <p data-translate="businesses.why.p1">
+            Après des années dans des cabinets de conseil et dans la gestion d'actifs, nous avons observé de nombreux travers : des missions à 6 chiffres qui ne débouchent sur rien, des consultants qui disparaissent après avoir présenté leur rapport, et beaucoup de promesses rarement tenues.
+          </p>
 
-        <p data-translate="businesses.why.p2">
-          Chez Bubble Invest, nous avons choisi de faire autrement : miser sur l'honnêteté et l'envie d'aider vraiment – même si cela signifie parfois dire non à un projet.
-        </p>
+          <p data-translate="businesses.why.p2">
+            Chez Bubble Invest, nous avons choisi de faire autrement : miser sur l'honnêteté et l'envie d'aider vraiment – même si cela signifie parfois dire non à un projet.
+          </p>
 
-        <p data-translate="businesses.why.p3">
-          On préfère afficher notre expérience que prétendre tout savoir. Nous agissons avec vous, sans vous vendre une révolution technologique. Sur chaque projet, nous privilégions la transparence, même si cela veut dire reconnaître nos limites.
-        </p>
+          <p data-translate="businesses.why.p3">
+            On préfère afficher notre expérience que prétendre tout savoir. Nous agissons avec vous, sans vous vendre une révolution technologique. Sur chaque projet, nous privilégions la transparence, même si cela veut dire reconnaître nos limites.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -516,7 +585,8 @@
     </section>
 
     <!-- B2B Contact Form Section -->
-    <section id="contact-form" class="waitlist fade-in">
+    <section id="waitlist" class="waitlist fade-in">
+      <div id="contact-form"></div>
       <div class="container">
         <h2 data-translate="businesses.contact.title">Discutons de votre projet</h2>
         <p class="waitlist-subtitle" data-translate="businesses.contact.subtitle" style="max-width: 700px; margin: 0 auto 2rem;">
@@ -646,6 +716,8 @@
         </div>
       </div>
     </section>
+
+    <div id="floating-chat-trigger" aria-hidden="true"></div>
 
     <!-- Footer -->
     <footer>
@@ -866,8 +938,77 @@
 
     <!-- Scripts -->
     <script src="/i18n/translations.js"></script>
+    <script src="/js/chatbot-logic.js"></script>
+    <script src="/js/chatbot-animations.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/animations.js"></script>
+    <script src="/js/floating-bubble.js"></script>
+    <script src="/js/mini-chat.js"></script>
     <script src="/js/businesses-form.js"></script>
+
+    <!-- Floating Chat Bubble -->
+    <div id="floating-chat-bubble" class="floating-bubble">
+      <div class="floating-bubble-inner">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+        <span data-translate="floating_bubble.text">Have questions? Chat with our AI</span>
+      </div>
+
+      <div class="mini-chat-window">
+        <div class="mini-chat-header">
+          <h4 data-translate="floating_bubble.title">Bubble AI Assistant</h4>
+          <button class="mini-chat-close" aria-label="Close chat">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="mini-chat-messages">
+          <div class="mini-chat-message bot">
+            <div class="message-content">
+              <p data-translate="floating_bubble.welcome">Hello! How can I help you today?</p>
+            </div>
+          </div>
+        </div>
+        <div class="mini-chat-input-container">
+          <input
+            type="text"
+            class="mini-chat-input"
+            placeholder="Type your message..."
+            data-translate="floating_bubble.placeholder"
+            aria-label="Type your message"
+          />
+          <button class="mini-chat-send" aria-label="Send message">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12H19M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Glassmorphism Chat Input -->
+    <div
+      id="floating-chat-input"
+      class="floating-chat-input hidden"
+      data-trigger-selector="#floating-chat-trigger"
+    >
+      <div class="floating-input-container">
+        <input
+          type="text"
+          class="floating-input-field"
+          placeholder="Ask me anything..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Ask a question"
+        />
+        <button class="floating-input-submit" aria-label="Send message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <script src="/js/floating-chat-input.js"></script>
   </body>
 </html>

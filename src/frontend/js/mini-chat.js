@@ -16,17 +16,21 @@ document.addEventListener('DOMContentLoaded', () => {
   let isProcessing = false;
   let currentAbortController = null;
 
-  // Toggle chat window
-  const toggleChat = () => {
-    isChatOpen = !isChatOpen;
+  const setChatOpen = (open) => {
+    if (isChatOpen === open) return;
+    isChatOpen = open;
     floatingBubble.classList.toggle('chat-open', isChatOpen);
-    
+
     if (isChatOpen) {
-      // Focus input when opening
       setTimeout(() => {
         chatInput.focus();
       }, 300);
     }
+  };
+
+  // Toggle chat window
+  const toggleChat = () => {
+    setChatOpen(!isChatOpen);
   };
 
   // Add message to chat
@@ -54,13 +58,20 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Handle send message with SSE streaming
-  const sendMessage = async () => {
-    const message = chatInput.value.trim();
+  const sendMessage = async (presetMessage) => {
+    const usingPreset = typeof presetMessage === 'string';
+    const message = (usingPreset ? presetMessage : chatInput.value).trim();
     if (!message || isProcessing) return;
+
+    if (usingPreset) {
+      chatInput.value = '';
+    }
 
     // Add user message
     addMessage(message, true);
-    chatInput.value = '';
+    if (!usingPreset) {
+      chatInput.value = '';
+    }
     chatInput.disabled = true;
     sendButton.disabled = true;
 
@@ -151,7 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
       currentAbortController = null;
       chatInput.disabled = false;
       sendButton.disabled = false;
-      chatInput.focus();
+      if (!usingPreset) {
+        chatInput.focus();
+      }
     }
   };
 
@@ -189,4 +202,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Add initial bot message
   addMessage('Hello! How can I help you today?');
+
+  // Expose minimal API for other modules (floating input, etc.)
+  window.bubbleMiniChat = {
+    open: () => setChatOpen(true),
+    close: () => setChatOpen(false),
+    isOpen: () => isChatOpen,
+    sendMessage: (text) => {
+      if (!text) return;
+      setChatOpen(true);
+      sendMessage(text);
+    },
+  };
 });

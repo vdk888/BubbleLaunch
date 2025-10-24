@@ -17,8 +17,11 @@
   }
 
   // Determine if we're on the simulator page
+  const dataset = floatingInput.dataset || {};
   const isSimulatorPage = window.location.pathname.includes('portfolio-simulator');
-  const pageContext = isSimulatorPage ? 'portfolio-simulator' : 'landing';
+  const pageContext = dataset.pageContext || (isSimulatorPage ? 'portfolio-simulator' : 'landing');
+  const customTriggerSelector = dataset.triggerSelector;
+  const alwaysVisible = dataset.alwaysVisible === 'true';
 
   function getCurrentLanguage() {
     return document.documentElement.lang || localStorage.getItem('preferredLanguage') || 'fr';
@@ -37,19 +40,21 @@
     });
   }
 
-  if (isSimulatorPage) {
-    // Always show on simulator page (no 'hidden' class)
+  if (isSimulatorPage || alwaysVisible) {
+    // Always show on simulator or explicitly requested pages
     floatingInput.classList.remove('hidden');
   } else {
-    // Main page: show when "Join Us" button is no longer visible
-    const joinButton = document.querySelector('.cta-button[href="#waitlist"]');
+    // Determine trigger element (defaults to main CTA button)
+    const triggerElement = customTriggerSelector
+      ? document.querySelector(customTriggerSelector)
+      : document.querySelector('.cta-button[href="#waitlist"]');
 
-    if (joinButton) {
+    if (triggerElement) {
       const handleScroll = () => {
-        const buttonRect = joinButton.getBoundingClientRect();
+        const rect = triggerElement.getBoundingClientRect();
 
-        // Show input when "Join Us" button scrolls out of view (top of button is above viewport)
-        if (buttonRect.bottom < 0) {
+        // Show input when trigger element scrolls out of view (bottom above viewport)
+        if (rect.bottom < 0) {
           floatingInput.classList.remove('hidden');
         } else {
           floatingInput.classList.add('hidden');
@@ -113,6 +118,15 @@
           });
         }, 100);
       }, 500); // Wait for smooth scroll
+    } else if (window.bubbleMiniChat && typeof window.bubbleMiniChat.sendMessage === 'function') {
+      window.bubbleMiniChat.open?.();
+      window.bubbleMiniChat.sendMessage(message);
+      inputField.value = '';
+
+      trackFloatingInputEvent('floating_input_forwarded', {
+        success: true,
+        destination: 'mini_chat',
+      });
     } else {
       trackFloatingInputEvent('floating_input_forwarded', {
         success: false,
