@@ -906,6 +906,22 @@ const translations = {
     en: "Email",
     fr: "Email"
   },
+  "footer.social.linkedin": {
+    en: "Bubble Invest AI",
+    fr: "Bubble Invest AI"
+  },
+  "footer.social.instagram": {
+    en: "@behindthefinancebubble",
+    fr: "@behindthefinancebubble"
+  },
+  "footer.social.tiktok": {
+    en: "@behind.the.bubble",
+    fr: "@behind.the.bubble"
+  },
+  "footer.social.youtube": {
+    en: "@behindthefinancebubble",
+    fr: "@behindthefinancebubble"
+  },
 
   // Businesses Page
   "businesses.tagline": {
