@@ -91,10 +91,16 @@
 
     // Find the main chatbot section
     const chatSection = document.querySelector('.chat-section');
+    const chatStandaloneSection = document.querySelector('.chat-standalone-section');
     const mainChatInput = document.querySelector('.chat-input');
     const mainChatSubmit = document.querySelector('.chat-submit');
 
     if (chatSection && mainChatInput && mainChatSubmit) {
+      // Show chat section if it's hidden (businesses page)
+      if (chatStandaloneSection && !chatStandaloneSection.classList.contains('visible')) {
+        chatStandaloneSection.classList.add('visible');
+      }
+
       // Scroll to chatbot section smoothly
       chatSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
@@ -112,6 +118,9 @@
 
           // Clear the floating input
           inputField.value = '';
+
+          // Hide floating input after submission
+          floatingInput.classList.add('hidden');
 
           trackFloatingInputEvent('floating_input_forwarded', {
             success: true,

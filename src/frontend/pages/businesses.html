@@ -307,6 +307,56 @@
           font-size: 1rem;
         }
       }
+
+      /* Chat Section Styling for Businesses Page */
+      .chat-standalone-section {
+        display: none; /* Hidden by default */
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+
+      .chat-standalone-section.visible {
+        display: block;
+        opacity: 1;
+      }
+
+      /* Responsive chat for businesses page */
+      @media (max-width: 768px) {
+        .chat-standalone-section {
+          padding: 3rem 0 !important;
+        }
+
+        .chat-section {
+          max-height: 500px !important;
+        }
+
+        .chat-messages {
+          max-height: 350px !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .chat-standalone-section {
+          padding: 2rem 0 !important;
+        }
+
+        .chat-section {
+          max-height: 450px !important;
+          border-radius: 16px !important;
+        }
+
+        .chat-messages {
+          max-height: 300px !important;
+        }
+
+        .chat-input-container {
+          padding: 0.875rem !important;
+        }
+
+        .chat-input {
+          font-size: 16px !important; /* Prevents iOS zoom */
+        }
+      }
     </style>
   </head>
   <body>
@@ -412,6 +462,46 @@
         <a href="#waitlist" class="cta-button" data-translate="businesses.hero.cta">
           Discutons de votre projet
         </a>
+        <div id="floating-chat-trigger" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- Chat Section -->
+    <section class="chat-standalone-section fade-in" style="padding: 4rem 0; background: #F8F8F8;">
+      <div class="container" style="max-width: 900px;">
+        <div class="chat-section">
+          <button id="fullscreen-toggle-btn" aria-label="Toggle fullscreen">
+            <!-- Expand icon (shown when collapsed) -->
+            <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+            </svg>
+            <!-- Close icon (shown when fullscreen) -->
+            <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+          <div class="chat-messages">
+            <div class="chat-message bot">
+              <div class="message-content" data-translate="chat.welcome">Hello, I'm Bubble. How can I help you today?</div>
+            </div>
+          </div>
+
+          <div class="chat-input-container">
+            <input
+              type="text"
+              class="chat-input"
+              placeholder="Pourquoi l'IA change la donne ?"
+              data-translate-placeholder="chat.placeholder"
+              aria-label="Ask a question"
+            />
+            <button class="chat-submit" aria-label="Submit question">
+              <svg class="submit-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -716,8 +806,6 @@
         </div>
       </div>
     </section>
-
-    <div id="floating-chat-trigger" aria-hidden="true"></div>
 
     <!-- Footer -->
     <footer>
