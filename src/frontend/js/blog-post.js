@@ -97,7 +97,11 @@ function displayBlogPost(post) {
         'Discover this article on intelligent investing.';
     const metaSummary = summary || defaultSummary;
     const metaTitle = `${title} | Blog Bubble`;
-    const currentUrl = `https://bubbleinvest.org/blog/${post.slug}`;
+    const isEnglishRoute = window.location.pathname.startsWith("/en/");
+    const canonicalPath = isEnglishRoute ? `/en/blog/${post.slug}` : `/blog/${post.slug}`;
+    const currentUrl = `https://bubbleinvest.org${canonicalPath}`;
+    const frUrl = `https://bubbleinvest.org/blog/${post.slug}`;
+    const enUrl = `https://bubbleinvest.org/en/blog/${post.slug}`;
     const imageUrl = post.imageUrl || 'https://bubbleinvest.org/assets/images/bubble-logo-single.svg';
 
     // Update page title and SEO meta tags
@@ -122,9 +126,9 @@ function displayBlogPost(post) {
     document.getElementById('canonical-url').setAttribute('href', currentUrl);
 
     // Update hreflang tags
-    document.getElementById('hreflang-fr').setAttribute('href', currentUrl);
-    document.getElementById('hreflang-en').setAttribute('href', `${currentUrl}?lang=en`);
-    document.getElementById('hreflang-default').setAttribute('href', currentUrl);
+    document.getElementById('hreflang-fr').setAttribute('href', frUrl);
+    document.getElementById('hreflang-en').setAttribute('href', enUrl);
+    document.getElementById('hreflang-default').setAttribute('href', frUrl);
 
     // Update article published time
     if (post.publishedDate) {

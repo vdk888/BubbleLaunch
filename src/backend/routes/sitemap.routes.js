@@ -12,64 +12,110 @@ const blogService = require('../services/blogService');
  */
 router.get('/sitemap.xml', async (req, res) => {
   try {
+    const today = new Date().toISOString().split('T')[0];
+
+    const buildLocalizedEntries = ({ fr, en, priority, changefreq, lastmod }) => {
+      const entries = [];
+      const frUrl = fr ? `https://bubbleinvest.org${fr}` : null;
+      const enUrl = en ? `https://bubbleinvest.org${en}` : null;
+      const defaultHref = frUrl || enUrl;
+
+      const alternates = [];
+      if (frUrl) alternates.push({ hreflang: 'fr', href: frUrl });
+      if (enUrl) alternates.push({ hreflang: 'en', href: enUrl });
+      if (defaultHref) alternates.push({ hreflang: 'x-default', href: defaultHref });
+
+      if (frUrl) {
+        entries.push({
+          loc: frUrl,
+          changefreq,
+          priority,
+          lastmod,
+          alternates
+        });
+      }
+
+      if (enUrl) {
+        entries.push({
+          loc: enUrl,
+          changefreq,
+          priority,
+          lastmod,
+          alternates
+        });
+      }
+
+      return entries;
+    };
+
     // Static pages with priority and changefreq
     const staticPages = [
       {
-        url: '/',
+        fr: '/',
+        en: '/en/',
         priority: '1.0',
         changefreq: 'weekly',
-        lastmod: new Date().toISOString().split('T')[0]
+        lastmod: today
       },
       {
-        url: '/home',
-        priority: '1.0',
-        changefreq: 'weekly',
-        lastmod: new Date().toISOString().split('T')[0]
-      },
-      {
-        url: '/portfolio-simulator',
+        fr: '/portfolio-simulator',
+        en: '/en/portfolio-simulator',
         priority: '0.9',
         changefreq: 'monthly',
-        lastmod: new Date().toISOString().split('T')[0]
+        lastmod: today
       },
       {
-        url: '/blog',
+        fr: '/blog',
+        en: '/en/blog',
         priority: '0.8',
         changefreq: 'weekly',
-        lastmod: new Date().toISOString().split('T')[0]
+        lastmod: today
+      },
+      {
+        fr: '/businesses',
+        en: '/en/businesses',
+        priority: '0.6',
+        changefreq: 'monthly',
+        lastmod: today
       },
     ];
+
+    const staticEntries = staticPages.flatMap(buildLocalizedEntries);
 
     // Fetch published blog posts
     let blogPages = [];
     try {
-      const posts = await blogService.getAllPublishedPosts();
-      blogPages = posts.map(post => ({
-        url: `/blog/${post.slug}`,
-        priority: '0.7',
-        changefreq: 'monthly',
-        lastmod: post.publicationDate || new Date().toISOString().split('T')[0]
-      }));
+      const posts = await blogService.getPublishedPosts();
+      blogPages = posts.flatMap(post => {
+        const lastmod = post.publishedDate
+          ? new Date(post.publishedDate).toISOString().split('T')[0]
+          : today;
+        return buildLocalizedEntries({
+          fr: `/blog/${post.slug}`,
+          en: `/en/blog/${post.slug}`,
+          priority: '0.7',
+          changefreq: 'monthly',
+          lastmod
+        });
+      });
     } catch (error) {
       console.warn('Could not fetch blog posts for sitemap:', error.message);
       // Continue without blog posts if service fails
     }
 
     // Combine all pages
-    const allPages = [...staticPages, ...blogPages];
+    const allPages = [...staticEntries, ...blogPages];
 
     // Generate XML
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${allPages.map(page => `  <url>
-    <loc>https://bubbleinvest.org${page.url}</loc>
+    <loc>${page.loc}</loc>
     <lastmod>${page.lastmod}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://bubbleinvest.org${page.url}" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://bubbleinvest.org${page.url}?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org${page.url}" />
+${page.alternates.map(alt => `    <xhtml:link rel="alternate" hreflang="${alt.hreflang}" href="${alt.href}" />`).join('\n')}
   </url>`).join('\n')}
 </urlset>`;
 
