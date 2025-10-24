@@ -631,9 +631,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Prevent body scroll when menu is open
       if (!isActive) {
-        body.style.overflow = 'hidden';
+        // Store current scroll position to restore later
+        const scrollY = window.scrollY;
+        body.classList.add('mobile-menu-open');
+        body.style.top = `-${scrollY}px`;
       } else {
-        body.style.overflow = '';
+        // Restore scroll position
+        const scrollY = body.style.top;
+        body.classList.remove('mobile-menu-open');
+        body.style.top = '';
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
       }
     }
 
@@ -677,8 +684,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Close menu when clicking any navigation link
-    const mobileNavLinks = mobileNavOverlay.querySelectorAll('a');
+    // Close menu when clicking any navigation link (except dropdown toggles)
+    const mobileNavLinks = mobileNavOverlay.querySelectorAll('.mobile-nav > a:not(.mobile-nav-dropdown-toggle)');
     mobileNavLinks.forEach(link => {
       link.addEventListener('click', function() {
         if (hamburgerMenu.classList.contains('active')) {
@@ -702,7 +709,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (window.innerWidth >= 1025 && hamburgerMenu.classList.contains('active')) {
           hamburgerMenu.classList.remove('active');
           mobileNavOverlay.classList.remove('active');
-          body.style.overflow = '';
+          // Restore scroll position
+          const scrollY = body.style.top;
+          body.classList.remove('mobile-menu-open');
+          body.style.top = '';
+          if (scrollY) {
+            window.scrollTo(0, parseInt(scrollY) * -1);
+          }
         }
       }, 100);
     });
