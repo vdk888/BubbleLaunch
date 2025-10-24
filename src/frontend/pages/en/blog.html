@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>Bubble Blog | AI Investing & Quant Finance</title>
+    <meta name="description" content="Bubble Blog: AI investing strategies, quantitative finance insights, and transparent build-in-public updates from France's fixed-fee robo advisor." />
+    <meta name="keywords" content="AI investing blog, robo advisor France, quantitative finance, Bubble Invest, build in public, fintech France, fixed fee investing" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bubbleinvest.org/en/blog" />
+    <meta property="og:title" content="Bubble Blog | Building the AI Investment Platform" />
+    <meta property="og:description" content="Follow Bubble's journey building a discreet AI investment platform with fixed fees. Quant strategies, product notes, and open learnings." />
+    <meta property="og:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://bubbleinvest.org/en/blog" />
+    <meta name="twitter:title" content="Bubble Blog | Building AI Investment in Public" />
+    <meta name="twitter:description" content="Transparent updates on Bubble's AI-first investment platform, with quant research and practical case studies." />
+    <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bubbleinvest.org/en/blog" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Language Alternates -->
+    <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/blog" />
+    <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/blog" />
+    <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/blog" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../assets/images/bubble-favicon.svg" />
+    <link rel="stylesheet" href="../assets/styles/styles.css" />
+    <link rel="stylesheet" href="../assets/styles/blog.css" />
+    <link rel="stylesheet" href="../assets/styles/references.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="brand">
+          <a href="/en/" class="logo-link">
+            <div
+              class="logo"
+              style="display: flex; align-items: center; gap: 0.18em"
+            >
+              <span style="display: flex; align-items: center"
+                ><svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 72 72"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="display: inline-block; vertical-align: middle"
+                >
+                  <circle
+                    cx="36"
+                    cy="41"
+                    r="26"
+                    stroke="#000"
+                    stroke-width="6"
+                    stroke-linecap="round"
+                    stroke-dasharray="145 29"
+                    stroke-dashoffset="10"
+                  />
+                  <circle cx="59" cy="21" r="6" fill="#000" /></svg></span
+              ><span>Bubble.</span>
+            </div>
+          </a>
+          <div class="tagline" data-translate="hero.tagline">Transparent investment in the AI era.</div>
+        </div>
+        <div class="header-right">
+          <!-- Hamburger Menu Button (Mobile Only) -->
+          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+          
+          <!-- Desktop Navigation -->
+          <nav class="desktop-nav">
+            <a href="/en/#about" data-translate="nav.vision">Vision</a>
+            <div class="nav-dropdown">
+              <a href="#" class="nav-dropdown-toggle" data-translate="nav.solution">Solution</a>
+              <div class="nav-dropdown-menu">
+                <a href="/en/#approach" data-translate="nav.approach">Approach</a>
+                <a href="/en/#vision" data-translate="nav.build">Product</a>
+              </div>
+            </div>
+            <a href="/en/blog" data-translate="nav.blog" class="active">Blog</a>
+            <a href="/en/businesses" data-translate="nav.businesses">Businesses</a>
+            <a href="/en/#waitlist" data-translate="nav.join">Join Us</a>
+            <div class="language-switcher">
+              <button id="en-switch" class="active">EN</button>
+              <span>|</span>
+              <button id="fr-switch">FR</button>
+            </div>
+          </nav>
+          
+          <!-- Mobile Language Switcher -->
+          <div class="mobile-language-switcher">
+            <button id="en-switch-mobile" class="active">EN</button>
+            <span>|</span>
+            <button id="fr-switch-mobile">FR</button>
+          </div>
+        </div>
+        
+        <!-- Mobile Navigation Overlay -->
+        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+          <nav class="mobile-nav">
+            <a href="/en/#about" data-translate="nav.vision">Vision</a>
+            <div class="mobile-nav-dropdown">
+              <a href="#" class="mobile-nav-dropdown-toggle" data-translate="nav.solution">Solution</a>
+              <div class="mobile-nav-dropdown-menu">
+                <a href="/en/#approach" data-translate="nav.approach">Approach</a>
+                <a href="/en/#vision" data-translate="nav.build">Product</a>
+              </div>
+            </div>
+            <a href="/en/blog" data-translate="nav.blog" class="active">Blog</a>
+            <a href="/en/businesses" data-translate="nav.businesses">Businesses</a>
+            <a href="/en/#waitlist" data-translate="nav.join">Join Us</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="blog-main">
+      <div class="container">
+        <!-- Blog Hero Section -->
+        <section class="blog-hero">
+          <div class="blog-hero-content">
+            <h1 class="blog-title" data-translate="blog.title">The Bubble Blog: Building in Public</h1>
+            <p class="blog-subtitle" data-translate="blog.subtitle">Welcome to our blog where we share everything: our thoughts on AI-driven finance, our product-building experiments, our doubts, and our quest to create the investment tool we desperately wanted.</p>
+          </div>
+        </section>
+
+        <!-- Featured Post Section -->
+        <section class="featured-post" id="featured-post">
+          <!-- Will be populated by JavaScript -->
+        </section>
+
+        <!-- Blog Posts Grid -->
+        <section class="blog-posts">
+          <h2 class="section-title" data-translate="blog.all_posts">All Articles</h2>
+          <div class="posts-grid" id="posts-grid">
+            <!-- Will be populated by JavaScript -->
+          </div>
+          
+          <!-- Loading State -->
+          <div class="loading-state" id="loading-state">
+            <div class="loading-animation">
+              <div class="loading-bubble"></div>
+              <div class="loading-bubble"></div>
+              <div class="loading-bubble"></div>
+            </div>
+            <p data-translate="blog.loading">Loading article...</p>
+          </div>
+          
+          <!-- Empty State -->
+          <div class="empty-state" id="empty-state" style="display: none;">
+            <div class="empty-icon">📝</div>
+            <h3 data-translate="blog.no_posts">No articles yet</h3>
+            <p data-translate="blog.coming_soon">Our first articles are coming soon. Stay tuned!</p>
+          </div>
+        </section>
+
+        <!-- References Section -->
+        <section class="references-section" id="references-section">
+          <!-- Will be populated by references.js -->
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-left">
+          <div
+            class="footer-logo"
+            style="display: flex; align-items: center; gap: 0.18em"
+          >
+            <span style="display: flex; align-items: center"
+              ><svg
+                width="30"
+                height="30"
+                viewBox="0 0 72 72"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="display: inline-block; vertical-align: middle"
+              >
+                <circle
+                  cx="36"
+                  cy="41"
+                  r="26"
+                  stroke="#000"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-dasharray="145 29"
+                  stroke-dashoffset="10"
+                />
+                <circle cx="59" cy="21" r="6" fill="#000" /></svg></span
+            ><span>Bubble.</span>
+          </div>
+          <div class="footer-copyright" data-translate="footer.copyright">© 2025 Bubble. Transparent by design.</div>
+        </div>
+        <div class="footer-right">
+          <div class="footer-tagline" data-translate="footer.tagline">The AI era changes everything. Let's change with it.</div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- SEO Structured Data -->
+    <script src="../js/seo/structured-data.js"></script>
+
+    <!-- Application Scripts -->
+    <script src="../i18n/translations.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/blog.js"></script>
+    <script src="../js/references.js"></script>
+  </body>
+</html>

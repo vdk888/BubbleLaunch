@@ -195,7 +195,12 @@ function injectStructuredData(schemas) {
 
 // Initialize structured data based on current page
 function initializeStructuredData() {
-  const path = window.location.pathname;
+  let path = window.location.pathname;
+  if (path === "/en") {
+    path = "/";
+  } else if (path.startsWith("/en/")) {
+    path = path.replace("/en", "") || "/";
+  }
 
   if (path === '/' || path === '/index.html') {
     // Homepage: Financial Service + Organization + FAQ

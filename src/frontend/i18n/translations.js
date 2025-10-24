@@ -1475,3 +1475,8 @@ const translations = {
     fr: "Blog"
   },
 };
+
+// Allow reuse in Node (SSR, tooling)
+if (typeof module !== "undefined") {
+  module.exports = translations;
+}

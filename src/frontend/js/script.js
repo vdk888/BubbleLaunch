@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Default language
-  let currentLanguage = "en";
+  const pathName = window.location.pathname;
+  const isEnglishRoute =
+    pathName === "/en" || pathName === "/en/" || pathName.startsWith("/en/");
+
+  // Default language aligns with current route
+  let currentLanguage = isEnglishRoute ? "en" : "fr";
 
   // Mobile logo scroll animation
   let lastScrollTop = 0;
@@ -32,6 +36,30 @@ document.addEventListener("DOMContentLoaded", function () {
   // Get all translatable elements
   const translatableElements = document.querySelectorAll("[data-translate]");
   const translatableHtmlElements = document.querySelectorAll("[data-translate-html]");
+
+  function redirectIfNeeded(lang) {
+    const { pathname, search, hash } = window.location;
+    if (lang === "en") {
+      if (!(pathname === "/en" || pathname === "/en/" || pathname.startsWith("/en/"))) {
+        const newPath =
+          pathname === "/"
+            ? "/en/"
+            : pathname.startsWith("/")
+              ? `/en${pathname}`
+              : `/en/${pathname}`;
+        window.location.href = `${newPath}${search}${hash}`;
+        return true;
+      }
+    } else if (lang === "fr") {
+      if (pathname === "/en" || pathname === "/en/" || pathname.startsWith("/en/")) {
+        let stripped = pathname.replace(/^\/en/, "");
+        if (stripped === "") stripped = "/";
+        window.location.href = `${stripped}${search}${hash}`;
+        return true;
+      }
+    }
+    return false;
+  }
 
   // Function to update language
   function updateLanguage(lang) {
@@ -125,27 +153,46 @@ document.addEventListener("DOMContentLoaded", function () {
     document.dispatchEvent(event);
   }
 
+  function handleLanguageSwitch(lang) {
+    localStorage.setItem("bubbleLanguage", lang);
+    const redirected = redirectIfNeeded(lang);
+    if (!redirected) {
+      updateLanguage(lang);
+    }
+  }
+
   // Set up event listeners for desktop language switches
-  enButton.addEventListener("click", () => updateLanguage("en"));
-  frButton.addEventListener("click", () => updateLanguage("fr"));
+  enButton.addEventListener("click", () => handleLanguageSwitch("en"));
+  frButton.addEventListener("click", () => handleLanguageSwitch("fr"));
   
   // Set up event listeners for mobile language switches
-  if (enButtonMobile) enButtonMobile.addEventListener("click", () => updateLanguage("en"));
-  if (frButtonMobile) frButtonMobile.addEventListener("click", () => updateLanguage("fr"));
+  if (enButtonMobile) enButtonMobile.addEventListener("click", () => handleLanguageSwitch("en"));
+  if (frButtonMobile) frButtonMobile.addEventListener("click", () => handleLanguageSwitch("fr"));
 
   // Check for stored language preference
   const storedLanguage = localStorage.getItem("bubbleLanguage");
+  let initialLanguage = currentLanguage;
+
   if (storedLanguage && (storedLanguage === "en" || storedLanguage === "fr")) {
-    updateLanguage(storedLanguage);
-  } else {
-    // Try to detect browser language
-    const browserLang = navigator.language || navigator.userLanguage;
-    if (browserLang.startsWith("fr")) {
-      updateLanguage("fr");
+    if (storedLanguage === currentLanguage) {
+      initialLanguage = storedLanguage;
     } else {
-      updateLanguage("en");
+      // Keep the route language but remember preference for future navigations
+      localStorage.setItem("bubbleLanguage", currentLanguage);
     }
+  } else {
+    const browserLang = navigator.language || navigator.userLanguage;
+    if (!isEnglishRoute && browserLang.startsWith("en")) {
+      initialLanguage = "en";
+    } else if (isEnglishRoute && browserLang.startsWith("fr")) {
+      initialLanguage = "en";
+    } else if (browserLang.startsWith("fr")) {
+      initialLanguage = "fr";
+    }
+    localStorage.setItem("bubbleLanguage", initialLanguage);
   }
+
+  updateLanguage(initialLanguage);
 
   // Simple form submission handling
   const waitlistForm = document.getElementById("waitlist-form");
