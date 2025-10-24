@@ -3402,6 +3402,28 @@ footer .container {
     width: 44px;
     height: 44px;
   }
+
+  /* Add extra padding to footer to prevent overlap with floating elements */
+  footer {
+    padding-bottom: 6rem !important; /* Space for floating chat bubble and cookie banner */
+  }
+
+  /* Ensure footer contact section has proper spacing */
+  .footer-contact {
+    margin-bottom: 2rem;
+  }
+
+  /* Additional spacing for blog/blog-post pages with simpler footer */
+  .footer-right .footer-contact {
+    margin-top: 1.5rem;
+  }
+}
+
+/* Extra spacing for very small mobile screens */
+@media (max-width: 480px) {
+  footer {
+    padding-bottom: 7rem !important; /* More space on smaller screens */
+  }
 }
 
 /* Manifesto Section */
