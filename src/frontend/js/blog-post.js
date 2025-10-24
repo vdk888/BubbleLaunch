@@ -3,16 +3,24 @@ let currentLanguage = 'fr'; // Default to French
 let currentPost = null; // Store current post for language switching
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Initialize language
-    currentLanguage = localStorage.getItem('selectedLanguage') || 'fr';
+    // Initialize language (use same key as main script.js)
+    currentLanguage = localStorage.getItem('bubbleLanguage') || 'en';
     updateLanguageButtons();
     
     // Update static text translations on page load
     updateStaticTranslations();
     
-    // Add language switcher event listeners
-    document.getElementById('fr-switch').addEventListener('click', () => switchLanguage('fr'));
-    document.getElementById('en-switch').addEventListener('click', () => switchLanguage('en'));
+    // Add language switcher event listeners (desktop)
+    const frSwitch = document.getElementById('fr-switch');
+    const enSwitch = document.getElementById('en-switch');
+    if (frSwitch) frSwitch.addEventListener('click', () => switchLanguage('fr'));
+    if (enSwitch) enSwitch.addEventListener('click', () => switchLanguage('en'));
+
+    // Add language switcher event listeners (mobile)
+    const frSwitchMobile = document.getElementById('fr-switch-mobile');
+    const enSwitchMobile = document.getElementById('en-switch-mobile');
+    if (frSwitchMobile) frSwitchMobile.addEventListener('click', () => switchLanguage('fr'));
+    if (enSwitchMobile) enSwitchMobile.addEventListener('click', () => switchLanguage('en'));
     
     const slug = getSlugFromUrl();
     if (slug) {
@@ -24,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function switchLanguage(lang) {
     currentLanguage = lang;
-    localStorage.setItem('selectedLanguage', lang);
+    localStorage.setItem('bubbleLanguage', lang);
     updateLanguageButtons();
     
     // Update static text translations
@@ -47,11 +55,17 @@ function updateStaticTranslations() {
 }
 
 function updateLanguageButtons() {
+    // Update desktop buttons
     const frBtn = document.getElementById('fr-switch');
     const enBtn = document.getElementById('en-switch');
-    
-    frBtn.classList.toggle('active', currentLanguage === 'fr');
-    enBtn.classList.toggle('active', currentLanguage === 'en');
+    if (frBtn) frBtn.classList.toggle('active', currentLanguage === 'fr');
+    if (enBtn) enBtn.classList.toggle('active', currentLanguage === 'en');
+
+    // Update mobile buttons
+    const frBtnMobile = document.getElementById('fr-switch-mobile');
+    const enBtnMobile = document.getElementById('en-switch-mobile');
+    if (frBtnMobile) frBtnMobile.classList.toggle('active', currentLanguage === 'fr');
+    if (enBtnMobile) enBtnMobile.classList.toggle('active', currentLanguage === 'en');
 }
 
 function getSlugFromUrl() {

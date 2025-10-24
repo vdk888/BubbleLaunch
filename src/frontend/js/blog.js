@@ -3,8 +3,8 @@ let currentLanguage = 'fr'; // Default to French
 let allPosts = []; // Store all posts for language switching
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Initialize language
-    currentLanguage = localStorage.getItem('selectedLanguage') || 'fr';
+    // Initialize language (use same key as main script.js)
+    currentLanguage = localStorage.getItem('bubbleLanguage') || 'en';
     updateLanguageButtons();
     
     // Update static text translations on page load
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function switchLanguage(lang) {
     currentLanguage = lang;
-    localStorage.setItem('selectedLanguage', lang);
+    localStorage.setItem('bubbleLanguage', lang);
     updateLanguageButtons();
     
     // Update static text translations
