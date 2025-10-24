@@ -57,8 +57,8 @@ const translations = {
     fr: "Jusqu'ici, vous payiez un gérant ou un banquier pour des mots rassurants et un jargon que peu comprennent. Aujourd'hui, les IAs rendent le vocabulaire \"technique\" gratuit, lisible, vérifiable et comparable. Fini l'élitisme du savoir et les intermédiaires obsolètes.",
   },
   "manifesto.paragraph2": {
-    en: "LLMs (ChatGPT, Gemini, Claude...) democratize access to expertise, help you understand more clearly, and let you demand evidence. Fees must follow real value: useful advice and measurable outperformance. We pierce the financial bubble, lift the veil on fee opacity, and put value back where it belongs: with you.",
-    fr: "Les LLMs (tels que ChatGPT, Gemini, Claude...) démocratisent l'accès à l'expertise, vous donnent la capacité de mieux comprendre et d'exiger des preuves. Les frais doivent suivre la valeur réelle : des conseils utiles et une surperformance mesurable. Nous perçons la bulle financière, levons le voile sur l'opacité des frais et remettons la valeur à sa place : chez vous.",
+    en: "LLMs (ChatGPT, Gemini, Claude...) democratize access to expertise, help you understand more clearly, and let you demand evidence. Fees must now reflect real value: useful advice and measurable outperformance. We pierce the financial bubble, lift the veil on fee opacity, and put value back where it belongs: with you.",
+    fr: "Les LLMs (tels que ChatGPT, Gemini, Claude...) démocratisent l'accès à l'expertise, vous donnent la capacité de mieux comprendre et d'exiger des preuves. Les frais doivent désormais refléter la valeur réelle : des conseils utiles et une surperformance mesurable. Nous perçons la bulle financière, levons le voile sur l'opacité des frais et remettons la valeur à sa place : chez vous.",
   },
   "manifesto.insight": {
     en: "Our ethics: putting power back in your hands so you can break free from the exorbitant fees of now‑obsolete intermediaries. The result: you finance the economy, and the economy pays you interest. That's it.",
