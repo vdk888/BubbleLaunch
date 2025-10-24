@@ -83,13 +83,20 @@
           </div>
         </div>
         <div class="header-right">
+          <!-- Mobile Language Switcher -->
+          <div class="mobile-language-switcher">
+            <button id="en-switch-mobile" class="active">EN</button>
+            <span>|</span>
+            <button id="fr-switch-mobile">FR</button>
+          </div>
+
           <!-- Hamburger Menu Button (Mobile Only) -->
-          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu" onclick="document.getElementById('mobile-nav-overlay').classList.toggle('active'); this.classList.toggle('active'); document.body.classList.toggle('mobile-menu-open');">
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
           </button>
-          
+
           <!-- Desktop Navigation -->
           <nav class="desktop-nav">
             <a href="/#about" data-translate="nav.vision">Vision</a>
@@ -109,13 +116,6 @@
               <button id="fr-switch" class="active">FR</button>
             </div>
           </nav>
-          
-          <!-- Mobile Language Switcher -->
-          <div class="mobile-language-switcher">
-            <button id="en-switch-mobile">EN</button>
-            <span>|</span>
-            <button id="fr-switch-mobile" class="active">FR</button>
-          </div>
         </div>
         
         <!-- Mobile Navigation Overlay -->
