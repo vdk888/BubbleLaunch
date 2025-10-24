@@ -10,6 +10,14 @@
 
 This document outlines a **cost-efficient, phased SEO strategy** for Bubble Invest to rank in France for AI-powered investment tools before official SAS creation. The strategy prioritizes **technical implementations that can be coded** over content strategy (which will be workshopped separately).
 
+### 🔍 2025-10-XX Audit Highlights
+- **Pillar content gap:** No dedicated long-form page targeting “plateforme d’investissement IA” / “AI investment platform”; the homepage stays brand-first by design.
+- **Bilingual crawlability:** Language toggle swaps copy client-side, but search bots only index the FR HTML. Need crawlable `/en/…` equivalents with canonical/hreflang pairs.
+- **Dynamic blog meta:** Article titles, descriptions, and JSON-LD load via JavaScript; bots can index posts before scripts execute.
+- **Schema localization:** Structured data, FAQ answers, and most alt text are FR-only; add `inLanguage` and EN variants while keeping surface messaging discreet.
+- **Authority signals:** Still missing finance/AI backlinks and organization profiles to populate `sameAs`.
+- **Measurement:** Search Console must track both FR and EN properties once the new URLs go live.
+
 ### Key Objectives
 - **Month 3**: 200-500 organic visits/month, 10-15 long-tail keyword rankings
 - **Month 6**: 800-1,500 organic visits/month, Top 20 for "plateforme investissement IA"
@@ -729,41 +737,40 @@ Add to `package.json`:
 
 **Priority: MEDIUM** | **Effort: 3-4 hours** | **Impact: MEDIUM**
 
-### ✅ Bilingual SEO (Hreflang)
+### ✅ Bilingual SEO & Server Rendering
 
-**Current state:** Language switcher exists, but no SEO implementation
+**Current state:** FR pages are indexable, EN copy is injected client-side via the toggle, and blog metadata is rendered with JavaScript.
 
-**Implementation:**
+**Goal:** Keep the subtle FR-first UI while exposing full EN equivalents and pre-rendered SEO signals to crawlers.
 
-**File to modify:** All HTML pages
+**Implementation plan**
 
-```html
-<!-- Add to <head> of index.html -->
-<link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/">
-<link rel="alternate" hreflang="en" href="https://bubbleinvest.org/?lang=en">
-<link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/">
+1. **Dedicated `/en/` routes**
+   - Duplicate static templates under `/en/` (homepage, simulator, blog, privacy, pillar page once live).
+   - Update Express `pages.routes.js` to serve EN HTML with translated copy and meta tags before response is sent.
+   - Maintain the toggle so users can still switch instantly, but let search engines crawl unique FR/EN URLs.
 
-<!-- Blog posts with translations -->
-<link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/blog/frais-robo-advisor">
-<link rel="alternate" hreflang="en" href="https://bubbleinvest.org/blog/robo-advisor-fees">
-```
+2. **Canonical + hreflang parity**
+   - FR canonical: `https://bubbleinvest.org/...`
+   - EN canonical: `https://bubbleinvest.org/en/...`
+   - Add bidirectional hreflang tags (`fr-FR`, `en-GB`, `x-default`) on both variants.
+   - Regenerate `/sitemap.xml` so each `<url>` block lists the FR and EN versions.
 
-**Sitemap enhancement:**
+3. **Server-rendered blog SEO**
+   - Extend blog rendering to include `<title>`, `<meta name="description">`, OG/Twitter tags, and `application/ld+json` directly in the HTML payload.
+   - Output both FR and EN metadata in the head (e.g., `og:locale`, `og:locale:alternate`) while keeping the page text FR-first.
 
-```xml
-<url>
-  <loc>https://bubbleinvest.org/</loc>
-  <xhtml:link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/" />
-  <xhtml:link rel="alternate" hreflang="en" href="https://bubbleinvest.org/?lang=en" />
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/" />
-</url>
-```
+4. **Structured data localization**
+   - Update `structured-data.js` to include `inLanguage` arrays and EN descriptions for FinancialService, Organization, FAQPage, SoftwareApplication, BlogPosting schemas.
+   - Ensure alt text and FAQ answers have discreet EN equivalents without cluttering the visible layout.
 
 **Implementation checklist:**
-- [ ] Add hreflang tags to all pages
-- [ ] Update sitemap with language alternates
-- [ ] Test with Google Search Console Hreflang Testing Tool
-- [ ] Ensure consistent URL structure for languages
+- [ ] Add `/en/` routes with pre-rendered EN HTML + meta
+- [ ] Update canonical + hreflang tags to point to FR/EN pairs
+- [ ] Include `/en/` entries in the sitemap output
+- [ ] Server-render blog post meta/JSON-LD (JS keeps hydrating)
+- [ ] Localize structured data and key alt text
+- [ ] Re-run Search Console hreflang validation for both properties
 
 ---
 
@@ -851,6 +858,23 @@ app.get('/Blog', (req, res) => {
 ## Phase 3: Content Infrastructure (Week 7-8) - €0 Cost
 
 **Priority: MEDIUM** | **Effort: 2-3 hours** | **Impact: MEDIUM**
+
+### ✅ Pillar Page & Discreet Internal Linking
+
+**Objective:** Rank for “plateforme d’investissement IA” / “AI investment platform” while keeping the homepage minimalist and brand-first.
+
+- Build a 3,000–3,500 word FR pillar page at `/investissement-ia` with an EN counterpart at `/en/ai-investment-platform`.
+- Structure sections around: fee drag vs. fixed fees, Bubble’s AI agent (transparency, automation, oversight), simulator data (20-year charts, drawdown tables), regulatory assurances, and comparison tables (Yomoni, Nalo, Ramify, Goodvest).
+- Add subtle internal links (“Approche détaillée”, “Deep dive”) from manifesto/vision paragraphs and footer navigation; avoid overt AI buzzwords on the homepage.
+- Embed bilingual FAQ schema and optional gated asset (whitepaper/report) to capture leads.
+- Update `sameAs` profiles and internal links once the page is live; monitor performance via GA4 + Search Console.
+
+**Implementation checklist:**
+- [ ] Draft FR pillar content and translate/adapt to EN
+- [ ] Publish under `/investissement-ia` + `/en/ai-investment-platform`
+- [ ] Add discreet internal links + update footer/sitemap
+- [ ] Attach bilingual schema (FAQ, Article) and ensure subtle copy
+- [ ] Track keyword positions (“plateforme investissement IA”, “AI investment platform France”)
 
 ### ✅ Blog Post Template Optimization
 
@@ -953,6 +977,15 @@ module.exports = { markContentUpdated, getLastUpdated };
 
 ---
 
+### ✅ Authority & Outreach (2025-10 Refresh)
+
+- Launch public organization profiles (LinkedIn, Product Hunt, Crunchbase) and add URLs to `sameAs` in Organization schema.
+- Prepare founder interview/Q&A or client mini case study for French fintech media (Maddyness, Les Échos START) linking to the pillar page.
+- Pitch educational pieces to AI/finance communities (France is AI, Boursorama forums) once the pillar and simulator assets are live.
+- Track acquired backlinks in Ahrefs WMT and evaluate anchor text variety (“plateforme d’investissement IA”, “AI investment platform France”, brand mentions).
+
+---
+
 ## 📊 Success Metrics & Tracking
 
 ### Key Performance Indicators (KPIs)
@@ -984,6 +1017,8 @@ module.exports = { markContentUpdated, getLastUpdated };
 - [ ] Track waitlist signups by traffic source
 - [ ] Monitor keyword rankings weekly
 - [ ] Track backlink acquisition monthly
+- [ ] Re-submit updated FR + EN sitemaps after deploying new routes/pillar page
+- [ ] Monitor index coverage for `/en/` and pillar URLs; adjust internal links if discovery lags
 
 ---
 

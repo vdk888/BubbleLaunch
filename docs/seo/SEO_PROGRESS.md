@@ -395,6 +395,14 @@ router.get("/blog", async (req, res) => {
 - Contact email: Update contact@bubbleinvest.org when email is set up
 - Blog pages: Add footer navigation (optional - low priority)
 
+**2025-10-XX Priority Enhancements (new)**
+- Implement `/en/` routes with server-rendered meta tags and hreflang/canonical parity.
+- Update `/sitemap.xml` to list FR/EN pairs; submit both properties in Search Console.
+- Server-render blog post SEO metadata (title, description, OG, JSON-LD) to avoid JS-only indexing.
+- Draft and publish the investment pillar page (`/investissement-ia` + `/en/ai-investment-platform`) with discreet internal links.
+- Localize structured data (`FinancialService`, `FAQPage`, `SoftwareApplication`, `BlogPosting`) with `inLanguage` arrays and EN copy.
+- Launch authority-building outreach (media interviews, community posts) once pillar and EN routes are live; add resulting URLs to schema `sameAs`.
+
 **Next Manual Step**: 🚀 **Deploy to production, then set up Google Search Console & submit sitemap!**
 
 **Expected Timeline:**
