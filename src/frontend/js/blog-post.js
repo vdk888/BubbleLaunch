@@ -5,23 +5,19 @@ let currentPost = null; // Store current post for language switching
 document.addEventListener('DOMContentLoaded', async () => {
     // Initialize language (use same key as main script.js)
     currentLanguage = localStorage.getItem('bubbleLanguage') || 'en';
-    updateLanguageButtons();
-    
+
     // Update static text translations on page load
     updateStaticTranslations();
-    
-    // Add language switcher event listeners (desktop)
-    const frSwitch = document.getElementById('fr-switch');
-    const enSwitch = document.getElementById('en-switch');
-    if (frSwitch) frSwitch.addEventListener('click', () => switchLanguage('fr'));
-    if (enSwitch) enSwitch.addEventListener('click', () => switchLanguage('en'));
 
-    // Add language switcher event listeners (mobile)
-    const frSwitchMobile = document.getElementById('fr-switch-mobile');
-    const enSwitchMobile = document.getElementById('en-switch-mobile');
-    if (frSwitchMobile) frSwitchMobile.addEventListener('click', () => switchLanguage('fr'));
-    if (enSwitchMobile) enSwitchMobile.addEventListener('click', () => switchLanguage('en'));
-    
+    // Listen to language changes from main script.js
+    document.addEventListener('languageChanged', (e) => {
+        currentLanguage = e.detail.lang;
+        updateStaticTranslations();
+        if (currentPost) {
+            displayBlogPost(currentPost);
+        }
+    });
+
     const slug = getSlugFromUrl();
     if (slug) {
         await loadBlogPost(slug);
@@ -29,20 +25,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         showError();
     }
 });
-
-function switchLanguage(lang) {
-    currentLanguage = lang;
-    localStorage.setItem('bubbleLanguage', lang);
-    updateLanguageButtons();
-    
-    // Update static text translations
-    updateStaticTranslations();
-    
-    // Re-render post with new language
-    if (currentPost) {
-        displayBlogPost(currentPost);
-    }
-}
 
 function updateStaticTranslations() {
     // Update all elements with data-translate attributes
@@ -52,20 +34,6 @@ function updateStaticTranslations() {
             element.textContent = translations[key][currentLanguage];
         }
     });
-}
-
-function updateLanguageButtons() {
-    // Update desktop buttons
-    const frBtn = document.getElementById('fr-switch');
-    const enBtn = document.getElementById('en-switch');
-    if (frBtn) frBtn.classList.toggle('active', currentLanguage === 'fr');
-    if (enBtn) enBtn.classList.toggle('active', currentLanguage === 'en');
-
-    // Update mobile buttons
-    const frBtnMobile = document.getElementById('fr-switch-mobile');
-    const enBtnMobile = document.getElementById('en-switch-mobile');
-    if (frBtnMobile) frBtnMobile.classList.toggle('active', currentLanguage === 'fr');
-    if (enBtnMobile) enBtnMobile.classList.toggle('active', currentLanguage === 'en');
 }
 
 function getSlugFromUrl() {
