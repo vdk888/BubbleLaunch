@@ -352,7 +352,7 @@ const translations = {
     en: "Automation is the Only Way Forward",
     fr: "L'Automatisation est la Seule Voie",
   },
-  "automation.before.tile1": { en: "9-5 Human Limitations", fr: "Limites Humaines 9h-17h" },
+  "automation.before.tile1": { en: "9-5 Constraints", fr: "Contraintes 9h-17h" },
   "automation.after.tile1": { en: "24/7 AI Vigilance", fr: "Vigilance IA 24/7" },
   "automation.before.tile2": { en: "Manual Processes", fr: "Processus Manuels" },
   "automation.after.tile2": { en: "Instant Optimization", fr: "Optimisation Instantanée" },
