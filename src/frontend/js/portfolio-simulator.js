@@ -35,6 +35,14 @@
     metricsBtn: null,
     status: null,
   };
+  const SLIDER_CONFIGS = [
+    { id: 'strategySlider', trackSelector: '.strategy-pills' },
+    { id: 'metricsSlider', trackSelector: '.metrics-cards' },
+  ];
+  const mobileSliderInstances = new Map();
+  const mobileSliderQuery = typeof window !== 'undefined' && window.matchMedia
+    ? window.matchMedia('(max-width: 768px)')
+    : null;
 
   function loadCustomStrategyState() {
     try {
@@ -424,10 +432,56 @@
   /**
    * Format chart data based on strategy
    */
+  function normalizeChartSeries(rawRows = []) {
+    if (!Array.isArray(rawRows) || rawRows.length === 0) {
+      return [];
+    }
+
+    const numericKeys = Object.keys(rawRows[0] || {}).filter((key) => key !== 'date');
+    const baseValues = {};
+
+    numericKeys.forEach((key) => {
+      const firstPointWithValue = rawRows.find(
+        (row) => typeof row[key] === 'number' && !Number.isNaN(row[key]) && row[key] !== 0
+      );
+      if (firstPointWithValue) {
+        baseValues[key] = firstPointWithValue[key];
+      }
+    });
+
+    return rawRows.map((row) => {
+      const normalizedRow = { ...row };
+      numericKeys.forEach((key) => {
+        const baseValue = baseValues[key];
+        if (
+          typeof baseValue === 'number' &&
+          baseValue !== 0 &&
+          typeof row[key] === 'number' &&
+          !Number.isNaN(row[key])
+        ) {
+          normalizedRow[key] = Number(((row[key] / baseValue) * 100).toFixed(2));
+        }
+      });
+      return normalizedRow;
+    });
+  }
+
+  function ensureNormalizedCache(data) {
+    if (!data || !Array.isArray(data.data)) {
+      return [];
+    }
+    if (Array.isArray(data.normalizedCache) && data.normalizedCache.length === data.data.length) {
+      return data.normalizedCache;
+    }
+    data.normalizedCache = normalizeChartSeries(data.data);
+    return data.normalizedCache;
+  }
+
   function formatChartData(data, strategy) {
     const lang = localStorage.getItem('preferredLanguage') || 'fr';
     const locale = lang === 'en' ? 'en-US' : 'fr-FR';
-    const labels = data.data.map(d => {
+    const normalizedRows = ensureNormalizedCache(data);
+    const labels = normalizedRows.map(d => {
       const date = new Date(d.date);
       return date.toLocaleDateString(locale, { year: 'numeric', month: 'short' });
     });
@@ -439,7 +493,7 @@
     datasets.push(
       {
         label: etfLabels.spy,
-        data: data.data.map(d => d.SPY),
+        data: normalizedRows.map(d => d.SPY),
         borderColor: 'rgba(102, 126, 234, 0.4)', // More visible
         backgroundColor: 'rgba(102, 126, 234, 0.05)',
         borderWidth: 1.5,
@@ -450,7 +504,7 @@
       },
       {
         label: etfLabels.ief,
-        data: data.data.map(d => d.IEF),
+        data: normalizedRows.map(d => d.IEF),
         borderColor: 'rgba(107, 114, 128, 0.4)', // More visible
         backgroundColor: 'rgba(107, 114, 128, 0.05)',
         borderWidth: 1.5,
@@ -461,7 +515,7 @@
       },
       {
         label: etfLabels.gld,
-        data: data.data.map(d => d.GLD),
+        data: normalizedRows.map(d => d.GLD),
         borderColor: 'rgba(156, 163, 175, 0.4)', // More visible
         backgroundColor: 'rgba(156, 163, 175, 0.05)',
         borderWidth: 1.5,
@@ -475,7 +529,7 @@
     // Always show all portfolio strategies using STRATEGY_CONFIG
     // This makes it easy to add/modify strategies in the future
     Object.entries(STRATEGY_CONFIG).forEach(([strategyKey, config]) => {
-      const hasSeries = data.data.some(
+      const hasSeries = normalizedRows.some(
         (point) => typeof point[config.dataKey] === 'number'
       );
       if (!hasSeries) {
@@ -490,7 +544,7 @@
 
       datasets.push({
         label: getStrategyLabel(config.labelKey),
-        data: data.data.map((point) => point[config.dataKey]),
+        data: normalizedRows.map((point) => point[config.dataKey]),
         borderColor: isActive ? config.color : hexToRgba(config.color, opacity),
         backgroundColor: hexToRgba(config.color, isActive ? 0.15 : 0.05),
         borderWidth: config.borderWidth * borderWidthMultiplier,
@@ -1005,6 +1059,7 @@
 
       if (result) {
         portfolioData = result;
+        ensureNormalizedCache(portfolioData);
         currentPeriod = result.periodYears || period || currentPeriod;
 
         refreshCustomStrategyDataset();
