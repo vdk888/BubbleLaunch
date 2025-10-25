@@ -890,6 +890,10 @@ const translations = {
     en: "Legal",
     fr: "Légal"
   },
+  "footer.nav.legal_notice": {
+    en: "Legal Notice",
+    fr: "Mentions Légales"
+  },
   "footer.nav.privacy": {
     en: "Privacy Policy",
     fr: "Politique de Confidentialité"

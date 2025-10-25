@@ -139,6 +139,15 @@ router.get("/privacy", (req, res) => {
 });
 
 /**
+ * Mentions Légales page (French legal notice - required by law)
+ */
+router.get("/mentions-legales", (req, res) => {
+  res.sendFile(
+    path.join(frPagesDir, "mentions-legales.html")
+  );
+});
+
+/**
  * Businesses page (B2B consulting services)
  */
 router.get("/businesses", (req, res) => {
@@ -182,6 +191,10 @@ router.get("/en/portfolio-simulator", (req, res) => {
 
 router.get("/en/privacy", (req, res) => {
   res.sendFile(path.join(enPagesDir, "privacy.html"));
+});
+
+router.get("/en/legal-notice", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "legal-notice.html"));
 });
 
 router.get("/en/businesses", (req, res) => {
