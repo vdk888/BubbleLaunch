@@ -211,42 +211,6 @@
         position: relative;
       }
 
-      .slider-nav {
-        display: none;
-        position: absolute;
-        top: 40%;
-        transform: translateY(-50%);
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        border: 1px solid rgba(15, 23, 42, 0.08);
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 15px 35px rgba(15, 23, 42, 0.2);
-        align-items: center;
-        justify-content: center;
-        color: #4B5563;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        z-index: 5;
-      }
-
-      .slider-nav:hover {
-        transform: translateY(-50%) scale(1.05);
-        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
-      }
-
-      .slider-nav[disabled] {
-        opacity: 0.35;
-        pointer-events: none;
-      }
-
-      .slider-nav.prev {
-        left: -1.5rem;
-      }
-
-      .slider-nav.next {
-        right: -1.5rem;
-      }
-
       .slider-dots {
         display: none;
       }
@@ -440,45 +404,76 @@
       .strategy-pill {
         position: relative;
         z-index: 1;
+        overflow: visible;
       }
 
-      .strategy-tooltip {
+      .metric-card {
+        position: relative;
+        overflow: visible;
+      }
+
+      .strategy-tooltip,
+      .metric-tooltip {
         position: absolute;
-        top: 100%;
+        bottom: calc(100% + 18px);
         left: 50%;
-        transform: translateX(-50%) translateY(10px);
-        background: rgba(0, 0, 0, 0.9);
-        color: white;
-        padding: 1rem;
-        border-radius: 8px;
-        font-size: 0.875rem;
+        transform: translate(-50%, 10px);
+        background: #333333;
+        color: #F9FAFB;
+        padding: 1rem 1.1rem;
+        border-radius: 14px;
+        font-size: 0.85rem;
         line-height: 1.5;
         width: 280px;
         max-width: 90vw;
         opacity: 0;
         pointer-events: none;
-        transition: all 0.3s ease;
-        z-index: 100;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.05);
       }
 
-      .strategy-tooltip::before {
+      .metric-tooltip {
+        width: 250px;
+      }
+
+      .strategy-tooltip::after,
+      .metric-tooltip::after {
         content: '';
         position: absolute;
-        bottom: 100%;
+        top: 100%;
         left: 50%;
-        transform: translateX(-50%);
-        border: 6px solid transparent;
-        border-bottom-color: rgba(0, 0, 0, 0.9);
+        transform: translate(-50%, 0);
+        border-width: 8px;
+        border-style: solid;
+        border-color: #333333 transparent transparent transparent;
       }
 
-      .strategy-pill:hover {
-        z-index: 20;
+      .tooltip-bottom {
+        bottom: auto;
+        top: calc(100% + 18px);
+        transform: translate(-50%, -10px);
       }
 
-      .strategy-pill:hover .strategy-tooltip {
+      .tooltip-bottom::after {
+        top: auto;
+        bottom: 100%;
+        border-color: transparent transparent #333333 transparent;
+      }
+
+      .strategy-pill:hover,
+      .strategy-pill:focus-visible,
+      .metric-card:hover,
+      .metric-card:focus-visible {
+        z-index: 25;
+      }
+
+      .strategy-pill:hover .strategy-tooltip,
+      .strategy-pill:focus-visible .strategy-tooltip,
+      .metric-card:hover .metric-tooltip,
+      .metric-card:focus-visible .metric-tooltip {
         opacity: 1;
-        transform: translateX(-50%) translateY(0);
+        transform: translate(-50%, 0);
       }
 
       /* Main Chart Area Styles */
@@ -514,6 +509,56 @@
         display: flex;
         gap: 0.5rem;
         flex-wrap: wrap;
+      }
+
+      .tooltip-hint {
+        display: none;
+        font-size: 0.8rem;
+        color: #6B7280;
+        margin-top: 0.75rem;
+      }
+
+      .mobile-tooltip-bubble {
+        position: absolute;
+        background: #333333;
+        color: #F9FAFB;
+        padding: 1rem 1.1rem;
+        border-radius: 14px;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        max-width: min(300px, calc(100vw - 32px));
+        z-index: 9999;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(6px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .mobile-tooltip-bubble::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-width: 10px;
+        border-style: solid;
+        left: var(--tooltip-arrow-offset, 50%);
+        transform: translateX(-50%);
+      }
+
+      .mobile-tooltip-bubble[data-position="top"]::after {
+        top: 100%;
+        border-color: #333333 transparent transparent transparent;
+      }
+
+      .mobile-tooltip-bubble[data-position="bottom"]::after {
+        bottom: 100%;
+        border-color: transparent transparent #333333 transparent;
+      }
+
+      .mobile-tooltip-bubble.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
       }
 
       .time-period-btn {
@@ -627,46 +672,6 @@
         opacity: 0.8;
       }
 
-      /* Tooltip Styles */
-      .metric-card {
-        position: relative;
-      }
-
-      .metric-tooltip {
-        position: absolute;
-        bottom: 100%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-10px);
-        background: rgba(0, 0, 0, 0.9);
-        color: white;
-        padding: 0.75rem 1rem;
-        border-radius: 8px;
-        font-size: 0.875rem;
-        line-height: 1.5;
-        width: 250px;
-        max-width: 90vw;
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.3s ease;
-        z-index: 100;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      }
-
-      .metric-tooltip::after {
-        content: '';
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        border: 6px solid transparent;
-        border-top-color: rgba(0, 0, 0, 0.9);
-      }
-
-      .metric-card:hover .metric-tooltip {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-      }
-
       /* Tablet Responsiveness (768px - 1024px) */
       @media (max-width: 1024px) and (min-width: 769px) {
         .simulator-container {
@@ -756,18 +761,6 @@
           scroll-snap-align: center;
         }
 
-        .slider-nav {
-          display: inline-flex;
-        }
-
-        .slider-nav.prev {
-          left: -0.25rem;
-        }
-
-        .slider-nav.next {
-          right: -0.25rem;
-        }
-
         .slider-dots {
           display: flex;
           justify-content: center;
@@ -821,27 +814,13 @@
 
         .strategy-tooltip,
         .metric-tooltip {
-          display: none;
+          display: none !important;
         }
 
-        .strategy-pill.is-active .strategy-tooltip,
-        .metric-card.is-active .metric-tooltip {
+        .tooltip-hint {
           display: block;
-          position: static;
-          opacity: 1;
-          transform: none;
-          width: 100%;
-          margin-top: 0.75rem;
-          padding: 0.85rem 1rem;
-          border-radius: 12px;
-          background: rgba(15, 23, 42, 0.9);
-          color: #F3F4F6;
-          box-shadow: none;
-        }
-
-        .strategy-tooltip::after,
-        .metric-tooltip::after {
-          display: none;
+          font-size: 0.8rem;
+          margin-top: 0.5rem;
         }
 
         /* Help section responsive */
@@ -1435,14 +1414,9 @@
         </p>
 
         <div class="responsive-slider" id="strategySlider" data-slider="strategy">
-          <button class="slider-nav prev" type="button" aria-label="Défiler vers la gauche" data-slider-prev>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
           <div class="strategy-pills slider-track">
-          <button class="strategy-pill active" data-strategy="equalWeight">
-            <div class="strategy-tooltip" data-translate="simulator.strategy.equalWeight.tooltip">
+          <button class="strategy-pill active" data-strategy="equalWeight" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.equalWeight.tooltip">
               Approche simple : 33.3% sur chaque actif (actions, obligations, or). Facile à comprendre et à répliquer, mais ne tient pas compte des différences de risque entre actifs.
             </div>
             <div class="pill-icon">
@@ -1454,8 +1428,8 @@
             </div>
           </button>
 
-          <button class="strategy-pill" data-strategy="sixtyForty">
-            <div class="strategy-tooltip" data-translate="simulator.strategy.sixtyForty.tooltip">
+          <button class="strategy-pill" data-strategy="sixtyForty" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.sixtyForty.tooltip">
               60% actions (SPY) et 40% obligations (IEF). Le portefeuille classique des investisseurs institutionnels pour équilibrer croissance et stabilité.
             </div>
             <div class="pill-icon">
@@ -1470,8 +1444,8 @@
             </div>
           </button>
 
-          <button class="strategy-pill" data-strategy="momentumTilt">
-            <div class="strategy-tooltip" data-translate="simulator.strategy.momentumTilt.tooltip">
+          <button class="strategy-pill" data-strategy="momentumTilt" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.momentumTilt.tooltip">
               Pondération dynamique en fonction du momentum sur 12 mois. Les actifs avec la meilleure tendance reçoivent davantage de poids.
             </div>
             <div class="pill-icon">
@@ -1486,8 +1460,8 @@
             </div>
           </button>
 
-          <button class="strategy-pill" data-strategy="hierarchicalRiskParity">
-            <div class="strategy-tooltip" data-translate="simulator.strategy.hierarchicalRiskParity.tooltip">
+          <button class="strategy-pill" data-strategy="hierarchicalRiskParity" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.hierarchicalRiskParity.tooltip">
               Allocation à variance minimale inspirée du Hierarchical Risk Parity. Balance le risque en tenant compte des corrélations.
             </div>
             <div class="pill-icon">
@@ -1508,8 +1482,8 @@
             </div>
           </button>
 
-          <button class="strategy-pill" data-strategy="simpleRiskParity">
-            <div class="strategy-tooltip" data-translate="simulator.strategy.simpleRiskParity.tooltip">
+          <button class="strategy-pill" data-strategy="simpleRiskParity" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.simpleRiskParity.tooltip">
               Pondère les actifs par l'inverse de leur volatilité. Les actifs plus volatils reçoivent moins de poids, équilibrant ainsi la contribution au risque total du portefeuille.
             </div>
             <div class="pill-icon">
@@ -1521,8 +1495,8 @@
             </div>
           </button>
 
-          <button class="strategy-pill" data-strategy="optimizedRiskParity">
-            <div class="strategy-tooltip" data-translate="simulator.strategy.optimizedRiskParity.tooltip">
+          <button class="strategy-pill" data-strategy="optimizedRiskParity" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.optimizedRiskParity.tooltip">
               Version avancée utilisant la volatilité EWMA et les corrélations entre actifs. Ajuste dynamiquement les allocations pour optimiser le ratio rendement/risque du portefeuille.
             </div>
             <div class="pill-icon">
@@ -1534,8 +1508,8 @@
             </div>
           </button>
 
-          <button class="strategy-pill" data-strategy="customMix">
-            <div class="strategy-tooltip" data-translate="simulator.strategy.customMix.tooltip">
+          <button class="strategy-pill" data-strategy="customMix" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.customMix.tooltip">
               Combinez deux stratégies Bubble avec la pondération de votre choix. Ajustez le curseur pour privilégier la performance ou la stabilité.
             </div>
             <div class="pill-icon">
@@ -1551,13 +1525,9 @@
             </div>
           </button>
           </div>
-          <button class="slider-nav next" type="button" aria-label="Défiler vers la droite" data-slider-next>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
           <div class="slider-dots" data-slider-dots></div>
         </div>
+        <p class="tooltip-hint" aria-live="polite">Astuce mobile : faites défiler les cartes et maintenez appuyé pour afficher l'explication.</p>
 
         <div class="custom-strategy-panel hidden" id="customStrategyPanel">
           <h3 style="font-size: 1.1rem; font-weight: 700; color: #4B5563;" data-translate="simulator.customMix.title">
@@ -1635,14 +1605,9 @@
         <h3 class="metrics-section-title" data-translate="simulator.metrics.title">Statistiques de Performance</h3>
 
         <div class="responsive-slider" id="metricsSlider" data-slider="metrics">
-          <button class="slider-nav prev" type="button" aria-label="Voir la statistique précédente" data-slider-prev>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
           <div class="metrics-cards slider-track">
-          <div class="metric-card highlight">
-            <div class="metric-tooltip" data-translate="simulator.metric.totalReturn.tooltip">
+          <div class="metric-card highlight" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.totalReturn.tooltip">
               Le gain ou la perte totale du portefeuille depuis le début de la période, avant inflation et frais.
             </div>
             <div class="metric-card-label" data-translate="simulator.metric.totalReturn">Rendement Total</div>
@@ -1650,8 +1615,8 @@
             <div class="metric-card-subtitle" data-translate="simulator.metric.totalReturn.subtitle">sur la période</div>
           </div>
 
-          <div class="metric-card">
-            <div class="metric-tooltip" data-translate="simulator.metric.annualReturn.tooltip">
+          <div class="metric-card" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.annualReturn.tooltip">
               Le taux de croissance annuel composé (CAGR). Un rendement de 8% signifie que votre capital double environ tous les 9 ans.
             </div>
             <div class="metric-card-label" data-translate="simulator.metric.annualReturn">Rendement Annuel</div>
@@ -1659,8 +1624,8 @@
             <div class="metric-card-subtitle" data-translate="simulator.metric.annualReturn.subtitle">CAGR moyen</div>
           </div>
 
-          <div class="metric-card">
-            <div class="metric-tooltip" data-translate="simulator.metric.volatility.tooltip">
+          <div class="metric-card" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.volatility.tooltip">
               Mesure des fluctuations du portefeuille. Une volatilité de 15% signifie que 68% du temps, les rendements varient de ±15% autour de la moyenne.
             </div>
             <div class="metric-card-label" data-translate="simulator.metric.volatility">Volatilité</div>
@@ -1668,8 +1633,8 @@
             <div class="metric-card-subtitle" data-translate="simulator.metric.volatility.subtitle">écart-type annuel</div>
           </div>
 
-          <div class="metric-card">
-            <div class="metric-tooltip" data-translate="simulator.metric.sharpeRatio.tooltip">
+          <div class="metric-card" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.sharpeRatio.tooltip">
               Rendement ajusté au risque. Un ratio > 1 est bon, > 2 est excellent. Compare le rendement obtenu par rapport au risque pris.
             </div>
             <div class="metric-card-label" data-translate="simulator.metric.sharpeRatio">Ratio Sharpe</div>
@@ -1677,8 +1642,8 @@
             <div class="metric-card-subtitle" data-translate="simulator.metric.sharpeRatio.subtitle">rendement/risque</div>
           </div>
 
-          <div class="metric-card">
-            <div class="metric-tooltip" data-translate="simulator.metric.maxDrawdown.tooltip">
+          <div class="metric-card" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.maxDrawdown.tooltip">
               La plus forte baisse depuis un sommet. -20% signifie qu'à un moment, le portefeuille a perdu 20% de sa valeur maximale.
             </div>
             <div class="metric-card-label" data-translate="simulator.metric.maxDrawdown">Drawdown Max</div>
@@ -1686,8 +1651,8 @@
             <div class="metric-card-subtitle" data-translate="simulator.metric.maxDrawdown.subtitle">perte maximale</div>
           </div>
 
-          <div class="metric-card">
-            <div class="metric-tooltip" data-translate="simulator.metric.calmarRatio.tooltip">
+          <div class="metric-card" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.calmarRatio.tooltip">
               Rapport entre le rendement annuel et le drawdown maximal. Plus ce ratio est élevé, meilleure est la stratégie.
             </div>
             <div class="metric-card-label" data-translate="simulator.metric.calmarRatio">Calmar Ratio</div>
@@ -1695,13 +1660,9 @@
             <div class="metric-card-subtitle" data-translate="simulator.metric.calmarRatio.subtitle">rendement/drawdown</div>
           </div>
           </div>
-          <button class="slider-nav next" type="button" aria-label="Voir la statistique suivante" data-slider-next>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
           <div class="slider-dots" data-slider-dots></div>
         </div>
+        <p class="tooltip-hint" aria-live="polite">Astuce mobile : touchez une statistique pour afficher la vignette explicative.</p>
       </div>
 
       <div class="export-section hidden" id="exportActions">

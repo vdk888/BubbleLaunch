@@ -43,6 +43,12 @@
   const mobileSliderQuery = typeof window !== 'undefined' && window.matchMedia
     ? window.matchMedia('(max-width: 768px)')
     : null;
+  const mobileTooltipState = {
+    initialized: false,
+    overlay: null,
+    content: null,
+    currentTrigger: null,
+  };
 
   function loadCustomStrategyState() {
     try {
@@ -1090,6 +1096,7 @@
    * Handle strategy change
    */
   function handleStrategyChange(strategy) {
+    hideMobileTooltip();
     currentStrategy = strategy;
     setActiveStrategyPill(strategy);
     toggleCustomPanel(strategy === 'customMix');
@@ -1118,6 +1125,7 @@
    * Handle period change
    */
   function handlePeriodChange(period) {
+    hideMobileTooltip();
     currentPeriod = period;
 
     trackSimulatorEvent('period_selected', { period_years: period });
@@ -1169,6 +1177,7 @@
   }
 
   function syncSliderIndexWithScroll(state) {
+    hideMobileTooltip();
     let closestIndex = state.currentIndex;
     let minDistance = Number.POSITIVE_INFINITY;
     const scrollLeft = state.track.scrollLeft;
@@ -1321,6 +1330,205 @@
     handleChange(mobileSliderQuery);
   }
 
+  function shouldUseMobileTooltip() {
+    return Boolean(mobileSliderQuery && mobileSliderQuery.matches);
+  }
+
+  function ensureMobileTooltipOverlay() {
+    if (mobileTooltipState.overlay) {
+      return mobileTooltipState.overlay;
+    }
+    const overlay = document.createElement('div');
+    overlay.className = 'mobile-tooltip-bubble';
+    const content = document.createElement('div');
+    overlay.appendChild(content);
+    document.body.appendChild(overlay);
+    mobileTooltipState.overlay = overlay;
+    mobileTooltipState.content = content;
+    return overlay;
+  }
+
+  function hideMobileTooltip() {
+    if (!mobileTooltipState.overlay) {
+      return;
+    }
+    mobileTooltipState.overlay.classList.remove('is-visible');
+    mobileTooltipState.overlay.style.top = '';
+    mobileTooltipState.overlay.style.left = '';
+    if (mobileTooltipState.overlay.dataset) {
+      delete mobileTooltipState.overlay.dataset.position;
+    }
+    mobileTooltipState.currentTrigger = null;
+  }
+
+  function positionMobileTooltip(trigger) {
+    if (!mobileTooltipState.overlay) {
+      return;
+    }
+    const overlay = mobileTooltipState.overlay;
+    const triggerRect = trigger.getBoundingClientRect();
+    const viewportWidth = document.documentElement.clientWidth;
+    const minPadding = 16;
+    const overlayRect = overlay.getBoundingClientRect();
+
+    let top = triggerRect.top + window.scrollY - overlayRect.height - 16;
+    let position = 'top';
+    if (top < window.scrollY + 16) {
+      top = triggerRect.bottom + window.scrollY + 16;
+      position = 'bottom';
+    }
+
+    const triggerCenterX = triggerRect.left + triggerRect.width / 2;
+    let left = triggerCenterX - overlayRect.width / 2;
+    let arrowOffset = overlayRect.width / 2;
+
+    if (left < minPadding) {
+      arrowOffset += left - minPadding;
+      left = minPadding;
+    }
+    if (left + overlayRect.width > viewportWidth - minPadding) {
+      const diff = left + overlayRect.width - (viewportWidth - minPadding);
+      left -= diff;
+      arrowOffset += diff;
+    }
+
+    overlay.style.top = `${top}px`;
+    overlay.style.left = `${left}px`;
+    overlay.dataset.position = position;
+    overlay.style.setProperty(
+      '--tooltip-arrow-offset',
+      `${Math.max(20, Math.min(overlayRect.width - 20, arrowOffset))}px`
+    );
+  }
+
+  function showMobileTooltip(trigger) {
+    if (!shouldUseMobileTooltip()) {
+      return;
+    }
+    const tooltip = trigger.querySelector('[data-tooltip]');
+    if (!tooltip) {
+      return;
+    }
+    const html = tooltip.innerHTML?.trim();
+    if (!html) {
+      return;
+    }
+
+    const overlay = ensureMobileTooltipOverlay();
+    mobileTooltipState.content.innerHTML = html;
+    mobileTooltipState.currentTrigger = trigger;
+    overlay.style.visibility = 'hidden';
+    overlay.classList.add('is-visible');
+    overlay.style.top = '0px';
+    overlay.style.left = '0px';
+
+    requestAnimationFrame(() => {
+      positionMobileTooltip(trigger);
+      overlay.style.visibility = 'visible';
+    });
+  }
+
+  function bindPressTooltip(trigger) {
+    let pressTimer = null;
+    const PRESS_DELAY = 450;
+
+    const startPress = () => {
+      if (!shouldUseMobileTooltip()) {
+        return;
+      }
+      if (pressTimer) {
+        clearTimeout(pressTimer);
+      }
+      pressTimer = window.setTimeout(() => {
+        hideMobileTooltip();
+        showMobileTooltip(trigger);
+      }, PRESS_DELAY);
+    };
+
+    const cancelPress = () => {
+      if (pressTimer) {
+        clearTimeout(pressTimer);
+        pressTimer = null;
+      }
+    };
+
+    trigger.addEventListener('touchstart', startPress, { passive: true });
+    trigger.addEventListener('touchend', cancelPress);
+    trigger.addEventListener('touchcancel', cancelPress);
+    trigger.addEventListener('touchmove', cancelPress);
+  }
+
+  function bindTapTooltip(trigger) {
+    trigger.addEventListener('click', (event) => {
+      if (!shouldUseMobileTooltip()) {
+        return;
+      }
+      event.preventDefault();
+      event.stopPropagation();
+      if (mobileTooltipState.currentTrigger === trigger) {
+        hideMobileTooltip();
+      } else {
+        hideMobileTooltip();
+        showMobileTooltip(trigger);
+      }
+    });
+  }
+
+  function bindTooltipTriggers() {
+    const triggers = document.querySelectorAll('[data-tooltip-behavior]');
+    triggers.forEach((trigger) => {
+      if (trigger.dataset.tooltipBound === 'true') {
+        return;
+      }
+      trigger.dataset.tooltipBound = 'true';
+      const behavior = trigger.getAttribute('data-tooltip-behavior');
+      if (behavior === 'press') {
+        bindPressTooltip(trigger);
+      } else {
+        bindTapTooltip(trigger);
+      }
+    });
+  }
+
+  function initializeMobileTooltipSystem() {
+    if (mobileTooltipState.initialized) {
+      return;
+    }
+    mobileTooltipState.initialized = true;
+    bindTooltipTriggers();
+
+    document.addEventListener('click', (event) => {
+      if (!shouldUseMobileTooltip()) {
+        return;
+      }
+      if (
+        mobileTooltipState.overlay &&
+        mobileTooltipState.overlay.contains(event.target)
+      ) {
+        return;
+      }
+      if (event.target.closest('[data-tooltip-behavior]')) {
+        return;
+      }
+      hideMobileTooltip();
+    });
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (shouldUseMobileTooltip()) {
+          hideMobileTooltip();
+        }
+      },
+      { passive: true }
+    );
+
+    window.addEventListener('resize', hideMobileTooltip);
+    if (mobileSliderQuery && typeof mobileSliderQuery.addEventListener === 'function') {
+      mobileSliderQuery.addEventListener('change', hideMobileTooltip);
+    }
+  }
+
   /**
    * Initialize simulator
    */
@@ -1403,6 +1611,7 @@
     setActiveStrategyPill(currentStrategy);
     toggleCustomPanel(currentStrategy === 'customMix');
     initializeMobileSliderController();
+    initializeMobileTooltipSystem();
   }
 
   /**
