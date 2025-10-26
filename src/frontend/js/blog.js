@@ -3,8 +3,12 @@ let currentLanguage = 'fr'; // Default to French
 let allPosts = []; // Store all posts for language switching
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Initialize language (use same key as main script.js)
-    currentLanguage = localStorage.getItem('bubbleLanguage') || 'en';
+    // Detect language from URL route (similar to script.js)
+    const isEnglishRoute = window.location.pathname.startsWith('/en/');
+    currentLanguage = isEnglishRoute ? 'en' : 'fr';
+
+    // Store the detected language
+    localStorage.setItem('bubbleLanguage', currentLanguage);
 
     // Update static text translations on page load
     updateStaticTranslations();

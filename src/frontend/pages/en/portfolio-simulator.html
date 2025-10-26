@@ -65,8 +65,8 @@
     <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/portfolio-simulator" />
     <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/portfolio-simulator" />
 
-    <link rel="icon" type="image/svg+xml" href="../assets/images/bubble-favicon.svg" />
-    <link rel="stylesheet" href="../assets/styles/styles.css" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
+    <link rel="stylesheet" href="/assets/styles/styles.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -205,6 +205,50 @@
       .strategy-pill.active .pill-title {
         color: #667eea;
         font-weight: 700;
+      }
+
+      .responsive-slider {
+        position: relative;
+      }
+
+      .slider-nav {
+        display: none;
+        position: absolute;
+        top: 40%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 15px 35px rgba(15, 23, 42, 0.2);
+        align-items: center;
+        justify-content: center;
+        color: #4B5563;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        z-index: 5;
+      }
+
+      .slider-nav:hover {
+        transform: translateY(-50%) scale(1.05);
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
+      }
+
+      .slider-nav[disabled] {
+        opacity: 0.35;
+        pointer-events: none;
+      }
+
+      .slider-nav.prev {
+        left: -1.5rem;
+      }
+
+      .slider-nav.next {
+        right: -1.5rem;
+      }
+
+      .slider-dots {
+        display: none;
       }
 
       .export-section {
@@ -688,14 +732,72 @@
           font-size: 0.95rem;
         }
 
+        .responsive-slider {
+          margin: 0 -0.5rem 1.5rem;
+          padding-bottom: 1.5rem;
+        }
+
+        .responsive-slider .slider-track {
+          display: flex;
+          gap: 1rem;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          scroll-behavior: smooth;
+          padding: 0.25rem 0.25rem 0.25rem 0;
+          scrollbar-width: none;
+        }
+
+        .responsive-slider .slider-track::-webkit-scrollbar {
+          display: none;
+        }
+
+        .responsive-slider .slider-track > * {
+          flex: 0 0 calc(100% - 1.5rem);
+          scroll-snap-align: center;
+        }
+
+        .slider-nav {
+          display: inline-flex;
+        }
+
+        .slider-nav.prev {
+          left: -0.25rem;
+        }
+
+        .slider-nav.next {
+          right: -0.25rem;
+        }
+
+        .slider-dots {
+          display: flex;
+          justify-content: center;
+          gap: 0.4rem;
+          margin-top: 0.25rem;
+        }
+
+        .slider-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          border: none;
+          background: #E5E7EB;
+          padding: 0;
+        }
+
+        .slider-dot.active {
+          background: #667eea;
+          transform: scale(1.3);
+        }
+
         .strategy-pills {
-          grid-template-columns: 1fr;
-          gap: 0.75rem;
+          display: flex;
+          gap: 1rem;
         }
 
         .strategy-pill {
-          padding: 1rem;
-          flex-direction: row;
+          padding: 1.25rem;
+          flex-direction: column;
+          align-items: flex-start;
           gap: 0.75rem;
         }
 
@@ -712,35 +814,32 @@
           font-size: 0.85rem;
         }
 
-        /* Hide tooltips on mobile to prevent overflow */
-        .strategy-tooltip {
+        .strategy-pill,
+        .metric-card {
+          min-height: 100%;
+        }
+
+        .strategy-tooltip,
+        .metric-tooltip {
           display: none;
         }
 
-        /* Mobile-specific metric tooltip - tap to show below card */
-        .metric-card {
-          cursor: pointer;
-        }
-
-        .metric-tooltip {
+        .strategy-pill.is-active .strategy-tooltip,
+        .metric-card.is-active .metric-tooltip {
+          display: block;
           position: static;
-          transform: none;
-          opacity: 0;
-          max-height: 0;
-          overflow: hidden;
-          transition: all 0.3s ease;
-          width: 100%;
-          margin-top: 0;
-          padding: 0;
-        }
-
-        .metric-card.show-tooltip .metric-tooltip {
           opacity: 1;
-          max-height: 200px;
+          transform: none;
+          width: 100%;
           margin-top: 0.75rem;
-          padding: 0.75rem 1rem;
+          padding: 0.85rem 1rem;
+          border-radius: 12px;
+          background: rgba(15, 23, 42, 0.9);
+          color: #F3F4F6;
+          box-shadow: none;
         }
 
+        .strategy-tooltip::after,
         .metric-tooltip::after {
           display: none;
         }
@@ -802,7 +901,6 @@
         }
 
         .metrics-cards {
-          grid-template-columns: 1fr;
           gap: 0.75rem;
         }
 
@@ -1292,7 +1390,7 @@
     <!-- Cookie Consent (Tarteaucitron) - CNIL/RGPD Compliant -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/tarteaucitron.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/css/tarteaucitron.min.css">
-    <script src="../js/seo/cookie-consent.js"></script>
+    <script src="/js/seo/cookie-consent.js"></script>
   </head>
   <body>
     <!-- Simulator Container -->
@@ -1332,11 +1430,17 @@
         <h2 class="section-title" data-translate="simulator.strategies.title">Choose your strategy</h2>
         <p class="section-description" data-translate="simulator.strategies.description">Compare four portfolio allocation approaches on stocks (SPY), bonds (IEF) and gold (GLD)</p>
 
-        <div class="strategy-pills">
+        <div class="responsive-slider" id="strategySlider" data-slider="strategy">
+          <button class="slider-nav prev" type="button" aria-label="Scroll strategies left" data-slider-prev>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="strategy-pills slider-track">
           <button class="strategy-pill active" data-strategy="equalWeight">
             <div class="strategy-tooltip" data-translate="simulator.strategy.equalWeight.tooltip">Simple approach: 33.3% on each asset (stocks, bonds, gold). Easy to understand and replicate, but doesn't account for risk differences between assets.</div>
             <div class="pill-icon">
-              <img src="../assets/images/simul port icons/noun-equal-3402250-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
+              <img src="/assets/images/simul port icons/noun-equal-3402250-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
             </div>
             <div class="pill-content">
               <div class="pill-title" data-translate="simulator.strategy.equalWeight">Equal Allocation</div>
@@ -1395,7 +1499,7 @@
           <button class="strategy-pill" data-strategy="simpleRiskParity">
             <div class="strategy-tooltip" data-translate="simulator.strategy.simpleRiskParity.tooltip">Weights assets by the inverse of their volatility. More volatile assets receive less weight, balancing the risk contribution to the total portfolio.</div>
             <div class="pill-icon">
-              <img src="../assets/images/simul port icons/noun-scale-1021928-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
+              <img src="/assets/images/simul port icons/noun-scale-1021928-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
             </div>
             <div class="pill-content">
               <div class="pill-title" data-translate="simulator.strategy.simpleRiskParity">Risk Parity</div>
@@ -1406,7 +1510,7 @@
           <button class="strategy-pill" data-strategy="optimizedRiskParity">
             <div class="strategy-tooltip" data-translate="simulator.strategy.optimizedRiskParity.tooltip">Advanced version using EWMA volatility and correlations between assets. Dynamically adjusts allocations to optimize the portfolio's return/risk ratio.</div>
             <div class="pill-icon">
-              <img src="../assets/images/simul port icons/noun-ai-6480915-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
+              <img src="/assets/images/simul port icons/noun-ai-6480915-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
             </div>
             <div class="pill-content">
               <div class="pill-title" data-translate="simulator.strategy.optimizedRiskParity">Optimized</div>
@@ -1428,6 +1532,14 @@
               <div class="pill-subtitle" data-translate="simulator.strategy.customMix.subtitle">Blend two strategies</div>
             </div>
           </button>
+          </div>
+          <button class="slider-nav next" type="button" aria-label="Scroll strategies right" data-slider-next>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="slider-dots" data-slider-dots></div>
+        </div>
         </div>
 
         <div class="custom-strategy-panel hidden" id="customStrategyPanel">
@@ -1491,7 +1603,13 @@
       <div class="metrics-grid" id="metricsGrid">
         <h3 class="metrics-section-title" data-translate="simulator.metrics.title">Performance Statistics</h3>
 
-        <div class="metrics-cards">
+        <div class="responsive-slider" id="metricsSlider" data-slider="metrics">
+          <button class="slider-nav prev" type="button" aria-label="View previous metric" data-slider-prev>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="metrics-cards slider-track">
           <div class="metric-card highlight">
             <div class="metric-tooltip" data-translate="simulator.metric.totalReturn.tooltip">The total gain or loss of the portfolio since the beginning of the period, before inflation and fees.</div>
             <div class="metric-card-label" data-translate="simulator.metric.totalReturn">Total Return</div>
@@ -1533,6 +1651,13 @@
             <div class="metric-card-value" id="calmarRatio">--</div>
             <div class="metric-card-subtitle" data-translate="simulator.metric.calmarRatio.subtitle">return/drawdown</div>
           </div>
+          </div>
+          <button class="slider-nav next" type="button" aria-label="View next metric" data-slider-next>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="slider-dots" data-slider-dots></div>
         </div>
       </div>
 
@@ -1562,41 +1687,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="../i18n/translations.js"></script>
-    <script src="../js/script.js"></script>
-    <script src="../js/portfolio-simulator.js"></script>
-
-    <!-- Mobile tooltip tap handler -->
-    <script>
-      // Add tap-to-toggle tooltip functionality for mobile
-      if (window.innerWidth <= 768) {
-        document.addEventListener('DOMContentLoaded', function() {
-          const metricCards = document.querySelectorAll('.metric-card');
-
-          metricCards.forEach(card => {
-            card.addEventListener('click', function(e) {
-              // Don't toggle if clicking on a link or button
-              if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
-
-              // Close all other tooltips
-              metricCards.forEach(c => {
-                if (c !== card) c.classList.remove('show-tooltip');
-              });
-
-              // Toggle this tooltip
-              card.classList.toggle('show-tooltip');
-            });
-          });
-
-          // Close tooltips when clicking outside
-          document.addEventListener('click', function(e) {
-            if (!e.target.closest('.metric-card')) {
-              metricCards.forEach(card => card.classList.remove('show-tooltip'));
-            }
-          });
-        });
-      }
-    </script>
+    <script src="/i18n/translations.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/portfolio-simulator.js"></script>
 
     <!-- Floating Glassmorphism Chat Input -->
     <div id="floating-chat-input" class="floating-chat-input">
@@ -1655,7 +1748,7 @@
     </div>
 
     <!-- Footer with Sitemap Links -->
-    <footer>
+        <footer>
       <div class="container">
         <div class="footer-content">
           <div class="footer-left">
@@ -1674,30 +1767,68 @@
 
           <nav class="footer-nav">
             <div class="footer-column">
-              <h4 data-translate="footer.nav.company">Entreprise</h4>
+              <h4 data-translate="footer.nav.product">Produit</h4>
               <ul>
-                <li><a href="/en/#about" data-translate="nav.about">À propos</a></li>
-                <li><a href="/en/#vision" data-translate="nav.vision">Vision</a></li>
-                <li><a href="/en/businesses" data-translate="nav.businesses">Businesses</a></li>
+                <li><a href="/#about" data-translate="nav.vision">Vision</a></li>
+                <li><a href="/#approach" data-translate="nav.approach">Approche</a></li>
+                <li><a href="/#vision" data-translate="nav.build">Produit</a></li>
               </ul>
             </div>
 
             <div class="footer-column">
-              <h4 data-translate="footer.nav.resources">Resources</h4>
+              <h4 data-translate="footer.nav.resources">Ressources</h4>
               <ul>
-                <li><a href="/en/blog" data-translate="footer.nav.blog">Blog</a></li>
-                <li><a href="/en/portfolio-simulator" data-translate="footer.nav.simulator">Portfolio Simulator</a></li>
-                <li><a href="/en/#waitlist" data-translate="footer.nav.join">Join Us</a></li>
+                <li><a href="/blog" data-translate="footer.nav.blog">Blog</a></li>
+                <li><a href="/portfolio-simulator" data-translate="footer.nav.simulator">Simulateur de Portefeuille</a></li>
+                <li><a href="/#waitlist" data-translate="footer.nav.join">Nous Rejoindre</a></li>
               </ul>
             </div>
 
             <div class="footer-column">
-              <h4 data-translate="footer.nav.legal">Legal</h4>
+              <h4 data-translate="footer.nav.legal">Légal</h4>
               <ul>
-                <li><a href="/en/legal-notice" data-translate="footer.nav.legal_notice">Legal Notice</a></li>
-                <li><a href="/en/privacy" data-translate="footer.nav.privacy">Privacy Policy</a></li>
-                <li><a href="#cookies" id="tarteaucitronRoot" data-translate="footer.nav.cookies">Cookie Settings</a></li>
+                <li><a href="/mentions-legales" data-translate="footer.nav.legal_notice">Mentions Légales</a></li>
+                <li><a href="/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
+                <li><a href="#cookies" id="tarteaucitronRoot" data-translate="footer.nav.cookies">Gérer les Cookies</a></li>
               </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.contact">Contact</h4>
+              <ul>
+                <li><a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></li>
+              </ul>
+              <div class="social-media-links">
+                <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn" data-handle="Bubble Invest AI">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect x="2" y="9" width="4" height="12"/>
+                    <circle cx="4" cy="4" r="2"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.linkedin">Bubble Invest AI</span>
+                </a>
+                <a href="https://www.instagram.com/behindthefinancebubble/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram" data-handle="@behindthefinancebubble">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.instagram">@behindthefinancebubble</span>
+                </a>
+                <a href="https://www.tiktok.com/@behind.the.bubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok" data-handle="@behind.the.bubble">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.tiktok">@behind.the.bubble</span>
+                </a>
+                <a href="https://www.youtube.com/@behindthefinancebubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube" data-handle="@behindthefinancebubble">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.youtube">@behindthefinancebubble</span>
+                </a>
+              </div>
             </div>
           </nav>
         </div>
@@ -1705,10 +1836,10 @@
     </footer>
 
     <!-- SEO Structured Data -->
-    <script src="../js/seo/structured-data.js"></script>
+    <script src="/js/seo/structured-data.js"></script>
 
     <!-- Application Scripts -->
-    <script src="../js/floating-chat-input.js"></script>
-    <script src="../js/simulator-chat.js"></script>
+    <script src="/js/floating-chat-input.js"></script>
+    <script src="/js/simulator-chat.js"></script>
   </body>
 </html>

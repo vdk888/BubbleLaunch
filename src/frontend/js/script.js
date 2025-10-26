@@ -239,17 +239,20 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Chat interface functionality
-  const chatInput = document.querySelector(".chat-input");
-  const chatSubmit = document.querySelector(".chat-submit");
-  const suggestionButtons = document.querySelectorAll(".chat-suggestion-btn");
-  const chatMessages = document.querySelector(".chat-messages");
-  const chatSuggestionsContainer = document.querySelector(".chat-suggestions");
-  const toggleSuggestionsBtn = document.getElementById(
-    "toggle-suggestions-btn",
-  );
   const chatSection = document.querySelector(".chat-section");
-  const fullscreenToggleBtn = document.getElementById("fullscreen-toggle-btn");
-  let firstMessageSent = false;
+
+  // Only initialize chat if chat section exists (not on blog pages)
+  if (chatSection) {
+    const chatInput = document.querySelector(".chat-input");
+    const chatSubmit = document.querySelector(".chat-submit");
+    const suggestionButtons = document.querySelectorAll(".chat-suggestion-btn");
+    const chatMessages = document.querySelector(".chat-messages");
+    const chatSuggestionsContainer = document.querySelector(".chat-suggestions");
+    const toggleSuggestionsBtn = document.getElementById(
+      "toggle-suggestions-btn",
+    );
+    const fullscreenToggleBtn = document.getElementById("fullscreen-toggle-btn");
+    let firstMessageSent = false;
   let isFullscreen = false;
   let stopTyping = false;
   let currentAbortController = null;
@@ -548,7 +551,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add click effect
     chatSubmit.classList.add("clicked");
     setTimeout(() => chatSubmit.classList.remove("clicked"), 300);
-    
+
     // Check if we're currently processing (showing stop button)
     if (chatSubmit.classList.contains("processing")) {
       // Stop the current generation
@@ -660,6 +663,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Call scrollChatToBottom when entering fullscreen mode
     fullscreenToggleBtn.addEventListener("click", scrollChatToBottom);
   }
+  } // End of if (chatSection) block
 
   // Welcome message updates automatically via data-translate attribute
 

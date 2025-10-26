@@ -3,8 +3,12 @@ let currentLanguage = 'fr'; // Default to French
 let currentPost = null; // Store current post for language switching
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Initialize language (use same key as main script.js)
-    currentLanguage = localStorage.getItem('bubbleLanguage') || 'en';
+    // Detect language from URL route (similar to script.js)
+    const isEnglishRoute = window.location.pathname.startsWith('/en/');
+    currentLanguage = isEnglishRoute ? 'en' : 'fr';
+
+    // Store the detected language
+    localStorage.setItem('bubbleLanguage', currentLanguage);
 
     // Update static text translations on page load
     updateStaticTranslations();
@@ -46,11 +50,20 @@ function updateStaticTranslations() {
 }
 
 function getSlugFromUrl() {
-    const pathParts = window.location.pathname.split('/');
-    // URL format: /blog/slug-name
-    if (pathParts.length >= 3 && pathParts[1] === 'blog') {
-        return pathParts[2];
+    const pathParts = window.location.pathname.split('/').filter(part => part); // Remove empty parts
+    // URL formats: /blog/slug-name OR /en/blog/slug-name
+
+    console.log(`[Blog Post] URL pathname: ${window.location.pathname}`);
+    console.log(`[Blog Post] Path parts:`, pathParts);
+
+    const blogIndex = pathParts.indexOf('blog');
+    if (blogIndex !== -1 && pathParts.length > blogIndex + 1) {
+        const slug = pathParts[blogIndex + 1];
+        console.log(`[Blog Post] Extracted slug: "${slug}"`);
+        return slug;
     }
+
+    console.log(`[Blog Post] No slug found in URL`);
     return null;
 }
 
@@ -58,29 +71,39 @@ async function loadBlogPost(slug) {
     const loadingState = document.getElementById('loading-state');
     const errorState = document.getElementById('error-state');
     const blogPost = document.getElementById('blog-post');
-    
+
+    console.log(`[Blog Post] Loading post with slug: "${slug}"`);
+
     try {
         // Fetch the specific blog post
-        const response = await fetch(`/api/blog/post/${slug}`);
-        
+        const apiUrl = `/api/blog/post/${slug}`;
+        console.log(`[Blog Post] Fetching from: ${apiUrl}`);
+        const response = await fetch(apiUrl);
+
+        console.log(`[Blog Post] Response status: ${response.status}`);
+
         if (!response.ok) {
             if (response.status === 404) {
+                console.error(`[Blog Post] 404 - Post not found: ${slug}`);
                 throw new Error('Post not found');
             }
+            const errorText = await response.text();
+            console.error(`[Blog Post] Error response:`, errorText);
             throw new Error('Failed to fetch blog post');
         }
-        
+
         currentPost = await response.json();
-        
+        console.log(`[Blog Post] Successfully loaded post:`, currentPost.title);
+
         // Hide loading state
         loadingState.style.display = 'none';
-        
+
         // Display the post
         displayBlogPost(currentPost);
         blogPost.style.display = 'block';
-        
+
     } catch (error) {
-        console.error('Error loading blog post:', error);
+        console.error('[Blog Post] Error loading blog post:', error);
         loadingState.style.display = 'none';
         showError(error.message);
     }
@@ -312,13 +335,22 @@ function enhanceContent() {
 function showError(message = 'Article introuvable') {
     document.getElementById('loading-state').style.display = 'none';
     document.getElementById('error-state').style.display = 'block';
-    
+
+    const errorTitle = currentLanguage === 'fr' ? 'Article introuvable' : 'Article not found';
+    const errorMessage = currentLanguage === 'fr' ?
+        'Cet article n\'existe pas ou a été supprimé.' :
+        'This article does not exist or has been deleted.';
+    const loadErrorTitle = currentLanguage === 'fr' ? 'Erreur de chargement' : 'Loading error';
+    const loadErrorMessage = currentLanguage === 'fr' ?
+        'Impossible de charger cet article. Veuillez réessayer plus tard.' :
+        'Unable to load this article. Please try again later.';
+
     if (message === 'Post not found') {
-        document.querySelector('.error-state h2').textContent = 'Article introuvable';
-        document.querySelector('.error-state p').textContent = 'Cet article n\'existe pas ou a été supprimé.';
+        document.querySelector('.error-state h2').textContent = errorTitle;
+        document.querySelector('.error-state p').textContent = errorMessage;
     } else {
-        document.querySelector('.error-state h2').textContent = 'Erreur de chargement';
-        document.querySelector('.error-state p').textContent = 'Impossible de charger cet article. Veuillez réessayer plus tard.';
+        document.querySelector('.error-state h2').textContent = loadErrorTitle;
+        document.querySelector('.error-state p').textContent = loadErrorMessage;
     }
 }
 
