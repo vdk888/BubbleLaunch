@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let charts = [];
   let chartsInitialized = false;
   let slideInterval;
-  const slideDuration = 5000;
+  const slideDuration = 10000; // 10 seconds to allow time to read descriptions
 
   // --- Helper Functions (defined at top level of DOMContentLoaded) ---
 

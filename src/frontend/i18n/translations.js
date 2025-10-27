@@ -327,44 +327,32 @@ const translations = {
     fr: "Comparaison des frais cumulés. L'abonnement fixe reste constant tandis que les frais en pourcentage croissent de manière exponentielle.",
   },
 
-  // --- Enhanced "Clarity" Slide ---
-  "charts.clarity_title": {
-    en: "Absolute Clarity is a Necessity",
-    fr: "Une Clarté Absolue s'Impose",
+  // --- New Slide 2: Fee Types ---
+  "charts.fees_types_title": {
+    en: "Which fees are we talking about?",
+    fr: "De quels frais parle-t-on ?",
   },
-  "clarity.before.tile1": { en: "Black Box Decisions", fr: "Décisions Opaques" },
-  "clarity.after.tile1": { en: "Every Strategy Explained", fr: "Chaque Stratégie Expliquée" },
-  "clarity.before.tile2": { en: "Hidden Fee Structure", fr: "Structure de Frais Cachée" },
-  "clarity.after.tile2": { en: "Fixed €10/Month", fr: "Fixe 10€/Mois" },
-  "clarity.before.tile3": { en: "Conflicted Advice", fr: "Conseils Biaisés" },
-  "clarity.after.tile3": { en: "Pure AI Objectivity", fr: "Objectivité IA Pure" },
-  "charts.clarity_desc": {
-    en: "Every aspect of traditional finance opacity replaced by crystal-clear transparency.",
-    fr: "Chaque aspect de l'opacité financière traditionnelle remplacé par une transparence cristalline."
+  "charts.fees_types_desc": {
+    en: "Traditional investing stacks hidden fees at every step: advisory fees (1-2%), management fees (1.5-2.5%), transaction costs, platform fees, and performance commissions. For a €200k portfolio, you're paying €4,000-5,400 per year. Bubble replaces all of this with a single €10/month subscription.",
+    fr: "Le schéma illustre la cascade de frais traditionnels : frais de conseil (1-2% du capital), frais de gestion (1,5-2,5%), frais de transaction, frais de plateforme, et commissions de performance. Pour un portefeuille de 200k€, vous payez 4 000€ à 5 400€ par an. Bubble remplace tout cela par un abonnement unique de 10€/mois."
   },
-  "charts.clarity_note": {
-    en: "While traditional managers hide behind complex fee structures and black-box strategies, we make every decision visible, every cost predictable, and every outcome traceable.",
-    fr: "Alors que les gestionnaires traditionnels se cachent derrière des structures de frais complexes et des stratégies opaques, nous rendons chaque décision visible, chaque coût prévisible, et chaque résultat traçable."
+  "charts.fees_types_note": {
+    en: "Your banker says 'no advisory fees', but you're paying 2-3% annually through the products they sell. Each layer adds up: entry fees (2-5%), envelope fees (0.6-1%), management fees (1.5-2%), underlying fund costs (1.8-2.5%). Over 30 years, these hidden fees consume up to 50% of your potential returns. With Bubble: one transparent price, €120/year total.",
+    fr: "Votre banquier vous dit 'pas de frais de conseil', mais vous payez 2% à 3% par an via les produits qu'il vous vend. Chaque couche s'additionne : frais d'entrée (2-5%), frais d'enveloppe (0,6-1%), frais de gestion (1,5-2%), coûts des fonds sous-jacents (1,8-2,5%). Sur 30 ans, ces frais invisibles consomment jusqu'à 50% de vos rendements potentiels. Avec Bubble : un seul prix transparent, 120€/an au total."
   },
 
-  // --- Enhanced "Automation" Slide ---
-  "charts.automation_title": {
-    en: "Automation is the Only Way Forward",
-    fr: "L'Automatisation est la Seule Voie",
+  // --- New Slide 4: Investment Journey ---
+  "charts.journey_title": {
+    en: "Today's journey vs Bubble",
+    fr: "Parcours actuel vs parcours Bubble",
   },
-  "automation.before.tile1": { en: "9-5 Human Limitations", fr: "Limites Humaines 9h-17h" },
-  "automation.after.tile1": { en: "24/7 AI Vigilance", fr: "Vigilance IA 24/7" },
-  "automation.before.tile2": { en: "Manual Processes", fr: "Processus Manuels" },
-  "automation.after.tile2": { en: "Instant Optimization", fr: "Optimisation Instantanée" },
-  "automation.before.tile3": { en: "Fragmented Services", fr: "Services Fragmentés" },
-  "automation.after.tile3": { en: "One Unified Platform", fr: "Une Plateforme Unifiée" },
-  "charts.automation_desc": {
-      en: "From human limitations to AI-powered efficiency: the future of asset management.",
-      fr: "Des limites humaines à l'efficacité boostée par l'IA : l'avenir de la gestion d'actifs."
+  "charts.journey_desc": {
+    en: "The traditional journey fragments your experience across 4-5 actors with conflicting interests: retail banker (sells house products), wealth advisor (earns commissions), asset manager (opacity protects fees), platform (adds transaction costs). Each step adds delays and separate charges. Bubble unifies everything: one AI agent, zero conflicts of interest, available 24/7.",
+    fr: "Le schéma compare les deux parcours : à gauche, le parcours traditionnel fragmente votre expérience entre 4-5 acteurs aux intérêts conflictuels (banquier qui vend des produits maison, conseiller rémunéré aux commissions, gérant dont l'opacité protège les frais, plateforme qui ajoute des coûts). Chaque étape ajoute délais et frais séparés. À droite, Bubble unifie tout : un agent IA, zéro conflit d'intérêts, disponible 24/7."
   },
-  "charts.automation_note": {
-      en: "AI doesn't sleep, doesn't have conflicts of interest, and processes market data faster than any human team. This isn't just automation—it's intelligence amplification that benefits you directly.",
-      fr: "L'IA ne dort jamais, n'a pas de conflits d'intérêts, et traite les données de marché plus vite qu'aucune équipe humaine. Ce n'est pas juste de l'automatisation—c'est une amplification d'intelligence qui vous bénéficie directement."
+  "charts.journey_note": {
+    en: "Traditional path: bank appointment (waits, limited hours) → biased advice (commission-driven) → 'house fund' selection (expensive, underperforming) → delayed reporting (quarterly at best) → hidden fee cascade. Bubble path: instant AI answers (anytime) → transparent strategies (backtested, explained) → automated execution (optimal timing) → real-time tracking (every day). The entire value chain reimagined without costly intermediaries.",
+    fr: "Parcours actuel : rendez-vous bancaire (attente, horaires limités) → conseil biaisé (rémunération aux commissions) → sélection de fonds 'maison' (chers, sous-performants) → reporting différé (trimestriel au mieux) → cascade de frais cachés. Parcours Bubble : réponses IA instantanées (à tout moment) → stratégies transparentes (backtestées, expliquées) → exécution automatique (timing optimal) → suivi temps réel (chaque jour). Toute la chaîne de valeur repensée sans intermédiaires coûteux."
   },
 
   // Key Insights Section
