@@ -333,7 +333,7 @@ const translations = {
     fr: "De quels frais parle-t-on ?",
   },
   "charts.fees_types_desc": {
-    en: "Traditional investing stacks hidden fees at every step: advisory fees (1-2%), management fees (1.5-2.5%), transaction costs, platform fees, and performance commissions. For a €200k portfolio, you're paying €4,000-5,400 per year. Bubble replaces all of this with a single €10/month subscription.",
+    en: "The diagram illustrates the cascade of traditional fees: advisory fees (1-2% of capital), management fees (1.5-2.5%), transaction costs, platform fees, and performance commissions. Each actor in the chain takes their cut. For a €200k portfolio, you're paying €4,000-5,400 per year. Bubble replaces all of this with a single €10/month subscription.",
     fr: "Le schéma illustre la cascade de frais traditionnels : frais de conseil (1-2% du capital), frais de gestion (1,5-2,5%), frais de transaction, frais de plateforme, et commissions de performance. Pour un portefeuille de 200k€, vous payez 4 000€ à 5 400€ par an. Bubble remplace tout cela par un abonnement unique de 10€/mois."
   },
   "charts.fees_types_note": {
@@ -347,7 +347,7 @@ const translations = {
     fr: "Parcours actuel vs parcours Bubble",
   },
   "charts.journey_desc": {
-    en: "The traditional journey fragments your experience across 4-5 actors with conflicting interests: retail banker (sells house products), wealth advisor (earns commissions), asset manager (opacity protects fees), platform (adds transaction costs). Each step adds delays and separate charges. Bubble unifies everything: one AI agent, zero conflicts of interest, available 24/7.",
+    en: "The diagram compares the two journeys: on the left, the traditional path fragments your experience across 4-5 actors with conflicting interests (retail banker selling house products, commission-driven wealth advisor, asset manager whose opacity protects fees, platform adding transaction costs). Each step adds delays and separate charges. On the right, Bubble unifies everything: one AI agent, zero conflicts of interest, available 24/7.",
     fr: "Le schéma compare les deux parcours : à gauche, le parcours traditionnel fragmente votre expérience entre 4-5 acteurs aux intérêts conflictuels (banquier qui vend des produits maison, conseiller rémunéré aux commissions, gérant dont l'opacité protège les frais, plateforme qui ajoute des coûts). Chaque étape ajoute délais et frais séparés. À droite, Bubble unifie tout : un agent IA, zéro conflit d'intérêts, disponible 24/7."
   },
   "charts.journey_note": {
