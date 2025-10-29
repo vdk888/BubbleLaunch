@@ -7,6 +7,17 @@ const sessionMiddleware = require("../middleware/session");
  * @param {express.Application} app - Express app instance
  */
 function configureExpress(app) {
+  // Redirect www to non-www
+  app.use((req, res, next) => {
+    const host = req.get('host');
+    if (host && host.startsWith('www.')) {
+      const newHost = host.replace('www.', '');
+      const protocol = req.protocol || 'https';
+      return res.redirect(301, `${protocol}://${newHost}${req.originalUrl}`);
+    }
+    next();
+  });
+
   // Body parser
   app.use(express.json());
 
