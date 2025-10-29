@@ -1,7 +1,7 @@
 # Ce que nous faisons
 Nous accompagnons principalement les PME et sociétés de gestion dans la modernisation de leurs processus financiers. Chez Bubble Invest, il n’est pas question de vendre du rêve, des diagnostics interminables sur PowerPoint ou des solutions magiques possibles qu’avec une armée de consultants. On préfère les projets pragmatiques : automatisation et optimisation de tâches concrètes, avec des outils simples ou personnalisés selon chaque besoin.
 
-Comme pour notre produit d’investissement Bubble, notre objectif est aussi de partager humblement ce que nous avons appris et découvert : tout ce qui est désormais possible avec les outils actuels (Codex, Claude Code “vibe coding”, low code, développement de front end/back-end, workflows type n8n, agents intelligents sur mesure…), afin de permettre à chacun de tirer parti de ces avancées, quel que soit son niveau technique.
+Comme pour notre produit d’investissement Bubble, notre objectif est aussi de partager ce que nous avons appris et découvert : tout ce qui est désormais possible avec les outils actuels (Codex, Claude Code “vibe coding”, low code, développement de front end/back-end, workflows type n8n, agents intelligents sur mesure…), afin de permettre à chacun de tirer parti de ces avancées, quel que soit son niveau technique.
 
 En cohérence avec notre expérience en finance et notre appétence technologique, nous utilisons les outils intelligents les plus fiables et actuels avec une agilité qui s’adapte vraiment à chaque client et chaque contexte.
 
