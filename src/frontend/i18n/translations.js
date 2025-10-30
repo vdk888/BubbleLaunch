@@ -200,7 +200,6 @@ const translations = {
       "What are the actual fees left?",
       "Explain liquidity, slippage, execution costs...",
       "How to read a factsheet?",
-      "Evaluate ESG impact vs tracking error...",
       "What returns should I expect?",
       "Compute the VaR and Expected Shortfall..."
     ],
@@ -221,7 +220,6 @@ const translations = {
       "Quel frais subsistent vraiment ?",
       "Explique moi la liquidité, le slippage, les coûts d'exécution...",
       "Comment lire une fiche produit ?",
-      "Évalue l'ESG vs l'écart de suivi...",
       "Quelles performances attendre ?",
       "Calcule la VaR et l'Expected Shortfall..."
     ]
