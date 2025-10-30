@@ -57,8 +57,8 @@ const translations = {
     fr: "Jusqu'ici, vous payiez un gérant ou un banquier pour des mots rassurants et un jargon que peu comprennent. Aujourd'hui, les IAs rendent le vocabulaire \"technique\" gratuit, lisible, vérifiable et comparable. Fini l'élitisme du savoir et les intermédiaires obsolètes.",
   },
   "manifesto.paragraph2": {
-    en: "LLMs (ChatGPT, Gemini, Claude...) democratize access to expertise, help you understand more clearly, and let you demand evidence. Fees must now reflect real value: useful advice and measurable outperformance. We pierce the financial bubble, lift the veil on fee opacity, and put value back where it belongs: with you.",
-    fr: "Les LLMs (tels que ChatGPT, Gemini, Claude...) démocratisent l'accès à l'expertise, vous donnent la capacité de mieux comprendre et d'exiger des preuves. Les frais doivent désormais refléter la valeur réelle : des conseils utiles et une surperformance mesurable. Nous perçons la bulle financière, levons le voile sur l'opacité des frais et remettons la valeur à sa place : chez vous.",
+    en: "LLMs (ChatGPT, Gemini, Claude...) democratize access to expertise, help you understand more clearly, and let you demand evidence. Fees must now reflect real value: useful insights and measurable outperformance. We pierce the financial bubble, lift the veil on fee opacity, and put value back where it belongs: with you.",
+    fr: "Les LLMs (tels que ChatGPT, Gemini, Claude...) démocratisent l'accès à l'expertise, vous donnent la capacité de mieux comprendre et d'exiger des preuves. Les frais doivent désormais refléter la valeur réelle : des éclairages utiles et une surperformance mesurable. Nous perçons la bulle financière, levons le voile sur l'opacité des frais et remettons la valeur à sa place : chez vous.",
   },
   "manifesto.insight": {
     en: "Our ethics: putting power back in your hands so you can break free from the exorbitant fees of now‑obsolete intermediaries. The result: you finance the economy, and the economy pays you interest. That's it.",
@@ -75,12 +75,12 @@ const translations = {
     fr: "Un Agent d'Investissement Complet",
   },
   "vision.platform.description1": {
-    en: "We're developing the tool we use for our own investments: an automated system that optimizes ETF-first portfolios through transparent quantitative strategies and rigorous backtests, rebalanced regularly.",
-    fr: "Nous développons l'outil que nous utilisons pour nos investissements personnels : un système automatique qui optimise des portefeuilles orientés ETF via des stratégies quantitatives transparentes et des backtests rigoureux, rééquilibrés régulièrement.",
+    en: "We're developing the tool we use for our own investments: transparent quantitative strategies, rigorous backtests, and monitoring automation that surface insights for you to review and act on yourself. Your private manager in your pocket, at lower cost.",
+    fr: "Nous développons l’outil que nous utilisons pour nos propres investissements : stratégies quantitatives transparentes, backtests rigoureux et automatisation du suivi qui vous livrent des insights à analyser et à acter vous-même. Votre gérant privé dans votre poche, à moindre coût.",
   },
   "vision.platform.description2": {
-    en: "We've crafted a full‑fledged AI agent that can act as your private manager: personalized advice, automated trading (for our Bubble accounts for now), and execution-ready guidance so you stay in command.",
-    fr: "Nous avons créé un agent IA complet capable de jouer le rôle de votre gérant privé : conseils personnalisés, trading automatisé (pour nos comptes Bubble pour le moment), et instructions prêtes à l'emploi afin que vous restiez aux commandes.",
+    en: "Our AI agent delivers high-level financial analysis and decision support to every user, whatever the size of their portfolio. Bubble explains how every strategy works so you can confidently understand and evaluate your options.",
+    fr: "Notre agent IA fournit une analyse financière de haut niveau et un support à la décision pour chacun, quelle que soit la taille de son portefeuille. Bubble explique le fonctionnement de chaque stratégie pour que vous puissiez les comprendre et les évaluer en toute confiance.",
   },
   "vision.platform.learn_more": {
     en: "Learn more →",
@@ -99,8 +99,8 @@ const translations = {
     fr: "Expertise IA Accessible",
   },
   "vision.ai.description": {
-    en: "Our conversational AI gives you access to the same level of analysis and personalized advice as a professional, without the traditional fees.",
-    fr: "Notre IA conversationnelle vous donne accès au même niveau d'analyse et de conseils personnalisés qu'un professionnel, sans les frais traditionnels.",
+    en: "Bubble’s conversational AI translates complex analysis into clear decision support so you can review scenarios and choose the next step yourself.",
+    fr: "L’IA conversationnelle de Bubble traduit des analyses complexes en assistance décisionnelle claire pour que vous puissiez examiner les scénarios et choisir vous-même la suite.",
   },
   "vision.crypto.title": {
     en: "Diversified Assets",
@@ -108,7 +108,7 @@ const translations = {
   },
   "vision.crypto.description": {
     en: "Our portfolios prioritise low-cost ETFs and extend to cryptocurrencies on our roadmap (Crypto.com integration in progress).",
-    fr: "Nos portefeuilles privilégient les ETF à faible coût et s'étendront aux cryptomonnaies sur notre feuille de route (intégration Crypto.com en cours).",
+    fr: "Nos portefeuilles privilégient les ETF à faible coût mais s'étendent aussi aux autres actifs et aux cryptomonnaies .",
   },
   "vision.portfolio.title": {
     en: "Discover Our Portfolio Simulator",
@@ -141,8 +141,8 @@ const translations = {
     fr: "Automatiser",
   },
   "approach.automate.description": {
-    en: "We automate what a fund manager does: asset allocation, portfolio rebalancing, and strategy execution. But instead of a human doing it manually, your programmed strategy runs automatically.",
-    fr: "Nous automatisons ce que fait un gérant de fonds : allocation d'actifs, rééquilibrage de portefeuille, et exécution de stratégies. Mais au lieu d'un humain qui applique manuellement, c'est votre stratégie programmée qui s'exécute automatiquement.",
+    en: "We mirror what a portfolio manager does each day—monitoring markets, refreshing data, and recalculating allocations—but we run it through transparent, simple algorithms so you see how AI now replaces that manual work.",
+    fr: "Nous reproduisons le travail quotidien d’un gérant de portefeuille—suivi des marchés, mises à jour des données et recalculs d’allocations—via des algorithmes simples et transparents qui montrent comment l’IA remplace désormais cette exécution manuelle.",
   },
   "approach.clarify.title": {
     en: "Clarify",
@@ -177,6 +177,10 @@ const translations = {
   "chat.welcome": {
     en: "Hello, I'm Bubble. How can I help you today?",
     fr: "Bonjour, je suis Bubble. Comment puis-je vous aider ?"
+  },
+  "chat.disclaimer": {
+    en: "I am Bubble, your AI assistant for educational investment questions. My responses provide general education and insights, never personalized financial advice. If you need tailored recommendations, consult a qualified advisor.",
+    fr: "Je suis Bubble, votre assistant IA pour des questions éducatives sur l’investissement. Mes réponses fournissent des informations générales et ne constituent jamais un conseil financier personnalisé. En cas de doute, consultez un conseiller qualifié.",
   },
   "chat.rotatingPlaceholders": {
     en: [
@@ -304,6 +308,10 @@ const translations = {
     en: "Join the List",
     fr: "Rejoindre la Liste",
   },
+  "waitlist.disclaimer": {
+    en: "Profile information is collected solely to personalize your Bubble experience. It is never used for investment advice or recommendations specific to your financial situation.",
+    fr: "Ces informations nous aident uniquement à personnaliser votre expérience Bubble. Elles ne servent jamais à formuler un conseil en investissement ou des recommandations liées à votre situation.",
+  },
 
   // Charts & Sliders
   "charts.fee_impact_title": {
@@ -351,12 +359,12 @@ const translations = {
     fr: "Parcours actuel vs parcours Bubble",
   },
   "charts.journey_desc": {
-    en: "The diagram compares the two journeys: on the left, the traditional path fragments your experience across 4-5 actors with conflicting interests (retail banker selling house products, commission-driven wealth advisor, asset manager whose opacity protects fees, platform adding transaction costs). Each step adds delays and separate charges. On the right, Bubble unifies everything: one AI agent, zero conflicts of interest, available 24/7.",
-    fr: "Le schéma compare les deux parcours : à gauche, le parcours traditionnel fragmente votre expérience entre 4-5 acteurs aux intérêts conflictuels (banquier qui vend des produits maison, conseiller rémunéré aux commissions, gérant dont l'opacité protège les frais, plateforme qui ajoute des coûts). Chaque étape ajoute délais et frais séparés. À droite, Bubble unifie tout : un agent IA, zéro conflit d'intérêts, disponible 24/7."
+    en: "Today's journey is fragmented and incentive-misaligned. Bubble brings everything together as a transparent decision-support platform that explains each step, equips you with analytics, and keeps you in control from onboarding to monitoring.",
+    fr: "Le parcours actuel est fragmenté et mal aligné sur vos intérêts. Bubble rassemble tout dans une plateforme transparente d’aide à la décision qui explique chaque étape, vous fournit les analyses nécessaires et vous laisse aux commandes du début à la fin."
   },
   "charts.journey_note": {
-    en: "Traditional path: bank appointment (waits, limited hours) → biased advice (commission-driven) → 'house fund' selection (expensive, underperforming) → delayed reporting (quarterly at best) → hidden fee cascade. Bubble path: instant AI answers (anytime) → transparent strategies (backtested, explained) → automated execution for Bubble's own portfolios with API-ready exports for you → real-time tracking (every day). The entire value chain reimagined without costly intermediaries.",
-    fr: "Parcours actuel : rendez-vous bancaire (attente, horaires limités) → conseil biaisé (rémunération aux commissions) → sélection de fonds « maison » (chers, sous-performants) → reporting différé (trimestriel au mieux) → cascade de frais cachés. Parcours Bubble : réponses IA instantanées (à tout moment) → stratégies transparentes (backtestées, expliquées) → exécution automatisée pour les portefeuilles Bubble avec exports prêts pour vos comptes → suivi temps réel (chaque jour). Toute la chaîne de valeur repensée sans intermédiaires coûteux."
+    en: "Traditional path: bank appointment (waits, limited hours) → biased advice (commission-driven) → 'house fund' selection (expensive, underperforming) → delayed reporting → hidden fee cascade. Bubble path: instant AI answers (anytime) → transparent strategies with commentary and backtests → automated monitoring with exportable instructions for you → real-time tracking alongside your own broker accounts.",
+    fr: "Parcours traditionnel : rendez-vous bancaire (attente, horaires limités) → conseil biaisé (commissions) → sélection de fonds « maison » (chers, sous-performants) → reporting décalé → cascade de frais cachés. Parcours Bubble : réponses IA instantanées (à tout moment) → stratégies transparentes avec explications et backtests → suivi automatisé avec instructions exportables pour vous → suivi en temps réel avec vos propres comptes courtiers."
   },
 
   // Key Insights Section
@@ -365,20 +373,20 @@ const translations = {
     fr: "Points Clés",
   },
   "key_insights.intro": {
-    en: "AI radically transforms the customer experience by automating expertise and democratizing access to professional‑quality financial advice.",
-    fr: "L'IA transforme radicalement l'expérience client en automatisant l'expertise et en démocratisant l'accès aux conseils financiers de qualité professionnelle.",
+    en: "AI radically transforms the customer experience by automating expertise and democratizing access to professional-grade financial intelligence.",
+    fr: "L’IA transforme radicalement l’expérience client en automatisant l’expertise et en démocratisant l’accès à une intelligence financière de niveau professionnel.",
   },
   "key_insights.bullet1": {
     en: "Today, you juggle between banks, online platforms, costly managers, and limited robo‑advisors.",
     fr: "Aujourd'hui, vous jonglez entre banques, plateformes en ligne, gestionnaires coûteux et robo-advisors limités.",
   },
   "key_insights.bullet2": {
-    en: "Bubble unifies everything: a 24/7 banker, an investment advisor, and automated execution for our portfolios with exportable instructions for yours.",
-    fr: "Bubble unifie tout : un banquier 24/7, un conseiller en investissement et une exécution automatisée pour nos portefeuilles avec des instructions exportables pour les vôtres.",
+    en: "Bubble brings together everything you need to invest smarter: a transparent decision-support tool, powerful analytics, and educational resources for everyone. You don’t need traditional financial intermediaries anymore when AI gives you the power. Every decision is explained simply, so investing is clear and accessible.",
+    fr: "Bubble réunit tout ce dont vous avez besoin pour investir plus intelligemment : un outil de décision transparent, des analyses puissantes et des ressources pédagogiques accessibles à tous. Vous n’avez plus besoin des intermédiaires financiers traditionnels quand l’IA vous donne la main. Chaque choix est expliqué simplement pour que l’investissement reste clair et accessible.",
   },
   "key_insights.bullet3": {
-    en: "Designed for ourselves, Bubble explains professional strategies and applies them for you with total transparency.",
-    fr: "Conçu pour nous-mêmes, Bubble vous explique toutes les stratégies professionnelles et les applique pour vous avec une transparence totale.",
+    en: "Designed for our own portfolios, Bubble explains professional-grade strategies in plain language so you can evaluate and execute them independently.",
+    fr: "Conçu d’abord pour nos propres portefeuilles, Bubble explique les stratégies de niveau professionnel en langage clair afin que vous puissiez les évaluer et les exécuter en autonomie.",
   },
 
   // Footer
@@ -443,6 +451,10 @@ const translations = {
   "blog.subtitle": {
     en: "Welcome to our blog where we share everything: our thoughts on AI-driven finance, our product-building experiments, our doubts, and our quest to create the investment tool we desperately wanted.",
     fr: "Bienvenue sur notre blog où nous partageons tout : nos réflexions sur l'IA financière, nos expériences de construction produit, nos doutes et notre quête pour créer l'outil d'investissement que nous voulions depuis toujours."
+  },
+  "blog.disclaimer": {
+    en: "All content on Bubble is intended for informational and educational purposes only. It is not personalized investment advice. Users are responsible for their own decisions.",
+    fr: "Tous les contenus publiés par Bubble ont un but purement informatif et pédagogique. Ils ne constituent pas en eux-mêmes un conseil d’investissement. Chaque utilisateur reste responsable de ses décisions.",
   },
   "blog.all_posts": {
     en: "All Articles",

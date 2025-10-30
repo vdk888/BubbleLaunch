@@ -30,7 +30,7 @@
   let hasTrackedOpen = false;
 
   function getCurrentLanguage() {
-    return document.documentElement.lang || localStorage.getItem('preferredLanguage') || 'fr';
+    return document.documentElement.lang || localStorage.getItem('bubbleLanguage') || 'fr';
   }
 
   function getSimulatorState() {

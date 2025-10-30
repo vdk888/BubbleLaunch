@@ -2021,9 +2021,9 @@ body.pricing-page {
 
 .pricing-hero {
   background:
-    radial-gradient(circle at 20% 25%, rgba(65, 105, 225, 0.25), transparent 55%),
-    radial-gradient(circle at 80% 30%, rgba(118, 174, 255, 0.18), transparent 50%),
-    linear-gradient(140deg, #0e1633 0%, #101f52 38%, #172a63 68%, #1d2f6f 100%);
+    radial-gradient(circle at 20% 25%, rgba(119, 140, 255, 0.22), transparent 55%),
+    radial-gradient(circle at 80% 30%, rgba(162, 191, 255, 0.2), transparent 50%),
+    linear-gradient(140deg, #dedeff 0%, #e6e9ff 38%, #eef1ff 68%, #f5f7ff 100%);
   color: #0f172a;
   padding: 3rem 0 6rem;
   position: relative;

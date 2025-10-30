@@ -30,8 +30,8 @@ const LOCALES = {
 function createFinancialServiceSchema(lang = "fr") {
   const locale = LOCALES[lang] || LOCALES.fr;
   const descriptions = {
-    fr: "Plateforme d'investissement pilotée par IA avec un tarif transparent de 0 à 10€/mois. Intelligence automatisée, stratégies ETF et alternative aux robo-advisors (ex. Yomoni, Nalo) comme aux conseillers traditionnels.",
-    en: "AI-powered investment platform from France with transparent €0–10/month pricing. Automated insights, ETF-first strategies, and an alternative to robo-advisors (e.g., Yomoni, Nalo) and traditional advisers.",
+    fr: "Plateforme d’aide à la décision pilotée par IA avec un tarif transparent de 0 à 10 €/mois. Analyses automatisées, stratégies ETF priorisées et outils qui laissent l’utilisateur maître de ses décisions—une alternative aux intermédiaires traditionnels.",
+    en: "AI-powered decision-support platform from France with transparent €0–10/month pricing. Automated analytics, ETF-first strategies, and tooling that keeps investors in control—an alternative to percentage-fee intermediaries.",
   };
   const offerDescriptions = {
     fr: "Abonnement mensuel (0 à 10€/mois) donnant accès à notre agent IA et à nos infrastructures.",
@@ -125,7 +125,7 @@ function createFaqSchema(lang = "fr") {
       {
         question: "How is Bubble different from traditional robo-advisors?",
         answer:
-          "Bubble charges transparent €0–10/month plans instead of 1.6% of assets under management. Our full-stack AI agent delivers personalised advice, automated execution (for Bubble's accounts today), and transparent quantitative strategies—without the usual opacity.",
+          "Bubble charges transparent €0–10/month plans instead of 1.6% of assets under management. Our full-stack AI agent delivers decision support, automated monitoring for Bubble’s own accounts today, and transparent quantitative strategies—without the usual opacity.",
       },
       {
         question: "How does the AI manage my portfolio?",

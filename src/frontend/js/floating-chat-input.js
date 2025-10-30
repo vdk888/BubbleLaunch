@@ -24,7 +24,7 @@
   const alwaysVisible = dataset.alwaysVisible === 'true';
 
   function getCurrentLanguage() {
-    return document.documentElement.lang || localStorage.getItem('preferredLanguage') || 'fr';
+    return document.documentElement.lang || localStorage.getItem('bubbleLanguage') || 'fr';
   }
 
   function trackFloatingInputEvent(action, params = {}) {
@@ -47,15 +47,18 @@
     // Determine trigger element (defaults to main CTA button)
     const triggerElement = customTriggerSelector
       ? document.querySelector(customTriggerSelector)
-      : document.querySelector('.cta-button[href="#waitlist"]');
+      : document.querySelector('.cta-button[href="#waitlist"], .cta-button[href*="#waitlist"]');
 
+    console.log('Floating input: trigger element found:', !!triggerElement);
     if (triggerElement) {
+      console.log('Floating input: setting up scroll detection for trigger element');
       const handleScroll = () => {
         const rect = triggerElement.getBoundingClientRect();
 
         // Show input when trigger element scrolls out of view (bottom above viewport)
         if (rect.bottom < 0) {
           floatingInput.classList.remove('hidden');
+          console.log('Floating input: showing (trigger element above viewport)');
         } else {
           floatingInput.classList.add('hidden');
         }
@@ -157,7 +160,7 @@
 
   // Update placeholder based on language
   function updatePlaceholder() {
-    const lang = localStorage.getItem('preferredLanguage') || 'fr';
+    const lang = localStorage.getItem('bubbleLanguage') || 'fr';
     const translations = window.translations?.['floating_input.placeholder'];
 
     if (translations && translations[lang]) {

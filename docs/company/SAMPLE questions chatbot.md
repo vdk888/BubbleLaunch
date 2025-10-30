@@ -49,5 +49,3 @@
 - Attribution par secteur, région, facteurs.
 - Optimisez avec contraintes et fiscalité.
 - Expliquez liquidité, slippage, coûts d’exécution.
-- Évaluez l’ESG vs l’écart de suivi.
-- Calculez VaR et Expected Shortfall.

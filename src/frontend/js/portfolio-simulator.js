@@ -263,7 +263,7 @@
   }
 
   function getCurrentLanguage() {
-    return document.documentElement.lang || localStorage.getItem('preferredLanguage') || 'fr';
+    return document.documentElement.lang || localStorage.getItem('bubbleLanguage') || 'fr';
   }
 
   function trackSimulatorEvent(action, params = {}) {
@@ -368,7 +368,7 @@
    * Get translated label for strategy
    */
   function getStrategyLabel(labelKey) {
-    const lang = localStorage.getItem('preferredLanguage') || 'fr';
+    const lang = localStorage.getItem('bubbleLanguage') || 'fr';
 
     // Ensure translations object exists
     if (!window.translations) {
@@ -394,7 +394,7 @@
    * Get translated ETF labels
    */
   function getETFLabels() {
-    const lang = localStorage.getItem('preferredLanguage') || 'fr';
+    const lang = localStorage.getItem('bubbleLanguage') || 'fr';
     const t = window.translations || {};
 
     return {
@@ -484,7 +484,7 @@
   }
 
   function formatChartData(data, strategy) {
-    const lang = localStorage.getItem('preferredLanguage') || 'fr';
+    const lang = localStorage.getItem('bubbleLanguage') || 'fr';
     const locale = lang === 'en' ? 'en-US' : 'fr-FR';
     const normalizedRows = ensureNormalizedCache(data);
     const labels = normalizedRows.map(d => {

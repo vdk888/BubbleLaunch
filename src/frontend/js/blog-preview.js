@@ -38,7 +38,7 @@ async function loadBlogPreview() {
     }
 
     // Get current language
-    const currentLang = localStorage.getItem('preferredLanguage') || 'fr';
+    const currentLang = localStorage.getItem('bubbleLanguage') || 'fr';
 
     // Render blog tiles
     previewGrid.innerHTML = publishedPosts.map(post => {
