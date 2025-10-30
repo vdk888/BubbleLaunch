@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bubble Invest · Tarifs alignés avec vos intérêts</title>
+    <meta
+      name="description"
+      content="Découvrez les offres Bubble Invest : tarifs transparents, sans pourcentage d’actifs ni frais cachés. Des plans pensés pour vous redonner la valeur."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
+    <link rel="stylesheet" href="/assets/styles/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="pricing-page">
+    <header>
+      <div class="container">
+        <div class="brand">
+          <a href="/" class="logo-link">
+            <div class="logo" style="display: flex; align-items: center; gap: 0.18em">
+              <span style="display: flex; align-items: center"
+                ><svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 72 72"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="display: inline-block; vertical-align: middle"
+                >
+                  <circle
+                    cx="36"
+                    cy="41"
+                    r="26"
+                    stroke="#000"
+                    stroke-width="6"
+                    stroke-linecap="round"
+                    stroke-dasharray="145 29"
+                    stroke-dashoffset="10"
+                  />
+                  <circle cx="59" cy="21" r="6" fill="#000" /></svg></span
+              ><span>Bubble.</span>
+            </div>
+          </a>
+          <div class="tagline" data-translate="hero.tagline">L'agent d'investissement transparent.</div>
+        </div>
+        <div class="header-right">
+          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+          <nav class="desktop-nav">
+            <a href="/#about" data-translate="nav.vision">Vision</a>
+            <div class="nav-dropdown">
+              <a href="#" class="nav-dropdown-toggle" data-translate="nav.solution">Solution</a>
+              <div class="nav-dropdown-menu">
+                <a href="/#approach" data-translate="nav.approach">Approche</a>
+                <a href="/#vision" data-translate="nav.build">Produit</a>
+              </div>
+            </div>
+            <a href="/blog" data-translate="nav.blog">Blog</a>
+            <a href="/businesses" data-translate="nav.businesses">Entreprises</a>
+            <a href="/#waitlist" data-translate="nav.join">Nous Rejoindre</a>
+            <div class="language-switcher">
+              <button id="fr-switch" class="active">FR</button>
+              <button id="en-switch">EN</button>
+            </div>
+          </nav>
+          <div class="mobile-language-switcher">
+            <button id="fr-switch-mobile" class="active">FR</button>
+            <button id="en-switch-mobile">EN</button>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav-overlay" id="mobile-nav">
+        <div class="mobile-nav-header">
+          <div class="mobile-logo">
+            <svg width="28" height="28" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle
+                cx="36"
+                cy="41"
+                r="26"
+                stroke="#000"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-dasharray="145 29"
+                stroke-dashoffset="10"
+              />
+              <circle cx="59" cy="21" r="6" fill="#000" />
+            </svg>
+            <span>Bubble.</span>
+          </div>
+          <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Fermer le menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+        <div class="mobile-nav-links">
+          <a href="/#about" data-translate="nav.vision">Vision</a>
+          <button class="mobile-nav-dropdown-toggle" data-target="solution">
+            <span data-translate="nav.solution">Solution</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="mobile-nav-dropdown-menu" id="solution">
+            <a href="/#approach" data-translate="nav.approach">Approche</a>
+            <a href="/#vision" data-translate="nav.build">Produit</a>
+          </div>
+          <a href="/blog" data-translate="nav.blog">Blog</a>
+          <a href="/businesses" data-translate="nav.businesses">Entreprises</a>
+          <a href="/#waitlist" data-translate="nav.join">Nous Rejoindre</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="pricing-hero">
+      <div class="container">
+        <div class="pricing-hero-copy">
+          <p class="hero-eyebrow">Tarification</p>
+          <h1>Un prix aligné avec vos intérêts</h1>
+          <p class="hero-subtitle">
+            Des offres simples et prévisibles — aucun % d’AUM, aucune couche cachée.
+          </p>
+          <p class="hero-helper">
+            Construisez votre <span class="tooltip-term" data-tooltip-key="portfolio" tabindex="0">portefeuille</span> avec
+            une automatisation transparente qui vous restitue la valeur.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Value Proposition: What You're Paying For -->
+    <section class="pricing-value-prop">
+      <div class="container">
+        <div class="value-prop-content">
+          <h2>Ce que vous payez : l'accès, pas le contrôle</h2>
+
+          <div class="value-prop-grid">
+            <div class="value-prop-card">
+              <div class="value-prop-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>
+                </svg>
+              </div>
+              <h3>Accès à la Plateforme</h3>
+              <p>
+                Votre abonnement couvre <strong>l'accès à notre agent IA, nos APIs et notre infrastructure</strong> :
+                serveurs, calculs, données en temps réel, backtests.
+              </p>
+            </div>
+
+            <div class="value-prop-card">
+              <div class="value-prop-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                  <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+              </div>
+              <h3>IA qui Vous Éduque</h3>
+              <p>
+                Notre IA <strong>vous donne des insights, des analyses et des recommandations</strong>.
+                Elle ne prend <strong>jamais</strong> de décisions d'investissement à votre place.
+              </p>
+            </div>
+
+            <div class="value-prop-card">
+              <div class="value-prop-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/>
+                </svg>
+              </div>
+              <h3>Vous Gardez le Contrôle</h3>
+              <p>
+                <strong>100% de vos décisions d'investissement vous appartiennent</strong>.
+                Vous validez chaque trade. Vous restez propriétaire de vos comptes courtiers.
+              </p>
+            </div>
+          </div>
+
+          <div class="value-prop-highlight">
+            <p>
+              <strong>Important :</strong> Bubble est un <strong>outil de décision</strong>,
+              pas un service de gestion d'actifs. Nous vous aidons à investir mieux,
+              mais <strong>vous restez aux commandes</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="pricing-main">
+      <section class="pricing-plans">
+        <div class="container">
+          <div class="pricing-grid">
+            <article class="pricing-card plan-free">
+              <div class="plan-header">
+                <p class="plan-name">Gratuit</p>
+                <p class="plan-tagline"><em>Découvrir &amp; Valider</em></p>
+              </div>
+              <div class="plan-price">
+                <span class="plan-price-value">0&nbsp;€</span>
+                <span class="plan-price-period">/ mois · indicatif</span>
+              </div>
+              <p class="plan-purpose">Prouver la valeur et guider l’onboarding.</p>
+              <div class="plan-cta-group">
+                <a href="/#waitlist" class="plan-cta">Rejoindre la liste</a>
+              </div>
+              <div class="plan-divider"></div>
+              <ul class="plan-feature-list">
+                <li>
+                  1 screener statique ou import CSV (<span class="tooltip-term" data-tooltip-key="universe" tabindex="0"
+                    >univers</span
+                  >)
+                </li>
+                <li>
+                  <span class="tooltip-term" data-tooltip-key="strategy" tabindex="0">Stratégie Equal Weight</span>
+                </li>
+                <li>
+                  <span class="tooltip-term" data-tooltip-key="revaluation" tabindex="0">Réévaluation</span> mensuelle manuelle
+                </li>
+                <li>
+                  1 <span class="tooltip-term" data-tooltip-key="pocket" tabindex="0">poche</span>, 10
+                  <span class="tooltip-term" data-tooltip-key="asset" tabindex="0">actifs</span>,
+                  <span class="tooltip-term" data-tooltip-key="backtest" tabindex="0">backtest</span> court
+                </li>
+                <li>Tableau de performance basique</li>
+              </ul>
+            </article>
+
+            <article class="pricing-card plan-starter">
+              <div class="plan-header">
+                <p class="plan-name">Starter</p>
+                <p class="plan-tagline"><em>Automatisation Guidée</em></p>
+              </div>
+              <div class="plan-price">
+                <span class="plan-price-value">1–3&nbsp;€</span>
+                <span class="plan-price-period">/ mois · indicatif</span>
+              </div>
+              <p class="plan-purpose">Relier la découverte à l’automatisation.</p>
+              <div class="plan-cta-group">
+                <a href="/#waitlist" class="plan-cta">Demander l’accès</a>
+              </div>
+              <div class="plan-divider"></div>
+              <ul class="plan-feature-list">
+                <li>
+                  3 screeners, mise à jour hebdomadaire (<span class="tooltip-term" data-tooltip-key="universe" tabindex="0"
+                    >univers</span
+                  >)
+                </li>
+                <li>
+                  <span class="tooltip-term" data-tooltip-key="riskParity" tabindex="0">Stratégies Risk Parity</span> et Minimum
+                  Variance
+                </li>
+                <li>
+                  <span class="tooltip-term" data-tooltip-key="revaluation" tabindex="0">Réévaluation</span> mensuelle
+                  automatique
+                </li>
+                <li>
+                  File <span class="tooltip-term" data-tooltip-key="computePriority" tabindex="0">compute</span> standard,
+                  <span class="tooltip-term" data-tooltip-key="backtest" tabindex="0">backtests</span> ≤ 5 ans
+                </li>
+                <li>Support email communautaire</li>
+              </ul>
+            </article>
+
+            <article class="pricing-card plan-plus plan-highlight">
+              <div class="plan-badge">Le plus populaire</div>
+              <div class="plan-header">
+                <p class="plan-name">Plus</p>
+                <p class="plan-tagline"><em>Intelligence Active</em></p>
+              </div>
+              <div class="plan-price">
+                <span class="plan-price-value">5–7&nbsp;€</span>
+                <span class="plan-price-period">/ mois · indicatif</span>
+              </div>
+              <p class="plan-purpose">Débloquer données quotidiennes et signaux intelligents.</p>
+              <div class="plan-cta-group">
+                <a href="/#waitlist" class="plan-cta plan-cta-primary">Se préinscrire</a>
+              </div>
+              <div class="plan-divider"></div>
+              <ul class="plan-feature-list">
+                <li>
+                  <span class="tooltip-term" data-tooltip-key="universe" tabindex="0">Univers</span> illimités, mise à jour
+                  quotidienne
+                </li>
+                <li>
+                  <span class="tooltip-term" data-tooltip-key="multiFactor" tabindex="0">Détection de régimes macro</span>,
+                  momentum/low-vol, signaux techniques
+                </li>
+                <li>
+                  <span class="tooltip-term" data-tooltip-key="revaluation" tabindex="0">Réévaluation</span> hebdomadaire +
+                  alertes
+                </li>
+                <li>
+                  Compute priorité moyenne; longs <span class="tooltip-term" data-tooltip-key="backtest" tabindex="0"
+                    >backtests</span
+                  >; scénarios
+                </li>
+                <li>Rapports : Sharpe, volatilité, drawdown, turnover</li>
+              </ul>
+            </article>
+
+            <article class="pricing-card plan-pro">
+              <div class="plan-header">
+                <p class="plan-name">Pro</p>
+                <p class="plan-tagline"><em>Contrôle Expert</em></p>
+              </div>
+              <div class="plan-price">
+                <span class="plan-price-value">10–15&nbsp;€</span>
+                <span class="plan-price-period">/ mois · indicatif</span>
+              </div>
+              <p class="plan-purpose">Puissance institutionnelle et profondeur analytique.</p>
+              <div class="plan-cta-group">
+                <a href="/#waitlist" class="plan-cta">Parler avec nous</a>
+              </div>
+              <div class="plan-divider"></div>
+              <ul class="plan-feature-list">
+                <li>
+                  <span class="tooltip-term" data-tooltip-key="universe" tabindex="0">Univers</span> dynamiques avec fondamentaux
+                  et estimates
+                </li>
+                <li>
+                  Scoring multi-facteurs par <span class="tooltip-term" data-tooltip-key="pocket" tabindex="0">poche</span>,
+                  contraintes avancées
+                </li>
+                <li>
+                  <span class="tooltip-term" data-tooltip-key="optimization" tabindex="0">Optimisation</span> robuste, pénalités
+                  de turnover, overlay cash/<span class="tooltip-term" data-tooltip-key="allocation" tabindex="0"
+                    >allocation</span
+                  >
+                </li>
+                <li>
+                  Compute priorité haute; <span class="tooltip-term" data-tooltip-key="backtest" tabindex="0">backtests</span>
+                  multi-régimes; grid search
+                </li>
+                <li>
+                  <span class="tooltip-term" data-tooltip-key="revaluation" tabindex="0">Réévaluation</span> quotidienne simulée,
+                  fenêtres d’exécution réglables
+                </li>
+                <li>Exports d’ordres et webhooks</li>
+                <li>
+                  Rapports : <span class="tooltip-term" data-tooltip-key="attribution" tabindex="0">attribution</span> &
+                  diagnostics de <span class="tooltip-term" data-tooltip-key="drift" tabindex="0">drift</span>
+                </li>
+              </ul>
+            </article>
+
+            <article class="pricing-card plan-enterprise">
+              <div class="plan-header">
+                <p class="plan-name">Enterprise</p>
+                <p class="plan-tagline"><em>Dédié &amp; Gouverné</em></p>
+              </div>
+              <div class="plan-price">
+                <span class="plan-price-value">Sur devis</span>
+              </div>
+              <p class="plan-purpose">Intégration institutionnelle et gouvernance.</p>
+              <div class="plan-cta-group">
+                <a href="mailto:contact@bubbleinvest.org" class="plan-cta">Contacter les ventes</a>
+              </div>
+              <div class="plan-divider"></div>
+              <ul class="plan-feature-list">
+                <li>SSO et workspaces</li>
+                <li>Compute dédié</li>
+                <li>Connecteurs de données privés, SLA, gouvernance</li>
+                <li>Auditabilité et déploiements isolés</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="pricing-faq">
+        <div class="container">
+          <h2>Questions Fréquentes</h2>
+
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>
+                <h3>Que payez-vous exactement avec un abonnement Bubble ?</h3>
+              </summary>
+              <p>
+                Vous payez pour <strong>l'accès à notre plateforme d'analyse IA</strong> :
+                serveurs, APIs de données tierces (Uncle Stock, Yahoo Finance, etc.),
+                calculs de backtests, alertes en temps réel, et notre agent conversationnel.
+                <strong>Vous ne payez PAS pour de la gestion d'actifs.</strong>
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                <h3>L'IA prend-elle des décisions d'investissement pour moi ?</h3>
+              </summary>
+              <p>
+                <strong>Non, jamais.</strong> Notre IA vous fournit des <strong>analyses, insights, backtests et recommandations</strong>.
+                Mais <strong>vous validez chaque décision d'investissement</strong>.
+                Vous êtes aux commandes de vos comptes courtiers (IBKR, Alpaca, Saxo).
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                <h3>Quelle est la différence avec un robo-advisor comme Yomoni ou Nalo ?</h3>
+              </summary>
+              <p>
+                Yomoni et Nalo sont des <strong>services de gestion d'actifs</strong> :
+                ils gèrent votre argent, prennent les décisions, et vous facturent un % de vos actifs.
+                <br><br>
+                Bubble est un <strong>outil de décision</strong> : nous vous donnons les analyses et recommandations,
+                mais <strong>vous gardez le contrôle total</strong> de vos investissements et vos comptes courtiers.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                <h3>Pourquoi un prix fixe plutôt qu'un % d'actifs ?</h3>
+              </summary>
+              <p>
+                Parce que nous <strong>ne gérons pas vos actifs</strong>.
+                Notre coût est lié à <strong>l'infrastructure (serveurs, APIs, calculs)</strong>,
+                pas à la taille de votre portefeuille.
+                <br><br>
+                Un prix fixe signifie <strong>zéro conflit d'intérêt</strong> :
+                nous ne gagnons pas plus si vous investissez plus.
+                Notre succès dépend de la <strong>qualité de nos outils</strong>, pas de vos AUM.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                <h3>Qui garde le contrôle de mes comptes courtiers ?</h3>
+              </summary>
+              <p>
+                <strong>Vous, à 100%.</strong>
+                Vous maintenez vos propres comptes chez Interactive Brokers, Alpaca ou Saxo Bank.
+                Bubble se connecte via API pour <strong>récupérer vos positions</strong> et
+                <strong>vous suggérer des ordres</strong>, mais <strong>vous validez chaque transaction</strong>.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                <h3>Est-ce que Bubble est régulé par l'AMF ?</h3>
+              </summary>
+              <p>
+                Bubble est un <strong>outil de décision et d'analyse</strong>,
+                pas un service de gestion d'actifs.
+                Cela signifie un cadre réglementaire différent des robo-advisors traditionnels.
+                <br><br>
+                Vos actifs restent chez des courtiers régulés (IBKR, Alpaca, Saxo),
+                couverts par leurs protections respectives (SIPC aux US, FCA/CySEC en Europe).
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="pricing-notes-section">
+        <div class="container">
+          <div class="pricing-notes">
+            <p><strong>Prix indicatifs</strong>, susceptibles d’évoluer.</p>
+            <p>
+              ARPU progressif 0 → 3 → 7 → 15 €. Annualisation –15 %. « Founder plan » early birds. Exemple bundle « Plus + Data
+              Premium » ≈ 9,90 €.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="pricing-tooltip-hint">
+      <div class="container">
+        <p>Survolez ou touchez les concepts soulignés pour afficher une explication.</p>
+      </div>
+    </section>
+
+    <script src="/i18n/translations.js"></script>
+    <script src="/js/script.js"></script>
+    <script>
+      (function () {
+        const tooltipContent = {
+          asset: "Un instrument financier dans lequel on peut investir — une action, un ETF ou une obligation. Chaque actif représente une portion d’un marché ou d’une entreprise.",
+          universe: "L’ensemble des actifs utilisés par une stratégie donnée — définit où le système cherche des opportunités.",
+          pocket: "Un « mini-portefeuille » thématique (ex. « Biotech Momentum »). Chaque poche suit sa propre stratégie.",
+          portfolio: "L’ensemble de vos poches et investissements, représentant votre exposition, votre risque et votre diversification.",
+          strategy: "La « recette » définissant la sélection et la pondération des actifs (Equal Weight, Risk Parity, Multi-facteurs).",
+          allocation: "Répartition du capital entre les actifs. Une bonne allocation équilibre risque et rendement.",
+          revaluation: "Fréquence à laquelle le portefeuille est ajusté pour rester aligné à sa stratégie.",
+          computePriority: "La vitesse et la profondeur de calcul associées à votre plan. Les offres supérieures bénéficient de traitements plus rapides et détaillés.",
+          backtest: "Une simulation sur données historiques pour évaluer la performance d’une stratégie.",
+          riskParity: "Méthode qui répartit le risque de façon égale entre les poches pour éviter la surexposition.",
+          multiFactor: "Combine valeur, qualité, momentum et volatilité pour classer les actifs intelligemment.",
+          optimization: "Processus mathématique qui détermine les meilleurs poids d’actifs selon risque et rendement.",
+          attribution: "Analyse de la contribution de chaque facteur ou poche à la performance.",
+          drift: "Écart entre l’allocation cible et la répartition réelle causé par les mouvements de marché."
+        };
+
+        let tooltipEl = null;
+        let hideTimeout = null;
+
+        const ensureTooltip = () => {
+          if (!tooltipEl) {
+            tooltipEl = document.createElement("div");
+            tooltipEl.className = "pricing-tooltip";
+            tooltipEl.setAttribute("role", "tooltip");
+            document.body.appendChild(tooltipEl);
+          }
+        };
+
+        const showTooltip = (target) => {
+          const key = target.getAttribute("data-tooltip-key");
+          if (!key || !tooltipContent[key]) return;
+
+          ensureTooltip();
+
+          if (hideTimeout) {
+            clearTimeout(hideTimeout);
+            hideTimeout = null;
+          }
+
+          tooltipEl.textContent = tooltipContent[key];
+          tooltipEl.classList.add("visible");
+          positionTooltip(target);
+        };
+
+        const hideTooltip = () => {
+          if (!tooltipEl) return;
+          tooltipEl.classList.remove("visible");
+        };
+
+        const scheduleHide = () => {
+          hideTimeout = window.setTimeout(hideTooltip, 1500);
+        };
+
+        const positionTooltip = (target) => {
+          if (!tooltipEl) return;
+
+          tooltipEl.style.visibility = "hidden";
+          tooltipEl.style.left = "0";
+          tooltipEl.style.top = "0";
+
+          const rect = target.getBoundingClientRect();
+          const tooltipRect = tooltipEl.getBoundingClientRect();
+          const gap = 12;
+
+          let top = window.scrollY + rect.bottom + gap;
+          let left = window.scrollX + rect.left + rect.width / 2 - tooltipRect.width / 2;
+
+          const viewportWidth = document.documentElement.clientWidth;
+          const maxLeft = window.scrollX + viewportWidth - tooltipRect.width - 16;
+          const minLeft = window.scrollX + 16;
+          left = Math.min(Math.max(left, minLeft), maxLeft);
+
+          if (top + tooltipRect.height > window.scrollY + window.innerHeight - 16) {
+            top = window.scrollY + rect.top - tooltipRect.height - gap;
+          }
+
+          tooltipEl.style.left = `${left}px`;
+          tooltipEl.style.top = `${top}px`;
+          tooltipEl.style.visibility = "visible";
+        };
+
+        const targets = document.querySelectorAll(".tooltip-term[data-tooltip-key]");
+        targets.forEach((target) => {
+          target.classList.add("tooltip-enabled");
+          target.addEventListener("mouseenter", () => showTooltip(target));
+          target.addEventListener("focus", () => showTooltip(target));
+          target.addEventListener("mouseleave", scheduleHide);
+          target.addEventListener("blur", scheduleHide);
+          target.addEventListener("click", (event) => {
+            event.preventDefault();
+            showTooltip(target);
+          });
+          target.addEventListener("touchend", (event) => {
+            event.preventDefault();
+            showTooltip(target);
+          });
+        });
+
+        document.addEventListener("scroll", () => {
+          if (!tooltipEl || !tooltipEl.classList.contains("visible")) return;
+          hideTooltip();
+        });
+
+        document.addEventListener("touchstart", (event) => {
+          if (!event.target.closest(".tooltip-term")) {
+            scheduleHide();
+          }
+        });
+
+        window.addEventListener("resize", () => {
+          if (!tooltipEl || !tooltipEl.classList.contains("visible")) return;
+          hideTooltip();
+        });
+      })();
+    </script>
+  </body>
+</html>

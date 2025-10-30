@@ -129,6 +129,10 @@ router.get("/portfolio-simulator", (req, res) => {
   );
 });
 
+router.get(["/pricing", "/pricing.html"], (req, res) => {
+  res.sendFile(path.join(frPagesDir, "pricing.html"));
+});
+
 /**
  * Privacy Policy page (SEO + GDPR compliance)
  */
@@ -187,6 +191,10 @@ router.get("/en/blog/:slug", async (req, res) => {
 
 router.get("/en/portfolio-simulator", (req, res) => {
   res.sendFile(path.join(enPagesDir, "portfolio-simulator.html"));
+});
+
+router.get(["/en/pricing", "/en/pricing.html"], (req, res) => {
+  res.sendFile(path.join(enPagesDir, "pricing.html"));
 });
 
 router.get("/en/privacy", (req, res) => {

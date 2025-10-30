@@ -4,7 +4,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is **Bubble**, a fintech startup revolutionizing investment through AI-powered robo-advisory services. The application consists of a multilingual waitlist landing page with an integrated AI chatbot and blog system, built with vanilla JavaScript and Node.js/Express.
+This is **Bubble Invest**, a fintech startup revolutionizing investment through an AI-powered portfolio management platform. **Bubble is NOT a traditional robo-advisor** - it's building an active portfolio management system with quantitative stock selection, multi-factor scoring, and automated execution.
+
+**What Bubble Actually Is:**
+- **AI-powered portfolio management platform**: Combines quantitative strategies (momentum, quality, risk-adjusted) with automated broker execution (Interactive Brokers, Alpaca, Saxo Bank)
+- **Active stock/ETF selection**: NOT pre-packaged ETF portfolios - uses multi-factor scoring engine (momentum, quality, risk-adjusted) applied to data from third-party sources
+- **Fixed-fee model**: 10€/month subscription (NOT percentage-based AUM fees)
+- **Full transparency**: All strategies, backtests (17+ years), and rules visible to users
+- **Educational + Autonomous**: AI chatbot for financial education + automated trading capabilities
+- **Multi-asset**: Stocks, ETFs, and (roadmap) cryptocurrencies
+- **User-controlled accounts**: Users maintain full control with their own brokerage accounts (Interactive Brokers, Alpaca, Saxo Bank) - NOT a custody model
+
+**Current Web Application:**
+The current codebase is a multilingual waitlist landing page with integrated AI chatbot, blog system, and interactive portfolio simulator demo, built with vanilla JavaScript and Node.js/Express. This serves as the public-facing website while the core portfolio management system is being developed in beta. The beta product now includes Saxo Bank API integration alongside Interactive Brokers and Alpaca.
+
+**Key Differentiators from Traditional Robo-Advisors:**
+1. **Active management**: Quantitative stock screening vs. passive ETF allocation
+2. **Institutional methodology**: Risk parity optimization, regime detection, Sharpe-optimized allocation
+3. **Fixed fees**: 10€/month vs. 0.85-1.6% AUM percentage fees
+4. **Build in public**: Transparent development, sharing learnings and iterations
+5. **Direct broker integration**: Users maintain control with their own brokerage accounts (Interactive Brokers, Alpaca, Saxo Bank) - NO custody model
 
 ## Commands
 

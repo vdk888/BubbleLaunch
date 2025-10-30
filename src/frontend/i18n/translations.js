@@ -82,6 +82,10 @@ const translations = {
     en: "We've crafted a full‑fledged AI agent that can act as your private manager: personalized advice, automated trading, and accessible financial education.",
     fr: "Nous avons créé un véritable agent IA complet capable de jouer le rôle de votre gérant privé : conseils personnalisés, trading automatique, et éducation financière accessible.",
   },
+  "vision.platform.learn_more": {
+    en: "Learn more →",
+    fr: "En savoir plus →",
+  },
   "vision.cost.title": {
     en: "Rethought Cost Structure",
     fr: "Structure de Coûts Repensée",

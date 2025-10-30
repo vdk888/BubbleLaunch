@@ -11,19 +11,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const header = document.querySelector('header');
   const scrollThreshold = 50; // Scroll threshold in pixels
 
-  window.addEventListener('scroll', function() {
-    if (window.innerWidth <= 768) { // Only on mobile
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  if (header) {
+    window.addEventListener('scroll', function() {
+      if (window.innerWidth <= 768) { // Only on mobile
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-      if (scrollTop > scrollThreshold) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
+        if (scrollTop > scrollThreshold) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+
+        lastScrollTop = scrollTop;
       }
-
-      lastScrollTop = scrollTop;
-    }
-  }, { passive: true });
+    }, { passive: true });
+  }
 
   // Get language buttons (desktop)
   const enButton = document.getElementById("en-switch");
@@ -66,8 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
     currentLanguage = lang;
 
     // Update active state on desktop buttons
-    enButton.classList.toggle("active", lang === "en");
-    frButton.classList.toggle("active", lang === "fr");
+    if (enButton) enButton.classList.toggle("active", lang === "en");
+    if (frButton) frButton.classList.toggle("active", lang === "fr");
 
     // Update active state on mobile buttons
     if (enButtonMobile) enButtonMobile.classList.toggle("active", lang === "en");
@@ -162,8 +164,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Set up event listeners for desktop language switches
-  enButton.addEventListener("click", () => handleLanguageSwitch("en"));
-  frButton.addEventListener("click", () => handleLanguageSwitch("fr"));
+  if (enButton) enButton.addEventListener("click", () => handleLanguageSwitch("en"));
+  if (frButton) frButton.addEventListener("click", () => handleLanguageSwitch("fr"));
   
   // Set up event listeners for mobile language switches
   if (enButtonMobile) enButtonMobile.addEventListener("click", () => handleLanguageSwitch("en"));
