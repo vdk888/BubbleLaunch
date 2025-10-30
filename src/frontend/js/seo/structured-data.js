@@ -30,12 +30,12 @@ const LOCALES = {
 function createFinancialServiceSchema(lang = "fr") {
   const locale = LOCALES[lang] || LOCALES.fr;
   const descriptions = {
-    fr: "Plateforme d'investissement pilotée par IA avec frais fixes de 10€/mois. Gestion automatisée, transparente et accessible.",
-    en: "AI-powered investment platform from France with a transparent €10/month subscription. Automated, discreet, and built for modern investors.",
+    fr: "Plateforme d'investissement pilotée par IA avec un tarif transparent de 0 à 10€/mois. Intelligence automatisée, stratégies ETF et alternative aux robo-advisors (ex. Yomoni, Nalo) comme aux conseillers traditionnels.",
+    en: "AI-powered investment platform from France with transparent €0–10/month pricing. Automated insights, ETF-first strategies, and an alternative to robo-advisors (e.g., Yomoni, Nalo) and traditional advisers.",
   };
   const offerDescriptions = {
-    fr: "Abonnement mensuel fixe pour gestion de portefeuille par IA.",
-    en: "Flat monthly subscription for AI-managed portfolios.",
+    fr: "Abonnement mensuel (0 à 10€/mois) donnant accès à notre agent IA et à nos infrastructures.",
+    en: "Monthly plans (€0–10) providing access to our AI agent and infrastructure.",
   };
 
   return {
@@ -48,7 +48,7 @@ function createFinancialServiceSchema(lang = "fr") {
     "url": SITE_URL,
     "logo": ASSET_LOGO,
     "image": ASSET_LOGO,
-    "priceRange": "€10/mois",
+    "priceRange": "€0-10/mois",
     "inLanguage": [locale.locale],
     "address": {
       "@type": "PostalAddress",
@@ -62,7 +62,7 @@ function createFinancialServiceSchema(lang = "fr") {
     ],
     "offers": {
       "@type": "Offer",
-      "price": "10.00",
+      "price": "8.00",
       "priceCurrency": "EUR",
       "priceValidUntil": "2025-12-31",
       "description": offerDescriptions[lang] || offerDescriptions.fr,
@@ -103,7 +103,7 @@ function createFaqSchema(lang = "fr") {
       {
         question: "Quelle est la différence entre Bubble et les robo-advisors traditionnels ?",
         answer:
-          "Bubble utilise un modèle de frais fixes (10€/mois) plutôt qu'un pourcentage de vos actifs (1,6 % par an en moyenne chez Yomoni ou Nalo). L'IA gère votre portefeuille de bout en bout, avec des conseils personnalisés, une transparence totale et une pédagogie continue.",
+          "Bubble utilise un abonnement mensuel transparent (0 à 10€/mois) plutôt qu'un pourcentage de vos actifs (1,6 % par an en moyenne chez Yomoni ou Nalo). L'IA gère nos comptes, vous fournit les mêmes allocations expliquées et vous restez décisionnaire.",
       },
       {
         question: "Comment l'IA gère-t-elle mon portefeuille ?",
@@ -113,7 +113,7 @@ function createFaqSchema(lang = "fr") {
       {
         question: "Pourquoi des frais fixes sont-ils avantageux ?",
         answer:
-          "À 200 000€ investis, des frais annuels de 2 % coûtent 308 000€ sur 30 ans. Avec Bubble (10€/mois), le coût tombe à 3 600€ sur la même période. Vous conservez votre capital pour vos projets plutôt que de payer des intermédiaires.",
+          "À 200 000€ investis, des frais annuels de 2 % coûtent 308 000€ sur 30 ans. Avec Bubble (exemple à 8€/mois dans notre fourchette 0-10€), le coût tombe à ~2 880€ sur la même période. Vous conservez votre capital pour vos projets plutôt que de payer des intermédiaires.",
       },
       {
         question: "Comment Bubble assure la transparence de ses stratégies ?",
@@ -125,7 +125,7 @@ function createFaqSchema(lang = "fr") {
       {
         question: "How is Bubble different from traditional robo-advisors?",
         answer:
-          "Bubble charges a flat €10/month instead of 1.6% of assets under management. Our full-stack AI agent delivers personalised advice, automated execution, and transparent quantitative strategies—without the usual opacity.",
+          "Bubble charges transparent €0–10/month plans instead of 1.6% of assets under management. Our full-stack AI agent delivers personalised advice, automated execution (for Bubble's accounts today), and transparent quantitative strategies—without the usual opacity.",
       },
       {
         question: "How does the AI manage my portfolio?",
@@ -135,7 +135,7 @@ function createFaqSchema(lang = "fr") {
       {
         question: "Why are fixed fees more efficient?",
         answer:
-          "Investing €200k with 2% yearly fees costs €308k over 30 years. Bubble's €10/month plan costs €3,600 over the same period, keeping capital on your side for projects and compounding.",
+          "Investing €200k with 2% yearly fees costs €308k over 30 years. Bubble's €8/month illustrative plan (within our €0–10 range) costs about €2,880 over the same period, keeping capital on your side for projects and compounding.",
       },
       {
         question: "How transparent are Bubble's strategies?",

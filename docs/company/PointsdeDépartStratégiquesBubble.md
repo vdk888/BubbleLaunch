@@ -7,7 +7,7 @@
 
 **→ Transition vers les 3 pain points :**
 - **Lourdeur manuelle** : "Le secteur refuse l'automatisation alors qu'on peut faire 100x mieux"
-- **Coûts élevés** : "Les clients paient 2-3% pour de la sous-performance quand on peut faire 10€/mois"
+- **Coûts élevés** : "Les clients paient 2-3% pour de la sous-performance quand on propose un abonnement à un chiffre (ex. 0-10€/mois)"
 - **Manque de transparence** : "Zero transparence sur les décisions = perte de confiance = opportunity massive"
 
 ---
@@ -70,7 +70,7 @@
 - Pas de langue de bois, pas de produits cachés
 
 ### 2. **COÛT FIXE RÉVOLUTIONNAIRE**
-- 10€/mois vs 2-3% d'AUM
+- Abonnement à un chiffre (ex. 0-10€/mois) vs 2-3% d'AUM
 - Pas de conflit d'intérêt
 - Reste abordable même avec un gros portefeuille
 

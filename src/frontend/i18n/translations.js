@@ -75,12 +75,12 @@ const translations = {
     fr: "Un Agent d'Investissement Complet",
   },
   "vision.platform.description1": {
-    en: "We're developing the tool we use for our own investments: an automated system that optimizes portfolios through transparent quantitative strategies and rigorous backtests, rebalanced regularly.",
-    fr: "Nous développons l'outil que nous utilisons pour nos investissements personnels : un système automatique qui optimise les portefeuilles via des stratégies quantitatives transparentes et des backtests rigoureux, rééquilibrés régulièrement.",
+    en: "We're developing the tool we use for our own investments: an automated system that optimizes ETF-first portfolios through transparent quantitative strategies and rigorous backtests, rebalanced regularly.",
+    fr: "Nous développons l'outil que nous utilisons pour nos investissements personnels : un système automatique qui optimise des portefeuilles orientés ETF via des stratégies quantitatives transparentes et des backtests rigoureux, rééquilibrés régulièrement.",
   },
   "vision.platform.description2": {
-    en: "We've crafted a full‑fledged AI agent that can act as your private manager: personalized advice, automated trading, and accessible financial education.",
-    fr: "Nous avons créé un véritable agent IA complet capable de jouer le rôle de votre gérant privé : conseils personnalisés, trading automatique, et éducation financière accessible.",
+    en: "We've crafted a full‑fledged AI agent that can act as your private manager: personalized advice, automated trading (for our Bubble accounts for now), and execution-ready guidance so you stay in command.",
+    fr: "Nous avons créé un agent IA complet capable de jouer le rôle de votre gérant privé : conseils personnalisés, trading automatisé (pour nos comptes Bubble pour le moment), et instructions prêtes à l'emploi afin que vous restiez aux commandes.",
   },
   "vision.platform.learn_more": {
     en: "Learn more →",
@@ -91,8 +91,8 @@ const translations = {
     fr: "Structure de Coûts Repensée",
   },
   "vision.cost.description": {
-    en: "A fixed cloud-tool subscription (€10/month) instead of a percentage of your assets like a traditional manager (2% fees). The hedge‑fund approach becomes accessible to portfolios of any size.",
-    fr: "Un abonnement fixe pour outil Cloud (10€/mois) plutôt qu'un pourcentage de vos actifs comme chez un gestionnaire traditionnel (2% de frais). L'approche hedge fund devient accessible dans toutes les poches.",
+    en: "A fixed cloud-tool subscription (plans from €0 to €10/month) instead of a percentage of your assets like a traditional manager (2% fees). The hedge‑fund approach becomes accessible to portfolios of any size.",
+    fr: "Un abonnement fixe pour outil cloud (offres de 0 à 10€/mois) plutôt qu'un pourcentage de vos actifs comme chez un gestionnaire traditionnel (2% de frais). L'approche hedge fund devient accessible dans toutes les poches.",
   },
   "vision.ai.title": {
     en: "Accessible AI Expertise",
@@ -107,8 +107,8 @@ const translations = {
     fr: "Actifs Diversifiés",
   },
   "vision.crypto.description": {
-    en: "Our portfolios integrate all asset classes, including cryptocurrencies.",
-    fr: "Nos portefeuilles intègrent toutes les classes d'actifs, y compris les cryptomonnaies.",
+    en: "Our portfolios prioritise low-cost ETFs and extend to cryptocurrencies on our roadmap (Crypto.com integration in progress).",
+    fr: "Nos portefeuilles privilégient les ETF à faible coût et s'étendront aux cryptomonnaies sur notre feuille de route (intégration Crypto.com en cours).",
   },
   "vision.portfolio.title": {
     en: "Discover Our Portfolio Simulator",
@@ -241,8 +241,8 @@ const translations = {
     fr: "Construisons l'Avenir Ensemble",
   },
   "waitlist.subtitle": {
-    en: "We're developing this platform primarily for our own investments. If our approach seems relevant to you, we'd be delighted to count you among our early adopters.",
-    fr: "Nous développons cette plateforme en premier lieu pour nos propres investissements. Si notre approche vous semble pertinente, nous serions ravis de vous compter parmi nos early adopters.",
+    en: "We're developing this platform primarily for our own investments and sharing the same intelligence with you. If our approach seems relevant to you, we'd be delighted to count you among our early adopters.",
+    fr: "Nous développons cette plateforme d'abord pour nos propres investissements et vous partageons la même intelligence. Si notre approche vous parle, nous serions ravis de vous compter parmi nos early adopters.",
   },
   "waitlist.free": {
     en: "Joining our waitlist is completely free and without commitment. We're simply looking to meet people who share our vision of more transparent finance.",
@@ -311,20 +311,20 @@ const translations = {
     fr: "La Réalité des Frais Traditionnels sur 30 ans",
   },
   "charts.fee_impact_desc": {
-    en: "Starting with 200 000€, Bubble's fixed fee model results in 308 000€ more wealth compared to traditional 2% annual fees over 30 years.",
-    fr: "Avec 200 000€ de départ, le modèle de frais fixes de Bubble génère 308 000€ de richesse supplémentaire par rapport aux frais traditionnels de 2% annuels sur 30 ans.",
+    en: "Starting with 200 000€, Bubble's low flat-fee model (from €0 to €10/month depending on tier) keeps significantly more wealth compared to traditional 2% annual fees over 30 years.",
+    fr: "Avec 200 000€ de départ, le modèle de frais faibles et fixes de Bubble (de 0 à 10€/mois selon l'offre) conserve bien plus de patrimoine que les frais traditionnels de 2% annuels sur 30 ans.",
   },
   "charts.fee_impact_note": {
-    en: "Based on 200 000€ initial investment with 7% annual returns. Bubble: 10€/month fixed fees. Traditional: 2% annual fees.",
-    fr: "Basé sur un investissement initial de 200 000€ avec 7% de rendement annuel. Bubble : 10€/mois de frais fixes. Traditionnel : 2% de frais annuels.",
+    en: "Illustrative scenario: 200 000€ initial investment, 7% annual returns. Bubble: €8/month fixed fee example. Traditional: 2% annual fees.",
+    fr: "Scénario illustratif : investissement initial de 200 000€, rendement annuel de 7%. Bubble : exemple de frais fixes à 8€/mois. Traditionnel : 2% de frais annuels.",
   },
   "charts.subscription_advantage_title": {
     en: "Why Subscription Beats Percentage Fees",
     fr: "Pourquoi l'Abonnement Bat les Frais en Pourcentage",
   },
   "charts.subscription_advantage_desc": {
-    en: "While traditional fees grow exponentially with your portfolio, Bubble's 10€/month stays constant, maximizing your wealth accumulation.",
-    fr: "Tandis que les frais traditionnels croissent exponentiellement avec votre portefeuille, les 10€/mois de Bubble restent constants, maximisant votre accumulation de richesse.",
+    en: "While traditional fees grow exponentially with your portfolio, Bubble's €0–10/month pricing stays constant, maximizing your wealth accumulation.",
+    fr: "Tandis que les frais traditionnels croissent exponentiellement avec votre portefeuille, le tarif Bubble de 0 à 10€/mois reste constant et maximise votre accumulation de richesse.",
   },
   "charts.subscription_advantage_note": {
     en: "Cumulative fees comparison over time. Fixed subscription remains constant while percentage-based fees grow exponentially.",
@@ -337,12 +337,12 @@ const translations = {
     fr: "De quels frais parle-t-on ?",
   },
   "charts.fees_types_desc": {
-    en: "The diagram illustrates the cascade of traditional fees: advisory fees (1-2% of capital), management fees (1.5-2.5%), transaction costs, platform fees, and performance commissions. Each actor in the chain takes their cut. For a €200k portfolio, you're paying €4,000-5,400 per year. Bubble replaces all of this with a single €10/month subscription.",
-    fr: "Le schéma illustre la cascade de frais traditionnels : frais de conseil (1-2% du capital), frais de gestion (1,5-2,5%), frais de transaction, frais de plateforme, et commissions de performance. Pour un portefeuille de 200k€, vous payez 4 000€ à 5 400€ par an. Bubble remplace tout cela par un abonnement unique de 10€/mois."
+    en: "The diagram illustrates the cascade of traditional fees: advisory fees (1-2% of capital), management fees (1.5-2.5%), transaction costs, platform fees, and performance commissions. Each actor in the chain takes their cut. For a €200k portfolio, you're paying €4,000-5,400 per year. Bubble replaces all of this with one transparent €0–10/month subscription.",
+    fr: "Le schéma illustre la cascade de frais traditionnels : frais de conseil (1-2% du capital), frais de gestion (1,5-2,5%), frais de transaction, frais de plateforme et commissions de performance. Pour un portefeuille de 200 k€, vous payez 4 000 à 5 400€ par an. Bubble remplace tout cela par un abonnement transparent de 0 à 10€/mois."
   },
   "charts.fees_types_note": {
-    en: "Your banker says 'no advisory fees', but you're paying 2-3% annually through the products they sell. Each layer adds up: entry fees (2-5%), envelope fees (0.6-1%), management fees (1.5-2%), underlying fund costs (1.8-2.5%). Over 30 years, these hidden fees consume up to 50% of your potential returns. With Bubble: one transparent price, €120/year total.",
-    fr: "Votre banquier vous dit 'pas de frais de conseil', mais vous payez 2% à 3% par an via les produits qu'il vous vend. Chaque couche s'additionne : frais d'entrée (2-5%), frais d'enveloppe (0,6-1%), frais de gestion (1,5-2%), coûts des fonds sous-jacents (1,8-2,5%). Sur 30 ans, ces frais invisibles consomment jusqu'à 50% de vos rendements potentiels. Avec Bubble : un seul prix transparent, 120€/an au total."
+    en: "Your banker says 'no advisory fees', but you're paying 2-3% annually through the products they sell. Each layer adds up: entry fees (2-5%), envelope fees (0.6-1%), management fees (1.5-2%), underlying fund costs (1.8-2.5%). Over 30 years, these hidden fees consume up to 50% of your potential returns. With Bubble: one transparent example price, around €8/month (~€96/year).",
+    fr: "Votre banquier vous dit « pas de frais de conseil », mais vous payez 2 à 3% par an via les produits qu'il vend. Chaque couche s'additionne : frais d'entrée (2-5%), frais d'enveloppe (0,6-1%), frais de gestion (1,5-2%), coûts des fonds sous-jacents (1,8-2,5%). Sur 30 ans, ces frais invisibles consomment jusqu'à 50% de vos rendements potentiels. Avec Bubble : un exemple de prix transparent, environ 8€/mois (~96€/an)."
   },
 
   // --- New Slide 4: Investment Journey ---
@@ -355,8 +355,8 @@ const translations = {
     fr: "Le schéma compare les deux parcours : à gauche, le parcours traditionnel fragmente votre expérience entre 4-5 acteurs aux intérêts conflictuels (banquier qui vend des produits maison, conseiller rémunéré aux commissions, gérant dont l'opacité protège les frais, plateforme qui ajoute des coûts). Chaque étape ajoute délais et frais séparés. À droite, Bubble unifie tout : un agent IA, zéro conflit d'intérêts, disponible 24/7."
   },
   "charts.journey_note": {
-    en: "Traditional path: bank appointment (waits, limited hours) → biased advice (commission-driven) → 'house fund' selection (expensive, underperforming) → delayed reporting (quarterly at best) → hidden fee cascade. Bubble path: instant AI answers (anytime) → transparent strategies (backtested, explained) → automated execution (optimal timing) → real-time tracking (every day). The entire value chain reimagined without costly intermediaries.",
-    fr: "Parcours actuel : rendez-vous bancaire (attente, horaires limités) → conseil biaisé (rémunération aux commissions) → sélection de fonds 'maison' (chers, sous-performants) → reporting différé (trimestriel au mieux) → cascade de frais cachés. Parcours Bubble : réponses IA instantanées (à tout moment) → stratégies transparentes (backtestées, expliquées) → exécution automatique (timing optimal) → suivi temps réel (chaque jour). Toute la chaîne de valeur repensée sans intermédiaires coûteux."
+    en: "Traditional path: bank appointment (waits, limited hours) → biased advice (commission-driven) → 'house fund' selection (expensive, underperforming) → delayed reporting (quarterly at best) → hidden fee cascade. Bubble path: instant AI answers (anytime) → transparent strategies (backtested, explained) → automated execution for Bubble's own portfolios with API-ready exports for you → real-time tracking (every day). The entire value chain reimagined without costly intermediaries.",
+    fr: "Parcours actuel : rendez-vous bancaire (attente, horaires limités) → conseil biaisé (rémunération aux commissions) → sélection de fonds « maison » (chers, sous-performants) → reporting différé (trimestriel au mieux) → cascade de frais cachés. Parcours Bubble : réponses IA instantanées (à tout moment) → stratégies transparentes (backtestées, expliquées) → exécution automatisée pour les portefeuilles Bubble avec exports prêts pour vos comptes → suivi temps réel (chaque jour). Toute la chaîne de valeur repensée sans intermédiaires coûteux."
   },
 
   // Key Insights Section
@@ -373,12 +373,12 @@ const translations = {
     fr: "Aujourd'hui, vous jonglez entre banques, plateformes en ligne, gestionnaires coûteux et robo-advisors limités.",
   },
   "key_insights.bullet2": {
-    en: "Bubble unifies everything: a 24/7 banker, an investment advisor, and an automated private manager in one tool.",
-    fr: "Bubble unifie tout : un banquier 24/7, un conseiller en investissement et un gérant privé automatisé en un seul outil.",
+    en: "Bubble unifies everything: a 24/7 banker, an investment advisor, and automated execution for our portfolios with exportable instructions for yours.",
+    fr: "Bubble unifie tout : un banquier 24/7, un conseiller en investissement et une exécution automatisée pour nos portefeuilles avec des instructions exportables pour les vôtres.",
   },
   "key_insights.bullet3": {
     en: "Designed for ourselves, Bubble explains professional strategies and applies them for you with total transparency.",
-    fr: "Conçu pour nous-mêmes, Bubble vous explique toutes les stratégies professionnelles et les appliquent pout vous avec une transparence totale.",
+    fr: "Conçu pour nous-mêmes, Bubble vous explique toutes les stratégies professionnelles et les applique pour vous avec une transparence totale.",
   },
 
   // Footer

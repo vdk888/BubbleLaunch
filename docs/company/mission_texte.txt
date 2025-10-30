@@ -33,7 +33,7 @@ En rupture avec les modèles traditionnels basés sur un pourcentage des actifs 
 • Frais d'abonnement : Notre plateforme en ligne sera proposée avec une tarification échelonnée basée sur les fonctionnalités et le niveau de service. Un niveau de base gratuit permet d'attirer les utilisateurs, avec des fonctionnalités premium pour les abonnés payants. Ce modèle d'abonnement symbolise notre conviction que la valeur n'est plus dans le secret ou le privilège de l'information, mais dans l'accès équitable à des outils performants.
 • Services auxiliaires : Des outils de planification financière, des conseils personnalisés et des fonctions de trading automatiques (fonctionnalités premium)
 
-Ce modèle à prix fixe (par exemple, 10 € par mois, quel que soit le montant du compte) et nos frais de gestion faibles visent à rendre le service "pratiquement gratuit à grande échelle" avec des millions d'utilisateurs, confirmant que la finance de pointe, telle que nous la concevons pour la création de valeur réelle, ne doit plus être un luxe inaccessible.
+Ce modèle à prix fixe (par exemple, entre 0 et 10 € par mois selon les fonctionnalités, quel que soit le montant du compte) et nos frais faibles visent à rendre le service "pratiquement gratuit à grande échelle" avec des millions d'utilisateurs, confirmant que la finance de pointe, telle que nous la concevons pour la création de valeur réelle, ne doit plus être un luxe inaccessible. Ce montant couvre l'accès à la plateforme, aux APIs, à l'infrastructure et aux insights IA - il ne s'agit pas de frais de gestion d'actifs car les utilisateurs gardent le contrôle total de leurs décisions d'investissement.
 
 Notre Cible : La Nouvelle Génération d'Investisseurs et au-delà, Avides de Transparence et de Technologie
 

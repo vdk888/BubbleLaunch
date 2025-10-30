@@ -44,7 +44,7 @@ Voici plusieurs articulations possibles du pitch basées sur votre sélection :
 
 - Point de départ : Le secteur financier traditionnel souffre d'opacité, de frais excessifs et de conflits d'intérêts
 - Transition : Notre solution combine technologie moderne et transparence totale
-- Proposition : Un robo-advisor à 10€/mois avec gestion ETF automatisée et accompagnement ChatGPT personnalisé
+- Proposition : Un robo-advisor avec abonnement à un chiffre (ex. 0-10€/mois) qui privilégie des stratégies ETF automatisées et un accompagnement ChatGPT personnalisé
 
 **Angle 2 - L'innovation technologique**
 

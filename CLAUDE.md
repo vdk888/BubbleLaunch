@@ -4,26 +4,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is **Bubble Invest**, a fintech startup revolutionizing investment through an AI-powered portfolio management platform. **Bubble is NOT a traditional robo-advisor** - it's building an active portfolio management system with quantitative stock selection, multi-factor scoring, and automated execution.
+This is **Bubble Invest**, a fintech startup providing an **AI-powered quantitative platform** that delivers **AI-powered insights** on how to invest according to users' own decisions and profiles. **Bubble's mission: AI empowerment to replace traditional financial actors**, not traditional asset management.
 
 **What Bubble Actually Is:**
-- **AI-powered portfolio management platform**: Combines quantitative strategies (momentum, quality, risk-adjusted) with automated broker execution (Interactive Brokers, Alpaca, Saxo Bank)
-- **Active stock/ETF selection**: NOT pre-packaged ETF portfolios - uses multi-factor scoring engine (momentum, quality, risk-adjusted) applied to data from third-party sources
-- **Fixed-fee model**: 10€/month subscription (NOT percentage-based AUM fees)
+- **AI empowerment platform**: Provides AI-powered insights for user-driven investment decisions based on individual profiles and preferences
+- **Focus on ETF-based portfolios**: Privileges ETF strategies to keep fees low, but adapts to whatever users want to focus on
+- **Fixed-fee model**: €0-10/month depending on plan (platform access, APIs, infrastructure — NOT asset management fees)
 - **Full transparency**: All strategies, backtests (17+ years), and rules visible to users
-- **Educational + Autonomous**: AI chatbot for financial education + automated trading capabilities
-- **Multi-asset**: Stocks, ETFs, and (roadmap) cryptocurrencies
+- **Educational + Insightful**: AI chatbot for financial education + AI-powered investment insights tailored to user profiles
 - **User-controlled accounts**: Users maintain full control with their own brokerage accounts (Interactive Brokers, Alpaca, Saxo Bank) - NOT a custody model
+- **Current automation**: Bubble portfolio system (founders' investments) uses automated API integration with IBKR/Alpaca/Saxo. User automation planned for future product launch.
 
 **Current Web Application:**
 The current codebase is a multilingual waitlist landing page with integrated AI chatbot, blog system, and interactive portfolio simulator demo, built with vanilla JavaScript and Node.js/Express. This serves as the public-facing website while the core portfolio management system is being developed in beta. The beta product now includes Saxo Bank API integration alongside Interactive Brokers and Alpaca.
 
 **Key Differentiators from Traditional Robo-Advisors:**
-1. **Active management**: Quantitative stock screening vs. passive ETF allocation
-2. **Institutional methodology**: Risk parity optimization, regime detection, Sharpe-optimized allocation
-3. **Fixed fees**: 10€/month vs. 0.85-1.6% AUM percentage fees
+1. **AI empowerment, not asset management**: Provides insights for user decisions, not portfolio control
+2. **User-driven investment focus**: Adapts to user preferences (privileges ETF strategies for low fees)
+3. **Fixed fees**: €0-10/month depending on tier vs. 0.85-1.6% AUM percentage fees
 4. **Build in public**: Transparent development, sharing learnings and iterations
 5. **Direct broker integration**: Users maintain control with their own brokerage accounts (Interactive Brokers, Alpaca, Saxo Bank) - NO custody model
+6. **Automation status**: Currently automated for founders' portfolios; user automation planned for full product launch (SaaS platform, not financial advisory service)
 
 ## Commands
 
