@@ -3,6 +3,44 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatSubmit = document.querySelector(".chat-submit");
   const chatMessages = document.querySelector(".chat-messages");
 
+  // Detect chatbot type based on current page
+  function getChatbotType() {
+    const path = window.location.pathname;
+    if (path.includes('pricing')) return 'pricing';
+    if (path.includes('portfolio-simulator')) return 'simulator';
+    return 'index'; // Default for home page
+  }
+
+  // Storage key for conversation history (per chatbot type)
+  const chatbotType = getChatbotType();
+  const storageKey = `bubble_chat_history_${chatbotType}`;
+
+  // Load conversation history from localStorage
+  let conversationHistory = [];
+  function loadConversationHistory() {
+    try {
+      const stored = localStorage.getItem(storageKey);
+      if (stored) {
+        conversationHistory = JSON.parse(stored);
+        // Display loaded messages
+        conversationHistory.forEach(msg => {
+          addMessageToChat(msg.role === 'user' ? 'user' : 'bot', msg.content, msg.role === 'user');
+        });
+      }
+    } catch (error) {
+      console.warn('Failed to load conversation history:', error);
+    }
+  }
+
+  // Save conversation history to localStorage
+  function saveConversationHistory() {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(conversationHistory));
+    } catch (error) {
+      console.warn('Failed to save conversation history:', error);
+    }
+  }
+
   // Function to add a message to the chat UI and return the content element for the bot
   function addMessageToChat(sender, message, isUser) {
     const messageElement = document.createElement("div");
@@ -38,14 +76,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const botMessageContent = addMessageToChat("bot", "", false);
 
+    // Add user message to history
+    conversationHistory.push({ role: 'user', content: message });
+    saveConversationHistory();
+
     try {
       const lang = document.documentElement.lang || 'en';
+
+      // Prepare request body with chatbot type and conversation history
+      const requestBody = {
+        message,
+        language: lang,
+        chatbotType,
+        history: conversationHistory.slice(-10) // Send last 10 messages for context
+      };
+
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message, language: lang }),
+        body: JSON.stringify(requestBody),
       });
 
       if (!response.ok) {
@@ -93,6 +144,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
       }
+
+      // Save assistant response to history
+      conversationHistory.push({ role: 'assistant', content: fullResponse });
+      saveConversationHistory();
+
     } catch (error) {
         botMessageContent.textContent = `Error: ${error.message}`;
     } finally {
@@ -103,6 +159,9 @@ document.addEventListener("DOMContentLoaded", () => {
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
   };
+
+  // Load conversation history when page loads
+  loadConversationHistory();
 
   if (chatInput && chatSubmit) {
     chatSubmit.addEventListener("click", handleSendMessage);

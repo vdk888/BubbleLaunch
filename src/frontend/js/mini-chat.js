@@ -12,6 +12,39 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  // Detect chatbot type based on current page
+  function getChatbotType() {
+    const path = window.location.pathname;
+    if (path.includes('pricing')) return 'pricing';
+    if (path.includes('portfolio-simulator')) return 'simulator';
+    return 'index'; // Default for home page
+  }
+
+  const chatbotType = getChatbotType();
+  const storageKey = `bubble_chat_history_${chatbotType}`;
+  let conversationHistory = [];
+
+  // Load conversation history from localStorage
+  function loadConversationHistory() {
+    try {
+      const stored = localStorage.getItem(storageKey);
+      if (stored) {
+        conversationHistory = JSON.parse(stored);
+      }
+    } catch (error) {
+      console.warn('Failed to load conversation history:', error);
+    }
+  }
+
+  // Save conversation history to localStorage
+  function saveConversationHistory() {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(conversationHistory));
+    } catch (error) {
+      console.warn('Failed to save conversation history:', error);
+    }
+  }
+
   let isChatOpen = false;
   let isProcessing = false;
   let currentAbortController = null;
@@ -85,13 +118,22 @@ document.addEventListener('DOMContentLoaded', () => {
       // Get current language
       const lang = document.documentElement.lang || 'en';
 
+      // Add user message to history
+      conversationHistory.push({ role: 'user', content: message });
+      saveConversationHistory();
+
       // Call chatbot API with SSE streaming
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message, language: lang }),
+        body: JSON.stringify({
+          message,
+          language: lang,
+          chatbotType,
+          history: conversationHistory.slice(-10) // Send last 10 messages for context
+        }),
         signal: currentAbortController.signal
       });
 
@@ -150,6 +192,12 @@ document.addEventListener('DOMContentLoaded', () => {
         botMessageContent.textContent = 'I apologize, but I encountered an error processing your request.';
       }
 
+      // Save assistant response to history
+      if (fullResponse) {
+        conversationHistory.push({ role: 'assistant', content: fullResponse });
+        saveConversationHistory();
+      }
+
     } catch (error) {
       if (error.name === 'AbortError') {
         botMessageContent.textContent = 'Request was cancelled.';
@@ -200,8 +248,18 @@ document.addEventListener('DOMContentLoaded', () => {
     e.stopPropagation();
   });
 
-  // Add initial bot message
-  addMessage('Hello! How can I help you today?');
+  // Load conversation history at startup
+  loadConversationHistory();
+
+  // Add initial bot message only if starting fresh conversation
+  if (conversationHistory.length === 0) {
+    addMessage('Hello! How can I help you today?');
+  } else {
+    // Display loaded conversation history
+    conversationHistory.forEach(msg => {
+      addMessage(msg.content, msg.role === 'user');
+    });
+  }
 
   // Expose minimal API for other modules (floating input, etc.)
   window.bubbleMiniChat = {
