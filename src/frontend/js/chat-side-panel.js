@@ -40,6 +40,38 @@
     window.dispatchEvent(new CustomEvent(eventName, { detail }));
   }
 
+  const linkPattern = /(https?:\/\/[^\s<]+|\/#[^\s<]+)/g;
+
+  function escapeHtml(text) {
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function formatAssistantMessage(text) {
+    if (!text) {
+      return '';
+    }
+
+    let result = '';
+    let lastIndex = 0;
+
+    text.replace(linkPattern, (match, _p1, offset) => {
+      result += escapeHtml(text.slice(lastIndex, offset));
+      const href = match;
+      const isRelative = href.startsWith('/');
+      result += `<a href="${href}" target="${isRelative ? '_self' : '_blank'}" rel="noopener noreferrer">${escapeHtml(match)}</a>`;
+      lastIndex = offset + match.length;
+      return match;
+    });
+
+    result += escapeHtml(text.slice(lastIndex));
+    return result;
+  }
+
   function getLanguage() {
     return document.documentElement.lang || localStorage.getItem('bubbleLanguage') || 'fr';
   }
@@ -172,6 +204,8 @@
 
       if (!collected) {
         botMessageContent.textContent = '...';
+      } else {
+        botMessageContent.innerHTML = formatAssistantMessage(collected);
       }
 
       state.conversation.push({ role: 'assistant', content: collected || '...' });

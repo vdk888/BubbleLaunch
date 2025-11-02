@@ -51,7 +51,7 @@ loadPricingDocument().catch(console.error);
  * UNIFIED SYSTEM PROMPT - Single chatbot across all pages
  * Adapts behavior and context based on page and conversation history
  */
-const unifiedSystemPrompt = (language, pageContext = 'index') => `You are Bubble's AI Assistant - a unified conversational guide available across our entire platform (index page, pricing, portfolio simulator, and more).
+const unifiedSystemPrompt = (language, pageContext = 'index', waitlistShared = false) => `You are Bubble's AI Assistant - a unified conversational guide available across our entire platform (index page, pricing, portfolio simulator, and more).
 
 Your goal is to be helpful, transparent, and embody Bubble's mission to democratize intelligent investing.
 
@@ -129,23 +129,26 @@ After greeting, suggest relevant quick-reply options based on the page context.
 - Educational: Explain the "why" behind concepts
 - Patient with beginners, rigorous with experienced investors
 - Data-driven: Reference specific metrics, backtests, and historical data
-- Transparent: Acknowledge limitations, pending features, and regulatory status
+- Transparent: Acknowledge limitations and upcoming features without mentioning internal regulatory processes
 - Keep responses concise and engaging (2-3 sentences typically)
 
-### IMPORTANT DISCLAIMERS (always include):
+### IMPORTANT DISCLAIMERS (include only when relevant to the user's question):
 - Bubble's content is informational and educational, NOT personalized financial advice
 - Past performance does not guarantee future results
 - Users maintain full control of their accounts
-- Regulatory approval for user-side automation is pending
 
-### WAITLIST CALL-TO-ACTION (CRITICAL):
-At the END of EVERY response, include an invitation to join Bubble's waitlist with the direct link:
-
-${language === 'fr' ?
-  '"Prêt à rejoindre la révolution financière ? Inscrivez-vous sur notre liste d\'attente : /#waitlist"' :
-  '"Ready to join the financial revolution? Join our waitlist : /#waitlist"'}
-
-Make the CTA feel natural and relevant to the conversation. Provide a direct link so users can click through.
+### WAITLIST CALL-TO-ACTION (USE JUDGEMENT):
+- Offer the waitlist link when the user asks how to join, requests access, pricing, availability, or when wrapping up a helpful exchange.
+- Keep the tone invitational, not pushy, and ensure the CTA feels relevant to what the user just asked.
+- Do **not** include the CTA in every response. ${
+  waitlistShared
+    ? "You have already shared the waitlist link in this conversation; only repeat it if the user explicitly asks you to."
+    : "If you share the link once, avoid repeating it unless the user explicitly asks for it again."
+}
+- When appropriate, use this format:
+  ${language === 'fr'
+    ? '"Prêt à rejoindre la révolution financière ? Inscrivez-vous sur notre liste d\'attente : /#waitlist"'
+    : '"Ready to join the financial revolution? Join our waitlist : /#waitlist"'}
 
 ### QUICK-REPLY SUGGESTIONS (offer contextually):
 - "Explain Bubble's pricing"
@@ -359,7 +362,7 @@ async function handlePortfolioChat(req, res) {
   const portfolioContextSection = buildPortfolioContextSection(context, language);
 
   // For backward compatibility, portfolio endpoint uses unified chatbot prompt with simulator context
-  const systemPromptContent = unifiedSystemPrompt(language, 'simulator');
+  const systemPromptContent = unifiedSystemPrompt(language, 'simulator', false);
 
   const messages = [
     {
@@ -410,8 +413,8 @@ async function handlePortfolioChat(req, res) {
  * Get unified system prompt (replaces page-specific prompts)
  * PageContext tells the chatbot which page the user is on
  */
-function getSystemPrompt(language, pageContext = 'index') {
-  return unifiedSystemPrompt(language, pageContext);
+function getSystemPrompt(language, pageContext = 'index', waitlistShared = false) {
+  return unifiedSystemPrompt(language, pageContext, waitlistShared);
 }
 
 /**
@@ -444,8 +447,19 @@ async function handleChat(req, res) {
     });
   }
 
+  const waitlistShared = Array.isArray(history)
+    ? history.some(
+        (entry) =>
+          entry &&
+          entry.role &&
+          entry.role !== "user" &&
+          typeof entry.content === "string" &&
+          entry.content.includes("/#waitlist")
+      )
+    : false;
+
   // Get the unified system prompt with page context
-  const systemPromptContent = getSystemPrompt(language, context);
+  const systemPromptContent = getSystemPrompt(language, context, waitlistShared);
 
   // Build messages array with conversation history if provided
   const messages = [
