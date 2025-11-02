@@ -1,6 +1,6 @@
 /**
  * Pricing Workflow Demo - Interactive Animated Chat
- * Showcases the Japanese Stocks workflow with typing animations and enriched content
+ * Showcases the Japanese Stocks workflow with input field typing, portfolio visualization, and enriched content
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const messagesContainer = document.getElementById('workflow-demo-messages');
   const pricingContent = document.getElementById('pricing-content');
   const replayBtn = document.getElementById('replay-demo');
+  const inputField = document.querySelector('.workflow-demo-input-field');
+  const sendButton = document.querySelector('.workflow-demo-send-button');
 
   const frDemoSwitch = document.getElementById('fr-demo-switch');
   const enDemoSwitch = document.getElementById('en-demo-switch');
@@ -27,6 +29,58 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   updateLanguageButtons();
+
+  // Auto-resize textarea as content grows
+  const autoResizeTextarea = () => {
+    if (!inputField) return;
+    inputField.style.height = 'auto';
+    inputField.style.height = Math.min(inputField.scrollHeight, 120) + 'px';
+  };
+
+  // Type in input field, animate send button, then show message as user
+  const typeInInputAndSend = async (text) => {
+    if (!inputField || !sendButton) return;
+
+    // Type character by character in textarea
+    inputField.value = '';
+    autoResizeTextarea();
+
+    for (let i = 0; i < text.length; i++) {
+      inputField.value += text.charAt(i);
+      autoResizeTextarea(); // Resize as text is added
+      await new Promise(resolve => setTimeout(resolve, 40));
+    }
+
+    // Wait briefly
+    await new Promise(resolve => setTimeout(resolve, 300));
+
+    // Animate send button
+    sendButton.classList.add('sending');
+    await new Promise(resolve => setTimeout(resolve, 400));
+    sendButton.classList.remove('sending');
+
+    // Clear input and reset height
+    inputField.value = '';
+    autoResizeTextarea();
+
+    // Small delay before message appears
+    await new Promise(resolve => setTimeout(resolve, 200));
+  };
+
+  // Add system message (time transition)
+  const addSystemMessage = (text) => {
+    const systemDiv = document.createElement('div');
+    systemDiv.className = 'workflow-demo-system-message';
+
+    const content = document.createElement('div');
+    content.className = 'workflow-demo-system-message-content';
+    content.textContent = text;
+
+    systemDiv.appendChild(content);
+    messagesContainer.appendChild(systemDiv);
+
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  };
 
   // Typing animation function
   const typeMessage = (element, text, speed = 40) => {
@@ -87,15 +141,14 @@ document.addEventListener('DOMContentLoaded', () => {
     return { messageDiv, bubble };
   };
 
-  // Create enriched research card
-  const createResearchCard = () => {
-    const card = document.createElement('div');
-    card.className = 'workflow-demo-enriched-card';
+  // Create enriched research content (inline, not separate card)
+  const createResearchContent = () => {
+    const container = document.createElement('div');
 
     const header = document.createElement('div');
     header.className = 'workflow-demo-enriched-header';
     header.textContent = translations['workflow.message2.bot.research'][currentLanguage];
-    card.appendChild(header);
+    container.appendChild(header);
 
     const stocks = translations['workflow.message2.bot.stocks'];
     const list = document.createElement('div');
@@ -108,8 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
       list.appendChild(item);
     });
 
-    card.appendChild(list);
-    return card;
+    container.appendChild(list);
+    return container;
   };
 
   // Create backtest metrics card
@@ -223,45 +276,76 @@ document.addEventListener('DOMContentLoaded', () => {
     return card;
   };
 
-  // Create portfolio breakdown card
-  const createPortfolioCard = () => {
+  // Create portfolio bar chart
+  const createPortfolioBarChart = () => {
     const card = document.createElement('div');
     card.className = 'workflow-demo-enriched-card';
 
     const header = document.createElement('div');
     header.className = 'workflow-demo-enriched-header';
-    header.textContent = translations['workflow.message8.bot.portfolio_header'][currentLanguage];
+    header.textContent = translations['workflow.message9.bot.portfolio_header'][currentLanguage];
     card.appendChild(header);
 
     const allocHeader = document.createElement('div');
     allocHeader.style.fontSize = '0.85rem';
     allocHeader.style.fontWeight = '600';
     allocHeader.style.color = '#333333';
+    allocHeader.style.marginTop = '0.8rem';
     allocHeader.style.marginBottom = '0.8rem';
-    allocHeader.textContent = translations['workflow.message8.bot.allocations'][currentLanguage];
+    allocHeader.textContent = translations['workflow.message9.bot.allocations'][currentLanguage];
     card.appendChild(allocHeader);
 
-    const portfolioData = translations['workflow.message8.bot.portfolio_items'];
-    portfolioData.forEach(item => {
-      const itemDiv = document.createElement('div');
-      itemDiv.className = item.highlight ? 'workflow-demo-portfolio-item highlight' : 'workflow-demo-portfolio-item';
+    const chartContainer = document.createElement('div');
+    chartContainer.className = 'workflow-demo-bar-chart';
 
-      const label = document.createElement('span');
-      label.className = 'workflow-demo-portfolio-label';
-      label.textContent = `${item.flag} ${item.name[currentLanguage]}`;
+    const portfolioData = translations['workflow.message9.bot.portfolio_items'];
+
+    portfolioData.forEach((item, index) => {
+      const barItem = document.createElement('div');
+      barItem.className = 'portfolio-bar-item';
+
+      // Label
+      const label = document.createElement('div');
+      label.className = 'portfolio-bar-label';
+      label.innerHTML = `${item.flag} ${item.name[currentLanguage]}`;
+
       if (item.new) {
-        label.textContent += ` (${translations['workflow.message8.bot.new_pocket'][currentLanguage]})`;
+        const badge = document.createElement('span');
+        badge.className = 'portfolio-bar-new-badge';
+        badge.textContent = translations['workflow.message9.bot.new_pocket'][currentLanguage];
+        label.appendChild(badge);
       }
 
-      const percentage = document.createElement('span');
-      percentage.className = 'workflow-demo-portfolio-percentage';
-      percentage.textContent = item.percentage;
+      barItem.appendChild(label);
 
-      itemDiv.appendChild(label);
-      itemDiv.appendChild(percentage);
-      card.appendChild(itemDiv);
+      // Bar wrapper
+      const barWrapper = document.createElement('div');
+      barWrapper.className = 'portfolio-bar-wrapper';
+
+      // Bar fill
+      const barFill = document.createElement('div');
+      barFill.className = `portfolio-bar-fill ${item.highlight ? 'highlight' : ''} animating`;
+      barFill.style.width = '0%';
+      barFill.dataset.targetWidth = item.percentage;
+
+      // Value label
+      const barValue = document.createElement('span');
+      barValue.className = 'portfolio-bar-value';
+      barValue.textContent = item.percentage;
+
+      barWrapper.appendChild(barFill);
+      barWrapper.appendChild(barValue);
+      barItem.appendChild(barWrapper);
+      chartContainer.appendChild(barItem);
+
+      // Animate bars after a delay (stagger effect)
+      setTimeout(() => {
+        barFill.style.width = item.percentage;
+        barFill.classList.remove('animating');
+      }, 100 + (index * 80));
     });
 
+    card.appendChild(chartContainer);
     return card;
   };
 
@@ -271,133 +355,164 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Message 1: User
     const msg1Text = translations['workflow.message1.user'][currentLanguage];
+    await typeInInputAndSend(msg1Text);
     const { bubble: bubble1 } = addMessage(msg1Text, true);
-    await typeMessage(bubble1, msg1Text, 40);
+    bubble1.textContent = msg1Text;
     await new Promise(resolve => setTimeout(resolve, 1200));
 
-    // Message 2: Bot with research
+    // Message 2: Bot with research (all in one bubble)
     const msg2IntroText = translations['workflow.message2.bot.intro'][currentLanguage];
-    const { messageDiv: msg2Div } = addMessage('', false);
-    const msg2Bubble = msg2Div.querySelector('.workflow-demo-message-bubble');
+    const { messageDiv: msg2Div, bubble: msg2Bubble } = addMessage('', false);
 
-    // Show typing indicator
     const typingIndicator = createTypingIndicator();
-    msg2Div.appendChild(typingIndicator);
+    msg2Div.insertBefore(typingIndicator, msg2Bubble.nextSibling);
     await new Promise(resolve => setTimeout(resolve, 1500));
     typingIndicator.remove();
 
-    // Type main text
+    // Type intro text
     await typeMessage(msg2Bubble, msg2IntroText, 30);
 
-    // Add research card
-    const researchCard = createResearchCard();
-    msg2Div.appendChild(researchCard);
+    // Add line break and research content
+    msg2Bubble.appendChild(document.createElement('br'));
+    const researchContent = createResearchContent();
+    msg2Bubble.appendChild(researchContent);
 
     // Add closing text
+    msg2Bubble.appendChild(document.createElement('br'));
     const msg2ClosingText = translations['workflow.message2.bot.closing'][currentLanguage];
-    const closingP = document.createElement('p');
-    closingP.style.marginTop = '1rem';
-    closingP.style.color = '#444444';
-    closingP.style.fontSize = '0.95rem';
-    closingP.textContent = msg2ClosingText;
-    msg2Div.appendChild(closingP);
+    const closingSpan = document.createElement('span');
+    closingSpan.style.color = '#444444';
+    closingSpan.textContent = msg2ClosingText;
+    msg2Bubble.appendChild(closingSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
     await new Promise(resolve => setTimeout(resolve, 1200));
 
     // Message 3: User
     const msg3Text = translations['workflow.message3.user'][currentLanguage];
+    await typeInInputAndSend(msg3Text);
     const { bubble: bubble3 } = addMessage(msg3Text, true);
-    await typeMessage(bubble3, msg3Text, 40);
+    bubble3.textContent = msg3Text;
     await new Promise(resolve => setTimeout(resolve, 1200));
 
-    // Message 4: Bot with backtest
+    // Message 4: Bot with backtest (all in one bubble)
     const msg4IntroText = translations['workflow.message4.bot.intro'][currentLanguage];
-    const { messageDiv: msg4Div } = addMessage('', false);
-    const msg4Bubble = msg4Div.querySelector('.workflow-demo-message-bubble');
+    const { messageDiv: msg4Div, bubble: msg4Bubble } = addMessage('', false);
 
     const typingIndicator2 = createTypingIndicator();
-    msg4Div.appendChild(typingIndicator2);
+    msg4Div.insertBefore(typingIndicator2, msg4Bubble.nextSibling);
     await new Promise(resolve => setTimeout(resolve, 1500));
     typingIndicator2.remove();
 
     await typeMessage(msg4Bubble, msg4IntroText, 30);
 
-    const backTestCard = createBacktestCard();
-    msg4Div.appendChild(backTestCard);
+    // Add line break and backtest content
+    msg4Bubble.appendChild(document.createElement('br'));
+    const backtestContent = createBacktestCard();
+    msg4Bubble.appendChild(backtestContent);
 
+    // Add conclusion text
+    msg4Bubble.appendChild(document.createElement('br'));
     const msg4ConclusionText = translations['workflow.message4.bot.conclusion'][currentLanguage];
-    const conclusionP = document.createElement('p');
-    conclusionP.style.marginTop = '1rem';
-    conclusionP.style.color = '#444444';
-    conclusionP.style.fontSize = '0.95rem';
-    conclusionP.textContent = msg4ConclusionText;
-    msg4Div.appendChild(conclusionP);
+    const conclusionSpan = document.createElement('span');
+    conclusionSpan.style.color = '#444444';
+    conclusionSpan.textContent = msg4ConclusionText;
+    msg4Bubble.appendChild(conclusionSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
     await new Promise(resolve => setTimeout(resolve, 1200));
 
     // Message 5: User
     const msg5Text = translations['workflow.message5.user'][currentLanguage];
+    await typeInInputAndSend(msg5Text);
     const { bubble: bubble5 } = addMessage(msg5Text, true);
-    await typeMessage(bubble5, msg5Text, 40);
+    bubble5.textContent = msg5Text;
     await new Promise(resolve => setTimeout(resolve, 1200));
 
-    // Message 6: Bot with summary
+    // Message 6: Bot with summary (all in one bubble)
     const msg6ConfirmText = translations['workflow.message6.bot.confirmation'][currentLanguage];
-    const { messageDiv: msg6Div } = addMessage('', false);
-    const msg6Bubble = msg6Div.querySelector('.workflow-demo-message-bubble');
+    const { messageDiv: msg6Div, bubble: msg6Bubble } = addMessage('', false);
 
     const typingIndicator3 = createTypingIndicator();
-    msg6Div.appendChild(typingIndicator3);
+    msg6Div.insertBefore(typingIndicator3, msg6Bubble.nextSibling);
     await new Promise(resolve => setTimeout(resolve, 1500));
     typingIndicator3.remove();
 
     await typeMessage(msg6Bubble, msg6ConfirmText, 30);
 
+    // Add line break and summary content
+    msg6Bubble.appendChild(document.createElement('br'));
     const summaryCard = createSummaryCard();
-    msg6Div.appendChild(summaryCard);
+    msg6Bubble.appendChild(summaryCard);
 
+    // Add closing text
+    msg6Bubble.appendChild(document.createElement('br'));
     const msg6ClosingText = translations['workflow.message6.bot.closing'][currentLanguage];
-    const msg6ClosingP = document.createElement('p');
-    msg6ClosingP.style.marginTop = '1rem';
-    msg6ClosingP.style.color = '#444444';
-    msg6ClosingP.style.fontSize = '0.95rem';
-    msg6ClosingP.textContent = msg6ClosingText;
-    msg6Div.appendChild(msg6ClosingP);
+    const msg6ClosingSpan = document.createElement('span');
+    msg6ClosingSpan.style.color = '#444444';
+    msg6ClosingSpan.textContent = msg6ClosingText;
+    msg6Bubble.appendChild(msg6ClosingSpan);
+
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    // Message 7: System message (Time transition)
+    const timeTransition = translations['workflow.message7.system'][currentLanguage];
+    addSystemMessage(timeTransition);
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    // Message 8: User
+    const msg8Text = translations['workflow.message8.user'][currentLanguage];
+    await typeInInputAndSend(msg8Text);
+    const { bubble: bubble8 } = addMessage(msg8Text, true);
+    bubble8.textContent = msg8Text;
+    await new Promise(resolve => setTimeout(resolve, 1200));
+
+    // Message 9: Bubble with portfolio bar chart (all in one bubble)
+    const msg9CelebrationText = translations['workflow.message9.bot.celebration'][currentLanguage];
+    const { messageDiv: msg9Div, bubble: msg9Bubble } = addMessage('', false);
+
+    const typingIndicator4 = createTypingIndicator();
+    msg9Div.insertBefore(typingIndicator4, msg9Bubble.nextSibling);
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    typingIndicator4.remove();
+
+    await typeMessage(msg9Bubble, msg9CelebrationText, 30);
+
+    // Add line break and portfolio chart
+    msg9Bubble.appendChild(document.createElement('br'));
+    const portfolioBarChart = createPortfolioBarChart();
+    msg9Bubble.appendChild(portfolioBarChart);
+
+    // Add closing text
+    msg9Bubble.appendChild(document.createElement('br'));
+    const msg9ClosingText = translations['workflow.message9.bot.closing'][currentLanguage];
+    const msg9ClosingSpan = document.createElement('span');
+    msg9ClosingSpan.style.color = '#444444';
+    msg9ClosingSpan.textContent = msg9ClosingText;
+    msg9Bubble.appendChild(msg9ClosingSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
     await new Promise(resolve => setTimeout(resolve, 1200));
 
-    // Message 7: User
-    const msg7Text = translations['workflow.message7.user'][currentLanguage];
-    const { bubble: bubble7 } = addMessage(msg7Text, true);
-    await typeMessage(bubble7, msg7Text, 40);
+    // Message 10: User thanks
+    const msg10Text = translations['workflow.message10.user'][currentLanguage];
+    await typeInInputAndSend(msg10Text);
+    const { bubble: bubble10 } = addMessage(msg10Text, true);
+    bubble10.textContent = msg10Text;
     await new Promise(resolve => setTimeout(resolve, 1200));
 
-    // Message 8: Bot with portfolio
-    const msg8CelebrationText = translations['workflow.message8.bot.celebration'][currentLanguage];
-    const { messageDiv: msg8Div } = addMessage('', false);
-    const msg8Bubble = msg8Div.querySelector('.workflow-demo-message-bubble');
+    // Message 11: Bubble closing
+    const msg11Text = translations['workflow.message11.bot'][currentLanguage];
+    const { messageDiv: msg11Div } = addMessage('', false);
+    const msg11Bubble = msg11Div.querySelector('.workflow-demo-message-bubble');
 
-    const typingIndicator4 = createTypingIndicator();
-    msg8Div.appendChild(typingIndicator4);
+    const typingIndicator5 = createTypingIndicator();
+    msg11Div.appendChild(typingIndicator5);
     await new Promise(resolve => setTimeout(resolve, 1500));
-    typingIndicator4.remove();
+    typingIndicator5.remove();
 
-    await typeMessage(msg8Bubble, msg8CelebrationText, 30);
-
-    const portfolioCard = createPortfolioCard();
-    msg8Div.appendChild(portfolioCard);
-
-    const msg8ClosingText = translations['workflow.message8.bot.closing'][currentLanguage];
-    const msg8ClosingP = document.createElement('p');
-    msg8ClosingP.style.marginTop = '1rem';
-    msg8ClosingP.style.color = '#444444';
-    msg8ClosingP.style.fontSize = '0.95rem';
-    msg8ClosingP.textContent = msg8ClosingText;
-    msg8Div.appendChild(msg8ClosingP);
-
+    await typeMessage(msg11Bubble, msg11Text, 30);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
     // Mark demo as shown

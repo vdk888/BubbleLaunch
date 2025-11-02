@@ -1662,27 +1662,32 @@ const translations = {
     fr: "À partir de demain, votre portefeuille inclura 5,74% d'actions japonaises, automatiquement rééquilibré selon la stratégie Sortino momentum."
   },
 
-  "workflow.message7.user": {
-    en: "And the next day, when I check?",
-    fr: "Et le lendemain, quand je vérifie ?"
+  "workflow.message7.system": {
+    en: "⏰ 24 hours later...",
+    fr: "⏰ 24 heures plus tard..."
   },
 
-  "workflow.message8.bot.celebration": {
-    en: "Here's your updated portfolio!",
-    fr: "Voici votre nouveau portefeuille !"
+  "workflow.message8.user": {
+    en: "Hello Bubble, can you show me my portfolio after the allocation we decided yesterday?",
+    fr: "Hello Bubble, tu peux me montrer mon portefeuille après l'allocation décidée hier ?"
   },
 
-  "workflow.message8.bot.portfolio_header": {
+  "workflow.message9.bot.celebration": {
+    en: "Of course! Here's your updated portfolio:",
+    fr: "Bien sûr ! Voici votre portefeuille mis à jour :"
+  },
+
+  "workflow.message9.bot.portfolio_header": {
     en: "Your Updated Portfolio",
     fr: "Votre Portefeuille Mis à Jour"
   },
 
-  "workflow.message8.bot.allocations": {
+  "workflow.message9.bot.allocations": {
     en: "Current allocations:",
     fr: "Allocations actuelles :"
   },
 
-  "workflow.message8.bot.portfolio_items": [
+  "workflow.message9.bot.portfolio_items": [
     {
       flag: "🇺🇸",
       name: {
@@ -1727,14 +1732,24 @@ const translations = {
     }
   ],
 
-  "workflow.message8.bot.new_pocket": {
-    en: "new pocket",
-    fr: "nouvelle poche"
+  "workflow.message9.bot.new_pocket": {
+    en: "new",
+    fr: "nouvelle"
   },
 
-  "workflow.message8.bot.closing": {
+  "workflow.message9.bot.closing": {
     en: "The Japanese pocket is now active and will be automatically managed according to the validated momentum strategy. You'll receive a notification with each monthly rebalancing.",
     fr: "La poche japonaise est maintenant active et sera automatiquement gérée selon la stratégie momentum validée. Vous recevrez une notification à chaque rebalancement mensuel."
+  },
+
+  "workflow.message10.user": {
+    en: "Thanks Bubble!",
+    fr: "Merci Bubble !"
+  },
+
+  "workflow.message11.bot": {
+    en: "My pleasure! I'm here to support you in your investment decisions.",
+    fr: "Avec plaisir ! Je suis là pour vous accompagner dans vos décisions d'investissement."
   }
 };
 
