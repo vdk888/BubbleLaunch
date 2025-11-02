@@ -40,7 +40,7 @@
     window.dispatchEvent(new CustomEvent(eventName, { detail }));
   }
 
-  const linkPattern = /(https?:\/\/[^\s<]+|\/#[^\s<]+)/g;
+  const markdownLinkRegex = /\[([^[\]]+)\]\((https?:\/\/[^\s)]+|\/#[^\s)]+)\)/g;
 
   function escapeHtml(text) {
     return text
@@ -51,25 +51,83 @@
       .replace(/'/g, '&#039;');
   }
 
-  function formatAssistantMessage(text) {
-    if (!text) {
-      return '';
+  function applyInlineFormatting(text) {
+    if (!text) return '';
+
+    let html = '';
+    let lastIndex = 0;
+    let match;
+
+    while ((match = markdownLinkRegex.exec(text)) !== null) {
+      html += escapeHtml(text.slice(lastIndex, match.index));
+      const label = escapeHtml(match[1]);
+      const url = match[2];
+      const isRelative = url.startsWith('/');
+      html += `<a href="${url}" target="${isRelative ? '_self' : '_blank'}" rel="noopener noreferrer">${label}</a>`;
+      lastIndex = match.index + match[0].length;
     }
 
-    let result = '';
-    let lastIndex = 0;
+    html += escapeHtml(text.slice(lastIndex));
 
-    text.replace(linkPattern, (match, _p1, offset) => {
-      result += escapeHtml(text.slice(lastIndex, offset));
-      const href = match;
-      const isRelative = href.startsWith('/');
-      result += `<a href="${href}" target="${isRelative ? '_self' : '_blank'}" rel="noopener noreferrer">${escapeHtml(match)}</a>`;
-      lastIndex = offset + match.length;
-      return match;
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+    html = html.replace(/(^|\s)\*(.+?)\*(?=\s|$)/g, (full, prefix, content) => {
+      const trailing = full.endsWith('*') ? '' : ' ';
+      return `${prefix}<em>${content}</em>${trailing}`;
     });
 
-    result += escapeHtml(text.slice(lastIndex));
-    return result;
+    html = html.replace(/(^|[\s>])((?:https?:\/\/[^\s<]+)|(?:\/#[^\s<]+))/g, (_, prefix, url) => {
+      const isRelative = url.startsWith('/');
+      return `${prefix}<a href="${url}" target="${isRelative ? '_self' : '_blank'}" rel="noopener noreferrer">${url}</a>`;
+    });
+
+    return html.replace(/`([^`]+)`/g, '<code>$1</code>');
+  }
+
+  function formatAssistantMessage(text) {
+    if (!text) return '';
+
+    const lines = text.split(/\r?\n/);
+    const fragments = [];
+    let listItems = [];
+
+    const flushList = () => {
+      if (!listItems.length) return;
+      fragments.push(`<ul class="chat-list">${listItems.join('')}</ul>`);
+      listItems = [];
+    };
+
+    lines.forEach((line) => {
+      const trimmed = line.trim();
+
+      if (!trimmed) {
+        flushList();
+        fragments.push('<div class="chat-paragraph-spacer"></div>');
+        return;
+      }
+
+      const headingMatch = trimmed.match(/^#{1,3}\s+(.*)$/);
+      if (headingMatch) {
+        flushList();
+        const hashes = trimmed.match(/^#{1,3}/)[0].length;
+        const level = Math.min(3 + hashes - 1, 5);
+        const content = applyInlineFormatting(headingMatch[1].trim());
+        fragments.push(`<h${level} class="chat-heading">${content}</h${level}>`);
+        return;
+      }
+
+      if (/^[-*]\s+/.test(trimmed)) {
+        const itemText = trimmed.replace(/^[-*]\s+/, '');
+        listItems.push(`<li>${applyInlineFormatting(itemText)}</li>`);
+        return;
+      }
+
+      flushList();
+      fragments.push(`<p>${applyInlineFormatting(trimmed)}</p>`);
+    });
+
+    flushList();
+    return fragments.join('');
   }
 
   function getLanguage() {

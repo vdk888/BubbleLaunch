@@ -1364,6 +1364,67 @@ body.mobile-menu-open {
   color: #f9fafb;
 }
 
+.chat-side-panel-message h3,
+.chat-side-panel-message h4,
+.chat-side-panel-message h5 {
+  margin: 0 0 0.6rem;
+  font-weight: 600;
+  color: inherit;
+}
+
+.chat-side-panel-message p {
+  margin: 0 0 0.75rem;
+  line-height: 1.6;
+}
+
+.chat-side-panel-message p:last-child {
+  margin-bottom: 0;
+}
+
+.chat-side-panel-message ul,
+.chat-side-panel-message ol {
+  margin: 0 0 0.75rem 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.chat-side-panel-message li {
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+}
+
+.chat-side-panel-message code {
+  background: rgba(15, 23, 42, 0.08);
+  border-radius: 6px;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.85rem;
+}
+
+.chat-side-panel-message a {
+  color: inherit;
+  text-decoration: underline;
+  word-break: break-word;
+}
+
+.chat-side-panel-message .chat-list {
+  margin: 0 0 0.75rem 1.1rem;
+  padding-left: 1rem;
+  list-style: disc;
+}
+
+.chat-side-panel-message .chat-list li {
+  margin-bottom: 0.4rem;
+  position: relative;
+  padding-left: 0.25rem;
+}
+
+.chat-side-panel-message .chat-list li:last-child {
+  margin-bottom: 0;
+}
+
+.chat-side-panel-message .chat-paragraph-spacer {
+  height: 0.6rem;
+}
+
 .chat-side-panel-input-container {
   padding: 1.1rem 1.25rem;
   display: flex;
