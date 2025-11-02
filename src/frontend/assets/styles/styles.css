@@ -5360,3 +5360,17 @@ footer .container {
     padding: 1.25rem;
   }
 }
+
+/* Cookie banner styling */
+#tarteaucitronAlertBig {
+  max-width: 420px;
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+
+
+
+#tarteaucitronIcon {
+  display: none;
+}

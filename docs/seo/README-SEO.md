@@ -219,6 +219,15 @@
 
 ---
 
+### Cookie consent notes
+
+- Bubble currently exposes only essential cookies (chat session limits and language preference). The banner copy and Tarteaucitron service list reflect this status by default.
+- Two services are registered under the `support` category (`bubblechat`, `bubblelanguage`) so future optional tools can be appended without rewriting the base config.
+- Optional services (analytics, ads, etc.) must be registered in `src/frontend/js/seo/cookie-consent.js`. Add them inside `registerBubbleServices`, set `needConsent` to `true`, and push the key into `tarteaucitron.job` so it appears in the modal.
+- Banner and badge styling live near the end of `src/frontend/assets/styles/styles.css`. Keep edits in ASCII to match repo conventions.
+
+---
+
 ## ✅ What Was Accomplished
 
 ### Week 1: Foundation (7.5 hours)
