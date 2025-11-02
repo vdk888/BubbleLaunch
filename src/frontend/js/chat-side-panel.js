@@ -40,6 +40,23 @@
     window.dispatchEvent(new CustomEvent(eventName, { detail }));
   }
 
+  function updateMinimizeButton() {
+    const lang = getLanguage();
+    if (state.isMinimized) {
+      minimizeButton.textContent = '+';
+      minimizeButton.setAttribute(
+        'aria-label',
+        lang.startsWith('fr') ? 'Restaurer le chat' : 'Restore chat'
+      );
+    } else {
+      minimizeButton.textContent = '−';
+      minimizeButton.setAttribute(
+        'aria-label',
+        lang.startsWith('fr') ? 'Réduire le chat' : 'Minimize chat'
+      );
+    }
+  }
+
   const markdownLinkRegex = /\[([^[\]]+)\]\((https?:\/\/[^\s)]+|\/#[^\s)]+)\)/g;
 
   function escapeHtml(text) {
@@ -290,6 +307,7 @@
       state.isMinimized = false;
       document.body.classList.add('chat-side-panel-open');
       emit('chatSidePanel:restored');
+      updateMinimizeButton();
     }
 
     document.body.classList.add('chat-side-panel-open');
@@ -304,6 +322,7 @@
 
       // Ensure scroll position at bottom for existing messages
       messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      updateMinimizeButton();
 
       setTimeout(() => {
         input.focus();
@@ -326,6 +345,7 @@
     panel.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('chat-side-panel-open');
     resetConversation();
+    updateMinimizeButton();
     emit('chatSidePanel:closed');
   }
 
@@ -348,6 +368,7 @@
         input.focus();
       }, 150);
     }
+    updateMinimizeButton();
   }
 
   form.addEventListener('submit', (event) => {
@@ -392,4 +413,5 @@
   // Ensure panel is hidden on load
   panel.classList.remove('is-open', 'is-minimized');
   panel.setAttribute('aria-hidden', 'true');
+  updateMinimizeButton();
 })();
