@@ -134,6 +134,13 @@ router.get(["/pricing", "/pricing.html"], (req, res) => {
 });
 
 /**
+ * Pricing demo test page
+ */
+router.get("/pricing-demo-test", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "pricing-demo-test.html"));
+});
+
+/**
  * Privacy Policy page (SEO + GDPR compliance)
  */
 router.get("/privacy", (req, res) => {

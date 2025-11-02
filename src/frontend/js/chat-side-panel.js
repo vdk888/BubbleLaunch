@@ -57,6 +57,52 @@
     }
   }
 
+  function extractSuggestionPayload(button) {
+    if (!button) {
+      return { display: '', prompt: '' };
+    }
+
+    const translationsMap =
+      (typeof window !== 'undefined' && window.translations) || undefined;
+
+    const display =
+      (button.getAttribute('data-display') || button.textContent || '').trim();
+
+    const translateKey = button.getAttribute('data-translate');
+    let prompt =
+      button.getAttribute('data-prompt') ||
+      (button.dataset ? button.dataset.prompt : '') ||
+      '';
+
+    if ((!prompt || prompt === '') && translateKey && translationsMap) {
+      const entry = translationsMap[translateKey];
+      if (entry) {
+        prompt = entry.en || entry.fr || entry.en_us || display;
+      }
+    }
+
+    if (!prompt) {
+      prompt = display;
+    }
+
+    return { display, prompt };
+  }
+
+  function applySuggestionFromButton(button) {
+    if (!button || !input) return;
+    const { display, prompt } = extractSuggestionPayload(button);
+    if (!display) return;
+
+    button.classList.add('active');
+    setTimeout(() => button.classList.remove('active'), 300);
+
+    input.value = display;
+    input.dataset.promptOverride = prompt;
+    input.dataset.promptSource = display;
+    input.focus();
+    input.setSelectionRange(input.value.length, input.value.length);
+  }
+
   const markdownLinkRegex = /\[([^[\]]+)\]\((https?:\/\/[^\s)]+|\/#[^\s)]+)\)/g;
 
   function escapeHtml(text) {
@@ -161,6 +207,13 @@
 
   const pageContext = getPageContext();
 
+  panel.addEventListener('click', (event) => {
+    const suggestionButton = event.target.closest('.chat-suggestion-btn');
+    if (!suggestionButton) return;
+    event.preventDefault();
+    applySuggestionFromButton(suggestionButton);
+  });
+
   function resetConversation() {
     state.conversation = [];
     state.isProcessing = false;
@@ -194,8 +247,11 @@
     return content;
   }
 
-  async function sendMessage(message) {
-    if (!message || state.isProcessing) {
+  async function sendMessage(displayMessage, promptOverride) {
+    const display = (displayMessage || '').trim();
+    const prompt = (promptOverride || display).trim();
+
+    if (!prompt || state.isProcessing) {
       return;
     }
 
@@ -204,12 +260,12 @@
     sendButton.disabled = true;
 
     // Render user message
-    createMessageElement('user', message);
+    createMessageElement('user', display);
 
     // Prepare bot message placeholder
     const botMessageContent = createMessageElement('bot', '');
 
-    state.conversation.push({ role: 'user', content: message });
+    state.conversation.push({ role: 'user', content: prompt });
 
     try {
       state.abortController = new AbortController();
@@ -219,7 +275,7 @@
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message,
+          message: prompt,
           language: getLanguage(),
           pageContext,
           history: state.conversation.slice(-10),
@@ -296,6 +352,8 @@
       input.disabled = false;
       sendButton.disabled = false;
       input.value = '';
+      delete input.dataset.promptOverride;
+      delete input.dataset.promptSource;
       input.focus();
       state.abortController = null;
     }
@@ -330,7 +388,7 @@
     }
 
     if (initialMessage) {
-      sendMessage(initialMessage);
+      sendMessage(initialMessage, initialMessage);
     }
   }
 
@@ -373,9 +431,20 @@
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    const message = input.value.trim();
-    if (!message) return;
-    sendMessage(message);
+    const display = input.value.trim();
+    if (!display) return;
+
+    const source = input.dataset.promptSource;
+    const override = input.dataset.promptOverride;
+    let prompt = display;
+    if (override && source && display === source.trim()) {
+      prompt = override;
+    }
+
+    delete input.dataset.promptOverride;
+    delete input.dataset.promptSource;
+
+    sendMessage(display, prompt);
   });
 
   closeButton.addEventListener('click', () => {
@@ -389,6 +458,15 @@
   window.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && state.isOpen && !state.isMinimized) {
       closePanel();
+    }
+  });
+
+  input.addEventListener('input', () => {
+    const source = input.dataset.promptSource;
+    if (!source) return;
+    if (input.value.trim() !== source.trim()) {
+      delete input.dataset.promptOverride;
+      delete input.dataset.promptSource;
     }
   });
 

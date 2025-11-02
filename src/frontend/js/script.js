@@ -247,7 +247,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (chatSection) {
     const chatInput = document.querySelector(".chat-input");
     const chatSubmit = document.querySelector(".chat-submit");
-    const suggestionButtons = document.querySelectorAll(".chat-suggestion-btn");
     const chatMessages = document.querySelector(".chat-messages");
     const chatSuggestionsContainer = document.querySelector(".chat-suggestions");
     const toggleSuggestionsBtn = document.getElementById(
@@ -370,8 +369,18 @@ document.addEventListener("DOMContentLoaded", function () {
     stopTyping = false;
     currentAbortController = new AbortController();
     
-    const displayMessage = displayMessageOverride || chatInput.value.trim();
-    const promptMessage = promptMessageOverride || displayMessage;
+    const rawInput = chatInput.value.trim();
+    const displayMessage = displayMessageOverride || rawInput;
+
+    const datasetPrompt = chatInput.dataset.promptOverride;
+    const datasetSource = chatInput.dataset.promptSource;
+
+    let promptMessage = promptMessageOverride || displayMessage;
+    if (!promptMessageOverride && datasetPrompt && datasetSource) {
+      if (rawInput === datasetSource.trim()) {
+        promptMessage = datasetPrompt;
+      }
+    }
 
     if (!promptMessage) return;
 
@@ -394,6 +403,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add user message to chat first
     addMessageToChat(displayMessage, "user");
     chatInput.value = "";
+    delete chatInput.dataset.promptOverride;
+    delete chatInput.dataset.promptSource;
     showTypingIndicator();
 
     // Create a new message element for the bot's response
@@ -535,19 +546,63 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  const applySuggestionButton = (button) => {
+    if (!chatInput || !button) return;
+
+    const displayMessage =
+      (button.getAttribute("data-display") || button.textContent || "").trim();
+    if (!displayMessage) return;
+
+    const translateKey = button.getAttribute("data-translate");
+    const promptFallback =
+      button.getAttribute("data-prompt") || button.dataset.prompt || "";
+    let promptMessage = promptFallback;
+
+    if (!promptMessage && typeof translations !== "undefined" && translateKey) {
+      const translationEntry = translations[translateKey];
+      if (translationEntry) {
+        promptMessage =
+          translationEntry["en"] ||
+          translationEntry["fr"] ||
+          translationEntry["en_us"] ||
+          "";
+      }
+    }
+
+    if (!promptMessage) {
+      promptMessage = displayMessage;
+    }
+
+    button.classList.add("active");
+    setTimeout(() => button.classList.remove("active"), 300);
+
+    chatInput.value = displayMessage;
+    chatInput.dataset.promptOverride = promptMessage;
+    chatInput.dataset.promptSource = displayMessage;
+    chatInput.focus();
+    chatInput.setSelectionRange(
+      chatInput.value.length,
+      chatInput.value.length,
+    );
+  };
+
+  const suggestionButtons = document.querySelectorAll(".chat-suggestion-btn");
   suggestionButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const key = button.getAttribute("data-translate");
-      const promptMessage = translations[key]["en"]; // Always send English prompt for consistency
-      const displayMessage = button.textContent;
-
-      // Add visual feedback when clicking a suggestion
-      button.classList.add("active");
-      setTimeout(() => button.classList.remove("active"), 300);
-
-      handleUserMessage(displayMessage, promptMessage);
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      applySuggestionButton(button);
     });
   });
+
+  if (chatSection) {
+    chatSection.addEventListener("click", (event) => {
+      const targetButton = event.target.closest(".chat-suggestion-btn");
+      if (!targetButton) return;
+      event.preventDefault();
+      applySuggestionButton(targetButton);
+    });
+  }
 
   chatSubmit.addEventListener("click", () => {
     // Add click effect
@@ -573,6 +628,15 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
       // Trigger the click event on the submit button to handle both submit and stop cases
       chatSubmit.click();
+    }
+  });
+
+  chatInput.addEventListener("input", () => {
+    const source = chatInput.dataset.promptSource;
+    if (!source) return;
+    if (chatInput.value.trim() !== source.trim()) {
+      delete chatInput.dataset.promptOverride;
+      delete chatInput.dataset.promptSource;
     }
   });
 

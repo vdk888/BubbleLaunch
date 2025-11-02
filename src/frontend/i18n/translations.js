@@ -920,6 +920,10 @@ const translations = {
     en: "@behindthefinancebubble",
     fr: "@behindthefinancebubble"
   },
+  "footer.social.twitter": {
+    en: "@behindbubble",
+    fr: "@behindbubble"
+  },
   "footer.social.tiktok": {
     en: "@behind.the.bubble",
     fr: "@behind.the.bubble"
@@ -1496,6 +1500,242 @@ const translations = {
     en: "Blog",
     fr: "Blog"
   },
+
+  // Workflow Demo - Japanese Stocks Scenario
+  "workflow.message1.user": {
+    en: "Hey! I saw that Japanese stocks are performing well right now. I'd like to create an investment pocket in Japanese stocks!",
+    fr: "Salut ! J'ai vu que les actions japonaises performent bien en ce moment. J'aimerais créer une poche d'investissement dans les actions japonaises !"
+  },
+
+  "workflow.message2.bot.intro": {
+    en: "Of course! I just did some web research. Here are about 10 quality Japanese stocks to build this exposure:",
+    fr: "Bien sûr ! Je viens de faire des recherches sur le web. Voici environ 10 actions japonaises de qualité pour construire cette exposition :"
+  },
+
+  "workflow.message2.bot.research": {
+    en: "Research Results (Perplexity)",
+    fr: "Résultats de recherche (Perplexity)"
+  },
+
+  "workflow.message2.bot.stocks": [
+    { ticker: "7203.T", name: "Toyota Motor Corp" },
+    { ticker: "6758.T", name: "Sony Group Corp" },
+    { ticker: "6861.T", name: "Keyence Corp" },
+    { ticker: "8035.T", name: "Tokyo Electron" },
+    { ticker: "9983.T", name: "Fast Retailing" },
+    { ticker: "9984.T", name: "SoftBank Group" },
+    { ticker: "6098.T", name: "Recruit Holdings" },
+    { ticker: "7974.T", name: "Nintendo" },
+    { ticker: "6367.T", name: "Daikin Industries" },
+    { ticker: "4063.T", name: "Shin-Etsu Chemical" }
+  ],
+
+  "workflow.message2.bot.closing": {
+    en: "Would you like me to go over their business models in detail, or should we move to the next step?",
+    fr: "Voulez-vous que je détaille leurs business models, ou passons-nous à l'étape suivante ?"
+  },
+
+  "workflow.message3.user": {
+    en: "Okay, I already know these big companies. Let's go ahead and integrate this pocket. But how do you actually manage Japanese stocks? Which ones should have higher or lower weights, and when should they be bought or sold within the pocket?",
+    fr: "Ok, je connais déjà ces grandes entreprises. Allons-y, intégrons cette poche. Mais concrètement, comment tu gères les actions japonaises ? Lesquelles avoir en plus ou moins grande pondération, et quand les acheter ou vendre au sein de la poche ?"
+  },
+
+  "workflow.message4.bot.intro": {
+    en: "Great question! I just ran a few backtests...",
+    fr: "Excellente question ! Je viens de lancer quelques backtests..."
+  },
+
+  "workflow.message4.bot.header": {
+    en: "Strategy Analysis (10-year backtests)",
+    fr: "Analyse de stratégies (backtests sur 10 ans)"
+  },
+
+  "workflow.message4.bot.subheader": {
+    en: "Here's the strategy that performs best according to your risk profile:",
+    fr: "Voici la stratégie qui performe le mieux selon votre profil de risque :"
+  },
+
+  "workflow.message4.bot.strategy": {
+    en: "Sortino Momentum + Low Volatility Strategy",
+    fr: "Stratégie Momentum Sortino + Low Volatility"
+  },
+
+  "workflow.message4.bot.details": {
+    en: "High ROE (Return on Equity) weighting\nMonthly rebalancing based on 60-day momentum\nLow volatility filtering to limit corrections",
+    fr: "Pondération ROE (Return on Equity) élevée\nRebalancement mensuel basé sur momentum 60 jours\nFiltrage volatilité basse pour limiter les corrections"
+  },
+
+  "workflow.message4.bot.metrics_header": {
+    en: "Simulated performance (2015-2025):",
+    fr: "Performance simulée (2015-2025) :"
+  },
+
+  "workflow.message4.bot.metrics": {
+    annualized_return: {
+      en: "Annualized return",
+      fr: "Rendement annualisé"
+    },
+    return_value: "+12.4%",
+    volatility: {
+      en: "Volatility",
+      fr: "Volatilité"
+    },
+    volatility_value: "14.2%",
+    sortino_ratio: {
+      en: "Sortino ratio",
+      fr: "Ratio de Sortino"
+    },
+    sortino_value: "1.38",
+    max_drawdown: {
+      en: "Max drawdown",
+      fr: "Drawdown max"
+    },
+    max_drawdown_value: "-18.7%",
+    topix_comparison: {
+      en: "vs -24.3% TOPIX index",
+      fr: "vs -24,3% indice TOPIX"
+    }
+  },
+
+  "workflow.message4.bot.conclusion": {
+    en: "This is the strategy that would have generated the best risk-adjusted return for Japan.",
+    fr: "C'est cette stratégie qui aurait généré le meilleur rendement ajusté du risque pour le Japon."
+  },
+
+  "workflow.message5.user": {
+    en: "Great, I approve the integration with that strategy.",
+    fr: "Super, je valide l'intégration avec cette stratégie."
+  },
+
+  "workflow.message6.bot.confirmation": {
+    en: "Perfect!",
+    fr: "Parfait !"
+  },
+
+  "workflow.message6.bot.summary_header": {
+    en: "New Pocket Summary",
+    fr: "Récapitulatif de la nouvelle poche"
+  },
+
+  "workflow.message6.bot.summary": {
+    name: {
+      en: "Name",
+      fr: "Nom"
+    },
+    name_value: {
+      en: "Japanese Equities - ROE Momentum",
+      fr: "Actions Japonaises - Momentum ROE"
+    },
+    allocation: {
+      en: "Target allocation",
+      fr: "Allocation cible"
+    },
+    allocation_value: "5.74%",
+    strategy: {
+      en: "Strategy",
+      fr: "Stratégie"
+    },
+    strategy_value: {
+      en: "Sortino Momentum + Low Vol",
+      fr: "Sortino Momentum + Low Vol"
+    },
+    rebalancing: {
+      en: "Rebalancing",
+      fr: "Rebalancement"
+    },
+    rebalancing_value: {
+      en: "Automatic monthly",
+      fr: "Mensuel automatique"
+    },
+    activation: {
+      en: "Activation",
+      fr: "Activation"
+    },
+    activation_value: {
+      en: "Starting tomorrow",
+      fr: "Dès demain"
+    }
+  },
+
+  "workflow.message6.bot.closing": {
+    en: "Starting tomorrow, your portfolio will include 5.74% Japanese equities, automatically rebalanced according to the Sortino momentum strategy.",
+    fr: "À partir de demain, votre portefeuille inclura 5,74% d'actions japonaises, automatiquement rééquilibré selon la stratégie Sortino momentum."
+  },
+
+  "workflow.message7.user": {
+    en: "And the next day, when I check?",
+    fr: "Et le lendemain, quand je vérifie ?"
+  },
+
+  "workflow.message8.bot.celebration": {
+    en: "Here's your updated portfolio!",
+    fr: "Voici votre nouveau portefeuille !"
+  },
+
+  "workflow.message8.bot.portfolio_header": {
+    en: "Your Updated Portfolio",
+    fr: "Votre Portefeuille Mis à Jour"
+  },
+
+  "workflow.message8.bot.allocations": {
+    en: "Current allocations:",
+    fr: "Allocations actuelles :"
+  },
+
+  "workflow.message8.bot.portfolio_items": [
+    {
+      flag: "🇺🇸",
+      name: {
+        en: "US Equities",
+        fr: "Actions US"
+      },
+      percentage: "42.3%"
+    },
+    {
+      flag: "🇪🇺",
+      name: {
+        en: "European Equities",
+        fr: "Actions Europe"
+      },
+      percentage: "28.1%"
+    },
+    {
+      flag: "🇯🇵",
+      name: {
+        en: "Japanese Equities",
+        fr: "Actions Japon"
+      },
+      percentage: "5.74%",
+      highlight: true,
+      new: true
+    },
+    {
+      flag: "🏦",
+      name: {
+        en: "Bonds",
+        fr: "Obligations"
+      },
+      percentage: "18.0%"
+    },
+    {
+      flag: "💰",
+      name: {
+        en: "Cash / Gold",
+        fr: "Cash / Or"
+      },
+      percentage: "5.86%"
+    }
+  ],
+
+  "workflow.message8.bot.new_pocket": {
+    en: "new pocket",
+    fr: "nouvelle poche"
+  },
+
+  "workflow.message8.bot.closing": {
+    en: "The Japanese pocket is now active and will be automatically managed according to the validated momentum strategy. You'll receive a notification with each monthly rebalancing.",
+    fr: "La poche japonaise est maintenant active et sera automatiquement gérée selon la stratégie momentum validée. Vous recevrez une notification à chaque rebalancement mensuel."
+  }
 };
 
 // Allow reuse in Node (SSR, tooling)
