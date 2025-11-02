@@ -159,12 +159,10 @@
         </p>
 
         <div class="chat-section">
-          <button id="fullscreen-toggle-btn" aria-label="Toggle fullscreen">
-            <!-- Expand icon (shown when collapsed) -->
+          <button id="fullscreen-toggle-btn" aria-label="Basculer en plein écran">
             <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
               <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
             </svg>
-            <!-- Close icon (shown when fullscreen) -->
             <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
               <path d="M18 6L6 18M6 6l12 12"/>
             </svg>
@@ -181,9 +179,9 @@
               class="chat-input"
               placeholder="Pourquoi l'IA change la donne ?"
               data-translate-placeholder="chat.placeholder"
-              aria-label="Ask a question"
+              aria-label="Posez une question"
             />
-            <button class="chat-submit" aria-label="Submit question">
+            <button class="chat-submit" aria-label="Envoyer la question">
               <svg class="submit-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -732,6 +730,46 @@
     <script src="js/script.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/charts.js"></script>
+
+    <!-- Unified Chat Side Panel -->
+    <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+      <div class="chat-side-panel-header">
+        <div class="chat-side-panel-header-info">
+          <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+          <div class="chat-side-panel-titles">
+            <span class="chat-side-panel-title">Assistant Bubble</span>
+          </div>
+        </div>
+        <div class="chat-side-panel-actions">
+          <button class="chat-side-panel-minimize" aria-label="Réduire le chat" type="button">-</button>
+          <button class="chat-side-panel-close" aria-label="Fermer le chat" type="button">✕</button>
+        </div>
+      </div>
+      <div class="chat-side-panel-messages" role="log" aria-live="polite">
+        <div class="chat-side-panel-message bot">
+          <div class="message-content">
+            Bonjour, je suis Bubble — comment puis-je vous aider ?
+          </div>
+        </div>
+      </div>
+      <form class="chat-side-panel-input-container" novalidate>
+        <input
+          type="text"
+          class="chat-side-panel-input"
+          placeholder="Posez vos questions..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Saisissez votre message"
+          autocomplete="off"
+        />
+        <button class="chat-side-panel-send" aria-label="Envoyer le message" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
     <!-- Floating Glassmorphism Chat Input -->
     <div id="floating-chat-input" class="floating-chat-input hidden">
       <div class="floating-input-container">
@@ -751,6 +789,7 @@
       </div>
     </div>
 
+    <script src="js/chat-side-panel.js"></script>
     <script src="js/floating-chat-input.js"></script>
   </body>
 </html>

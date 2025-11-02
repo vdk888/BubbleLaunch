@@ -1134,7 +1134,7 @@
       }
 
       /* Simulator Chat Window Styles */
-      /* Portfolio Simulator: Uses global mini-chat-window classes from styles.css */
+      /* Portfolio Simulator: Uses global chat-side-panel classes from styles.css */
 
       /* Portfolio Simulator: Purple Button Override */
       .portfolio-chat-send {
@@ -1525,8 +1525,47 @@
     <script src="../js/script.js"></script>
     <script src="../js/portfolio-simulator.js"></script>
 
+    <!-- Unified Chat Side Panel -->
+    <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+      <div class="chat-side-panel-header">
+        <div class="chat-side-panel-header-info">
+          <img src="../assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+          <div class="chat-side-panel-titles">
+            <span class="chat-side-panel-title">Assistant Bubble</span>
+          </div>
+        </div>
+        <div class="chat-side-panel-actions">
+          <button class="chat-side-panel-minimize" aria-label="Réduire le chat" type="button">-</button>
+          <button class="chat-side-panel-close" aria-label="Fermer le chat" type="button">✕</button>
+        </div>
+      </div>
+      <div class="chat-side-panel-messages" role="log" aria-live="polite">
+        <div class="chat-side-panel-message bot">
+          <div class="message-content">
+            Bonjour, je suis Bubble — comment puis-je vous aider ?
+          </div>
+        </div>
+      </div>
+      <form class="chat-side-panel-input-container" novalidate>
+        <input
+          type="text"
+          class="chat-side-panel-input"
+          placeholder="Posez vos questions..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Saisissez votre message"
+          autocomplete="off"
+        />
+        <button class="chat-side-panel-send portfolio-chat-send" aria-label="Envoyer le message" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
     <!-- Floating Glassmorphism Chat Input -->
-    <div id="floating-chat-input" class="floating-chat-input">
+    <div id="floating-chat-input" class="floating-chat-input hidden">
       <div class="floating-input-container">
         <input
           type="text"
@@ -1537,50 +1576,10 @@
         />
         <button class="floating-input-submit" aria-label="Send message">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
           </svg>
         </button>
-      </div>
-    </div>
-
-    <!-- Unified Chat Bubble for Simulator (uses mini-chat.js) -->
-    <div id="floating-chat-bubble" class="floating-bubble">
-      <div class="floating-bubble-inner">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-        </svg>
-        <span data-translate="floating_bubble.text">Posez vos questions</span>
-      </div>
-
-      <div class="mini-chat-window">
-        <div class="mini-chat-header">
-          <img src="../assets/images/bubble-favicon.svg" class="chat-header-icon" alt="Bubble" width="20" height="20" />
-          <span class="mini-chat-title">Bubble chatbot</span>
-          <button class="mini-chat-close" aria-label="Close chat">✕</button>
-        </div>
-        <div class="mini-chat-messages">
-          <div class="mini-chat-message bot">
-            <div class="message-content">
-              Bonjour, je suis Bubble – comment puis-je vous aider ?
-            </div>
-          </div>
-        </div>
-        <div class="mini-chat-input-container">
-          <input
-            type="text"
-            class="mini-chat-input"
-            placeholder="Ask me anything..."
-            data-translate-placeholder="floating_input.placeholder"
-            aria-label="Type your message"
-          />
-          <button class="mini-chat-send portfolio-chat-send" aria-label="Send message">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </button>
-        </div>
       </div>
     </div>
 
@@ -1676,8 +1675,7 @@
     <script src="../js/seo/structured-data.js"></script>
 
     <!-- Unified Chatbot Scripts (for portfolio simulator) -->
-    <script src="../js/floating-bubble.js"></script>
-    <script src="../js/mini-chat.js"></script>
+    <script src="../js/chat-side-panel.js"></script>
     <script src="../js/floating-chat-input.js"></script>
   </body>
 </html>

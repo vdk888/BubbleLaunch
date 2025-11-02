@@ -40,34 +40,31 @@
     });
   }
 
+  let panelOpen = Boolean(window.chatSidePanel?.isOpen && window.chatSidePanel.isOpen());
+  let baseVisible = false;
+
+  function applyVisibility() {
+    const shouldShow = baseVisible && !panelOpen;
+    floatingInput.classList.toggle('hidden', !shouldShow);
+  }
+
   if (isSimulatorPage || alwaysVisible) {
-    // Always show on simulator or explicitly requested pages
-    floatingInput.classList.remove('hidden');
+    baseVisible = true;
+    applyVisibility();
   } else {
-    // Determine trigger element (defaults to main CTA button)
     const triggerElement = customTriggerSelector
       ? document.querySelector(customTriggerSelector)
       : document.querySelector('.cta-button[href="#waitlist"], .cta-button[href="/#waitlist"], .cta-button[href*="#waitlist"], a[href="/#waitlist"]');
 
-    console.log('Floating input: trigger element found:', !!triggerElement);
     if (triggerElement) {
-      console.log('Floating input: setting up scroll detection for trigger element');
       const handleScroll = () => {
         const rect = triggerElement.getBoundingClientRect();
-
-        // Show input when trigger element scrolls out of view (bottom above viewport)
-        if (rect.bottom < 0) {
-          floatingInput.classList.remove('hidden');
-          console.log('Floating input: showing (trigger element above viewport)');
-        } else {
-          floatingInput.classList.add('hidden');
-        }
+        baseVisible = rect.bottom < 0;
+        applyVisibility();
       };
 
-      // Initial check
       handleScroll();
 
-      // Listen to scroll events (throttled with requestAnimationFrame)
       let ticking = false;
       window.addEventListener('scroll', () => {
         if (!ticking) {
@@ -81,6 +78,8 @@
     }
   }
 
+  applyVisibility();
+
   /**
    * Handle input submission - opens main chatbot and sends message
    */
@@ -92,59 +91,24 @@
       characters: message.length,
     });
 
-    // Find the main chatbot section
-    const chatSection = document.querySelector('.chat-section');
-    const chatStandaloneSection = document.querySelector('.chat-standalone-section');
-    const mainChatInput = document.querySelector('.chat-input');
-    const mainChatSubmit = document.querySelector('.chat-submit');
-
-    if (chatSection && mainChatInput && mainChatSubmit) {
-      // Show chat section if it's hidden (businesses page)
-      if (chatStandaloneSection && !chatStandaloneSection.classList.contains('visible')) {
-        chatStandaloneSection.classList.add('visible');
-      }
-
-      // Scroll to chatbot section smoothly
-      chatSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-      // Wait for scroll, then populate and send message
-      setTimeout(() => {
-        // Populate input
-        mainChatInput.value = message;
-
-        // Focus the input (triggers fullscreen on mobile if needed)
-        mainChatInput.focus();
-
-        // Small delay to ensure input is focused, then submit
-        setTimeout(() => {
-          mainChatSubmit.click(); // Send the message
-
-          // Clear the floating input
-          inputField.value = '';
-
-          // Hide floating input after submission
-          floatingInput.classList.add('hidden');
-
-          trackFloatingInputEvent('floating_input_forwarded', {
-            success: true,
-          });
-        }, 100);
-      }, 500); // Wait for smooth scroll
-    } else if (window.bubbleMiniChat && typeof window.bubbleMiniChat.sendMessage === 'function') {
-      window.bubbleMiniChat.open?.();
-      window.bubbleMiniChat.sendMessage(message);
+    if (window.chatSidePanel && typeof window.chatSidePanel.open === 'function') {
+      window.chatSidePanel.open(message);
+      panelOpen = true;
+      applyVisibility();
       inputField.value = '';
+      inputField.blur();
 
       trackFloatingInputEvent('floating_input_forwarded', {
         success: true,
-        destination: 'mini_chat',
+        destination: 'chat_side_panel',
       });
-    } else {
-      trackFloatingInputEvent('floating_input_forwarded', {
-        success: false,
-        reason: 'main_chat_not_found',
-      });
+      return;
     }
+
+    trackFloatingInputEvent('floating_input_forwarded', {
+      success: false,
+      reason: 'chat_side_panel_unavailable',
+    });
   }
 
   // Submit on button click
@@ -173,4 +137,25 @@
 
   // Listen for language changes
   window.addEventListener('languageChanged', updatePlaceholder);
+
+  window.addEventListener('chatSidePanel:opened', () => {
+    panelOpen = true;
+    applyVisibility();
+  });
+
+  window.addEventListener('chatSidePanel:restored', () => {
+    panelOpen = true;
+    applyVisibility();
+  });
+
+  window.addEventListener('chatSidePanel:minimized', () => {
+    panelOpen = true;
+    applyVisibility();
+  });
+
+  window.addEventListener('chatSidePanel:closed', () => {
+    panelOpen = false;
+    inputField.value = '';
+    applyVisibility();
+  });
 })();

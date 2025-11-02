@@ -729,48 +729,47 @@
       </div>
     </footer>
 
-    <!-- Floating Chat Bubble with Mini Chat Window -->
-    <div id="floating-chat-bubble" class="floating-bubble">
-      <div class="floating-bubble-inner">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-        </svg>
-        <span data-translate="floating_bubble.text">Ask me anything</span>
-      </div>
-
-      <div class="mini-chat-window">
-        <div class="mini-chat-header">
-          <img src="/assets/images/bubble-favicon.svg" class="chat-header-icon" alt="Bubble" width="20" height="20" />
-          <span class="mini-chat-title">Bubble chatbot</span>
-          <button class="mini-chat-close" aria-label="Close chat">✕</button>
-        </div>
-        <div class="mini-chat-messages">
-          <div class="mini-chat-message bot">
-            <div class="message-content">
-              Hello, I'm Bubble – how can I help you?
-            </div>
+    <!-- Unified Chat Side Panel -->
+    <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+      <div class="chat-side-panel-header">
+        <div class="chat-side-panel-header-info">
+          <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+          <div class="chat-side-panel-titles">
+            <span class="chat-side-panel-title">Bubble Assistant</span>
           </div>
         </div>
-        <div class="mini-chat-input-container">
-          <input
-            type="text"
-            class="mini-chat-input"
-            placeholder="Ask me anything..."
-            data-translate-placeholder="floating_input.placeholder"
-            aria-label="Type your message"
-          />
-          <button class="mini-chat-send" aria-label="Send message">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </button>
+        <div class="chat-side-panel-actions">
+          <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
+          <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
         </div>
       </div>
+      <div class="chat-side-panel-messages" role="log" aria-live="polite">
+        <div class="chat-side-panel-message bot">
+          <div class="message-content">
+            Hello, I'm Bubble – how can I help you?
+          </div>
+        </div>
+      </div>
+      <form class="chat-side-panel-input-container" novalidate>
+        <input
+          type="text"
+          class="chat-side-panel-input"
+          placeholder="Ask me anything..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Type your message"
+          autocomplete="off"
+        />
+        <button class="chat-side-panel-send" aria-label="Send message" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </form>
     </div>
 
     <!-- Floating Chat Input for Pricing Page -->
-    <div id="floating-chat-input" class="floating-chat-input hidden">
+    <div id="floating-chat-input" class="floating-chat-input hidden" data-always-visible="true">
       <div class="floating-input-container">
         <input
           type="text"
@@ -791,8 +790,7 @@
     <!-- Application Scripts -->
     <script src="../i18n/translations.js"></script>
     <script src="../js/script.js"></script>
-    <script src="../js/floating-bubble.js"></script>
-    <script src="../js/mini-chat.js"></script>
+    <script src="../js/chat-side-panel.js"></script>
     <script src="../js/floating-chat-input.js"></script>
   </body>
 </html>

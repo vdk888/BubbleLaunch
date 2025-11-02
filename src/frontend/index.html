@@ -569,47 +569,66 @@
     <script src="js/script.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/charts.js"></script>
-    <script src="js/floating-bubble.js"></script>
-    <script src="js/mini-chat.js"></script>
 
-    <!-- Floating Chat Bubble -->
-    <div id="floating-chat-bubble" class="floating-bubble">
-      <div class="floating-bubble-inner">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-        <span data-translate="floating_bubble.text">Have questions? Chat with our AI</span>
-      </div>
-      
-      <div class="mini-chat-window">
-        <div class="mini-chat-header">
-          <h4 data-translate="floating_bubble.title">Bubble AI Assistant</h4>
-          <button class="mini-chat-close" aria-label="Close chat">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-        <div class="mini-chat-messages">
-          <div class="mini-chat-message bot">
-            <div class="message-content">
-              <p data-translate="floating_bubble.welcome">Hello! How can I help you today?</p>
-            </div>
+    <!-- Unified Chat Side Panel -->
+    <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+      <div class="chat-side-panel-header">
+        <div class="chat-side-panel-header-info">
+          <img src="assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+          <div class="chat-side-panel-titles">
+            <span class="chat-side-panel-title">Bubble Assistant</span>
           </div>
         </div>
-        <div class="mini-chat-input-container">
-          <input 
-            type="text" 
-            class="mini-chat-input" 
-            placeholder="Type your message..." 
-            data-translate="floating_bubble.placeholder"
-            aria-label="Type your message"
-          />
-          <button class="mini-chat-send" aria-label="Send message">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 12H19M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
+        <div class="chat-side-panel-actions">
+          <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
+          <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
         </div>
       </div>
+      <div class="chat-side-panel-messages" role="log" aria-live="polite">
+        <div class="chat-side-panel-message bot">
+          <div class="message-content">
+            <p data-translate="floating_bubble.welcome">Hello! How can I help you today?</p>
+          </div>
+        </div>
+      </div>
+      <form class="chat-side-panel-input-container" novalidate>
+        <input
+          type="text"
+          class="chat-side-panel-input"
+          placeholder="Ask me anything..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Type your message"
+          autocomplete="off"
+        />
+        <button class="chat-side-panel-send" aria-label="Send message" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </form>
     </div>
+
+    <!-- Floating Glassmorphism Chat Input -->
+    <div id="floating-chat-input" class="floating-chat-input hidden">
+      <div class="floating-input-container">
+        <input
+          type="text"
+          class="floating-input-field"
+          placeholder="Ask me anything..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Ask a question"
+        />
+        <button class="floating-input-submit" aria-label="Send message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <script src="js/chat-side-panel.js"></script>
+    <script src="js/floating-chat-input.js"></script>
   </body>
 </html>
