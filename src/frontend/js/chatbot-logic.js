@@ -3,17 +3,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatSubmit = document.querySelector(".chat-submit");
   const chatMessages = document.querySelector(".chat-messages");
 
-  // Detect chatbot type based on current page
-  function getChatbotType() {
+  // Detect current page context for the unified chatbot
+  function getPageContext() {
     const path = window.location.pathname;
     if (path.includes('pricing')) return 'pricing';
     if (path.includes('portfolio-simulator')) return 'simulator';
     return 'index'; // Default for home page
   }
 
-  // Storage key for conversation history (per chatbot type)
-  const chatbotType = getChatbotType();
-  const storageKey = `bubble_chat_history_${chatbotType}`;
+  // UNIFIED STORAGE: All chatbots now share the same conversation history
+  const pageContext = getPageContext();
+  const storageKey = 'bubble_chat_history';
 
   // Load conversation history from localStorage
   let conversationHistory = [];
@@ -83,11 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const lang = document.documentElement.lang || 'en';
 
-      // Prepare request body with chatbot type and conversation history
+      // Prepare request body with pageContext and conversation history
       const requestBody = {
         message,
         language: lang,
-        chatbotType,
+        pageContext,  // Tell chatbot which page user is on
         history: conversationHistory.slice(-10) // Send last 10 messages for context
       };
 
@@ -143,6 +143,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         }
+      }
+
+      // Convert URLs in bot response to clickable links
+      if (fullResponse) {
+        const urlRegex = /(\/#waitlist|https?:\/\/[^\s)]+)/gi;
+        const htmlContent = fullResponse.replace(urlRegex, (url) => {
+          const href = url.startsWith('/#') ? url : url;
+          return `<a href="${href}" target="${url.startsWith('/#') ? '_self' : '_blank'}" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; cursor: pointer;">${url}</a>`;
+        });
+        botMessageContent.innerHTML = htmlContent;
       }
 
       // Save assistant response to history

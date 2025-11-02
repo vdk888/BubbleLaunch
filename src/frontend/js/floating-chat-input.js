@@ -47,7 +47,7 @@
     // Determine trigger element (defaults to main CTA button)
     const triggerElement = customTriggerSelector
       ? document.querySelector(customTriggerSelector)
-      : document.querySelector('.cta-button[href="#waitlist"], .cta-button[href*="#waitlist"]');
+      : document.querySelector('.cta-button[href="#waitlist"], .cta-button[href="/#waitlist"], .cta-button[href*="#waitlist"], a[href="/#waitlist"]');
 
     console.log('Floating input: trigger element found:', !!triggerElement);
     if (triggerElement) {

@@ -1,27 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
   const floatingBubble = document.getElementById('floating-chat-bubble');
-  const chatBubble = floatingBubble?.querySelector('.floating-bubble-inner');
-  const miniChatWindow = floatingBubble?.querySelector('.mini-chat-window');
-  const chatInput = floatingBubble?.querySelector('.mini-chat-input');
-  const chatMessages = floatingBubble?.querySelector('.mini-chat-messages');
-  const closeButton = floatingBubble?.querySelector('.mini-chat-close');
-  const sendButton = floatingBubble?.querySelector('.mini-chat-send');
 
-  if (!floatingBubble || !chatBubble || !miniChatWindow || !chatInput || !chatMessages || !closeButton || !sendButton) {
-    console.warn('Mini chat elements not found');
+  // Guard: Only proceed if floating bubble exists (not on all pages like portfolio-simulator which has its own chat)
+  if (!floatingBubble) {
+    console.log('Mini chat: floating-chat-bubble not found on this page, skipping initialization');
     return;
   }
 
-  // Detect chatbot type based on current page
-  function getChatbotType() {
+  const chatBubble = floatingBubble.querySelector('.floating-bubble-inner');
+  const miniChatWindow = floatingBubble.querySelector('.mini-chat-window');
+  const chatInput = floatingBubble.querySelector('.mini-chat-input');
+  const chatMessages = floatingBubble.querySelector('.mini-chat-messages');
+  const closeButton = floatingBubble.querySelector('.mini-chat-close');
+  const sendButton = floatingBubble.querySelector('.mini-chat-send');
+
+  if (!chatBubble || !miniChatWindow || !chatInput || !chatMessages || !closeButton || !sendButton) {
+    console.warn('Mini chat: not all elements found', {
+      chatBubble: !!chatBubble,
+      miniChatWindow: !!miniChatWindow,
+      chatInput: !!chatInput,
+      chatMessages: !!chatMessages,
+      closeButton: !!closeButton,
+      sendButton: !!sendButton
+    });
+    return;
+  }
+
+  // Detect current page context for the unified chatbot
+  function getPageContext() {
     const path = window.location.pathname;
     if (path.includes('pricing')) return 'pricing';
     if (path.includes('portfolio-simulator')) return 'simulator';
     return 'index'; // Default for home page
   }
 
-  const chatbotType = getChatbotType();
-  const storageKey = `bubble_chat_history_${chatbotType}`;
+  const pageContext = getPageContext();
+  // UNIFIED STORAGE: All chatbots now share the same conversation history
+  const storageKey = 'bubble_chat_history';
   let conversationHistory = [];
 
   // Load conversation history from localStorage
@@ -122,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
       conversationHistory.push({ role: 'user', content: message });
       saveConversationHistory();
 
-      // Call chatbot API with SSE streaming
+      // Call unified chatbot API with pageContext
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
@@ -131,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({
           message,
           language: lang,
-          chatbotType,
+          pageContext,  // Tell chatbot which page user is on
           history: conversationHistory.slice(-10) // Send last 10 messages for context
         }),
         signal: currentAbortController.signal
@@ -190,6 +205,14 @@ document.addEventListener('DOMContentLoaded', () => {
       // If no content received, show error
       if (!fullResponse) {
         botMessageContent.textContent = 'I apologize, but I encountered an error processing your request.';
+      } else {
+        // Convert URLs in bot response to clickable links
+        const urlRegex = /(\/#waitlist|https?:\/\/[^\s)]+)/gi;
+        const htmlContent = fullResponse.replace(urlRegex, (url) => {
+          const href = url.startsWith('/#') ? url : url;
+          return `<a href="${href}" target="${url.startsWith('/#') ? '_self' : '_blank'}" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; cursor: pointer;">${url}</a>`;
+        });
+        botMessageContent.innerHTML = htmlContent;
       }
 
       // Save assistant response to history

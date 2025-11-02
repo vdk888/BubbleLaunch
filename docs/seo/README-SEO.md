@@ -447,10 +447,13 @@
 
 ---
 
-**Last Updated**: 2025-10-30
+**Last Updated**: 2025-11-02
 **Status**: ✅ **Meta Tags Complete** | 🚀 **Ready for Google Search Console**
 
-**Recent Updates (2025-10-30)**:
+**Recent Updates (2025-11-02)**:
+- ✅ **Pricing pages refreshed** — meta descriptions aligned FR/EN, canonical + hreflang pairs restored, social cards updated, robots index enabled
+
+**Previous Updates (2025-10-30)**:
 - ✅ **All 6 HTML pages updated** with new meta tags
 - ✅ **Pricing page visibility fixed** (noindex → index) - Major SEO win!
 - ✅ **Democratization narrative** consistently applied

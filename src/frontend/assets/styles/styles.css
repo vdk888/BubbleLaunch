@@ -1281,6 +1281,21 @@ body.mobile-menu-open {
   justify-content: space-between;
 }
 
+.chat-header-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+.mini-chat-title {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
 .mini-chat-header h4 {
   margin: 0;
   font-size: 1rem;

@@ -73,13 +73,15 @@ This comprehensive SEO overhaul addressed three critical areas:
 - Users couldn't find pricing page organically
 - Lost SEO opportunity for cost-comparison keywords
 
-**Solution**:
+**Solution** (latest update 2025-11-02):
 ```html
 <!-- AFTER - NOW VISIBLE -->
-<meta name="robots" content="index, follow" />
-<title>Plans Bubble | Gestion Portefeuille à partir de 0€/mois</title>
-<meta name="description" content="Plans Bubble : à partir de 0€/mois pour gestion portefeuille institutionnelle. Coûte 100x moins cher qu'un gestionnaire professionnel (0€-120€/an vs 1000€-2000€). Même intelligence analytique, contrôle total, tarifs transparents."/>
-<meta name="keywords" content="pricing plans, plans tarifs bubble, gestion portefeuille abordable, frais fixes investissement, alternative à la gestion professionnelle, tarifs transparents" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<title>Plans Bubble · Frais Fixes et Contrôle Total</title>
+<meta name="description" content="Comparez les plans Bubble : outils institutionnels accessibles pour 0-10€/mois, sans frais sur encours, avec 100% du contrôle grâce à l'IA." />
+<link rel="canonical" href="https://bubbleinvest.org/pricing" />
+<link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/pricing" />
+<link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/pricing" />
 ```
 
 **Impact**:
@@ -96,9 +98,8 @@ This comprehensive SEO overhaul addressed three critical areas:
 **File**: `src/frontend/pages/index.html`
 
 ```html
-<title>Bubble - Gestion Portefeuille IA Transparente | Pouvoirs Institutionnels pour Tous</title>
-<meta name="description" content="Bubble démocratise la gestion de portefeuille institutionnelle. Obtenez la même intelligence analytique qu'un gestionnaire professionnel : analyse de marché, scoring multi-factoriel, gestion des risques, rebalancing intelligent. À partir de 0€/mois. Transparent. Contrôle total.">
-<meta name="keywords" content="gestion portefeuille IA, investissement quantitatif, allocation portefeuille intelligente, alternative à la gestion traditionnelle, analyse boursière IA, scoring multi-factoriel, stratégies quantitatives, démocratisation investissement">
+<title>Bubble - Gestion Portefeuille IA Transparente | L'investissement pour tous</title>
+<meta name="description" content="Bubble démocratise la gestion de portefeuille institutionnelle : accédez aux mêmes outils qu'un gérant de fonds pour 0-10€/mois, tout en gardant 100% du contrôle grâce à l'IA.">
 ```
 
 ### Portfolio Simulator - Professional Angle

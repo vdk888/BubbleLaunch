@@ -20,7 +20,12 @@
   const floatingSubmit = document.querySelector('.floating-input-submit');
 
   if (!chatWindow || !chatMessages || !chatInput || !chatSend) {
-    console.warn('Simulator chat elements not found');
+    console.warn('Simulator chat elements not found', {
+      chatWindow: !!chatWindow,
+      chatMessages: !!chatMessages,
+      chatInput: !!chatInput,
+      chatSend: !!chatSend,
+    });
     return;
   }
 
@@ -290,17 +295,26 @@
     });
   }
 
-  chatSend.addEventListener('click', handleChatSubmit);
+  if (chatSend) {
+    chatSend.addEventListener('click', handleChatSubmit);
+  }
 
-  chatInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleChatSubmit();
-    }
-  });
+  if (chatInput) {
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        handleChatSubmit();
+      }
+    });
+  }
 
-  minimizeBtn.addEventListener('click', minimizeChat);
-  closeBtn.addEventListener('click', closeChat);
+  if (minimizeBtn) {
+    minimizeBtn.addEventListener('click', minimizeChat);
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeChat);
+  }
 
   // Click on header to toggle minimize
   const chatHeader = document.querySelector('.simulator-chat-header h3');
