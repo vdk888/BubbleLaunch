@@ -186,13 +186,15 @@ function buildSnapshot({
 
   // Build chart data with ALL unfiltered data, include all daily points
   // This ensures all periods get complete data for proper chart visualization
-  // Cutoff filtering is only applied to metrics calculation, not chart data
-  const chartData = buildChartData(
+  const allChartData = buildChartData(
     tickers,
     normalizedPriceData,  // Pass ALL unfiltered price data
     strategySeries,       // Pass ALL unfiltered strategy data
     true                  // Include all daily data (no sampling)
   );
+
+  // Filter chart data by cutoff date to match the period
+  const chartData = allChartData.filter((point) => new Date(point.date) >= cutoffDate);
 
   // Calculate metrics only on filtered data for accuracy
   const metrics = calculateStrategyMetrics(filteredStrategies);
