@@ -522,7 +522,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Close demo and show pricing
   const closeDemo = () => {
     overlay.classList.add('hidden');
-    pricingContent.classList.remove('hidden');
+    if (pricingContent) {
+      pricingContent.classList.remove('hidden');
+    }
   };
 
   // Event listeners
@@ -556,7 +558,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (replayBtn) {
     replayBtn.addEventListener('click', () => {
       overlay.classList.remove('hidden');
-      pricingContent.classList.add('hidden');
+      if (pricingContent) {
+        pricingContent.classList.add('hidden');
+      }
       runDemo();
     });
   }

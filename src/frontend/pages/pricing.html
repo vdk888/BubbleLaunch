@@ -12,6 +12,7 @@
     <meta name="keywords" content="plans Bubble, tarifs Bubble, frais fixes investissement, alternative gestion professionnelle, outil portefeuille IA, démocratisation investissement" />
     <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
     <link rel="stylesheet" href="/assets/styles/styles.css" />
+    <link rel="stylesheet" href="/assets/styles/pricing-workflow-demo.css" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -40,6 +41,49 @@
     />
   </head>
   <body class="pricing-page">
+    <!-- Workflow Demo Overlay -->
+    <div id="workflow-demo-overlay" class="workflow-demo-overlay">
+      <!-- Close Button (Always Visible) -->
+      <button class="workflow-demo-close" id="workflow-demo-close" aria-label="Close demo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6L18 18" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <!-- Scrollable Chat Container -->
+      <div class="workflow-demo-chat-container">
+        <div class="workflow-demo-chat-header">
+          <div class="workflow-demo-header-info">
+            <img src="/assets/images/bubble-favicon.svg" class="workflow-demo-icon" alt="Bubble" width="28" height="28" />
+            <div class="workflow-demo-titles">
+              <span class="workflow-demo-title">Bubble AI Agent</span>
+              <span class="workflow-demo-subtitle">Interactive Demo</span>
+            </div>
+          </div>
+          <div class="language-switcher-demo">
+            <button id="fr-demo-switch" class="active">FR</button>
+            <button id="en-demo-switch">EN</button>
+          </div>
+        </div>
+
+        <!-- Scrollable Messages Area -->
+        <div class="workflow-demo-messages" id="workflow-demo-messages" role="log" aria-live="polite">
+          <!-- Messages will be dynamically inserted here -->
+        </div>
+
+        <!-- Input Field -->
+        <div class="workflow-demo-input-container">
+          <textarea class="workflow-demo-input-field" placeholder="" readonly></textarea>
+          <button class="workflow-demo-send-button" aria-label="Send">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M12 21V4" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <header>
       <div class="container">
         <div class="brand">
@@ -806,5 +850,6 @@
     <script src="js/script.js"></script>
     <script src="js/chat-side-panel.js"></script>
     <script src="js/floating-chat-input.js"></script>
+    <script src="js/pricing-workflow-demo.js"></script>
   </body>
 </html>
