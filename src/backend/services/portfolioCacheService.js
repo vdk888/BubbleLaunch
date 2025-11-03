@@ -71,7 +71,7 @@ function resolveStrategyKeys(strategies) {
   return [...ordered, ...extras];
 }
 
-function buildChartData(tickers, priceData, strategies, samplingInterval = SAMPLE_INTERVAL_DAYS, cutoffDate = null) {
+function buildChartData(tickers, priceData, strategies, cutoffDate = null, includeAllData = false) {
   if (!tickers.length) return [];
 
   const baseTicker = tickers[0];
@@ -80,7 +80,6 @@ function buildChartData(tickers, priceData, strategies, samplingInterval = SAMPL
 
   const strategyKeys = resolveStrategyKeys(strategies);
   const chartData = [];
-  const usedDates = new Set();
 
   // Build date-based lookups for ALL data
   const priceLookups = {};
@@ -95,27 +94,29 @@ function buildChartData(tickers, priceData, strategies, samplingInterval = SAMPL
   }
 
   const strategyLookups = {};
-  const allStrategyDates = new Set();
   for (const strategyKey of strategyKeys) {
     strategyLookups[strategyKey] = new Map();
     const stratArray = strategies[strategyKey] || [];
     for (const point of stratArray) {
       if (point && point.date) {
         strategyLookups[strategyKey].set(point.date, point.value);
-        allStrategyDates.add(point.date);
       }
     }
   }
 
-  // Sample every N days, skipping dates where strategy data isn't available
+  // Determine sampling interval
+  const samplingInterval = includeAllData ? 1 : SAMPLE_INTERVAL_DAYS;
+
+  // Sample or include all data points
   for (let i = 0; i < baseSeries.length; i += samplingInterval) {
     const basePoint = baseSeries[i];
     if (!basePoint || !basePoint.date) continue;
 
     const date = basePoint.date;
+    const dateObj = new Date(date);
 
     // Skip if date is before cutoff date (for period-specific filtering)
-    if (cutoffDate && new Date(date) < cutoffDate) {
+    if (cutoffDate && dateObj < cutoffDate) {
       continue;
     }
 
@@ -145,49 +146,6 @@ function buildChartData(tickers, priceData, strategies, samplingInterval = SAMPL
     }
 
     chartData.push(entry);
-    usedDates.add(date);
-  }
-
-  // Add last point if not already included
-  if (baseSeries.length > 0) {
-    const lastPoint = baseSeries[baseSeries.length - 1];
-    if (lastPoint && lastPoint.date && !usedDates.has(lastPoint.date)) {
-      // Check cutoff date for last point too
-      if (cutoffDate && new Date(lastPoint.date) < cutoffDate) {
-        return chartData; // Don't add last point if it's before cutoff
-      }
-
-      const entry = { date: lastPoint.date };
-
-      // Add prices for last point
-      let hasAllPrices = true;
-      for (const ticker of tickers) {
-        const priceArray = priceData[ticker];
-        if (!priceArray || priceArray.length === 0) {
-          hasAllPrices = false;
-          break;
-        }
-        const lastPrice = priceArray[priceArray.length - 1];
-        entry[ticker] = Math.round(lastPrice.price * 100) / 100;
-      }
-
-      if (hasAllPrices) {
-        // Try to add strategy data for last point
-        let hasAllStrategies = true;
-        for (const strategyKey of strategyKeys) {
-          const stratValue = strategyLookups[strategyKey].get(lastPoint.date);
-          if (stratValue === undefined) {
-            hasAllStrategies = false;
-            break;
-          }
-          entry[strategyKey] = Math.round(stratValue * 100) / 100;
-        }
-
-        if (hasAllStrategies) {
-          chartData.push(entry);
-        }
-      }
-    }
   }
 
   return chartData;
@@ -226,15 +184,14 @@ function buildSnapshot({
     filteredStrategies[strategyKey] = filterSeriesByCutoff(series, cutoffDate);
   }
 
-  // Build chart data with ALL unfiltered data BUT apply cutoff date filtering
-  // This prevents date mismatches by letting the chart builder see all dates
-  // but only include points >= cutoffDate
+  // Build chart data with ALL unfiltered data, include all daily points for short periods
+  // This ensures short periods (1Y, 3Y, 5Y) get enough data points
   const chartData = buildChartData(
     tickers,
     normalizedPriceData,  // Pass ALL unfiltered price data
     strategySeries,       // Pass ALL unfiltered strategy data
-    SAMPLE_INTERVAL_DAYS,
-    cutoffDate            // Apply cutoff inside buildChartData
+    cutoffDate,           // Apply cutoff inside buildChartData
+    true                  // Include all daily data (no sampling)
   );
 
   // Calculate metrics only on filtered data for accuracy
