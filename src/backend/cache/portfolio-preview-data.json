@@ -341,7 +341,7 @@
       "SPY": 129.01,
       "IEF": 112.45,
       "GLD": 177.18,
-      "EFA": 153.2,
+      "EFA": 153.21,
       "EEM": 201.58,
       "equalWeight": 154.68,
       "sixtyForty": 122.38,
@@ -535,7 +535,7 @@
       "maxDrawdown": -53.39
     }
   },
-  "generatedAt": "2025-11-03T19:57:08.755Z",
+  "generatedAt": "2025-11-03T20:04:51.228Z",
   "periodYears": 20,
   "periodsAvailable": [
     1,

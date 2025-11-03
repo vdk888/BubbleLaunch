@@ -71,7 +71,7 @@ function resolveStrategyKeys(strategies) {
   return [...ordered, ...extras];
 }
 
-function buildChartData(tickers, priceData, strategies) {
+function buildChartData(tickers, priceData, strategies, samplingInterval = SAMPLE_INTERVAL_DAYS, cutoffDate = null) {
   if (!tickers.length) return [];
 
   const baseTicker = tickers[0];
@@ -108,11 +108,16 @@ function buildChartData(tickers, priceData, strategies) {
   }
 
   // Sample every N days, skipping dates where strategy data isn't available
-  for (let i = 0; i < baseSeries.length; i += SAMPLE_INTERVAL_DAYS) {
+  for (let i = 0; i < baseSeries.length; i += samplingInterval) {
     const basePoint = baseSeries[i];
     if (!basePoint || !basePoint.date) continue;
 
     const date = basePoint.date;
+
+    // Skip if date is before cutoff date (for period-specific filtering)
+    if (cutoffDate && new Date(date) < cutoffDate) {
+      continue;
+    }
 
     // Skip if strategy data is missing for this date
     const hasAllStrategyData = strategyKeys.every(key => strategyLookups[key].has(date));
@@ -147,6 +152,11 @@ function buildChartData(tickers, priceData, strategies) {
   if (baseSeries.length > 0) {
     const lastPoint = baseSeries[baseSeries.length - 1];
     if (lastPoint && lastPoint.date && !usedDates.has(lastPoint.date)) {
+      // Check cutoff date for last point too
+      if (cutoffDate && new Date(lastPoint.date) < cutoffDate) {
+        return chartData; // Don't add last point if it's before cutoff
+      }
+
       const entry = { date: lastPoint.date };
 
       // Add prices for last point
@@ -211,21 +221,23 @@ function buildSnapshot({
   strategySeries,
   generatedAt,
 }) {
-  const filteredPriceData = filterPriceDataByCutoff(
-    normalizedPriceData,
-    cutoffDate
-  );
-
   const filteredStrategies = {};
   for (const [strategyKey, series] of Object.entries(strategySeries)) {
     filteredStrategies[strategyKey] = filterSeriesByCutoff(series, cutoffDate);
   }
 
+  // Build chart data with ALL unfiltered data BUT apply cutoff date filtering
+  // This prevents date mismatches by letting the chart builder see all dates
+  // but only include points >= cutoffDate
   const chartData = buildChartData(
     tickers,
-    filteredPriceData,
-    strategySeries  // Pass unfiltered strategy data to ensure date matching works
+    normalizedPriceData,  // Pass ALL unfiltered price data
+    strategySeries,       // Pass ALL unfiltered strategy data
+    SAMPLE_INTERVAL_DAYS,
+    cutoffDate            // Apply cutoff inside buildChartData
   );
+
+  // Calculate metrics only on filtered data for accuracy
   const metrics = calculateStrategyMetrics(filteredStrategies);
   const strategyKeys = resolveStrategyKeys(filteredStrategies);
 

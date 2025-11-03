@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-11-03T19:57:08.755Z",
+  "generatedAt": "2025-11-03T20:04:51.228Z",
   "tickers": [
     "SPY",
     "IEF",
@@ -18,7 +18,7 @@
   "periods": {
     "1": {
       "periodYears": 1,
-      "generatedAt": "2025-11-03T19:57:08.755Z",
+      "generatedAt": "2025-11-03T20:04:51.228Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -83,7 +83,7 @@
     },
     "3": {
       "periodYears": 3,
-      "generatedAt": "2025-11-03T19:57:08.755Z",
+      "generatedAt": "2025-11-03T20:04:51.228Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -148,7 +148,7 @@
     },
     "5": {
       "periodYears": 5,
-      "generatedAt": "2025-11-03T19:57:08.755Z",
+      "generatedAt": "2025-11-03T20:04:51.228Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -213,7 +213,7 @@
     },
     "10": {
       "periodYears": 10,
-      "generatedAt": "2025-11-03T19:57:08.755Z",
+      "generatedAt": "2025-11-03T20:04:51.228Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -278,7 +278,7 @@
     },
     "20": {
       "periodYears": 20,
-      "generatedAt": "2025-11-03T19:57:08.755Z",
+      "generatedAt": "2025-11-03T20:04:51.228Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -628,7 +628,7 @@
           "SPY": 129.01,
           "IEF": 112.45,
           "GLD": 177.18,
-          "EFA": 153.2,
+          "EFA": 153.21,
           "EEM": 201.58,
           "equalWeight": 154.68,
           "sixtyForty": 122.38,
