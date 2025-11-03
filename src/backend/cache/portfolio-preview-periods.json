@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-11-03T17:26:56.903Z",
+  "generatedAt": "2025-11-03T19:29:46.647Z",
   "tickers": [
     "SPY",
     "IEF",
@@ -18,7 +18,7 @@
   "periods": {
     "1": {
       "periodYears": 1,
-      "generatedAt": "2025-11-03T17:26:56.903Z",
+      "generatedAt": "2025-11-03T19:29:46.647Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -83,7 +83,7 @@
     },
     "3": {
       "periodYears": 3,
-      "generatedAt": "2025-11-03T17:26:56.903Z",
+      "generatedAt": "2025-11-03T19:29:46.647Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -148,7 +148,7 @@
     },
     "5": {
       "periodYears": 5,
-      "generatedAt": "2025-11-03T17:26:56.903Z",
+      "generatedAt": "2025-11-03T19:29:46.647Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -213,7 +213,7 @@
     },
     "10": {
       "periodYears": 10,
-      "generatedAt": "2025-11-03T17:26:56.903Z",
+      "generatedAt": "2025-11-03T19:29:46.647Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -278,7 +278,7 @@
     },
     "20": {
       "periodYears": 20,
-      "generatedAt": "2025-11-03T17:26:56.903Z",
+      "generatedAt": "2025-11-03T19:29:46.647Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -303,7 +303,7 @@
         },
         {
           "date": "2005-12-05",
-          "SPY": 103.53,
+          "SPY": 103.52,
           "IEF": 100.8,
           "GLD": 110.49,
           "EFA": 102.84,
@@ -766,7 +766,7 @@
         {
           "date": "2008-09-08",
           "SPY": 109.38,
-          "IEF": 123.4,
+          "IEF": 123.41,
           "GLD": 171.58,
           "EFA": 114.9,
           "EEM": 143.41,
@@ -776,6 +776,20 @@
           "hierarchicalRiskParity": 132.54,
           "simpleRP": 128.4,
           "optimizedRP": 143.93
+        },
+        {
+          "date": "2008-10-06",
+          "SPY": 90.72,
+          "IEF": 124.93,
+          "GLD": 183.38,
+          "EFA": 94.96,
+          "EEM": 108.88,
+          "equalWeight": 120.57,
+          "sixtyForty": 104.41,
+          "momentumTilt": 158,
+          "hierarchicalRiskParity": 120.57,
+          "simpleRP": 121.16,
+          "optimizedRP": 147.12
         }
       ],
       "metrics": {

@@ -82,52 +82,165 @@ function buildChartData(tickers, priceData, strategies) {
   const chartData = [];
   const usedDates = new Set();
 
-  // Build entry using array indices instead of date-based lookup
-  // This avoids timezone/format issues with date matching
-  const buildEntryByIndex = (priceIndex) => {
-    if (priceIndex < 0 || priceIndex >= baseSeries.length) return null;
-
-    const basePoint = baseSeries[priceIndex];
-    if (!basePoint) return null;
-
-    const entry = { date: basePoint.date };
-
-    // Copy price data
-    for (const ticker of tickers) {
-      const priceArray = priceData[ticker];
-      if (!priceArray || priceIndex >= priceArray.length) {
-        return null; // Missing price data
+  // Build date-based lookups for ALL data
+  const priceLookups = {};
+  for (const ticker of tickers) {
+    priceLookups[ticker] = new Map();
+    const priceArray = priceData[ticker] || [];
+    for (const point of priceArray) {
+      if (point && point.date) {
+        priceLookups[ticker].set(point.date, point.price);
       }
-      entry[ticker] = Math.round(priceArray[priceIndex].price * 100) / 100;
-    }
-
-    // Copy strategy data
-    for (const strategyKey of strategyKeys) {
-      const stratArray = strategies[strategyKey];
-      if (!stratArray || priceIndex >= stratArray.length) {
-        return null; // Missing strategy data
-      }
-      entry[strategyKey] = Math.round(stratArray[priceIndex].value * 100) / 100;
-    }
-
-    return entry;
-  };
-
-  for (let i = 0; i < baseSeries.length; i += SAMPLE_INTERVAL_DAYS) {
-    const entry = buildEntryByIndex(i);
-    if (entry) {
-      chartData.push(entry);
-      usedDates.add(entry.date);
     }
   }
 
-  const lastPoint = baseSeries[baseSeries.length - 1];
-  if (lastPoint) {
-    const lastDate = lastPoint.date;
-    if (lastDate && !usedDates.has(lastDate)) {
-      const entry = buildEntry(lastDate);
-      if (entry) {
-        chartData.push(entry);
+  const strategyLookups = {};
+  const allStrategyDates = new Set();
+  for (const strategyKey of strategyKeys) {
+    strategyLookups[strategyKey] = new Map();
+    const stratArray = strategies[strategyKey] || [];
+    for (const point of stratArray) {
+      if (point && point.date) {
+        strategyLookups[strategyKey].set(point.date, point.value);
+        allStrategyDates.add(point.date);
+      }
+    }
+  }
+
+  // Get intersection: dates that exist in strategies and are sampled from baseSeries
+  let successCount = 0;
+
+  for (let i = 0; i < baseSeries.length; i += SAMPLE_INTERVAL_DAYS) {
+    const basePoint = baseSeries[i];
+    if (!basePoint || !basePoint.date) continue;
+
+    const date = basePoint.date;
+
+    // Check if date exists in all strategy lookups AND all price lookups
+    const hasAllStrategyData = strategyKeys.every(key => strategyLookups[key].has(date));
+    if (!hasAllStrategyData) {
+      // Try to find nearest matching date in strategies
+      let found = false;
+      // Look backwards and forwards for a matching date
+      for (let lookback = 1; lookback <= 10; lookback++) {
+        const idx = i - lookback;
+        const idx2 = i + lookback;
+
+        if (idx >= 0 && baseSeries[idx]) {
+          const altDate = baseSeries[idx].date;
+          if (strategyKeys.every(key => strategyLookups[key].has(altDate))) {
+            // Found a matching date, use it
+            const entry = { date: altDate };
+
+            for (const ticker of tickers) {
+              const price = priceLookups[ticker].get(altDate);
+              if (price === undefined) break;
+              entry[ticker] = Math.round(price * 100) / 100;
+            }
+            if (Object.keys(entry).length <= 1) continue; // No price data
+
+            for (const strategyKey of strategyKeys) {
+              const stratValue = strategyLookups[strategyKey].get(altDate);
+              entry[strategyKey] = Math.round(stratValue * 100) / 100;
+            }
+
+            if (!usedDates.has(altDate)) {
+              chartData.push(entry);
+              usedDates.add(altDate);
+              successCount++;
+              found = true;
+              break;
+            }
+          }
+        }
+
+        if (idx2 < baseSeries.length && baseSeries[idx2]) {
+          const altDate = baseSeries[idx2].date;
+          if (strategyKeys.every(key => strategyLookups[key].has(altDate))) {
+            const entry = { date: altDate };
+
+            for (const ticker of tickers) {
+              const price = priceLookups[ticker].get(altDate);
+              if (price === undefined) break;
+              entry[ticker] = Math.round(price * 100) / 100;
+            }
+            if (Object.keys(entry).length <= 1) continue;
+
+            for (const strategyKey of strategyKeys) {
+              const stratValue = strategyLookups[strategyKey].get(altDate);
+              entry[strategyKey] = Math.round(stratValue * 100) / 100;
+            }
+
+            if (!usedDates.has(altDate)) {
+              chartData.push(entry);
+              usedDates.add(altDate);
+              successCount++;
+              found = true;
+              break;
+            }
+          }
+        }
+
+        if (found) break;
+      }
+      continue;
+    }
+
+    // Build entry if all data is available
+    const entry = { date };
+
+    for (const ticker of tickers) {
+      const price = priceLookups[ticker].get(date);
+      if (price === undefined) break;
+      entry[ticker] = Math.round(price * 100) / 100;
+    }
+    if (Object.keys(entry).length <= 1) continue; // No price data
+
+    for (const strategyKey of strategyKeys) {
+      const stratValue = strategyLookups[strategyKey].get(date);
+      entry[strategyKey] = Math.round(stratValue * 100) / 100;
+    }
+
+    chartData.push(entry);
+    usedDates.add(date);
+    successCount++;
+  }
+
+  console.log(`  Built ${successCount} chart entries`);
+
+  // Add last point if not already included
+  if (baseSeries.length > 0) {
+    const lastPoint = baseSeries[baseSeries.length - 1];
+    if (lastPoint && lastPoint.date && !usedDates.has(lastPoint.date)) {
+      const entry = { date: lastPoint.date };
+
+      // Add prices for last point
+      let hasAllPrices = true;
+      for (const ticker of tickers) {
+        const priceArray = priceData[ticker];
+        if (!priceArray || priceArray.length === 0) {
+          hasAllPrices = false;
+          break;
+        }
+        const lastPrice = priceArray[priceArray.length - 1];
+        entry[ticker] = Math.round(lastPrice.price * 100) / 100;
+      }
+
+      if (hasAllPrices) {
+        // Try to add strategy data for last point
+        let hasAllStrategies = true;
+        for (const strategyKey of strategyKeys) {
+          const stratValue = strategyLookups[strategyKey].get(lastPoint.date);
+          if (stratValue === undefined) {
+            hasAllStrategies = false;
+            break;
+          }
+          entry[strategyKey] = Math.round(stratValue * 100) / 100;
+        }
+
+        if (hasAllStrategies) {
+          chartData.push(entry);
+        }
       }
     }
   }
