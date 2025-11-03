@@ -5,7 +5,7 @@ const portfolioService = require("./portfolioService");
 
 const DEFAULT_PERIODS = [1, 3, 5, 10, 20];
 const DEFAULT_PERIOD = 20;
-const DEFAULT_TICKERS = ["SPY", "IEF", "GLD"];
+const DEFAULT_TICKERS = ["SPY", "IEF", "GLD", "EFA", "EEM"]; // 5 ETFs for global diversification
 const SAMPLE_INTERVAL_DAYS = 21; // ~ monthly sampling
 
 const STRATEGY_BUILDERS = {

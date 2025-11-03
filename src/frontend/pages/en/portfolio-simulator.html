@@ -215,6 +215,116 @@
         display: none;
       }
 
+      /* Leverage Toggle Section */
+      .leverage-section {
+        margin: 2rem 0;
+        padding: 1.75rem;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(102, 126, 234, 0.25);
+        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.08);
+      }
+
+      .section-subtitle {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #1F2937;
+        margin-bottom: 1rem;
+      }
+
+      .leverage-pills-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .leverage-pills {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .leverage-pill {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1rem 1.5rem;
+        border-radius: 50px;
+        border: 2px solid #E5E7EB;
+        background: white;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #4B5563;
+      }
+
+      .leverage-pill:hover:not(.active) {
+        border-color: #667eea;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+      }
+
+      .leverage-pill.active {
+        border-color: #667eea;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        box-shadow: 0 12px 28px rgba(102, 126, 234, 0.25);
+      }
+
+      .leverage-pill.active .risk-badge {
+        filter: brightness(1.2);
+      }
+
+      .risk-badge {
+        font-size: 1.2rem;
+        line-height: 1;
+      }
+
+      .leverage-warning {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.25rem;
+        border-radius: 12px;
+        background: rgba(239, 68, 68, 0.08);
+        border-left: 4px solid #ef4444;
+        transition: all 0.3s ease;
+      }
+
+      .leverage-warning.hidden {
+        display: none;
+      }
+
+      .warning-icon {
+        font-size: 1.5rem;
+        line-height: 1;
+        flex-shrink: 0;
+      }
+
+      .warning-content {
+        font-size: 0.9rem;
+        color: #7f1d1d;
+        line-height: 1.6;
+      }
+
+      .warning-content strong {
+        color: #991b1b;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .leverage-pills {
+          flex-direction: column;
+        }
+
+        .leverage-pill {
+          width: 100%;
+        }
+      }
+
       .export-section {
         margin-top: 3rem;
         padding: 2rem;
@@ -1360,6 +1470,34 @@
           </div>
 
           <div class="custom-strategy-note" data-translate="simulator.customMix.note">Your custom mix is saved locally. Adjust the slider to explore risk vs return.</div>
+        </div>
+      </div>
+
+      <!-- Leverage Toggle Section -->
+      <div class="leverage-section">
+        <h3 class="section-subtitle" data-translate="simulator.leverage.title">Leverage Options</h3>
+
+        <div class="leverage-pills-container">
+          <div class="leverage-pills">
+            <button class="leverage-pill active" data-leverage="1" aria-label="No leverage">
+              <span class="leverage-label" data-translate="simulator.leverage.1x">1x (No Leverage)</span>
+            </button>
+            <button class="leverage-pill" data-leverage="2" aria-label="2x leverage with warning">
+              <span class="leverage-label" data-translate="simulator.leverage.2x">2x Leverage</span>
+              <span class="risk-badge" aria-hidden="true">⚠️</span>
+            </button>
+          </div>
+
+          <div class="leverage-warning hidden" id="leverageWarning">
+            <div class="warning-icon">⚠️</div>
+            <div class="warning-content">
+              <strong data-translate="simulator.leverage.warning.title">Risk Warning:</strong>
+              <span data-translate="simulator.leverage.warning.text">
+                2x leverage amplifies both gains and losses. This strategy borrows money at 8% annual interest.
+                Expect approximately double the volatility and significantly larger drawdowns.
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 

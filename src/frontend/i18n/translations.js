@@ -617,8 +617,8 @@ const translations = {
     fr: "Meilleure performance"
   },
   "simulator.strategy.optimizedRiskParity.tooltip": {
-    en: "Advanced version using EWMA volatility and correlations between assets. Dynamically adjusts allocations to optimize the portfolio's return/risk ratio.",
-    fr: "Version avancée utilisant la volatilité EWMA et les corrélations entre actifs. Ajuste dynamiquement les allocations pour optimiser le ratio rendement/risque du portefeuille."
+    en: "Hybrid strategy: 70% momentum (12-month returns) + 30% risk parity (inverse volatility weighting). Emphasizes uptrending assets with conservative volatility control to beat equal allocation.",
+    fr: "Stratégie hybride : 70% momentum (rendements 12 mois) + 30% risk parity (pondération inverse volatilité). Privilégie les actifs en tendance haussière avec contrôle conservateur de la volatilité pour battre l'allocation égale."
   },
   "simulator.strategy.customMix": {
     en: "Create Your Mix",
@@ -668,6 +668,29 @@ const translations = {
     en: "Configure your mix below to display results.",
     fr: "Configurez votre mix ci-dessous pour afficher les résultats."
   },
+
+  // Leverage Options
+  "simulator.leverage.title": {
+    en: "Leverage Options",
+    fr: "Options d'Effet de Levier"
+  },
+  "simulator.leverage.1x": {
+    en: "1x (No Leverage)",
+    fr: "1x (Sans Levier)"
+  },
+  "simulator.leverage.2x": {
+    en: "2x Leverage",
+    fr: "2x Effet de Levier"
+  },
+  "simulator.leverage.warning.title": {
+    en: "Risk Warning:",
+    fr: "Avertissement de Risque :"
+  },
+  "simulator.leverage.warning.text": {
+    en: "2x leverage amplifies both gains and losses. This strategy borrows money at 8% annual interest. Expect approximately double the volatility and significantly larger drawdowns.",
+    fr: "L'effet de levier 2x amplifie les gains ET les pertes. Cette stratégie emprunte de l'argent à 8% d'intérêt annuel. Attendez-vous à environ le double de volatilité et des pertes maximales significativement plus importantes."
+  },
+
   "simulator.export.title": {
     en: "Exports & Downloads",
     fr: "Exports & Téléchargements"
@@ -721,8 +744,8 @@ const translations = {
     fr: "20 ans"
   },
   "simulator.chart.disclaimer": {
-    en: "Data based on real historical data of ETFs SPY, IEF and GLD (Base 100)",
-    fr: "Données basées sur l'historique réel des ETFs SPY, IEF et GLD (Base 100)"
+    en: "Data based on real historical data of ETFs SPY, IEF, GLD, EFA and EEM (Base 100)",
+    fr: "Données basées sur l'historique réel des ETFs SPY, IEF, GLD, EFA et EEM (Base 100)"
   },
   "simulator.metrics.title": {
     en: "Performance Statistics",

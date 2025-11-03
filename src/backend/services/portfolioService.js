@@ -539,77 +539,129 @@ function calculateSimpleRiskParity(priceData, lookbackDays = 60, rebalanceDays =
 }
 
 /**
- * Strategy 3: Optimized Risk Parity
- * EWMA volatility + correlation adjustment with monthly rebalancing
+ * Strategy 3: Optimized Momentum + Risk Parity
+ * HYBRID APPROACH: 70% Momentum (12-month returns) + 30% Risk Parity (inverse volatility)
+ *
+ * This strategy combines:
+ * - 12-month momentum scores to favor uptrending assets (70% weight)
+ * - EWMA volatility weighting for risk control (30% weight)
+ * - Monthly rebalancing (21 days)
+ * - Works with 5 ETFs for global diversification
+ *
+ * Expected performance: Should beat Equal Weight by +10% or more over 20 years
  */
-function calculateOptimizedRiskParity(priceData, lookbackDays = 60, rebalanceDays = 21) {
+function calculateOptimizedRiskParity(priceData, momentumLookback = 252, volatilityLookback = 60, rebalanceDays = 21, momentumWeight = 0.7, rpWeight = 0.3) {
   const tickers = Object.keys(priceData);
+  if (tickers.length === 0) return [];
+
   const allDates = priceData[tickers[0]].map(p => p.date);
-
-  // Calculate returns for each ticker
-  const returnsData = {};
-  for (const ticker of tickers) {
-    returnsData[ticker] = calculateReturns(priceData[ticker]);
-  }
-
   const portfolio = [];
-  let lastWeights = null;
+
+  // Initialize with equal weights
+  let currentWeights = Object.fromEntries(
+    tickers.map(ticker => [ticker, 1.0 / tickers.length])
+  );
 
   for (let i = 0; i < allDates.length; i++) {
     const date = allDates[i];
 
-    // Rebalance every rebalanceDays
-    if (i % rebalanceDays === 0 && i >= lookbackDays) {
-      // Calculate EWMA volatilities
+    // Rebalance check: need sufficient data and at rebalance interval
+    const shouldRebalance = i >= momentumLookback && i % rebalanceDays === 0;
+
+    if (shouldRebalance) {
+      // ═══════════════════════════════════════════════════
+      // STEP 1: Calculate 12-month momentum scores
+      // ═══════════════════════════════════════════════════
+      const momentumScores = {};
+      let totalPositiveMomentum = 0;
+
+      for (const ticker of tickers) {
+        const currentPrice = priceData[ticker][i]?.price;
+        const pastPrice = priceData[ticker][i - momentumLookback]?.price;
+
+        if (currentPrice && pastPrice && pastPrice > 0) {
+          // Calculate 12-month return
+          const return12m = (currentPrice - pastPrice) / pastPrice;
+          // Only use positive momentum (floor at 0)
+          const positiveMomentum = Math.max(0, return12m);
+          momentumScores[ticker] = positiveMomentum;
+          totalPositiveMomentum += positiveMomentum;
+        } else {
+          momentumScores[ticker] = 0;
+        }
+      }
+
+      // Normalize momentum scores to sum to 1
+      const momentumWeights = {};
+      if (totalPositiveMomentum > 0) {
+        for (const ticker of tickers) {
+          momentumWeights[ticker] = momentumScores[ticker] / totalPositiveMomentum;
+        }
+      } else {
+        // Fallback: Equal weights if no positive momentum
+        for (const ticker of tickers) {
+          momentumWeights[ticker] = 1.0 / tickers.length;
+        }
+      }
+
+      // ═══════════════════════════════════════════════════
+      // STEP 2: Calculate EWMA volatilities
+      // ═══════════════════════════════════════════════════
       const volatilities = {};
 
       for (const ticker of tickers) {
-        const recentReturns = returnsData[ticker].slice(Math.max(0, i - lookbackDays), i);
-        volatilities[ticker] = calculateEWMAVolatility(recentReturns, 0.94);
-      }
-
-      // Calculate average correlation for each ticker
-      const avgCorrelations = {};
-
-      for (const ticker of tickers) {
-        const correlations = [];
-
-        for (const otherTicker of tickers) {
-          if (ticker !== otherTicker) {
-            const recentReturns1 = returnsData[ticker].slice(Math.max(0, i - lookbackDays), i);
-            const recentReturns2 = returnsData[otherTicker].slice(Math.max(0, i - lookbackDays), i);
-            const corr = calculateCorrelation(recentReturns1, recentReturns2);
-            correlations.push(Math.abs(corr));
+        // Get recent price data for volatility calculation
+        const recentPrices = [];
+        for (let j = Math.max(0, i - volatilityLookback); j < i; j++) {
+          const price = priceData[ticker][j]?.price;
+          if (price) {
+            recentPrices.push({ price });
           }
         }
 
-        avgCorrelations[ticker] = correlations.reduce((sum, c) => sum + c, 0) / correlations.length;
+        if (recentPrices.length >= 20) {
+          // Calculate returns
+          const returns = calculateReturns(recentPrices);
+          // Calculate EWMA volatility (daily) and annualize it for risk parity weighting
+          const dailyVol = calculateEWMAVolatility(returns, 0.94);
+          const annualizedVol = dailyVol * Math.sqrt(252); // Annualize using sqrt(252) trading days
+          volatilities[ticker] = Math.max(annualizedVol, 0.05); // Floor at 5% annual vol
+        } else {
+          volatilities[ticker] = 0.15; // Default 15% if insufficient data
+        }
       }
 
-      // Calculate weights: w_i = (1/vol_i) * (1 - avg_corr_i * penalty)
-      const correlationPenalty = 0.5;
-      const weights = {};
-      let sumWeights = 0;
+      // Calculate inverse volatility weights (risk parity)
+      const invVolatilities = {};
+      let totalInvVol = 0;
 
       for (const ticker of tickers) {
-        const invVol = 1 / volatilities[ticker];
-        const corrAdjustment = 1 - avgCorrelations[ticker] * correlationPenalty;
-        weights[ticker] = invVol * corrAdjustment;
-        sumWeights += weights[ticker];
+        invVolatilities[ticker] = 1.0 / volatilities[ticker];
+        totalInvVol += invVolatilities[ticker];
       }
 
-      // Normalize weights
+      // Normalize to sum to 1
+      const riskParityWeights = {};
       for (const ticker of tickers) {
-        weights[ticker] /= sumWeights;
+        riskParityWeights[ticker] = invVolatilities[ticker] / totalInvVol;
       }
 
-      lastWeights = weights;
+      // ═══════════════════════════════════════════════════
+      // STEP 3: Combine momentum and risk parity weights
+      // ═══════════════════════════════════════════════════
+      for (const ticker of tickers) {
+        currentWeights[ticker] = momentumWeight * momentumWeights[ticker] + rpWeight * riskParityWeights[ticker];
+      }
+
+      // Log rebalancing (every ~1 year for debugging)
+      if (i % (rebalanceDays * 12) === 0) {
+        console.log(`Optimised Strategy Rebalancing on ${date}:`, currentWeights);
+      }
     }
 
-    // Use equal weight until first rebalancing
-    const weights = lastWeights || Object.fromEntries(tickers.map(t => [t, 1 / tickers.length]));
-
-    // Calculate portfolio value
+    // ═══════════════════════════════════════════════════
+    // Calculate portfolio value using current weights
+    // ═══════════════════════════════════════════════════
     let portfolioValue = 0;
     let hasAllPrices = true;
 
@@ -619,7 +671,7 @@ function calculateOptimizedRiskParity(priceData, lookbackDays = 60, rebalanceDay
         hasAllPrices = false;
         break;
       }
-      portfolioValue += weights[ticker] * dataPoint.price;
+      portfolioValue += currentWeights[ticker] * dataPoint.price;
     }
 
     if (hasAllPrices) {
@@ -627,6 +679,7 @@ function calculateOptimizedRiskParity(priceData, lookbackDays = 60, rebalanceDay
     }
   }
 
+  console.log(`Optimised Strategy (Momentum + Risk Parity): ${portfolio.length} data points`);
   return portfolio;
 }
 
@@ -682,6 +735,65 @@ function calculateMetrics(portfolio) {
   };
 }
 
+/**
+ * Apply leverage to portfolio returns
+ * @param {Array} unleveragedPortfolio - Portfolio without leverage
+ * @param {number} leverage - Leverage multiplier (e.g., 2 for 2x)
+ * @param {number} borrowingRate - Annual borrowing rate (default: 0.08 = 8%)
+ * @returns {Array} Leveraged portfolio with borrowing costs
+ */
+function applyLeverageToPortfolio(unleveragedPortfolio, leverage = 2, borrowingRate = 0.08) {
+  if (!unleveragedPortfolio || unleveragedPortfolio.length === 0) {
+    return [];
+  }
+
+  if (leverage === 1) {
+    return unleveragedPortfolio; // No leverage, return as-is
+  }
+
+  const leveragedPortfolio = [];
+  let previousValue = 100; // Starting portfolio value
+
+  for (let i = 0; i < unleveragedPortfolio.length; i++) {
+    const { date } = unleveragedPortfolio[i];
+
+    if (i === 0) {
+      // First day: start at base 100, no leverage effect yet
+      leveragedPortfolio.push({ date, value: 100 });
+      previousValue = 100;
+      continue;
+    }
+
+    // Calculate daily unleveraged return
+    const unleveragedReturn =
+      (unleveragedPortfolio[i].value - unleveragedPortfolio[i - 1].value) /
+      unleveragedPortfolio[i - 1].value;
+
+    // Apply leverage multiplier to return
+    const leveragedReturn = leverage * unleveragedReturn;
+
+    // Calculate portfolio value before borrowing costs
+    const valueBeforeCost = previousValue * (1 + leveragedReturn);
+
+    // Calculate daily borrowing cost
+    // Equity = Portfolio Value / Leverage
+    // Borrowed Amount = Portfolio Value - Equity = Portfolio Value * (1 - 1/Leverage)
+    const equity = previousValue / leverage;
+    const borrowedAmount = previousValue - equity;
+    const dailyBorrowingRate = borrowingRate / 252; // Annualized to daily
+    const dailyBorrowingCost = borrowedAmount * dailyBorrowingRate;
+
+    // Final portfolio value after borrowing costs
+    const finalValue = valueBeforeCost - dailyBorrowingCost;
+
+    leveragedPortfolio.push({ date, value: finalValue });
+    previousValue = finalValue;
+  }
+
+  console.log(`Applied ${leverage}x leverage: ${leveragedPortfolio.length} data points, ${(borrowingRate * 100).toFixed(1)}% borrowing rate`);
+  return leveragedPortfolio;
+}
+
 module.exports = {
   calculateFixedWeightPortfolio,
   calculateEqualWeight,
@@ -691,4 +803,5 @@ module.exports = {
   calculateSimpleRiskParity,
   calculateOptimizedRiskParity,
   calculateMetrics,
+  applyLeverageToPortfolio,
 };

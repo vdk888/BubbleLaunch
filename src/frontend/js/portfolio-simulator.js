@@ -16,6 +16,7 @@
   let portfolioChart = null;
   let currentStrategy = 'equalWeight';
   let currentPeriod = 20;
+  let currentLeverage = 1; // NEW: Leverage toggle state (1x or 2x)
   let portfolioData = null;
   const CUSTOM_STRATEGY_STORAGE_KEY = 'bubbleCustomStrategy';
   const FEATURE_FLAGS = {
@@ -418,9 +419,12 @@
   /**
    * Fetch portfolio data from API
    */
-  async function fetchPortfolioData(period) {
+  async function fetchPortfolioData(period, leverage = 1) {
     try {
-      const query = period ? `?period=${encodeURIComponent(period)}` : '';
+      const params = new URLSearchParams();
+      if (period) params.append('period', period);
+      if (leverage > 1) params.append('leverage', leverage);
+      const query = params.toString() ? `?${params.toString()}` : '';
       const response = await fetch(`/api/portfolio/preview-data${query}`);
       const result = await response.json();
 
@@ -734,6 +738,9 @@
 
     removeCustomStrategyData(portfolioData);
 
+    // FIX: Always invalidate normalized cache before regeneration
+    delete portfolioData.normalizedCache;
+
     if (!customStrategyState.enabled || forceDisable) {
       ensureNormalizedCache(portfolioData);
       return;
@@ -747,6 +754,7 @@
       removeCustomStrategyData(portfolioData);
     }
 
+    // FIX: Force cache regeneration with new custom data
     ensureNormalizedCache(portfolioData);
   }
 
@@ -868,7 +876,13 @@
 
     setActiveStrategyPill('customMix');
     currentStrategy = 'customMix';
-    updateChart(portfolioData, currentStrategy);
+
+    // FIX: Force chart update with animation for user feedback
+    if (portfolioChart) {
+      updateChart(portfolioData, currentStrategy);
+      portfolioChart.update('active'); // 'active' animation mode
+    }
+
     updateMetrics(portfolioData, currentStrategy);
     updateSimulatorState(portfolioData);
     setExportStatus('ready');
@@ -1062,9 +1076,9 @@
   /**
    * Load and display portfolio data
    */
-  async function loadPortfolioData(strategy, period) {
+  async function loadPortfolioData(strategy, period, leverage = 1) {
     try {
-      const result = await fetchPortfolioData(period);
+      const result = await fetchPortfolioData(period, leverage);
 
       if (result) {
         portfolioData = result;
@@ -1532,6 +1546,46 @@
   /**
    * Initialize simulator
    */
+  /**
+   * Initialize leverage toggle functionality
+   */
+  function initializeLeverageToggle() {
+    const leveragePills = document.querySelectorAll('.leverage-pill');
+    const leverageWarning = document.getElementById('leverageWarning');
+
+    leveragePills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const leverage = parseInt(pill.getAttribute('data-leverage'));
+
+        // Update active state
+        leveragePills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        // Show/hide warning
+        if (leverageWarning) {
+          if (leverage === 2) {
+            leverageWarning.classList.remove('hidden');
+          } else {
+            leverageWarning.classList.add('hidden');
+          }
+        }
+
+        // Update global state
+        currentLeverage = leverage;
+
+        // Reload portfolio data with new leverage
+        loadPortfolioData(currentStrategy, currentPeriod, leverage);
+
+        // Track analytics
+        trackSimulatorEvent('leverage_changed', {
+          leverage,
+          strategy: currentStrategy,
+          period: currentPeriod
+        });
+      });
+    });
+  }
+
   function initializeSimulator() {
     loadCustomStrategyState();
     applyQueryParams();
@@ -1610,6 +1664,7 @@
 
     setActiveStrategyPill(currentStrategy);
     toggleCustomPanel(currentStrategy === 'customMix');
+    initializeLeverageToggle(); // NEW: Initialize leverage toggle
     initializeMobileSliderController();
     initializeMobileTooltipSystem();
   }

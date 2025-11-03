@@ -13,6 +13,8 @@ const ETF_CONFIG = {
   SPY: "S&P 500 (US Large Cap)",
   IEF: "7-10Y Treasury Bonds",
   GLD: "Gold",
+  EFA: "MSCI EAFE (Developed Markets)",
+  EEM: "MSCI Emerging Markets",
 };
 
 // In-memory cache for ETF data
@@ -116,27 +118,51 @@ async function fetchETFData(tickers = Object.keys(ETF_CONFIG), years = 20) {
 
   // Fetch data for each ticker sequentially to avoid rate limiting
   for (const ticker of tickers) {
-    try {
-      console.log(`  Fetching ${ticker}...`);
-      const prices = await fetchTickerData(ticker, startDate, endDate);
-      priceData[ticker] = prices;
-      console.log(`  ✓ ${ticker}: ${prices.length} days`);
+    let retries = 3;
+    let lastError;
 
-      // Small delay to respect rate limits
-      await new Promise((resolve) => setTimeout(resolve, 100));
-    } catch (error) {
-      console.error(`  ✗ ${ticker} failed:`, error.message);
-      // Continue with other tickers
+    while (retries > 0) {
+      try {
+        console.log(`  Fetching ${ticker}... (attempt ${4 - retries}/3)`);
+        const prices = await fetchTickerData(ticker, startDate, endDate);
+        priceData[ticker] = prices;
+        console.log(`  ✓ ${ticker}: ${prices.length} days`);
+        break; // Success - exit retry loop
+      } catch (error) {
+        lastError = error;
+        retries--;
+        if (retries > 0) {
+          // Wait longer before retrying (exponential backoff: 1s, 2s, 4s)
+          const waitTime = Math.pow(2, 3 - retries) * 1000;
+          console.log(`  ⟳ ${ticker} failed, retrying in ${waitTime}ms...`);
+          await new Promise((resolve) => setTimeout(resolve, waitTime));
+        }
+      }
     }
+
+    if (lastError && retries === 0) {
+      console.error(`  ✗ ${ticker} failed after 3 attempts:`, lastError.message);
+    }
+
+    // Longer delay to respect Yahoo Finance rate limits (1s between requests)
+    await new Promise((resolve) => setTimeout(resolve, 1000));
   }
 
-  // Update cache
-  cache.data = priceData;
-  cache.timestamp = Date.now();
-
+  const successCount = Object.keys(priceData).length;
   console.log(
-    `✅ Fetched data for ${Object.keys(priceData).length}/${tickers.length} ETFs`
+    `✅ Fetched data for ${successCount}/${tickers.length} ETFs`
   );
+
+  // Only cache if we got ALL tickers - don't cache partial data
+  if (successCount === tickers.length) {
+    cache.data = priceData;
+    cache.timestamp = Date.now();
+  } else {
+    console.warn(`⚠️ Incomplete data: only got ${successCount}/${tickers.length} tickers. NOT caching.`);
+    // Clear cache so next request tries fresh
+    cache.data = {};
+    cache.timestamp = null;
+  }
 
   return priceData;
 }
