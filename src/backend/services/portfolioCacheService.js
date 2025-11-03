@@ -179,22 +179,18 @@ function buildSnapshot({
   strategySeries,
   generatedAt,
 }) {
-  const filteredPriceData = filterPriceDataByCutoff(
-    normalizedPriceData,
-    cutoffDate
-  );
-
   const filteredStrategies = {};
   for (const [strategyKey, series] of Object.entries(strategySeries)) {
     filteredStrategies[strategyKey] = filterSeriesByCutoff(series, cutoffDate);
   }
 
-  // Build chart data with filtered price data but unfiltered strategies
-  // This ensures date matching works properly
+  // Build chart data with ALL unfiltered data
+  // Don't filter price data by cutoff - just use all available historical data
+  // The frontend will filter by dataStartDate for display purposes
   const chartData = buildChartData(
     tickers,
-    filteredPriceData,    // Filtered price data (only dates >= cutoffDate)
-    strategySeries,       // Unfiltered strategy data (has all dates for matching)
+    normalizedPriceData,  // ALL unfiltered price data
+    strategySeries,       // ALL unfiltered strategy data (has all dates for matching)
     false                 // Sample data (every 21 days)
   );
 
@@ -204,7 +200,7 @@ function buildSnapshot({
 
   return {
     periodYears: years,
-    dataStartDate: cutoffDate.toISOString().split('T')[0], // ISO date string (YYYY-MM-DD)
+    dataStartDate: cutoffDate.toISOString().split('T')[0], // ISO date string (YYYY-MM-DD) for frontend filtering
     generatedAt,
     tickers,
     data: chartData,
