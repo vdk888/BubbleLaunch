@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-11-03T22:19:42.044Z",
+  "generatedAt": "2025-11-03T22:42:18.656Z",
   "tickers": [
     "SPY",
     "IEF",
@@ -19,7 +19,7 @@
     "1": {
       "periodYears": 1,
       "dataStartDate": "2024-10-31",
-      "generatedAt": "2025-11-03T22:19:42.044Z",
+      "generatedAt": "2025-11-03T22:42:18.656Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -44,7 +44,7 @@
         },
         {
           "date": "2005-12-05",
-          "SPY": 103.53,
+          "SPY": 103.52,
           "IEF": 100.8,
           "GLD": 110.49,
           "EFA": 102.84,
@@ -151,7 +151,7 @@
           "sixtyForty": 103.04,
           "momentumTilt": 114.16,
           "hierarchicalRiskParity": 114.16,
-          "simpleRP": 106.51,
+          "simpleRP": 106.52,
           "optimizedRP": 114.16
         },
         {
@@ -576,7 +576,7 @@
     "3": {
       "periodYears": 3,
       "dataStartDate": "2022-10-31",
-      "generatedAt": "2025-11-03T22:19:42.044Z",
+      "generatedAt": "2025-11-03T22:42:18.656Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -601,7 +601,7 @@
         },
         {
           "date": "2005-12-05",
-          "SPY": 103.53,
+          "SPY": 103.52,
           "IEF": 100.8,
           "GLD": 110.49,
           "EFA": 102.84,
@@ -708,7 +708,7 @@
           "sixtyForty": 103.04,
           "momentumTilt": 114.16,
           "hierarchicalRiskParity": 114.16,
-          "simpleRP": 106.51,
+          "simpleRP": 106.52,
           "optimizedRP": 114.16
         },
         {
@@ -1133,7 +1133,7 @@
     "5": {
       "periodYears": 5,
       "dataStartDate": "2020-10-31",
-      "generatedAt": "2025-11-03T22:19:42.044Z",
+      "generatedAt": "2025-11-03T22:42:18.656Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -1158,7 +1158,7 @@
         },
         {
           "date": "2005-12-05",
-          "SPY": 103.53,
+          "SPY": 103.52,
           "IEF": 100.8,
           "GLD": 110.49,
           "EFA": 102.84,
@@ -1265,7 +1265,7 @@
           "sixtyForty": 103.04,
           "momentumTilt": 114.16,
           "hierarchicalRiskParity": 114.16,
-          "simpleRP": 106.51,
+          "simpleRP": 106.52,
           "optimizedRP": 114.16
         },
         {
@@ -1690,7 +1690,7 @@
     "10": {
       "periodYears": 10,
       "dataStartDate": "2015-10-31",
-      "generatedAt": "2025-11-03T22:19:42.044Z",
+      "generatedAt": "2025-11-03T22:42:18.656Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -1715,7 +1715,7 @@
         },
         {
           "date": "2005-12-05",
-          "SPY": 103.53,
+          "SPY": 103.52,
           "IEF": 100.8,
           "GLD": 110.49,
           "EFA": 102.84,
@@ -1822,7 +1822,7 @@
           "sixtyForty": 103.04,
           "momentumTilt": 114.16,
           "hierarchicalRiskParity": 114.16,
-          "simpleRP": 106.51,
+          "simpleRP": 106.52,
           "optimizedRP": 114.16
         },
         {
@@ -2247,7 +2247,7 @@
     "20": {
       "periodYears": 20,
       "dataStartDate": "2005-10-31",
-      "generatedAt": "2025-11-03T22:19:42.044Z",
+      "generatedAt": "2025-11-03T22:42:18.656Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -2272,7 +2272,7 @@
         },
         {
           "date": "2005-12-05",
-          "SPY": 103.53,
+          "SPY": 103.52,
           "IEF": 100.8,
           "GLD": 110.49,
           "EFA": 102.84,
@@ -2379,7 +2379,7 @@
           "sixtyForty": 103.04,
           "momentumTilt": 114.16,
           "hierarchicalRiskParity": 114.16,
-          "simpleRP": 106.51,
+          "simpleRP": 106.52,
           "optimizedRP": 114.16
         },
         {

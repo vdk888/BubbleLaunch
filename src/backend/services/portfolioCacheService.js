@@ -179,19 +179,23 @@ function buildSnapshot({
   strategySeries,
   generatedAt,
 }) {
+  const filteredPriceData = filterPriceDataByCutoff(
+    normalizedPriceData,
+    cutoffDate
+  );
+
   const filteredStrategies = {};
   for (const [strategyKey, series] of Object.entries(strategySeries)) {
     filteredStrategies[strategyKey] = filterSeriesByCutoff(series, cutoffDate);
   }
 
-  // Build chart data with ALL unfiltered data, include all daily points
-  // This ensures all periods get complete data for proper chart visualization
-  // The frontend will use periodYears and dataStartDate to know what to display
+  // Build chart data with filtered price data but unfiltered strategies
+  // This ensures date matching works properly
   const chartData = buildChartData(
     tickers,
-    normalizedPriceData,  // Pass ALL unfiltered price data
-    strategySeries,       // Pass ALL unfiltered strategy data
-    true                  // Include all daily data (no sampling)
+    filteredPriceData,    // Filtered price data (only dates >= cutoffDate)
+    strategySeries,       // Unfiltered strategy data (has all dates for matching)
+    false                 // Sample data (every 21 days)
   );
 
   // Calculate metrics only on filtered data for accuracy
