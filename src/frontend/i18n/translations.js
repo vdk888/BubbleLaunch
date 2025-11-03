@@ -244,7 +244,7 @@ const translations = {
   },
   "waitlist.subtitle": {
     en: "We're developing this platform primarily for our own investments and sharing the same intelligence with you. If our approach seems relevant to you, we'd be delighted to count you among our early adopters.",
-    fr: "Nous développons cette plateforme d'abord pour nos propres investissements et vous partageons la même intelligence. Si notre approche vous parle, nous serions ravis de vous compter parmi nos early adopters.",
+    fr: "Nous développons cette plateforme d'abord pour nos propres investissements et nous vous partageons la même intelligence. Si notre approche vous parle, nous serions ravis de vous compter parmi nos early adopters.",
   },
   "waitlist.free": {
     en: "Joining our waitlist is completely free and without commitment. We're simply looking to meet people who share our vision of more transparent finance.",

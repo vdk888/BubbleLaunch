@@ -84,6 +84,7 @@
   align-items: center;
   background: white;
   flex-shrink: 0;
+  position: relative;
 }
 
 .workflow-demo-header-info {
@@ -471,13 +472,13 @@
 
   .workflow-demo-chat-header {
     padding: 1rem;
-    flex-wrap: wrap;
     gap: 0.8rem;
+    padding-right: 3.5rem;
   }
 
   .workflow-demo-header-info {
     flex: 1;
-    min-width: 200px;
+    min-width: 0;
   }
 
   .workflow-demo-messages {
@@ -599,6 +600,7 @@
   .workflow-demo-chat-header {
     padding: 0.8rem;
     gap: 0.5rem;
+    padding-right: 3.2rem;
   }
 
   .workflow-demo-icon {

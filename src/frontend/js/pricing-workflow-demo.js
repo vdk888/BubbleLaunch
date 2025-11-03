@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < text.length; i++) {
       inputField.value += text.charAt(i);
       autoResizeTextarea(); // Resize as text is added
-      await new Promise(resolve => setTimeout(resolve, 40));
+      await new Promise(resolve => setTimeout(resolve, 60));
     }
 
     // Wait briefly
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Typing animation function
-  const typeMessage = (element, text, speed = 40) => {
+  const typeMessage = (element, text, speed = 60) => {
     return new Promise((resolve) => {
       let index = 0;
       element.textContent = '';
@@ -358,7 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await typeInInputAndSend(msg1Text);
     const { bubble: bubble1 } = addMessage(msg1Text, true);
     bubble1.textContent = msg1Text;
-    await new Promise(resolve => setTimeout(resolve, 1200));
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 2: Bot with research (all in one bubble)
     const msg2IntroText = translations['workflow.message2.bot.intro'][currentLanguage];
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
     typingIndicator.remove();
 
     // Type intro text
-    await typeMessage(msg2Bubble, msg2IntroText, 30);
+    await typeMessage(msg2Bubble, msg2IntroText, 50);
 
     // Add line break and research content
     msg2Bubble.appendChild(document.createElement('br'));
@@ -386,14 +386,14 @@ document.addEventListener('DOMContentLoaded', () => {
     msg2Bubble.appendChild(closingSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await new Promise(resolve => setTimeout(resolve, 1200));
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 3: User
     const msg3Text = translations['workflow.message3.user'][currentLanguage];
     await typeInInputAndSend(msg3Text);
     const { bubble: bubble3 } = addMessage(msg3Text, true);
     bubble3.textContent = msg3Text;
-    await new Promise(resolve => setTimeout(resolve, 1200));
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 4: Bot with backtest (all in one bubble)
     const msg4IntroText = translations['workflow.message4.bot.intro'][currentLanguage];
@@ -404,7 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await new Promise(resolve => setTimeout(resolve, 1500));
     typingIndicator2.remove();
 
-    await typeMessage(msg4Bubble, msg4IntroText, 30);
+    await typeMessage(msg4Bubble, msg4IntroText, 50);
 
     // Add line break and backtest content
     msg4Bubble.appendChild(document.createElement('br'));
@@ -420,14 +420,14 @@ document.addEventListener('DOMContentLoaded', () => {
     msg4Bubble.appendChild(conclusionSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await new Promise(resolve => setTimeout(resolve, 1200));
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 5: User
     const msg5Text = translations['workflow.message5.user'][currentLanguage];
     await typeInInputAndSend(msg5Text);
     const { bubble: bubble5 } = addMessage(msg5Text, true);
     bubble5.textContent = msg5Text;
-    await new Promise(resolve => setTimeout(resolve, 1200));
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 6: Bot with summary (all in one bubble)
     const msg6ConfirmText = translations['workflow.message6.bot.confirmation'][currentLanguage];
@@ -438,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await new Promise(resolve => setTimeout(resolve, 1500));
     typingIndicator3.remove();
 
-    await typeMessage(msg6Bubble, msg6ConfirmText, 30);
+    await typeMessage(msg6Bubble, msg6ConfirmText, 50);
 
     // Add line break and summary content
     msg6Bubble.appendChild(document.createElement('br'));
@@ -466,7 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await typeInInputAndSend(msg8Text);
     const { bubble: bubble8 } = addMessage(msg8Text, true);
     bubble8.textContent = msg8Text;
-    await new Promise(resolve => setTimeout(resolve, 1200));
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 9: Bubble with portfolio bar chart (all in one bubble)
     const msg9CelebrationText = translations['workflow.message9.bot.celebration'][currentLanguage];
@@ -477,7 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await new Promise(resolve => setTimeout(resolve, 1500));
     typingIndicator4.remove();
 
-    await typeMessage(msg9Bubble, msg9CelebrationText, 30);
+    await typeMessage(msg9Bubble, msg9CelebrationText, 50);
 
     // Add line break and portfolio chart
     msg9Bubble.appendChild(document.createElement('br'));
@@ -493,14 +493,14 @@ document.addEventListener('DOMContentLoaded', () => {
     msg9Bubble.appendChild(msg9ClosingSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await new Promise(resolve => setTimeout(resolve, 1200));
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 10: User thanks
     const msg10Text = translations['workflow.message10.user'][currentLanguage];
     await typeInInputAndSend(msg10Text);
     const { bubble: bubble10 } = addMessage(msg10Text, true);
     bubble10.textContent = msg10Text;
-    await new Promise(resolve => setTimeout(resolve, 1200));
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 11: Bubble closing
     const msg11Text = translations['workflow.message11.bot'][currentLanguage];
@@ -512,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await new Promise(resolve => setTimeout(resolve, 1500));
     typingIndicator5.remove();
 
-    await typeMessage(msg11Bubble, msg11Text, 30);
+    await typeMessage(msg11Bubble, msg11Text, 50);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
     // Mark demo as shown
