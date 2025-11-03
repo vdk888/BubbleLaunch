@@ -73,6 +73,7 @@ async function getPreviewData(req, res) {
           metrics: periodSnapshot.metrics,
           generatedAt: periodSnapshot.generatedAt,
           periodYears: periodSnapshot.periodYears,
+          dataStartDate: periodSnapshot.dataStartDate,
           periodsAvailable: Object.keys(periodsPayload.periods).map(Number),
           tickers: periodsPayload.tickers,
           strategyKeys:
