@@ -184,13 +184,13 @@ function buildSnapshot({
     filteredStrategies[strategyKey] = filterSeriesByCutoff(series, cutoffDate);
   }
 
-  // Build chart data with ALL unfiltered data, include all daily points for short periods
-  // This ensures short periods (1Y, 3Y, 5Y) get enough data points
+  // Build chart data with ALL unfiltered data, include all daily points
+  // This ensures all periods get complete data for proper chart visualization
+  // Cutoff filtering is only applied to metrics calculation, not chart data
   const chartData = buildChartData(
     tickers,
     normalizedPriceData,  // Pass ALL unfiltered price data
     strategySeries,       // Pass ALL unfiltered strategy data
-    cutoffDate,           // Apply cutoff inside buildChartData
     true                  // Include all daily data (no sampling)
   );
 
