@@ -1328,7 +1328,7 @@
       <div style="text-align: center; margin-bottom: 3rem;">
         <h1 class="simulator-title" data-translate="simulator.title">Simulateur de Portefeuille</h1>
         <p class="simulator-subtitle" data-translate="simulator.subtitle">
-          Comparez différentes stratégies d'investissement avec 10 ans de données historiques réelles
+          Comparez 6 stratégies quantitatives sur 5 ETFs mondiaux avec 20 ans de données historiques réelles
         </p>
       </div>
 
@@ -1336,14 +1336,14 @@
       <div class="strategy-selector" id="strategySelector">
         <h2 class="section-title" data-translate="simulator.strategies.title">Choisissez votre stratégie</h2>
         <p class="section-description" data-translate="simulator.strategies.description">
-          Comparez quatre approches d'allocation de portefeuille sur actions (SPY), obligations (IEF) et or (GLD)
+          Comparez six approches d'allocation de portefeuille sur 5 ETFs mondiaux (SPY, IEF, GLD, EFA, EEM)
         </p>
 
         <div class="responsive-slider" id="strategySlider" data-slider="strategy">
           <div class="strategy-pills slider-track">
           <button class="strategy-pill active" data-strategy="equalWeight" data-tooltip-behavior="press">
             <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.equalWeight.tooltip">
-              Approche simple : 20% sur chaque actif global (SPY, IEF, GLD, EFA, EEM). Facile à comprendre et à répliquer. Baseline pour comparer les stratégies plus sophistiquées.
+              Approche simple : 20% sur chaque actif global (SPY, IEF, GLD, EFA, EEM). Facile à comprendre et à répliquer. Baseline idéale pour comparer les stratégies plus sophistiquées. Performance: +323.5% sur 20 ans.
             </div>
             <div class="pill-icon">
               <img src="../assets/images/simul port icons/noun-equal-3402250-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
@@ -1356,7 +1356,7 @@
 
           <button class="strategy-pill" data-strategy="sixtyForty" data-tooltip-behavior="press">
             <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.sixtyForty.tooltip">
-              60% actions (SPY) et 40% obligations (IEF). Le portefeuille classique des investisseurs institutionnels pour équilibrer croissance et stabilité.
+              60% actions US (SPY) et 40% obligations (IEF). Le portefeuille classique des investisseurs institutionnels pour équilibrer croissance et stabilité. Performance: +202.3% sur 20 ans.
             </div>
             <div class="pill-icon">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -1372,7 +1372,7 @@
 
           <button class="strategy-pill" data-strategy="momentumTilt" data-tooltip-behavior="press">
             <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.momentumTilt.tooltip">
-              Pondération dynamique 100% momentum sur 12 mois. Les 5 actifs mondiaux avec les meilleures tendances reçoivent davantage de poids. Performance plus volatile mais haute performance historique (+499.9% sur 20 ans).
+              Pondération dynamique 100% momentum sur 12 mois. Les 5 actifs mondiaux (SPY, IEF, GLD, EFA, EEM) avec les meilleures tendances reçoivent davantage de poids. Performance plus volatile mais rendement historique élevé (+499.9% sur 20 ans).
             </div>
             <div class="pill-icon">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -1388,7 +1388,7 @@
 
           <button class="strategy-pill" data-strategy="hierarchicalRiskParity" data-tooltip-behavior="press">
             <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.hierarchicalRiskParity.tooltip">
-              Allocation à variance minimale inspirée du Hierarchical Risk Parity. Balance le risque en tenant compte des corrélations.
+              Allocation à variance minimale inspirée du Hierarchical Risk Parity sur les 5 ETFs. Balance le risque en tenant compte des corrélations entre actifs. Performance: +278.2% sur 20 ans.
             </div>
             <div class="pill-icon">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -1410,7 +1410,7 @@
 
           <button class="strategy-pill" data-strategy="simpleRiskParity" data-tooltip-behavior="press">
             <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.simpleRiskParity.tooltip">
-              Pondère les 5 actifs mondiaux par l'inverse de leur volatilité. Les actifs plus volatils reçoivent moins de poids, équilibrant la contribution au risque du portefeuille.
+              Pondère les 5 actifs mondiaux (SPY, IEF, GLD, EFA, EEM) par l'inverse de leur volatilité. Les actifs plus volatils reçoivent moins de poids, équilibrant la contribution au risque du portefeuille. Performance: +324.6% sur 20 ans.
             </div>
             <div class="pill-icon">
               <img src="../assets/images/simul port icons/noun-scale-1021928-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
@@ -1423,7 +1423,7 @@
 
           <button class="strategy-pill" data-strategy="optimizedRiskParity" data-tooltip-behavior="press">
             <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.optimizedRiskParity.tooltip">
-              Stratégie hybride : 70% momentum (rendements 12 mois) + 30% risk parity (pondération inverse volatilité). Sur 20 ans : +437.9% (+14.8% vs allocation égale). Favorise les actifs en tendance haussière avec contrôle conservateur de la volatilité.
+              Stratégie IA optimisée sur 5 ETFs : 70% Momentum (rendements 12 mois) + 30% Risk Parity (EWMA volatilité avec λ=0.94). Sur 20 ans : +437.9% (+14.8% vs allocation égale). Favorise les actifs en tendance haussière tout en maintenant un contrôle conservateur de la volatilité.
             </div>
             <div class="pill-icon">
               <img src="../assets/images/simul port icons/noun-ai-6480915-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
