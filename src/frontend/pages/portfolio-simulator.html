@@ -6,14 +6,14 @@
 
     <!-- SEO Meta Tags -->
     <title>Simulateur Portfolio IA | Comparez Stratégies Professionnelles - Bubble</title>
-    <meta name="description" content="Simulateur IA portfolio gratuit : voyez comment les professionnels construisent des portefeuilles. Comparez 3 stratégies quantitatives testées sur 20 ans de données réelles. Risk Parity, allocation égale, scoring optimisé. Outils institutionnels pour tous." />
+    <meta name="description" content="Simulateur Portfolio IA gratuit : Comparez 6 stratégies quantitatives sur 5 ETFs mondiaux (SPY, IEF, GLD, EFA, EEM) testées sur 20 ans. Allocation Égale vs Optimisé (70% Momentum + 30% Risk Parity) avec +14.8% de performance." />
     <meta name="keywords" content="simulateur portefeuille professionnel, stratégies quantitatives testées, risk parity optimisé, allocation d'actifs intelligente, backtests 20 ans, outils gestion portefeuille institutionnelle, investissement quantitatif transparent" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bubbleinvest.org/portfolio-simulator" />
     <meta property="og:title" content="Simulateur Portfolio IA | Stratégies Professionnelles Testées" />
-    <meta property="og:description" content="Simulateur gratuit : voyez comment les professionnels construisent des portefeuilles. Comparez 3 stratégies quantitatives sur 20 ans de données réelles. Backtests, métriques, allocation optimisée." />
+    <meta property="og:description" content="Simulateur gratuit : Comparez 6 stratégies quantitatives sur 5 ETFs mondiaux avec 20 ans de données réelles. Optimisé (70% Momentum + 30% Risk Parity) surpasse Allocation Égale de +14.8%. Backtests complets et métriques détaillées." />
     <meta property="og:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:locale:alternate" content="en_US" />
@@ -51,7 +51,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://bubbleinvest.org/portfolio-simulator" />
     <meta name="twitter:title" content="Simulateur Portfolio IA | Stratégies Professionnelles" />
-    <meta name="twitter:description" content="Voyez comment les professionnels construisent des portefeuilles. Comparez 3 stratégies quantitatives sur 20 ans de données réelles. Risk Parity optimisé vs allocation égale." />
+    <meta name="twitter:description" content="Comparez 6 stratégies quantitatives sur 5 ETFs mondiaux. Stratégie Optimisée (70% Momentum + 30% Risk Parity) surpasse Allocation Égale de +14.8% sur 20 ans de données réelles." />
     <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
 
     <!-- Canonical URL -->
@@ -1343,14 +1343,14 @@
           <div class="strategy-pills slider-track">
           <button class="strategy-pill active" data-strategy="equalWeight" data-tooltip-behavior="press">
             <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.equalWeight.tooltip">
-              Approche simple : 33.3% sur chaque actif (actions, obligations, or). Facile à comprendre et à répliquer, mais ne tient pas compte des différences de risque entre actifs.
+              Approche simple : 20% sur chaque actif global (SPY, IEF, GLD, EFA, EEM). Facile à comprendre et à répliquer. Baseline pour comparer les stratégies plus sophistiquées.
             </div>
             <div class="pill-icon">
               <img src="../assets/images/simul port icons/noun-equal-3402250-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
             </div>
             <div class="pill-content">
               <div class="pill-title" data-translate="simulator.strategy.equalWeight">Allocation Égale</div>
-              <div class="pill-subtitle" data-translate="simulator.strategy.equalWeight.subtitle">33.3% chacun</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.equalWeight.subtitle">20% chacun (5 ETFs)</div>
             </div>
           </button>
 
@@ -1372,7 +1372,7 @@
 
           <button class="strategy-pill" data-strategy="momentumTilt" data-tooltip-behavior="press">
             <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.momentumTilt.tooltip">
-              Pondération dynamique en fonction du momentum sur 12 mois. Les actifs avec la meilleure tendance reçoivent davantage de poids.
+              Pondération dynamique 100% momentum sur 12 mois. Les 5 actifs mondiaux avec les meilleures tendances reçoivent davantage de poids. Performance plus volatile mais haute performance historique (+499.9% sur 20 ans).
             </div>
             <div class="pill-icon">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -1410,7 +1410,7 @@
 
           <button class="strategy-pill" data-strategy="simpleRiskParity" data-tooltip-behavior="press">
             <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.simpleRiskParity.tooltip">
-              Pondère les actifs par l'inverse de leur volatilité. Les actifs plus volatils reçoivent moins de poids, équilibrant ainsi la contribution au risque total du portefeuille.
+              Pondère les 5 actifs mondiaux par l'inverse de leur volatilité. Les actifs plus volatils reçoivent moins de poids, équilibrant la contribution au risque du portefeuille.
             </div>
             <div class="pill-icon">
               <img src="../assets/images/simul port icons/noun-scale-1021928-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
@@ -1423,14 +1423,14 @@
 
           <button class="strategy-pill" data-strategy="optimizedRiskParity" data-tooltip-behavior="press">
             <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.optimizedRiskParity.tooltip">
-              Version avancée utilisant la volatilité EWMA et les corrélations entre actifs. Ajuste dynamiquement les allocations pour optimiser le ratio rendement/risque du portefeuille.
+              Stratégie hybride : 70% momentum (rendements 12 mois) + 30% risk parity (pondération inverse volatilité). Sur 20 ans : +437.9% (+14.8% vs allocation égale). Favorise les actifs en tendance haussière avec contrôle conservateur de la volatilité.
             </div>
             <div class="pill-icon">
               <img src="../assets/images/simul port icons/noun-ai-6480915-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
             </div>
             <div class="pill-content">
-              <div class="pill-title" data-translate="simulator.strategy.optimizedRiskParity">Optimized</div>
-              <div class="pill-subtitle" data-translate="simulator.strategy.optimizedRiskParity.subtitle">Best performance</div>
+              <div class="pill-title" data-translate="simulator.strategy.optimizedRiskParity">Optimisé ⭐</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.optimizedRiskParity.subtitle">Meilleure performance</div>
             </div>
           </button>
 

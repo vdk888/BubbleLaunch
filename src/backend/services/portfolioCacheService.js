@@ -78,61 +78,57 @@ function buildChartData(tickers, priceData, strategies) {
   const baseSeries = priceData[baseTicker] || [];
   if (!baseSeries.length) return [];
 
-  const priceLookups = {};
-  tickers.forEach((ticker) => {
-    priceLookups[ticker] = createLookup(priceData[ticker] || [], "price");
-  });
-
   const strategyKeys = resolveStrategyKeys(strategies);
-  const strategyLookups = {};
-
-  strategyKeys.forEach((strategyKey) => {
-    strategyLookups[strategyKey] = createLookup(
-      strategies[strategyKey] || [],
-      "value"
-    );
-  });
-
   const chartData = [];
   const usedDates = new Set();
 
-  const buildEntry = (date) => {
-    const entry = { date };
+  // Build entry using array indices instead of date-based lookup
+  // This avoids timezone/format issues with date matching
+  const buildEntryByIndex = (priceIndex) => {
+    if (priceIndex < 0 || priceIndex >= baseSeries.length) return null;
 
+    const basePoint = baseSeries[priceIndex];
+    if (!basePoint) return null;
+
+    const entry = { date: basePoint.date };
+
+    // Copy price data
     for (const ticker of tickers) {
-      const value = priceLookups[ticker].get(date);
-      if (value === undefined) {
-        return null;
+      const priceArray = priceData[ticker];
+      if (!priceArray || priceIndex >= priceArray.length) {
+        return null; // Missing price data
       }
-      entry[ticker] = Math.round(value * 100) / 100;
+      entry[ticker] = Math.round(priceArray[priceIndex].price * 100) / 100;
     }
 
+    // Copy strategy data
     for (const strategyKey of strategyKeys) {
-      const value = strategyLookups[strategyKey].get(date);
-      if (value === undefined) {
-        return null;
+      const stratArray = strategies[strategyKey];
+      if (!stratArray || priceIndex >= stratArray.length) {
+        return null; // Missing strategy data
       }
-      entry[strategyKey] = Math.round(value * 100) / 100;
+      entry[strategyKey] = Math.round(stratArray[priceIndex].value * 100) / 100;
     }
 
     return entry;
   };
 
   for (let i = 0; i < baseSeries.length; i += SAMPLE_INTERVAL_DAYS) {
-    const { date } = baseSeries[i];
-    const entry = buildEntry(date);
+    const entry = buildEntryByIndex(i);
     if (entry) {
       chartData.push(entry);
-      usedDates.add(date);
+      usedDates.add(entry.date);
     }
   }
 
-  const lastDate =
-    baseSeries.length > 0 ? baseSeries[baseSeries.length - 1].date : null;
-  if (lastDate && !usedDates.has(lastDate)) {
-    const entry = buildEntry(lastDate);
-    if (entry) {
-      chartData.push(entry);
+  const lastPoint = baseSeries[baseSeries.length - 1];
+  if (lastPoint) {
+    const lastDate = lastPoint.date;
+    if (lastDate && !usedDates.has(lastDate)) {
+      const entry = buildEntry(lastDate);
+      if (entry) {
+        chartData.push(entry);
+      }
     }
   }
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-11-03T17:09:52.556Z",
+  "generatedAt": "2025-11-03T17:26:56.903Z",
   "tickers": [
     "SPY",
     "IEF",
@@ -18,7 +18,7 @@
   "periods": {
     "1": {
       "periodYears": 1,
-      "generatedAt": "2025-11-03T17:09:52.556Z",
+      "generatedAt": "2025-11-03T17:26:56.903Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -83,7 +83,7 @@
     },
     "3": {
       "periodYears": 3,
-      "generatedAt": "2025-11-03T17:09:52.556Z",
+      "generatedAt": "2025-11-03T17:26:56.903Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -148,7 +148,7 @@
     },
     "5": {
       "periodYears": 5,
-      "generatedAt": "2025-11-03T17:09:52.556Z",
+      "generatedAt": "2025-11-03T17:26:56.903Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -213,7 +213,7 @@
     },
     "10": {
       "periodYears": 10,
-      "generatedAt": "2025-11-03T17:09:52.556Z",
+      "generatedAt": "2025-11-03T17:26:56.903Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -278,7 +278,7 @@
     },
     "20": {
       "periodYears": 20,
-      "generatedAt": "2025-11-03T17:09:52.556Z",
+      "generatedAt": "2025-11-03T17:26:56.903Z",
       "tickers": [
         "SPY",
         "IEF",
@@ -303,7 +303,7 @@
         },
         {
           "date": "2005-12-05",
-          "SPY": 103.52,
+          "SPY": 103.53,
           "IEF": 100.8,
           "GLD": 110.49,
           "EFA": 102.84,
@@ -620,15 +620,15 @@
           "sixtyForty": 123.02,
           "momentumTilt": 167.42,
           "hierarchicalRiskParity": 148.87,
-          "simpleRP": 134.47,
-          "optimizedRP": 157.86
+          "simpleRP": 134.48,
+          "optimizedRP": 157.87
         },
         {
           "date": "2007-11-06",
           "SPY": 129.01,
           "IEF": 112.45,
           "GLD": 177.18,
-          "EFA": 153.21,
+          "EFA": 153.2,
           "EEM": 201.58,
           "equalWeight": 154.68,
           "sixtyForty": 122.38,
@@ -766,7 +766,7 @@
         {
           "date": "2008-09-08",
           "SPY": 109.38,
-          "IEF": 123.41,
+          "IEF": 123.4,
           "GLD": 171.58,
           "EFA": 114.9,
           "EEM": 143.41,
