@@ -142,46 +142,20 @@
           </div>
         </div>
       </div>
-      <div class="mobile-nav-overlay" id="mobile-nav">
-        <div class="mobile-nav-header">
-          <div class="mobile-logo">
-            <svg width="28" height="28" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle
-                cx="36"
-                cy="41"
-                r="26"
-                stroke="#000"
-                stroke-width="6"
-                stroke-linecap="round"
-                stroke-dasharray="145 29"
-                stroke-dashoffset="10"
-              />
-              <circle cx="59" cy="21" r="6" fill="#000" />
-            </svg>
-            <span>Bubble.</span>
-          </div>
-          <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
-        </div>
-        <div class="mobile-nav-links">
+      <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+        <nav class="mobile-nav">
           <a href="/en/#about" data-translate="nav.vision">Vision</a>
-          <button class="mobile-nav-dropdown-toggle" data-target="solution">
-            <span data-translate="nav.solution">Solution</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
-          <div class="mobile-nav-dropdown-menu" id="solution">
-            <a href="/en/#approach" data-translate="nav.approach">Approach</a>
-            <a href="/en/#vision" data-translate="nav.build">Product</a>
+          <div class="mobile-nav-dropdown">
+            <a href="#" class="mobile-nav-dropdown-toggle" data-translate="nav.solution">Solution</a>
+            <div class="mobile-nav-dropdown-menu">
+              <a href="/en/#approach" data-translate="nav.approach">Approach</a>
+              <a href="/en/#vision" data-translate="nav.build">Product</a>
+            </div>
           </div>
           <a href="/en/blog" data-translate="nav.blog">Blog</a>
           <a href="/en/businesses" data-translate="nav.businesses">Businesses</a>
           <a href="/en/#waitlist" data-translate="nav.join">Join Us</a>
-        </div>
+        </nav>
       </div>
     </header>
 
