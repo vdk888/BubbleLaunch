@@ -224,7 +224,7 @@ function buildSnapshot({
   const chartData = buildChartData(
     tickers,
     filteredPriceData,
-    filteredStrategies
+    strategySeries  // Pass unfiltered strategy data to ensure date matching works
   );
   const metrics = calculateStrategyMetrics(filteredStrategies);
   const strategyKeys = resolveStrategyKeys(filteredStrategies);
