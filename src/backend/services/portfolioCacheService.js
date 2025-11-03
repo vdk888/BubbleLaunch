@@ -107,95 +107,33 @@ function buildChartData(tickers, priceData, strategies) {
     }
   }
 
-  // Get intersection: dates that exist in strategies and are sampled from baseSeries
-  let successCount = 0;
-
+  // Sample every N days, skipping dates where strategy data isn't available
   for (let i = 0; i < baseSeries.length; i += SAMPLE_INTERVAL_DAYS) {
     const basePoint = baseSeries[i];
     if (!basePoint || !basePoint.date) continue;
 
     const date = basePoint.date;
 
-    // Check if date exists in all strategy lookups AND all price lookups
+    // Skip if strategy data is missing for this date
     const hasAllStrategyData = strategyKeys.every(key => strategyLookups[key].has(date));
-    if (!hasAllStrategyData) {
-      // Try to find nearest matching date in strategies
-      let found = false;
-      // Look backwards and forwards for a matching date
-      for (let lookback = 1; lookback <= 10; lookback++) {
-        const idx = i - lookback;
-        const idx2 = i + lookback;
+    if (!hasAllStrategyData) continue;
 
-        if (idx >= 0 && baseSeries[idx]) {
-          const altDate = baseSeries[idx].date;
-          if (strategyKeys.every(key => strategyLookups[key].has(altDate))) {
-            // Found a matching date, use it
-            const entry = { date: altDate };
-
-            for (const ticker of tickers) {
-              const price = priceLookups[ticker].get(altDate);
-              if (price === undefined) break;
-              entry[ticker] = Math.round(price * 100) / 100;
-            }
-            if (Object.keys(entry).length <= 1) continue; // No price data
-
-            for (const strategyKey of strategyKeys) {
-              const stratValue = strategyLookups[strategyKey].get(altDate);
-              entry[strategyKey] = Math.round(stratValue * 100) / 100;
-            }
-
-            if (!usedDates.has(altDate)) {
-              chartData.push(entry);
-              usedDates.add(altDate);
-              successCount++;
-              found = true;
-              break;
-            }
-          }
-        }
-
-        if (idx2 < baseSeries.length && baseSeries[idx2]) {
-          const altDate = baseSeries[idx2].date;
-          if (strategyKeys.every(key => strategyLookups[key].has(altDate))) {
-            const entry = { date: altDate };
-
-            for (const ticker of tickers) {
-              const price = priceLookups[ticker].get(altDate);
-              if (price === undefined) break;
-              entry[ticker] = Math.round(price * 100) / 100;
-            }
-            if (Object.keys(entry).length <= 1) continue;
-
-            for (const strategyKey of strategyKeys) {
-              const stratValue = strategyLookups[strategyKey].get(altDate);
-              entry[strategyKey] = Math.round(stratValue * 100) / 100;
-            }
-
-            if (!usedDates.has(altDate)) {
-              chartData.push(entry);
-              usedDates.add(altDate);
-              successCount++;
-              found = true;
-              break;
-            }
-          }
-        }
-
-        if (found) break;
-      }
-      continue;
-    }
-
-    // Build entry if all data is available
+    // Build chart entry
     const entry = { date };
 
+    // Add price data
+    let missingPrice = false;
     for (const ticker of tickers) {
       const price = priceLookups[ticker].get(date);
-      if (price === undefined) break;
+      if (price === undefined) {
+        missingPrice = true;
+        break;
+      }
       entry[ticker] = Math.round(price * 100) / 100;
     }
-    if (Object.keys(entry).length <= 1) continue; // No price data
+    if (missingPrice) continue;
 
+    // Add strategy data
     for (const strategyKey of strategyKeys) {
       const stratValue = strategyLookups[strategyKey].get(date);
       entry[strategyKey] = Math.round(stratValue * 100) / 100;
@@ -203,10 +141,7 @@ function buildChartData(tickers, priceData, strategies) {
 
     chartData.push(entry);
     usedDates.add(date);
-    successCount++;
   }
-
-  console.log(`  Built ${successCount} chart entries`);
 
   // Add last point if not already included
   if (baseSeries.length > 0) {
