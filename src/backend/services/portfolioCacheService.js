@@ -186,15 +186,13 @@ function buildSnapshot({
 
   // Build chart data with ALL unfiltered data, include all daily points
   // This ensures all periods get complete data for proper chart visualization
-  const allChartData = buildChartData(
+  // The frontend will use periodYears and dataStartDate to know what to display
+  const chartData = buildChartData(
     tickers,
     normalizedPriceData,  // Pass ALL unfiltered price data
     strategySeries,       // Pass ALL unfiltered strategy data
     true                  // Include all daily data (no sampling)
   );
-
-  // Filter chart data by cutoff date to match the period
-  const chartData = allChartData.filter((point) => new Date(point.date) >= cutoffDate);
 
   // Calculate metrics only on filtered data for accuracy
   const metrics = calculateStrategyMetrics(filteredStrategies);
@@ -202,6 +200,7 @@ function buildSnapshot({
 
   return {
     periodYears: years,
+    dataStartDate: cutoffDate.toISOString().split('T')[0], // ISO date string (YYYY-MM-DD)
     generatedAt,
     tickers,
     data: chartData,

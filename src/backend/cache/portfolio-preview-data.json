@@ -16,7 +16,7 @@
     },
     {
       "date": "2005-12-05",
-      "SPY": 103.53,
+      "SPY": 103.52,
       "IEF": 100.8,
       "GLD": 110.49,
       "EFA": 102.84,
@@ -333,7 +333,7 @@
       "sixtyForty": 123.02,
       "momentumTilt": 167.42,
       "hierarchicalRiskParity": 148.87,
-      "simpleRP": 134.47,
+      "simpleRP": 134.48,
       "optimizedRP": 157.87
     },
     {
@@ -459,7 +459,7 @@
       "sixtyForty": 112.82,
       "momentumTilt": 178.11,
       "hierarchicalRiskParity": 143.11,
-      "simpleRP": 134.3,
+      "simpleRP": 134.31,
       "optimizedRP": 165.03
     },
     {
@@ -535,7 +535,7 @@
       "maxDrawdown": -53.39
     }
   },
-  "generatedAt": "2025-11-03T20:44:38.617Z",
+  "generatedAt": "2025-11-03T20:49:34.576Z",
   "periodYears": 20,
   "periodsAvailable": [
     1,

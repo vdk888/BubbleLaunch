@@ -491,7 +491,14 @@
     const lang = localStorage.getItem('bubbleLanguage') || 'fr';
     const locale = lang === 'en' ? 'en-US' : 'fr-FR';
     const normalizedRows = ensureNormalizedCache(data);
-    const labels = normalizedRows.map(d => {
+
+    // Filter data by period start date if available
+    const dataStartDate = data.dataStartDate ? new Date(data.dataStartDate) : null;
+    const filteredRows = dataStartDate
+      ? normalizedRows.filter(d => new Date(d.date) >= dataStartDate)
+      : normalizedRows;
+
+    const labels = filteredRows.map(d => {
       const date = new Date(d.date);
       return date.toLocaleDateString(locale, { year: 'numeric', month: 'short' });
     });
@@ -503,7 +510,7 @@
     datasets.push(
       {
         label: etfLabels.spy,
-        data: normalizedRows.map(d => d.SPY),
+        data: filteredRows.map(d => d.SPY),
         borderColor: 'rgba(102, 126, 234, 0.4)', // More visible
         backgroundColor: 'rgba(102, 126, 234, 0.05)',
         borderWidth: 1.5,
@@ -514,7 +521,7 @@
       },
       {
         label: etfLabels.ief,
-        data: normalizedRows.map(d => d.IEF),
+        data: filteredRows.map(d => d.IEF),
         borderColor: 'rgba(107, 114, 128, 0.4)', // More visible
         backgroundColor: 'rgba(107, 114, 128, 0.05)',
         borderWidth: 1.5,
@@ -525,7 +532,7 @@
       },
       {
         label: etfLabels.gld,
-        data: normalizedRows.map(d => d.GLD),
+        data: filteredRows.map(d => d.GLD),
         borderColor: 'rgba(156, 163, 175, 0.4)', // More visible
         backgroundColor: 'rgba(156, 163, 175, 0.05)',
         borderWidth: 1.5,
@@ -539,7 +546,7 @@
     // Always show all portfolio strategies using STRATEGY_CONFIG
     // This makes it easy to add/modify strategies in the future
     Object.entries(STRATEGY_CONFIG).forEach(([strategyKey, config]) => {
-      const hasSeries = normalizedRows.some(
+      const hasSeries = filteredRows.some(
         (point) => typeof point[config.dataKey] === 'number'
       );
       if (!hasSeries) {
@@ -554,7 +561,7 @@
 
       datasets.push({
         label: getStrategyLabel(config.labelKey),
-        data: normalizedRows.map((point) => point[config.dataKey]),
+        data: filteredRows.map((point) => point[config.dataKey]),
         borderColor: isActive ? config.color : hexToRgba(config.color, opacity),
         backgroundColor: hexToRgba(config.color, isActive ? 0.15 : 0.05),
         borderWidth: config.borderWidth * borderWidthMultiplier,
