@@ -596,6 +596,30 @@ const translations = {
     en: "Weights the 5 global assets (SPY, IEF, GLD, EFA, EEM) by the inverse of their volatility. More volatile assets receive less weight to balance risk contribution. Performance: +324.6% over 20 years.",
     fr: "Pondère les 5 actifs mondiaux (SPY, IEF, GLD, EFA, EEM) par l'inverse de leur volatilité. Les actifs plus volatils sont réduits pour équilibrer la contribution au risque. Performance : +324,6% sur 20 ans."
   },
+  "simulator.strategy.enhancedRiskParityDCC": {
+    en: "Enhanced Risk Parity (DCC)",
+    fr: "Risk Parity DCC"
+  },
+  "simulator.strategy.enhancedRiskParityDCC.subtitle": {
+    en: "Correlation-aware",
+    fr: "Sensibilité corrélation"
+  },
+  "simulator.strategy.enhancedRiskParityDCC.tooltip": {
+    en: "Inverse-volatility core with a dynamic correlation penalty (DCC proxy) so allocations lighten when assets move together. Weekly data, cash buffer, and correlation-aware weights help keep drawdowns contained.",
+    fr: "Coeur inverse-volatilité avec pénalité corrélation dynamique (proxy DCC) pour réduire l'exposition quand les actifs se synchronisent. Données hebdomadaires, trésorerie et pondérations sensibles aux corrélations limitent les drawdowns."
+  },
+  "simulator.strategy.optimizedRiskBudgeting": {
+    en: "Optimized Risk Budgeting",
+    fr: "Répartition de Risque Optimisée"
+  },
+  "simulator.strategy.optimizedRiskBudgeting.subtitle": {
+    en: "True risk parity",
+    fr: "Véritable risk parity"
+  },
+  "simulator.strategy.optimizedRiskBudgeting.tooltip": {
+    en: "Mathematical risk parity that equalizes risk contributions across SPY, IEF, GLD, EFA, EEM and cash. Gradient-descent optimizer with weekly data smooths drawdowns while keeping long-term outperformance.",
+    fr: "Risk parity mathématique qui égalise les contributions de risque entre SPY, IEF, GLD, EFA, EEM et la trésorerie. L'optimisation par gradient sur données hebdomadaires adoucit les creux tout en conservant la surperformance long terme."
+  },
   "simulator.strategy.optimized": {
     en: "Optimized",
     fr: "Optimisé"
@@ -884,6 +908,10 @@ const translations = {
   "simulator.etf.eem": {
     en: "EEM (Emerging Markets)",
     fr: "EEM (Marchés émergents)"
+  },
+  "simulator.etf.cash": {
+    en: "Cash (2% yield)",
+    fr: "Trésorerie (rendement 2 %)"
   },
   "simulator.chart.yAxisTitle": {
     en: "Value (Base 100)",

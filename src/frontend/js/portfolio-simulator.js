@@ -23,7 +23,7 @@
     exports: true,
   };
   const ETF_VISIBILITY_STORAGE_KEY = 'bubbleSimulatorEtfVisibility';
-  const ETF_KEYS = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM'];
+  const ETF_KEYS = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'CASH'];
   const etfToggleButtons = new Map();
   let etfVisibility = ETF_KEYS.reduce((acc, key) => {
     acc[key] = true;
@@ -351,6 +351,24 @@
       order: 2,
       isBest: false,
     },
+    enhancedRiskParityDCC: {
+      labelKey: 'simulator.strategy.enhancedRiskParityDCC',
+      dataKey: 'enhancedRiskParityDCC',
+      color: '#0EA5E9',
+      borderWidth: 2.6,
+      borderDash: [6, 3],
+      order: 1.5,
+      isBest: false,
+    },
+    optimizedRiskBudgeting: {
+      labelKey: 'simulator.strategy.optimizedRiskBudgeting',
+      dataKey: 'optimizedRiskBudgeting',
+      color: '#7C3AED',
+      borderWidth: 3,
+      borderDash: [],
+      order: 0.9,
+      isBest: true,
+    },
     optimizedRiskParity: {
       labelKey: 'simulator.strategy.optimizedRiskParity',
       dataKey: 'optimizedRP',
@@ -388,6 +406,8 @@
         'simulator.strategy.momentumTilt': lang === 'en' ? 'Momentum Tilt' : 'Momentum',
         'simulator.strategy.hierarchicalRiskParity': lang === 'en' ? 'Hierarchical RP' : 'Risk Parity Hiérarchique',
         'simulator.strategy.simpleRiskParity': 'Risk Parity',
+        'simulator.strategy.enhancedRiskParityDCC': lang === 'en' ? 'Enhanced Risk Parity (DCC)' : 'Risk Parity DCC',
+        'simulator.strategy.optimizedRiskBudgeting': lang === 'en' ? 'Optimized Risk Budgeting' : 'Répartition de Risque Optimisée',
         'simulator.strategy.optimizedRiskParity': lang === 'en' ? '✨ Optimized' : '✨ Optimisé',
       };
       return fallbacks[labelKey] || labelKey;
@@ -412,6 +432,7 @@
       gld: t['simulator.etf.gld'] ? t['simulator.etf.gld'][lang] : fallback({ en: 'GLD (Gold)', fr: 'GLD (Or)' }),
       efa: t['simulator.etf.efa'] ? t['simulator.etf.efa'][lang] : fallback({ en: 'EFA (Developed ex-US)', fr: 'EFA (Marchés développés)' }),
       eem: t['simulator.etf.eem'] ? t['simulator.etf.eem'][lang] : fallback({ en: 'EEM (Emerging Markets)', fr: 'EEM (Marchés émergents)' }),
+      cash: t['simulator.etf.cash'] ? t['simulator.etf.cash'][lang] : fallback({ en: 'Cash (2% yield)', fr: 'Trésorerie (rendement 2 %)' }),
       yAxisTitle: t['simulator.chart.yAxisTitle'] ? t['simulator.chart.yAxisTitle'][lang] : fallback({ en: 'Value (Base 100)', fr: 'Valeur (Base 100)' }),
     };
   }
@@ -673,6 +694,19 @@
         tension: 0.4,
         borderDash: [4, 4],
         order: 2,
+      });
+    }
+    if (isEtfVisible('CASH')) {
+      datasets.push({
+        label: etfLabels.cash,
+        data: filteredRows.map(d => d.CASH),
+        borderColor: 'rgba(34, 197, 94, 0.4)',
+        backgroundColor: 'rgba(34, 197, 94, 0.08)',
+        borderWidth: 1.2,
+        pointRadius: 0,
+        tension: 0.2,
+        borderDash: [2, 2],
+        order: 1.5,
       });
     }
 
@@ -1184,7 +1218,9 @@
     const strategyKey = {
       equalWeight: 'equalWeight',
       simpleRiskParity: 'simpleRP',
+      enhancedRiskParityDCC: 'enhancedRiskParityDCC',
       optimizedRiskParity: 'optimizedRP',
+      optimizedRiskBudgeting: 'optimizedRiskBudgeting',
       sixtyForty: 'sixtyForty',
       momentumTilt: 'momentumTilt',
       hierarchicalRiskParity: 'hierarchicalRiskParity',

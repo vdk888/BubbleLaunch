@@ -15,7 +15,9 @@ const ETF_CONFIG = {
   GLD: "Gold",
   EFA: "MSCI EAFE (Developed Markets)",
   EEM: "MSCI Emerging Markets",
+  CASH: "Euro Cash Reserve (2% annual return)",
 };
+const BASE_TICKERS = Object.keys(ETF_CONFIG).filter((ticker) => ticker !== "CASH");
 
 // In-memory cache for ETF data
 const cache = {
@@ -100,7 +102,14 @@ async function fetchTickerData(ticker, startDate, endDate) {
  * @param {number} years - Number of years of history (default: 20)
  * @returns {Promise<Object>} Object with ticker symbols as keys and price arrays as values
  */
-async function fetchETFData(tickers = Object.keys(ETF_CONFIG), years = 20) {
+async function fetchETFData(requestedTickers = Object.keys(ETF_CONFIG), years = 20) {
+  const uniqueRequested = Array.from(new Set(requestedTickers));
+  const includeCash = uniqueRequested.includes("CASH");
+  const tickers = Array.from(
+    new Set(uniqueRequested.filter((ticker) => ticker !== "CASH"))
+  );
+  const baseTickers = tickers.length > 0 ? tickers : BASE_TICKERS;
+
   // Check cache
   if (
     cache.timestamp &&
@@ -108,16 +117,23 @@ async function fetchETFData(tickers = Object.keys(ETF_CONFIG), years = 20) {
     Object.keys(cache.data).length > 0
   ) {
     console.log("📊 Returning cached ETF data");
-    return cache.data;
+    const cachedData = cache.data;
+    const subset = {};
+    uniqueRequested.forEach((ticker) => {
+      if (cachedData[ticker]) {
+        subset[ticker] = cachedData[ticker];
+      }
+    });
+    return subset;
   }
 
-  console.log(`📈 Fetching ${years} years of data for ${tickers.join(", ")}...`);
+  console.log(`📈 Fetching ${years} years of data for ${baseTickers.join(", ")}${includeCash ? " + CASH" : ""}...`);
 
   const { startDate, endDate } = getDateRange(years);
   const priceData = {};
 
   // Fetch data for each ticker sequentially to avoid rate limiting
-  for (const ticker of tickers) {
+  for (const ticker of baseTickers) {
     let retries = 3;
     let lastError;
 
@@ -150,21 +166,40 @@ async function fetchETFData(tickers = Object.keys(ETF_CONFIG), years = 20) {
 
   const successCount = Object.keys(priceData).length;
   console.log(
-    `✅ Fetched data for ${successCount}/${tickers.length} ETFs`
+    `✅ Fetched data for ${successCount}/${baseTickers.length} ETFs`
   );
 
   // Only cache if we got ALL tickers - don't cache partial data
-  if (successCount === tickers.length) {
+  if (successCount === baseTickers.length) {
+    // Resample to weekly
+    for (const ticker of baseTickers) {
+      priceData[ticker] = resampleToWeekly(priceData[ticker]);
+    }
+
+    // Add cash series if needed
+    const referenceTicker = baseTickers[0];
+    const referenceDates = priceData[referenceTicker]?.map((point) => point.date) || [];
+    if (referenceDates.length > 0) {
+      priceData.CASH = generateCashSeries(referenceDates);
+    }
+
     cache.data = priceData;
     cache.timestamp = Date.now();
   } else {
-    console.warn(`⚠️ Incomplete data: only got ${successCount}/${tickers.length} tickers. NOT caching.`);
+    console.warn(`⚠️ Incomplete data: only got ${successCount}/${baseTickers.length} tickers. NOT caching.`);
     // Clear cache so next request tries fresh
     cache.data = {};
     cache.timestamp = null;
   }
 
-  return priceData;
+  const finalData = cache.data;
+  const output = {};
+  uniqueRequested.forEach((ticker) => {
+    if (finalData[ticker]) {
+      output[ticker] = finalData[ticker];
+    }
+  });
+  return output;
 }
 
 /**
@@ -188,6 +223,61 @@ function normalizeToBase100(priceData) {
   return normalized;
 }
 
+function getISOWeekKey(date) {
+  const utcDate = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+  const dayNum = utcDate.getUTCDay() || 7;
+  utcDate.setUTCDate(utcDate.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(utcDate.getUTCFullYear(), 0, 1));
+  const weekNum = Math.ceil(((utcDate - yearStart) / 86400000 + 1) / 7);
+  return `${utcDate.getUTCFullYear()}-W${String(weekNum).padStart(2, "0")}`;
+}
+
+function resampleToWeekly(prices) {
+  if (!Array.isArray(prices) || prices.length === 0) {
+    return [];
+  }
+
+  const weekly = [];
+  let currentWeek = null;
+  let lastPoint = null;
+
+  for (const point of prices) {
+    const dateObj = new Date(point.date);
+    const weekKey = getISOWeekKey(dateObj);
+
+    if (currentWeek === null) {
+      currentWeek = weekKey;
+    }
+
+    if (weekKey !== currentWeek) {
+      if (lastPoint) {
+        weekly.push(lastPoint);
+      }
+      currentWeek = weekKey;
+    }
+
+    lastPoint = point;
+  }
+
+  if (lastPoint) {
+    weekly.push(lastPoint);
+  }
+
+  return weekly;
+}
+
+function generateCashSeries(referenceDates, annualRate = 0.02) {
+  if (!Array.isArray(referenceDates) || referenceDates.length === 0) {
+    return [];
+  }
+
+  const weeklyFactor = Math.pow(1 + annualRate, 1 / 52);
+  return referenceDates.map((date, index) => ({
+    date,
+    price: Math.pow(weeklyFactor, index),
+  }));
+}
+
 /**
  * Clear the cache
  */
@@ -199,6 +289,7 @@ function clearCache() {
 
 module.exports = {
   ETF_CONFIG,
+  BASE_TICKERS,
   fetchETFData,
   normalizeToBase100,
   clearCache,

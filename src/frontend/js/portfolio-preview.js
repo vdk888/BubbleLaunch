@@ -11,7 +11,7 @@
   let chartData = null;
   let hasAnimated = false;
 
-  const ETF_KEYS = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM'];
+  const ETF_KEYS = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'CASH'];
   const ETF_STYLES = {
     SPY: {
       borderColor: 'rgba(102, 126, 234, 0.4)',
@@ -47,6 +47,13 @@
       borderWidth: 1.3,
       borderDash: [4, 4],
       order: 4,
+    },
+    CASH: {
+      borderColor: 'rgba(34, 197, 94, 0.4)',
+      backgroundColor: 'rgba(34, 197, 94, 0.08)',
+      borderWidth: 1.2,
+      borderDash: [2, 2],
+      order: 3.5,
     },
   };
 
@@ -91,6 +98,23 @@
       borderDash: [],
       order: 2,
     },
+    optimizedRiskBudgeting: {
+      labelKey: 'simulator.strategy.optimizedRiskBudgeting',
+      dataKey: 'optimizedRiskBudgeting',
+      color: '#7C3AED',
+      borderWidth: 3,
+      borderDash: [],
+      order: 0.8,
+      isBest: true,
+    },
+    enhancedRiskParityDCC: {
+      labelKey: 'simulator.strategy.enhancedRiskParityDCC',
+      dataKey: 'enhancedRiskParityDCC',
+      color: '#0EA5E9',
+      borderWidth: 2.6,
+      borderDash: [6, 3],
+      order: 1.2,
+    },
     optimizedRiskParity: {
       labelKey: 'simulator.strategy.optimizedRiskParity',
       dataKey: 'optimizedRP',
@@ -107,6 +131,8 @@
     'momentumTilt',
     'hierarchicalRiskParity',
     'simpleRiskParity',
+    'optimizedRiskBudgeting',
+    'enhancedRiskParityDCC',
     'optimizedRiskParity',
   ];
 
@@ -138,6 +164,7 @@
       GLD: resolveTranslation('simulator.etf.gld', fallback('GLD (Gold)', 'GLD (Or)')),
       EFA: resolveTranslation('simulator.etf.efa', fallback('EFA (Developed ex-US)', 'EFA (Marchés développés)')),
       EEM: resolveTranslation('simulator.etf.eem', fallback('EEM (Emerging Markets)', 'EEM (Marchés émergents)')),
+      CASH: resolveTranslation('simulator.etf.cash', fallback('Cash (2% yield)', 'Trésorerie (rendement 2 %)')),
       yAxisTitle: resolveTranslation('simulator.chart.yAxisTitle', fallback('Value (Base 100)', 'Valeur (Base 100)')),
     };
   }
@@ -154,6 +181,8 @@
       'simulator.strategy.momentumTilt': lang === 'en' ? 'Momentum Tilt' : 'Momentum',
       'simulator.strategy.hierarchicalRiskParity': lang === 'en' ? 'Hierarchical RP' : 'Risk Parity Hiérarchique',
       'simulator.strategy.simpleRiskParity': lang === 'en' ? 'Risk Parity' : 'Risk Parity',
+      'simulator.strategy.optimizedRiskBudgeting': lang === 'en' ? 'Optimized Risk Budgeting' : 'Répartition de Risque Optimisée',
+      'simulator.strategy.enhancedRiskParityDCC': lang === 'en' ? 'Enhanced Risk Parity (DCC)' : 'Risk Parity DCC',
       'simulator.strategy.optimizedRiskParity': lang === 'en' ? '✨ Optimized' : '✨ Optimisé',
     };
     return fallbacks[labelKey] || fallback || labelKey;

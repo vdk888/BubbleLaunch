@@ -5,8 +5,8 @@ const portfolioService = require("./portfolioService");
 
 const DEFAULT_PERIODS = [1, 3, 5, 10, 20];
 const DEFAULT_PERIOD = 20;
-const DEFAULT_TICKERS = ["SPY", "IEF", "GLD", "EFA", "EEM"]; // 5 ETFs for global diversification
-const SAMPLE_INTERVAL_DAYS = 21; // ~ monthly sampling
+const DEFAULT_TICKERS = ["SPY", "IEF", "GLD", "EFA", "EEM", "CASH"]; // 5 ETFs + Cash reserve
+const SAMPLE_INTERVAL_DAYS = 1; // weekly data already downsampled
 
 const STRATEGY_BUILDERS = {
   equalWeight: portfolioService.calculateEqualWeight,
@@ -15,6 +15,8 @@ const STRATEGY_BUILDERS = {
   hierarchicalRiskParity: portfolioService.calculateMinimumVarianceWeights,
   simpleRP: portfolioService.calculateSimpleRiskParity,
   optimizedRP: portfolioService.calculateOptimizedRiskParity,
+  optimizedRiskBudgeting: portfolioService.calculateOptimizedRiskBudgeting,
+  enhancedRiskParityDCC: portfolioService.calculateEnhancedRiskParityWithDCC,
 };
 
 const STRATEGY_ORDER = [
@@ -24,6 +26,8 @@ const STRATEGY_ORDER = [
   "hierarchicalRiskParity",
   "simpleRP",
   "optimizedRP",
+  "optimizedRiskBudgeting",
+  "enhancedRiskParityDCC",
 ];
 
 function formatPercentage(value) {

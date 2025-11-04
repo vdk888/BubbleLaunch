@@ -1,3 +1,5 @@
+const riskBudgetingService = require("./riskBudgetingService");
+
 /**
  * Portfolio Calculation Service
  * Simplified version of anim-main portfolio strategies
@@ -208,7 +210,7 @@ function calculateSixtyForty(priceData) {
   });
 }
 
-function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21) {
+function calculateMomentumTilt(priceData, lookbackDays = 52, rebalanceDays = 4) {
   const tickers = Object.keys(priceData);
   if (tickers.length === 0) return [];
 
@@ -264,7 +266,7 @@ function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21
   return portfolio;
 }
 
-function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21) {
+function calculateMomentumTilt(priceData, lookbackDays = 52, rebalanceDays = 4) {
   const tickers = Object.keys(priceData);
   if (tickers.length === 0) return [];
 
@@ -321,7 +323,7 @@ function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21
   return portfolio;
 }
 
-function calculateMinimumVarianceWeights(priceData, lookbackDays = 252, rebalanceDays = 21) {
+function calculateMinimumVarianceWeights(priceData, lookbackDays = 52, rebalanceDays = 4) {
   const tickers = Object.keys(priceData);
   if (tickers.length === 0) return [];
 
@@ -404,7 +406,7 @@ function calculateMinimumVarianceWeights(priceData, lookbackDays = 252, rebalanc
  * Strategy 2: Simple Risk Parity
  * Inverse volatility weighting with monthly rebalancing
  */
-function calculateSimpleRiskParity(priceData, lookbackDays = 60, rebalanceDays = 21) {
+function calculateSimpleRiskParity(priceData, lookbackDays = 12, rebalanceDays = 4) {
   const tickers = Object.keys(priceData);
   const allDates = priceData[tickers[0]].map(p => p.date);
 
@@ -427,7 +429,8 @@ function calculateSimpleRiskParity(priceData, lookbackDays = 60, rebalanceDays =
 
       for (const ticker of tickers) {
         const recentReturns = returnsData[ticker].slice(Math.max(0, i - lookbackDays), i);
-        volatilities[ticker] = calculateStdDev(recentReturns);
+        const vol = calculateStdDev(recentReturns);
+        volatilities[ticker] = Math.max(vol, 1e-4);
       }
 
       // Calculate inverse volatility weights
@@ -477,7 +480,7 @@ function calculateSimpleRiskParity(priceData, lookbackDays = 60, rebalanceDays =
  *
  * Expected performance: Should beat Equal Weight by +10% or more over 20 years
  */
-function calculateOptimizedRiskParity(priceData, momentumLookback = 252, volatilityLookback = 60, rebalanceDays = 21, momentumWeight = 0.7, rpWeight = 0.3) {
+function calculateOptimizedRiskParity(priceData, momentumLookback = 52, volatilityLookback = 12, rebalanceDays = 4, momentumWeight = 0.7, rpWeight = 0.3) {
   const tickers = Object.keys(priceData);
   if (tickers.length === 0) return [];
 
@@ -610,48 +613,63 @@ function calculateOptimizedRiskParity(priceData, momentumLookback = 252, volatil
   return portfolio;
 }
 
-/**
- * Calculate performance metrics
- * @param {Array} portfolio - Portfolio values over time
- * @returns {Object} Performance metrics
- */
+function computeReturnStats(valueSeries) {
+  if (!Array.isArray(valueSeries) || valueSeries.length < 2) {
+    return { returns: [], periods: 0, annualizationFactor: 0, startValue: null, endValue: null };
+  }
+
+  const returns = [];
+  let previous = valueSeries[0].value;
+  for (let i = 1; i < valueSeries.length; i++) {
+    const current = valueSeries[i].value;
+    const ret = previous > 0 ? (current - previous) / previous : 0;
+    returns.push(ret);
+    previous = current;
+  }
+
+  const firstDate = new Date(valueSeries[0].date);
+  const lastDate = new Date(valueSeries[valueSeries.length - 1].date);
+  const diffMs = lastDate - firstDate;
+  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+  const periodsPerYear = diffDays > 0 ? valueSeries.length / (diffDays / 365.25) : 52;
+
+  return {
+    returns,
+    periods: valueSeries.length,
+    annualizationFactor: periodsPerYear,
+    startValue: valueSeries[0].value,
+    endValue: valueSeries[valueSeries.length - 1].value,
+  };
+}
+
 function calculateMetrics(portfolio) {
-  if (portfolio.length === 0) {
+  if (!Array.isArray(portfolio) || portfolio.length === 0) {
     return { totalReturn: 0, annualReturn: 0, volatility: 0, sharpeRatio: 0, maxDrawdown: 0 };
   }
 
-  const startValue = portfolio[0].value;
-  const endValue = portfolio[portfolio.length - 1].value;
-  const totalReturn = (endValue - startValue) / startValue;
+  const stats = computeReturnStats(portfolio);
+  const totalReturn = stats.startValue > 0 ? (stats.endValue - stats.startValue) / stats.startValue : 0;
 
-  // Calculate daily returns
-  const returns = [];
-  for (let i = 1; i < portfolio.length; i++) {
-    returns.push((portfolio[i].value - portfolio[i - 1].value) / portfolio[i - 1].value);
-  }
-
-  // Annualized metrics (assuming ~252 trading days per year)
-  const years = portfolio.length / 252;
+  const returns = stats.returns;
+  const annualization = Math.max(stats.annualizationFactor, 1);
+  const years = Math.max(stats.periods / annualization, 1 / 12);
   const annualReturn = Math.pow(1 + totalReturn, 1 / years) - 1;
-  const volatility = calculateStdDev(returns) * Math.sqrt(252);
+  const volatility = calculateStdDev(returns) * Math.sqrt(annualization);
 
-  // Sharpe ratio (assuming 2% risk-free rate)
   const riskFreeRate = 0.02;
   const sharpeRatio = volatility > 0 ? (annualReturn - riskFreeRate) / volatility : 0;
 
-  // Maximum drawdown
-  let maxDrawdown = 0;
   let peak = portfolio[0].value;
-
-  for (const point of portfolio) {
+  let maxDrawdown = 0;
+  portfolio.forEach((point) => {
     if (point.value > peak) {
       peak = point.value;
     }
-    const drawdown = (point.value - peak) / peak;
+    const drawdown = peak > 0 ? (point.value - peak) / peak : 0;
     if (drawdown < maxDrawdown) {
       maxDrawdown = drawdown;
     }
-  }
+  });
 
   return {
     totalReturn,
@@ -662,6 +680,266 @@ function calculateMetrics(portfolio) {
   };
 }
 
+function calculateOptimizedRiskBudgeting(
+  priceData,
+  lookbackPeriods = 52,
+  rebalancePeriods = 4,
+  optimizerOptions = {}
+) {
+  const tickers = Object.keys(priceData);
+  if (tickers.length === 0) return [];
+
+  const priceMap = {};
+  const allDatesSet = new Set();
+
+  tickers.forEach((ticker) => {
+    priceMap[ticker] = new Map();
+    priceData[ticker].forEach((point) => {
+      if (point && point.date && typeof point.price === "number") {
+        priceMap[ticker].set(point.date, point.price);
+        allDatesSet.add(point.date);
+      }
+    });
+  });
+
+  const allDates = Array.from(allDatesSet).sort();
+  if (!allDates.length) return [];
+
+  let currentWeights = Object.fromEntries(
+    tickers.map((ticker) => [ticker, 1 / tickers.length])
+  );
+
+  const portfolio = [];
+
+  allDates.forEach((date, idx) => {
+    const hasAllPrices = tickers.every((ticker) => priceMap[ticker].has(date));
+    if (!hasAllPrices) {
+      return;
+    }
+
+    const shouldRebalance =
+      idx >= lookbackPeriods && idx % rebalancePeriods === 0;
+
+    if (shouldRebalance) {
+      const returnsSeries = {};
+      tickers.forEach((ticker) => {
+        returnsSeries[ticker] = [];
+      });
+
+      const startIdx = Math.max(0, idx - lookbackPeriods);
+      for (let i = startIdx; i < idx; i++) {
+        const prevDate = allDates[i];
+        const nextDate = allDates[i + 1];
+        if (!nextDate) continue;
+
+        const valid = tickers.every(
+          (ticker) =>
+            priceMap[ticker].has(prevDate) && priceMap[ticker].has(nextDate)
+        );
+        if (!valid) continue;
+
+        tickers.forEach((ticker) => {
+          const prevPrice = priceMap[ticker].get(prevDate);
+          const nextPrice = priceMap[ticker].get(nextDate);
+          const ret = prevPrice > 0 ? (nextPrice - prevPrice) / prevPrice : 0;
+          returnsSeries[ticker].push(ret);
+        });
+      }
+
+      const minCount = Math.min(
+        ...tickers.map((ticker) => returnsSeries[ticker].length)
+      );
+
+      if (minCount >= Math.max(lookbackPeriods * 0.5, 16)) {
+        const covMatrix = riskBudgetingService.calculateCovarianceMatrix(
+          returnsSeries,
+          tickers
+        );
+        if (covMatrix) {
+          try {
+            currentWeights =
+              riskBudgetingService.optimizeRiskBudgetingWeights(
+                covMatrix,
+                tickers,
+                optimizerOptions
+              );
+          } catch (error) {
+            console.warn(
+              `Risk budgeting optimisation failed on ${date}:`,
+              error.message
+            );
+          }
+        }
+      }
+    }
+
+    let value = 0;
+    tickers.forEach((ticker) => {
+      value += currentWeights[ticker] * priceMap[ticker].get(date);
+    });
+    portfolio.push({ date, value });
+  });
+
+  return portfolio;
+}
+
+function calculateEnhancedRiskParityWithDCC(
+  priceData,
+  volatilityLookback = 26,
+  correlationLookback = 26,
+  rebalancePeriods = 4,
+  correlationPenaltyFactor = 0.5
+) {
+  const tickers = Object.keys(priceData);
+  if (tickers.length === 0) return [];
+
+  const priceMap = {};
+  const allDatesSet = new Set();
+
+  tickers.forEach((ticker) => {
+    priceMap[ticker] = new Map();
+    priceData[ticker].forEach((point) => {
+      if (point && point.date && typeof point.price === "number") {
+        priceMap[ticker].set(point.date, point.price);
+        allDatesSet.add(point.date);
+      }
+    });
+  });
+
+  const allDates = Array.from(allDatesSet).sort();
+  if (!allDates.length) return [];
+
+  let currentWeights = Object.fromEntries(
+    tickers.map((ticker) => [ticker, 1 / tickers.length])
+  );
+  const portfolio = [];
+
+  allDates.forEach((date, idx) => {
+    const hasAllPrices = tickers.every((ticker) => priceMap[ticker].has(date));
+    if (!hasAllPrices) return;
+
+    const shouldRebalance =
+      idx >= volatilityLookback && idx % rebalancePeriods === 0;
+
+    if (shouldRebalance) {
+      const volatilities = {};
+      tickers.forEach((ticker) => {
+        const returns = [];
+        for (
+          let i = Math.max(0, idx - volatilityLookback);
+          i < idx;
+          i++
+        ) {
+          const prevDate = allDates[i];
+          const nextDate = allDates[i + 1];
+          if (!nextDate) continue;
+
+          const prevPrice = priceMap[ticker].get(prevDate);
+          const nextPrice = priceMap[ticker].get(nextDate);
+          if (prevPrice && nextPrice && prevPrice > 0) {
+            returns.push((nextPrice - prevPrice) / prevPrice);
+          }
+        }
+
+        if (returns.length >= Math.max(volatilityLookback * 0.5, 8)) {
+          const ewmaVol = calculateEWMAVolatility(returns, 0.94);
+          volatilities[ticker] = Math.max(ewmaVol, 0.05);
+        } else {
+          volatilities[ticker] = 0.15;
+        }
+      });
+
+      const avgCorrelations = {};
+      tickers.forEach((ticker) => {
+        const returns = [];
+        for (
+          let i = Math.max(0, idx - correlationLookback);
+          i < idx;
+          i++
+        ) {
+          const prevDate = allDates[i];
+          const nextDate = allDates[i + 1];
+          if (!nextDate) continue;
+
+          const prevPrice = priceMap[ticker].get(prevDate);
+          const nextPrice = priceMap[ticker].get(nextDate);
+          if (prevPrice && nextPrice && prevPrice > 0) {
+            returns.push((nextPrice - prevPrice) / prevPrice);
+          }
+        }
+
+        const correlations = [];
+        tickers.forEach((other) => {
+          if (other === ticker) return;
+          const otherReturns = [];
+          for (
+            let i = Math.max(0, idx - correlationLookback);
+            i < idx;
+            i++
+          ) {
+            const prevDate = allDates[i];
+            const nextDate = allDates[i + 1];
+            if (!nextDate) continue;
+
+            const prevPrice = priceMap[other].get(prevDate);
+            const nextPrice = priceMap[other].get(nextDate);
+            if (prevPrice && nextPrice && prevPrice > 0) {
+              otherReturns.push((nextPrice - prevPrice) / prevPrice);
+            }
+          }
+
+          const n = Math.min(returns.length, otherReturns.length);
+          if (n >= Math.max(correlationLookback * 0.5, 8)) {
+            const corr = calculateCorrelation(
+              returns.slice(0, n),
+              otherReturns.slice(0, n)
+            );
+            if (!Number.isNaN(corr)) {
+              correlations.push(Math.abs(corr));
+            }
+          }
+        });
+
+        avgCorrelations[ticker] =
+          correlations.length > 0
+            ? correlations.reduce((sum, val) => sum + val, 0) /
+              correlations.length
+            : 0;
+      });
+
+      const weights = {};
+      let weightSum = 0;
+      tickers.forEach((ticker) => {
+        const invVol = 1 / volatilities[ticker];
+        const penalty = 1 + correlationPenaltyFactor * avgCorrelations[ticker];
+        const adjusted = invVol / penalty;
+        weights[ticker] = adjusted;
+        weightSum += adjusted;
+      });
+
+      if (weightSum > 0) {
+        currentWeights = {};
+        tickers.forEach((ticker) => {
+          currentWeights[ticker] = weights[ticker] / weightSum;
+        });
+      }
+    }
+
+    let value = 0;
+    tickers.forEach((ticker) => {
+      value += currentWeights[ticker] * priceMap[ticker].get(date);
+    });
+    portfolio.push({ date, value });
+  });
+
+  return portfolio;
+}
+
+/**
+ * Calculate performance metrics
+ * @param {Array} portfolio - Portfolio values over time
+ * @returns {Object} Performance metrics
+ */
 /**
  * Apply leverage to portfolio returns
  * @param {Array} unleveragedPortfolio - Portfolio without leverage
@@ -729,6 +1007,8 @@ module.exports = {
   calculateMinimumVarianceWeights,
   calculateSimpleRiskParity,
   calculateOptimizedRiskParity,
+  calculateOptimizedRiskBudgeting,
+  calculateEnhancedRiskParityWithDCC,
   calculateMetrics,
   applyLeverageToPortfolio,
 };

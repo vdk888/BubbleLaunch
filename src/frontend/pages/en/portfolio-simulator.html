@@ -1494,6 +1494,37 @@
             </div>
           </button>
 
+          <button class="strategy-pill" data-strategy="enhancedRiskParityDCC" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.enhancedRiskParityDCC.tooltip">Inverse-volatility core with a dynamic correlation penalty so allocations lighten when assets move together. Weekly data and a cash buffer help dampen drawdowns.</div>
+            <div class="pill-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M6 20L10.5 14.5L15 18L20.5 11.5L26 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="10.5" cy="14.5" r="2" fill="currentColor"/>
+                <circle cx="15" cy="18" r="2" fill="currentColor"/>
+                <circle cx="20.5" cy="11.5" r="2" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="pill-content">
+              <div class="pill-title" data-translate="simulator.strategy.enhancedRiskParityDCC">Enhanced Risk Parity (DCC)</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.enhancedRiskParityDCC.subtitle">Correlation-aware</div>
+            </div>
+          </button>
+
+          <button class="strategy-pill" data-strategy="optimizedRiskBudgeting" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.optimizedRiskBudgeting.tooltip">Mathematical risk parity across SPY, IEF, GLD, EFA, EEM and cash. The optimizer equalizes risk contributions to soften drawdowns while preserving long-run performance.</div>
+            <div class="pill-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M8 24H24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M10 18L16 10L22 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="16" cy="22" r="2" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="pill-content">
+              <div class="pill-title" data-translate="simulator.strategy.optimizedRiskBudgeting">Optimized Risk Budgeting</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.optimizedRiskBudgeting.subtitle">True risk parity</div>
+            </div>
+          </button>
+
           <button class="strategy-pill" data-strategy="optimizedRiskParity" data-tooltip-behavior="press">
             <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.optimizedRiskParity.tooltip">AI-optimized strategy across 5 ETFs: 70% Momentum (12-month returns) + 30% Risk Parity (EWMA volatility with λ=0.94). Over 20 years: +437.9% (+14.8% vs Equal Allocation). Favors trending assets while maintaining conservative volatility control.</div>
             <div class="pill-icon">
@@ -1608,6 +1639,7 @@
               <button type="button" class="etf-toggle-button active" data-etf="GLD" aria-pressed="true">GLD</button>
               <button type="button" class="etf-toggle-button active" data-etf="EFA" aria-pressed="true">EFA</button>
               <button type="button" class="etf-toggle-button active" data-etf="EEM" aria-pressed="true">EEM</button>
+              <button type="button" class="etf-toggle-button active" data-etf="CASH" aria-pressed="true">Cash</button>
             </div>
           </div>
 
