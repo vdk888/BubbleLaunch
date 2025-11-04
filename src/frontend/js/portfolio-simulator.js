@@ -22,6 +22,13 @@
   const FEATURE_FLAGS = {
     exports: true,
   };
+  const ETF_VISIBILITY_STORAGE_KEY = 'bubbleSimulatorEtfVisibility';
+  const ETF_KEYS = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM'];
+  const etfToggleButtons = new Map();
+  let etfVisibility = ETF_KEYS.reduce((acc, key) => {
+    acc[key] = true;
+    return acc;
+  }, {});
   const DEFAULT_CUSTOM_STRATEGY = {
     enabled: false,
     strategyA: 'optimizedRiskParity',
@@ -398,12 +405,108 @@
     const lang = localStorage.getItem('bubbleLanguage') || 'fr';
     const t = window.translations || {};
 
+    const fallback = (labels) => (lang === 'en' ? labels.en : labels.fr);
     return {
-      spy: t['simulator.etf.spy'] ? t['simulator.etf.spy'][lang] : (lang === 'en' ? 'SPY (S&P 500)' : 'SPY (S&P 500)'),
-      ief: t['simulator.etf.ief'] ? t['simulator.etf.ief'][lang] : (lang === 'en' ? 'IEF (Bonds)' : 'IEF (Obligations)'),
-      gld: t['simulator.etf.gld'] ? t['simulator.etf.gld'][lang] : (lang === 'en' ? 'GLD (Gold)' : 'GLD (Or)'),
-      yAxisTitle: t['simulator.chart.yAxisTitle'] ? t['simulator.chart.yAxisTitle'][lang] : (lang === 'en' ? 'Value (Base 100)' : 'Valeur (Base 100)'),
+      spy: t['simulator.etf.spy'] ? t['simulator.etf.spy'][lang] : fallback({ en: 'SPY (S&P 500)', fr: 'SPY (S&P 500)' }),
+      ief: t['simulator.etf.ief'] ? t['simulator.etf.ief'][lang] : fallback({ en: 'IEF (Bonds)', fr: 'IEF (Obligations)' }),
+      gld: t['simulator.etf.gld'] ? t['simulator.etf.gld'][lang] : fallback({ en: 'GLD (Gold)', fr: 'GLD (Or)' }),
+      efa: t['simulator.etf.efa'] ? t['simulator.etf.efa'][lang] : fallback({ en: 'EFA (Developed ex-US)', fr: 'EFA (Marchés développés)' }),
+      eem: t['simulator.etf.eem'] ? t['simulator.etf.eem'][lang] : fallback({ en: 'EEM (Emerging Markets)', fr: 'EEM (Marchés émergents)' }),
+      yAxisTitle: t['simulator.chart.yAxisTitle'] ? t['simulator.chart.yAxisTitle'][lang] : fallback({ en: 'Value (Base 100)', fr: 'Valeur (Base 100)' }),
     };
+  }
+
+  function loadEtfVisibilityState() {
+    try {
+      const stored = localStorage.getItem(ETF_VISIBILITY_STORAGE_KEY);
+      if (!stored) {
+        return;
+      }
+      const parsed = JSON.parse(stored);
+      if (!parsed || typeof parsed !== 'object') {
+        return;
+      }
+      ETF_KEYS.forEach((key) => {
+        if (typeof parsed[key] === 'boolean') {
+          etfVisibility[key] = parsed[key];
+        }
+      });
+    } catch (error) {
+      console.warn('Unable to load ETF visibility preferences:', error);
+    }
+  }
+
+  function persistEtfVisibilityState() {
+    try {
+      localStorage.setItem(ETF_VISIBILITY_STORAGE_KEY, JSON.stringify(etfVisibility));
+    } catch (error) {
+      console.warn('Unable to persist ETF visibility preferences:', error);
+    }
+  }
+
+  function setEtfButtonState(key, isVisible) {
+    const button = etfToggleButtons.get(key);
+    if (!button) return;
+    if (isVisible) {
+      button.classList.add('active');
+      button.classList.remove('is-off');
+    } else {
+      button.classList.remove('active');
+      button.classList.add('is-off');
+    }
+    button.setAttribute('aria-pressed', isVisible ? 'true' : 'false');
+  }
+
+  function refreshEtfToggleUi() {
+    ETF_KEYS.forEach((key) => {
+      setEtfButtonState(key, etfVisibility[key]);
+    });
+  }
+
+  function updateEtfToggleLabels() {
+    const etfLabels = getETFLabels();
+    ETF_KEYS.forEach((key) => {
+      const button = etfToggleButtons.get(key);
+      if (!button) return;
+      const labelKey = key.toLowerCase();
+      if (etfLabels[labelKey]) {
+        button.setAttribute('title', etfLabels[labelKey]);
+        button.setAttribute('aria-label', etfLabels[labelKey]);
+      }
+    });
+  }
+
+  function isEtfVisible(ticker) {
+    return etfVisibility[ticker] !== false;
+  }
+
+  function initializeEtfToggleControls() {
+    loadEtfVisibilityState();
+    const toggleContainer = document.getElementById('etfToggleGroup');
+    if (!toggleContainer) {
+      return;
+    }
+
+    ETF_KEYS.forEach((key) => {
+      const button = toggleContainer.querySelector(`[data-etf="${key}"]`);
+      if (!button) return;
+      etfToggleButtons.set(key, button);
+      button.addEventListener('click', () => {
+        etfVisibility[key] = !etfVisibility[key];
+        setEtfButtonState(key, etfVisibility[key]);
+        persistEtfVisibilityState();
+        if (portfolioData) {
+          updateChart(portfolioData, currentStrategy);
+        }
+        trackSimulatorEvent('etf_visibility_toggled', {
+          ticker: key,
+          visible: etfVisibility[key],
+        });
+      });
+    });
+
+    updateEtfToggleLabels();
+    refreshEtfToggleUi();
   }
 
   /**
@@ -506,42 +609,72 @@
     const datasets = [];
     const etfLabels = getETFLabels();
 
-    // Always show the 3 ETFs (background - more visible)
-    datasets.push(
-      {
+    // Display ETFs (background) based on toggle visibility
+    if (isEtfVisible('SPY')) {
+      datasets.push({
         label: etfLabels.spy,
         data: filteredRows.map(d => d.SPY),
-        borderColor: 'rgba(102, 126, 234, 0.4)', // More visible
+        borderColor: 'rgba(102, 126, 234, 0.4)',
         backgroundColor: 'rgba(102, 126, 234, 0.05)',
         borderWidth: 1.5,
         pointRadius: 0,
         tension: 0.4,
-        borderDash: [3, 3], // Subtle dash for ETFs
-        order: 6, // Behind all portfolios
-      },
-      {
+        borderDash: [3, 3],
+        order: 6,
+      });
+    }
+    if (isEtfVisible('IEF')) {
+      datasets.push({
         label: etfLabels.ief,
         data: filteredRows.map(d => d.IEF),
-        borderColor: 'rgba(107, 114, 128, 0.4)', // More visible
+        borderColor: 'rgba(107, 114, 128, 0.4)',
         backgroundColor: 'rgba(107, 114, 128, 0.05)',
         borderWidth: 1.5,
         pointRadius: 0,
         tension: 0.4,
-        borderDash: [3, 3], // Subtle dash for ETFs
-        order: 5, // Behind all portfolios
-      },
-      {
+        borderDash: [3, 3],
+        order: 5,
+      });
+    }
+    if (isEtfVisible('GLD')) {
+      datasets.push({
         label: etfLabels.gld,
         data: filteredRows.map(d => d.GLD),
-        borderColor: 'rgba(156, 163, 175, 0.4)', // More visible
+        borderColor: 'rgba(156, 163, 175, 0.4)',
         backgroundColor: 'rgba(156, 163, 175, 0.05)',
         borderWidth: 1.5,
         pointRadius: 0,
         tension: 0.4,
-        borderDash: [3, 3], // Subtle dash for ETFs
-        order: 4, // Behind all portfolios
-      }
-    );
+        borderDash: [3, 3],
+        order: 4,
+      });
+    }
+    if (isEtfVisible('EFA')) {
+      datasets.push({
+        label: etfLabels.efa,
+        data: filteredRows.map(d => d.EFA),
+        borderColor: 'rgba(129, 140, 248, 0.35)',
+        backgroundColor: 'rgba(129, 140, 248, 0.05)',
+        borderWidth: 1.3,
+        pointRadius: 0,
+        tension: 0.4,
+        borderDash: [4, 3],
+        order: 3,
+      });
+    }
+    if (isEtfVisible('EEM')) {
+      datasets.push({
+        label: etfLabels.eem,
+        data: filteredRows.map(d => d.EEM),
+        borderColor: 'rgba(248, 113, 113, 0.35)',
+        backgroundColor: 'rgba(248, 113, 113, 0.05)',
+        borderWidth: 1.3,
+        pointRadius: 0,
+        tension: 0.4,
+        borderDash: [4, 4],
+        order: 2,
+      });
+    }
 
     // Always show all portfolio strategies using STRATEGY_CONFIG
     // This makes it easy to add/modify strategies in the future
@@ -939,6 +1072,14 @@
       responsive: true,
       maintainAspectRatio: true,
       aspectRatio: mobile ? 1.2 : 2.5,
+      layout: {
+        padding: {
+          top: mobile ? 12 : 16,
+          bottom: mobile ? 12 : 20,
+          left: mobile ? 8 : 24,
+          right: mobile ? 8 : 24,
+        },
+      },
       animation: {
         duration: 750,
         easing: 'easeInOutQuart',
@@ -1641,6 +1782,8 @@
       customStrategyElements.reset.addEventListener('click', resetCustomStrategy);
     }
 
+    initializeEtfToggleControls();
+
     // Load initial data
     loadPortfolioData(currentStrategy, currentPeriod);
 
@@ -1691,6 +1834,8 @@
     updateCustomWeightDisplay(customStrategyState.weight);
     updateCustomAlert();
     setExportStatus('ready');
+    updateEtfToggleLabels();
+    refreshEtfToggleUi();
     if (portfolioData && portfolioChart) {
       updateChart(portfolioData, currentStrategy);
     }

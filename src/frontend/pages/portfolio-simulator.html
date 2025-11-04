@@ -77,7 +77,7 @@
       .simulator-container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 2rem;
+        padding: clamp(1.5rem, 4vw, 3rem);
         min-height: 100vh;
       }
 
@@ -588,7 +588,8 @@
 
       /* Main Chart Area Styles */
       .main-chart-area {
-        margin-bottom: 3rem;
+        max-width: 1100px;
+        margin: 0 auto 3rem;
       }
 
       .chart-card {
@@ -619,6 +620,65 @@
         display: flex;
         gap: 0.5rem;
         flex-wrap: wrap;
+      }
+
+      .etf-toggle-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .etf-toggle-heading {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #4B5563;
+      }
+
+      .etf-toggle-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .etf-toggle-button {
+        border: 1px solid #E5E7EB;
+        background: rgba(102, 126, 234, 0.08);
+        color: #4B5563;
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 0.4rem 0.9rem;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .etf-toggle-button:hover,
+      .etf-toggle-button:focus-visible {
+        border-color: #667eea;
+        color: #667eea;
+        outline: none;
+      }
+
+      .etf-toggle-button.active {
+        background: rgba(102, 126, 234, 0.16);
+        border-color: #667eea;
+        color: #4338ca;
+      }
+
+      .etf-toggle-button.is-off {
+        background: #F3F4F6;
+        color: #9CA3AF;
+        border-color: #E5E7EB;
+        opacity: 0.8;
+      }
+
+      .etf-toggle-button.is-off:hover,
+      .etf-toggle-button.is-off:focus-visible {
+        color: #6B7280;
+        border-color: #D1D5DB;
       }
 
       .tooltip-hint {
@@ -706,7 +766,8 @@
 
       /* Performance Metrics Grid */
       .metrics-grid {
-        margin-bottom: 3rem;
+        max-width: 1100px;
+        margin: 0 auto 3rem;
       }
 
       .metrics-section-title {
@@ -787,6 +848,10 @@
         .simulator-container {
           padding: 2rem 1.5rem;
         }
+        .main-chart-area,
+        .metrics-grid {
+          max-width: 100%;
+        }
 
         .strategy-pills {
           grid-template-columns: 1fr;
@@ -815,6 +880,18 @@
       @media (max-width: 768px) {
         .simulator-container {
           padding: 1.5rem 1rem;
+        }
+        .main-chart-area,
+        .metrics-grid {
+          max-width: 100%;
+          margin: 0 auto 2.5rem;
+        }
+        .etf-toggle-bar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .etf-toggle-buttons {
+          width: 100%;
         }
 
         .simulator-header {
@@ -1048,6 +1125,14 @@
       @media (max-width: 480px) {
         .simulator-container {
           padding: 1rem 0.75rem;
+        }
+        .main-chart-area,
+        .metrics-grid {
+          max-width: 100%;
+          margin: 0 auto 2rem;
+        }
+        .etf-toggle-buttons {
+          gap: 0.35rem;
         }
 
         .simulator-title {
@@ -1539,6 +1624,17 @@
               <button class="time-period-btn" data-period="5" data-translate="simulator.chart.period.5y">5 ans</button>
               <button class="time-period-btn" data-period="10" data-translate="simulator.chart.period.10y">10 ans</button>
               <button class="time-period-btn active" data-period="20" data-translate="simulator.chart.period.20y">20 ans</button>
+            </div>
+          </div>
+
+          <div class="etf-toggle-bar">
+            <span class="etf-toggle-heading" data-translate="simulator.chart.etfToggleLabel">ETFs de référence</span>
+            <div class="etf-toggle-buttons" id="etfToggleGroup">
+              <button type="button" class="etf-toggle-button active" data-etf="SPY" aria-pressed="true">SPY</button>
+              <button type="button" class="etf-toggle-button active" data-etf="IEF" aria-pressed="true">IEF</button>
+              <button type="button" class="etf-toggle-button active" data-etf="GLD" aria-pressed="true">GLD</button>
+              <button type="button" class="etf-toggle-button active" data-etf="EFA" aria-pressed="true">EFA</button>
+              <button type="button" class="etf-toggle-button active" data-etf="EEM" aria-pressed="true">EEM</button>
             </div>
           </div>
 

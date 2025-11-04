@@ -35,8 +35,10 @@ function formatPlainTextContent(content) {
         .trim();
     
     return processedContent
-        // Split by double line breaks for paragraphs, but also handle single line breaks between different content types
-        .split(/\n\s*\n/)
+        // Split by double line breaks for paragraphs
+        // But normalize multiple line breaks (3+) to just double (paragraph break)
+        .replace(/\n\n\n+/g, '\n\n')  // Normalize excessive line breaks
+        .split(/\n\n/)
         .flatMap(paragraph => {
             // If paragraph is too long and has mixed content, try to split it better
             if (paragraph.length > 1000 && (paragraph.includes('•') || paragraph.includes('#'))) {
@@ -230,6 +232,9 @@ function formatInlineContent(text) {
         .replace(/(?<!_)_([^_]+)_(?!_)/g, '<em>$1</em>')
         // Format links [text](url)
         .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+        // Auto-detect bare URLs (http or https) and convert to clickable links
+        // This regex matches URLs but avoids converting URLs already in markdown or HTML format
+        .replace(/(?<![\[\("])(https?:\/\/[^\s<>'"]+)(?![\]\)"'])/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>')
         // Format inline code `code`
         .replace(/`([^`]+)`/g, '<code>$1</code>')
         // Clean up any remaining single hashtags that aren't part of headings

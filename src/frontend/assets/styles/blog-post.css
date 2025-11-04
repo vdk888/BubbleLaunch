@@ -99,14 +99,19 @@ header {
 }
 
 .post-summary {
-  font-size: clamp(0.9rem, 2.5vw, 1.125rem);
+  font-size: clamp(0.875rem, 2.2vw, 1.125rem);
   color: #666;
-  line-height: 1.6;
+  line-height: 1.65;
   font-weight: 400;
   max-width: 100%;
   margin: 0 auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  /* Ensure summary always displays fully, never truncates */
+  overflow: visible;
+  white-space: normal;
+  max-height: none;
+  height: auto;
 }
 
 /* Mobile responsive post header */

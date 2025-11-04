@@ -85,6 +85,56 @@ function calculateCorrelation(returns1, returns2) {
   return denominator > 0 ? numerator / denominator : 0;
 }
 
+function solveLinearSystem(matrix, vector, tolerance = 1e-12) {
+  const n = matrix.length;
+  if (vector.length !== n) {
+    throw new Error("Matrix and vector dimensions must match for solving linear system");
+  }
+
+  // Build augmented matrix [matrix | vector]
+  const augmented = matrix.map((row, i) => [...row, vector[i]]);
+
+  for (let col = 0; col < n; col++) {
+    // Partial pivoting
+    let pivotRow = col;
+    let maxVal = Math.abs(augmented[col][col]);
+    for (let row = col + 1; row < n; row++) {
+      const candidate = Math.abs(augmented[row][col]);
+      if (candidate > maxVal) {
+        maxVal = candidate;
+        pivotRow = row;
+      }
+    }
+
+    if (maxVal < tolerance) {
+      return null; // Singular matrix
+    }
+
+    if (pivotRow !== col) {
+      [augmented[col], augmented[pivotRow]] = [augmented[pivotRow], augmented[col]];
+    }
+
+    // Normalize pivot row
+    const pivot = augmented[col][col];
+    for (let j = col; j <= n; j++) {
+      augmented[col][j] /= pivot;
+    }
+
+    // Eliminate column entries in other rows
+    for (let row = 0; row < n; row++) {
+      if (row === col) continue;
+      const factor = augmented[row][col];
+      if (Math.abs(factor) < tolerance) continue;
+
+      for (let j = col; j <= n; j++) {
+        augmented[row][j] -= factor * augmented[col][j];
+      }
+    }
+  }
+
+  return augmented.map((row) => row[n]);
+}
+
 function calculateFixedWeightPortfolio(priceData, weights) {
   const tickers = Object.keys(priceData);
   if (tickers.length === 0) return [];
@@ -214,119 +264,6 @@ function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21
   return portfolio;
 }
 
-function invert3x3(matrix) {
-  const det =
-    matrix[0][0] * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1]) -
-    matrix[0][1] * (matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0]) +
-    matrix[0][2] * (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]);
-
-  if (Math.abs(det) < 1e-12) {
-    return null;
-  }
-
-  const inverse = [
-    [],
-    [],
-    [],
-  ];
-
-  inverse[0][0] = (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1]) / det;
-  inverse[0][1] = (matrix[0][2] * matrix[2][1] - matrix[0][1] * matrix[2][2]) / det;
-  inverse[0][2] = (matrix[0][1] * matrix[1][2] - matrix[0][2] * matrix[1][1]) / det;
-  inverse[1][0] = (matrix[1][2] * matrix[2][0] - matrix[1][0] * matrix[2][2]) / det;
-  inverse[1][1] = (matrix[0][0] * matrix[2][2] - matrix[0][2] * matrix[2][0]) / det;
-  inverse[1][2] = (matrix[0][2] * matrix[1][0] - matrix[0][0] * matrix[1][2]) / det;
-  inverse[2][0] = (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]) / det;
-  inverse[2][1] = (matrix[0][1] * matrix[2][0] - matrix[0][0] * matrix[2][1]) / det;
-  inverse[2][2] = (matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]) / det;
-
-  return inverse;
-}
-
-function calculateMinimumVarianceWeights(priceData, lookbackDays = 252, rebalanceDays = 21) {
-  const tickers = Object.keys(priceData);
-  if (tickers.length === 0) return [];
-
-  const allDates = priceData[tickers[0]].map((p) => p.date);
-  const returnsData = {};
-  tickers.forEach((ticker) => {
-    returnsData[ticker] = calculateReturns(priceData[ticker]);
-  });
-
-  const portfolio = [];
-  let currentWeights = Object.fromEntries(tickers.map((ticker) => [ticker, 1 / tickers.length]));
-
-  for (let i = 0; i < allDates.length; i++) {
-    if (i >= lookbackDays && i % rebalanceDays === 0) {
-      const covMatrix = tickers.map(() => Array(tickers.length).fill(0));
-      let observations = 0;
-
-      for (let k = i; k > i - lookbackDays; k--) {
-        if (k <= 0) continue;
-        const row = tickers.map((ticker) => {
-          const currentPoint = priceData[ticker][k];
-          const previousPoint = priceData[ticker][k - 1];
-          if (!currentPoint || !previousPoint || previousPoint.price === 0) {
-            return 0;
-          }
-          return (currentPoint.price - previousPoint.price) / previousPoint.price;
-        });
-
-        observations += 1;
-
-        for (let a = 0; a < tickers.length; a++) {
-          for (let b = a; b < tickers.length; b++) {
-            const increment = row[a] * row[b];
-            covMatrix[a][b] += increment;
-            if (a !== b) {
-              covMatrix[b][a] += increment;
-            }
-          }
-        }
-      }
-
-      if (observations > 0) {
-        for (let a = 0; a < tickers.length; a++) {
-          for (let b = 0; b < tickers.length; b++) {
-            covMatrix[a][b] /= observations;
-          }
-        }
-
-        const inverse = invert3x3(covMatrix);
-        if (inverse) {
-          const weightsVector = inverse.map((row) => row.reduce((sum, value) => sum + value, 0));
-          const weightSum = weightsVector.reduce((sum, value) => sum + value, 0);
-
-          if (weightSum !== 0) {
-            currentWeights = Object.fromEntries(
-              tickers.map((ticker, idx) => [ticker, weightsVector[idx] / weightSum])
-            );
-          }
-        }
-      }
-    }
-
-    let portfolioValue = 0;
-    let hasAllPrices = true;
-
-    tickers.forEach((ticker) => {
-      const dataPoint = priceData[ticker][i];
-      if (!dataPoint) {
-        hasAllPrices = false;
-        return;
-      }
-      const weight = currentWeights[ticker] ?? 0;
-      portfolioValue += weight * dataPoint.price;
-    });
-
-    if (hasAllPrices) {
-      portfolio.push({ date: allDates[i], value: portfolioValue });
-    }
-  }
-
-  return portfolio;
-}
-
 function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21) {
   const tickers = Object.keys(priceData);
   if (tickers.length === 0) return [];
@@ -406,50 +343,40 @@ function calculateMinimumVarianceWeights(priceData, lookbackDays = 252, rebalanc
       );
 
       const length = Math.min(...windowReturns.map((series) => series.length));
-      if (length > 2) {
-        // Build covariance matrix
+      if (length >= tickers.length && length > 0) {
+        const trimmedReturns = windowReturns.map((series) =>
+          series.slice(series.length - length)
+        );
+        const means = trimmedReturns.map((series) => {
+          return series.reduce((sum, value) => sum + value, 0) / length;
+        });
+
         const covMatrix = tickers.map(() => Array(tickers.length).fill(0));
         for (let a = 0; a < tickers.length; a++) {
-          for (let b = a; b < tickers.length; b++) {
+          for (let b = 0; b < tickers.length; b++) {
             let sum = 0;
             for (let k = 0; k < length; k++) {
-              sum += windowReturns[a][k] * windowReturns[b][k];
+              const centeredA = trimmedReturns[a][k] - means[a];
+              const centeredB = trimmedReturns[b][k] - means[b];
+              sum += centeredA * centeredB;
             }
-            const cov = sum / length;
-            covMatrix[a][b] = cov;
-            covMatrix[b][a] = cov;
+            const denominator = Math.max(1, length - 1);
+            covMatrix[a][b] = sum / denominator;
           }
         }
 
-        // Invert covariance matrix using pseudo inverse (since small matrix)
-        const det =
-          covMatrix[0][0] * (covMatrix[1][1] * covMatrix[2][2] - covMatrix[1][2] * covMatrix[2][1]) -
-          covMatrix[0][1] * (covMatrix[1][0] * covMatrix[2][2] - covMatrix[1][2] * covMatrix[2][0]) +
-          covMatrix[0][2] * (covMatrix[1][0] * covMatrix[2][1] - covMatrix[1][1] * covMatrix[2][0]);
+        // Apply small diagonal regularization to improve numerical stability
+        const regularization = 1e-6;
+        for (let d = 0; d < tickers.length; d++) {
+          covMatrix[d][d] += regularization;
+        }
 
-        if (Math.abs(det) > 1e-12) {
-          const inverse = [];
-          inverse[0] = [];
-          inverse[1] = [];
-          inverse[2] = [];
+        const ones = Array(tickers.length).fill(1);
+        const weightsVector = solveLinearSystem(covMatrix, ones);
 
-          inverse[0][0] = (covMatrix[1][1] * covMatrix[2][2] - covMatrix[1][2] * covMatrix[2][1]) / det;
-          inverse[0][1] = (covMatrix[0][2] * covMatrix[2][1] - covMatrix[0][1] * covMatrix[2][2]) / det;
-          inverse[0][2] = (covMatrix[0][1] * covMatrix[1][2] - covMatrix[0][2] * covMatrix[1][1]) / det;
-          inverse[1][0] = (covMatrix[1][2] * covMatrix[2][0] - covMatrix[1][0] * covMatrix[2][2]) / det;
-          inverse[1][1] = (covMatrix[0][0] * covMatrix[2][2] - covMatrix[0][2] * covMatrix[2][0]) / det;
-          inverse[1][2] = (covMatrix[0][2] * covMatrix[1][0] - covMatrix[0][0] * covMatrix[1][2]) / det;
-          inverse[2][0] = (covMatrix[1][0] * covMatrix[2][1] - covMatrix[1][1] * covMatrix[2][0]) / det;
-          inverse[2][1] = (covMatrix[0][1] * covMatrix[2][0] - covMatrix[0][0] * covMatrix[2][1]) / det;
-          inverse[2][2] = (covMatrix[0][0] * covMatrix[1][1] - covMatrix[0][1] * covMatrix[1][0]) / det;
-
-          const ones = [1, 1, 1];
-          const weightsVector = inverse.map((row) =>
-            row.reduce((sum, value, idx) => sum + value * ones[idx], 0)
-          );
+        if (weightsVector) {
           const weightSum = weightsVector.reduce((sum, value) => sum + value, 0);
-
-          if (weightSum !== 0) {
+          if (Math.abs(weightSum) > 1e-12) {
             currentWeights = {};
             tickers.forEach((ticker, idx) => {
               currentWeights[ticker] = weightsVector[idx] / weightSum;

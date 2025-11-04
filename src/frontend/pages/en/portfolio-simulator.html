@@ -65,8 +65,8 @@
     <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/portfolio-simulator" />
     <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/portfolio-simulator" />
 
-    <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
-    <link rel="stylesheet" href="/assets/styles/styles.css" />
+    <link rel="icon" type="image/svg+xml" href="../assets/images/bubble-favicon.svg" />
+    <link rel="stylesheet" href="../assets/styles/styles.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -77,7 +77,7 @@
       .simulator-container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 2rem;
+        padding: clamp(1.5rem, 4vw, 3rem);
         min-height: 100vh;
       }
 
@@ -588,7 +588,8 @@
 
       /* Main Chart Area Styles */
       .main-chart-area {
-        margin-bottom: 3rem;
+        max-width: 1100px;
+        margin: 0 auto 3rem;
       }
 
       .chart-card {
@@ -619,6 +620,65 @@
         display: flex;
         gap: 0.5rem;
         flex-wrap: wrap;
+      }
+
+      .etf-toggle-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .etf-toggle-heading {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #4B5563;
+      }
+
+      .etf-toggle-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .etf-toggle-button {
+        border: 1px solid #E5E7EB;
+        background: rgba(102, 126, 234, 0.08);
+        color: #4B5563;
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 0.4rem 0.9rem;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .etf-toggle-button:hover,
+      .etf-toggle-button:focus-visible {
+        border-color: #667eea;
+        color: #667eea;
+        outline: none;
+      }
+
+      .etf-toggle-button.active {
+        background: rgba(102, 126, 234, 0.16);
+        border-color: #667eea;
+        color: #4338ca;
+      }
+
+      .etf-toggle-button.is-off {
+        background: #F3F4F6;
+        color: #9CA3AF;
+        border-color: #E5E7EB;
+        opacity: 0.8;
+      }
+
+      .etf-toggle-button.is-off:hover,
+      .etf-toggle-button.is-off:focus-visible {
+        color: #6B7280;
+        border-color: #D1D5DB;
       }
 
       .tooltip-hint {
@@ -706,7 +766,8 @@
 
       /* Performance Metrics Grid */
       .metrics-grid {
-        margin-bottom: 3rem;
+        max-width: 1100px;
+        margin: 0 auto 3rem;
       }
 
       .metrics-section-title {
@@ -789,6 +850,10 @@
         .simulator-container {
           padding: 2rem 1.5rem;
         }
+        .main-chart-area,
+        .metrics-grid {
+          max-width: 100%;
+        }
 
         .strategy-pills {
           grid-template-columns: 1fr;
@@ -817,6 +882,18 @@
       @media (max-width: 768px) {
         .simulator-container {
           padding: 1.5rem 1rem;
+        }
+        .main-chart-area,
+        .metrics-grid {
+          max-width: 100%;
+          margin: 0 auto 2.5rem;
+        }
+        .etf-toggle-bar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .etf-toggle-buttons {
+          width: 100%;
         }
 
         .simulator-header {
@@ -1050,6 +1127,14 @@
       @media (max-width: 480px) {
         .simulator-container {
           padding: 1rem 0.75rem;
+        }
+        .main-chart-area,
+        .metrics-grid {
+          max-width: 100%;
+          margin: 0 auto 2rem;
+        }
+        .etf-toggle-buttons {
+          gap: 0.35rem;
         }
 
         .simulator-title {
@@ -1297,7 +1382,7 @@
     <!-- Cookie Consent (Tarteaucitron) - CNIL/RGPD Compliant -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/tarteaucitron.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/css/tarteaucitron.min.css">
-    <script src="/js/seo/cookie-consent.js"></script>
+    <script src="../js/seo/cookie-consent.js"></script>
   </head>
   <body>
     <!-- Simulator Container -->
@@ -1342,7 +1427,7 @@
           <button class="strategy-pill active" data-strategy="equalWeight" data-tooltip-behavior="press">
             <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.equalWeight.tooltip">Simple approach: 20% on each global asset (SPY, IEF, GLD, EFA, EEM). Easy to understand and replicate. Ideal baseline for comparing more sophisticated strategies. Performance: +323.5% over 20 years.</div>
             <div class="pill-icon">
-              <img src="/assets/images/simul port icons/noun-equal-3402250-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
+              <img src="../assets/images/simul port icons/noun-equal-3402250-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
             </div>
             <div class="pill-content">
               <div class="pill-title" data-translate="simulator.strategy.equalWeight">Equal Allocation</div>
@@ -1401,7 +1486,7 @@
           <button class="strategy-pill" data-strategy="simpleRiskParity" data-tooltip-behavior="press">
             <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.simpleRiskParity.tooltip">Weights the 5 global assets (SPY, IEF, GLD, EFA, EEM) by the inverse of their volatility. More volatile assets receive less weight, balancing risk contribution across the portfolio. Performance: +324.6% over 20 years.</div>
             <div class="pill-icon">
-              <img src="/assets/images/simul port icons/noun-scale-1021928-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
+              <img src="../assets/images/simul port icons/noun-scale-1021928-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
             </div>
             <div class="pill-content">
               <div class="pill-title" data-translate="simulator.strategy.simpleRiskParity">Risk Parity</div>
@@ -1412,7 +1497,7 @@
           <button class="strategy-pill" data-strategy="optimizedRiskParity" data-tooltip-behavior="press">
             <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.optimizedRiskParity.tooltip">AI-optimized strategy across 5 ETFs: 70% Momentum (12-month returns) + 30% Risk Parity (EWMA volatility with λ=0.94). Over 20 years: +437.9% (+14.8% vs Equal Allocation). Favors trending assets while maintaining conservative volatility control.</div>
             <div class="pill-icon">
-              <img src="/assets/images/simul port icons/noun-ai-6480915-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
+              <img src="../assets/images/simul port icons/noun-ai-6480915-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
             </div>
             <div class="pill-content">
               <div class="pill-title" data-translate="simulator.strategy.optimizedRiskParity">Optimized ⭐</div>
@@ -1515,6 +1600,17 @@
             </div>
           </div>
 
+          <div class="etf-toggle-bar">
+            <span class="etf-toggle-heading" data-translate="simulator.chart.etfToggleLabel">Reference ETFs</span>
+            <div class="etf-toggle-buttons" id="etfToggleGroup">
+              <button type="button" class="etf-toggle-button active" data-etf="SPY" aria-pressed="true">SPY</button>
+              <button type="button" class="etf-toggle-button active" data-etf="IEF" aria-pressed="true">IEF</button>
+              <button type="button" class="etf-toggle-button active" data-etf="GLD" aria-pressed="true">GLD</button>
+              <button type="button" class="etf-toggle-button active" data-etf="EFA" aria-pressed="true">EFA</button>
+              <button type="button" class="etf-toggle-button active" data-etf="EEM" aria-pressed="true">EEM</button>
+            </div>
+          </div>
+
           <div class="chart-canvas-wrapper">
             <canvas id="portfolioChart"></canvas>
           </div>
@@ -1604,9 +1700,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/i18n/translations.js"></script>
-    <script src="/js/script.js"></script>
-    <script src="/js/portfolio-simulator.js"></script>
+    <script src="../i18n/translations.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/portfolio-simulator.js"></script>
 
     <!-- Unified Chat Side Panel -->
     <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
@@ -1761,10 +1857,10 @@
     </footer>
 
     <!-- SEO Structured Data -->
-    <script src="/js/seo/structured-data.js"></script>
+    <script src="../js/seo/structured-data.js"></script>
 
     <!-- Unified Chatbot Scripts (for portfolio simulator) -->
-    <script src="/js/chat-side-panel.js"></script>
-    <script src="/js/floating-chat-input.js"></script>
+    <script src="../js/chat-side-panel.js"></script>
+    <script src="../js/floating-chat-input.js"></script>
   </body>
 </html>

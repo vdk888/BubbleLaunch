@@ -509,8 +509,8 @@ const translations = {
     fr: "Simulateur de Portefeuille"
   },
   "simulator.subtitle": {
-    en: "Compare different investment strategies with 20 years of real historical data",
-    fr: "Comparez différentes stratégies d'investissement avec 20 ans de données historiques réelles"
+    en: "Compare 6 quantitative strategies across 5 global ETFs with 20 years of real historical data",
+    fr: "Comparez 6 stratégies quantitatives sur 5 ETFs mondiaux avec 20 ans de données historiques réelles"
   },
   "simulator.back": {
     en: "Back",
@@ -521,20 +521,20 @@ const translations = {
     fr: "Choisissez votre stratégie"
   },
   "simulator.strategies.description": {
-    en: "Compare four portfolio allocation approaches on stocks (SPY), bonds (IEF) and gold (GLD)",
-    fr: "Comparez quatre approches d'allocation de portefeuille sur actions (SPY), obligations (IEF) et or (GLD)"
+    en: "Compare six portfolio allocation approaches across 5 global ETFs (SPY, IEF, GLD, EFA, EEM)",
+    fr: "Comparez six approches d'allocation de portefeuille sur 5 ETFs mondiaux (SPY, IEF, GLD, EFA, EEM)"
   },
   "simulator.strategy.equalWeight": {
     en: "Equal Allocation",
     fr: "Allocation Égale"
   },
   "simulator.strategy.equalWeight.subtitle": {
-    en: "33.3% each",
-    fr: "33.3% chacun"
+    en: "20% each (5 ETFs)",
+    fr: "20% chacun (5 ETFs)"
   },
   "simulator.strategy.equalWeight.tooltip": {
-    en: "Simple approach: 33.3% on each asset (stocks, bonds, gold). Easy to understand and replicate, but doesn't account for risk differences between assets.",
-    fr: "Approche simple : 33.3% sur chaque actif (actions, obligations, or). Facile à comprendre et à répliquer, mais ne tient pas compte des différences de risque entre actifs."
+    en: "Simple approach: 20% on each global asset (SPY, IEF, GLD, EFA, EEM). Easy to understand and replicate. Ideal baseline for comparing more sophisticated strategies. Performance: +323.5% over 20 years.",
+    fr: "Approche simple : 20% sur chaque actif global (SPY, IEF, GLD, EFA, EEM). Facile à comprendre et à répliquer. Baseline idéale pour comparer les stratégies plus sophistiquées. Performance : +323,5% sur 20 ans."
   },
   "simulator.strategy.sixtyForty": {
     en: "60/40 Balanced",
@@ -545,8 +545,8 @@ const translations = {
     fr: "60% SPY / 40% IEF"
   },
   "simulator.strategy.sixtyForty.tooltip": {
-    en: "Institutional classic: 60% equities (SPY) and 40% bonds (IEF). Aims to capture long-term growth while cushioning downturns with fixed income.",
-    fr: "Classique institutionnel : 60% actions (SPY) et 40% obligations (IEF). Vise la croissance à long terme tout en amortissant les baisses grâce au revenu fixe."
+    en: "Institutional classic: 60% US equities (SPY) and 40% bonds (IEF). Aims to capture long-term growth while cushioning downturns with fixed income. Performance: +202.3% over 20 years.",
+    fr: "Classique institutionnel : 60% actions US (SPY) et 40% obligations (IEF). Vise la croissance à long terme tout en amortissant les baisses via l'obligataire. Performance : +202,3% sur 20 ans."
   },
   "simulator.strategy.momentumTilt": {
     en: "Momentum Tilt",
@@ -557,8 +557,8 @@ const translations = {
     fr: "Favorise les gagnants récents"
   },
   "simulator.strategy.momentumTilt.tooltip": {
-    en: "Weights ETFs based on 12-month price momentum. Assets with stronger trends receive more allocation, while laggards are underweighted.",
-    fr: "Pondère les ETFs selon leur momentum sur 12 mois. Les actifs aux tendances fortes reçoivent plus d'allocation, les retardataires sont sous-pondérés."
+    en: "Dynamic momentum weighting across the 5 global ETFs (SPY, IEF, GLD, EFA, EEM) using 12-month trends. Winners receive more capital while laggards are reduced. Performance: +499.9% over 20 years.",
+    fr: "Pondération momentum dynamique sur les 5 ETFs mondiaux (SPY, IEF, GLD, EFA, EEM) basée sur les tendances à 12 mois. Les gagnants sont renforcés, les retardataires réduits. Performance : +499,9% sur 20 ans."
   },
   "simulator.strategy.hierarchicalRiskParity": {
     en: "Hierarchical RP",
@@ -569,8 +569,8 @@ const translations = {
     fr: "Mix variance minimale"
   },
   "simulator.strategy.hierarchicalRiskParity.tooltip": {
-    en: "Simplified hierarchical risk parity using a minimum-variance allocation. Balances assets by covariance rather than simple volatility.",
-    fr: "Version simplifiée de l'Hierarchical Risk Parity via une allocation à variance minimale. Équilibre les actifs selon leur covariance plutôt que la seule volatilité."
+    en: "Minimum-variance allocation inspired by Hierarchical Risk Parity across 5 ETFs. Balances assets by covariance rather than simple volatility. Performance: +278.2% over 20 years.",
+    fr: "Allocation à variance minimale inspirée du Hierarchical Risk Parity sur 5 ETFs. Équilibre les actifs via la covariance plutôt que la seule volatilité. Performance : +278,2% sur 20 ans."
   },
   "simulator.strategy.simpleRP": {
     en: "Risk Parity",
@@ -593,8 +593,8 @@ const translations = {
     fr: "Risque équilibré"
   },
   "simulator.strategy.simpleRiskParity.tooltip": {
-    en: "Weights assets by the inverse of their volatility. More volatile assets receive less weight, balancing the risk contribution to the total portfolio.",
-    fr: "Pondère les actifs par l'inverse de leur volatilité. Les actifs plus volatils reçoivent moins de poids, équilibrant ainsi la contribution au risque total du portefeuille."
+    en: "Weights the 5 global assets (SPY, IEF, GLD, EFA, EEM) by the inverse of their volatility. More volatile assets receive less weight to balance risk contribution. Performance: +324.6% over 20 years.",
+    fr: "Pondère les 5 actifs mondiaux (SPY, IEF, GLD, EFA, EEM) par l'inverse de leur volatilité. Les actifs plus volatils sont réduits pour équilibrer la contribution au risque. Performance : +324,6% sur 20 ans."
   },
   "simulator.strategy.optimized": {
     en: "Optimized",
@@ -617,8 +617,8 @@ const translations = {
     fr: "Meilleure performance"
   },
   "simulator.strategy.optimizedRiskParity.tooltip": {
-    en: "Hybrid strategy: 70% momentum (12-month returns) + 30% risk parity (inverse volatility weighting). Emphasizes uptrending assets with conservative volatility control to beat equal allocation.",
-    fr: "Stratégie hybride : 70% momentum (rendements 12 mois) + 30% risk parity (pondération inverse volatilité). Privilégie les actifs en tendance haussière avec contrôle conservateur de la volatilité pour battre l'allocation égale."
+    en: "AI-optimized strategy across 5 ETFs: 70% Momentum (12-month returns) + 30% Risk Parity (EWMA volatility with λ=0.94). Favors trending assets while maintaining conservative volatility control. Performance: +437.9% over 20 years (+14.8% vs Equal Allocation).",
+    fr: "Stratégie IA optimisée sur 5 ETFs : 70% Momentum (rendements 12 mois) + 30% Risk Parity (volatilité EWMA avec λ=0,94). Privilégie les actifs en tendance tout en gardant un contrôle conservateur de la volatilité. Performance : +437,9% sur 20 ans (+14,8% vs Allocation Égale)."
   },
   "simulator.strategy.customMix": {
     en: "Create Your Mix",
@@ -742,6 +742,10 @@ const translations = {
   "simulator.chart.period.20y": {
     en: "20 years",
     fr: "20 ans"
+  },
+  "simulator.chart.etfToggleLabel": {
+    en: "Reference ETFs",
+    fr: "ETFs de référence"
   },
   "simulator.chart.disclaimer": {
     en: "Data based on real historical data of ETFs SPY, IEF, GLD, EFA and EEM (Base 100)",
@@ -872,6 +876,14 @@ const translations = {
   "simulator.etf.gld": {
     en: "GLD (Gold)",
     fr: "GLD (Or)"
+  },
+  "simulator.etf.efa": {
+    en: "EFA (Developed ex-US)",
+    fr: "EFA (Marchés développés)"
+  },
+  "simulator.etf.eem": {
+    en: "EEM (Emerging Markets)",
+    fr: "EEM (Marchés émergents)"
   },
   "simulator.chart.yAxisTitle": {
     en: "Value (Base 100)",

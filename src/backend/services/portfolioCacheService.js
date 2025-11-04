@@ -184,14 +184,13 @@ function buildSnapshot({
     filteredStrategies[strategyKey] = filterSeriesByCutoff(series, cutoffDate);
   }
 
-  // Build chart data with ALL unfiltered data
-  // Don't filter price data by cutoff - just use all available historical data
-  // The frontend will filter by dataStartDate for display purposes
+  // Build chart data using full histories but clip to the requested cutoff date
+  // Price/strategy series remain unfiltered so strategies with long lookbacks still compute correctly
   const chartData = buildChartData(
     tickers,
     normalizedPriceData,  // ALL unfiltered price data
     strategySeries,       // ALL unfiltered strategy data (has all dates for matching)
-    false                 // Sample data (every 21 days)
+    cutoffDate            // Filter to the requested period when building chart data
   );
 
   // Calculate metrics only on filtered data for accuracy
