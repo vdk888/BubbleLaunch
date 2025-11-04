@@ -386,8 +386,19 @@
             Découvrez l'Optimisation de Portefeuille
           </h3>
           <p data-translate="vision.portfolio.description">
-            Visualisez comment nos stratégies quantitatives surpassent les approches traditionnelles sur 10 ans de données historiques.
+            Visualisez comment nos stratégies quantitatives surpassent les approches traditionnelles sur 20 ans de données historiques.
           </p>
+
+          <div class="etf-toggle-bar">
+            <span class="etf-toggle-heading" data-translate="simulator.chart.etfToggleLabel">ETFs de référence</span>
+            <div class="etf-toggle-buttons" id="etfToggleGroup">
+              <button type="button" class="etf-toggle-button active" data-etf="SPY" aria-pressed="true">SPY</button>
+              <button type="button" class="etf-toggle-button active" data-etf="IEF" aria-pressed="true">IEF</button>
+              <button type="button" class="etf-toggle-button active" data-etf="GLD" aria-pressed="true">GLD</button>
+              <button type="button" class="etf-toggle-button active" data-etf="EFA" aria-pressed="true">EFA</button>
+              <button type="button" class="etf-toggle-button active" data-etf="EEM" aria-pressed="true">EEM</button>
+            </div>
+          </div>
 
           <div class="chart-container">
             <canvas id="portfolioPreviewChart"></canvas>

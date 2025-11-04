@@ -194,6 +194,34 @@ header {
   }
 }
 
+/* Blog Disclaimer */
+.blog-disclaimer {
+  background: #fafafa;
+  border-left: 4px solid #1a1a1a;
+  padding: 1.25rem 1.5rem;
+  margin: 2.5rem 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Mobile responsive disclaimer */
+@media (max-width: 768px) {
+  .blog-disclaimer {
+    margin: 2rem 0;
+    padding: 1rem 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-disclaimer {
+    margin: 1.5rem 0;
+    padding: 0.875rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
 /* Featured Image */
 .post-featured-image {
   margin: 3rem 0;

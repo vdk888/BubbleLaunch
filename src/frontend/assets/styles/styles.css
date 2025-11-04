@@ -2035,6 +2035,65 @@ section h2 {
   margin-right: auto;
 }
 
+.portfolio-preview-card .etf-toggle-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-preview-card .etf-toggle-heading {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #4B5563;
+}
+
+.portfolio-preview-card .etf-toggle-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.portfolio-preview-card .etf-toggle-button {
+  border: 1px solid #E5E7EB;
+  background: rgba(102, 126, 234, 0.08);
+  color: #4B5563;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.portfolio-preview-card .etf-toggle-button:hover,
+.portfolio-preview-card .etf-toggle-button:focus-visible {
+  border-color: #667eea;
+  color: #667eea;
+  outline: none;
+}
+
+.portfolio-preview-card .etf-toggle-button.active {
+  background: rgba(102, 126, 234, 0.16);
+  border-color: #667eea;
+  color: #4338ca;
+}
+
+.portfolio-preview-card .etf-toggle-button.is-off {
+  background: #F3F4F6;
+  color: #9CA3AF;
+  border-color: #E5E7EB;
+  opacity: 0.85;
+}
+
+.portfolio-preview-card .etf-toggle-button.is-off:hover,
+.portfolio-preview-card .etf-toggle-button.is-off:focus-visible {
+  color: #6B7280;
+  border-color: #D1D5DB;
+}
+
 /* Pricing Page */
 body.pricing-page {
   background: #f6f8ff;
@@ -2743,6 +2802,15 @@ body.pricing-page {
     margin-bottom: 2rem;
   }
 
+  .portfolio-preview-card .etf-toggle-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .portfolio-preview-card .etf-toggle-buttons {
+    width: 100%;
+  }
+
   .chart-container {
     padding: 1.5rem 1rem;
     height: 350px;
@@ -2848,6 +2916,10 @@ body.pricing-page {
 
   .portfolio-preview-card p {
     font-size: 0.95rem;
+  }
+
+  .portfolio-preview-card .etf-toggle-buttons {
+    gap: 0.35rem;
   }
 
   .chart-container {

@@ -11,6 +11,161 @@
   let chartData = null;
   let hasAnimated = false;
 
+  const ETF_KEYS = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM'];
+  const ETF_STYLES = {
+    SPY: {
+      borderColor: 'rgba(102, 126, 234, 0.4)',
+      backgroundColor: 'rgba(102, 126, 234, 0.05)',
+      borderWidth: 1.5,
+      borderDash: [3, 3],
+      order: 8,
+    },
+    IEF: {
+      borderColor: 'rgba(107, 114, 128, 0.4)',
+      backgroundColor: 'rgba(107, 114, 128, 0.05)',
+      borderWidth: 1.5,
+      borderDash: [3, 3],
+      order: 7,
+    },
+    GLD: {
+      borderColor: 'rgba(156, 163, 175, 0.4)',
+      backgroundColor: 'rgba(156, 163, 175, 0.05)',
+      borderWidth: 1.5,
+      borderDash: [3, 3],
+      order: 6,
+    },
+    EFA: {
+      borderColor: 'rgba(129, 140, 248, 0.35)',
+      backgroundColor: 'rgba(129, 140, 248, 0.05)',
+      borderWidth: 1.3,
+      borderDash: [4, 3],
+      order: 5,
+    },
+    EEM: {
+      borderColor: 'rgba(248, 113, 113, 0.35)',
+      backgroundColor: 'rgba(248, 113, 113, 0.05)',
+      borderWidth: 1.3,
+      borderDash: [4, 4],
+      order: 4,
+    },
+  };
+
+  const STRATEGY_CONFIG = {
+    equalWeight: {
+      labelKey: 'simulator.strategy.equalWeight',
+      dataKey: 'equalWeight',
+      color: '#6B7280',
+      borderWidth: 2,
+      borderDash: [5, 5],
+      order: 3.5,
+    },
+    sixtyForty: {
+      labelKey: 'simulator.strategy.sixtyForty',
+      dataKey: 'sixtyForty',
+      color: '#4B5563',
+      borderWidth: 2.2,
+      borderDash: [],
+      order: 3,
+    },
+    momentumTilt: {
+      labelKey: 'simulator.strategy.momentumTilt',
+      dataKey: 'momentumTilt',
+      color: '#14B8A6',
+      borderWidth: 2.4,
+      borderDash: [],
+      order: 2.5,
+    },
+    hierarchicalRiskParity: {
+      labelKey: 'simulator.strategy.hierarchicalRiskParity',
+      dataKey: 'hierarchicalRiskParity',
+      color: '#F59E0B',
+      borderWidth: 2.4,
+      borderDash: [4, 4],
+      order: 2.2,
+    },
+    simpleRiskParity: {
+      labelKey: 'simulator.strategy.simpleRiskParity',
+      dataKey: 'simpleRP',
+      color: '#333333',
+      borderWidth: 2.5,
+      borderDash: [],
+      order: 2,
+    },
+    optimizedRiskParity: {
+      labelKey: 'simulator.strategy.optimizedRiskParity',
+      dataKey: 'optimizedRP',
+      color: '#667eea',
+      borderWidth: 3,
+      borderDash: [],
+      order: 0.5,
+      isBest: true,
+    },
+  };
+  const STRATEGY_ORDER = [
+    'equalWeight',
+    'sixtyForty',
+    'momentumTilt',
+    'hierarchicalRiskParity',
+    'simpleRiskParity',
+    'optimizedRiskParity',
+  ];
+
+  function getCurrentLanguage() {
+    if (typeof localStorage !== 'undefined') {
+      const stored = localStorage.getItem('bubbleLanguage');
+      if (stored) {
+        return stored;
+      }
+    }
+    return document.documentElement.lang || 'fr';
+  }
+
+  function resolveTranslation(key, fallback) {
+    const lang = getCurrentLanguage();
+    const translations = window.translations?.[key];
+    if (translations && translations[lang]) {
+      return translations[lang];
+    }
+    return fallback;
+  }
+
+  function getETFLabels() {
+    const lang = getCurrentLanguage();
+    const fallback = (en, fr) => (lang === 'en' ? en : fr);
+    return {
+      SPY: resolveTranslation('simulator.etf.spy', fallback('SPY (S&P 500)', 'SPY (S&P 500)')),
+      IEF: resolveTranslation('simulator.etf.ief', fallback('IEF (Bonds)', 'IEF (Obligations)')),
+      GLD: resolveTranslation('simulator.etf.gld', fallback('GLD (Gold)', 'GLD (Or)')),
+      EFA: resolveTranslation('simulator.etf.efa', fallback('EFA (Developed ex-US)', 'EFA (Marchés développés)')),
+      EEM: resolveTranslation('simulator.etf.eem', fallback('EEM (Emerging Markets)', 'EEM (Marchés émergents)')),
+      yAxisTitle: resolveTranslation('simulator.chart.yAxisTitle', fallback('Value (Base 100)', 'Valeur (Base 100)')),
+    };
+  }
+
+  function getStrategyLabel(labelKey, fallback) {
+    const lang = getCurrentLanguage();
+    const translations = window.translations?.[labelKey];
+    if (translations && translations[lang]) {
+      return translations[lang];
+    }
+    const fallbacks = {
+      'simulator.strategy.equalWeight': lang === 'en' ? 'Equal Allocation' : 'Allocation Égale',
+      'simulator.strategy.sixtyForty': lang === 'en' ? '60/40 Balanced' : 'Portefeuille 60/40',
+      'simulator.strategy.momentumTilt': lang === 'en' ? 'Momentum Tilt' : 'Momentum',
+      'simulator.strategy.hierarchicalRiskParity': lang === 'en' ? 'Hierarchical RP' : 'Risk Parity Hiérarchique',
+      'simulator.strategy.simpleRiskParity': lang === 'en' ? 'Risk Parity' : 'Risk Parity',
+      'simulator.strategy.optimizedRiskParity': lang === 'en' ? '✨ Optimized' : '✨ Optimisé',
+    };
+    return fallbacks[labelKey] || fallback || labelKey;
+  }
+
+  function hexToRgba(hex, opacity) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+  }
+
   /**
    * Fetch portfolio preview data from API
    */
@@ -33,81 +188,66 @@
   /**
    * Format data for Chart.js
    */
-  function formatChartData(data) {
-    const labels = data.data.map(d => {
-      const date = new Date(d.date);
-      return date.toLocaleDateString('fr-FR', { year: 'numeric', month: 'short' });
+  function formatChartData(payload) {
+    if (!payload || !Array.isArray(payload.data)) {
+      return { labels: [], datasets: [] };
+    }
+
+    const lang = getCurrentLanguage();
+    const locale = lang === 'en' ? 'en-US' : 'fr-FR';
+    const rows = payload.data;
+    const labels = rows.map((row) => {
+      const date = new Date(row.date);
+      return date.toLocaleDateString(locale, { year: 'numeric', month: 'short' });
     });
 
-    return {
-      labels,
-      datasets: [
-        {
-          label: 'SPY (S&P 500)',
-          data: data.data.map(d => d.SPY),
-          borderColor: 'rgba(102, 126, 234, 0.4)', // More visible
-          backgroundColor: 'rgba(102, 126, 234, 0.05)',
-          borderWidth: 1.5,
-          pointRadius: 0,
-          tension: 0.4,
-          borderDash: [3, 3],
-          order: 5, // Behind portfolios
-        },
-        {
-          label: 'IEF (Obligations)',
-          data: data.data.map(d => d.IEF),
-          borderColor: 'rgba(107, 114, 128, 0.4)', // More visible
-          backgroundColor: 'rgba(107, 114, 128, 0.05)',
-          borderWidth: 1.5,
-          pointRadius: 0,
-          tension: 0.4,
-          borderDash: [3, 3],
-          order: 4, // Behind portfolios
-        },
-        {
-          label: 'GLD (Or)',
-          data: data.data.map(d => d.GLD),
-          borderColor: 'rgba(156, 163, 175, 0.4)', // More visible
-          backgroundColor: 'rgba(156, 163, 175, 0.05)',
-          borderWidth: 1.5,
-          pointRadius: 0,
-          tension: 0.4,
-          borderDash: [3, 3],
-          order: 3, // Behind portfolios
-        },
-        {
-          label: 'Allocation Égale',
-          data: data.data.map(d => d.equalWeight),
-          borderColor: '#6B7280', // Medium gray
-          backgroundColor: 'rgba(107, 114, 128, 0.1)',
-          borderWidth: 2,
-          borderDash: [5, 5],
-          pointRadius: 0,
-          tension: 0.4,
-          order: 2, // Middle layer
-        },
-        {
-          label: 'Portefeuille 60/40',
-          data: data.data.map(d => d.sixtyForty ?? d.equalWeight),
-          borderColor: '#4B5563',
-          backgroundColor: 'rgba(75, 85, 99, 0.12)',
-          borderWidth: 2.2,
-          pointRadius: 0,
-          tension: 0.4,
-          order: 1.5,
-        },
-        {
-          label: '✨ Optimisé (Risk Parity)',
-          data: data.data.map(d => d.optimizedRP),
-          borderColor: '#667eea', // Brand chart violet - stands out most
-          backgroundColor: 'rgba(102, 126, 234, 0.15)',
-          borderWidth: 3,
-          pointRadius: 0,
-          tension: 0.4,
-          order: 1, // On top
-        },
-      ],
-    };
+    const datasets = [];
+    const etfLabels = getETFLabels();
+
+    ETF_KEYS.forEach((key) => {
+      if (!rows.some((row) => typeof row[key] === 'number')) {
+        return;
+      }
+      const style = ETF_STYLES[key];
+      datasets.push({
+        label: etfLabels[key],
+        data: rows.map((row) => row[key]),
+        borderColor: style.borderColor,
+        backgroundColor: style.backgroundColor,
+        borderWidth: style.borderWidth,
+        borderDash: style.borderDash,
+        pointRadius: 0,
+        tension: 0.4,
+        order: style.order,
+      });
+    });
+
+    STRATEGY_ORDER.forEach((key) => {
+      const config = STRATEGY_CONFIG[key];
+      if (!config) {
+        return;
+      }
+
+      if (!rows.some((row) => typeof row[config.dataKey] === 'number')) {
+        return;
+      }
+
+      const datasetColor = config.color;
+      const backgroundOpacity = config.isBest ? 0.18 : 0.1;
+      datasets.push({
+        label: getStrategyLabel(config.labelKey, config.dataKey),
+        data: rows.map((row) => row[config.dataKey]),
+        borderColor: datasetColor,
+        backgroundColor: hexToRgba(datasetColor, backgroundOpacity),
+        borderWidth: config.borderWidth,
+        borderDash: config.borderDash || [],
+        pointRadius: 0,
+        tension: 0.4,
+        order: config.order || 1,
+      });
+    });
+
+    return { labels, datasets };
   }
 
   /**
@@ -117,9 +257,12 @@
     const ctx = document.getElementById('portfolioPreviewChart');
     if (!ctx) return;
 
+    const chartDatasets = formatChartData(data);
+    const axisLabels = getETFLabels();
+
     const chartConfig = {
       type: 'line',
-      data: formatChartData(data),
+      data: chartDatasets,
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -203,7 +346,7 @@
             },
             title: {
               display: true,
-              text: 'Valeur (Base 100)',
+              text: axisLabels.yAxisTitle,
               font: {
                 size: 11,
                 family: 'Inter, sans-serif',
@@ -318,6 +461,17 @@
   } else {
     initializeChart();
   }
+
+  window.addEventListener('languageChanged', () => {
+    if (chart && chartData) {
+      chart.data = formatChartData(chartData);
+      const axisLabels = getETFLabels();
+      if (chart.options?.scales?.y?.title) {
+        chart.options.scales.y.title.text = axisLabels.yAxisTitle;
+      }
+      chart.update('none');
+    }
+  });
 
   // Cleanup on page unload
   window.addEventListener('beforeunload', () => {

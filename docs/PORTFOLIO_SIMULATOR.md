@@ -677,3 +677,42 @@ The 70/30 Momentum + Risk Parity strategy achieves:
 
 **Last Updated**: 2025-11-03
 **Current Version**: v1.4 - Production-ready with 5-ETF global portfolio, optimised momentum+RP strategy, leverage toggle
+
+---
+
+## Roadmap to v2.0
+
+The next release focuses on aligning the Bubble portfolio stack with the richer feature set explored in the `anim-main` prototype while strengthening realism (weekly data, cash sleeve, leverage parity).
+
+### 1. Data Pipeline Enhancements
+- **Weekly normalization**: refactor `yahooFinanceService.fetchETFData` and `portfolioCacheService` so cached time series use weekly (Friday) closes instead of ~monthly sampling. Preserve 20Y depth and update down-sampling logic for the frontend charts.
+- **Synthetic cash asset**: append a deterministic `CASH` series (≈2% annual return, 0% volatility) to every cached dataset. Include it in `tickers`, normalization, and chart payloads.
+- **Cache regeneration**: after code changes, rerun `npm run generate:portfolio-cache` and validate both simulator and landing-page preview ingest the updated shape.
+
+### 2. Strategy Suite Parity with `anim-main`
+- **Inventory strategies**: document all algorithms in `anim-main/src/services/portfolioCalculations.js` (equal weight, simple/optimized risk parity, hierarchical RP, DCC-enhanced RP, regime-aware RP, optimized risk budgeting, etc.).
+- **Port calculations**: migrate each strategy into `src/backend/services/portfolioService.js`, adapted for the six-asset universe (5 ETFs + cash). Ensure each function returns both value and weight histories and handles missing data gracefully.
+- **Hybrid optimization**: replace the current momentum+RP placeholder with the real “Optimized Risk Budgeting” implementation (gradient-descent risk budget with correlation penalties) to smooth volatility without sacrificing performance. As part of the port, explicitly verify that hierarchical RP and optimized risk budgeting rely only on historical data (no look-forward).
+- **Docs & translations**: update tooltips, descriptions, and this roadmap once every strategy is available through the API.
+
+### 3. Frontend Integration & UX
+- **Simulator**: expand `STRATEGY_CONFIG`, pills, tooltips, and translations so users can pick any of the new portfolios. Keep “Create Your Own” builder and allow including the cash sleeve when mixing.
+- **Homepage preview**: surface a curated subset (e.g., Equal Weight, Optimized Risk Budgeting, Enhanced RP) in the landing-page chart. Reuse ETF toggles, add the cash line, and update animated metrics to the new benchmark pairs.
+- **Language sync**: leverage the existing `languageChanged` event so labels and tooltips stay localized as the strategy list expands.
+- **Showcase & explore**: present one or two flagship “Optimized” strategies (e.g., Optimized Risk Budgeting or Hierarchical RP) as defaults, while emphasizing that “Create Your Own” remains the sandbox for mixing any combination (with cash and leverage).
+- **Chart clarity & responsiveness**: revisit dataset styling (opacity, line width, sampling cadence) so multi-strategy views remain legible, add per-series toggle controls where needed, and ensure mobile layouts/downsampling keep charts readable on smaller screens.
+
+### 4. Leverage Standardization
+- Generalize `applyLeverageToPortfolio` so every strategy (preset or custom mix) supports 1×/2× leverage. Update toggles, warnings, and metrics exports to reflect the levered series.
+- Ensure cash participation behaves correctly under leverage—borrowed exposure should reduce cash weight proportionally or be used as collateral, mirroring real-world mechanics.
+
+### 5. Validation & Launch Tasks
+- **Backtests**: run regression tests comparing new results with `anim-main` output (spot-check annualized return, volatility, sharpe, drawdown).
+- **Preview parity**: confirm the homepage preview and simulator charts pull identical data after cache regeneration.
+- **Documentation**: refresh `PORTFOLIO_SIMULATOR.md`, strategy tooltips, and marketing copy to highlight weekly data, cash reserve, and the expanded strategy lineup.
+- **Release checklist**: bump version to v2.0, summarize changes, and communicate leverage/cash updates to stakeholders.
+
+### Immediate Next Steps
+1. Implement weekly normalization + cash asset in the caching layer and regenerate preview data.
+2. Port the Optimized Risk Budgeting strategy from `anim-main` as the first advanced portfolio; wire into API and front-end.
+3. Generalize leverage handling and verify the simulator + preview remain synchronized.
