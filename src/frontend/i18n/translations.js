@@ -61,8 +61,8 @@ const translations = {
     fr: "Les LLMs (tels que ChatGPT, Gemini, Claude...) démocratisent l'accès à l'expertise, vous donnent la capacité de mieux comprendre et d'exiger des preuves. Les frais doivent désormais refléter la valeur réelle : des éclairages utiles et une surperformance mesurable. Nous perçons la bulle financière, levons le voile sur l'opacité des frais et remettons la valeur à sa place : chez vous.",
   },
   "manifesto.insight": {
-    en: "Our ethics: putting power back in your hands so you can break free from the exorbitant fees of now‑obsolete intermediaries. The result: you finance the economy, and the economy pays you interest. That's it.",
-    fr: "Notre éthique : vous redonner le pouvoir pour vous libérer des frais exorbitants d'intermédiaires désormais obsolètes. Résultat : vous financez l'économie, l'économie vous paye des intérêts. C'est tout.",
+    en: "Our ethics: putting power back in your hands so you can break free from the excessive fees of now‑obsolete intermediaries. The result: you finance the economy, and the economy pays you interest. That's it.",
+    fr: "Notre éthique : vous redonner le pouvoir pour vous libérer des frais excessifs d'intermédiaires désormais obsolètes. Résultat : vous financez l'économie, l'économie vous paye des intérêts. C'est tout.",
   },
 
   // Vision Section

@@ -64,7 +64,7 @@ Jusqu’ici, vous payiez un gérant ou un banquier pour des mots rassurants et u
 ### Ethics Statement (Highlighted)
 | English | French |
 |---------|--------|
-| Our ethics: putting power back in your hands so you can break free from the exorbitant fees of now‑obsolete intermediaries. The result: you finance the economy, and the economy pays you interest. That’s it. | Notre éthique : vous redonner le pouvoir pour vous libérer des frais exorbitants d'intermédiaires désormais obsolètes. Résultat : vous financez l'économie, l'économie vous paye des intérêts. C'est tout.  |
+| Our ethics: putting power back in your hands so you can break free from the excessive fees of now‑obsolete intermediaries. The result: you finance the economy, and the economy pays you interest. That’s it. | Notre éthique : vous redonner le pouvoir pour vous libérer des frais excessifs d'intermédiaires désormais obsolètes. Résultat : vous financez l'économie, l'économie vous paye des intérêts. C'est tout.  |
 ---
 
 ## CHARTS SECTION
