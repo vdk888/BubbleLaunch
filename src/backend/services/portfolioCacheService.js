@@ -251,28 +251,67 @@ async function generateSnapshots({
 
   const strategySeries = {};
   const allocationData = {};
-  for (const [strategyKey, builder] of Object.entries(STRATEGY_BUILDERS)) {
+
+  // PASS 1: Calculate base strategies (exclude optimizedRP which needs all other strategies)
+  console.log('📊 PASS 1: Calculating base strategies...');
+  const BASE_STRATEGIES = { ...STRATEGY_BUILDERS };
+  delete BASE_STRATEGIES.optimizedRP; // Calculate optimizer separately in Pass 2
+
+  for (const [strategyKey, builder] of Object.entries(BASE_STRATEGIES)) {
     try {
-      console.log(`📊 Calculating strategy: ${strategyKey}...`);
+      console.log(`  📈 Calculating strategy: ${strategyKey}...`);
       const result = builder(normalizedData);
 
       // Handle new { portfolio, allocations } structure
       if (result && typeof result === 'object' && result.portfolio && result.allocations) {
         strategySeries[strategyKey] = result.portfolio;
         allocationData[strategyKey] = result.allocations;
-        console.log(`✅ ${strategyKey}: ${result.portfolio.length} data points`);
+        console.log(`  ✅ ${strategyKey}: ${result.portfolio.length} data points`);
       }
       // Backward compatibility: handle old array format (should not occur after our changes)
       else if (Array.isArray(result) && result.length > 0) {
         strategySeries[strategyKey] = result;
-        console.warn(`⚠️ Strategy ${strategyKey} returned old array format without allocations`);
+        console.warn(`  ⚠️ Strategy ${strategyKey} returned old array format without allocations`);
       } else {
-        console.error(`❌ Strategy ${strategyKey} returned invalid format:`, typeof result, result ? Object.keys(result) : 'null');
+        console.error(`  ❌ Strategy ${strategyKey} returned invalid format:`, typeof result, result ? Object.keys(result) : 'null');
       }
     } catch (error) {
-      console.error(`❌ Error calculating ${strategyKey}:`, error.message);
+      console.error(`  ❌ Error calculating ${strategyKey}:`, error.message);
       console.error(error.stack);
     }
+  }
+
+  // PASS 2: Calculate optimized mix using all base strategies
+  console.log('🔍 PASS 2: Running portfolio optimizer...');
+  try {
+    const tickers = Object.keys(normalizedData);
+    const optimizerResult = portfolioService.calculateOptimizedRiskParity(
+      normalizedData,
+      strategySeries,  // Pass all calculated base strategies
+      allocationData,   // Pass all allocation data
+      tickers
+    );
+
+    if (optimizerResult && optimizerResult.portfolio && optimizerResult.allocations) {
+      strategySeries.optimizedRP = optimizerResult.portfolio;
+      allocationData.optimizedRP = optimizerResult.allocations;
+      console.log(`✅ optimizedRP: ${optimizerResult.portfolio.length} data points`);
+
+      // Log optimal weights if available
+      if (optimizerResult.optimalWeights) {
+        console.log('🏆 Optimal Mix Weights:');
+        Object.entries(optimizerResult.optimalWeights)
+          .sort((a, b) => b[1] - a[1])
+          .forEach(([key, weight]) => {
+            console.log(`    ${key}: ${weight}%`);
+          });
+      }
+    } else {
+      console.error('❌ Optimizer returned invalid format');
+    }
+  } catch (error) {
+    console.error('❌ Error running optimizer:', error.message);
+    console.error(error.stack);
   }
 
   const referenceSeries =

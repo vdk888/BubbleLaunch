@@ -20,6 +20,7 @@ const { calculateHierarchicalRiskParityPortfolio: _calculateHierarchicalRiskPari
 const { calculateOptimizedRiskBudgeting: _calculateOptimizedRiskBudgeting } = require('./strategies/optimizedRiskBudgeting');
 const { calculateRegimeAwareRiskParity: _calculateRegimeAwareRiskParity } = require('./strategies/regimeAwareRiskParity');
 const { calculateMomentum: _calculateMomentum } = require('./strategies/momentum');
+const { findOptimalMix } = require('./strategies/optimizedMix');
 
 // ═══════════════════════════════════════════════════════════════
 // Helper Functions (kept from original portfolioService.js)
@@ -311,9 +312,29 @@ function calculateSimpleRiskParity(priceData, lookbackDays = 60, rebalanceDays =
  *
  * @returns {Object} { portfolio: [{date, value}], allocations: [{date, SPY, IEF, GLD, EFA, EEM, CASH}] }
  */
-function calculateOptimizedRiskParity(priceData, momentumLookback = 252, volatilityLookback = 60, rebalanceDays = 21) {
-  // Map to Enhanced Risk Parity from anim-main
-  const result = _calculateEnhancedRiskParity(priceData, rebalanceDays, volatilityLookback);
+function calculateOptimizedRiskParity(
+  priceData,
+  strategySeries = null,
+  allocationData = null,
+  tickers = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'CASH']
+) {
+  // If called without strategy series (e.g., standalone test), fall back to Enhanced RP
+  if (!strategySeries || Object.keys(strategySeries).length < 2) {
+    console.warn('⚠️  Optimizer requires pre-calculated strategy series. Falling back to Enhanced Risk Parity.');
+    const result = _calculateEnhancedRiskParity(priceData);
+    return normalizeReturnFormat(result);
+  }
+
+  // Run optimizer to find best mix (maximize return with volatility constraint)
+  const result = findOptimalMix(
+    priceData,
+    strategySeries,
+    allocationData || {},
+    tickers,
+    'annualReturn',  // Maximize annual return
+    15.0             // Max volatility constraint: 15%
+  );
+
   return normalizeReturnFormat(result);
 }
 
