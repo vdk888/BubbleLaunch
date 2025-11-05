@@ -1610,6 +1610,40 @@
         transition: color 0.2s ease;
       }
 
+      /* Tooltip styling for table headers */
+      .metrics-table th .info-icon .metric-tooltip {
+        position: absolute;
+        bottom: calc(100% + 12px);
+        left: 50%;
+        transform: translate(-50%, 10px);
+        background: #333333;
+        color: #F9FAFB;
+        padding: 0.75rem 0.875rem;
+        border-radius: 10px;
+        font-size: 0.8125rem;
+        line-height: 1.5;
+        width: 240px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.2s ease;
+        z-index: 1000;
+        white-space: normal;
+        text-align: left;
+        font-weight: 400;
+      }
+
+      .metrics-table th .info-icon .metric-tooltip::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 6px;
+        border-style: solid;
+        border-color: #333333 transparent transparent transparent;
+      }
+
       /* Show tooltip on hover for info icons in table headers (desktop only) */
       @media (hover: hover) and (pointer: fine) {
         .metrics-table th .info-icon:hover,
@@ -1810,22 +1844,6 @@
             <div class="pill-content">
               <div class="pill-title" data-translate="simulator.strategy.sixtyForty">Portefeuille 60/40</div>
               <div class="pill-subtitle" data-translate="simulator.strategy.sixtyForty.subtitle">60% SPY / 40% IEF</div>
-            </div>
-          </button>
-
-          <button class="strategy-pill" data-strategy="momentumTilt" data-tooltip-behavior="press">
-            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.momentumTilt.tooltip">
-              Pondération dynamique 100% momentum sur 12 mois. Les 5 actifs mondiaux (SPY, IEF, GLD, EFA, EEM) avec les meilleures tendances reçoivent davantage de poids. Performance plus volatile mais rendement historique élevé (+499.9% sur 20 ans).
-            </div>
-            <div class="pill-icon">
-              <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-                <path d="M6 20L12.5 13.5L17.5 18.5L26 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M24 10H26V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="pill-content">
-              <div class="pill-title" data-translate="simulator.strategy.momentumTilt">Momentum Tilt</div>
-              <div class="pill-subtitle" data-translate="simulator.strategy.momentumTilt.subtitle">Favorise les gagnants récents</div>
             </div>
           </button>
 

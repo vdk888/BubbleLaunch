@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { fetchETFPriceData, normalizeToBase100, getETFDescriptions } from '../services/etfDataService';
-import { calculateEqualWeightPortfolio, calculateLeveragedEqualWeightPortfolio, calculateSimpleRiskParity, calculateEnhancedRiskParity, calculateLeveragedEnhancedRiskParity, calculateOptimizedRiskBudgeting, calculateHierarchicalRiskParityPortfolio, calculateEnhancedRiskParityWithDCC, calculateRegimeAwareRiskParity } from '../services/portfolioCalculations';
+import { calculateEqualWeightPortfolio, calculateLeveragedEqualWeightPortfolio, calculateSimpleRiskParity, calculateLeveragedSimpleRiskParity, calculateEnhancedRiskParity, calculateLeveragedEnhancedRiskParity, calculateOptimizedRiskBudgeting, calculateHierarchicalRiskParityPortfolio, calculateEnhancedRiskParityWithDCC, calculateRegimeAwareRiskParity } from '../services/portfolioCalculations';
+import { portfolioWorkerService } from '../services/portfolioWorkerService';
 import { calculateAllMetrics } from '../services/performanceMetrics';
 import PerformanceMetrics from './PerformanceMetrics';
 
@@ -17,6 +18,10 @@ const StepByStepAnalysis = () => {
   const [performanceMetrics, setPerformanceMetrics] = useState([]);
   const [selectedStrategies, setSelectedStrategies] = useState({});
   const [showIndividualETFs, setShowIndividualETFs] = useState(true);
+  const [calculatingStrategies, setCalculatingStrategies] = useState(new Set());
+  const [calculatedStrategies, setCalculatedStrategies] = useState(new Set());
+  const [calculationProgress, setCalculationProgress] = useState({});
+  const [openDropdowns, setOpenDropdowns] = useState({});
 
   const strategies = useMemo(() => ({
     basicPortfolios: [
@@ -83,6 +88,15 @@ const StepByStepAnalysis = () => {
     ],
     leveragedStrategies: [
       {
+        key: 'leveragedSimpleRiskParity',
+        title: 'Simple Risk Parity (2x Leveraged)',
+        description: 'Basic inverse volatility weighting with 2x leverage',
+        chartKey: 'leveragedSimpleRiskParityPortfolio',
+        color: '#8B008B',
+        chartName: 'SIMPLE RISK PARITY (2x Lev, 8% Cost)',
+        strokeDasharray: '3 3'
+      },
+      {
         key: 'leveragedEnhancedRiskParity',
         title: 'Enhanced Risk Parity (2x Leveraged)',
         description: 'EWMA + correlation adjustment with 2x leverage',
@@ -129,46 +143,10 @@ const StepByStepAnalysis = () => {
       setRawPriceData(rawData);
       setNormalizedData(normalized);
 
-      // Calculate all portfolio strategies
-      const equalWeight = calculateEqualWeightPortfolio(normalized);
-      const leveragedEqualWeight = calculateLeveragedEqualWeightPortfolio(normalized, 2.0, 0.08);
-
-      // Risk parity strategies
-      const simpleRPResult = calculateSimpleRiskParity(normalized, 21, 60);
-      const enhancedRPResult = calculateEnhancedRiskParity(normalized, 21, 60);
-      const optimizedRBResult = calculateOptimizedRiskBudgeting(normalized, 21, 120, 'gradient_descent');
-      const hierarchicalRPResult = calculateHierarchicalRiskParityPortfolio(normalized, 21, 126, 3);
-      const enhancedRPDCCResult = calculateEnhancedRiskParityWithDCC(normalized, 21, 60);
-      const regimeAwareRPResult = calculateRegimeAwareRiskParity(normalized, 21, 60);
-      const leveragedEnhancedRPResult = calculateLeveragedEnhancedRiskParity(normalized, 21, 60, 2.0, 0.08);
-
-      const portfolios = {
-        equalWeight,
-        leveragedEqualWeight,
-        simpleRiskParity: simpleRPResult.portfolioData,
-        enhancedRiskParity: enhancedRPResult.portfolioData,
-        optimizedRiskBudgeting: optimizedRBResult.portfolioData,
-        hierarchicalRiskParity: hierarchicalRPResult.portfolioData,
-        enhancedRiskParityDCC: enhancedRPDCCResult.portfolioData,
-        regimeAwareRiskParity: regimeAwareRPResult.portfolioData,
-        leveragedEnhancedRiskParity: leveragedEnhancedRPResult.portfolioData,
-        leveraged: leveragedEqualWeight,
-        // Store weights data for allocation charts
-        simpleRiskParityWeights: simpleRPResult.weightsData,
-        enhancedRiskParityWeights: enhancedRPResult.weightsData,
-        optimizedRiskBudgetingWeights: optimizedRBResult.weightsData,
-        hierarchicalRiskParityWeights: hierarchicalRPResult.weightsData,
-        enhancedRiskParityDCCWeights: enhancedRPDCCResult.weightsData,
-        regimeAwareRiskParityWeights: regimeAwareRPResult.weightsData,
-        leveragedEnhancedRiskParityWeights: leveragedEnhancedRPResult.weightsData
-      };
-
-      setPortfolioData(portfolios);
-
-      // Calculate performance metrics
+      // Only calculate basic metrics for individual ETFs on load
       const descriptions = getETFDescriptions();
-      const metrics = calculateAllMetrics(normalized, portfolios, descriptions);
-      setPerformanceMetrics(metrics);
+      const basicMetrics = calculateAllMetrics(normalized, {}, descriptions);
+      setPerformanceMetrics(basicMetrics);
 
     } catch (error) {
       console.error('Error loading data:', error);
@@ -177,17 +155,195 @@ const StepByStepAnalysis = () => {
     }
   };
 
-  const updateChartForSelectedStrategies = useCallback(() => {
-    if (!normalizedData || !portfolioData || Object.keys(selectedStrategies).length === 0) return;
+  // Lazy calculation function for individual strategies
+  const calculateStrategy = useCallback(async (strategyKey) => {
+    if (!normalizedData || calculatingStrategies.has(strategyKey) || calculatedStrategies.has(strategyKey)) {
+      return;
+    }
+
+    console.log(`Calculating strategy: ${strategyKey}`);
+    setCalculatingStrategies(prev => new Set(prev).add(strategyKey));
+
+    try {
+      let result;
+
+      // Progress callback for web worker calculations
+      const onProgress = (progress, message) => {
+        setCalculationProgress(prev => ({
+          ...prev,
+          [strategyKey]: { progress, message }
+        }));
+      };
+
+      // Check if web workers are available
+      await portfolioWorkerService.initialize();
+      const useWorker = portfolioWorkerService.isAvailable();
+
+      switch (strategyKey) {
+        case 'equalWeight':
+          if (useWorker) {
+            const portfolioData = await portfolioWorkerService.calculateEqualWeight(normalizedData, onProgress);
+            result = { portfolioData };
+          } else {
+            result = { portfolioData: calculateEqualWeightPortfolio(normalizedData) };
+          }
+          break;
+        case 'leveragedEqualWeight':
+          // Complex leveraged calculations stay on main thread
+          result = { portfolioData: calculateLeveragedEqualWeightPortfolio(normalizedData, 2.0, 0.08) };
+          break;
+        case 'simpleRiskParity':
+          if (useWorker) {
+            result = await portfolioWorkerService.calculateSimpleRiskParity(normalizedData, 21, 60, onProgress);
+          } else {
+            result = calculateSimpleRiskParity(normalizedData, 21, 60);
+          }
+          break;
+        case 'leveragedSimpleRiskParity':
+          // Complex leveraged calculations stay on main thread
+          result = calculateLeveragedSimpleRiskParity(normalizedData, 21, 60, 2.0, 0.08);
+          break;
+        case 'enhancedRiskParity':
+          if (useWorker) {
+            result = await portfolioWorkerService.calculateEnhancedRiskParity(normalizedData, 21, 60, onProgress);
+          } else {
+            result = calculateEnhancedRiskParity(normalizedData, 21, 60);
+          }
+          break;
+        case 'leveragedEnhancedRiskParity':
+          // Complex leveraged calculations stay on main thread
+          result = calculateLeveragedEnhancedRiskParity(normalizedData, 21, 60, 2.0, 0.08);
+          break;
+        case 'optimizedRiskBudgeting':
+          // Advanced strategies stay on main thread for now
+          result = calculateOptimizedRiskBudgeting(normalizedData, 21, 120, 'gradient_descent');
+          break;
+        case 'hierarchicalRiskParity':
+          // Advanced strategies stay on main thread for now
+          result = calculateHierarchicalRiskParityPortfolio(normalizedData, 21, 126, 3);
+          break;
+        case 'enhancedRiskParityDCC':
+          // Advanced strategies stay on main thread for now
+          result = calculateEnhancedRiskParityWithDCC(normalizedData, 21, 60);
+          break;
+        case 'regimeAwareRiskParity':
+          // Advanced strategies stay on main thread for now
+          result = calculateRegimeAwareRiskParity(normalizedData, 21, 60);
+          break;
+        default:
+          console.warn(`Unknown strategy: ${strategyKey}`);
+          return;
+      }
+
+      // Update portfolio data with the calculated result
+      setPortfolioData(prev => {
+        const updated = { ...prev };
+        updated[strategyKey] = result.portfolioData;
+
+        // Handle leveraged equal weight special case
+        if (strategyKey === 'leveragedEqualWeight') {
+          updated.leveraged = result.portfolioData;
+        }
+
+        // Add weights data if available
+        if (result.weightsData) {
+          updated[`${strategyKey}Weights`] = result.weightsData;
+        }
+
+        return updated;
+      });
+
+      // Update performance metrics with the new strategy
+      const descriptions = getETFDescriptions();
+      setPerformanceMetrics(prev => {
+        const portfolioForMetrics = { [strategyKey]: result.portfolioData };
+        const newMetrics = calculateAllMetrics(normalizedData, portfolioForMetrics, descriptions);
+
+        // Get the strategy metrics from the new calculation (exclude ETF metrics with ' - ')
+        const newStrategyMetrics = newMetrics.filter(m => !m.name.includes(' - '));
+
+        if (newStrategyMetrics.length === 0) {
+          console.warn(`No strategy metrics found for ${strategyKey}`);
+          return prev;
+        }
+
+        // Get the name of the strategy metric we just calculated
+        const newStrategyName = newStrategyMetrics[0].name;
+
+        // Remove any existing metrics with the same name and add the new one
+        const updatedMetrics = prev.filter(m => m.name !== newStrategyName);
+
+        return [...updatedMetrics, ...newStrategyMetrics];
+      });
+
+      setCalculatedStrategies(prev => new Set(prev).add(strategyKey));
+
+      // Clear progress indicator
+      setCalculationProgress(prev => {
+        const updated = { ...prev };
+        delete updated[strategyKey];
+        return updated;
+      });
+
+    } catch (error) {
+      console.error(`Error calculating strategy ${strategyKey}:`, error);
+
+      // Clear progress indicator on error
+      setCalculationProgress(prev => {
+        const updated = { ...prev };
+        delete updated[strategyKey];
+        return updated;
+      });
+
+    } finally {
+      setCalculatingStrategies(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(strategyKey);
+        return newSet;
+      });
+    }
+  }, [normalizedData, calculatingStrategies, calculatedStrategies]);
+
+  // Memoized sorted dates for consistent ordering
+  const sortedDates = useMemo(() => {
+    if (!normalizedData) return [];
 
     const tickers = Object.keys(normalizedData);
-
-    // Get all unique dates and sort them
     const allDates = new Set();
     tickers.forEach(ticker => {
       normalizedData[ticker].forEach(point => allDates.add(point.date));
     });
-    const sortedDates = Array.from(allDates).sort();
+    return Array.from(allDates).sort();
+  }, [normalizedData]);
+
+  // Function to sample data for chart display (reduces chart rendering load)
+  const sampleChartData = useCallback((data, maxPoints = 2000) => {
+    if (!data || data.length <= maxPoints) {
+      return data;
+    }
+
+    const step = Math.ceil(data.length / maxPoints);
+    const sampledData = [];
+
+    for (let i = 0; i < data.length; i += step) {
+      sampledData.push(data[i]);
+    }
+
+    // Always include the last data point
+    if (sampledData[sampledData.length - 1] !== data[data.length - 1]) {
+      sampledData.push(data[data.length - 1]);
+    }
+
+    return sampledData;
+  }, []);
+
+  // Memoized chart data to avoid recalculation on every render
+  const memoizedChartData = useMemo(() => {
+    if (!normalizedData || !portfolioData || Object.keys(selectedStrategies).length === 0) {
+      return [];
+    }
+
+    const tickers = Object.keys(normalizedData);
 
     // Create base chart data
     const newChartData = sortedDates.map(date => {
@@ -234,16 +390,19 @@ const StepByStepAnalysis = () => {
       });
     }
 
-    setChartData(newChartData);
-  }, [normalizedData, portfolioData, selectedStrategies, showIndividualETFs, strategies]);
+    // Sample data for better chart performance (reduce from 5000+ points to ~2000)
+    return sampleChartData(newChartData, 2000);
+  }, [normalizedData, portfolioData, selectedStrategies, showIndividualETFs, strategies, sortedDates, sampleChartData]);
 
-  const generateAllocationWeightsForSelection = useCallback((dates) => {
+  // Memoized allocation weights calculation
+  const memoizedAllocationWeights = useMemo(() => {
+    if (!normalizedData) return [];
+
     // Only show allocation weights if exactly one strategy is selected
     const selectedKeys = Object.keys(selectedStrategies).filter(key => selectedStrategies[key]);
 
     if (selectedKeys.length !== 1) {
-      setAllocationWeights([]);
-      return;
+      return [];
     }
 
     const selectedKey = selectedKeys[0];
@@ -254,7 +413,7 @@ const StepByStepAnalysis = () => {
       equalWeight: () => {
         // Equal weight: 1/n each
         const equalWeight = 1.0 / tickers.length;
-        return dates.map(date => {
+        return sortedDates.map(date => {
           const point = { date };
           tickers.forEach(ticker => {
             point[ticker] = equalWeight;
@@ -272,7 +431,7 @@ const StepByStepAnalysis = () => {
       leveragedEqualWeight: () => {
         // Equal weight for leveraged version: 1/n each
         const equalWeight = 1.0 / tickers.length;
-        return dates.map(date => {
+        return sortedDates.map(date => {
           const point = { date };
           tickers.forEach(ticker => {
             point[ticker] = equalWeight;
@@ -284,48 +443,51 @@ const StepByStepAnalysis = () => {
 
     if (weightsMap[selectedKey]) {
       const weights = weightsMap[selectedKey]();
-      setAllocationWeights(weights || []);
-    } else {
-      setAllocationWeights([]);
+      // Sample allocation weights data for better performance
+      return sampleChartData(weights || [], 1000);
     }
-  }, [selectedStrategies, normalizedData, portfolioData]);
 
-  // useEffect to update chart when data or selections change
-  useEffect(() => {
-    if (normalizedData && Object.keys(selectedStrategies).length > 0) {
-      updateChartForSelectedStrategies();
+    return [];
+  }, [selectedStrategies, normalizedData, portfolioData, sortedDates, sampleChartData]);
 
-      // Update allocation weights
-      const tickers = Object.keys(normalizedData);
-      const allDates = new Set();
-      tickers.forEach(ticker => {
-        normalizedData[ticker].forEach(point => allDates.add(point.date));
-      });
-      const sortedDates = Array.from(allDates).sort();
-      generateAllocationWeightsForSelection(sortedDates);
-    }
-  }, [selectedStrategies, normalizedData, portfolioData, showIndividualETFs, updateChartForSelectedStrategies, generateAllocationWeightsForSelection]);
-
-  // Handler functions for checkbox changes
-  const handleStrategyToggle = (strategyKey) => {
-    setSelectedStrategies(prev => ({
-      ...prev,
-      [strategyKey]: !prev[strategyKey]
-    }));
-  };
-
-  const handleETFToggle = () => {
-    setShowIndividualETFs(prev => !prev);
-  };
-
-  const getSelectedStrategyTitle = () => {
+  // Memoized selected strategy title
+  const selectedStrategyTitle = useMemo(() => {
     const selectedKeys = Object.keys(selectedStrategies).filter(key => selectedStrategies[key]);
     if (selectedKeys.length === 1) {
       const selectedStrategy = Object.values(strategies).flat().find(s => s.key === selectedKeys[0]);
       return selectedStrategy ? selectedStrategy.title : '';
     }
     return '';
+  }, [selectedStrategies, strategies]);
+
+  // Handler functions for checkbox changes
+  const handleStrategyToggle = async (strategyKey) => {
+    const isCurrentlySelected = selectedStrategies[strategyKey];
+
+    setSelectedStrategies(prev => ({
+      ...prev,
+      [strategyKey]: !prev[strategyKey]
+    }));
+
+    // If strategy is being selected and not yet calculated, calculate it
+    if (!isCurrentlySelected && !calculatedStrategies.has(strategyKey)) {
+      await calculateStrategy(strategyKey);
+    }
   };
+
+  const handleETFToggle = () => {
+    setShowIndividualETFs(prev => !prev);
+  };
+
+  const toggleDropdown = (categoryKey) => {
+    setOpenDropdowns(prev => ({
+      ...prev,
+      [categoryKey]: !prev[categoryKey]
+    }));
+  };
+
+  // Memoized ETF descriptions
+  const descriptions = useMemo(() => getETFDescriptions(), []);
 
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
@@ -340,103 +502,209 @@ const StepByStepAnalysis = () => {
     return <div className="loading">Loading 20-year ETF data...</div>;
   }
 
-  const descriptions = getETFDescriptions();
-
   return (
     <div className="container">
-      <div className="strategy-controls">
-        <h1>ETF Portfolio Analysis - Strategy Selection</h1>
+      <div className="strategy-controls-compact">
+        <h1>ETF Portfolio Analysis</h1>
 
-        {/* Individual ETFs Toggle */}
-        <div className="strategy-group">
-          <h3>Individual ETFs</h3>
-          <label className="strategy-checkbox">
-            <input
-              type="checkbox"
-              checked={showIndividualETFs}
-              onChange={handleETFToggle}
-            />
-            <span className="checkmark"></span>
-            Show Individual ETF Lines
-            <div className="strategy-description">Display individual ETF performance lines on the chart</div>
-          </label>
-        </div>
+        {/* Compact Strategy Selection */}
+        <div className="strategy-selection-compact">
+          <div className="strategy-header">
+            <h3>📊 Strategy Selection</h3>
+            <div className="selected-count">
+              {Object.values(selectedStrategies).filter(Boolean).length + (showIndividualETFs ? 1 : 0)} selected
+            </div>
+          </div>
 
-        {/* Basic Portfolios */}
-        <div className="strategy-group">
-          <h3>Basic Portfolios</h3>
-          {strategies.basicPortfolios.map(strategy => (
-            <label key={strategy.key} className="strategy-checkbox">
+          {/* Individual ETFs - Always Visible */}
+          <div className="strategy-category-compact">
+            <label className="strategy-checkbox-compact">
               <input
                 type="checkbox"
-                checked={selectedStrategies[strategy.key] || false}
-                onChange={() => handleStrategyToggle(strategy.key)}
+                checked={showIndividualETFs}
+                onChange={handleETFToggle}
               />
-              <span className="checkmark"></span>
-              {strategy.title}
-              <div className="strategy-description">{strategy.description}</div>
+              <span className="checkmark-compact"></span>
+              <strong>Individual ETFs</strong>
+              <span className="strategy-description-inline">Show individual ETF performance lines</span>
             </label>
-          ))}
-        </div>
+          </div>
 
-        {/* Risk Parity Strategies */}
-        <div className="strategy-group">
-          <h3>Risk Parity Strategies</h3>
-          {strategies.riskParity.map(strategy => (
-            <label key={strategy.key} className="strategy-checkbox">
-              <input
-                type="checkbox"
-                checked={selectedStrategies[strategy.key] || false}
-                onChange={() => handleStrategyToggle(strategy.key)}
-              />
-              <span className="checkmark"></span>
-              {strategy.title}
-              <div className="strategy-description">{strategy.description}</div>
-            </label>
-          ))}
-        </div>
+          {/* Basic Portfolios */}
+          <div className="strategy-category-compact">
+            <div className="category-header-compact" onClick={() => toggleDropdown('basicPortfolios')}>
+              <span className={`dropdown-arrow ${openDropdowns.basicPortfolios ? 'open' : ''}`}>▶</span>
+              <strong>Basic Portfolios</strong>
+              <span className="category-count">
+                ({strategies.basicPortfolios.filter(s => selectedStrategies[s.key]).length}/{strategies.basicPortfolios.length})
+              </span>
+            </div>
+            {openDropdowns.basicPortfolios && (
+              <div className="strategy-options-compact">
+                {strategies.basicPortfolios.map(strategy => (
+                  <label key={strategy.key} className="strategy-checkbox-compact">
+                    <input
+                      type="checkbox"
+                      checked={selectedStrategies[strategy.key] || false}
+                      onChange={() => handleStrategyToggle(strategy.key)}
+                      disabled={calculatingStrategies.has(strategy.key)}
+                    />
+                    <span className="checkmark-compact"></span>
+                    {strategy.title}
+                    {calculatingStrategies.has(strategy.key) && (
+                      <span className="calculating-indicator-compact">calculating...</span>
+                    )}
+                    <div className="strategy-description-compact">{strategy.description}</div>
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
 
-        {/* Advanced Optimization */}
-        <div className="strategy-group">
-          <h3>Advanced Optimization</h3>
-          {strategies.advancedOptimization.map(strategy => (
-            <label key={strategy.key} className="strategy-checkbox">
-              <input
-                type="checkbox"
-                checked={selectedStrategies[strategy.key] || false}
-                onChange={() => handleStrategyToggle(strategy.key)}
-              />
-              <span className="checkmark"></span>
-              {strategy.title}
-              <div className="strategy-description">{strategy.description}</div>
-            </label>
-          ))}
-        </div>
+          {/* Risk Parity Strategies */}
+          <div className="strategy-category-compact">
+            <div className="category-header-compact" onClick={() => toggleDropdown('riskParity')}>
+              <span className={`dropdown-arrow ${openDropdowns.riskParity ? 'open' : ''}`}>▶</span>
+              <strong>Risk Parity Strategies</strong>
+              <span className="category-count">
+                ({strategies.riskParity.filter(s => selectedStrategies[s.key]).length}/{strategies.riskParity.length})
+              </span>
+            </div>
+            {openDropdowns.riskParity && (
+              <div className="strategy-options-compact">
+                {strategies.riskParity.map(strategy => (
+                  <label key={strategy.key} className="strategy-checkbox-compact">
+                    <input
+                      type="checkbox"
+                      checked={selectedStrategies[strategy.key] || false}
+                      onChange={() => handleStrategyToggle(strategy.key)}
+                      disabled={calculatingStrategies.has(strategy.key)}
+                    />
+                    <span className="checkmark-compact"></span>
+                    {strategy.title}
+                    {calculatingStrategies.has(strategy.key) && (
+                      <span className="calculating-indicator-compact">calculating...</span>
+                    )}
+                    <div className="strategy-description-compact">{strategy.description}</div>
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
 
-        {/* Leveraged Strategies */}
-        <div className="strategy-group">
-          <h3>Leveraged Strategies</h3>
-          {strategies.leveragedStrategies.map(strategy => (
-            <label key={strategy.key} className="strategy-checkbox">
-              <input
-                type="checkbox"
-                checked={selectedStrategies[strategy.key] || false}
-                onChange={() => handleStrategyToggle(strategy.key)}
-              />
-              <span className="checkmark"></span>
-              {strategy.title}
-              <div className="strategy-description">{strategy.description}</div>
-            </label>
-          ))}
+          {/* Advanced Optimization */}
+          <div className="strategy-category-compact">
+            <div className="category-header-compact" onClick={() => toggleDropdown('advancedOptimization')}>
+              <span className={`dropdown-arrow ${openDropdowns.advancedOptimization ? 'open' : ''}`}>▶</span>
+              <strong>Advanced Optimization</strong>
+              <span className="category-count">
+                ({strategies.advancedOptimization.filter(s => selectedStrategies[s.key]).length}/{strategies.advancedOptimization.length})
+              </span>
+            </div>
+            {openDropdowns.advancedOptimization && (
+              <div className="strategy-options-compact">
+                {strategies.advancedOptimization.map(strategy => (
+                  <label key={strategy.key} className="strategy-checkbox-compact">
+                    <input
+                      type="checkbox"
+                      checked={selectedStrategies[strategy.key] || false}
+                      onChange={() => handleStrategyToggle(strategy.key)}
+                      disabled={calculatingStrategies.has(strategy.key)}
+                    />
+                    <span className="checkmark-compact"></span>
+                    {strategy.title}
+                    {calculatingStrategies.has(strategy.key) && (
+                      <span className="calculating-indicator-compact">calculating...</span>
+                    )}
+                    <div className="strategy-description-compact">{strategy.description}</div>
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Leveraged Strategies */}
+          <div className="strategy-category-compact">
+            <div className="category-header-compact" onClick={() => toggleDropdown('leveragedStrategies')}>
+              <span className={`dropdown-arrow ${openDropdowns.leveragedStrategies ? 'open' : ''}`}>▶</span>
+              <strong>Leveraged Strategies</strong>
+              <span className="category-count">
+                ({strategies.leveragedStrategies.filter(s => selectedStrategies[s.key]).length}/{strategies.leveragedStrategies.length})
+              </span>
+            </div>
+            {openDropdowns.leveragedStrategies && (
+              <div className="strategy-options-compact">
+                {strategies.leveragedStrategies.map(strategy => (
+                  <label key={strategy.key} className="strategy-checkbox-compact">
+                    <input
+                      type="checkbox"
+                      checked={selectedStrategies[strategy.key] || false}
+                      onChange={() => handleStrategyToggle(strategy.key)}
+                      disabled={calculatingStrategies.has(strategy.key)}
+                    />
+                    <span className="checkmark-compact"></span>
+                    {strategy.title}
+                    {calculatingStrategies.has(strategy.key) && (
+                      <span className="calculating-indicator-compact">calculating...</span>
+                    )}
+                    <div className="strategy-description-compact">{strategy.description}</div>
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+        {/* Compact Quick Start */}
+        <div className="quick-start-compact">
+          <strong>⚡ Quick Start:</strong>
+          <button
+            className="quick-start-btn-compact"
+            onClick={() => handleStrategyToggle('equalWeight')}
+            disabled={calculatingStrategies.has('equalWeight')}
+          >
+            📊 Equal Weight
+          </button>
+          <button
+            className="quick-start-btn-compact"
+            onClick={() => handleStrategyToggle('simpleRiskParity')}
+            disabled={calculatingStrategies.has('simpleRiskParity')}
+          >
+            ⚖️ Risk Parity
+          </button>
+          <button
+            className="quick-start-btn-compact"
+            onClick={async () => {
+              setShowIndividualETFs(true);
+              await handleStrategyToggle('equalWeight');
+              await handleStrategyToggle('simpleRiskParity');
+            }}
+            disabled={calculatingStrategies.has('equalWeight') || calculatingStrategies.has('simpleRiskParity')}
+          >
+            🚀 Compare
+          </button>
         </div>
       </div>
 
       <div className="chart-container">
         <h2 className="chart-title">Portfolio Performance Comparison</h2>
         <p className="chart-description">Select strategies to compare their performance over 20 years (normalized to base 100)</p>
+        <div className="performance-status">
+          {memoizedChartData.length > 1500 ? (
+            <span className="status-badge positive">📈 Chart Optimized ({memoizedChartData.length}/{sortedDates.length} points)</span>
+          ) : sortedDates.length > 0 && (
+            <span className="status-badge neutral">📊 Full Dataset ({sortedDates.length} points)</span>
+          )}
+          <span className="status-badge positive">🚀 Lazy Loading</span>
+          <span className="status-badge positive">🧠 Smart Caching</span>
+          {portfolioWorkerService?.isAvailable?.() ? (
+            <span className="status-badge positive">⚡ Background Processing</span>
+          ) : (
+            <span className="status-badge neutral">🔧 Main Thread</span>
+          )}
+        </div>
 
         <ResponsiveContainer width="100%" height={500}>
-          <LineChart data={chartData}>
+          <LineChart data={memoizedChartData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
               dataKey="date"
@@ -489,13 +757,13 @@ const StepByStepAnalysis = () => {
       </div>
 
       {/* Allocation weights chart - only show when exactly one strategy is selected */}
-      {allocationWeights.length > 0 && (
+      {memoizedAllocationWeights.length > 0 && (
         <div className="chart-container allocation-chart">
           <h3>Portfolio Allocation Weights Over Time
-            {getSelectedStrategyTitle() && ` - ${getSelectedStrategyTitle()}`}
+            {selectedStrategyTitle && ` - ${selectedStrategyTitle}`}
           </h3>
           <ResponsiveContainer width="100%" height={300}>
-            <AreaChart data={allocationWeights}>
+            <AreaChart data={memoizedAllocationWeights}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
                 dataKey="date"
@@ -639,6 +907,23 @@ const styles = `
     line-height: 1.3;
   }
 
+  .calculating-indicator {
+    font-size: 0.8rem;
+    color: #007bff;
+    font-style: italic;
+  }
+
+  .strategy-checkbox input:disabled ~ .checkmark {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+    opacity: 0.6;
+  }
+
+  .strategy-checkbox:has(input:disabled) {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
   .chart-title {
     margin: 0 0 0.5rem 0;
     color: #2c3e50;
@@ -650,6 +935,102 @@ const styles = `
     margin: 0 0 1rem 0;
     color: #6c757d;
     font-size: 0.95rem;
+  }
+
+  .performance-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0 0 1rem 0;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid;
+  }
+
+  .status-badge.positive {
+    background: #e8f5e8;
+    color: #2e7d32;
+    border-color: #a5d6a7;
+  }
+
+  .status-badge.neutral {
+    background: #f3f4f6;
+    color: #6b7280;
+    border-color: #d1d5db;
+  }
+
+
+  .quick-start-section {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+    border-radius: 8px;
+    border: 1px solid #e3f2fd;
+  }
+
+  .quick-start-section h3 {
+    margin: 0 0 0.5rem 0;
+    color: #1976d2;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .quick-start-section p {
+    margin: 0 0 1rem 0;
+    color: #555;
+    font-size: 0.9rem;
+  }
+
+  .quick-start-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .quick-start-btn {
+    padding: 0.5rem 1rem;
+    background: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .quick-start-btn:hover:not(:disabled) {
+    background: #1976d2;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+  }
+
+  .quick-start-btn:disabled {
+    background: #bdbdbd;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  @media (max-width: 768px) {
+    .quick-start-buttons {
+      flex-direction: column;
+    }
+
+    .quick-start-btn {
+      justify-content: center;
+    }
   }
 
   @media (max-width: 768px) {

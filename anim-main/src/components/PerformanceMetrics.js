@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PerformanceMetrics = ({ metrics, selectedStrategies, showIndividualETFs }) => {
+const PerformanceMetrics = React.memo(({ metrics, selectedStrategies, showIndividualETFs }) => {
   if (!metrics || metrics.length === 0) {
     return null;
   }
@@ -221,6 +221,6 @@ const PerformanceMetrics = ({ metrics, selectedStrategies, showIndividualETFs })
       `}</style>
     </div>
   );
-};
+});
 
 export default PerformanceMetrics;

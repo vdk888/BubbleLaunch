@@ -118,3 +118,199 @@ code {
   padding-top: 30px;
   border-top: 1px solid #eee;
 }
+
+/* Compact Strategy Selection Styles */
+.strategy-controls-compact {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.strategy-controls-compact h1 {
+  margin: 0;
+  padding: 20px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  font-size: 24px;
+  text-align: center;
+}
+
+.strategy-selection-compact {
+  padding: 20px;
+}
+
+.strategy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.strategy-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.selected-count {
+  background: #007bff;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.strategy-category-compact {
+  margin-bottom: 12px;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.category-header-compact {
+  padding: 12px 16px;
+  background: #f8f9fa;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.category-header-compact:hover {
+  background: #e9ecef;
+}
+
+.dropdown-arrow {
+  transition: transform 0.2s ease;
+  font-size: 12px;
+  color: #666;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(90deg);
+}
+
+.category-count {
+  margin-left: auto;
+  font-size: 12px;
+  color: #666;
+  background: #e9ecef;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.strategy-options-compact {
+  padding: 8px;
+  background: white;
+}
+
+.strategy-checkbox-compact {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+  margin: 4px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.strategy-checkbox-compact:hover {
+  background: #f8f9fa;
+}
+
+.strategy-checkbox-compact input[type="checkbox"] {
+  margin: 0;
+  transform: scale(1.1);
+}
+
+.checkmark-compact {
+  /* Custom checkbox styling can be added here if needed */
+}
+
+.strategy-description-compact {
+  font-size: 11px;
+  color: #666;
+  margin-top: 2px;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.strategy-description-inline {
+  font-size: 12px;
+  color: #666;
+  margin-left: 8px;
+}
+
+.calculating-indicator-compact {
+  font-size: 10px;
+  color: #007bff;
+  margin-left: 8px;
+  animation: pulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* Quick Start Compact */
+.quick-start-compact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.quick-start-btn-compact {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.quick-start-btn-compact:hover {
+  background: #0056b3;
+  transform: translateY(-1px);
+}
+
+.quick-start-btn-compact:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .strategy-selection-compact {
+    padding: 15px;
+  }
+
+  .quick-start-compact {
+    justify-content: center;
+  }
+
+  .strategy-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}

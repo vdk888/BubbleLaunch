@@ -331,15 +331,6 @@
       order: 2.5,
       isBest: false,
     },
-    momentumTilt: {
-      labelKey: 'simulator.strategy.momentumTilt',
-      dataKey: 'momentumTilt',
-      color: '#14B8A6',
-      borderWidth: 2.4,
-      borderDash: [],
-      order: 2,
-      isBest: false,
-    },
     hierarchicalRiskParity: {
       labelKey: 'simulator.strategy.hierarchicalRiskParity',
       dataKey: 'hierarchicalRiskParity',
@@ -410,7 +401,6 @@
       const fallbacks = {
         'simulator.strategy.equalWeight': lang === 'en' ? 'Equal Allocation' : 'Allocation Égale',
         'simulator.strategy.sixtyForty': lang === 'en' ? '60/40 Balanced' : 'Portefeuille 60/40',
-        'simulator.strategy.momentumTilt': lang === 'en' ? 'Momentum Tilt' : 'Momentum',
         'simulator.strategy.hierarchicalRiskParity': lang === 'en' ? 'Hierarchical RP' : 'Risk Parity Hiérarchique',
         'simulator.strategy.simpleRiskParity': 'Risk Parity',
         'simulator.strategy.enhancedRiskParityDCC': lang === 'en' ? 'Enhanced Risk Parity (DCC)' : 'Risk Parity DCC',
@@ -1286,7 +1276,6 @@
       'sixtyForty': 'sixtyForty',
       'simpleRiskParity': 'simpleRP',
       'optimizedRiskParity': 'optimizedRP',
-      'momentumTilt': 'momentumTilt',
       'hierarchicalRiskParity': 'hierarchicalRiskParity',
       'optimizedRiskBudgeting': 'optimizedRiskBudgeting',
       'enhancedRiskParityDCC': 'enhancedRiskParityDCC',
@@ -1598,7 +1587,6 @@
       optimizedRiskParity: 'optimizedRP',
       optimizedRiskBudgeting: 'optimizedRiskBudgeting',
       sixtyForty: 'sixtyForty',
-      momentumTilt: 'momentumTilt',
       hierarchicalRiskParity: 'hierarchicalRiskParity',
       customMix: 'customMix',
     };

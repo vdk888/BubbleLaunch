@@ -548,18 +548,6 @@ const translations = {
     en: "Institutional classic: 60% US equities (SPY) and 40% bonds (IEF). Aims to capture long-term growth while cushioning downturns with fixed income. Performance: +202.3% over 20 years.",
     fr: "Classique institutionnel : 60% actions US (SPY) et 40% obligations (IEF). Vise la croissance à long terme tout en amortissant les baisses via l'obligataire. Performance : +202,3% sur 20 ans."
   },
-  "simulator.strategy.momentumTilt": {
-    en: "Momentum Tilt",
-    fr: "Momentum"
-  },
-  "simulator.strategy.momentumTilt.subtitle": {
-    en: "Rewards recent winners",
-    fr: "Favorise les gagnants récents"
-  },
-  "simulator.strategy.momentumTilt.tooltip": {
-    en: "Dynamic momentum weighting across the 5 global ETFs (SPY, IEF, GLD, EFA, EEM) using 12-month trends. Winners receive more capital while laggards are reduced. Performance: +499.9% over 20 years.",
-    fr: "Pondération momentum dynamique sur les 5 ETFs mondiaux (SPY, IEF, GLD, EFA, EEM) basée sur les tendances à 12 mois. Les gagnants sont renforcés, les retardataires réduits. Performance : +499,9% sur 20 ans."
-  },
   "simulator.strategy.hierarchicalRiskParity": {
     en: "Hierarchical RP",
     fr: "Risk Parity Hiérarchique"

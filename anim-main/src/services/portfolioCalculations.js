@@ -346,6 +346,154 @@ export const calculateSimpleRiskParity = (normalizedData, rebalanceFreqDays = 21
   return { portfolioData, weightsData };
 };
 
+// Simple Risk Parity - basic inverse volatility weighting (with leverage)
+export const calculateLeveragedSimpleRiskParity = (normalizedData, rebalanceFreqDays = 21, lookbackDays = 60, leverage = 2.0, borrowingRate = 0.08) => {
+  console.log(`Calculating leveraged simple risk parity: ${leverage}x leverage, ${(borrowingRate * 100).toFixed(1)}% borrowing rate`);
+
+  if (!normalizedData || Object.keys(normalizedData).length === 0) {
+    return { portfolioData: null, weightsData: null };
+  }
+
+  const tickers = Object.keys(normalizedData);
+  const allDatesSet = new Set();
+
+  tickers.forEach(ticker => {
+    normalizedData[ticker].forEach(dataPoint => {
+      allDatesSet.add(dataPoint.date);
+    });
+  });
+
+  const allDates = Array.from(allDatesSet).sort();
+
+  const priceMap = {};
+  tickers.forEach(ticker => {
+    priceMap[ticker] = {};
+    normalizedData[ticker].forEach(dataPoint => {
+      priceMap[ticker][dataPoint.date] = dataPoint.price;
+    });
+  });
+
+  const portfolioData = [];
+  const weightsData = [];
+  let currentWeights = {};
+  tickers.forEach(ticker => {
+    currentWeights[ticker] = 1.0 / tickers.length; // Start with equal weights
+  });
+
+  let previousPortfolioVal = 100.0; // Starting value
+
+  allDates.forEach((date, i) => {
+    // Check if all ETFs have prices for this date
+    let hasAllPrices = true;
+    tickers.forEach(ticker => {
+      if (!priceMap[ticker][date]) {
+        hasAllPrices = false;
+      }
+    });
+
+    if (!hasAllPrices) return;
+
+    // Rebalance check
+    const shouldRebalance = (i >= lookbackDays && i % rebalanceFreqDays === 0) || i === lookbackDays;
+
+    if (shouldRebalance && i >= lookbackDays) {
+      // Calculate volatilities using lookback period
+      const volatilities = {};
+
+      tickers.forEach(ticker => {
+        const priceSlice = [];
+        for (let j = Math.max(0, i - lookbackDays); j < i; j++) {
+          if (priceMap[ticker][allDates[j]]) {
+            priceSlice.push({ price: priceMap[ticker][allDates[j]] });
+          }
+        }
+
+        if (priceSlice.length >= 20) {
+          const returns = calculateReturns(priceSlice);
+          const volatility = returns.length > 0 ?
+            Math.sqrt(returns.reduce((sum, r) => sum + r * r, 0) / returns.length) * Math.sqrt(252) : 0.15;
+          volatilities[ticker] = Math.max(volatility, 0.05); // Floor at 5%
+        } else {
+          volatilities[ticker] = 0.15; // Default
+        }
+      });
+
+      // Calculate inverse volatility weights
+      const invVols = {};
+      tickers.forEach(ticker => {
+        invVols[ticker] = 1.0 / volatilities[ticker];
+      });
+
+      const totalInvVol = Object.values(invVols).reduce((sum, val) => sum + val, 0);
+
+      if (totalInvVol > 0) {
+        tickers.forEach(ticker => {
+          currentWeights[ticker] = invVols[ticker] / totalInvVol;
+        });
+
+        if (i % (rebalanceFreqDays * 12) === 0) { // Log every ~year
+          console.log(`Leveraged Simple Risk Parity Rebalancing on ${date}:`, currentWeights);
+        }
+      }
+    }
+
+    // Calculate portfolio value with leverage mechanics
+    let unleveragedPortfolioVal = 0;
+    tickers.forEach(ticker => {
+      unleveragedPortfolioVal += currentWeights[ticker] * priceMap[ticker][date];
+    });
+
+    let portfolioVal;
+
+    if (i === 0) {
+      portfolioVal = 100.0;
+    } else {
+      // Calculate leveraged returns
+      const prevDate = allDates[i - 1];
+      let prevUnleveraged = 0;
+      tickers.forEach(ticker => {
+        if (priceMap[ticker][prevDate]) {
+          prevUnleveraged += currentWeights[ticker] * priceMap[ticker][prevDate];
+        }
+      });
+
+      if (prevUnleveraged > 0) {
+        const dailyUnleveragedReturn = (unleveragedPortfolioVal / prevUnleveraged) - 1.0;
+        const dailyLeveragedReturn = leverage * dailyUnleveragedReturn;
+
+        const portfolioValBeforeCost = previousPortfolioVal * (1.0 + dailyLeveragedReturn);
+
+        // Calculate daily borrowing cost
+        const equityAmount = previousPortfolioVal / leverage;
+        const borrowedAmount = previousPortfolioVal - equityAmount;
+        const dailyBorrowingRate = borrowingRate / 252;
+        const dailyBorrowingCost = borrowedAmount * dailyBorrowingRate;
+
+        portfolioVal = portfolioValBeforeCost - dailyBorrowingCost;
+      } else {
+        portfolioVal = previousPortfolioVal;
+      }
+    }
+
+    portfolioData.push({
+      date,
+      value: portfolioVal
+    });
+
+    // Store weights
+    const weightPoint = { date };
+    tickers.forEach(ticker => {
+      weightPoint[ticker] = currentWeights[ticker];
+    });
+    weightsData.push(weightPoint);
+
+    previousPortfolioVal = portfolioVal;
+  });
+
+  console.log(`Leveraged simple risk parity portfolio: ${portfolioData.length} data points, ${leverage}x leverage`);
+  return { portfolioData, weightsData };
+};
+
 // Enhanced Risk Parity - EWMA + Correlation Adjusted (unleveraged)
 export const calculateEnhancedRiskParity = (normalizedData, rebalanceFreqDays = 21, lookbackDays = 60) => {
   console.log('Calculating enhanced risk parity: EWMA + Correlation Adjusted (unleveraged)');

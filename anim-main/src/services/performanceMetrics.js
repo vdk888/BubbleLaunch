@@ -108,6 +108,13 @@ export const calculateAllMetrics = (normalizedData, portfolioData, descriptions)
     }
   }
 
+  if (portfolioData.leveragedSimpleRiskParity) {
+    const metrics = calculateComprehensiveMetrics(portfolioData.leveragedSimpleRiskParity, "Simple Risk Parity Portfolio (2x Leveraged)");
+    if (metrics) {
+      allMetrics.push(metrics);
+    }
+  }
+
   if (portfolioData.enhancedRiskParity) {
     const metrics = calculateComprehensiveMetrics(portfolioData.enhancedRiskParity, "Enhanced Risk Parity Portfolio");
     if (metrics) {
