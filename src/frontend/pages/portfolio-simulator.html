@@ -625,6 +625,40 @@
         margin: 0;
       }
 
+      /* Allocation Chart Header with Dropdown */
+      .allocation-chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        gap: 1rem;
+      }
+
+      .allocation-strategy-selector {
+        padding: 0.5rem 0.875rem;
+        font-size: 0.8125rem;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        border: 1.5px solid #E5E7EB;
+        border-radius: 0.5rem;
+        background-color: white;
+        color: #374151;
+        cursor: pointer;
+        min-width: 180px;
+        transition: all 0.2s ease;
+      }
+
+      .allocation-strategy-selector:hover {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.08);
+      }
+
+      .allocation-strategy-selector:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+      }
+
       .chart-controls {
         display: flex;
         gap: 0.5rem;
@@ -1082,6 +1116,18 @@
           align-items: flex-start;
         }
 
+        .allocation-chart-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.75rem;
+        }
+
+        .allocation-strategy-selector {
+          width: 100%;
+          min-width: unset;
+          font-size: 0.875rem;
+        }
+
         .chart-title {
           font-size: 1.1rem;
         }
@@ -1241,6 +1287,11 @@
 
         .chart-title {
           font-size: 1rem;
+        }
+
+        .allocation-strategy-selector {
+          font-size: 0.8125rem;
+          padding: 0.5rem 0.75rem;
         }
 
         .time-period-btn {
@@ -1779,8 +1830,13 @@
 
         <!-- Allocation Chart Card -->
         <div class="chart-card" id="allocationChartCard" style="margin-top: 2rem;">
-          <div class="chart-header">
+          <div class="allocation-chart-header">
             <h3 class="chart-title" data-translate="simulator.allocationChart.title">Allocations Historiques</h3>
+
+            <!-- Strategy selector dropdown (shown only when multiple strategies visible) -->
+            <select id="allocationStrategySelector" class="allocation-strategy-selector" style="display: none;" aria-label="Select strategy for allocation chart">
+              <!-- Options populated dynamically by JavaScript -->
+            </select>
           </div>
 
           <div class="chart-canvas-wrapper" style="height: 300px;">

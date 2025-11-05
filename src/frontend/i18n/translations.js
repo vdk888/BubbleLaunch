@@ -779,6 +779,10 @@ const translations = {
     en: "Historical Allocations",
     fr: "Allocations Historiques"
   },
+  "simulator.allocationChart.selectorLabel": {
+    en: "Show allocations for:",
+    fr: "Afficher les allocations de :"
+  },
   "simulator.allocationChart.description": {
     en: "Portfolio allocation across different ETFs (percentages stacked to 100%)",
     fr: "Répartition du portefeuille entre les différents ETFs (pourcentages cumulés à 100%)"

@@ -16,6 +16,7 @@
   let portfolioChart = null;
   let visibleStrategies = new Set(['equalWeight']); // NEW: Track multiple visible strategies
   let prominentStrategy = 'equalWeight'; // NEW: Track which strategy should be shown prominently
+  let selectedAllocationStrategy = 'equalWeight'; // NEW: Track which strategy's allocations to display
   let currentPeriod = 20;
   let currentLeverage = 1; // NEW: Leverage toggle state (1x or 2x)
   let portfolioData = null;
@@ -1285,6 +1286,44 @@
   }
 
   /**
+   * Update allocation strategy selector dropdown
+   * Shows dropdown only when multiple strategies are visible
+   */
+  function updateAllocationStrategySelector() {
+    const selector = document.getElementById('allocationStrategySelector');
+
+    if (!selector) return;
+
+    // Get array of visible strategies
+    const visibleStrategyArray = Array.from(visibleStrategies);
+
+    // Show dropdown only if multiple strategies are visible
+    if (visibleStrategyArray.length > 1) {
+      selector.style.display = 'block';
+
+      // Clear existing options
+      selector.innerHTML = '';
+
+      // Add option for each visible strategy
+      visibleStrategyArray.forEach(strategyKey => {
+        const option = document.createElement('option');
+        option.value = strategyKey;
+        option.textContent = getStrategyLabel(STRATEGY_CONFIG[strategyKey].labelKey);
+        option.selected = strategyKey === selectedAllocationStrategy;
+        selector.appendChild(option);
+      });
+    } else {
+      // Hide dropdown if only one strategy visible
+      selector.style.display = 'none';
+
+      // Auto-select the only visible strategy
+      if (visibleStrategyArray.length === 1) {
+        selectedAllocationStrategy = visibleStrategyArray[0];
+      }
+    }
+  }
+
+  /**
    * Initialize allocation chart
    */
   function initializeAllocationChart() {
@@ -1398,16 +1437,24 @@
 
   /**
    * Update allocation chart with data
+   * @param {Object} portfolioData - The portfolio data
+   * @param {string} strategyToDisplay - Optional strategy to display (defaults to selectedAllocationStrategy)
    */
-  function updateAllocationChart(portfolioData, prominentStrategy) {
+  function updateAllocationChart(portfolioData, strategyToDisplay = null) {
     const allocationChartCard = document.getElementById('allocationChartCard');
     const allocationCanvas = document.getElementById('allocationChart');
     const allocationNotice = document.getElementById('allocationChartNotice');
 
     if (!allocationChartCard || !allocationCanvas) return;
 
+    // Determine which strategy to show
+    const displayStrategy = strategyToDisplay || selectedAllocationStrategy || prominentStrategy;
+
+    // Update dropdown selector
+    updateAllocationStrategySelector();
+
     // Get allocations for the strategy
-    const allocations = getStaticAllocations(prominentStrategy);
+    const allocations = getStaticAllocations(displayStrategy);
 
     if (!allocations) {
       // Dynamic strategy - show notice, hide chart
@@ -1689,12 +1736,22 @@
         if (prominentStrategy === strategy) {
           prominentStrategy = Array.from(visibleStrategies)[0];
         }
+
+        // If we're hiding the currently selected allocation strategy, switch to another
+        if (selectedAllocationStrategy === strategy) {
+          selectedAllocationStrategy = prominentStrategy;
+        }
       }
       // If it's the last visible strategy, do nothing (keep at least one visible)
     } else {
       // Strategy is currently hidden - show it and make it prominent
       visibleStrategies.add(strategy);
       prominentStrategy = strategy;
+
+      // When only one strategy becomes visible, auto-select it for allocation chart
+      if (visibleStrategies.size === 1) {
+        selectedAllocationStrategy = strategy;
+      }
     }
 
     updateActiveStrategyPills();
@@ -2225,6 +2282,20 @@
     }
 
     initializeEtfToggleControls();
+
+    // Initialize allocation strategy selector event listener
+    const allocationSelector = document.getElementById('allocationStrategySelector');
+    if (allocationSelector) {
+      allocationSelector.addEventListener('change', (event) => {
+        selectedAllocationStrategy = event.target.value;
+        if (portfolioData) {
+          updateAllocationChart(portfolioData, selectedAllocationStrategy);
+        }
+        trackSimulatorEvent('allocation_chart_strategy_changed', {
+          selected_strategy: selectedAllocationStrategy
+        });
+      });
+    }
 
     // Load initial data
     loadPortfolioData(prominentStrategy, currentPeriod);
