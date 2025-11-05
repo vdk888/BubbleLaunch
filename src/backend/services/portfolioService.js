@@ -165,6 +165,8 @@ function calculateFixedWeightPortfolio(priceData, weights) {
   const allDates = priceData[baseTicker].map((p) => p.date);
   const portfolio = [];
 
+  // Calculate raw portfolio values first
+  const rawValues = [];
   for (const date of allDates) {
     let portfolioValue = 0;
     let hasAllPrices = true;
@@ -179,7 +181,20 @@ function calculateFixedWeightPortfolio(priceData, weights) {
     }
 
     if (hasAllPrices) {
-      portfolio.push({ date, value: portfolioValue });
+      rawValues.push({ date, value: portfolioValue });
+    }
+  }
+
+  // Normalize to base 100 (first value = 100)
+  if (rawValues.length > 0) {
+    const baseValue = rawValues[0].value;
+    if (baseValue > 0) {
+      for (const point of rawValues) {
+        portfolio.push({
+          date: point.date,
+          value: (point.value / baseValue) * 100
+        });
+      }
     }
   }
 
@@ -236,62 +251,13 @@ function calculateSixtyForty(priceData) {
   return { portfolio, allocations };
 }
 
-function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21) {
-  const tickers = Object.keys(priceData);
-  if (tickers.length === 0) return [];
-
-  const allDates = priceData[tickers[0]].map((p) => p.date);
-  const portfolio = [];
-  let currentWeights = Object.fromEntries(tickers.map((ticker) => [ticker, 1 / tickers.length]));
-
-  for (let i = 0; i < allDates.length; i++) {
-    if (i >= lookbackDays && i % rebalanceDays === 0) {
-      const trailingReturns = {};
-      let totalPositive = 0;
-
-      tickers.forEach((ticker) => {
-        const currentPoint = priceData[ticker][i];
-        const pastPoint = priceData[ticker][i - lookbackDays];
-        if (!currentPoint || !pastPoint || pastPoint.price === 0) {
-          trailingReturns[ticker] = 0;
-          return;
-        }
-        const momentum = (currentPoint.price - pastPoint.price) / pastPoint.price;
-        const positiveMomentum = Math.max(momentum, 0);
-        trailingReturns[ticker] = positiveMomentum;
-        totalPositive += positiveMomentum;
-      });
-
-      if (totalPositive === 0) {
-        currentWeights = Object.fromEntries(tickers.map((ticker) => [ticker, 1 / tickers.length]));
-      } else {
-        currentWeights = Object.fromEntries(
-          tickers.map((ticker) => [ticker, trailingReturns[ticker] / totalPositive])
-        );
-      }
-    }
-
-    let portfolioValue = 0;
-    let hasAllPrices = true;
-
-    tickers.forEach((ticker) => {
-      const dataPoint = priceData[ticker][i];
-      if (!dataPoint) {
-        hasAllPrices = false;
-        return;
-      }
-      const weight = currentWeights[ticker] ?? 0;
-      portfolioValue += weight * dataPoint.price;
-    });
-
-    if (hasAllPrices) {
-      portfolio.push({ date: allDates[i], value: portfolioValue });
-    }
-  }
-
-  return portfolio;
-}
-
+/**
+ * Strategy 5: Momentum Tilt Portfolio
+ * Allocates capital based on 12-month momentum (trailing returns)
+ * Only invests in assets with positive momentum
+ * Rebalances monthly (21 trading days)
+ * @returns {Object} { portfolio: [{date, value}], allocations: [{date, SPY, IEF, GLD, EFA, EEM, CASH}] }
+ */
 function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21) {
   const tickers = Object.keys(priceData);
   if (tickers.length === 0) return { portfolio: [], allocations: [] };
@@ -299,15 +265,25 @@ function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21
   const allDates = priceData[tickers[0]].map((p) => p.date);
   const portfolio = [];
   const allocations = [];
+
   let currentWeights = Object.fromEntries(tickers.map((ticker) => [ticker, 1 / tickers.length]));
+  let portfolioValue = 100; // Start at base 100
+  let rebalancePrices = {}; // Track prices at start of each rebalance period
+
+  // Initialize rebalance prices at start
+  tickers.forEach((ticker) => {
+    rebalancePrices[ticker] = priceData[ticker][0]?.price || 0;
+  });
 
   for (let i = 0; i < allDates.length; i++) {
     const date = allDates[i];
 
+    // Rebalance: calculate momentum scores and update weights
     if (i >= lookbackDays && i % rebalanceDays === 0) {
       // Calculate trailing returns over lookback window
       const trailingReturns = {};
       let totalPositive = 0;
+
       tickers.forEach((ticker) => {
         const currentPrice = priceData[ticker][i]?.price;
         const pastPrice = priceData[ticker][i - lookbackDays]?.price;
@@ -322,28 +298,59 @@ function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21
         totalPositive += positive;
       });
 
+      // Calculate new weights based on momentum
       const weights = {};
       if (totalPositive === 0) {
+        // No positive momentum - equal weight
         tickers.forEach((ticker) => {
           weights[ticker] = 1 / tickers.length;
         });
       } else {
+        // Weight by positive momentum
         tickers.forEach((ticker) => {
           weights[ticker] = trailingReturns[ticker] / totalPositive;
         });
       }
 
       currentWeights = weights;
+
+      // Store prices at rebalance point (after updating weights)
+      tickers.forEach((ticker) => {
+        rebalancePrices[ticker] = priceData[ticker][i]?.price || 0;
+      });
     }
 
-    const value = tickers.reduce((sum, ticker) => {
-      const point = priceData[ticker][i];
-      if (!point || currentWeights[ticker] === undefined) return sum;
-      return sum + currentWeights[ticker] * point.price;
-    }, 0);
+    // Calculate portfolio value at current date
+    let hasAllPrices = true;
 
-    if (value) {
-      portfolio.push({ date, value });
+    // For first date, just set base value
+    if (i === 0) {
+      portfolio.push({ date, value: portfolioValue });
+      allocations.push({ date, ...currentWeights });
+      continue;
+    }
+
+    // Calculate daily return based on price changes since last rebalance
+    let dailyReturn = 0;
+
+    for (const ticker of tickers) {
+      const currentPrice = priceData[ticker][i]?.price;
+      const prevPrice = priceData[ticker][i - 1]?.price;
+
+      if (!currentPrice || !prevPrice || prevPrice === 0) {
+        hasAllPrices = false;
+        break;
+      }
+
+      // Daily asset return × weight
+      const assetReturn = (currentPrice - prevPrice) / prevPrice;
+      dailyReturn += currentWeights[ticker] * assetReturn;
+    }
+
+    if (hasAllPrices) {
+      // Update portfolio value based on weighted daily return
+      portfolioValue = portfolioValue * (1 + dailyReturn);
+      portfolio.push({ date, value: portfolioValue });
 
       // Store allocation weights
       allocations.push({

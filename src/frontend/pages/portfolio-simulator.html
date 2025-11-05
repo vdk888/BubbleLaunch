@@ -1607,6 +1607,23 @@
         cursor: help;
         position: relative;
         vertical-align: middle;
+        transition: color 0.2s ease;
+      }
+
+      /* Show tooltip on hover for info icons in table headers (desktop only) */
+      @media (hover: hover) and (pointer: fine) {
+        .metrics-table th .info-icon:hover,
+        .metrics-table th .info-icon:focus-visible {
+          color: #667eea;
+          z-index: 30;
+        }
+
+        .metrics-table th .info-icon:hover .metric-tooltip,
+        .metrics-table th .info-icon:focus-visible .metric-tooltip {
+          opacity: 1;
+          transform: translate(-50%, 0);
+          pointer-events: auto;
+        }
       }
 
       .metrics-table tbody tr {
