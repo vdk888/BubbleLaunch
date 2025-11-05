@@ -876,6 +876,126 @@
     };
   }
 
+  /**
+   * Generate HTML for a strategy's metrics section
+   * @param {string} strategyKey - Strategy identifier (e.g., 'optimizedRiskParity')
+   * @returns {string} HTML string for the metrics section
+   */
+  function createMetricsSectionHTML(strategyKey) {
+    const strategyLabel = getStrategyLabel(STRATEGY_CONFIG[strategyKey].labelKey);
+
+    return `
+      <div class="metrics-section strategy-metrics" data-strategy="${strategyKey}">
+        <h4 class="metrics-subsection-title">${strategyLabel}</h4>
+
+        <div class="metrics-cards">
+          <div class="metric-card highlight" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.totalReturn.tooltip">
+              Le gain ou la perte totale du portefeuille depuis le début de la période, avant inflation et frais.
+            </div>
+            <div class="metric-card-label" data-translate="simulator.metric.totalReturn">Rendement Total</div>
+            <div class="metric-card-value" data-metric="totalReturn-${strategyKey}">--</div>
+            <div class="metric-card-subtitle" data-translate="simulator.metric.totalReturn.subtitle">sur la période</div>
+          </div>
+
+          <div class="metric-card" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.annualReturn.tooltip">
+              Le taux de croissance annuel composé (CAGR). Un rendement de 8% signifie que votre capital double environ tous les 9 ans.
+            </div>
+            <div class="metric-card-label" data-translate="simulator.metric.annualReturn">Rendement Annuel</div>
+            <div class="metric-card-value" data-metric="annualReturn-${strategyKey}">--</div>
+            <div class="metric-card-subtitle" data-translate="simulator.metric.annualReturn.subtitle">CAGR moyen</div>
+          </div>
+
+          <div class="metric-card" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.volatility.tooltip">
+              Mesure des fluctuations du portefeuille. Une volatilité de 15% signifie que 68% du temps, les rendements varient de ±15% autour de la moyenne.
+            </div>
+            <div class="metric-card-label" data-translate="simulator.metric.volatility">Volatilité</div>
+            <div class="metric-card-value" data-metric="volatility-${strategyKey}">--</div>
+            <div class="metric-card-subtitle" data-translate="simulator.metric.volatility.subtitle">écart-type annuel</div>
+          </div>
+
+          <div class="metric-card" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.sharpeRatio.tooltip">
+              Rendement ajusté au risque. Un ratio > 1 est bon, > 2 est excellent. Compare le rendement obtenu par rapport au risque pris.
+            </div>
+            <div class="metric-card-label" data-translate="simulator.metric.sharpeRatio">Ratio Sharpe</div>
+            <div class="metric-card-value" data-metric="sharpeRatio-${strategyKey}">--</div>
+            <div class="metric-card-subtitle" data-translate="simulator.metric.sharpeRatio.subtitle">rendement/risque</div>
+          </div>
+
+          <div class="metric-card" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.maxDrawdown.tooltip">
+              La plus forte baisse depuis un sommet. -20% signifie qu'à un moment, le portefeuille a perdu 20% de sa valeur maximale.
+            </div>
+            <div class="metric-card-label" data-translate="simulator.metric.maxDrawdown">Drawdown Max</div>
+            <div class="metric-card-value" data-metric="maxDrawdown-${strategyKey}">--</div>
+            <div class="metric-card-subtitle" data-translate="simulator.metric.maxDrawdown.subtitle">perte maximale</div>
+          </div>
+
+          <div class="metric-card" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.calmarRatio.tooltip">
+              Rapport entre le rendement annuel et le drawdown maximal. Plus ce ratio est élevé, meilleure est la stratégie.
+            </div>
+            <div class="metric-card-label" data-translate="simulator.metric.calmarRatio">Calmar Ratio</div>
+            <div class="metric-card-value" data-metric="calmarRatio-${strategyKey}">--</div>
+            <div class="metric-card-subtitle" data-translate="simulator.metric.calmarRatio.subtitle">rendement/drawdown</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  /**
+   * Update individual strategy metrics values
+   * @param {string} strategyKey - Strategy identifier
+   * @param {Object} metrics - Metrics object with totalReturn, annualReturn, etc.
+   */
+  function updateStrategyMetrics(strategyKey, metrics) {
+    if (!metrics) return;
+
+    // Total Return
+    const totalReturnEl = document.querySelector(`[data-metric="totalReturn-${strategyKey}"]`);
+    if (totalReturnEl) {
+      totalReturnEl.textContent = formatPercentage(metrics.totalReturn, { withPlus: true });
+    }
+
+    // Annualized Return
+    const annualReturnEl = document.querySelector(`[data-metric="annualReturn-${strategyKey}"]`);
+    if (annualReturnEl) {
+      annualReturnEl.textContent = formatPercentage(metrics.annualReturn);
+    }
+
+    // Volatility
+    const volatilityEl = document.querySelector(`[data-metric="volatility-${strategyKey}"]`);
+    if (volatilityEl) {
+      volatilityEl.textContent = formatPercentage(metrics.volatility);
+    }
+
+    // Sharpe Ratio
+    const sharpeEl = document.querySelector(`[data-metric="sharpeRatio-${strategyKey}"]`);
+    if (sharpeEl) {
+      sharpeEl.textContent = typeof metrics.sharpeRatio === 'number' ? metrics.sharpeRatio.toFixed(2) : '—';
+    }
+
+    // Max Drawdown
+    const maxDrawdownEl = document.querySelector(`[data-metric="maxDrawdown-${strategyKey}"]`);
+    if (maxDrawdownEl) {
+      maxDrawdownEl.textContent = formatPercentage(metrics.maxDrawdown);
+    }
+
+    // Calmar Ratio
+    const calmarEl = document.querySelector(`[data-metric="calmarRatio-${strategyKey}"]`);
+    if (calmarEl) {
+      let calmarRatio = '—';
+      if (typeof metrics.annualReturn === 'number' && typeof metrics.maxDrawdown === 'number' && metrics.maxDrawdown !== 0) {
+        calmarRatio = Math.abs(metrics.annualReturn / metrics.maxDrawdown).toFixed(2);
+      }
+      calmarEl.textContent = calmarRatio;
+    }
+  }
+
   function resetMetricDisplay() {
     ['totalReturn', 'annualReturn', 'volatility', 'sharpeRatio', 'maxDrawdown', 'calmarRatio',
      'baselineTotalReturn', 'baselineAnnualReturn', 'baselineVolatility', 'baselineSharpeRatio', 'baselineMaxDrawdown', 'baselineCalmarRatio'].forEach(
@@ -1114,7 +1234,7 @@
       portfolioChart.update('active'); // 'active' animation mode
     }
 
-    updateMetrics(portfolioData, prominentStrategy);
+    updateMetrics(portfolioData);
     updateSimulatorState(portfolioData);
     setExportStatus('ready');
 
@@ -1583,10 +1703,14 @@
   }
 
   /**
-   * Update performance metrics (displays metrics for BOTH prominent strategy AND baseline)
+   * Update performance metrics (displays metrics for ALL visible strategies + baseline)
    */
-  function updateMetrics(data, strategy) {
-    const strategyKey = {
+  function updateMetrics(data) {
+    const container = document.getElementById('visibleStrategiesMetrics');
+    if (!container) return;
+
+    // Map strategy keys to their data keys
+    const strategyKeyMap = {
       equalWeight: 'equalWeight',
       simpleRiskParity: 'simpleRP',
       enhancedRiskParityDCC: 'enhancedRiskParityDCC',
@@ -1596,86 +1720,96 @@
       momentumTilt: 'momentumTilt',
       hierarchicalRiskParity: 'hierarchicalRiskParity',
       customMix: 'customMix',
-    }[strategy];
+    };
 
-    const metrics = data.metrics[strategyKey];
-    if (!metrics) {
-      resetMetricDisplay();
-      return;
-    }
+    // Clear existing metrics
+    container.innerHTML = '';
 
-    // === UPDATE PROMINENT STRATEGY METRICS ===
-    // Total Return
-    document.getElementById('totalReturn').textContent = formatPercentage(metrics.totalReturn, { withPlus: true });
+    // Determine if Equal Weight should be shown in main container or baseline
+    const isEqualWeightOnlyVisible = visibleStrategies.size === 1 && visibleStrategies.has('equalWeight');
 
-    // Annualized Return
-    document.getElementById('annualReturn').textContent = formatPercentage(metrics.annualReturn);
-
-    // Volatility
-    document.getElementById('volatility').textContent = formatPercentage(metrics.volatility);
-
-    // Sharpe Ratio
-    document.getElementById('sharpeRatio').textContent =
-      typeof metrics.sharpeRatio === 'number' ? metrics.sharpeRatio.toFixed(2) : '—';
-
-    // Max Drawdown (already negative percentage)
-    document.getElementById('maxDrawdown').textContent = formatPercentage(metrics.maxDrawdown);
-
-    // Calmar Ratio (annualized return / |max drawdown|)
-    let calmarRatio = '—';
-    if (typeof metrics.annualReturn === 'number' && typeof metrics.maxDrawdown === 'number' && metrics.maxDrawdown !== 0) {
-      calmarRatio = Math.abs(metrics.annualReturn / metrics.maxDrawdown).toFixed(2);
-    }
-    document.getElementById('calmarRatio').textContent = calmarRatio;
-
-    // === UPDATE PROMINENT STRATEGY TITLE ===
-    const prominentTitle = document.getElementById('prominentMetricsTitle');
-    if (prominentTitle) {
-      const lang = getCurrentLanguage();
-      const strategyLabel = getStrategyLabel(STRATEGY_CONFIG[strategy].labelKey);
-      const performanceLabel = lang === 'en' ? 'Performance' : 'Performance de';
-      prominentTitle.textContent = `${performanceLabel} ${strategyLabel}`;
-    }
-
-    // === UPDATE BASELINE EQUAL WEIGHT METRICS (always shown unless prominent IS equalWeight) ===
-    const baselineSection = document.getElementById('baselineMetrics');
-    if (strategy === 'equalWeight') {
-      // Hide baseline if prominent strategy IS Equal Weight (avoid duplication)
-      if (baselineSection) {
-        baselineSection.style.display = 'none';
-      }
-    } else {
-      // Show baseline section
-      if (baselineSection) {
-        baselineSection.style.display = 'block';
-      }
-
-      const baselineMetrics = data.metrics['equalWeight'];
-      if (baselineMetrics) {
-        // Total Return
-        document.getElementById('baselineTotalReturn').textContent = formatPercentage(baselineMetrics.totalReturn, { withPlus: true });
-
-        // Annualized Return
-        document.getElementById('baselineAnnualReturn').textContent = formatPercentage(baselineMetrics.annualReturn);
-
-        // Volatility
-        document.getElementById('baselineVolatility').textContent = formatPercentage(baselineMetrics.volatility);
-
-        // Sharpe Ratio
-        document.getElementById('baselineSharpeRatio').textContent =
-          typeof baselineMetrics.sharpeRatio === 'number' ? baselineMetrics.sharpeRatio.toFixed(2) : '—';
-
-        // Max Drawdown
-        document.getElementById('baselineMaxDrawdown').textContent = formatPercentage(baselineMetrics.maxDrawdown);
-
-        // Calmar Ratio
-        let baselineCalmar = '—';
-        if (typeof baselineMetrics.annualReturn === 'number' && typeof baselineMetrics.maxDrawdown === 'number' && baselineMetrics.maxDrawdown !== 0) {
-          baselineCalmar = Math.abs(baselineMetrics.annualReturn / baselineMetrics.maxDrawdown).toFixed(2);
+    // Get visible strategies (including Equal Weight if it's the only one)
+    const visibleStrategiesArray = Array.from(visibleStrategies)
+      .filter(strategy => {
+        // If Equal Weight is the only visible strategy, show it in main container
+        if (isEqualWeightOnlyVisible) {
+          return true;
         }
-        document.getElementById('baselineCalmarRatio').textContent = baselineCalmar;
+        // Otherwise, exclude Equal Weight (it will be shown as baseline)
+        return strategy !== 'equalWeight';
+      });
+
+    // Create metrics section for each visible strategy
+    visibleStrategiesArray.forEach(strategyKey => {
+      // Generate HTML for this strategy's metrics
+      const metricsHTML = createMetricsSectionHTML(strategyKey);
+      container.insertAdjacentHTML('beforeend', metricsHTML);
+
+      // Calculate and populate metrics
+      const dataKey = strategyKeyMap[strategyKey];
+      const metrics = data.metrics[dataKey];
+      if (metrics) {
+        updateStrategyMetrics(strategyKey, metrics);
+      }
+    });
+
+    // Update Equal Weight baseline (only show if there are other visible strategies)
+    const baselineSection = document.getElementById('baselineMetrics');
+    const baselineMetrics = data.metrics['equalWeight'];
+
+    if (baselineSection) {
+      if (isEqualWeightOnlyVisible) {
+        // Hide baseline if Equal Weight is the only visible strategy
+        baselineSection.style.display = 'none';
+      } else {
+        // Show baseline section and update values
+        baselineSection.style.display = 'block';
+
+        if (baselineMetrics) {
+          // Update baseline metrics values
+          const baselineTotalReturn = document.getElementById('baselineTotalReturn');
+          if (baselineTotalReturn) {
+            baselineTotalReturn.textContent = formatPercentage(baselineMetrics.totalReturn, { withPlus: true });
+          }
+
+          const baselineAnnualReturn = document.getElementById('baselineAnnualReturn');
+          if (baselineAnnualReturn) {
+            baselineAnnualReturn.textContent = formatPercentage(baselineMetrics.annualReturn);
+          }
+
+          const baselineVolatility = document.getElementById('baselineVolatility');
+          if (baselineVolatility) {
+            baselineVolatility.textContent = formatPercentage(baselineMetrics.volatility);
+          }
+
+          const baselineSharpeRatio = document.getElementById('baselineSharpeRatio');
+          if (baselineSharpeRatio) {
+            baselineSharpeRatio.textContent = typeof baselineMetrics.sharpeRatio === 'number'
+              ? baselineMetrics.sharpeRatio.toFixed(2)
+              : '—';
+          }
+
+          const baselineMaxDrawdown = document.getElementById('baselineMaxDrawdown');
+          if (baselineMaxDrawdown) {
+            baselineMaxDrawdown.textContent = formatPercentage(baselineMetrics.maxDrawdown);
+          }
+
+          const baselineCalmarRatio = document.getElementById('baselineCalmarRatio');
+          if (baselineCalmarRatio) {
+            let baselineCalmar = '—';
+            if (typeof baselineMetrics.annualReturn === 'number' &&
+                typeof baselineMetrics.maxDrawdown === 'number' &&
+                baselineMetrics.maxDrawdown !== 0) {
+              baselineCalmar = Math.abs(baselineMetrics.annualReturn / baselineMetrics.maxDrawdown).toFixed(2);
+            }
+            baselineCalmarRatio.textContent = baselineCalmar;
+          }
+        }
       }
     }
+
+    // Re-bind tooltips for new metric cards
+    bindTooltipTriggers();
   }
 
   /**
@@ -1755,7 +1889,7 @@
 
         refreshCustomStrategyDataset();
         updateChart(portfolioData, strategy);
-        updateMetrics(portfolioData, strategy);
+        updateMetrics(portfolioData);
         updateSimulatorState(portfolioData);
         updateCustomAlert();
         setExportStatus('ready');
@@ -1821,7 +1955,7 @@
 
     if (portfolioData) {
       updateChart(portfolioData, prominentStrategy);
-      updateMetrics(portfolioData, prominentStrategy);
+      updateMetrics(portfolioData);
       updateSimulatorState(portfolioData);
     }
 
@@ -2245,6 +2379,28 @@
    * Initialize simulator
    */
   /**
+   * Initialize allocation chart toggle functionality
+   */
+  function initializeAllocationChartToggle() {
+    const toggleBtn = document.getElementById('toggleAllocationChart');
+    const chartContent = document.getElementById('allocationChartContent');
+
+    if (!toggleBtn || !chartContent) return;
+
+    toggleBtn.addEventListener('click', () => {
+      const isCollapsed = chartContent.classList.toggle('collapsed');
+      toggleBtn.classList.toggle('collapsed', isCollapsed);
+
+      // Resize chart after animation completes
+      if (!isCollapsed && allocationChart) {
+        setTimeout(() => {
+          allocationChart.resize();
+        }, 300);
+      }
+    });
+  }
+
+  /**
    * Initialize leverage toggle functionality
    */
   function initializeLeverageToggle() {
@@ -2380,6 +2536,7 @@
     updateActiveStrategyPills();
     toggleCustomPanel(visibleStrategies.has('customMix'));
     initializeLeverageToggle(); // NEW: Initialize leverage toggle
+    initializeAllocationChartToggle(); // NEW: Initialize allocation chart toggle
     initializeMobileSliderController();
     initializeMobileTooltipSystem();
   }

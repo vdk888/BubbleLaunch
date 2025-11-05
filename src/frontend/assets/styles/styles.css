@@ -5459,3 +5459,47 @@ footer .container {
 #tarteaucitronIcon {
   display: none;
 }
+
+/* Allocation Chart Toggle Button */
+.toggle-chart-btn {
+  background: transparent;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #6B7280;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.toggle-chart-btn:hover {
+  background: #F3F4F6;
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.toggle-chart-btn:active {
+  transform: scale(0.95);
+}
+
+.toggle-chart-btn.collapsed svg path:last-child {
+  transform: rotate(90deg);
+  transform-origin: center;
+}
+
+/* Allocation Chart Content - collapsible */
+.allocation-chart-content {
+  max-height: 500px;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 1;
+}
+
+.allocation-chart-content.collapsed {
+  max-height: 0;
+  opacity: 0;
+}

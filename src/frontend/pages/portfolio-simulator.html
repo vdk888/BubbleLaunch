@@ -853,6 +853,23 @@
         font-size: 0.8125rem;
       }
 
+      /* Visible Strategies Metrics Container */
+      .visible-strategies-metrics {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .strategy-metrics {
+        border-bottom: 1px solid #E5E7EB;
+        padding-bottom: 1rem;
+      }
+
+      .strategy-metrics:last-child {
+        border-bottom: none;
+      }
+
       /* Compact Metrics Cards */
       .metrics-cards {
         display: grid;
@@ -1861,7 +1878,14 @@
         <!-- Allocation Chart Card -->
         <div class="chart-card" id="allocationChartCard" style="margin-top: 2rem;">
           <div class="allocation-chart-header">
-            <h3 class="chart-title" data-translate="simulator.allocationChart.title">Allocations Historiques</h3>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <h3 class="chart-title" data-translate="simulator.allocationChart.title">Allocations Historiques</h3>
+              <button id="toggleAllocationChart" class="toggle-chart-btn" aria-label="Toggle allocation chart visibility" title="Show/Hide allocation chart">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 3.5L8 12.5M3.5 8L12.5 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
 
             <!-- Strategy selector dropdown (shown only when multiple strategies visible) -->
             <select id="allocationStrategySelector" class="allocation-strategy-selector" style="display: none;" aria-label="Select strategy for allocation chart">
@@ -1869,21 +1893,24 @@
             </select>
           </div>
 
-          <!-- FIX ISSUE #3: Use consistent chart-canvas-wrapper structure with fixed height -->
-          <div class="chart-canvas-wrapper" style="position: relative; height: 300px;">
-            <canvas id="allocationChart"></canvas>
-          </div>
+          <!-- Collapsible content -->
+          <div id="allocationChartContent" class="allocation-chart-content">
+            <!-- FIX ISSUE #3: Use consistent chart-canvas-wrapper structure with fixed height -->
+            <div class="chart-canvas-wrapper" style="position: relative; height: 300px;">
+              <canvas id="allocationChart"></canvas>
+            </div>
 
-          <div id="allocationChartNotice" style="display: none; text-align: center; padding: 2rem; color: #6B7280; font-size: 0.9rem;">
-            <p data-translate="simulator.allocationChart.notice">
-              Le graphique d'allocation est disponible pour les stratégies à poids fixes (Allocation Égale, 60/40). Les stratégies dynamiques ajustent leurs allocations lors des rééquilibrages.
-            </p>
-          </div>
+            <div id="allocationChartNotice" style="display: none; text-align: center; padding: 2rem; color: #6B7280; font-size: 0.9rem;">
+              <p data-translate="simulator.allocationChart.notice">
+                Le graphique d'allocation est disponible pour les stratégies à poids fixes (Allocation Égale, 60/40). Les stratégies dynamiques ajustent leurs allocations lors des rééquilibrages.
+              </p>
+            </div>
 
-          <div style="text-align: center; margin-top: 1rem;">
-            <p style="font-size: 0.875rem; color: #6B7280;" data-translate="simulator.allocationChart.description">
-              Répartition du portefeuille entre les différents ETFs (pourcentages cumulés à 100%)
-            </p>
+            <div style="text-align: center; margin-top: 1rem;">
+              <p style="font-size: 0.875rem; color: #6B7280;" data-translate="simulator.allocationChart.description">
+                Répartition du portefeuille entre les différents ETFs (pourcentages cumulés à 100%)
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -1892,68 +1919,9 @@
       <div class="metrics-grid" id="metricsGrid">
         <h3 class="metrics-section-title" data-translate="simulator.metrics.title">Statistiques de Performance</h3>
 
-        <!-- Prominent Strategy Metrics -->
-        <div class="metrics-section prominent-metrics" id="prominentMetrics">
-          <h4 class="metrics-subsection-title" id="prominentMetricsTitle" data-translate="simulator.metrics.prominent">Performance de la Stratégie</h4>
-
-          <div class="responsive-slider" id="metricsSlider" data-slider="metrics">
-            <div class="metrics-cards slider-track">
-              <div class="metric-card highlight" data-tooltip-behavior="tap">
-                <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.totalReturn.tooltip">
-                  Le gain ou la perte totale du portefeuille depuis le début de la période, avant inflation et frais.
-                </div>
-                <div class="metric-card-label" data-translate="simulator.metric.totalReturn">Rendement Total</div>
-                <div class="metric-card-value" id="totalReturn">--</div>
-                <div class="metric-card-subtitle" data-translate="simulator.metric.totalReturn.subtitle">sur la période</div>
-              </div>
-
-              <div class="metric-card" data-tooltip-behavior="tap">
-                <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.annualReturn.tooltip">
-                  Le taux de croissance annuel composé (CAGR). Un rendement de 8% signifie que votre capital double environ tous les 9 ans.
-                </div>
-                <div class="metric-card-label" data-translate="simulator.metric.annualReturn">Rendement Annuel</div>
-                <div class="metric-card-value" id="annualReturn">--</div>
-                <div class="metric-card-subtitle" data-translate="simulator.metric.annualReturn.subtitle">CAGR moyen</div>
-              </div>
-
-              <div class="metric-card" data-tooltip-behavior="tap">
-                <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.volatility.tooltip">
-                  Mesure des fluctuations du portefeuille. Une volatilité de 15% signifie que 68% du temps, les rendements varient de ±15% autour de la moyenne.
-                </div>
-                <div class="metric-card-label" data-translate="simulator.metric.volatility">Volatilité</div>
-                <div class="metric-card-value" id="volatility">--</div>
-                <div class="metric-card-subtitle" data-translate="simulator.metric.volatility.subtitle">écart-type annuel</div>
-              </div>
-
-              <div class="metric-card" data-tooltip-behavior="tap">
-                <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.sharpeRatio.tooltip">
-                  Rendement ajusté au risque. Un ratio > 1 est bon, > 2 est excellent. Compare le rendement obtenu par rapport au risque pris.
-                </div>
-                <div class="metric-card-label" data-translate="simulator.metric.sharpeRatio">Ratio Sharpe</div>
-                <div class="metric-card-value" id="sharpeRatio">--</div>
-                <div class="metric-card-subtitle" data-translate="simulator.metric.sharpeRatio.subtitle">rendement/risque</div>
-              </div>
-
-              <div class="metric-card" data-tooltip-behavior="tap">
-                <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.maxDrawdown.tooltip">
-                  La plus forte baisse depuis un sommet. -20% signifie qu'à un moment, le portefeuille a perdu 20% de sa valeur maximale.
-                </div>
-                <div class="metric-card-label" data-translate="simulator.metric.maxDrawdown">Drawdown Max</div>
-                <div class="metric-card-value" id="maxDrawdown">--</div>
-                <div class="metric-card-subtitle" data-translate="simulator.metric.maxDrawdown.subtitle">perte maximale</div>
-              </div>
-
-              <div class="metric-card" data-tooltip-behavior="tap">
-                <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.calmarRatio.tooltip">
-                  Rapport entre le rendement annuel et le drawdown maximal. Plus ce ratio est élevé, meilleure est la stratégie.
-                </div>
-                <div class="metric-card-label" data-translate="simulator.metric.calmarRatio">Calmar Ratio</div>
-                <div class="metric-card-value" id="calmarRatio">--</div>
-                <div class="metric-card-subtitle" data-translate="simulator.metric.calmarRatio.subtitle">rendement/drawdown</div>
-              </div>
-            </div>
-            <div class="slider-dots" data-slider-dots></div>
-          </div>
+        <!-- Container for Visible Strategy Metrics (dynamically populated) -->
+        <div id="visibleStrategiesMetrics" class="visible-strategies-metrics">
+          <!-- Dynamically populated by JavaScript with metrics for each visible strategy -->
         </div>
 
         <!-- Baseline Equal Weight Metrics -->
