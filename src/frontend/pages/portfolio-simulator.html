@@ -807,6 +807,12 @@
         max-height: 400px;
       }
 
+      /* FIX ISSUE #3: Allocation chart sizing - match main chart structure */
+      #allocationChart {
+        max-height: 300px;
+        height: 300px !important;
+      }
+
       /* Performance Metrics Grid - COMPACT REDESIGN */
       .metrics-grid {
         max-width: 1100px;
@@ -955,6 +961,12 @@
 
         #portfolioChart {
           max-height: 350px;
+        }
+
+        /* FIX ISSUE #3: Allocation chart sizing - tablet */
+        #allocationChart {
+          max-height: 280px;
+          height: 280px !important;
         }
       }
 
@@ -1151,6 +1163,12 @@
           max-height: 300px;
         }
 
+        /* FIX ISSUE #3: Allocation chart sizing - mobile */
+        #allocationChart {
+          max-height: 240px;
+          height: 240px !important;
+        }
+
         /* Metrics Mobile */
         .metrics-grid {
           margin-bottom: 2rem;
@@ -1307,6 +1325,12 @@
           max-height: 250px;
         }
 
+        /* FIX ISSUE #3: Allocation chart sizing - small mobile */
+        #allocationChart {
+          max-height: 220px;
+          height: 220px !important;
+        }
+
         .metrics-section-title {
           font-size: 1rem;
         }
@@ -1445,6 +1469,12 @@
 
         #portfolioChart {
           max-height: 280px;
+        }
+
+        /* FIX ISSUE #3: Allocation chart sizing - landscape mobile */
+        #allocationChart {
+          max-height: 240px;
+          height: 240px !important;
         }
 
         .strategy-pills {
@@ -1839,7 +1869,8 @@
             </select>
           </div>
 
-          <div class="chart-canvas-wrapper" style="height: 300px;">
+          <!-- FIX ISSUE #3: Use consistent chart-canvas-wrapper structure with fixed height -->
+          <div class="chart-canvas-wrapper" style="position: relative; height: 300px;">
             <canvas id="allocationChart"></canvas>
           </div>
 

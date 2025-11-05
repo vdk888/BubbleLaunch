@@ -1255,14 +1255,14 @@
    */
   let allocationChart = null;
 
-  // Define ETF colors (matching main chart)
+  // Define ETF colors (matching main chart - base colors for borders and backgrounds)
   const ETF_COLORS = {
-    SPY: '#3B82F6',
-    IEF: '#10B981',
-    GLD: '#F59E0B',
-    EFA: '#8B5CF6',
-    EEM: '#EF4444',
-    CASH: '#6B7280'
+    SPY: { border: 'rgba(102, 126, 234, 0.8)', background: 'rgba(102, 126, 234, 0.6)' },
+    IEF: { border: 'rgba(107, 114, 128, 0.8)', background: 'rgba(107, 114, 128, 0.6)' },
+    GLD: { border: 'rgba(156, 163, 175, 0.8)', background: 'rgba(156, 163, 175, 0.6)' },
+    EFA: { border: 'rgba(129, 140, 248, 0.8)', background: 'rgba(129, 140, 248, 0.55)' },
+    EEM: { border: 'rgba(248, 113, 113, 0.8)', background: 'rgba(248, 113, 113, 0.55)' },
+    CASH: { border: 'rgba(34, 197, 94, 0.8)', background: 'rgba(34, 197, 94, 0.6)' }
   };
 
   /**
@@ -1367,7 +1367,7 @@
       },
       options: {
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false, // FIX ISSUE #3: Allows fixed height from wrapper
         aspectRatio: mobile ? 1.5 : 2.8,
         layout: {
           padding: {
@@ -1476,7 +1476,10 @@
     // Determine which strategy to show
     const displayStrategy = strategyToDisplay || selectedAllocationStrategy || prominentStrategy;
 
-    // Update dropdown selector
+    // FIX ISSUE #1: Sync selectedAllocationStrategy with what we're actually displaying
+    selectedAllocationStrategy = displayStrategy;
+
+    // Update dropdown selector (will use the updated selectedAllocationStrategy)
     updateAllocationStrategySelector();
 
     // Get allocation data array from portfolio data
@@ -1539,8 +1542,8 @@
     const datasets = usedETFs.map(ticker => ({
       label: ticker,
       data: downsampledAllocations.map(alloc => alloc[ticker] || 0),
-      backgroundColor: ETF_COLORS[ticker] + '99', // Add transparency
-      borderColor: ETF_COLORS[ticker],
+      backgroundColor: ETF_COLORS[ticker].background,
+      borderColor: ETF_COLORS[ticker].border,
       borderWidth: 1,
       fill: true,
       tension: 0.4
@@ -1799,10 +1802,8 @@
       visibleStrategies.add(strategy);
       prominentStrategy = strategy;
 
-      // When only one strategy becomes visible, auto-select it for allocation chart
-      if (visibleStrategies.size === 1) {
-        selectedAllocationStrategy = strategy;
-      }
+      // FIX ISSUE #1: Update selected allocation strategy to match prominent strategy
+      selectedAllocationStrategy = strategy;
     }
 
     updateActiveStrategyPills();
@@ -2414,11 +2415,10 @@
         portfolioChart.options = getResponsiveChartOptions();
         portfolioChart.update('none'); // Update without animation
       }
+      // FIX ISSUE #3: Ensure allocation chart resizes properly
       if (portfolioData && allocationChart) {
-        // Reinitialize allocation chart with new responsive options
-        allocationChart.destroy();
-        allocationChart = null;
-        updateAllocationChart(portfolioData, prominentStrategy);
+        allocationChart.resize();
+        allocationChart.update('none'); // Update without animation
       }
     }, 250);
   });
