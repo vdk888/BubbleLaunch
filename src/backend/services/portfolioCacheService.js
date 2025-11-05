@@ -12,7 +12,6 @@ const CACHE_TTL_DAYS = 31; // Cache TTL: 31 days (monthly regeneration)
 const STRATEGY_BUILDERS = {
   equalWeight: portfolioService.calculateEqualWeight,
   sixtyForty: portfolioService.calculateSixtyForty,
-  momentumTilt: portfolioService.calculateMomentumTilt,
   hierarchicalRiskParity: portfolioService.calculateMinimumVarianceWeights,
   simpleRP: portfolioService.calculateSimpleRiskParity,
   optimizedRP: portfolioService.calculateOptimizedRiskParity,
@@ -23,7 +22,6 @@ const STRATEGY_BUILDERS = {
 const STRATEGY_ORDER = [
   "equalWeight",
   "sixtyForty",
-  "momentumTilt",
   "hierarchicalRiskParity",
   "simpleRP",
   "optimizedRP",
