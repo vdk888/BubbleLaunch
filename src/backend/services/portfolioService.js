@@ -189,25 +189,51 @@ function calculateFixedWeightPortfolio(priceData, weights) {
 /**
  * Strategy 1: Equal Weight Portfolio
  * Simple 33.3% allocation to each ETF with quarterly rebalancing
+ * @returns {Object} { portfolio: [{date, value}], allocations: [{date, SPY, IEF, GLD, EFA, EEM, CASH}] }
  */
 function calculateEqualWeight(priceData) {
   const tickers = Object.keys(priceData);
-  if (tickers.length === 0) return [];
+  if (tickers.length === 0) return { portfolio: [], allocations: [] };
 
   const equalWeight = 1.0 / tickers.length;
   const weights = Object.fromEntries(tickers.map((ticker) => [ticker, equalWeight]));
 
-  return calculateFixedWeightPortfolio(priceData, weights);
+  const portfolio = calculateFixedWeightPortfolio(priceData, weights);
+
+  // Create allocation history (fixed weights at every date)
+  const allocations = portfolio.map(point => ({
+    date: point.date,
+    ...weights
+  }));
+
+  return { portfolio, allocations };
 }
 
 /**
  * Strategy 1b: 60/40 Portfolio (60% SPY / 40% IEF)
+ * @returns {Object} { portfolio: [{date, value}], allocations: [{date, SPY, IEF, GLD, EFA, EEM, CASH}] }
  */
 function calculateSixtyForty(priceData) {
-  return calculateFixedWeightPortfolio(priceData, {
+  const weights = {
     SPY: 0.6,
     IEF: 0.4,
-  });
+  };
+
+  const portfolio = calculateFixedWeightPortfolio(priceData, weights);
+
+  // Get all tickers from priceData for complete allocation
+  const allTickers = Object.keys(priceData);
+  const completeWeights = Object.fromEntries(
+    allTickers.map(ticker => [ticker, weights[ticker] || 0])
+  );
+
+  // Create allocation history (fixed weights at every date)
+  const allocations = portfolio.map(point => ({
+    date: point.date,
+    ...completeWeights
+  }));
+
+  return { portfolio, allocations };
 }
 
 function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21) {
@@ -268,10 +294,11 @@ function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21
 
 function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21) {
   const tickers = Object.keys(priceData);
-  if (tickers.length === 0) return [];
+  if (tickers.length === 0) return { portfolio: [], allocations: [] };
 
   const allDates = priceData[tickers[0]].map((p) => p.date);
   const portfolio = [];
+  const allocations = [];
   let currentWeights = Object.fromEntries(tickers.map((ticker) => [ticker, 1 / tickers.length]));
 
   for (let i = 0; i < allDates.length; i++) {
@@ -317,15 +344,21 @@ function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21
 
     if (value) {
       portfolio.push({ date, value });
+
+      // Store allocation weights
+      allocations.push({
+        date,
+        ...currentWeights
+      });
     }
   }
 
-  return portfolio;
+  return { portfolio, allocations };
 }
 
 function calculateMinimumVarianceWeights(priceData, lookbackDays = 252, rebalanceDays = 21) {
   const tickers = Object.keys(priceData);
-  if (tickers.length === 0) return [];
+  if (tickers.length === 0) return { portfolio: [], allocations: [] };
 
   const allDates = priceData[tickers[0]].map((p) => p.date);
   const returnsData = {};
@@ -334,6 +367,7 @@ function calculateMinimumVarianceWeights(priceData, lookbackDays = 252, rebalanc
   });
 
   const portfolio = [];
+  const allocations = [];
   let currentWeights = Object.fromEntries(tickers.map((t) => [t, 1 / tickers.length]));
 
   for (let i = 0; i < allDates.length; i++) {
@@ -396,16 +430,23 @@ function calculateMinimumVarianceWeights(priceData, lookbackDays = 252, rebalanc
 
     if (portfolioValue) {
       portfolio.push({ date, value: portfolioValue });
+
+      // Store allocation weights
+      allocations.push({
+        date,
+        ...currentWeights
+      });
     }
   }
 
-  return portfolio;
+  return { portfolio, allocations };
 }
 
 /**
  * Strategy 2: Simple Risk Parity
  * Inverse volatility weighting with monthly rebalancing
  * DAILY DATA: lookbackDays=60 (3 months), rebalanceDays=21 (monthly)
+ * @returns {Object} { portfolio: [{date, value}], allocations: [{date, SPY, IEF, GLD, EFA, EEM, CASH}] }
  */
 function calculateSimpleRiskParity(priceData, lookbackDays = 60, rebalanceDays = 21) {
   const tickers = Object.keys(priceData);
@@ -418,6 +459,7 @@ function calculateSimpleRiskParity(priceData, lookbackDays = 60, rebalanceDays =
   }
 
   const portfolio = [];
+  const allocations = [];
   let lastWeights = null;
 
   for (let i = 0; i < allDates.length; i++) {
@@ -463,10 +505,16 @@ function calculateSimpleRiskParity(priceData, lookbackDays = 60, rebalanceDays =
 
     if (hasAllPrices) {
       portfolio.push({ date, value: portfolioValue });
+
+      // Store allocation weights
+      allocations.push({
+        date,
+        ...weights
+      });
     }
   }
 
-  return portfolio;
+  return { portfolio, allocations };
 }
 
 /**
@@ -480,13 +528,15 @@ function calculateSimpleRiskParity(priceData, lookbackDays = 60, rebalanceDays =
  * - Works with 5 ETFs for global diversification
  *
  * DAILY DATA: momentumLookback=252 (12 months), volatilityLookback=60 (3 months), rebalanceDays=21 (monthly)
+ * @returns {Object} { portfolio: [{date, value}], allocations: [{date, SPY, IEF, GLD, EFA, EEM, CASH}] }
  */
 function calculateOptimizedRiskParity(priceData, momentumLookback = 252, volatilityLookback = 60, rebalanceDays = 21, momentumWeight = 0.7, rpWeight = 0.3) {
   const tickers = Object.keys(priceData);
-  if (tickers.length === 0) return [];
+  if (tickers.length === 0) return { portfolio: [], allocations: [] };
 
   const allDates = priceData[tickers[0]].map(p => p.date);
   const portfolio = [];
+  const allocations = [];
 
   // Initialize with equal weights
   let currentWeights = Object.fromEntries(
@@ -607,11 +657,17 @@ function calculateOptimizedRiskParity(priceData, momentumLookback = 252, volatil
 
     if (hasAllPrices) {
       portfolio.push({ date, value: portfolioValue });
+
+      // Store allocation weights
+      allocations.push({
+        date,
+        ...currentWeights
+      });
     }
   }
 
   console.log(`Optimised Strategy (Momentum + Risk Parity): ${portfolio.length} data points`);
-  return portfolio;
+  return { portfolio, allocations };
 }
 
 function computeReturnStats(valueSeries) {
@@ -688,7 +744,7 @@ function calculateOptimizedRiskBudgeting(
   optimizerOptions = {}
 ) {
   const tickers = Object.keys(priceData);
-  if (tickers.length === 0) return [];
+  if (tickers.length === 0) return { portfolio: [], allocations: [] };
 
   const priceMap = {};
   const allDatesSet = new Set();
@@ -704,13 +760,14 @@ function calculateOptimizedRiskBudgeting(
   });
 
   const allDates = Array.from(allDatesSet).sort();
-  if (!allDates.length) return [];
+  if (!allDates.length) return { portfolio: [], allocations: [] };
 
   let currentWeights = Object.fromEntries(
     tickers.map((ticker) => [ticker, 1 / tickers.length])
   );
 
   const portfolio = [];
+  const allocations = [];
 
   allDates.forEach((date, idx) => {
     const hasAllPrices = tickers.every((ticker) => priceMap[ticker].has(date));
@@ -779,9 +836,15 @@ function calculateOptimizedRiskBudgeting(
       value += currentWeights[ticker] * priceMap[ticker].get(date);
     });
     portfolio.push({ date, value });
+
+    // Store allocation weights
+    allocations.push({
+      date,
+      ...currentWeights
+    });
   });
 
-  return portfolio;
+  return { portfolio, allocations };
 }
 
 function calculateEnhancedRiskParityWithDCC(
@@ -792,7 +855,7 @@ function calculateEnhancedRiskParityWithDCC(
   correlationPenaltyFactor = 0.5
 ) {
   const tickers = Object.keys(priceData);
-  if (tickers.length === 0) return [];
+  if (tickers.length === 0) return { portfolio: [], allocations: [] };
 
   const priceMap = {};
   const allDatesSet = new Set();
@@ -808,12 +871,13 @@ function calculateEnhancedRiskParityWithDCC(
   });
 
   const allDates = Array.from(allDatesSet).sort();
-  if (!allDates.length) return [];
+  if (!allDates.length) return { portfolio: [], allocations: [] };
 
   let currentWeights = Object.fromEntries(
     tickers.map((ticker) => [ticker, 1 / tickers.length])
   );
   const portfolio = [];
+  const allocations = [];
 
   allDates.forEach((date, idx) => {
     const hasAllPrices = tickers.every((ticker) => priceMap[ticker].has(date));
@@ -931,9 +995,15 @@ function calculateEnhancedRiskParityWithDCC(
       value += currentWeights[ticker] * priceMap[ticker].get(date);
     });
     portfolio.push({ date, value });
+
+    // Store allocation weights
+    allocations.push({
+      date,
+      ...currentWeights
+    });
   });
 
-  return portfolio;
+  return { portfolio, allocations };
 }
 
 /**

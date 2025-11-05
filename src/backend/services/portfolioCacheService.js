@@ -182,11 +182,22 @@ function buildSnapshot({
   tickers,
   normalizedPriceData,
   strategySeries,
+  allocationData,
   generatedAt,
 }) {
   const filteredStrategies = {};
   for (const [strategyKey, series] of Object.entries(strategySeries)) {
     filteredStrategies[strategyKey] = filterSeriesByCutoff(series, cutoffDate);
+  }
+
+  // Filter allocation data by cutoff date
+  const filteredAllocations = {};
+  if (allocationData) {
+    for (const [strategyKey, allocations] of Object.entries(allocationData)) {
+      if (allocations && Array.isArray(allocations)) {
+        filteredAllocations[strategyKey] = filterSeriesByCutoff(allocations, cutoffDate);
+      }
+    }
   }
 
   // Build chart data using full histories but clip to the requested cutoff date
@@ -210,6 +221,7 @@ function buildSnapshot({
     data: chartData,
     metrics,
     strategyKeys,
+    allocations: filteredAllocations,  // Add allocation data to snapshot
     rawPoints: {
       ...Object.fromEntries(
         strategyKeys.map((key) => [
@@ -236,10 +248,19 @@ async function generateSnapshots({
   const normalizedData = yahooFinanceService.normalizeToBase100(rawData);
 
   const strategySeries = {};
+  const allocationData = {};
   for (const [strategyKey, builder] of Object.entries(STRATEGY_BUILDERS)) {
-    const series = builder(normalizedData);
-    if (Array.isArray(series) && series.length > 0) {
-      strategySeries[strategyKey] = series;
+    const result = builder(normalizedData);
+
+    // Handle new { portfolio, allocations } structure
+    if (result && typeof result === 'object' && result.portfolio && result.allocations) {
+      strategySeries[strategyKey] = result.portfolio;
+      allocationData[strategyKey] = result.allocations;
+    }
+    // Backward compatibility: handle old array format (should not occur after our changes)
+    else if (Array.isArray(result) && result.length > 0) {
+      strategySeries[strategyKey] = result;
+      console.warn(`Strategy ${strategyKey} returned old array format without allocations`);
     }
   }
 
@@ -272,6 +293,7 @@ async function generateSnapshots({
       tickers,
       normalizedPriceData: normalizedData,
       strategySeries,
+      allocationData,  // Pass allocation data to buildSnapshot
       generatedAt,
     });
   }
@@ -314,6 +336,7 @@ async function writeSnapshotsToDisk(
   const defaultPayload = {
     data: defaultSnapshot.data,
     metrics: defaultSnapshot.metrics,
+    allocations: defaultSnapshot.allocations || {},  // Include allocation data
     generatedAt: snapshots.generatedAt,
     periodYears: defaultSnapshot.periodYears,
     periodsAvailable: Object.keys(snapshots.periods).map(Number),

@@ -52,6 +52,7 @@ async function getPreviewData(req, res) {
       previewData = {
         data: defaultSnapshot.data,
         metrics: defaultSnapshot.metrics,
+        allocations: defaultSnapshot.allocations || {},  // Include allocation data
         generatedAt: snapshots.generatedAt,
         periodYears: defaultSnapshot.periodYears,
         periodsAvailable: Object.keys(snapshots.periods).map(Number),
@@ -76,6 +77,7 @@ async function getPreviewData(req, res) {
         responsePayload = {
           data: periodSnapshot.data,
           metrics: periodSnapshot.metrics,
+          allocations: periodSnapshot.allocations || {},  // Include allocation data
           generatedAt: periodSnapshot.generatedAt,
           periodYears: periodSnapshot.periodYears,
           dataStartDate: periodSnapshot.dataStartDate,
@@ -167,17 +169,17 @@ async function calculatePortfolio(req, res) {
       });
     }
 
-    let portfolio;
+    let result;
 
     switch (strategy) {
       case "equal":
-        portfolio = portfolioService.calculateEqualWeight(prices);
+        result = portfolioService.calculateEqualWeight(prices);
         break;
       case "simple-rp":
-        portfolio = portfolioService.calculateSimpleRiskParity(prices);
+        result = portfolioService.calculateSimpleRiskParity(prices);
         break;
       case "optimized-rp":
-        portfolio = portfolioService.calculateOptimizedRiskParity(prices);
+        result = portfolioService.calculateOptimizedRiskParity(prices);
         break;
       default:
         return res.status(400).json({
@@ -186,11 +188,16 @@ async function calculatePortfolio(req, res) {
         });
     }
 
+    // Handle new { portfolio, allocations } structure
+    const portfolio = result.portfolio || result; // Backward compatibility
+    const allocations = result.allocations || null;
+
     const metrics = portfolioService.calculateMetrics(portfolio);
 
     res.json({
       success: true,
       portfolio,
+      allocations,  // Include allocation data in API response
       metrics: {
         totalReturn: Math.round(metrics.totalReturn * 10000) / 100,
         annualReturn: Math.round(metrics.annualReturn * 10000) / 100,

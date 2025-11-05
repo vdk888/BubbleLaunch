@@ -1266,23 +1266,49 @@
   };
 
   /**
-   * Get static allocations for fixed-weight strategies
-   * Returns null for dynamic strategies
+   * Get allocation data from portfolio cache for a given strategy
+   * Returns allocation array from backend data or null if not available
+   * @param {Object} portfolioData - The portfolio data containing allocations
+   * @param {string} strategy - Strategy key (e.g., 'equalWeight', 'optimizedRP')
+   * @returns {Array|null} Array of allocation objects with {date, SPY, IEF, GLD, EFA, EEM, CASH} or null
    */
-  function getStaticAllocations(strategy) {
-    switch(strategy) {
-      case 'equalWeight':
-        // Equal weight across all 5 ETFs (20% each)
-        return { SPY: 0.20, IEF: 0.20, GLD: 0.20, EFA: 0.20, EEM: 0.20, CASH: 0 };
-
-      case 'sixtyForty':
-        // 60% SPY, 40% IEF
-        return { SPY: 0.60, IEF: 0.40, GLD: 0, EFA: 0, EEM: 0, CASH: 0 };
-
-      default:
-        // Dynamic strategies - return null
-        return null;
+  function getAllocationData(portfolioData, strategy) {
+    // Check if portfolio data has allocations
+    if (!portfolioData || !portfolioData.allocations) {
+      console.warn('No allocation data in portfolio data');
+      return null;
     }
+
+    // Map frontend strategy keys to backend allocation keys
+    const strategyKeyMap = {
+      'equalWeight': 'equalWeight',
+      'sixtyForty': 'sixtyForty',
+      'simpleRiskParity': 'simpleRP',
+      'optimizedRiskParity': 'optimizedRP',
+      'momentumTilt': 'momentumTilt',
+      'hierarchicalRiskParity': 'hierarchicalRiskParity',
+      'optimizedRiskBudgeting': 'optimizedRiskBudgeting',
+      'enhancedRiskParityDCC': 'enhancedRiskParityDCC',
+      'customMix': 'customMix'
+    };
+
+    const allocationKey = strategyKeyMap[strategy] || strategy;
+    const allocationArray = portfolioData.allocations[allocationKey];
+
+    // If not found, log available keys for debugging
+    if (!allocationArray) {
+      console.warn(`No allocation data for strategy: ${strategy} (mapped to: ${allocationKey})`);
+      console.log('Available allocation keys:', Object.keys(portfolioData.allocations));
+      return null;
+    }
+
+    // Validate allocation array structure
+    if (!Array.isArray(allocationArray) || allocationArray.length === 0) {
+      console.warn(`Invalid allocation data for strategy ${strategy}: not an array or empty`);
+      return null;
+    }
+
+    return allocationArray;
   }
 
   /**
@@ -1453,17 +1479,17 @@
     // Update dropdown selector
     updateAllocationStrategySelector();
 
-    // Get allocations for the strategy
-    const allocations = getStaticAllocations(displayStrategy);
+    // Get allocation data array from portfolio data
+    const allocationArray = getAllocationData(portfolioData, displayStrategy);
 
-    if (!allocations) {
-      // Dynamic strategy - show notice, hide chart
+    if (!allocationArray || allocationArray.length === 0) {
+      // No allocation data - show notice, hide chart
       allocationCanvas.style.display = 'none';
       if (allocationNotice) allocationNotice.style.display = 'block';
       return;
     }
 
-    // Static strategy - show chart, hide notice
+    // We have allocation data - show chart, hide notice
     allocationCanvas.style.display = 'block';
     if (allocationNotice) allocationNotice.style.display = 'none';
 
@@ -1474,35 +1500,51 @@
 
     if (!allocationChart) return;
 
-    // Get dates from portfolio data (with downsampling matching main chart)
-    const normalizedRows = ensureNormalizedCache(portfolioData);
+    // Filter allocation data to match the same time period as the main chart
     const dataStartDate = portfolioData.dataStartDate ? new Date(portfolioData.dataStartDate) : null;
-    const filteredRows = dataStartDate
-      ? normalizedRows.filter(d => new Date(d.date) >= dataStartDate)
-      : normalizedRows;
+    const filteredAllocations = dataStartDate
+      ? allocationArray.filter(alloc => new Date(alloc.date) >= dataStartDate)
+      : allocationArray;
 
+    // Apply same downsampling to allocation data as main chart
     const periodYears = portfolioData.periodYears || currentPeriod || 20;
-    const displayRows = downsampleForDisplay(filteredRows, periodYears);
 
+    // Helper function to get downsample rate (matching main chart logic)
+    function getDownsampleRate(years) {
+      if (years <= 1) return 1;
+      if (years <= 3) return 2;
+      if (years <= 5) return 3;
+      return 7;
+    }
+
+    const downsampleRate = getDownsampleRate(periodYears);
+    const downsampledAllocations = filteredAllocations.filter((_, index) => index % downsampleRate === 0);
+
+    // Create labels from allocation dates
     const lang = getCurrentLanguage();
     const locale = lang === 'en' ? 'en-US' : 'fr-FR';
-    const labels = displayRows.map(d => {
-      const date = new Date(d.date);
+    const labels = downsampledAllocations.map(alloc => {
+      const date = new Date(alloc.date);
       return date.toLocaleDateString(locale, { year: 'numeric', month: 'short' });
     });
 
     // Create datasets for each ETF (stacked)
     const etfOrder = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'CASH'];
-    const datasets = etfOrder
-      .filter(ticker => allocations[ticker] > 0) // Only show non-zero allocations
-      .map(ticker => ({
-        label: ticker,
-        data: displayRows.map(() => allocations[ticker]),
-        backgroundColor: ETF_COLORS[ticker] + 'CC', // Add opacity
-        borderColor: ETF_COLORS[ticker],
-        borderWidth: 1,
-        fill: true
-      }));
+
+    // Determine which ETFs are actually used (have non-zero allocations at any point)
+    const usedETFs = etfOrder.filter(ticker => {
+      return downsampledAllocations.some(alloc => (alloc[ticker] || 0) > 0.001); // 0.1% threshold
+    });
+
+    const datasets = usedETFs.map(ticker => ({
+      label: ticker,
+      data: downsampledAllocations.map(alloc => alloc[ticker] || 0),
+      backgroundColor: ETF_COLORS[ticker] + '99', // Add transparency
+      borderColor: ETF_COLORS[ticker],
+      borderWidth: 1,
+      fill: true,
+      tension: 0.4
+    }));
 
     // Update chart
     allocationChart.data.labels = labels;
@@ -1695,6 +1737,15 @@
         portfolioData = result;
         ensureNormalizedCache(portfolioData);
         currentPeriod = result.periodYears || period || currentPeriod;
+
+        // Debug logging for allocation data structure
+        console.log('Portfolio data loaded:', {
+          hasAllocations: !!portfolioData.allocations,
+          allocationKeys: portfolioData.allocations ? Object.keys(portfolioData.allocations) : [],
+          sampleAllocation: portfolioData.allocations && portfolioData.allocations.equalWeight
+            ? portfolioData.allocations.equalWeight[0]
+            : null
+        });
 
         // Update cache age warning and metadata display
         updateCacheAgeWarning(result.cacheMetadata);
