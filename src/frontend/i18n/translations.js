@@ -653,8 +653,8 @@ const translations = {
     fr: "Suivre les gagnants, rendements 100 jours"
   },
   "simulator.strategy.momentum.tooltip": {
-    en: "Allocates more weight to assets with positive 100-day momentum. Assets with negative returns get 0% allocation. Constraints: minimum 2% per asset, maximum 30% to prevent over-concentration. Monthly rebalancing to capture trending moves.",
-    fr: "Alloue plus de poids aux actifs avec un momentum positif sur 100 jours. Les actifs en baisse reçoivent 0%. Contraintes : minimum 2% par actif, maximum 30% pour éviter la concentration. Rééquilibrage mensuel pour capturer les tendances."
+    en: "Ranks assets by 100-day momentum and allocates proportionally. Worst performer gets 2%, best performer gets 30%. All assets receive allocation regardless of performance direction. Monthly rebalancing captures trending moves while maintaining diversification.",
+    fr: "Classe les actifs par momentum sur 100 jours et alloue proportionnellement. Le pire performeur reçoit 2%, le meilleur 30%. Tous les actifs reçoivent une allocation quelle que soit la direction. Rééquilibrage mensuel pour capturer les tendances tout en maintenant la diversification."
   },
   "simulator.strategy.customMix": {
     en: "Create Your Mix",

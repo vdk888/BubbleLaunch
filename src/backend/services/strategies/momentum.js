@@ -182,37 +182,49 @@ function calculateMomentum(normalizedData, lookbackDays = 100, rebalanceDays = 2
         );
       });
 
-      // Calculate total momentum (only positive scores)
-      const totalMomentum = Object.values(momentumScores).reduce(function(sum, score) {
-        return sum + score;
+      // Rank assets by momentum (worst to best)
+      const sortedTickers = tickers.slice().sort(function(a, b) {
+        return momentumScores[a] - momentumScores[b]; // Ascending order
+      });
+
+      // Find min and max momentum scores
+      const minMomentum = momentumScores[sortedTickers[0]];
+      const maxMomentum = momentumScores[sortedTickers[sortedTickers.length - 1]];
+      const momentumRange = maxMomentum - minMomentum;
+
+      // Calculate weights: worst performer gets minWeight, best gets maxWeight
+      const rawWeights = {};
+      if (momentumRange > 0) {
+        // Linear interpolation between minWeight and maxWeight based on momentum ranking
+        tickers.forEach(function(ticker) {
+          const normalizedScore = (momentumScores[ticker] - minMomentum) / momentumRange;
+          rawWeights[ticker] = minWeight + normalizedScore * (maxWeight - minWeight);
+        });
+      } else {
+        // All assets have same momentum, use equal weight
+        tickers.forEach(function(ticker) {
+          rawWeights[ticker] = 1.0 / tickers.length;
+        });
+      }
+
+      // Normalize weights to sum to 1.0
+      const totalWeight = Object.values(rawWeights).reduce(function(sum, w) {
+        return sum + w;
       }, 0);
 
-      if (totalMomentum > 0) {
-        // Calculate proportional raw weights based on momentum
-        const rawWeights = {};
-        tickers.forEach(function(ticker) {
-          rawWeights[ticker] = momentumScores[ticker] / totalMomentum;
-        });
+      tickers.forEach(function(ticker) {
+        currentWeights[ticker] = rawWeights[ticker] / totalWeight;
+      });
 
-        // Apply constraints (min/max) and normalize
-        currentWeights = applyConstraints(rawWeights, tickers, minWeight, maxWeight);
+      rebalanceCount++;
 
-        rebalanceCount++;
-
-        // Log rebalancing periodically (every ~year)
-        if (rebalanceCount % 12 === 1) {
-          console.log(`Momentum rebalancing on ${date}:`,
-            Object.keys(currentWeights).map(function(t) {
-              return t + '=' + (currentWeights[t] * 100).toFixed(1) + '%';
-            }).join(', ')
-          );
-        }
-      } else {
-        // If all momentum scores are zero or negative, use equal weight
-        console.log(`Warning: All momentum scores are zero on ${date}, using equal weight`);
-        tickers.forEach(function(ticker) {
-          currentWeights[ticker] = 1.0 / tickers.length;
-        });
+      // Log rebalancing periodically (every ~year)
+      if (rebalanceCount % 12 === 1) {
+        console.log(`Momentum rebalancing on ${date}:`,
+          Object.keys(currentWeights).map(function(t) {
+            return t + '=' + (currentWeights[t] * 100).toFixed(1) + '%';
+          }).join(', ')
+        );
       }
     }
 
