@@ -19,6 +19,7 @@ const { calculateEnhancedRiskParity: _calculateEnhancedRiskParity } = require('.
 const { calculateHierarchicalRiskParityPortfolio: _calculateHierarchicalRiskParityPortfolio } = require('./strategies/hierarchicalRiskParityPortfolio');
 const { calculateOptimizedRiskBudgeting: _calculateOptimizedRiskBudgeting } = require('./strategies/optimizedRiskBudgeting');
 const { calculateRegimeAwareRiskParity: _calculateRegimeAwareRiskParity } = require('./strategies/regimeAwareRiskParity');
+const { calculateMomentum: _calculateMomentum } = require('./strategies/momentum');
 
 // ═══════════════════════════════════════════════════════════════
 // Helper Functions (kept from original portfolioService.js)
@@ -537,6 +538,22 @@ function calculateRegimeAwareRiskParity(priceData, baseRebalanceFreqDays = 21, b
   return normalizeReturnFormat(result);
 }
 
+/**
+ * Strategy 8: Momentum
+ * Allocates more to assets with higher recent returns (100-day momentum)
+ *
+ * - Calculates 100-day return for each asset
+ * - Allocates proportionally to positive momentum (declining assets get 0%)
+ * - Enforces constraints: minimum 2% per asset, maximum 30% per asset
+ * - Monthly rebalancing (21 days)
+ *
+ * @returns {Object} { portfolio: [{date, value}], allocations: [{date, SPY, IEF, GLD, EFA, EEM, CASH}] }
+ */
+function calculateMomentum(priceData, lookbackDays = 100, rebalanceDays = 21, minWeight = 0.02, maxWeight = 0.30) {
+  const result = _calculateMomentum(priceData, lookbackDays, rebalanceDays, minWeight, maxWeight);
+  return normalizeReturnFormat(result);
+}
+
 // ═══════════════════════════════════════════════════════════════
 // Module Exports
 // ═══════════════════════════════════════════════════════════════
@@ -551,6 +568,7 @@ module.exports = {
   calculateOptimizedRiskBudgeting,
   calculateEnhancedRiskParityWithDCC,
   calculateRegimeAwareRiskParity,
+  calculateMomentum,
 
   // Helper functions (used by strategies and metrics calculation)
   calculateMetrics,

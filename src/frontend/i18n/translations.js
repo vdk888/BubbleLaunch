@@ -644,6 +644,18 @@ const translations = {
     en: "Adaptive risk parity that detects market regimes (volatility, trend, crisis) and adjusts rebalancing frequency (5-27 days), volatility responsiveness (EWMA lambda), and correlation penalties accordingly. Faster rebalancing in crisis, slower in calm markets.",
     fr: "Risk parity adaptatif qui détecte les régimes de marché (volatilité, tendance, crise) et ajuste la fréquence de rééquilibrage (5-27 jours), la réactivité de la volatilité (EWMA lambda) et les pénalités de corrélation en conséquence. Rééquilibrage plus rapide en crise, plus lent en marchés calmes."
   },
+  "simulator.strategy.momentum": {
+    en: "Momentum",
+    fr: "Momentum"
+  },
+  "simulator.strategy.momentum.subtitle": {
+    en: "Follow winners, 100-day returns",
+    fr: "Suivre les gagnants, rendements 100 jours"
+  },
+  "simulator.strategy.momentum.tooltip": {
+    en: "Allocates more weight to assets with positive 100-day momentum. Assets with negative returns get 0% allocation. Constraints: minimum 2% per asset, maximum 30% to prevent over-concentration. Monthly rebalancing to capture trending moves.",
+    fr: "Alloue plus de poids aux actifs avec un momentum positif sur 100 jours. Les actifs en baisse reçoivent 0%. Contraintes : minimum 2% par actif, maximum 30% pour éviter la concentration. Rééquilibrage mensuel pour capturer les tendances."
+  },
   "simulator.strategy.customMix": {
     en: "Create Your Mix",
     fr: "Créez votre Mix"

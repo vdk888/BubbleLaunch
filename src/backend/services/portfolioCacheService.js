@@ -14,6 +14,7 @@ const STRATEGY_BUILDERS = {
   sixtyForty: portfolioService.calculateSixtyForty,
   hierarchicalRiskParity: portfolioService.calculateMinimumVarianceWeights,
   simpleRP: portfolioService.calculateSimpleRiskParity,
+  momentum: portfolioService.calculateMomentum,
   optimizedRP: portfolioService.calculateOptimizedRiskParity,
   optimizedRiskBudgeting: portfolioService.calculateOptimizedRiskBudgeting,
   enhancedRiskParityDCC: portfolioService.calculateEnhancedRiskParityWithDCC,
@@ -25,6 +26,7 @@ const STRATEGY_ORDER = [
   "sixtyForty",
   "hierarchicalRiskParity",
   "simpleRP",
+  "momentum",
   "optimizedRP",
   "optimizedRiskBudgeting",
   "enhancedRiskParityDCC",
@@ -250,17 +252,26 @@ async function generateSnapshots({
   const strategySeries = {};
   const allocationData = {};
   for (const [strategyKey, builder] of Object.entries(STRATEGY_BUILDERS)) {
-    const result = builder(normalizedData);
+    try {
+      console.log(`📊 Calculating strategy: ${strategyKey}...`);
+      const result = builder(normalizedData);
 
-    // Handle new { portfolio, allocations } structure
-    if (result && typeof result === 'object' && result.portfolio && result.allocations) {
-      strategySeries[strategyKey] = result.portfolio;
-      allocationData[strategyKey] = result.allocations;
-    }
-    // Backward compatibility: handle old array format (should not occur after our changes)
-    else if (Array.isArray(result) && result.length > 0) {
-      strategySeries[strategyKey] = result;
-      console.warn(`Strategy ${strategyKey} returned old array format without allocations`);
+      // Handle new { portfolio, allocations } structure
+      if (result && typeof result === 'object' && result.portfolio && result.allocations) {
+        strategySeries[strategyKey] = result.portfolio;
+        allocationData[strategyKey] = result.allocations;
+        console.log(`✅ ${strategyKey}: ${result.portfolio.length} data points`);
+      }
+      // Backward compatibility: handle old array format (should not occur after our changes)
+      else if (Array.isArray(result) && result.length > 0) {
+        strategySeries[strategyKey] = result;
+        console.warn(`⚠️ Strategy ${strategyKey} returned old array format without allocations`);
+      } else {
+        console.error(`❌ Strategy ${strategyKey} returned invalid format:`, typeof result, result ? Object.keys(result) : 'null');
+      }
+    } catch (error) {
+      console.error(`❌ Error calculating ${strategyKey}:`, error.message);
+      console.error(error.stack);
     }
   }
 

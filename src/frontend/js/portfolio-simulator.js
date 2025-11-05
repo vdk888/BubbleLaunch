@@ -349,6 +349,15 @@
       order: 2,
       isBest: false,
     },
+    momentum: {
+      labelKey: 'simulator.strategy.momentum',
+      dataKey: 'momentum',
+      color: '#F97316', // Orange for momentum
+      borderWidth: 2.7,
+      borderDash: [5, 2],
+      order: 1.9,
+      isBest: false,
+    },
     enhancedRiskParityDCC: {
       labelKey: 'simulator.strategy.enhancedRiskParityDCC',
       dataKey: 'enhancedRiskParityDCC',
@@ -416,6 +425,7 @@
         'simulator.strategy.optimizedRiskBudgeting': lang === 'en' ? 'Optimized Risk Budgeting' : 'Répartition de Risque Optimisée',
         'simulator.strategy.optimizedRiskParity': lang === 'en' ? '✨ Optimized' : '✨ Optimisé',
         'simulator.strategy.regimeAwareRP': lang === 'en' ? 'Regime-Aware RP' : 'RP Adaptatif',
+        'simulator.strategy.momentum': 'Momentum',
       };
       return fallbacks[labelKey] || labelKey;
     }

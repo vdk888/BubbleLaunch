@@ -1882,6 +1882,22 @@
             </div>
           </button>
 
+          <button class="strategy-pill" data-strategy="momentum" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.momentum.tooltip">
+              Alloue plus de poids aux actifs avec un momentum positif sur 100 jours. Les actifs en baisse reçoivent 0%. Contraintes : minimum 2% par actif, maximum 30% pour éviter la concentration. Rééquilibrage mensuel pour capturer les tendances.
+            </div>
+            <div class="pill-icon">
+              <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+                <path d="M4 24L10 16L16 20L22 12L28 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M22 12H28V18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="pill-content">
+              <div class="pill-title" data-translate="simulator.strategy.momentum">Momentum</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.momentum.subtitle">Suivre les gagnants, rendements 100 jours</div>
+            </div>
+          </button>
+
           <button class="strategy-pill" data-strategy="optimizedRiskBudgeting" data-tooltip-behavior="press">
             <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.optimizedRiskBudgeting.tooltip">
               Risk parity mathématique sur SPY, IEF, GLD, EFA, EEM et trésorerie. L’optimisation égalise les contributions de risque et réduit les drawdowns, tout en conservant la performance long terme.
