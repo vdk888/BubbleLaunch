@@ -191,19 +191,29 @@ function extractStrategyTimeSeries(chartData, strategyKey) {
  * Apply leverage to a strategy time series
  * @param {Array} timeSeries - Array of {date, value} objects
  * @param {number} leverage - Leverage multiplier (1 or 2)
- * @param {number} borrowingRate - Annual borrowing rate (default: 0.08 = 8%)
+ * @param {number} borrowingRate - Annual borrowing rate (default: 0.0675 = 6.75%)
  * @returns {Array} Leveraged time series with same structure {date, value}
  */
-function applyLeverageToSeries(timeSeries, leverage, borrowingRate = 0.08) {
+function applyLeverageToSeries(timeSeries, leverage, borrowingRate = 0.0675) {
   if (leverage === 1 || !timeSeries || timeSeries.length === 0) {
     return timeSeries;
   }
 
-  return portfolioService.applyLeverageToPortfolio(
+  console.log(`🔍 DEBUG applyLeverageToSeries: Input length=${timeSeries.length}, leverage=${leverage}, rate=${borrowingRate}`);
+  console.log(`🔍 DEBUG applyLeverageToSeries: First 3 values:`, timeSeries.slice(0, 3));
+  console.log(`🔍 DEBUG applyLeverageToSeries: Last 3 values:`, timeSeries.slice(-3));
+
+  const leveragedResult = portfolioService.applyLeverageToPortfolio(
     timeSeries,
     leverage,
     borrowingRate
   );
+
+  console.log(`🔍 DEBUG applyLeverageToSeries: Output length=${leveragedResult.length}`);
+  console.log(`🔍 DEBUG applyLeverageToSeries: First 3 leveraged values:`, leveragedResult.slice(0, 3));
+  console.log(`🔍 DEBUG applyLeverageToSeries: Last 3 leveraged values:`, leveragedResult.slice(-3));
+
+  return leveragedResult;
 }
 
 /**
@@ -253,8 +263,13 @@ function recalculateMetricsForLeveragedStrategy(timeSeries) {
     };
   }
 
+  console.log(`🔍 DEBUG recalculateMetrics: Input length=${timeSeries.length}`);
+  console.log(`🔍 DEBUG recalculateMetrics: First value=${timeSeries[0]?.value}, Last value=${timeSeries[timeSeries.length - 1]?.value}`);
+
   // Use portfolioService.calculateMetrics to get base metrics
   const baseMetrics = portfolioService.calculateMetrics(timeSeries);
+
+  console.log(`🔍 DEBUG recalculateMetrics: baseMetrics=`, JSON.stringify(baseMetrics, null, 2));
 
   // Calculate Calmar Ratio = Annual Return / |Max Drawdown|
   const calmarRatio =
@@ -262,7 +277,7 @@ function recalculateMetricsForLeveragedStrategy(timeSeries) {
       ? Math.abs(baseMetrics.annualReturn / baseMetrics.maxDrawdown)
       : 0;
 
-  return {
+  const result = {
     totalReturn: baseMetrics.totalReturn,
     annualReturn: baseMetrics.annualReturn,
     volatility: baseMetrics.volatility,
@@ -270,6 +285,10 @@ function recalculateMetricsForLeveragedStrategy(timeSeries) {
     maxDrawdown: baseMetrics.maxDrawdown,
     calmarRatio: calmarRatio,
   };
+
+  console.log(`🔍 DEBUG recalculateMetrics: Final result=`, JSON.stringify(result, null, 2));
+
+  return result;
 }
 
 /**
@@ -294,18 +313,21 @@ function applyLeverageToPeriodSnapshot(periodSnapshot, leverage) {
   // Apply leverage to each strategy
   for (const strategyKey of strategyKeys) {
     // Skip ETF tickers (SPY, IEF, GLD, EFA, EEM) - only leverage strategies
-    if (['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'CASH'].includes(strategyKey)) {
+    if (['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'VNQ', 'CASH'].includes(strategyKey)) {
       updatedMetrics[strategyKey] = periodSnapshot.metrics[strategyKey];
       continue;
     }
 
     console.log(`  - Processing strategy: ${strategyKey}`);
+    console.log(`  - Original metrics for ${strategyKey}:`, JSON.stringify(periodSnapshot.metrics[strategyKey], null, 2));
 
     // Extract strategy time series
     const timeSeries = extractStrategyTimeSeries(updatedChartData, strategyKey);
+    console.log(`  - Extracted ${timeSeries.length} data points for ${strategyKey}`);
 
     // Apply leverage
     const leveragedSeries = applyLeverageToSeries(timeSeries, leverage);
+    console.log(`  - Leveraged series has ${leveragedSeries.length} data points`);
 
     // Merge back into chart data
     updatedChartData = mergeStrategyIntoChartData(
@@ -316,6 +338,7 @@ function applyLeverageToPeriodSnapshot(periodSnapshot, leverage) {
 
     // Recalculate metrics
     const newMetrics = recalculateMetricsForLeveragedStrategy(leveragedSeries);
+    console.log(`  - New metrics for ${strategyKey}:`, JSON.stringify(newMetrics, null, 2));
     updatedMetrics[strategyKey] = newMetrics;
   }
 

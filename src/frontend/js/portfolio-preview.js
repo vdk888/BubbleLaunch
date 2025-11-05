@@ -11,7 +11,7 @@
   let chartData = null;
   let hasAnimated = false;
 
-  const ETF_KEYS = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'CASH'];
+  const ETF_KEYS = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'VNQ', 'CASH'];
   const ETF_STYLES = {
     SPY: {
       borderColor: 'rgba(102, 126, 234, 0.4)',

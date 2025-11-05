@@ -15,6 +15,7 @@ const ETF_CONFIG = {
   GLD: "Gold",
   EFA: "MSCI EAFE (Developed Markets)",
   EEM: "MSCI Emerging Markets",
+  VNQ: "Real Estate (US REITs)",
   CASH: "Euro Cash Reserve (2% annual return)",
 };
 const BASE_TICKERS = Object.keys(ETF_CONFIG).filter((ticker) => ticker !== "CASH");

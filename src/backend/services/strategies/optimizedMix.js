@@ -201,7 +201,7 @@ function findOptimalMix(
   priceData,
   strategySeries,
   allocationData = {},
-  tickers = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'CASH'],
+  tickers = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'VNQ', 'CASH'],
   targetMetric = 'annualReturn',
   maxVolatility = 20.0
 ) {
@@ -226,7 +226,7 @@ function findOptimalMix(
   let validCombinations = 0;
 
   // Generate and test combinations on-the-fly (memory efficient streaming)
-  console.log('  🔢 Generating and testing weight combinations (5% increments)...');
+  console.log('  🔢 Generating and testing weight combinations (10% increments)...');
 
   const totalCombinations = generateWeightCombinationsStreaming(
     strategyKeys.length,

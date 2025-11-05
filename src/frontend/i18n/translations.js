@@ -509,8 +509,8 @@ const translations = {
     fr: "Simulateur de Portefeuille"
   },
   "simulator.subtitle": {
-    en: "Compare 6 quantitative strategies across 5 global ETFs with 20 years of real historical data",
-    fr: "Comparez 6 stratégies quantitatives sur 5 ETFs mondiaux avec 20 ans de données historiques réelles"
+    en: "Compare 6 quantitative strategies across 6 global ETFs with 20 years of real historical data",
+    fr: "Comparez 6 stratégies quantitatives sur 6 ETFs mondiaux avec 20 ans de données historiques réelles"
   },
   "simulator.back": {
     en: "Back",
@@ -521,20 +521,20 @@ const translations = {
     fr: "Choisissez votre stratégie"
   },
   "simulator.strategies.description": {
-    en: "Compare six portfolio allocation approaches across 5 global ETFs (SPY, IEF, GLD, EFA, EEM)",
-    fr: "Comparez six approches d'allocation de portefeuille sur 5 ETFs mondiaux (SPY, IEF, GLD, EFA, EEM)"
+    en: "Compare six portfolio allocation approaches across 6 global ETFs (SPY, IEF, GLD, EFA, EEM, VNQ)",
+    fr: "Comparez six approches d'allocation de portefeuille sur 6 ETFs mondiaux (SPY, IEF, GLD, EFA, EEM, VNQ)"
   },
   "simulator.strategy.equalWeight": {
     en: "Equal Allocation",
     fr: "Allocation Égale"
   },
   "simulator.strategy.equalWeight.subtitle": {
-    en: "20% each (5 ETFs)",
-    fr: "20% chacun (5 ETFs)"
+    en: "~16.7% each (6 ETFs)",
+    fr: "~16,7% chacun (6 ETFs)"
   },
   "simulator.strategy.equalWeight.tooltip": {
-    en: "Simple approach: 20% on each global asset (SPY, IEF, GLD, EFA, EEM). Easy to understand and replicate. Ideal baseline for comparing more sophisticated strategies. Performance: +323.5% over 20 years.",
-    fr: "Approche simple : 20% sur chaque actif global (SPY, IEF, GLD, EFA, EEM). Facile à comprendre et à répliquer. Baseline idéale pour comparer les stratégies plus sophistiquées. Performance : +323,5% sur 20 ans."
+    en: "Simple approach: equal allocation across all global assets (SPY, IEF, GLD, EFA, EEM, VNQ). Easy to understand and replicate. Ideal baseline for comparing more sophisticated strategies.",
+    fr: "Approche simple : allocation égale sur tous les actifs mondiaux (SPY, IEF, GLD, EFA, EEM, VNQ). Facile à comprendre et à répliquer. Baseline idéale pour comparer les stratégies plus sophistiquées."
   },
   "simulator.strategy.sixtyForty": {
     en: "60/40 Balanced",
@@ -557,8 +557,8 @@ const translations = {
     fr: "Mix variance minimale"
   },
   "simulator.strategy.hierarchicalRiskParity.tooltip": {
-    en: "Minimum-variance allocation inspired by Hierarchical Risk Parity across 5 ETFs. Balances assets by covariance rather than simple volatility. Performance: +278.2% over 20 years.",
-    fr: "Allocation à variance minimale inspirée du Hierarchical Risk Parity sur 5 ETFs. Équilibre les actifs via la covariance plutôt que la seule volatilité. Performance : +278,2% sur 20 ans."
+    en: "Minimum-variance allocation inspired by Hierarchical Risk Parity across 6 ETFs. Balances assets by covariance rather than simple volatility.",
+    fr: "Allocation à variance minimale inspirée du Hierarchical Risk Parity sur 6 ETFs. Équilibre les actifs via la covariance plutôt que la seule volatilité."
   },
   "simulator.strategy.simpleRP": {
     en: "Risk Parity",
@@ -581,8 +581,8 @@ const translations = {
     fr: "Risque équilibré"
   },
   "simulator.strategy.simpleRiskParity.tooltip": {
-    en: "Weights the 5 global assets (SPY, IEF, GLD, EFA, EEM) by the inverse of their volatility. More volatile assets receive less weight to balance risk contribution. Performance: +324.6% over 20 years.",
-    fr: "Pondère les 5 actifs mondiaux (SPY, IEF, GLD, EFA, EEM) par l'inverse de leur volatilité. Les actifs plus volatils sont réduits pour équilibrer la contribution au risque. Performance : +324,6% sur 20 ans."
+    en: "Weights the 6 global assets (SPY, IEF, GLD, EFA, EEM, VNQ) by the inverse of their volatility. More volatile assets receive less weight to balance risk contribution.",
+    fr: "Pondère les 6 actifs mondiaux (SPY, IEF, GLD, EFA, EEM, VNQ) par l'inverse de leur volatilité. Les actifs plus volatils sont réduits pour équilibrer la contribution au risque."
   },
   "simulator.strategy.enhancedRiskParityDCC": {
     en: "Enhanced Risk Parity (DCC)",
@@ -605,8 +605,8 @@ const translations = {
     fr: "Véritable risk parity"
   },
   "simulator.strategy.optimizedRiskBudgeting.tooltip": {
-    en: "Mathematical risk parity that equalizes risk contributions across SPY, IEF, GLD, EFA, EEM and cash. Gradient-descent optimizer with weekly data smooths drawdowns while keeping long-term outperformance.",
-    fr: "Risk parity mathématique qui égalise les contributions de risque entre SPY, IEF, GLD, EFA, EEM et la trésorerie. L'optimisation par gradient sur données hebdomadaires adoucit les creux tout en conservant la surperformance long terme."
+    en: "Mathematical risk parity that equalizes risk contributions across SPY, IEF, GLD, EFA, EEM, VNQ and cash. Gradient-descent optimizer with daily data smooths drawdowns while keeping long-term outperformance.",
+    fr: "Risk parity mathématique qui égalise les contributions de risque entre SPY, IEF, GLD, EFA, EEM, VNQ et la trésorerie. L'optimisation par gradient sur données quotidiennes adoucit les creux tout en conservant la surperformance long terme."
   },
   "simulator.strategy.optimized": {
     en: "Optimized",
@@ -629,8 +629,8 @@ const translations = {
     fr: "Meilleure performance"
   },
   "simulator.strategy.optimizedRiskParity.tooltip": {
-    en: "AI-optimized strategy across 5 ETFs: 70% Momentum (12-month returns) + 30% Risk Parity (EWMA volatility with λ=0.94). Favors trending assets while maintaining conservative volatility control. Performance: +437.9% over 20 years (+14.8% vs Equal Allocation).",
-    fr: "Stratégie IA optimisée sur 5 ETFs : 70% Momentum (rendements 12 mois) + 30% Risk Parity (volatilité EWMA avec λ=0,94). Privilégie les actifs en tendance tout en gardant un contrôle conservateur de la volatilité. Performance : +437,9% sur 20 ans (+14,8% vs Allocation Égale)."
+    en: "AI-optimized strategy across 6 ETFs combining multiple approaches. Automatically finds the best mix to maximize risk-adjusted returns while controlling drawdowns.",
+    fr: "Stratégie IA optimisée sur 6 ETFs combinant plusieurs approches. Trouve automatiquement le meilleur mix pour maximiser les rendements ajustés au risque tout en contrôlant les drawdowns."
   },
   "simulator.strategy.regimeAwareRP": {
     en: "Regime-Aware RP",
@@ -936,6 +936,10 @@ const translations = {
   "simulator.etf.eem": {
     en: "EEM (Emerging Markets)",
     fr: "EEM (Marchés émergents)"
+  },
+  "simulator.etf.vnq": {
+    en: "VNQ (US REITs)",
+    fr: "VNQ (Immobilier US)"
   },
   "simulator.etf.cash": {
     en: "Cash (2% yield)",

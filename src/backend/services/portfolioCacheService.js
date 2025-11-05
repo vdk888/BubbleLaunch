@@ -5,7 +5,7 @@ const portfolioService = require("./portfolioService");
 
 const DEFAULT_PERIODS = [1, 3, 5, 10, 20];
 const DEFAULT_PERIOD = 20;
-const DEFAULT_TICKERS = ["SPY", "IEF", "GLD", "EFA", "EEM", "CASH"]; // 5 ETFs + Cash reserve
+const DEFAULT_TICKERS = ["SPY", "IEF", "GLD", "EFA", "EEM", "VNQ", "CASH"]; // 6 ETFs + Cash reserve
 const SAMPLE_INTERVAL_DAYS = 1; // Daily data (no downsampling)
 const CACHE_TTL_DAYS = 31; // Cache TTL: 31 days (monthly regeneration)
 

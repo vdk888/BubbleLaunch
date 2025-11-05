@@ -171,10 +171,10 @@ function calculateMetrics(portfolio) {
  * Apply leverage to portfolio returns
  * @param {Array} unleveragedPortfolio - Portfolio without leverage
  * @param {number} leverage - Leverage multiplier (e.g., 2 for 2x)
- * @param {number} borrowingRate - Annual borrowing rate (default: 0.08 = 8%)
+ * @param {number} borrowingRate - Annual borrowing rate (default: 0.0675 = 6.75%)
  * @returns {Array} Leveraged portfolio with borrowing costs
  */
-function applyLeverageToPortfolio(unleveragedPortfolio, leverage = 2, borrowingRate = 0.08) {
+function applyLeverageToPortfolio(unleveragedPortfolio, leverage = 2, borrowingRate = 0.0675) {
   if (!unleveragedPortfolio || unleveragedPortfolio.length === 0) {
     return [];
   }
@@ -222,7 +222,7 @@ function applyLeverageToPortfolio(unleveragedPortfolio, leverage = 2, borrowingR
     previousValue = finalValue;
   }
 
-  console.log(`Applied ${leverage}x leverage: ${leveragedPortfolio.length} data points, ${(borrowingRate * 100).toFixed(1)}% borrowing rate`);
+  console.log(`Applied ${leverage}x leverage: ${leveragedPortfolio.length} data points, ${(borrowingRate * 100).toFixed(2)}% borrowing rate`);
   return leveragedPortfolio;
 }
 
@@ -316,7 +316,7 @@ function calculateOptimizedRiskParity(
   priceData,
   strategySeries = null,
   allocationData = null,
-  tickers = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'CASH']
+  tickers = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'VNQ', 'CASH']
 ) {
   // If called without strategy series (e.g., standalone test), fall back to Enhanced RP
   if (!strategySeries || Object.keys(strategySeries).length < 2) {

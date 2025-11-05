@@ -25,7 +25,7 @@
     exports: true,
   };
   const ETF_VISIBILITY_STORAGE_KEY = 'bubbleSimulatorEtfVisibility';
-  const ETF_KEYS = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'CASH'];
+  const ETF_KEYS = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'VNQ', 'CASH'];
   const etfToggleButtons = new Map();
   let etfVisibility = ETF_KEYS.reduce((acc, key) => {
     acc[key] = true;
@@ -483,6 +483,7 @@
       gld: t['simulator.etf.gld'] ? t['simulator.etf.gld'][lang] : fallback({ en: 'GLD (Gold)', fr: 'GLD (Or)' }),
       efa: t['simulator.etf.efa'] ? t['simulator.etf.efa'][lang] : fallback({ en: 'EFA (Developed ex-US)', fr: 'EFA (Marchés développés)' }),
       eem: t['simulator.etf.eem'] ? t['simulator.etf.eem'][lang] : fallback({ en: 'EEM (Emerging Markets)', fr: 'EEM (Marchés émergents)' }),
+      vnq: t['simulator.etf.vnq'] ? t['simulator.etf.vnq'][lang] : fallback({ en: 'VNQ (US REITs)', fr: 'VNQ (Immobilier US)' }),
       cash: t['simulator.etf.cash'] ? t['simulator.etf.cash'][lang] : fallback({ en: 'Cash (2% yield)', fr: 'Trésorerie (rendement 2 %)' }),
       yAxisTitle: t['simulator.chart.yAxisTitle'] ? t['simulator.chart.yAxisTitle'][lang] : fallback({ en: 'Value (Base 100)', fr: 'Valeur (Base 100)' }),
     };
@@ -795,6 +796,19 @@
         tension: 0.4,
         borderDash: [4, 4],
         order: 2,
+      });
+    }
+    if (isEtfVisible('VNQ')) {
+      datasets.push({
+        label: etfLabels.vnq,
+        data: displayRows.map(d => d.VNQ),
+        borderColor: 'rgba(139, 92, 246, 0.6)',
+        backgroundColor: 'rgba(139, 92, 246, 0.05)',
+        borderWidth: 1.5,
+        pointRadius: 0,
+        tension: 0.4,
+        borderDash: [3, 4],
+        order: 1.75,
       });
     }
     if (isEtfVisible('CASH')) {
@@ -1717,6 +1731,7 @@
     GLD: { border: 'rgba(156, 163, 175, 0.8)', background: 'rgba(156, 163, 175, 0.6)' },
     EFA: { border: 'rgba(129, 140, 248, 0.8)', background: 'rgba(129, 140, 248, 0.55)' },
     EEM: { border: 'rgba(248, 113, 113, 0.8)', background: 'rgba(248, 113, 113, 0.55)' },
+    VNQ: { border: 'rgba(139, 92, 246, 0.8)', background: 'rgba(139, 92, 246, 0.6)' },
     CASH: { border: 'rgba(34, 197, 94, 0.8)', background: 'rgba(34, 197, 94, 0.6)' }
   };
 
@@ -1986,7 +2001,7 @@
     });
 
     // Create datasets for each ETF (stacked)
-    const etfOrder = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'CASH'];
+    const etfOrder = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'VNQ', 'CASH'];
 
     // Determine which ETFs are actually used (have non-zero allocations at any point)
     const usedETFs = etfOrder.filter(ticker => {
