@@ -6,7 +6,8 @@ const portfolioService = require("./portfolioService");
 const DEFAULT_PERIODS = [1, 3, 5, 10, 20];
 const DEFAULT_PERIOD = 20;
 const DEFAULT_TICKERS = ["SPY", "IEF", "GLD", "EFA", "EEM", "CASH"]; // 5 ETFs + Cash reserve
-const SAMPLE_INTERVAL_DAYS = 1; // weekly data already downsampled
+const SAMPLE_INTERVAL_DAYS = 1; // Daily data (no downsampling)
+const CACHE_TTL_DAYS = 31; // Cache TTL: 31 days (monthly regeneration)
 
 const STRATEGY_BUILDERS = {
   equalWeight: portfolioService.calculateEqualWeight,
@@ -326,13 +327,153 @@ async function writeSnapshotsToDisk(
   const defaultPath = path.join(cacheDir, defaultFilename);
   await fs.writeFile(defaultPath, JSON.stringify(defaultPayload, null, 2), "utf-8");
 
-  return { defaultPath, multiPath, defaultSnapshot };
+  // Calculate total trading days included (from largest period)
+  const maxPeriod = Math.max(...Object.keys(snapshots.periods).map(Number));
+  const maxPeriodSnapshot = snapshots.periods[String(maxPeriod)];
+  const tradingDaysIncluded = maxPeriodSnapshot?.data?.length || 0;
+
+  // Update cache metadata
+  const now = new Date();
+  const metadata = {
+    lastGenerated: now.toISOString(),
+    nextScheduled: calculateNextScheduled(now),
+    dataFrequency: "daily",
+    tradingDaysIncluded,
+    strategiesIncluded: snapshots.strategyKeys || [],
+    ttlDays: CACHE_TTL_DAYS,
+    version: "1.0",
+    cacheStatus: "ready",
+  };
+
+  await writeCacheMetadata(metadata, cacheDir);
+  console.log(`✅ Cache regenerated successfully (${tradingDaysIncluded} trading days, ${snapshots.strategyKeys?.length || 0} strategies)`);
+
+  return { defaultPath, multiPath, defaultSnapshot, metadata };
+}
+
+/**
+ * Read cache metadata from disk
+ * @returns {Promise<Object>} Cache metadata object
+ */
+async function readCacheMetadata(cacheDir = path.join(__dirname, "../cache")) {
+  const metadataPath = path.join(cacheDir, "cache-metadata.json");
+
+  try {
+    const content = await fs.readFile(metadataPath, "utf-8");
+    return JSON.parse(content);
+  } catch (error) {
+    // Return default metadata if file doesn't exist
+    console.warn("Cache metadata not found, using defaults");
+    return {
+      lastGenerated: null,
+      nextScheduled: null,
+      dataFrequency: "daily",
+      tradingDaysIncluded: 0,
+      strategiesIncluded: [],
+      ttlDays: CACHE_TTL_DAYS,
+      version: "1.0",
+      cacheStatus: "uninitialized",
+    };
+  }
+}
+
+/**
+ * Write cache metadata to disk
+ * @param {Object} metadata - Metadata object to save
+ * @param {string} cacheDir - Cache directory path
+ */
+async function writeCacheMetadata(metadata, cacheDir = path.join(__dirname, "../cache")) {
+  await fs.mkdir(cacheDir, { recursive: true });
+  const metadataPath = path.join(cacheDir, "cache-metadata.json");
+  await fs.writeFile(metadataPath, JSON.stringify(metadata, null, 2), "utf-8");
+  console.log(`📊 Cache metadata saved: ${metadataPath}`);
+}
+
+/**
+ * Calculate days since last cache generation
+ * @param {Object} metadata - Cache metadata
+ * @returns {number} Days since last generation (or Infinity if never generated)
+ */
+function getCacheAgeDays(metadata) {
+  if (!metadata.lastGenerated) {
+    return Infinity;
+  }
+
+  const lastGenerated = new Date(metadata.lastGenerated);
+  const now = new Date();
+  const diffMs = now - lastGenerated;
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+  return diffDays;
+}
+
+/**
+ * Calculate next scheduled cache regeneration (last Sunday of next month at 2 AM UTC)
+ * @param {Date} lastGenerated - Last generation timestamp
+ * @returns {string} ISO string of next scheduled regeneration
+ */
+function calculateNextScheduled(lastGenerated = new Date()) {
+  const current = new Date(lastGenerated);
+
+  // Move to next month
+  current.setMonth(current.getMonth() + 1);
+
+  // Find last day of that month
+  const lastDay = new Date(current.getFullYear(), current.getMonth() + 1, 0);
+
+  // Find last Sunday of that month
+  const dayOfWeek = lastDay.getDay();
+  const daysToSubtract = dayOfWeek; // Sunday is 0
+  const lastSunday = new Date(lastDay);
+  lastSunday.setDate(lastDay.getDate() - daysToSubtract);
+
+  // Set time to 2 AM UTC
+  lastSunday.setUTCHours(2, 0, 0, 0);
+
+  return lastSunday.toISOString();
+}
+
+/**
+ * Validate cache age and determine if regeneration is needed
+ * @param {Object} metadata - Cache metadata
+ * @returns {Object} { isValid: boolean, ageDays: number, reason: string }
+ */
+function validateCacheAge(metadata) {
+  const ageDays = getCacheAgeDays(metadata);
+
+  if (ageDays === Infinity) {
+    return {
+      isValid: false,
+      ageDays: Infinity,
+      reason: "Cache has never been generated",
+    };
+  }
+
+  if (ageDays > metadata.ttlDays) {
+    return {
+      isValid: false,
+      ageDays,
+      reason: `Cache is stale (${ageDays} days old, TTL: ${metadata.ttlDays} days)`,
+    };
+  }
+
+  return {
+    isValid: true,
+    ageDays,
+    reason: `Cache is fresh (${ageDays} days old)`,
+  };
 }
 
 module.exports = {
   DEFAULT_PERIODS,
   DEFAULT_PERIOD,
+  CACHE_TTL_DAYS,
   generateSnapshots,
   getSnapshotForPeriod,
   writeSnapshotsToDisk,
+  readCacheMetadata,
+  writeCacheMetadata,
+  getCacheAgeDays,
+  calculateNextScheduled,
+  validateCacheAge,
 };

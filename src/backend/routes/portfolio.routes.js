@@ -7,5 +7,6 @@ router.get("/preview-data", portfolioController.getPreviewData);
 router.get("/etf-data", portfolioController.getETFData);
 router.post("/calculate", portfolioController.calculatePortfolio);
 router.post("/clear-cache", portfolioController.clearCache);
+router.post("/regenerate-cache", portfolioController.regenerateCache);
 
 module.exports = router;

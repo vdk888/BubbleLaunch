@@ -4,6 +4,7 @@ const configureExpress = require("./config/express");
 const routes = require("./routes");
 const errorHandler = require("./middleware/error-handler");
 const imageService = require("./services/imageService");
+const cacheScheduler = require("./services/cacheScheduler");
 
 const app = express();
 const port = env.PORT;
@@ -25,6 +26,9 @@ app.use(errorHandler);
 // Start server
 app.listen(port, () => {
   console.log("Server running at http://localhost:" + port);
+
+  // Initialize cache scheduler (monthly regeneration on last Sunday at 2 AM UTC)
+  cacheScheduler.initialize();
 });
 
 // Graceful shutdown to save cache

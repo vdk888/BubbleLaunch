@@ -1258,6 +1258,57 @@
   }
 
   /**
+   * Update cache age warning banner
+   * Shows warning if cache is older than 31 days
+   */
+  function updateCacheAgeWarning(cacheMetadata) {
+    const warningBanner = document.getElementById('cacheAgeWarning');
+    const cacheInfoElement = document.getElementById('cacheInfo');
+
+    if (!cacheMetadata) {
+      // Hide warning and info if no metadata
+      if (warningBanner) warningBanner.style.display = 'none';
+      if (cacheInfoElement) cacheInfoElement.style.display = 'none';
+      return;
+    }
+
+    const { ageDays, lastGenerated } = cacheMetadata;
+
+    // Show warning if cache is stale (>31 days)
+    if (warningBanner && ageDays > 31) {
+      const lang = getCurrentLanguage();
+      const warningText = lang === 'en'
+        ? '📊 Data is being refreshed. The latest update will be available soon.'
+        : '📊 Les données sont en cours de rafraîchissement. La dernière mise à jour sera bientôt disponible.';
+
+      warningBanner.textContent = warningText;
+      warningBanner.style.display = 'block';
+    } else if (warningBanner) {
+      warningBanner.style.display = 'none';
+    }
+
+    // Show cache info if cache is >7 days old (optional info display)
+    if (cacheInfoElement && ageDays > 7 && ageDays !== Infinity && lastGenerated) {
+      const lang = getCurrentLanguage();
+      const date = new Date(lastGenerated);
+      const formattedDate = date.toLocaleDateString(lang === 'en' ? 'en-US' : 'fr-FR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+
+      const infoText = lang === 'en'
+        ? `Data updated: ${formattedDate}, Cache age: ${ageDays} days`
+        : `Données mises à jour : ${formattedDate}, Âge du cache : ${ageDays} jours`;
+
+      cacheInfoElement.textContent = infoText;
+      cacheInfoElement.style.display = 'block';
+    } else if (cacheInfoElement) {
+      cacheInfoElement.style.display = 'none';
+    }
+  }
+
+  /**
    * Load and display portfolio data
    */
   async function loadPortfolioData(strategy, period, leverage = 1) {
@@ -1268,6 +1319,9 @@
         portfolioData = result;
         ensureNormalizedCache(portfolioData);
         currentPeriod = result.periodYears || period || currentPeriod;
+
+        // Update cache age warning and metadata display
+        updateCacheAgeWarning(result.cacheMetadata);
 
         refreshCustomStrategyDataset();
         updateChart(portfolioData, strategy);

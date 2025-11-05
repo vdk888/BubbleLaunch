@@ -1648,6 +1648,11 @@
         </div>
       </div>
 
+      <!-- Cache Age Warning Banner (shown only if cache is stale) -->
+      <div id="cacheAgeWarning" style="display: none; background: #FEF3C7; border: 1px solid #F59E0B; border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; text-align: center; font-size: 0.9375rem; color: #92400E;">
+        📊 Data is being refreshed. The latest update will be available soon.
+      </div>
+
       <!-- Main Chart Area -->
       <div class="main-chart-area" id="mainChartArea">
         <div class="chart-card">
@@ -1681,6 +1686,10 @@
           <div style="text-align: center; margin-top: 1rem;">
             <p style="font-size: 0.875rem; color: #6B7280;" data-translate="simulator.chart.disclaimer">
               Données basées sur l'historique réel des ETFs SPY, IEF et GLD (Base 100)
+            </p>
+            <!-- Cache metadata info (shown only if cache is >7 days old) -->
+            <p id="cacheInfo" style="display: none; font-size: 0.8125rem; color: #9CA3AF; margin-top: 0.5rem;">
+              Data updated: [DATE], Cache age: [X days]
             </p>
           </div>
         </div>

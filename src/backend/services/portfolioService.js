@@ -210,7 +210,7 @@ function calculateSixtyForty(priceData) {
   });
 }
 
-function calculateMomentumTilt(priceData, lookbackDays = 52, rebalanceDays = 4) {
+function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21) {
   const tickers = Object.keys(priceData);
   if (tickers.length === 0) return [];
 
@@ -266,7 +266,7 @@ function calculateMomentumTilt(priceData, lookbackDays = 52, rebalanceDays = 4) 
   return portfolio;
 }
 
-function calculateMomentumTilt(priceData, lookbackDays = 52, rebalanceDays = 4) {
+function calculateMomentumTilt(priceData, lookbackDays = 252, rebalanceDays = 21) {
   const tickers = Object.keys(priceData);
   if (tickers.length === 0) return [];
 
@@ -323,7 +323,7 @@ function calculateMomentumTilt(priceData, lookbackDays = 52, rebalanceDays = 4) 
   return portfolio;
 }
 
-function calculateMinimumVarianceWeights(priceData, lookbackDays = 52, rebalanceDays = 4) {
+function calculateMinimumVarianceWeights(priceData, lookbackDays = 252, rebalanceDays = 21) {
   const tickers = Object.keys(priceData);
   if (tickers.length === 0) return [];
 
@@ -405,8 +405,9 @@ function calculateMinimumVarianceWeights(priceData, lookbackDays = 52, rebalance
 /**
  * Strategy 2: Simple Risk Parity
  * Inverse volatility weighting with monthly rebalancing
+ * DAILY DATA: lookbackDays=60 (3 months), rebalanceDays=21 (monthly)
  */
-function calculateSimpleRiskParity(priceData, lookbackDays = 12, rebalanceDays = 4) {
+function calculateSimpleRiskParity(priceData, lookbackDays = 60, rebalanceDays = 21) {
   const tickers = Object.keys(priceData);
   const allDates = priceData[tickers[0]].map(p => p.date);
 
@@ -478,9 +479,9 @@ function calculateSimpleRiskParity(priceData, lookbackDays = 12, rebalanceDays =
  * - Monthly rebalancing (21 days)
  * - Works with 5 ETFs for global diversification
  *
- * Expected performance: Should beat Equal Weight by +10% or more over 20 years
+ * DAILY DATA: momentumLookback=252 (12 months), volatilityLookback=60 (3 months), rebalanceDays=21 (monthly)
  */
-function calculateOptimizedRiskParity(priceData, momentumLookback = 52, volatilityLookback = 12, rebalanceDays = 4, momentumWeight = 0.7, rpWeight = 0.3) {
+function calculateOptimizedRiskParity(priceData, momentumLookback = 252, volatilityLookback = 60, rebalanceDays = 21, momentumWeight = 0.7, rpWeight = 0.3) {
   const tickers = Object.keys(priceData);
   if (tickers.length === 0) return [];
 
@@ -682,8 +683,8 @@ function calculateMetrics(portfolio) {
 
 function calculateOptimizedRiskBudgeting(
   priceData,
-  lookbackPeriods = 52,
-  rebalancePeriods = 4,
+  lookbackPeriods = 252,
+  rebalancePeriods = 21,
   optimizerOptions = {}
 ) {
   const tickers = Object.keys(priceData);
@@ -785,9 +786,9 @@ function calculateOptimizedRiskBudgeting(
 
 function calculateEnhancedRiskParityWithDCC(
   priceData,
-  volatilityLookback = 26,
-  correlationLookback = 26,
-  rebalancePeriods = 4,
+  volatilityLookback = 126,
+  correlationLookback = 126,
+  rebalancePeriods = 21,
   correlationPenaltyFactor = 0.5
 ) {
   const tickers = Object.keys(priceData);

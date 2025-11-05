@@ -3,6 +3,7 @@ const fs = require("fs").promises;
 const yahooFinanceService = require("../services/yahooFinanceService");
 const portfolioService = require("../services/portfolioService");
 const portfolioCacheService = require("../services/portfolioCacheService");
+const cacheScheduler = require("../services/cacheScheduler");
 
 /**
  * Get pre-calculated preview data for landing page snapshot
@@ -26,6 +27,10 @@ async function getPreviewData(req, res) {
 
     let previewData;
     let periodsPayload;
+
+    // Read cache metadata
+    const metadata = await portfolioCacheService.readCacheMetadata();
+    const cacheValidation = portfolioCacheService.validateCacheAge(metadata);
 
     try {
       const [previewRaw, multiRaw] = await Promise.all([
@@ -90,10 +95,22 @@ async function getPreviewData(req, res) {
       }
     }
 
+    // Add cache age information to response headers
+    if (cacheValidation.ageDays !== Infinity) {
+      res.set('X-Cache-Age-Days', String(cacheValidation.ageDays));
+      res.set('X-Cache-Status', cacheValidation.isValid ? 'fresh' : 'stale');
+    }
+
     res.json({
       success: true,
       ...responsePayload,
       fromCache: true,
+      cacheMetadata: {
+        ageDays: cacheValidation.ageDays,
+        isValid: cacheValidation.isValid,
+        lastGenerated: metadata.lastGenerated,
+        nextScheduled: metadata.nextScheduled,
+      },
     });
   } catch (error) {
     console.error("Error getting preview data:", error);
@@ -193,7 +210,7 @@ async function calculatePortfolio(req, res) {
 }
 
 /**
- * Clear Yahoo Finance cache
+ * Clear Yahoo Finance cache and portfolio cache
  */
 async function clearCache(req, res) {
   try {
@@ -202,6 +219,7 @@ async function clearCache(req, res) {
     const filesToRemove = [
       "portfolio-preview-data.json",
       "portfolio-preview-periods.json",
+      "cache-metadata.json",
     ];
 
     for (const filename of filesToRemove) {
@@ -216,9 +234,63 @@ async function clearCache(req, res) {
       }
     }
 
-    res.json({ success: true, message: "Cache cleared" });
+    res.json({ success: true, message: "Cache and metadata cleared" });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
+  }
+}
+
+/**
+ * Manually trigger cache regeneration
+ * POST /api/portfolio/regenerate-cache
+ * Optional auth: Include CACHE_REGENERATION_TOKEN in Authorization header
+ */
+async function regenerateCache(req, res) {
+  try {
+    // Optional authentication via environment variable
+    const expectedToken = process.env.CACHE_REGENERATION_TOKEN;
+    if (expectedToken) {
+      const authHeader = req.headers.authorization;
+      const providedToken = authHeader?.replace("Bearer ", "");
+
+      if (providedToken !== expectedToken) {
+        return res.status(401).json({
+          success: false,
+          error: "Unauthorized - Invalid or missing token",
+        });
+      }
+    }
+
+    console.log("🔄 Manual cache regeneration triggered via API");
+
+    // Trigger regeneration
+    const result = await cacheScheduler.triggerCacheRegeneration();
+
+    if (!result.success) {
+      return res.status(500).json({
+        success: false,
+        error: result.error,
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Cache regenerated successfully",
+      duration: result.duration,
+      metadata: {
+        tradingDays: result.tradingDays,
+        strategies: result.strategies,
+        nextScheduled: result.metadata.nextScheduled,
+        lastGenerated: result.metadata.lastGenerated,
+      },
+    });
+  } catch (error) {
+    console.error("Error regenerating cache:", error);
+    res.status(500).json({
+      success: false,
+      error: "Failed to regenerate cache",
+      details: error.message,
+    });
   }
 }
 
@@ -227,4 +299,5 @@ module.exports = {
   getETFData,
   calculatePortfolio,
   clearCache,
+  regenerateCache,
 };

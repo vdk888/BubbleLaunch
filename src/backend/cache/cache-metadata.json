@@ -1,0 +1,10 @@
+{
+  "lastGenerated": null,
+  "nextScheduled": null,
+  "dataFrequency": "daily",
+  "tradingDaysIncluded": 0,
+  "strategiesIncluded": [],
+  "ttlDays": 31,
+  "version": "1.0",
+  "cacheStatus": "uninitialized"
+}

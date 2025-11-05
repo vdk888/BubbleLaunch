@@ -171,11 +171,7 @@ async function fetchETFData(requestedTickers = Object.keys(ETF_CONFIG), years = 
 
   // Only cache if we got ALL tickers - don't cache partial data
   if (successCount === baseTickers.length) {
-    // Resample to weekly
-    for (const ticker of baseTickers) {
-      priceData[ticker] = resampleToWeekly(priceData[ticker]);
-    }
-
+    // ⚠️ DAILY DATA: No longer resampling to weekly (strategy calculations expect daily data)
     // Add cash series if needed
     const referenceTicker = baseTickers[0];
     const referenceDates = priceData[referenceTicker]?.map((point) => point.date) || [];
@@ -223,58 +219,17 @@ function normalizeToBase100(priceData) {
   return normalized;
 }
 
-function getISOWeekKey(date) {
-  const utcDate = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
-  const dayNum = utcDate.getUTCDay() || 7;
-  utcDate.setUTCDate(utcDate.getUTCDate() + 4 - dayNum);
-  const yearStart = new Date(Date.UTC(utcDate.getUTCFullYear(), 0, 1));
-  const weekNum = Math.ceil(((utcDate - yearStart) / 86400000 + 1) / 7);
-  return `${utcDate.getUTCFullYear()}-W${String(weekNum).padStart(2, "0")}`;
-}
-
-function resampleToWeekly(prices) {
-  if (!Array.isArray(prices) || prices.length === 0) {
-    return [];
-  }
-
-  const weekly = [];
-  let currentWeek = null;
-  let lastPoint = null;
-
-  for (const point of prices) {
-    const dateObj = new Date(point.date);
-    const weekKey = getISOWeekKey(dateObj);
-
-    if (currentWeek === null) {
-      currentWeek = weekKey;
-    }
-
-    if (weekKey !== currentWeek) {
-      if (lastPoint) {
-        weekly.push(lastPoint);
-      }
-      currentWeek = weekKey;
-    }
-
-    lastPoint = point;
-  }
-
-  if (lastPoint) {
-    weekly.push(lastPoint);
-  }
-
-  return weekly;
-}
 
 function generateCashSeries(referenceDates, annualRate = 0.02) {
   if (!Array.isArray(referenceDates) || referenceDates.length === 0) {
     return [];
   }
 
-  const weeklyFactor = Math.pow(1 + annualRate, 1 / 52);
+  // Daily compounding: (1 + r)^(1/252) per trading day
+  const dailyFactor = Math.pow(1 + annualRate, 1 / 252);
   return referenceDates.map((date, index) => ({
     date,
-    price: Math.pow(weeklyFactor, index),
+    price: Math.pow(dailyFactor, index),
   }));
 }
 
