@@ -726,6 +726,9 @@
       const opacity = isActive ? 1.0 : 0.3;
       const borderWidthMultiplier = isActive ? 1.5 : 0.7;
 
+      // Show the selected strategy; hide all others except equalWeight (baseline comparison)
+      const shouldBeHidden = strategyKey !== 'equalWeight' && strategyKey !== strategy;
+
       datasets.push({
         label: getStrategyLabel(config.labelKey),
         data: filteredRows.map((point) => point[config.dataKey]),
@@ -736,6 +739,7 @@
         pointRadius: 0,
         tension: 0.4,
         order: isActive ? 0 : config.order, // Active always on top
+        hidden: shouldBeHidden, // Show selected strategy + equalWeight, hide all others
       });
     });
 
@@ -1132,6 +1136,11 @@
             font: { size: mobile ? 9 : 11, family: 'Inter, sans-serif' },
             color: '#374151',
             usePointStyle: true,
+            filter: function(legendItem, chartData) {
+              // Hide legend items for datasets that are hidden
+              const dataset = chartData.datasets[legendItem.datasetIndex];
+              return !dataset.hidden;
+            },
           },
         },
         tooltip: {
