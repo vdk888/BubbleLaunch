@@ -18,6 +18,7 @@ const { calculateSimpleRiskParity: _calculateSimpleRiskParity } = require('./str
 const { calculateEnhancedRiskParity: _calculateEnhancedRiskParity } = require('./strategies/enhancedRiskParity');
 const { calculateHierarchicalRiskParityPortfolio: _calculateHierarchicalRiskParityPortfolio } = require('./strategies/hierarchicalRiskParityPortfolio');
 const { calculateOptimizedRiskBudgeting: _calculateOptimizedRiskBudgeting } = require('./strategies/optimizedRiskBudgeting');
+const { calculateRegimeAwareRiskParity: _calculateRegimeAwareRiskParity } = require('./strategies/regimeAwareRiskParity');
 
 // ═══════════════════════════════════════════════════════════════
 // Helper Functions (kept from original portfolioService.js)
@@ -515,6 +516,27 @@ function calculateEnhancedRiskParityWithDCC(
   return { portfolio, allocations };
 }
 
+/**
+ * Strategy 7: Regime-Aware Risk Parity
+ * Adaptive risk parity that adjusts parameters based on market regime detection
+ *
+ * Detects market regimes across three dimensions:
+ * - Volatility: Low/Medium/High based on annualized volatility
+ * - Trend: Bull/Bear/Sideways based on moving averages
+ * - Crisis: Normal/Stress/Crisis based on correlation + volatility
+ *
+ * Adjusts these parameters based on regime:
+ * - EWMA lambda (volatility responsiveness)
+ * - Rebalancing frequency (5-27 days)
+ * - Correlation penalty (0.5-1.0)
+ *
+ * @returns {Object} { portfolio: [{date, value}], allocations: [{date, SPY, IEF, GLD, EFA, EEM, CASH}] }
+ */
+function calculateRegimeAwareRiskParity(priceData, baseRebalanceFreqDays = 21, baseLookbackDays = 60) {
+  const result = _calculateRegimeAwareRiskParity(priceData, baseRebalanceFreqDays, baseLookbackDays);
+  return normalizeReturnFormat(result);
+}
+
 // ═══════════════════════════════════════════════════════════════
 // Module Exports
 // ═══════════════════════════════════════════════════════════════
@@ -528,6 +550,7 @@ module.exports = {
   calculateMinimumVarianceWeights,
   calculateOptimizedRiskBudgeting,
   calculateEnhancedRiskParityWithDCC,
+  calculateRegimeAwareRiskParity,
 
   // Helper functions (used by strategies and metrics calculation)
   calculateMetrics,

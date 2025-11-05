@@ -17,6 +17,7 @@ const STRATEGY_BUILDERS = {
   optimizedRP: portfolioService.calculateOptimizedRiskParity,
   optimizedRiskBudgeting: portfolioService.calculateOptimizedRiskBudgeting,
   enhancedRiskParityDCC: portfolioService.calculateEnhancedRiskParityWithDCC,
+  regimeAwareRP: portfolioService.calculateRegimeAwareRiskParity,
 };
 
 const STRATEGY_ORDER = [
@@ -27,6 +28,7 @@ const STRATEGY_ORDER = [
   "optimizedRP",
   "optimizedRiskBudgeting",
   "enhancedRiskParityDCC",
+  "regimeAwareRP",
 ];
 
 function formatPercentage(value) {

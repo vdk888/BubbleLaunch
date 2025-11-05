@@ -376,6 +376,15 @@
       order: 1,
       isBest: true, // Marks this as the highlighted "best" strategy
     },
+    regimeAwareRP: {
+      labelKey: 'simulator.strategy.regimeAwareRP',
+      dataKey: 'regimeAwareRP',
+      color: '#10B981', // Green for adaptive strategy
+      borderWidth: 2.8,
+      borderDash: [8, 4],
+      order: 1.2,
+      isBest: false,
+    },
     customMix: {
       labelKey: 'simulator.strategy.customMix',
       dataKey: 'customMix',
@@ -406,6 +415,7 @@
         'simulator.strategy.enhancedRiskParityDCC': lang === 'en' ? 'Enhanced Risk Parity (DCC)' : 'Risk Parity DCC',
         'simulator.strategy.optimizedRiskBudgeting': lang === 'en' ? 'Optimized Risk Budgeting' : 'Répartition de Risque Optimisée',
         'simulator.strategy.optimizedRiskParity': lang === 'en' ? '✨ Optimized' : '✨ Optimisé',
+        'simulator.strategy.regimeAwareRP': lang === 'en' ? 'Regime-Aware RP' : 'RP Adaptatif',
       };
       return fallbacks[labelKey] || labelKey;
     }

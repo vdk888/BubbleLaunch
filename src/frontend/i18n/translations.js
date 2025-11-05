@@ -632,6 +632,18 @@ const translations = {
     en: "AI-optimized strategy across 5 ETFs: 70% Momentum (12-month returns) + 30% Risk Parity (EWMA volatility with λ=0.94). Favors trending assets while maintaining conservative volatility control. Performance: +437.9% over 20 years (+14.8% vs Equal Allocation).",
     fr: "Stratégie IA optimisée sur 5 ETFs : 70% Momentum (rendements 12 mois) + 30% Risk Parity (volatilité EWMA avec λ=0,94). Privilégie les actifs en tendance tout en gardant un contrôle conservateur de la volatilité. Performance : +437,9% sur 20 ans (+14,8% vs Allocation Égale)."
   },
+  "simulator.strategy.regimeAwareRP": {
+    en: "Regime-Aware RP",
+    fr: "RP Adaptatif"
+  },
+  "simulator.strategy.regimeAwareRP.subtitle": {
+    en: "Adaptive parameters based on market regime detection",
+    fr: "Paramètres adaptatifs selon le régime de marché"
+  },
+  "simulator.strategy.regimeAwareRP.tooltip": {
+    en: "Adaptive risk parity that detects market regimes (volatility, trend, crisis) and adjusts rebalancing frequency (5-27 days), volatility responsiveness (EWMA lambda), and correlation penalties accordingly. Faster rebalancing in crisis, slower in calm markets.",
+    fr: "Risk parity adaptatif qui détecte les régimes de marché (volatilité, tendance, crise) et ajuste la fréquence de rééquilibrage (5-27 jours), la réactivité de la volatilité (EWMA lambda) et les pénalités de corrélation en conséquence. Rééquilibrage plus rapide en crise, plus lent en marchés calmes."
+  },
   "simulator.strategy.customMix": {
     en: "Create Your Mix",
     fr: "Créez votre Mix"
