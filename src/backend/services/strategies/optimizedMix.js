@@ -198,7 +198,7 @@ function findOptimalMix(
   allocationData = {},
   tickers = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'CASH'],
   targetMetric = 'annualReturn',
-  maxVolatility = 15.0
+  maxVolatility = 20.0
 ) {
   console.log('🔍 Starting portfolio optimization...');
   const startTime = Date.now();

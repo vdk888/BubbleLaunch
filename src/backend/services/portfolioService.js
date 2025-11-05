@@ -332,7 +332,7 @@ function calculateOptimizedRiskParity(
     allocationData || {},
     tickers,
     'annualReturn',  // Maximize annual return
-    15.0             // Max volatility constraint: 15%
+    20.0             // Max volatility constraint: 20%
   );
 
   return normalizeReturnFormat(result);
