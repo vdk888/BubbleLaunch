@@ -14,7 +14,8 @@
   'use strict';
 
   let portfolioChart = null;
-  let currentStrategy = 'equalWeight';
+  let visibleStrategies = new Set(['equalWeight']); // NEW: Track multiple visible strategies
+  let prominentStrategy = 'equalWeight'; // NEW: Track which strategy should be shown prominently
   let currentPeriod = 20;
   let currentLeverage = 1; // NEW: Leverage toggle state (1x or 2x)
   let portfolioData = null;
@@ -131,7 +132,7 @@
     }
     try {
       const dataUrl = portfolioChart.toBase64Image('image/png', 1);
-      const filename = `bubble-portfolio-chart-${currentStrategy}-${currentPeriod}y.png`;
+      const filename = `bubble-portfolio-chart-${prominentStrategy}-${currentPeriod}y.png`;
       const link = document.createElement('a');
       link.href = dataUrl;
       link.download = filename;
@@ -140,7 +141,8 @@
       document.body.removeChild(link);
       setExportStatus('success');
       trackSimulatorEvent('export_chart_png', {
-        export_strategy: currentStrategy,
+        export_prominent_strategy: prominentStrategy,
+        export_visible_strategies: Array.from(visibleStrategies).join(','),
         export_period_years: currentPeriod,
       });
     } catch (error) {
@@ -242,7 +244,8 @@
     }
 
     if (strategyParam && STRATEGY_CONFIG[strategyParam]) {
-      currentStrategy = strategyParam;
+      visibleStrategies.add(strategyParam);
+      prominentStrategy = strategyParam;
     }
 
     if (mixParam) {
@@ -263,7 +266,8 @@
           }
           customStrategyState.enabled = true;
           if (!strategyParam || strategyParam === 'customMix') {
-            currentStrategy = 'customMix';
+            visibleStrategies.add('customMix');
+            prominentStrategy = 'customMix';
           }
         }
       }
@@ -279,7 +283,8 @@
     window.gtag('event', action, {
       event_category: 'Portfolio Simulator',
       language: getCurrentLanguage(),
-      strategy: currentStrategy,
+      prominent_strategy: prominentStrategy,
+      visible_strategies: Array.from(visibleStrategies).join(','),
       period_years: currentPeriod,
       custom_mix_enabled: customStrategyState.enabled,
       ...params,
@@ -288,7 +293,8 @@
 
   function updateSimulatorState(data) {
     window.bubbleSimulatorState = {
-      strategy: currentStrategy,
+      prominentStrategy: prominentStrategy,
+      visibleStrategies: Array.from(visibleStrategies),
       period: currentPeriod,
       generatedAt: data.generatedAt || null,
       tickers: data.tickers || [],
@@ -517,7 +523,7 @@
         setEtfButtonState(key, etfVisibility[key]);
         persistEtfVisibilityState();
         if (portfolioData) {
-          updateChart(portfolioData, currentStrategy);
+          updateChart(portfolioData, prominentStrategy);
         }
         trackSimulatorEvent('etf_visibility_toggled', {
           ticker: key,
@@ -561,6 +567,35 @@
       console.error('Error fetching portfolio data:', error);
       return null;
     }
+  }
+
+  /**
+   * Downsample data array for chart display to improve performance
+   * Uses adaptive sampling based on data size
+   * @param {Array} dataArray - Array of data points to downsample
+   * @param {number} periodYears - Time period in years
+   * @returns {Array} Downsampled data array with consistent indices
+   */
+  function downsampleForDisplay(dataArray, periodYears = 20) {
+    if (!Array.isArray(dataArray) || dataArray.length === 0) {
+      return dataArray;
+    }
+
+    // Determine downsample rate based on period length
+    // Goal: Keep chart responsive while maintaining visual accuracy
+    let sampleRate;
+    if (periodYears <= 1) {
+      sampleRate = 1; // Daily (~252 points)
+    } else if (periodYears <= 3) {
+      sampleRate = 2; // Every 2 days (~378 points)
+    } else if (periodYears <= 5) {
+      sampleRate = 3; // Every 3 days (~420 points)
+    } else {
+      sampleRate = 7; // Weekly (~520 points for 10Y, ~1040 for 20Y)
+    }
+
+    // Return every Nth element based on sample rate
+    return dataArray.filter((_, index) => index % sampleRate === 0);
   }
 
   /**
@@ -616,13 +651,20 @@
     const locale = lang === 'en' ? 'en-US' : 'fr-FR';
     const normalizedRows = ensureNormalizedCache(data);
 
-    // Filter data by period start date if available
+    // Filter data by period start date if available (KEEP FULL DATA for calculations)
     const dataStartDate = data.dataStartDate ? new Date(data.dataStartDate) : null;
     const filteredRows = dataStartDate
       ? normalizedRows.filter(d => new Date(d.date) >= dataStartDate)
       : normalizedRows;
 
-    const labels = filteredRows.map(d => {
+    // PERFORMANCE OPTIMIZATION: Downsample for chart display only
+    // Full filteredRows data is preserved for all calculations (metrics, etc.)
+    // Only the chart rendering uses downsampled data
+    const periodYears = data.periodYears || currentPeriod || 20;
+    const displayRows = downsampleForDisplay(filteredRows, periodYears);
+
+    // Use downsampled data for chart labels
+    const labels = displayRows.map(d => {
       const date = new Date(d.date);
       return date.toLocaleDateString(locale, { year: 'numeric', month: 'short' });
     });
@@ -631,10 +673,11 @@
     const etfLabels = getETFLabels();
 
     // Display ETFs (background) based on toggle visibility
+    // Use displayRows (downsampled) for better performance
     if (isEtfVisible('SPY')) {
       datasets.push({
         label: etfLabels.spy,
-        data: filteredRows.map(d => d.SPY),
+        data: displayRows.map(d => d.SPY),
         borderColor: 'rgba(102, 126, 234, 0.4)',
         backgroundColor: 'rgba(102, 126, 234, 0.05)',
         borderWidth: 1.5,
@@ -647,7 +690,7 @@
     if (isEtfVisible('IEF')) {
       datasets.push({
         label: etfLabels.ief,
-        data: filteredRows.map(d => d.IEF),
+        data: displayRows.map(d => d.IEF),
         borderColor: 'rgba(107, 114, 128, 0.4)',
         backgroundColor: 'rgba(107, 114, 128, 0.05)',
         borderWidth: 1.5,
@@ -660,7 +703,7 @@
     if (isEtfVisible('GLD')) {
       datasets.push({
         label: etfLabels.gld,
-        data: filteredRows.map(d => d.GLD),
+        data: displayRows.map(d => d.GLD),
         borderColor: 'rgba(156, 163, 175, 0.4)',
         backgroundColor: 'rgba(156, 163, 175, 0.05)',
         borderWidth: 1.5,
@@ -673,7 +716,7 @@
     if (isEtfVisible('EFA')) {
       datasets.push({
         label: etfLabels.efa,
-        data: filteredRows.map(d => d.EFA),
+        data: displayRows.map(d => d.EFA),
         borderColor: 'rgba(129, 140, 248, 0.35)',
         backgroundColor: 'rgba(129, 140, 248, 0.05)',
         borderWidth: 1.3,
@@ -686,7 +729,7 @@
     if (isEtfVisible('EEM')) {
       datasets.push({
         label: etfLabels.eem,
-        data: filteredRows.map(d => d.EEM),
+        data: displayRows.map(d => d.EEM),
         borderColor: 'rgba(248, 113, 113, 0.35)',
         backgroundColor: 'rgba(248, 113, 113, 0.05)',
         borderWidth: 1.3,
@@ -699,7 +742,7 @@
     if (isEtfVisible('CASH')) {
       datasets.push({
         label: etfLabels.cash,
-        data: filteredRows.map(d => d.CASH),
+        data: displayRows.map(d => d.CASH),
         borderColor: 'rgba(34, 197, 94, 0.4)',
         backgroundColor: 'rgba(34, 197, 94, 0.08)',
         borderWidth: 1.2,
@@ -712,34 +755,37 @@
 
     // Always show all portfolio strategies using STRATEGY_CONFIG
     // This makes it easy to add/modify strategies in the future
+    // Use displayRows (downsampled) for better chart performance
     Object.entries(STRATEGY_CONFIG).forEach(([strategyKey, config]) => {
-      const hasSeries = filteredRows.some(
+      const hasSeries = displayRows.some(
         (point) => typeof point[config.dataKey] === 'number'
       );
       if (!hasSeries) {
         return;
       }
 
-      const isActive = strategy === strategyKey;
+      // NEW: Check if this strategy is visible and/or prominent
+      const isVisible = visibleStrategies.has(strategyKey);
+      const isProminent = strategy === strategyKey;
 
-      // Make selected portfolio very prominent, others faded but visible
-      const opacity = isActive ? 1.0 : 0.3;
-      const borderWidthMultiplier = isActive ? 1.5 : 0.7;
+      // Make prominent strategy very visible, others visible but faded
+      const opacity = isProminent ? 1.0 : 0.7;
+      const borderWidthMultiplier = isProminent ? 1.5 : 0.9;
 
-      // Show the selected strategy; hide all others except equalWeight (baseline comparison)
-      const shouldBeHidden = strategyKey !== 'equalWeight' && strategyKey !== strategy;
+      // Hide strategies that are not in the visible set
+      const shouldBeHidden = !isVisible;
 
       datasets.push({
         label: getStrategyLabel(config.labelKey),
-        data: filteredRows.map((point) => point[config.dataKey]),
-        borderColor: isActive ? config.color : hexToRgba(config.color, opacity),
-        backgroundColor: hexToRgba(config.color, isActive ? 0.15 : 0.05),
+        data: displayRows.map((point) => point[config.dataKey]),
+        borderColor: isProminent ? config.color : hexToRgba(config.color, opacity),
+        backgroundColor: hexToRgba(config.color, isProminent ? 0.15 : 0.08),
         borderWidth: config.borderWidth * borderWidthMultiplier,
         borderDash: config.borderDash,
         pointRadius: 0,
         tension: 0.4,
-        order: isActive ? 0 : config.order, // Active always on top
-        hidden: shouldBeHidden, // Show selected strategy + equalWeight, hide all others
+        order: isProminent ? 0 : config.order, // Prominent always on top
+        hidden: shouldBeHidden, // Show only visible strategies
       });
     });
 
@@ -936,11 +982,15 @@
     ensureNormalizedCache(portfolioData);
   }
 
-  function setActiveStrategyPill(strategyKey) {
+  /**
+   * Update strategy pill visual states based on visibility
+   * Active = visible, Inactive = hidden
+   */
+  function updateActiveStrategyPills() {
     const pills = document.querySelectorAll('.strategy-pill');
     pills.forEach((pill) => {
       const key = pill.getAttribute('data-strategy');
-      if (key === strategyKey) {
+      if (visibleStrategies.has(key)) {
         pill.classList.add('active');
       } else {
         pill.classList.remove('active');
@@ -1028,10 +1078,10 @@
     removeCustomStrategyData(portfolioData);
     updateCustomAlert();
 
-    if (currentStrategy === 'customMix') {
+    if (visibleStrategies.has('customMix')) {
       resetMetricDisplay();
       if (portfolioData) {
-        updateChart(portfolioData, currentStrategy);
+        updateChart(portfolioData, prominentStrategy);
       }
     }
     updateSimulatorState(portfolioData);
@@ -1052,16 +1102,17 @@
     refreshCustomStrategyDataset();
     updateCustomAlert();
 
-    setActiveStrategyPill('customMix');
-    currentStrategy = 'customMix';
+    visibleStrategies.add('customMix');
+    prominentStrategy = 'customMix';
+    updateActiveStrategyPills();
 
     // FIX: Force chart update with animation for user feedback
     if (portfolioChart) {
-      updateChart(portfolioData, currentStrategy);
+      updateChart(portfolioData, prominentStrategy);
       portfolioChart.update('active'); // 'active' animation mode
     }
 
-    updateMetrics(portfolioData, currentStrategy);
+    updateMetrics(portfolioData, prominentStrategy);
     updateSimulatorState(portfolioData);
     setExportStatus('ready');
 
@@ -1083,10 +1134,10 @@
     updateCustomWeightDisplay(customStrategyState.weight);
     refreshCustomStrategyDataset({ forceDisable: true });
     updateCustomAlert();
-    if (currentStrategy === 'customMix') {
+    if (visibleStrategies.has('customMix')) {
       resetMetricDisplay();
       if (portfolioData) {
-        updateChart(portfolioData, currentStrategy);
+        updateChart(portfolioData, prominentStrategy);
         updateSimulatorState(portfolioData);
       }
     }
@@ -1221,7 +1272,7 @@
   }
 
   /**
-   * Update performance metrics
+   * Update performance metrics (now displays metrics for the prominent strategy)
    */
   function updateMetrics(data, strategy) {
     const strategyKey = {
@@ -1354,13 +1405,31 @@
   }
 
   /**
-   * Handle strategy change
+   * Handle strategy change (NOW TOGGLES visibility instead of switching)
    */
   function handleStrategyChange(strategy) {
     hideMobileTooltip();
-    currentStrategy = strategy;
-    setActiveStrategyPill(strategy);
-    toggleCustomPanel(strategy === 'customMix');
+
+    // NEW: Toggle visibility instead of switching
+    if (visibleStrategies.has(strategy)) {
+      // Strategy is currently visible - hide it (unless it's the last one)
+      if (visibleStrategies.size > 1) {
+        visibleStrategies.delete(strategy);
+
+        // If we're hiding the prominent strategy, make another visible strategy prominent
+        if (prominentStrategy === strategy) {
+          prominentStrategy = Array.from(visibleStrategies)[0];
+        }
+      }
+      // If it's the last visible strategy, do nothing (keep at least one visible)
+    } else {
+      // Strategy is currently hidden - show it and make it prominent
+      visibleStrategies.add(strategy);
+      prominentStrategy = strategy;
+    }
+
+    updateActiveStrategyPills();
+    toggleCustomPanel(visibleStrategies.has('customMix'));
 
     const sliderState = getSliderStateById('strategySlider');
     if (sliderState) {
@@ -1373,13 +1442,17 @@
     }
 
     if (portfolioData) {
-      updateChart(portfolioData, strategy);
-      updateMetrics(portfolioData, strategy);
+      updateChart(portfolioData, prominentStrategy);
+      updateMetrics(portfolioData, prominentStrategy);
       updateSimulatorState(portfolioData);
     }
 
     // Analytics tracking (if available)
-    trackSimulatorEvent('strategy_changed', { strategy });
+    trackSimulatorEvent('strategy_toggled', {
+      strategy,
+      is_visible: visibleStrategies.has(strategy),
+      visible_count: visibleStrategies.size
+    });
   }
 
   /**
@@ -1390,7 +1463,7 @@
     currentPeriod = period;
 
     trackSimulatorEvent('period_selected', { period_years: period });
-    loadPortfolioData(currentStrategy, period);
+    loadPortfolioData(prominentStrategy, period);
 
     // Analytics tracking (if available)
     trackSimulatorEvent('period_changed', { period_years: period });
@@ -1821,12 +1894,13 @@
         currentLeverage = leverage;
 
         // Reload portfolio data with new leverage
-        loadPortfolioData(currentStrategy, currentPeriod, leverage);
+        loadPortfolioData(prominentStrategy, currentPeriod, leverage);
 
         // Track analytics
         trackSimulatorEvent('leverage_changed', {
           leverage,
-          strategy: currentStrategy,
+          prominent_strategy: prominentStrategy,
+          visible_strategies: Array.from(visibleStrategies).join(','),
           period: currentPeriod
         });
       });
@@ -1845,7 +1919,7 @@
     updateCustomAlert();
     toggleCustomPanel(false);
     initializeExportActions();
-    if (customStrategyState.enabled && currentStrategy === 'customMix') {
+    if (customStrategyState.enabled && visibleStrategies.has('customMix')) {
       updateCustomAlert();
       toggleCustomPanel(true);
     }
@@ -1884,7 +1958,7 @@
     initializeEtfToggleControls();
 
     // Load initial data
-    loadPortfolioData(currentStrategy, currentPeriod);
+    loadPortfolioData(prominentStrategy, currentPeriod);
 
     trackSimulatorEvent('simulator_page_initialized');
 
@@ -1911,8 +1985,8 @@
       });
     });
 
-    setActiveStrategyPill(currentStrategy);
-    toggleCustomPanel(currentStrategy === 'customMix');
+    updateActiveStrategyPills();
+    toggleCustomPanel(visibleStrategies.has('customMix'));
     initializeLeverageToggle(); // NEW: Initialize leverage toggle
     initializeMobileSliderController();
     initializeMobileTooltipSystem();
@@ -1936,7 +2010,7 @@
     updateEtfToggleLabels();
     refreshEtfToggleUi();
     if (portfolioData && portfolioChart) {
-      updateChart(portfolioData, currentStrategy);
+      updateChart(portfolioData, prominentStrategy);
     }
   });
 
