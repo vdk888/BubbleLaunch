@@ -48,6 +48,13 @@
       borderDash: [4, 4],
       order: 4,
     },
+    VNQ: {
+      borderColor: 'rgba(139, 92, 246, 0.4)',
+      backgroundColor: 'rgba(139, 92, 246, 0.05)',
+      borderWidth: 1.3,
+      borderDash: [3, 4],
+      order: 3.75,
+    },
     CASH: {
       borderColor: 'rgba(34, 197, 94, 0.4)',
       backgroundColor: 'rgba(34, 197, 94, 0.08)',
@@ -164,6 +171,7 @@
       GLD: resolveTranslation('simulator.etf.gld', fallback('GLD (Gold)', 'GLD (Or)')),
       EFA: resolveTranslation('simulator.etf.efa', fallback('EFA (Developed ex-US)', 'EFA (Marchés développés)')),
       EEM: resolveTranslation('simulator.etf.eem', fallback('EEM (Emerging Markets)', 'EEM (Marchés émergents)')),
+      VNQ: resolveTranslation('simulator.etf.vnq', fallback('VNQ (US REITs)', 'VNQ (Immobilier US)')),
       CASH: resolveTranslation('simulator.etf.cash', fallback('Cash (2% yield)', 'Trésorerie (rendement 2 %)')),
       yAxisTitle: resolveTranslation('simulator.chart.yAxisTitle', fallback('Value (Base 100)', 'Valeur (Base 100)')),
     };
@@ -251,7 +259,9 @@
       });
     });
 
-    STRATEGY_ORDER.forEach((key) => {
+    // Display only equalWeight and optimizedRiskParity strategies on landing page
+    const landingPageStrategies = ['equalWeight', 'optimizedRiskParity'];
+    landingPageStrategies.forEach((key) => {
       const config = STRATEGY_CONFIG[key];
       if (!config) {
         return;
