@@ -33,9 +33,7 @@
   }, {});
   const DEFAULT_CUSTOM_STRATEGY = {
     enabled: false,
-    strategyA: 'optimizedRiskParity',
-    strategyB: 'sixtyForty',
-    weight: 60, // percent for strategy A
+    strategies: [] // Array of { key: 'strategyName', weight: number }
   };
   let customStrategyState = { ...DEFAULT_CUSTOM_STRATEGY };
   const customStrategyElements = {};
@@ -66,6 +64,14 @@
       if (!stored) return;
       const parsed = JSON.parse(stored);
       if (!parsed || typeof parsed !== 'object') return;
+
+      // Handle old format (strategyA, strategyB, weight) - ignore it, use default
+      if (parsed.strategyA || parsed.strategyB || parsed.weight !== undefined) {
+        console.log('Old custom strategy format detected, using defaults');
+        return;
+      }
+
+      // Load new format
       customStrategyState = {
         ...customStrategyState,
         ...parsed,
@@ -249,30 +255,60 @@
       prominentStrategy = strategyParam;
     }
 
+    // Parse new mix format: ?mix=optimizedRP:40,sixtyForty:30,momentum:30
     if (mixParam) {
-      const parts = mixParam.split(',').map((part) => part.trim());
-      if (parts.length >= 2) {
-        const [strategyA, strategyB, weightRaw] = parts;
-        if (
-          STRATEGY_CONFIG[strategyA] &&
-          STRATEGY_CONFIG[strategyB] &&
-          strategyA !== 'customMix' &&
-          strategyB !== 'customMix'
-        ) {
-          const weightValue = parseInt(weightRaw, 10);
-          customStrategyState.strategyA = strategyA;
-          customStrategyState.strategyB = strategyB;
-          if (!Number.isNaN(weightValue)) {
-            customStrategyState.weight = Math.min(95, Math.max(5, weightValue));
-          }
+      const strategies = [];
+      const parts = mixParam.split(',').map(part => part.trim());
+
+      for (const part of parts) {
+        const [key, weightStr] = part.split(':').map(s => s.trim());
+        const weight = parseFloat(weightStr);
+
+        // Validate strategy exists and weight is valid
+        if (STRATEGY_CONFIG[key] && key !== 'customMix' && !isNaN(weight) && weight > 0 && weight <= 100) {
+          strategies.push({ key, weight });
+        } else {
+          console.warn(`Invalid mix parameter: ${part}`);
+        }
+      }
+
+      // Only apply if we have at least 2 strategies and weights sum to ~100%
+      if (strategies.length >= 2) {
+        const totalWeight = strategies.reduce((sum, s) => sum + s.weight, 0);
+        if (Math.abs(totalWeight - 100) < 0.1) {
+          customStrategyState.strategies = strategies;
           customStrategyState.enabled = true;
+
           if (!strategyParam || strategyParam === 'customMix') {
             visibleStrategies.add('customMix');
             prominentStrategy = 'customMix';
           }
+        } else {
+          console.warn(`Mix weights don't sum to 100% (got ${totalWeight}%)`);
         }
+      } else {
+        console.warn('Mix must contain at least 2 strategies');
       }
     }
+  }
+
+  /**
+   * Generate shareable URL for custom mix
+   * @returns {string} URL with mix parameter
+   */
+  function generateMixURL() {
+    if (!customStrategyState.enabled || customStrategyState.strategies.length < 2) {
+      return window.location.href;
+    }
+
+    const mixParts = customStrategyState.strategies.map(s => `${s.key}:${s.weight}`);
+    const mixParam = mixParts.join(',');
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('mix', mixParam);
+    url.searchParams.set('strategy', 'customMix');
+
+    return url.toString();
   }
 
   function getCurrentLanguage() {
@@ -302,9 +338,7 @@
       metrics: data.metrics || {},
       customStrategy: customStrategyState.enabled
         ? {
-            strategyA: customStrategyState.strategyA,
-            strategyB: customStrategyState.strategyB,
-            weight: customStrategyState.weight,
+            strategies: customStrategyState.strategies,
           }
         : null,
     };
@@ -924,29 +958,48 @@
       return false;
     }
 
-    const configA = STRATEGY_CONFIG[customStrategyState.strategyA];
-    const configB = STRATEGY_CONFIG[customStrategyState.strategyB];
-
-    if (!configA || !configB) {
+    // Validate strategies array
+    if (!Array.isArray(customStrategyState.strategies) || customStrategyState.strategies.length === 0) {
       return false;
     }
 
-    const weightA = customStrategyState.weight / 100;
-    const weightB = 1 - weightA;
+    // Validate all strategies exist and weights sum to 100
+    const totalWeight = customStrategyState.strategies.reduce((sum, s) => sum + (s.weight || 0), 0);
+    if (Math.abs(totalWeight - 100) > 0.01) {
+      console.warn('Custom strategy weights must sum to 100%, got:', totalWeight);
+      return false;
+    }
+
+    // Validate all strategies are valid
+    const strategyConfigs = customStrategyState.strategies.map(s => ({
+      config: STRATEGY_CONFIG[s.key],
+      weight: s.weight / 100,
+      key: s.key
+    }));
+
+    if (strategyConfigs.some(s => !s.config)) {
+      console.warn('Invalid strategy in custom mix');
+      return false;
+    }
+
     const composedSeries = [];
 
+    // Calculate weighted average for each data point
     for (const row of data.data) {
-      if (
-        typeof row[configA.dataKey] !== 'number' ||
-        typeof row[configB.dataKey] !== 'number'
-      ) {
-        return false;
+      let weightedSum = 0;
+
+      // Check all strategies have data for this row
+      for (const { config, weight } of strategyConfigs) {
+        if (typeof row[config.dataKey] !== 'number') {
+          console.warn(`Missing data for strategy ${config.dataKey} at date ${row.date}`);
+          return false;
+        }
+        weightedSum += weight * row[config.dataKey];
       }
 
-      const rawValue = weightA * row[configA.dataKey] + weightB * row[configB.dataKey];
-      const rounded = Math.round(rawValue * 100) / 100;
+      const rounded = Math.round(weightedSum * 100) / 100;
       row.customMix = rounded;
-      composedSeries.push(rawValue);
+      composedSeries.push(weightedSum);
     }
 
     const metrics = calculateLocalMetricsFromSeries(composedSeries);
@@ -965,7 +1018,75 @@
       data.strategyKeys = ['customMix'];
     }
 
+    // Blend allocations for custom mix
+    blendCustomAllocations(data);
+
     return true;
+  }
+
+  /**
+   * Blend allocations from component strategies using weighted average
+   * @param {Object} data - Portfolio data with allocations
+   */
+  function blendCustomAllocations(data) {
+    if (!data.allocations) {
+      return;
+    }
+
+    // Map frontend strategy keys to backend allocation keys
+    const strategyKeyMap = {
+      'equalWeight': 'equalWeight',
+      'sixtyForty': 'sixtyForty',
+      'simpleRiskParity': 'simpleRP',
+      'optimizedRiskParity': 'optimizedRP',
+      'hierarchicalRiskParity': 'hierarchicalRiskParity',
+      'optimizedRiskBudgeting': 'optimizedRiskBudgeting',
+      'enhancedRiskParityDCC': 'enhancedRiskParityDCC',
+      'momentum': 'momentum',
+      'regimeAwareRP': 'regimeAwareRP'
+    };
+
+    // Get allocation arrays for all component strategies
+    const componentAllocations = customStrategyState.strategies.map(s => {
+      const allocationKey = strategyKeyMap[s.key] || s.key;
+      return {
+        allocations: data.allocations[allocationKey],
+        weight: s.weight / 100,
+        key: s.key
+      };
+    });
+
+    // Validate all component allocations exist
+    if (componentAllocations.some(c => !c.allocations || !Array.isArray(c.allocations))) {
+      console.warn('Missing allocation data for some component strategies');
+      return;
+    }
+
+    // Get first allocation array as template (they should all have same dates)
+    const template = componentAllocations[0].allocations;
+    const blendedAllocations = [];
+
+    // For each time point, calculate weighted average of allocations
+    for (let i = 0; i < template.length; i++) {
+      const point = { date: template[i].date };
+
+      // Calculate weighted average for each ETF
+      ETF_KEYS.forEach(ticker => {
+        let weightedSum = 0;
+        for (const { allocations, weight } of componentAllocations) {
+          const allocation = allocations[i];
+          if (allocation && typeof allocation[ticker] === 'number') {
+            weightedSum += weight * allocation[ticker];
+          }
+        }
+        point[ticker] = weightedSum;
+      });
+
+      blendedAllocations.push(point);
+    }
+
+    // Store blended allocations
+    data.allocations.customMix = blendedAllocations;
   }
 
   function refreshCustomStrategyDataset({ forceDisable = false } = {}) {
@@ -1014,65 +1135,333 @@
   function cacheCustomStrategyElements() {
     customStrategyElements.panel = document.getElementById('customStrategyPanel');
     customStrategyElements.alert = document.getElementById('customStrategyAlert');
-    customStrategyElements.selectA = document.getElementById('customStrategyA');
-    customStrategyElements.selectB = document.getElementById('customStrategyB');
-    customStrategyElements.weight = document.getElementById('customStrategyWeight');
-    customStrategyElements.weightValue = document.getElementById('customStrategyWeightValue');
+    customStrategyElements.rowsContainer = document.getElementById('customStrategyRows');
+    customStrategyElements.addBtn = document.getElementById('addStrategyBtn');
+    customStrategyElements.weightSumValue = document.getElementById('weightSumValue');
+    customStrategyElements.weightSumStatus = document.getElementById('weightSumStatus');
     customStrategyElements.apply = document.getElementById('customStrategyApply');
     customStrategyElements.reset = document.getElementById('customStrategyReset');
+    customStrategyElements.share = document.getElementById('customStrategyShare');
   }
 
   function getBaseStrategyKeys() {
     return Object.keys(STRATEGY_CONFIG).filter((key) => key !== 'customMix');
   }
 
-  function populateSelectOptions(selectElement, selectedValue) {
-    if (!selectElement) return;
-
+  /**
+   * Get available strategies for dropdown (exclude already selected ones)
+   */
+  function getAvailableStrategies(excludeIndex = -1) {
     const baseKeys = getBaseStrategyKeys();
-    selectElement.innerHTML = '';
+    const selectedKeys = customStrategyState.strategies
+      .filter((_, index) => index !== excludeIndex)
+      .map(s => s.key);
+    return baseKeys.filter(key => !selectedKeys.includes(key));
+  }
 
-    baseKeys.forEach((key) => {
+  /**
+   * Update weight sum display with validation
+   */
+  function updateWeightSum() {
+    if (!customStrategyElements.weightSumValue || !customStrategyElements.weightSumStatus) return;
+
+    const totalWeight = customStrategyState.strategies.reduce((sum, s) => sum + (s.weight || 0), 0);
+    customStrategyElements.weightSumValue.textContent = `${totalWeight}%`;
+
+    const isValid = Math.abs(totalWeight - 100) < 0.01 && customStrategyState.strategies.length >= 2;
+
+    // Update status indicator
+    customStrategyElements.weightSumStatus.classList.remove('valid', 'invalid');
+    if (customStrategyState.strategies.length === 0) {
+      customStrategyElements.weightSumStatus.textContent = '';
+    } else if (isValid) {
+      customStrategyElements.weightSumStatus.classList.add('valid');
+      customStrategyElements.weightSumStatus.textContent = '✓ Valid';
+    } else {
+      customStrategyElements.weightSumStatus.classList.add('invalid');
+      if (customStrategyState.strategies.length < 2) {
+        customStrategyElements.weightSumStatus.textContent = 'Need 2+ strategies';
+      } else {
+        customStrategyElements.weightSumStatus.textContent = 'Must equal 100%';
+      }
+    }
+
+    // Enable/disable apply button
+    if (customStrategyElements.apply) {
+      customStrategyElements.apply.disabled = !isValid;
+    }
+
+    // Enable/disable add button (max 9 strategies)
+    if (customStrategyElements.addBtn) {
+      const availableStrategies = getAvailableStrategies();
+      customStrategyElements.addBtn.disabled = availableStrategies.length === 0;
+    }
+  }
+
+  /**
+   * Create and add a new strategy row
+   */
+  function addStrategyRow(strategyKey = null, weight = 0) {
+    if (!customStrategyElements.rowsContainer) return;
+
+    const availableStrategies = getAvailableStrategies();
+    if (availableStrategies.length === 0 && !strategyKey) {
+      console.warn('No available strategies to add');
+      // Show user feedback
+      if (customStrategyElements.addBtn) {
+        const originalText = customStrategyElements.addBtn.textContent;
+        customStrategyElements.addBtn.textContent = getCurrentLanguage() === 'en'
+          ? 'All strategies used'
+          : 'Toutes les stratégies utilisées';
+        setTimeout(() => {
+          customStrategyElements.addBtn.textContent = originalText;
+        }, 2000);
+      }
+      return;
+    }
+
+    const rowIndex = customStrategyState.strategies.length;
+    const selectedKey = strategyKey || availableStrategies[0];
+
+    // Create row element
+    const row = document.createElement('div');
+    row.className = 'custom-strategy-row';
+    row.dataset.index = rowIndex;
+
+    // Strategy dropdown
+    const strategyField = document.createElement('div');
+    strategyField.className = 'custom-strategy-row-field';
+    const strategyLabel = document.createElement('label');
+    strategyLabel.textContent = 'Strategy';
+    strategyLabel.setAttribute('data-translate', 'simulator.customMix.strategy');
+    const strategySelect = document.createElement('select');
+    strategySelect.dataset.index = rowIndex;
+
+    // Populate dropdown with available strategies
+    const selectableStrategies = getAvailableStrategies(rowIndex);
+    if (strategyKey && !selectableStrategies.includes(strategyKey)) {
+      selectableStrategies.push(strategyKey);
+    }
+
+    selectableStrategies.forEach(key => {
       const option = document.createElement('option');
       option.value = key;
       option.textContent = getStrategyLabel(STRATEGY_CONFIG[key].labelKey);
-      selectElement.appendChild(option);
+      if (key === selectedKey) option.selected = true;
+      strategySelect.appendChild(option);
     });
 
-    if (!baseKeys.includes(selectedValue)) {
-      selectedValue = baseKeys[0];
-    }
+    strategySelect.addEventListener('change', (e) => {
+      const index = parseInt(e.target.dataset.index);
+      customStrategyState.strategies[index].key = e.target.value;
+      markCustomStrategyDirty();
+      renderCustomStrategyRows(); // Re-render to update available options
+    });
 
-    selectElement.value = selectedValue;
-    return selectedValue;
+    strategyField.appendChild(strategyLabel);
+    strategyField.appendChild(strategySelect);
+
+    // Weight input
+    const weightField = document.createElement('div');
+    weightField.className = 'custom-strategy-row-field';
+    const weightLabel = document.createElement('label');
+    weightLabel.textContent = 'Weight (%)';
+    weightLabel.setAttribute('data-translate', 'simulator.customMix.weight');
+    const weightInput = document.createElement('input');
+    weightInput.type = 'number';
+    weightInput.min = '0';
+    weightInput.max = '100';
+    weightInput.step = '1';
+    weightInput.value = weight || 0;
+    weightInput.dataset.index = rowIndex;
+
+    weightInput.addEventListener('input', (e) => {
+      const index = parseInt(e.target.dataset.index);
+      const value = parseFloat(e.target.value) || 0;
+      customStrategyState.strategies[index].weight = Math.max(0, Math.min(100, value));
+      updateWeightSum();
+      markCustomStrategyDirty();
+    });
+
+    weightField.appendChild(weightLabel);
+    weightField.appendChild(weightInput);
+
+    // Remove button
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'remove-strategy-btn';
+    removeBtn.textContent = '×';
+    removeBtn.setAttribute('aria-label', 'Remove strategy');
+    removeBtn.dataset.index = rowIndex;
+
+    removeBtn.addEventListener('click', (e) => {
+      const index = parseInt(e.target.dataset.index);
+      removeStrategyRow(index);
+    });
+
+    row.appendChild(strategyField);
+    row.appendChild(weightField);
+    row.appendChild(removeBtn);
+
+    customStrategyElements.rowsContainer.appendChild(row);
+
+    // Add to state
+    customStrategyState.strategies.push({ key: selectedKey, weight: weight || 0 });
+    updateWeightSum();
   }
 
-  function populateCustomStrategyOptions() {
-    const resolvedA = populateSelectOptions(
-      customStrategyElements.selectA,
-      customStrategyState.strategyA
-    );
-    const resolvedB = populateSelectOptions(
-      customStrategyElements.selectB,
-      customStrategyState.strategyB
-    );
-    if (resolvedA) {
-      customStrategyState.strategyA = resolvedA;
-    }
-    if (resolvedB) {
-      customStrategyState.strategyB = resolvedB;
-    }
+  /**
+   * Remove a strategy row
+   */
+  function removeStrategyRow(index) {
+    customStrategyState.strategies.splice(index, 1);
+    renderCustomStrategyRows();
+    updateWeightSum();
+    markCustomStrategyDirty();
   }
 
-  function updateCustomWeightDisplay(weight) {
-    if (!customStrategyElements.weightValue) return;
-    const strategyBPercent = 100 - weight;
-    customStrategyElements.weightValue.innerHTML = `<strong>${weight}%</strong> A &nbsp;·&nbsp; <span>${strategyBPercent}%</span> B`;
+  /**
+   * Render all strategy rows from state
+   */
+  function renderCustomStrategyRows() {
+    if (!customStrategyElements.rowsContainer) return;
+
+    // Clear existing rows
+    customStrategyElements.rowsContainer.innerHTML = '';
+
+    // Re-render all rows from state
+    customStrategyState.strategies.forEach((strategy, index) => {
+      // Temporarily remove from state, add row, then restore
+      const tempStrategies = [...customStrategyState.strategies];
+      customStrategyState.strategies = tempStrategies.slice(0, index);
+
+      const row = document.createElement('div');
+      row.className = 'custom-strategy-row';
+      row.dataset.index = index;
+
+      // Strategy dropdown
+      const strategyField = document.createElement('div');
+      strategyField.className = 'custom-strategy-row-field';
+      const strategyLabel = document.createElement('label');
+      strategyLabel.textContent = 'Strategy';
+      strategyLabel.setAttribute('data-translate', 'simulator.customMix.strategy');
+      const strategySelect = document.createElement('select');
+      strategySelect.dataset.index = index;
+
+      const selectableStrategies = getAvailableStrategies(index);
+      if (!selectableStrategies.includes(strategy.key)) {
+        selectableStrategies.push(strategy.key);
+      }
+
+      selectableStrategies.forEach(key => {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = getStrategyLabel(STRATEGY_CONFIG[key].labelKey);
+        if (key === strategy.key) option.selected = true;
+        strategySelect.appendChild(option);
+      });
+
+      strategySelect.addEventListener('change', (e) => {
+        const idx = parseInt(e.target.dataset.index);
+        customStrategyState.strategies[idx].key = e.target.value;
+        markCustomStrategyDirty();
+        renderCustomStrategyRows();
+      });
+
+      strategyField.appendChild(strategyLabel);
+      strategyField.appendChild(strategySelect);
+
+      // Weight input
+      const weightField = document.createElement('div');
+      weightField.className = 'custom-strategy-row-field';
+      const weightLabel = document.createElement('label');
+      weightLabel.textContent = 'Weight (%)';
+      weightLabel.setAttribute('data-translate', 'simulator.customMix.weight');
+      const weightInput = document.createElement('input');
+      weightInput.type = 'number';
+      weightInput.min = '0';
+      weightInput.max = '100';
+      weightInput.step = '1';
+      weightInput.value = strategy.weight || 0;
+      weightInput.dataset.index = index;
+
+      weightInput.addEventListener('input', (e) => {
+        const idx = parseInt(e.target.dataset.index);
+        const value = parseFloat(e.target.value) || 0;
+        customStrategyState.strategies[idx].weight = Math.max(0, Math.min(100, value));
+        updateWeightSum();
+        markCustomStrategyDirty();
+      });
+
+      weightField.appendChild(weightLabel);
+      weightField.appendChild(weightInput);
+
+      // Remove button
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'remove-strategy-btn';
+      removeBtn.textContent = '×';
+      removeBtn.setAttribute('aria-label', 'Remove strategy');
+      removeBtn.dataset.index = index;
+
+      removeBtn.addEventListener('click', (e) => {
+        const idx = parseInt(e.target.dataset.index);
+        removeStrategyRow(idx);
+      });
+
+      row.appendChild(strategyField);
+      row.appendChild(weightField);
+      row.appendChild(removeBtn);
+
+      customStrategyElements.rowsContainer.appendChild(row);
+
+      // Restore state
+      customStrategyState.strategies = tempStrategies;
+    });
+
+    updateWeightSum();
   }
 
   function updateCustomAlert() {
     if (!customStrategyElements.alert) return;
     customStrategyElements.alert.style.display = customStrategyState.enabled ? 'none' : 'block';
+  }
+
+  /**
+   * Update custom mix pill tooltip and subtitle to show component strategies
+   */
+  function updateCustomMixDisplay() {
+    const pillElement = document.querySelector('.strategy-pill[data-strategy="customMix"]');
+    if (!pillElement) return;
+
+    const tooltip = pillElement.querySelector('[data-tooltip]');
+    const subtitle = pillElement.querySelector('.pill-subtitle');
+
+    if (customStrategyState.enabled && customStrategyState.strategies.length >= 2) {
+      // Build tooltip text with all component strategies
+      const lang = getCurrentLanguage();
+      const breakdown = customStrategyState.strategies.map(s => {
+        const label = getStrategyLabel(STRATEGY_CONFIG[s.key].labelKey);
+        return `${label} (${s.weight}%)`;
+      }).join(' + ');
+
+      if (tooltip) {
+        tooltip.textContent = breakdown;
+      }
+
+      if (subtitle) {
+        const count = customStrategyState.strategies.length;
+        subtitle.textContent = lang === 'en'
+          ? `${count} strategies blended`
+          : `${count} stratégies mélangées`;
+      }
+    } else {
+      // Reset to default text
+      if (subtitle) {
+        const lang = getCurrentLanguage();
+        subtitle.textContent = lang === 'en'
+          ? 'Blend strategies'
+          : 'Mélangez des stratégies';
+      }
+    }
   }
 
   function toggleCustomPanel(shouldShow) {
@@ -1103,23 +1492,54 @@
 
   function applyCustomStrategyFromInputs() {
     if (!portfolioData) {
+      console.error('Portfolio data not loaded yet');
       return;
     }
 
-    customStrategyState.strategyA = customStrategyElements.selectA.value;
-    customStrategyState.strategyB = customStrategyElements.selectB.value;
-    customStrategyState.weight = parseInt(customStrategyElements.weight.value, 10);
+    // Validate strategies exist and weights sum to 100%
+    if (customStrategyState.strategies.length < 2) {
+      console.warn('Need at least 2 strategies');
+      // Show user feedback
+      if (customStrategyElements.apply) {
+        const originalText = customStrategyElements.apply.textContent;
+        customStrategyElements.apply.textContent = getCurrentLanguage() === 'en'
+          ? 'Need 2+ strategies'
+          : 'Besoin de 2+ stratégies';
+        setTimeout(() => {
+          customStrategyElements.apply.textContent = originalText;
+        }, 2000);
+      }
+      return;
+    }
+
+    const totalWeight = customStrategyState.strategies.reduce((sum, s) => sum + (s.weight || 0), 0);
+    if (Math.abs(totalWeight - 100) > 0.01) {
+      console.warn('Weights must sum to 100%');
+      // Show user feedback
+      if (customStrategyElements.apply) {
+        const originalText = customStrategyElements.apply.textContent;
+        customStrategyElements.apply.textContent = getCurrentLanguage() === 'en'
+          ? `Sum must be 100% (got ${totalWeight.toFixed(1)}%)`
+          : `Total doit être 100% (actuellement ${totalWeight.toFixed(1)}%)`;
+        setTimeout(() => {
+          customStrategyElements.apply.textContent = originalText;
+        }, 3000);
+      }
+      return;
+    }
+
     customStrategyState.enabled = true;
     persistCustomStrategyState();
 
     refreshCustomStrategyDataset();
     updateCustomAlert();
+    updateCustomMixDisplay();
 
     visibleStrategies.add('customMix');
     prominentStrategy = 'customMix';
     updateActiveStrategyPills();
 
-    // FIX: Force chart update with animation for user feedback
+    // Force chart update with animation for user feedback
     if (portfolioChart) {
       updateChart(portfolioData, prominentStrategy);
       portfolioChart.update('active'); // 'active' animation mode
@@ -1129,24 +1549,35 @@
     updateSimulatorState(portfolioData);
     setExportStatus('ready');
 
+    // Show share button
+    if (customStrategyElements.share) {
+      customStrategyElements.share.classList.remove('hidden');
+    }
+
     trackSimulatorEvent('custom_strategy_applied', {
-      base_strategy_a: customStrategyState.strategyA,
-      base_strategy_b: customStrategyState.strategyB,
-      weight_a_percent: customStrategyState.weight,
-      weight_b_percent: 100 - customStrategyState.weight,
+      num_strategies: customStrategyState.strategies.length,
+      strategies: customStrategyState.strategies.map(s => s.key).join(','),
+      weights: customStrategyState.strategies.map(s => s.weight).join(','),
     });
   }
 
   function resetCustomStrategy() {
     customStrategyState = { ...DEFAULT_CUSTOM_STRATEGY };
     persistCustomStrategyState();
-    populateCustomStrategyOptions();
-    if (customStrategyElements.weight) {
-      customStrategyElements.weight.value = customStrategyState.weight;
-    }
-    updateCustomWeightDisplay(customStrategyState.weight);
+
+    // Clear all rows
+    renderCustomStrategyRows();
+    updateWeightSum();
+
     refreshCustomStrategyDataset({ forceDisable: true });
     updateCustomAlert();
+    updateCustomMixDisplay();
+
+    // Hide share button
+    if (customStrategyElements.share) {
+      customStrategyElements.share.classList.add('hidden');
+    }
+
     if (visibleStrategies.has('customMix')) {
       resetMetricDisplay();
       if (portfolioData) {
@@ -1154,6 +1585,7 @@
         updateSimulatorState(portfolioData);
       }
     }
+
     setExportStatus('ready');
     trackSimulatorEvent('custom_strategy_reset');
   }
@@ -2357,48 +2789,67 @@
     loadCustomStrategyState();
     applyQueryParams();
     cacheCustomStrategyElements();
-    populateCustomStrategyOptions();
-    if (customStrategyElements.weight) {
-      customStrategyElements.weight.value = customStrategyState.weight;
-    }
-    updateCustomWeightDisplay(customStrategyState.weight);
+
+    // Initialize custom strategy UI
+    renderCustomStrategyRows();
     updateCustomAlert();
     toggleCustomPanel(false);
     initializeExportActions();
+
     if (customStrategyState.enabled && visibleStrategies.has('customMix')) {
       updateCustomAlert();
+      updateCustomMixDisplay();
       toggleCustomPanel(true);
+      if (customStrategyElements.share) {
+        customStrategyElements.share.classList.remove('hidden');
+      }
     }
 
-    if (customStrategyElements.selectA) {
-      customStrategyElements.selectA.addEventListener('change', (event) => {
-        customStrategyState.strategyA = event.target.value;
-        markCustomStrategyDirty();
+    // Add strategy button event listener
+    if (customStrategyElements.addBtn) {
+      customStrategyElements.addBtn.addEventListener('click', () => {
+        addStrategyRow();
+        renderCustomStrategyRows(); // Re-render to update dropdown options
       });
     }
 
-    if (customStrategyElements.selectB) {
-      customStrategyElements.selectB.addEventListener('change', (event) => {
-        customStrategyState.strategyB = event.target.value;
-        markCustomStrategyDirty();
-      });
-    }
-
-    if (customStrategyElements.weight) {
-      customStrategyElements.weight.addEventListener('input', (event) => {
-        const value = parseInt(event.target.value, 10);
-        customStrategyState.weight = Number.isNaN(value) ? customStrategyState.weight : value;
-        updateCustomWeightDisplay(customStrategyState.weight);
-        markCustomStrategyDirty();
-      });
-    }
-
+    // Apply button event listener
     if (customStrategyElements.apply) {
       customStrategyElements.apply.addEventListener('click', applyCustomStrategyFromInputs);
     }
 
+    // Reset button event listener
     if (customStrategyElements.reset) {
       customStrategyElements.reset.addEventListener('click', resetCustomStrategy);
+    }
+
+    // Share button event listener
+    if (customStrategyElements.share) {
+      customStrategyElements.share.addEventListener('click', () => {
+        const url = generateMixURL();
+
+        // Copy to clipboard
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(() => {
+            // Show success feedback
+            const originalText = customStrategyElements.share.textContent;
+            customStrategyElements.share.textContent = getCurrentLanguage() === 'en' ? 'Copied!' : 'Copié !';
+            setTimeout(() => {
+              customStrategyElements.share.textContent = originalText;
+            }, 2000);
+
+            trackSimulatorEvent('custom_mix_shared', {
+              num_strategies: customStrategyState.strategies.length,
+            });
+          }).catch(err => {
+            console.error('Failed to copy URL:', err);
+            alert(url);
+          });
+        } else {
+          // Fallback: show URL in alert
+          alert(url);
+        }
+      });
     }
 
     initializeEtfToggleControls();

@@ -1940,8 +1940,8 @@
               </svg>
             </div>
             <div class="pill-content">
-              <div class="pill-title" data-translate="simulator.strategy.customMix">Créez votre Mix</div>
-              <div class="pill-subtitle" data-translate="simulator.strategy.customMix.subtitle">Mélangez deux stratégies</div>
+              <div class="pill-title" data-translate="simulator.strategy.customMix">My Mix</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.customMix.subtitle">Blend strategies</div>
             </div>
           </button>
           <button class="strategy-pill" data-strategy="regimeAwareRP" data-tooltip-behavior="press">
@@ -1986,45 +1986,45 @@
 
         <div class="custom-strategy-panel hidden" id="customStrategyPanel">
           <h3 style="font-size: 1.1rem; font-weight: 700; color: #4B5563;" data-translate="simulator.customMix.title">
-            Custom Strategy Builder
+            My Mix
           </h3>
           <p style="color: #6B7280; margin-top: 0.5rem;" data-translate="simulator.customMix.description">
-            Select two strategies and choose how much weight to assign to each. We blend them instantly on real data.
+            Blend any number of strategies with custom weights. Weights must sum to 100%.
           </p>
 
           <div class="custom-strategy-alert" id="customStrategyAlert" data-translate="simulator.customMix.cta">
-            Configure your mix below to display results.
+            Add strategies below to create your mix.
           </div>
 
-          <div class="custom-strategy-grid">
-            <div class="custom-strategy-field">
-              <label for="customStrategyA" data-translate="simulator.customMix.strategyA">Strategy A</label>
-              <select id="customStrategyA"></select>
-            </div>
-            <div class="custom-strategy-field">
-              <label for="customStrategyB" data-translate="simulator.customMix.strategyB">Strategy B</label>
-              <select id="customStrategyB"></select>
-            </div>
-            <div class="custom-strategy-field">
-              <label for="customStrategyWeight" data-translate="simulator.customMix.weightA">Weight for Strategy A</label>
-              <input type="range" id="customStrategyWeight" min="0" max="100" step="5" value="60" />
-              <div class="custom-weight-value">
-                <span id="customStrategyWeightValue">60%</span>
-              </div>
-            </div>
+          <!-- Dynamic strategy rows container -->
+          <div id="customStrategyRows" class="custom-strategy-rows"></div>
+
+          <!-- Add Strategy Button -->
+          <button class="add-strategy-btn" id="addStrategyBtn" data-translate="simulator.customMix.addStrategy">
+            + Add Strategy
+          </button>
+
+          <!-- Weight Sum Display -->
+          <div class="weight-sum-display" id="weightSumDisplay">
+            <span data-translate="simulator.customMix.totalWeight">Total:</span>
+            <span id="weightSumValue" class="weight-sum-value">0%</span>
+            <span id="weightSumStatus" class="weight-sum-status"></span>
           </div>
 
           <div class="custom-strategy-actions">
-            <button class="custom-strategy-apply" id="customStrategyApply" data-translate="simulator.customMix.apply">
+            <button class="custom-strategy-apply" id="customStrategyApply" data-translate="simulator.customMix.apply" disabled>
               Apply Mix
             </button>
             <button class="custom-strategy-reset" id="customStrategyReset" data-translate="simulator.customMix.reset">
-              Reset Mix
+              Reset
+            </button>
+            <button class="custom-strategy-share hidden" id="customStrategyShare" data-translate="simulator.customMix.share">
+              Share Mix
             </button>
           </div>
 
           <div class="custom-strategy-note" data-translate="simulator.customMix.note">
-            Your custom mix is saved locally. Adjust the slider to explore risk vs return.
+            Your custom mix is saved locally and can be shared via URL.
           </div>
         </div>
       </div>
