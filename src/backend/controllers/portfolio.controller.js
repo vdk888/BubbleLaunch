@@ -277,13 +277,28 @@ function recalculateMetricsForLeveragedStrategy(timeSeries) {
       ? Math.abs(baseMetrics.annualReturn / baseMetrics.maxDrawdown)
       : 0;
 
+  const formatPercentageMetric = (value) => {
+    if (typeof value !== 'number' || Number.isNaN(value)) {
+      return 0;
+    }
+    // Match cache formatting (value expressed as percent with two decimals)
+    return Math.round(value * 10000) / 100;
+  };
+
+  const formatRatioMetric = (value) => {
+    if (typeof value !== 'number' || Number.isNaN(value)) {
+      return 0;
+    }
+    return Math.round(value * 100) / 100;
+  };
+
   const result = {
-    totalReturn: baseMetrics.totalReturn,
-    annualReturn: baseMetrics.annualReturn,
-    volatility: baseMetrics.volatility,
-    sharpeRatio: baseMetrics.sharpeRatio,
-    maxDrawdown: baseMetrics.maxDrawdown,
-    calmarRatio: calmarRatio,
+    totalReturn: formatPercentageMetric(baseMetrics.totalReturn),
+    annualReturn: formatPercentageMetric(baseMetrics.annualReturn),
+    volatility: formatPercentageMetric(baseMetrics.volatility),
+    sharpeRatio: formatRatioMetric(baseMetrics.sharpeRatio),
+    maxDrawdown: formatPercentageMetric(baseMetrics.maxDrawdown),
+    calmarRatio: formatRatioMetric(calmarRatio),
   };
 
   console.log(`🔍 DEBUG recalculateMetrics: Final result=`, JSON.stringify(result, null, 2));
