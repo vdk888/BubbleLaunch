@@ -317,7 +317,7 @@
       dataKey: 'equalWeight',
       color: '#6B7280',
       borderWidth: 2,
-      borderDash: [5, 5],
+      borderDash: [],
       order: 3,
       isBest: false,
     },
@@ -678,7 +678,7 @@
       datasets.push({
         label: etfLabels.spy,
         data: displayRows.map(d => d.SPY),
-        borderColor: 'rgba(102, 126, 234, 0.4)',
+        borderColor: 'rgba(102, 126, 234, 0.6)',
         backgroundColor: 'rgba(102, 126, 234, 0.05)',
         borderWidth: 1.5,
         pointRadius: 0,
@@ -691,7 +691,7 @@
       datasets.push({
         label: etfLabels.ief,
         data: displayRows.map(d => d.IEF),
-        borderColor: 'rgba(107, 114, 128, 0.4)',
+        borderColor: 'rgba(107, 114, 128, 0.6)',
         backgroundColor: 'rgba(107, 114, 128, 0.05)',
         borderWidth: 1.5,
         pointRadius: 0,
@@ -704,7 +704,7 @@
       datasets.push({
         label: etfLabels.gld,
         data: displayRows.map(d => d.GLD),
-        borderColor: 'rgba(156, 163, 175, 0.4)',
+        borderColor: 'rgba(156, 163, 175, 0.6)',
         backgroundColor: 'rgba(156, 163, 175, 0.05)',
         borderWidth: 1.5,
         pointRadius: 0,
@@ -717,9 +717,9 @@
       datasets.push({
         label: etfLabels.efa,
         data: displayRows.map(d => d.EFA),
-        borderColor: 'rgba(129, 140, 248, 0.35)',
+        borderColor: 'rgba(129, 140, 248, 0.55)',
         backgroundColor: 'rgba(129, 140, 248, 0.05)',
-        borderWidth: 1.3,
+        borderWidth: 1.5,
         pointRadius: 0,
         tension: 0.4,
         borderDash: [4, 3],
@@ -730,9 +730,9 @@
       datasets.push({
         label: etfLabels.eem,
         data: displayRows.map(d => d.EEM),
-        borderColor: 'rgba(248, 113, 113, 0.35)',
+        borderColor: 'rgba(248, 113, 113, 0.55)',
         backgroundColor: 'rgba(248, 113, 113, 0.05)',
-        borderWidth: 1.3,
+        borderWidth: 1.5,
         pointRadius: 0,
         tension: 0.4,
         borderDash: [4, 4],
@@ -743,9 +743,9 @@
       datasets.push({
         label: etfLabels.cash,
         data: displayRows.map(d => d.CASH),
-        borderColor: 'rgba(34, 197, 94, 0.4)',
+        borderColor: 'rgba(34, 197, 94, 0.6)',
         backgroundColor: 'rgba(34, 197, 94, 0.08)',
-        borderWidth: 1.2,
+        borderWidth: 1.5,
         pointRadius: 0,
         tension: 0.2,
         borderDash: [2, 2],
@@ -876,7 +876,8 @@
   }
 
   function resetMetricDisplay() {
-    ['totalReturn', 'annualReturn', 'volatility', 'sharpeRatio', 'maxDrawdown', 'calmarRatio'].forEach(
+    ['totalReturn', 'annualReturn', 'volatility', 'sharpeRatio', 'maxDrawdown', 'calmarRatio',
+     'baselineTotalReturn', 'baselineAnnualReturn', 'baselineVolatility', 'baselineSharpeRatio', 'baselineMaxDrawdown', 'baselineCalmarRatio'].forEach(
       (id) => {
         const element = document.getElementById(id);
         if (element) {
@@ -1248,6 +1249,221 @@
   }
 
   /**
+   * Allocation Chart Functionality
+   * Shows stacked area chart of portfolio allocations over time
+   */
+  let allocationChart = null;
+
+  // Define ETF colors (matching main chart)
+  const ETF_COLORS = {
+    SPY: '#3B82F6',
+    IEF: '#10B981',
+    GLD: '#F59E0B',
+    EFA: '#8B5CF6',
+    EEM: '#EF4444',
+    CASH: '#6B7280'
+  };
+
+  /**
+   * Get static allocations for fixed-weight strategies
+   * Returns null for dynamic strategies
+   */
+  function getStaticAllocations(strategy) {
+    switch(strategy) {
+      case 'equalWeight':
+        // Equal weight across all 5 ETFs (20% each)
+        return { SPY: 0.20, IEF: 0.20, GLD: 0.20, EFA: 0.20, EEM: 0.20, CASH: 0 };
+
+      case 'sixtyForty':
+        // 60% SPY, 40% IEF
+        return { SPY: 0.60, IEF: 0.40, GLD: 0, EFA: 0, EEM: 0, CASH: 0 };
+
+      default:
+        // Dynamic strategies - return null
+        return null;
+    }
+  }
+
+  /**
+   * Initialize allocation chart
+   */
+  function initializeAllocationChart() {
+    const ctx = document.getElementById('allocationChart');
+    if (!ctx) return null;
+
+    const mobile = isMobile();
+    const lang = getCurrentLanguage();
+
+    allocationChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: []
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: mobile ? 1.5 : 2.8,
+        layout: {
+          padding: {
+            top: mobile ? 8 : 12,
+            bottom: mobile ? 8 : 16,
+            left: mobile ? 8 : 20,
+            right: mobile ? 8 : 20,
+          },
+        },
+        interaction: {
+          mode: 'index',
+          intersect: false
+        },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom',
+            labels: {
+              boxWidth: mobile ? 10 : 12,
+              padding: mobile ? 8 : 12,
+              font: { size: mobile ? 9 : 10, family: 'Inter, sans-serif' },
+              color: '#374151',
+              usePointStyle: true,
+            }
+          },
+          tooltip: {
+            enabled: !mobile,
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            titleColor: '#1F2937',
+            bodyColor: '#374151',
+            borderColor: '#E5E7EB',
+            borderWidth: 1,
+            padding: 10,
+            callbacks: {
+              label: function(context) {
+                const label = context.dataset.label || '';
+                const value = context.parsed.y * 100;
+                return `${label}: ${value.toFixed(1)}%`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            stacked: true,
+            grid: { display: false },
+            ticks: {
+              maxTicksLimit: mobile ? 4 : 8,
+              font: { size: mobile ? 7 : 9, family: 'Inter, sans-serif' },
+              color: '#6B7280',
+              maxRotation: mobile ? 45 : 0,
+              minRotation: mobile ? 45 : 0,
+            }
+          },
+          y: {
+            stacked: true,
+            display: true,
+            min: 0,
+            max: 1,
+            ticks: {
+              maxTicksLimit: mobile ? 5 : 6,
+              callback: function(value) {
+                return (value * 100).toFixed(0) + '%';
+              },
+              font: { size: mobile ? 7 : 9, family: 'Inter, sans-serif' },
+              color: '#6B7280',
+            },
+            title: {
+              display: !mobile,
+              text: lang === 'en' ? 'Allocation (%)' : 'Allocation (%)',
+              font: { size: 10, family: 'Inter, sans-serif', weight: '500' },
+              color: '#374151',
+            }
+          }
+        },
+        elements: {
+          line: {
+            fill: true,
+            tension: 0.4,
+            borderWidth: 1
+          },
+          point: {
+            radius: 0,
+            hitRadius: 4,
+            hoverRadius: 4
+          }
+        }
+      }
+    });
+
+    return allocationChart;
+  }
+
+  /**
+   * Update allocation chart with data
+   */
+  function updateAllocationChart(portfolioData, prominentStrategy) {
+    const allocationChartCard = document.getElementById('allocationChartCard');
+    const allocationCanvas = document.getElementById('allocationChart');
+    const allocationNotice = document.getElementById('allocationChartNotice');
+
+    if (!allocationChartCard || !allocationCanvas) return;
+
+    // Get allocations for the strategy
+    const allocations = getStaticAllocations(prominentStrategy);
+
+    if (!allocations) {
+      // Dynamic strategy - show notice, hide chart
+      allocationCanvas.style.display = 'none';
+      if (allocationNotice) allocationNotice.style.display = 'block';
+      return;
+    }
+
+    // Static strategy - show chart, hide notice
+    allocationCanvas.style.display = 'block';
+    if (allocationNotice) allocationNotice.style.display = 'none';
+
+    // Initialize chart if needed
+    if (!allocationChart) {
+      initializeAllocationChart();
+    }
+
+    if (!allocationChart) return;
+
+    // Get dates from portfolio data (with downsampling matching main chart)
+    const normalizedRows = ensureNormalizedCache(portfolioData);
+    const dataStartDate = portfolioData.dataStartDate ? new Date(portfolioData.dataStartDate) : null;
+    const filteredRows = dataStartDate
+      ? normalizedRows.filter(d => new Date(d.date) >= dataStartDate)
+      : normalizedRows;
+
+    const periodYears = portfolioData.periodYears || currentPeriod || 20;
+    const displayRows = downsampleForDisplay(filteredRows, periodYears);
+
+    const lang = getCurrentLanguage();
+    const locale = lang === 'en' ? 'en-US' : 'fr-FR';
+    const labels = displayRows.map(d => {
+      const date = new Date(d.date);
+      return date.toLocaleDateString(locale, { year: 'numeric', month: 'short' });
+    });
+
+    // Create datasets for each ETF (stacked)
+    const etfOrder = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'CASH'];
+    const datasets = etfOrder
+      .filter(ticker => allocations[ticker] > 0) // Only show non-zero allocations
+      .map(ticker => ({
+        label: ticker,
+        data: displayRows.map(() => allocations[ticker]),
+        backgroundColor: ETF_COLORS[ticker] + 'CC', // Add opacity
+        borderColor: ETF_COLORS[ticker],
+        borderWidth: 1,
+        fill: true
+      }));
+
+    // Update chart
+    allocationChart.data.labels = labels;
+    allocationChart.data.datasets = datasets;
+    allocationChart.update('none'); // No animation for responsiveness
+  }
+
+  /**
    * Create or update chart
    */
   function updateChart(data, strategy) {
@@ -1269,10 +1485,13 @@
         options: getResponsiveChartOptions(),
       });
     }
+
+    // Update allocation chart
+    updateAllocationChart(data, strategy);
   }
 
   /**
-   * Update performance metrics (now displays metrics for the prominent strategy)
+   * Update performance metrics (displays metrics for BOTH prominent strategy AND baseline)
    */
   function updateMetrics(data, strategy) {
     const strategyKey = {
@@ -1293,6 +1512,7 @@
       return;
     }
 
+    // === UPDATE PROMINENT STRATEGY METRICS ===
     // Total Return
     document.getElementById('totalReturn').textContent = formatPercentage(metrics.totalReturn, { withPlus: true });
 
@@ -1315,6 +1535,55 @@
       calmarRatio = Math.abs(metrics.annualReturn / metrics.maxDrawdown).toFixed(2);
     }
     document.getElementById('calmarRatio').textContent = calmarRatio;
+
+    // === UPDATE PROMINENT STRATEGY TITLE ===
+    const prominentTitle = document.getElementById('prominentMetricsTitle');
+    if (prominentTitle) {
+      const lang = getCurrentLanguage();
+      const strategyLabel = getStrategyLabel(STRATEGY_CONFIG[strategy].labelKey);
+      const performanceLabel = lang === 'en' ? 'Performance' : 'Performance de';
+      prominentTitle.textContent = `${performanceLabel} ${strategyLabel}`;
+    }
+
+    // === UPDATE BASELINE EQUAL WEIGHT METRICS (always shown unless prominent IS equalWeight) ===
+    const baselineSection = document.getElementById('baselineMetrics');
+    if (strategy === 'equalWeight') {
+      // Hide baseline if prominent strategy IS Equal Weight (avoid duplication)
+      if (baselineSection) {
+        baselineSection.style.display = 'none';
+      }
+    } else {
+      // Show baseline section
+      if (baselineSection) {
+        baselineSection.style.display = 'block';
+      }
+
+      const baselineMetrics = data.metrics['equalWeight'];
+      if (baselineMetrics) {
+        // Total Return
+        document.getElementById('baselineTotalReturn').textContent = formatPercentage(baselineMetrics.totalReturn, { withPlus: true });
+
+        // Annualized Return
+        document.getElementById('baselineAnnualReturn').textContent = formatPercentage(baselineMetrics.annualReturn);
+
+        // Volatility
+        document.getElementById('baselineVolatility').textContent = formatPercentage(baselineMetrics.volatility);
+
+        // Sharpe Ratio
+        document.getElementById('baselineSharpeRatio').textContent =
+          typeof baselineMetrics.sharpeRatio === 'number' ? baselineMetrics.sharpeRatio.toFixed(2) : '—';
+
+        // Max Drawdown
+        document.getElementById('baselineMaxDrawdown').textContent = formatPercentage(baselineMetrics.maxDrawdown);
+
+        // Calmar Ratio
+        let baselineCalmar = '—';
+        if (typeof baselineMetrics.annualReturn === 'number' && typeof baselineMetrics.maxDrawdown === 'number' && baselineMetrics.maxDrawdown !== 0) {
+          baselineCalmar = Math.abs(baselineMetrics.annualReturn / baselineMetrics.maxDrawdown).toFixed(2);
+        }
+        document.getElementById('baselineCalmarRatio').textContent = baselineCalmar;
+      }
+    }
   }
 
   /**
@@ -2023,6 +2292,12 @@
         portfolioChart.options = getResponsiveChartOptions();
         portfolioChart.update('none'); // Update without animation
       }
+      if (portfolioData && allocationChart) {
+        // Reinitialize allocation chart with new responsive options
+        allocationChart.destroy();
+        allocationChart = null;
+        updateAllocationChart(portfolioData, prominentStrategy);
+      }
     }, 250);
   });
 
@@ -2030,6 +2305,9 @@
   window.addEventListener('beforeunload', () => {
     if (portfolioChart) {
       portfolioChart.destroy();
+    }
+    if (allocationChart) {
+      allocationChart.destroy();
     }
   });
 })();

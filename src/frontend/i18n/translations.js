@@ -775,6 +775,18 @@ const translations = {
     en: "Data based on real historical data of ETFs SPY, IEF, GLD, EFA and EEM (Base 100)",
     fr: "Données basées sur l'historique réel des ETFs SPY, IEF, GLD, EFA et EEM (Base 100)"
   },
+  "simulator.allocationChart.title": {
+    en: "Historical Allocations",
+    fr: "Allocations Historiques"
+  },
+  "simulator.allocationChart.description": {
+    en: "Portfolio allocation across different ETFs (percentages stacked to 100%)",
+    fr: "Répartition du portefeuille entre les différents ETFs (pourcentages cumulés à 100%)"
+  },
+  "simulator.allocationChart.notice": {
+    en: "Allocation chart is available for fixed-weight strategies (Equal Weight, 60/40). Dynamic strategies adjust their allocations at rebalancing points.",
+    fr: "Le graphique d'allocation est disponible pour les stratégies à poids fixes (Allocation Égale, 60/40). Les stratégies dynamiques ajustent leurs allocations lors des rééquilibrages."
+  },
   "simulator.metrics.title": {
     en: "Performance Statistics",
     fr: "Statistiques de Performance"

@@ -146,18 +146,18 @@
 
       .strategy-pills {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 0.625rem;
         margin-top: 1.5rem;
       }
 
       .strategy-pill {
         display: flex;
         align-items: center;
-        gap: 1rem;
-        padding: 1.5rem;
+        gap: 0.5rem;
+        padding: 0.625rem;
         border: 2px solid #E5E7EB;
-        border-radius: 16px;
+        border-radius: 12px;
         background: white;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -182,6 +182,12 @@
         transition: color 0.3s ease;
       }
 
+      .pill-icon img,
+      .pill-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+
       .strategy-pill.active .pill-icon {
         color: #667eea;
       }
@@ -193,13 +199,15 @@
       .pill-title {
         font-weight: 600;
         color: #1F2937;
-        font-size: 1.1rem;
-        margin-bottom: 0.25rem;
+        font-size: 0.8125rem;
+        margin-bottom: 0.125rem;
+        line-height: 1.3;
       }
 
       .pill-subtitle {
-        font-size: 0.9rem;
+        font-size: 0.6875rem;
         color: #6B7280;
+        line-height: 1.3;
       }
 
       .strategy-pill.active .pill-title {
@@ -218,29 +226,29 @@
       /* Leverage Toggle Section */
       .leverage-section {
         margin: 2rem 0;
-        padding: 1.75rem;
-        border-radius: 16px;
+        padding: 1.25rem;
+        border-radius: 12px;
         background: rgba(255, 255, 255, 0.7);
         border: 1px solid rgba(102, 126, 234, 0.25);
         box-shadow: 0 8px 24px rgba(102, 126, 234, 0.08);
       }
 
       .section-subtitle {
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 700;
         color: #1F2937;
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
       }
 
       .leverage-pills-container {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.75rem;
       }
 
       .leverage-pills {
         display: flex;
-        gap: 1rem;
+        gap: 0.625rem;
       }
 
       .leverage-pill {
@@ -248,16 +256,17 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.5rem;
-        padding: 1rem 1.5rem;
+        gap: 0.375rem;
+        padding: 0.625rem 1rem;
         border-radius: 50px;
         border: 2px solid #E5E7EB;
         background: white;
         cursor: pointer;
         transition: all 0.25s ease;
         font-weight: 600;
-        font-size: 0.95rem;
+        font-size: 0.8125rem;
         color: #4B5563;
+        min-height: 44px;
       }
 
       .leverage-pill:hover:not(.active) {
@@ -278,16 +287,16 @@
       }
 
       .risk-badge {
-        font-size: 1.2rem;
+        font-size: 1rem;
         line-height: 1;
       }
 
       .leverage-warning {
         display: flex;
         align-items: flex-start;
-        gap: 1rem;
-        padding: 1.25rem;
-        border-radius: 12px;
+        gap: 0.75rem;
+        padding: 1rem;
+        border-radius: 10px;
         background: rgba(239, 68, 68, 0.08);
         border-left: 4px solid #ef4444;
         transition: all 0.3s ease;
@@ -298,21 +307,21 @@
       }
 
       .warning-icon {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         line-height: 1;
         flex-shrink: 0;
       }
 
       .warning-content {
-        font-size: 0.9rem;
+        font-size: 0.8125rem;
         color: #7f1d1d;
-        line-height: 1.6;
+        line-height: 1.5;
       }
 
       .warning-content strong {
         color: #991b1b;
         display: block;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.375rem;
       }
 
       @media (max-width: 768px) {
@@ -764,7 +773,7 @@
         max-height: 400px;
       }
 
-      /* Performance Metrics Grid */
+      /* Performance Metrics Grid - COMPACT REDESIGN */
       .metrics-grid {
         max-width: 1100px;
         margin: 0 auto 3rem;
@@ -774,27 +783,55 @@
         font-size: 1.25rem;
         font-weight: 700;
         color: #1F2937;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
       }
 
+      /* Metrics Section (Prominent + Baseline) */
+      .metrics-section {
+        margin-bottom: 1.25rem;
+      }
+
+      .metrics-subsection-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: #374151;
+      }
+
+      .prominent-metrics .metrics-subsection-title {
+        color: #667eea;
+      }
+
+      .baseline-metrics {
+        opacity: 0.9;
+        border-top: 1px solid #E5E7EB;
+        padding-top: 1rem;
+      }
+
+      .baseline-metrics .metrics-subsection-title {
+        color: #6B7280;
+        font-size: 0.8125rem;
+      }
+
+      /* Compact Metrics Cards */
       .metrics-cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 0.75rem;
       }
 
       .metric-card {
         background: white;
         border: 1px solid #EEEEEE;
         border-radius: 12px;
-        padding: 1.5rem;
+        padding: 0.875rem;
         transition: all 0.3s ease;
         text-align: center;
       }
 
       .metric-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
         border-color: #667eea;
       }
 
@@ -805,16 +842,16 @@
 
       .metric-card.highlight:hover {
         background: rgba(102, 126, 234, 0.12);
-        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
       }
 
       .metric-card-label {
-        font-size: 0.875rem;
+        font-size: 0.7rem;
         color: #6B7280;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.35rem;
         font-weight: 500;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.4px;
       }
 
       .metric-card.highlight .metric-card-label {
@@ -823,10 +860,10 @@
       }
 
       .metric-card-value {
-        font-size: 2rem;
+        font-size: 1.4rem;
         font-weight: 700;
         color: #1F2937;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.15rem;
       }
 
       .metric-card.highlight .metric-card-value {
@@ -834,13 +871,23 @@
       }
 
       .metric-card-subtitle {
-        font-size: 0.75rem;
+        font-size: 0.65rem;
         color: #9CA3AF;
       }
 
       .metric-card.highlight .metric-card-subtitle {
         color: #667eea;
         opacity: 0.8;
+      }
+
+      /* Baseline metrics slightly smaller */
+      .baseline-metrics .metric-card {
+        padding: 0.75rem;
+        opacity: 0.95;
+      }
+
+      .baseline-metrics .metric-card-value {
+        font-size: 1.3rem;
       }
 
       /* Tablet Responsiveness (768px - 1024px) */
@@ -855,16 +902,17 @@
 
         .strategy-pills {
           grid-template-columns: 1fr;
-          gap: 1rem;
+          gap: 0.75rem;
         }
 
         .strategy-pill {
-          padding: 1.25rem;
+          padding: 0.625rem;
         }
 
-        .pill-icon img {
-          width: 28px;
-          height: 28px;
+        .pill-icon img,
+        .pill-icon svg {
+          width: 18px;
+          height: 18px;
         }
 
         .chart-canvas-wrapper {
@@ -975,23 +1023,24 @@
         }
 
         .strategy-pill {
-          padding: 1.25rem;
+          padding: 0.75rem;
           flex-direction: column;
           align-items: flex-start;
-          gap: 0.75rem;
+          gap: 0.5rem;
         }
 
-        .pill-icon img {
-          width: 28px;
-          height: 28px;
+        .pill-icon img,
+        .pill-icon svg {
+          width: 18px;
+          height: 18px;
         }
 
         .pill-title {
-          font-size: 1rem;
+          font-size: 0.8125rem;
         }
 
         .pill-subtitle {
-          font-size: 0.85rem;
+          font-size: 0.6875rem;
         }
 
         .strategy-pill,
@@ -1063,23 +1112,40 @@
 
         .metrics-section-title {
           font-size: 1.1rem;
-          margin-bottom: 1rem;
+          margin-bottom: 0.75rem;
         }
 
-        .metrics-cards {
-          gap: 0.75rem;
-        }
-
-        .metric-card {
-          padding: 1.25rem 1rem;
-        }
-
-        .metric-card-label {
+        .metrics-subsection-title {
           font-size: 0.8rem;
         }
 
+        .metrics-cards {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.5rem;
+        }
+
+        .metric-card {
+          padding: 0.75rem 0.625rem;
+        }
+
+        .metric-card-label {
+          font-size: 0.65rem;
+        }
+
         .metric-card-value {
-          font-size: 1.5rem;
+          font-size: 1.2rem;
+        }
+
+        .metric-card-subtitle {
+          font-size: 0.6rem;
+        }
+
+        .baseline-metrics .metric-card {
+          padding: 0.65rem 0.5rem;
+        }
+
+        .baseline-metrics .metric-card-value {
+          font-size: 1.1rem;
         }
 
         .metric-tooltip {
@@ -1152,20 +1218,21 @@
         }
 
         .strategy-pill {
-          padding: 0.875rem;
+          padding: 0.5rem;
         }
 
-        .pill-icon img {
-          width: 24px;
-          height: 24px;
+        .pill-icon img,
+        .pill-icon svg {
+          width: 16px;
+          height: 16px;
         }
 
         .pill-title {
-          font-size: 0.95rem;
+          font-size: 0.75rem;
         }
 
         .pill-subtitle {
-          font-size: 0.8rem;
+          font-size: 0.65rem;
         }
 
         .chart-card {
@@ -1193,16 +1260,32 @@
           font-size: 1rem;
         }
 
-        .metric-card {
-          padding: 1rem 0.875rem;
-        }
-
-        .metric-card-label {
+        .metrics-subsection-title {
           font-size: 0.75rem;
         }
 
+        .metric-card {
+          padding: 0.65rem 0.5rem;
+        }
+
+        .metric-card-label {
+          font-size: 0.6rem;
+        }
+
         .metric-card-value {
-          font-size: 1.3rem;
+          font-size: 1.1rem;
+        }
+
+        .metric-card-subtitle {
+          font-size: 0.55rem;
+        }
+
+        .baseline-metrics .metric-card {
+          padding: 0.55rem 0.4rem;
+        }
+
+        .baseline-metrics .metric-card-value {
+          font-size: 1rem;
         }
 
         .allocation-bar {
@@ -1431,7 +1514,7 @@
               Approche simple : 20% sur chaque actif global (SPY, IEF, GLD, EFA, EEM). Facile à comprendre et à répliquer. Baseline idéale pour comparer les stratégies plus sophistiquées. Performance: +323.5% sur 20 ans.
             </div>
             <div class="pill-icon">
-              <img src="../assets/images/simul port icons/noun-equal-3402250-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
+              <img src="../assets/images/simul port icons/noun-equal-3402250-clean.svg" alt="" width="24" height="24" style="color: currentColor;">
             </div>
             <div class="pill-content">
               <div class="pill-title" data-translate="simulator.strategy.equalWeight">Allocation Égale</div>
@@ -1444,7 +1527,7 @@
               60% actions US (SPY) et 40% obligations (IEF). Le portefeuille classique des investisseurs institutionnels pour équilibrer croissance et stabilité. Performance: +202.3% sur 20 ans.
             </div>
             <div class="pill-icon">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
                 <rect x="6" y="10" width="8" height="16" rx="2" fill="currentColor" opacity="0.7"></rect>
                 <rect x="18" y="6" width="8" height="20" rx="2" fill="currentColor"></rect>
               </svg>
@@ -1460,7 +1543,7 @@
               Pondération dynamique 100% momentum sur 12 mois. Les 5 actifs mondiaux (SPY, IEF, GLD, EFA, EEM) avec les meilleures tendances reçoivent davantage de poids. Performance plus volatile mais rendement historique élevé (+499.9% sur 20 ans).
             </div>
             <div class="pill-icon">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
                 <path d="M6 20L12.5 13.5L17.5 18.5L26 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M24 10H26V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -1476,7 +1559,7 @@
               Allocation à variance minimale inspirée du Hierarchical Risk Parity sur les 5 ETFs. Balance le risque en tenant compte des corrélations entre actifs. Performance: +278.2% sur 20 ans.
             </div>
             <div class="pill-icon">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
                 <path d="M8 24H24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 <path d="M12 16H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 <path d="M16 8L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -1498,7 +1581,7 @@
               Pondère les 5 actifs mondiaux (SPY, IEF, GLD, EFA, EEM) par l'inverse de leur volatilité. Les actifs plus volatils reçoivent moins de poids, équilibrant la contribution au risque du portefeuille. Performance: +324.6% sur 20 ans.
             </div>
             <div class="pill-icon">
-              <img src="../assets/images/simul port icons/noun-scale-1021928-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
+              <img src="../assets/images/simul port icons/noun-scale-1021928-clean.svg" alt="" width="24" height="24" style="color: currentColor;">
             </div>
             <div class="pill-content">
               <div class="pill-title" data-translate="simulator.strategy.simpleRiskParity">Risk Parity</div>
@@ -1511,7 +1594,7 @@
               Risk parity mathématique sur SPY, IEF, GLD, EFA, EEM et trésorerie. L’optimisation égalise les contributions de risque et réduit les drawdowns, tout en conservant la performance long terme.
             </div>
             <div class="pill-icon">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
                 <path d="M8 24H24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 <path d="M10 18L16 10L22 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <circle cx="16" cy="22" r="2" fill="currentColor"/>
@@ -1528,7 +1611,7 @@
               Stratégie IA optimisée sur 5 ETFs : 70% Momentum (rendements 12 mois) + 30% Risk Parity (EWMA volatilité avec λ=0.94). Sur 20 ans : +437.9% (+14.8% vs allocation égale). Favorise les actifs en tendance haussière tout en maintenant un contrôle conservateur de la volatilité.
             </div>
             <div class="pill-icon">
-              <img src="../assets/images/simul port icons/noun-ai-6480915-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
+              <img src="../assets/images/simul port icons/noun-ai-6480915-clean.svg" alt="" width="24" height="24" style="color: currentColor;">
             </div>
             <div class="pill-content">
               <div class="pill-title" data-translate="simulator.strategy.optimizedRiskParity">Optimisé ⭐</div>
@@ -1541,7 +1624,7 @@
               Combinez deux stratégies Bubble avec la pondération de votre choix. Ajustez le curseur pour privilégier la performance ou la stabilité.
             </div>
             <div class="pill-icon">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
                 <path d="M8 10C8 7.79086 9.79086 6 12 6H20C22.2091 6 24 7.79086 24 10V22C24 24.2091 22.2091 26 20 26H12C9.79086 26 8 24.2091 8 22V10Z" stroke="currentColor" stroke-width="2" opacity="0.7"/>
                 <path d="M12 19L15.5 15.5C16.3284 14.6716 17.6716 14.6716 18.5 15.5L22 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 <circle cx="15.5" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
@@ -1557,7 +1640,7 @@
               Coeur inverse-volatilité avec pénalisation dynamique des corrélations pour réduire l'exposition quand les actifs se synchronisent. Plus lissée, toujours diversifiée.
             </div>
             <div class="pill-icon">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
                 <path d="M6 20L10.5 14.5L15 18L20.5 11.5L26 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <circle cx="10.5" cy="14.5" r="2" fill="currentColor"/>
                 <circle cx="15" cy="18" r="2" fill="currentColor"/>
@@ -1693,70 +1776,160 @@
             </p>
           </div>
         </div>
+
+        <!-- Allocation Chart Card -->
+        <div class="chart-card" id="allocationChartCard" style="margin-top: 2rem;">
+          <div class="chart-header">
+            <h3 class="chart-title" data-translate="simulator.allocationChart.title">Allocations Historiques</h3>
+          </div>
+
+          <div class="chart-canvas-wrapper" style="height: 300px;">
+            <canvas id="allocationChart"></canvas>
+          </div>
+
+          <div id="allocationChartNotice" style="display: none; text-align: center; padding: 2rem; color: #6B7280; font-size: 0.9rem;">
+            <p data-translate="simulator.allocationChart.notice">
+              Le graphique d'allocation est disponible pour les stratégies à poids fixes (Allocation Égale, 60/40). Les stratégies dynamiques ajustent leurs allocations lors des rééquilibrages.
+            </p>
+          </div>
+
+          <div style="text-align: center; margin-top: 1rem;">
+            <p style="font-size: 0.875rem; color: #6B7280;" data-translate="simulator.allocationChart.description">
+              Répartition du portefeuille entre les différents ETFs (pourcentages cumulés à 100%)
+            </p>
+          </div>
+        </div>
       </div>
 
       <!-- Performance Metrics Grid -->
       <div class="metrics-grid" id="metricsGrid">
         <h3 class="metrics-section-title" data-translate="simulator.metrics.title">Statistiques de Performance</h3>
 
-        <div class="responsive-slider" id="metricsSlider" data-slider="metrics">
-          <div class="metrics-cards slider-track">
-          <div class="metric-card highlight" data-tooltip-behavior="tap">
-            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.totalReturn.tooltip">
-              Le gain ou la perte totale du portefeuille depuis le début de la période, avant inflation et frais.
-            </div>
-            <div class="metric-card-label" data-translate="simulator.metric.totalReturn">Rendement Total</div>
-            <div class="metric-card-value" id="totalReturn">--</div>
-            <div class="metric-card-subtitle" data-translate="simulator.metric.totalReturn.subtitle">sur la période</div>
-          </div>
+        <!-- Prominent Strategy Metrics -->
+        <div class="metrics-section prominent-metrics" id="prominentMetrics">
+          <h4 class="metrics-subsection-title" id="prominentMetricsTitle" data-translate="simulator.metrics.prominent">Performance de la Stratégie</h4>
 
-          <div class="metric-card" data-tooltip-behavior="tap">
-            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.annualReturn.tooltip">
-              Le taux de croissance annuel composé (CAGR). Un rendement de 8% signifie que votre capital double environ tous les 9 ans.
-            </div>
-            <div class="metric-card-label" data-translate="simulator.metric.annualReturn">Rendement Annuel</div>
-            <div class="metric-card-value" id="annualReturn">--</div>
-            <div class="metric-card-subtitle" data-translate="simulator.metric.annualReturn.subtitle">CAGR moyen</div>
-          </div>
+          <div class="responsive-slider" id="metricsSlider" data-slider="metrics">
+            <div class="metrics-cards slider-track">
+              <div class="metric-card highlight" data-tooltip-behavior="tap">
+                <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.totalReturn.tooltip">
+                  Le gain ou la perte totale du portefeuille depuis le début de la période, avant inflation et frais.
+                </div>
+                <div class="metric-card-label" data-translate="simulator.metric.totalReturn">Rendement Total</div>
+                <div class="metric-card-value" id="totalReturn">--</div>
+                <div class="metric-card-subtitle" data-translate="simulator.metric.totalReturn.subtitle">sur la période</div>
+              </div>
 
-          <div class="metric-card" data-tooltip-behavior="tap">
-            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.volatility.tooltip">
-              Mesure des fluctuations du portefeuille. Une volatilité de 15% signifie que 68% du temps, les rendements varient de ±15% autour de la moyenne.
-            </div>
-            <div class="metric-card-label" data-translate="simulator.metric.volatility">Volatilité</div>
-            <div class="metric-card-value" id="volatility">--</div>
-            <div class="metric-card-subtitle" data-translate="simulator.metric.volatility.subtitle">écart-type annuel</div>
-          </div>
+              <div class="metric-card" data-tooltip-behavior="tap">
+                <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.annualReturn.tooltip">
+                  Le taux de croissance annuel composé (CAGR). Un rendement de 8% signifie que votre capital double environ tous les 9 ans.
+                </div>
+                <div class="metric-card-label" data-translate="simulator.metric.annualReturn">Rendement Annuel</div>
+                <div class="metric-card-value" id="annualReturn">--</div>
+                <div class="metric-card-subtitle" data-translate="simulator.metric.annualReturn.subtitle">CAGR moyen</div>
+              </div>
 
-          <div class="metric-card" data-tooltip-behavior="tap">
-            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.sharpeRatio.tooltip">
-              Rendement ajusté au risque. Un ratio > 1 est bon, > 2 est excellent. Compare le rendement obtenu par rapport au risque pris.
-            </div>
-            <div class="metric-card-label" data-translate="simulator.metric.sharpeRatio">Ratio Sharpe</div>
-            <div class="metric-card-value" id="sharpeRatio">--</div>
-            <div class="metric-card-subtitle" data-translate="simulator.metric.sharpeRatio.subtitle">rendement/risque</div>
-          </div>
+              <div class="metric-card" data-tooltip-behavior="tap">
+                <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.volatility.tooltip">
+                  Mesure des fluctuations du portefeuille. Une volatilité de 15% signifie que 68% du temps, les rendements varient de ±15% autour de la moyenne.
+                </div>
+                <div class="metric-card-label" data-translate="simulator.metric.volatility">Volatilité</div>
+                <div class="metric-card-value" id="volatility">--</div>
+                <div class="metric-card-subtitle" data-translate="simulator.metric.volatility.subtitle">écart-type annuel</div>
+              </div>
 
-          <div class="metric-card" data-tooltip-behavior="tap">
-            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.maxDrawdown.tooltip">
-              La plus forte baisse depuis un sommet. -20% signifie qu'à un moment, le portefeuille a perdu 20% de sa valeur maximale.
-            </div>
-            <div class="metric-card-label" data-translate="simulator.metric.maxDrawdown">Drawdown Max</div>
-            <div class="metric-card-value" id="maxDrawdown">--</div>
-            <div class="metric-card-subtitle" data-translate="simulator.metric.maxDrawdown.subtitle">perte maximale</div>
-          </div>
+              <div class="metric-card" data-tooltip-behavior="tap">
+                <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.sharpeRatio.tooltip">
+                  Rendement ajusté au risque. Un ratio > 1 est bon, > 2 est excellent. Compare le rendement obtenu par rapport au risque pris.
+                </div>
+                <div class="metric-card-label" data-translate="simulator.metric.sharpeRatio">Ratio Sharpe</div>
+                <div class="metric-card-value" id="sharpeRatio">--</div>
+                <div class="metric-card-subtitle" data-translate="simulator.metric.sharpeRatio.subtitle">rendement/risque</div>
+              </div>
 
-          <div class="metric-card" data-tooltip-behavior="tap">
-            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.calmarRatio.tooltip">
-              Rapport entre le rendement annuel et le drawdown maximal. Plus ce ratio est élevé, meilleure est la stratégie.
+              <div class="metric-card" data-tooltip-behavior="tap">
+                <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.maxDrawdown.tooltip">
+                  La plus forte baisse depuis un sommet. -20% signifie qu'à un moment, le portefeuille a perdu 20% de sa valeur maximale.
+                </div>
+                <div class="metric-card-label" data-translate="simulator.metric.maxDrawdown">Drawdown Max</div>
+                <div class="metric-card-value" id="maxDrawdown">--</div>
+                <div class="metric-card-subtitle" data-translate="simulator.metric.maxDrawdown.subtitle">perte maximale</div>
+              </div>
+
+              <div class="metric-card" data-tooltip-behavior="tap">
+                <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.calmarRatio.tooltip">
+                  Rapport entre le rendement annuel et le drawdown maximal. Plus ce ratio est élevé, meilleure est la stratégie.
+                </div>
+                <div class="metric-card-label" data-translate="simulator.metric.calmarRatio">Calmar Ratio</div>
+                <div class="metric-card-value" id="calmarRatio">--</div>
+                <div class="metric-card-subtitle" data-translate="simulator.metric.calmarRatio.subtitle">rendement/drawdown</div>
+              </div>
             </div>
-            <div class="metric-card-label" data-translate="simulator.metric.calmarRatio">Calmar Ratio</div>
-            <div class="metric-card-value" id="calmarRatio">--</div>
-            <div class="metric-card-subtitle" data-translate="simulator.metric.calmarRatio.subtitle">rendement/drawdown</div>
+            <div class="slider-dots" data-slider-dots></div>
           </div>
-          </div>
-          <div class="slider-dots" data-slider-dots></div>
         </div>
+
+        <!-- Baseline Equal Weight Metrics -->
+        <div class="metrics-section baseline-metrics" id="baselineMetrics">
+          <h4 class="metrics-subsection-title baseline-title" data-translate="simulator.metrics.baseline">Allocation Égale (Référence)</h4>
+
+          <div class="metrics-cards">
+            <div class="metric-card" data-tooltip-behavior="tap">
+              <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.totalReturn.tooltip">
+                Le gain ou la perte totale du portefeuille depuis le début de la période, avant inflation et frais.
+              </div>
+              <div class="metric-card-label" data-translate="simulator.metric.totalReturn">Rendement Total</div>
+              <div class="metric-card-value" id="baselineTotalReturn">--</div>
+              <div class="metric-card-subtitle" data-translate="simulator.metric.totalReturn.subtitle">sur la période</div>
+            </div>
+
+            <div class="metric-card" data-tooltip-behavior="tap">
+              <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.annualReturn.tooltip">
+                Le taux de croissance annuel composé (CAGR). Un rendement de 8% signifie que votre capital double environ tous les 9 ans.
+              </div>
+              <div class="metric-card-label" data-translate="simulator.metric.annualReturn">Rendement Annuel</div>
+              <div class="metric-card-value" id="baselineAnnualReturn">--</div>
+              <div class="metric-card-subtitle" data-translate="simulator.metric.annualReturn.subtitle">CAGR moyen</div>
+            </div>
+
+            <div class="metric-card" data-tooltip-behavior="tap">
+              <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.volatility.tooltip">
+                Mesure des fluctuations du portefeuille. Une volatilité de 15% signifie que 68% du temps, les rendements varient de ±15% autour de la moyenne.
+              </div>
+              <div class="metric-card-label" data-translate="simulator.metric.volatility">Volatilité</div>
+              <div class="metric-card-value" id="baselineVolatility">--</div>
+              <div class="metric-card-subtitle" data-translate="simulator.metric.volatility.subtitle">écart-type annuel</div>
+            </div>
+
+            <div class="metric-card" data-tooltip-behavior="tap">
+              <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.sharpeRatio.tooltip">
+                Rendement ajusté au risque. Un ratio > 1 est bon, > 2 est excellent. Compare le rendement obtenu par rapport au risque pris.
+              </div>
+              <div class="metric-card-label" data-translate="simulator.metric.sharpeRatio">Ratio Sharpe</div>
+              <div class="metric-card-value" id="baselineSharpeRatio">--</div>
+              <div class="metric-card-subtitle" data-translate="simulator.metric.sharpeRatio.subtitle">rendement/risque</div>
+            </div>
+
+            <div class="metric-card" data-tooltip-behavior="tap">
+              <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.maxDrawdown.tooltip">
+                La plus forte baisse depuis un sommet. -20% signifie qu'à un moment, le portefeuille a perdu 20% de sa valeur maximale.
+              </div>
+              <div class="metric-card-label" data-translate="simulator.metric.maxDrawdown">Drawdown Max</div>
+              <div class="metric-card-value" id="baselineMaxDrawdown">--</div>
+              <div class="metric-card-subtitle" data-translate="simulator.metric.maxDrawdown.subtitle">perte maximale</div>
+            </div>
+
+            <div class="metric-card" data-tooltip-behavior="tap">
+              <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.calmarRatio.tooltip">
+                Rapport entre le rendement annuel et le drawdown maximal. Plus ce ratio est élevé, meilleure est la stratégie.
+              </div>
+              <div class="metric-card-label" data-translate="simulator.metric.calmarRatio">Calmar Ratio</div>
+              <div class="metric-card-value" id="baselineCalmarRatio">--</div>
+              <div class="metric-card-subtitle" data-translate="simulator.metric.calmarRatio.subtitle">rendement/drawdown</div>
+            </div>
+          </div>
+        </div>
+
         <p class="tooltip-hint" aria-live="polite">Astuce mobile : touchez une statistique pour afficher la vignette explicative.</p>
       </div>
 
