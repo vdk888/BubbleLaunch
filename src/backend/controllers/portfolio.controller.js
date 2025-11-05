@@ -8,12 +8,28 @@ const cacheScheduler = require("../services/cacheScheduler");
 /**
  * Get pre-calculated preview data for landing page snapshot
  * Returns static JSON data for fast loading
+ * Query params:
+ * - period: number of years (1, 3, 5, 10, 20)
+ * - leverage: leverage multiplier (1 or 2, default: 1)
  */
 async function getPreviewData(req, res) {
   try {
     const requestedPeriod = req.query.period
       ? parseInt(req.query.period, 10)
       : null;
+
+    // Parse and validate leverage parameter
+    const leverage = req.query.leverage
+      ? parseInt(req.query.leverage, 10)
+      : 1;
+
+    // Validate leverage: only 1 or 2 allowed
+    if (leverage !== 1 && leverage !== 2) {
+      return res.status(400).json({
+        success: false,
+        error: "Invalid leverage value. Only 1 or 2 are allowed.",
+      });
+    }
 
     const previewDataPath = path.join(
       __dirname,
@@ -61,6 +77,7 @@ async function getPreviewData(req, res) {
       periodsPayload = snapshots;
     }
 
+    // Prepare initial response payload
     let responsePayload = {
       ...previewData,
       strategyKeys:
@@ -69,11 +86,35 @@ async function getPreviewData(req, res) {
         Object.keys(previewData.metrics || {}),
     };
 
+    // Apply leverage to default preview data if no specific period requested
+    if (!requestedPeriod && leverage > 1) {
+      const leveragedDefault = applyLeverageToPeriodSnapshot(
+        {
+          data: previewData.data,
+          metrics: previewData.metrics,
+          allocations: previewData.allocations,
+        },
+        leverage
+      );
+
+      responsePayload = {
+        ...responsePayload,
+        data: leveragedDefault.data,
+        metrics: leveragedDefault.metrics,
+        leverage: leverage,
+      };
+    }
+
     if (requestedPeriod && periodsPayload?.periods) {
       const periodKey = String(requestedPeriod);
-      const periodSnapshot = periodsPayload.periods[periodKey];
+      let periodSnapshot = periodsPayload.periods[periodKey];
 
       if (periodSnapshot) {
+        // Apply leverage if requested
+        if (leverage > 1) {
+          periodSnapshot = applyLeverageToPeriodSnapshot(periodSnapshot, leverage);
+        }
+
         responsePayload = {
           data: periodSnapshot.data,
           metrics: periodSnapshot.metrics,
@@ -88,6 +129,7 @@ async function getPreviewData(req, res) {
             periodsPayload.strategyKeys ||
             Object.keys(periodSnapshot.metrics || {}),
           fromCache: true,
+          leverage: leverage, // Include leverage in response
         };
       } else {
         return res.status(404).json({
@@ -122,6 +164,169 @@ async function getPreviewData(req, res) {
       details: error.message,
     });
   }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// Helper Functions for Leverage Application
+// ═══════════════════════════════════════════════════════════════
+
+/**
+ * Extract strategy time series from chart data
+ * @param {Array} chartData - Array of {date, equalWeight, simpleRP, optimizedRP, ...}
+ * @param {string} strategyKey - Strategy name (e.g., "equalWeight", "optimizedRP")
+ * @returns {Array} Array of {date, value} objects for that strategy
+ */
+function extractStrategyTimeSeries(chartData, strategyKey) {
+  if (!Array.isArray(chartData) || chartData.length === 0) {
+    return [];
+  }
+
+  return chartData.map((point) => ({
+    date: point.date,
+    value: point[strategyKey],
+  }));
+}
+
+/**
+ * Apply leverage to a strategy time series
+ * @param {Array} timeSeries - Array of {date, value} objects
+ * @param {number} leverage - Leverage multiplier (1 or 2)
+ * @param {number} borrowingRate - Annual borrowing rate (default: 0.08 = 8%)
+ * @returns {Array} Leveraged time series with same structure {date, value}
+ */
+function applyLeverageToSeries(timeSeries, leverage, borrowingRate = 0.08) {
+  if (leverage === 1 || !timeSeries || timeSeries.length === 0) {
+    return timeSeries;
+  }
+
+  return portfolioService.applyLeverageToPortfolio(
+    timeSeries,
+    leverage,
+    borrowingRate
+  );
+}
+
+/**
+ * Merge leveraged strategy back into chart data
+ * @param {Array} chartData - Original chart data array
+ * @param {string} strategyKey - Strategy name to update
+ * @param {Array} leveragedSeries - Leveraged time series {date, value}
+ * @returns {Array} Updated chart data with leveraged values
+ */
+function mergeStrategyIntoChartData(chartData, strategyKey, leveragedSeries) {
+  if (!Array.isArray(chartData) || !Array.isArray(leveragedSeries)) {
+    return chartData;
+  }
+
+  // Create a map for fast lookup
+  const leveragedMap = new Map(
+    leveragedSeries.map((point) => [point.date, point.value])
+  );
+
+  // Update chart data with leveraged values
+  return chartData.map((point) => {
+    const leveragedValue = leveragedMap.get(point.date);
+    if (leveragedValue !== undefined) {
+      return {
+        ...point,
+        [strategyKey]: leveragedValue,
+      };
+    }
+    return point;
+  });
+}
+
+/**
+ * Recalculate metrics for leveraged strategy
+ * @param {Array} timeSeries - Time series {date, value} objects
+ * @returns {Object} Metrics object with all performance metrics
+ */
+function recalculateMetricsForLeveragedStrategy(timeSeries) {
+  if (!Array.isArray(timeSeries) || timeSeries.length === 0) {
+    return {
+      totalReturn: 0,
+      annualReturn: 0,
+      volatility: 0,
+      sharpeRatio: 0,
+      maxDrawdown: 0,
+      calmarRatio: 0,
+    };
+  }
+
+  // Use portfolioService.calculateMetrics to get base metrics
+  const baseMetrics = portfolioService.calculateMetrics(timeSeries);
+
+  // Calculate Calmar Ratio = Annual Return / |Max Drawdown|
+  const calmarRatio =
+    baseMetrics.maxDrawdown !== 0
+      ? Math.abs(baseMetrics.annualReturn / baseMetrics.maxDrawdown)
+      : 0;
+
+  return {
+    totalReturn: baseMetrics.totalReturn,
+    annualReturn: baseMetrics.annualReturn,
+    volatility: baseMetrics.volatility,
+    sharpeRatio: baseMetrics.sharpeRatio,
+    maxDrawdown: baseMetrics.maxDrawdown,
+    calmarRatio: calmarRatio,
+  };
+}
+
+/**
+ * Apply leverage to all strategies in the period snapshot
+ * @param {Object} periodSnapshot - Snapshot with data and metrics
+ * @param {number} leverage - Leverage multiplier (1 or 2)
+ * @returns {Object} Updated snapshot with leveraged data and metrics
+ */
+function applyLeverageToPeriodSnapshot(periodSnapshot, leverage) {
+  if (leverage === 1 || !periodSnapshot || !periodSnapshot.data) {
+    return periodSnapshot;
+  }
+
+  console.log(`📊 Applying ${leverage}x leverage to portfolio data...`);
+
+  let updatedChartData = periodSnapshot.data;
+  const updatedMetrics = {};
+
+  // Get all strategy keys from metrics
+  const strategyKeys = Object.keys(periodSnapshot.metrics || {});
+
+  // Apply leverage to each strategy
+  for (const strategyKey of strategyKeys) {
+    // Skip ETF tickers (SPY, IEF, GLD, EFA, EEM) - only leverage strategies
+    if (['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'CASH'].includes(strategyKey)) {
+      updatedMetrics[strategyKey] = periodSnapshot.metrics[strategyKey];
+      continue;
+    }
+
+    console.log(`  - Processing strategy: ${strategyKey}`);
+
+    // Extract strategy time series
+    const timeSeries = extractStrategyTimeSeries(updatedChartData, strategyKey);
+
+    // Apply leverage
+    const leveragedSeries = applyLeverageToSeries(timeSeries, leverage);
+
+    // Merge back into chart data
+    updatedChartData = mergeStrategyIntoChartData(
+      updatedChartData,
+      strategyKey,
+      leveragedSeries
+    );
+
+    // Recalculate metrics
+    const newMetrics = recalculateMetricsForLeveragedStrategy(leveragedSeries);
+    updatedMetrics[strategyKey] = newMetrics;
+  }
+
+  console.log(`✅ Leverage applied successfully to ${strategyKeys.length} strategies`);
+
+  return {
+    ...periodSnapshot,
+    data: updatedChartData,
+    metrics: updatedMetrics,
+    leverage: leverage, // Add leverage indicator to response
+  };
 }
 
 /**

@@ -2,13 +2,13 @@
  * Portfolio Optimizer - Find Best Mix of Strategies
  *
  * Automatically finds the optimal weighted combination of base strategies
- * to maximize annual return subject to a volatility constraint.
+ * to maximize Calmar ratio (smooth, consistent growth).
  *
- * Algorithm: Exhaustive grid search with 10% weight increments
- * Optimization Objective: Maximize annual return with volatility ≤ 15%
+ * Algorithm: Exhaustive grid search with 5% weight increments
+ * Optimization Objective: Maximize Calmar Ratio (Return / |Max Drawdown|)
  *
- * This constrained optimization ensures high returns while maintaining
- * moderate risk levels suitable for most investors.
+ * Calmar ratio rewards high returns while heavily penalizing drawdowns,
+ * producing the smoothest possible portfolio growth trajectory.
  *
  * This runs during backend cache generation, not per-user request.
  */
@@ -98,11 +98,16 @@ function calculateMetrics(returns, periodsPerYear = 252) {
     if (drawdown < maxDrawdown) maxDrawdown = drawdown;
   });
 
+  // Calculate Calmar ratio (annualized return / |max drawdown|)
+  const absMaxDrawdown = Math.abs(maxDrawdown);
+  const calmarRatio = absMaxDrawdown > 0 ? annualReturn / absMaxDrawdown : annualReturn;
+
   return {
     sharpeRatio,
-    annualReturn: annualReturn * 100, // Convert to percentage
-    volatility: volatility * 100,     // Convert to percentage
-    maxDrawdown: maxDrawdown * 100,   // Convert to percentage
+    calmarRatio,                        // NEW: Calmar ratio for smooth growth
+    annualReturn: annualReturn * 100,   // Convert to percentage
+    volatility: volatility * 100,       // Convert to percentage
+    maxDrawdown: maxDrawdown * 100,     // Convert to percentage
     totalReturn: (cumulativeReturn - 1) * 100 // Total return percentage
   };
 }
@@ -211,17 +216,17 @@ function findOptimalMix(
   }
 
   console.log(`  📊 Optimizing across ${strategyKeys.length} strategies: ${strategyKeys.join(', ')}`);
-  console.log(`  🎯 Objective: Maximize ${targetMetric} with volatility ≤ ${maxVolatility}%`);
+  console.log(`  🎯 Objective: Maximize Calmar Ratio (smooth, consistent growth)`);
 
   // Track best result
-  let bestReturn = -Infinity;
+  let bestCalmar = -Infinity;
   let bestWeights = null;
   let bestMetrics = null;
   let combinationsTested = 0;
   let validCombinations = 0;
 
   // Generate and test combinations on-the-fly (memory efficient streaming)
-  console.log('  🔢 Generating and testing weight combinations (10% increments)...');
+  console.log('  🔢 Generating and testing weight combinations (5% increments)...');
 
   const totalCombinations = generateWeightCombinationsStreaming(
     strategyKeys.length,
@@ -231,7 +236,7 @@ function findOptimalMix(
 
       // Log progress every 10k combinations
       if (combinationsTested % 10000 === 0) {
-        console.log(`    Progress: ${combinationsTested.toLocaleString()} tested, ${validCombinations} valid (vol ≤${maxVolatility}%), best return: ${bestReturn.toFixed(2)}%`);
+        console.log(`    Progress: ${combinationsTested.toLocaleString()} tested, best Calmar: ${bestCalmar.toFixed(4)}`);
       }
 
       // Blend portfolio values
@@ -247,19 +252,12 @@ function findOptimalMix(
         }
       }
 
-      // Calculate metrics
+      // Calculate metrics (including Calmar ratio)
       const metrics = calculateMetrics(returns);
 
-      // CONSTRAINT: Skip combinations that exceed volatility limit
-      if (metrics.volatility > maxVolatility) {
-        return; // Skip this combination
-      }
-
-      validCombinations++;
-
-      // Check if this is the best valid combination so far
-      if (metrics[targetMetric] > bestReturn) {
-        bestReturn = metrics[targetMetric];
+      // Check if this is the best combination so far (maximizing Calmar)
+      if (metrics.calmarRatio > bestCalmar) {
+        bestCalmar = metrics.calmarRatio;
         bestWeights = [...weights];
         bestMetrics = metrics;
       }
@@ -267,7 +265,6 @@ function findOptimalMix(
   );
 
   console.log(`  ✅ Tested ${totalCombinations.toLocaleString()} combinations`);
-  console.log(`  ✅ Found ${validCombinations.toLocaleString()} valid combinations (volatility ≤ ${maxVolatility}%)`);
 
   if (!bestWeights) {
     throw new Error('Optimizer failed to find valid combination');
@@ -289,7 +286,7 @@ function findOptimalMix(
 
   console.log('  ✨ Optimization complete!');
   console.log(`  ⏱️  Time elapsed: ${elapsedTime}s`);
-  console.log(`  🏆 Best Annual Return: ${bestMetrics.annualReturn.toFixed(2)}% (volatility: ${bestMetrics.volatility.toFixed(2)}%)`);
+  console.log(`  🏆 Best Calmar Ratio: ${bestMetrics.calmarRatio.toFixed(4)} (return: ${bestMetrics.annualReturn.toFixed(2)}%, drawdown: ${bestMetrics.maxDrawdown.toFixed(2)}%)`);
   console.log('  📈 Optimal Weights:');
   Object.entries(optimalWeights)
     .sort((a, b) => b[1] - a[1])
@@ -297,6 +294,7 @@ function findOptimalMix(
       console.log(`      ${key}: ${weight}%`);
     });
   console.log(`  📊 Metrics:`, {
+    calmarRatio: bestMetrics.calmarRatio.toFixed(4),
     annualReturn: bestMetrics.annualReturn.toFixed(2) + '%',
     volatility: bestMetrics.volatility.toFixed(2) + '%',
     sharpeRatio: bestMetrics.sharpeRatio.toFixed(4),

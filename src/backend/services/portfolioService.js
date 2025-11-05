@@ -325,14 +325,14 @@ function calculateOptimizedRiskParity(
     return normalizeReturnFormat(result);
   }
 
-  // Run optimizer to find best mix (maximize return with volatility constraint)
+  // Run optimizer to find best mix (maximize Calmar ratio for smooth growth)
   const result = findOptimalMix(
     priceData,
     strategySeries,
     allocationData || {},
     tickers,
-    'annualReturn',  // Maximize annual return
-    20.0             // Max volatility constraint: 20%
+    'calmarRatio',   // Maximize Calmar ratio (smooth, consistent growth)
+    999.0            // No volatility constraint needed for Calmar optimization
   );
 
   return normalizeReturnFormat(result);

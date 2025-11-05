@@ -598,10 +598,23 @@
     try {
       const params = new URLSearchParams();
       if (period) params.append('period', period);
-      if (leverage > 1) params.append('leverage', leverage);
+      params.append('leverage', leverage); // Always include leverage (1 or 2)
       const query = params.toString() ? `?${params.toString()}` : '';
-      const response = await fetch(`/api/portfolio/preview-data${query}`);
+      const response = await fetch(`/api/portfolio/preview-data${query}`, {
+        cache: 'no-cache', // Prevent browser caching
+        headers: {
+          'Cache-Control': 'no-cache'
+        }
+      });
       const result = await response.json();
+
+      // Debug logging to verify leverage is correctly fetched
+      console.log('📊 Fetched portfolio data:', {
+        leverage: result.leverage || 1,
+        hasMetrics: !!result.metrics,
+        metricsKeys: result.metrics ? Object.keys(result.metrics) : [],
+        sampleMetric: result.metrics?.equalWeight || null
+      });
 
       if (result.success && result.data) {
         return result;
@@ -2029,6 +2042,15 @@
   function updateMetrics(data) {
     const tableBody = document.getElementById('metricsTableBody');
     if (!tableBody) return;
+
+    // Debug logging to verify metrics data structure
+    console.log('📈 Updating metrics table:', {
+      leverage: data.leverage || currentLeverage,
+      hasMetrics: !!data.metrics,
+      metricsKeys: data.metrics ? Object.keys(data.metrics) : [],
+      sampleEqualWeightMetrics: data.metrics?.equalWeight || null,
+      sampleOptimizedRPMetrics: data.metrics?.optimizedRP || null
+    });
 
     // Map strategy keys to their data keys
     const strategyKeyMap = {
