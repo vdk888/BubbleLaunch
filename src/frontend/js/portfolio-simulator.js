@@ -1542,7 +1542,6 @@
     // Force chart update with animation for user feedback
     if (portfolioChart) {
       updateChart(portfolioData, prominentStrategy);
-      portfolioChart.update('active'); // 'active' animation mode
     }
 
     updateMetrics(portfolioData);
