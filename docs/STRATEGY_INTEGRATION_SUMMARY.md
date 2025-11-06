@@ -1,11 +1,11 @@
 # Strategy Integration Summary
 
-**Date:** 2025-11-05
+**Date:** 2025-11-06
 **Status:** ✅ **COMPLETE**
 
 ## Overview
 
-All ported strategies from `anim-main` have been successfully integrated into `portfolioService.js`. The service now acts as a unified wrapper that imports modular strategy implementations and normalizes their return formats.
+`portfolioService.js` now orchestrates **nine** production-ready strategies imported from the `strategies/` modules plus the optimized-mix engine. The wrapper normalizes outputs, exposes helper analytics, and powers both the portfolio API and the cached preview data used on the landing page and simulator.
 
 ---
 
@@ -16,10 +16,12 @@ All ported strategies from `anim-main` have been successfully integrated into `p
 | `calculateEqualWeight` | `strategies/equalWeight.js` | `{ portfolio, allocations }` | ✅ Direct mapping |
 | `calculateSixtyForty` | `strategies/sixtyForty.js` | `{ portfolio, allocations }` | ✅ Direct mapping |
 | `calculateSimpleRiskParity` | `strategies/simpleRiskParity.js` | `{ portfolio, allocations }` | ✅ Direct mapping |
-| `calculateOptimizedRiskParity` | `strategies/enhancedRiskParity.js` | `{ portfolioData, weightsData }` | ⚠️ **Normalized** to `{ portfolio, allocations }` |
+| `calculateOptimizedRiskParity` | `strategies/optimizedMix.js` + `strategies/enhancedRiskParity.js` | `{ portfolioData, weightsData }` | ⚙️ Optimizer blends strategy series, **normalized** |
 | `calculateMinimumVarianceWeights` | `strategies/hierarchicalRiskParityPortfolio.js` | `{ portfolioData, weightsData }` | ⚠️ **Normalized** to `{ portfolio, allocations }` |
 | `calculateOptimizedRiskBudgeting` | `strategies/optimizedRiskBudgeting.js` | `{ portfolio, allocations }` | ✅ Direct mapping |
 | `calculateEnhancedRiskParityWithDCC` | **Not yet ported** | `{ portfolio, allocations }` | ⚠️ Using original BubbleLaunch implementation |
+| `calculateRegimeAwareRiskParity` | `strategies/regimeAwareRiskParity.js` | `{ portfolio, allocations }` | ✅ Adaptive regimes (vol/trend/crisis) |
+| `calculateMomentum` | `strategies/momentum.js` | `{ portfolio, allocations }` | ✅ Momentum constrained between 2%-30% per asset |
 
 ---
 
@@ -84,9 +86,12 @@ portfolioService.js (orchestrator)
 │   │   └── strategies/hierarchicalRiskParity.js (core algorithm)
 │   ├── strategies/optimizedRiskBudgeting.js
 │   │   └── strategies/riskBudgeting.js (optimization algorithms)
+│   ├── strategies/regimeAwareRiskParity.js
+│   ├── strategies/momentum.js
+│   ├── strategies/optimizedMix.js (Calmar-ratio optimizer)
 │   └── [DCC not yet ported]
 ├── normalizeReturnFormat() helper
-├── Wrapper functions for each strategy
+├── Wrapper functions (calculateX)
 └── Export unified interface
 ```
 
@@ -110,6 +115,7 @@ The following helper functions are kept in `portfolioService.js` for use by stra
 - `computeReturnStats()` - Compute annualized returns and statistics
 - `calculateMetrics()` - Calculate performance metrics (Sharpe ratio, max drawdown, etc.)
 - `applyLeverageToPortfolio()` - Apply leverage with borrowing costs
+- `findOptimalMix()` (indirect via `calculateOptimizedRiskParity`) - Maximises Calmar ratio using exported strategy series
 
 ---
 
@@ -123,9 +129,9 @@ Some strategies had different parameter orders between BubbleLaunch and anim-mai
 - **Mapping:** Swap parameter order in wrapper
 
 ### Optimized Risk Parity
-- **BubbleLaunch:** `calculateOptimizedRiskParity(priceData, momentumLookback, volatilityLookback, rebalanceDays)`
-- **Ported module:** `calculateEnhancedRiskParity(normalizedData, rebalanceFreqDays, lookbackDays)`
-- **Mapping:** Map to Enhanced Risk Parity, use `volatilityLookback` as `lookbackDays`
+- **BubbleLaunch:** `calculateOptimizedRiskParity(priceData, strategySeries, allocationData, tickers)`
+- **Ported modules:** `calculateEnhancedRiskParity(...)` + `findOptimalMix(...)`
+- **Mapping:** When strategy series are missing (e.g. tests) gracefully fall back to Enhanced RP
 
 ### Hierarchical Risk Parity
 - **BubbleLaunch:** `calculateMinimumVarianceWeights(priceData, lookbackDays, rebalanceDays)`
@@ -146,7 +152,7 @@ Some strategies had different parameter orders between BubbleLaunch and anim-mai
 node -e "const ps = require('./src/backend/services/portfolioService'); console.log('Strategies:', Object.keys(ps).filter(k => k.startsWith('calculate')));"
 ```
 
-**Result:** ✅ All 12 functions available
+**Result:** ✅ 9 `calculate*` functions exported
 
 ### Cache Service Test
 ```bash
@@ -160,22 +166,23 @@ node -e "const pcs = require('./src/backend/services/portfolioCacheService'); co
 ## Next Steps
 
 ### Immediate (Before Testing)
-1. ✅ **DONE:** Integrate all ported strategies into `portfolioService.js`
-2. ⏭️ **NEXT:** Test portfolio cache generation with real data
-3. ⏭️ **NEXT:** Verify allocation data is correctly passed through to frontend
+1. ✅ **DONE:** Integrate all ported strategies + new regime/momentum modules
+2. ⏭️ **NEXT:** Regenerate portfolio preview cache to include new strategies
+3. ⏭️ **NEXT:** Update frontend legends/translations for expanded lineup
 
 ### Future Enhancements
-1. **Port DCC Strategy:** Complete the Enhanced Risk Parity with DCC porting from anim-main
+1. **Port DCC Strategy:** Complete the Enhanced Risk Parity with DCC port from `anim-main`
 2. **Performance Optimization:** Profile strategy calculations and optimize bottlenecks
-3. **Add Unit Tests:** Create comprehensive tests for each strategy module
-4. **Documentation:** Add JSDoc comments to all strategy modules for better IDE support
+3. **Add Unit Tests:** Create comprehensive tests for each strategy module and optimizer
+4. **Scenario Coverage:** Expand preview datasets to highlight regime-aware vs. momentum behaviour
+5. **Documentation:** Add JSDoc comments to all strategy modules for better IDE support
 
 ---
 
 ## Files Modified
 
 1. **`src/backend/services/portfolioService.js`** - Completely rewritten as orchestrator (542 lines)
-   - Imports all ported strategy modules
+   - Imports all ported strategy modules + new regime/momentum optimizers
    - Normalizes return formats
    - Exports unified interface
 
@@ -188,11 +195,12 @@ node -e "const pcs = require('./src/backend/services/portfolioCacheService'); co
 1. **Enhanced Risk Parity DCC:** Not yet ported from anim-main. Currently using original BubbleLaunch implementation. This is acceptable for now as it's a working implementation.
 
 2. **Parameter Differences:** Some strategies use different parameter names/orders between BubbleLaunch and anim-main. These are handled in wrapper functions but could cause confusion if not documented.
+3. **Optimizer Inputs:** `calculateOptimizedRiskParity` requires pre-computed strategy series for best results; tests must supply these to avoid fallback mode.
 
 ---
 
 ## Conclusion
 
-The integration is **complete and functional**. All ported strategies are now accessible through `portfolioService.js` with consistent return formats. The modular architecture makes the codebase more maintainable and easier to test.
+The integration is **complete and functional**. All nine strategies (Equal Weight, 60/40, Simple RP, Optimized RP, Hierarchical RP, Optimized Risk Budgeting, Enhanced RP DCC, Regime-Aware RP, Momentum) are exposed through `portfolioService.js` with consistent return formats, ready for simulator and cache consumers.
 
 **Status:** ✅ Ready for testing with real data

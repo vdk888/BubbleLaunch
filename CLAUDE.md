@@ -16,7 +16,7 @@ This is **Bubble Invest**, a fintech startup providing an **AI-powered quantitat
 - **Current automation**: Bubble portfolio system (founders' investments) uses automated API integration with IBKR/Alpaca/Saxo. User automation planned for future product launch.
 
 **Current Web Application:**
-The current codebase is a multilingual waitlist landing page with integrated AI chatbot, blog system, and interactive portfolio simulator demo, built with vanilla JavaScript and Node.js/Express. This serves as the public-facing website while the core portfolio management system is being developed in beta. The beta product now includes Saxo Bank API integration alongside Interactive Brokers and Alpaca.
+The current codebase is a multilingual waitlist landing page with integrated AI chatbot, blog system, and an expanded portfolio simulator (9 strategies + custom mix, leverage toggle, exports), built with vanilla JavaScript and Node.js/Express. This serves as the public-facing website while the core portfolio management system is being developed in beta. The beta product now includes Saxo Bank API integration alongside Interactive Brokers and Alpaca.
 
 **Key Differentiators from Traditional Robo-Advisors:**
 1. **AI empowerment, not asset management**: Provides insights for user decisions, not portfolio control
@@ -47,19 +47,20 @@ The current codebase is a multilingual waitlist landing page with integrated AI 
 ### Backend Structure (`src/backend/`) - **Modular MVC Architecture**
 
 #### Core Files
-- **`server.js`** - Minimal application entry point (~35 lines)
+- **`server.js`** - Application entry point (~45 lines) that mounts routes and initializes the cache scheduler
 - **`config/`** - Environment and middleware configuration
   - `env.js` - Environment variable validation
   - `express.js` - Express middleware setup
 - **`routes/`** - Route definitions (separated by feature)
   - `index.js` - Route aggregator
-  - `chat.routes.js`, `waitlist.routes.js`, `blog.routes.js`, etc.
+  - `chat.routes.js`, `waitlist.routes.js`, `blog.routes.js`, `knowledge-garden.routes.js`, `portfolio.routes.js`, `business-contact.routes.js`, `sitemap.routes.js`
 - **`controllers/`** - Business logic layer
   - `chat.controller.js` - AI chatbot logic
   - `waitlist.controller.js` - Subscription handling
   - `blog.controller.js` - Blog and image management
   - `knowledge-garden.controller.js` - References management
-  - `portfolio.controller.js` - Portfolio simulator
+  - `portfolio.controller.js` - Portfolio simulator APIs + cache orchestration
+  - `business-contact.controller.js` - B2B lead capture
 - **`middleware/`** - Custom middleware
   - `session.js` - Session configuration
   - `rate-limiter.js` - Chat rate limiting
@@ -70,7 +71,10 @@ The current codebase is a multilingual waitlist landing page with integrated AI 
   - `knowledgeGardenService.js` - References with LLM enrichment
   - `llmEnrichmentService.js` - AI metadata generation
   - `yahooFinanceService.js` - ETF historical data fetching
-  - `portfolioService.js` - Portfolio calculation algorithms
+  - `portfolioService.js` - Portfolio calculation orchestrator (strategy wrappers + metrics)
+  - `portfolioCacheService.js` - Snapshot generation & formatting
+  - `cacheScheduler.js` - Cron-based cache regeneration
+  - `portfolioHelpers.js` / `strategies/*` - Modular strategy implementations
 
 ### Frontend Structure (`src/frontend/`)
 - **`pages/`** - HTML pages (index.html, blog.html, blog-post.html, portfolio-simulator.html, clear-cache.html, test-image-generation.html)
@@ -81,7 +85,7 @@ The current codebase is a multilingual waitlist landing page with integrated AI 
   - `blog.js` - Blog listing functionality
   - `blog-post.js` - Individual blog post rendering
   - `references.js` - Knowledge Garden references display with enriched metadata
-  - `portfolio-simulator.js` - Interactive portfolio comparison tool (20-year data, 3 strategies)
+  - `portfolio-simulator.js` - Interactive portfolio comparison tool (9 strategies + custom mix, leverage toggle)
   - `portfolio-preview.js` - Landing page portfolio chart preview
   - `charts.js` - Shared chart utilities and configurations
   - `animations.js` - UI animations and effects
@@ -133,14 +137,13 @@ The application requires several environment variables in `.env`:
 
 ### Frontend Features
 - **Responsive multilingual design** with language toggle (FR/EN)
-- **Interactive AI chatbot** with streaming responses and glassmorphism floating input
+- **Interactive AI chatbot** with streaming responses, unified system prompt, and glassmorphism floating input
 - **Dynamic blog system** with bilingual content rendering
-- **Portfolio Simulator** - Interactive comparison of 3 investment strategies with 20 years of real ETF data (SPY, IEF, GLD)
-- **Unified button design** - All CTA buttons use pill-shaped design (border-radius: 50px) for consistent brand experience
-  - Real-time strategy switching with prominent visual feedback
-  - 6 performance metrics with educational tooltips
-  - Time period selection (1Y, 3Y, 5Y, 10Y, 20Y)
-  - Fully bilingual with dynamic chart label translation
+- **Portfolio Simulator v2.0** – Interactive comparison of nine backend strategies plus client-side custom mix across 20 years of ETF data (SPY, IEF, GLD, EFA, EEM, VNQ, CASH)
+  - Leverage toggle (1× / 2×) with borrowing cost adjustment
+  - ETF visibility controls, persistent preferences, GA4 instrumentation
+  - 6 core metrics + Calmar ratio, PNG/CSV export toolkit, responsive sliders
+  - Fully bilingual with dynamic chart/tooltip translation
   - See [docs/PORTFOLIO_SIMULATOR.md](docs/PORTFOLIO_SIMULATOR.md) for details
 - Real-time form validation and submission
 - Animated UI elements and smooth transitions
@@ -156,7 +159,8 @@ The application requires several environment variables in `.env`:
 ### Chatbot Implementation
 - Streams responses using Server-Sent Events (SSE)
 - Model fallback system with multiple LLM providers
-- Context-aware responses about Bubble's mission and services
+- Unified system prompt that adapts to page context (index, simulator, pricing, businesses)
+- Persists per-context conversation history in localStorage
 - Integrated rate limiting for abuse prevention
 
 ### Image Generation

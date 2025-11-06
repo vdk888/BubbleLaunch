@@ -21,7 +21,8 @@ src/backend/
 │   ├── waitlist.controller.js   # Waitlist subscription
 │   ├── blog.controller.js       # Blog & image generation
 │   ├── knowledge-garden.controller.js  # References management
-│   └── portfolio.controller.js  # Portfolio simulator
+│   ├── portfolio.controller.js  # Portfolio simulator
+│   └── business-contact.controller.js  # B2B contact form handler
 ├── routes/
 │   ├── index.js                 # Route aggregator
 │   ├── chat.routes.js           # Chat endpoints
@@ -29,6 +30,8 @@ src/backend/
 │   ├── blog.routes.js           # Blog API endpoints
 │   ├── knowledge-garden.routes.js  # References API
 │   ├── portfolio.routes.js      # Portfolio simulator API
+│   ├── business-contact.routes.js # B2B contact form API
+│   ├── sitemap.routes.js        # Sitemap XML generator
 │   └── pages.routes.js          # HTML page serving
 ├── middleware/
 │   ├── session.js               # Session configuration
@@ -40,7 +43,9 @@ src/backend/
 │   ├── knowledgeGardenService.js  # References with LLM enrichment
 │   ├── llmEnrichmentService.js  # AI-powered metadata generation
 │   ├── yahooFinanceService.js   # ETF historical data fetching
-│   └── portfolioService.js      # Portfolio calculation algorithms
+│   ├── portfolioCacheService.js # Simulator cache & preview orchestration
+│   ├── riskBudgetingService.js  # Advanced optimization helpers
+│   └── portfolioService.js      # Strategy orchestrator (9+ strategies)
 └── cache/
     ├── image-service-cache.json # Persistent image cache
     └── portfolio-preview-data.json  # Pre-calculated chart data
@@ -82,46 +87,20 @@ Response (JSON API or HTML page)
 
 ---
 
-## API Endpoints
+## Route & Endpoint Map
 
-### Waitlist
-- `POST /api/subscribe` - Add to waitlist
-- `POST /api/test-post` - Test endpoint
-
-### Chat
-- `POST /api/chat` - AI chatbot (rate-limited, streaming SSE)
-
-### Blog
-- `GET /api/blog/posts` - List all published posts
-- `GET /api/blog/post/:slug` - Get single post
-- `GET /api/blog/test-image-service-connection` - Test OpenAI image service connectivity
-- `POST /api/blog/test-image-generation` - Test image generation
-- `POST /api/blog/clear-image-cache` - Clear OpenAI image cache
-- `GET /api/blog/image-cache-stats` - Cache statistics
-- `POST /api/blog/regenerate-all-images` - Regenerate all images
-- `POST /api/blog/regenerate-image/:slug` - Regenerate single image
-- `POST /api/blog/generate-article-image` - Generate image for article
-
-### Knowledge Garden
-- `GET /api/knowledge-garden/references` - Get enriched references
-- `GET /api/knowledge-garden/references-by-source-type` - Group by type
-- `GET /api/knowledge-garden/references-by-theme` - Group by theme
-- `GET /api/knowledge-garden/explore` - Database structure
-- `POST /api/knowledge-garden/clear-cache` - Clear enrichment cache
-
-### Portfolio Simulator
-- `GET /api/portfolio/preview-data` - Pre-calculated chart data (cached)
-- `GET /api/portfolio/etf-data?tickers=SPY,IEF,GLD&period=10` - Historical prices
-- `POST /api/portfolio/calculate` - Calculate strategy on-demand
-- `POST /api/portfolio/clear-cache` - Clear Yahoo Finance cache
-
-### Pages
-- `GET /` - Landing page
-- `GET /blog` - Blog index
-- `GET /blog/:slug` - Individual blog post
-- `GET /portfolio-simulator` - Portfolio simulator page
-- `GET /test-image` - Image generation test page
-- `GET /clear-cache` - Cache management page
+### Aggregated Routes (`src/backend/routes/index.js`)
+- **SEO**
+  - `GET /sitemap.xml` — Generated XML sitemap (locale-aware)
+- **API (mounted under `/api`)**
+  - `POST /api/chat` — Unified AI assistant (SSE streaming)
+  - `POST /api/subscribe`, `POST /api/test-post` — Waitlist intake & diagnostics
+  - `POST /api/business-contact` — B2B lead submissions
+  - `GET /api/blog/posts`, `GET /api/blog/post/:slug`, cache & regeneration utilities
+  - `GET /api/knowledge-garden/*` — Reference browsing and cache management
+  - `GET /api/portfolio/preview-data`, `GET /api/portfolio/etf-data`, `POST /api/portfolio/calculate`, cache maintenance (`/clear-cache`, `/regenerate-cache`)
+- **Pages**
+  - HTML rendering via `pages.routes.js` for marketing, simulator, business, legal, and localized paths
 
 ---
 
@@ -140,7 +119,7 @@ src/frontend/
 │   └── test-image-generation.html # Image generation testing
 ├── js/
 │   ├── script.js                # Main app logic
-│   ├── chatbot-logic.js         # AI chat implementation
+│   ├── chatbot-logic.js         # Unified assistant client logic
 │   ├── chatbot-animations.js    # Message animations & typing indicators ✅
 │   ├── blog.js                  # Blog listing
 │   ├── blog-post.js             # Post rendering
@@ -151,7 +130,7 @@ src/frontend/
 │   ├── mini-chat.js             # Embedded chat widget ✅
 │   ├── charts.js                # Shared chart utilities ✅
 │   ├── portfolio-preview.js     # Landing page chart preview ✅
-│   └── portfolio-simulator.js   # Full simulator (20Y, 3 strategies) ✅
+│   └── portfolio-simulator.js   # Full simulator (multi-strategy, analytics) ✅
 ├── i18n/
 │   └── translations.js          # French/English translations
 ├── assets/
@@ -173,6 +152,14 @@ src/frontend/
 3. **Progressive Enhancement** - Works without JS, enhanced with it
 4. **Intersection Observer** - Scroll-triggered animations
 5. **Server-Sent Events (SSE)** - Streaming chat responses
+6. **Strategy Telemetry** - Frontend persists simulator state & analytics events (gtag)
+
+### Portfolio Simulator Highlights
+
+- `src/frontend/js/portfolio-simulator.js` renders nine strategies: Equal Weight, 60/40, Hierarchical RP, Simple RP, Momentum, Enhanced RP DCC, Optimized Risk Budgeting, Optimized Risk Parity, Regime-Aware RP, plus a Custom Mix overlay driven by optimizer weights.
+- Uses `STRATEGY_CONFIG` for palette/order metadata and toggles prominent/best strategy highlighting.
+- Persists simulator state and exposes GTM/GA events (`trackSimulatorEvent`) for analytics.
+- Syncs with backend preview cache, allowing quick reloads without recomputation.
 
 ---
 

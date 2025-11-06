@@ -1,5 +1,7 @@
 # Bubble Project Reorganization Plan
 
+> **Historical Note (2025-11-06):** This plan has been fully executed. The repository already lives under `src/frontend` and `src/backend`, with documentation under `docs/`. Keep this file as institutional memory, or move it to `docs/archive/` if we prefer to declutter the active technical docs index.
+
 ## Current Issues
 - All files mixed in root directory (frontend, backend, docs, assets)
 - No clear separation of concerns
