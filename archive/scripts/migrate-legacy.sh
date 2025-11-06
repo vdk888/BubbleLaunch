@@ -45,7 +45,8 @@ mv pdf_to_markdown.py scripts/
 
 # Clean up temporary file
 if [ -f "chatbot-animations.js.new" ]; then
-    mv chatbot-animations.js.new backup/
+    mkdir -p archive/frontend/backups
+    mv chatbot-animations.js.new archive/frontend/backups/
 fi
 
 echo "Migration complete!"

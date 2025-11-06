@@ -285,6 +285,17 @@ async function getPublishedPosts() {
                     direction: 'descending',
                 },
             ],
+            // Note: Pinned sort is commented out until 'Pinned' property is added to Notion
+            // sorts: [
+            //     {
+            //         property: 'Pinned',
+            //         direction: 'descending',
+            //     },
+            //     {
+            //         property: 'Publication Date',
+            //         direction: 'descending',
+            //     },
+            // ],
         });
 
         const posts = await Promise.all(response.results.map(async page => {
@@ -337,7 +348,11 @@ async function getPublishedPosts() {
             // Extract tags
             const tagsProperty = properties['Topic Tags'];
             const tags = tagsProperty?.multi_select?.map(tag => tag.name) || [];
-            
+
+            // Extract pinned status
+            const pinnedProperty = properties['Pinned'];
+            const isPinned = pinnedProperty?.checkbox || false;
+
             // Generate featured image using OpenAI image service or use fallback
             let featuredImage = null;
             try {
@@ -429,6 +444,7 @@ async function getPublishedPosts() {
                 featuredImage,
                 status,
                 tags,
+                isPinned,
                 url: `/blog/${slug}`
             };
         }));
@@ -551,7 +567,11 @@ async function getPostBySlug(slug) {
         // Extract tags
         const tagsProperty = properties['Topic Tags'];
         const tags = tagsProperty?.multi_select?.map(tag => tag.name) || [];
-        
+
+        // Extract pinned status
+        const pinnedProperty = properties['Pinned'];
+        const isPinned = pinnedProperty?.checkbox || false;
+
         // Generate featured image using OpenAI image service or use fallback
         let featuredImage = null;
         try {
@@ -657,6 +677,7 @@ async function getPostBySlug(slug) {
             featuredImage,
             status,
             tags,
+            isPinned,
             url: `/blog/${slug}`
         };
     } catch (error) {

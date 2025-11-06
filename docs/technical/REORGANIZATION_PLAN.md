@@ -69,9 +69,10 @@ BubbleLaunch/
 ├── public/                       # Public static files (future)
 │   └── (files served directly)
 │
-├── backup/                       # Backup files
-│   ├── index.html
-│   └── translations.js
+├── archive/
+│   ├── frontend/backups/         # Legacy HTML/CSS/JS snapshots
+│   │   ├── index.html
+│   │   └── translations.js
 │
 ├── .env                         # Environment variables
 ├── .gitignore                   # Git ignore file
@@ -113,8 +114,8 @@ BubbleLaunch/
 - `pdf_to_markdown.py` → `scripts/pdf_to_markdown.py`
 
 ### Other Files
-- `chatbot-animations.js.new` → Can be removed or moved to backup
-- `helpers/` → Keep as is (contains separate project)
+- `chatbot-animations.js.new` → Can be removed or stored under `archive/frontend/backups/`
+- `helpers/` → Relocated under `archive/experiments/` (contains separate project)
 - `attached_assets/` → Keep as is (contains screenshots/notes)
 
 ## Benefits of This Structure

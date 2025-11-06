@@ -5,7 +5,7 @@
 - Strategy suite rebuilt as modular Node services with momentum, regime-aware parity, and optimized mix support (`src/backend/services/strategies/*`).
 - Simulator UI redesigned with multi-strategy toggles, ETF visibility controls, Calmar metrics, exports, and persistent custom mixes (`src/frontend/js/portfolio-simulator.js` plus associated HTML/CSS).
 - Asset universe expanded to include VNQ (REITs) and a synthetic cash sleeve; caches refreshed with the wider coverage.
-- Anim-main mirror gains a dedicated worker pipeline so the marketing animation stays in sync with backend logic.
+- Anim-main mirror (now under `archive/anim-main/`) gains a dedicated worker pipeline so the marketing animation stays in sync with backend logic.
 
 ## Snapshot of Current Capabilities
 - 20-year default backtest with switchable 1/3/5/10/20-year snapshots served from cached JSON.
@@ -50,7 +50,7 @@
 - Styles in `src/frontend/assets/styles/styles.css` handle responsive sliders, pill states, warnings, and export section layout.
 - Landing-page preview (`src/frontend/js/portfolio-preview.js`) now mirrors backend metrics and respects leverage parameter.
 
-### Anim-main Mirror (`anim-main/`)
+### Anim-main Mirror (`archive/anim-main/`)
 - `public/portfolioWorker.js` offloads heavy calculations to a Web Worker shared by `src/services/portfolioWorkerService.js`.
 - `src/services/portfolioCalculations.js` and `performanceMetrics.js` sync math with backend strategy modules.
 - `src/components/PerformanceMetrics.js` and `StepByStepAnalysis.js` render worker output so marketing sequences reflect live strategy definitions.
@@ -85,12 +85,12 @@
 2. Metrics (total/annual return, volatility, Sharpe, Calmar, max drawdown) are computed through `portfolioService.calculateMetrics`.
 3. Results populate `portfolio-preview-data.json`, `portfolio-preview-periods.json`, and `cache-metadata.json` (`lastGenerated`, `ttlDays`, `nextScheduled`, strategy coverage).
 4. `cacheScheduler.initialize()` (invoked from `src/backend/server.js`) checks cache freshness on boot and schedules monthly regeneration; `triggerCacheRegeneration()` can be called manually or via API.
-5. `check-allocations.js` inspects the 20-year snapshot to confirm allocations sum to ≈1.0 and that VNQ is present for every strategy.
+5. `scripts/portfolio/check-allocations.js` inspects the 20-year snapshot to confirm allocations sum to ≈1.0 and that VNQ is present for every strategy.
 
 **Manual refresh workflow**
 ```bash
-npm run generate:portfolio-cache      # Recompute local cache snapshots
-node check-allocations.js             # Sanity-check allocations and ETF coverage
+npm run generate:portfolio-cache              # Recompute local cache snapshots
+node scripts/portfolio/check-allocations.js   # Sanity-check allocations and ETF coverage
 ```
 
 ## Frontend Features & Persistence
@@ -108,7 +108,7 @@ node check-allocations.js             # Sanity-check allocations and ETF coverag
 3. **Translations**: Add `simulator.strategy.<key>` entries to `src/frontend/i18n/translations.js` for FR/EN.
 4. **Frontend config**: Extend `STRATEGY_CONFIG` in `src/frontend/js/portfolio-simulator.js` (set `labelKey`, `dataKey`, color, order, `isBest` if needed).
 5. **HTML pill**: Add a `data-strategy="<key>"` button in `src/frontend/pages/portfolio-simulator.html` with tooltip copy.
-6. **Cache refresh**: Run `npm run generate:portfolio-cache` and re-run `node check-allocations.js`.
+6. **Cache refresh**: Run `npm run generate:portfolio-cache` and re-run `node scripts/portfolio/check-allocations.js`.
 7. **Preview sync**: Commit refreshed cache files (`portfolio-preview-*.json`, `cache-metadata.json`).
 8. **Analytics**: If required, extend GA4 payloads in `trackSimulatorEvent`.
 
@@ -116,12 +116,12 @@ node check-allocations.js             # Sanity-check allocations and ETF coverag
 - Verify `GET /api/portfolio/preview-data?leverage=2&period=10` returns `leverage: 2`, allocations including VNQ, and `X-Cache-Age-Days < 31`.
 - Ensure custom mix CSV exports include a `strategy=customMix` row with blended metrics.
 - Confirm Calmar ratio calculations display correctly in both FR/EN and mobile layouts.
-- Use Chrome dev tools to watch `portfolioWorker.js` in anim-main and ensure worker responses match backend strategy totals.
+- Use Chrome dev tools to watch `portfolioWorker.js` in `archive/anim-main/` and ensure worker responses match backend strategy totals.
 
 ## Open Follow-Ups
 - Port the enhanced-risk-parity DCC variant to consume `dynamicCorrelations.js` outputs end-to-end (currently placeholder math inside module).
 - Extend `POST /api/portfolio/calculate` to embrace the newer strategy set or mark it as legacy in UI copy.
-- Automate allocation sanity checks (`check-allocations.js`) within CI once test scaffolding exists.
+- Automate allocation sanity checks (`scripts/portfolio/check-allocations.js`) within CI once test scaffolding exists.
 - Evaluate storing cache artifacts outside Git to reduce extremely large diffs on each regeneration.
 
 _Last updated: 2025-11-05_

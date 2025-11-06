@@ -49,28 +49,37 @@ async function loadBlogPosts() {
     const loadingState = document.getElementById('loading-state');
     const emptyState = document.getElementById('empty-state');
     const postsGrid = document.getElementById('posts-grid');
-    
+
+    console.log('🔄 Starting to load blog posts...');
+
     try {
         // Fetch posts from the API
+        console.log('📡 Fetching /api/blog/posts');
         const response = await fetch('/api/blog/posts');
-        
+
+        console.log('📩 Got response:', response.status);
+
         if (!response.ok) {
             throw new Error('Failed to fetch blog posts');
         }
-        
+
         allPosts = await response.json();
-        
+        console.log('✅ Posts loaded:', allPosts.length);
+
         // Hide loading state
         loadingState.style.display = 'none';
-        
+        console.log('👁️ Hidden loading state');
+
         if (allPosts.length === 0) {
             // Show empty state
             emptyState.style.display = 'block';
             return;
         }
-        
+
         // Render posts with current language
+        console.log('🎨 Rendering posts...');
         renderPosts();
+        console.log('✨ Posts rendered');
         
     } catch (error) {
         console.error('Error loading blog posts:', error);
@@ -93,14 +102,17 @@ async function loadBlogPosts() {
 function renderPosts() {
     const featuredPost = document.getElementById('featured-post');
     const postsGrid = document.getElementById('posts-grid');
-    
+
     if (allPosts.length === 0) return;
-    
-    // Display featured post (first post)
-    displayFeaturedPost(allPosts[0], featuredPost);
-    
-    // Display remaining posts in grid
-    const remainingPosts = allPosts.slice(1);
+
+    // Find first pinned post or fallback to most recent
+    const pinnedPost = allPosts.find(post => post.isPinned) || allPosts[0];
+
+    // Display pinned/featured post
+    displayFeaturedPost(pinnedPost, featuredPost);
+
+    // Display remaining posts (excluding the featured one)
+    const remainingPosts = allPosts.filter(post => post.id !== pinnedPost.id);
     displayPostsGrid(remainingPosts, postsGrid);
 }
 
@@ -108,8 +120,10 @@ function displayFeaturedPost(post, container) {
     const formattedDate = formatDate(post.publishedDate);
     const title = post.title[currentLanguage] || post.title.fr;
     const summary = post.summary[currentLanguage] || post.summary.fr;
-    
-    const featuredTag = currentLanguage === 'fr' ? 'Article principal' : 'Featured Article';
+
+    const featuredTag = post.isPinned
+        ? (currentLanguage === 'fr' ? '📌 Épinglé' : '📌 Pinned')
+        : (currentLanguage === 'fr' ? 'Article principal' : 'Featured Article');
     const readMoreText = currentLanguage === 'fr' ? 'Lire l\'article' : 'Read Article';
     const defaultSummary = currentLanguage === 'fr' ? 
         'Découvrez nos dernières réflexions sur l\'investissement intelligent.' :
@@ -143,10 +157,10 @@ function displayFeaturedPost(post, container) {
 
 function displayPostsGrid(posts, container) {
     if (posts.length === 0) {
-        const emptyMessage = currentLanguage === 'fr' ? 
-            'Plus d\'articles arrivent bientôt...' : 
+        const emptyMessage = currentLanguage === 'fr' ?
+            'Plus d\'articles arrivent bientôt...' :
             'More articles coming soon...';
-            
+
         container.innerHTML = `
             <div style="grid-column: 1/-1; text-align: center; padding: 2rem 0;">
                 <p style="color: #888;">${emptyMessage}</p>
@@ -154,24 +168,23 @@ function displayPostsGrid(posts, container) {
         `;
         return;
     }
-    
+
     container.innerHTML = posts.map(post => createPostCard(post)).join('');
+
+    // Initialize scroll animations after rendering
+    setTimeout(() => initScrollAnimations(), 100);
 }
 
 function createPostCard(post) {
     const formattedDate = formatDate(post.publishedDate);
     const title = post.title[currentLanguage] || post.title.fr;
-    const summary = post.summary[currentLanguage] || post.summary.fr;
-    
+
     const postTag = currentLanguage === 'fr' ? 'Article' : 'Article';
-    const defaultSummary = currentLanguage === 'fr' ? 
-        'Découvrez cet article sur l\'investissement intelligent.' :
-        'Discover this article on intelligent investing.';
-    
+
     return `
         <a href="/blog/${post.slug}" class="post-card">
             <div class="post-image">
-                ${post.featuredImage ? 
+                ${post.featuredImage ?
                     `<img src="${post.featuredImage}" alt="${title}" loading="lazy">` :
                     `<div class="post-image-placeholder">📝</div>`
                 }
@@ -179,10 +192,12 @@ function createPostCard(post) {
             <div class="post-content">
                 <div class="post-meta">
                     <span class="post-date">${formattedDate}</span>
-                    <span class="post-tag">${postTag}</span>
+                    ${post.isPinned ?
+                        `<span class="post-tag pinned-tag">${currentLanguage === 'fr' ? '📌 Épinglé' : '📌 Pinned'}</span>` :
+                        `<span class="post-tag">${postTag}</span>`
+                    }
                 </div>
                 <h3 class="post-title">${title}</h3>
-                <p class="post-summary">${summary || defaultSummary}</p>
             </div>
         </a>
     `;
@@ -214,4 +229,40 @@ function formatDate(dateString) {
             day: 'numeric'
         });
     }
+}
+
+/**
+ * Initialize scroll-triggered animations for cards
+ */
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                cardObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe all post cards
+    document.querySelectorAll('.post-card').forEach(card => {
+        card.classList.add('fade-in');
+        cardObserver.observe(card);
+    });
+
+    // Force check for cards already in view on initial load
+    requestAnimationFrame(() => {
+        document.querySelectorAll('.post-card.fade-in').forEach(card => {
+            const rect = card.getBoundingClientRect();
+            // If card is in viewport, make it visible immediately
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                card.classList.add('visible');
+            }
+        });
+    });
 }

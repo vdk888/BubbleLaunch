@@ -13,7 +13,7 @@
 | **Frontend** | ✅ Production Ready | Vanilla JS + Chart.js v4 with responsive simulators and marketing pages |
 | **Documentation** | ⚠️ Updating | Key refs (CLAUDE, architecture, simulator) refreshed; legacy plans under review |
 | **Code Quality** | ✅ Excellent | Isolated strategy modules, service abstraction, console telemetry for schedulers |
-| **Performance** | ✅ Optimized | Cached simulator snapshots, leverage-aware APIs, lazy assets, worker offloading (anim-main) |
+| **Performance** | ✅ Optimized | Cached simulator snapshots, leverage-aware APIs, lazy assets, worker offloading (archive/anim-main mirror) |
 | **Testing** | ⚠️ Manual Only | Manual endpoint verification; automated tests still pending |
 
 ---
@@ -37,7 +37,7 @@
 4. **Automated Cache Lifecycle**
    - `src/backend/services/cacheScheduler.js` schedules regeneration (Sunday 02:00 UTC near month end)
    - Preview API surfaces `X-Cache-Age-Days` / `X-Cache-Status`; manual regen endpoint supported
-   - `check-allocations.js` validates VNQ/CASH weights post-generation
+   - `scripts/portfolio/check-allocations.js` validates VNQ/CASH weights post-generation
 
 5. **Content Systems**
    - Blog: Notion CMS, OpenAI image generation with persistent cache + Unsplash fallback
@@ -66,9 +66,18 @@ BubbleLaunch/
 │       ├── i18n/                    # FR/EN translation dictionaries
 │       └── assets/                  # Styles, icons, illustrations
 ├── docs/                            # Living documentation (architecture, simulator, strategy summary, SEO)
-├── anim-main/                       # Marketing animation mirror (web worker powered)
-├── scripts/                         # Utilities (portfolio cache generation, Notion sync, etc.)
-└── check-allocations.js             # Cache validation helper
+├── scripts/
+│   ├── business/                    # Notion business database utilities
+│   ├── deploy/                      # Deployment helpers (DigitalOcean, etc.)
+│   ├── portfolio/                   # Cache validation & analytics tooling
+│   └── *.js                         # Legacy scripts pending categorisation
+├── archive/
+│   ├── anim-main/                   # Marketing animation mirror (web worker powered)
+│   ├── experiments/                 # One-off prototypes (e.g., PersonalBlogBuilder)
+│   ├── frontend/                    # Legacy HTML/CSS/JS backups
+│   ├── data/                        # Sample API payloads
+│   └── scripts/                     # Historical migration helpers
+└── attached_assets/                 # Pitch decks, screenshots, visual collateral
 ```
 
 ---
@@ -103,7 +112,7 @@ BubbleLaunch/
 - Built cron-driven cache regeneration with metadata introspection and manual override endpoints
 - Redesigned simulator UI with exports, ETF toggles, custom mix builder, mobile sliders
 - Migrated chat controller to unified system prompt with page context; updated frontend logic accordingly
-- Synced anim-main marketing worker with backend calculations
+- Synced archive/anim-main marketing worker with backend calculations
 
 _For historical v1.4 responsive updates, see Git history (tag `v1.4-responsive`)._
 
