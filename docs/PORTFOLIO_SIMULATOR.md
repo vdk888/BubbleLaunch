@@ -1,5 +1,25 @@
 # Portfolio Simulator Documentation
 
+## Important: Educational Preview vs. Full Product
+
+**This simulator is an EDUCATIONAL PREVIEW on the BubbleLaunch marketing website**, not the full Bubble Portfolio platform.
+
+| Aspect | Portfolio Simulator (Website) | Bubble Portfolio (Product Repo) |
+|--------|-------------------------------|--------------------------------|
+| **Purpose** | Demonstrate strategy concepts to website visitors | Full AI-agent portfolio management platform |
+| **Interface** | Interactive charts, sliders, metric cards | Conversational AI agent chatbot |
+| **Capabilities** | 9 pre-built strategies, 20-year backtest | Stock screening, custom strategies, live execution |
+| **Scope** | Educational preview (7 ETFs, fixed time periods) | Production platform (unlimited universe, real-time) |
+| **Technology Stack** | Vanilla JS + Chart.js, cached JSON data | Python/Node backend, AI orchestration, broker APIs |
+| **Distribution** | Website only (bubble.invest) | ChatGPT app, web, MCP |
+| **User Journey** | Landing page → "Try Simulator" → Waitlist | (Separate product repo) |
+
+**For Users**: The simulator on this website helps you understand portfolio concepts before accessing the full Bubble Portfolio product.
+
+**For Developers**: Code changes here affect the marketing website only. The full product lives in a separate GitHub repository and follows a different architecture.
+
+---
+
 ## November 2025 Update at a Glance
 - Leverage-aware preview API, cache metadata, and cron-based regeneration now live (`src/backend/controllers/portfolio.controller.js`, `src/backend/services/cacheScheduler.js`).
 - Strategy suite rebuilt as modular Node services with momentum, regime-aware parity, and optimized mix support (`src/backend/services/strategies/*`).

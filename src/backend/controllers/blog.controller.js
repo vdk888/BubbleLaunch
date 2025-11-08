@@ -34,27 +34,28 @@ async function getPost(req, res) {
 }
 
 /**
- * Test OpenAI image service connectivity
+ * Test Runware image service connectivity
  */
 async function testImageServiceConnection(req, res) {
   try {
-    console.log("🔍 Testing OpenAI image service connection...");
+    console.log("🔍 Testing Runware image service connection...");
 
     const isConnected = await imageService.testConnection();
 
     res.json({
       success: isConnected,
       message: isConnected
-        ? "OpenAI image service connection successful"
-        : "OpenAI image service connection failed",
-      apiKeyPresent: !!(
-        process.env.OPENAI_API_KEY || process.env.FREEPIK_API_KEY
-      ),
+        ? "Runware image service connection successful"
+        : "Runware image service connection failed",
+      apiKeyPresent: !!process.env.RUNWARE_API_KEY,
+      provider: "Runware (Flux)",
+      costPerImage: "$0.0006",
+      fallbackImagesAvailable: imageService.getCacheStats().fallbackImagesAvailable,
     });
   } catch (error) {
-    console.error("Error testing OpenAI image service connection:", error);
+    console.error("Error testing Runware image service connection:", error);
     res.status(500).json({
-      error: "Failed to test OpenAI image service connection",
+      error: "Failed to test Runware image service connection",
       details: error.message,
     });
   }
@@ -101,11 +102,11 @@ async function testImageGeneration(req, res) {
 }
 
 /**
- * Clear OpenAI image cache
+ * Clear Runware image cache
  */
 async function clearImageCache(req, res) {
   try {
-    console.log("🧹 Clearing OpenAI image cache...");
+    console.log("🧹 Clearing Runware image cache...");
 
     imageService.clearCache();
     const cacheStats = imageService.getCacheStats();
@@ -289,6 +290,80 @@ async function generateArticleImage(req, res) {
   }
 }
 
+/**
+ * Get available Unsplash images for manual selection
+ */
+function getAvailableImages(req, res) {
+  try {
+    const fs = require("fs");
+    const path = require("path");
+    const configPath = path.join(__dirname, "../cache/image-config.json");
+    const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+
+    res.json({
+      success: true,
+      articles: config.articleImageMappings,
+      availableImages: config.availableUnsplashImages,
+    });
+  } catch (error) {
+    console.error("Error fetching available images:", error);
+    res.status(500).json({
+      success: false,
+      error: "Failed to fetch available images",
+      details: error.message,
+    });
+  }
+}
+
+/**
+ * Set custom image for a specific article
+ */
+function setArticleImage(req, res) {
+  try {
+    const { articleId, imageUrl } = req.body;
+
+    if (!articleId || !imageUrl) {
+      return res.status(400).json({
+        success: false,
+        error: "articleId and imageUrl are required",
+      });
+    }
+
+    const fs = require("fs");
+    const path = require("path");
+    const configPath = path.join(__dirname, "../cache/image-config.json");
+    const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+
+    // Update or create the mapping
+    if (!config.articleImageMappings[articleId]) {
+      config.articleImageMappings[articleId] = {};
+    }
+
+    config.articleImageMappings[articleId].image = imageUrl;
+    config.articleImageMappings[articleId].updatedAt = new Date().toISOString();
+
+    // Write back to config
+    fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
+
+    // Clear image cache for this article to force reload
+    imageService.clearCacheForArticle(articleId);
+
+    res.json({
+      success: true,
+      message: `Image set for article ${articleId}`,
+      articleId,
+      imageUrl,
+    });
+  } catch (error) {
+    console.error("Error setting article image:", error);
+    res.status(500).json({
+      success: false,
+      error: "Failed to set article image",
+      details: error.message,
+    });
+  }
+}
+
 module.exports = {
   getPosts,
   getPost,
@@ -299,4 +374,6 @@ module.exports = {
   regenerateAllImages,
   regenerateImage,
   generateArticleImage,
+  getAvailableImages,
+  setArticleImage,
 };

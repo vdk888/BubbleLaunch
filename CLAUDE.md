@@ -4,19 +4,93 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is **Bubble Invest**, a fintech startup providing an **AI-powered quantitative platform** that delivers **AI-powered insights** on how to invest according to users' own decisions and profiles. **Bubble's mission: AI empowerment to replace traditional financial actors**, not traditional asset management.
+**IMPORTANT: This Repository is BubbleLaunch (Marketing Website)**
 
-**What Bubble Actually Is:**
-- **AI empowerment platform**: Provides AI-powered insights for user-driven investment decisions based on individual profiles and preferences
-- **Focus on ETF-based portfolios**: Privileges ETF strategies to keep fees low, but adapts to whatever users want to focus on
-- **Fixed-fee model**: €0-10/month depending on plan (platform access, APIs, infrastructure — NOT asset management fees)
-- **Full transparency**: All strategies, backtests (17+ years), and rules visible to users
-- **Educational + Insightful**: AI chatbot for financial education + AI-powered investment insights tailored to user profiles
-- **User-controlled accounts**: Users maintain full control with their own brokerage accounts (Interactive Brokers, Alpaca, Saxo Bank) - NOT a custody model
-- **Current automation**: Bubble portfolio system (founders' investments) uses automated API integration with IBKR/Alpaca/Saxo. User automation planned for future product launch.
+This is the **marketing website** for **Bubble Invest**, a fintech startup. This codebase is NOT the main product—it's the public-facing website that presents Bubble Invest's services and product vision.
+
+- **This Codebase (BubbleLaunch)**: Landing page, blog, portfolio simulator demo, B2B consulting page, and waitlist
+- **Main Product (Bubble Portfolio)**: Separate GitHub repository containing the AI-agent-driven portfolio management platform (currently in development with external supplier, probably ITEXUS)
+
+---
+
+### Bubble Invest Company Overview
+
+**Bubble Invest** is a fintech startup providing an **AI-powered quantitative platform** that delivers **AI-powered insights** on how to invest according to users' own decisions and profiles. **Bubble's mission: AI empowerment to replace traditional financial actors**, not traditional asset management.
+
+**Services**:
+1. **Bubble Portfolio** (Primary Product) - AI-agent portfolio management platform
+2. **Bubble Businesses** (B2B Consulting) - AI automation for fintech/finance companies
+
+### Bubble Invest's Core Approach
+
+**What Makes Bubble Different:**
+
+#### **Bubble Portfolio (Main Product)**
+- **AI Empowerment, Not Management**: Provides AI-powered insights and recommendations for user-driven investment decisions based on individual profiles and preferences (not a traditional robo-advisor managing accounts)
+- **Conversational AI Agent**: Primary interface is a ChatGPT-integrated chatbot that guides users through: stock screening → strategy backtesting → portfolio allocation → automated execution
+- **Extensible Architecture**: Every module (screeners, strategies, brokers, data sources) is pluggable and swappable
+- **Fixed-Fee Model**: €0-10/month depending on plan (cost-plus pricing based on compute usage), NOT percentage-based AUM fees
+- **Full Transparency**: All strategies, backtests (17+ years), scoring rules, and decisions visible and explained to users
+- **User-Controlled Accounts**: Users maintain 100% control with their own brokerage accounts (IBKR, Alpaca, Saxo Bank)—NOT a custody model
+- **Multi-Tier Approach**:
+  - Retail users get full automated execution (with API-enabled brokers)
+  - Wealth advisors (CGP) get admin tools to manage multiple client portfolios
+  - Asset managers get screening/backtesting tools for fund management
+- **Regulatory Ready**: Built from Day 1 with KYC, GDPR, and AMF compliance requirements
+
+#### **Bubble Businesses (B2B Consulting Service)**
+- **Ex-Big Four & UBS Team**: Former Deloitte, KPMG consultants and portfolio managers
+- **Project-Based**: €3k-€30k AI automation projects for finance companies
+- **Fast Delivery**: 2-4 months for complete projects
+- **Transparent Pricing**: Diagnostic (€3k-€5k), simple automation (€8k-€12k), or full projects (€20k-€30k)
+- **Services**: Automated reporting, ESG monitoring, portfolio analytics, reconciliation
+
+---
+
+### Current Status
+
+**Bubble Portfolio**: Under development with external supplier ITEXUS (separate GitHub repository). Founders' own portfolios use current beta automation with IBKR/Alpaca/Saxo. User-side automation planned post-regulatory approval.
+
+**BubbleLaunch Website** (this codebase): Marketing presence with educational simulator and waitlist for beta access.
+
+## BubbleLaunch Website (This Codebase)
 
 **Current Web Application:**
-The current codebase is a multilingual waitlist landing page with integrated AI chatbot, blog system, and an expanded portfolio simulator (9 strategies + custom mix, leverage toggle, exports), built with vanilla JavaScript and Node.js/Express. This serves as the public-facing website while the core portfolio management system is being developed in beta. The beta product now includes Saxo Bank API integration alongside Interactive Brokers and Alpaca.
+The current codebase is a multilingual landing page with integrated AI chatbot, blog system, and an expanded portfolio simulator (9 strategies + custom mix, leverage toggle, exports), built with vanilla JavaScript and Node.js/Express. This serves as the public-facing website presenting Bubble Invest and its services.
+
+**Key Pages & Features**:
+- **Landing Page** (`index.html`) - Presents Bubble Portfolio product vision and value proposition
+- **Portfolio Simulator** (`portfolio-simulator.html`) - Educational demo of 9 backtested strategies for investors to explore investment concepts
+- **Blog** (`blog.html`, `/blog/*`) - SEO-driven content educating about investment strategies, AI, portfolio management, democratization
+- **Businesses** (`businesses.html`) - B2B consulting services: AI automation, reporting, ESG monitoring (€3k-€30k projects)
+- **AI Chatbot** - Educational chatbot answering questions about investment, Bubble's approach, and product capabilities
+
+---
+
+## Bubble Portfolio Product (Separate Repository)
+
+**Status**: Main AI-agent platform currently in development with external supplier ITEXUS
+
+The **Bubble Portfolio** is the actual product—a separate GitHub repository containing the AI-agent-driven portfolio management platform. This is what the BubbleLaunch website promotes.
+
+### Product Characteristics (Under Development):
+- **AI Agent Interface**: Conversational chatbot-driven experience (ChatGPT native app as primary distribution)
+- **End-to-End Workflow**: Stock screening → Backtesting strategies → Portfolio allocation → Automated execution
+- **Extensible Architecture**: Pluggable data sources, strategies, broker integrations
+- **Multi-Broker Support**: IBKR, Alpaca, Saxo Bank with intelligent routing
+- **Three User Tiers**:
+  - **Retail**: Full automated execution with API-enabled brokers
+  - **CGP (Wealth Advisors)**: Admin interface managing multiple client accounts
+  - **Asset Managers**: Screening and backtesting tools for fund management
+- **Cost-Plus Pricing**: Transparent unit economics (€0-10/month retail) vs. traditional AUM fees
+- **Regulatory Ready**: KYC, GDPR, AMF compliance built-in from Day 1
+
+### How BubbleLaunch Relates to Bubble Portfolio:
+1. **Landing Page**: Showcases product vision with educational portfolio simulator
+2. **Simulator**: Simplified preview of Bubble Portfolio's backtesting engine (9 strategies, 20 years of data)
+3. **Blog Content**: Educates users about investment concepts (risk parity, momentum, asset allocation)
+4. **Waitlist**: Captures early adopter interest for product beta (managed in product repository)
+5. **Businesses Page**: Represents complementary B2B consulting services
 
 **Key Differentiators from Traditional Robo-Advisors:**
 1. **AI empowerment, not asset management**: Provides insights for user decisions, not portfolio control

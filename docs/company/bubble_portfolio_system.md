@@ -1,6 +1,141 @@
 #Bubble Portfolio Management System
 
-**Note**: Internal technical documentation for Bubble's portfolio management application (beta version).
+**Note**: Technical documentation for Bubble Portfolio, the main AI-agent-driven portfolio management platform (separate GitHub repository, currently in development with ITEXUS).
+
+---
+
+## Full Product Vision: End-to-End User Journey
+
+### The Conversation-Driven Experience
+
+Users interact with Bubble Portfolio primarily through a **conversational AI agent** (ChatGPT native app + web interface). Here's the complete workflow:
+
+**Step 1: Stock/ETF Screening**
+- User asks: *"I want to add Japanese tech stocks to my portfolio. What should I look at?"*
+- Agent queries extensible screener module (Uncle Stock, FMP, Bloomberg future options)
+- Returns filtered universe of candidates matching criteria
+- User reviews and refines results
+
+**Step 2: Strategy Backtesting**
+- User asks: *"How should I weight these stocks? What strategy works best?"*
+- Agent applies multiple backtested strategies: momentum, contrarian, dividend yield, quality-focused, custom
+- Tests against 17+ years of historical data
+- Returns ranked strategies by Sharpe Ratio, Calmar Ratio, or user's preferred metric
+- Agent explains reasoning and trade-offs
+
+**Step 3: Portfolio Allocation**
+- User asks: *"Where should this fit in my overall portfolio?"*
+- Agent applies **Risk Parity, Regime Detection, correlation analysis** across existing portfolio
+- Recommends optimal weight (e.g., "15% allocation") based on:
+  - User's risk profile (configurable: conservative to aggressive)
+  - Correlation with existing positions
+  - Current market regime (bull/bear/sideways)
+  - Volatility environment
+- User confirms allocation or adjusts parameters
+
+**Step 4: Order Execution & Setup**
+- User says: *"Let's do this. Set it up."*
+- Agent generates **execution-ready orders** with exact quantities
+- **For API-enabled brokers**: Connects via OAuth and executes automatically (with user consent)
+- **For non-API brokers**: Generates downloadable CSV with manual instructions
+- System provides clear, step-by-step execution guidance
+
+**Step 5: Ongoing Management**
+- Agent proactively notifies user when orders execute
+- Tracks portfolio performance vs. targets
+- Recommends rebalancing when thresholds crossed (e.g., allocation drifts >5%)
+- User can adjust strategies, add new pockets, or modify allocations anytime via conversation
+- Full audit trail shows why each order was generated and executed
+
+### Distribution Channels
+1. **ChatGPT Native App** (Primary) - Integrated directly in ChatGPT ecosystem
+2. **Web Application** - Full feature parity at bubble.invest (separate product repo)
+3. **MCP (Model Context Protocol)** - Installable as remote MCP for Claude, ChatGPT, other AI tools
+4. **Mobile App** (Future) - Native iOS/Android if scaled
+
+### Three User Tiers with Different Interfaces
+
+#### **Tier 1: Retail Investors**
+- **Interface**: Conversational AI agent (chatbot-first) + visual dashboard
+- **Features**: Full end-to-end workflow (screening → backtesting → allocation → execution)
+- **Execution**: Automated with API-enabled brokers (Alpaca, IBKR, Saxo); manual orders for others
+- **Pricing**: €0-10/month (cost-plus model: compute, storage, data sources)
+- **Target Audience**: Individual investors wanting professional-grade tools with low fees
+
+#### **Tier 2: Wealth Advisors (CGP)**
+- **Interface**: Admin dashboard + portfolio management tools
+- **Features**: Create/manage multiple client accounts, define strategy templates, oversee allocations
+- **Client CMS**: Profile management (KYC data, risk profiles, preferences)—AI-enriched for faster client understanding
+- **Execution**: Same as retail but scaled to multiple accounts
+- **Pricing**: Custom (per-client or AUM-hybrid)
+- **Target Audience**: Independent wealth advisors, small boutique firms
+
+#### **Tier 3: Asset Managers / Funds**
+- **Interface**: Screening and backtesting tools (no execution)
+- **Features**: Generate "target allocations" for fund rebalancing
+- **Use Case**: Fund managers want AI-driven screening/optimization without direct order execution
+- **Multi-Asset**: Equities, ETFs, crypto support
+- **Pricing**: Institutional pricing model (TBD)
+- **Target Audience**: Fund managers, asset management firms
+
+---
+
+### Core Technical Modules (Extensible by Design)
+
+Every module supports **pluggable alternatives** for extensibility:
+
+| Module | Purpose | Current | Extensible To | ITEXUS Task |
+|--------|---------|---------|---------------|-------------|
+| **Screener** | Filter universe by criteria | Uncle Stock | FMP, Bloomberg, custom APIs | Build OAuth connectors, abstraction layer |
+| **Backtesting Engine** | Test strategies on historical data | Slow (~10+ min) | Fast (<2 min interactive) | Optimize/refactor for speed |
+| **Strategies** | Investment approaches | ~9 core strategies | Add custom strategies per user | Modular strategy registry |
+| **Portfolio Optimizer** | Allocate capital across pockets | Risk Parity, Regime Detection | Kelly Criterion, custom allocations | Extend optimizer suite |
+| **Broker Integration** | Connect to brokers for orders | IBKR, Alpaca, Saxo | Add new brokers via OAuth | Build abstraction layer, OAuth flow |
+| **Data Sources** | Historical prices, fundamentals | Yahoo Finance | Alternative data providers | Support multiple data source swaps |
+| **Billing** | Payment processing | MISSING | Stripe, PayPal, usage metering | Build complete billing system |
+| **Compliance** | Regulatory adherence | Partial | KYC, GDPR, AMF certification | Build compliance framework |
+| **UI/Dashboard** | Visual interface | Basic | Advanced charting, tables, exports | Upgrade to production-grade UI |
+
+### Extensibility Architecture Requirements
+
+**Screener Module**: Pluggable data sources
+- Adapters for Uncle Stock, FMP, Bloomberg
+- User can configure which screener(s) to use
+- Consistent output format (ticker, metrics, scores)
+
+**Strategy Module**: Add strategies without core changes
+- Each strategy is self-contained (momentum.js, quality.js, etc.)
+- Registry system for discovering available strategies
+- Standardized input/output format
+- User can select which strategies to backtest
+
+**Broker Module**: OAuth-based connectors
+- Abstract interface for order placement/status
+- Multiple brokers can be connected simultaneously
+- Smart routing (pick best broker per asset)
+- Capacity checking before order generation
+
+**Data Source Module**: Swap providers seamlessly
+- Interface: `fetchHistoricalData(tickers, startDate, endDate)`
+- Implementations: Yahoo Finance, Bloomberg, alternative data providers
+- Automatic fallback if primary source fails
+
+---
+
+### Performance & Reliability Requirements (From ITEXUS Conversation)
+
+**Current Bottleneck**: Backtesting takes >10 minutes, blocking interactive UX
+
+**Required**: Backtests complete in <2 minutes for real-time agent responses
+
+**Technical Specifications**:
+- ✅ Parallel computation across strategies
+- ✅ Vectorized calculations (NumPy/pandas-style)
+- ✅ Caching of historical data (24h TTL)
+- ✅ Incremental computation (avoid recalculating entire history)
+- ✅ Optional: GPU acceleration for large universes
+
+---
 
 ## Current Status
 

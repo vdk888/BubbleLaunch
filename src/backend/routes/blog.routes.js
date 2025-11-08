@@ -18,4 +18,8 @@ router.post("/regenerate-all-images", blogController.regenerateAllImages);
 router.post("/regenerate-image/:slug", blogController.regenerateImage);
 router.post("/generate-article-image", blogController.generateArticleImage);
 
+// Manual image selection
+router.get("/available-images", blogController.getAvailableImages);
+router.post("/set-article-image", blogController.setArticleImage);
+
 module.exports = router;

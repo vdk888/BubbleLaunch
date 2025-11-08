@@ -1,44 +1,115 @@
-const OpenAI = require("openai");
 const fs = require("fs");
 const path = require("path");
+const { Runware } = require("@runware/sdk-js");
 
 class ImageService {
   constructor() {
-    this.apiKey = process.env.OPENAI_API_KEY || process.env.FREEPIK_API_KEY || null;
-    if (!process.env.OPENAI_API_KEY && process.env.FREEPIK_API_KEY) {
-      console.warn(
-        "⚠️  FREEPIK_API_KEY is deprecated. Please migrate to OPENAI_API_KEY for image generation."
-      );
-    }
+    // Initialize Runware SDK for blog image generation
+    this.runwareApiKey = process.env.RUNWARE_API_KEY || null;
+    this.runware = null;
+    this.connectionReady = false;
+    this.runwareInitPromise = null;
 
-    this.openai =
-      this.apiKey && typeof this.apiKey === "string"
-        ? new OpenAI({ apiKey: this.apiKey })
-        : null;
+    // Local fallback images stored in assets
+    this.fallbackImagesDir = path.join(__dirname, "../../frontend/assets/images/blog-fallbacks");
+    this.fallbackImages = this.loadFallbackImages();
 
     this.imageCache = new Map();
     this.cacheFile = path.join(__dirname, "../cache/image-service-cache.json");
-    this.legacyCacheFile = path.join(
-      __dirname,
-      "../cache/freepik-images.json"
-    );
+
+    // Model configuration - Use Runware's native Flux Schnell model
+    // Format: runware:model@version
+    this.modelId = "runware:100@1"; // Runware Flux Schnell - Ultra-fast, excellent quality
+
+    // Runware docs require 128-2048 dims in multiples of 64:
+    // https://runware.ai/docs/en/image-inference/api-reference#request-width
+    this.imageWidth = 1152;
+    this.imageHeight = 704; // 16:9-ish while still multiple of 64
 
     this.loadPersistentCache();
-
-    console.log("🔧 ImageService initialized (OpenAI Images):");
-    console.log("  - API key present:", !!this.apiKey);
-    if (this.apiKey) {
-      const preview = `${this.apiKey.slice(0, 8)}…${this.apiKey.slice(-4)}`;
+    console.log("🔧 ImageService initializing (Runware):");
+    console.log("  - Runware API key present:", !!this.runwareApiKey);
+    if (this.runwareApiKey) {
+      const preview = `${this.runwareApiKey.slice(0, 8)}…${this.runwareApiKey.slice(-4)}`;
       console.log("  - API key preview:", preview);
     }
+    console.log("  - Model: Runware Flux Schnell (runware:100@1)");
+    console.log("  - Cost: ~$0.0004/image");
+    console.log("  - Fallback images loaded:", this.fallbackImages.length);
     console.log("  - Cache entries:", this.imageCache.size);
-    console.log("  - Cache file:", this.cacheFile);
 
-    if (!this.apiKey) {
-      console.warn(
-        "❌ OPENAI_API_KEY not found. Image generation will fall back to stock imagery."
-      );
+    if (!this.runwareApiKey) {
+      console.warn("❌ RUNWARE_API_KEY not found. Image generation will use local fallback images only.");
+    } else {
+      // Kick off initialization; consumers await ensureRunwareReady before use
+      this.runwareInitPromise = this.initializeRunware();
     }
+  }
+
+  /**
+   * Initialize Runware connection with error handling
+   */
+  async initializeRunware() {
+    try {
+      if (!this.runwareApiKey) {
+        throw new Error("RUNWARE_API_KEY is missing");
+      }
+
+      // Use documented async initialization pattern for guaranteed readiness
+      this.runware = await Runware.initialize({
+        apiKey: this.runwareApiKey,
+        timeoutDuration: 60000,
+      });
+
+      this.connectionReady = true;
+      console.log("✅ Runware connection established successfully (async initialize)");
+    } catch (error) {
+      console.error("❌ Failed to initialize Runware connection:", error.message);
+      this.connectionReady = false;
+      this.runware = null;
+      this.runwareInitPromise = null;
+    }
+  }
+
+  async ensureRunwareReady() {
+    if (this.connectionReady && this.runware) {
+      return true;
+    }
+
+    if (!this.runwareInitPromise) {
+      this.runwareInitPromise = this.initializeRunware();
+    }
+
+    await this.runwareInitPromise;
+    return this.connectionReady;
+  }
+
+  /**
+   * Load local fallback images from the blog-fallbacks directory
+   */
+  loadFallbackImages() {
+    const fallbacks = [];
+    try {
+      if (fs.existsSync(this.fallbackImagesDir)) {
+        const files = fs.readdirSync(this.fallbackImagesDir);
+        files.forEach((file) => {
+          if (/\.(jpg|jpeg|png|webp|gif)$/i.test(file)) {
+            const filePath = path.join(this.fallbackImagesDir, file);
+            fallbacks.push({
+              filename: file,
+              path: filePath,
+              url: `/assets/images/blog-fallbacks/${file}`
+            });
+          }
+        });
+        console.log(`✅ Loaded ${fallbacks.length} fallback images from ${this.fallbackImagesDir}`);
+      } else {
+        console.warn(`⚠️ Fallback images directory not found: ${this.fallbackImagesDir}`);
+      }
+    } catch (error) {
+      console.error("❌ Error loading fallback images:", error.message);
+    }
+    return fallbacks;
   }
 
   getCachedImage(articleId) {
@@ -69,491 +140,178 @@ class ImageService {
       return this.imageCache.get(cacheKey);
     }
 
-    if (!this.apiKey || !this.openai) {
-      console.log("OpenAI API key missing, returning fallback image.");
-      const fallback = this.getFallbackImage(tags, articleId);
+    const ready = await this.ensureRunwareReady();
+
+    if (!ready) {
+      console.log("Runware connection not available, using local fallback image.");
+      const fallback = this.getFallbackImage(articleId);
       this.imageCache.set(cacheKey, fallback);
       this.savePersistentCache();
       return fallback;
     }
 
-    const prompt = this.createImagePrompt(articleTitle, articleSummary, tags);
+    const prompt = this.createImagePrompt();
 
-    console.log(`🎨 Generating OpenAI image for: "${articleTitle}"`);
-    console.log(`📝 Prompt: ${prompt}`);
+    console.log(`🎨 Generating Runware image for: "${articleTitle}"`);
+    console.log(`📝 Prompt: ${prompt.substring(0, 100)}...`);
 
     let imageUrl = null;
     try {
       imageUrl = await this.generateImage(prompt);
     } catch (error) {
-      const message =
-        error?.response?.data?.error?.message ||
-        error?.response?.data?.message ||
-        error?.message;
-      console.error("❌ OpenAI image generation failed:", message);
+      const message = error?.message || JSON.stringify(error);
+      console.error("❌ Runware image generation failed:", message);
     }
 
     if (imageUrl) {
-      console.log(`✅ Generated OpenAI image for: "${articleTitle}"`);
+      console.log(`✅ Generated Runware image for: "${articleTitle}"`);
       this.imageCache.set(cacheKey, imageUrl);
       this.savePersistentCache();
       return imageUrl;
     }
 
-    console.log(`🖼️ Falling back to stock image for: "${articleTitle}"`);
-    const fallback = this.getFallbackImage(tags, articleId);
+    console.log(`🖼️ Falling back to local image for: "${articleTitle}"`);
+    const fallback = this.getFallbackImage(articleId);
     this.imageCache.set(cacheKey, fallback);
     this.savePersistentCache();
     return fallback;
   }
 
   async generateImage(prompt) {
-    if (!this.openai) {
+    const ready = await this.ensureRunwareReady();
+    if (!ready) {
       return null;
     }
 
-    const response = await this.openai.images.generate({
-      model: "gpt-image-1",
-      prompt,
-      n: 1,
-      size: "1792x1024",
-      quality: "high",
-      response_format: "b64_json",
-    });
+    try {
+      console.log("📡 Sending request to Runware Flux API...");
 
-    const image = response?.data?.[0];
-    if (!image?.b64_json) {
+      // Add a 45-second timeout to prevent hanging
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Runware API timeout (45s)")), 45000)
+      );
+
+      const imageResults = await Promise.race([
+        this.runware.imageInference({
+          positivePrompt: prompt,
+          model: this.modelId,
+          width: this.imageWidth,
+          height: this.imageHeight,
+          numberResults: 1,
+          outputType: "URL",
+          outputFormat: "PNG",
+          CFGScale: 7.5,
+          steps: 20,
+          includeCost: true,
+        }),
+        timeoutPromise
+      ]);
+
+      if (imageResults && imageResults.length > 0 && imageResults[0].imageURL) {
+        console.log("✅ Runware image generated successfully");
+        if (typeof imageResults[0].cost === "number") {
+          console.log(`   Cost: $${imageResults[0].cost}`);
+        }
+        return imageResults[0].imageURL;
+      } else {
+        console.warn("❌ Runware returned no image URL");
+        return null;
+      }
+    } catch (error) {
+      console.error("❌ Runware API error:", error?.message || error);
+      console.error("   Raw error payload:", error);
       return null;
     }
-
-    const mime = image.mime_type || "image/png";
-    return `data:${mime};base64,${image.b64_json}`;
   }
 
   async testConnection() {
-    if (!this.openai) {
+    const ready = await this.ensureRunwareReady();
+    if (!ready) {
       return false;
     }
 
     try {
-      await this.openai.models.retrieve("gpt-image-1");
-      return true;
+      console.log("🔍 Testing Runware API connection...");
+      const testPrompt = "A simple abstract geometric shape in blue and white";
+
+      const result = await Promise.race([
+        this.runware.imageInference({
+          positivePrompt: testPrompt,
+          model: this.modelId,
+          width: 512,
+          height: 512,
+          numberResults: 1,
+          outputType: "URL",
+        }),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error("Connection test timeout")), 30000)
+        )
+      ]);
+
+      if (result && result.length > 0 && result[0].imageURL) {
+        console.log("✅ Runware API connection successful");
+        return true;
+      } else {
+        console.warn("❌ Runware connection test returned no image");
+        return false;
+      }
     } catch (error) {
-      const message =
-        error?.response?.data?.error?.message ||
-        error?.response?.data?.message ||
-        error?.message;
-      console.error("❌ Failed to validate OpenAI API access:", message);
+      console.error("❌ Failed to validate Runware API access:", error.message);
       return false;
     }
   }
 
-  clearCache() {
-    this.imageCache.clear();
-    this.savePersistentCache();
-  }
+  /**
+   * Create image generation prompt with randomized variations
+   * Each call produces a unique prompt with varied color focus, flow direction, and motif
+   */
+  createImagePrompt() {
+    // Randomize color focus
+    const colorFocuses = ["cool blue", "cyan", "soft purple", "white", "deep gray"];
+    const primaryColor = colorFocuses[Math.floor(Math.random() * colorFocuses.length)];
+    const secondaryColor = colorFocuses[Math.floor(Math.random() * colorFocuses.length)];
 
-  getCacheStats() {
-    let lastModified = null;
-    try {
-      if (fs.existsSync(this.cacheFile)) {
-        const stats = fs.statSync(this.cacheFile);
-        lastModified = stats.mtime.toISOString();
-      }
-    } catch (error) {
-      console.warn("⚠️  Unable to read cache metadata:", error.message);
-    }
+    // Randomize flow direction
+    const flowDirections = ["flowing upward", "flowing downward", "flowing horizontally", "spiraling", "cascading"];
+    const flow = flowDirections[Math.floor(Math.random() * flowDirections.length)];
 
-    return {
-      size: this.imageCache.size,
-      keys: Array.from(this.imageCache.keys()),
-      provider: "openai",
-      cacheFile: this.cacheFile,
-      lastModified,
-    };
-  }
-
-  savePersistentCache() {
-    try {
-      const cacheDir = path.dirname(this.cacheFile);
-      if (!fs.existsSync(cacheDir)) {
-        fs.mkdirSync(cacheDir, { recursive: true });
-      }
-
-      const serialized = JSON.stringify(
-        Object.fromEntries(this.imageCache),
-        null,
-        2
-      );
-      fs.writeFileSync(this.cacheFile, serialized, "utf8");
-    } catch (error) {
-      console.warn("⚠️  Failed to persist image cache:", error.message);
-    }
-  }
-
-  loadPersistentCache() {
-    try {
-      const cacheDir = path.dirname(this.cacheFile);
-      if (!fs.existsSync(cacheDir)) {
-        fs.mkdirSync(cacheDir, { recursive: true });
-      }
-
-      let cachePath = null;
-      if (fs.existsSync(this.cacheFile)) {
-        cachePath = this.cacheFile;
-      } else if (fs.existsSync(this.legacyCacheFile)) {
-        cachePath = this.legacyCacheFile;
-        console.log(
-          "♻️  Migrating legacy Freepik cache to OpenAI image cache."
-        );
-      }
-
-      if (!cachePath) {
-        return;
-      }
-
-      const raw = fs.readFileSync(cachePath, "utf8");
-      const parsed = JSON.parse(raw);
-
-      for (const [key, value] of Object.entries(parsed)) {
-        if (typeof value === "string") {
-          this.imageCache.set(key, value);
-        }
-      }
-
-      if (cachePath === this.legacyCacheFile) {
-        this.savePersistentCache();
-      }
-    } catch (error) {
-      console.warn("⚠️  Failed to load image cache:", error.message);
-    }
-  }
-
-  getCacheKey(articleId, title = "", summary = "", tags = []) {
-    if (articleId) {
-      return `article-${articleId}`;
-    }
-
-    const contentHash = this.getSimpleHash(
-      `${title}${summary}${tags.join(",")}`
-    );
-    return `content-${contentHash}`;
-  }
-
-  createImagePrompt(title, summary, tags = []) {
-    const tagContext = tags.length > 0 ? tags.join(", ") : "";
-    const contentKeywords = this.extractKeywords(title, summary);
-
-    const titleHash = this.getSimpleHash(title);
-    const summaryHash = this.getSimpleHash(summary || "");
-    const combinedHash = titleHash + summaryHash;
-
-    let prompt =
-      "Create an abstract, tech-inspired illustration for a blog article cover aligned with Bubble's brand. ";
-
-    if (contentKeywords) {
-      prompt += `Visual theme should subtly reference: ${contentKeywords}. `;
-    }
-
-    prompt +=
-      "Design language: flowing shapes, layered translucent gradients, glassmorphism and soft blurs. ";
-    prompt +=
-      "Palette: dominant white and light greys, cool blue, cyan, soft purple (#667eea), with deep grey accents. ";
-    prompt +=
-      "Composition: horizontal layout, soft depth, lighting effects, smooth geometric or organic overlays. ";
-    prompt +=
-      "Mood: innovative, transparent, ethical fintech and AI storytelling. ";
-    prompt +=
-      "Critical constraints: no text, no typography, no logos, no letterforms. Pure abstract design only. ";
-    prompt +=
-      "Output must suit website hero and blog tile usage with rounded corners (24px radius). ";
-
-    const colorFocus = [
-      "soft purple #667eea gradients with white accents",
-      "dominant white with cyan and blue flowing shapes",
-      "cool blue primary with purple and light grey layers",
-      "white and light grey base with soft purple highlights",
-      "cyan and white translucent shapes with minimal purple",
-      "layered white, light grey, and #667eea transparent gradients",
+    // Randomize composition emphasis
+    const compositions = [
+      "with flowing shapes and layered translucent gradients",
+      "with smooth transitions and digital light effects",
+      "with minimal geometric overlays and soft shadows",
+      "with organic flowing elements and luminous effects",
+      "with abstract geometric patterns and gradient transitions"
     ];
-    const selectedColorFocus =
-      colorFocus[titleHash % colorFocus.length];
+    const composition = compositions[Math.floor(Math.random() * compositions.length)];
 
-    const shapeFluidity = [
-      "highly fluid organic shapes with smooth curves",
-      "balanced mix of geometric and organic flowing forms",
-      "angular geometric patterns with softened edges",
-      "circular and elliptical floating shapes",
-      "wavy ribbons and translucent layered trails",
-      "crystalline structures with gentle transparent edges",
-    ];
-    const selectedShapeFluidity =
-      shapeFluidity[summaryHash % shapeFluidity.length];
-
-    const motifArrangement = [
-      "layered from bottom-left to top-right diagonal",
-      "center-focused composition with radiating elements",
-      "asymmetrical balance with floating side motifs",
-      "horizontal flow from left to right",
-      "scattered distribution with subtle depth cues",
-      "vertical stacking with transparent overlays",
-    ];
-    const selectedMotifArrangement =
-      motifArrangement[combinedHash % motifArrangement.length];
-
-    const metaphor = this.generateVisualMetaphor(title, summary, tags);
-    prompt += `Unique twist: ${selectedColorFocus}, ${selectedShapeFluidity}, ${selectedMotifArrangement}`;
-    if (metaphor) {
-      prompt += `, hint of ${metaphor}`;
-    }
-    prompt += ". ";
-
-    if (tagContext) {
-      prompt += `Subtle thematic reference to: ${tagContext}. `;
-    }
-
-    prompt +=
-      "Emphasize visual clarity, transparency, and layered storytelling to reflect Bubble's open finance ethos.";
+    const prompt = `Create an abstract, tech-inspired illustration for a blog article cover. Visuals: - ${composition} - Palette: ${primaryColor}, ${secondaryColor}, hex #667eea, white, and deep gray with varied proportions for diversity - Composition: smooth transitions, digital light effects, minimal overlays, soft shadows, ${flow} - Vibe: innovative, digital, artistic, professional—evokes modern technology and creativity - No text or logos - Horizontal layout (1152x704), suitable for website/blog tiles and banners. Variation: each output should randomize color focus, flow direction, and motif arrangement for uniqueness. Each variation should have a unique gradient and motif composition, always feeling creative, digital, and modern.`;
 
     return prompt;
   }
 
-  extractKeywords(title, summary) {
-    const text = `${title} ${summary}`.toLowerCase();
-    const keywordPatterns = [
-      /investissement?s?|investment?s?/g,
-      /portefeuille?s?|portfolio?s?/g,
-      /trading|négociation/g,
-      /marché?s?|market?s?/g,
-      /finance?s?|financier?s?/g,
-      /économie?s?|economy?/g,
-      /bourse?s?|stock?s?/g,
-      /crypto|bitcoin|blockchain/g,
-      /dividende?s?|dividend?s?/g,
-      /risque?s?|risk?s?/g,
-      /rendement?s?|return?s?/g,
-      /intelligence artificielle|artificial intelligence|ai/g,
-      /algorithme?s?|algorithm?s?/g,
-      /automation|automatisation/g,
-      /machine learning|apprentissage/g,
-      /data|données/g,
-      /neural|neuronal/g,
-      /technologie?s?|technology?/g,
-      /numérique?s?|digital/g,
-      /innovation?s?/g,
-      /cloud|nuage/g,
-      /startup?s?/g,
-      /entreprise?s?|business/g,
-      /stratégie?s?|strategy?/g,
-      /croissance|growth/g,
-      /développement|development/g,
-      /productivité|productivity/g,
-      /efficacité|efficiency/g,
-      /transformation/g,
-      /optimisation|optimization/g,
-      /inflation/g,
-      /récession|recession/g,
-      /volatilité|volatility/g,
-      /liquidité|liquidity/g,
-      /capitalisation/g,
-      /analyse|analysis/g,
-      /prédiction|prediction/g,
-      /tendance?s?|trend?s?/g,
-    ];
-
-    const foundKeywords = [];
-    keywordPatterns.forEach((pattern) => {
-      const matches = text.match(pattern);
-      if (matches) {
-        foundKeywords.push(...matches.slice(0, 1));
-      }
-    });
-
-    if (foundKeywords.length === 0) {
-      const stopWords = [
-        "the",
-        "and",
-        "or",
-        "but",
-        "in",
-        "on",
-        "at",
-        "to",
-        "for",
-        "of",
-        "with",
-        "by",
-        "les",
-        "des",
-        "une",
-        "dans",
-        "sur",
-        "pour",
-        "avec",
-        "qui",
-        "que",
-        "what",
-        "how",
-        "why",
-        "when",
-        "where",
-      ];
-      const titleWords = title
-        .split(/[\s\-_,.:;!?]+/)
-        .filter(
-          (word) =>
-            word.length > 3 &&
-            !stopWords.includes(word.toLowerCase()) &&
-            /^[a-zA-ZÀ-ÿ]+$/.test(word)
-        );
-      foundKeywords.push(...titleWords.slice(0, 2));
+  /**
+   * Get a random local fallback image using deterministic selection based on article ID
+   */
+  getFallbackImage(articleId = null) {
+    if (this.fallbackImages.length === 0) {
+      console.warn("⚠️ No fallback images available");
+      return null;
     }
 
-    const hash = this.getSimpleHash(title + summary);
-    const shuffledKeywords = foundKeywords.sort(() => (hash % 3) - 1);
-
-    return shuffledKeywords.slice(0, 3).join(" ");
-  }
-
-  generateVisualMetaphor(title, summary, tags) {
-    const content = `${title} ${summary} ${tags.join(" ")}`.toLowerCase();
-    const hash = this.getSimpleHash(content);
-
-    const financeMetaphors = [
-      "ascending graph trails",
-      "interconnected network nodes",
-      "balanced scale elements",
-      "growth spiral patterns",
-      "flowing currency streams",
-      "digital market pulse",
-      "investment tree structures",
-      "capital flow ribbons",
-    ];
-
-    const techMetaphors = [
-      "neural network light webs",
-      "data flow streams",
-      "algorithmic lattices",
-      "binary shimmer layers",
-      "circuit board motifs",
-      "holographic interface arcs",
-      "quantum particle halos",
-      "digital transformation waves",
-    ];
-
-    const fintechMetaphors = [
-      "automated portfolio structures",
-      "digital wealth ecosystems",
-      "fintech innovation bridges",
-      "intelligent trading connectors",
-      "financial data architecture",
-      "responsive investment grids",
-      "smart finance constellations",
-      "transparent ledger layers",
-    ];
-
-    let selectedSet = fintechMetaphors;
-    if (this.isFinanceTheme(title, summary, tags) && this.isAITheme(title, summary, tags)) {
-      selectedSet = [...financeMetaphors, ...techMetaphors];
-    } else if (this.isFinanceTheme(title, summary, tags)) {
-      selectedSet = financeMetaphors;
-    } else if (this.isAITheme(title, summary, tags) || this.isTechTheme(title, summary, tags)) {
-      selectedSet = techMetaphors;
-    }
-
-    return selectedSet[hash % selectedSet.length];
-  }
-
-  getFallbackImage(tags = [], articleId = null) {
+    // Use article ID for deterministic selection, or random if no ID
     const articleHash = articleId
       ? Math.abs(this.getSimpleHash(articleId))
       : Math.floor(Math.random() * 1000);
 
-    const isFinanceTheme = tags.some((tag) => {
-      const lowerTag = tag.toLowerCase();
-      return ["finance", "investment", "trading", "market", "portfolio", "money", "financial"].some(
-        (keyword) => lowerTag.includes(keyword)
-      );
-    });
-    const isAITheme = tags.some((tag) => {
-      const lowerTag = tag.toLowerCase();
-      return ["ai", "intelligence", "technology", "tech", "automation", "robo"].some((keyword) =>
-        lowerTag.includes(keyword)
-      );
-    });
-    const isDataTheme = tags.some((tag) => {
-      const lowerTag = tag.toLowerCase();
-      return ["data", "analytics", "analysis", "statistics", "research"].some(
-        (keyword) => lowerTag.includes(keyword)
-      );
-    });
+    const selectedIndex = articleHash % this.fallbackImages.length;
+    const selectedImage = this.fallbackImages[selectedIndex];
 
-    let imagePool = [];
-
-    if (isFinanceTheme && isAITheme) {
-      imagePool = [
-        "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=675&fit=crop",
-      ];
-    } else if (isFinanceTheme && isDataTheme) {
-      imagePool = [
-        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1635070041409-e63e783ce3b0?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=675&fit=crop",
-      ];
-    } else if (isAITheme && isDataTheme) {
-      imagePool = [
-        "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=1200&h=675&fit=crop",
-      ];
-    } else if (isFinanceTheme) {
-      imagePool = [
-        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1635070041409-e63e783ce3b0?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=675&fit=crop",
-      ];
-    } else if (isAITheme) {
-      imagePool = [
-        "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=675&fit=crop",
-      ];
-    } else if (isDataTheme) {
-      imagePool = [
-        "https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1635070041409-e63e783ce3b0?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=675&fit=crop",
-      ];
-    } else {
-      imagePool = [
-        "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=675&fit=crop",
-        "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=675&fit=crop",
-      ];
-    }
-
-    const selectedImage = imagePool[articleHash % imagePool.length];
     console.log(
-      `🖼️ Selected fallback image (finance=${isFinanceTheme}, ai=${isAITheme}, data=${isDataTheme}): ${selectedImage}`
+      `🎨 Selected local fallback image [${selectedIndex}]: ${selectedImage.filename}`
     );
 
-    return selectedImage;
+    return selectedImage.url;
   }
 
   getSimpleHash(str) {
@@ -567,54 +325,82 @@ class ImageService {
     return Math.abs(hash);
   }
 
-  isFinanceTheme(title, summary, tags) {
-    const financeKeywords = [
-      "finance",
-      "investment",
-      "trading",
-      "market",
-      "stock",
-      "portfolio",
-      "money",
-      "économie",
-      "investissement",
-      "marché",
-      "bourse",
-    ];
-    const content = `${title} ${summary} ${tags.join(" ")}`.toLowerCase();
-    return financeKeywords.some((keyword) => content.includes(keyword));
+  getCacheKey(articleId, title, summary, tags) {
+    if (articleId) {
+      return `article-${articleId}`;
+    }
+    const key = `${title}-${summary}-${tags.join(",")}`;
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      const char = key.charCodeAt(i);
+      hash = (hash << 5) - hash + char;
+      hash |= 0;
+    }
+    return `content-${Math.abs(hash)}`;
   }
 
-  isAITheme(title, summary, tags) {
-    const aiKeywords = [
-      "ai",
-      "artificial intelligence",
-      "intelligence artificielle",
-      "machine learning",
-      "neural",
-      "algorithm",
-      "automation",
-      "algorithme",
-    ];
-    const content = `${title} ${summary} ${tags.join(" ")}`.toLowerCase();
-    return aiKeywords.some((keyword) => content.includes(keyword));
+  loadPersistentCache() {
+    try {
+      if (fs.existsSync(this.cacheFile)) {
+        const data = fs.readFileSync(this.cacheFile, "utf-8");
+        const parsed = JSON.parse(data);
+        Object.entries(parsed).forEach(([key, value]) => {
+          this.imageCache.set(key, value);
+        });
+        console.log(`✅ Loaded ${this.imageCache.size} cached images`);
+      }
+    } catch (error) {
+      console.warn("⚠️ Could not load persistent image cache:", error.message);
+    }
   }
 
-  isTechTheme(title, summary, tags) {
-    const techKeywords = [
-      "technology",
-      "tech",
-      "digital",
-      "innovation",
-      "startup",
-      "product",
-      "development",
-      "technologie",
-      "numérique",
-      "produit",
-    ];
-    const content = `${title} ${summary} ${tags.join(" ")}`.toLowerCase();
-    return techKeywords.some((keyword) => content.includes(keyword));
+  savePersistentCache() {
+    try {
+      const cacheDir = path.dirname(this.cacheFile);
+      if (!fs.existsSync(cacheDir)) {
+        fs.mkdirSync(cacheDir, { recursive: true });
+      }
+
+      const cacheData = {};
+      this.imageCache.forEach((value, key) => {
+        cacheData[key] = value;
+      });
+
+      fs.writeFileSync(this.cacheFile, JSON.stringify(cacheData, null, 2));
+    } catch (error) {
+      console.error("❌ Failed to save image cache:", error.message);
+    }
+  }
+
+  clearCacheForArticle(articleId) {
+    if (!articleId) return;
+    const cacheKey = `article-${articleId}`;
+    if (this.imageCache.has(cacheKey)) {
+      this.imageCache.delete(cacheKey);
+      console.log(`🗑️ Cleared cache for article: ${articleId}`);
+    }
+    this.savePersistentCache();
+  }
+
+  clearCache() {
+    this.imageCache.clear();
+    try {
+      if (fs.existsSync(this.cacheFile)) {
+        fs.unlinkSync(this.cacheFile);
+        console.log("✅ Image cache cleared");
+      }
+    } catch (error) {
+      console.error("❌ Failed to clear image cache file:", error.message);
+    }
+  }
+
+  getCacheStats() {
+    return {
+      entries: this.imageCache.size,
+      cacheFile: this.cacheFile,
+      fallbackImagesAvailable: this.fallbackImages.length,
+      runwareConnected: this.connectionReady,
+    };
   }
 }
 

@@ -3,7 +3,17 @@
     "allow": [
       "Bash(node -e:*)",
       "Bash(curl:*)",
-      "Bash(node -c:*)"
+      "Bash(node -c:*)",
+      "Read(//Users/jadethi-viet-lanhoang/Library/Mobile/**)",
+      "Bash(npm install:*)",
+      "Bash(npm start)",
+      "Bash(lsof:*)",
+      "Bash(awk:*)",
+      "Bash(xargs kill -9)",
+      "Bash(pkill:*)",
+      "Bash(timeout 65 curl:*)",
+      "Read(//private/tmp/**)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []
