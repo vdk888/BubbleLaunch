@@ -1161,11 +1161,11 @@ const translations = {
     en: "Simple exchanges, continuous monitoring, support even after delivery through adapted maintenance.",
     fr: "Échanges simples, suivi continu, accompagnement même après la livraison via une maintenance adaptée."
   },
-  "businesses.values.humility.title": {
-    en: "Humility",
-    fr: "Humilité"
+  "businesses.values.Simplicity.title": {
+    en: "Simplicity",
+    fr: "Simplicité"
   },
-  "businesses.values.humility.text": {
+  "businesses.values.Simplicity.text": {
     en: "We're just starting out, and we don't have 500 clients in our history or a view of the Champs-Élysées—but we take action and remain attentive.",
     fr: "Nous débutons, et nous n'avons pas 500 clients dans notre historique ou une vue sur les Champs Elysées – mais nous agissons et restons à l'écoute."
   },

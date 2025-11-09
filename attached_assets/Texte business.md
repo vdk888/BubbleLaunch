@@ -24,7 +24,7 @@ On préfère afficher notre expérience que prétendre tout savoir. Nous agisson
 - Pragmatisme : outils éprouvés et adaptables, pas de technologie pour la technologie.
 - Transparence : tarif et délai annoncés dès le diagnostic, pas de budgets cachés, pas de ventes forcées.
 - Collaboration directe : échanges simples, suivi continu, accompagnement même après la livraison via une maintenance adaptée.
-- Humilité : nous débutons, et nous n’avons pas 500 clients dans notre historique ou une vue sur les Champs Elysées – mais nous agissons et restons à l’écoute.
+- Simplicité : nous débutons, et nous n’avons pas 500 clients dans notre historique ou une vue sur les Champs Elysées – mais nous agissons et restons à l’écoute.
 
 # Tarifs
 Nos projets se situent dans une fourchette réaliste, livrés en 2 à 4 mois, avec devis transparent avec une phase de diagnostic et maintenance incluse. 
