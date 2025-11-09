@@ -87,15 +87,93 @@ router.get("/blog", async (req, res) => {
 });
 
 /**
- * Individual blog post page
+ * Individual blog post page - Server-side rendering for SEO
  */
 router.get("/blog/:slug", async (req, res) => {
   try {
-    const blogPostPath = path.join(
-      frPagesDir,
-      "blog-post.html"
+    const { slug } = req.params;
+    const { getPostBySlug } = require("../services/blogService");
+    const post = await getPostBySlug(slug);
+
+    if (!post) {
+      return res.status(404).sendFile(path.join(frPagesDir, "404.html"));
+    }
+
+    const blogPostPath = path.join(frPagesDir, "blog-post.html");
+    let html = await fs.readFile(blogPostPath, "utf-8");
+
+    const title = post.title?.fr || post.title;
+    const summary = post.summary?.fr || post.summary || "Découvrez cet article sur l'investissement intelligent.";
+    const imageUrl = post.featuredImage || "https://bubbleinvest.org/assets/images/bubble-logo-single.svg";
+    const publishedDate = post.publishedDate ? new Date(post.publishedDate).toISOString() : "";
+    const content = post.content?.fr || post.content || "";
+
+    // Replace dynamic meta tags with actual content for SEO
+    html = html.replace(
+      'id="post-title">Article - Blog Bubble<',
+      `id="post-title">${title} | Blog Bubble<`
     );
-    res.sendFile(blogPostPath);
+    html = html.replace(
+      'id="post-description" content="Découvrez cet article',
+      `id="post-description" content="${summary}`
+    );
+    html = html.replace(
+      'id="og-title" content="Article - Blog Bubble"',
+      `id="og-title" content="${title} | Blog Bubble"`
+    );
+    html = html.replace(
+      'id="og-description" content="Découvrez cet article',
+      `id="og-description" content="${summary}`
+    );
+    html = html.replace(
+      'id="og-image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg"',
+      `id="og-image" content="${imageUrl}"`
+    );
+    html = html.replace(
+      'id="og-url" content="https://bubbleinvest.org/blog/"',
+      `id="og-url" content="https://bubbleinvest.org/blog/${slug}"`
+    );
+    html = html.replace(
+      'id="canonical-url" href="https://bubbleinvest.org/blog/"',
+      `id="canonical-url" href="https://bubbleinvest.org/blog/${slug}"`
+    );
+    html = html.replace(
+      'id="hreflang-fr" hreflang="fr" href="https://bubbleinvest.org/blog/"',
+      `id="hreflang-fr" hreflang="fr" href="https://bubbleinvest.org/blog/${slug}"`
+    );
+    html = html.replace(
+      'id="hreflang-en" hreflang="en" href="https://bubbleinvest.org/en/blog/"',
+      `id="hreflang-en" hreflang="en" href="https://bubbleinvest.org/en/blog/${slug}"`
+    );
+    html = html.replace(
+      'id="hreflang-default" hreflang="x-default" href="https://bubbleinvest.org/blog/"',
+      `id="hreflang-default" hreflang="x-default" href="https://bubbleinvest.org/blog/${slug}"`
+    );
+
+    if (publishedDate) {
+      html = html.replace(
+        'id="article-published-time" content=""',
+        `id="article-published-time" content="${publishedDate}"`
+      );
+    }
+
+    // Add SEO content in noscript for search engines
+    const seoContent = `
+      <!-- SEO: Server-rendered blog post content for search engines -->
+      <noscript>
+        <article style="max-width: 800px; margin: 0 auto; padding: 60px 20px;">
+          <h1>${title}</h1>
+          <p style="color: #666; margin: 20px 0;">${summary}</p>
+          <div style="margin: 20px 0; color: #999;">${post.publishedDate}</div>
+          ${imageUrl && imageUrl !== "https://bubbleinvest.org/assets/images/bubble-logo-single.svg" ? `<img src="${imageUrl}" alt="${title}" style="max-width: 100%; height: auto; margin: 20px 0;">` : ""}
+          <div style="color: #333; line-height: 1.6; margin-top: 30px;">${content}</div>
+        </article>
+      </noscript>
+      <!-- End SEO content -->
+    `;
+
+    html = html.replace("</body>", `${seoContent}</body>`);
+    res.send(html);
   } catch (error) {
     console.error("Error serving blog post page:", error);
     res.status(500).send("Error loading blog post");
@@ -184,12 +262,93 @@ router.get("/en/blog", async (req, res) => {
 });
 
 /**
- * English individual blog post
+ * English individual blog post - Server-side rendering for SEO
  */
 router.get("/en/blog/:slug", async (req, res) => {
   try {
+    const { slug } = req.params;
+    const { getPostBySlug } = require("../services/blogService");
+    const post = await getPostBySlug(slug);
+
+    if (!post) {
+      return res.status(404).sendFile(path.join(enPagesDir, "404.html"));
+    }
+
     const blogPostPath = path.join(enPagesDir, "blog-post.html");
-    res.sendFile(blogPostPath);
+    let html = await fs.readFile(blogPostPath, "utf-8");
+
+    const title = post.title?.en || post.title?.fr || post.title;
+    const summary = post.summary?.en || post.summary?.fr || post.summary || "Discover this article on intelligent investing.";
+    const imageUrl = post.featuredImage || "https://bubbleinvest.org/assets/images/bubble-logo-single.svg";
+    const publishedDate = post.publishedDate ? new Date(post.publishedDate).toISOString() : "";
+    const content = post.content?.en || post.content?.fr || post.content || "";
+
+    // Replace dynamic meta tags with actual content for SEO
+    html = html.replace(
+      'id="post-title">Article - Blog Bubble<',
+      `id="post-title">${title} | Blog Bubble<`
+    );
+    html = html.replace(
+      'id="post-description" content="Discover this article',
+      `id="post-description" content="${summary}`
+    );
+    html = html.replace(
+      'id="og-title" content="Article - Blog Bubble"',
+      `id="og-title" content="${title} | Blog Bubble"`
+    );
+    html = html.replace(
+      'id="og-description" content="Discover this article',
+      `id="og-description" content="${summary}`
+    );
+    html = html.replace(
+      'id="og-image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg"',
+      `id="og-image" content="${imageUrl}"`
+    );
+    html = html.replace(
+      'id="og-url" content="https://bubbleinvest.org/en/blog/"',
+      `id="og-url" content="https://bubbleinvest.org/en/blog/${slug}"`
+    );
+    html = html.replace(
+      'id="canonical-url" href="https://bubbleinvest.org/en/blog/"',
+      `id="canonical-url" href="https://bubbleinvest.org/en/blog/${slug}"`
+    );
+    html = html.replace(
+      'id="hreflang-fr" hreflang="fr" href="https://bubbleinvest.org/blog/"',
+      `id="hreflang-fr" hreflang="fr" href="https://bubbleinvest.org/blog/${slug}"`
+    );
+    html = html.replace(
+      'id="hreflang-en" hreflang="en" href="https://bubbleinvest.org/en/blog/"',
+      `id="hreflang-en" hreflang="en" href="https://bubbleinvest.org/en/blog/${slug}"`
+    );
+    html = html.replace(
+      'id="hreflang-default" hreflang="x-default" href="https://bubbleinvest.org/blog/"',
+      `id="hreflang-default" hreflang="x-default" href="https://bubbleinvest.org/en/blog/${slug}"`
+    );
+
+    if (publishedDate) {
+      html = html.replace(
+        'id="article-published-time" content=""',
+        `id="article-published-time" content="${publishedDate}"`
+      );
+    }
+
+    // Add SEO content in noscript for search engines
+    const seoContent = `
+      <!-- SEO: Server-rendered blog post content for search engines -->
+      <noscript>
+        <article style="max-width: 800px; margin: 0 auto; padding: 60px 20px;">
+          <h1>${title}</h1>
+          <p style="color: #666; margin: 20px 0;">${summary}</p>
+          <div style="margin: 20px 0; color: #999;">${post.publishedDate}</div>
+          ${imageUrl && imageUrl !== "https://bubbleinvest.org/assets/images/bubble-logo-single.svg" ? `<img src="${imageUrl}" alt="${title}" style="max-width: 100%; height: auto; margin: 20px 0;">` : ""}
+          <div style="color: #333; line-height: 1.6; margin-top: 30px;">${content}</div>
+        </article>
+      </noscript>
+      <!-- End SEO content -->
+    `;
+
+    html = html.replace("</body>", `${seoContent}</body>`);
+    res.send(html);
   } catch (error) {
     console.error("Error serving EN blog post page:", error);
     res.status(500).send("Error loading blog post");
