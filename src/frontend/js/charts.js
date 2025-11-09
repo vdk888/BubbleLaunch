@@ -416,7 +416,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add hover event listeners with improved logic
     insightTile.addEventListener("mouseenter", () => {
       isHoveringInsights = true;
-      if (!insightAnimationCompleted) {
+      // Only start animation if not already running and not completed
+      if (!insightAnimationRunning && !insightAnimationCompleted) {
         initKeyInsightsAnimation();
       }
     });
