@@ -69,7 +69,6 @@ async function loadBlogPreview() {
                 <time datetime="${post.publishedDate}">${formattedDate}</time>
               </div>
               <h3 class="blog-tile-title">${title}</h3>
-              <p class="blog-tile-summary">${summary}</p>
               <span class="blog-tile-cta" data-translate="blogPreview.readMore">Lire la suite →</span>
             </div>
           </a>

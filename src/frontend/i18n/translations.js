@@ -35,8 +35,8 @@ const translations = {
     fr: "Bubble.",
   },
   "hero.tagline": {
-    en: "Transparent investment in the AI era.",
-    fr: "L'agent d'investissement transparent.",
+    en: "The AI agent that builds your portfolio for you.",
+    fr: "L'agent IA qui construit votre portefeuille pour vous.",
   },
   "hero.subtitle": {
     en: "In a world where AI transforms access to financial expertise, we're building the intelligent investment tool we wanted for ourselves: transparent, automated, and accessible.",
@@ -64,6 +64,10 @@ const translations = {
     en: "Our ethics: putting power back in your hands so you can break free from the excessive fees of now‑obsolete intermediaries. The result: you finance the economy, and the economy pays you interest. That's it.",
     fr: "Notre éthique : vous redonner le pouvoir pour vous libérer des frais excessifs d'intermédiaires désormais obsolètes. Résultat : vous financez l'économie, l'économie vous paye des intérêts. C'est tout.",
   },
+  "manifesto.commodity": {
+    en: "Talk to your agent about your investment goals in natural language. It screens stocks, tests strategies, and executes orders for you like your personal private manager. Financial services are now a commodity. You just need the right agent.",
+    fr: "Parlez à votre agent de vos souhaits d'investissements en langage naturel. Il screene les actions, teste les stratégies et exécute les ordres pour vous comme votre gérant privé personnel. Les services financiers sont désormais une commodité. Il vous suffit juste du bon agent.",
+  },
 
   // Vision Section
   "vision.title": {
@@ -75,16 +79,16 @@ const translations = {
     fr: "Un Agent d'Investissement Complet",
   },
   "vision.platform.description1": {
-    en: "We're developing the tool we use for our own investments: transparent quantitative strategies, rigorous backtests, and monitoring automation that surface insights for you to review and act on yourself. Your private manager in your pocket, at lower cost.",
-    fr: "Nous développons l’outil que nous utilisons pour nos propres investissements : stratégies quantitatives transparentes, backtests rigoureux et automatisation du suivi qui vous livrent des insights à analyser et à acter vous-même. Votre gérant privé dans votre poche, à moindre coût.",
+    en: "We're building the tool we use for our own investments: an AI agent that screens the universe, tests strategies on historical data, calculates optimal allocations, and executes orders for us. A private manager in our pocket, on its own app or directly in ChatGPT, at lower cost: <strong>a fixed price (e.g., €0-10/month) instead of 2% AUM fees.</strong>",
+    fr: "Nous développons l'outil que nous utilisons pour nos propres investissements : un agent IA qui screene l'univers, teste les stratégies sur les données historiques, calcule les allocations optimales et exécute les ordres à notre place. Un gérant privé dans votre poche, sur sa propre application ou directement dans ChatGPT, à moindre coût : <strong>un prix fixe (ex: 0-10€/mois) au lieu des 2% de frais sur encours.</strong>",
   },
   "vision.platform.description2": {
-    en: "Our AI agent delivers high-level financial analysis and decision support to every user, whatever the size of their portfolio. Bubble explains how every strategy works so you can confidently understand and evaluate your options.",
-    fr: "Notre agent IA fournit une analyse financière de haut niveau et un support à la décision pour chacun, quelle que soit la taille de son portefeuille. Bubble explique le fonctionnement de chaque stratégie pour que vous puissiez les comprendre et les évaluer en toute confiance.",
+    en: "The agent adapts to <strong>YOUR focus</strong>: ETFs, dividend stocks, emerging markets, crypto. You're not locked into pre-packaged portfolios. Every strategy is transparent, backtested, and explained so you understand exactly what you're buying. <strong>Financial expertise is now a commodity—accessible to everyone, regardless of portfolio size.</strong>",
+    fr: "L'agent s'adapte à <strong>VOTRE focus</strong> : ETF, actions à dividendes, marchés émergents, crypto. Vous n'êtes pas enfermé dans des portefeuilles pré-packagés. Chaque stratégie est transparente, backtestée et expliquée pour que vous compreniez exactement ce que vous achetez. <strong>L'expertise financière est désormais une commodité—accessible à tous, quelle que soit la taille du portefeuille.</strong>",
   },
-  "vision.platform.learn_more": {
-    en: "Learn more →",
-    fr: "En savoir plus →",
+  "vision.platform.cta": {
+    en: "See How It Works →",
+    fr: "Voir Comment Ça Marche →",
   },
   "vision.cost.title": {
     en: "Rethought Cost Structure",
@@ -99,24 +103,24 @@ const translations = {
     fr: "Expertise IA Accessible",
   },
   "vision.ai.description": {
-    en: "Bubble’s conversational AI translates complex analysis into clear decision support so you can review scenarios and choose the next step yourself.",
-    fr: "L’IA conversationnelle de Bubble traduit des analyses complexes en assistance décisionnelle claire pour que vous puissiez examiner les scénarios et choisir vous-même la suite.",
+    en: "Every recommendation requires an explanation. The AI agent doesn't just say 'buy this'—it shows you the backtest results, explains the strategy logic, and lets you ask follow-up questions until you're confident. You stay in control, but with institutional-grade analysis at your fingertips.",
+    fr: "Chaque recommandation exige une explication. L'agent IA ne dit pas juste « achète ça »—il vous montre les résultats de backtest, explique la logique de la stratégie et vous laisse poser des questions de suivi jusqu'à ce que vous soyez confiant. Vous gardez le contrôle, mais avec une analyse de niveau institutionnel à portée de main.",
   },
   "vision.crypto.title": {
     en: "Diversified Assets",
     fr: "Actifs Diversifiés",
   },
   "vision.crypto.description": {
-    en: "Our portfolios prioritise low-cost ETFs and extend to cryptocurrencies on our roadmap (Crypto.com integration in progress).",
-    fr: "Nos portefeuilles privilégient les ETF à faible coût mais s'étendent aussi aux autres actifs et aux cryptomonnaies .",
+    en: "Start with low-cost ETFs, add individual stocks, explore crypto. The agent adapts to whatever asset classes you want to focus on. No one-size-fits-all portfolios. Your investment thesis, powered by AI.",
+    fr: "Commencez par des ETF à faible coût, ajoutez des actions individuelles, explorez les cryptos. L'agent s'adapte à toutes les classes d'actifs que vous souhaitez cibler. Pas de portefeuilles taille unique. Votre thèse d'investissement, propulsée par l'IA.",
   },
   "vision.portfolio.title": {
-    en: "Discover Our Portfolio Simulator",
-    fr: "Découvrez Notre Simulateur de Portefeuilles",
+    en: "Educational Tool: Explore Strategy Concepts",
+    fr: "Outil Éducatif : Explorez les Concepts de Stratégies",
   },
   "vision.portfolio.description": {
-    en: "See how simple quantitative strategies outperform traditional approaches over 20 years of historical data.",
-    fr: "Visualisez comment des stratégies quantitatives simples surpassent les approches traditionnelles sur 20 ans de données historiques.",
+    en: "This simulator lets you explore 9 quantitative strategies over 20 years of data. It's a learning tool to understand concepts like risk parity, momentum, and leverage—NOT the full Bubble AI agent. For the real product experience, see our interactive demo.",
+    fr: "Ce simulateur vous permet d'explorer 9 stratégies quantitatives sur 20 ans de données. C'est un outil d'apprentissage pour comprendre des concepts comme le risk parity, le momentum et le levier—PAS l'agent IA Bubble complet. Pour l'expérience produit réelle, consultez notre démo interactive.",
   },
   "vision.portfolio.equal_weight": {
     en: "Equal Weight Strategy",
@@ -141,8 +145,8 @@ const translations = {
     fr: "Automatiser",
   },
   "approach.automate.description": {
-    en: "We mirror what a portfolio manager does each day—monitoring markets, refreshing data, and recalculating allocations—but we run it through transparent, simple algorithms so you see how AI now replaces that manual work.",
-    fr: "Nous reproduisons le travail quotidien d’un gérant de portefeuille—suivi des marchés, mises à jour des données et recalculs d’allocations—via des algorithmes simples et transparents qui montrent comment l’IA remplace désormais cette exécution manuelle.",
+    en: "Everything a portfolio manager does—screening stocks, calculating allocations, rebalancing, placing orders—is now automated through conversation with an AI agent. You just ask questions naturally. The agent handles everything. That's the future of financial services: fully automated, fully transparent.",
+    fr: "Tout ce qu'un gérant de portefeuille fait—screener les actions, calculer les allocations, rééquilibrer, passer les ordres—est désormais automatisé via conversation avec un agent IA. Vous posez juste des questions naturellement. L'agent s'occupe de tout. C'est l'avenir des services financiers : entièrement automatisé, entièrement transparent.",
   },
   "approach.clarify.title": {
     en: "Clarify",
@@ -243,8 +247,8 @@ const translations = {
     fr: "Construisons l'Avenir Ensemble",
   },
   "waitlist.subtitle": {
-    en: "We're developing this platform primarily for our own investments and sharing the same intelligence with you. If our approach seems relevant to you, we'd be delighted to count you among our early adopters.",
-    fr: "Nous développons cette plateforme d'abord pour nos propres investissements et nous vous partageons la même intelligence. Si notre approche vous parle, nous serions ravis de vous compter parmi nos early adopters.",
+    en: "We built this AI agent for our own portfolios and we're sharing it with you. If you believe financial services should be automated, transparent, and accessible to everyone—not just to pseudo elitists—join our early adopters.",
+    fr: "Nous avons construit cet agent IA pour nos propres portefeuilles et nous le partageons avec vous. Si vous pensez que les services financiers doivent être automatisés, transparents et accessibles à tous—sans pseudo élitisme—rejoignez nos early adopters.",
   },
   "waitlist.free": {
     en: "Joining our waitlist is completely free and without commitment. We're simply looking to meet people who share our vision of more transparent finance.",
@@ -1406,6 +1410,97 @@ const translations = {
     fr: "Monitoring, bug fixes, évolutions mineures, support technique. <strong>SLA :</strong> réponse < 24h ouvrées, résolution critique < 48h."
   },
 
+  // Professional Portfolio Tools Section
+  "businesses.what_we_do.portfolio_platform": {
+    en: "Beyond consulting, we offer the Bubble Portfolio platform for wealth advisors and asset managers managing client portfolios.",
+    fr: "Au-delà du conseil, nous proposons la plateforme Bubble Portfolio pour les conseillers en gestion de patrimoine et les gérants d'actifs gérant des portefeuilles clients."
+  },
+
+  "businesses.professional.title": {
+    en: "Professional Portfolio Tools",
+    fr: "Outils Professionnels de Gestion de Portefeuille"
+  },
+
+  "businesses.professional.subtitle": {
+    en: "Complementary to our AI consulting services, we also offer professional portfolio management tools tailored to wealth advisors and asset managers.",
+    fr: "En complément de nos services de conseil en IA, nous proposons également des outils professionnels de gestion de portefeuille adaptés aux conseillers en gestion privée et aux gestionnaires d'actifs."
+  },
+
+  "businesses.professional.cgp.title": {
+    en: "For Wealth Advisors (CGP)",
+    fr: "Pour Conseillers en Gestion de Patrimoine (CGP)"
+  },
+
+  "businesses.professional.cgp.desc": {
+    en: "Admin dashboard to manage multiple client portfolios, define strategy templates, and oversee allocations. AI-enriched client CMS for faster understanding of risk profiles and preferences.",
+    fr: "Tableau de bord admin pour gérer plusieurs portefeuilles clients, définir des modèles de stratégies et superviser les allocations. CMS client enrichi par IA pour une compréhension plus rapide des profils de risque et des préférences."
+  },
+
+  "businesses.professional.cgp.feature1": {
+    en: "Multi-client account management",
+    fr: "Gestion multi-comptes clients"
+  },
+
+  "businesses.professional.cgp.feature2": {
+    en: "Strategy templates (risk parity, momentum, custom)",
+    fr: "Modèles de stratégies (risk parity, momentum, personnalisés)"
+  },
+
+  "businesses.professional.cgp.feature3": {
+    en: "AI-powered client profiling",
+    fr: "Profilage client propulsé par IA"
+  },
+
+  "businesses.professional.cgp.feature4": {
+    en: "Automated execution or order export",
+    fr: "Exécution automatisée ou export d'ordres"
+  },
+
+  "businesses.professional.cgp.cta": {
+    en: "Ask for a Quote",
+    fr: "Demander un devis"
+  },
+
+  "businesses.professional.am.title": {
+    en: "For Asset Managers",
+    fr: "Pour Gérants d'Actifs"
+  },
+
+  "businesses.professional.am.desc": {
+    en: "Institutional-grade screening and backtesting tools for fund management. Generate target allocations without direct execution (you control order placement through your own systems).",
+    fr: "Outils de screening et backtesting de niveau institutionnel pour la gestion de fonds. Générez des allocations cibles sans exécution directe (vous contrôlez le placement d'ordres via vos propres systèmes)."
+  },
+
+  "businesses.professional.am.feature1": {
+    en: "Extensible stock/ETF screeners (FMP, Bloomberg, custom)",
+    fr: "Screeners actions/ETF extensibles (FMP, Bloomberg, personnalisés)"
+  },
+
+  "businesses.professional.am.feature2": {
+    en: "Multi-strategy backtesting (17+ years of data)",
+    fr: "Backtesting multi-stratégies (17+ ans de données)"
+  },
+
+  "businesses.professional.am.feature3": {
+    en: "Portfolio optimization (risk parity, regime detection)",
+    fr: "Optimisation de portefeuille (risk parity, détection de régimes)"
+  },
+
+  "businesses.professional.am.feature4": {
+    en: "Export target allocations (no execution)",
+    fr: "Export des allocations cibles (sans exécution)"
+  },
+
+  "businesses.professional.am.cta": {
+    en: "Ask for a Quote",
+    fr: "Demander un devis"
+  },
+
+  "businesses.professional.cta": {
+    en: "Ask for a Quote",
+    fr: "Demander un devis"
+  },
+
   // Featured Article Section
   "businesses.article.title": {
     en: "AI Consulting: Why We Left the Big Four and Private Banking to Do Things Differently",
@@ -1845,6 +1940,18 @@ const translations = {
   "workflow.message11.bot": {
     en: "My pleasure! I'm here to support you in your investment decisions.",
     fr: "Avec plaisir ! Je suis là pour vous accompagner dans vos décisions d'investissement."
+  },
+
+  // Simulator Notice
+  "simulator.notice": {
+    en: "<strong>Educational Tool</strong>: This simulator demonstrates strategy concepts over 20 years of data. For the full Bubble AI agent experience (stock screening, custom backtesting, automated execution), <a href=\"/pricing\">see the interactive demo</a>.",
+    fr: "<strong>Outil Éducatif</strong> : Ce simulateur démontre des concepts de stratégies sur 20 ans de données. Pour l'expérience complète de l'agent IA Bubble (screening d'actions, backtesting personnalisé, exécution automatisée), <a href=\"/pricing\">consultez la démo interactive</a>."
+  },
+
+  // Demo Page
+  "demo.subtitle": {
+    en: "This interactive demo shows how you'll use Bubble: feel free to try several scenarios!",
+    fr: "Cette démo interactive montre comment vous utiliserez Bubble : n'hésitez pas à essayez plusieurs scénarios !"
   }
 };
 

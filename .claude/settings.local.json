@@ -13,7 +13,18 @@
       "Bash(pkill:*)",
       "Bash(timeout 65 curl:*)",
       "Read(//private/tmp/**)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(npm run build)",
+      "Bash(npm run)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nUpdate messaging to reflect Bubble Portfolio AI agent vision\n\n## Summary\nComprehensive frontend messaging update across all pages to align with Bubble Portfolio''s core positioning as an AI conversational agent for portfolio management:\n\n### Landing Page (index.html)\n- Updated SEO meta tags to emphasize conversational AI agent positioning\n- Added commodity statement section (\"Financial services are now commodities\")\n- Changed vision platform CTA from \"Learn more\" to \"See How It Works\"\n- Updated SEO keywords for AI agent and ChatGPT integration\n\n### Portfolio Simulator (portfolio-simulator.html)\n- Repositioned as \"Educational Tool\" with proper SEO messaging\n- Updated JSON-LD schema type to EducationalOrganization\n- Clarified this is a preview of the Bubble Portfolio platform, not the product\n\n### Business Services (businesses.html)\n- Added professional portfolio tools section targeting:\n  - Wealth advisors (CGP): Multi-client admin dashboard\n  - Asset managers: Screening and backtesting tools\n- Updated featured article card styling to match blog tiles design\n- Improved responsive design for professional tools section\n- Updated SEO meta tags to include professional offerings\n\n### Translations & i18n\n- Added 8 new translation keys for:\n  - Commodity statement\n  - Simulator notice\n  - Professional portfolio tools section titles and descriptions\n- All translations available in French and English\n- Verified all translation keys load correctly\n\n### Design Improvements\n- Featured article cards now use consistent blog tile styling\n- Professional tools section uses responsive grid layout\n- Color-coded tiles for CGP (blue) and Asset Managers (orange)\n- Mobile-first responsive design throughout\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(for file in /Users/jadethi-viet-lanhoang/Library/Mobile Documents/com~apple~CloudDocs/Bubble invest/BubbleLaunch/src/frontend/pages/*.html /Users/jadethi-viet-lanhoang/Library/Mobile Documents/com~apple~CloudDocs/Bubble invest/BubbleLaunch/src/frontend/pages/en/*.html)",
+      "Bash(do)",
+      "Bash(if ! grep -q \"meta name=\"\"keywords\"\"\" \"$file\")",
+      "Bash(then)",
+      "Bash(basename:*)",
+      "Bash(fi)",
+      "Bash(done)"
     ],
     "deny": [],
     "ask": []
