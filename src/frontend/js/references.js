@@ -185,30 +185,16 @@ class ReferencesComponent {
     }
 
     getBestAvailableLink(reference) {
-        // Manual override for known references while LLM enrichment is being fixed
-        const manualLinks = {
-            'Ego Is the Enemy': 'https://www.amazon.com/Ego-Enemy-Ryan-Holiday/dp/1591847818',
-            'Warren Buffett Accounting Book': 'https://www.amazon.com/Warren-Buffett-Accounting-Book-Stig/dp/1939370159',
-            'The dawn of the post-literate society': reference.url, // Keep original for articles
-            'The death of corporate job': reference.url, // Keep original for articles  
-            'Sam Altman ': 'https://blog.samaltman.com' // Author's blog
-        };
-        
-        // Use manual link if available
-        if (manualLinks[reference.title]) {
-            return manualLinks[reference.title];
-        }
-        
-        // Prioritize legal purchase links over original URL
+        // Prioritize legal purchase/access links from LLM enrichment
         if (reference.legalLinks) {
-            // For books: prioritize Amazon, then Google Books, then publisher
+            // For books: prioritize legitimate purchase/access links
             if (reference.sourceType === 'Book') {
                 if (reference.legalLinks.amazon) return reference.legalLinks.amazon;
                 if (reference.legalLinks.google_books) return reference.legalLinks.google_books;
                 if (reference.legalLinks.publisher) return reference.legalLinks.publisher;
                 if (reference.legalLinks.worldcat) return reference.legalLinks.worldcat;
             }
-            
+
             // For articles: prioritize DOI, then journal, then publisher
             if (reference.sourceType === 'Article') {
                 if (reference.legalLinks.doi_link) return reference.legalLinks.doi_link;
@@ -216,10 +202,23 @@ class ReferencesComponent {
                 if (reference.legalLinks.publisher) return reference.legalLinks.publisher;
                 if (reference.legalLinks.author_page) return reference.legalLinks.author_page;
             }
+
+            // For videos: use the original URL
+            if (reference.sourceType === 'Video') {
+                return reference.url || null;
+            }
+
+            // For other types: check for generic search fallback
+            if (reference.legalLinks.amazon) return reference.legalLinks.amazon;
         }
-        
-        // Fallback to original URL if no legal links available
-        return reference.url || null;
+
+        // Fallback to original URL only if no enriched links available
+        // NOTE: Avoid using Google Drive URLs as fallback if possible - they indicate missing enrichment
+        if (reference.url && !reference.url.includes('drive.google.com')) {
+            return reference.url;
+        }
+
+        return null;
     }
 
     getReferenceHTML(reference) {

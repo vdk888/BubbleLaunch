@@ -66,7 +66,7 @@ async function getPublishedReferences() {
             const mainTheme = extractSelectProperty(properties['Main Theme']);
             const category = extractMultiSelectProperty(properties.Category);
             const topics = extractMultiSelectProperty(properties.Topics);
-            const url = extractUrlProperty(properties['Drive URL']);
+            const url = extractUrlProperty(properties['URL']);
             const summaryRaw = extractTextProperty(properties['AI summary']);
             const summary = normalizeSummary(summaryRaw);
             const bubbleBlogStatus = extractMultiSelectProperty(properties['Bubble Blog']);

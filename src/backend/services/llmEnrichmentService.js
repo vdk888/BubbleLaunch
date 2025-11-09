@@ -47,6 +47,8 @@ class LLMEnrichmentService {
             for (const model of this.models) {
                 try {
                     enrichedData = await this.callLLM(prompt, model);
+                    // Validate and enhance the enriched data
+                    enrichedData = this.validateAndEnhanceLinks(enrichedData, reference);
                     break; // Success, exit loop
                 } catch (error) {
                     console.warn(`Model ${model} failed, trying next:`, error.message);
@@ -87,6 +89,54 @@ class LLMEnrichmentService {
     }
 
     /**
+     * Validate and enhance links to ensure they're usable
+     * Adds fallback links if primary links are missing
+     */
+    validateAndEnhanceLinks(enrichedData, reference) {
+        const sourceType = (enrichedData.referenceType || '').toLowerCase();
+        const title = reference.title;
+        const author = reference.author;
+
+        // Ensure legalLinks object exists
+        if (!enrichedData.legalLinks) {
+            enrichedData.legalLinks = {};
+        }
+
+        // For books: ensure at least one usable link
+        if (sourceType === 'book') {
+            // If no primary links, try to generate a fallback Google Books link
+            if (!enrichedData.legalLinks.amazon && !enrichedData.legalLinks.google_books && !enrichedData.legalLinks.publisher) {
+                const googleBooksLink = this.generateGoogleBooksLink(title, author);
+                if (googleBooksLink) {
+                    enrichedData.legalLinks.google_books = googleBooksLink;
+                    console.log(`✅ Generated fallback Google Books link for: ${title}`);
+                }
+            }
+
+            // If still no links, add Amazon search fallback
+            if (!enrichedData.legalLinks.amazon && !enrichedData.legalLinks.google_books && !enrichedData.legalLinks.publisher) {
+                enrichedData.legalLinks.amazon = `https://www.amazon.com/s?k=${encodeURIComponent(title)} ${author ? encodeURIComponent(author) : ''}`.trim();
+                console.log(`✅ Generated Amazon search link for: ${title}`);
+            }
+        }
+
+        return enrichedData;
+    }
+
+    /**
+     * Generate a Google Books search link as fallback
+     */
+    generateGoogleBooksLink(title, author) {
+        try {
+            const searchQuery = `${title} ${author || ''}`;
+            return `https://books.google.com/books?q=${encodeURIComponent(searchQuery)}`;
+        } catch (error) {
+            console.warn('Failed to generate Google Books link:', error.message);
+            return null;
+        }
+    }
+
+    /**
      * Build the LLM prompt for enriching a reference
      */
     buildEnrichmentPrompt(reference) {
@@ -106,12 +156,12 @@ Please provide enrichment data in the following JSON format:
   "isbn": "ISBN number if book, null otherwise",
   "doi": "DOI if academic paper, null otherwise",
   "legalLinks": {
-    "amazon": "Amazon purchase link if book",
+    "amazon": "Amazon purchase link if book (use format: https://www.amazon.com/dp/ASIN or https://www.amazon.com/TITLE-AUTHOR/dp/ASIN)",
     "publisher": "Publisher official link",
     "journal": "Journal/publication link if article",
-    "doi_link": "DOI resolver link if available",
-    "google_books": "Google Books preview if available",
-    "worldcat": "WorldCat library link",
+    "doi_link": "DOI resolver link if available (https://doi.org/XXXX)",
+    "google_books": "Google Books preview link (https://books.google.com/books?id=XXXXXXX)",
+    "worldcat": "WorldCat library link (https://www.worldcat.org/...)",
     "author_page": "Author's official page or academia.edu"
   },
   "keyInsights": ["insight1", "insight2", "insight3"],
@@ -122,14 +172,20 @@ Please provide enrichment data in the following JSON format:
   "enriched": true
 }
 
-IMPORTANT RULES:
-1. Never suggest sharing copyrighted PDFs
-2. Only provide legitimate purchase/access links
-3. For books: prioritize Amazon, publisher sites, library catalogs
-4. For articles: prioritize journal links, DOI links, author pages
-5. If unsure about a link, set it to null
-6. Be conservative with claims about accessibility
-7. Do NOT generate a new summary - we will use the existing Notion AI summary
+CRITICAL RULES:
+1. ALWAYS generate Amazon links for books using proper format: https://www.amazon.com/dp/ASIN (where ASIN is 10 digits)
+2. If you don't have exact ASIN, search by title and author and provide best guess with /dp/ASIN format
+3. For Google Books links, generate in format: https://books.google.com/books?id=BOOKID
+4. Never suggest sharing copyrighted PDFs
+5. Only provide legitimate purchase/access links
+6. For books: MUST provide at least Amazon or Google Books link (don't return null for both)
+7. For articles: prioritize journal links, DOI links, author pages
+8. Be conservative with claims about accessibility
+9. Do NOT generate a new summary - we will use the existing Notion AI summary
+
+AMAZON LINK FORMAT EXAMPLES:
+- "The Most Important Thing" by Howard Marks → https://www.amazon.com/dp/023118148X
+- "Freakonomics" by Steven Levitt → https://www.amazon.com/Freakonomics-Economics-Unexpected-Truths-About/dp/0060731338
 
 Respond only with the JSON object, no additional text.`;
     }
