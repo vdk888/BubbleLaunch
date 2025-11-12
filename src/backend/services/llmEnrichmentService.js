@@ -90,7 +90,7 @@ class LLMEnrichmentService {
 
     /**
      * Validate and enhance links to ensure they're usable
-     * Adds fallback links if primary links are missing
+     * Adds fallback links if primary links are missing or invalid
      */
     validateAndEnhanceLinks(enrichedData, reference) {
         const sourceType = (enrichedData.referenceType || '').toLowerCase();
@@ -104,6 +104,14 @@ class LLMEnrichmentService {
 
         // For books: ensure at least one usable link
         if (sourceType === 'book') {
+            // Validate Amazon link - remove if it's a placeholder or invalid
+            if (enrichedData.legalLinks.amazon) {
+                if (!this.isValidAmazonLink(enrichedData.legalLinks.amazon)) {
+                    console.log(`⚠️ Invalid Amazon link for "${title}": ${enrichedData.legalLinks.amazon}`);
+                    enrichedData.legalLinks.amazon = null;
+                }
+            }
+
             // Generate fallback links for missing primary sources
             const searchQuery = `${title}${author ? ' ' + author : ''}`;
 
@@ -144,6 +152,25 @@ class LLMEnrichmentService {
         }
 
         return enrichedData;
+    }
+
+    /**
+     * Check if an Amazon link is valid (not a placeholder or invalid ASIN)
+     */
+    isValidAmazonLink(amazonUrl) {
+        if (!amazonUrl || typeof amazonUrl !== 'string') return false;
+
+        // Check for placeholder patterns
+        if (amazonUrl.includes('/dp/ASIN') || amazonUrl.includes('dp/ASIN')) return false;
+        if (amazonUrl.includes('ASIN') && amazonUrl.length < 30) return false;
+
+        // Check if it has a valid ASIN (10 alphanumeric characters after /dp/)
+        const asinMatch = amazonUrl.match(/\/dp\/([A-Z0-9]{10})/);
+        if (!asinMatch) return false;
+
+        // Validate the ASIN format
+        const asin = asinMatch[1];
+        return asin && asin !== 'ASIN' && asin.length === 10;
     }
 
     /**

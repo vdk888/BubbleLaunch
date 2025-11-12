@@ -191,25 +191,47 @@ class ReferencesComponent {
             // For books: prioritize legitimate purchase/access links in order
             if (reference.sourceType === 'Book') {
                 // Priority 1: Direct purchase links
-                if (reference.legalLinks.amazon) return reference.legalLinks.amazon;
-                if (reference.legalLinks.publisher) return reference.legalLinks.publisher;
-                if (reference.legalLinks.bookshop) return reference.legalLinks.bookshop;
+                if (reference.legalLinks.amazon && this.isValidLink(reference.legalLinks.amazon)) {
+                    return reference.legalLinks.amazon;
+                }
+                if (reference.legalLinks.publisher && this.isValidLink(reference.legalLinks.publisher)) {
+                    return reference.legalLinks.publisher;
+                }
+                if (reference.legalLinks.bookshop && this.isValidLink(reference.legalLinks.bookshop)) {
+                    return reference.legalLinks.bookshop;
+                }
 
                 // Priority 2: Free/preview links
-                if (reference.legalLinks.open_library) return reference.legalLinks.open_library;
-                if (reference.legalLinks.google_books) return reference.legalLinks.google_books;
+                if (reference.legalLinks.open_library && this.isValidLink(reference.legalLinks.open_library)) {
+                    return reference.legalLinks.open_library;
+                }
+                if (reference.legalLinks.google_books && this.isValidLink(reference.legalLinks.google_books)) {
+                    return reference.legalLinks.google_books;
+                }
 
                 // Priority 3: Information links
-                if (reference.legalLinks.goodreads) return reference.legalLinks.goodreads;
-                if (reference.legalLinks.worldcat) return reference.legalLinks.worldcat;
+                if (reference.legalLinks.goodreads && this.isValidLink(reference.legalLinks.goodreads)) {
+                    return reference.legalLinks.goodreads;
+                }
+                if (reference.legalLinks.worldcat && this.isValidLink(reference.legalLinks.worldcat)) {
+                    return reference.legalLinks.worldcat;
+                }
             }
 
             // For articles: prioritize actual article links
             if (reference.sourceType === 'Article') {
-                if (reference.legalLinks.journal) return reference.legalLinks.journal;
-                if (reference.legalLinks.doi_link) return reference.legalLinks.doi_link;
-                if (reference.legalLinks.publisher) return reference.legalLinks.publisher;
-                if (reference.legalLinks.author_page) return reference.legalLinks.author_page;
+                if (reference.legalLinks.journal && this.isValidLink(reference.legalLinks.journal)) {
+                    return reference.legalLinks.journal;
+                }
+                if (reference.legalLinks.doi_link && this.isValidLink(reference.legalLinks.doi_link)) {
+                    return reference.legalLinks.doi_link;
+                }
+                if (reference.legalLinks.publisher && this.isValidLink(reference.legalLinks.publisher)) {
+                    return reference.legalLinks.publisher;
+                }
+                if (reference.legalLinks.author_page && this.isValidLink(reference.legalLinks.author_page)) {
+                    return reference.legalLinks.author_page;
+                }
             }
 
             // For videos: use the original URL
@@ -224,6 +246,25 @@ class ReferencesComponent {
         }
 
         return null;
+    }
+
+    /**
+     * Validate if a link is actually usable (not a placeholder or invalid)
+     */
+    isValidLink(url) {
+        if (!url || typeof url !== 'string') return false;
+
+        // Reject placeholder patterns
+        if (url.includes('ASIN') || url.includes('/dp/ASIN')) return false;
+        if (url.includes('XXXXXXX')) return false;
+
+        // Must be a proper URL
+        try {
+            new URL(url);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
     getReferenceHTML(reference) {
