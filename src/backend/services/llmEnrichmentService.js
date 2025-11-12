@@ -174,6 +174,46 @@ class LLMEnrichmentService {
     }
 
     /**
+     * Detect the language of a text (French or English)
+     */
+    detectLanguage(text) {
+        if (!text) return null;
+
+        // French common words and phrases
+        const frenchPatterns = [
+            /\b(le|la|les|de|du|et|ou|un|une|des|est|sont|pour|dans|avec|par|sur|qui|que|à|au|il|elle|nous|vous)\b/gi,
+            /\b(investissement|portefeuille|stratégie|bourse|marché|action|obligation|dividende|rendement|volatilité|risque|allocation|allocation|diversification|patrimoine|gestion|actifs|fonds|titre|cotation|cours|prix|vente|achat)\b/gi
+        ];
+
+        // English common words
+        const englishPatterns = [
+            /\b(the|a|an|and|or|in|on|at|to|for|of|with|by|is|are|be|have|has|this|that|these|those)\b/gi,
+            /\b(investment|portfolio|strategy|stock|market|share|bond|dividend|return|volatility|risk|allocation|diversification|wealth|management|asset|fund|security|price|trading|purchase|sell)\b/gi
+        ];
+
+        let frenchScore = 0;
+        let englishScore = 0;
+
+        frenchPatterns.forEach(pattern => {
+            const matches = text.match(pattern) || [];
+            frenchScore += matches.length;
+        });
+
+        englishPatterns.forEach(pattern => {
+            const matches = text.match(pattern) || [];
+            englishScore += matches.length;
+        });
+
+        if (frenchScore > englishScore) {
+            return 'fr';
+        } else if (englishScore > frenchScore) {
+            return 'en';
+        }
+
+        return null;
+    }
+
+    /**
      * Build the LLM prompt for enriching a reference
      */
     buildEnrichmentPrompt(reference) {
@@ -204,6 +244,8 @@ Please provide enrichment data in the following JSON format:
     "worldcat": "WorldCat library link",
     "author_page": "Author's official page or academia.edu"
   },
+  "summary_en": "English summary of the reference",
+  "summary_fr": "French summary of the reference",
   "keyInsights": ["insight1", "insight2", "insight3"],
   "publicationYear": "YYYY if known",
   "publisher": "Publisher name",
@@ -222,7 +264,14 @@ CRITICAL RULES FOR BOOKS:
 7. DO NOT return null for all links - ALWAYS provide at least Open Library or Goodreads link
 8. Never suggest sharing copyrighted PDFs or Google Drive links
 9. For articles: prioritize journal links, DOI links, actual article URLs, author pages
-10. Do NOT generate a new summary - we will use the existing Notion AI summary
+
+BILINGUAL SUMMARIES (MANDATORY):
+10. ALWAYS provide BOTH summary_en AND summary_fr:
+    - If the existing summary is in French: translate it to English for summary_en, keep original for summary_fr
+    - If the existing summary is in English: keep it for summary_en, translate it to French for summary_fr
+    - Make both summaries clear, concise, and accessible
+11. Use professional, formal language suitable for financial professionals
+12. Keep summaries to 2-3 sentences maximum for brevity in UI tiles
 
 EXAMPLE LINKS:
 - Open Library: https://openlibrary.org/search?q=Freakonomics+Steven+Levitt

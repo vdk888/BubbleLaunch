@@ -76,6 +76,9 @@ class ReferencesComponent {
                 author.textContent = text.replace('By ', 'Par ');
             }
         });
+
+        // Re-render all reference summaries to show language-specific content
+        this.renderReferences();
     }
 
     async loadReferences() {
@@ -275,9 +278,21 @@ class ReferencesComponent {
         const isVideo = reference.sourceType === 'Video';
         const actionLabel = this.getActionLabel(isVideo ? 'watch' : 'read');
         const videoEmbedHTML = isVideo ? this.getVideoEmbedHTML(reference) : '';
-        const summaryText = reference.summary && reference.summary.trim() !== '' 
-            ? reference.summary 
-            : (isVideo ? this.getDefaultVideoSummary(reference) : '');
+
+        // Use language-specific summary if available, fallback to original summary
+        let summaryText = '';
+        if (this.currentLanguage === 'fr' && reference.summary_fr) {
+            summaryText = reference.summary_fr;
+        } else if (this.currentLanguage === 'en' && reference.summary_en) {
+            summaryText = reference.summary_en;
+        } else if (reference.summary) {
+            summaryText = reference.summary; // Fallback to original
+        }
+
+        // For videos, use default summary if no text summary available
+        if (!summaryText && isVideo) {
+            summaryText = this.getDefaultVideoSummary(reference);
+        }
         
         return `
             <div class="reference-card" data-source-type="${reference.sourceType}">
