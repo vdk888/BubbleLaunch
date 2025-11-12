@@ -31,14 +31,22 @@ class ReferencesComponent {
         if (storedLanguage && (storedLanguage === "en" || storedLanguage === "fr")) {
             this.currentLanguage = storedLanguage;
         } else {
-            // Try to detect browser language (same as main script)
-            const browserLang = navigator.language || navigator.userLanguage;
-            if (browserLang.startsWith("fr")) {
-                this.currentLanguage = "fr";
+            // Detect from URL path (/blog vs /en/blog or /fr/blog)
+            const currentPath = window.location.pathname;
+            if (currentPath.includes('/fr/') || currentPath.includes('/en/')) {
+                this.currentLanguage = currentPath.includes('/en/') ? 'en' : 'fr';
             } else {
-                this.currentLanguage = "en";
+                // Try to detect browser language (same as main script)
+                const browserLang = navigator.language || navigator.userLanguage;
+                if (browserLang.startsWith("fr")) {
+                    this.currentLanguage = "fr";
+                } else {
+                    this.currentLanguage = "en";
+                }
             }
         }
+
+        console.log(`📝 References language synced to: ${this.currentLanguage}`);
     }
 
     setupLanguageListener() {
