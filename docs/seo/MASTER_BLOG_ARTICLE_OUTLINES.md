@@ -36,6 +36,37 @@
 4. Publish to blog
 5. Submit to Google Search Console (if new indexing)
 
+### Step 5: Product Maturity Context
+When writing about Bubble's product, always distinguish between what's available NOW vs. what's in development:
+
+**✅ AVAILABLE NOW (Current Product)**:
+- AI chatbot for educational financial conversations
+- Portfolio simulator tool (3 strategies, 20 years of backtesting)
+- Educational content (blog, Learning Garden references)
+- Waitlist for early access to the Bubble Portfolio platform
+- Fixed-fee pricing model (€0-10/month)
+
+**🔄 IN DEVELOPMENT (Bubble Portfolio - Beta)**:
+- Automated portfolio management with multi-factor scoring
+- Broker integrations (IBKR, Alpaca, Saxo Bank)
+- Decision support dashboard for user validation
+- 11-step automated workflow
+- Production launch expected in Q1-Q2 2025
+
+**❌ NOT CLAIMING**:
+- We are NOT currently managing money for users (no regulated custody)
+- We do NOT have CIF authorization (SaaS platform, not asset manager)
+- We do NOT have PEA/Assurance-Vie integration (only CTOs and direct broker accounts)
+- We do NOT have algorithmic trading (users validate and approve all trades)
+
+**WRITING GUIDANCE**:
+- Use **"Bubble Portfolio"** when discussing the beta product features
+- Use **"Bubble Invest"** for the public website and marketing
+- Use **"decision support tool"** instead of "robo-advisor"
+- Use **"AI-powered insights"** instead of "AI management"
+- Reference the portfolio simulator when discussing strategy examples
+- Clarify user control: "validates each decision" vs. "automated execution"
+
 ---
 
 ## 🎯 TOP 5 PRIORITY ARTICLES (Write These First)
@@ -206,20 +237,41 @@
 - Example scenario: Thomas, 30 ans, saving for house down payment, wants education
 - Regulatory status: ✅ CIF authorized
 
-**H2: "Bubble : La Nouvelle Génération Quantitative" (700 words)**
+**H2: "Bubble : La Nouvelle Génération Quantitative" (900 words - EXPANDED)**
 - New category: Not a robo-advisor, a quantitative platform
-- Philosophy: Active selection + user empowerment + transparency
-- Core differentiators (6 sections):
+- Philosophy: Active selection + user empowerment + transparency + SaaS decision support
+- Core differentiators (8 sections):
   1. **Active multi-factor selection**: Multi-factor scoring (momentum, quality, risk-adjusted) vs. passive allocation
-  2. **User-controlled accounts**: Direct ownership via IBKR/Alpaca/Saxo vs. custody
-  3. **Fixed-fee subscription**: Plans from €0 to €10/month vs. percentage fees
-  4. **AI educates, doesn't control**: Users validate decisions vs. delegation
-  5. **Transparent methodology**: Build in public, 17+ years backtests
-  6. **No minimum**: Start with any amount
-- Weaknesses: New entrant, no PEA/Assurance-Vie, less hand-holding, regulatory in progress
-- Best for: Cost-conscious, want transparency, comfortable with tech, active strategies
-- Example scenario: Julien, 28 ans, €30k, tech-savvy, values quantitative methodology
-- Regulatory status: ⚠️ Pre-CIF authorization phase
+  2. **User-controlled accounts**: Direct ownership via IBKR/Alpaca/Saxo vs. custody model
+  3. **Fixed-fee subscription**: Plans from €0 to €10/month vs. percentage fees (0.85-1.6%)
+  4. **AI educates, doesn't control**: Users validate decisions vs. delegation to algorithm
+  5. **Transparent methodology**: Build in public, 17+ years backtests (2005-2025)
+  6. **No minimum**: Start with any amount (no €1k minimum like Yomoni/Nalo)
+  7. **User-driven validation**: Every decision requires explicit user approval - you stay in command
+  8. **Regulatory clarity**: SaaS platform (not CIF asset manager) = lower costs, same institutional insights
+
+**Key Regulatory & Control Distinction**:
+- **Traditional robo-advisors** (Yomoni, Nalo): CIF-authorized asset managers - they legally control your money
+- **Bubble Platform**: SaaS decision support tool - you legally control your money, you validate every decision
+- This distinction is WHY Bubble can charge €0-10/month instead of 0.85-1.6%: Different regulatory category = different cost structure
+- You own your IBKR/Alpaca/Saxo accounts directly (not custody)
+- You approve each recommendation before execution (not automatic delegation)
+- You can withdraw funds and stop using Bubble anytime without complications
+
+**User Control Workflow** (The Critical Difference):
+- AI analyzes markets: "Based on momentum and quality factors, these ETFs have the best risk-adjusted returns"
+- AI recommends: "I suggest 40% SPY, 30% IEF, 20% GLD, 10% EEM for your Balanced strategy"
+- **YOU REVIEW**: Read the analysis, ask questions, adjust parameters if desired
+- **YOU DECIDE**: Approve the allocation or request modifications
+- **YOU EXECUTE**: Authorize trades in your brokerage account
+- AI monitors & alerts: "Markets shifted, rebalancing recommended" - you decide if you accept
+
+Result: You get institutional-quality portfolio analysis (what a professional manager does daily) but YOU stay in command and pay a fraction of the cost
+
+- Weaknesses: New entrant, no PEA/Assurance-Vie optimization, less hand-holding, SaaS platform (not wealth advisor)
+- Best for: Cost-conscious, want transparency, comfortable with tech, active strategies, prefer to maintain control
+- Example scenario: Julien, 28 ans, €30k, tech-savvy, values quantitative methodology, wants control over his money
+- Regulatory status: ✅ SaaS platform (no CIF authorization needed) - user validates decisions
 
 **H2: "Tableau Comparatif Détaillé : 15 Critères" (600 words)**
 - Comprehensive table (see CORRECTED_ARTICLE_OUTLINES.md)
@@ -318,7 +370,7 @@
   - Professional pays salary + office + compliance
   - Bubble automates the same process, you pay €0-10/month
 - Overview: Not one algorithm, but coordinated 11-step process (full portfolio management workflow)
-- Step 1: **Market Intelligence** (Data aggregation - Uncle Stock, Yahoo Finance)
+- Step 1: **Market Intelligence** (Data aggregation - third-party providers)
   - What it mirrors: Portfolio manager reviews market data every morning
 - Step 2-3: **Asset Scoring & Filtering** (Multi-factor scoring - momentum, quality)
   - What it mirrors: Portfolio manager ranks investment opportunities using quantitative factors
@@ -375,24 +427,83 @@
   - Why Optimized Risk Parity wins: Adapts faster to regime changes, better risk-adjusted
 - Transparency: All backtests public in portfolio simulator
 
-**H2: "IA qui Éduque, Pas qui Contrôle" (500 words)**
-- CRITICAL DISTINCTION: Bubble's AI doesn't manage money
-- What users pay for (plans from €0 to €10/month):
-  - Platform access, AI agent, portfolio insights, backtests, analytics
-  - Data feeds and broker integrations
-  - Infrastructure and servers
-- What users DON'T pay for:
-  - Asset management (NOT delegating control to AI)
-  - Brokerage fees (charged separately by broker)
-- AI's role: Recommend, not execute
-  - Step 1: AI analyzes and scores
-  - Step 2: AI recommends "Here's optimal allocation"
-  - Step 3: User validates "I approve" or "I want to adjust"
-  - Step 4: AI executes only after user approval
-- Comparison table: Traditional robo-advisor vs. Bubble
-  - Traditional: AI decides, you delegate
-  - Bubble: AI recommends, you decide
-- Why this matters: Regulatory (not asset manager), transparency, control, security
+**H2: "IA qui Éduque, Pas qui Contrôle" (700 words - EXPANDED)**
+- **CRITICAL DISTINCTION**: Bubble is a DECISION SUPPORT TOOL, NOT an asset management service
+
+**Section 1: What Bubble Actually Is (Not)**
+- NOT a robo-advisor (robo-advisors = CIF-authorized asset managers who control your money)
+- NOT delegating control to AI (you stay in complete control)
+- NOT automation without user approval (every decision requires your validation)
+- IS a SaaS platform that provides AI-powered investment recommendations and insights
+
+**Section 2: User Control - The Core Difference**
+- **User validates every single decision**
+  - AI analyzes markets and scores assets
+  - AI recommends allocation: "Based on your strategy, I suggest..."
+  - You review the recommendation
+  - You approve, adjust, or reject it
+  - Only after your approval does execution happen
+- **You own your brokerage accounts directly**
+  - IBKR, Alpaca, or Saxo Bank accounts are in your name
+  - You maintain full account control and access
+  - Not a custody model (Bubble never controls your assets)
+- **You can stop using Bubble anytime**
+  - All your money stays in your brokerage account
+  - No lock-in, no transfer fees, no complications
+
+**Section 3: What Users Pay For (€0-10/month)**
+- Platform access and AI recommendation engine
+- Portfolio analysis and backtesting tools
+- Real-time market monitoring and alerts
+- Broker integrations (IBKR, Alpaca, Saxo)
+- Data feeds and analytics infrastructure
+- Educational AI agent to explain investment decisions
+
+**Section 4: What Users DON'T Pay For**
+- Asset management (not delegating control)
+- Brokerage fees (charged separately by your broker)
+- Custody of assets (you own your accounts)
+- CIF authorization costs (we're not a CIF)
+
+**Section 5: Regulatory Positioning - Why This Matters**
+- **Traditional Robo-Advisors (Yomoni, Nalo)**:
+  - CIF-authorized (Commission de Surveillance de l'Activité de Gestion)
+  - Licensed asset managers under French law
+  - They have legal authority to manage your money
+  - Higher regulatory burden = higher fees
+- **Bubble (Decision Support Tool)**:
+  - SaaS platform providing AI recommendations
+  - YOU make the final investment decision
+  - You execute trades through your own brokerage account
+  - Lower regulatory burden = lower costs (€0-10/month vs. 0.85-1.6%)
+
+**Section 6: The Workflow - Where User Control Happens**
+- **Step 1**: AI analyzes 10,000+ ETFs using multi-factor scoring
+- **Step 2**: System identifies top opportunities and optimal allocation
+- **Step 3**: AI presents recommendation: "Here's what I suggest for your strategy"
+- **Step 4**: **YOU REVIEW**: Read detailed analysis, adjust parameters if desired
+- **Step 5**: **YOU DECIDE**: Approve the recommendation or request modifications
+- **Step 6**: **YOU EXECUTE**: Authorize the trades in your brokerage account
+- **Step 7**: AI monitors positions and alerts you when rebalancing is needed
+- Result: You get institutional-quality analysis, but YOU stay in command
+
+**Section 7: Comparison Table - The Key Difference**
+| Aspect | Traditional Robo-Advisor | Bubble Platform |
+|--------|-------------------------|-----------------|
+| Control | Delegation ("manage for me") | Empowerment ("help me decide") |
+| Approval | Automatic execution | User validates each decision |
+| Account | Custody model (they control it) | Direct ownership (you control it) |
+| Regulatory | CIF-authorized asset manager | SaaS decision support tool |
+| When You Stop | Complicated transfer process | Simple - your money is already yours |
+| Fees | Percentage of assets (0.85-1.6%) | Fixed subscription (€0-10/month) |
+
+**Section 8: Why This Matters**
+- **Transparency**: You understand every recommendation and can ask "why?"
+- **Control**: You never lose control of your money or decisions
+- **Cost**: You pay for technology, not asset management fees
+- **Security**: Your assets stay in your name in regulated brokerages
+- **Compliance**: You meet French regulations while getting institutional insights
+- **Flexibility**: You can integrate with any broker (IBKR, Alpaca, Saxo, future additions)
 
 **H2: "Build in Public : Transparence Totale" (400 words)**
 - What "Build in Public" means: Sharing progress, methodology, failures, learnings
@@ -453,8 +564,7 @@
 
 #### Technical Accuracy Notes
 ⚠️ IMPORTANT:
-- Always mention Uncle Stock and Yahoo Finance as external data sources
-- Never claim proprietary data sources
+- Data sources: Third-party providers (never claim proprietary data sources)
 - Proprietary IP is the multi-factor scoring and 11-step process
 - Be clear: Data aggregation (step 1) uses third-party sources
 - Emphasize: Processing and scoring (steps 2-11) is proprietary
@@ -508,15 +618,44 @@ BEFORE YOU START:
 1. Read STYLE_GUIDE_SEO_WRITING.md (brand voice, language standards)
 2. Read CRITICAL_CORRECTIONS_2025-10-30.md (pricing, mission, automation)
 3. Read the outline below for structure
+4. Reference Step 5: Product Maturity Context (in Writing Workflow) for guidance
+
+CRITICAL BUSINESS MODEL CLARITY:
+**What Bubble IS:**
+- SaaS decision support tool (NOT asset management service)
+- Educational platform that recommends investment decisions
+- Enables user-driven investing with AI-powered insights
+- Allows users to stay in complete control of their money
+
+**What Bubble IS NOT:**
+- Robo-advisor (robo-advisors are CIF-authorized asset managers)
+- Automated portfolio manager (users validate and approve each decision)
+- Hedge fund or asset manager (we're not managing money for you)
+- Custody service (users own accounts directly via IBKR/Alpaca/Saxo)
+
+**Why This Distinction Matters:**
+- Traditional robo-advisors (Yomoni, Nalo) = CIF-authorized = 0.85-1.6% fees
+- Bubble = SaaS platform = user validates = €0-10/month fees
+- Different regulatory category = different cost structure = same quality insights
+
+**User Control Workflow** (Always emphasize this):
+1. AI analyzes markets and scores assets
+2. AI recommends allocation: "Based on your strategy, I suggest..."
+3. **YOU REVIEW** and ask questions
+4. **YOU DECIDE** if you approve
+5. **YOU EXECUTE** by validating trades in your brokerage account
+6. AI monitors and alerts you to changes
+Result: You get professional portfolio management but YOU stay in command
 
 IMPORTANT POSITIONING:
-- Bubble is NOT a robo-advisor (it's a quantitative platform)
-- Bubble's AI educates and recommends, doesn't control
+- Bubble is NOT a robo-advisor (it's a decision support platform)
+- Bubble's AI educates and recommends, doesn't control (you validate every decision)
 - Pricing: "plans from €0 to €10/month (example pricing)" NOT "€10/month"
-- Data sources: Uncle Stock and Yahoo Finance are external
-- Proprietary IP: Multi-factor scoring and 11-step process
+- Data sources: Third-party providers (never claim proprietary data)
+- Proprietary IP: Multi-factor scoring and 11-step optimization process
 - User accounts: IBKR/Alpaca/Saxo (direct brokerage, user owns accounts)
 - Backtesting: 17+ years (2005-2025) with realistic assumptions
+- User control emphasis: Users validate, users decide, users execute
 
 TASK: Expand this outline into a complete article
 - Keep H2 headings as provided
@@ -525,14 +664,17 @@ TASK: Expand this outline into a complete article
 - Include examples and real numbers
 - Link internal content where relevant
 - Cite Knowledge Garden references where appropriate
+- Always clarify user control (you decide) vs. automation (AI decides)
 
 [INSERT OUTLINE HERE]
 
 After writing, I will:
 1. Review for accuracy
 2. Check brand voice compliance
-3. Add internal links and SEO metadata
-4. Final edit and publish
+3. Verify business model distinctions (SaaS vs. CIF, decision support vs. asset management)
+4. Confirm user control messaging throughout
+5. Add internal links and SEO metadata
+6. Final edit and publish
 ```
 
 ---
@@ -588,16 +730,26 @@ Before publishing ANY article:
 ### Brand Voice Check
 - [ ] Bubble positioned correctly (quantitative platform, not robo-advisor)
 - [ ] Pricing language correct (plans from €0 to €10/month)
-- [ ] AI role clear (educates, doesn't control)
+- [ ] AI role clear (educates, doesn't control, recommends)
 - [ ] No guaranteed return claims
 - [ ] Automation status clarified if mentioned
 
+### Business Model & Regulatory Accuracy (CRITICAL)
+- [ ] **SaaS positioning clear**: "decision support tool" not "asset manager"
+- [ ] **CIF distinction explained**: Bubble is SaaS (€0-10/month) vs. CIF robo-advisors (0.85-1.6%)
+- [ ] **User control emphasized**: "You validate", "You decide", "You execute" (NOT automatic)
+- [ ] **Account ownership clear**: Users own IBKR/Alpaca/Saxo accounts directly (NOT custody)
+- [ ] **No false asset management claims**: Not managing money, not holding assets, not CIF-authorized
+- [ ] **Regulatory status accurate**: Mention SaaS platform or decision support tool, not asset manager
+- [ ] **Fee structure correct**: €0-10/month (example pricing), NOT percentage-based fees
+- [ ] **User withdrawal clarity**: Can stop using Bubble anytime, money stays in user's account
+
 ### Technical Accuracy
-- [ ] Data sources identified (Uncle Stock, Yahoo Finance)
+- [ ] Data sources identified (third-party providers, never claim proprietary)
 - [ ] Proprietary IP clearly marked (multi-factor scoring, 11-step process)
-- [ ] Backtesting timeframe mentioned (2005-2025)
-- [ ] No false claims about AI capabilities
-- [ ] User control emphasized (users own accounts, validate decisions)
+- [ ] Backtesting timeframe mentioned (2005-2025, realistic assumptions)
+- [ ] No false claims about AI capabilities (can't predict future, can't eliminate risk)
+- [ ] User control emphasized (users own accounts, validate decisions, approve trades)
 
 ### SEO Quality
 - [ ] Target keyword in H1 and first 100 words
