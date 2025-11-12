@@ -130,7 +130,7 @@ async function getEnrichedPublishedReferences() {
         }
 
         // Check which references need enrichment
-        const enrichmentCandidates = baseReferences.filter(ref => ['Book', 'Article'].includes(ref.sourceType));
+        const enrichmentCandidates = baseReferences.filter(ref => ['Book', 'Article', 'Video'].includes(ref.sourceType));
         const needsEnrichment = enrichmentCandidates.filter(ref => llmEnrichment.needsEnrichment(ref));
         
         if (needsEnrichment.length > 0) {
