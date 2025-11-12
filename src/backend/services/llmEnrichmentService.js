@@ -104,36 +104,46 @@ class LLMEnrichmentService {
 
         // For books: ensure at least one usable link
         if (sourceType === 'book') {
-            // If no primary links, try to generate a fallback Google Books link
-            if (!enrichedData.legalLinks.amazon && !enrichedData.legalLinks.google_books && !enrichedData.legalLinks.publisher) {
-                const googleBooksLink = this.generateGoogleBooksLink(title, author);
-                if (googleBooksLink) {
-                    enrichedData.legalLinks.google_books = googleBooksLink;
-                    console.log(`✅ Generated fallback Google Books link for: ${title}`);
-                }
+            // Generate fallback links for missing primary sources
+            const searchQuery = `${title}${author ? ' ' + author : ''}`;
+
+            // Generate Open Library link (always free, never returns null)
+            if (!enrichedData.legalLinks.open_library) {
+                enrichedData.legalLinks.open_library = `https://openlibrary.org/search?q=${encodeURIComponent(searchQuery).replace(/%20/g, '+')}`;
+                console.log(`✅ Generated Open Library link for: ${title}`);
             }
 
-            // If still no links, add Amazon search fallback
-            if (!enrichedData.legalLinks.amazon && !enrichedData.legalLinks.google_books && !enrichedData.legalLinks.publisher) {
-                enrichedData.legalLinks.amazon = `https://www.amazon.com/s?k=${encodeURIComponent(title)} ${author ? encodeURIComponent(author) : ''}`.trim();
-                console.log(`✅ Generated Amazon search link for: ${title}`);
+            // Generate Goodreads link if not present
+            if (!enrichedData.legalLinks.goodreads) {
+                enrichedData.legalLinks.goodreads = `https://www.goodreads.com/search?q=${encodeURIComponent(searchQuery)}`;
+                console.log(`✅ Generated Goodreads link for: ${title}`);
+            }
+
+            // Generate Bookshop.org link if not present (supports independent bookstores)
+            if (!enrichedData.legalLinks.bookshop) {
+                enrichedData.legalLinks.bookshop = `https://bookshop.org/search?q=${encodeURIComponent(searchQuery)}`;
+                console.log(`✅ Generated Bookshop.org link for: ${title}`);
+            }
+
+            // Generate Google Books link if not present
+            if (!enrichedData.legalLinks.google_books) {
+                enrichedData.legalLinks.google_books = `https://books.google.com/books?q=${encodeURIComponent(searchQuery)}`;
+                console.log(`✅ Generated Google Books link for: ${title}`);
+            }
+        }
+
+        // For articles: ensure at least one usable link
+        if (sourceType === 'article' || sourceType === 'paper') {
+            // If no links available, generate a Google Scholar fallback
+            if (!enrichedData.legalLinks.doi_link && !enrichedData.legalLinks.journal &&
+                !enrichedData.legalLinks.publisher && !enrichedData.legalLinks.author_page) {
+                const searchQuery = `${title}${reference.author ? ' ' + reference.author : ''}`;
+                enrichedData.legalLinks.doi_link = `https://scholar.google.com/scholar?q=${encodeURIComponent(searchQuery)}`;
+                console.log(`✅ Generated Google Scholar link for: ${title}`);
             }
         }
 
         return enrichedData;
-    }
-
-    /**
-     * Generate a Google Books search link as fallback
-     */
-    generateGoogleBooksLink(title, author) {
-        try {
-            const searchQuery = `${title} ${author || ''}`;
-            return `https://books.google.com/books?q=${encodeURIComponent(searchQuery)}`;
-        } catch (error) {
-            console.warn('Failed to generate Google Books link:', error.message);
-            return null;
-        }
     }
 
     /**
@@ -153,15 +163,18 @@ Please provide enrichment data in the following JSON format:
 
 {
   "referenceType": "book" | "article" | "paper" | "report" | "website",
-  "isbn": "ISBN number if book, null otherwise",
+  "isbn": "ISBN number if book (13 digits), null otherwise",
   "doi": "DOI if academic paper, null otherwise",
   "legalLinks": {
-    "amazon": "Amazon purchase link if book (use format: https://www.amazon.com/dp/ASIN or https://www.amazon.com/TITLE-AUTHOR/dp/ASIN)",
+    "amazon": "Amazon purchase link if book",
+    "open_library": "Open Library link (https://openlibrary.org/search?q=TITLE+AUTHOR)",
+    "goodreads": "Goodreads book page link",
+    "bookshop": "Bookshop.org indie bookstore link (https://bookshop.org/search?q=TITLE+AUTHOR)",
     "publisher": "Publisher official link",
     "journal": "Journal/publication link if article",
     "doi_link": "DOI resolver link if available (https://doi.org/XXXX)",
-    "google_books": "Google Books preview link (https://books.google.com/books?id=XXXXXXX)",
-    "worldcat": "WorldCat library link (https://www.worldcat.org/...)",
+    "google_books": "Google Books preview link",
+    "worldcat": "WorldCat library link",
     "author_page": "Author's official page or academia.edu"
   },
   "keyInsights": ["insight1", "insight2", "insight3"],
@@ -172,20 +185,23 @@ Please provide enrichment data in the following JSON format:
   "enriched": true
 }
 
-CRITICAL RULES:
-1. ALWAYS generate Amazon links for books using proper format: https://www.amazon.com/dp/ASIN (where ASIN is 10 digits)
-2. If you don't have exact ASIN, search by title and author and provide best guess with /dp/ASIN format
-3. For Google Books links, generate in format: https://books.google.com/books?id=BOOKID
-4. Never suggest sharing copyrighted PDFs
-5. Only provide legitimate purchase/access links
-6. For books: MUST provide at least Amazon or Google Books link (don't return null for both)
-7. For articles: prioritize journal links, DOI links, author pages
-8. Be conservative with claims about accessibility
-9. Do NOT generate a new summary - we will use the existing Notion AI summary
+CRITICAL RULES FOR BOOKS:
+1. PRIORITY 1 (Main Link): Amazon link in format https://www.amazon.com/dp/ASIN or https://www.amazon.com/TITLE/dp/ASIN
+2. PRIORITY 2 (Free/Cheap): Open Library link (always free) - format: https://openlibrary.org/search?q=TITLE+AUTHOR
+3. PRIORITY 3: Goodreads link to show book info
+4. PRIORITY 4: Bookshop.org link supporting independent bookstores
+5. PRIORITY 5: Publisher official site
+6. PRIORITY 6: Google Books preview
+7. DO NOT return null for all links - ALWAYS provide at least Open Library or Goodreads link
+8. Never suggest sharing copyrighted PDFs or Google Drive links
+9. For articles: prioritize journal links, DOI links, actual article URLs, author pages
+10. Do NOT generate a new summary - we will use the existing Notion AI summary
 
-AMAZON LINK FORMAT EXAMPLES:
-- "The Most Important Thing" by Howard Marks → https://www.amazon.com/dp/023118148X
-- "Freakonomics" by Steven Levitt → https://www.amazon.com/Freakonomics-Economics-Unexpected-Truths-About/dp/0060731338
+EXAMPLE LINKS:
+- Open Library: https://openlibrary.org/search?q=Freakonomics+Steven+Levitt
+- Goodreads: https://www.goodreads.com/search?q=Freakonomics
+- Bookshop.org: https://bookshop.org/search?q=Freakonomics
+- Amazon: https://www.amazon.com/Freakonomics-Economics-Unexpected-Truths-About/dp/0060731338
 
 Respond only with the JSON object, no additional text.`;
     }

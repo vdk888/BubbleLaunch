@@ -186,19 +186,28 @@ class ReferencesComponent {
 
     getBestAvailableLink(reference) {
         // Prioritize legal purchase/access links from LLM enrichment
+        // NEVER return Google Drive URLs - only shop and public access links
         if (reference.legalLinks) {
-            // For books: prioritize legitimate purchase/access links
+            // For books: prioritize legitimate purchase/access links in order
             if (reference.sourceType === 'Book') {
+                // Priority 1: Direct purchase links
                 if (reference.legalLinks.amazon) return reference.legalLinks.amazon;
-                if (reference.legalLinks.google_books) return reference.legalLinks.google_books;
                 if (reference.legalLinks.publisher) return reference.legalLinks.publisher;
+                if (reference.legalLinks.bookshop) return reference.legalLinks.bookshop;
+
+                // Priority 2: Free/preview links
+                if (reference.legalLinks.open_library) return reference.legalLinks.open_library;
+                if (reference.legalLinks.google_books) return reference.legalLinks.google_books;
+
+                // Priority 3: Information links
+                if (reference.legalLinks.goodreads) return reference.legalLinks.goodreads;
                 if (reference.legalLinks.worldcat) return reference.legalLinks.worldcat;
             }
 
-            // For articles: prioritize DOI, then journal, then publisher
+            // For articles: prioritize actual article links
             if (reference.sourceType === 'Article') {
-                if (reference.legalLinks.doi_link) return reference.legalLinks.doi_link;
                 if (reference.legalLinks.journal) return reference.legalLinks.journal;
+                if (reference.legalLinks.doi_link) return reference.legalLinks.doi_link;
                 if (reference.legalLinks.publisher) return reference.legalLinks.publisher;
                 if (reference.legalLinks.author_page) return reference.legalLinks.author_page;
             }
@@ -207,13 +216,9 @@ class ReferencesComponent {
             if (reference.sourceType === 'Video') {
                 return reference.url || null;
             }
-
-            // For other types: check for generic search fallback
-            if (reference.legalLinks.amazon) return reference.legalLinks.amazon;
         }
 
-        // Fallback to original URL only if no enriched links available
-        // NOTE: Avoid using Google Drive URLs as fallback if possible - they indicate missing enrichment
+        // Fallback to original URL ONLY if it's not a Google Drive link
         if (reference.url && !reference.url.includes('drive.google.com')) {
             return reference.url;
         }
