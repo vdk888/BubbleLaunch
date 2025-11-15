@@ -103,7 +103,8 @@
               </div>
             </div>
             <a href="/blog" data-translate="nav.blog">Blog</a>
-            <a href="/businesses" data-translate="nav.businesses">Entreprises</a>
+            <a href="/investors" data-translate="nav.investors">Investisseurs</a>
+            <a href="/professionals" data-translate="nav.professionals">Professionnels</a>
             <a href="#waitlist" data-translate="nav.join">Nous rejoindre</a>
             <div class="language-switcher">
               <button id="en-switch">EN</button>
@@ -132,7 +133,8 @@
               </div>
             </div>
             <a href="/blog" data-translate="nav.blog">Blog</a>
-            <a href="/businesses" data-translate="nav.businesses">Entreprises</a>
+            <a href="/investors" data-translate="nav.investors">Investisseurs</a>
+            <a href="/professionals" data-translate="nav.professionals">Professionnels</a>
             <a href="#waitlist" data-translate="nav.join">Nous rejoindre</a>
           </nav>
         </div>
@@ -158,9 +160,68 @@
           pour nous-mêmes : transparent, automatique, et accessible.
         </p>
 
-        <a href="#waitlist" class="cta-button" data-translate="hero.cta"
-          >Nous rejoindre</a
-        >
+        <!-- Hero Chat Input -->
+        <form class="hero-chat-form" id="hero-chat-form">
+          <input
+            type="text"
+            class="hero-chat-input"
+            placeholder="Qu'est-ce que tu aimerais savoir sur Bubble ?"
+            data-translate-placeholder="chat.placeholder"
+            aria-label="Posez votre question"
+            autocomplete="off"
+          />
+          <button type="submit" class="hero-chat-submit" aria-label="Envoyer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M12 21V4" stroke-linecap="round" />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Dual-Path Selector Section -->
+    <section class="dual-path-selector fade-in">
+      <div class="container">
+        <div class="dual-path-cards">
+          <!-- Retail Investors Card -->
+          <div class="dual-path-card retail-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+            </div>
+            <h3 class="card-title" data-translate="dualPath.retail.mainTitle">Outil d'Investissement Intelligent</h3>
+            <p class="card-description" data-translate="dualPath.retail.description">Décisions transparentes, automatisation intelligente, frais justes.</p>
+            <ul class="card-features">
+              <li data-translate="dualPath.retail.feature1">Agent IA conversationnel</li>
+              <li data-translate="dualPath.retail.feature2">Screening, backtesting, exécution</li>
+              <li data-translate="dualPath.retail.feature3">0-10€/mois au lieu de 2% de frais</li>
+            </ul>
+            <button class="cta-button retail-demo-btn" data-translate="dualPath.retail.cta">Commencer</button>
+          </div>
+
+          <!-- Professional Card -->
+          <div class="dual-path-card professional-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+            </div>
+            <h3 class="card-title" data-translate="dualPath.professional.mainTitle">Solutions pour Entreprises</h3>
+            <p class="card-description" data-translate="dualPath.professional.description">Automatisation IA pour le secteur financier. API, intégration, compliance.</p>
+            <ul class="card-features">
+              <li data-translate="dualPath.professional.feature1">Agents IA personnalisés</li>
+              <li data-translate="dualPath.professional.feature2">Intégration API simple</li>
+              <li data-translate="dualPath.professional.feature3">€3k-€30k par projet</li>
+            </ul>
+            <a href="/professionals" class="cta-button professional-btn gray-btn" data-translate="dualPath.professional.cta">En savoir plus</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -725,6 +786,8 @@
     <script src="js/script.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/charts.js"></script>
+    <script src="js/dual-path-selector.js"></script>
+    <script src="js/hero-chat-animation.js"></script>
 
     <!-- Unified Chat Side Panel -->
     <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">

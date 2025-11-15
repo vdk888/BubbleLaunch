@@ -4,6 +4,9 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  const workflowTranslations =
+    (typeof window !== "undefined" && window.translations) ||
+    (typeof translations !== "undefined" ? translations : {});
   const DEMO_SHOWN_KEY = 'bubble_workflow_demo_shown';
   const overlay = document.getElementById('workflow-demo-overlay');
   const closeBtn = document.getElementById('workflow-demo-close');
@@ -147,10 +150,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const header = document.createElement('div');
     header.className = 'workflow-demo-enriched-header';
-    header.textContent = translations['workflow.message2.bot.research'][currentLanguage];
+    header.textContent = workflowTranslations['workflow.message2.bot.research'][currentLanguage];
     container.appendChild(header);
 
-    const stocks = translations['workflow.message2.bot.stocks'];
+    const stocks = workflowTranslations['workflow.message2.bot.stocks'];
     const list = document.createElement('div');
     list.className = 'workflow-demo-research-list';
 
@@ -172,14 +175,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const header = document.createElement('div');
     header.className = 'workflow-demo-enriched-header';
-    header.textContent = translations['workflow.message4.bot.header'][currentLanguage];
+    header.textContent = workflowTranslations['workflow.message4.bot.header'][currentLanguage];
     card.appendChild(header);
 
     const strategy = document.createElement('div');
     strategy.style.fontWeight = '600';
     strategy.style.color = '#667eea';
     strategy.style.marginTop = '0.8rem';
-    strategy.textContent = translations['workflow.message4.bot.strategy'][currentLanguage];
+    strategy.textContent = workflowTranslations['workflow.message4.bot.strategy'][currentLanguage];
     card.appendChild(strategy);
 
     const details = document.createElement('div');
@@ -187,17 +190,17 @@ document.addEventListener('DOMContentLoaded', () => {
     details.style.color = '#444444';
     details.style.marginTop = '0.6rem';
     details.style.lineHeight = '1.6';
-    details.textContent = translations['workflow.message4.bot.details'][currentLanguage];
+    details.textContent = workflowTranslations['workflow.message4.bot.details'][currentLanguage];
     card.appendChild(details);
 
     const metricsHeader = document.createElement('div');
     metricsHeader.style.fontWeight = '600';
     metricsHeader.style.color = '#333333';
     metricsHeader.style.marginTop = '1rem';
-    metricsHeader.textContent = translations['workflow.message4.bot.metrics_header'][currentLanguage];
+    metricsHeader.textContent = workflowTranslations['workflow.message4.bot.metrics_header'][currentLanguage];
     card.appendChild(metricsHeader);
 
-    const metricsData = translations['workflow.message4.bot.metrics'];
+    const metricsData = workflowTranslations['workflow.message4.bot.metrics'];
     const table = document.createElement('table');
     table.className = 'workflow-demo-metrics-table';
 
@@ -242,10 +245,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const header = document.createElement('div');
     header.className = 'workflow-demo-enriched-header';
-    header.innerHTML = '✓ ' + translations['workflow.message6.bot.summary_header'][currentLanguage];
+    header.innerHTML = '✓ ' + workflowTranslations['workflow.message6.bot.summary_header'][currentLanguage];
     card.appendChild(header);
 
-    const summary = translations['workflow.message6.bot.summary'];
+    const summary = workflowTranslations['workflow.message6.bot.summary'];
     const items = [
       { label: summary.name[currentLanguage], value: summary.name_value[currentLanguage] },
       { label: summary.allocation[currentLanguage], value: summary.allocation_value },
@@ -283,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const header = document.createElement('div');
     header.className = 'workflow-demo-enriched-header';
-    header.textContent = translations['workflow.message9.bot.portfolio_header'][currentLanguage];
+    header.textContent = workflowTranslations['workflow.message9.bot.portfolio_header'][currentLanguage];
     card.appendChild(header);
 
     const allocHeader = document.createElement('div');
@@ -292,13 +295,13 @@ document.addEventListener('DOMContentLoaded', () => {
     allocHeader.style.color = '#333333';
     allocHeader.style.marginTop = '0.8rem';
     allocHeader.style.marginBottom = '0.8rem';
-    allocHeader.textContent = translations['workflow.message9.bot.allocations'][currentLanguage];
+    allocHeader.textContent = workflowTranslations['workflow.message9.bot.allocations'][currentLanguage];
     card.appendChild(allocHeader);
 
     const chartContainer = document.createElement('div');
     chartContainer.className = 'workflow-demo-bar-chart';
 
-    const portfolioData = translations['workflow.message9.bot.portfolio_items'];
+    const portfolioData = workflowTranslations['workflow.message9.bot.portfolio_items'];
 
     portfolioData.forEach((item, index) => {
       const barItem = document.createElement('div');
@@ -312,7 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (item.new) {
         const badge = document.createElement('span');
         badge.className = 'portfolio-bar-new-badge';
-        badge.textContent = translations['workflow.message9.bot.new_pocket'][currentLanguage];
+        badge.textContent = workflowTranslations['workflow.message9.bot.new_pocket'][currentLanguage];
         label.appendChild(badge);
       }
 
@@ -354,14 +357,14 @@ document.addEventListener('DOMContentLoaded', () => {
     messagesContainer.innerHTML = '';
 
     // Message 1: User
-    const msg1Text = translations['workflow.message1.user'][currentLanguage];
+    const msg1Text = workflowTranslations['workflow.message1.user'][currentLanguage];
     await typeInInputAndSend(msg1Text);
     const { bubble: bubble1 } = addMessage(msg1Text, true);
     bubble1.textContent = msg1Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 2: Bot with research (all in one bubble)
-    const msg2IntroText = translations['workflow.message2.bot.intro'][currentLanguage];
+    const msg2IntroText = workflowTranslations['workflow.message2.bot.intro'][currentLanguage];
     const { messageDiv: msg2Div, bubble: msg2Bubble } = addMessage('', false);
 
     const typingIndicator = createTypingIndicator();
@@ -379,7 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add closing text
     msg2Bubble.appendChild(document.createElement('br'));
-    const msg2ClosingText = translations['workflow.message2.bot.closing'][currentLanguage];
+    const msg2ClosingText = workflowTranslations['workflow.message2.bot.closing'][currentLanguage];
     const closingSpan = document.createElement('span');
     closingSpan.style.color = '#444444';
     closingSpan.textContent = msg2ClosingText;
@@ -389,14 +392,14 @@ document.addEventListener('DOMContentLoaded', () => {
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 3: User
-    const msg3Text = translations['workflow.message3.user'][currentLanguage];
+    const msg3Text = workflowTranslations['workflow.message3.user'][currentLanguage];
     await typeInInputAndSend(msg3Text);
     const { bubble: bubble3 } = addMessage(msg3Text, true);
     bubble3.textContent = msg3Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 4: Bot with backtest (all in one bubble)
-    const msg4IntroText = translations['workflow.message4.bot.intro'][currentLanguage];
+    const msg4IntroText = workflowTranslations['workflow.message4.bot.intro'][currentLanguage];
     const { messageDiv: msg4Div, bubble: msg4Bubble } = addMessage('', false);
 
     const typingIndicator2 = createTypingIndicator();
@@ -413,7 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add conclusion text
     msg4Bubble.appendChild(document.createElement('br'));
-    const msg4ConclusionText = translations['workflow.message4.bot.conclusion'][currentLanguage];
+    const msg4ConclusionText = workflowTranslations['workflow.message4.bot.conclusion'][currentLanguage];
     const conclusionSpan = document.createElement('span');
     conclusionSpan.style.color = '#444444';
     conclusionSpan.textContent = msg4ConclusionText;
@@ -423,14 +426,14 @@ document.addEventListener('DOMContentLoaded', () => {
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 5: User
-    const msg5Text = translations['workflow.message5.user'][currentLanguage];
+    const msg5Text = workflowTranslations['workflow.message5.user'][currentLanguage];
     await typeInInputAndSend(msg5Text);
     const { bubble: bubble5 } = addMessage(msg5Text, true);
     bubble5.textContent = msg5Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 6: Bot with summary (all in one bubble)
-    const msg6ConfirmText = translations['workflow.message6.bot.confirmation'][currentLanguage];
+    const msg6ConfirmText = workflowTranslations['workflow.message6.bot.confirmation'][currentLanguage];
     const { messageDiv: msg6Div, bubble: msg6Bubble } = addMessage('', false);
 
     const typingIndicator3 = createTypingIndicator();
@@ -447,7 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add closing text
     msg6Bubble.appendChild(document.createElement('br'));
-    const msg6ClosingText = translations['workflow.message6.bot.closing'][currentLanguage];
+    const msg6ClosingText = workflowTranslations['workflow.message6.bot.closing'][currentLanguage];
     const msg6ClosingSpan = document.createElement('span');
     msg6ClosingSpan.style.color = '#444444';
     msg6ClosingSpan.textContent = msg6ClosingText;
@@ -457,19 +460,19 @@ document.addEventListener('DOMContentLoaded', () => {
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 7: System message (Time transition)
-    const timeTransition = translations['workflow.message7.system'][currentLanguage];
+    const timeTransition = workflowTranslations['workflow.message7.system'][currentLanguage];
     addSystemMessage(timeTransition);
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 8: User
-    const msg8Text = translations['workflow.message8.user'][currentLanguage];
+    const msg8Text = workflowTranslations['workflow.message8.user'][currentLanguage];
     await typeInInputAndSend(msg8Text);
     const { bubble: bubble8 } = addMessage(msg8Text, true);
     bubble8.textContent = msg8Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 9: Bubble with portfolio bar chart (all in one bubble)
-    const msg9CelebrationText = translations['workflow.message9.bot.celebration'][currentLanguage];
+    const msg9CelebrationText = workflowTranslations['workflow.message9.bot.celebration'][currentLanguage];
     const { messageDiv: msg9Div, bubble: msg9Bubble } = addMessage('', false);
 
     const typingIndicator4 = createTypingIndicator();
@@ -486,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add closing text
     msg9Bubble.appendChild(document.createElement('br'));
-    const msg9ClosingText = translations['workflow.message9.bot.closing'][currentLanguage];
+    const msg9ClosingText = workflowTranslations['workflow.message9.bot.closing'][currentLanguage];
     const msg9ClosingSpan = document.createElement('span');
     msg9ClosingSpan.style.color = '#444444';
     msg9ClosingSpan.textContent = msg9ClosingText;
@@ -496,14 +499,14 @@ document.addEventListener('DOMContentLoaded', () => {
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 10: User thanks
-    const msg10Text = translations['workflow.message10.user'][currentLanguage];
+    const msg10Text = workflowTranslations['workflow.message10.user'][currentLanguage];
     await typeInInputAndSend(msg10Text);
     const { bubble: bubble10 } = addMessage(msg10Text, true);
     bubble10.textContent = msg10Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 11: Bubble closing
-    const msg11Text = translations['workflow.message11.bot'][currentLanguage];
+    const msg11Text = workflowTranslations['workflow.message11.bot'][currentLanguage];
     const { messageDiv: msg11Div } = addMessage('', false);
     const msg11Bubble = msg11Div.querySelector('.workflow-demo-message-bubble');
 

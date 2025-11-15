@@ -375,4 +375,112 @@ router.get("/en/businesses", (req, res) => {
   res.sendFile(path.join(enPagesDir, "businesses.html"));
 });
 
+/**
+ * ============================================
+ * INVESTOR PAGES (French)
+ * ============================================
+ */
+router.get("/investors", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "investors/index.html"));
+});
+
+router.get("/investors/solution", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "investors/solution.html"));
+});
+
+router.get("/investors/pricing", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "investors/pricing.html"));
+});
+
+router.get("/investors/join-us", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "investors/join-us.html"));
+});
+
+router.get("/investors/portfolio-simulator", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "investors/portfolio-simulator.html"));
+});
+
+/**
+ * ============================================
+ * INVESTOR PAGES (English)
+ * ============================================
+ */
+router.get("/en/investors", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "investors/index.html"));
+});
+
+router.get("/en/investors/solution", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "investors/solution.html"));
+});
+
+router.get("/en/investors/pricing", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "investors/pricing.html"));
+});
+
+router.get("/en/investors/join-us", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "investors/join-us.html"));
+});
+
+router.get("/en/investors/portfolio-simulator", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "investors/portfolio-simulator.html"));
+});
+
+/**
+ * ============================================
+ * PROFESSIONAL PAGES (French)
+ * ============================================
+ */
+router.get("/professionals", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "professionals/index.html"));
+});
+
+router.get("/professionals/solutions-companies", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "professionals/solutions-companies.html"));
+});
+
+router.get("/professionals/solutions-wealth-managers", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "professionals/solutions-wealth-managers.html"));
+});
+
+router.get("/professionals/demo", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "professionals/demo.html"));
+});
+
+router.get("/professionals/faq", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "professionals/faq.html"));
+});
+
+router.get("/professionals/contact", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "professionals/contact.html"));
+});
+
+/**
+ * ============================================
+ * PROFESSIONAL PAGES (English)
+ * ============================================
+ */
+router.get("/en/professionals", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "professionals/index.html"));
+});
+
+router.get("/en/professionals/solutions-companies", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "professionals/solutions-companies.html"));
+});
+
+router.get("/en/professionals/solutions-wealth-managers", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "professionals/solutions-wealth-managers.html"));
+});
+
+router.get("/en/professionals/demo", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "professionals/demo.html"));
+});
+
+router.get("/en/professionals/faq", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "professionals/faq.html"));
+});
+
+router.get("/en/professionals/contact", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "professionals/contact.html"));
+});
+
 module.exports = router;

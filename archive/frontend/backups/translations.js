@@ -171,8 +171,8 @@ const translations = {
 
   // Footer
   'footer.copyright': {
-    en: ' 2024 Bubble. All rights reserved.',
-    fr: ' 2024 Bubble. Tous droits réservés.',
+    en: ' 2025 Bubble Invest SAS. All rights reserved.',
+    fr: ' 2025 Bubble Invest SAS. Tous droits réservés.',
   },
   'footer.tagline': {
     en: 'Transparent by Design.',

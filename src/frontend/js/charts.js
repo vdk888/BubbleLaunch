@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const getTranslations = () =>
+    (typeof window !== "undefined" && window.translations) ||
+    (typeof translations !== "undefined" ? translations : {});
   const sliderWrapper = document.querySelector(".charts-slider-wrapper");
   const slider = document.querySelector(".charts-slider");
   const slides = document.querySelectorAll(".chart-slide");
@@ -128,11 +131,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const showStaticInsights = () => {
     const insightItems = document.querySelectorAll(".insight-item");
     const lang = document.documentElement.lang || "en";
+    const translationsData = getTranslations();
     
     insightItems.forEach((item) => {
       const key = item.getAttribute("data-translate");
-      if (key && translations[key] && translations[key][lang]) {
-        const text = translations[key][lang];
+      if (key && translationsData[key] && translationsData[key][lang]) {
+        const text = translationsData[key][lang];
         item.innerHTML = text;
         item.classList.remove("animating"); // Ensure item is visible
       }
@@ -145,6 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const insightItems = document.querySelectorAll(".insight-item");
     const lang = document.documentElement.lang || "en";
+    const translationsData = getTranslations();
 
     // Initially hide all items for animation using CSS class
     insightItems.forEach((item) => {
@@ -156,7 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (i < insightItems.length) {
         const item = insightItems[i];
         const key = item.getAttribute("data-translate");
-        const text = translations[key][lang];
+        const text =
+          (translationsData[key] && translationsData[key][lang]) || "";
         console.log(`Typing insight: Key=${key}, Lang=${lang}, Text="${text}"`);
 
         // Clear only the current item's content and make it visible

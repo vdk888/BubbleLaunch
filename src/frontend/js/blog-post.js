@@ -1,4 +1,7 @@
 // Individual Blog Post functionality
+const blogPostTranslations =
+    (typeof window !== "undefined" && window.translations) ||
+    (typeof translations !== "undefined" ? translations : {});
 let currentLanguage = 'fr'; // Default to French
 let currentPost = null; // Store current post for language switching
 
@@ -43,8 +46,8 @@ function updateStaticTranslations() {
     // Update all elements with data-translate attributes
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
-        if (translations[key] && translations[key][currentLanguage]) {
-            element.textContent = translations[key][currentLanguage];
+        if (blogPostTranslations[key] && blogPostTranslations[key][currentLanguage]) {
+            element.textContent = blogPostTranslations[key][currentLanguage];
         }
     });
 }
@@ -327,4 +330,3 @@ function showError(message = 'Article introuvable') {
         document.querySelector('.error-state p').textContent = loadErrorMessage;
     }
 }
-

@@ -191,7 +191,7 @@ const translations = {
       "Why is AI a game-changer for investment?",
       "Break down alpha vs beta vs factors...",
       "How do you cut fees?",
-      "Compare Sharpe, Sortino, drawdown...",
+      "Explain Sharpe ratio, Sortino ratio, drawdown...",
       "What is volatility, put simply?",
       "How to compare two funds?",
       "Make a stress test for rates, inflation, spreads...",
@@ -211,7 +211,7 @@ const translations = {
       "Pourquoi l'IA change la donne pour les investissements ?",
       "Décompose alpha, bêta, facteurs...",
       "Comment réduisez-vous les frais ?",
-      "Compare Sharpe, Sortino, drawdown...",
+      "Explique ce qu'est le Sharpe ratio, le Sortino ratio, le drawdown...",
       "C'est quoi la volatilité, simplement ?",
       "Comment comparer deux fonds ?",
       "Fais moi un stress test: taux, inflation, spreads...",
@@ -220,7 +220,7 @@ const translations = {
       "Comment créer un premier portefeuille ?",
       "Attribution par secteur, région, facteurs...",
       "Pourquoi rééquilibrer mon portefeuille et à quelle fréquence ?",
-      "Optimise mon portefeuille avec contraintes et fiscalité...",
+      "Optimise mon portefeuille avec mes contraintes et la fiscalité...",
       "Quel frais subsistent vraiment ?",
       "Explique moi la liquidité, le slippage, les coûts d'exécution...",
       "Comment lire une fiche produit ?",
@@ -1942,6 +1942,94 @@ const translations = {
     fr: "Avec plaisir ! Je suis là pour vous accompagner dans vos décisions d'investissement."
   },
 
+  // Dual-Path Selector Section
+  "dualPath.retail.mainTitle": {
+    en: "Intelligent Investment Tool",
+    fr: "Outil d'Investissement Intelligent"
+  },
+  "dualPath.retail.description": {
+    en: "Transparent decisions, intelligent automation, fair fees.",
+    fr: "Décisions transparentes, automatisation intelligente, frais justes."
+  },
+  "dualPath.retail.feature1": {
+    en: "Conversational AI agent",
+    fr: "Agent IA conversationnel"
+  },
+  "dualPath.retail.feature2": {
+    en: "Screening, backtesting, execution",
+    fr: "Screening, backtesting, exécution"
+  },
+  "dualPath.retail.feature3": {
+    en: "€0-10/month instead of 2% fees",
+    fr: "0-10€/mois au lieu de 2% de frais"
+  },
+  "dualPath.retail.cta": {
+    en: "Get Started",
+    fr: "Commencer"
+  },
+  "dualPath.professional.mainTitle": {
+    en: "Enterprise Solutions",
+    fr: "Solutions pour Entreprises"
+  },
+  "dualPath.professional.description": {
+    en: "AI automation for financial sector. API, integration, compliance.",
+    fr: "Automatisation IA pour le secteur financier. API, intégration, compliance."
+  },
+  "dualPath.professional.feature1": {
+    en: "Custom AI agents",
+    fr: "Agents IA personnalisés"
+  },
+  "dualPath.professional.feature2": {
+    en: "Simple API integration",
+    fr: "Intégration API simple"
+  },
+  "dualPath.professional.feature3": {
+    en: "€3k-€30k per project",
+    fr: "€3k-€30k par projet"
+  },
+  "dualPath.professional.cta": {
+    en: "Learn More",
+    fr: "En savoir plus"
+  },
+
+  // Knowledge Overlay Section
+  "knowledgeOverlay.question": {
+    en: "What's your investment experience level?",
+    fr: "Quel est votre niveau d'expérience en investissement?"
+  },
+  "knowledgeOverlay.subtitle": {
+    en: "Choose the experience that matches you.",
+    fr: "Choisissez l'expérience qui vous convient."
+  },
+  "knowledgeOverlay.beginner": {
+    en: "Beginner",
+    fr: "Débutant"
+  },
+  "knowledgeOverlay.beginnerDesc": {
+    en: "I'm new to investing",
+    fr: "Je suis nouveau en investissement"
+  },
+  "knowledgeOverlay.intermediate": {
+    en: "Intermediate",
+    fr: "Intermédiaire"
+  },
+  "knowledgeOverlay.intermediateDesc": {
+    en: "I have some experience",
+    fr: "J'ai de l'expérience"
+  },
+  "knowledgeOverlay.expert": {
+    en: "Expert",
+    fr: "Expert"
+  },
+  "knowledgeOverlay.expertDesc": {
+    en: "I've been investing for years",
+    fr: "J'investis depuis longtemps"
+  },
+  "knowledgeOverlay.fallback": {
+    en: "Not sure? Show me an example",
+    fr: "Pas sûr? Montrez-moi un exemple"
+  },
+
   // Simulator Notice
   "simulator.notice": {
     en: "<strong>Educational Tool</strong>: This simulator demonstrates strategy concepts over 20 years of data. For the full Bubble AI agent experience (stock screening, custom backtesting, automated execution), <a href=\"/pricing\">see the interactive demo</a>.",
@@ -1952,6 +2040,1089 @@ const translations = {
   "demo.subtitle": {
     en: "This interactive demo shows how you'll use Bubble: feel free to try several scenarios!",
     fr: "Cette démo interactive montre comment vous utiliserez Bubble : n'hésitez pas à essayez plusieurs scénarios !"
+  },
+
+  // ===================================
+  // INVESTOR PAGES TRANSLATIONS
+  // ===================================
+
+  // Navigation - Investors Section
+  "nav.home": {
+    en: "Home",
+    fr: "Accueil"
+  },
+  "nav.investors": {
+    en: "Investors",
+    fr: "Investisseurs"
+  },
+  "nav.professionals": {
+    en: "Professionals",
+    fr: "Professionnels"
+  },
+
+  // Investors - Hero Section
+  "investors.hero.title": {
+    en: "AI for Your Investments",
+    fr: "L'IA pour Vos Investissements"
+  },
+  "investors.hero.subtitle": {
+    en: "Bubble helps you screen stocks, backtest strategies, and execute trades automatically—all through an intuitive AI agent.",
+    fr: "Bubble vous aide à screener les actions, tester les stratégies et exécuter les transactions automatiquement—le tout via un agent IA intuitif."
+  },
+
+  // Investors - Vision Section
+  "investors.vision.title": {
+    en: "Why Bubble for Investors",
+    fr: "Pourquoi Bubble pour les Investisseurs"
+  },
+  "investors.vision.screening": {
+    en: "Smart Stock Screening",
+    fr: "Screening d'Actions Intelligent"
+  },
+  "investors.vision.screening.desc": {
+    en: "Ask your AI agent to find stocks matching your criteria. Real-time data, no manual searching.",
+    fr: "Demandez à votre agent IA de trouver les actions correspondant à vos critères. Données en temps réel, pas de recherche manuelle."
+  },
+  "investors.vision.backtest": {
+    en: "20-Year Backtesting",
+    fr: "Backtesting sur 20 Ans"
+  },
+  "investors.vision.backtest.desc": {
+    en: "Test your strategies on 20 years of historical data. See how they would have performed.",
+    fr: "Testez vos stratégies sur 20 ans de données historiques. Voyez comment elles auraient performé."
+  },
+  "investors.vision.automation": {
+    en: "Automated Execution",
+    fr: "Exécution Automatisée"
+  },
+  "investors.vision.automation.desc": {
+    en: "Once you approve a strategy, Bubble executes trades automatically with your broker.",
+    fr: "Une fois que vous approuvez une stratégie, Bubble exécute les transactions automatiquement avec votre courtier."
+  },
+  "investors.vision.control": {
+    en: "Complete Control",
+    fr: "Contrôle Complet"
+  },
+  "investors.vision.control.desc": {
+    en: "Your money stays in your brokerage account. You maintain 100% control—Bubble is your tool, not your manager.",
+    fr: "Votre argent reste sur votre compte courtier. Vous conservez 100% du contrôle—Bubble est votre outil, pas votre gestionnaire."
+  },
+  "investors.vision.pricing": {
+    en: "Fixed Monthly Fee",
+    fr: "Frais Mensuels Fixes"
+  },
+  "investors.vision.pricing.desc": {
+    en: "€0-10/month depending on your plan. No percentage-based AUM fees. Transparent pricing.",
+    fr: "0-10€/mois selon votre forfait. Pas de frais basés sur le pourcentage du portefeuille. Prix transparent."
+  },
+  "investors.vision.transparency": {
+    en: "Complete Transparency",
+    fr: "Transparence Complète"
+  },
+  "investors.vision.transparency.desc": {
+    en: "Every strategy is explained, every calculation is visible. Understand exactly what you're buying.",
+    fr: "Chaque stratégie est expliquée, chaque calcul est visible. Comprenez exactement ce que vous achetez."
+  },
+
+  // Investors - Solution Page
+  "investors.solution.title": {
+    en: "How Bubble Works",
+    fr: "Comment Fonctionne Bubble"
+  },
+  "investors.solution.subtitle": {
+    en: "Four simple steps to automate your portfolio.",
+    fr: "Quatre étapes simples pour automatiser votre portefeuille."
+  },
+  "investors.solution.step1.title": {
+    en: "1. Describe Your Vision",
+    fr: "1. Décrivez Votre Vision"
+  },
+  "investors.solution.step1.desc": {
+    en: "Talk to your AI agent in natural language. Tell it your investment goals, risk preferences, and time horizon.",
+    fr: "Parlez à votre agent IA en langage naturel. Dites-lui vos objectifs d'investissement, vos préférences de risque et votre horizon d'investissement."
+  },
+  "investors.solution.step2.title": {
+    en: "2. Screen & Backtest",
+    fr: "2. Screener et Backtest"
+  },
+  "investors.solution.step2.desc": {
+    en: "The agent screens the universe of available stocks and tests strategies on 20 years of historical data.",
+    fr: "L'agent screene l'univers des actions disponibles et teste les stratégies sur 20 ans de données historiques."
+  },
+  "investors.solution.step3.title": {
+    en: "3. Review & Approve",
+    fr: "3. Examiner et Approuver"
+  },
+  "investors.solution.step3.desc": {
+    en: "See the proposed portfolio with backtested results. Every calculation explained. Approve or refine.",
+    fr: "Voyez le portefeuille proposé avec les résultats backtestés. Chaque calcul expliqué. Approuvez ou affinez."
+  },
+  "investors.solution.step4.title": {
+    en: "4. Automate Execution",
+    fr: "4. Automatiser l'Exécution"
+  },
+  "investors.solution.step4.desc": {
+    en: "Bubble connects to your broker and executes trades automatically. Your account, your data, your control.",
+    fr: "Bubble se connecte à votre courtier et exécute les transactions automatiquement. Votre compte, vos données, votre contrôle."
+  },
+
+  // Investors - Features
+  "investors.features.title": {
+    en: "What's Included",
+    fr: "Ce Qui Est Inclus"
+  },
+  "investors.features.screening.title": {
+    en: "Stock Screening",
+    fr: "Screening d'Actions"
+  },
+  "investors.features.screening.desc": {
+    en: "Filter thousands of stocks by fundamentals, technicals, and custom criteria.",
+    fr: "Filtrez des milliers d'actions par fondamentaux, technicals et critères personnalisés."
+  },
+  "investors.features.backtest.title": {
+    en: "Strategy Backtesting",
+    fr: "Backtesting de Stratégies"
+  },
+  "investors.features.backtest.desc": {
+    en: "Test any strategy on 20 years of historical data with detailed performance metrics.",
+    fr: "Testez n'importe quelle stratégie sur 20 ans de données historiques avec des métriques de performance détaillées."
+  },
+  "investors.features.allocation.title": {
+    en: "Portfolio Allocation",
+    fr: "Allocation de Portefeuille"
+  },
+  "investors.features.allocation.desc": {
+    en: "Optimize your asset allocation based on risk and return objectives.",
+    fr: "Optimisez votre allocation d'actifs en fonction de vos objectifs de risque et de rendement."
+  },
+  "investors.features.rebalancing.title": {
+    en: "Automatic Rebalancing",
+    fr: "Rééquilibrage Automatique"
+  },
+  "investors.features.rebalancing.desc": {
+    en: "Bubble keeps your portfolio aligned with your strategy through automated rebalancing.",
+    fr: "Bubble maintient votre portefeuille aligné avec votre stratégie par rééquilibrage automatique."
+  },
+  "investors.features.reporting.title": {
+    en: "Detailed Reporting",
+    fr: "Rapports Détaillés"
+  },
+  "investors.features.reporting.desc": {
+    en: "Track performance, tax impact, and strategy attribution in real-time.",
+    fr: "Suivez la performance, l'impact fiscal et l'attribution de stratégie en temps réel."
+  },
+  "investors.features.brokers.title": {
+    en: "Multi-Broker Support",
+    fr: "Support Multi-Courtier"
+  },
+  "investors.features.brokers.desc": {
+    en: "Works with Interactive Brokers, Alpaca, Saxo Bank, and more.",
+    fr: "Fonctionne avec Interactive Brokers, Alpaca, Saxo Bank et bien d'autres."
+  },
+
+  // Investors - Pricing Page
+  "investors.pricing.title": {
+    en: "Simple and Transparent Plans",
+    fr: "Plans Simples et Transparents"
+  },
+  "investors.pricing.subtitle": {
+    en: "Fixed fees, no AUM charges. Pay only for the compute you use.",
+    fr: "Frais fixes, pas de frais sur encours. Payez uniquement pour le calcul que vous utilisez."
+  },
+  "investors.pricing.starter.name": {
+    en: "Starter",
+    fr: "Starter"
+  },
+  "investors.pricing.starter.description": {
+    en: "Perfect to get started",
+    fr: "Parfait pour commencer"
+  },
+  "investors.pricing.starter.feature1": {
+    en: "Basic screening",
+    fr: "Screening basique"
+  },
+  "investors.pricing.starter.feature2": {
+    en: "1 test portfolio",
+    fr: "1 portefeuille de test"
+  },
+  "investors.pricing.starter.feature3": {
+    en: "5-year backtesting",
+    fr: "Backtesting sur 5 ans"
+  },
+  "investors.pricing.starter.feature4": {
+    en: "Daily data",
+    fr: "Données quotidiennes"
+  },
+  "investors.pricing.starter.cta": {
+    en: "Get Started",
+    fr: "Commencer"
+  },
+  "investors.pricing.pro.name": {
+    en: "Pro",
+    fr: "Pro"
+  },
+  "investors.pricing.popular": {
+    en: "Most Popular",
+    fr: "Le Plus Populaire"
+  },
+  "investors.pricing.pro.description": {
+    en: "For serious investors",
+    fr: "Pour les investisseurs sérieux"
+  },
+  "investors.pricing.pro.feature1": {
+    en: "Advanced screening",
+    fr: "Screening avancé"
+  },
+  "investors.pricing.pro.feature2": {
+    en: "10 portfolios",
+    fr: "10 portefeuilles"
+  },
+  "investors.pricing.pro.feature3": {
+    en: "Full backtesting (20 years)",
+    fr: "Backtesting complet (20 ans)"
+  },
+  "investors.pricing.pro.feature4": {
+    en: "Real-time data",
+    fr: "Données en temps réel"
+  },
+  "investors.pricing.pro.feature5": {
+    en: "Automated execution",
+    fr: "Exécution automatisée"
+  },
+  "investors.pricing.pro.cta": {
+    en: "Choose Pro",
+    fr: "Choisir Pro"
+  },
+  "investors.pricing.institutional.name": {
+    en: "Institutional",
+    fr: "Institutional"
+  },
+  "investors.pricing.institutional.description": {
+    en: "For portfolio managers",
+    fr: "Pour les gestionnaires de portefeuille"
+  },
+  "investors.pricing.institutional.feature1": {
+    en: "Unlimited screening",
+    fr: "Screening illimité"
+  },
+  "investors.pricing.institutional.feature2": {
+    en: "Unlimited portfolios",
+    fr: "Portefeuilles illimités"
+  },
+  "investors.pricing.institutional.feature3": {
+    en: "Priority support",
+    fr: "Support prioritaire"
+  },
+  "investors.pricing.institutional.feature4": {
+    en: "API access",
+    fr: "Accès API"
+  },
+  "investors.pricing.institutional.feature5": {
+    en: "Multi-user",
+    fr: "Multi-utilisateur"
+  },
+  "investors.pricing.institutional.cta": {
+    en: "Contact",
+    fr: "Contacter"
+  },
+
+  // Investors - FAQ
+  "investors.faq.title": {
+    en: "Frequently Asked Questions",
+    fr: "Questions Fréquemment Posées"
+  },
+  "investors.faq.q1.question": {
+    en: "How does Bubble work?",
+    fr: "Comment fonctionne Bubble ?"
+  },
+  "investors.faq.q1.answer": {
+    en: "Bubble is an AI-powered investment tool that helps you screen, backtest, and automatically execute your strategies. You remain in full control of your investment decisions.",
+    fr: "Bubble est un outil d'investissement alimenté par l'IA qui vous aide à screener, tester et exécuter automatiquement vos stratégies. Vous conservez le contrôle total de vos décisions d'investissement."
+  },
+  "investors.faq.q2.question": {
+    en: "Is my data secure?",
+    fr: "Mes données sont-elles sécurisées ?"
+  },
+  "investors.faq.q2.answer": {
+    en: "Yes. Bubble uses institutional-grade encryption and complies with GDPR and financial regulations. Your data is never shared with third parties.",
+    fr: "Oui. Bubble utilise un chiffrement de grade institutionnel et se conforme au RGPD et aux réglementations financières. Vos données ne sont jamais partagées avec des tiers."
+  },
+  "investors.faq.q3.question": {
+    en: "Which broker should I use?",
+    fr: "Quel courtier dois-je utiliser ?"
+  },
+  "investors.faq.q3.answer": {
+    en: "Bubble supports Interactive Brokers (IBKR), Alpaca, and Saxo Bank. You can use any broker with an available API.",
+    fr: "Bubble prend en charge Interactive Brokers (IBKR), Alpaca et Saxo Bank. Vous pouvez utiliser n'importe quel courtier disposant d'une API disponible."
+  },
+  "investors.faq.q4.question": {
+    en: "How does Bubble handle taxes?",
+    fr: "Comment Bubble gère-t-il les taxes ?"
+  },
+  "investors.faq.q4.answer": {
+    en: "Bubble helps you optimize your strategy based on tax considerations, but we recommend consulting a tax expert for your specific situation.",
+    fr: "Bubble vous aide à optimiser votre stratégie en fonction des considérations fiscales, mais nous recommandons de consulter un expert fiscal pour votre situation spécifique."
+  },
+  "investors.faq.q5.question": {
+    en: "Can I test before paying?",
+    fr: "Puis-je tester avant de payer ?"
+  },
+  "investors.faq.q5.answer": {
+    en: "Yes! The Starter plan is free and lets you explore basic screening and backtesting. Upgrade to Pro for advanced features.",
+    fr: "Oui ! Le plan Starter est gratuit et vous permet d'explorer le screening basique et le backtesting. Mettez à niveau vers Pro pour les fonctionnalités avancées."
+  },
+  "investors.faq.q6.question": {
+    en: "How are fees calculated?",
+    fr: "Comment les frais sont-ils calculés ?"
+  },
+  "investors.faq.q6.answer": {
+    en: "Monthly fees cover platform access, market data, and compute engine. No AUM fees—just the cost of compute you use.",
+    fr: "Les frais mensuels couvrent l'accès à la plateforme, les données de marché et le moteur de calcul. Pas de frais sur encours—juste le coût du calcul que vous utilisez."
+  },
+  "investors.faq.q7.question": {
+    en: "Can I cancel my subscription?",
+    fr: "Puis-je annuler mon abonnement ?"
+  },
+  "investors.faq.q7.answer": {
+    en: "Yes. You can cancel anytime with no penalty. No long-term contracts, complete flexibility.",
+    fr: "Oui. Vous pouvez annuler à tout moment sans pénalité. Pas de contrats à long terme, flexibilité complète."
+  },
+  "investors.faq.q8.question": {
+    en: "What's Bubble's historical performance?",
+    fr: "Quelles sont les performances historiques de Bubble ?"
+  },
+  "investors.faq.q8.answer": {
+    en: "Bubble provides detailed backtest data over 20 years of history for different strategies. Check our simulator page for example performances.",
+    fr: "Bubble fournit des données backtestées détaillées sur 20 ans d'historique pour différentes stratégies. Consultez notre page de simulation pour les performances d'exemple."
+  },
+  "investors.faq.q9.question": {
+    en: "Can I use Bubble on mobile?",
+    fr: "Puis-je utiliser Bubble sur mobile ?"
+  },
+  "investors.faq.q9.answer": {
+    en: "Yes. Our responsive web app works on all devices. A native mobile app is in development.",
+    fr: "Oui. Notre application web réactive fonctionne sur tous les appareils. Une application mobile native est en développement."
+  },
+  "investors.faq.q10.question": {
+    en: "How do I contact Bubble?",
+    fr: "Comment contacter Bubble ?"
+  },
+  "investors.faq.q10.answer": {
+    en: "You can reach us via our AI assistant (available on all pages), email, or our contact form.",
+    fr: "Vous pouvez nous contacter via notre assistant IA (disponible sur toutes les pages), par email ou via notre formulaire de contact."
+  },
+  "investors.faq.q11.question": {
+    en: "Does Bubble provide investment advice?",
+    fr: "Bubble fournit-il des conseils en investissement ?"
+  },
+  "investors.faq.q11.answer": {
+    en: "No. Bubble is an educational and analytical tool. We don't provide investment advice. Consult a licensed financial professional for advice.",
+    fr: "Non. Bubble est un outil pédagogique et analytique. Nous ne fournissons pas de conseils en investissement. Consultez un professionnel financier agréé pour des conseils."
+  },
+  "investors.faq.q12.question": {
+    en: "How do I get started?",
+    fr: "Comment commencer ?"
+  },
+  "investors.faq.q12.answer": {
+    en: "Create a free account, explore the Starter plan, and upgrade to Pro when ready. No credit card required to start.",
+    fr: "Créez un compte gratuit, explorez le plan Starter et mettez à niveau vers Pro quand vous êtes prêt. Aucune carte de crédit n'est requise pour commencer."
+  },
+
+  // Investors - Join Us Page
+  "investors.joinus.title": {
+    en: "Join Bubble",
+    fr: "Rejoignez Bubble"
+  },
+  "investors.joinus.subtitle": {
+    en: "Get early access to the AI investment platform and be among the first users.",
+    fr: "Obtenez un accès anticipé à la plateforme d'investissement IA et soyez parmi les premiers utilisateurs."
+  },
+  "investors.joinus.form.title": {
+    en: "Early Access",
+    fr: "Accès Anticipé"
+  },
+  "investors.joinus.form.subtitle": {
+    en: "Join our community of smart investors.",
+    fr: "Rejoignez notre communauté d'investisseurs intelligents."
+  },
+  "investors.joinus.form.name": {
+    en: "Full name",
+    fr: "Nom complet"
+  },
+  "investors.joinus.form.email": {
+    en: "Email address",
+    fr: "Adresse email"
+  },
+  "investors.joinus.form.profile": {
+    en: "Who are you?",
+    fr: "Qui êtes-vous ?"
+  },
+  "investors.joinus.form.profile.placeholder": {
+    en: "Select your profile",
+    fr: "Sélectionnez votre profil"
+  },
+  "investors.joinus.form.profile.investor_beginner": {
+    en: "Beginner investor",
+    fr: "Investisseur débutant"
+  },
+  "investors.joinus.form.profile.investor_experienced": {
+    en: "Experienced investor",
+    fr: "Investisseur expérimenté"
+  },
+  "investors.joinus.form.profile.tech_professional": {
+    en: "Tech professional",
+    fr: "Professionnel tech"
+  },
+  "investors.joinus.form.profile.finance_professional": {
+    en: "Finance professional",
+    fr: "Professionnel finance"
+  },
+  "investors.joinus.form.profile.entrepreneur": {
+    en: "Entrepreneur",
+    fr: "Entrepreneur"
+  },
+  "investors.joinus.form.profile.student": {
+    en: "Student",
+    fr: "Étudiant"
+  },
+  "investors.joinus.form.profile.other": {
+    en: "Other",
+    fr: "Autre"
+  },
+  "investors.joinus.form.comments": {
+    en: "Additional comments (optional)",
+    fr: "Messages supplémentaires (optionnel)"
+  },
+  "investors.joinus.form.button": {
+    en: "Sign Me Up",
+    fr: "M'inscrire"
+  },
+  "investors.joinus.form.disclaimer": {
+    en: "This information helps us personalize your Bubble experience. It's never used to provide investment advice.",
+    fr: "Ces informations nous aident à personnaliser votre expérience Bubble. Elles ne servent jamais à formuler un conseil en investissement."
+  },
+  "investors.joinus.benefits.title": {
+    en: "Early User Benefits",
+    fr: "Avantages pour les Premiers Utilisateurs"
+  },
+  "investors.joinus.benefits.early.title": {
+    en: "Early Access",
+    fr: "Accès Anticipé"
+  },
+  "investors.joinus.benefits.early.description": {
+    en: "Be among the first to use Bubble before public launch.",
+    fr: "Soyez parmi les premiers à utiliser Bubble avant le lancement public."
+  },
+  "investors.joinus.benefits.pricing.title": {
+    en: "Special Pricing",
+    fr: "Prix Spéciaux"
+  },
+  "investors.joinus.benefits.pricing.description": {
+    en: "Enjoy preferential rates for your loyalty as a beta user.",
+    fr: "Bénéficiez de tarifs préférentiels pour votre loyauté en tant que beta user."
+  },
+  "investors.joinus.benefits.support.title": {
+    en: "Dedicated Support",
+    fr: "Support Dédié"
+  },
+  "investors.joinus.benefits.support.description": {
+    en: "Direct access to our team for questions and feedback.",
+    fr: "Accès direct à notre équipe pour les questions et le feedback."
+  },
+  "investors.joinus.benefits.influence.title": {
+    en: "Influence Product",
+    fr: "Influencez le Produit"
+  },
+  "investors.joinus.benefits.influence.description": {
+    en: "Your feedback directly influences future feature development.",
+    fr: "Votre feedback direct influence le développement des futures fonctionnalités."
+  },
+  "investors.pricing.cta.title": {
+    en: "Ready to Get Started?",
+    fr: "Prêt à Commencer ?"
+  },
+  "investors.pricing.cta.subtitle": {
+    en: "Choose your plan and join Bubble investors.",
+    fr: "Choisissez votre plan et rejoignez les investisseurs Bubble."
+  },
+  "investors.pricing.cta.button": {
+    en: "Join Now",
+    fr: "Rejoindre Maintenant"
+  },
+
+  // Investors - Value Section (Alternative names for Vision)
+  "investors.value.screening.title": {
+    en: "Smart Stock Screening",
+    fr: "Screening d'Actions Intelligent"
+  },
+  "investors.value.screening.description": {
+    en: "Ask your AI agent to find stocks matching your criteria. Real-time data, no manual searching.",
+    fr: "Demandez à votre agent IA de trouver les actions correspondant à vos critères. Données en temps réel, pas de recherche manuelle."
+  },
+  "investors.value.backtest.title": {
+    en: "20-Year Backtesting",
+    fr: "Backtesting sur 20 Ans"
+  },
+  "investors.value.backtest.description": {
+    en: "Test your strategies on 20 years of historical data. See how they would have performed.",
+    fr: "Testez vos stratégies sur 20 ans de données historiques. Voyez comment elles auraient performé."
+  },
+  "investors.value.automation.title": {
+    en: "Automated Execution",
+    fr: "Exécution Automatisée"
+  },
+  "investors.value.automation.description": {
+    en: "Once you approve a strategy, Bubble executes trades automatically with your broker.",
+    fr: "Une fois que vous approuvez une stratégie, Bubble exécute les transactions automatiquement avec votre courtier."
+  },
+  "investors.value.control.title": {
+    en: "Complete Control",
+    fr: "Contrôle Complet"
+  },
+  "investors.value.control.description": {
+    en: "Your money stays in your brokerage account. You maintain 100% control—Bubble is your tool, not your manager.",
+    fr: "Votre argent reste sur votre compte courtier. Vous conservez 100% du contrôle—Bubble est votre outil, pas votre gestionnaire."
+  },
+  "investors.value.pricing.title": {
+    en: "Fixed Monthly Fee",
+    fr: "Frais Mensuels Fixes"
+  },
+  "investors.value.pricing.description": {
+    en: "€0-10/month depending on your plan. No percentage-based AUM fees. Transparent pricing.",
+    fr: "0-10€/mois selon votre forfait. Pas de frais basés sur le pourcentage du portefeuille. Prix transparent."
+  },
+
+  // Investors - Solution Features
+  "investors.solution.features.title": {
+    en: "What's Included",
+    fr: "Ce Qui Est Inclus"
+  },
+  "investors.solution.features.screening": {
+    en: "Stock Screening",
+    fr: "Screening d'Actions"
+  },
+  "investors.solution.features.screeningDesc": {
+    en: "Filter thousands of stocks by fundamentals, technicals, and custom criteria.",
+    fr: "Filtrez des milliers d'actions par fondamentaux, technicals et critères personnalisés."
+  },
+  "investors.solution.features.backtest": {
+    en: "Strategy Backtesting",
+    fr: "Backtesting de Stratégies"
+  },
+  "investors.solution.features.backtestDesc": {
+    en: "Test any strategy on 20 years of historical data with detailed performance metrics.",
+    fr: "Testez n'importe quelle stratégie sur 20 ans de données historiques avec des métriques de performance détaillées."
+  },
+  "investors.solution.features.realtime": {
+    en: "Real-Time Data",
+    fr: "Données en Temps Réel"
+  },
+  "investors.solution.features.realtimeDesc": {
+    en: "Access live market data and execute trades immediately.",
+    fr: "Accédez aux données de marché en direct et exécutez les transactions immédiatement."
+  },
+  "investors.solution.features.customizable": {
+    en: "Fully Customizable",
+    fr: "Entièrement Personnalisable"
+  },
+  "investors.solution.features.customizableDesc": {
+    en: "Build your own strategies or choose from pre-configured templates.",
+    fr: "Construisez vos propres stratégies ou choisissez parmi les modèles préconfigurés."
+  },
+  "investors.solution.features.multibroker": {
+    en: "Multi-Broker Support",
+    fr: "Support Multi-Courtier"
+  },
+  "investors.solution.features.multibrokerDesc": {
+    en: "Works with Interactive Brokers, Alpaca, Saxo Bank, and more.",
+    fr: "Fonctionne avec Interactive Brokers, Alpaca, Saxo Bank et bien d'autres."
+  },
+  "investors.solution.features.transparency": {
+    en: "Full Transparency",
+    fr: "Transparence Complète"
+  },
+  "investors.solution.features.transparencyDesc": {
+    en: "Every strategy is explained, every calculation is visible.",
+    fr: "Chaque stratégie est expliquée, chaque calcul est visible."
+  },
+  "investors.solution.features.ai": {
+    en: "AI-Powered",
+    fr: "Alimenté par l'IA"
+  },
+  "investors.solution.features.aiDesc": {
+    en: "Advanced machine learning for smarter investment decisions.",
+    fr: "Apprentissage automatique avancé pour des décisions d'investissement plus intelligentes."
+  },
+  "investors.solution.features.support": {
+    en: "Expert Support",
+    fr: "Support Expert"
+  },
+  "investors.solution.features.supportDesc": {
+    en: "Access to our team of investment specialists.",
+    fr: "Accès à notre équipe de spécialistes en investissement."
+  },
+
+  // Investors - Hero CTA
+  "investors.cta.title": {
+    en: "Ready to Get Started?",
+    fr: "Prêt à Commencer ?"
+  },
+  "investors.cta.subtitle": {
+    en: "Choose your plan and join Bubble investors.",
+    fr: "Choisissez votre plan et rejoignez les investisseurs Bubble."
+  },
+  "investors.cta.explore": {
+    en: "Explore Our Simulator →",
+    fr: "Explorez Notre Simulateur →"
+  },
+  "investors.cta.pricing": {
+    en: "See Our Plans →",
+    fr: "Voir Nos Forfaits →"
+  },
+
+  // Investors - Solution CTA
+  "investors.solution.cta.title": {
+    en: "Ready to Automate?",
+    fr: "Prêt à Automatiser ?"
+  },
+  "investors.solution.cta.subtitle": {
+    en: "Connect with our team to get started.",
+    fr: "Connectez-vous avec notre équipe pour commencer."
+  },
+  "investors.solution.cta.demo": {
+    en: "Try Our Demo →",
+    fr: "Essayez Notre Démo →"
+  },
+  "investors.solution.cta.pricing": {
+    en: "View Pricing →",
+    fr: "Voir les Prix →"
+  },
+
+  // Navigation keys
+  "nav.home": {
+    en: "Home",
+    fr: "Accueil"
+  },
+  "nav.investors": {
+    en: "Investors",
+    fr: "Investisseurs"
+  },
+  "nav.professionals": {
+    en: "Professionals",
+    fr: "Professionnels"
+  },
+
+  // Professionals - Hero
+  "professionals.hero.title": {
+    en: "AI & Automation for Your Business",
+    fr: "IA & Automation pour Votre Entreprise"
+  },
+  "professionals.hero.subtitle": {
+    en: "From automated reporting to ESG management, we transform your fintech operations with AI.",
+    fr: "De l'automation de reporting à la gestion ESG, nous transformons vos opérations fintech avec l'IA."
+  },
+  "professionals.chat.placeholder": {
+    en: "Describe your fintech challenge...",
+    fr: "Décrivez votre défi fintech..."
+  },
+
+  // Professionals - Expertise
+  "professionals.expertise.title": {
+    en: "Our Team",
+    fr: "Notre Équipe"
+  },
+  "professionals.expertise.subtitle": {
+    en: "Ex-Big Four consultants and portfolio managers with 15+ years of fintech experience.",
+    fr: "Anciens consultants Big Four et portefeuille managers avec 15+ ans d'expérience fintech."
+  },
+  "professionals.expertise.deloitte.title": {
+    en: "Ex-Deloitte Consultant",
+    fr: "Ancien Consultant Deloitte"
+  },
+  "professionals.expertise.deloitte.description": {
+    en: "Specialized in fintech transformation and AI/ML for financial services.",
+    fr: "Spécialisé en transformation fintech et AI/ML pour les services financiers."
+  },
+  "professionals.expertise.ubs.title": {
+    en: "Portfolio Manager (UBS)",
+    fr: "Portfolio Manager (UBS)"
+  },
+  "professionals.expertise.ubs.description": {
+    en: "15+ years of portfolio management and quantitative investment strategies.",
+    fr: "15+ ans de gestion de portefeuille et stratégies d'investissement quantitatives."
+  },
+  "professionals.expertise.kpmg.title": {
+    en: "Ex-KPMG Consultant",
+    fr: "Ancien Consultant KPMG"
+  },
+  "professionals.expertise.kpmg.description": {
+    en: "Expert in automated reporting and fintech operations optimization.",
+    fr: "Expert en reporting automatisé et optimisation des opérations fintech."
+  },
+
+  // Professionals - Services
+  "professionals.services.title": {
+    en: "Our Services",
+    fr: "Nos Services"
+  },
+  "professionals.services.subtitle": {
+    en: "Three project categories tailored to your needs.",
+    fr: "Trois catégories de projets adapté à vos besoins."
+  },
+  "professionals.services.diagnostic.title": {
+    en: "Diagnostic",
+    fr: "Diagnostic"
+  },
+  "professionals.services.diagnostic.description": {
+    en: "€3k - €5k | In-depth analysis of your tech stack and automation opportunities.",
+    fr: "€3k - €5k | Analyse approfondie de votre stack technologique et opportunités d'automation."
+  },
+  "professionals.services.diagnostic.item1": {
+    en: "Audit of your fintech processes",
+    fr: "Audit de vos processus fintech"
+  },
+  "professionals.services.diagnostic.item2": {
+    en: "Identify efficiency gains",
+    fr: "Identification des gains d'efficacité"
+  },
+  "professionals.services.diagnostic.item3": {
+    en: "Implementation recommendations",
+    fr: "Recommandations d'implémentation"
+  },
+  "professionals.services.simple.title": {
+    en: "Simple Automation",
+    fr: "Automation Simple"
+  },
+  "professionals.services.simple.description": {
+    en: "€8k - €12k | Targeted projects: automated reporting, ESG monitoring, reconciliation.",
+    fr: "€8k - €12k | Projets ciblés : reporting automatisé, monitoring ESG, réconciliation."
+  },
+  "professionals.services.full.title": {
+    en: "Full Project",
+    fr: "Projet Complet"
+  },
+  "professionals.services.full.description": {
+    en: "€20k - €30k | Transform an entire function with AI and advanced automation.",
+    fr: "€20k - €30k | Transformation d'une fonction entière avec IA et automation avancée."
+  },
+
+  // Professionals - Solutions
+  "professionals.solutions.title": {
+    en: "Our Sectoral Solutions",
+    fr: "Nos Solutions Sectorielles"
+  },
+  "professionals.solutions.subtitle": {
+    en: "Specialized approaches based on your organization type.",
+    fr: "Approches spécialisées selon votre type d'organisation."
+  },
+  "professionals.solutions.companies.title": {
+    en: "For Fintech & Companies",
+    fr: "Pour les Fintech & Entreprises"
+  },
+  "professionals.solutions.companies.description": {
+    en: "Automated reporting, broker API integration, data pipelines.",
+    fr: "Automation des reportings, intégration API brokers, data pipelines."
+  },
+  "professionals.solutions.companies.hero.title": {
+    en: "Solutions for Fintech & Companies",
+    fr: "Solutions pour Fintech & Entreprises"
+  },
+  "professionals.solutions.companies.hero.subtitle": {
+    en: "Automation, reporting, broker API integrations. Transform your fintech operations.",
+    fr: "Automation, reporting, intégration API brokers. Transformez vos opérations fintech."
+  },
+  "professionals.solutions.companies.cta.title": {
+    en: "Ready to Transform Your Operations?",
+    fr: "Prêt à Transformer Vos Opérations ?"
+  },
+  "professionals.solutions.companies.cta.back": {
+    en: "Back",
+    fr: "Retour"
+  },
+
+  // Professionals - Wealth Managers
+  "professionals.solutions.wealth.title": {
+    en: "For Wealth Managers",
+    fr: "Pour les Wealth Managers"
+  },
+  "professionals.solutions.wealth.description": {
+    en: "Multi-client management, ESG monitoring, portfolio analytics, AI agents.",
+    fr: "Gestion multi-client, ESG monitoring, portfolio analytics, IA agents."
+  },
+  "professionals.solutions.wealth.hero.title": {
+    en: "Solutions for Wealth Managers & Advisors",
+    fr: "Solutions pour Wealth Managers & Conseillers"
+  },
+  "professionals.solutions.wealth.hero.subtitle": {
+    en: "Multi-client management, ESG monitoring, advanced analytics. Amplify your operational capacity with AI.",
+    fr: "Gestion multi-client, ESG monitoring, analytics avancée. Amplifiez votre capacité opérationnelle avec l'IA."
+  },
+  "professionals.solutions.wealth.cta.title": {
+    en: "Amplify Your Operational Capacity",
+    fr: "Amplifiez Votre Capacité Opérationnelle"
+  },
+  "professionals.solutions.wealth.cta.back": {
+    en: "Back",
+    fr: "Retour"
+  },
+
+  // Professionals - Demo
+  "professionals.demo.title": {
+    en: "Explore Our Capabilities",
+    fr: "Explorez Nos Capacités"
+  },
+  "professionals.demo.subtitle": {
+    en: "Test the portfolio simulator and discover how our solutions transform your operations.",
+    fr: "Testez le portfolio simulator et découvrez comment nos solutions transforment vos opérations."
+  },
+  "professionals.demo.tools.title": {
+    en: "Our Demo Tools",
+    fr: "Nos Outils de Démo"
+  },
+  "professionals.demo.portfolio.title": {
+    en: "Portfolio Simulator",
+    fr: "Portfolio Simulator"
+  },
+  "professionals.demo.portfolio.cta": {
+    en: "Try It →",
+    fr: "Essayer →"
+  },
+  "professionals.demo.coming": {
+    en: "Coming Soon",
+    fr: "Bientôt"
+  },
+  "professionals.demo.cta.title": {
+    en: "Ready to Discover More?",
+    fr: "Prêt à Découvrir Plus ?"
+  },
+  "professionals.demo.cta.contact": {
+    en: "Schedule a Demo",
+    fr: "Planifier une Démo"
+  },
+  "professionals.demo.cta.back": {
+    en: "Back",
+    fr: "Retour"
+  },
+
+  // Professionals - FAQ
+  "professionals.faq.title": {
+    en: "Frequently Asked Questions",
+    fr: "Questions Fréquemment Posées"
+  },
+  "professionals.faq.subtitle": {
+    en: "Find answers to your questions about our services and solutions.",
+    fr: "Trouvez les réponses à vos questions sur nos services et solutions."
+  },
+  "professionals.faq.q1.question": {
+    en: "What is the typical implementation timeline?",
+    fr: "Quel est le délai de mise en œuvre typique ?"
+  },
+  "professionals.faq.q1.answer": {
+    en: "Diagnostic projects take 2-4 weeks. Simple automations take 4-8 weeks. Full projects can take 3-4 months depending on complexity.",
+    fr: "Les projets de diagnostic prennent 2-4 semaines. Les automatisations simples prennent 4-8 semaines. Les projets complets peuvent prendre 3-4 mois selon la complexité."
+  },
+  "professionals.faq.q12.question": {
+    en: "Can I start with a pilot project?",
+    fr: "Puis-je commencer par un projet pilote ?"
+  },
+  "professionals.faq.q12.answer": {
+    en: "Absolutely. Our diagnostic projects are perfect for starting. You can then expand with additional phases.",
+    fr: "Absolument. Nos projets de diagnostic sont parfaits pour démarrer. Vous pouvez ensuite étendre avec des phases supplémentaires."
+  },
+  "professionals.faq.cta.title": {
+    en: "More Questions?",
+    fr: "D'autres questions ?"
+  },
+  "professionals.faq.cta.back": {
+    en: "Back",
+    fr: "Retour"
+  },
+
+  // Professionals - Contact
+  "professionals.contact.title": {
+    en: "Let's Discuss Your Project",
+    fr: "Parlons de Votre Projet"
+  },
+  "professionals.contact.subtitle": {
+    en: "Fill out the form and our team will get back to you shortly to discuss your needs.",
+    fr: "Remplissez le formulaire et notre équipe vous contactera rapidement pour discuter de vos besoins."
+  },
+  "professionals.contact.form.company": {
+    en: "Company Name",
+    fr: "Nom de l'entreprise"
+  },
+  "professionals.contact.form.name": {
+    en: "Full Name",
+    fr: "Nom complet"
+  },
+  "professionals.contact.form.email": {
+    en: "Email Address",
+    fr: "Adresse email"
+  },
+  "professionals.contact.form.phone": {
+    en: "Phone (Optional)",
+    fr: "Téléphone (optionnel)"
+  },
+  "professionals.contact.form.role": {
+    en: "Your Role",
+    fr: "Votre rôle"
+  },
+  "professionals.contact.form.challenge": {
+    en: "What is your main challenge?",
+    fr: "Quel est votre principal défi ?"
+  },
+  "professionals.contact.form.budget": {
+    en: "Estimated Budget",
+    fr: "Budget estimé"
+  },
+  "professionals.contact.form.timeline": {
+    en: "Desired Timeline",
+    fr: "Timeline souhaitée"
+  },
+  "professionals.contact.form.message": {
+    en: "Additional Message (Optional)",
+    fr: "Message supplémentaire (optionnel)"
+  },
+  "professionals.contact.form.submit": {
+    en: "Send My Request",
+    fr: "Envoyer ma Demande"
+  },
+  "professionals.contact.form.note": {
+    en: "We typically respond within 24 hours.",
+    fr: "Nous répondons généralement dans les 24 heures."
+  },
+
+  // Professionals - CTA
+  "professionals.cta.title": {
+    en: "Ready to Transform Your Operations?",
+    fr: "Prêt à Transformer Vos Opérations ?"
+  },
+  "professionals.cta.subtitle": {
+    en: "Consult with our experts to discuss your use case.",
+    fr: "Consultez nos experts pour discuter de votre cas d'usage."
+  },
+  "professionals.cta.contact": {
+    en: "Contact Us",
+    fr: "Nous Contacter"
+  },
+  "professionals.cta.demo": {
+    en: "See a Demo",
+    fr: "Voir une Démo"
+  "professionals.contact.form.role.placeholder": {
+    en: "Select your role",
+    fr: "Sélectionnez votre rôle"
+  },
+  "professionals.contact.form.role.founder": {
+    en: "Founder/CEO",
+    fr: "Fondateur/CEO"
+  },
+  "professionals.contact.form.role.cfo": {
+    en: "CFO/Finance Director",
+    fr: "CFO/Directeur Financier"
+  },
+  "professionals.contact.form.role.cto": {
+    en: "CTO/Tech Director",
+    fr: "CTO/Directeur Technique"
+  },
+  "professionals.contact.form.role.operations": {
+    en: "Operations Director",
+    fr: "Directeur des Opérations"
+  },
+  "professionals.contact.form.role.wealth": {
+    en: "Wealth Manager",
+    fr: "Wealth Manager"
+  },
+  "professionals.contact.form.role.consultant": {
+    en: "Consultant/Partner",
+    fr: "Consultant/Partenaire"
+  },
+  "professionals.contact.form.role.other": {
+    en: "Other",
+    fr: "Autre"
+  },
+  "professionals.contact.form.type": {
+    en: "Organization Type",
+    fr: "Type d'organisation"
+  },
+  "professionals.contact.form.type.placeholder": {
+    en: "Select type",
+    fr: "Sélectionnez le type"
+  },
+  "professionals.contact.form.type.fintech": {
+    en: "Fintech/Crypto",
+    fr: "Fintech/Crypto"
+  },
+  "professionals.contact.form.type.robo": {
+    en: "Robo-Advisor",
+    fr: "Robo-Advisor"
+  },
+  "professionals.contact.form.type.broker": {
+    en: "Broker",
+    fr: "Courtier"
+  },
+  "professionals.contact.form.type.bank": {
+    en: "Traditional Bank",
+    fr: "Banque Traditionnelle"
+  },
+  "professionals.contact.form.type.wealth": {
+    en: "Wealth Management",
+    fr: "Wealth Management"
+  },
+  "professionals.contact.form.type.asset": {
+    en: "Asset Manager",
+    fr: "Asset Manager"
+  },
+  "professionals.contact.form.type.consulting": {
+    en: "Consulting Firm",
+    fr: "Cabinet de Conseil"
+  },
+  "professionals.contact.form.type.other": {
+    en: "Other",
+    fr: "Autre"
+  },
+  "professionals.contact.form.budget.placeholder": {
+    en: "Select a range",
+    fr: "Sélectionnez une fourchette"
+  },
+  "professionals.contact.form.budget.small": {
+    en: "€0 - €10k",
+    fr: "€0 - €10k"
+  },
+  "professionals.contact.form.budget.medium": {
+    en: "€10k - €30k",
+    fr: "€10k - €30k"
+  },
+  "professionals.contact.form.budget.large": {
+    en: "€30k+",
+    fr: "€30k+"
+  },
+  "professionals.contact.form.budget.exploring": {
+    en: "Still exploring",
+    fr: "En phase d'exploration"
+  },
+  "professionals.contact.form.timeline.placeholder": {
+    en: "Select timeline",
+    fr: "Sélectionnez une timeline"
+  },
+  "professionals.contact.form.timeline.urgent": {
+    en: "Urgent (1-2 months)",
+    fr: "Urgent (1-2 mois)"
+  },
+  "professionals.contact.form.timeline.soon": {
+    en: "Soon (2-3 months)",
+    fr: "Bientôt (2-3 mois)"
+  },
+  "professionals.contact.form.timeline.flexible": {
+    en: "Flexible (3+ months)",
+    fr: "Flexible (3+ mois)"
+  },
+  "professionals.contact.form.timeline.exploring": {
+    en: "Still exploring",
+    fr: "En phase d'exploration"
+  },
+  "floating_input.placeholder": {
+    en: "Ask me anything...",
+    fr: "Posez-moi n'importe quelle question..."
   }
 };
 

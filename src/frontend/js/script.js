@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const translationData =
+    (typeof window !== "undefined" && window.translations) ||
+    (typeof translations !== "undefined" ? translations : {});
   const pathName = window.location.pathname;
   const isEnglishRoute =
     pathName === "/en" || pathName === "/en/" || pathName.startsWith("/en/");
@@ -81,16 +84,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update all translatable elements (text only)
     translatableElements.forEach((element) => {
       const key = element.getAttribute("data-translate");
-      if (translations[key] && translations[key][lang]) {
+      if (translationData[key] && translationData[key][lang]) {
         if (
           element.tagName === "INPUT" &&
           element.type === "text" &&
           key === "chat.placeholder"
         ) {
-          element.placeholder = translations[key][lang];
+          element.placeholder = translationData[key][lang];
         } else {
           // Check if translation contains HTML tags
-          const translationText = translations[key][lang];
+          const translationText = translationData[key][lang];
           if (translationText.includes('<') && translationText.includes('>')) {
             // Use innerHTML for HTML content
             element.innerHTML = translationText;
@@ -105,16 +108,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update all elements with data-translate-placeholder attribute
     document.querySelectorAll('[data-translate-placeholder]').forEach((element) => {
       const key = element.getAttribute("data-translate-placeholder");
-      if (translations[key] && translations[key][lang]) {
-        element.placeholder = translations[key][lang];
+      if (translationData[key] && translationData[key][lang]) {
+        element.placeholder = translationData[key][lang];
       }
     });
 
     // Update all translatable HTML elements (allows HTML tags)
     translatableHtmlElements.forEach((element) => {
       const key = element.getAttribute("data-translate-html");
-      if (translations[key] && translations[key][lang]) {
-        element.innerHTML = translations[key][lang];
+      if (translationData[key] && translationData[key][lang]) {
+        element.innerHTML = translationData[key][lang];
       }
     });
 
@@ -140,8 +143,8 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     allOptions.forEach((option) => {
       const key = option.getAttribute("data-translate");
-      if (translations[key] && translations[key][lang]) {
-        option.textContent = translations[key][lang];
+      if (translationData[key] && translationData[key][lang]) {
+        option.textContent = translationData[key][lang];
       }
     });
 
@@ -170,6 +173,16 @@ document.addEventListener("DOMContentLoaded", function () {
   // Set up event listeners for mobile language switches
   if (enButtonMobile) enButtonMobile.addEventListener("click", () => handleLanguageSwitch("en"));
   if (frButtonMobile) frButtonMobile.addEventListener("click", () => handleLanguageSwitch("fr"));
+
+  // Set up universal event listeners for all .lang-toggle buttons (professional/investor pages)
+  document.querySelectorAll(".lang-toggle").forEach((button) => {
+    button.addEventListener("click", () => {
+      const lang = button.getAttribute("data-lang");
+      if (lang === "en" || lang === "fr") {
+        handleLanguageSwitch(lang);
+      }
+    });
+  });
 
   // Check for stored language preference
   const storedLanguage = localStorage.getItem("bubbleLanguage");
@@ -558,8 +571,8 @@ document.addEventListener("DOMContentLoaded", function () {
       button.getAttribute("data-prompt") || button.dataset.prompt || "";
     let promptMessage = promptFallback;
 
-    if (!promptMessage && typeof translations !== "undefined" && translateKey) {
-      const translationEntry = translations[translateKey];
+    if (!promptMessage && translateKey) {
+      const translationEntry = translationData[translateKey];
       if (translationEntry) {
         promptMessage =
           translationEntry["en"] ||
@@ -657,7 +670,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const isHidden = chatSuggestionsContainer.style.display === "none";
         chatSuggestionsContainer.style.display = isHidden ? "flex" : "none"; // Assuming suggestions use flex display
         // Update button text if needed (e.g., Show/Hide Suggestions)
-        // toggleSuggestionsBtn.textContent = isHidden ? (translations['chat.hideSuggestions']?.[currentLanguage] || 'Hide Suggestions') : (translations['chat.showSuggestions']?.[currentLanguage] || 'Show Suggestions');
+        // toggleSuggestionsBtn.textContent = isHidden ? (translationData['chat.hideSuggestions']?.[currentLanguage] || 'Hide Suggestions') : (translationData['chat.showSuggestions']?.[currentLanguage] || 'Show Suggestions');
       }
     });
   }

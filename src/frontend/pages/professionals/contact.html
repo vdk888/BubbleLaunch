@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nous Contacter · Bubble Businesses</title>
+    <meta
+      name="description"
+      content="Contactez l'équipe Bubble Businesses pour discuter de vos besoins en automation et consulting IA."
+    />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
+    <link rel="stylesheet" href="/assets/styles/styles.css" />
+    <link rel="canonical" href="https://bubbleinvest.org/professionals/contact" />
+    <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/professionals/contact" />
+    <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/professionals/contact" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="professionals-contact-page">
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-content">
+            <a href="/" class="navbar-logo">
+              <img src="/assets/images/bubble-logo.svg" alt="Bubble Invest" class="logo" width="140" height="28" />
+            </a>
+            <div class="navbar-nav">
+              <a href="/" data-translate="nav.home">Accueil</a>
+              <a href="/investors" data-translate="nav.investors">Investisseurs</a>
+              <a href="/professionals" data-translate="nav.professionals">Professionnels</a>
+              <a href="/blog" data-translate="nav.blog">Blog</a>
+              <a href="/#waitlist" data-translate="nav.join">Nous rejoindre</a>
+            </div>
+            <div class="navbar-lang">
+              <button class="lang-toggle" data-lang="en" title="Switch to English">EN</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+      <div class="container">
+        <h1 data-translate="professionals.contact.title">Parlons de Votre Projet</h1>
+        <p class="hero-subtitle" data-translate="professionals.contact.subtitle">
+          Remplissez le formulaire et notre équipe vous contactera rapidement pour discuter de vos besoins.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section fade-in">
+      <div class="container">
+        <div class="contact-form-wrapper">
+          <form id="professionals-contact-form" class="contact-form">
+            <div class="form-group">
+              <label for="company_name" data-translate="professionals.contact.form.company">Nom de l'entreprise</label>
+              <input type="text" id="company_name" name="company_name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="full_name" data-translate="professionals.contact.form.name">Nom complet</label>
+              <input type="text" id="full_name" name="full_name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email" data-translate="professionals.contact.form.email">Adresse email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone" data-translate="professionals.contact.form.phone">Téléphone (optionnel)</label>
+              <input type="tel" id="phone" name="phone" />
+            </div>
+
+            <div class="form-group">
+              <label for="role" data-translate="professionals.contact.form.role">Votre rôle</label>
+              <select id="role" name="role" required>
+                <option value="" data-translate="professionals.contact.form.role.placeholder">Sélectionnez votre rôle</option>
+                <option value="founder" data-translate="professionals.contact.form.role.founder">Fondateur/CEO</option>
+                <option value="cfo" data-translate="professionals.contact.form.role.cfo">CFO/Directeur Financier</option>
+                <option value="cto" data-translate="professionals.contact.form.role.cto">CTO/Directeur Technique</option>
+                <option value="operations" data-translate="professionals.contact.form.role.operations">Directeur des Opérations</option>
+                <option value="wealth_manager" data-translate="professionals.contact.form.role.wealth">Wealth Manager</option>
+                <option value="consultant" data-translate="professionals.contact.form.role.consultant">Consultant/Partenaire</option>
+                <option value="other" data-translate="professionals.contact.form.role.other">Autre</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="company_type" data-translate="professionals.contact.form.type">Type d'organisation</label>
+              <select id="company_type" name="company_type" required>
+                <option value="" data-translate="professionals.contact.form.type.placeholder">Sélectionnez le type</option>
+                <option value="fintech" data-translate="professionals.contact.form.type.fintech">Fintech/Crypto</option>
+                <option value="robo_advisor" data-translate="professionals.contact.form.type.robo">Robo-Advisor</option>
+                <option value="broker" data-translate="professionals.contact.form.type.broker">Courtier/Broker</option>
+                <option value="bank" data-translate="professionals.contact.form.type.bank">Banque Traditionnelle</option>
+                <option value="wealth_firm" data-translate="professionals.contact.form.type.wealth">Wealth Management</option>
+                <option value="asset_manager" data-translate="professionals.contact.form.type.asset">Asset Manager</option>
+                <option value="consulting" data-translate="professionals.contact.form.type.consulting">Cabinet de Conseil</option>
+                <option value="other" data-translate="professionals.contact.form.type.other">Autre</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="challenge" data-translate="professionals.contact.form.challenge">Quel est votre principal défi ?</label>
+              <textarea id="challenge" name="challenge" rows="4" placeholder="Décrivez votre situation..." required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="budget" data-translate="professionals.contact.form.budget">Budget estimé</label>
+              <select id="budget" name="budget" required>
+                <option value="" data-translate="professionals.contact.form.budget.placeholder">Sélectionnez une fourchette</option>
+                <option value="0-10k" data-translate="professionals.contact.form.budget.small">€0 - €10k</option>
+                <option value="10-30k" data-translate="professionals.contact.form.budget.medium">€10k - €30k</option>
+                <option value="30k+" data-translate="professionals.contact.form.budget.large">€30k+</option>
+                <option value="exploring" data-translate="professionals.contact.form.budget.exploring">En phase d'exploration</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="timeline" data-translate="professionals.contact.form.timeline">Timeline souhaitée</label>
+              <select id="timeline" name="timeline" required>
+                <option value="" data-translate="professionals.contact.form.timeline.placeholder">Sélectionnez une timeline</option>
+                <option value="urgent" data-translate="professionals.contact.form.timeline.urgent">Urgent (1-2 mois)</option>
+                <option value="soon" data-translate="professionals.contact.form.timeline.soon">Bientôt (2-3 mois)</option>
+                <option value="flexible" data-translate="professionals.contact.form.timeline.flexible">Flexible (3+ mois)</option>
+                <option value="exploring" data-translate="professionals.contact.form.timeline.exploring">En phase d'exploration</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message" data-translate="professionals.contact.form.message">Message supplémentaire (optionnel)</label>
+              <textarea id="message" name="message" rows="4" placeholder="Toute information supplémentaire que vous aimeriez partager..."></textarea>
+            </div>
+
+            <button type="submit" class="cta-button primary-btn" data-translate="professionals.contact.form.submit">Envoyer ma Demande</button>
+
+            <p class="form-note" data-translate="professionals.contact.form.note">
+              Nous répondons généralement dans les 24 heures.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating Chat Input -->
+    <div id="floating-chat-input" class="floating-chat-input hidden">
+      <div class="floating-input-container">
+        <input
+          type="text"
+          class="floating-input-field"
+          placeholder="Ask me anything..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Ask a question"
+        />
+        <button class="floating-input-submit" aria-label="Send message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Chat Side Panel -->
+    <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+      <div class="chat-side-panel-header">
+        <div class="chat-side-panel-header-info">
+          <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+          <div class="chat-side-panel-titles">
+            <span class="chat-side-panel-title">Bubble Assistant</span>
+          </div>
+        </div>
+        <div class="chat-side-panel-actions">
+          <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
+          <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
+        </div>
+      </div>
+      <div class="chat-side-panel-messages" role="log" aria-live="polite">
+        <div class="chat-side-panel-message bot">
+          <div class="message-content">
+            Bonjour, je suis Bubble — comment puis-je vous aider ?
+          </div>
+        </div>
+      </div>
+      <form class="chat-side-panel-input-container" novalidate>
+        <input
+          type="text"
+          class="chat-side-panel-input"
+          placeholder="Posez vos questions..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Type your message"
+          autocomplete="off"
+        />
+        <button class="chat-side-panel-send" aria-label="Send message" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/i18n/translations.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/chatbot-logic.js"></script>
+    <script src="/js/chatbot-animations.js"></script>
+    <script src="/js/chat-side-panel.js"></script>
+    <script src="/js/floating-chat-input.js"></script>
+  </body>
+</html>

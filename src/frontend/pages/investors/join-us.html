@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rejoindre Bubble · Accès Anticipé</title>
+    <meta name="description" content="Rejoignez la waitlist Bubble et obtenez un accès anticipé à la plateforme d'investissement IA." />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
+    <link rel="stylesheet" href="/assets/styles/styles.css" />
+    <link rel="canonical" href="https://bubbleinvest.org/investors/join-us" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="investors-joinus-page">
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-content">
+            <a href="/" class="navbar-logo">
+              <img src="/assets/images/bubble-logo.svg" alt="Bubble Invest" class="logo" width="140" height="28" />
+            </a>
+            <div class="navbar-nav">
+              <a href="/" data-translate="nav.home">Accueil</a>
+              <a href="/investors" data-translate="nav.investors">Investisseurs</a>
+              <a href="/professionals" data-translate="nav.professionals">Professionnels</a>
+              <a href="/blog" data-translate="nav.blog">Blog</a>
+              <a href="/#waitlist" data-translate="nav.join">Nous rejoindre</a>
+            </div>
+            <div class="navbar-lang">
+              <button class="lang-toggle" data-lang="en" title="Switch to English">EN</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+      <div class="container">
+        <h1 data-translate="investors.joinus.title">Rejoignez Bubble</h1>
+        <p class="hero-subtitle" data-translate="investors.joinus.subtitle">
+          Obtenez un accès anticipé à la plateforme d'investissement IA et soyez parmi les premiers utilisateurs.
+        </p>
+      </div>
+    </section>
+
+    <!-- Waitlist Form Section -->
+    <section id="waitlist" class="waitlist fade-in">
+      <div class="container">
+        <h2 data-translate="investors.joinus.form.title">Accès Anticipé</h2>
+        <p data-translate="investors.joinus.form.subtitle">Rejoignez notre communauté d'investisseurs intelligents.</p>
+
+        <form id="waitlist-form">
+          <div class="form-group">
+            <label for="name" data-translate="investors.joinus.form.name">Nom complet</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email" data-translate="investors.joinus.form.email">Adresse email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="profile" data-translate="investors.joinus.form.profile">Qui êtes-vous ?</label>
+            <select id="profile" name="profile" required>
+              <option value="" data-translate="investors.joinus.form.profile.placeholder">Sélectionnez votre profil</option>
+              <option value="investor_beginner" data-translate="investors.joinus.form.profile.investor_beginner">Investisseur débutant</option>
+              <option value="investor_experienced" data-translate="investors.joinus.form.profile.investor_experienced">Investisseur expérimenté</option>
+              <option value="tech_professional" data-translate="investors.joinus.form.profile.tech_professional">Professionnel tech</option>
+              <option value="finance_professional" data-translate="investors.joinus.form.profile.finance_professional">Professionnel finance</option>
+              <option value="entrepreneur" data-translate="investors.joinus.form.profile.entrepreneur">Entrepreneur</option>
+              <option value="student" data-translate="investors.joinus.form.profile.student">Étudiant</option>
+              <option value="other" data-translate="investors.joinus.form.profile.other">Autre</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="comments" data-translate="investors.joinus.form.comments">Messages supplémentaires (optionnel)</label>
+            <textarea id="comments" name="comments" rows="4"></textarea>
+          </div>
+
+          <button type="submit" class="cta-button primary-btn" data-translate="investors.joinus.form.button">M'inscrire</button>
+
+          <p class="form-disclaimer" data-translate="investors.joinus.form.disclaimer">
+            Ces informations nous aident uniquement à personnaliser votre expérience Bubble. Elles ne servent jamais à formuler un conseil en investissement.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits fade-in">
+      <div class="container">
+        <h2 data-translate="investors.joinus.benefits.title">Avantages pour les Premiers Utilisateurs</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <h4 data-translate="investors.joinus.benefits.early.title">Accès Anticipé</h4>
+            <p data-translate="investors.joinus.benefits.early.description">Soyez parmi les premiers à utiliser Bubble avant le lancement public.</p>
+          </div>
+          <div class="benefit-card">
+            <h4 data-translate="investors.joinus.benefits.pricing.title">Prix Spéciaux</h4>
+            <p data-translate="investors.joinus.benefits.pricing.description">Bénéficiez de tarifs préférentiels pour votre loyauté en tant que beta user.</p>
+          </div>
+          <div class="benefit-card">
+            <h4 data-translate="investors.joinus.benefits.support.title">Support Dédié</h4>
+            <p data-translate="investors.joinus.benefits.support.description">Accès direct à notre équipe pour les questions et le feedback.</p>
+          </div>
+          <div class="benefit-card">
+            <h4 data-translate="investors.joinus.benefits.influence.title">Influencez le Produit</h4>
+            <p data-translate="investors.joinus.benefits.influence.description">Votre feedback direct influence le développement des futures fonctionnalités.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating Chat Input -->
+    <div id="floating-chat-input" class="floating-chat-input hidden">
+      <div class="floating-input-container">
+        <input
+          type="text"
+          class="floating-input-field"
+          placeholder="Ask me anything..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Ask a question"
+        />
+        <button class="floating-input-submit" aria-label="Send message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Chat Side Panel -->
+    <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+      <div class="chat-side-panel-header">
+        <div class="chat-side-panel-header-info">
+          <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+          <div class="chat-side-panel-titles">
+            <span class="chat-side-panel-title">Assistant Bubble</span>
+          </div>
+        </div>
+        <div class="chat-side-panel-actions">
+          <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
+          <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
+        </div>
+      </div>
+      <div class="chat-side-panel-messages" role="log" aria-live="polite">
+        <div class="chat-side-panel-message bot">
+          <div class="message-content">
+            Bonjour, je suis Bubble — comment puis-je vous aider ?
+          </div>
+        </div>
+      </div>
+      <form class="chat-side-panel-input-container" novalidate>
+        <input
+          type="text"
+          class="chat-side-panel-input"
+          placeholder="Posez vos questions..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Type your message"
+          autocomplete="off"
+        />
+        <button class="chat-side-panel-send" aria-label="Send message" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/i18n/translations.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/chatbot-logic.js"></script>
+    <script src="/js/chatbot-animations.js"></script>
+    <script src="/js/chat-side-panel.js"></script>
+    <script src="/js/floating-chat-input.js"></script>
+  </body>
+</html>

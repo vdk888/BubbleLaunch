@@ -1,22 +1,23 @@
+/**
+ * Hero Chat Input Placeholder Rotation Animation
+ * Rotates through sample questions with typing animation
+ * ONLY animates the hero section input, not the main chat input
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
   const getTranslations = () =>
     (typeof window !== "undefined" && window.translations) ||
     (typeof translations !== "undefined" ? translations : {});
   // Wait a bit to ensure all other scripts are loaded
   setTimeout(() => {
-    const chatInput = document.querySelector('.chat-input');
-    if (!chatInput) return;
-
-    // Skip animation if chat input is not visible (e.g., on homepage)
-    // to avoid conflicts with hero-chat-animation.js
-    const chatPanel = chatInput.closest('.chat-side-panel');
-    if (chatPanel && chatPanel.classList.contains('hidden')) {
-      console.log('[ChatbotAnimations] Chat panel is hidden, skipping placeholder animation');
+    const heroChatInput = document.querySelector('.hero-chat-input');
+    if (!heroChatInput) {
+      console.log('[HeroChatAnimation] Hero chat input not found on this page');
       return;
     }
 
     let placeholderInterval;
-    let currentPlaceholderIndex = 1; // Start from index 1 to avoid repeating the initial placeholder
+    let currentPlaceholderIndex = 0;
     let isTyping = false;
     let currentTypingInterval = null;
 
@@ -29,19 +30,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Validate text input
       if (!text || typeof text !== 'string') {
-        console.warn('Invalid placeholder text:', text);
+        console.warn('[HeroChatAnimation] Invalid placeholder text:', text);
         isTyping = false;
         if (callback) callback();
         return;
       }
 
       let i = 0;
-      chatInput.placeholder = '';
+      heroChatInput.placeholder = '';
       isTyping = true;
 
       currentTypingInterval = setInterval(() => {
         if (i < text.length) {
-          chatInput.placeholder += text.charAt(i);
+          heroChatInput.placeholder += text.charAt(i);
           i++;
         } else {
           clearInterval(currentTypingInterval);
@@ -56,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const translationsData = getTranslations();
       // Ensure translations is loaded
       if (!translationsData || Object.keys(translationsData).length === 0) {
-        console.warn('Translations not loaded yet');
+        console.warn('[HeroChatAnimation] Translations not loaded yet');
         return;
       }
 
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Check if chat.rotatingPlaceholders exists
       if (!translationsData['chat.rotatingPlaceholders']) {
-        console.warn('chat.rotatingPlaceholders not found in translations');
+        console.warn('[HeroChatAnimation] chat.rotatingPlaceholders not found in translations');
         return;
       }
 
@@ -72,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Validate placeholders array
       if (!placeholders || !Array.isArray(placeholders) || placeholders.length === 0) {
-        console.warn('Invalid placeholders array for lang:', lang);
+        console.warn('[HeroChatAnimation] Invalid placeholders array for lang:', lang);
         return;
       }
 
@@ -113,26 +114,26 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTypingInterval = null;
       }
       isTyping = false; // Reset typing state
-      // Restore default placeholder
+      // Restore default placeholder from translations
       const lang = document.documentElement.lang || 'fr';
       const translationsData = getTranslations();
       if (
         translationsData['chat.placeholder'] &&
         translationsData['chat.placeholder'][lang]
       ) {
-        chatInput.placeholder = translationsData['chat.placeholder'][lang];
+        heroChatInput.placeholder = translationsData['chat.placeholder'][lang];
       }
     };
 
-    chatInput.addEventListener('focus', stopPlaceholderRotation);
-    chatInput.addEventListener('blur', () => {
-      if (chatInput.value === '') {
+    heroChatInput.addEventListener('focus', stopPlaceholderRotation);
+    heroChatInput.addEventListener('blur', () => {
+      if (heroChatInput.value === '') {
         startPlaceholderRotation();
       }
     });
 
     // Start rotation if the input is not focused and empty
-    if (document.activeElement !== chatInput && chatInput.value === '') {
+    if (document.activeElement !== heroChatInput && heroChatInput.value === '') {
       startPlaceholderRotation();
     }
 
@@ -140,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('languageChanged', () => {
       stopPlaceholderRotation();
       currentPlaceholderIndex = 0;
-      if (document.activeElement !== chatInput && chatInput.value === '') {
+      if (document.activeElement !== heroChatInput && heroChatInput.value === '') {
         startPlaceholderRotation();
       }
     });

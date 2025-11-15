@@ -1,4 +1,7 @@
 // Blog functionality for Bubble
+const blogTranslations =
+    (typeof window !== "undefined" && window.translations) ||
+    (typeof translations !== "undefined" ? translations : {});
 let currentLanguage = 'fr'; // Default to French
 let allPosts = []; // Store all posts for language switching
 
@@ -39,8 +42,8 @@ function updateStaticTranslations() {
     // Update all elements with data-translate attributes
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
-        if (translations[key] && translations[key][currentLanguage]) {
-            element.textContent = translations[key][currentLanguage];
+        if (blogTranslations[key] && blogTranslations[key][currentLanguage]) {
+            element.textContent = blogTranslations[key][currentLanguage];
         }
     });
 }

@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bubble Invest · Pour les Investisseurs</title>
+    <meta
+      name="description"
+      content="Bubble Invest offre un outil d'investissement intelligent avec IA pour les investisseurs particuliers : screening, backtesting, exécution automatisée, 0-10€/mois."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="keywords" content="investissement IA, portefeuille automatisé, screening actions, backtesting stratégies, gestion portefeuille, frais fixes" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
+    <link rel="stylesheet" href="/assets/styles/styles.css" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bubbleinvest.org/investors" />
+    <meta property="og:title" content="Bubble Invest · Pour les Investisseurs" />
+    <meta property="og:description" content="Outil d'investissement intelligent pour investisseurs: screening, backtesting, exécution automatisée, 0-10€/mois." />
+    <meta property="og:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
+    <meta property="og:locale" content="fr_FR" />
+
+    <!-- Canonical & Alternates -->
+    <link rel="canonical" href="https://bubbleinvest.org/investors" />
+    <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/investors" />
+    <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/investors" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="investors-page">
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-content">
+            <a href="/" class="navbar-logo">
+              <img src="/assets/images/bubble-logo.svg" alt="Bubble Invest" class="logo" width="140" height="28" />
+            </a>
+            <div class="navbar-nav">
+              <a href="/" data-translate="nav.home">Accueil</a>
+              <a href="/investors" data-translate="nav.investors">Investisseurs</a>
+              <a href="/professionals" data-translate="nav.professionals">Professionnels</a>
+              <a href="/blog" data-translate="nav.blog">Blog</a>
+              <a href="/#waitlist" data-translate="nav.join">Nous rejoindre</a>
+            </div>
+            <div class="navbar-lang">
+              <button class="lang-toggle" data-lang="en" title="Switch to English">EN</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+      <div class="container">
+        <h1 data-translate="investors.hero.title">L'IA pour Vos Investissements</h1>
+        <p class="hero-subtitle" data-translate="investors.hero.subtitle">
+          Décisions intelligentes, screening automatisé, backtesting en temps réel, exécution maîtrisée.
+        </p>
+
+        <!-- Hero Chat Input -->
+        <form class="hero-chat-form" id="hero-chat-form">
+          <input
+            type="text"
+            class="hero-chat-input"
+            placeholder="Qu'est-ce que tu aimerais savoir sur Bubble ?"
+            data-translate-placeholder="chat.placeholder"
+            aria-label="Posez votre question"
+            autocomplete="off"
+          />
+          <button type="submit" class="hero-chat-submit" aria-label="Envoyer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M12 21V4" stroke-linecap="round" />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Value Proposition Section -->
+    <section class="platform-section fade-in">
+      <div class="container">
+        <div class="features-grid">
+          <div class="platform-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+            </div>
+            <h3 data-translate="investors.value.screening.title">Screening Intelligent</h3>
+            <p data-translate="investors.value.screening.description">Trouvez les meilleures opportunités d'investissement avec notre moteur de screening alimenté par l'IA.</p>
+          </div>
+
+          <div class="platform-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
+            </div>
+            <h3 data-translate="investors.value.backtest.title">Backtesting Approfondi</h3>
+            <p data-translate="investors.value.backtest.description">Testez vos stratégies sur 20 ans de données historiques avant d'investir votre argent réel.</p>
+          </div>
+
+          <div class="platform-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 6v6l4 2"></path>
+              </svg>
+            </div>
+            <h3 data-translate="investors.value.automation.title">Exécution Automatisée</h3>
+            <p data-translate="investors.value.automation.description">Automatisez l'exécution de vos stratégies auprès de vos courtiers préférés (IBKR, Alpaca, Saxo Bank).</p>
+          </div>
+
+          <div class="platform-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+              </svg>
+            </div>
+            <h3 data-translate="investors.value.control.title">100% du Contrôle</h3>
+            <p data-translate="investors.value.control.description">Gardez le contrôle total de vos décisions. Bubble fournit des insights, pas des recommandations obligatoires.</p>
+          </div>
+
+          <div class="platform-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <h3 data-translate="investors.value.pricing.title">Frais Équitables</h3>
+            <p data-translate="investors.value.pricing.description">0-10€/mois au lieu de 2% de frais de gestion. Pas de frais sur encours, seulement le coût du compute.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section fade-in">
+      <div class="container">
+        <h2 data-translate="investors.cta.title">Prêt à Transformer Vos Investissements ?</h2>
+        <p data-translate="investors.cta.subtitle">Découvrez comment Bubble peut vous aider à investir plus intelligemment.</p>
+        <div class="cta-buttons">
+          <a href="/investors/solution" class="cta-button primary-btn" data-translate="investors.cta.explore">Explorer la Solution</a>
+          <a href="/investors/pricing" class="cta-button secondary-btn" data-translate="investors.cta.pricing">Voir les Plans</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating Chat Input -->
+    <div id="floating-chat-input" class="floating-chat-input hidden">
+      <div class="floating-input-container">
+        <input
+          type="text"
+          class="floating-input-field"
+          placeholder="Ask me anything..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Ask a question"
+        />
+        <button class="floating-input-submit" aria-label="Send message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Chat Side Panel -->
+    <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+      <div class="chat-side-panel-header">
+        <div class="chat-side-panel-header-info">
+          <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+          <div class="chat-side-panel-titles">
+            <span class="chat-side-panel-title">Assistant Bubble</span>
+          </div>
+        </div>
+        <div class="chat-side-panel-actions">
+          <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
+          <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
+        </div>
+      </div>
+      <div class="chat-side-panel-messages" role="log" aria-live="polite">
+        <div class="chat-side-panel-message bot">
+          <div class="message-content">
+            Bonjour, je suis Bubble — comment puis-je vous aider ?
+          </div>
+        </div>
+      </div>
+      <form class="chat-side-panel-input-container" novalidate>
+        <input
+          type="text"
+          class="chat-side-panel-input"
+          placeholder="Posez vos questions..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Type your message"
+          autocomplete="off"
+        />
+        <button class="chat-side-panel-send" aria-label="Send message" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/i18n/translations.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/chatbot-logic.js"></script>
+    <script src="/js/chatbot-animations.js"></script>
+    <script src="/js/chat-side-panel.js"></script>
+    <script src="/js/floating-chat-input.js"></script>
+    <script src="/js/hero-chat-animation.js"></script>
+  </body>
+</html>

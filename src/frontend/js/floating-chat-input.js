@@ -51,14 +51,18 @@
   if (isSimulatorPage || alwaysVisible) {
     baseVisible = true;
     applyVisibility();
+    console.log('[FloatingChatInput] Always visible mode enabled');
   } else {
+    // Find the trigger element - the hero chat input section
     const triggerElement = customTriggerSelector
       ? document.querySelector(customTriggerSelector)
-      : document.querySelector('.cta-button[href="#waitlist"], .cta-button[href="/#waitlist"], .cta-button[href*="#waitlist"], a[href="/#waitlist"]');
+      : document.querySelector('.hero-chat-form') || document.querySelector('.hero-section');
 
     if (triggerElement) {
+      console.log('[FloatingChatInput] Trigger element found:', triggerElement.className);
       const handleScroll = () => {
         const rect = triggerElement.getBoundingClientRect();
+        // Show floating input when hero input scrolls out of view (top of screen)
         baseVisible = rect.bottom < 0;
         applyVisibility();
       };
@@ -75,6 +79,8 @@
           ticking = true;
         }
       });
+    } else {
+      console.warn('[FloatingChatInput] Trigger element not found - floating chat will not appear on scroll');
     }
   }
 

@@ -101,7 +101,8 @@
               </div>
             </div>
             <a href="/en/blog" data-translate="nav.blog">Blog</a>
-            <a href="/en/businesses" data-translate="nav.businesses">Businesses</a>
+            <a href="/en/investors" data-translate="nav.investors">Investors</a>
+            <a href="/en/professionals" data-translate="nav.professionals">Professionals</a>
             <a href="/en/#waitlist" data-translate="nav.join">Join Us</a>
             <div class="language-switcher">
               <button id="en-switch" class="active">EN</button>
@@ -130,7 +131,8 @@
               </div>
             </div>
             <a href="/en/blog" data-translate="nav.blog">Blog</a>
-            <a href="/en/businesses" data-translate="nav.businesses">Businesses</a>
+            <a href="/en/investors" data-translate="nav.investors">Investors</a>
+            <a href="/en/professionals" data-translate="nav.professionals">Professionals</a>
             <a href="/en/#waitlist" data-translate="nav.join">Join Us</a>
           </nav>
         </div>
@@ -150,7 +152,68 @@
         <p class="hero-tagline" data-translate="hero.tagline">Transparent investment in the AI era.</p>
         <p class="hero-subtitle" data-translate="hero.subtitle">In a world where AI transforms access to financial expertise, we're building the intelligent investment tool we wanted for ourselves: transparent, automated, and accessible.</p>
 
-        <a href="/en/#waitlist" class="cta-button" data-translate="hero.cta">Join Us</a>
+        <!-- Hero Chat Input -->
+        <form class="hero-chat-form" id="hero-chat-form">
+          <input
+            type="text"
+            class="hero-chat-input"
+            placeholder="What would you like to know about Bubble?"
+            data-translate-placeholder="chat.placeholder"
+            aria-label="Ask your question"
+            autocomplete="off"
+          />
+          <button type="submit" class="hero-chat-submit" aria-label="Send">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M12 21V4" stroke-linecap="round" />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Dual-Path Selector Section -->
+    <section class="dual-path-selector fade-in">
+      <div class="container">
+        <div class="dual-path-cards">
+          <!-- Retail Investors Card -->
+          <div class="dual-path-card retail-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+            </div>
+            <h3 class="card-title" data-translate="dualPath.retail.mainTitle">Intelligent Investment Tool</h3>
+            <p class="card-description" data-translate="dualPath.retail.description">Transparent decisions, intelligent automation, fair fees.</p>
+            <ul class="card-features">
+              <li data-translate="dualPath.retail.feature1">Conversational AI agent</li>
+              <li data-translate="dualPath.retail.feature2">Screening, backtesting, execution</li>
+              <li data-translate="dualPath.retail.feature3">€0-10/month instead of 2% fees</li>
+            </ul>
+            <button class="cta-button retail-demo-btn" data-translate="dualPath.retail.cta">Get Started</button>
+          </div>
+
+          <!-- Professional Card -->
+          <div class="dual-path-card professional-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+            </div>
+            <h3 class="card-title" data-translate="dualPath.professional.mainTitle">Enterprise Solutions</h3>
+            <p class="card-description" data-translate="dualPath.professional.description">AI automation for financial sector. API, integration, compliance.</p>
+            <ul class="card-features">
+              <li data-translate="dualPath.professional.feature1">Custom AI agents</li>
+              <li data-translate="dualPath.professional.feature2">Simple API integration</li>
+              <li data-translate="dualPath.professional.feature3">€3k-€30k per project</li>
+            </ul>
+            <a href="/en/professionals" class="cta-button professional-btn gray-btn" data-translate="dualPath.professional.cta">Learn More</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -607,6 +670,8 @@
     <script src="/js/script.js"></script>
     <script src="/js/animations.js"></script>
     <script src="/js/charts.js"></script>
+    <script src="/js/dual-path-selector.js"></script>
+    <script src="/js/hero-chat-animation.js"></script>
 
     <!-- Unified Chat Side Panel -->
     <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">

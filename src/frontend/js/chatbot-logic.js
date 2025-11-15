@@ -84,3 +84,42 @@ document.addEventListener('DOMContentLoaded', () => {
     userMessages.forEach((message) => message.remove());
   });
 });
+
+// Hero Chat Form Handler
+document.addEventListener('DOMContentLoaded', () => {
+  const heroChatForm = document.getElementById('hero-chat-form');
+  const heroChatInput = document.querySelector('.hero-chat-input');
+  const heroChatSubmit = document.querySelector('.hero-chat-submit');
+
+  if (!heroChatForm || !heroChatInput || !heroChatSubmit) {
+    return;
+  }
+
+  function handleHeroChatSubmit(e) {
+    e.preventDefault();
+    const message = heroChatInput.value.trim();
+    if (!message) return;
+
+    // Track analytics
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'hero_chat_submit', {
+        query: message,
+        entry_point: 'homepage_hero'
+      });
+    }
+
+    // Open chat side panel with the message
+    if (window.chatSidePanel && typeof window.chatSidePanel.open === 'function') {
+      window.chatSidePanel.open(message);
+    }
+
+    // Clear the input
+    heroChatInput.value = '';
+  }
+
+  heroChatForm.addEventListener('submit', handleHeroChatSubmit);
+  heroChatSubmit.addEventListener('click', (e) => {
+    e.preventDefault();
+    handleHeroChatSubmit(e);
+  });
+});
