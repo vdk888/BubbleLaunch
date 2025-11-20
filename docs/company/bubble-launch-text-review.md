@@ -254,7 +254,7 @@ Jusqu’ici, vous payiez un gérant ou un banquier pour des mots rassurants et u
 
 | English | French |
 |---------|--------|
-| © 2025 Bubble. Transparent by design. | © 2025 Bubble. Transparent by design. |
+| © 2025 Bubble Invest SAS. Transparent by design. | © 2025 Bubble Invest SAS. Transparent by design. |
 | The AI era changes everything. Let's change with it. | L'ère de l'IA change tout. Changeons avec elle. |
 
 ---

@@ -8,7 +8,9 @@ class KnowledgeOverlay {
     this.overlay = document.getElementById('knowledge-overlay');
     this.options = document.querySelectorAll('.knowledge-option');
     this.fallbackLink = document.querySelector('.knowledge-fallback-link');
+    this.closeButton = this.overlay ? this.overlay.querySelector('.knowledge-close-button') : null;
     this.sessionKey = 'demoExperience';
+    this.lastEntryPoint = 'homepage';
     this.scenarioMap = {
       'beginner': 'macro-defense',
       'intermediate': 'japan-momentum',
@@ -37,6 +39,10 @@ class KnowledgeOverlay {
       });
     }
 
+    if (this.closeButton) {
+      this.closeButton.addEventListener('click', () => this.hide());
+    }
+
     // Listen for custom event from dual-path selector
     window.addEventListener('openKnowledgeOverlay', (e) => {
       this.show(e.detail?.entryPoint || 'unknown');
@@ -62,31 +68,17 @@ class KnowledgeOverlay {
       }
     });
 
-    // Auto-show on pricing page if user came from homepage
-    this.autoShowIfNeeded();
+    // Auto-show overlay only when explicitly requested via session storage
+    this.showPendingOverlayIfNeeded();
   }
 
-  autoShowIfNeeded() {
-    // Check if we're on the pricing page
-    if (!window.location.pathname.includes('/pricing')) {
-      return;
-    }
+  showPendingOverlayIfNeeded() {
+    const pendingEntryPoint = sessionStorage.getItem('pendingOverlayEntryPoint');
+    if (!pendingEntryPoint) return;
 
-    // Check if user just arrived from homepage (referrer check)
-    const referrer = document.referrer;
-    const isFromHomepage = referrer.includes('bubbleinvest.org') ||
-                          referrer.includes('localhost') ||
-                          referrer === '';
-
-    // Check if user already selected a level
-    const stored = this.getStoredDemoExperience();
-
-    // If coming from homepage AND no prior selection, show the overlay
-    if (isFromHomepage && (!stored || !stored.level)) {
-      setTimeout(() => {
-        this.show('homepage_to_pricing');
-      }, 300);
-    }
+    // Clean up the pending flag so it only opens once
+    sessionStorage.removeItem('pendingOverlayEntryPoint');
+    this.show(pendingEntryPoint);
   }
 
   getStoredDemoExperience() {
@@ -163,6 +155,7 @@ class KnowledgeOverlay {
   show(entryPoint = 'unknown') {
     this.overlay.classList.remove('hidden');
     this.setEntryPoint(entryPoint);
+    this.lastEntryPoint = entryPoint;
 
     // Set focus to first interactive element
     setTimeout(() => {
@@ -180,6 +173,20 @@ class KnowledgeOverlay {
 
   hide() {
     this.overlay.classList.add('hidden');
+
+    const redirectEntryPoints = new Set([
+      'dual_path_homepage',
+      'homepage_dual_path',
+      'homepage_hero',
+      'homepage_direct'
+    ]);
+
+    if (redirectEntryPoints.has(this.lastEntryPoint)) {
+      const investorsUrl = document.documentElement.lang === 'en'
+        ? '/en/investors'
+        : '/investors';
+      window.location.href = investorsUrl;
+    }
   }
 
   setupKeyboardNavigation() {

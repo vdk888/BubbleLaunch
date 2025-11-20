@@ -522,20 +522,36 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.setItem(DEMO_SHOWN_KEY, 'true');
   };
 
+  const showDemoOverlay = () => {
+    if (!overlay) return;
+    overlay.classList.remove('hidden');
+    if (pricingContent) {
+      pricingContent.classList.add('hidden');
+    }
+  };
+
   // Close demo and show pricing
   const closeDemo = () => {
+    if (!overlay) return;
     overlay.classList.add('hidden');
     if (pricingContent) {
       pricingContent.classList.remove('hidden');
     }
   };
 
+  const launchWorkflowDemo = () => {
+    showDemoOverlay();
+    runDemo();
+  };
+
   // Event listeners
-  closeBtn.addEventListener('click', closeDemo);
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeDemo);
+  }
 
   // Keyboard support
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !overlay.classList.contains('hidden')) {
+    if (e.key === 'Escape' && overlay && !overlay.classList.contains('hidden')) {
       closeDemo();
     }
   });
@@ -560,19 +576,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Replay button
   if (replayBtn) {
     replayBtn.addEventListener('click', () => {
-      overlay.classList.remove('hidden');
-      if (pricingContent) {
-        pricingContent.classList.add('hidden');
-      }
-      runDemo();
+      sessionStorage.removeItem(DEMO_SHOWN_KEY);
+      launchWorkflowDemo();
     });
   }
 
-  // Auto-play on page load if not shown before
-  if (!sessionStorage.getItem(DEMO_SHOWN_KEY)) {
-    runDemo();
-  } else {
-    // Skip demo, show pricing directly
-    closeDemo();
-  }
+  window.addEventListener('launchDemo', () => {
+    launchWorkflowDemo();
+  });
+
+  // Ensure overlay hidden on load
+  closeDemo();
 });

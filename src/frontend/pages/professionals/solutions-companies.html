@@ -20,26 +20,66 @@
   </head>
   <body class="professionals-solutions-page">
     <!-- Navigation Header -->
-    <header class="header">
-      <nav class="navbar">
-        <div class="container">
-          <div class="navbar-content">
-            <a href="/" class="navbar-logo">
-              <img src="/assets/images/bubble-logo.svg" alt="Bubble Invest" class="logo" width="140" height="28" />
-            </a>
-            <div class="navbar-nav">
-              <a href="/" data-translate="nav.home">Accueil</a>
-              <a href="/investors" data-translate="nav.investors">Investisseurs</a>
-              <a href="/professionals" data-translate="nav.professionals">Professionnels</a>
-              <a href="/blog" data-translate="nav.blog">Blog</a>
-              <a href="/#waitlist" data-translate="nav.join">Nous rejoindre</a>
+    <header>
+      <div class="container">
+        <div class="brand">
+          <a href="/" class="logo-link">
+            <div class="logo" style="display: flex; align-items: center; gap: 0.18em">
+              <span style="display: flex; align-items: center">
+                <svg width="36" height="36" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
+                  <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+                  <circle cx="59" cy="21" r="6" fill="#000"/>
+                </svg>
+              </span>
+              <span>Bubble.</span>
             </div>
-            <div class="navbar-lang">
-              <button class="lang-toggle" data-lang="en" title="Switch to English">EN</button>
+          </a>
+          <div class="tagline" data-translate="hero.tagline.professional">L'agent d'investissement transparent.</div>
+        </div>
+        <div class="header-right">
+          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+          <nav class="desktop-nav professional-nav">
+            <a href="/professionals" data-translate="professionals.nav.vision">Vision</a>
+            <div class="nav-dropdown">
+              <button class="nav-dropdown-toggle" data-translate="professionals.nav.solutions">Solutions</button>
+              <div class="nav-dropdown-menu">
+                <a href="/professionals/solutions-companies" data-translate="professionals.nav.solutions.companies">Entreprises</a>
+                <a href="/professionals/solutions-wealth-managers" data-translate="professionals.nav.solutions.wealth">CGP & Family Offices</a>
+              </div>
             </div>
+            <a href="/blog" data-translate="professionals.nav.blog">Blog</a>
+            <a href="/professionals#enterprise-waitlist" class="nav-cta" data-translate="professionals.nav.cta">Contactez-nous</a>
+            <div class="language-switcher">
+              <button id="en-switch">EN</button>
+              <span>|</span>
+              <button id="fr-switch" class="active">FR</button>
+            </div>
+          </nav>
+          <div class="mobile-language-switcher">
+            <button id="en-switch-mobile">EN</button>
+            <span>|</span>
+            <button id="fr-switch-mobile" class="active">FR</button>
           </div>
         </div>
-      </nav>
+        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+          <nav class="mobile-nav">
+            <a href="/professionals" data-translate="professionals.nav.vision">Vision</a>
+            <div class="mobile-nav-dropdown">
+              <button class="mobile-nav-dropdown-toggle" data-translate="professionals.nav.solutions">Solutions</button>
+              <div class="mobile-nav-dropdown-menu">
+                <a href="/professionals/solutions-companies" data-translate="professionals.nav.solutions.companies">Entreprises</a>
+                <a href="/professionals/solutions-wealth-managers" data-translate="professionals.nav.solutions.wealth">CGP & Family Offices</a>
+              </div>
+            </div>
+            <a href="/blog" data-translate="professionals.nav.blog">Blog</a>
+            <a href="/professionals#enterprise-waitlist" data-translate="professionals.nav.cta">Contactez-nous</a>
+          </nav>
+        </div>
+      </div>
     </header>
 
     <!-- Hero Section -->
@@ -137,6 +177,70 @@
       </div>
     </section>
 
+    <!-- Concrete Examples Section -->
+    <section id="examples" class="fade-in" style="padding: 4rem 0; background: #F8F8F8;">
+      <div class="container" style="max-width: 900px;">
+        <h2 style="text-align: center; margin-bottom: 3rem;" data-translate="businesses.examples.title">Exemples concrets</h2>
+
+        <div style="display: grid; gap: 1.5rem;">
+          <div style="background: white; padding: 1.5rem 2rem; border-radius: 24px; border-left: 3px solid #667eea;">
+            <p style="color: #333; line-height: 1.7; margin: 0;" data-translate="businesses.examples.1">
+              Implémentation rapide de workflows simples (custom code ou low code) et d'agents intelligents sur mesure
+            </p>
+          </div>
+
+          <div style="background: white; padding: 1.5rem 2rem; border-radius: 24px; border-left: 3px solid #667eea;">
+            <p style="color: #333; line-height: 1.7; margin: 0;" data-translate="businesses.examples.2">
+              Processus de reconnaissance du revenu : workflow de facturation client, rapprochement comptable, suivi budgétaire simplifié
+            </p>
+          </div>
+
+          <div style="background: white; padding: 1.5rem 2rem; border-radius: 24px; border-left: 3px solid #667eea;">
+            <p style="color: #333; line-height: 1.7; margin: 0;" data-translate="businesses.examples.3">
+              Automatisation du reporting financier mensuel : jusqu'à 15h/mois économisées et zéro erreur de saisie
+            </p>
+          </div>
+
+          <div style="background: white; padding: 1.5rem 2rem; border-radius: 24px; border-left: 3px solid #667eea;">
+            <p style="color: #333; line-height: 1.7; margin: 0;" data-translate="businesses.examples.4">
+              Suivi automatisé de l'actualité ESG : des digest sur-mesure pour un gestionnaire de portefeuille, 5 à 7h/semaine gagnées
+            </p>
+          </div>
+
+          <div style="background: white; padding: 1.5rem 2rem; border-radius: 24px; border-left: 3px solid #667eea;">
+            <p style="color: #333; line-height: 1.7; margin: 0;" data-translate="businesses.examples.5">
+              Construction d'un dashboard personnalisé pour le suivi de la performance : budget divisé par 4 vs une solution éditeur "traditionnelle"
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional Portfolio Tools Section -->
+    <section id="professional-portfolio-tools" class="fade-in" style="padding: 4rem 0; background: #FFFFFF;">
+      <div class="container" style="max-width: 900px;">
+        <h2 style="text-align: center; margin-bottom: 1rem;">Outils Portefeuille Professionnel</h2>
+        <p style="text-align: center; margin-bottom: 3rem; color: #666; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+          Pour les gestionnaires d'actifs : screening, backtesting et outils d'allocation avancés.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem; margin-bottom: 3rem;">
+          <!-- Asset Managers Tile -->
+          <div style="background: rgba(102, 126, 234, 0.08); padding: 2rem; border-radius: 24px; border-left: 4px solid #667eea;">
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: #000; margin-bottom: 1rem;">Gestionnaires d'Actifs</h3>
+            <p style="color: #333; line-height: 1.7;">
+              Accédez aux mêmes outils de screening et backtesting que nous utilisons pour Bubble Portfolio : 20+ ans de données historiques, stratégies quantitatives éprouvées, intégration API brokers (IBKR, Alpaca, Saxo). Parfait pour gérer des fonds ou construire des allocations personnalisées.
+            </p>
+          </div>
+        </div>
+
+        <!-- Unified CTA Button -->
+        <div style="text-align: center;">
+          <a href="/professionals#enterprise-waitlist" class="cta-button">Discuter de votre projet</a>
+        </div>
+      </div>
+    </section>
+
     <!-- Use Cases Section -->
     <section class="use-cases-section fade-in">
       <div class="container">
@@ -218,6 +322,75 @@
       </div>
     </section>
 
+    <!-- Why Bubble Section -->
+    <section id="why-bubble" class="fade-in" style="padding: 5.5rem 0; background: #fff;">
+      <div class="container" style="max-width: 880px;">
+        <h2 style="font-size: 2rem; font-weight: 600; color: #000; text-align: center; letter-spacing: -0.01em; margin-bottom: 2.5rem;" data-translate="businesses.why.title">Pourquoi Bubble</h2>
+
+        <div style="display: flex; flex-direction: column; gap: 1.75rem;">
+          <p style="margin: 0; font-size: 1.125rem; line-height: 1.85; color: #333;" data-translate="businesses.why.p1">
+            Après des années dans des cabinets de conseil et dans la gestion d'actifs, nous avons observé de nombreux travers : des missions à 6 chiffres qui ne débouchent sur rien, des consultants qui disparaissent après avoir présenté leur rapport, et beaucoup de promesses rarement tenues.
+          </p>
+
+          <p style="margin: 0; font-size: 1.125rem; line-height: 1.85; color: #333;" data-translate="businesses.why.p2">
+            Chez Bubble Invest, nous avons choisi de faire autrement : miser sur l'honnêteté et l'envie d'aider vraiment – même si cela signifie parfois dire non à un projet.
+          </p>
+
+          <p style="margin: 0; font-size: 1.125rem; line-height: 1.85; color: #333;" data-translate="businesses.why.p3">
+            On préfère afficher notre expérience que prétendre tout savoir. Nous agissons avec vous, sans vous vendre une révolution technologique. Sur chaque projet, nous privilégions la transparence, même si cela veut dire reconnaître nos limites.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values and Methodology Section -->
+    <section id="values" class="fade-in" style="padding: 6rem 0; background: #F8F8F8;">
+      <div class="container" style="max-width: 900px;">
+        <h2 style="text-align: center; margin-bottom: 3rem;" data-translate="businesses.values.title">Valeurs et méthodologie</h2>
+
+        <div style="display: grid; gap: 2rem;">
+          <div style="background: white; padding: 2rem; border-radius: 24px;">
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: #333; margin-bottom: 1rem;" data-translate="businesses.values.pragmatism.title">Pragmatisme</h3>
+            <p style="color: #666; line-height: 1.7; margin: 0;" data-translate="businesses.values.pragmatism.text">
+              Outils éprouvés et adaptables, pas de technologie pour la technologie.
+            </p>
+          </div>
+
+          <div style="background: white; padding: 2rem; border-radius: 24px;">
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: #333; margin-bottom: 1rem;" data-translate="businesses.values.transparency.title">Transparence</h3>
+            <p style="color: #666; line-height: 1.7; margin: 0;" data-translate="businesses.values.transparency.text">
+              Tarif et délai annoncés dès le diagnostic, pas de budgets cachés, pas de ventes forcées.
+            </p>
+          </div>
+
+          <div style="background: white; padding: 2rem; border-radius: 24px;">
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: #333; margin-bottom: 1rem;" data-translate="businesses.values.collaboration.title">Collaboration directe</h3>
+            <p style="color: #666; line-height: 1.7; margin: 0;" data-translate="businesses.values.collaboration.text">
+              Échanges simples, suivi continu, accompagnement même après la livraison via une maintenance adaptée.
+            </p>
+          </div>
+
+          <div style="background: white; padding: 2rem; border-radius: 24px;">
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: #333; margin-bottom: 1rem;" data-translate="businesses.values.Simplicity.title">Simplicité</h3>
+            <p style="color: #666; line-height: 1.7; margin: 0;" data-translate="businesses.values.Simplicity.text">
+              Nous débutons, et nous n'avons pas 500 clients dans notre historique ou une vue sur les Champs Elysées – mais nous agissons et restons à l'écoute.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="fade-in" style="padding: 5.5rem 0; background: #FFFFFF;">
+      <div class="container" style="max-width: 800px;">
+        <h2 style="font-size: 2rem; font-weight: 600; color: #000; text-align: center; letter-spacing: -0.01em; margin-bottom: 2.5rem;" data-translate="businesses.pricing.title">Tarifs</h2>
+
+        <p style="margin: 0; font-size: 1.125rem; line-height: 1.85; color: #333; text-align: center;" data-translate="businesses.pricing.text">
+          Nos projets se situent dans une fourchette réaliste : de 15 000 à 30 000 € livrés en 2 à 4 mois, avec devis transparent et phase de diagnostic et maintenance incluse. Nous ne cherchons pas à rivaliser avec les grandes agences sur le volume, mais sur la qualité et la pertinence de ce que nous livrons à nos clients. Notre objectif ? Que les outils d'aujourd'hui soit disponible pour les petites comme les grandes entreprises, sans tarifs discriminants.
+        </p>
+      </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta-section fade-in">
       <div class="container">
@@ -226,11 +399,119 @@
           Parlons de vos défis spécifiques.
         </p>
         <div class="cta-buttons">
-          <a href="/professionals/contact" class="cta-button primary-btn" data-translate="professionals.cta.contact">Nous Contacter</a>
+          <a href="/professionals#enterprise-waitlist" class="cta-button primary-btn" data-translate="professionals.cta.contact">Nous Contacter</a>
           <a href="/professionals" class="cta-button secondary-btn" data-translate="professionals.solutions.companies.cta.back">Retour</a>
         </div>
       </div>
     </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-left">
+            <div class="footer-logo" style="display: flex; align-items: center; gap: 0.18em">
+              <span style="display: flex; align-items: center"
+                ><svg
+                  width="30"
+                  height="30"
+                  viewBox="0 0 72 72"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="display: inline-block; vertical-align: middle"
+                >
+                  <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10" />
+                  <circle cx="59" cy="21" r="6" fill="#000" /></svg></span
+              ><span>Bubble.</span>
+            </div>
+            <div class="footer-tagline" data-translate="footer.tagline">
+              L'ère de l'IA change tout. Changeons avec elle.
+            </div>
+            <div class="footer-copyright" data-translate="footer.copyright">
+              © 2025 Bubble Invest SAS. Transparent by design.
+            </div>
+          </div>
+
+          <nav class="footer-nav">
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.investors">Investisseurs</h4>
+              <ul>
+                <li><a href="/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
+                <li><a href="/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
+                <li><a href="/investors/portfolio-simulator" data-translate="footer.nav.investors.simulator">Simulateur de Portefeuille</a></li>
+                <li><a href="/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Rejoindre la Liste</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.professionals">Professionnels</h4>
+              <ul>
+                <li><a href="/professionals" data-translate="footer.nav.professionals.solutions">Solutions</a></li>
+                <li><a href="/professionals/demo" data-translate="footer.nav.professionals.demo">Démo</a></li>
+                <li><a href="/professionals/faq" data-translate="footer.nav.professionals.faq">FAQ</a></li>
+                <li><a href="/professionals/contact" data-translate="footer.nav.professionals.contact">Contact</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.resources">Ressources</h4>
+              <ul>
+                <li><a href="/blog" data-translate="footer.nav.blog">Blog</a></li>
+                <li><a href="/investors/portfolio-simulator" data-translate="footer.nav.resources.education">Éducation</a></li>
+                <li><a href="/investors" data-translate="footer.nav.resources.demo">Démo</a></li>
+                <li><a href="/investors#investor-waitlist" data-translate="footer.nav.resources.joinUs">Nous Rejoindre</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.legal">Légal</h4>
+              <ul>
+                <li><a href="/mentions-legales" data-translate="footer.nav.legal_notice">Mentions Légales</a></li>
+                <li><a href="/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
+                <li><a href="#cookies" id="tarteaucitronRoot" data-translate="footer.nav.cookies">Gérer les Cookies</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.contact">Contact</h4>
+              <ul>
+                <li><a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></li>
+              </ul>
+              <div class="social-media-links">
+                <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn" data-handle="Bubble Invest AI">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect x="2" y="9" width="4" height="12"/>
+                    <circle cx="4" cy="4" r="2"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.linkedin">Bubble Invest AI</span>
+                </a>
+                <a href="https://www.instagram.com/behindthefinancebubble/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram" data-handle="@behindthefinancebubble">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.instagram">@behindthefinancebubble</span>
+                </a>
+                <a href="https://www.tiktok.com/@behind.the.bubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok" data-handle="@behind.the.bubble">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.tiktok">@behind.the.bubble</span>
+                </a>
+                <a href="https://www.youtube.com/@behindthefinancebubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube" data-handle="@behindthefinancebubble">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.youtube">@behindthefinancebubble</span>
+                </a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </footer>
 
     <!-- Floating Chat Input -->
     <div id="floating-chat-input" class="floating-chat-input hidden">
@@ -297,5 +578,6 @@
     <script src="/js/chatbot-animations.js"></script>
     <script src="/js/chat-side-panel.js"></script>
     <script src="/js/floating-chat-input.js"></script>
+    <script src="/js/animations.js"></script>
   </body>
 </html>

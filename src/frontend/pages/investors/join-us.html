@@ -7,7 +7,7 @@
     <meta name="description" content="Rejoignez la waitlist Bubble et obtenez un accès anticipé à la plateforme d'investissement IA." />
     <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
     <link rel="stylesheet" href="/assets/styles/styles.css" />
-    <link rel="canonical" href="https://bubbleinvest.org/investors/join-us" />
+    <link rel="canonical" href="https://bubbleinvest.org/investors#investor-waitlist" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -15,26 +15,91 @@
   </head>
   <body class="investors-joinus-page">
     <!-- Navigation Header -->
-    <header class="header">
-      <nav class="navbar">
-        <div class="container">
-          <div class="navbar-content">
-            <a href="/" class="navbar-logo">
-              <img src="/assets/images/bubble-logo.svg" alt="Bubble Invest" class="logo" width="140" height="28" />
-            </a>
-            <div class="navbar-nav">
-              <a href="/" data-translate="nav.home">Accueil</a>
-              <a href="/investors" data-translate="nav.investors">Investisseurs</a>
-              <a href="/professionals" data-translate="nav.professionals">Professionnels</a>
-              <a href="/blog" data-translate="nav.blog">Blog</a>
-              <a href="/#waitlist" data-translate="nav.join">Nous rejoindre</a>
+    <header>
+      <div class="container">
+        <div class="brand">
+          <a href="/" class="logo-link">
+            <div
+              class="logo"
+              style="display: flex; align-items: center; gap: 0.18em"
+            >
+              <span style="display: flex; align-items: center"
+                ><svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 72 72"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="display: inline-block; vertical-align: middle"
+                >
+                  <circle
+                    cx="36"
+                    cy="41"
+                    r="26"
+                    stroke="#000"
+                    stroke-width="6"
+                    stroke-linecap="round"
+                    stroke-dasharray="145 29"
+                    stroke-dashoffset="10"
+                  />
+                  <circle cx="59" cy="21" r="6" fill="#000" /></svg></span
+              ><span>Bubble.</span>
             </div>
-            <div class="navbar-lang">
-              <button class="lang-toggle" data-lang="en" title="Switch to English">EN</button>
-            </div>
+          </a>
+          <div class="tagline" data-translate="hero.tagline">
+            L'agent d'investissement transparent.
           </div>
         </div>
-      </nav>
+        <div class="header-right">
+          <!-- Hamburger Menu Button (Mobile Only) -->
+          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+
+          <!-- Desktop Navigation -->
+          <nav class="desktop-nav">
+            <a href="/investors" data-translate="nav.vision">Vision</a>
+
+            <div class="nav-dropdown">
+              <button class="nav-dropdown-toggle" data-translate="nav.solution">Solution</button>
+              <div class="nav-dropdown-menu">
+                <button class="dropdown-link js-retail-demo-trigger" data-entry-point="investor_nav_agent" data-translate="nav.solution.agent">Agent</button>
+                <a href="/investors/portfolio-simulator" class="dropdown-link" data-translate="nav.solution.education">Éducation</a>
+              </div>
+            </div>
+
+            <a href="/investors/pricing" data-translate="nav.pricing">Tarification</a>
+            <a href="/blog" data-translate="nav.blog">Blog</a>
+            <a href="/investors#investor-waitlist" data-translate="nav.join">Nous rejoindre</a>
+            <div class="language-switcher">
+              <button id="en-switch">EN</button>
+              <span>|</span>
+              <button id="fr-switch" class="active">FR</button>
+            </div>
+          </nav>
+
+          <!-- Mobile Language Switcher -->
+          <div class="mobile-language-switcher">
+            <button id="en-switch-mobile">EN</button>
+            <span>|</span>
+            <button id="fr-switch-mobile" class="active">FR</button>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation Overlay -->
+        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+          <nav class="mobile-nav">
+            <a href="/investors" data-translate="nav.vision">Vision</a>
+            <button class="mobile-nav-link js-retail-demo-trigger" data-entry-point="investor_nav_agent_mobile" data-translate="nav.solution.agent">Agent</button>
+            <a href="/investors/portfolio-simulator" data-translate="nav.solution.education">Éducation</a>
+            <a href="/investors/pricing" data-translate="nav.pricing">Tarification</a>
+            <a href="/blog" data-translate="nav.blog">Blog</a>
+            <a href="/investors#investor-waitlist" data-translate="nav.join">Nous rejoindre</a>
+          </nav>
+        </div>
+      </div>
     </header>
 
     <!-- Hero Section -->
@@ -182,5 +247,6 @@
     <script src="/js/chatbot-animations.js"></script>
     <script src="/js/chat-side-panel.js"></script>
     <script src="/js/floating-chat-input.js"></script>
+    <script src="/js/animations.js"></script>
   </body>
 </html>

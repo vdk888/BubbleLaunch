@@ -149,6 +149,17 @@ header .container {
   font-weight: 700;
 }
 
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-actions .cta-button {
+  margin: 0;
+  white-space: nowrap;
+}
+
 .logo span:last-child {
   display: inline-block;
   transition: opacity 0.3s ease, width 0.3s ease, margin 0.3s ease;
@@ -189,6 +200,7 @@ header .container {
   margin-left: 1.25rem;
   font-size: 0.875rem;
   color: var(--primary);
+  font-style: italic;
   display: none;
   padding-left: 0.75rem;
 }
@@ -241,6 +253,7 @@ header .container {
   display: flex;
   align-items: center;
   font-weight: 500;
+  font-size: 1rem;
 }
 
 .desktop-nav a:hover {
@@ -277,8 +290,12 @@ header .container {
   border-radius: 4px;
   min-height: 44px;
   font-weight: 500;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  background: transparent;
+  border: none;
+  font-family: inherit;
 }
 
 .nav-dropdown-toggle::after {
@@ -353,6 +370,71 @@ header .container {
 .nav-dropdown-menu a:hover {
   background: rgba(51, 51, 51, 0.08);
   color: var(--primary);
+}
+
+/* Dropdown link styling (for both <a> and <button>) */
+.dropdown-link {
+  display: block;
+  padding: 0.875rem 1.25rem;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin: 0;
+  border-radius: 0;
+  min-height: auto;
+  font-weight: 500;
+  font-size: 0.95rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+}
+
+.dropdown-link:first-child {
+  border-radius: 12px 12px 0 0;
+}
+
+.dropdown-link:last-child {
+  border-radius: 0 0 12px 12px;
+}
+
+.dropdown-link:hover {
+  background: rgba(51, 51, 51, 0.08);
+  color: var(--primary);
+}
+
+/* Navigation CTA Button */
+.nav-cta {
+  display: inline-block;
+  background: linear-gradient(135deg, #333333 0%, #444444 100%);
+  color: white !important;
+  text-decoration: none;
+  padding: 0.65rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  margin-right: 2rem;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-cta:hover {
+  background: #6b7280 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.nav-cta:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Mobile Navigation Dropdown */
@@ -582,20 +664,25 @@ body.mobile-menu-open {
   .hamburger-menu {
     display: flex;
   }
-  
+
   .desktop-nav {
     display: none;
   }
-  
+
   .mobile-language-switcher {
     display: flex;
   }
-  
+
   .mobile-nav a {
     font-size: 1.75rem;
     padding: 2rem 2.5rem;
     margin: 0.75rem 0;
     min-width: 300px;
+  }
+
+  /* Hide nav-cta on tablet (shown in mobile menu) */
+  .nav-cta {
+    display: none !important;
   }
 }
 
@@ -665,43 +752,48 @@ body.mobile-menu-open {
   header {
     padding: 1rem 0;
   }
-  
+
   header .container {
     padding: 0 1rem;
   }
-  
+
   .brand .logo {
     font-size: 1.25rem;
   }
-  
+
   .brand .logo svg {
     width: 28px;
     height: 28px;
   }
-  
+
   .tagline {
     display: none;
   }
-  
+
   .container {
     padding: 0 1rem;
   }
-  
+
   /* Hide desktop language switcher on mobile */
   .desktop-nav .language-switcher {
     display: none;
   }
-  
+
   /* Style mobile language switcher buttons */
   .mobile-language-switcher {
     margin-left: 0.5rem;
   }
-  
+
   .mobile-language-switcher button {
     padding: 0.375rem 0.5rem;
     font-size: 0.875rem;
     min-height: 36px;
     min-width: 36px;
+  }
+
+  /* Hide nav-cta on mobile (shown in mobile menu instead) */
+  .nav-cta {
+    display: none !important;
   }
 }
 
@@ -6002,6 +6094,38 @@ footer .container {
   transform: translateY(-2px);
 }
 
+.demo-prompts {
+  padding: 4rem 0 2rem;
+}
+
+.prompt-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.prompt-button {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.75rem 1.5rem;
+  background: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.prompt-button:hover {
+  border-color: #000;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .prompt-buttons {
+    flex-direction: column;
+  }
+}
+
 /* Animations for dual-path cards */
 @keyframes slideUpFade {
   from {
@@ -6155,4 +6279,100 @@ footer .container {
 
 .simulator-notice a:hover {
   text-decoration: none;
+}
+
+/* ============================================
+   Waitlist CTA Section
+   ============================================ */
+.waitlist-cta {
+  padding: 6rem 0;
+  background: var(--background);
+  text-align: center;
+}
+
+.waitlist-cta h2 {
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.waitlist-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+}
+
+.waitlist-free-text {
+  font-size: clamp(0.95rem, 2.3vw, 1.05rem);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+  font-style: italic;
+}
+
+.waitlist-cta .cta-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #333333 0%, #444444 100%);
+  color: white;
+  padding: 1.1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.waitlist-cta .cta-button:hover {
+  background: #6b7280;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.waitlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  align-items: stretch;
+}
+
+.waitlist-copy {
+  text-align: left;
+}
+
+.waitlist-form-wrapper .form-container {
+  margin: 0;
+}
+
+.waitlist-form-wrapper form button[type="submit"] {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .waitlist-cta {
+    padding: 4rem 0;
+  }
+
+  .waitlist-cta h2 {
+    margin-bottom: 1.25rem;
+  }
+
+  .waitlist-subtitle,
+  .waitlist-free-text {
+    padding: 0 1rem;
+    text-align: left;
+  }
+
+  .waitlist-grid {
+    gap: 1.5rem;
+  }
+
+  .waitlist-copy {
+    text-align: left;
+  }
 }

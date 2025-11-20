@@ -12,6 +12,7 @@
     <meta name="keywords" content="AI investing, automated portfolio, stock screening, strategy backtesting, portfolio management, fixed fees" />
     <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
     <link rel="stylesheet" href="/assets/styles/styles.css" />
+    <link rel="stylesheet" href="/assets/styles/knowledge-overlay.css" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -31,27 +32,142 @@
     />
   </head>
   <body class="investors-page">
+    <div id="knowledge-overlay" class="knowledge-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="knowledge-title">
+      <div class="knowledge-overlay-card">
+        <button class="knowledge-close-button" type="button" data-translate="knowledgeOverlay.close" aria-label="Close experience selector"></button>
+        <h2 id="knowledge-title" class="knowledge-title" data-translate="knowledgeOverlay.question">
+          What's your investment experience level?
+        </h2>
+        <p class="knowledge-subtitle" data-translate="knowledgeOverlay.subtitle">
+          Choose the experience that matches you.
+        </p>
+
+        <div class="knowledge-options">
+          <button class="knowledge-option beginner-option" data-level="beginner" role="button" aria-pressed="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3v18M3 12h18" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div class="option-content">
+              <span class="option-title" data-translate="knowledgeOverlay.beginner">Beginner</span>
+              <span class="option-description" data-translate="knowledgeOverlay.beginnerDesc">I'm new to investing</span>
+            </div>
+          </button>
+
+          <button class="knowledge-option intermediate-option active" data-level="intermediate" role="button" aria-pressed="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+            <div class="option-content">
+              <span class="option-title" data-translate="knowledgeOverlay.intermediate">Intermediate</span>
+              <span class="option-description" data-translate="knowledgeOverlay.intermediateDesc">I have some experience</span>
+            </div>
+          </button>
+
+          <button class="knowledge-option expert-option" data-level="expert" role="button" aria-pressed="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div class="option-content">
+              <span class="option-title" data-translate="knowledgeOverlay.expert">Expert</span>
+              <span class="option-description" data-translate="knowledgeOverlay.expertDesc">I've been investing for years</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="knowledge-fallback">
+          <button class="knowledge-fallback-link" data-translate="knowledgeOverlay.fallback">
+            Not sure? Show me an example
+          </button>
+        </div>
+      </div>
+    </div>
     <!-- Navigation Header -->
-    <header class="header">
-      <nav class="navbar">
-        <div class="container">
-          <div class="navbar-content">
-            <a href="/en" class="navbar-logo">
-              <img src="/assets/images/bubble-logo.svg" alt="Bubble Invest" class="logo" width="140" height="28" />
-            </a>
-            <div class="navbar-nav">
-              <a href="/en" data-translate="nav.home">Home</a>
-              <a href="/en/investors" data-translate="nav.investors">Investors</a>
-              <a href="/en/professionals" data-translate="nav.professionals">Professionals</a>
-              <a href="/en/blog" data-translate="nav.blog">Blog</a>
-              <a href="/en/#waitlist" data-translate="nav.join">Join Us</a>
+    <header>
+      <div class="container">
+        <div class="brand">
+          <a href="/en/" class="logo-link">
+            <div
+              class="logo"
+              style="display: flex; align-items: center; gap: 0.18em"
+            >
+              <span style="display: flex; align-items: center"
+                ><svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 72 72"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="display: inline-block; vertical-align: middle"
+                >
+                  <circle
+                    cx="36"
+                    cy="41"
+                    r="26"
+                    stroke="#000"
+                    stroke-width="6"
+                    stroke-linecap="round"
+                    stroke-dasharray="145 29"
+                    stroke-dashoffset="10"
+                  />
+                  <circle cx="59" cy="21" r="6" fill="#000" /></svg></span
+              ><span>Bubble.</span>
             </div>
-            <div class="navbar-lang">
-              <button class="lang-toggle" data-lang="fr" title="Switch to French">FR</button>
-            </div>
+          </a>
+          <div class="tagline" data-translate="hero.tagline">
+            Transparent investment in the AI era.
           </div>
         </div>
-      </nav>
+        <div class="header-right">
+          <!-- Hamburger Menu Button (Mobile Only) -->
+          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+
+          <!-- Desktop Navigation -->
+          <nav class="desktop-nav">
+            <a href="/en/investors" data-translate="nav.vision">Vision</a>
+
+            <div class="nav-dropdown">
+              <button class="nav-dropdown-toggle" data-translate="nav.solution">Solution</button>
+              <div class="nav-dropdown-menu">
+                <button class="dropdown-link js-retail-demo-trigger" data-entry-point="investor_nav_agent" data-translate="nav.solution.agent">Agent</button>
+                <a href="/en/investors/portfolio-simulator" class="dropdown-link" data-translate="nav.solution.education">Education</a>
+              </div>
+            </div>
+
+            <a href="/en/investors/pricing" data-translate="nav.pricing">Pricing</a>
+            <a href="/en/blog" data-translate="nav.blog">Blog</a>
+            <a href="/en/investors#investor-waitlist" data-translate="nav.join">Join Us</a>
+            <div class="language-switcher">
+              <button id="en-switch" class="active">EN</button>
+              <span>|</span>
+              <button id="fr-switch">FR</button>
+            </div>
+          </nav>
+
+          <!-- Mobile Language Switcher -->
+          <div class="mobile-language-switcher">
+            <button id="en-switch-mobile" class="active">EN</button>
+            <span>|</span>
+            <button id="fr-switch-mobile">FR</button>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation Overlay -->
+        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+          <nav class="mobile-nav">
+            <a href="/en/investors" data-translate="nav.vision">Vision</a>
+            <button class="mobile-nav-link js-retail-demo-trigger" data-entry-point="investor_nav_agent_mobile" data-translate="nav.solution.agent">Agent</button>
+            <a href="/en/investors/portfolio-simulator" data-translate="nav.solution.education">Education</a>
+            <a href="/en/investors/pricing" data-translate="nav.pricing">Pricing</a>
+            <a href="/en/blog" data-translate="nav.blog">Blog</a>
+            <a href="/en/investors#investor-waitlist" data-translate="nav.join">Join Us</a>
+          </nav>
+        </div>
+      </div>
     </header>
 
     <!-- Hero Section -->
@@ -79,6 +195,155 @@
             </svg>
           </button>
         </form>
+      </div>
+    </section>
+
+    <!-- Manifesto Section -->
+    <section id="about" class="manifesto fade-in">
+      <div class="container">
+        <h2 data-translate="manifesto.title">Our Assessment</h2>
+        <p data-translate="manifesto.paragraph1">Until now, you paid a money manager or a banker for reassuring words and a jargon that few understand. Today, AIs make the "technical" vocabulary free, readable, verifiable, and comparable. The elitism of knowledge and obsolete intermediaries are over.</p>
+        <p data-translate="manifesto.paragraph2">LLMs (ChatGPT, Gemini, Claude...) democratize access to expertise, help you understand more clearly, and let you demand evidence. Fees must now reflect real value: useful insights and measurable outperformance. We pierce the financial bubble, lift the veil on fee opacity, and put value back where it belongs: with you.</p>
+        <div class="insight-box">
+          <p data-translate="manifesto.insight">Our ethics: putting power back in your hands so you can break free from the excessive fees of now‑obsolete intermediaries. The result: you finance the economy, and the economy pays you interest. That's it.</p>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section-container">
+          <div class="charts-slider-wrapper">
+            <div class="charts-slider-container">
+              <div class="charts-slider">
+                <div
+                  class="chart-slide"
+                  data-chart-title-key="charts.fee_impact_title"
+                >
+                  <h3
+                    class="chart-title"
+                    data-translate="charts.fee_impact_title"
+                  >The Reality of Traditional Fees Over 30 Years</h3>
+                  <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
+                  </div>
+                </div>
+                <!-- START: New Slide 2 - Fee Types -->
+<div class="chart-slide" data-chart-title-key="charts.fees_types_title">
+    <h3 class="chart-title" data-translate="charts.fees_types_title">Which fees are we talking about?</h3>
+    <div class="chart-container">
+        <img src="/assets/images/investment-choices-fees.jpg" alt="Investment Fees Breakdown" class="chart-image">
+    </div>
+</div>
+<!-- END: New Slide 2 - Fee Types -->
+                <div
+                  class="chart-slide"
+                  data-chart-title-key="charts.subscription_advantage_title"
+                >
+                  <h3
+                    class="chart-title"
+                    data-translate="charts.subscription_advantage_title"
+                  >Why Subscription Beats Percentage Fees</h3>
+                  <div class="chart-container">
+                    <canvas id="portfolioEvolutionChart"></canvas>
+                  </div>
+                </div>
+<!-- START: New Slide 4 - Investment Journey -->
+<div class="chart-slide" data-chart-title-key="charts.journey_title">
+    <h3 class="chart-title" data-translate="charts.journey_title">Today's journey vs Bubble</h3>
+    <div class="chart-container">
+        <img src="/assets/images/investment-journey-def-en.jpg" alt="Investment Journey Comparison" class="chart-image">
+    </div>
+</div>
+<!-- END: New Slide 4 - Investment Journey -->
+              </div>
+              <div class="slider-nav">
+                <button class="slider-arrow prev" aria-label="Previous chart">
+                  &#10094;
+                </button>
+                <button class="slider-arrow next" aria-label="Next chart">
+                  &#10095;
+                </button>
+              </div>
+            </div>
+            <div class="slider-dots"></div>
+          </div>
+
+          <div class="chart-descriptions">
+            <div
+              class="chart-description-item active-description"
+              data-slide-index="0"
+            >
+              <p
+                class="chart-description"
+                data-translate="charts.fee_impact_desc"
+              >Starting with 200 000€, Bubble's low flat-fee model (from €0 to €10/month depending on tier) keeps significantly more wealth compared to traditional 2% annual fees over 30 years.</p>
+              <p class="chart-note" data-translate="charts.fee_impact_note">Illustrative scenario: 200 000€ initial investment, 7% annual returns. Bubble example: €8/month fixed fee. Traditional: 2% annual fees.</p>
+            </div>
+            <div class="chart-description-item" data-slide-index="1">
+              <p class="chart-description" data-translate="charts.fees_types_desc">Traditional investing stacks multiple fees across actors. Bubble replaces them with one flat subscription and full transparency, made possible by automation and intelligence amplification through AI.</p>
+              <p class="chart-note" data-translate="charts.fees_types_note"></p>
+            </div>
+            <div class="chart-description-item" data-slide-index="2">
+              <p
+                class="chart-description"
+                data-translate="charts.subscription_advantage_desc"
+              >While traditional fees grow exponentially with your portfolio, Bubble's €0–10/month pricing stays constant, maximizing your wealth accumulation.</p>
+              <p
+                class="chart-note"
+                data-translate="charts.subscription_advantage_note"
+              >Cumulative fees comparison over time. Fixed subscription remains constant while percentage-based fees grow exponentially.</p>
+            </div>
+            <div class="chart-description-item" data-slide-index="3">
+              <p class="chart-description" data-translate="charts.journey_desc">Today's journey is fragmented and incentive-misaligned. Bubble brings everything together as a transparent decision-support platform that explains every step, equips you with analytics, and keeps you in control from onboarding to monitoring.</p>
+              <p class="chart-note" data-translate="charts.journey_note">Traditional path: bank appointment (waits, limited hours) → biased advice (commission-driven) → "house fund" selection (expensive, underperforming) → delayed reporting → hidden fee cascade. Bubble path: instant AI answers, transparent strategies with commentary and backtests, automated monitoring with exportable instructions you execute with your own broker.</p>
+            </div>
+          </div>
+
+          <div class="key-insights-container">
+            <h3 data-translate="key_insights.title">Key Insights</h3>
+            <div class="insight-tile">
+              <ul class="insight-list">
+                <li class="insight-item" data-translate="key_insights.intro">AI radically transforms the customer experience by automating expertise and democratizing access to professional-grade financial intelligence.</li>
+                <li class="insight-item" data-translate="key_insights.bullet1">Today, you juggle between banks, online platforms, costly managers, and limited robo‑advisors.</li>
+                <li class="insight-item" data-translate="key_insights.bullet2">Bubble brings together everything you need to invest smarter: a transparent decision-support tool, powerful analytics, and educational resources for everyone. You don't need traditional financial intermediaries anymore when AI gives you the power. Every decision is explained simply, so investing is clear and accessible.</li>
+                <li class="insight-item" data-translate="key_insights.bullet3">Designed for our own portfolios, Bubble explains professional-grade strategies in plain language so you can evaluate and execute them independently.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We're Building Section -->
+    <section id="vision" class="vision fade-in">
+      <div class="container">
+        <h2 data-translate="vision.title">What We're Building</h2>
+        <div class="platform-card">
+          <h3 data-translate="vision.platform.title">A Complete Investment Agent</h3>
+          <p data-translate="vision.platform.description1">We're developing the tool we use for our own investments: transparent quantitative strategies, rigorous backtests, and monitoring automation that surface insights for you to review and act on yourself. Your private manager in your pocket, at lower cost.</p>
+          <div style="text-align: center; margin: 2rem 0;">
+            <img src="/assets/images/bubble-investment-journey.png" alt="Bubble Investment Journey" style="max-width: 100%; height: auto; max-height: 400px;">
+          </div>
+          <p data-translate="vision.platform.description2">Our AI agent delivers high-level financial analysis and decision support to every user, whatever the size of their portfolio. Bubble explains how every strategy works so you can confidently understand and evaluate your options.</p>
+          <div style="text-align: center; margin-top: 2rem;">
+            <button type="button" class="cta-button gray-btn js-retail-demo-trigger" data-entry-point="investor_vision_demo" data-translate="vision.platform.demo">
+              See the demo
+            </button>
+          </div>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <h4 data-translate="vision.cost.title">Rethought Cost Structure</h4>
+            <p data-translate="vision.cost.description">A fixed cloud-tool subscription (plans from €0 to €10/month) instead of a percentage of your assets like a traditional manager (2% fees). The hedge‑fund approach becomes accessible to portfolios of any size.</p>
+          </div>
+          <div class="feature-item">
+            <h4 data-translate="vision.ai.title">Accessible AI Expertise</h4>
+            <p data-translate="vision.ai.description">Bubble's conversational AI translates complex analysis into clear decision support so you can review scenarios and choose the next step yourself.</p>
+          </div>
+          <div class="feature-item">
+            <h4 data-translate="vision.crypto.title">Diversified Assets</h4>
+            <p data-translate="vision.crypto.description">Our portfolios prioritise low-cost ETFs and extend to cryptocurrencies on our roadmap (Crypto.com integration in progress).</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -143,17 +408,272 @@
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section fade-in">
+    <!-- FAQ Section -->
+    <section class="pricing-faq fade-in">
       <div class="container">
-        <h2 data-translate="investors.cta.title">Ready to Transform Your Investing?</h2>
-        <p data-translate="investors.cta.subtitle">Discover how Bubble can help you invest more intelligently.</p>
-        <div class="cta-buttons">
-          <a href="/en/investors/solution" class="cta-button primary-btn" data-translate="investors.cta.explore">Explore Solution</a>
-          <a href="/en/investors/pricing" class="cta-button secondary-btn" data-translate="investors.cta.pricing">View Plans</a>
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>
+              <h3>How does Bubble Portfolio actually work?</h3>
+            </summary>
+            <p>
+              Bubble is a <strong>conversational investment agent</strong>. You chat with it to:
+              <br><br>
+              1. <strong>Define your profile</strong> (goals, time horizon, risk tolerance)<br>
+              2. <strong>Explore strategies</strong> (momentum, risk parity, value...)<br>
+              3. <strong>Backtest your scenarios</strong> on 17+ years of data<br>
+              4. <strong>Build your personalized allocation</strong><br>
+              5. <strong>Automate execution</strong> via your broker (IBKR, Alpaca, Saxo)
+              <br><br>
+              Everything is transparent: you see the calculations, rules, and historical performance.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <h3>What strategies can I use?</h3>
+            </summary>
+            <p>
+              Bubble offers <strong>9 backtested strategies</strong>:
+              <br><br>
+              • <strong>Risk Parity</strong>: risk balancing across assets<br>
+              • <strong>Momentum</strong>: 3-12 month trends<br>
+              • <strong>Value & Quality</strong>: fundamentals + quality screening<br>
+              • <strong>Low Volatility</strong>: volatility minimization<br>
+              • <strong>Equal Weight</strong>: equal weighting<br>
+              • <strong>Custom Mix</strong>: combine multiple strategies to your preferences
+              <br><br>
+              Each strategy comes with explanations, historical performance, drawdowns, and Sharpe ratios.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <h3>What assets can I invest in?</h3>
+            </summary>
+            <p>
+              Currently, Bubble focuses on <strong>low-cost ETFs</strong>:
+              <br><br>
+              • <strong>Stocks</strong>: SPY (US), EFA (Europe/Asia), EEM (emerging)<br>
+              • <strong>Bonds</strong>: IEF (US Treasuries 7-10Y)<br>
+              • <strong>Commodities</strong>: GLD (gold)<br>
+              • <strong>Real Estate</strong>: VNQ (US REITs)<br>
+              • <strong>Cash</strong>: money market funds
+              <br><br>
+              <strong>Roadmap:</strong> cryptocurrencies (Crypto.com integration in progress), individual stocks, EUR bonds.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <h3>Do I need to transfer my money to Bubble?</h3>
+            </summary>
+            <p>
+              <strong>No, never.</strong> Bubble <strong>does not hold your assets</strong>.
+              <br><br>
+              You keep your accounts with your usual broker (Interactive Brokers, Alpaca, Saxo Bank).
+              Bubble connects via API to:
+              <br><br>
+              • <strong>Read your positions</strong> (read-only access)<br>
+              • <strong>Suggest orders</strong> (rebalancing, new trades)<br>
+              • <strong>You validate each transaction</strong> before execution
+              <br><br>
+              You retain <strong>100% control</strong> of your accounts.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <h3>Is Bubble suitable for beginners?</h3>
+            </summary>
+            <p>
+              <strong>Yes.</strong> Our conversational agent is designed to <strong>educate and guide</strong>:
+              <br><br>
+              • <strong>Plain language explanations</strong>: no technical jargon<br>
+              • <strong>Predefined profiles</strong>: "cautious beginner", "balanced investor", "aggressive profile"<br>
+              • <strong>Personalized recommendations</strong> based on your answers<br>
+              • <strong>Educational backtests</strong>: understand how each strategy behaves during crises
+              <br><br>
+              You don't need to be an expert in quantitative finance.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <h3>What's the difference with ChatGPT + finance?</h3>
+            </summary>
+            <p>
+              ChatGPT can discuss finance, but <strong>cannot:</strong>
+              <br><br>
+              ❌ Access your real-time portfolio data<br>
+              ❌ Backtest strategies on 17+ years of historical data<br>
+              ❌ Connect to your broker to execute orders<br>
+              ❌ Monitor your positions and alert you to rebalancing needs
+              <br><br>
+              Bubble is a <strong>specialized agent</strong> with access to market data,
+              backtesting engine, and broker integrations. ChatGPT is a generalist.
+            </p>
+          </details>
         </div>
       </div>
     </section>
+
+    <!-- Waitlist CTA Section -->
+    <section id="investor-waitlist" class="waitlist-cta fade-in">
+      <div class="container">
+        <div class="waitlist-grid">
+          <div class="waitlist-copy">
+            <h2 data-translate="waitlist.title">Building the Future Together</h2>
+            <p class="waitlist-subtitle" data-translate="waitlist.subtitle">
+              We built this AI agent for our own portfolios and we're sharing it with you. If you believe financial services should be automated, transparent, and accessible to everyone—not just to pseudo elitists—join our early adopters.
+            </p>
+            <p class="waitlist-free-text" data-translate="waitlist.free">
+              Joining our waitlist is completely free and without commitment. We're simply looking to meet people who share our vision of more transparent finance.
+            </p>
+          </div>
+          <div class="waitlist-form-wrapper">
+            <div class="form-container">
+              <h3 data-translate="investors.joinus.form.title">Early Access</h3>
+              <form id="waitlist-form">
+                <div class="form-group">
+                  <label for="name" data-translate="investors.joinus.form.name">Full name</label>
+                  <input type="text" id="name" name="name" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="email" data-translate="investors.joinus.form.email">Email address</label>
+                  <input type="email" id="email" name="email" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="profile" data-translate="investors.joinus.form.profile">Who are you?</label>
+                  <select id="profile" name="profile" required>
+                    <option value="" data-translate="investors.joinus.form.profile.placeholder">Select your profile</option>
+                    <option value="investor_beginner" data-translate="investors.joinus.form.profile.investor_beginner">Beginner investor</option>
+                    <option value="investor_experienced" data-translate="investors.joinus.form.profile.investor_experienced">Experienced investor</option>
+                    <option value="tech_professional" data-translate="investors.joinus.form.profile.tech_professional">Tech professional</option>
+                    <option value="finance_professional" data-translate="investors.joinus.form.profile.finance_professional">Finance professional</option>
+                    <option value="entrepreneur" data-translate="investors.joinus.form.profile.entrepreneur">Entrepreneur</option>
+                    <option value="student" data-translate="investors.joinus.form.profile.student">Student</option>
+                    <option value="other" data-translate="investors.joinus.form.profile.other">Other</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="comments" data-translate="investors.joinus.form.comments">Additional notes (optional)</label>
+                  <textarea id="comments" name="comments" rows="4"></textarea>
+                </div>
+
+                <button type="submit" class="cta-button primary-btn" data-translate="investors.joinus.form.button">
+                  Join the waitlist
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-left">
+            <div class="footer-logo" style="display: flex; align-items: center; gap: 0.18em">
+              <span style="display: flex; align-items: center">
+                <svg width="30" height="30" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
+                  <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+                  <circle cx="59" cy="21" r="6" fill="#000"/>
+                </svg>
+              </span>
+              <span>Bubble.</span>
+            </div>
+            <div class="footer-tagline" data-translate="footer.tagline">L'ère de l'IA change tout. Changeons avec elle.</div>
+            <div class="footer-copyright" data-translate="footer.copyright">© 2025 Bubble Invest SAS. Transparent by design.</div>
+          </div>
+
+          <nav class="footer-nav">
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.investors">Investisseurs</h4>
+              <ul>
+                <li><a href="/en/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
+                <li><a href="/en/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
+                <li><a href="/en/investors/portfolio-simulator" data-translate="footer.nav.investors.simulator">Simulateur de Portefeuille</a></li>
+                <li><a href="/en/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Rejoindre la Liste</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.professionals">Professionnels</h4>
+              <ul>
+                <li><a href="/en/professionals" data-translate="footer.nav.professionals.solutions">Solutions</a></li>
+                <li><a href="/en/professionals/demo" data-translate="footer.nav.professionals.demo">Démo</a></li>
+                <li><a href="/en/professionals/faq" data-translate="footer.nav.professionals.faq">FAQ</a></li>
+                <li><a href="/en/professionals/contact" data-translate="footer.nav.professionals.contact">Contact</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.resources">Ressources</h4>
+              <ul>
+                <li><a href="/en/blog" data-translate="footer.nav.blog">Blog</a></li>
+                <li><a href="/en/investors/portfolio-simulator" data-translate="footer.nav.resources.education">Éducation</a></li>
+                <li><a href="/en/investors" data-translate="footer.nav.resources.demo">Démo</a></li>
+                <li><a href="/en/investors#investor-waitlist" data-translate="footer.nav.resources.joinUs">Nous Rejoindre</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.legal">Légal</h4>
+              <ul>
+                <li><a href="/en/legal-notice" data-translate="footer.nav.legal_notice">Mentions Légales</a></li>
+                <li><a href="/en/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
+                <li><a href="#cookies" id="tarteaucitronRoot" data-translate="footer.nav.cookies">Gérer les Cookies</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.contact">Contact</h4>
+              <ul>
+                <li><a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></li>
+              </ul>
+              <div class="social-media-links">
+                <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn" data-handle="Bubble Invest AI">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect x="2" y="9" width="4" height="12"/>
+                    <circle cx="4" cy="4" r="2"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.linkedin">Bubble Invest AI</span>
+                </a>
+                <a href="https://www.instagram.com/behindthefinancebubble/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram" data-handle="@behindthefinancebubble">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.instagram">@behindthefinancebubble</span>
+                </a>
+                <a href="https://www.tiktok.com/@behind.the.bubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok" data-handle="@behind.the.bubble">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.tiktok">@behind.the.bubble</span>
+                </a>
+                <a href="https://www.youtube.com/@behindthefinancebubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube" data-handle="@behindthefinancebubble">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.youtube">@behindthefinancebubble</span>
+                </a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </footer>
 
     <!-- Floating Chat Input -->
     <div id="floating-chat-input" class="floating-chat-input hidden">
@@ -214,12 +734,16 @@
     </div>
 
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/i18n/translations.js"></script>
     <script src="/js/script.js"></script>
+    <script src="/js/charts.js"></script>
     <script src="/js/chatbot-logic.js"></script>
     <script src="/js/chatbot-animations.js"></script>
     <script src="/js/chat-side-panel.js"></script>
     <script src="/js/floating-chat-input.js"></script>
+    <script src="/js/animations.js"></script>
     <script src="/js/hero-chat-animation.js"></script>
+    <script src="/js/knowledge-overlay.js"></script>
   </body>
 </html>

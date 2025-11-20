@@ -11,6 +11,44 @@
 
 This document outlines the complete restructuring of BubbleLaunch from a unified landing page into **two distinct user journeys**: one for retail investors (`/investors`) and one for professionals (`/professionals`).
 
+### Implementation Status Update (Nov 15, 2025)
+
+**Work completed to date**
+- Restored hero chat input (FR + EN) with rotating placeholder questions and reconnected it to the chatbot logic.
+- Added dual-path cards to the homepage and wired retail/professional navigation plus the knowledge overlay redirection into `dual-path-selector.js` and `script.js`.
+- Built dedicated investor and professional page directories (FR + EN) with custom headers, nav, CTA buttons, and standalone templates for solution/pricing/join/contact/demo/etc.
+- Repaired global translations (`src/frontend/i18n/translations.js`), ensured they load in the browser via `window.translations`, and updated scripts that rely on them.
+- Inserted `/js/animations.js` into every investor/professional template so fade-in sections render.
+- Replaced the homepage waitlist form with a CTA to `/investors/join-us`, and ensured the only retail waitlist form lives on that page.
+- Rebuilt the investor nav/header on all retail templates (FR + EN) and pointed their “Try the demo” buttons at the retail pricing page so the knowledge overlay remains the single entry point.
+- Rebuilt all professional headers (FR + EN) with the prompt-mandated structure (Vision, Solutions dropdown, Blog, Contact, Request a demo) and created preconfigured prompt buttons on `/professionals/demo`.
+- Embedded the knowledge overlay markup/CSS directly on the homepage and wired the dual-path retail CTA to dispatch the overlay event before falling back to `/investors/pricing`; closing the overlay now redirects to `/investors`.
+- Trimmed the homepage back to the neutral sections (hero, dual-path selector, approach, blog preview) so investor-specific manifesto/fee-slider sections are ready to be relocated.
+- Added enterprise “Contact our team” CTAs and waitlist anchors on `/professionals` (FR + EN) so the professional nav buttons can point to a dedicated section.
+
+**Outstanding tasks before moving to the next phases**
+1. **Homepage polish (hero input, animations, CTA plumbing)**
+   - Ensure only `chatbot-animations.js` drives the hero placeholder rotation (the script is currently throwing on FR/EN homepages) and fix the “key points” typing animation overlap in the neutral section.
+   - Wire both dual-path buttons correctly: “Commencer / Start now” must open the investor knowledge overlay (closing it returns to `/investors`) and “Découvrir / Discover” should be ready to launch the professional demo once specs are finalized; provide a temporary redirect to `/professionals` in the meantime.
+   - Rebuild the old “Construisons l’avenir ensemble / Building the future together” block at the bottom of `/` + `/en/` with the Bubble charter design linked with notion database`** (old waitlist form as in "index html before)).
+2. **Investor journey backlog**
+   - Relocate “Notre Constat / Our Findings”, the 4-slide fee comparison, and the “What we’re building” tiles (including the “See the demo” button) into `/investors/index.html` (FR + EN) and hook their CTAs into the knowledge overlay instead of dead links.
+   - Convert the “Solution” nav item into a dropdown (`Agent` triggers the demo overlay, `Education` links to `/investors/portfolio-simulator`) and ensure every investor page footer/header matches the Bubble design charter.
+   - Restore the full simulator UI on `/investors/portfolio-simulator`, add the historic preview to the Vision page, and append the “Building the future together” waitlist block after each investor FAQ (mirrors the homepage component but remains a link to `/investors/join-us`).
+   - Fix the knowledge overlay + demo lifecycle: “Try the demo” buttons must open the overlay, the questionnaire must show once per session, the demo must run, and closing it should route the user back to `/investors`.
+   - Normalize pricing: migrate the legacy `/pricing.html` content (minus the enterprise tile) into `/investors/pricing` and ensure every “Get early access” button points to `/investors/join-us`.
+3. **Knowledge overlay + telemetry**
+   - Validate that the overlay can still be launched from pricing or other fallback pages (when markup isn’t in DOM), log the entry point, and confirm that analytics differentiate homepage hero submissions vs. overlay demo starts.
+4. **Professional content & header restoration**
+   - Port the FR “What we do / Why Bubble / Values / FAQ” sections into the EN `/professionals/index.html`, remove the “Prêt à explorer l’accès entreprise” experiment, and add the legacy enterprise waitlist block (only) after the FAQ.
+   - On `/professionals/solutions-companies` and `/professionals/solutions-wealth-managers` (FR + EN), replace the placeholder copy with the original `/businesses.html` sections (hero, use cases, modules, testimonials, certifications), add general footers, and keep the improved “Solutions clés” layout where it helps storytelling.
+   - Make every professional header charter-compliant (logo/tagline, FR/EN toggle, CTA text **“Contact us”** pointing to `#enterprise-waitlist`), fix the per-page language switchers, and remove the stray grey CTA buttons.
+   - Ensure “Nous contacter” in nav scrolls to the waitlist/contact block, and add CTAs on solutions pages (“See demo” placeholder on wealth managers, “Contact us” linking back to the main waitlist) so enterprise visitors never reach the retail waitlist.
+5. **Professional demo instrumentation & CTA**
+   - Decide on analytics for the top-level “Request/Contact” CTA and for each predefined prompt button on `/professionals/demo`, and add a professional-only contact form or CTA on that page to keep leads in the enterprise funnel.
+6. **Plan alignment**
+   - Continue updating this plan so future agents know about the hero overlay requirements, the waitlist placements, the simulator migration, and the professional CTA/language-toggle fixes before coding starts.
+
 ### Key Objectives
 1. ✅ Restore interactive hero chat input with rotating sample questions
 2. ✅ Create `/investors` journey with vision, solution, pricing, simulator, and waitlist pages
@@ -171,6 +209,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 `chatbot-animations.js` already has rotating placeholder logic. It will automatically activate on `.hero-chat-input` without code changes needed.
 
+**Verification Checklist**
+- [x] Hero chat input renders on `/` (FR/EN) directly under the hero subtitle.
+- [x] `hero-chat-form` submit dispatches to the existing chat panel (verified via `chatbot-logic.js`).
+- [x] `chatbot-animations.js` rotates through `chat.rotatingPlaceholders` without console errors.
+- [x] Submitted message opens the chat side panel and feeds the user question into the conversation history.
+- [ ] Accessibility: keyboard focus moves correctly from hero input to submit button, ARIA label describes the action.
+
+### 1.1.b Homepage Scope & Navigation (Prompt Compliance)
+**Objective:** Keep the root page lean (hero, dual path, “Our approach”, shared charts/simulator preview, blog preview) and expose only high-level navigation.
+
+**Tasks**
+1. `src/frontend/pages/index.html` / `en/index.html`
+   - Remove investor-specific sections (Vision, fee comparison, “What we’re building”, waitlist form) and relocate content to `/investors`.
+   - Keep the chatbot hero, dual-path selector, shared approach/charts/blog components.
+   - Replace waitlist form with a CTA linking to `/investors/join-us` (FR) / `/en/investors/join-us`.
+2. Homepage header
+   - Desktop/mobile nav should list exactly: `Investors`, `Professionals`, `Blog`, `Join Us`.
+   - “Join Us” points to `/investors/join-us` (FR) or `/en/investors/join-us`.
+   - No anchor links (`#about`, `#approach`) remain on `/`.
+3. Dual-path CTAs
+   - Retail: “Start now” button calls the knowledge overlay (via JS event or redirect) instead of linking directly to `/investors`.
+   - Professional: “Discover” CTA keeps linking to `/professionals`.
+
+**Verification**
+- [ ] View Source on `/` to confirm only the approved sections remain.
+- [ ] Header on `/` shows the four links and no investor-specific anchors.
+- [ ] Retail CTA opens the knowledge overlay (or at least redirects to `/investors/pricing` which triggers it automatically).
+- [ ] Professional CTA routes to `/professionals` without console warnings.
+
+### 1.2 Update Dual-Path Selector
 **Translation Keys Needed:**
 - `chat.placeholder` (already exists - "Why is AI a game-changer?")
 - `chat.rotatingPlaceholders` (already exists - array of 18 questions)
@@ -355,17 +423,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ---
 
-### 1.4 Keep Homepage Sections
+### 1.4 Homepage Neutrality + “Construisons l’avenir ensemble”
 
-**Preserve Unchanged:**
-- ✅ "Notre Constat" / "Our Assessment" (manifesto section)
-- ✅ Fee comparison charts/slider (4 slides)
-- ✅ "Our Approach" / "Notre Approche" section
-- ✅ Portfolio simulator preview
-- ✅ Blog preview
+1. Keep only the neutral sections on `/` + `/en/`: hero, dual-path selector, “Notre approche / Our approach”, and the shared blog preview. The manifesto, fee slider, simulator preview, and “What we’re building” tiles must live exclusively under `/investors`.
+2. Reintroduce the “Construisons l’avenir ensemble / Building the future together” block at the bottom of the homepage using the Bubble charter styling (two-column layout, large title, supporting paragraph). This block is now **CTA-only**—no form fields. Button copy: “Rejoindre la liste d’attente” (FR) / “Join the waitlist” (EN) → `/investors/join-us`.
+3. Remove any references to `/#waitlist`. All analytics/IDs should reflect the new CTA-only behavior (e.g., `data-cta="homepage_waitlist"`).
+4. Prepare translation keys for the headline, paragraph, and CTA label so FR/EN stay in sync.
 
-**Modify Slightly:**
-- Update "Join Us" section title to "Stay Updated" (neutral, kept on homepage temporarily)
+### 1.5 Hero Typing Animations & CTA QA
+
+1. Ensure only `chatbot-animations.js` manipulates the hero placeholder. Remove legacy scripts (`hero-chat-animation.js`, duplicated inline typings) that currently trigger `Unexpected string` errors and cause overlapping text in the “key points” section.
+2. Validate that the knowledge overlay opens when:
+   - Clicking the “Start now / Commencer” button on the investor tile.
+   - Pressing the header “Try the demo” button once inside `/investors`.
+   - Clicking the “See the demo” button under “A complete AI investment agent.”
+   Closing the overlay on the homepage must redirect to `/investors`.
+3. Track CTA origin via `detail.entryPoint` in the overlay event (`hero_start`, `dual_path`, `investor_tile`, etc.) and log a GA event.
+4. Stage the professional CTA: keep the “Discover” button linking to `/professionals` for now but document that it will eventually open the professional demo (Phase 5 deliverable).
 
 ---
 
@@ -406,7 +480,15 @@ All investor pages include:
 ```html
 <nav class="desktop-nav investor-nav">
   <a href="/investors" data-translate="investors.nav.vision">Vision</a>
-  <a href="/investors/solution" data-translate="investors.nav.solution">Solution</a>
+
+  <div class="nav-dropdown">
+    <button class="nav-dropdown-toggle" data-translate="investors.nav.solution">Solution</button>
+    <div class="nav-dropdown-menu">
+      <button class="dropdown-link" data-action="open-investor-agent" data-translate="investors.nav.solution.agent">Agent</button>
+      <a href="/investors/portfolio-simulator" class="dropdown-link" data-translate="investors.nav.solution.education">Education</a>
+    </div>
+  </div>
+
   <a href="/investors/pricing" data-translate="investors.nav.pricing">Tarification</a>
   <a href="/blog" data-translate="nav.blog">Blog</a>
   <a href="/investors/join-us" data-translate="investors.nav.joinUs">Rejoignez-nous</a>
@@ -423,6 +505,11 @@ All investor pages include:
 </nav>
 ```
 
+**Notes**
+- `open-investor-agent` dispatches the same knowledge overlay event as the hero CTA (entry point `solution_dropdown_agent`).
+- The dropdown closes on selection and must remain keyboard accessible (tab + ESC).
+- Add `investors.nav.solution.agent` / `.education` translation keys for FR/EN.
+
 ### 3.3 Investor Pages Specification
 
 #### **A. `/investors/index.html` (Vision Page)**
@@ -434,10 +521,12 @@ All investor pages include:
 4. "What We Are Building" section:
    - Tile: "A Complete AI Investment Agent"
    - Description
-   - Two CTAs: "See Pricing" (link) and "Try the Demo" (button)
+   - Two CTAs: "See Pricing" (link) and "Try the Demo" (button wired to the knowledge overlay; reuse `data-entry-point="vision_ai_agent"` and focus the overlay on submit)
 5. Portfolio simulator preview
 6. Blog preview
 7. Footer with investor-specific links
+8. “Construisons l’avenir ensemble / Building the future together” block cloned from the homepage (CTA → `/investors/join-us`)
+9. Ensure the “key points” typing animation runs once (remove duplicate `.typing-text` nodes); QA by watching the hero and manifesto on slow network throttling.
 
 #### **B. `/investors/solution.html` (Solution Page)**
 
@@ -463,7 +552,11 @@ All investor pages include:
    - Not financial advice
    - Not account custody
    - User maintains 100% control
-7. CTA: "Try the Demo" or "See Pricing"
+7. CTA row:
+   - Button “Try the demo” (opens knowledge overlay; entry point `solution_agent_section`)
+   - Secondary link “See pricing” (`/investors/pricing`)
+8. Reuse the “Solutions clés / Key capabilities” design for this page so it mirrors the dual-path aesthetic, and include a footer consistent with Charte Graphique Bubble mandates.
+9. Ensure the floating chatbot, knowledge overlay script, and animations all load (no missing `window.translations` errors).
 
 #### **C. `/investors/pricing.html` (Pricing Page)**
 
@@ -480,6 +573,8 @@ All investor pages include:
 5. **Additional Resources**
    - Comparison table: Bubble vs traditional robo-advisors
    - Cost calculator (optional)
+6. Migrate the legacy `/pricing.html` content into this page (FR + EN) and remove the “Enterprise (on quote)” tile entirely so professional prospects stay on their dedicated path.
+7. Every “Accès anticipé / Get early access” button now links to `/investors/join-us`.
 
 #### **D. `/investors/portfolio-simulator.html`**
 
@@ -488,6 +583,7 @@ All investor pages include:
 - Add investor-specific header
 - Keep all simulator features unchanged
 - Add CTA: "Talk to Our AI Advisor" → Opens chat side panel
+- Ensure this page is the destination for the “Education” item in the Solution dropdown and includes the global footer + floating chatbot scripts so animations continue to run.
 
 #### **E. `/investors/join-us.html` (Waitlist/Early Access)**
 
@@ -498,6 +594,37 @@ All investor pages include:
 - Submission to `/api/waitlist` endpoint
 - Success message
 - Privacy disclaimer
+
+### 3.4 Investor Journey Checklist
+- [x] All investor pages render with the dedicated investor header/footer (FR + EN) including the “Try the demo” CTA.
+- [x] Floating chatbot + language toggle work on every `/investors/*` page.
+- [x] `/investors/join-us` (FR + EN) hosts the only waitlist form; homepage now links here via CTA only.
+- [x] Each investor CTA that mentions “demo” routes through `/investors/pricing`.
+- [ ] Move “Notre Constat / Our Findings”, fee slider, and “What we’re building” tiles from `/` → `/investors` (FR + EN) and keep their typing animations from overlapping.
+- [ ] Replace `/investors/portfolio-simulator.html` redirect with the full simulator UI, investor header/footer, and CTA back to the AI advisor (accessible from the Solution dropdown “Education” link).
+- [ ] Update all plan cards on `/investors/pricing.html` (FR + EN) so “Get early access”/“Accès anticipé” links target `/investors/join-us`.
+- [ ] Knowledge overlay opens when clicking “Start now” (homepage tile), “Try the demo” (investor nav/buttons), or the “See the demo” CTA in the “Complete AI investment agent” tile; closing it from the homepage returns to `/investors`.
+- [ ] “Solution” dropdown exposes “Agent” (demo trigger) + “Education” (links to simulator) on both FR + EN investor headers and dispatches analytics entry points.
+- [ ] Rebuild the “Construisons l’avenir ensemble / Building the future together” block after the investor FAQ with the same CTA-only component used on `/`.
+- [ ] Hero + manifesto typing animations run once (no overlapping text) in both languages.
+
+### 3.5 Knowledge Overlay & Demo Flow
+**Objective:** Repair the investor demo journey so the knowledge overlay launches the demo, and exiting the demo returns users to `/investors`.
+
+**Tasks**
+1. Embed `knowledge-overlay.js` and the overlay markup on `/` and `/en/`.
+2. Update `dual-path-selector.js` to dispatch `openKnowledgeOverlay` before redirecting and redirect to `/investors` after the overlay closes.
+3. Attach the same overlay trigger to the investor header CTA, the “Agent” dropdown item, and the “See the demo” button inside “What we’re building” (each with a unique `entryPoint` for analytics).
+4. Ensure `knowledge-overlay.js` listens for direct page events (`homepage_direct`, `solution_dropdown_agent`, etc.) and closes cleanly, clearing any timers.
+5. Verify the retail demo (pricing workflow) loads its scripts and showcases the typing animation/backtest without console errors, and closing the modal routes to `/investors`.
+
+### 3.6 Dual Waitlist Block (“Building the Future Together”)
+**Objective:** Provide a consistent waitlist CTA on both journeys.
+
+**Tasks**
+1. Rebuild the waitlist section at the bottom of `/index.html` and `/en/index.html` using the charter design but with CTAs pointing to `/investors/join-us`.
+2. Add the same component (localized) after the investor FAQ so users can join the waitlist without returning to the homepage.
+3. Both instances should be CTA-only (no embedded form) and must **not** include a professional CTA; the enterprise contact lives exclusively on `/professionals`.
 
 ---
 
@@ -621,13 +748,23 @@ src/frontend/pages/
   <a href="/professionals/faq" data-translate="professionals.nav.faq">FAQ</a>
   <a href="/professionals/contact" data-translate="professionals.nav.contact">Contact Us</a>
 
-  <!-- Demo button -->
-  <button class="nav-demo-btn" id="professional-demo-btn" data-translate="professionals.nav.demoBtn">Request a demo</button>
+  <!-- CTA now scrolls to enterprise waitlist -->
+  <a href="/professionals#enterprise-waitlist"
+     class="nav-cta"
+     data-cta="professional_contact"
+     data-translate="professionals.nav.cta">
+    Contact us
+  </a>
 
   <!-- Language switcher -->
   <div class="language-switcher">...</div>
 </nav>
 ```
+
+**Requirements**
+- CTA label is “Contact us / Contactez-nous” and scrolls to `#enterprise-waitlist` on the current page. The `/professionals/demo` page remains accessible via hero buttons and contextual CTAs.
+- Language switchers must match the Charte Graphique Bubble layout used on the root page (inline buttons, clear active state).
+- Header/hero combos on every professional page must include the same CTA + toggle block to stay consistent.
 
 ### 4.3 Professional Pages Specification
 
@@ -656,6 +793,11 @@ src/frontend/pages/
    - Custom agents
    - Integration flexibility
 6. CTAs: "Discover Solutions" (scroll/link) and "Request a Demo"
+- Replace the experimental “Prêt à explorer l’accès entreprise” block with the legacy waitlist/contact section from `businesses.html` and append it directly after the FAQ. This becomes the anchor `#enterprise-waitlist`.
+- Remove the grey “Contactez-nous” CTA, ensure only the charter CTA (dark button) remains, and wire it to `#enterprise-waitlist`.
+- Fix the FR/EN language toggle markup so it mirrors the root header (buttons with `.active` class); ensure translations load to avoid blank headers.
+- Update hero CTAs: primary links to `/professionals/solutions-companies`, secondary to `/professionals/demo`.
+- Footer must match Bubble design (logo left, nav columns, socials) just like `/investors`.
 
 #### **B. `/professionals/solutions-companies.html`**
 
@@ -683,6 +825,11 @@ src/frontend/pages/
    - Transparent cost structure
 8. **Customer Stories** (case studies if available)
 9. CTA: "Request a Demo" or "Schedule a Call"
+- Replace the placeholder copy with the legacy `/businesses.html` content ("What we do", "Why Bubble", pricing, testimonials) while retaining the improved "Solutions clés" component where it fits.
+- Header/footer must use the Bubble charter template, and include a CTA that points to `/professionals#enterprise-waitlist`.
+- Add a persistent “Contact us” CTA under the hero and a final CTA in the footer that both link to `/professionals#enterprise-waitlist` (no linkage to `/investors/join-us`).
+- Include a “Go further” style section (from the legacy page) outlining certifications/compliance plus a summary card for pricing (without exposing AUM fees); this content already exists in FR and must be translated for EN.
+- Language toggles and nav layout must be identical to the main professional page; add the shared footer as per the Bubble charter.
 
 #### **C. `/professionals/solutions-wealth-managers.html`**
 
@@ -718,6 +865,11 @@ src/frontend/pages/
    - How it saves time and costs
    - ROI calculator (optional)
 8. CTA: "Request a Demo" or "Schedule a Consultation"
+- Restore the wealth-manager specific sections from the legacy businesses page (hero narrative, concrete example workflows, compliance blocks) and blend them with the new "Solutions clés" layout.
+- Add both CTAs: "Nous contacter" → `/professionals#enterprise-waitlist` and a placeholder "See demo" button for the upcoming wealth-manager demo.
+- Ensure header/footer match the charter template and include the updated language toggle.
+- Import the “Outils pour professionnels de gestion” and “Cas concrets” sections verbatim from `businesses.html`, including certification badges; translate copy for EN while keeping structure.
+- Add the shared footer plus a CTA strip above it reminding visitors that the contact form resides on the main professional page.
 
 #### **D. `/professionals/demo.html` (Professional Demo)**
 
@@ -758,7 +910,20 @@ src/frontend/pages/
 - Answer: Built for KYC, GDPR, AMF compliance from Day 1
 - Audit logs and documentation
 - Regular security audits
-- Compliance dashboard
+
+### 4.4 Professional Journey Checklist
+- [x] `/professionals` directories (FR + EN) contain all required pages.
+- [x] Navigation exposes Vision + Solutions dropdown (Companies, Wealth Managers) + Blog + Contact + CTA.
+- [x] `/professionals/demo` (FR + EN) shows the preconfigured prompt buttons (via `data-prompt-key`) and excludes the retail overlay.
+- [x] Enterprise CTA + waitlist anchor added to `/professionals` (FR + EN) so header CTAs have a dedicated target.
+- [ ] Ensure every professional subpage header (solutions, demo, FAQ, contact) matches the Bubble design charter: brand/tagline block, CTA → `#enterprise-waitlist`, `.lang-toggle` buttons.
+- [ ] Port the FR “What we do / Why Bubble / Values / FAQ” content into the EN `/professionals/index.html`.
+- [ ] Restore the original enterprise copy on `/professionals/solutions-companies` and `/professionals/solutions-wealth-managers` (FR + EN): hero, use cases, modules, workflow diagrams, integration/pricing, testimonials.
+- [ ] Confirm no professional footer/nav link references `/#waitlist`; all “join/contact” links route to `/professionals/contact` or `#enterprise-waitlist`.
+- [ ] Implement analytics tracking for the professional prompt buttons and CTA clicks (header + enterprise section).
+- [ ] Replace the “Demander une démo” CTA label everywhere with “Contact us / Contactez-nous” (links to `#enterprise-waitlist`) and ensure the grey CTA variant is removed.
+- [ ] Rebuild the enterprise waitlist/contact section after the professional FAQ with the legacy form copy; nav link “Nous contacter” must scroll precisely to that section.
+- [ ] Solutions pages include both CTAs (“See demo” placeholder for wealth managers + “Contact us”) and append the shared footer with correct FR/EN toggles.
 
 **Q5: "Sécurité des données?" / "How secure is my client data?"**
 - Answer: Bank-grade encryption
@@ -823,6 +988,7 @@ src/frontend/pages/
 - Submission to `/api/business-contact` endpoint
 - Response: "We'll be in touch within 24 hours"
 - Privacy disclaimer
+- This is the canonical `#enterprise-waitlist` anchor; the nav CTA and footer buttons must scroll to it instead of reloading the page.
 
 ---
 
@@ -878,14 +1044,22 @@ window.addEventListener('openKnowledgeOverlay', (e) => {
 ### 5.3 Demo Trigger Points
 
 **Retail Demo Triggers:**
-1. Homepage dual-path "Start now" button → Opens knowledge overlay
-2. Investor page "Try the Demo" buttons → Opens knowledge overlay
-3. Knowledge overlay selection → Launches appropriate demo scenario
+1. Homepage dual-path "Start now" button → Dispatches `openKnowledgeOverlay` (`entryPoint: 'dual_path_start'`)
+2. Investor header/button "Try the demo" + Solution dropdown “Agent” option → Dispatch overlay with corresponding entry points.
+3. “See the demo” CTA inside “A complete AI investment agent” (Vision page) → Dispatch overlay.
+4. Knowledge overlay questionnaire → Launches appropriate demo scenario; when the modal closes, redirect to `/investors`.
 
 **Professional Demo Triggers:**
-1. Homepage dual-path "Discover" button → Navigates to `/professionals/demo`
-2. Professional pages "Request a Demo" buttons → Navigates to `/professionals/demo`
-3. `/professionals/demo` page auto-loads chat interface with professional prompts
+1. Homepage dual-path "Discover" button → Temporarily links to `/professionals`; once professional demo instrumentation is complete, it should be able to deep-link to `/professionals/demo`.
+2. Professional hero CTAs (“Discover solutions”, “See demo”) and solutions-page buttons → Navigate to `/professionals/demo`.
+3. `/professionals/demo` page auto-loads chat interface with professional prompts; include a persistent “Contact our team” CTA that points to `/professionals#enterprise-waitlist`.
+
+### 5.4 Professional Demo Instrumentation & CTA
+
+1. Fire `gtag('event', 'professional_demo_entry', { entry_point })` whenever a user lands on `/professionals/demo` (include source info from referring button).
+2. Attach analytics to each `data-prompt-key` button (event `demo_prompt_clicked` already exists—ensure it sets `audience: 'professional'`).
+3. Add a “Contact us” panel on the demo page linking to `#enterprise-waitlist` so enterprise users remain in the professional flow.
+4. Consider adding a dedicated CTA (“Talk to our enterprise team”) inside the demo transcript area that fires `professional_demo_contact_click`.
 
 ---
 
@@ -982,9 +1156,9 @@ detectPageContext() {
 ### 7.3 Form Cleanup
 
 **Homepage Changes:**
-- Remove old "Join Us" button from hero
-- Keep waitlist form section temporarily (label it neutral like "Stay Updated")
-- Will migrate to `/investors/join-us` but keep on homepage initially if desired
+- Remove old "Join Us" button from hero (already handled in Phase 1).
+- Delete the embedded form entirely; the homepage now shows only the CTA-based “Construisons l’avenir ensemble” block that links to `/investors/join-us`.
+- Ensure there are no lingering references to `/investors/join-us#form` and that analytics track CTA clicks instead of form submissions on `/`.
 
 ---
 
@@ -1283,6 +1457,15 @@ detectPageContext() {
 
 ## NOTES
 
+### ⚠️ CRITICAL: GIT OPERATIONS POLICY
+- **DO NOT COMMIT** any changes without explicit user approval
+- **DO NOT PUSH** any changes to remote without explicit user approval
+- **WAIT FOR USER VERIFICATION** after each phase before any git operations
+- **ONLY COMMIT** when user explicitly requests: "commit this" or "save this"
+- **ALWAYS SHOW SUMMARY** of changes before proposing any commit
+- This applies to ALL phases, ALL files, and ALL modifications
+
+### Implementation Guidelines
 - **No commits/pushes** until user approval after each verification step
 - **Step-by-step verification** ensures quality at each phase
 - **Both FR and EN** implemented simultaneously to avoid drift

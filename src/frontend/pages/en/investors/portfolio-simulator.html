@@ -1,15 +1,1977 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Simulator · Bubble</title>
-    <script>
-        // Redirect to the main portfolio simulator
-        window.location.href = '/portfolio-simulator';
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>Educational Tool: Portfolio Simulator - Bubble Invest</title>
+    <meta name="description" content="Explore how AI builds portfolios with this interactive educational tool. This simulator shows different asset allocation strategies on 20 years of real data. Discover our complete platform and conversational AI agent at bubbleinvest.org/en." />
+    <meta name="keywords" content="educational portfolio simulator, asset allocation strategies, risk parity demo, AI investment learning, conversational portfolio agent, intelligent allocation" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bubbleinvest.org/en/investors/portfolio-simulator" />
+    <meta property="og:title" content="Educational Tool: Portfolio Simulator - Bubble Invest" />
+    <meta property="og:description" content="Explore how AI builds portfolios with this interactive simulator. Test different strategies on 20 years of real data. Discover Bubble Invest's conversational AI agent." />
+    <meta property="og:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Bubble Portfolio Simulator",
+        "description": "Interactive educational tool to explore how AI builds portfolios. Free simulator comparing different asset allocation strategies on 20 years of real data.",
+        "url": "https://bubbleinvest.org/en/investors/portfolio-simulator",
+        "inLanguage": ["en", "fr"],
+        "learningResourceType": "Interactive Simulator",
+        "provider": {
+          "@type": "Organization",
+          "name": "Bubble Invest",
+          "url": "https://bubbleinvest.org"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "France"
+        },
+        "offers": {
+          "@type": "Offer",
+          "category": "FreeTier",
+          "price": "0",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/InStock"
+        },
+        "image": "https://bubbleinvest.org/assets/images/bubble-logo-single.svg",
+        "mainEntityOfPage": "https://bubbleinvest.org/en/investors/portfolio-simulator"
+      }
     </script>
-</head>
-<body>
-    <p>Redirecting to portfolio simulator...</p>
-</body>
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://bubbleinvest.org/en/investors/portfolio-simulator" />
+    <meta name="twitter:title" content="AI Portfolio Simulator | Bubble Invest" />
+    <meta name="twitter:description" content="Backtest Bubble's AI-driven strategies on 20 years of data and see how fixed-fee automation performs." />
+    <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bubbleinvest.org/en/investors/portfolio-simulator" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- Language Alternates -->
+    <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/portfolio-simulator" />
+    <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/investors/portfolio-simulator" />
+    <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/portfolio-simulator" />
+
+    <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
+    <link rel="stylesheet" href="/assets/styles/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+      /* Simulator-specific styles */
+      .simulator-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: clamp(1.5rem, 4vw, 3rem);
+        min-height: 100vh;
+      }
+
+      .simulator-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid #E5E7EB;
+      }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #333333;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        background: #F8F8F8;
+        border: 1px solid #EEEEEE;
+        transition: all 0.3s ease;
+      }
+
+      .back-button:hover {
+        background: #EEEEEE;
+        transform: translateX(-5px);
+      }
+
+      .simulator-title {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        font-weight: 700;
+        color: #1F2937;
+        margin: 0;
+      }
+
+      .simulator-subtitle {
+        font-size: 1.1rem;
+        color: #6B7280;
+        margin-top: 0.5rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Strategy Selector Styles */
+      .strategy-selector {
+        margin-bottom: 3rem;
+        position: relative;
+        z-index: 5;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1F2937;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-description {
+        color: #6B7280;
+        margin-bottom: 2rem;
+      }
+
+      .strategy-pills {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .strategy-pill {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        border: 2px solid #E5E7EB;
+        border-radius: 16px;
+        background: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: left;
+      }
+
+      .strategy-pill:hover {
+        border-color: #667eea;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.12);
+      }
+
+      .strategy-pill.active {
+        border-color: #667eea;
+        background: rgba(102, 126, 234, 0.08);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+      }
+
+      .pill-icon {
+        flex-shrink: 0;
+        color: #6B7280;
+        transition: color 0.3s ease;
+      }
+
+      .strategy-pill.active .pill-icon {
+        color: #667eea;
+      }
+
+      .pill-content {
+        flex: 1;
+      }
+
+      .pill-title {
+        font-weight: 600;
+        color: #1F2937;
+        font-size: 1.1rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .pill-subtitle {
+        font-size: 0.9rem;
+        color: #6B7280;
+      }
+
+      .strategy-pill.active .pill-title {
+        color: #667eea;
+        font-weight: 700;
+      }
+
+      .responsive-slider {
+        position: relative;
+      }
+
+      .slider-dots {
+        display: none;
+      }
+
+      /* Leverage Toggle Section */
+      .leverage-section {
+        margin: 2rem 0;
+        padding: 1.75rem;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(102, 126, 234, 0.25);
+        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.08);
+      }
+
+      .section-subtitle {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #1F2937;
+        margin-bottom: 1rem;
+      }
+
+      .leverage-pills-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .leverage-pills {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .leverage-pill {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1rem 1.5rem;
+        border-radius: 50px;
+        border: 2px solid #E5E7EB;
+        background: white;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #4B5563;
+      }
+
+      .leverage-pill:hover:not(.active) {
+        border-color: #667eea;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+      }
+
+      .leverage-pill.active {
+        border-color: #667eea;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        box-shadow: 0 12px 28px rgba(102, 126, 234, 0.25);
+      }
+
+      .leverage-pill.active .risk-badge {
+        filter: brightness(1.2);
+      }
+
+      .risk-badge {
+        font-size: 1.2rem;
+        line-height: 1;
+      }
+
+      .leverage-warning {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.25rem;
+        border-radius: 12px;
+        background: rgba(239, 68, 68, 0.08);
+        border-left: 4px solid #ef4444;
+        transition: all 0.3s ease;
+      }
+
+      .leverage-warning.hidden {
+        display: none;
+      }
+
+      .warning-icon {
+        font-size: 1.5rem;
+        line-height: 1;
+        flex-shrink: 0;
+      }
+
+      .warning-content {
+        font-size: 0.9rem;
+        color: #7f1d1d;
+        line-height: 1.6;
+      }
+
+      .warning-content strong {
+        color: #991b1b;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .leverage-pills {
+          flex-direction: column;
+        }
+
+        .leverage-pill {
+          width: 100%;
+        }
+      }
+
+      .export-section {
+        margin-top: 3rem;
+        padding: 2rem;
+        border-radius: 16px;
+        border: 1px solid rgba(102, 126, 234, 0.25);
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 18px 40px rgba(102, 126, 234, 0.08);
+      }
+
+      .export-section.hidden {
+        display: none;
+      }
+
+      .export-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+      }
+
+      .export-buttons button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border: 1px solid rgba(102, 126, 234, 0.35);
+        background: #ffffff;
+        color: #4B5563;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+
+      .export-buttons button:hover {
+        transform: translateY(-2px);
+        border-color: rgba(102, 126, 234, 0.6);
+        box-shadow: 0 12px 28px rgba(102, 126, 234, 0.18);
+      }
+
+      .export-status {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: #4B5563;
+      }
+
+      .custom-strategy-panel {
+        margin-top: 2rem;
+        padding: 1.75rem;
+        border-radius: 16px;
+        border: 1px solid rgba(102, 126, 234, 0.2);
+        background: rgba(102, 126, 234, 0.06);
+        box-shadow: 0 12px 32px rgba(102, 126, 234, 0.08);
+        transition: all 0.3s ease;
+      }
+
+      .custom-strategy-panel.hidden {
+        display: none;
+      }
+
+      .custom-strategy-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+        align-items: flex-end;
+        margin-top: 1.5rem;
+      }
+
+      .custom-strategy-field label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #4B5563;
+        margin-bottom: 0.5rem;
+      }
+
+      .custom-strategy-field select,
+      .custom-strategy-field input[type="range"] {
+        width: 100%;
+        border-radius: 12px;
+        border: 1px solid rgba(102, 126, 234, 0.35);
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #1F2937;
+        background: white;
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.08);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .custom-strategy-field input[type="range"] {
+        padding: 0;
+        appearance: none;
+        height: 6px;
+        background: linear-gradient(90deg, #667eea 0%, #8b5cf6 100%);
+        border-radius: 999px;
+        border: none;
+        box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.25);
+      }
+
+      .custom-strategy-field input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 3px solid #667eea;
+        box-shadow: 0 6px 14px rgba(102, 126, 234, 0.35);
+        cursor: pointer;
+      }
+
+      .custom-strategy-field input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 3px solid #667eea;
+        box-shadow: 0 6px 14px rgba(102, 126, 234, 0.35);
+        cursor: pointer;
+      }
+
+      .custom-weight-value {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: #4B5563;
+        margin-top: 0.35rem;
+      }
+
+      .custom-strategy-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+
+      .custom-strategy-actions button {
+        padding: 0.75rem 1.5rem;
+        border-radius: 999px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .custom-strategy-apply {
+        background: linear-gradient(90deg, #667eea 0%, #8b5cf6 100%);
+        color: white;
+        box-shadow: 0 10px 24px rgba(102, 126, 234, 0.35);
+      }
+
+      .custom-strategy-apply:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(102, 126, 234, 0.4);
+      }
+
+      .custom-strategy-reset {
+        background: rgba(255, 255, 255, 0.95);
+        color: #4B5563;
+        border: 1px solid rgba(102, 126, 234, 0.3);
+      }
+
+      .custom-strategy-reset:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 22px rgba(102, 126, 234, 0.25);
+      }
+
+      .custom-strategy-note {
+        margin-top: 1rem;
+        font-size: 0.85rem;
+        color: #4B5563;
+      }
+
+      .custom-strategy-alert {
+        margin-top: 1rem;
+        padding: 0.75rem 1rem;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px dashed rgba(102, 126, 234, 0.35);
+        color: #4B5563;
+        font-size: 0.85rem;
+      }
+
+      /* Strategy Tooltips */
+      .strategy-pill {
+        position: relative;
+        z-index: 1;
+        overflow: visible;
+      }
+
+      .metric-card {
+        position: relative;
+        overflow: visible;
+      }
+
+      .strategy-tooltip,
+      .metric-tooltip {
+        position: absolute;
+        bottom: calc(100% + 18px);
+        left: 50%;
+        transform: translate(-50%, 10px);
+        background: #333333;
+        color: #F9FAFB;
+        padding: 1rem 1.1rem;
+        border-radius: 14px;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        width: 280px;
+        max-width: 90vw;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .metric-tooltip {
+        width: 250px;
+      }
+
+      .strategy-tooltip::after,
+      .metric-tooltip::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 8px;
+        border-style: solid;
+        border-color: #333333 transparent transparent transparent;
+      }
+
+      .tooltip-bottom {
+        bottom: auto;
+        top: calc(100% + 18px);
+        transform: translate(-50%, -10px);
+      }
+
+      .tooltip-bottom::after {
+        top: auto;
+        bottom: 100%;
+        border-color: transparent transparent #333333 transparent;
+      }
+
+      .strategy-pill:hover,
+      .strategy-pill:focus-visible,
+      .metric-card:hover,
+      .metric-card:focus-visible {
+        z-index: 25;
+      }
+
+      .strategy-pill:hover .strategy-tooltip,
+      .strategy-pill:focus-visible .strategy-tooltip,
+      .metric-card:hover .metric-tooltip,
+      .metric-card:focus-visible .metric-tooltip {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+
+      /* Main Chart Area Styles */
+      .main-chart-area {
+        max-width: 1100px;
+        margin: 0 auto 3rem;
+      }
+
+      .chart-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        border: 1px solid #EEEEEE;
+      }
+
+      .chart-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .chart-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1F2937;
+        margin: 0;
+      }
+
+      .chart-controls {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .etf-toggle-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .etf-toggle-heading {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #4B5563;
+      }
+
+      .etf-toggle-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .etf-toggle-button {
+        border: 1px solid #E5E7EB;
+        background: rgba(102, 126, 234, 0.08);
+        color: #4B5563;
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 0.4rem 0.9rem;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .etf-toggle-button:hover,
+      .etf-toggle-button:focus-visible {
+        border-color: #667eea;
+        color: #667eea;
+        outline: none;
+      }
+
+      .etf-toggle-button.active {
+        background: rgba(102, 126, 234, 0.16);
+        border-color: #667eea;
+        color: #4338ca;
+      }
+
+      .etf-toggle-button.is-off {
+        background: #F3F4F6;
+        color: #9CA3AF;
+        border-color: #E5E7EB;
+        opacity: 0.8;
+      }
+
+      .etf-toggle-button.is-off:hover,
+      .etf-toggle-button.is-off:focus-visible {
+        color: #6B7280;
+        border-color: #D1D5DB;
+      }
+
+      .tooltip-hint {
+        display: none;
+        font-size: 0.8rem;
+        color: #6B7280;
+        margin-top: 0.75rem;
+      }
+
+      .mobile-tooltip-bubble {
+        position: absolute;
+        background: #333333;
+        color: #F9FAFB;
+        padding: 1rem 1.1rem;
+        border-radius: 14px;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        max-width: min(300px, calc(100vw - 32px));
+        z-index: 9999;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(6px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .mobile-tooltip-bubble::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-width: 10px;
+        border-style: solid;
+        left: var(--tooltip-arrow-offset, 50%);
+        transform: translateX(-50%);
+      }
+
+      .mobile-tooltip-bubble[data-position="top"]::after {
+        top: 100%;
+        border-color: #333333 transparent transparent transparent;
+      }
+
+      .mobile-tooltip-bubble[data-position="bottom"]::after {
+        bottom: 100%;
+        border-color: transparent transparent #333333 transparent;
+      }
+
+      .mobile-tooltip-bubble.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .time-period-btn {
+        padding: 0.5rem 1rem;
+        border: 1px solid #E5E7EB;
+        background: white;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #6B7280;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .time-period-btn:hover {
+        border-color: #667eea;
+        color: #667eea;
+      }
+
+      .time-period-btn.active {
+        background: rgba(102, 126, 234, 0.08);
+        border-color: #667eea;
+        color: #667eea;
+      }
+
+      .chart-canvas-wrapper {
+        position: relative;
+        height: 400px;
+        margin-bottom: 1rem;
+      }
+
+      #portfolioChart {
+        max-height: 400px;
+      }
+
+      /* Performance Metrics Grid */
+      .metrics-grid {
+        max-width: 1100px;
+        margin: 0 auto 3rem;
+      }
+
+      .metrics-section-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1F2937;
+        margin-bottom: 1.5rem;
+      }
+
+      .metrics-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.25rem;
+      }
+
+      .metric-card {
+        background: white;
+        border: 1px solid #EEEEEE;
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .metric-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        border-color: #667eea;
+      }
+
+      .metric-card.highlight {
+        background: rgba(102, 126, 234, 0.08);
+        border: 2px solid rgba(102, 126, 234, 0.3);
+      }
+
+      .metric-card.highlight:hover {
+        background: rgba(102, 126, 234, 0.12);
+        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+      }
+
+      .metric-card-label {
+        font-size: 0.875rem;
+        color: #6B7280;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .metric-card.highlight .metric-card-label {
+        color: #667eea;
+        font-weight: 600;
+      }
+
+      .metric-card-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1F2937;
+        margin-bottom: 0.25rem;
+      }
+
+      .metric-card.highlight .metric-card-value {
+        color: #667eea;
+      }
+
+      .metric-card-subtitle {
+        font-size: 0.75rem;
+        color: #9CA3AF;
+      }
+
+      .metric-card.highlight .metric-card-subtitle {
+        color: #667eea;
+        opacity: 0.8;
+      }
+
+      /* Tooltip Styles */
+
+      /* Tablet Responsiveness (768px - 1024px) */
+      @media (max-width: 1024px) and (min-width: 769px) {
+        .simulator-container {
+          padding: 2rem 1.5rem;
+        }
+        .main-chart-area,
+        .metrics-grid {
+          max-width: 100%;
+        }
+
+        .strategy-pills {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .strategy-pill {
+          padding: 1.25rem;
+        }
+
+        .pill-icon img {
+          width: 28px;
+          height: 28px;
+        }
+
+        .chart-canvas-wrapper {
+          height: 350px;
+        }
+
+        #portfolioChart {
+          max-height: 350px;
+        }
+      }
+
+      /* Mobile Responsiveness (max 768px) */
+      @media (max-width: 768px) {
+        .simulator-container {
+          padding: 1.5rem 1rem;
+        }
+        .main-chart-area,
+        .metrics-grid {
+          max-width: 100%;
+          margin: 0 auto 2.5rem;
+        }
+        .etf-toggle-bar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .etf-toggle-buttons {
+          width: 100%;
+        }
+
+        .simulator-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+
+        .simulator-header > div:last-child {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .simulator-title {
+          font-size: 1.75rem;
+          line-height: 1.2;
+        }
+
+        .simulator-subtitle {
+          font-size: 1rem;
+          padding: 0 0.5rem;
+        }
+
+        /* Strategy Pills Mobile */
+        .section-title {
+          font-size: 1.3rem;
+        }
+
+        .section-description {
+          font-size: 0.95rem;
+        }
+
+        .responsive-slider {
+          margin: 0 -0.5rem 1.5rem;
+          padding-bottom: 1.5rem;
+        }
+
+        .responsive-slider .slider-track {
+          display: flex;
+          gap: 1rem;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          scroll-behavior: smooth;
+          padding: 0.25rem 0.25rem 0.25rem 0;
+          scrollbar-width: none;
+        }
+
+        .responsive-slider .slider-track::-webkit-scrollbar {
+          display: none;
+        }
+
+        .responsive-slider .slider-track > * {
+          flex: 0 0 calc(100% - 1.5rem);
+          scroll-snap-align: center;
+        }
+
+        .slider-dots {
+          display: flex;
+          justify-content: center;
+          gap: 0.4rem;
+          margin-top: 0.25rem;
+        }
+
+        .slider-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          border: none;
+          background: #E5E7EB;
+          padding: 0;
+        }
+
+        .slider-dot.active {
+          background: #667eea;
+          transform: scale(1.3);
+        }
+
+        .strategy-pills {
+          display: flex;
+          gap: 1rem;
+        }
+
+        .strategy-pill {
+          padding: 1.25rem;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.75rem;
+        }
+
+        .pill-icon img {
+          width: 28px;
+          height: 28px;
+        }
+
+        .pill-title {
+          font-size: 1rem;
+        }
+
+        .pill-subtitle {
+          font-size: 0.85rem;
+        }
+
+        .strategy-pill,
+        .metric-card {
+          min-height: 100%;
+        }
+
+        .strategy-tooltip,
+        .metric-tooltip {
+          display: none !important;
+        }
+
+        .tooltip-hint {
+          display: block;
+          font-size: 0.8rem;
+          margin-top: 0.5rem;
+        }
+
+        /* Help section responsive */
+        .help-section {
+          padding: 1.5rem !important;
+        }
+
+        .help-section h3 {
+          font-size: 1.1rem !important;
+        }
+
+        .help-section p {
+          font-size: 0.95rem !important;
+        }
+
+        /* Chart Area Mobile */
+        .chart-card {
+          padding: 1.25rem 1rem;
+        }
+
+        .chart-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .chart-title {
+          font-size: 1.1rem;
+        }
+
+        .chart-controls {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .time-period-btn {
+          flex: 1;
+          padding: 0.6rem 0.5rem;
+          font-size: 0.8rem;
+        }
+
+        .chart-canvas-wrapper {
+          height: 300px;
+        }
+
+        #portfolioChart {
+          max-height: 300px;
+        }
+
+        /* Metrics Mobile */
+        .metrics-grid {
+          margin-bottom: 2rem;
+        }
+
+        .metrics-section-title {
+          font-size: 1.1rem;
+          margin-bottom: 1rem;
+        }
+
+        .metrics-cards {
+          gap: 0.75rem;
+        }
+
+        .metric-card {
+          padding: 1.25rem 1rem;
+        }
+
+        .metric-card-label {
+          font-size: 0.8rem;
+        }
+
+        .metric-card-value {
+          font-size: 1.5rem;
+        }
+
+        .metric-tooltip {
+          width: 200px;
+          font-size: 0.75rem;
+          padding: 0.5rem 0.75rem;
+        }
+
+        /* Asset Allocation Mobile */
+        .allocation-section-title {
+          font-size: 1.1rem;
+        }
+
+        .allocation-bars {
+          gap: 0.75rem;
+        }
+
+        .allocation-bar {
+          padding: 0.75rem;
+        }
+
+        .allocation-label {
+          font-size: 0.9rem;
+        }
+
+        .allocation-value {
+          font-size: 1.25rem;
+        }
+
+        /* Back Button Mobile */
+        .back-button {
+          padding: 0.6rem 1.25rem !important;
+          font-size: 0.95rem !important;
+        }
+
+        .back-button svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      /* Small Mobile Devices (max 480px) */
+      @media (max-width: 480px) {
+        .simulator-container {
+          padding: 1rem 0.75rem;
+        }
+        .main-chart-area,
+        .metrics-grid {
+          max-width: 100%;
+          margin: 0 auto 2rem;
+        }
+        .etf-toggle-buttons {
+          gap: 0.35rem;
+        }
+
+        .simulator-title {
+          font-size: 1.5rem;
+        }
+
+        .simulator-subtitle {
+          font-size: 0.9rem;
+        }
+
+        .section-title {
+          font-size: 1.2rem;
+        }
+
+        .section-description {
+          font-size: 0.875rem;
+        }
+
+        .strategy-pill {
+          padding: 0.875rem;
+        }
+
+        .pill-icon img {
+          width: 24px;
+          height: 24px;
+        }
+
+        .pill-title {
+          font-size: 0.95rem;
+        }
+
+        .pill-subtitle {
+          font-size: 0.8rem;
+        }
+
+        .chart-card {
+          padding: 1rem 0.75rem;
+        }
+
+        .chart-title {
+          font-size: 1rem;
+        }
+
+        .time-period-btn {
+          padding: 0.5rem 0.4rem;
+          font-size: 0.75rem;
+        }
+
+        .chart-canvas-wrapper {
+          height: 250px;
+        }
+
+        #portfolioChart {
+          max-height: 250px;
+        }
+
+        .metrics-section-title {
+          font-size: 1rem;
+        }
+
+        .metric-card {
+          padding: 1rem 0.875rem;
+        }
+
+        .metric-card-label {
+          font-size: 0.75rem;
+        }
+
+        .metric-card-value {
+          font-size: 1.3rem;
+        }
+
+        .allocation-bar {
+          padding: 0.625rem;
+        }
+
+        .allocation-label {
+          font-size: 0.85rem;
+        }
+
+        .allocation-value {
+          font-size: 1.1rem;
+        }
+
+        .back-button {
+          padding: 0.5rem 1rem !important;
+          font-size: 0.875rem !important;
+        }
+
+        .back-button span {
+          display: none;
+        }
+
+        .back-button svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      /* Touch Device Optimizations */
+      @media (hover: none) and (pointer: coarse) {
+        .strategy-pill,
+        .time-period-btn,
+        .metric-card,
+        .back-button {
+          min-height: 44px;
+          min-width: 44px;
+        }
+
+        .strategy-pill:hover {
+          transform: none;
+        }
+
+        .strategy-pill:active {
+          transform: scale(0.98);
+          background: rgba(102, 126, 234, 0.12);
+        }
+
+        .time-period-btn:active {
+          background: rgba(102, 126, 234, 0.15);
+        }
+
+        .metric-card:hover {
+          transform: none;
+        }
+
+        .allocation-bar:hover {
+          transform: none;
+        }
+
+        /* Remove hover tooltips on touch devices */
+        .strategy-tooltip,
+        .metric-tooltip {
+          display: none;
+        }
+      }
+
+      /* Reduced Motion Preference */
+      @media (prefers-reduced-motion: reduce) {
+        .strategy-pill,
+        .metric-card,
+        .allocation-bar,
+        .time-period-btn,
+        .chart-card {
+          transition: none;
+        }
+
+        .strategy-pill:hover,
+        .metric-card:hover,
+        .allocation-bar:hover {
+          transform: none;
+        }
+      }
+
+      /* High Contrast Mode */
+      @media (prefers-contrast: high) {
+        .strategy-pill {
+          border-width: 3px;
+        }
+
+        .strategy-pill.active {
+          border-width: 4px;
+        }
+
+        .metric-card,
+        .chart-card {
+          border-width: 2px;
+        }
+      }
+
+      /* Landscape Mobile Optimization */
+      @media (max-width: 768px) and (orientation: landscape) {
+        .chart-canvas-wrapper {
+          height: 280px;
+        }
+
+        #portfolioChart {
+          max-height: 280px;
+        }
+
+        .strategy-pills {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+      }
+
+      /* Purple theme for floating chat submit button on simulator page */
+      .floating-input-submit {
+        background: linear-gradient(135deg, #667eea, #764ba2) !important;
+      }
+
+      .floating-input-submit:hover {
+        background: linear-gradient(135deg, #5a67d8, #6b46c1) !important;
+        transform: scale(1.05);
+      }
+
+      /* Simulator Chat Window Styles */
+      /* Portfolio Simulator: Uses global chat-side-panel classes from styles.css */
+
+      /* Portfolio Simulator: Purple Button Override */
+      .portfolio-chat-send {
+        background: linear-gradient(135deg, #667eea, #764ba2) !important;
+      }
+
+      .portfolio-chat-send:hover {
+        background: linear-gradient(135deg, #5a67d8, #6b46c1) !important;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      }
+
+
+      /* Typing indicator */
+      .typing-indicator {
+        display: inline-flex;
+        gap: 4px;
+        padding: 0.5rem;
+      }
+
+      .typing-indicator span {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #9CA3AF;
+        animation: typing 1.4s infinite;
+      }
+
+      .typing-indicator span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .typing-indicator span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes typing {
+        0%, 60%, 100% {
+          transform: translateY(0);
+          opacity: 0.7;
+        }
+        30% {
+          transform: translateY(-10px);
+          opacity: 1;
+        }
+      }
+    </style>
+
+    <!-- Cookie Consent (Tarteaucitron) - CNIL/RGPD Compliant - MUST load CSS before script -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/css/tarteaucitron.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/tarteaucitron.min.js"></script>
+    <script src="/js/seo/cookie-consent.js"></script>
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <header>
+      <div class="container">
+        <div class="brand">
+          <a href="/en/investors" class="logo-link">
+            <div
+              class="logo"
+              style="display: flex; align-items: center; gap: 0.18em"
+            >
+              <span style="display: flex; align-items: center"
+                ><svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 72 72"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="display: inline-block; vertical-align: middle"
+                >
+                  <circle
+                    cx="36"
+                    cy="41"
+                    r="26"
+                    stroke="#000"
+                    stroke-width="6"
+                    stroke-linecap="round"
+                    stroke-dasharray="145 29"
+                    stroke-dashoffset="10"
+                  />
+                  <circle cx="59" cy="21" r="6" fill="#000" /></svg></span
+              ><span>Bubble.</span>
+            </div>
+          </a>
+          <div class="tagline" data-translate="hero.tagline">
+            Transparent investment in the AI era.
+          </div>
+        </div>
+        <div class="header-right">
+          <!-- Hamburger Menu Button (Mobile Only) -->
+          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+
+          <!-- Desktop Navigation -->
+          <nav class="desktop-nav">
+            <a href="/en/investors" data-translate="nav.vision">Vision</a>
+
+            <div class="nav-dropdown">
+              <button class="nav-dropdown-toggle" data-translate="nav.solution">Solution</button>
+              <div class="nav-dropdown-menu">
+                <button class="dropdown-link js-retail-demo-trigger" data-entry-point="investor_nav_agent" data-translate="nav.solution.agent">Agent</button>
+                <a href="/en/investors/portfolio-simulator" class="dropdown-link" data-translate="nav.solution.education">Education</a>
+              </div>
+            </div>
+
+            <a href="/en/investors/pricing" data-translate="nav.pricing">Pricing</a>
+            <a href="/en/blog" data-translate="nav.blog">Blog</a>
+            <a href="/en/investors#investor-waitlist" data-translate="nav.join">Join us</a>
+            <div class="language-switcher">
+              <button id="en-switch" class="active">EN</button>
+              <span>|</span>
+              <button id="fr-switch">FR</button>
+            </div>
+          </nav>
+
+          <!-- Mobile Language Switcher -->
+          <div class="mobile-language-switcher">
+            <button id="en-switch-mobile" class="active">EN</button>
+            <span>|</span>
+            <button id="fr-switch-mobile">FR</button>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation Overlay -->
+        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+          <nav class="mobile-nav">
+            <a href="/en/investors" data-translate="nav.vision">Vision</a>
+            <button class="mobile-nav-link js-retail-demo-trigger" data-entry-point="investor_nav_agent_mobile" data-translate="nav.solution.agent">Agent</button>
+            <a href="/en/investors/portfolio-simulator" data-translate="nav.solution.education">Education</a>
+            <a href="/en/investors/pricing" data-translate="nav.pricing">Pricing</a>
+            <a href="/en/blog" data-translate="nav.blog">Blog</a>
+            <a href="/en/investors#investor-waitlist" data-translate="nav.join">Join us</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Simulator Container -->
+    <div class="simulator-container">
+
+      <!-- Title Section -->
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <h1 class="simulator-title" data-translate="simulator.title">Portfolio Simulator</h1>
+        <p class="simulator-subtitle" data-translate="simulator.subtitle">Compare 6 quantitative strategies across 5 global ETFs with 20 years of real historical data</p>
+      </div>
+
+      <!-- Educational Tool Notice -->
+      <div class="simulator-notice">
+        <p data-translate="simulator.notice"></p>
+      </div>
+
+      <!-- Strategy Selector -->
+      <div class="strategy-selector" id="strategySelector">
+        <h2 class="section-title" data-translate="simulator.strategies.title">Choose your strategy</h2>
+        <p class="section-description" data-translate="simulator.strategies.description">Compare six portfolio allocation approaches across 5 global ETFs (SPY, IEF, GLD, EFA, EEM)</p>
+
+        <div class="responsive-slider" id="strategySlider" data-slider="strategy">
+          <div class="strategy-pills slider-track">
+          <button class="strategy-pill active" data-strategy="equalWeight" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.equalWeight.tooltip">Simple approach: 20% on each global asset (SPY, IEF, GLD, EFA, EEM). Easy to understand and replicate. Ideal baseline for comparing more sophisticated strategies. Performance: +323.5% over 20 years.</div>
+            <div class="pill-icon">
+              <img src="/assets/images/simul port icons/noun-equal-3402250-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
+            </div>
+            <div class="pill-content">
+              <div class="pill-title" data-translate="simulator.strategy.equalWeight">Equal Allocation</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.equalWeight.subtitle">20% each (5 ETFs)</div>
+            </div>
+          </button>
+
+          <button class="strategy-pill" data-strategy="sixtyForty" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.sixtyForty.tooltip">Institutional classic: 60% US equities (SPY) and 40% bonds (IEF). Aims to capture long-term growth while cushioning downturns with fixed income. Performance: +202.3% over 20 years.</div>
+            <div class="pill-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <rect x="6" y="10" width="8" height="16" rx="2" fill="currentColor" opacity="0.7"></rect>
+                <rect x="18" y="6" width="8" height="20" rx="2" fill="currentColor"></rect>
+              </svg>
+            </div>
+            <div class="pill-content">
+              <div class="pill-title" data-translate="simulator.strategy.sixtyForty">60/40 Balanced</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.sixtyForty.subtitle">60% SPY / 40% IEF</div>
+            </div>
+          </button>
+
+          <button class="strategy-pill" data-strategy="momentumTilt" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.momentumTilt.tooltip">Dynamic momentum weighting (100%) across 12 months. The 5 global assets (SPY, IEF, GLD, EFA, EEM) with strongest trends receive more allocation, while laggards are underweighted. Performance: +499.9% over 20 years.</div>
+            <div class="pill-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M6 20L12.5 13.5L17.5 18.5L26 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M24 10H26V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="pill-content">
+              <div class="pill-title" data-translate="simulator.strategy.momentumTilt">Momentum Tilt</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.momentumTilt.subtitle">Rewards recent winners</div>
+            </div>
+          </button>
+
+          <button class="strategy-pill" data-strategy="hierarchicalRiskParity" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.hierarchicalRiskParity.tooltip">Minimum-variance allocation inspired by Hierarchical Risk Parity across 5 ETFs. Balances assets by covariance rather than simple volatility. Performance: +278.2% over 20 years.</div>
+            <div class="pill-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M8 24H24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 16H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16 8L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="16" cy="8" r="2" fill="currentColor"/>
+                <circle cx="12" cy="16" r="2" fill="currentColor"/>
+                <circle cx="20" cy="16" r="2" fill="currentColor"/>
+                <circle cx="12" cy="24" r="2" fill="currentColor"/>
+                <circle cx="20" cy="24" r="2" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="pill-content">
+              <div class="pill-title" data-translate="simulator.strategy.hierarchicalRiskParity">Hierarchical RP</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.hierarchicalRiskParity.subtitle">Minimum variance mix</div>
+            </div>
+          </button>
+
+          <button class="strategy-pill" data-strategy="simpleRiskParity" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.simpleRiskParity.tooltip">Weights the 5 global assets (SPY, IEF, GLD, EFA, EEM) by the inverse of their volatility. More volatile assets receive less weight, balancing risk contribution across the portfolio. Performance: +324.6% over 20 years.</div>
+            <div class="pill-icon">
+              <img src="/assets/images/simul port icons/noun-scale-1021928-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
+            </div>
+            <div class="pill-content">
+              <div class="pill-title" data-translate="simulator.strategy.simpleRiskParity">Risk Parity</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.simpleRiskParity.subtitle">Balanced risk</div>
+            </div>
+          </button>
+
+          <button class="strategy-pill" data-strategy="enhancedRiskParityDCC" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.enhancedRiskParityDCC.tooltip">Inverse-volatility core with a dynamic correlation penalty so allocations lighten when assets move together. Weekly data and a cash buffer help dampen drawdowns.</div>
+            <div class="pill-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M6 20L10.5 14.5L15 18L20.5 11.5L26 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="10.5" cy="14.5" r="2" fill="currentColor"/>
+                <circle cx="15" cy="18" r="2" fill="currentColor"/>
+                <circle cx="20.5" cy="11.5" r="2" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="pill-content">
+              <div class="pill-title" data-translate="simulator.strategy.enhancedRiskParityDCC">Enhanced Risk Parity (DCC)</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.enhancedRiskParityDCC.subtitle">Correlation-aware</div>
+            </div>
+          </button>
+
+          <button class="strategy-pill" data-strategy="optimizedRiskBudgeting" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.optimizedRiskBudgeting.tooltip">Mathematical risk parity across SPY, IEF, GLD, EFA, EEM and cash. The optimizer equalizes risk contributions to soften drawdowns while preserving long-run performance.</div>
+            <div class="pill-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M8 24H24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M10 18L16 10L22 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="16" cy="22" r="2" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="pill-content">
+              <div class="pill-title" data-translate="simulator.strategy.optimizedRiskBudgeting">Optimized Risk Budgeting</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.optimizedRiskBudgeting.subtitle">True risk parity</div>
+            </div>
+          </button>
+
+          <button class="strategy-pill" data-strategy="optimizedRiskParity" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.optimizedRiskParity.tooltip">AI-optimized strategy across 5 ETFs: 70% Momentum (12-month returns) + 30% Risk Parity (EWMA volatility with λ=0.94). Over 20 years: +437.9% (+14.8% vs Equal Allocation). Favors trending assets while maintaining conservative volatility control.</div>
+            <div class="pill-icon">
+              <img src="/assets/images/simul port icons/noun-ai-6480915-clean.svg" alt="" width="32" height="32" style="color: currentColor;">
+            </div>
+            <div class="pill-content">
+              <div class="pill-title" data-translate="simulator.strategy.optimizedRiskParity">Optimized ⭐</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.optimizedRiskParity.subtitle">Best performance</div>
+            </div>
+          </button>
+
+          <button class="strategy-pill" data-strategy="customMix" data-tooltip-behavior="press">
+            <div class="strategy-tooltip" data-tooltip data-translate="simulator.strategy.customMix.tooltip">Combine any two Bubble strategies with your preferred weighting. Adjust the slider to emphasize performance or stability.</div>
+            <div class="pill-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M8 10C8 7.79086 9.79086 6 12 6H20C22.2091 6 24 7.79086 24 10V22C24 24.2091 22.2091 26 20 26H12C9.79086 26 8 24.2091 8 22V10Z" stroke="currentColor" stroke-width="2" opacity="0.7"/>
+                <path d="M12 19L15.5 15.5C16.3284 14.6716 17.6716 14.6716 18.5 15.5L22 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="15.5" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="pill-content">
+              <div class="pill-title" data-translate="simulator.strategy.customMix">Create Your Mix</div>
+              <div class="pill-subtitle" data-translate="simulator.strategy.customMix.subtitle">Blend two strategies</div>
+            </div>
+          </button>
+          </div>
+          <div class="slider-dots" data-slider-dots></div>
+        </div>
+        <p class="tooltip-hint" aria-live="polite">Mobile tip: swipe the cards and press & hold to reveal the explanation.</p>
+        </div>
+
+        <div class="custom-strategy-panel hidden" id="customStrategyPanel">
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: #4B5563;" data-translate="simulator.customMix.title">Custom Strategy Builder</h3>
+          <p style="color: #6B7280; margin-top: 0.5rem;" data-translate="simulator.customMix.description">Select two strategies and choose how much weight to assign to each. We blend them instantly on real data.</p>
+
+          <div class="custom-strategy-alert" id="customStrategyAlert" data-translate="simulator.customMix.cta">Configure your mix below to display results.</div>
+
+          <div class="custom-strategy-grid">
+            <div class="custom-strategy-field">
+              <label for="customStrategyA" data-translate="simulator.customMix.strategyA">Strategy A</label>
+              <select id="customStrategyA"></select>
+            </div>
+            <div class="custom-strategy-field">
+              <label for="customStrategyB" data-translate="simulator.customMix.strategyB">Strategy B</label>
+              <select id="customStrategyB"></select>
+            </div>
+            <div class="custom-strategy-field">
+              <label for="customStrategyWeight" data-translate="simulator.customMix.weightA">Weight for Strategy A</label>
+              <input type="range" id="customStrategyWeight" min="0" max="100" step="5" value="60" />
+              <div class="custom-weight-value">
+                <span id="customStrategyWeightValue">60%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="custom-strategy-actions">
+            <button class="custom-strategy-apply" id="customStrategyApply" data-translate="simulator.customMix.apply">Apply Mix</button>
+            <button class="custom-strategy-reset" id="customStrategyReset" data-translate="simulator.customMix.reset">Reset Mix</button>
+          </div>
+
+          <div class="custom-strategy-note" data-translate="simulator.customMix.note">Your custom mix is saved locally. Adjust the slider to explore risk vs return.</div>
+        </div>
+      </div>
+
+      <!-- Leverage Toggle Section -->
+      <div class="leverage-section">
+        <h3 class="section-subtitle" data-translate="simulator.leverage.title">Leverage Options</h3>
+
+        <div class="leverage-pills-container">
+          <div class="leverage-pills">
+            <button class="leverage-pill active" data-leverage="1" aria-label="No leverage">
+              <span class="leverage-label" data-translate="simulator.leverage.1x">1x (No Leverage)</span>
+            </button>
+            <button class="leverage-pill" data-leverage="2" aria-label="2x leverage with warning">
+              <span class="leverage-label" data-translate="simulator.leverage.2x">2x Leverage</span>
+              <span class="risk-badge" aria-hidden="true">⚠️</span>
+            </button>
+          </div>
+
+          <div class="leverage-warning hidden" id="leverageWarning">
+            <div class="warning-icon">⚠️</div>
+            <div class="warning-content">
+              <strong data-translate="simulator.leverage.warning.title">Risk Warning:</strong>
+              <span data-translate="simulator.leverage.warning.text">
+                2x leverage amplifies both gains and losses. This strategy borrows money at 8% annual interest.
+                Expect approximately double the volatility and significantly larger drawdowns.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Chart Area -->
+      <div class="main-chart-area" id="mainChartArea">
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3 class="chart-title" data-translate="simulator.chart.title">Historical Performance</h3>
+            <div class="chart-controls">
+              <button class="time-period-btn" data-period="1" data-translate="simulator.chart.period.1y">1 year</button>
+              <button class="time-period-btn" data-period="3" data-translate="simulator.chart.period.3y">3 years</button>
+              <button class="time-period-btn" data-period="5" data-translate="simulator.chart.period.5y">5 years</button>
+              <button class="time-period-btn" data-period="10" data-translate="simulator.chart.period.10y">10 years</button>
+              <button class="time-period-btn active" data-period="20" data-translate="simulator.chart.period.20y">20 years</button>
+            </div>
+          </div>
+
+          <div class="etf-toggle-bar">
+            <span class="etf-toggle-heading" data-translate="simulator.chart.etfToggleLabel">Reference ETFs</span>
+            <div class="etf-toggle-buttons" id="etfToggleGroup">
+              <button type="button" class="etf-toggle-button active" data-etf="SPY" aria-pressed="true">SPY</button>
+              <button type="button" class="etf-toggle-button active" data-etf="IEF" aria-pressed="true">IEF</button>
+              <button type="button" class="etf-toggle-button active" data-etf="GLD" aria-pressed="true">GLD</button>
+              <button type="button" class="etf-toggle-button active" data-etf="EFA" aria-pressed="true">EFA</button>
+              <button type="button" class="etf-toggle-button active" data-etf="EEM" aria-pressed="true">EEM</button>
+              <button type="button" class="etf-toggle-button active" data-etf="CASH" aria-pressed="true">Cash</button>
+            </div>
+          </div>
+
+          <div class="chart-canvas-wrapper">
+            <canvas id="portfolioChart"></canvas>
+          </div>
+
+          <div style="text-align: center; margin-top: 1rem;">
+            <p style="font-size: 0.875rem; color: #6B7280;" data-translate="simulator.chart.disclaimer">Data based on real historical data of ETFs SPY, IEF and GLD (Base 100)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Performance Metrics Grid -->
+      <div class="metrics-grid" id="metricsGrid">
+        <h3 class="metrics-section-title" data-translate="simulator.metrics.title">Performance Statistics</h3>
+
+        <div class="responsive-slider" id="metricsSlider" data-slider="metrics">
+          <div class="metrics-cards slider-track">
+          <div class="metric-card highlight" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.totalReturn.tooltip">The total gain or loss of the portfolio since the beginning of the period, before inflation and fees.</div>
+            <div class="metric-card-label" data-translate="simulator.metric.totalReturn">Total Return</div>
+            <div class="metric-card-value" id="totalReturn">--</div>
+            <div class="metric-card-subtitle" data-translate="simulator.metric.totalReturn.subtitle">over period</div>
+          </div>
+
+          <div class="metric-card" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.annualReturn.tooltip">The compound annual growth rate (CAGR). An 8% return means your capital doubles approximately every 9 years.</div>
+            <div class="metric-card-label" data-translate="simulator.metric.annualReturn">Annual Return</div>
+            <div class="metric-card-value" id="annualReturn">--</div>
+            <div class="metric-card-subtitle" data-translate="simulator.metric.annualReturn.subtitle">Average CAGR</div>
+          </div>
+
+          <div class="metric-card" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.volatility.tooltip">Measure of portfolio fluctuations. A volatility of 15% means that 68% of the time, returns vary by ±15% around the average.</div>
+            <div class="metric-card-label" data-translate="simulator.metric.volatility">Volatility</div>
+            <div class="metric-card-value" id="volatility">--</div>
+            <div class="metric-card-subtitle" data-translate="simulator.metric.volatility.subtitle">annual std dev</div>
+          </div>
+
+          <div class="metric-card" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.sharpeRatio.tooltip">Risk-adjusted return. A ratio &gt; 1 is good, &gt; 2 is excellent. Compares the return obtained relative to the risk taken.</div>
+            <div class="metric-card-label" data-translate="simulator.metric.sharpeRatio">Sharpe Ratio</div>
+            <div class="metric-card-value" id="sharpeRatio">--</div>
+            <div class="metric-card-subtitle" data-translate="simulator.metric.sharpeRatio.subtitle">return/risk</div>
+          </div>
+
+          <div class="metric-card" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.maxDrawdown.tooltip">The largest drop from a peak. -20% means that at one point, the portfolio lost 20% of its maximum value.</div>
+            <div class="metric-card-label" data-translate="simulator.metric.maxDrawdown">Max Drawdown</div>
+            <div class="metric-card-value" id="maxDrawdown">--</div>
+            <div class="metric-card-subtitle" data-translate="simulator.metric.maxDrawdown.subtitle">maximum loss</div>
+          </div>
+
+          <div class="metric-card" data-tooltip-behavior="tap">
+            <div class="metric-tooltip" data-tooltip data-translate="simulator.metric.calmarRatio.tooltip">Ratio between annual return and maximum drawdown. The higher this ratio, the better the strategy.</div>
+            <div class="metric-card-label" data-translate="simulator.metric.calmarRatio">Calmar Ratio</div>
+            <div class="metric-card-value" id="calmarRatio">--</div>
+            <div class="metric-card-subtitle" data-translate="simulator.metric.calmarRatio.subtitle">return/drawdown</div>
+          </div>
+          </div>
+          <div class="slider-dots" data-slider-dots></div>
+        </div>
+        <p class="tooltip-hint" aria-live="polite">Mobile tip: tap a metric to show its detailed definition.</p>
+      </div>
+
+      <div class="export-section hidden" id="exportActions">
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #4B5563;" data-translate="simulator.export.title">Exports &amp; Downloads</h3>
+        <p style="color: #6B7280; margin-top: 0.5rem;" data-translate="simulator.export.description">Capture the chart or download the key metrics to review the strategies offline.</p>
+        <div class="export-buttons">
+          <button id="exportChartBtn" type="button" data-translate="simulator.export.chart">Download Chart (PNG)</button>
+          <button id="exportMetricsBtn" type="button" data-translate="simulator.export.metrics">Export Metrics (CSV)</button>
+        </div>
+        <p class="export-status" id="exportStatus" data-translate="simulator.export.status.ready">Choose an export to download.</p>
+      </div>
+
+      <!-- Call to Action - Chat for Help -->
+      <div class="help-section" style="margin-top: 3rem; padding: 2rem; background: rgba(102, 126, 234, 0.08); border-radius: 16px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.2);">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #667eea; margin-bottom: 0.75rem;" data-translate="simulator.help.title">Questions?</h3>
+        <p style="color: #6B7280; line-height: 1.6; font-size: 1rem; max-width: 600px; margin: 0 auto;" data-translate="simulator.help.description">Tap the chat button to ask anything about strategy, metrics or help you understand investment</p>
+      </div>
+
+      <!-- Disclaimer -->
+      <div style="margin-top: 2rem; text-align: center; padding: 1rem;">
+        <p style="font-size: 0.75rem; color: #9CA3AF; line-height: 1.5;" data-translate-html="simulator.disclaimer"><strong>Avertissement :</strong> Les performances passées ne préjugent pas des performances futures. Ces simulations sont basées sur des données historiques et ne constituent pas un conseil en investissement. Les exports sont fournis uniquement à titre informatif. Consultez un conseiller financier avant toute décision d'investissement.</p>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/i18n/translations.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/dual-path-selector.js"></script>
+    <script src="/js/knowledge-overlay.js"></script>
+    <script src="/js/portfolio-simulator.js"></script>
+
+    <!-- Unified Chat Side Panel -->
+    <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+      <div class="chat-side-panel-header">
+        <div class="chat-side-panel-header-info">
+          <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+          <div class="chat-side-panel-titles">
+            <span class="chat-side-panel-title">Bubble Assistant</span>
+          </div>
+        </div>
+        <div class="chat-side-panel-actions">
+          <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
+          <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
+        </div>
+      </div>
+      <div class="chat-side-panel-messages" role="log" aria-live="polite">
+        <div class="chat-side-panel-message bot">
+          <div class="message-content">
+            Hello, I'm Bubble – how can I help you?
+          </div>
+        </div>
+      </div>
+      <form class="chat-side-panel-input-container" novalidate>
+        <input
+          type="text"
+          class="chat-side-panel-input"
+          placeholder="Ask me anything..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Type your message"
+          autocomplete="off"
+        />
+        <button class="chat-side-panel-send portfolio-chat-send" aria-label="Send message" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Floating Glassmorphism Chat Input -->
+    <div id="floating-chat-input" class="floating-chat-input hidden">
+      <div class="floating-input-container">
+        <input
+          type="text"
+          class="floating-input-field"
+          placeholder="Ask me anything..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Ask a question"
+        />
+        <button class="floating-input-submit" aria-label="Send message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer with Sitemap Links -->
+        <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-left">
+            <div class="footer-logo" style="display: flex; align-items: center; gap: 0.18em">
+              <span style="display: flex; align-items: center">
+                <svg width="30" height="30" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
+                  <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+                  <circle cx="59" cy="21" r="6" fill="#000"/>
+                </svg>
+              </span>
+              <span>Bubble.</span>
+            </div>
+            <div class="footer-tagline" data-translate="footer.tagline">The AI era changes everything. Let's change with it.</div>
+            <div class="footer-copyright" data-translate="footer.copyright">© 2025 Bubble Invest SAS. Transparent by design.</div>
+          </div>
+
+          <nav class="footer-nav">
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.investors">Investisseurs</h4>
+              <ul>
+                <li><a href="/en/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
+                <li><a href="/en/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
+                <li><a href="/en/investors/portfolio-simulator" data-translate="footer.nav.investors.simulator">Simulateur de Portefeuille</a></li>
+                <li><a href="/en/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Rejoindre la Liste</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.professionals">Professionnels</h4>
+              <ul>
+                <li><a href="/en/professionals" data-translate="footer.nav.professionals.solutions">Solutions</a></li>
+                <li><a href="/en/professionals/demo" data-translate="footer.nav.professionals.demo">Démo</a></li>
+                <li><a href="/en/professionals/faq" data-translate="footer.nav.professionals.faq">FAQ</a></li>
+                <li><a href="/en/professionals/contact" data-translate="footer.nav.professionals.contact">Contact</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.resources">Ressources</h4>
+              <ul>
+                <li><a href="/en/blog" data-translate="footer.nav.blog">Blog</a></li>
+                <li><a href="/en/investors/portfolio-simulator" data-translate="footer.nav.resources.education">Éducation</a></li>
+                <li><a href="/en/investors" data-translate="footer.nav.resources.demo">Démo</a></li>
+                <li><a href="/en/investors#investor-waitlist" data-translate="footer.nav.resources.joinUs">Nous Rejoindre</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.legal">Légal</h4>
+              <ul>
+                <li><a href="/en/legal-notice" data-translate="footer.nav.legal_notice">Mentions Légales</a></li>
+                <li><a href="/en/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
+                <li><a href="#cookies" id="tarteaucitronRoot" data-translate="footer.nav.cookies">Gérer les Cookies</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.contact">Contact</h4>
+              <ul>
+                <li><a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></li>
+              </ul>
+              <div class="social-media-links">
+                <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn" data-handle="Bubble Invest AI">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect x="2" y="9" width="4" height="12"/>
+                    <circle cx="4" cy="4" r="2"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.linkedin">Bubble Invest AI</span>
+                </a>
+                <a href="https://www.instagram.com/behindthefinancebubble/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram" data-handle="@behindthefinancebubble">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.instagram">@behindthefinancebubble</span>
+                </a>
+                <a href="https://www.tiktok.com/@behind.the.bubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok" data-handle="@behind.the.bubble">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.tiktok">@behind.the.bubble</span>
+                </a>
+                <a href="https://www.youtube.com/@behindthefinancebubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube" data-handle="@behindthefinancebubble">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+                  </svg>
+                  <span class="social-handle" data-translate="footer.social.youtube">@behindthefinancebubble</span>
+                </a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <!-- SEO Structured Data -->
+    <script src="/js/seo/structured-data.js"></script>
+
+    <!-- Unified Chatbot Scripts (for portfolio simulator) -->
+    <script src="/js/chat-side-panel.js"></script>
+    <script src="/js/floating-chat-input.js"></script>
+  </body>
 </html>

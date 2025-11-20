@@ -8,6 +8,14 @@ const translations = {
     en: "Solution",
     fr: "Solution",
   },
+  "nav.solution.agent": {
+    en: "Agent",
+    fr: "Agent",
+  },
+  "nav.solution.education": {
+    en: "Education",
+    fr: "Éducation",
+  },
   "nav.approach": {
     en: "Approach",
     fr: "Approche",
@@ -37,6 +45,10 @@ const translations = {
   "hero.tagline": {
     en: "The AI agent that builds your portfolio for you.",
     fr: "L'agent IA qui construit votre portefeuille pour vous.",
+  },
+  "hero.tagline.professional": {
+    en: "AI that works for you, without the BS.",
+    fr: "AI that works for you, without the BS.",
   },
   "hero.subtitle": {
     en: "In a world where AI transforms access to financial expertise, we're building the intelligent investment tool we wanted for ourselves: transparent, automated, and accessible.",
@@ -310,6 +322,10 @@ const translations = {
     en: "Join the List",
     fr: "Rejoindre la Liste",
   },
+  "waitlist.cta": {
+    en: "Join the waitlist",
+    fr: "Rejoindre la liste d'attente",
+  },
   "waitlist.disclaimer": {
     en: "Profile information is collected solely to personalize your Bubble experience. It is never used for investment advice or recommendations specific to your financial situation.",
     fr: "Ces informations nous aident uniquement à personnaliser votre expérience Bubble. Elles ne servent jamais à formuler un conseil en investissement ou des recommandations liées à votre situation.",
@@ -393,8 +409,8 @@ const translations = {
 
   // Footer
   "footer.copyright": {
-    en: "© 2025 Bubble. Transparent by design.",
-    fr: "© 2025 Bubble. Transparent by design.",
+    en: "© 2025 Bubble Invest SAS. Transparent by design.",
+    fr: "© 2025 Bubble Invest SAS. Transparent by design.",
   },
   "footer.tagline": {
     en: "The AI era changes everything. Let's change with it.",
@@ -1030,6 +1046,64 @@ const translations = {
   "footer.social.youtube": {
     en: "@behindthefinancebubble",
     fr: "@behindthefinancebubble"
+  },
+
+  // Footer - New Structure (Investors Column)
+  "footer.nav.investors": {
+    en: "Investors",
+    fr: "Investisseurs"
+  },
+  "footer.nav.investors.solution": {
+    en: "Solution",
+    fr: "Solution"
+  },
+  "footer.nav.investors.pricing": {
+    en: "Pricing",
+    fr: "Tarification"
+  },
+  "footer.nav.investors.simulator": {
+    en: "Portfolio Simulator",
+    fr: "Simulateur de Portefeuille"
+  },
+  "footer.nav.investors.joinWaitlist": {
+    en: "Join Waitlist",
+    fr: "Rejoindre la Liste"
+  },
+
+  // Footer - New Structure (Professionals Column)
+  "footer.nav.professionals": {
+    en: "Professionals",
+    fr: "Professionnels"
+  },
+  "footer.nav.professionals.solutions": {
+    en: "Solutions",
+    fr: "Solutions"
+  },
+  "footer.nav.professionals.demo": {
+    en: "Demo",
+    fr: "Démo"
+  },
+  "footer.nav.professionals.faq": {
+    en: "FAQ",
+    fr: "FAQ"
+  },
+  "footer.nav.professionals.contact": {
+    en: "Contact",
+    fr: "Contact"
+  },
+
+  // Footer - New Structure (Resources Column)
+  "footer.nav.resources.education": {
+    en: "Education",
+    fr: "Éducation"
+  },
+  "footer.nav.resources.demo": {
+    en: "Demo",
+    fr: "Démo"
+  },
+  "footer.nav.resources.joinUs": {
+    en: "Join Us",
+    fr: "Nous Rejoindre"
   },
 
   // Businesses Page
@@ -1944,52 +2018,102 @@ const translations = {
 
   // Dual-Path Selector Section
   "dualPath.retail.mainTitle": {
-    en: "Intelligent Investment Tool",
-    fr: "Outil d'Investissement Intelligent"
+    en: "For individual investors",
+    fr: "Pour les investisseurs particuliers"
   },
   "dualPath.retail.description": {
-    en: "Transparent decisions, intelligent automation, fair fees.",
-    fr: "Décisions transparentes, automatisation intelligente, frais justes."
+    en: "AI portfolios matched to your experience level.",
+    fr: "Des portefeuilles IA adaptés à votre expérience."
   },
   "dualPath.retail.feature1": {
-    en: "Conversational AI agent",
-    fr: "Agent IA conversationnel"
+    en: "Guided onboarding in minutes",
+    fr: "Onboarding guidé en quelques minutes"
   },
   "dualPath.retail.feature2": {
-    en: "Screening, backtesting, execution",
-    fr: "Screening, backtesting, exécution"
+    en: "Automated portfolio construction & rebalancing",
+    fr: "Construction et rééquilibrage automatisés"
   },
   "dualPath.retail.feature3": {
-    en: "€0-10/month instead of 2% fees",
-    fr: "0-10€/mois au lieu de 2% de frais"
+    en: "Transparent insights & education",
+    fr: "Insights transparents & pédagogie"
   },
   "dualPath.retail.cta": {
-    en: "Get Started",
+    en: "Start now",
     fr: "Commencer"
   },
   "dualPath.professional.mainTitle": {
-    en: "Enterprise Solutions",
-    fr: "Solutions pour Entreprises"
+    en: "For investment professionals",
+    fr: "Pour les professionnels de l'investissement"
   },
   "dualPath.professional.description": {
-    en: "AI automation for financial sector. API, integration, compliance.",
-    fr: "Automatisation IA pour le secteur financier. API, intégration, compliance."
+    en: "AI tools & advisory for firms and wealth managers.",
+    fr: "Outils IA & advisory pour entreprises et CGP."
   },
   "dualPath.professional.feature1": {
-    en: "Custom AI agents",
-    fr: "Agents IA personnalisés"
+    en: "White-label advisor & APIs",
+    fr: "Conseiller white-label & APIs"
   },
   "dualPath.professional.feature2": {
-    en: "Simple API integration",
-    fr: "Intégration API simple"
+    en: "Automation for reporting & compliance",
+    fr: "Automatisation reporting & compliance"
   },
   "dualPath.professional.feature3": {
-    en: "€3k-€30k per project",
-    fr: "€3k-€30k par projet"
+    en: "Custom projects from €3k",
+    fr: "Projets sur-mesure dès 3 k€"
   },
   "dualPath.professional.cta": {
-    en: "Learn More",
-    fr: "En savoir plus"
+    en: "Discover",
+    fr: "Découvrir"
+  },
+
+  // Investor Navigation / CTAs
+  "investors.nav.demo": {
+    en: "Try the demo",
+    fr: "Essayer la démo"
+  },
+
+  // Professional Navigation
+  "professionals.nav.vision": {
+    en: "Vision",
+    fr: "Vision"
+  },
+  "professionals.nav.solutions": {
+    en: "Solutions",
+    fr: "Solutions"
+  },
+  "professionals.nav.solutions.companies": {
+    en: "Companies",
+    fr: "Entreprises"
+  },
+  "professionals.nav.solutions.wealth": {
+    en: "Wealth Managers",
+    fr: "CGP & Family Offices"
+  },
+  "professionals.nav.blog": {
+    en: "Blog",
+    fr: "Blog"
+  },
+  "professionals.nav.contact": {
+    en: "Contact us",
+    fr: "Nous contacter"
+  },
+  "professionals.nav.demo": {
+    en: "Contact us",
+    fr: "Contactez-nous"
+  },
+
+  // Professionals - waitlist CTA
+  "professionals.waitlist.title": {
+    en: "Ready to explore enterprise access?",
+    fr: "Prêt à explorer l'accès entreprise ?"
+  },
+  "professionals.waitlist.subtitle": {
+    en: "Tell us about your firm and we’ll schedule a dedicated session to scope your automation or advisory needs.",
+    fr: "Présentez-nous votre organisation et nous planifierons une session dédiée pour cadrer vos besoins d'automatisation ou d'advisory."
+  },
+  "professionals.waitlist.cta": {
+    en: "Contact our team",
+    fr: "Contactez notre équipe"
   },
 
   // Knowledge Overlay Section
@@ -2029,6 +2153,10 @@ const translations = {
     en: "Not sure? Show me an example",
     fr: "Pas sûr? Montrez-moi un exemple"
   },
+  "knowledgeOverlay.close": {
+    en: "Close",
+    fr: "Fermer"
+  },
 
   // Simulator Notice
   "simulator.notice": {
@@ -2058,6 +2186,10 @@ const translations = {
   "nav.professionals": {
     en: "Professionals",
     fr: "Professionnels"
+  },
+  "nav.pricing": {
+    en: "Pricing",
+    fr: "Tarification"
   },
 
   // Investors - Hero Section
@@ -2904,6 +3036,40 @@ const translations = {
     fr: "Retour"
   },
 
+  // Professionals - Demo Prompts
+  "professionals.demo.prompts.title": {
+    en: "Jump into a real workflow",
+    fr: "Plongez dans un flux réel"
+  },
+  "professionals.demo.prompts.subtitle": {
+    en: "Use these pre-configured prompts to explore model portfolios, ESG reporting, and automation.",
+    fr: "Utilisez ces prompts pour explorer les portefeuilles modèles, le reporting ESG et l'automatisation."
+  },
+  "professionals.demo.prompts.portfolio.label": {
+    en: "Model portfolio · 45 y/o moderate risk",
+    fr: "Portefeuille modèle · 45 ans risque modéré"
+  },
+  "professionals.demo.prompts.portfolio.prompt": {
+    en: "Generate a EUR-denominated model portfolio for a 45-year-old client with a moderate risk appetite. Provide ETF allocations across equities, bonds, and cash, plus expected volatility and max drawdown.",
+    fr: "Génère un portefeuille modèle en EUR pour un client de 45 ans au profil de risque modéré. Fournis les allocations ETF (actions, obligations, cash) ainsi que la volatilité attendue et le drawdown maximal."
+  },
+  "professionals.demo.prompts.esg.label": {
+    en: "ESG compliance brief for a bank",
+    fr: "Synthèse ESG pour une banque"
+  },
+  "professionals.demo.prompts.esg.prompt": {
+    en: "Create an ESG compliance summary for a European retail bank covering 12 KPIs (emissions, diversity, governance). Highlight data sources, monitoring frequency, and automation hand-offs.",
+    fr: "Crée une synthèse de conformité ESG pour une banque de détail européenne couvrant 12 KPI (émissions, diversité, gouvernance). Indique les sources de données, la fréquence de suivi et les passations pour l'automatisation."
+  },
+  "professionals.demo.prompts.automation.label": {
+    en: "Automation plan · onboard 500 accounts",
+    fr: "Plan d'automatisation · onboarding 500 comptes"
+  },
+  "professionals.demo.prompts.automation.prompt": {
+    en: "Outline an automation flow to onboard 500 managed accounts via API, including KYC checks, risk scoring, portfolio assignment, and weekly reporting deliverables.",
+    fr: "Décris un flux d'automatisation pour onboarder 500 comptes gérés via l'API, incluant KYC, scoring de risque, attribution du portefeuille et livrables de reporting hebdomadaires."
+  },
+
   // Professionals - FAQ
   "professionals.faq.title": {
     en: "Frequently Asked Questions",
@@ -2967,47 +3133,6 @@ const translations = {
     en: "Your Role",
     fr: "Votre rôle"
   },
-  "professionals.contact.form.challenge": {
-    en: "What is your main challenge?",
-    fr: "Quel est votre principal défi ?"
-  },
-  "professionals.contact.form.budget": {
-    en: "Estimated Budget",
-    fr: "Budget estimé"
-  },
-  "professionals.contact.form.timeline": {
-    en: "Desired Timeline",
-    fr: "Timeline souhaitée"
-  },
-  "professionals.contact.form.message": {
-    en: "Additional Message (Optional)",
-    fr: "Message supplémentaire (optionnel)"
-  },
-  "professionals.contact.form.submit": {
-    en: "Send My Request",
-    fr: "Envoyer ma Demande"
-  },
-  "professionals.contact.form.note": {
-    en: "We typically respond within 24 hours.",
-    fr: "Nous répondons généralement dans les 24 heures."
-  },
-
-  // Professionals - CTA
-  "professionals.cta.title": {
-    en: "Ready to Transform Your Operations?",
-    fr: "Prêt à Transformer Vos Opérations ?"
-  },
-  "professionals.cta.subtitle": {
-    en: "Consult with our experts to discuss your use case.",
-    fr: "Consultez nos experts pour discuter de votre cas d'usage."
-  },
-  "professionals.cta.contact": {
-    en: "Contact Us",
-    fr: "Nous Contacter"
-  },
-  "professionals.cta.demo": {
-    en: "See a Demo",
-    fr: "Voir une Démo"
   "professionals.contact.form.role.placeholder": {
     en: "Select your role",
     fr: "Sélectionnez votre rôle"
@@ -3080,6 +3205,14 @@ const translations = {
     en: "Other",
     fr: "Autre"
   },
+  "professionals.contact.form.challenge": {
+    en: "What is your main challenge?",
+    fr: "Quel est votre principal défi ?"
+  },
+  "professionals.contact.form.budget": {
+    en: "Estimated Budget",
+    fr: "Budget estimé"
+  },
   "professionals.contact.form.budget.placeholder": {
     en: "Select a range",
     fr: "Sélectionnez une fourchette"
@@ -3099,6 +3232,10 @@ const translations = {
   "professionals.contact.form.budget.exploring": {
     en: "Still exploring",
     fr: "En phase d'exploration"
+  },
+  "professionals.contact.form.timeline": {
+    en: "Desired Timeline",
+    fr: "Timeline souhaitée"
   },
   "professionals.contact.form.timeline.placeholder": {
     en: "Select timeline",
@@ -3120,11 +3257,46 @@ const translations = {
     en: "Still exploring",
     fr: "En phase d'exploration"
   },
+  "professionals.contact.form.message": {
+    en: "Additional Message (Optional)",
+    fr: "Message supplémentaire (optionnel)"
+  },
+  "professionals.contact.form.submit": {
+    en: "Send My Request",
+    fr: "Envoyer ma Demande"
+  },
+  "professionals.contact.form.note": {
+    en: "We typically respond within 24 hours.",
+    fr: "Nous répondons généralement dans les 24 heures."
+  },
+
+  // Professionals - CTA
+  "professionals.cta.title": {
+    en: "Ready to Transform Your Operations?",
+    fr: "Prêt à Transformer Vos Opérations ?"
+  },
+  "professionals.cta.subtitle": {
+    en: "Consult with our experts to discuss your use case.",
+    fr: "Consultez nos experts pour discuter de votre cas d'usage."
+  },
+  "professionals.cta.contact": {
+    en: "Contact Us",
+    fr: "Nous Contacter"
+  },
+  "professionals.cta.demo": {
+    en: "See a Demo",
+    fr: "Voir une Démo"
+  },
   "floating_input.placeholder": {
     en: "Ask me anything...",
     fr: "Posez-moi n'importe quelle question..."
   }
 };
+
+// Expose translations globally for browser usage
+if (typeof window !== "undefined") {
+  window.translations = translations;
+}
 
 // Allow reuse in Node (SSR, tooling)
 if (typeof module !== "undefined") {

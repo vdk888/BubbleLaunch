@@ -38,6 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const enButtonMobile = document.getElementById("en-switch-mobile");
   const frButtonMobile = document.getElementById("fr-switch-mobile");
 
+  // Get language toggle buttons for nav variants
+  const langToggleButtons = document.querySelectorAll(".lang-toggle");
+
   // Get all translatable elements
   const translatableElements = document.querySelectorAll("[data-translate]");
   const translatableHtmlElements = document.querySelectorAll("[data-translate-html]");
@@ -77,6 +80,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update active state on mobile buttons
     if (enButtonMobile) enButtonMobile.classList.toggle("active", lang === "en");
     if (frButtonMobile) frButtonMobile.classList.toggle("active", lang === "fr");
+    langToggleButtons.forEach((button) => {
+      const buttonLang = button.getAttribute("data-lang");
+      if (!buttonLang) return;
+      button.classList.toggle("active", buttonLang === lang);
+    });
 
     // Update HTML lang attribute
     document.documentElement.lang = lang;
@@ -173,6 +181,47 @@ document.addEventListener("DOMContentLoaded", function () {
   // Set up event listeners for mobile language switches
   if (enButtonMobile) enButtonMobile.addEventListener("click", () => handleLanguageSwitch("en"));
   if (frButtonMobile) frButtonMobile.addEventListener("click", () => handleLanguageSwitch("fr"));
+  langToggleButtons.forEach((button) => {
+    const buttonLang = button.getAttribute("data-lang");
+    if (!buttonLang) return;
+    button.addEventListener("click", () => handleLanguageSwitch(buttonLang));
+  });
+
+  // Retail demo triggers now launch the knowledge overlay when available
+  const retailDemoTriggers = document.querySelectorAll(".js-retail-demo-trigger");
+  const retailPricingPath =
+    document.documentElement.lang === "en"
+      ? "/en/investors/pricing"
+      : "/investors/pricing";
+
+  function triggerKnowledgeOverlay(entryPoint) {
+    sessionStorage.setItem("demoEntryPoint", entryPoint);
+    const overlay = document.getElementById("knowledge-overlay");
+
+    if (overlay) {
+      window.dispatchEvent(
+        new CustomEvent("openKnowledgeOverlay", {
+          detail: { entryPoint }
+        })
+      );
+      return;
+    }
+
+    // Defer overlay opening until the pricing page loads
+    sessionStorage.setItem("pendingOverlayEntryPoint", entryPoint);
+    window.location.href = retailPricingPath;
+  }
+
+  retailDemoTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      const entryPoint =
+        trigger.dataset.entryPoint ||
+        trigger.dataset.cta ||
+        "retail_cta";
+      triggerKnowledgeOverlay(entryPoint);
+    });
+  });
 
   // Set up universal event listeners for all .lang-toggle buttons (professional/investor pages)
   document.querySelectorAll(".lang-toggle").forEach((button) => {
@@ -567,9 +616,17 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!displayMessage) return;
 
     const translateKey = button.getAttribute("data-translate");
+    const promptKey = button.getAttribute("data-prompt-key");
     const promptFallback =
       button.getAttribute("data-prompt") || button.dataset.prompt || "";
     let promptMessage = promptFallback;
+
+    if (!promptMessage && promptKey && translationData[promptKey]) {
+      promptMessage =
+        translationData[promptKey][currentLanguage] ||
+        translationData[promptKey]["en"] ||
+        "";
+    }
 
     if (!promptMessage && translateKey) {
       const translationEntry = translationData[translateKey];
@@ -588,6 +645,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     button.classList.add("active");
     setTimeout(() => button.classList.remove("active"), 300);
+
+    if (promptKey && typeof gtag !== "undefined") {
+      gtag("event", "demo_prompt_clicked", {
+        prompt_key: promptKey,
+        entry_point: window.location.pathname,
+      });
+    }
 
     chatInput.value = displayMessage;
     chatInput.dataset.promptOverride = promptMessage;

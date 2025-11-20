@@ -27,20 +27,13 @@ function configureExpress(app) {
   // Session middleware
   app.use(sessionMiddleware);
 
-  // Serve hidden pricing page before static middleware to avoid 404s
-  const pricingPageFrPath = path.join(__dirname, "../../frontend/pages/pricing.html");
-  const pricingPageEnPath = path.join(__dirname, "../../frontend/pages/en/pricing.html");
-
-  app.get(["/pricing", "/pricing.html"], (req, res, next) => {
-    res.sendFile(pricingPageFrPath, (err) => {
-      if (err) next();
-    });
+  // Redirect legacy pricing routes to investor-specific pricing
+  app.get(["/pricing", "/pricing.html"], (req, res) => {
+    res.redirect(301, '/investors/pricing');
   });
 
-  app.get(["/en/pricing", "/en/pricing.html"], (req, res, next) => {
-    res.sendFile(pricingPageEnPath, (err) => {
-      if (err) next();
-    });
+  app.get(["/en/pricing", "/en/pricing.html"], (req, res) => {
+    res.redirect(301, '/en/investors/pricing');
   });
 
   // Serve robots.txt from root (SEO)

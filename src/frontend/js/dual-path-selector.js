@@ -6,6 +6,7 @@
 class DualPathSelector {
   constructor() {
     this.retailBtn = document.querySelector('.retail-demo-btn');
+    this.retailTriggers = document.querySelectorAll('.js-retail-demo-trigger');
     this.professionalBtn = document.querySelector('.professional-btn');
     this.sessionKey = 'demoExperience';
 
@@ -13,16 +14,25 @@ class DualPathSelector {
   }
 
   init() {
-    if (!this.retailBtn) {
-      console.warn('[DualPathSelector] Retail button not found in DOM');
-      return;
+    if (this.retailBtn) {
+      this.retailBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.handleRetailClick(e);
+      });
     }
 
-    // Add analytics tracking for retail button click
-    this.retailBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      this.handleRetailClick();
-    });
+    if (this.retailTriggers.length) {
+      this.retailTriggers.forEach((trigger) => {
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.handleRetailClick(e);
+        });
+      });
+    }
+
+    if (!this.retailBtn && !this.retailTriggers.length) {
+      console.warn('[DualPathSelector] No retail CTA found in DOM');
+    }
 
     // Professional button link is handled by HTML href attribute
     if (this.professionalBtn) {
@@ -38,11 +48,43 @@ class DualPathSelector {
     this.updateReturnVisitorLabel();
   }
 
-  handleRetailClick() {
-    // Track the click
+  handleRetailClick(event) {
+    // Detect entry point from button attributes or class
+    let entryPoint = 'dual_path_homepage'; // default context
+
+    if (event && event.currentTarget) {
+      const button = event.currentTarget;
+
+      // Check for explicit data-entry-point attribute
+      if (button.dataset.entryPoint) {
+        entryPoint = button.dataset.entryPoint;
+      }
+      // Check for data-cta attribute
+      else if (button.dataset.cta) {
+        entryPoint = button.dataset.cta;
+      }
+      // Check if it's in dropdown menu
+      else if (button.classList.contains('dropdown-link')) {
+        entryPoint = 'header_dropdown_agent';
+      }
+      // Check if it's js-retail-demo-trigger in hero
+      else if (button.classList.contains('retail-demo-btn')) {
+        entryPoint = 'homepage_dual_path';
+      }
+      // Check if it's in mobile nav
+      else if (button.classList.contains('mobile-nav-link')) {
+        entryPoint = 'mobile_nav_agent';
+      }
+      // Check for gray-btn class (vision section)
+      else if (button.classList.contains('gray-btn')) {
+        entryPoint = 'vision_section_demo';
+      }
+    }
+
+    // Track the click with specific entry point
     this.trackAnalytics('dual_cta_clicked', {
       cta_type: 'retail_investors',
-      entry_point: 'homepage'
+      entry_point: entryPoint
     });
 
     // Check if this is a return visitor
@@ -51,10 +93,17 @@ class DualPathSelector {
     if (stored && stored.level && stored.scenarioId) {
       // Return visitor - replay their previous demo
       this.replayDemo(stored);
-    } else {
-      // New visitor - navigate to investors page
-      const investorsUrl = document.documentElement.lang === 'en' ? '/en/investors' : '/investors';
-      window.location.href = investorsUrl;
+      return;
+    }
+
+    // Try to open overlay directly on the page (homepage or other surface)
+    if (!this.openKnowledgeOverlay(entryPoint)) {
+      // Fallback: navigate to retail pricing where overlay auto-launches
+      const pricingUrl = document.documentElement.lang === 'en'
+        ? '/en/investors/pricing'
+        : '/investors/pricing';
+      sessionStorage.setItem('pendingOverlayEntryPoint', entryPoint);
+      window.location.href = pricingUrl;
     }
   }
 
@@ -112,18 +161,26 @@ class DualPathSelector {
       detail: updatedExperience
     }));
 
-    // Optionally navigate to investors pricing page if not already there
-    if (!window.location.pathname.includes('/investors') && !window.location.pathname.includes('/pricing')) {
-      const investorsUrl = document.documentElement.lang === 'en' ? '/en/investors/pricing' : '/investors/pricing';
-      window.location.href = investorsUrl;
+    // Navigate to retail pricing if not already there
+    const pricingUrl = document.documentElement.lang === 'en'
+      ? '/en/investors/pricing'
+      : '/investors/pricing';
+
+    if (!window.location.pathname.includes('/investors/pricing')) {
+      window.location.href = pricingUrl;
     }
   }
 
-  openKnowledgeOverlay() {
-    // Dispatch custom event that knowledge overlay will listen to
+  openKnowledgeOverlay(entryPoint = 'dual_path_homepage') {
+    const overlay = document.getElementById('knowledge-overlay');
+    if (!overlay) {
+      return false;
+    }
+
     window.dispatchEvent(new CustomEvent('openKnowledgeOverlay', {
-      detail: { entryPoint: 'homepage' }
+      detail: { entryPoint }
     }));
+    return true;
   }
 
   trackAnalytics(eventName, eventData) {

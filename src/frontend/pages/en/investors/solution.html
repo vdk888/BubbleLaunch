@@ -23,26 +23,91 @@
   </head>
   <body class="investors-solution-page">
     <!-- Navigation Header -->
-    <header class="header">
-      <nav class="navbar">
-        <div class="container">
-          <div class="navbar-content">
-            <a href="/en" class="navbar-logo">
-              <img src="/assets/images/bubble-logo.svg" alt="Bubble Invest" class="logo" width="140" height="28" />
-            </a>
-            <div class="navbar-nav">
-              <a href="/en" data-translate="nav.home">Home</a>
-              <a href="/en/investors" data-translate="nav.investors">Investors</a>
-              <a href="/en/professionals" data-translate="nav.professionals">Professionals</a>
-              <a href="/en/blog" data-translate="nav.blog">Blog</a>
-              <a href="/en/#waitlist" data-translate="nav.join">Join Us</a>
+    <header>
+      <div class="container">
+        <div class="brand">
+          <a href="/en" class="logo-link">
+            <div
+              class="logo"
+              style="display: flex; align-items: center; gap: 0.18em"
+            >
+              <span style="display: flex; align-items: center"
+                ><svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 72 72"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="display: inline-block; vertical-align: middle"
+                >
+                  <circle
+                    cx="36"
+                    cy="41"
+                    r="26"
+                    stroke="#000"
+                    stroke-width="6"
+                    stroke-linecap="round"
+                    stroke-dasharray="145 29"
+                    stroke-dashoffset="10"
+                  />
+                  <circle cx="59" cy="21" r="6" fill="#000" /></svg></span
+              ><span>Bubble.</span>
             </div>
-            <div class="navbar-lang">
-              <button class="lang-toggle" data-lang="fr" title="Switch to French">FR</button>
-            </div>
+          </a>
+          <div class="tagline" data-translate="hero.tagline">
+            The transparent investing agent.
           </div>
         </div>
-      </nav>
+        <div class="header-right">
+          <!-- Hamburger Menu Button (Mobile Only) -->
+          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+
+          <!-- Desktop Navigation -->
+          <nav class="desktop-nav">
+            <a href="/en/investors" data-translate="nav.vision">Vision</a>
+
+            <div class="nav-dropdown">
+              <button class="nav-dropdown-toggle" data-translate="nav.solution">Solution</button>
+              <div class="nav-dropdown-menu">
+                <button class="dropdown-link js-retail-demo-trigger" data-entry-point="investor_nav_agent" data-translate="nav.solution.agent">Agent</button>
+                <a href="/en/investors/portfolio-simulator" class="dropdown-link" data-translate="nav.solution.education">Education</a>
+              </div>
+            </div>
+
+            <a href="/en/investors/pricing" data-translate="nav.pricing">Pricing</a>
+            <a href="/en/blog" data-translate="nav.blog">Blog</a>
+            <a href="/en/investors#investor-waitlist" data-translate="nav.join">Join Us</a>
+            <div class="language-switcher">
+              <button id="en-switch" class="active">EN</button>
+              <span>|</span>
+              <button id="fr-switch">FR</button>
+            </div>
+          </nav>
+
+          <!-- Mobile Language Switcher -->
+          <div class="mobile-language-switcher">
+            <button id="en-switch-mobile" class="active">EN</button>
+            <span>|</span>
+            <button id="fr-switch-mobile">FR</button>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation Overlay -->
+        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+          <nav class="mobile-nav">
+            <a href="/en/investors" data-translate="nav.vision">Vision</a>
+            <button class="mobile-nav-link js-retail-demo-trigger" data-entry-point="investor_nav_agent_mobile" data-translate="nav.solution.agent">Agent</button>
+            <a href="/en/investors/portfolio-simulator" data-translate="nav.solution.education">Education</a>
+            <a href="/en/investors/pricing" data-translate="nav.pricing">Pricing</a>
+            <a href="/en/blog" data-translate="nav.blog">Blog</a>
+            <a href="/en/investors#investor-waitlist" data-translate="nav.join">Join Us</a>
+          </nav>
+        </div>
+      </div>
     </header>
 
     <!-- Hero Section -->
@@ -140,7 +205,9 @@
         <p data-translate="investors.solution.cta.subtitle">Explore our plans and start your intelligent investing journey.</p>
         <div class="cta-buttons">
           <a href="/en/investors/pricing" class="cta-button primary-btn" data-translate="investors.solution.cta.pricing">View Plans</a>
-          <a href="/en/investors/portfolio-simulator" class="cta-button secondary-btn" data-translate="investors.solution.cta.demo">Try Demo</a>
+          <button type="button" class="cta-button secondary-btn js-retail-demo-trigger" data-entry-point="investor_solution_cta" data-translate="investors.solution.cta.demo">
+            Try Demo
+          </button>
         </div>
       </div>
     </section>
@@ -210,5 +277,6 @@
     <script src="/js/chatbot-animations.js"></script>
     <script src="/js/chat-side-panel.js"></script>
     <script src="/js/floating-chat-input.js"></script>
+    <script src="/js/animations.js"></script>
   </body>
 </html>

@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(for file in index.html solution.html join-us.html)",
+      "Bash(do echo \"=== Checking $file ===\")",
+      "Bash(if grep -q \"footer-nav\" \"$file\")",
+      "Bash(then echo \"✓ Has footer\")",
+      "Bash(else echo \"✗ No footer found\")",
+      "Bash(fi)",
+      "Bash(done)",
+      "Bash(if grep -q \"footer-nav\" \"/Users/jadethi-viet-lanhoang/Library/Mobile Documents/com~apple~CloudDocs/Bubble invest/BubbleLaunch/src/frontend/pages/investors/$file\")"
     ],
     "deny": [],
     "ask": []
