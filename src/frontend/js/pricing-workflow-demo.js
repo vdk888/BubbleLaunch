@@ -22,6 +22,47 @@ document.addEventListener('DOMContentLoaded', () => {
   const frDemoSwitch = document.getElementById('fr-demo-switch');
   const enDemoSwitch = document.getElementById('en-demo-switch');
 
+  const redirectEntryPoints = new Set([
+    'dual_path_homepage',
+    'homepage_dual_path',
+    'homepage_hero',
+    'homepage_direct',
+    'hero_demo_cta',
+  ]);
+
+  const isOnInvestorsRoute = () => {
+    const path = window.location.pathname;
+    const frenchPrefix = '/investors';
+    const englishPrefix = '/en/investors';
+
+    return (
+      path === frenchPrefix ||
+      path === `${frenchPrefix}/` ||
+      path.startsWith(`${frenchPrefix}/`) ||
+      path === englishPrefix ||
+      path === `${englishPrefix}/` ||
+      path.startsWith(`${englishPrefix}/`)
+    );
+  };
+
+  const getInvestorsIndexUrl = () =>
+    document.documentElement.lang === 'en' ? '/en/investors' : '/investors';
+
+  const shouldRedirectAfterDemo = () => {
+    const entryPoint = sessionStorage.getItem('demoEntryPoint');
+    if (!entryPoint || !redirectEntryPoints.has(entryPoint)) {
+      return false;
+    }
+    return !isOnInvestorsRoute();
+  };
+
+  const maybeRedirectAfterDemoClose = () => {
+    if (!shouldRedirectAfterDemo()) {
+      return;
+    }
+    window.location.href = getInvestorsIndexUrl();
+  };
+
   // Get current language from URL or default
   let currentLanguage = window.location.pathname.includes('/en/') ||
                         window.location.pathname.startsWith('/en') ? 'en' : 'fr';
