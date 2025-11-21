@@ -10,6 +10,7 @@
     />
     <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
     <link rel="stylesheet" href="/assets/styles/styles.css" />
+    <link rel="stylesheet" href="/assets/styles/knowledge-overlay.css" />
     <link rel="canonical" href="https://bubbleinvest.org/professionals/solutions-companies" />
     <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/professionals/solutions-companies" />
     <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/professionals/solutions-companies" />
@@ -19,6 +20,56 @@
     />
   </head>
   <body class="professionals-solutions-page">
+    <div id="knowledge-overlay" class="knowledge-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="knowledge-title">
+      <div class="knowledge-overlay-card">
+        <button class="knowledge-close-button" type="button" data-translate="knowledgeOverlay.close" aria-label="Fermer la question"></button>
+        <h2 id="knowledge-title" class="knowledge-title" data-translate="knowledgeOverlay.question">
+          Quel est votre niveau d'expérience en investissement?
+        </h2>
+        <p class="knowledge-subtitle" data-translate="knowledgeOverlay.subtitle">
+          Choisissez l'expérience qui vous convient.
+        </p>
+
+        <div class="knowledge-options">
+          <button class="knowledge-option beginner-option" data-level="beginner" role="button" aria-pressed="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3v18M3 12h18" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div class="option-content">
+              <span class="option-title" data-translate="knowledgeOverlay.beginner">Débutant</span>
+              <span class="option-description" data-translate="knowledgeOverlay.beginnerDesc">Je suis nouveau</span>
+            </div>
+          </button>
+
+          <button class="knowledge-option intermediate-option active" data-level="intermediate" role="button" aria-pressed="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+            <div class="option-content">
+              <span class="option-title" data-translate="knowledgeOverlay.intermediate">Intermédiaire</span>
+              <span class="option-description" data-translate="knowledgeOverlay.intermediateDesc">J'ai de l'expérience</span>
+            </div>
+          </button>
+
+          <button class="knowledge-option expert-option" data-level="expert" role="button" aria-pressed="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div class="option-content">
+              <span class="option-title" data-translate="knowledgeOverlay.expert">Expert</span>
+              <span class="option-description" data-translate="knowledgeOverlay.expertDesc">Je maîtrise déjà</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="knowledge-fallback">
+          <button class="knowledge-fallback-link" data-translate="knowledgeOverlay.fallback">
+            Pas sûr ? Montrez-moi un exemple
+          </button>
+        </div>
+      </div>
+    </div>
     <!-- Navigation Header -->
     <header>
       <div class="container">
@@ -96,7 +147,6 @@
     <!-- Solutions Clés Grid -->
     <section class="platform-section fade-in">
       <div class="container">
-        <h2 data-translate="professionals.solutions.companies.overview.title">Nos solutions clés</h2>
         <div class="features-grid">
           <div class="platform-card">
             <div class="card-icon">
@@ -439,6 +489,7 @@
     <script src="/i18n/translations.js"></script>
     <script src="/js/businesses-form.js"></script>
     <script src="/js/script.js"></script>
+    <script src="/js/knowledge-overlay.js"></script>
     <script src="/js/chatbot-logic.js"></script>
     <script src="/js/chatbot-animations.js"></script>
     <script src="/js/chat-side-panel.js"></script>
