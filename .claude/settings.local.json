@@ -10,7 +10,8 @@
       "Bash(fi)",
       "Bash(done)",
       "Bash(if grep -q \"footer-nav\" \"/Users/jadethi-viet-lanhoang/Library/Mobile Documents/com~apple~CloudDocs/Bubble invest/BubbleLaunch/src/frontend/pages/investors/$file\")",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []

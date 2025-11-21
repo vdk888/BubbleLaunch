@@ -123,8 +123,8 @@ const translations = {
     fr: "Actifs Diversifiés",
   },
   "vision.crypto.description": {
-    en: "Start with low-cost ETFs, add individual stocks, explore crypto. The agent adapts to whatever asset classes you want to focus on. No one-size-fits-all portfolios. Your investment thesis, powered by AI.",
-    fr: "Commencez par des ETF à faible coût, ajoutez des actions individuelles, explorez les cryptos. L'agent s'adapte à toutes les classes d'actifs que vous souhaitez cibler. Pas de portefeuilles taille unique. Votre thèse d'investissement, propulsée par l'IA.",
+    en: "Bubble Portfolio supports low-cost ETFs, individual stocks, and cryptocurrencies. Connect your own brokerage and crypto accounts—Bubble recommends, you decide and execute. One strategy per pocket, one overall portfolio strategy. Completely flexible.",
+    fr: "Bubble Portfolio soutient les ETF à faible coût, les actions individuelles et les cryptomonnaies. Connectez vos propres comptes de courtage et de crypto—Bubble recommande, vous décidez et exécutez. Une stratégie par poche, une stratégie globale de portefeuille. Complètement flexible.",
   },
   "vision.portfolio.title": {
     en: "Educational Tool: Explore Strategy Concepts",
