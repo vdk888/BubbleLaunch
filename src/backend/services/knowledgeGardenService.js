@@ -1,5 +1,4 @@
 const { Client } = require("@notionhq/client");
-const LLMEnrichmentService = require("./llmEnrichmentService");
 
 // Initialize Notion client using the existing blog API key
 const knowledgeGardenApiKey = process.env.NOTION_BLOG_API_KEY;
@@ -9,9 +8,6 @@ const knowledgeGardenDatabaseId = "1ffcfc520644805b8bb9c9207fb2cb31";
 const isKnowledgeGardenConfigured = knowledgeGardenApiKey && knowledgeGardenDatabaseId;
 
 const notion = isKnowledgeGardenConfigured ? new Client({ auth: knowledgeGardenApiKey }) : null;
-
-// Initialize LLM enrichment service
-const llmEnrichment = new LLMEnrichmentService();
 
 /**
  * Fetches published references from the Knowledge Garden database
@@ -58,7 +54,7 @@ async function getPublishedReferences() {
 
         const references = activePages.map(page => {
             const properties = page.properties;
-            
+
             // Extract basic information (using correct property names from database structure)
             const title = extractTextProperty(properties.Name);
             const author = extractTextProperty(properties.Author);
@@ -67,13 +63,21 @@ async function getPublishedReferences() {
             const category = extractMultiSelectProperty(properties.Category);
             const topics = extractMultiSelectProperty(properties.Topics);
             const url = extractUrlProperty(properties['URL']);
-            const summaryRaw = extractTextProperty(properties['AI summary']);
-            const summary = normalizeSummary(summaryRaw);
+
+            // Extract bilingual summaries from Notion properties
+            const summaryEnRaw = extractTextProperty(properties['AI summary']);
+            const summaryFrRaw = extractTextProperty(properties['FR Summary']);
+            const summary_en = normalizeSummary(summaryEnRaw);
+            const summary_fr = normalizeSummary(summaryFrRaw);
+
             const bubbleBlogStatus = extractMultiSelectProperty(properties['Bubble Blog']);
             const status = extractSelectProperty(properties.Status);
             const date = extractDateProperty(properties.Date);
             const videoEmbedUrl = sourceType === 'Video' ? extractVideoEmbedUrl(url) : null;
-            
+
+            // Generate search links (no LLM needed)
+            const searchLinks = generateSearchLinks(title, author, sourceType);
+
             return {
                 id: page.id,
                 title: title || 'Untitled',
@@ -83,14 +87,17 @@ async function getPublishedReferences() {
                 category: category || [],
                 topics: topics || [],
                 url: url || null,
-                summary: summary || '',
+                summary: summary_en || summary_fr || '', // Keep for backward compatibility
+                summary_en: summary_en || '',
+                summary_fr: summary_fr || '',
                 bubbleBlogStatus: bubbleBlogStatus || [],
                 status: status || 'Draft',
                 date: date || null,
                 createdDate: page.created_time,
                 lastEditedDate: page.last_edited_time,
                 isVideo: sourceType === 'Video',
-                videoEmbedUrl
+                videoEmbedUrl,
+                legalLinks: searchLinks
             };
         });
 
@@ -115,78 +122,24 @@ async function getPublishedReferences() {
 }
 
 /**
- * Fetches published references with LLM enrichment
- * Includes enhanced abstracts, purchase links, and type detection
+ * Get references grouped by source type (Books/Articles/Videos)
  */
-async function getEnrichedPublishedReferences() {
+async function getReferencesGroupedBySourceType() {
     try {
-        console.log('🤖 Fetching and enriching published references...');
-        
-        // Get base references from Notion
-        const baseReferences = await getPublishedReferences();
-        
-        if (baseReferences.length === 0) {
-            return [];
-        }
+        const references = await getPublishedReferences();
 
-        // Check which references need enrichment
-        const enrichmentCandidates = baseReferences.filter(ref => ['Book', 'Article', 'Video'].includes(ref.sourceType));
-        const needsEnrichment = enrichmentCandidates.filter(ref => llmEnrichment.needsEnrichment(ref));
-        
-        if (needsEnrichment.length > 0) {
-            console.log(`📝 Found ${needsEnrichment.length} references needing enrichment`);
-            
-            // Enrich references that need it
-            const enrichedRefs = await llmEnrichment.enrichReferences(needsEnrichment);
-            
-            // Create a map for quick lookup
-            const enrichedMap = new Map();
-            enrichedRefs.forEach(ref => {
-                const key = `${ref.title}_${ref.author || 'no_author'}`;
-                enrichedMap.set(key, ref);
-            });
-            
-            // Merge enriched data with base references
-            const finalReferences = baseReferences.map(ref => {
-                const key = `${ref.title}_${ref.author || 'no_author'}`;
-                return enrichedMap.get(key) || ref;
-            });
-            
-            console.log(`✅ Enrichment complete: ${finalReferences.length} references ready`);
-            return finalReferences;
-        } else {
-            console.log('✅ All references already enriched');
-            return baseReferences;
-        }
-        
-    } catch (error) {
-        console.error('❌ Error in enriched references:', error);
-        
-        // Fallback to base references without enrichment
-        console.log('🔄 Falling back to base references without enrichment');
-        return await getPublishedReferences();
-    }
-}
-
-/**
- * Get enriched references grouped by source type (Books/Articles)
- */
-async function getEnrichedReferencesGroupedBySourceType() {
-    try {
-        const references = await getEnrichedPublishedReferences();
-        
         const allowedTypes = new Set(['Book', 'Article', 'Video']);
         const groupedReferences = references.reduce((groups, reference) => {
             const sourceType = reference.sourceType || 'Unknown';
-            
+
             if (!allowedTypes.has(sourceType)) {
                 return groups;
             }
-            
+
             if (!groups[sourceType]) {
                 groups[sourceType] = [];
             }
-            
+
             groups[sourceType].push(reference);
             return groups;
         }, {});
@@ -207,10 +160,10 @@ async function getEnrichedReferencesGroupedBySourceType() {
                 return (a.title || '').localeCompare(b.title || '');
             })
         }));
-        
+
     } catch (error) {
-        console.error('❌ Error grouping enriched references by source type:', error);
-        throw new Error('Failed to group enriched references by source type');
+        console.error('❌ Error grouping references by source type:', error);
+        throw new Error('Failed to group references by source type');
     }
 }
 
@@ -273,6 +226,32 @@ async function exploreKnowledgeGardenStructure() {
         console.error('Error exploring database structure:', error);
         return { error: error.message };
     }
+}
+
+/**
+ * Generate search links for a reference (no LLM needed)
+ */
+function generateSearchLinks(title, author, sourceType) {
+    const searchQuery = `${title}${author && author !== 'Unknown Author' ? ' ' + author : ''}`.trim();
+    const encodedQuery = encodeURIComponent(searchQuery);
+
+    const links = {
+        // Universal search links
+        googleScholar: `https://scholar.google.com/scholar?q=${encodedQuery}`,
+        openLibrary: `https://openlibrary.org/search?q=${encodedQuery.replace(/%20/g, '+')}`,
+    };
+
+    // Add source-specific links
+    if (sourceType === 'Book') {
+        links.amazon = `https://www.amazon.com/s?k=${encodedQuery}`;
+        links.goodreads = `https://www.goodreads.com/search?q=${encodedQuery}`;
+        links.bookshop = `https://bookshop.org/search?q=${encodedQuery}`;
+    } else if (sourceType === 'Article' || sourceType === 'Paper') {
+        // For articles, prioritize Google Scholar
+        links.journal = null; // Will use URL from Notion if available
+    }
+
+    return links;
 }
 
 // Helper functions to extract different property types
@@ -353,9 +332,7 @@ function extractVideoEmbedUrl(url) {
 
 module.exports = {
     getPublishedReferences,
+    getReferencesGroupedBySourceType,
     getReferencesGroupedByTheme,
-    exploreKnowledgeGardenStructure,
-    getEnrichedPublishedReferences,
-    getEnrichedReferencesGroupedBySourceType,
-    clearEnrichmentCache: () => llmEnrichment.clearCache()
+    exploreKnowledgeGardenStructure
 };

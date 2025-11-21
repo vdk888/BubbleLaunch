@@ -287,20 +287,13 @@ class ReferencesComponent {
         const actionLabel = this.getActionLabel(isVideo ? 'watch' : 'read');
         const videoEmbedHTML = isVideo ? this.getVideoEmbedHTML(reference) : '';
 
-        // Use language-specific summary if available, fallback to original summary
-        let summaryText = '';
-        if (this.currentLanguage === 'fr' && reference.summary_fr) {
-            summaryText = reference.summary_fr;
-        } else if (this.currentLanguage === 'en' && reference.summary_en) {
-            summaryText = reference.summary_en;
-        } else if (reference.summary) {
-            summaryText = reference.summary; // Fallback to original
-        }
+        // Use language-specific summary from Notion properties (FR Summary / AI summary)
+        const summaryText = this.currentLanguage === 'fr'
+            ? (reference.summary_fr || reference.summary_en || '')
+            : (reference.summary_en || reference.summary_fr || '');
 
         // For videos, use default summary if no text summary available
-        if (!summaryText && isVideo) {
-            summaryText = this.getDefaultVideoSummary(reference);
-        }
+        const displaySummary = summaryText || (isVideo ? this.getDefaultVideoSummary(reference) : '');
         
         return `
             <div class="reference-card" data-source-type="${reference.sourceType}">
@@ -315,13 +308,13 @@ class ReferencesComponent {
                         <h4 class="reference-title">${this.sanitizeHTML(reference.title)}</h4>
                     ${hasLink ? '</a>' : '</div>'}
                     
-                    ${reference.author && reference.author !== 'Unknown Author' ? 
-                        `<p class="reference-author">${this.currentLanguage === 'fr' ? 'Par' : 'By'} ${this.sanitizeHTML(reference.author)}</p>` : 
+                    ${reference.author && reference.author !== 'Unknown Author' ?
+                        `<p class="reference-author">${this.currentLanguage === 'fr' ? 'Par' : 'By'} ${this.sanitizeHTML(reference.author)}</p>` :
                         ''
                     }
-                    
-                    ${summaryText ? 
-                        `<p class="reference-summary">${this.sanitizeHTML(summaryText)}</p>` : 
+
+                    ${displaySummary ?
+                        `<p class="reference-summary">${this.sanitizeHTML(displaySummary)}</p>` :
                         ''
                     }
                     
