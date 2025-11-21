@@ -3414,6 +3414,741 @@ const translations = {
   "floating_input.placeholder": {
     en: "Ask me anything...",
     fr: "Posez-moi n'importe quelle question..."
+  },
+
+  // ========== BEGINNER DEMO TRANSLATIONS (macro-defense) ==========
+  "beginner.message1.user": {
+    en: "Hi Bubble! I have €50,000 in my savings account and I'm worried about inflation. What should I do to protect my money?",
+    fr: "Bonjour Bubble ! J'ai 50 000€ sur mon compte épargne et je m'inquiète de l'inflation. Que dois-je faire pour protéger mon argent ?"
+  },
+  "beginner.message2.bot.intro": {
+    en: "I completely understand your concern! Inflation is indeed eating away at the purchasing power of cash in savings accounts. The good news is: I can help you build a simple, safe portfolio that protects your money while helping it grow.\n\nThink of it like this: instead of keeping all your eggs in one basket (cash losing value), we'll spread your money across different types of investments that historically do well when inflation rises.",
+    fr: "Je comprends parfaitement votre inquiétude ! L'inflation érode effectivement le pouvoir d'achat de l'argent sur les comptes d'épargne. La bonne nouvelle : je peux vous aider à construire un portefeuille simple et sûr qui protège votre argent tout en le faisant croître.\n\nVoici comment l'imaginer : au lieu de garder tous les œufs dans un panier (l'argent qui perd de la valeur), nous répartirons votre argent entre différents types d'investissements qui historiquement fonctionnent bien quand l'inflation monte."
+  },
+  "beginner.message2.bot.why_works": {
+    en: "Why This Works",
+    fr: "Pourquoi ça marche"
+  },
+  "beginner.message2.bot.why_works_items": [
+    {
+      icon: "🛡️",
+      title_en: "Safety First",
+      title_fr: "Sécurité d'abord",
+      desc_en: "By mixing different assets, if one goes down, others stay stable",
+      desc_fr: "En mélangeant différents actifs, si l'un baisse, les autres restent stables"
+    },
+    {
+      icon: "📈",
+      title_en: "Beat Inflation",
+      title_fr: "Dépasser l'inflation",
+      desc_en: "These investments historically grow 5-7% per year (vs 2-3% inflation)",
+      desc_fr: "Ces investissements croissent historiquement de 5-7% par an (vs 2-3% d'inflation)"
+    },
+    {
+      icon: "🌍",
+      title_en: "Global Protection",
+      title_fr: "Protection mondiale",
+      desc_en: "We invest worldwide, not just in one country",
+      desc_fr: "Nous investissons mondialement, pas juste dans un seul pays"
+    },
+    {
+      icon: "🤖",
+      title_en: "I Do The Work",
+      title_fr: "Je fais le travail",
+      desc_en: "You don't need to learn finance - I handle everything",
+      desc_fr: "Vous n'avez pas besoin d'apprendre la finance - je gère tout"
+    }
+  ],
+  "beginner.message2.bot.closing": {
+    en: "I'm thinking of a strategy mixing safe assets (like government bonds) with some growth assets (large stable companies). This has protected people's savings for decades. Does that sound good to you?",
+    fr: "Je pense à une stratégie mélangeant des actifs sûrs (comme les obligations gouvernementales) avec certains actifs de croissance (grandes entreprises stables). Cela a protégé l'épargne des gens pendant des décennies. Ça vous semble bon ?"
+  },
+  "beginner.message3.user": {
+    en: "Yes, but I don't want to lose money. Can you be specific about what you'd actually invest in? And how risky is this?",
+    fr: "Oui, mais je ne veux pas perdre d'argent. Tu peux être précis sur ce que tu investirais exactement ? Et c'est risqué à quel point ?"
+  },
+  "beginner.message4.bot.intro": {
+    en: "Great question - I want you to feel 100% comfortable! Here's exactly what I recommend for you:",
+    fr: "Excellente question - je veux que vous vous sentiez 100% à l'aise ! Voici exactement ce que je recommande pour vous :"
+  },
+  "beginner.message4.bot.portfolio_proposal": {
+    en: "Your Proposed Portfolio",
+    fr: "Votre portefeuille proposé"
+  },
+  "beginner.message4.bot.assets": [
+    {
+      percentage: "40%",
+      name_en: "Government & Corporate Bonds",
+      name_fr: "Obligations gouvernementales et entreprises",
+      icon: "🏦",
+      desc_en: "These are like loans to stable governments and big companies. Very safe, steady income.",
+      desc_fr: "Ce sont comme des prêts à des gouvernements stables et de grandes entreprises. Très sûr, revenu régulier."
+    },
+    {
+      percentage: "30%",
+      name_en: "Large US Companies (S&P 500)",
+      name_fr: "Grandes entreprises américaines (S&P 500)",
+      icon: "🇺🇸",
+      desc_en: "The biggest, most stable American companies like Apple, Microsoft. They grow steadily.",
+      desc_fr: "Les plus grandes et stables entreprises américaines comme Apple, Microsoft. Elles croissent régulièrement."
+    },
+    {
+      percentage: "15%",
+      name_en: "European Companies",
+      name_fr: "Entreprises européennes",
+      icon: "🇪🇺",
+      desc_en: "Diversification across Europe's strongest companies. Reduces risk.",
+      desc_fr: "Diversification entre les plus fortes entreprises d'Europe. Réduit le risque."
+    },
+    {
+      percentage: "10%",
+      name_en: "Gold & Commodities",
+      name_fr: "Or et matières premières",
+      icon: "💰",
+      desc_en: "Gold historically protects against inflation - when cash loses value, gold often rises.",
+      desc_fr: "L'or protège historiquement contre l'inflation - quand l'argent perd de la valeur, l'or monte souvent."
+    },
+    {
+      percentage: "5%",
+      name_en: "Cash Reserve",
+      name_fr: "Réserve de trésorerie",
+      icon: "💵",
+      desc_en: "Always keep some cash available for emergencies. No waiting to sell.",
+      desc_fr: "Gardez toujours un peu d'argent disponible pour les urgences. Pas besoin d'attendre pour vendre."
+    }
+  ],
+  "beginner.message4.bot.risk_explanation": {
+    en: "Now about risk: Over the past 20 years, this type of balanced portfolio:",
+    fr: "Maintenant sur le risque : Au cours des 20 dernières années, ce type de portefeuille équilibré :"
+  },
+  "beginner.message4.bot.risk_stats": [
+    {
+      icon: "✅",
+      stat_en: "Returned 6.5% per year on average (your €50k would have grown to €178k!)",
+      stat_fr: "A retourné 6,5% par an en moyenne (vos 50 000€ auraient crû à 178 000€ !)"
+    },
+    {
+      icon: "✅",
+      stat_en: "Even in 2008 crash, only lost -12% (vs -37% for stocks alone)",
+      stat_fr: "Même lors du crash de 2008, n'a perdu que -12% (vs -37% pour les actions seules)"
+    },
+    {
+      icon: "✅",
+      stat_en: "Recovered within 8 months every time",
+      stat_fr: "S'est rétabli en 8 mois à chaque fois"
+    },
+    {
+      icon: "✅",
+      stat_en: "Much safer than putting everything in stocks or crypto",
+      stat_fr: "Beaucoup plus sûr que de mettre tout en actions ou crypto"
+    }
+  ],
+  "beginner.message4.bot.final_note": {
+    en: "I'm designed to be extra careful with your money - safety first, then growth. This isn't gambling, it's proven diversification that's protected millions of people's savings.",
+    fr: "Je suis conçue pour être très prudente avec votre argent - la sécurité d'abord, puis la croissance. Ce n'est pas du jeu, c'est une diversification éprouvée qui a protégé l'épargne de millions de personnes."
+  },
+  "beginner.message5.user": {
+    en: "That actually sounds reasonable! But who manages all this? Do I need to watch the markets every day? I don't know how to do that...",
+    fr: "En fait ça me semble raisonnable ! Mais qui gère tout ça ? Je dois surveiller les marchés tous les jours ? Je ne sais pas faire ça..."
+  },
+  "beginner.message6.bot.intro": {
+    en: "This is the best part - you do NOTHING! That's literally why I exist. Let me explain exactly what I do for you automatically:",
+    fr: "C'est la meilleure partie - vous ne faites RIEN ! C'est littéralement pour ça que j'existe. Laissez-moi expliquer exactement ce que je fais pour vous automatiquement :"
+  },
+  "beginner.message6.bot.checklist_title": {
+    en: "What I Handle For You (Every Single Day)",
+    fr: "Ce que je gère pour vous (Chaque jour)"
+  },
+  "beginner.message6.bot.checklist_items": [
+    {
+      icon: "✅",
+      title_en: "Monitor Markets 24/7",
+      title_fr: "Surveille les marchés 24h/24",
+      desc_en: "I watch thousands of stocks, bonds, and assets constantly. You never have to.",
+      desc_fr: "Je surveille constamment des milliers d'actions, d'obligations et d'actifs. Vous n'avez jamais à le faire."
+    },
+    {
+      icon: "✅",
+      title_en: "Rebalance Every Morning",
+      title_fr: "Rééquilibre chaque matin",
+      desc_en: "If your portfolio drifts from the target mix (like stocks grew to 35% instead of 30%), I automatically buy/sell to keep the perfect balance.",
+      desc_fr: "Si votre portefeuille s'éloigne du mélange cible (comme les actions croissent à 35% au lieu de 30%), j'achète/vends automatiquement pour garder l'équilibre parfait."
+    },
+    {
+      icon: "✅",
+      title_en: "Execute Orders at Best Prices",
+      title_fr: "Exécute les ordres aux meilleurs prix",
+      desc_en: "Every morning around 9:30am, I place orders with your broker if rebalancing is needed. I always find the best prices.",
+      desc_fr: "Chaque matin vers 9h30, je place des ordres avec votre courtier si un rééquilibrage est nécessaire. Je trouve toujours les meilleurs prix."
+    },
+    {
+      icon: "✅",
+      title_en: "Protect You During Crashes",
+      title_fr: "Vous protège lors des krachs",
+      desc_en: "If markets get very risky, I automatically shift more money to bonds (safety) temporarily.",
+      desc_fr: "Si les marchés deviennent très risqués, j'augmente automatiquement l'argent en obligations (sécurité) temporairement."
+    },
+    {
+      icon: "✅",
+      title_en: "Send You Simple Updates",
+      title_fr: "Vous envoie des mises à jour simples",
+      desc_en: "Once a month, you get an email: 'Your portfolio grew X% this month.' That's it - no jargon.",
+      desc_fr: "Une fois par mois, vous recevez un email : 'Votre portefeuille a crû de X% ce mois'. C'est tout - pas de jargon."
+    },
+    {
+      icon: "✅",
+      title_en: "Optimize For Lower Taxes",
+      title_fr: "Optimise pour réduire les impôts",
+      desc_en: "When I rebalance, I'm smart about which assets to sell to minimize taxes you owe.",
+      desc_fr: "Quand je rééquilibre, je suis intelligent sur les actifs à vendre pour minimiser les impôts que vous devez."
+    },
+    {
+      icon: "✅",
+      title_en: "Answer Your Questions Anytime",
+      title_fr: "Répond à vos questions à tout moment",
+      desc_en: "Confused about something? Just ask me like we're chatting now. I explain in plain language.",
+      desc_fr: "Confus sur quelque chose ? Posez-moi simplement la question comme nous discutons maintenant. J'explique en langage simple."
+    }
+  ],
+  "beginner.message6.bot.real_life_example": {
+    en: "Here's what a typical day looks like: While you're sleeping or having breakfast, I check if your portfolio needs adjusting. If yes, I execute orders. By 10am, everything is done. You might get a notification: 'Rebalanced +2% bonds today.' That's it. You just live your life!",
+    fr: "Voici à quoi ressemble une journée typique : Pendant que vous dormez ou prenez le petit-déjeuner, je vérifie si votre portefeuille a besoin d'ajustements. Si oui, j'exécute les ordres. À 10h, tout est fait. Vous pourriez recevoir une notification : 'Rééquilibré +2% obligations aujourd'hui.' C'est tout. Vous vivez juste votre vie !"
+  },
+  "beginner.message6.bot.closing": {
+    en: "You never log into trading platforms, never pick stocks, never worry about timing. I'm like having a financial advisor working for you 24/7, except I cost €5/month instead of €5,000/year. Sound good?",
+    fr: "Vous ne vous connectez jamais à des plates-formes de trading, ne choisissez jamais d'actions, ne vous inquiétez jamais du timing. C'est comme avoir un conseiller financier travaillant pour vous 24h/24, sauf que je coûte 5€/mois au lieu de 5 000€/an. Ça vous semble bon ?"
+  },
+  "beginner.message7.user": {
+    en: "Wow, okay that's actually perfect for me! One last thing - what if I need my money urgently? Can I get it back quickly?",
+    fr: "Wow, ok c'est vraiment parfait pour moi ! Une dernière chose - et si j'ai besoin de mon argent en urgence ? Je peux le récupérer vite ?"
+  },
+  "beginner.message8.bot.intro": {
+    en: "Absolutely - this isn't locked away! Here's how it works:",
+    fr: "Absolument - ce n'est pas bloqué ! Voici comment ça marche :"
+  },
+  "beginner.message8.bot.liquidity": {
+    en: "Liquidity Explained",
+    fr: "Liquidité expliquée"
+  },
+  "beginner.message8.bot.liquidity_items": [
+    {
+      icon: "💵",
+      title_en: "Your 5% cash (€2,500)",
+      title_fr: "Vos 5% d'argent (2 500€)",
+      desc_en: "Already available instantly in your broker account",
+      desc_fr: "Déjà disponible instantanément dans votre compte courtier"
+    },
+    {
+      icon: "⚡",
+      title_en: "Bonds & stocks",
+      title_fr: "Obligations et actions",
+      desc_en: "Can be sold any business day, money in your account within 2-3 days",
+      desc_fr: "Peuvent être vendus n'importe quel jour ouvrable, argent dans votre compte en 2-3 jours"
+    },
+    {
+      icon: "🚫",
+      title_en: "No penalties",
+      title_fr: "Pas de pénalités",
+      desc_en: "Unlike retirement accounts, you can withdraw anytime with no fees",
+      desc_fr: "Contrairement aux comptes de retraite, vous pouvez retirer à tout moment sans frais"
+    },
+    {
+      icon: "📞",
+      title_en: "Emergency mode",
+      title_fr: "Mode urgence",
+      desc_en: "If you need money urgently, just tell me and I'll start selling the safest assets first",
+      desc_fr: "Si vous avez besoin d'argent en urgence, dites-le moi et je commencerai à vendre les actifs les plus sûrs d'abord"
+    }
+  ],
+  "beginner.message8.bot.liquidity_reassurance": {
+    en: "Think of it like a high-yield savings account, except the money is working harder for you. It's liquid, just not instant like a checking account.",
+    fr: "Pensez-y comme un compte d'épargne à haut rendement, sauf que l'argent fonctionne plus dur pour vous. C'est liquide, juste pas instantané comme un compte courant."
+  },
+  "beginner.message8.bot.timeline_title": {
+    en: "What Happens Next",
+    fr: "Que se passe-t-il ensuite"
+  },
+  "beginner.message8.bot.timeline_steps": [
+    {
+      step: "Step 1 - Today (Right Now)",
+      step_fr: "Étape 1 - Aujourd'hui (Maintenant)",
+      items: [
+        { icon: "✅", text_en: "I create your personalized portfolio plan", text_fr: "Je crée votre plan de portefeuille personnalisé" },
+        { icon: "✅", text_en: "I generate a backtest report (shows how this would have performed over 20 years)", text_fr: "Je génère un rapport de backtest (montre comment cela aurait fonctionné au cours des 20 dernières années)" },
+        { icon: "✅", text_en: "You review and approve", text_fr: "Vous révisez et approuvez" }
+      ]
+    },
+    {
+      step: "Step 2 - Connect Your Broker (5 minutes)",
+      step_fr: "Étape 2 - Connectez votre courtier (5 minutes)",
+      items: [
+        { icon: "🔗", text_en: "You connect your broker account (IBKR, Alpaca, or Saxo) to Bubble", text_fr: "Vous connectez votre compte courtier (IBKR, Alpaca ou Saxo) à Bubble" },
+        { icon: "🔐", text_en: "This is secure API connection - I can place orders but never withdraw money", text_fr: "C'est une connexion API sécurisée - je peux placer des ordres mais jamais retirer d'argent" },
+        { icon: "💡", text_en: "Don't have a broker yet? No problem! I'll guide you step-by-step to open one (takes 10 minutes)", text_fr: "Vous n'avez pas encore de courtier ? Pas de problème ! Je vous guiderai étape par étape pour en ouvrir un (prend 10 minutes)" }
+      ]
+    },
+    {
+      step: "Step 3 - Tomorrow Morning",
+      step_fr: "Étape 3 - Demain matin",
+      items: [
+        { icon: "🚀", text_en: "First investments executed automatically at market open", text_fr: "Premiers investissements exécutés automatiquement à l'ouverture du marché" },
+        { icon: "📊", text_en: "Your portfolio goes live", text_fr: "Votre portefeuille devient actif" },
+        { icon: "🔄", text_en: "Automatic daily management starts", text_fr: "La gestion quotidienne automatique commence" }
+      ]
+    }
+  ],
+  "beginner.message8.bot.closing": {
+    en: "Most people have their broker already set up, but if you don't, I'll walk you through it like I'm right there with you. The whole process takes 15 minutes total. Want to see your personalized backtest report first?",
+    fr: "La plupart des gens ont déjà configuré leur courtier, mais si ce n'est pas le cas, je vous guiderai comme si j'étais avec vous. Le processus entier prend 15 minutes au total. Voulez-vous d'abord voir votre rapport de backtest personnalisé ?"
+  },
+  "beginner.message9.user": {
+    en: "Yes! Show me the backtest. And then yes, let's do this!",
+    fr: "Oui ! Montre-moi le backtest. Et après oui, allons-y !"
+  },
+  "beginner.message10.bot.intro": {
+    en: "Perfect! Here's exactly how your portfolio would have performed if you had started 20 years ago with €50,000:",
+    fr: "Parfait ! Voici exactement comment votre portefeuille aurait fonctionné si vous aviez commencé il y a 20 ans avec 50 000€ :"
+  },
+  "beginner.message10.bot.backtest_title": {
+    en: "Your Strategy Backtest (2005-2025)",
+    fr: "Backtest de votre stratégie (2005-2025)"
+  },
+  "beginner.message10.bot.backtest_metrics": {
+    starting_amount_en: "Starting amount:",
+    starting_amount_fr: "Montant initial :",
+    starting_value: "€50,000 (January 2005)",
+    starting_value_fr: "50 000€ (janvier 2005)",
+    ending_amount_en: "Ending amount:",
+    ending_amount_fr: "Montant final :",
+    ending_value: "€178,400 (January 2025)",
+    ending_value_fr: "178 400€ (janvier 2025)",
+    avg_return_en: "Average return:",
+    avg_return_fr: "Rendement moyen :",
+    avg_return_value: "6.5% per year",
+    avg_return_value_fr: "6,5% par an",
+    worst_year_en: "Worst year:",
+    worst_year_fr: "Pire année :",
+    worst_year_value: "-12% (2008 financial crisis)",
+    worst_year_value_fr: "-12% (crise financière de 2008)",
+    best_year_en: "Best year:",
+    best_year_fr: "Meilleure année :",
+    best_year_value: "+22% (2019)",
+    best_year_value_fr: "+22% (2019)",
+    winning_years_en: "Number of positive years:",
+    winning_years_fr: "Nombre d'années positives :",
+    winning_years_value: "17 out of 20 (85% winning years!)",
+    winning_years_value_fr: "17 sur 20 (85% d'années gagnantes !)",
+    recovery_en: "Recovery time after 2008:",
+    recovery_fr: "Temps de récupération après 2008 :",
+    recovery_value: "8 months",
+    recovery_value_fr: "8 mois"
+  },
+  "beginner.message10.bot.comparison_title": {
+    en: "Comparison",
+    fr: "Comparaison"
+  },
+  "beginner.message10.bot.comparison_items": [
+    {
+      icon: "💰",
+      option_en: "If you kept €50k in savings account",
+      option_fr: "Si vous aviez gardé 50 000€ sur un compte d'épargne",
+      result: "€62,000 (2% interest minus inflation = barely grew)",
+      result_fr: "62 000€ (2% d'intérêt moins inflation = à peine crû)"
+    },
+    {
+      icon: "📈",
+      option_en: "With this strategy",
+      option_fr: "Avec cette stratégie",
+      result: "€178,400 (187% growth!)",
+      result_fr: "178 400€ (187% de croissance !)"
+    },
+    {
+      icon: "🎁",
+      option_en: "Difference",
+      option_fr: "Différence",
+      result: "€116,400 extra by letting me manage it",
+      result_fr: "116 400€ supplémentaires en me laissant la gérer"
+    }
+  ],
+  "beginner.message10.bot.chart_title": {
+    en: "20-Year Growth Chart",
+    fr: "Graphique de croissance sur 20 ans"
+  },
+  "beginner.message10.bot.chart_desc": {
+    en: "Blue line (your portfolio): Steady upward trend with small dips. Gray line (savings account): Almost flat.",
+    fr: "Ligne bleue (votre portefeuille) : Tendance ascendante régulière avec petits creux. Ligne grise (compte d'épargne) : Presque plate."
+  },
+  "beginner.message10.bot.final_note": {
+    en: "This isn't a prediction of the future - markets can't be predicted. But this shows the strategy is battle-tested through 2 major crashes (2008, 2020) and still delivered strong returns safely.",
+    fr: "Ce n'est pas une prédiction de l'avenir - les marchés ne peuvent pas être prédits. Mais cela montre que la stratégie a été testée au combat lors de 2 gros krachs (2008, 2020) et a toujours livré des rendements forts en toute sécurité."
+  },
+  "beginner.message10.bot.closing": {
+    en: "I'll send you an email with simple instructions to connect your broker. Takes 5 minutes. If you need help opening a broker account, I'll guide you through that too - I've helped hundreds of people do this. Ready when you are! 🛡️",
+    fr: "Je vous enverrai un email avec des instructions simples pour connecter votre courtier. Prend 5 minutes. Si vous avez besoin d'aide pour ouvrir un compte courtier, je vous guiderai aussi - j'ai aidé des centaines de personnes à le faire. Prêt quand vous l'êtes ! 🛡️"
+  },
+  "beginner.message10.bot.ps": {
+    en: "P.S. You can change your strategy anytime, add/withdraw money anytime, or ask me questions 24/7. You're always in control - I just make it effortless.",
+    fr: "P.S. Vous pouvez changer votre stratégie à tout moment, ajouter/retirer de l'argent à tout moment, ou me poser des questions 24h/24. Vous êtes toujours en contrôle - je rend juste tout sans effort."
+  },
+
+  // ========== EXPERT DEMO (semiconductors-sortino) ==========
+  "expert.message1.user": {
+    en: "I'm interested in a concentrated sector play. Semiconductors have structural tailwinds but high volatility. Can you design a portfolio that captures upside while controlling downside risk?",
+    fr: "Je m'intéresse à une exposition concentrée à un secteur. Les semi-conducteurs ont des vents favorables structurels mais une volatilité élevée. Peux-tu concevoir un portefeuille qui capture le potentiel à la hausse tout en contrôlant le risque baissier ?"
+  },
+  "expert.message2.bot.intro": {
+    en: "Excellent question. Semiconductors are cyclical and capital-intensive, but the AI boom has created a structural inflection point. The key challenge: how to participate in the trend while managing tail risk.\n\nI can design a multi-layer strategy using sector rotation, dynamic hedging, and downside-focused risk metrics like Sortino ratio to optimize risk-adjusted returns.",
+    fr: "Excellente question. Les semi-conducteurs sont cycliques et exigent beaucoup de capital, mais le boom de l'IA a créé un point d'inflexion structurel. Le défi clé : comment participer à la tendance tout en gérant le risque extrême.\n\nJe peux concevoir une stratégie multi-couches utilisant la rotation sectorielle, la couverture dynamique, et des métriques de risque orientées baisse comme le ratio Sortino pour optimiser les rendements ajustés au risque."
+  },
+  "expert.message2.bot.strategy_overview": {
+    en: "The Strategy Architecture",
+    fr: "L'architecture de la stratégie"
+  },
+  "expert.message2.bot.strategy_layers": [
+    {
+      icon: "⚙️",
+      title_en: "Core Semiconductor Exposure",
+      title_fr: "Exposition principale aux semi-conducteurs",
+      desc_en: "Leverage the Semiconductor ETF (SMH) with tactical overlays targeting both TSMC/SK Hynix (foundry leaders) and Nvidia/AMD (fabless giants) via dynamic weighting."
+    },
+    {
+      icon: "🛡️",
+      title_en: "Downside Hedging",
+      title_fr: "Couverture baisse",
+      desc_en: "Deploy put options on VIX spikes or inverse correlation assets (bonds, currencies) to reduce tail risk during market corrections."
+    },
+    {
+      icon: "🔄",
+      title_en: "Sector Rotation",
+      title_fr: "Rotation sectorielle",
+      desc_en: "Dynamically rotate to defensive tech (software, cloud) when semiconductor momentum diverges, capturing alpha without abandonment of thesis."
+    },
+    {
+      icon: "📊",
+      title_en: "Risk-Adjusted Optimization",
+      title_fr: "Optimisation ajustée au risque",
+      desc_en: "Sortino ratio guides rebalancing—targeting downside volatility below -2%, achieving best risk-adjusted returns vs. simple buy-and-hold."
+    }
+  ],
+  "expert.message2.bot.closing": {
+    en: "This approach balances conviction with prudence—you get semiconductor exposure while sleeping well at night. Shall I walk you through the backtest and tactical implementation?",
+    fr: "Cette approche équilibre la conviction avec la prudence—vous obtenez une exposition aux semi-conducteurs tout en dormant tranquille. Veux-tu que je te montre le backtest et l'implémentation tactique ?"
+  },
+  "expert.message3.user": {
+    en: "Yes. Walk me through the risk metrics. I want to understand Sortino ratio vs. Sharpe, maximum drawdown, and what happens in the 2022-2023 semiconductor correction.",
+    fr: "Oui. Montre-moi les métriques de risque. Je veux comprendre le ratio Sortino vs Sharpe, le drawdown maximal, et ce qui s'est passé lors de la correction des semi-conducteurs de 2022-2023."
+  },
+  "expert.message4.bot.intro": {
+    en: "Perfect. Let me break down the portfolio math and stress-test it against real historical events.",
+    fr: "Parfait. Laisse-moi te montrer les calculs du portefeuille et le stress-test avec des événements historiques réels."
+  },
+  "expert.message4.bot.risk_metrics_title": {
+    en: "Risk-Adjusted Performance Metrics",
+    fr: "Métriques de performance ajustées au risque"
+  },
+  "expert.message4.bot.risk_comparison": [
+    {
+      metric_en: "Annual Return",
+      metric_fr: "Rendement annuel",
+      strategy: "22.3%",
+      benchmark: "18.1% (SMH)"
+    },
+    {
+      metric_en: "Volatility (Std Dev)",
+      metric_fr: "Volatilité (Écart-type)",
+      strategy: "28.4%",
+      benchmark: "34.2% (SMH)"
+    },
+    {
+      metric_en: "Sharpe Ratio (2% risk-free)",
+      metric_fr: "Ratio Sharpe (taux sans risque 2%)",
+      strategy: "0.71",
+      benchmark: "0.47"
+    },
+    {
+      metric_en: "Sortino Ratio (2% downside threshold)",
+      metric_fr: "Ratio Sortino (seuil baisse 2%)",
+      strategy: "1.24",
+      benchmark: "0.63"
+    },
+    {
+      metric_en: "Maximum Drawdown",
+      metric_fr: "Drawdown maximal",
+      strategy: "-18.7% (Sept 2022)",
+      benchmark: "-32.4% (Sept 2022)"
+    },
+    {
+      metric_en: "Calmar Ratio",
+      metric_fr: "Ratio Calmar",
+      strategy: "1.19",
+      benchmark: "0.56"
+    }
+  ],
+  "expert.message4.bot.stress_title": {
+    en: "Stress Test: 2022-2023 Semiconductor Correction",
+    fr: "Test de stress : Correction des semi-conducteurs 2022-2023"
+  },
+  "expert.message4.bot.stress_scenarios": [
+    {
+      date: "2022-2023 Correction",
+      smh_loss: "-32.4%",
+      strategy_loss: "-18.7%",
+      hedge_benefit: "Hedges absorbed -13.7% of downside"
+    },
+    {
+      date: "2023-2024 Rebound",
+      smh_gain: "+56.2%",
+      strategy_gain: "+48.1%",
+      note: "Lower hedging drag allowed participation in 86% of upside"
+    },
+    {
+      date: "Recent Volatility (Oct 2024)",
+      smh_dd: "-8.3% daily swing",
+      strategy_dd: "-4.1% daily swing",
+      note: "Sortino-optimized positioning reduced downside by 50%"
+    }
+  ],
+  "expert.message4.bot.closing": {
+    en: "The Sortino ratio shows that after adjusting for downside volatility, this strategy outperforms 2.6x vs. passive SMH. You capture the semiconductor trend while reducing tail risk by 40%+.",
+    fr: "Le ratio Sortino montre que, après ajustement pour la volatilité baisse, cette stratégie surperforme 2,6x vs SMH passif. Tu captures la tendance des semi-conducteurs tout en réduisant le risque extrême de 40%+."
+  },
+  "expert.message5.user": {
+    en: "That looks solid. Now, what's the rebalancing frequency? Daily? And what about correlation breakdowns during crisis? How do the hedges behave in black swan events?",
+    fr: "Ça semble solide. Maintenant, quelle est la fréquence de rééquilibrage ? Quotidienne ? Et qu'en est-il des défaillances de corrélation en cas de crise ? Comment se comportent les couvertures en cas d'événement extrême ?"
+  },
+  "expert.message6.bot.intro": {
+    en: "Great questions—these are the operational details that separate superior execution from theory. Let me detail the rebalancing logic and hedge mechanics.",
+    fr: "Excellentes questions—ce sont les détails opérationnels qui séparent l'exécution supérieure de la théorie. Laisse-moi te détailler la logique de rééquilibrage et la mécanique des couvertures."
+  },
+  "expert.message6.bot.rebalancing_title": {
+    en: "Rebalancing & Hedge Mechanics",
+    fr: "Mécanique de rééquilibrage et de couverture"
+  },
+  "expert.message6.bot.rebalancing_rules": [
+    {
+      icon: "⏰",
+      rule_en: "Primary Rebalancing: Daily at market open (9:30 AM ET)",
+      rule_fr: "Rééquilibrage principal : Quotidien à l'ouverture du marché (9h30 HE)",
+      detail_en: "Check Sortino ratio thresholds. If downside volatility exceeds 2.5%, increase hedge weighting automatically."
+    },
+    {
+      icon: "🎯",
+      rule_en: "Tactical Rebalancing: Intraday on momentum divergence",
+      rule_fr: "Rééquilibrage tactique : Intrajournalier en cas de divergence de momentum",
+      detail_en: "If SMH momentum decays 5%+ while market holds, rotate 10% to defensive tech (XLK correlation break)."
+    },
+    {
+      icon: "🚨",
+      rule_en: "Crisis Mode: VIX spike above 25",
+      rule_fr: "Mode crise : Pic de VIX au-dessus de 25",
+      detail_en: "Automatically increase put protection from 5% to 15% notional. This triggers within seconds—you sleep while hedges activate."
+    },
+    {
+      icon: "📈",
+      rule_en: "Upside Capture: When trend confirms",
+      rule_fr: "Capture de hausse : Quand la tendance est confirmée",
+      detail_en: "Reduce hedging to 3% notional, reinvest proceeds into SMH. Maintain 70%+ SMH exposure during bull runs."
+    }
+  ],
+  "expert.message6.bot.black_swan_title": {
+    en: "Black Swan Performance (March 2020, Feb 2018)",
+    fr: "Performance événement extrême (mars 2020, février 2018)"
+  },
+  "expert.message6.bot.black_swan_events": [
+    {
+      event: "COVID-19 Crash (March 2020)",
+      market_loss: "-34.2%",
+      strategy: "-12.1%",
+      hedge_payout: "Puts returned 340% of notional—hedges paid for themselves 3.4x"
+    },
+    {
+      event: "Fed Taper Tantrum (Feb 2018)",
+      market_loss: "-8.7%",
+      strategy: "-2.1%",
+      hedge_payout: "VIX spike hedges covered downside, recovered by April"
+    },
+    {
+      event: "Recent Correction (Aug 2024)",
+      market_loss: "-6.2%",
+      strategy: "-1.8%",
+      hedge_payout: "Tail hedges reduced drawdown by 71%"
+    }
+  ],
+  "expert.message6.bot.closing": {
+    en: "The hedges aren't free—they cost ~1.5% annually in drag. But during corrections, they typically return 3-5x their cost, making them asymmetrically profitable. This is sophisticated risk management, not insurance.",
+    fr: "Les couvertures ne sont pas gratuites—elles coûtent ~1,5% annuellement en drag. Mais lors des corrections, elles retournent généralement 3-5x leur coût, les rendant asymétriquement profitables. C'est une gestion sophistiquée du risque, pas une assurance."
+  },
+  "expert.message7.user": {
+    en: "Smart. Now I need to understand implementation. How do you handle slippage on puts? What's your execution algorithm for the SMH core position? And how do you handle corporate actions (stock splits, earnings volatility)?",
+    fr: "Malin. Maintenant je dois comprendre l'implémentation. Comment gérez-vous le slippage sur les puts ? Quel est votre algorithme d'exécution pour la position principale SMH ? Et comment gérez-vous les événements d'entreprise (fractionnements d'actions, volatilité des bénéfices) ?"
+  },
+  "expert.message8.bot.intro": {
+    en: "Now we're into the operational trenches. These execution details determine whether you get textbook backtest returns or real-world slippage. Let me break it down.",
+    fr: "Maintenant on entre dans les tranchées opérationnelles. Ces détails d'exécution déterminent si vous obtenez les rendements du backtest ou le slippage du monde réel. Laisse-moi te l'expliquer."
+  },
+  "expert.message8.bot.execution_title": {
+    en: "Execution Architecture & Implementation",
+    fr: "Architecture et implémentation de l'exécution"
+  },
+  "expert.message8.bot.execution_details": [
+    {
+      component_en: "SMH Core Execution",
+      component_fr: "Exécution principale SMH",
+      details_en: "VWAP (volume-weighted avg price) orders split across 4 brokers to reduce market impact. Target execution window: 9:30-10:00 AM ET when SMH liquidity peaks. Typical slippage: -0.08% vs. VWAP."
+    },
+    {
+      component_en: "Put Hedging",
+      component_fr: "Couverture de puts",
+      details_en: "Weekly out-of-the-money puts (1-2 months) from multiple brokers (IBKR, Cboe). Execution: Rolling auctions on Fridays to minimize premium bleed. Cost drag: ~1.5% annually (well-documented in academic literature)."
+    },
+    {
+      component_en: "Corporate Actions",
+      component_fr: "Actions d'entreprise",
+      details_en: "Automatic dividend reinvestment at NAV. Stock splits trigger immediate rebalancing to maintain target weights. Earnings events: volatility-adjusted position sizing (reduce 10% pre-earnings, restore post)."
+    },
+    {
+      component_en: "Tax Optimization",
+      component_fr: "Optimisation fiscale",
+      details_en: "Wash-sale aware rebalancing in loss months. Harvest losses on put expiry for future carry-forward deductions. In EU: Optimize for withholding tax treatment on US dividend income."
+    }
+  ],
+  "expert.message8.bot.real_slippage": {
+    en: "Real-World Slippage Budget: -1.2% annually (0.8% execution + 0.4% bid-ask spreads). This is baked into the 22.3% return projection—you're seeing post-cost numbers.",
+    fr: "Budget de slippage réel : -1,2% annuellement (0,8% d'exécution + 0,4% spread acheteur-vendeur). C'est intégré dans la projection de rendement de 22,3%—tu vois les chiffres nets de coûts."
+  },
+  "expert.message9.user": {
+    en: "This is exactly what I needed. I want to run this. What's the implementation timeline? Do you need broker integration first? And what about regulatory constraints—can I use leverage and options in my jurisdiction?",
+    fr: "C'est exactement ce qu'il me fallait. Je veux le mettre en œuvre. Quel est le calendrier de mise en œuvre ? Avez-vous besoin d'intégration de courtier en premier ? Et qu'en est-il des contraintes réglementaires—puis-je utiliser l'effet de levier et les options dans ma juridiction ?"
+  },
+  "expert.message10.bot.intro": {
+    en: "Excellent. Let's walk through launch, regulatory checks, and the first 30 days of execution.",
+    fr: "Parfait. Traversons le lancement, les vérifications réglementaires, et les 30 premiers jours d'exécution."
+  },
+  "expert.message10.bot.timeline_title": {
+    en: "Implementation Timeline & Regulatory Review",
+    fr: "Calendrier d'implémentation et examen réglementaire"
+  },
+  "expert.message10.bot.timeline_steps": [
+    {
+      step: "Phase 1 - Broker Integration (Today, ~30 mins)",
+      step_fr: "Phase 1 - Intégration courtier (Aujourd'hui, ~30 mins)",
+      items: [
+        { icon: "🔗", text_en: "Connect your broker (IBKR recommended for options access)", text_fr: "Connectez votre courtier (IBKR recommandé pour l'accès aux options)" },
+        { icon: "⚙️", text_en: "Validate permissions: options trading, multi-leg strategies", text_fr: "Validez les permissions : trading d'options, stratégies multi-jambes" },
+        { icon: "📋", text_en: "Regulatory questionnaire: margin limits, risk profile", text_fr: "Questionnaire réglementaire : limites de marge, profil de risque" }
+      ]
+    },
+    {
+      step: "Phase 2 - Regulatory Clearance (1-3 days)",
+      step_fr: "Phase 2 - Approbation réglementaire (1-3 jours)",
+      items: [
+        { icon: "✅", text_en: "Pre-trade compliance: net capital, leverage limits", text_fr: "Conformité pré-trading : capital net, limites d'effet de levier" },
+        { icon: "⚖️", text_en: "Jurisdiction check: Are puts legal in your location? (Yes, everywhere, but leverage may differ)", text_fr: "Vérification juridictionnelle : Les puts sont-ils légaux dans votre région ? (Oui, partout, mais l'effet de levier peut différer)" },
+        { icon: "📞", text_en: "Call with IBKR account manager if margin > 2:1 needed", text_fr: "Appel avec le gestionnaire de compte IBKR si marge > 2:1 nécessaire" }
+      ]
+    },
+    {
+      step: "Phase 3 - Paper Trading (1 week, optional but recommended)",
+      step_fr: "Phase 3 - Trading papier (1 semaine, optionnel mais recommandé)",
+      items: [
+        { icon: "📊", text_en: "Dry-run the strategy on simulated capital", text_fr: "Faire tourner la stratégie en capital simulé" },
+        { icon: "🎯", text_en: "Watch rebalancing mechanics: puts rolling, SMH adjustments", text_fr: "Regarder la mécanique de rééquilibrage : rolling de puts, ajustements SMH" },
+        { icon: "🚀", text_en: "If happy with results, move to live with 25% of target capital", text_fr: "Si satisfait, passez à la vie réelle avec 25% du capital cible" }
+      ]
+    },
+    {
+      step: "Phase 4 - Live Trading (Gradual ramp-up, 4 weeks)",
+      step_fr: "Phase 4 - Trading en direct (Montée en puissance progressive, 4 semaines)",
+      items: [
+        { icon: "🚀", text_en: "Week 1-2: 25% capital, monitor execution quality", text_fr: "Semaine 1-2 : 25% capital, surveiller la qualité d'exécution" },
+        { icon: "📈", text_en: "Week 3-4: 50% capital, validate hedge mechanics during volatility", text_fr: "Semaine 3-4 : 50% capital, valider la mécanique des couvertures lors de volatilité" },
+        { icon: "💯", text_en: "Week 5+: 100% capital deployment, full automation active", text_fr: "Semaine 5+ : Déploiement de 100% du capital, automatisation complète active" }
+      ]
+    }
+  ],
+  "expert.message10.bot.leverage_note": {
+    en: "Leverage: This strategy uses ~1.2x notional (buying puts reduces net exposure), not aggressive leverage. Most brokers allow this under 'intermediate' risk profiles. EU regulations (ESMA leverage caps) may limit this to 1:1 for retail; we'll check your account.",
+    fr: "Effet de levier : Cette stratégie utilise ~1,2x notionnel (l'achat de puts réduit l'exposition nette), pas d'effet de levier agressif. La plupart des courtiers l'autorisent sous les profils de risque « intermédiaires ». Les réglementations de l'UE (limites d'effet de levier ESMA) peuvent le limiter à 1:1 pour les particuliers ; nous vérifierons votre compte."
+  },
+  "expert.message11.user": {
+    en: "I'm ready. One final question: what's your alpha edge here? Why does this outperform passive SMH? Is it the hedging, the sector rotation, or something else? I need to understand where the alpha comes from before I commit capital.",
+    fr: "Je suis prêt. Une dernière question : quel est votre avantage alpha ici ? Pourquoi cela surperforme-t-il le SMH passif ? Est-ce la couverture, la rotation sectorielle, ou quelque chose d'autre ? Je dois comprendre d'où vient l'alpha avant de m'engager capital."
+  },
+  "expert.message12.bot.intro": {
+    en: "The best question. Let me decompose where the 4.2% annual outperformance (22.3% vs. 18.1%) comes from—this is where theory meets reality.",
+    fr: "La meilleure question. Laisse-moi décomposer d'où vient la surperformance annuelle de 4,2% (22,3% vs 18,1%)—c'est là que la théorie rencontre la réalité."
+  },
+  "expert.message12.bot.alpha_breakdown": {
+    en: "Alpha Decomposition (Annual)",
+    fr: "Décomposition alpha (Annuel)"
+  },
+  "expert.message12.bot.alpha_sources": [
+    {
+      source: "Dynamic Hedging (Put Selling)",
+      source_fr: "Couverture dynamique (Vente de puts)",
+      alpha: "+1.2%",
+      explanation: "Weekly put rolling in low-IV environments captures volatility premium. Cost: ~1.5% drag. Net: +0.3% after friction."
+    },
+    {
+      source: "Sector Rotation Timing",
+      source_fr: "Timing de rotation sectorielle",
+      alpha: "+1.8%",
+      explanation: "When SMH momentum diverges from market (e.g., TSMC weakness despite broader tech strength), we rotate 10% to XLK. This captures value reversion gains."
+    },
+    {
+      source: "Sortino Optimization",
+      source_fr: "Optimisation Sortino",
+      alpha: "+1.1%",
+      explanation: "Downside volatility-targeting prevents drawdowns during corrections, reducing recovery time. Shorter drawdown windows = compounding advantage."
+    },
+    {
+      source: "Execution & Rebalancing",
+      source_fr: "Exécution et rééquilibrage",
+      alpha: "+0.1%",
+      explanation: "VWAP execution + dividend reinvestment timing. Small but consistent edge in liquid markets."
+    }
+  ],
+  "expert.message12.bot.alpha_caveat": {
+    en: "Alpha Caveat: This 4.2% edge is historical (2015-2024) during a semiconductor supercycle. When sector trends reverse (e.g., AI capex normalizes), alpha may compress to 1-2%. I'm showing you the mechanism, not a promise. Your edge is conviction in the thesis + disciplined risk management.",
+    fr: "Réserve alpha : Cet avantage de 4,2% est historique (2015-2024) pendant un supercycle des semi-conducteurs. Quand les tendances du secteur s'inversent (par exemple, la normalisation des dépenses IA), l'alpha peut se réduire à 1-2%. Je vous montre le mécanisme, pas une promesse. Votre avantage est la conviction dans la thèse + une gestion disciplinée du risque."
+  },
+  "expert.message13.bot.intro": {
+    en: "This strategy is designed for investors who understand tail risk, sector dynamics, and want to systematically compound at above-market returns. You're not paying for magic—you're paying for disciplined execution of a thesis you've validated.",
+    fr: "Cette stratégie est conçue pour les investisseurs qui comprennent le risque extrême, les dynamiques du secteur, et veulent composer systématiquement à des rendements supérieurs au marché. Vous ne payez pas pour la magie—vous payez pour l'exécution disciplinée d'une thèse que vous avez validée."
+  },
+  "expert.message13.bot.next_steps": {
+    en: "Next Steps",
+    fr: "Prochaines étapes"
+  },
+  "expert.message13.bot.steps": [
+    {
+      icon: "1️⃣",
+      step_en: "Validate thesis: Do you believe in semiconductors as multi-decade secular growth?",
+      step_fr: "Validez la thèse : Croyez-vous aux semi-conducteurs comme croissance séculaire multi-décennale ?"
+    },
+    {
+      icon: "2️⃣",
+      step_en: "Risk tolerance: Can you hold through -18% drawdowns knowing 70% protection is active?",
+      step_fr: "Tolérance au risque : Pouvez-vous tenir pendant des drawdowns de -18% sachant qu'une protection de 70% est active ?"
+    },
+    {
+      icon: "3️⃣",
+      step_en: "Implementation: Connect your broker, set up paper trading, then go live.",
+      step_fr: "Implémentation : Connectez votre courtier, configurez le trading papier, puis passez en direct."
+    },
+    {
+      icon: "4️⃣",
+      step_en: "Monitoring: Check portfolio monthly. Rebalancing is automatic, but market context matters.",
+      step_fr: "Surveillance : Vérifiez le portefeuille mensuellement. Le rééquilibrage est automatique, mais le contexte du marché compte."
+    }
+  ],
+  "expert.message13.bot.closing": {
+    en: "This isn't passive management—it's active risk management with conviction. I handle the execution, you provide the thesis validation. Ready to launch?",
+    fr: "Ce n'est pas de la gestion passive—c'est une gestion active du risque avec conviction. Je gère l'exécution, vous fournissez la validation de la thèse. Prêt à lancer ?"
+  },
+  "expert.message13.bot.ps": {
+    en: "P.S. You can pause the strategy anytime, adjust the sector concentration (SMH weighting from 40-100%), modify hedge ratios, or ask questions about execution. Full transparency on all operations.",
+    fr: "P.S. Vous pouvez mettre la stratégie en pause à tout moment, ajuster la concentration sectorielle (pondération SMH de 40-100%), modifier les ratios de couverture, ou poser des questions sur l'exécution. Transparence complète sur toutes les opérations."
   }
 };
 
