@@ -87,19 +87,19 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isAnimationRunning) break; // Stop if animation was cancelled
       inputField.value += text.charAt(i);
       autoResizeTextarea(); // Resize as text is added
-      await safeDelay(60);
+      await safeDelay(80);
     }
 
     if (!isAnimationRunning) return;
 
     // Wait briefly
-    await safeDelay(300);
+    await safeDelay(500);
 
     if (!isAnimationRunning) return;
 
     // Animate send button
     sendButton.classList.add('sending');
-    await safeDelay(400);
+    await safeDelay(600);
     sendButton.classList.remove('sending');
 
     if (!isAnimationRunning) return;
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Auto-scroll to bottom
     setTimeout(() => {
       messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }, 50);
+    }, 80);
 
     return { messageDiv, bubble };
   };
@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg1Text = workflowTranslations['workflow.message1.user'][currentLanguage];
     await typeInInputAndSend(msg1Text);
     const { bubble: bubble1 } = addMessage(msg1Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 2: Bot with research (all in one bubble)
     const msg2IntroText = workflowTranslations['workflow.message2.bot.intro'][currentLanguage];
@@ -449,11 +449,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator = createTypingIndicator();
     msg2Div.insertBefore(typingIndicator, msg2Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator.remove();
 
     // Type intro text
-    await typeMessage(msg2Bubble, msg2IntroText, 50);
+    await typeMessage(msg2Bubble, msg2IntroText, 80);
 
     // Add line break and research content
     msg2Bubble.appendChild(document.createElement('br'));
@@ -469,13 +469,13 @@ document.addEventListener('DOMContentLoaded', () => {
     msg2Bubble.appendChild(closingSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 3: User
     const msg3Text = workflowTranslations['workflow.message3.user'][currentLanguage];
     await typeInInputAndSend(msg3Text);
     const { bubble: bubble3 } = addMessage(msg3Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 4: Bot with backtest (all in one bubble)
     const msg4IntroText = workflowTranslations['workflow.message4.bot.intro'][currentLanguage];
@@ -483,10 +483,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator2 = createTypingIndicator();
     msg4Div.insertBefore(typingIndicator2, msg4Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator2.remove();
 
-    await typeMessage(msg4Bubble, msg4IntroText, 50);
+    await typeMessage(msg4Bubble, msg4IntroText, 80);
 
     // Add line break and backtest content
     msg4Bubble.appendChild(document.createElement('br'));
@@ -502,13 +502,13 @@ document.addEventListener('DOMContentLoaded', () => {
     msg4Bubble.appendChild(conclusionSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 5: User
     const msg5Text = workflowTranslations['workflow.message5.user'][currentLanguage];
     await typeInInputAndSend(msg5Text);
     const { bubble: bubble5 } = addMessage(msg5Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 6: Bot with summary (all in one bubble)
     const msg6ConfirmText = workflowTranslations['workflow.message6.bot.confirmation'][currentLanguage];
@@ -516,10 +516,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator3 = createTypingIndicator();
     msg6Div.insertBefore(typingIndicator3, msg6Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator3.remove();
 
-    await typeMessage(msg6Bubble, msg6ConfirmText, 50);
+    await typeMessage(msg6Bubble, msg6ConfirmText, 80);
 
     // Add line break and summary content
     msg6Bubble.appendChild(document.createElement('br'));
@@ -535,18 +535,18 @@ document.addEventListener('DOMContentLoaded', () => {
     msg6Bubble.appendChild(msg6ClosingSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 7: System message (Time transition)
     const timeTransition = workflowTranslations['workflow.message7.system'][currentLanguage];
     addSystemMessage(timeTransition);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 8: User
     const msg8Text = workflowTranslations['workflow.message8.user'][currentLanguage];
     await typeInInputAndSend(msg8Text);
     const { bubble: bubble8 } = addMessage(msg8Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 9: Bubble with portfolio bar chart (all in one bubble)
     const msg9CelebrationText = workflowTranslations['workflow.message9.bot.celebration'][currentLanguage];
@@ -554,10 +554,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator4 = createTypingIndicator();
     msg9Div.insertBefore(typingIndicator4, msg9Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator4.remove();
 
-    await typeMessage(msg9Bubble, msg9CelebrationText, 50);
+    await typeMessage(msg9Bubble, msg9CelebrationText, 80);
 
     // Add line break and portfolio chart
     msg9Bubble.appendChild(document.createElement('br'));
@@ -573,13 +573,13 @@ document.addEventListener('DOMContentLoaded', () => {
     msg9Bubble.appendChild(msg9ClosingSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 10: User thanks
     const msg10Text = workflowTranslations['workflow.message10.user'][currentLanguage];
     await typeInInputAndSend(msg10Text);
     const { bubble: bubble10 } = addMessage(msg10Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 11: Bubble closing
     const msg11Text = workflowTranslations['workflow.message11.bot'][currentLanguage];
@@ -588,10 +588,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator5 = createTypingIndicator();
     msg11Div.appendChild(typingIndicator5);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator5.remove();
 
-    await typeMessage(msg11Bubble, msg11Text, 50);
+    await typeMessage(msg11Bubble, msg11Text, 80);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
     // Mark demo as shown
@@ -1138,7 +1138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg1Text = workflowTranslations['beginner.message1.user'][currentLanguage];
     await typeInInputAndSend(msg1Text);
     const { bubble: bubble1 } = addMessage(msg1Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 2: Bot intro with "Why This Works" card
     const msg2IntroText = workflowTranslations['beginner.message2.bot.intro'][currentLanguage];
@@ -1146,10 +1146,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator2 = createTypingIndicator();
     msg2Div.insertBefore(typingIndicator2, msg2Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator2.remove();
 
-    await typeMessage(msg2Bubble, msg2IntroText, 50);
+    await typeMessage(msg2Bubble, msg2IntroText, 80);
 
     // Add "Why This Works" card
     msg2Bubble.appendChild(document.createElement('br'));
@@ -1165,13 +1165,13 @@ document.addEventListener('DOMContentLoaded', () => {
     msg2Bubble.appendChild(closingSpan2);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 3: User
     const msg3Text = workflowTranslations['beginner.message3.user'][currentLanguage];
     await typeInInputAndSend(msg3Text);
     const { bubble: bubble3 } = addMessage(msg3Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 4: Bot with portfolio proposal and risk card
     const msg4IntroText = workflowTranslations['beginner.message4.bot.intro'][currentLanguage];
@@ -1179,10 +1179,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator4 = createTypingIndicator();
     msg4Div.insertBefore(typingIndicator4, msg4Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator4.remove();
 
-    await typeMessage(msg4Bubble, msg4IntroText, 50);
+    await typeMessage(msg4Bubble, msg4IntroText, 80);
 
     // Add portfolio card
     msg4Bubble.appendChild(document.createElement('br'));
@@ -1195,13 +1195,13 @@ document.addEventListener('DOMContentLoaded', () => {
     msg4Bubble.appendChild(riskCard);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 5: User
     const msg5Text = workflowTranslations['beginner.message5.user'][currentLanguage];
     await typeInInputAndSend(msg5Text);
     const { bubble: bubble5 } = addMessage(msg5Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 6: Bot with automation checklist
     const msg6IntroText = workflowTranslations['beginner.message6.bot.intro'][currentLanguage];
@@ -1209,10 +1209,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator6 = createTypingIndicator();
     msg6Div.insertBefore(typingIndicator6, msg6Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator6.remove();
 
-    await typeMessage(msg6Bubble, msg6IntroText, 50);
+    await typeMessage(msg6Bubble, msg6IntroText, 80);
 
     // Add checklist card
     msg6Bubble.appendChild(document.createElement('br'));
@@ -1228,13 +1228,13 @@ document.addEventListener('DOMContentLoaded', () => {
     msg6Bubble.appendChild(closingSpan6);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 7: User
     const msg7Text = workflowTranslations['beginner.message7.user'][currentLanguage];
     await typeInInputAndSend(msg7Text);
     const { bubble: bubble7 } = addMessage(msg7Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 8: Bot with liquidity and timeline cards
     const msg8IntroText = workflowTranslations['beginner.message8.bot.intro'][currentLanguage];
@@ -1242,10 +1242,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator8 = createTypingIndicator();
     msg8Div.insertBefore(typingIndicator8, msg8Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator8.remove();
 
-    await typeMessage(msg8Bubble, msg8IntroText, 50);
+    await typeMessage(msg8Bubble, msg8IntroText, 80);
 
     // Add liquidity card
     msg8Bubble.appendChild(document.createElement('br'));
@@ -1266,13 +1266,13 @@ document.addEventListener('DOMContentLoaded', () => {
     msg8Bubble.appendChild(closingSpan8);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 9: User
     const msg9Text = workflowTranslations['beginner.message9.user'][currentLanguage];
     await typeInInputAndSend(msg9Text);
     const { bubble: bubble9 } = addMessage(msg9Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 10: Bot with backtest card
     const msg10IntroText = workflowTranslations['beginner.message10.bot.intro'][currentLanguage];
@@ -1280,10 +1280,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator10 = createTypingIndicator();
     msg10Div.insertBefore(typingIndicator10, msg10Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator10.remove();
 
-    await typeMessage(msg10Bubble, msg10IntroText, 50);
+    await typeMessage(msg10Bubble, msg10IntroText, 80);
 
     // Add backtest card
     msg10Bubble.appendChild(document.createElement('br'));
@@ -1850,7 +1850,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg1Text = workflowTranslations['expert.message1.user'][currentLanguage];
     await typeInInputAndSend(msg1Text);
     const { bubble: bubble1 } = addMessage(msg1Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 2: Bot intro with strategy architecture
     const msg2IntroText = workflowTranslations['expert.message2.bot.intro'][currentLanguage];
@@ -1858,10 +1858,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator2 = createTypingIndicator();
     msg2Div.insertBefore(typingIndicator2, msg2Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator2.remove();
 
-    await typeMessage(msg2Bubble, msg2IntroText, 50);
+    await typeMessage(msg2Bubble, msg2IntroText, 80);
 
     // Add strategy card
     msg2Bubble.appendChild(document.createElement('br'));
@@ -1877,13 +1877,13 @@ document.addEventListener('DOMContentLoaded', () => {
     msg2Bubble.appendChild(closingSpan2);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 3: User
     const msg3Text = workflowTranslations['expert.message3.user'][currentLanguage];
     await typeInInputAndSend(msg3Text);
     const { bubble: bubble3 } = addMessage(msg3Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 4: Bot with risk metrics and stress tests
     const msg4IntroText = workflowTranslations['expert.message4.bot.intro'][currentLanguage];
@@ -1891,10 +1891,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator4 = createTypingIndicator();
     msg4Div.insertBefore(typingIndicator4, msg4Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator4.remove();
 
-    await typeMessage(msg4Bubble, msg4IntroText, 50);
+    await typeMessage(msg4Bubble, msg4IntroText, 80);
 
     // Add risk metrics card
     msg4Bubble.appendChild(document.createElement('br'));
@@ -1915,13 +1915,13 @@ document.addEventListener('DOMContentLoaded', () => {
     msg4Bubble.appendChild(closingSpan4);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 5: User
     const msg5Text = workflowTranslations['expert.message5.user'][currentLanguage];
     await typeInInputAndSend(msg5Text);
     const { bubble: bubble5 } = addMessage(msg5Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 6: Bot with rebalancing and black swan cards
     const msg6IntroText = workflowTranslations['expert.message6.bot.intro'][currentLanguage];
@@ -1929,10 +1929,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator6 = createTypingIndicator();
     msg6Div.insertBefore(typingIndicator6, msg6Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator6.remove();
 
-    await typeMessage(msg6Bubble, msg6IntroText, 50);
+    await typeMessage(msg6Bubble, msg6IntroText, 80);
 
     // Add rebalancing card
     msg6Bubble.appendChild(document.createElement('br'));
@@ -1953,13 +1953,13 @@ document.addEventListener('DOMContentLoaded', () => {
     msg6Bubble.appendChild(closingSpan6);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 7: User
     const msg7Text = workflowTranslations['expert.message7.user'][currentLanguage];
     await typeInInputAndSend(msg7Text);
     const { bubble: bubble7 } = addMessage(msg7Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 8: Bot with execution card
     const msg8IntroText = workflowTranslations['expert.message8.bot.intro'][currentLanguage];
@@ -1967,10 +1967,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator8 = createTypingIndicator();
     msg8Div.insertBefore(typingIndicator8, msg8Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator8.remove();
 
-    await typeMessage(msg8Bubble, msg8IntroText, 50);
+    await typeMessage(msg8Bubble, msg8IntroText, 80);
 
     // Add execution card
     msg8Bubble.appendChild(document.createElement('br'));
@@ -1978,13 +1978,13 @@ document.addEventListener('DOMContentLoaded', () => {
     msg8Bubble.appendChild(executionCard);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 9: User
     const msg9Text = workflowTranslations['expert.message9.user'][currentLanguage];
     await typeInInputAndSend(msg9Text);
     const { bubble: bubble9 } = addMessage(msg9Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 10: Bot with timeline and implementation
     const msg10IntroText = workflowTranslations['expert.message10.bot.intro'][currentLanguage];
@@ -1992,10 +1992,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator10 = createTypingIndicator();
     msg10Div.insertBefore(typingIndicator10, msg10Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator10.remove();
 
-    await typeMessage(msg10Bubble, msg10IntroText, 50);
+    await typeMessage(msg10Bubble, msg10IntroText, 80);
 
     // Add timeline card
     msg10Bubble.appendChild(document.createElement('br'));
@@ -2003,13 +2003,13 @@ document.addEventListener('DOMContentLoaded', () => {
     msg10Bubble.appendChild(timelineCard);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 11: User
     const msg11Text = workflowTranslations['expert.message11.user'][currentLanguage];
     await typeInInputAndSend(msg11Text);
     const { bubble: bubble11 } = addMessage(msg11Text, true);
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 12: Bot with alpha decomposition
     const msg12IntroText = workflowTranslations['expert.message12.bot.intro'][currentLanguage];
@@ -2017,10 +2017,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator12 = createTypingIndicator();
     msg12Div.insertBefore(typingIndicator12, msg12Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator12.remove();
 
-    await typeMessage(msg12Bubble, msg12IntroText, 50);
+    await typeMessage(msg12Bubble, msg12IntroText, 80);
 
     // Add alpha card
     msg12Bubble.appendChild(document.createElement('br'));
@@ -2028,7 +2028,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg12Bubble.appendChild(alphaCard);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(1500);
+    await safeDelay(2500);
 
     // Message 13: Bot closing with next steps
     const msg13IntroText = workflowTranslations['expert.message13.bot.intro'][currentLanguage];
@@ -2036,10 +2036,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator13 = createTypingIndicator();
     msg13Div.insertBefore(typingIndicator13, msg13Bubble.nextSibling);
-    await safeDelay(1500);
+    await safeDelay(2500);
     typingIndicator13.remove();
 
-    await typeMessage(msg13Bubble, msg13IntroText, 50);
+    await typeMessage(msg13Bubble, msg13IntroText, 80);
 
     // Add next steps card
     msg13Bubble.appendChild(document.createElement('br'));
