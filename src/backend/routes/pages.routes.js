@@ -400,6 +400,10 @@ router.get("/investors/portfolio-simulator", (req, res) => {
   res.sendFile(path.join(frPagesDir, "investors/portfolio-simulator.html"));
 });
 
+router.get("/investors/hero-test", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "investors/hero-test.html"));
+});
+
 /**
  * ============================================
  * INVESTOR PAGES (English)
