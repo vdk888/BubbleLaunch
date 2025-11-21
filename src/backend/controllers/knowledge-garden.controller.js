@@ -1,41 +1,17 @@
 const {
   getPublishedReferences,
+  getReferencesGroupedBySourceType,
   getReferencesGroupedByTheme,
   exploreKnowledgeGardenStructure,
-  getEnrichedPublishedReferences,
-  getEnrichedReferencesGroupedBySourceType,
-  clearEnrichmentCache,
 } = require("../services/knowledgeGardenService");
 
-// In-memory cache for references
-let referencesCache = null;
-let groupedReferencesCache = null;
-let cacheTimestamp = null;
-const CACHE_TTL = 5 * 60 * 1000; // 5 minutes cache
-
 /**
- * Get knowledge garden references (with optional LLM enrichment)
+ * Get knowledge garden references
  */
 async function getReferences(req, res) {
   try {
-    // Check cache first
-    if (referencesCache && cacheTimestamp && Date.now() - cacheTimestamp < CACHE_TTL) {
-      console.log('📦 Serving references from cache');
-      return res.json(referencesCache);
-    }
-
-    // Check if enrichment is requested (default: true)
-    const useEnrichment = req.query.enrich !== "false";
-
-    if (useEnrichment) {
-      const references = await getEnrichedPublishedReferences();
-      referencesCache = references;
-      cacheTimestamp = Date.now();
-      res.json(references);
-    } else {
-      const references = await getPublishedReferences();
-      res.json(references);
-    }
+    const references = await getPublishedReferences();
+    res.json(references);
   } catch (error) {
     console.error("Error fetching knowledge garden references:", error);
     res.status(500).json({ error: "Failed to fetch references" });
@@ -43,19 +19,11 @@ async function getReferences(req, res) {
 }
 
 /**
- * Get enriched references grouped by source type (Books/Articles)
+ * Get references grouped by source type (Books/Articles/Videos)
  */
 async function getReferencesGroupedByType(req, res) {
   try {
-    // Check cache first
-    if (groupedReferencesCache && cacheTimestamp && Date.now() - cacheTimestamp < CACHE_TTL) {
-      console.log('📦 Serving grouped references from cache');
-      return res.json(groupedReferencesCache);
-    }
-
-    const groupedReferences = await getEnrichedReferencesGroupedBySourceType();
-    groupedReferencesCache = groupedReferences;
-    cacheTimestamp = Date.now();
+    const groupedReferences = await getReferencesGroupedBySourceType();
     res.json(groupedReferences);
   } catch (error) {
     console.error("Error fetching references grouped by source type:", error);
@@ -92,17 +60,12 @@ async function exploreStructure(req, res) {
 }
 
 /**
- * Clear enrichment cache (for testing)
+ * Clear cache (no longer needed without LLM enrichment)
  */
 function clearCache(req, res) {
   try {
-    // Clear both service and controller caches
-    clearEnrichmentCache();
-    referencesCache = null;
-    groupedReferencesCache = null;
-    cacheTimestamp = null;
-    console.log('🧹 Cleared all caches (enrichment + controller)');
-    res.json({ success: true, message: "All caches cleared" });
+    console.log('✅ Cache clearing requested (no caches active)');
+    res.json({ success: true, message: "No caches to clear (LLM enrichment removed)" });
   } catch (error) {
     console.error("Error clearing cache:", error);
     res.status(500).json({ error: "Failed to clear cache" });
