@@ -3929,25 +3929,29 @@ const translations = {
       icon: "⏰",
       rule_en: "Monthly Rebalancing: First trading day of each month",
       rule_fr: "Rééquilibrage mensuel : Premier jour ouvrable de chaque mois",
-      detail_en: "Rebalance portfolio allocations to target weights. Monitor Sortino ratio and volatility metrics. You receive signals before execution."
+      detail_en: "Rebalance portfolio allocations to target weights. Monitor Sortino ratio and volatility metrics. You receive signals before execution.",
+      detail_fr: "Rééquilibrez les allocations du portefeuille aux pondérations cibles. Surveillez le ratio Sortino et les métriques de volatilité. Vous recevez les signaux avant l'exécution."
     },
     {
       icon: "🎯",
       rule_en: "Quarterly Review: Dynamic allocation adjustments",
       rule_fr: "Examen trimestriel : Ajustements d'allocation dynamique",
-      detail_en: "Every 3 months, review sector momentum and valuation signals. Propose allocation shifts (e.g., semiconductor vs. defensive tech) for your approval."
+      detail_en: "Every 3 months, review sector momentum and valuation signals. Propose allocation shifts (e.g., semiconductor vs. defensive tech) for your approval.",
+      detail_fr: "Tous les 3 mois, examinez les signaux de momentum sectoriel et d'évaluation. Proposez des ajustements d'allocation (par exemple, semi-conducteurs vs. tech défensive) pour approbation."
     },
     {
       icon: "🚨",
       rule_en: "Volatility Alerts: Market stress monitoring",
       rule_fr: "Alertes de volatilité : Surveillance du stress du marché",
-      detail_en: "When VIX spikes above 25, recommend increasing defensive allocations (bonds, cash). You control the final decision."
+      detail_en: "When VIX spikes above 25, recommend increasing defensive allocations (bonds, cash). You control the final decision.",
+      detail_fr: "Lorsque le VIX dépasse 25, recommandez d'augmenter les allocations défensives (obligations, trésorerie). Vous contrôlez la décision finale."
     },
     {
       icon: "📈",
       rule_en: "Dividend & Tax Management: Automatic reinvestment",
       rule_fr: "Gestion des dividendes et fiscalité : Réinvestissement automatique",
-      detail_en: "Dividends reinvest automatically at NAV. In loss months, coordinate rebalancing with tax-loss harvesting opportunities."
+      detail_en: "Dividends reinvest automatically at NAV. In loss months, coordinate rebalancing with tax-loss harvesting opportunities.",
+      detail_fr: "Les dividendes se réinvestissent automatiquement à la VAN. En mois de perte, coordonnez le rééquilibrage avec les opportunités de moisson fiscale."
     }
   ],
   "expert.message6.bot.black_swan_title": {
@@ -3994,22 +3998,26 @@ const translations = {
     {
       component_en: "Recommendation Delivery",
       component_fr: "Livraison des recommandations",
-      details_en: "I provide clear allocation recommendations (e.g., 40% SMH, 30% IEF, 20% XLK, 10% CASH) through the AI interface. You execute through your broker using standard market orders during liquid hours. Typical cost: minimal spread (~0.01-0.03% per trade)."
+      details_en: "I provide clear allocation recommendations (e.g., 40% SMH, 30% IEF, 20% XLK, 10% CASH) through the AI interface. You execute through your broker using standard market orders during liquid hours. Typical cost: minimal spread (~0.01-0.03% per trade).",
+      details_fr: "Je fournis des recommandations d'allocation claires (par exemple, 40 % SMH, 30 % IEF, 20 % XLK, 10 % CASH) via l'interface IA. Vous exécutez via votre courtier en utilisant des ordres au marché standard pendant les heures liquides. Coût typique : spread minimal (~0,01-0,03 % par transaction)."
     },
     {
       component_en: "Defensive Asset Management",
       component_fr: "Gestion des actifs défensifs",
-      details_en: "Bond allocations (IEF) held through low-cost ETFs. Monthly rebalancing signals sent to your dashboard. You maintain full discretion—I recommend, you approve and execute."
+      details_en: "Bond allocations (IEF) held through low-cost ETFs. Monthly rebalancing signals sent to your dashboard. You maintain full discretion—I recommend, you approve and execute.",
+      details_fr: "Les allocations obligataires (IEF) sont détenues via des ETF à bas coût. Les signaux de rééquilibrage mensuels sont envoyés à votre tableau de bord. Vous maintenez une discrétion complète—je recommande, vous approuvez et exécutez."
     },
     {
       component_en: "Corporate Actions",
       component_fr: "Actions d'entreprise",
-      details_en: "Dividends reinvest automatically through your broker's DRIP program at NAV. Stock splits handled automatically by brokers. Monthly rebalancing accounts for earnings volatility without pre/post-event timing."
+      details_en: "Dividends reinvest automatically through your broker's DRIP program at NAV. Stock splits handled automatically by brokers. Monthly rebalancing accounts for earnings volatility without pre/post-event timing.",
+      details_fr: "Les dividendes se réinvestissent automatiquement via le programme DRIP de votre courtier à la VAN. Les fractionnements d'actions sont gérés automatiquement par les courtiers. Le rééquilibrage mensuel tient compte de la volatilité des bénéfices sans calendrier pré/post-événement."
     },
     {
       component_en: "Tax Optimization",
       component_fr: "Optimisation fiscale",
-      details_en: "Rebalancing planned around tax-loss harvesting windows. Quarterly signals identify positions with losses for tax management. EU/US: Tax-efficient dividend income through ETF structures."
+      details_en: "Rebalancing planned around tax-loss harvesting windows. Quarterly signals identify positions with losses for tax management. EU/US: Tax-efficient dividend income through ETF structures.",
+      details_fr: "Rééquilibrage prévu autour des fenêtres de moisson fiscale. Les signaux trimestriels identifient les positions déficitaires pour la gestion fiscale. UE/US : Revenus de dividendes efficaces sur le plan fiscal via les structures ETF."
     }
   ],
   "expert.message8.bot.real_slippage": {

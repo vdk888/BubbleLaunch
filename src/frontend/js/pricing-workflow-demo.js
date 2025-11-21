@@ -1544,7 +1544,7 @@ document.addEventListener('DOMContentLoaded', () => {
       detail.style.fontSize = '0.85rem';
       detail.style.color = '#666666';
       detail.style.lineHeight = '1.5';
-      detail.textContent = rule.detail_en; // Using English as primary
+      detail.textContent = rule[`detail_${currentLanguage}`];
       ruleDiv.appendChild(detail);
 
       rulesContainer.appendChild(ruleDiv);
@@ -1643,7 +1643,7 @@ document.addEventListener('DOMContentLoaded', () => {
       text.style.fontSize = '0.85rem';
       text.style.color = '#666666';
       text.style.lineHeight = '1.5';
-      text.textContent = detail.details_en; // Using English
+      text.textContent = detail[`details_${currentLanguage}`];
       detailDiv.appendChild(text);
 
       detailsContainer.appendChild(detailDiv);
