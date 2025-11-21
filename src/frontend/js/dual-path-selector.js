@@ -98,12 +98,10 @@ class DualPathSelector {
 
     // Try to open overlay directly on the page (homepage or other surface)
     if (!this.openKnowledgeOverlay(entryPoint)) {
-      // Fallback: navigate to retail pricing where overlay auto-launches
-      const pricingUrl = document.documentElement.lang === 'en'
-        ? '/en/investors/pricing'
-        : '/investors/pricing';
+      // Overlay not available on this page yet - just store the intent
+      // TODO: Add demo overlay to all pages instead of redirecting to pricing
       sessionStorage.setItem('pendingOverlayEntryPoint', entryPoint);
-      window.location.href = pricingUrl;
+      console.log('[DualPathSelector] Knowledge overlay not available on this page yet');
     }
   }
 
@@ -161,14 +159,9 @@ class DualPathSelector {
       detail: updatedExperience
     }));
 
-    // Navigate to retail pricing if not already there
-    const pricingUrl = document.documentElement.lang === 'en'
-      ? '/en/investors/pricing'
-      : '/investors/pricing';
-
-    if (!window.location.pathname.includes('/investors/pricing')) {
-      window.location.href = pricingUrl;
-    }
+    // Try to open the demo overlay if available
+    // TODO: Add demo overlay to all pages instead of redirecting to pricing
+    this.openKnowledgeOverlay('return_visitor_replay');
   }
 
   openKnowledgeOverlay(entryPoint = 'dual_path_homepage') {

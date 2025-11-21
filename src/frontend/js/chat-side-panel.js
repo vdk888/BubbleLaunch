@@ -201,6 +201,9 @@
     const path = window.location.pathname;
     if (path.includes('pricing')) return 'pricing';
     if (path.includes('portfolio-simulator')) return 'simulator';
+    if (path.includes('professionals/solutions-companies')) return 'professionals_companies';
+    if (path.includes('professionals/solutions-wealth-managers')) return 'professionals_wealth';
+    if (path.includes('professionals')) return 'professionals';
     if (path.includes('businesses')) return 'businesses';
     return 'index';
   }

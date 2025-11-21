@@ -27,27 +27,20 @@ This document outlines the complete restructuring of BubbleLaunch from a unified
 - Added enterprise “Contact our team” CTAs and waitlist anchors on `/professionals` (FR + EN) so the professional nav buttons can point to a dedicated section.
 
 **Outstanding tasks before moving to the next phases**
-1. **Homepage polish (hero input, animations, CTA plumbing)**
-   - Ensure only `chatbot-animations.js` drives the hero placeholder rotation (the script is currently throwing on FR/EN homepages) and fix the “key points” typing animation overlap in the neutral section.
-   - Wire both dual-path buttons correctly: “Commencer / Start now” must open the investor knowledge overlay (closing it returns to `/investors`) and “Découvrir / Discover” should be ready to launch the professional demo once specs are finalized; provide a temporary redirect to `/professionals` in the meantime.
-   - Rebuild the old “Construisons l’avenir ensemble / Building the future together” block at the bottom of `/` + `/en/` with the Bubble charter design linked with notion database`** (old waitlist form as in "index html before)).
-2. **Investor journey backlog**
-   - Relocate “Notre Constat / Our Findings”, the 4-slide fee comparison, and the “What we’re building” tiles (including the “See the demo” button) into `/investors/index.html` (FR + EN) and hook their CTAs into the knowledge overlay instead of dead links.
-   - Convert the “Solution” nav item into a dropdown (`Agent` triggers the demo overlay, `Education` links to `/investors/portfolio-simulator`) and ensure every investor page footer/header matches the Bubble design charter.
-   - Restore the full simulator UI on `/investors/portfolio-simulator`, add the historic preview to the Vision page, and append the “Building the future together” waitlist block after each investor FAQ (mirrors the homepage component but remains a link to `/investors/join-us`).
-   - Fix the knowledge overlay + demo lifecycle: “Try the demo” buttons must open the overlay, the questionnaire must show once per session, the demo must run, and closing it should route the user back to `/investors`.
-   - Normalize pricing: migrate the legacy `/pricing.html` content (minus the enterprise tile) into `/investors/pricing` and ensure every “Get early access” button points to `/investors/join-us`.
-3. **Knowledge overlay + telemetry**
-   - Validate that the overlay can still be launched from pricing or other fallback pages (when markup isn’t in DOM), log the entry point, and confirm that analytics differentiate homepage hero submissions vs. overlay demo starts.
-4. **Professional content & header restoration**
-   - Port the FR “What we do / Why Bubble / Values / FAQ” sections into the EN `/professionals/index.html`, remove the “Prêt à explorer l’accès entreprise” experiment, and add the legacy enterprise waitlist block (only) after the FAQ.
-   - On `/professionals/solutions-companies` and `/professionals/solutions-wealth-managers` (FR + EN), replace the placeholder copy with the original `/businesses.html` sections (hero, use cases, modules, testimonials, certifications), add general footers, and keep the improved “Solutions clés” layout where it helps storytelling.
-   - Make every professional header charter-compliant (logo/tagline, FR/EN toggle, CTA text **“Contact us”** pointing to `#enterprise-waitlist`), fix the per-page language switchers, and remove the stray grey CTA buttons.
-   - Ensure “Nous contacter” in nav scrolls to the waitlist/contact block, and add CTAs on solutions pages (“See demo” placeholder on wealth managers, “Contact us” linking back to the main waitlist) so enterprise visitors never reach the retail waitlist.
-5. **Professional demo instrumentation & CTA**
-   - Decide on analytics for the top-level “Request/Contact” CTA and for each predefined prompt button on `/professionals/demo`, and add a professional-only contact form or CTA on that page to keep leads in the enterprise funnel.
-6. **Plan alignment**
-   - Continue updating this plan so future agents know about the hero overlay requirements, the waitlist placements, the simulator migration, and the professional CTA/language-toggle fixes before coding starts.
+1. **Professional solutions refresh (Consulting for SMEs/CGPs & Bubble Portfolio white-label)**
+   - Rewrite the hero + summary copy on `/professionals/solutions-companies` (FR/EN) to target small enterprises, CGPs, and family offices needing AI-enabled workflows—remove fintech/bank references.
+   - Strip the consulting page down to the essentials requested: remove “Outils portefeuille professionnel”, “Cas d’usage typiques”, “Notre approche”, “Pourquoi Bubble”, “Valeurs et méthodologie”, “Prêt à transformer vos opérations”. Rebuild “Solutions clés” tiles so they match the legacy concrete examples; drop the duplicated “exemples concrets” grid and ensure every block ends with a “Discutons de votre projet” CTA.
+   - Append the same contact form + blog preview used on `/professionals/index.html`, retain the tarifs paragraph, and follow the Bubble glassmorphism/charter layout.
+   - Reposition `/professionals/solutions-wealth-managers` (FR/EN) so it strictly markets the Bubble Portfolio tool as a white-label solution for wealth managers (CGP in FR): replace the “Solutions clés” with one offer that explains the product, delete “Cas d’usage”, “Notre approche”, “Valeurs”, “Pourquoi Bubble”, “Tarifs”, “Amplifiez votre capacité…” etc., and add CTAs for “Discutons de votre projet” plus a placeholder “See the demo”.
+2. **Floating chat + assistant parity**
+   - Import the floating chat input and side panel on every professional page (FR + EN) so enterprise visitors can ask about consulting or Bubble Portfolio; confirm it still reuses the global chatbot logic.
+3. **Investor journey cleanup**
+   - Now that the waitlist form lives directly inside `/` and `/investors`, consolidate `/investors/join-us` by redirecting it to `#investor-waitlist` or removing duplicate forms; make sure every CTA points to that anchor instead of the legacy page.
+   - Remove or redirect `/pricing.html` and `/en/pricing.html` so `/investors/pricing` becomes the single retail pricing path, and audit for any straggling links to the old routes.
+4. **Professional demo instrumentation & CTA**
+   - Keep analytics for `/professionals/demo` up to date (prompt buttons, CTA clicks) and wire the future “Découvrir / See demo” buttons on the dual path + solutions pages to the professional demo workflow once specs land; for now, ensure every CTA routes to `#enterprise-waitlist`.
+5. **Documentation & positioning alignment**
+   - Update this plan and the related Markdown docs (`docs/company/bubble-launch-text-review.md`, `docs/company/bubble_portfolio_ib_beta_version.md`, etc.) to underline the Composer Trade–style positioning: Bubble is an automated trading platform/app that lets investors and professionals build, backtest, and run AI-powered strategies without coding, with no financial advice or performance promises.
 
 ### Key Objectives
 1. ✅ Restore interactive hero chat input with rotating sample questions

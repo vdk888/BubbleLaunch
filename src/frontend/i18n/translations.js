@@ -1134,7 +1134,7 @@ const translations = {
     fr: "Nous accompagnons principalement les PME et sociétés de gestion dans la modernisation de leurs processus financiers. Chez Bubble Invest, il n'est pas question de vendre du rêve, des diagnostics interminables sur PowerPoint ou des solutions magiques possibles qu'avec une armée de consultants. On préfère les projets pragmatiques : automatisation et optimisation de tâches concrètes, avec des outils simples ou personnalisés selon chaque besoin."
   },
   "businesses.what.p2": {
-    en: "Like with our Bubble investment product, our goal is also to share what we've learned and discovered: everything that's now possible with current tools (Codex, Claude Code 'vibe coding', low code, front-end/back-end development, n8n-type workflows, custom intelligent agents…), to enable everyone to benefit from these advances, regardless of their technical level.",
+    en: "Like with our Bubble investment product, our goal is also to share what we've learned and discovered: everything that's now possible with current tools (Codex, Claude Code , low code, front-end/back-end development, n8n-type workflows, custom intelligent agents…), to enable everyone to benefit from these advances, regardless of their technical level.",
     fr: "Comme pour notre produit d'investissement Bubble, notre objectif est aussi de partager ce que nous avons appris et découvert : tout ce qui est désormais possible avec les outils actuels (Codex, Claude Code \"vibe coding\", low code, développement de front end/back-end, workflows type n8n, agents intelligents sur mesure…), afin de permettre à chacun de tirer parti de ces avancées, quel que soit son niveau technique."
   },
   "businesses.what.p3": {
@@ -2198,8 +2198,8 @@ const translations = {
     fr: "L'IA pour Vos Investissements"
   },
   "investors.hero.subtitle": {
-    en: "Bubble helps you screen stocks, backtest strategies, and execute trades automatically—all through an intuitive AI agent.",
-    fr: "Bubble vous aide à screener les actions, tester les stratégies et exécuter les transactions automatiquement—le tout via un agent IA intuitif."
+    en: "Build your portfolio with AI assistance while keeping 100% control over your investment decisions.",
+    fr: "Construisez votre portefeuille avec l'aide de l'IA, en gardant 100% du contrôle sur vos décisions d'investissement."
   },
 
   // Investors - Vision Section
@@ -2948,28 +2948,88 @@ const translations = {
     fr: "Approches spécialisées selon votre type d'organisation."
   },
   "professionals.solutions.companies.title": {
-    en: "For Fintech & Companies",
-    fr: "Pour les Fintech & Entreprises"
+    en: "For SMEs & Independent Advisors",
+    fr: "Pour les PME & Conseillers Indépendants"
   },
   "professionals.solutions.companies.description": {
-    en: "Automated reporting, broker API integration, data pipelines.",
-    fr: "Automation des reportings, intégration API brokers, data pipelines."
+    en: "Simple workflows, lightweight automations, and pragmatic AI agents for finance teams.",
+    fr: "Workflows simples, automatisations légères et agents IA pragmatiques pour les équipes finance."
   },
   "professionals.solutions.companies.hero.title": {
-    en: "Solutions for Fintech & Companies",
-    fr: "Solutions pour Fintech & Entreprises"
+    en: "Automation solutions for SMEs and wealth teams",
+    fr: "Solutions d'automatisation pour PME et gestionnaires de patrimoine"
   },
   "professionals.solutions.companies.hero.subtitle": {
-    en: "Automation, reporting, broker API integrations. Transform your fintech operations.",
-    fr: "Automation, reporting, intégration API brokers. Transformez vos opérations fintech."
+    en: "We implement lightweight workflows and AI agents to modernize your financial operations—without another army of consultants.",
+    fr: "Nous implémentons des workflows simples et des agents IA pour moderniser vos opérations financières—sans armée de consultants, sans PowerPoint."
   },
-  "professionals.solutions.companies.cta.title": {
-    en: "Ready to Transform Your Operations?",
-    fr: "Prêt à Transformer Vos Opérations ?"
+  "professionals.solutions.companies.overview.title": {
+    en: "Core consulting modules",
+    fr: "Nos solutions clés"
   },
-  "professionals.solutions.companies.cta.back": {
-    en: "Back",
-    fr: "Retour"
+  "professionals.solutions.companies.tile1.title": {
+    en: "Rapid workflow implementation",
+    fr: "Implémentation rapide de workflows simples"
+  },
+  "professionals.solutions.companies.tile1.description": {
+    en: "Low-code or custom scripts paired with AI agents to automate repetitive finance tasks.",
+    fr: "Low code ou scripts sur mesure associés à des agents IA pour automatiser vos tâches finance."
+  },
+  "professionals.solutions.companies.tile2.title": {
+    en: "Revenue recognition automation",
+    fr: "Automatisation de la reconnaissance du revenu"
+  },
+  "professionals.solutions.companies.tile2.description": {
+    en: "Billing workflows, accounting reconciliation, and budget tracking delivered in weeks.",
+    fr: "Workflows de facturation, rapprochement comptable et suivi budgétaire livrés en quelques semaines."
+  },
+  "professionals.solutions.companies.tile3.title": {
+    en: "Monthly reporting copilots",
+    fr: "Reporting financier mensuel automatisé"
+  },
+  "professionals.solutions.companies.tile3.description": {
+    en: "Up to 15h saved per month with automated data pulls, controls, and exports.",
+    fr: "Jusqu'à 15h gagnées par mois grâce aux extractions automatiques, contrôles et exports."
+  },
+  "professionals.solutions.companies.tile4.title": {
+    en: "Client file monitoring",
+    fr: "Suivi proactif des dossiers clients"
+  },
+  "professionals.solutions.companies.tile4.description": {
+    en: "Digest-ready alerts summarizing what's changed for each client or mandate.",
+    fr: "Alertes digest qui résument les changements pour chaque client ou mandat."
+  },
+  "professionals.solutions.companies.tile5.title": {
+    en: "Custom performance dashboards",
+    fr: "Dashboards personnalisés de performance"
+  },
+  "professionals.solutions.companies.tile5.description": {
+    en: "White-label dashboards built at a quarter of the usual vendor cost.",
+    fr: "Dashboards clé-en-main pour un coût divisé par 4 vs les éditeurs traditionnels."
+  },
+  "professionals.solutions.companies.blog.title": {
+    en: "Advisory & AI",
+    fr: "Conseils & IA"
+  },
+  "professionals.solutions.companies.blog.description": {
+    en: "Why we left the Big Four and a private bank to build pragmatic AI consulting for finance teams.",
+    fr: "Pourquoi nous avons quitté les Big Four et une grande banque privée pour faire du conseil IA différemment."
+  },
+  "professionals.solutions.companies.blog.cta": {
+    en: "Read the article",
+    fr: "Lire l'article"
+  },
+  "professionals.solutions.companies.form.title": {
+    en: "Let's discuss your project",
+    fr: "Discutons de votre projet"
+  },
+  "professionals.solutions.companies.form.subtitle": {
+    en: "Tell us about your context and the workflows you’d like to automate.",
+    fr: "Expliquez-nous votre contexte et les workflows que vous souhaitez automatiser."
+  },
+  "professionals.solutions.companies.form.button": {
+    en: "Submit",
+    fr: "Envoyer"
   },
 
   // Professionals - Wealth Managers
@@ -2978,24 +3038,76 @@ const translations = {
     fr: "Pour les Wealth Managers"
   },
   "professionals.solutions.wealth.description": {
-    en: "Multi-client management, ESG monitoring, portfolio analytics, AI agents.",
-    fr: "Gestion multi-client, ESG monitoring, portfolio analytics, IA agents."
+    en: "White-label Bubble Portfolio with multi-client management, analytics, and AI copilots.",
+    fr: "Bubble Portfolio en marque blanche avec gestion multi-client, analytics et copilotes IA."
   },
   "professionals.solutions.wealth.hero.title": {
-    en: "Solutions for Wealth Managers & Advisors",
-    fr: "Solutions pour Wealth Managers & Conseillers"
+    en: "White-Label Bubble Portfolio for Wealth Managers and Family Offices",
+    fr: "Bubble Portfolio en marque blanche pour CGP et family offices"
   },
   "professionals.solutions.wealth.hero.subtitle": {
-    en: "Multi-client management, ESG monitoring, advanced analytics. Amplify your operational capacity with AI.",
-    fr: "Gestion multi-client, ESG monitoring, analytics avancée. Amplifiez votre capacité opérationnelle avec l'IA."
+    en: "Bubble helps you screen stocks, test strategies, and execute trades automatically—all through an intuitive AI agent.",
+    fr: "Bubble vous aide à screener les actions, tester les stratégies et exécuter les transactions automatiquement—le tout via un agent IA intuitif."
   },
-  "professionals.solutions.wealth.cta.title": {
-    en: "Amplify Your Operational Capacity",
-    fr: "Amplifiez Votre Capacité Opérationnelle"
+  "professionals.solutions.wealth.tiles.title": {
+    en: "What you can deploy",
+    fr: "Ce que vous déployez"
   },
-  "professionals.solutions.wealth.cta.back": {
-    en: "Back",
-    fr: "Retour"
+  "professionals.solutions.wealth.tile1.title": {
+    en: "Multi-client management dashboard",
+    fr: "Tableau de bord de gestion multi-client"
+  },
+  "professionals.solutions.wealth.tile1.description": {
+    en: "Administer dozens or hundreds of portfolios from a single interface with granular permissions.",
+    fr: "Administrez des dizaines ou centaines de portefeuilles depuis une interface unique avec des droits granulaires."
+  },
+  "professionals.solutions.wealth.tile2.title": {
+    en: "Client-personalized AI agents",
+    fr: "Agents IA personnalisés par profil client"
+  },
+  "professionals.solutions.wealth.tile2.description": {
+    en: "Recommendations automatically adapt to each client’s objectives and risk tolerance.",
+    fr: "Les recommandations s'adaptent automatiquement aux objectifs et au profil de risque de chaque client."
+  },
+  "professionals.solutions.wealth.tile3.title": {
+    en: "Advanced client reporting",
+    fr: "Reporting client avancé"
+  },
+  "professionals.solutions.wealth.tile3.description": {
+    en: "Automated performance reports, risk analytics, and on-demand transparency.",
+    fr: "Rapports de performance automatisés, analyses de risque et transparence à la demande."
+  },
+  "professionals.solutions.wealth.tile4.title": {
+    en: "Broker API integrations",
+    fr: "Intégration API brokers"
+  },
+  "professionals.solutions.wealth.tile4.description": {
+    en: "Native connections to IBKR, Alpaca, Saxo to automate execution on client accounts.",
+    fr: "Connexions natives à IBKR, Alpaca, Saxo pour automatiser l'exécution sur les comptes clients."
+  },
+  "professionals.solutions.wealth.tile5.title": {
+    en: "20+ years of historical data",
+    fr: "Données historiques 20+ ans"
+  },
+  "professionals.solutions.wealth.tile5.description": {
+    en: "Validate every strategy over two decades of market data before rolling it out.",
+    fr: "Validez chaque stratégie sur plus de vingt ans de données de marché avant de la déployer."
+  },
+  "professionals.solutions.wealth.tile6.title": {
+    en: "Quant strategy library",
+    fr: "Bibliothèque de stratégies quantitatives"
+  },
+  "professionals.solutions.wealth.tile6.description": {
+    en: "Access Bubble Portfolio’s screening and backtesting playbooks as building blocks.",
+    fr: "Accédez aux playbooks de screening et de backtesting de Bubble Portfolio comme briques de base."
+  },
+  "professionals.solutions.wealth.demo.cta": {
+    en: "See the demo",
+    fr: "Voir la démo"
+  },
+  "professionals.solutions.wealth.contact.cta": {
+    en: "Contact us",
+    fr: "Contactez-nous"
   },
 
   // Professionals - Demo
