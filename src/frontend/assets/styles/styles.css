@@ -990,6 +990,14 @@ body.mobile-menu-open {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
 }
 
+.hero-exec-message {
+  margin: 0 auto 1rem;
+  font-size: 0.95rem;
+  color: rgba(31, 41, 55, 0.9);
+  max-width: 640px;
+  line-height: 1.6;
+}
+
 .hero-chat-input {
   flex: 1;
   background: transparent;
