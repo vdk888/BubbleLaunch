@@ -33,8 +33,8 @@ const translations = {
     fr: "Blog",
   },
   "nav.join": {
-    en: "Join Us",
-    fr: "Nous Rejoindre",
+    en: "Early Access",
+    fr: "Accès Anticipé",
   },
 
   // Hero Section
@@ -55,8 +55,8 @@ const translations = {
     fr: "Dans un monde où l'IA transforme l'accès à l'expertise financière, nous créons l'outil d'investissement intelligent que nous voulions pour nous-mêmes : transparent, automatique, et accessible.",
   },
   "hero.cta": {
-    en: "Join Us",
-    fr: "Nous rejoindre",
+    en: "Early Access",
+    fr: "Accès anticipé",
   },
 
   // Manifesto Section
@@ -1000,8 +1000,8 @@ const translations = {
     fr: "Blog"
   },
   "footer.nav.join": {
-    en: "Join Us",
-    fr: "Nous Rejoindre"
+    en: "Early Access",
+    fr: "Accès Anticipé"
   },
   "footer.nav.legal": {
     en: "Legal",
@@ -1102,8 +1102,8 @@ const translations = {
     fr: "Démo"
   },
   "footer.nav.resources.joinUs": {
-    en: "Join Us",
-    fr: "Nous Rejoindre"
+    en: "Early Access",
+    fr: "Accès Anticipé"
   },
 
   // Businesses Page
@@ -3903,28 +3903,76 @@ const translations = {
     fr: "ChatGPT est un co-pilote. Bubble est votre pilote automatique complet. Vous parlez, il construit, exécute et rééquilibre—24h/24."
   },
 
+  // ========== MESSAGE 2.5 - ChatGPT DIFFERENTIATION (EARLY, after research) ==========
+  "workflow.message2_5.user": {
+    en: "How is Bubble different from ChatGPT?",
+    fr: "Comment Bubble est-il différent de ChatGPT ?"
+  },
+  "workflow.message2_5.bot.intro": {
+    en: "Great question. ChatGPT is brilliant for analysis and ideas—but it stops at advice. Bubble takes the next step: it doesn't just help you think about investing, it automates the entire process.",
+    fr: "Bonne question. ChatGPT est brillant pour l'analyse et les idées—mais il s'arrête au conseil. Bubble fait l'étape suivante : il n'aide pas seulement à réfléchir à l'investissement, il automatise tout le processus."
+  },
+  "workflow.message2_5.bot.comparison": {
+    en: "With ChatGPT: You ask, it advises, you execute manually.\nWith Bubble: You ask, it researches, backtests, executes, and rebalances—automatically.",
+    fr: "Avec ChatGPT : Vous demandez, il conseille, vous exécutez manuellement.\nAvec Bubble : Vous demandez, il recherche, teste, exécute et rééquilibre—automatiquement."
+  },
+  "workflow.message2_5.bot.who_for": {
+    en: "Bubble is perfect if you want to delegate the heavy lifting: investment research, strategy optimization, trade execution—everything. You just need to connect your broker account, and Bubble handles the rest.",
+    fr: "Bubble est parfait si vous voulez déléguer le gros du travail : recherche d'investissement, optimisation de stratégie, exécution des transactions—tout. Il suffit de connecter votre compte courtier, et Bubble gère le reste."
+  },
+  "workflow.message2_5.bot.closing": {
+    en: "So while ChatGPT is your thinking partner, Bubble is your execution partner. Let me show you how.",
+    fr: "Donc tandis que ChatGPT est votre partenaire de réflexion, Bubble est votre partenaire d'exécution. Laisse-moi te montrer comment."
+  },
+
+  // ========== MESSAGE 5.5 - BROKER ACCOUNT INTEGRATION (after backtest confirmation) ==========
+  "workflow.message5_5.user": {
+    en: "Can Bubble handle the actual execution? How do I get started?",
+    fr: "Bubble peut-il gérer l'exécution réelle ? Comment je commence ?"
+  },
+  "workflow.message5_5.bot.intro": {
+    en: "Absolutely. That's the whole point—you shouldn't have to manually place trades. Here's how it works:",
+    fr: "Bien sûr. C'est tout l'intérêt—vous ne devriez pas avoir à placer les ordres manuellement. Voici comment ça marche :"
+  },
+  "workflow.message5_5.bot.execution_title": {
+    en: "The Execution Flow",
+    fr: "Le Flux d'Exécution"
+  },
+  "workflow.message5_5.bot.execution_steps": [
+    {
+      icon: "🔗",
+      step_en: "Connect Your Broker",
+      step_fr: "Connectez votre courtier",
+      detail_en: "5-minute setup with Interactive Brokers, Alpaca, or Saxo Bank. Your account, your money, full control."
+    },
+    {
+      icon: "📊",
+      step_en: "Bubble Backtests & Allocates",
+      step_fr: "Bubble teste et alloue",
+      detail_en: "Just like you saw here—full strategy analysis on 20 years of data. You review the allocation and approve."
+    },
+    {
+      icon: "✓",
+      step_en: "You Review & Confirm",
+      step_fr: "Vous examinez et confirmez",
+      detail_en: "Every trade recommendation is explained. You see the 'why' before execution. No surprises."
+    },
+    {
+      icon: "⚙️",
+      step_en: "Bubble Executes & Monitors",
+      step_fr: "Bubble exécute et surveille",
+      detail_en: "Orders placed directly to your broker account. Monthly rebalancing happens automatically. You're always in control."
+    }
+  ],
+  "workflow.message5_5.bot.delegation_note": {
+    en: "This is perfect for beginners who want to delegate the work but stay informed. If you prefer to make all decisions yourself, you can always toggle automation off.",
+    fr: "C'est parfait pour les débutants qui veulent déléguer le travail mais rester informés. Si vous préférez prendre toutes les décisions vous-même, vous pouvez toujours désactiver l'automatisation."
+  },
+
   // ========== NEW PRICING CALLOUT FOR INTERMEDIATE DEMO (message 6 enhance) ==========
   "workflow.message6.bot.pricing_note": {
     en: "And here's what makes this accessible: Bubble charges €5-10/month flat—vs traditional advisors at 1-2% AUM annually. On €100k, that's €10k+ saved over a decade.",
     fr: "Et voici ce qui rend cela accessible : Bubble facture 5-10€/mois fixes—par rapport aux conseillers traditionnels à 1-2% sur encours annuels. Sur 100 k€, c'est 10 k€+ économisés en une décennie."
-  },
-
-  // ========== ChatGPT DIFFERENTIATION FOR INTERMEDIATE DEMO ==========
-  "workflow.message11_5.user": {
-    en: "How is Bubble different from ChatGPT?",
-    fr: "Comment Bubble est-il différent de ChatGPT ?"
-  },
-  "workflow.message11_5.bot.intro": {
-    en: "ChatGPT is a brilliant conversational AI, but Bubble does something fundamentally different: it doesn't just chat—it builds, backtests, and executes real portfolio strategies.",
-    fr: "ChatGPT est une IA conversationnelle brillante, mais Bubble fait quelque chose de fondamentalement différent : il ne se contente pas de chatter—il construit, teste et exécute de vraies stratégies de portefeuille."
-  },
-  "workflow.message11_5.bot.key_diff": {
-    en: "With ChatGPT, you ask 'how should I invest?' and get great advice. But then you have to do the work: find stocks, calculate allocations, place trades, rebalance.\n\nWith Bubble, you describe your goals, and it handles everything: screening candidates, backtesting strategies, executing orders, rebalancing monthly—all automated.",
-    fr: "Avec ChatGPT, vous posez la question « comment devrais-je investir ? » et obtenez de bons conseils. Mais ensuite vous devez faire le travail : trouver les actions, calculer les allocations, passer les ordres, rééquilibrer.\n\nAvec Bubble, vous décrivez vos objectifs, et il gère tout : recherche de candidats, backtesting, exécution d'ordres, rééquilibrage mensuel—complètement automatisé."
-  },
-  "workflow.message11_5.bot.closing": {
-    en: "ChatGPT empowers your thinking. Bubble empowers your execution. Both valuable—but totally different tools for totally different needs.",
-    fr: "ChatGPT autonomise votre réflexion. Bubble autonomise votre exécution. Les deux précieux—mais des outils complètement différents pour des besoins complètement différents."
   },
 
   // ========== EXPERT DEMO (semiconductors-sortino) ==========

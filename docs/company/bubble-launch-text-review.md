@@ -18,7 +18,7 @@
 | Vision | Vision |
 | Approach | Approche |
 | Blog | Blog |
-| Join Us | Nous Rejoindre |
+| Early Access | Accès Anticipé |
 
 ---
 
@@ -44,7 +44,7 @@
 ### Call to Action
 | English | French |
 |---------|--------|
-| Join Us | Nous rejoindre |
+| Early Access | Accès anticipé |
 
 ---
 

@@ -471,6 +471,56 @@ document.addEventListener('DOMContentLoaded', () => {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
     await safeDelay(2500);
 
+    // Message 2.5: User asks about ChatGPT difference
+    const msg2_5Text = workflowTranslations['workflow.message2_5.user'][currentLanguage];
+    await typeInInputAndSend(msg2_5Text);
+    const { bubble: bubble2_5 } = addMessage(msg2_5Text, true);
+    await safeDelay(2500);
+
+    // Message 2.5: Bot with ChatGPT explanation
+    const msg2_5IntroText = workflowTranslations['workflow.message2_5.bot.intro'][currentLanguage];
+    const { messageDiv: msg2_5Div, bubble: msg2_5Bubble } = addMessage('', false);
+
+    const typingIndicator2_5 = createTypingIndicator();
+    msg2_5Div.insertBefore(typingIndicator2_5, msg2_5Bubble.nextSibling);
+    await safeDelay(2500);
+    typingIndicator2_5.remove();
+
+    await typeMessage(msg2_5Bubble, msg2_5IntroText, 50);
+
+    // Add comparison text
+    msg2_5Bubble.appendChild(document.createElement('br'));
+    const comparisonText = workflowTranslations['workflow.message2_5.bot.comparison'][currentLanguage];
+    const comparisonSpan = document.createElement('span');
+    comparisonSpan.style.color = '#444444';
+    comparisonSpan.style.whiteSpace = 'pre-wrap';
+    comparisonSpan.style.lineHeight = '1.6';
+    comparisonSpan.textContent = comparisonText;
+    msg2_5Bubble.appendChild(comparisonSpan);
+
+    // Add who for text
+    msg2_5Bubble.appendChild(document.createElement('br'));
+    msg2_5Bubble.appendChild(document.createElement('br'));
+    const whoForText = workflowTranslations['workflow.message2_5.bot.who_for'][currentLanguage];
+    const whoForSpan = document.createElement('span');
+    whoForSpan.style.color = '#667eea';
+    whoForSpan.style.fontWeight = '600';
+    whoForSpan.textContent = whoForText;
+    msg2_5Bubble.appendChild(whoForSpan);
+
+    // Add closing text
+    msg2_5Bubble.appendChild(document.createElement('br'));
+    msg2_5Bubble.appendChild(document.createElement('br'));
+    const msg2_5ClosingText = workflowTranslations['workflow.message2_5.bot.closing'][currentLanguage];
+    const closingSpan2_5 = document.createElement('span');
+    closingSpan2_5.style.color = '#444444';
+    closingSpan2_5.style.fontStyle = 'italic';
+    closingSpan2_5.textContent = msg2_5ClosingText;
+    msg2_5Bubble.appendChild(closingSpan2_5);
+
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    await safeDelay(2500);
+
     // Message 3: User
     const msg3Text = workflowTranslations['workflow.message3.user'][currentLanguage];
     await typeInInputAndSend(msg3Text);
@@ -508,6 +558,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg5Text = workflowTranslations['workflow.message5.user'][currentLanguage];
     await typeInInputAndSend(msg5Text);
     const { bubble: bubble5 } = addMessage(msg5Text, true);
+    await safeDelay(2500);
+
+    // Message 5.5: User asks about execution
+    const msg5_5Text = workflowTranslations['workflow.message5_5.user'][currentLanguage];
+    await typeInInputAndSend(msg5_5Text);
+    const { bubble: bubble5_5 } = addMessage(msg5_5Text, true);
+    await safeDelay(2500);
+
+    // Message 5.5: Bot with execution flow
+    const msg5_5IntroText = workflowTranslations['workflow.message5_5.bot.intro'][currentLanguage];
+    const { messageDiv: msg5_5Div, bubble: msg5_5Bubble } = addMessage('', false);
+
+    const typingIndicator5_5 = createTypingIndicator();
+    msg5_5Div.insertBefore(typingIndicator5_5, msg5_5Bubble.nextSibling);
+    await safeDelay(2500);
+    typingIndicator5_5.remove();
+
+    await typeMessage(msg5_5Bubble, msg5_5IntroText, 50);
+
+    // Add execution flow card
+    msg5_5Bubble.appendChild(document.createElement('br'));
+    const executionCard = createExecutionFlowCard();
+    msg5_5Bubble.appendChild(executionCard);
+
+    // Add delegation note
+    msg5_5Bubble.appendChild(document.createElement('br'));
+    const delegationText = workflowTranslations['workflow.message5_5.bot.delegation_note'][currentLanguage];
+    const delegationSpan = document.createElement('span');
+    delegationSpan.style.color = '#444444';
+    delegationSpan.style.fontSize = '0.9rem';
+    delegationSpan.textContent = delegationText;
+    msg5_5Bubble.appendChild(delegationSpan);
+
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
     await safeDelay(2500);
 
     // Message 6: Bot with summary (all in one bubble)
@@ -602,46 +686,6 @@ document.addEventListener('DOMContentLoaded', () => {
     typingIndicator5.remove();
 
     await typeMessage(msg11Bubble, msg11Text, 50);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
-
-    // Message 11.5: User asks about ChatGPT difference
-    const msg11_5Text = workflowTranslations['workflow.message11_5.user'][currentLanguage];
-    await typeInInputAndSend(msg11_5Text);
-    const { bubble: bubble11_5 } = addMessage(msg11_5Text, true);
-    await safeDelay(2500);
-
-    // Message 11.5: Bot with ChatGPT explanation
-    const msg11_5IntroText = workflowTranslations['workflow.message11_5.bot.intro'][currentLanguage];
-    const { messageDiv: msg11_5Div, bubble: msg11_5Bubble } = addMessage('', false);
-
-    const typingIndicator11_5 = createTypingIndicator();
-    msg11_5Div.insertBefore(typingIndicator11_5, msg11_5Bubble.nextSibling);
-    await safeDelay(2500);
-    typingIndicator11_5.remove();
-
-    await typeMessage(msg11_5Bubble, msg11_5IntroText, 50);
-
-    // Add key difference text
-    msg11_5Bubble.appendChild(document.createElement('br'));
-    const keyDiffText = workflowTranslations['workflow.message11_5.bot.key_diff'][currentLanguage];
-    const keyDiffSpan = document.createElement('span');
-    keyDiffSpan.style.color = '#444444';
-    keyDiffSpan.style.whiteSpace = 'pre-wrap';
-    keyDiffSpan.style.lineHeight = '1.6';
-    keyDiffSpan.textContent = keyDiffText;
-    msg11_5Bubble.appendChild(keyDiffSpan);
-
-    // Add closing text
-    msg11_5Bubble.appendChild(document.createElement('br'));
-    msg11_5Bubble.appendChild(document.createElement('br'));
-    const msg11_5ClosingText = workflowTranslations['workflow.message11_5.bot.closing'][currentLanguage];
-    const closingSpan11_5 = document.createElement('span');
-    closingSpan11_5.style.color = '#667eea';
-    closingSpan11_5.style.fontWeight = '600';
-    closingSpan11_5.textContent = msg11_5ClosingText;
-    msg11_5Bubble.appendChild(closingSpan11_5);
-
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
     // Mark demo as shown
@@ -1328,6 +1372,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
     card.appendChild(table);
 
+    return card;
+  };
+
+  // Create execution flow card for intermediate message 5.5
+  const createExecutionFlowCard = () => {
+    const card = document.createElement('div');
+    card.className = 'workflow-demo-enriched-card';
+
+    const header = document.createElement('div');
+    header.className = 'workflow-demo-enriched-header';
+    header.textContent = workflowTranslations['workflow.message5_5.bot.execution_title'][currentLanguage];
+    card.appendChild(header);
+
+    const steps = workflowTranslations['workflow.message5_5.bot.execution_steps'];
+    const stepsContainer = document.createElement('div');
+    stepsContainer.style.marginTop = '1rem';
+
+    steps.forEach((step, idx) => {
+      const stepDiv = document.createElement('div');
+      stepDiv.style.padding = '1rem';
+      stepDiv.style.marginBottom = '0.8rem';
+      stepDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
+      stepDiv.style.borderRadius = '8px';
+      stepDiv.style.borderLeft = '4px solid #667eea';
+
+      const stepNum = document.createElement('div');
+      stepNum.style.fontSize = '0.75rem';
+      stepNum.style.fontWeight = '700';
+      stepNum.style.color = '#667eea';
+      stepNum.style.marginBottom = '0.4rem';
+      stepNum.style.textTransform = 'uppercase';
+      stepNum.textContent = `${step.icon} Step ${idx + 1}`;
+      stepDiv.appendChild(stepNum);
+
+      const title = document.createElement('div');
+      title.style.fontWeight = '700';
+      title.style.color = '#333333';
+      title.style.marginBottom = '0.6rem';
+      title.style.fontSize = '0.95rem';
+      title.textContent = step[`step_${currentLanguage}`];
+      stepDiv.appendChild(title);
+
+      const detail = document.createElement('div');
+      detail.style.fontSize = '0.85rem';
+      detail.style.color = '#666666';
+      detail.style.lineHeight = '1.5';
+      detail.textContent = step.detail_en; // Using English detail (same for both languages for now)
+      stepDiv.appendChild(detail);
+
+      stepsContainer.appendChild(stepDiv);
+    });
+
+    card.appendChild(stepsContainer);
     return card;
   };
 
