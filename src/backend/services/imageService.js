@@ -119,11 +119,29 @@ class ImageService {
 
     const cacheKey = this.getCacheKey(articleId);
     if (this.imageCache.has(cacheKey)) {
+      const cachedUrl = this.imageCache.get(cacheKey);
+
+      // Validate cached URL - if it's a broken Runware URL, return null to trigger regeneration
+      if (cachedUrl && this.isBrokenRunwareUrl(cachedUrl)) {
+        console.log(`⚠️ Cached Runware URL is broken for article ID: ${articleId}, will regenerate`);
+        this.imageCache.delete(cacheKey);
+        return null;
+      }
+
       console.log(`📦 Found cached image for article ID: ${articleId}`);
-      return this.imageCache.get(cacheKey);
+      return cachedUrl;
     }
 
     return null;
+  }
+
+  /**
+   * Check if a URL is a broken Runware URL
+   */
+  isBrokenRunwareUrl(url) {
+    if (!url) return false;
+    // Runware URLs that are no longer accessible
+    return url.includes('im.runware.ai');
   }
 
   async generateArticleImage(
@@ -136,8 +154,16 @@ class ImageService {
     const cacheKey = this.getCacheKey(articleId, articleTitle, articleSummary, tags);
 
     if (!bypassCache && this.imageCache.has(cacheKey)) {
-      console.log(`📦 Using cached image for: "${articleTitle}"`);
-      return this.imageCache.get(cacheKey);
+      const cachedUrl = this.imageCache.get(cacheKey);
+
+      // Validate cached URL - skip broken Runware URLs
+      if (cachedUrl && !this.isBrokenRunwareUrl(cachedUrl)) {
+        console.log(`📦 Using cached image for: "${articleTitle}"`);
+        return cachedUrl;
+      } else if (cachedUrl && this.isBrokenRunwareUrl(cachedUrl)) {
+        console.log(`⚠️ Cached Runware URL is broken for: "${articleTitle}", regenerating...`);
+        this.imageCache.delete(cacheKey);
+      }
     }
 
     const ready = await this.ensureRunwareReady();
