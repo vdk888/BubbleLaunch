@@ -210,6 +210,26 @@
 
   const pageContext = getPageContext();
 
+  function buildContextMetadata(context) {
+    if (context === 'professionals_companies') {
+      return [
+        'Visitor is reviewing the SME/CGP consulting page.',
+        'Highlight custom AI workflow sprints using Claude Code / Codex / Gemini, revenue recognition automation, monthly reporting copilots, client intelligence digests, and custom dashboards.',
+        'Emphasize transparent €15k-30k projects delivered in 2-4 months and the /api/business-contact form for follow-up.',
+        'Clarify that Bubble provides AI empowerment and automation, not financial advice.'
+      ].join(' ');
+    }
+    if (context === 'professionals_wealth') {
+      return [
+        'Visitor is on the white-label Bubble Portfolio page for wealth managers/family offices.',
+        'Focus on multi-client dashboards, personalized AI agents per client, advanced reporting, broker APIs (IBKR, Alpaca, Saxo), 20+ years of historical data, and the quant strategy library.',
+        'Mention demo CTA (#pro-demo) and contact CTA pointing to /professionals#enterprise-waitlist.',
+        'Reinforce that Bubble Portfolio is an automated trading copilot, not financial advice.'
+      ].join(' ');
+    }
+    return '';
+  }
+
   panel.addEventListener('click', (event) => {
     const suggestionButton = event.target.closest('.chat-suggestion-btn');
     if (!suggestionButton) return;
@@ -272,17 +292,22 @@
 
     try {
       state.abortController = new AbortController();
+      const payload = {
+        message: prompt,
+        language: getLanguage(),
+        pageContext,
+        history: state.conversation.slice(-10),
+      };
+      const metadata = buildContextMetadata(pageContext);
+      if (metadata) {
+        payload.contextMetadata = metadata;
+      }
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          message: prompt,
-          language: getLanguage(),
-          pageContext,
-          history: state.conversation.slice(-10),
-        }),
+        body: JSON.stringify(payload),
         signal: state.abortController.signal,
       });
 

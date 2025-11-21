@@ -53,7 +53,7 @@
             </div>
             <a href="/blog" data-translate="professionals.nav.blog">Blog</a>
             <a href="/professionals#enterprise-waitlist" class="nav-cta" data-translate="professionals.nav.cta">Contactez-nous</a>
-            <div la="language-switcher">
+            <div class="language-switcher">
               <button id="en-switch">EN</button>
               <span>|</span>
               <button id="fr-switch" class="active">FR</button>
@@ -187,24 +187,13 @@
     <!-- CTA Section -->
     <section id="pro-demo" class="fade-in" style="padding: 4rem 0; background: #fff;">
       <div class="container" style="text-align: center; max-width: 760px;">
-        <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 1rem;">Prêt à voir Bubble Portfolio ?</h2>
-        <p style="color: #666; margin-bottom: 2rem;">
-          Nous préparons une démo dédiée aux professionnels (CGP, family offices). En attendant, décrivez-nous votre besoin et nous activerons un espace marque blanche.
+        <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 1rem;" data-translate="professionals.solutions.wealth.cta.title">Prêt à voir Bubble Portfolio ?</h2>
+        <p style="color: #666; margin-bottom: 2rem;" data-translate="professionals.solutions.wealth.cta.subtitle">
+          Nous préparons une démo dédiée aux professionnels (CGP, family offices). En attendant, décrivez-nous votre besoin et nous activerons un espace marque blanche adapté.
         </p>
         <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
           <a href="#pro-demo" class="cta-button" data-translate="professionals.solutions.wealth.demo.cta">Voir la démo</a>
           <a href="/professionals#enterprise-waitlist" class="cta-button outline-btn" data-translate="professionals.solutions.wealth.contact.cta">Contactez-nous</a>
-        </div>
-      </div>
-    </section>
-            <h3 style="color: #10b981; margin-bottom: 1rem;" data-translate="businesses.form.success.title">✅ Message envoyé !</h3>
-            <p data-translate="businesses.form.success.message">Nous avons bien reçu votre demande. Un membre de notre équipe vous répondra sous 48h à l'adresse <strong id="submitted-email"></strong>.</p>
-          </div>
-
-          <div id="form-error" style="display: none; text-align: center; padding: 2rem; background: rgba(239, 68, 68, 0.1); border-radius: 24px; margin-top: 2rem;">
-            <h3 style="color: #ef4444; margin-bottom: 1rem;" data-translate="businesses.form.error.title">❌ Erreur d'envoi</h3>
-            <p data-translate="businesses.form.error.message">Une erreur est survenue. Contactez-nous directement à <a href="mailto:contact@bubbleinvest.org" style="color: #667eea; text-decoration: underline;">contact@bubbleinvest.org</a></p>
-          </div>
         </div>
       </div>
     </section>
@@ -318,7 +307,7 @@
     </footer>
 
     <!-- Floating Chat Input -->
-    <div id="floating-chat-input" class="floating-chat-input hidden">
+    <div id="floating-chat-input" class="floating-chat-input hidden" data-always-visible="true" data-page-context="professionals_wealth">
       <div class="floating-input-container">
         <input
           type="text"

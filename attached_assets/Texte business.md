@@ -1,7 +1,7 @@
 # Ce que nous faisons
 Nous accompagnons principalement les PME et sociétés de gestion dans la modernisation de leurs processus financiers. Chez Bubble Invest, il n’est pas question de vendre du rêve, des diagnostics interminables sur PowerPoint ou des solutions magiques possibles qu’avec une armée de consultants. On préfère les projets pragmatiques : automatisation et optimisation de tâches concrètes, avec des outils simples ou personnalisés selon chaque besoin.
 
-Comme pour notre produit d’investissement Bubble, notre objectif est aussi de partager ce que nous avons appris et découvert : tout ce qui est désormais possible avec les outils actuels (Codex, Claude Code “vibe coding”, low code, développement de front end/back-end, workflows type n8n, agents intelligents sur mesure…), afin de permettre à chacun de tirer parti de ces avancées, quel que soit son niveau technique.
+Comme pour notre produit d’investissement Bubble, notre objectif est aussi de partager ce que nous avons appris et découvert : tout ce qui est désormais possible avec les outils actuels (Codex, Claude Code, low code, développement de front end/back-end, automations sur mesure via code builders IA, agents intelligents sur mesure…), afin de permettre à chacun de tirer parti de ces avancées, quel que soit son niveau technique.
 
 En cohérence avec notre expérience en finance et notre appétence technologique, nous utilisons les outils intelligents les plus fiables et actuels avec une agilité qui s’adapte vraiment à chaque client et chaque contexte.
 
@@ -17,7 +17,7 @@ On préfère afficher notre expérience que prétendre tout savoir. Nous agisson
 
 - Processus de reconnaissance du revenu : workflow de facturation client, rapprochement comptable, suivi budgétaire simplifié 
 - Automatisation du reporting financier mensuel : jusqu’à 15h/mois économisées et zéro erreur de saisie.
-- Suivi automatisé de l’actualité ESG : des digest sur-mesure pour un gestionnaire de portefeuille, 5 à 7h/semaine gagnées.
+- Monitoring continu des actus pour gérants : digest sur-mesure, scoring de matérialité et alertes critiques automatisées (5 à 7h/semaine gagnées).
 - Construction d’un dashboard personnalisé pour le suivi de la performance : budget divisé par 4 vs une solution éditeur “traditionnelle”.
 
 # Valeurs et méthodologie

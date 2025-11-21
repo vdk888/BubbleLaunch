@@ -18,32 +18,29 @@ This is the **marketing website** for **Bubble Invest**, a fintech startup. This
 **Bubble Invest** is a fintech startup providing an **AI-powered quantitative platform** that delivers **AI-powered insights** on how to invest according to users' own decisions and profiles. **Bubble's mission: AI empowerment to replace traditional financial actors**, not traditional asset management.
 
 **Services**:
-1. **Bubble Portfolio** (Primary Product) - AI-agent portfolio management platform
-2. **Bubble Businesses** (B2B Consulting) - AI automation for fintech/finance companies
+1. **Bubble Portfolio** (Primary Product) – Automated trading copilot with chat-native workflows, strategy backtesting, and broker execution.
+2. **Bubble Businesses** (B2B Consulting) – Custom AI workflow delivery for SMEs and independent CGPs using Claude Code, Codex, Gemini, and direct API integrations.
 
 ### Bubble Invest's Core Approach
 
 **What Makes Bubble Different:**
 
 #### **Bubble Portfolio (Main Product)**
-- **AI Empowerment, Not Management**: Provides AI-powered insights and recommendations for user-driven investment decisions based on individual profiles and preferences (not a traditional robo-advisor managing accounts)
-- **Conversational AI Agent**: Primary interface is a ChatGPT-integrated chatbot that guides users through: stock screening → strategy backtesting → portfolio allocation → automated execution
-- **Extensible Architecture**: Every module (screeners, strategies, brokers, data sources) is pluggable and swappable
-- **Fixed-Fee Model**: €0-10/month depending on plan (cost-plus pricing based on compute usage), NOT percentage-based AUM fees
-- **Full Transparency**: All strategies, backtests (17+ years), scoring rules, and decisions visible and explained to users
-- **User-Controlled Accounts**: Users maintain 100% control with their own brokerage accounts (IBKR, Alpaca, Saxo Bank)—NOT a custody model
-- **Multi-Tier Approach**:
-  - Retail users get full automated execution (with API-enabled brokers)
-  - Wealth advisors (CGP) get admin tools to manage multiple client portfolios
-  - Asset managers get screening/backtesting tools for fund management
-- **Regulatory Ready**: Built from Day 1 with KYC, GDPR, and AMF compliance requirements
+- **Composer-like Automation**: Conversational agent guides users through screening → backtests → allocations → execution with their own brokers.
+- **AI Empowerment**: Users design strategies; Bubble never takes custody or gives financial advice.
+- **Transparent + Fixed Pricing**: Cost-plus model (≈€0-10/month) instead of AUM fees.
+- **Extensible Architecture**: Swappable data sources, brokers, strategy modules, and AI copilots.
+- **Multi-Tier Distribution**:
+  - Retail investors access automated trading copilots.
+  - Wealth advisors (CGP/family offices) manage multiple clients through white-label Bubble Portfolio.
+  - Asset managers tap the screening/backtesting stack.
+- **Regulatory Ready & User Controlled**: KYC/GDPR-friendly design with full auditability and broker-side custody.
 
 #### **Bubble Businesses (B2B Consulting Service)**
-- **Ex-Big Four & UBS Team**: Former Deloitte, KPMG consultants and portfolio managers
-- **Project-Based**: €3k-€30k AI automation projects for finance companies
-- **Fast Delivery**: 2-4 months for complete projects
-- **Transparent Pricing**: Diagnostic (€3k-€5k), simple automation (€8k-€12k), or full projects (€20k-€30k)
-- **Services**: Automated reporting, ESG monitoring, portfolio analytics, reconciliation
+- **Ex-Big Four & UBS Team** delivering pragmatic automation projects for SMEs/CGPs.
+- **Scope**: Custom AI workflow sprints, revenue recognition automation, reporting copilots, reconciliation dashboards, client-intelligence digests.
+- **Tooling**: Claude Code/Codex/Gemini code builders wired into clients' APIs (not generic low-code).
+- **Pricing & Timing**: Diagnostic (€3k-€5k), targeted automations (€8k-€12k), full projects (€20k-€30k) delivered in 2-4 months with transparent budgets.
 
 ---
 
@@ -62,7 +59,7 @@ The current codebase is a multilingual landing page with integrated AI chatbot, 
 - **Landing Page** (`index.html`) - Presents Bubble Portfolio product vision and value proposition
 - **Portfolio Simulator** (`portfolio-simulator.html`) - Educational demo of 9 backtested strategies for investors to explore investment concepts
 - **Blog** (`blog.html`, `/blog/*`) - SEO-driven content educating about investment strategies, AI, portfolio management, democratization
-- **Businesses** (`businesses.html`) - B2B consulting services: AI automation, reporting, ESG monitoring (€3k-€30k projects)
+- **Businesses** (`businesses.html`) - B2B consulting for SMEs & CGPs: custom AI workflows and agents (€3k-€30k projects)
 - **AI Chatbot** - Educational chatbot answering questions about investment, Bubble's approach, and product capabilities
 
 ---

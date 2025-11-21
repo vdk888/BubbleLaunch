@@ -1,4 +1,4 @@
-# Bubble - AI-Powered Robo-Advisory Platform
+# Bubble – Automated Trading Copilot Platform
 
 **Democratizing investment through AI, with transparency and efficiency.**
 
@@ -6,17 +6,16 @@
 
 ## 🎯 Project Overview
 
-Bubble is a fintech startup revolutionizing investment through AI-powered robo-advisory services. This repository contains the production-ready waitlist landing page with integrated AI chatbot, blog system, and interactive portfolio simulator.
+Bubble is building an automated trading and investment platform where retail investors and professionals can design, backtest, and deploy strategies without writing code. The users can use AI agent to either get education about investment or get help to build their own strategies. This repository hosts the marketing site, portfolio simulator, blog, and professional solutions pages that present the vision. Everything here is about **AI empowerment**—users stay in control while Bubble's copilots (Claude Code, Codex, Gemini, etc.) do the heavy lifting.
 
 ### Key Features
 
-- **Multilingual Support** (French/English) with seamless language switching
-- **AI Chatbot** with streaming responses powered by OpenRouter LLM
-- **Interactive Portfolio Simulator** - Compare 3 investment strategies with 20 years of real ETF data
-- **Dynamic Blog System** with Notion CMS and OpenAI-generated illustrations (gpt-image-1)
-- **Knowledge Garden** - Curated investment references with LLM enrichment
-- **Glassmorphism UI** - Modern, transparent design with floating chat input
-- **Unified Button Design** - Pill-shaped CTAs for consistent brand experience
+- **Multilingual Support** (FR/EN) with client-side translations.
+- **AI Chatbot** (streaming via OpenRouter) that stays purely educational—never personal financial advice.
+- **Interactive Portfolio Simulator** comparing nine strategies across 20+ years of ETF data.
+- **Professional Solutions** detailing SME/CGP consulting workflows and the white-label Bubble Portfolio for wealth managers.
+- **Dynamic Blog + Knowledge Garden** powered by Notion + AI enrichment.
+- **Glassmorphism UI** with floating chat input + side-panel assistant.
 
 ---
 

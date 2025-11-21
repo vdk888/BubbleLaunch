@@ -430,7 +430,8 @@ async function handleChat(req, res) {
     language = "fr",
     pageContext = "index",
     chatbotType,
-    history = []
+    history = [],
+    contextMetadata = ""
   } = req.body;
 
   // Backward compatibility: map old chatbotType to new pageContext
@@ -459,7 +460,16 @@ async function handleChat(req, res) {
     : false;
 
   // Get the unified system prompt with page context
-  const systemPromptContent = getSystemPrompt(language, context, waitlistShared);
+  let systemPromptContent = getSystemPrompt(language, context, waitlistShared);
+  let metadataBlock = "";
+  if (typeof contextMetadata === "string") {
+    metadataBlock = contextMetadata.trim();
+  } else if (contextMetadata && typeof contextMetadata === "object") {
+    metadataBlock = JSON.stringify(contextMetadata);
+  }
+  if (metadataBlock) {
+    systemPromptContent = `${systemPromptContent}\n\n### PAGE CONTEXT NOTES:\n${metadataBlock}`;
+  }
 
   // Build messages array with conversation history if provided
   const messages = [

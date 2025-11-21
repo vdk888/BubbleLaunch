@@ -1134,8 +1134,8 @@ const translations = {
     fr: "Nous accompagnons principalement les PME et sociétés de gestion dans la modernisation de leurs processus financiers. Chez Bubble Invest, il n'est pas question de vendre du rêve, des diagnostics interminables sur PowerPoint ou des solutions magiques possibles qu'avec une armée de consultants. On préfère les projets pragmatiques : automatisation et optimisation de tâches concrètes, avec des outils simples ou personnalisés selon chaque besoin."
   },
   "businesses.what.p2": {
-    en: "Like with our Bubble investment product, our goal is also to share what we've learned and discovered: everything that's now possible with current tools (Codex, Claude Code , low code, front-end/back-end development, n8n-type workflows, custom intelligent agents…), to enable everyone to benefit from these advances, regardless of their technical level.",
-    fr: "Comme pour notre produit d'investissement Bubble, notre objectif est aussi de partager ce que nous avons appris et découvert : tout ce qui est désormais possible avec les outils actuels (Codex, Claude Code \"vibe coding\", low code, développement de front end/back-end, workflows type n8n, agents intelligents sur mesure…), afin de permettre à chacun de tirer parti de ces avancées, quel que soit son niveau technique."
+    en: "Like with Bubble Portfolio, our goal is to share everything that's now possible with modern AI code builders (Claude Code, Codex, Gemini), direct API integrations, and lightweight custom services so every team can benefit—no generic low-code recipes.",
+    fr: "Comme pour Bubble Portfolio, notre objectif est de partager tout ce qui est désormais possible avec les AI code builders modernes (Claude Code, Codex, Gemini), les intégrations API directes et des services personnalisés légers afin que chaque équipe puisse en bénéficier—sans recettes low code génériques."
   },
   "businesses.what.p3": {
     en: "In line with our finance experience and technological appetite, we use the most reliable and current intelligent tools with an agility that truly adapts to each client and context.",
@@ -1150,8 +1150,8 @@ const translations = {
     fr: "Reporting mensuel automatisé (15h gagnées/mois)"
   },
   "businesses.what.examples.2": {
-    en: "ESG monitoring of 50 companies (5-7h/week saved)",
-    fr: "Monitoring ESG de 50 sociétés (5-7h/semaine économisées)"
+    en: "Automated consolidation of supplier invoices (teams reclaim 2 days/month)",
+    fr: "Consolidation automatisée de factures fournisseurs (2 jours/mois récupérés)"
   },
   "businesses.what.examples.3": {
     en: "Automated bank reconciliation (98% matching rate, 4-month ROI)",
@@ -1186,8 +1186,8 @@ const translations = {
     fr: "Exemples concrets"
   },
   "businesses.examples.1": {
-    en: "<strong>Quick implementation</strong> of <strong>simple workflows</strong> (custom code or low code) and custom <strong>intelligent agents</strong>",
-    fr: "<strong>Implémentation rapide</strong> de <strong>workflows simples</strong> (custom code ou low code) et d'<strong>agents intelligents</strong> sur mesure"
+    en: "<strong>Rapid implementation</strong> of <strong>simple workflows</strong> (Claude Code, Codex, Gemini) and tailor-made <strong>AI copilots</strong>",
+    fr: "<strong>Implémentation rapide</strong> de <strong>workflows simples</strong> (Claude Code, Codex, Gemini) et de <strong>copilotes IA</strong> sur mesure"
   },
   "businesses.examples.2": {
     en: "<strong>Revenue recognition process</strong>: client invoicing workflow, <strong>accounting reconciliation</strong>, simplified budget tracking",
@@ -1198,8 +1198,8 @@ const translations = {
     fr: "Automatisation du reporting financier mensuel : jusqu'à <strong>15h/mois économisées</strong> et zéro erreur de saisie."
   },
   "businesses.examples.4": {
-    en: "Automated ESG news monitoring: custom digests for a portfolio manager, <strong>5 to 7h/week saved</strong>.",
-    fr: "Suivi automatisé de l'actualité ESG : des digest sur-mesure pour un gestionnaire de portefeuille, <strong>5 à 7h/semaine gagnées</strong>."
+    en: "Continuous news monitoring for fund managers: AI scores materiality, links alerts to each mandate universe, and escalates critical items automatically (<strong>5 to 7h/week saved</strong>).",
+    fr: "Monitoring continu des actus pour gérants : l'IA score la matérialité, rattache les alertes à chaque univers de mandat et escalade automatiquement les sujets critiques (<strong>5 à 7h/semaine gagnées</strong>)."
   },
   "businesses.examples.5": {
     en: "Building a personalized dashboard for performance tracking: <strong>budget divided by 4</strong> vs a traditional 'vendor' solution.",
@@ -1394,8 +1394,8 @@ const translations = {
     fr: "🛠️ Stack pragmatique"
   },
   "businesses.why.stack.desc": {
-    en: "<strong>Notion, Claude, Make, Airtable, n8n</strong><br/>No-code/low-code when relevant. Python/React when necessary.",
-    fr: "<strong>Notion, Claude, Make, Airtable, n8n</strong><br/>No-code/low-code quand pertinent. Python/React quand nécessaire."
+    en: "<strong>Notion, Claude, AI code builders</strong><br/>Custom AI code builders and API integrations. Python/React/Node.js as needed.",
+    fr: "<strong>Notion, Claude, code builders IA</strong><br/>Code builders IA et intégrations API sur mesure. Python/React/Node.js selon le besoin."
   },
   "businesses.why.stack.philosophy": {
     en: "We choose tech based on the problem, not on the resume we want to build.",
@@ -1627,11 +1627,11 @@ const translations = {
     fr: "Discutons de votre projet"
   },
   "businesses.contact.subtitle": {
-    en: "Describe your need in a few lines. We'll respond with an initial feasibility and budget estimate.",
-    fr: "Décrivez-nous votre besoin en quelques lignes. Nous vous répondrons avec une première estimation de faisabilité et budget."
+    en: "Tell us about your context and the workflows you want to modernize. We reply within 48h with feasibility + budget.",
+    fr: "Décrivez-nous votre contexte et les workflows à moderniser. Réponse sous 48h avec faisabilité + budget."
   },
   "businesses.form.title": {
-    en: "Contact Request",
+    en: "Contact request",
     fr: "Demande de Contact"
   },
   "businesses.form.company": {
@@ -1731,15 +1731,15 @@ const translations = {
     fr: "✅ Message envoyé !"
   },
   "businesses.form.success.message": {
-    en: "We've received your request. A team member will respond to the address <strong id=\"submitted-email\"></strong>.",
-    fr: "Nous avons bien reçu votre demande. Un membre de notre équipe vous répondra à l'adresse <strong id=\"submitted-email\"></strong>."
+    en: "Thanks for your request. We'll get back within 48h at <strong id=\"submitted-email\"></strong>.",
+    fr: "Merci pour votre demande. Nous revenons vers vous sous 48h à l'adresse <strong id=\"submitted-email\"></strong>."
   },
   "businesses.form.error.title": {
-    en: "❌ Sending error",
+    en: "❌ Send error",
     fr: "❌ Erreur d'envoi"
   },
   "businesses.form.error.message": {
-    en: "An error occurred. Contact us directly at <a href=\"mailto:contact@bubbleinvest.org\" style=\"color: #667eea; text-decoration: underline;\">contact@bubbleinvest.org</a>",
+    en: "Something went wrong. Contact us directly at <a href=\"mailto:contact@bubbleinvest.org\" style=\"color: #667eea; text-decoration: underline;\">contact@bubbleinvest.org</a>",
     fr: "Une erreur est survenue. Contactez-nous directement à <a href=\"mailto:contact@bubbleinvest.org\" style=\"color: #667eea; text-decoration: underline;\">contact@bubbleinvest.org</a>"
   },
 
@@ -2850,8 +2850,8 @@ const translations = {
     fr: "IA & Automation pour Votre Entreprise"
   },
   "professionals.hero.subtitle": {
-    en: "From automated reporting to ESG management, we transform your fintech operations with AI.",
-    fr: "De l'automation de reporting à la gestion ESG, nous transformons vos opérations fintech avec l'IA."
+    en: "From automated reporting to reconciliation dashboards, we transform your finance operations with AI.",
+    fr: "Du reporting automatisé aux dashboards de réconciliation, nous transformons vos opérations finance avec l'IA."
   },
   "professionals.chat.placeholder": {
     en: "Describe your fintech challenge...",
@@ -2926,8 +2926,8 @@ const translations = {
     fr: "Automation Simple"
   },
   "professionals.services.simple.description": {
-    en: "€8k - €12k | Targeted projects: automated reporting, ESG monitoring, reconciliation.",
-    fr: "€8k - €12k | Projets ciblés : reporting automatisé, monitoring ESG, réconciliation."
+    en: "€8k - €12k | Targeted projects: automated reporting, reconciliation, custom AI copilots.",
+    fr: "€8k - €12k | Projets ciblés : reporting automatisé, réconciliation, copilotes IA sur mesure."
   },
   "professionals.services.full.title": {
     en: "Full Project",
@@ -2948,32 +2948,32 @@ const translations = {
     fr: "Approches spécialisées selon votre type d'organisation."
   },
   "professionals.solutions.companies.title": {
-    en: "For SMEs & Independent Advisors",
-    fr: "Pour les PME & Conseillers Indépendants"
+    en: "For SMEs & independent wealth advisors",
+    fr: "Pour les PME & CGP indépendants"
   },
   "professionals.solutions.companies.description": {
-    en: "Simple workflows, lightweight automations, and pragmatic AI agents for finance teams.",
-    fr: "Workflows simples, automatisations légères et agents IA pragmatiques pour les équipes finance."
+    en: "Pragmatic consulting to deploy simple workflows and custom AI copilots for finance teams.",
+    fr: "Conseil pragmatique pour déployer workflows simples et copilotes IA sur mesure pour vos équipes finance."
   },
   "professionals.solutions.companies.hero.title": {
-    en: "Automation solutions for SMEs and wealth teams",
-    fr: "Solutions d'automatisation pour PME et gestionnaires de patrimoine"
+    en: "AI consulting for SMEs & CGPs",
+    fr: "Conseil IA pour PME & CGP"
   },
   "professionals.solutions.companies.hero.subtitle": {
-    en: "We implement lightweight workflows and AI agents to modernize your financial operations—without another army of consultants.",
-    fr: "Nous implémentons des workflows simples et des agents IA pour moderniser vos opérations financières—sans armée de consultants, sans PowerPoint."
+    en: "We build custom AI workflows and copilots (Claude Code, Codex, Gemini) to modernize finance operations without Big-Four theatre.",
+    fr: "Nous créons des workflows IA et copilotes sur mesure (Claude Code, Codex, Gemini) pour moderniser vos opérations finance sans théâtre façon Big Four."
   },
   "professionals.solutions.companies.overview.title": {
     en: "Core consulting modules",
     fr: "Nos solutions clés"
   },
   "professionals.solutions.companies.tile1.title": {
-    en: "Rapid workflow implementation",
-    fr: "Implémentation rapide de workflows simples"
+    en: "Custom AI workflow sprints",
+    fr: "Sprints de workflows IA sur mesure"
   },
   "professionals.solutions.companies.tile1.description": {
-    en: "Low-code or custom scripts paired with AI agents to automate repetitive finance tasks.",
-    fr: "Low code ou scripts sur mesure associés à des agents IA pour automatiser vos tâches finance."
+    en: "Claude Code/Codex/Gemini builders wired to your stack to automate repetitive finance tasks in weeks.",
+    fr: "Builders Claude Code/Codex/Gemini branchés à votre stack pour automatiser vos tâches finance en quelques semaines."
   },
   "professionals.solutions.companies.tile2.title": {
     en: "Revenue recognition automation",
@@ -2992,24 +2992,28 @@ const translations = {
     fr: "Jusqu'à 15h gagnées par mois grâce aux extractions automatiques, contrôles et exports."
   },
   "professionals.solutions.companies.tile4.title": {
-    en: "Client file monitoring",
-    fr: "Suivi proactif des dossiers clients"
+    en: "Client intelligence digests",
+    fr: "Digests d'intelligence client"
   },
   "professionals.solutions.companies.tile4.description": {
-    en: "Digest-ready alerts summarizing what's changed for each client or mandate.",
-    fr: "Alertes digest qui résument les changements pour chaque client ou mandat."
+    en: "Automated summaries of earnings, regulatory updates, and mandate risks that save 5–7 hours per week.",
+    fr: "Résumés automatisés de résultats, updates réglementaires et risques par mandat qui libèrent 5-7h par semaine."
   },
   "professionals.solutions.companies.tile5.title": {
     en: "Custom performance dashboards",
     fr: "Dashboards personnalisés de performance"
   },
   "professionals.solutions.companies.tile5.description": {
-    en: "White-label dashboards built at a quarter of the usual vendor cost.",
+    en: "White-label dashboards delivered at roughly a quarter of typical vendor costs.",
     fr: "Dashboards clé-en-main pour un coût divisé par 4 vs les éditeurs traditionnels."
   },
   "professionals.solutions.companies.blog.title": {
-    en: "Advisory & AI",
+    en: "AI & Consulting Insights",
     fr: "Conseils & IA"
+  },
+  "professionals.solutions.companies.blog.article": {
+    en: "Why we left the Big Four and a private bank to build pragmatic AI consulting",
+    fr: "Conseil en IA : pourquoi nous avons quitté les Big Four et une grande banque privée"
   },
   "professionals.solutions.companies.blog.description": {
     en: "Why we left the Big Four and a private bank to build pragmatic AI consulting for finance teams.",
@@ -3028,8 +3032,8 @@ const translations = {
     fr: "Expliquez-nous votre contexte et les workflows que vous souhaitez automatiser."
   },
   "professionals.solutions.companies.form.button": {
-    en: "Submit",
-    fr: "Envoyer"
+    en: "Let's discuss your project",
+    fr: "Discutons de votre projet"
   },
 
   // Professionals - Wealth Managers
@@ -3042,12 +3046,12 @@ const translations = {
     fr: "Bubble Portfolio en marque blanche avec gestion multi-client, analytics et copilotes IA."
   },
   "professionals.solutions.wealth.hero.title": {
-    en: "White-Label Bubble Portfolio for Wealth Managers and Family Offices",
-    fr: "Bubble Portfolio en marque blanche pour CGP et family offices"
+    en: "AI tools for wealth managers",
+    fr: "Outils IA pour CGP et family offices"
   },
   "professionals.solutions.wealth.hero.subtitle": {
-    en: "Bubble helps you screen stocks, test strategies, and execute trades automatically—all through an intuitive AI agent.",
-    fr: "Bubble vous aide à screener les actions, tester les stratégies et exécuter les transactions automatiquement—le tout via un agent IA intuitif."
+    en: "Deploy Bubble Portfolio in white-label mode: multi-client dashboards, AI copilots per profile, automated reporting, broker APIs, and 20+ years of data.",
+    fr: "Déployez Bubble Portfolio en marque blanche : dashboards multi-clients, copilotes IA par profil, reporting automatisé, APIs brokers et 20+ ans de données."
   },
   "professionals.solutions.wealth.tiles.title": {
     en: "What you can deploy",
@@ -3109,6 +3113,14 @@ const translations = {
     en: "Contact us",
     fr: "Contactez-nous"
   },
+  "professionals.solutions.wealth.cta.title": {
+    en: "Ready to see Bubble Portfolio?",
+    fr: "Prêt à voir Bubble Portfolio ?"
+  },
+  "professionals.solutions.wealth.cta.subtitle": {
+    en: "We’re preparing a dedicated professional demo. Share your use case and we’ll activate a white-label environment tailored to your mandates.",
+    fr: "Nous préparons une démo dédiée aux professionnels. Partagez votre cas d’usage et nous activerons un espace marque blanche adapté à vos mandats."
+  },
 
   // Professionals - Demo
   "professionals.demo.title": {
@@ -3154,8 +3166,8 @@ const translations = {
     fr: "Plongez dans un flux réel"
   },
   "professionals.demo.prompts.subtitle": {
-    en: "Use these pre-configured prompts to explore model portfolios, ESG reporting, and automation.",
-    fr: "Utilisez ces prompts pour explorer les portefeuilles modèles, le reporting ESG et l'automatisation."
+    en: "Use these pre-configured prompts to explore model portfolios, reporting packs, and automation.",
+    fr: "Utilisez ces prompts pour explorer portefeuilles modèles, packs de reporting et automatisation."
   },
   "professionals.demo.prompts.portfolio.label": {
     en: "Model portfolio · 45 y/o moderate risk",
@@ -3166,12 +3178,12 @@ const translations = {
     fr: "Génère un portefeuille modèle en EUR pour un client de 45 ans au profil de risque modéré. Fournis les allocations ETF (actions, obligations, cash) ainsi que la volatilité attendue et le drawdown maximal."
   },
   "professionals.demo.prompts.esg.label": {
-    en: "ESG compliance brief for a bank",
-    fr: "Synthèse ESG pour une banque"
+    en: "Regulatory briefing for CFO",
+    fr: "Brief réglementaire pour CFO"
   },
   "professionals.demo.prompts.esg.prompt": {
-    en: "Create an ESG compliance summary for a European retail bank covering 12 KPIs (emissions, diversity, governance). Highlight data sources, monitoring frequency, and automation hand-offs.",
-    fr: "Crée une synthèse de conformité ESG pour une banque de détail européenne couvrant 12 KPI (émissions, diversité, gouvernance). Indique les sources de données, la fréquence de suivi et les passations pour l'automatisation."
+    en: "Prepare a two-page regulatory update for the CFO covering the latest MiFID II disclosures, new tax reporting rules, and the impact on three flagship mandates. Highlight data sources, automation hooks, and next steps.",
+    fr: "Prépare un brief réglementaire de deux pages pour le CFO couvrant les dernières exigences MiFID II, les nouvelles règles fiscales et l'impact sur trois mandats phares. Mets en avant les sources de données, les hooks d'automatisation et les prochaines étapes."
   },
   "professionals.demo.prompts.automation.label": {
     en: "Automation plan · onboard 500 accounts",

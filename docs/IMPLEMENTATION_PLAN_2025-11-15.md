@@ -794,75 +794,40 @@ src/frontend/pages/
 
 #### **B. `/professionals/solutions-companies.html`**
 
-**Target:** Fintechs, banks, investment platforms
+**Target:** SMEs and independent CGPs that need pragmatic AI consulting (no fintech/banks focus).  
+**Purpose:** Showcase custom AI workflow delivery (Claude Code, Codex, Gemini builders + API integrations) plus the `/api/business-contact` form.
 
-**Sections:**
-1. Hero: "AI Solutions for Financial Companies"
-2. **Use Cases** (3-4 main use cases)
-   - White-label AI advisor embedded in app
-   - API integration for portfolio optimization
-   - Embeddable portfolio widgets
-3. **Available AI Modules** (grid of features)
-   - Stock screener module
-   - Backtesting engine
-   - Rebalancing algorithms
-   - Risk analysis tools
-4. **Ready-to-Use Agents** (list of 5-7 pre-built agents)
-5. **Customization Options**
-   - Tailored agents
-   - Guardrails & compliance
-   - Audit logs
-6. **Integration Examples** (code snippets or architectural diagrams)
-7. **Pricing Model**
-   - Custom based on volume and features
-   - Transparent cost structure
-8. **Customer Stories** (case studies if available)
-9. CTA: "Request a Demo" or "Schedule a Call"
-- Replace the placeholder copy with the legacy `/businesses.html` content ("What we do", "Why Bubble", pricing, testimonials) while retaining the improved "Solutions clés" component where it fits.
-- Header/footer must use the Bubble charter template, and include a CTA that points to `/professionals#enterprise-waitlist`.
-- Add a persistent “Contact us” CTA under the hero and a final CTA in the footer that both link to `/professionals#enterprise-waitlist` (no linkage to `/investors/join-us`).
-- Include a “Go further” style section (from the legacy page) outlining certifications/compliance plus a summary card for pricing (without exposing AUM fees); this content already exists in FR and must be translated for EN.
-- Language toggles and nav layout must be identical to the main professional page; add the shared footer as per the Bubble charter.
+**Required structure (FR + EN):**
+1. **Hero** – Title: "AI consulting for SMEs & CGPs" (translation key `professionals.solutions.companies.hero.title`) with subtitle referencing custom AI copilots and CTA "Discutons de votre projet" → `#project-form`.
+2. **Solutions Grid** – 5 tiles mapped to translation keys (`tile1`..`tile5`): custom AI workflow sprints, revenue recognition automation, monthly reporting copilots, client intelligence digests, custom dashboards.
+3. **CTA repeat** – Button below the grid linking to `#project-form`.
+4. **Pinned Blog Preview** – Section title "AI & Consulting Insights" with article + CTA pointing to the legacy slug.
+5. **Pricing Paragraph** – Transparent €15k-30k copy, no mention of fintech/banks/ESG.
+6. **Contact Form** – Same fields as `/businesses` (Company, Name, Email, Use case, Budget, Timeline). Posts to `/api/business-contact`, includes success/error panels, and uses the `businesses.*` translation keys.
+7. **Shared Footer + Floating Chatbot** – Links route to `/professionals` anchors (not `/#waitlist`).
+
+Implementation notes:
+- Only reference SMEs/CGPs and custom AI code builders; avoid promising managed services or low-code kits.
+- CTA labels must use translation keys (`professionals.solutions.companies.form.button`) so FR/EN stay in sync.
+- Blog and pricing content appear once; no duplicate “approach/values/testimonials” blocks.
 
 #### **C. `/professionals/solutions-wealth-managers.html`**
 
-**Target:** CGPs, family offices, RIAs, wealth advisors
+**Target:** Wealth managers, family offices, RIAs evaluating the white-label Bubble Portfolio.  
+**Purpose:** Present Bubble Portfolio’s professional feature set without reintroducing the consulting sections.
 
-**Sections:**
-1. Hero: "AI Tools for Wealth Managers"
-2. **Your Challenges**
-   - Managing multiple client portfolios
-   - Scenario analysis and planning
-   - Documentation and compliance
-   - Client reporting
-3. **How Bubble Helps**
-   - Multi-client dashboard
-   - Risk profiling tools
-   - Automated alerts and rebalancing
-   - Compliance documentation
-4. **Key Features** (grid)
-   - Model portfolio management
-   - Scenario analysis tools
-   - Client reporting automation
-   - Compliance documentation
-   - Risk analytics
-5. **Workflow Examples**
-   - Client onboarding flow
-   - Regular monitoring process
-   - Reporting cadence
-6. **Integration with Existing Tools**
-   - Works alongside your systems
-   - Data portability
-   - API-first design
-7. **Pricing & ROI**
-   - How it saves time and costs
-   - ROI calculator (optional)
-8. CTA: "Request a Demo" or "Schedule a Consultation"
-- Restore the wealth-manager specific sections from the legacy businesses page (hero narrative, concrete example workflows, compliance blocks) and blend them with the new "Solutions clés" layout.
-- Add both CTAs: "Nous contacter" → `/professionals#enterprise-waitlist` and a placeholder "See demo" button for the upcoming wealth-manager demo.
-- Ensure header/footer match the charter template and include the updated language toggle.
-- Import the “Outils pour professionnels de gestion” and “Cas concrets” sections verbatim from `businesses.html`, including certification badges; translate copy for EN while keeping structure.
-- Add the shared footer plus a CTA strip above it reminding visitors that the contact form resides on the main professional page.
+**Required structure (FR + EN):**
+1. **Hero** – Text from `professionals.solutions.wealth.hero.*` describing the white-label Bubble Portfolio.
+2. **Feature Grid (6 tiles)** – Multi-client dashboard, personalized AI agents, advanced reporting, broker APIs, 20+ years of data, quant strategy library.
+3. **CTA block** – Section `#pro-demo` using `professionals.solutions.wealth.cta.*` with two buttons:
+   - "See the demo" (`href="#pro-demo"`, placeholder until the demo overlay ships)
+   - "Contact us / Contactez-nous" → `/professionals#enterprise-waitlist` (FR) or `/en/professionals#enterprise-waitlist` (EN)
+4. **Shared Footer + Floating Chatbot** identical to the companies page.
+
+Implementation notes:
+- No legacy sections (“approach”, “values”, “pricing”, duplicate workflows). The page is intentionally lean.
+- CTA copy lives in translation keys only; ensure both locales share the same structure.
+- All outbound professional CTAs route to `/professionals#enterprise-waitlist` (never `/#waitlist`).
 
 #### **D. `/professionals/demo.html` (Professional Demo)**
 
@@ -910,13 +875,11 @@ src/frontend/pages/
 - [x] `/professionals/demo` (FR + EN) shows the preconfigured prompt buttons (via `data-prompt-key`) and excludes the retail overlay.
 - [x] Enterprise CTA + waitlist anchor added to `/professionals` (FR + EN) so header CTAs have a dedicated target.
 - [ ] Ensure every professional subpage header (solutions, demo, FAQ, contact) matches the Bubble design charter: brand/tagline block, CTA → `#enterprise-waitlist`, `.lang-toggle` buttons.
-- [ ] Port the FR “What we do / Why Bubble / Values / FAQ” content into the EN `/professionals/index.html`.
-- [ ] Restore the original enterprise copy on `/professionals/solutions-companies` and `/professionals/solutions-wealth-managers` (FR + EN): hero, use cases, modules, workflow diagrams, integration/pricing, testimonials.
-- [ ] Confirm no professional footer/nav link references `/#waitlist`; all “join/contact” links route to `/professionals/contact` or `#enterprise-waitlist`.
-- [ ] Implement analytics tracking for the professional prompt buttons and CTA clicks (header + enterprise section).
-- [ ] Replace the “Demander une démo” CTA label everywhere with “Contact us / Contactez-nous” (links to `#enterprise-waitlist`) and ensure the grey CTA variant is removed.
-- [ ] Rebuild the enterprise waitlist/contact section after the professional FAQ with the legacy form copy; nav link “Nous contacter” must scroll precisely to that section.
-- [ ] Solutions pages include both CTAs (“See demo” placeholder for wealth managers + “Contact us”) and append the shared footer with correct FR/EN toggles.
+- [ ] `/professionals/solutions-companies` (FR + EN) uses the SME/CGP consulting layout: hero, 5 solutions tiles, blog preview, pricing paragraph, and the `/api/business-contact` form with translation keys only.
+- [ ] `/professionals/solutions-wealth-managers` (FR + EN) focuses solely on the white-label Bubble Portfolio with the 6-tile feature grid and the demo/contact CTA strip (no duplicate “approach/values/pricing” sections).
+- [ ] Confirm no professional footer/nav link references `/#waitlist`; all “join/contact” links route to `/professionals#enterprise-waitlist`.
+- [ ] Chatbot (floating input + side panel) is present on every professional page and receives the correct `pageContext` metadata (`professionals_companies` vs `professionals_wealth`).
+- [ ] Investor + professional CTAs consistently read “Contact us / Contactez-nous” and use pill styling per the Bubble design system.
 
 **Q5: "Sécurité des données?" / "How secure is my client data?"**
 - Answer: Bank-grade encryption
