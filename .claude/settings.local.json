@@ -9,7 +9,8 @@
       "Bash(else echo \"✗ No footer found\")",
       "Bash(fi)",
       "Bash(done)",
-      "Bash(if grep -q \"footer-nav\" \"/Users/jadethi-viet-lanhoang/Library/Mobile Documents/com~apple~CloudDocs/Bubble invest/BubbleLaunch/src/frontend/pages/investors/$file\")"
+      "Bash(if grep -q \"footer-nav\" \"/Users/jadethi-viet-lanhoang/Library/Mobile Documents/com~apple~CloudDocs/Bubble invest/BubbleLaunch/src/frontend/pages/investors/$file\")",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []

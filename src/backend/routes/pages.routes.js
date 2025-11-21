@@ -446,10 +446,6 @@ router.get("/professionals/demo", (req, res) => {
   res.sendFile(path.join(frPagesDir, "professionals/demo.html"));
 });
 
-router.get("/professionals/faq", (req, res) => {
-  res.sendFile(path.join(frPagesDir, "professionals/faq.html"));
-});
-
 router.get("/professionals/contact", (req, res) => {
   res.sendFile(path.join(frPagesDir, "professionals/contact.html"));
 });
@@ -473,10 +469,6 @@ router.get("/en/professionals/solutions-wealth-managers", (req, res) => {
 
 router.get("/en/professionals/demo", (req, res) => {
   res.sendFile(path.join(enPagesDir, "professionals/demo.html"));
-});
-
-router.get("/en/professionals/faq", (req, res) => {
-  res.sendFile(path.join(enPagesDir, "professionals/faq.html"));
 });
 
 router.get("/en/professionals/contact", (req, res) => {

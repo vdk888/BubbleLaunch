@@ -1134,8 +1134,8 @@ const translations = {
     fr: "Nous accompagnons principalement les PME et sociétés de gestion dans la modernisation de leurs processus financiers. Chez Bubble Invest, il n'est pas question de vendre du rêve, des diagnostics interminables sur PowerPoint ou des solutions magiques possibles qu'avec une armée de consultants. On préfère les projets pragmatiques : automatisation et optimisation de tâches concrètes, avec des outils simples ou personnalisés selon chaque besoin."
   },
   "businesses.what.p2": {
-    en: "Like with Bubble Portfolio, our goal is to share everything that's now possible with modern AI code builders (Claude Code, Codex, Gemini), direct API integrations, and lightweight custom services so every team can benefit—no generic low-code recipes.",
-    fr: "Comme pour Bubble Portfolio, notre objectif est de partager tout ce qui est désormais possible avec les AI code builders modernes (Claude Code, Codex, Gemini), les intégrations API directes et des services personnalisés légers afin que chaque équipe puisse en bénéficier—sans recettes low code génériques."
+    en: "Like with Bubble Portfolio, our goal is to share everything that's now possible with modern AI code builders , direct API integrations, and lightweight custom services so every team can benefit—no generic low-code recipes.",
+    fr: "Comme pour Bubble Portfolio, notre objectif est de partager tout ce qui est désormais possible avec les AI code builders modernes , les intégrations API directes et des services personnalisés légers afin que chaque équipe puisse en bénéficier—sans recettes low code génériques."
   },
   "businesses.what.p3": {
     en: "In line with our finance experience and technological appetite, we use the most reliable and current intelligent tools with an agility that truly adapts to each client and context.",
@@ -1186,8 +1186,8 @@ const translations = {
     fr: "Exemples concrets"
   },
   "businesses.examples.1": {
-    en: "<strong>Rapid implementation</strong> of <strong>simple workflows</strong> (Claude Code, Codex, Gemini) and tailor-made <strong>AI copilots</strong>",
-    fr: "<strong>Implémentation rapide</strong> de <strong>workflows simples</strong> (Claude Code, Codex, Gemini) et de <strong>copilotes IA</strong> sur mesure"
+    en: "<strong>Rapid implementation</strong> of <strong>simple workflows</strong>  and tailor-made <strong>AI copilots</strong>",
+    fr: "<strong>Implémentation rapide</strong> de <strong>workflows simples</strong>  et de <strong>copilotes IA</strong> sur mesure"
   },
   "businesses.examples.2": {
     en: "<strong>Revenue recognition process</strong>: client invoicing workflow, <strong>accounting reconciliation</strong>, simplified budget tracking",
@@ -2960,8 +2960,8 @@ const translations = {
     fr: "Conseil IA pour PME & CGP"
   },
   "professionals.solutions.companies.hero.subtitle": {
-    en: "We build custom AI workflows and copilots (Claude Code, Codex, Gemini) to modernize finance operations without Big-Four theatre.",
-    fr: "Nous créons des workflows IA et copilotes sur mesure (Claude Code, Codex, Gemini) pour moderniser vos opérations finance sans théâtre façon Big Four."
+    en: "We build custom AI workflows and copilots  to modernize finance operations without Big-Four theatre.",
+    fr: "Nous créons des workflows IA et copilotes sur mesure  pour moderniser vos opérations finance sans théâtre façon Big Four."
   },
   "professionals.solutions.companies.overview.title": {
     en: "Core consulting modules",
@@ -2992,12 +2992,12 @@ const translations = {
     fr: "Jusqu'à 15h gagnées par mois grâce aux extractions automatiques, contrôles et exports."
   },
   "professionals.solutions.companies.tile4.title": {
-    en: "Client intelligence digests",
-    fr: "Digests d'intelligence client"
+    en: "News intelligence digests",
+    fr: "Digests d'intelligence média"
   },
   "professionals.solutions.companies.tile4.description": {
-    en: "Automated summaries of earnings, regulatory updates, and mandate risks that save 5–7 hours per week.",
-    fr: "Résumés automatisés de résultats, updates réglementaires et risques par mandat qui libèrent 5-7h par semaine."
+    en: "Continuous news monitoring for fund managers: AI scores materiality, links alerts to mandates, and escalates insights automatically.",
+    fr: "Monitoring continu pour gérants : l'IA score la matérialité, rattache les alertes aux mandats et escalade automatiquement les insights clés."
   },
   "professionals.solutions.companies.tile5.title": {
     en: "Custom performance dashboards",
