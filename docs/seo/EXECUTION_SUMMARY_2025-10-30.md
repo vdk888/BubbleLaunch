@@ -296,8 +296,56 @@ All files are in `/docs/seo/`:
 
 ---
 
-**Git History**:
+---
+
+## 📝 Update Log - Post-Implementation Tracking
+
+### Update 2025-11-21: Sitemap Expansion Phase
+**Major SEO Expansion Completed**
+
+**What Changed**:
+- ✅ **Sitemap expanded** from 24 URLs to 44+ URLs
+  - Added: 10 Investor hub pages (FR + EN)
+  - Added: 10 Professional hub pages (FR + EN)
+  - Added: 2 Pricing pages (FR + EN)
+- ✅ **Code updated**: `src/backend/routes/sitemap.routes.js` (20+ new pages)
+- ✅ **Tested locally**: All pages verified in `/sitemap.xml`
+- ✅ **Documentation updated**:
+  - README-SEO.md - added new next steps & analytics section
+  - GOOGLE_SEARCH_CONSOLE_ACTIONS.md - updated with expanded sitemap info
+  - This file - added update log
+
+**Impact**:
+- 20+ investor & professional pages now discoverable by Google
+- Pricing pages (critical for revenue) now properly included in sitemap
+- All hub pages have proper priority (0.6-0.8) and changefreq set
+- Ready for immediate resubmission to Google Search Console
+
+**Next Actions** (After This Update):
+1. Resubmit sitemap.xml to Google Search Console (5 min)
+2. Request priority indexing for critical pages (5 min)
+3. Wait 24-48 hours for indexing
+4. Monitor Google Search Console Performance tab
+
+**Status**: ✅ **CODE READY FOR RESUBMISSION** | ⏳ **AWAITING GSC RESUBMISSION**
+
+### Update 2025-11-02: Pricing Page Refresh
+**Pricing Page Visibility Restored**
+
+**What Changed**:
+- ✅ Pricing page refreshed with optimized meta tags
+- ✅ Canonical + hreflang pairs restored
+- ✅ Social cards (OG, Twitter) updated
+- ✅ Robots meta changed from `noindex` to `index`
+
+**Result**: Pricing page now searchable and visible in Google results
+
+---
+
+## Git History (Updated):
+- `2025-11-21` - Sitemap expansion: 20+ investor/professional pages added
+- `2025-11-02` - Pricing pages refreshed (noindex → index)
 - `95e52ca` - Meta tags suite (all 6 pages updated)
 - `8b78a5a` - Google Search Console action plan
 
-**Status**: ✅ **READY FOR EXECUTION**
+**Status**: ✅ **READY FOR GSC RESUBMISSION**

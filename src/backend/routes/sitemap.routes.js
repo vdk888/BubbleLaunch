@@ -79,6 +79,76 @@ router.get('/sitemap.xml', async (req, res) => {
         lastmod: today
       },
       {
+        fr: '/pricing',
+        en: '/en/pricing',
+        priority: '0.8',
+        changefreq: 'monthly',
+        lastmod: today
+      },
+      {
+        fr: '/investors',
+        en: '/en/investors',
+        priority: '0.7',
+        changefreq: 'monthly',
+        lastmod: today
+      },
+      {
+        fr: '/investors/solution',
+        en: '/en/investors/solution',
+        priority: '0.7',
+        changefreq: 'monthly',
+        lastmod: today
+      },
+      {
+        fr: '/investors/pricing',
+        en: '/en/investors/pricing',
+        priority: '0.8',
+        changefreq: 'monthly',
+        lastmod: today
+      },
+      {
+        fr: '/investors/join-us',
+        en: '/en/investors/join-us',
+        priority: '0.6',
+        changefreq: 'monthly',
+        lastmod: today
+      },
+      {
+        fr: '/professionals',
+        en: '/en/professionals',
+        priority: '0.7',
+        changefreq: 'monthly',
+        lastmod: today
+      },
+      {
+        fr: '/professionals/solutions-companies',
+        en: '/en/professionals/solutions-companies',
+        priority: '0.7',
+        changefreq: 'monthly',
+        lastmod: today
+      },
+      {
+        fr: '/professionals/solutions-wealth-managers',
+        en: '/en/professionals/solutions-wealth-managers',
+        priority: '0.7',
+        changefreq: 'monthly',
+        lastmod: today
+      },
+      {
+        fr: '/professionals/demo',
+        en: '/en/professionals/demo',
+        priority: '0.6',
+        changefreq: 'yearly',
+        lastmod: today
+      },
+      {
+        fr: '/professionals/contact',
+        en: '/en/professionals/contact',
+        priority: '0.6',
+        changefreq: 'yearly',
+        lastmod: today
+      },
+      {
         fr: '/privacy',
         en: '/en/privacy',
         priority: '0.4',

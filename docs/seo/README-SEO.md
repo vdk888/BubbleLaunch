@@ -292,6 +292,7 @@
 - [x] 404 page returns proper status code
 - [x] Image alt text optimized
 - [x] No console errors
+- [x] **NEW (2025-11-21)**: 20+ investor/professional pages added to sitemap - all verified ✅
 
 ### Production Testing (After Deployment)
 - [ ] All URLs work on live site
@@ -300,30 +301,59 @@
 - [ ] Structured data validates (Google Rich Results Test)
 - [ ] Mobile-friendly (Google Mobile Test)
 - [ ] PageSpeed acceptable (PageSpeed Insights)
+- [ ] **NEW**: Google Analytics 4 tracking code deployed
+- [ ] **NEW**: Performance optimizations (lazy loading, preconnect) deployed
 
 ### Google Search Console (After Deployment)
 - [ ] Site ownership verified
-- [ ] Sitemap submitted
-- [ ] 3 key pages requested for indexing
+- [ ] **Sitemap updated and resubmitted** (2025-11-21) - 20+ new pages included
+- [ ] Priority indexing requested for: /pricing, /investors, /professionals (FR + EN)
 - [ ] Weekly email reports enabled
 
 ---
 
 ## 🎯 Next Steps - PRIORITY ORDER
 
-### ✅ STEP 1: Google Search Console (10-15 minutes TODAY)
+### ✅ STEP 1: Resubmit Updated Sitemap to Google Search Console (5-10 minutes TODAY)
 **Read**: [GOOGLE_SEARCH_CONSOLE_ACTIONS.md](GOOGLE_SEARCH_CONSOLE_ACTIONS.md)
 
-**Actions**:
-1. Re-submit sitemap.xml (2 min)
-2. Request indexing for 6 pages (10 min) - **Priority: pricing page**
-3. Monitor for 48 hours
+**NEW - 2025-11-21**: Sitemap now includes 20+ additional pages:
+- Pricing pages (FR + EN)
+- Investor hub pages (5 French + 5 English)
+- Professional hub pages (5 French + 5 English)
 
-**Why**: Makes pricing page visible to Google + forces re-crawl of updated meta tags
+**Actions**:
+1. **Resubmit sitemap.xml** (2 min) - includes new 20+ pages
+2. **Request priority indexing** for critical pages (5 min):
+   - /pricing (FR + EN)
+   - /investors (FR + EN)
+   - /professionals (FR + EN)
+3. Monitor for 24-48 hours
+
+**Why**: Makes all new investor/professional pages discoverable by Google + ensures pricing pages are properly indexed
 
 ---
 
-### 📝 STEP 2: Blog Article Writing (Start This Week)
+### 📊 STEP 2: Set Up Google Analytics 4 (2-3 hours THIS WEEK)
+**NEW**: Complete GA4 implementation missing from current setup
+
+**Actions**:
+1. Create GA4 property (if not already created)
+2. Add GA4 tracking code to all HTML pages
+3. Configure key events:
+   - CTA clicks (waitlist, demo, contact)
+   - Portfolio simulator interactions
+   - Blog post views
+   - Pricing page visits
+4. Test in real-time view
+
+**Why**: Measure SEO performance, track conversions, understand user behavior
+
+**Reference**: See STEP 3 below for ANALYTICS_SETUP.md (will be created)
+
+---
+
+### 📝 STEP 3: Blog Article Writing (Start This Week)
 **Read**: [MASTER_BLOG_ARTICLE_OUTLINES.md](MASTER_BLOG_ARTICLE_OUTLINES.md)
 
 **Before Each Writing Session**:
@@ -338,11 +368,22 @@
 
 ---
 
-### 📊 STEP 3: Monitor Results (After GSC Actions)
-- [ ] Wait 24 hours
+### 📈 STEP 4: Monitor Results (After GSC Actions + Analytics Setup)
+- [ ] Wait 24 hours for indexing
 - [ ] Check Google search: `site:bubbleinvest.org`
-- [ ] Verify pricing page appears
-- [ ] Monitor CTR improvement in GSC
+- [ ] Verify new pages appear in search results
+- [ ] Monitor CTR and impressions in Google Search Console
+- [ ] Verify GA4 tracking code is working (check real-time view)
+
+---
+
+### ⚡ STEP 5: Performance Optimizations (1-2 hours NEXT WEEK)
+**NEW**: Add performance enhancements for Core Web Vitals
+- Add `loading="lazy"` to images
+- Add preconnect for Google Fonts
+- Test page speed improvements
+
+**Why**: Improves Google rankings and user experience
 
 ---
 
@@ -456,13 +497,28 @@
 
 ---
 
-**Last Updated**: 2025-11-02
-**Status**: ✅ **Meta Tags Complete** | 🚀 **Ready for Google Search Console**
+**Last Updated**: 2025-11-21
+**Status**: ✅ **Sitemap Expanded** | 📊 **Analytics Setup Next** | 🚀 **Ready for Resubmission**
 
-**Recent Updates (2025-11-02)**:
+**Recent Updates (2025-11-21)** - SITEMAP EXPANSION:
+- ✅ **20+ new pages added to sitemap** (comprehensive expansion)
+  - Pricing pages (FR + EN) — NOW INCLUDED in sitemap
+  - Investor hub pages: 5 French + 5 English
+  - Professional hub pages: 5 French + 5 English
+- ✅ **Sitemap tested locally** — all pages verified in /sitemap.xml
+- ✅ **README-SEO.md updated** — new next steps, analytics section added
+- ✅ **Documentation cleaned** — verified all 7 SEO docs are current and active
+
+**Next Immediate Actions** (2025-11-21):
+- 🚀 Resubmit sitemap to Google Search Console (5 min)
+- 🚀 Request priority indexing for pricing/investors/professionals (5 min)
+- 📊 Set up Google Analytics 4 (2-3 hours)
+- ⚡ Add performance optimizations (1-2 hours)
+
+**Previous Updates (2025-11-02)**:
 - ✅ **Pricing pages refreshed** — meta descriptions aligned FR/EN, canonical + hreflang pairs restored, social cards updated, robots index enabled
 
-**Previous Updates (2025-10-30)**:
+**Phase 2 Updates (2025-10-30)**:
 - ✅ **All 6 HTML pages updated** with new meta tags
 - ✅ **Pricing page visibility fixed** (noindex → index) - Major SEO win!
 - ✅ **Democratization narrative** consistently applied
@@ -471,13 +527,18 @@
 - ✅ **EXECUTION_SUMMARY_2025-10-30.md created** - comprehensive overview
 - ✅ **GOOGLE_SEARCH_CONSOLE_ACTIONS.md ready** - step-by-step next steps
 
-**Previous Phase (2025-10-29)**:
+**Phase 1 (2025-10-29)**:
 - ✅ Identified core democratization message
 - ✅ Created STYLE_GUIDE_SEO_WRITING.md and positioning guides
 - ✅ Designed blog article outlines with Notion AI workflow
 
-**Next Milestone**: ✅ Execute Google Search Console actions (10-15 minutes) to make pricing page visible!
+**Key Metrics**:
+- **Pages in Sitemap**: 24 → **44+** (20+ page expansion!)
+- **Static Pages**: 6 → 16 (priority pages added)
+- **Blog Posts**: 7 (dynamic, subject to content updates)
+- **SEO Documentation**: 7 active files (consolidated from 14)
+- **Status**: Ready for Google Search Console resubmission
 
 ---
 
-**Ready?** Start with [GOOGLE_SEARCH_CONSOLE_ACTIONS.md](GOOGLE_SEARCH_CONSOLE_ACTIONS.md) - your next action plan (10-15 min task).
+**Ready?** Start with [GOOGLE_SEARCH_CONSOLE_ACTIONS.md](GOOGLE_SEARCH_CONSOLE_ACTIONS.md) - your next action plan (5-10 min resubmission task).

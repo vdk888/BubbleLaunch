@@ -19,7 +19,7 @@ This is the **marketing website** for **Bubble Invest**, a fintech startup. This
 
 **Services**:
 1. **Bubble Portfolio** (Primary Product) – Automated trading copilot with chat-native workflows, strategy backtesting, and broker execution.
-2. **Bubble Businesses** (B2B Consulting) – Custom AI workflow delivery for SMEs and independent CGPs using Claude Code, Codex, Gemini, and direct API integrations.
+2. **Bubble Businesses** (B2B Consulting) – Custom AI workflow delivery for SMEs and independent wealth managers using Claude Code, Codex, Gemini, and direct API integrations.
 
 ### Bubble Invest's Core Approach
 
@@ -37,7 +37,7 @@ This is the **marketing website** for **Bubble Invest**, a fintech startup. This
 - **Regulatory Ready & User Controlled**: KYC/GDPR-friendly design with full auditability and broker-side custody.
 
 #### **Bubble Businesses (B2B Consulting Service)**
-- **Ex-Big Four & UBS Team** delivering pragmatic automation projects for SMEs/CGPs.
+- **Ex-Big Four & UBS Team** delivering pragmatic automation projects for SMEs/wealth managers.
 - **Scope**: Custom AI workflow sprints, revenue recognition automation, reporting copilots, reconciliation dashboards, client-intelligence digests.
 - **Tooling**: Claude Code/Codex/Gemini code builders wired into clients' APIs (not generic low-code).
 - **Pricing & Timing**: Diagnostic (€3k-€5k), targeted automations (€8k-€12k), full projects (€20k-€30k) delivered in 2-4 months with transparent budgets.
@@ -59,7 +59,7 @@ The current codebase is a multilingual landing page with integrated AI chatbot, 
 - **Landing Page** (`index.html`) - Presents Bubble Portfolio product vision and value proposition
 - **Portfolio Simulator** (`portfolio-simulator.html`) - Educational demo of 9 backtested strategies for investors to explore investment concepts
 - **Blog** (`blog.html`, `/blog/*`) - SEO-driven content educating about investment strategies, AI, portfolio management, democratization
-- **Businesses** (`businesses.html`) - B2B consulting for SMEs & CGPs: custom AI workflows and agents (€3k-€30k projects)
+- **Businesses** (`businesses.html`) - B2B consulting for SMEs & wealth managers: custom AI workflows and agents (€3k-€30k projects)
 - **AI Chatbot** - Educational chatbot answering questions about investment, Bubble's approach, and product capabilities
 
 ---

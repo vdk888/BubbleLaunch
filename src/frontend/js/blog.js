@@ -130,7 +130,7 @@ function displayFeaturedPost(post, container) {
     const readMoreText = currentLanguage === 'fr' ? 'Lire l\'article' : 'Read Article';
     const defaultSummary = currentLanguage === 'fr' ? 
         'Perçons la bulle financière ensemble' :
-        'Let's pop the finance bubble together';
+        'Let\'s pop the finance bubble together';
     
     container.innerHTML = `
         <div class="featured-card">

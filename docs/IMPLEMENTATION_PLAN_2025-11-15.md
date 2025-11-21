@@ -27,8 +27,8 @@ This document outlines the complete restructuring of BubbleLaunch from a unified
 - Added enterprise “Contact our team” CTAs and waitlist anchors on `/professionals` (FR + EN) so the professional nav buttons can point to a dedicated section.
 
 **Outstanding tasks before moving to the next phases**
-1. **Professional solutions refresh (Consulting for SMEs/CGPs & Bubble Portfolio white-label)**
-   - Rewrite the hero + summary copy on `/professionals/solutions-companies` (FR/EN) to target small enterprises, CGPs, and family offices needing AI-enabled workflows—remove fintech/bank references.
+1. **Professional solutions refresh (Consulting for SMEs/wealth managers & Bubble Portfolio white-label)**
+   - Rewrite the hero + summary copy on `/professionals/solutions-companies` (FR/EN) to target small enterprises, wealth managers, and family offices needing AI-enabled workflows—remove fintech/bank references.
    - Strip the consulting page down to the essentials requested: remove “Outils portefeuille professionnel”, “Cas d’usage typiques”, “Notre approche”, “Pourquoi Bubble”, “Valeurs et méthodologie”, “Prêt à transformer vos opérations”. Rebuild “Solutions clés” tiles so they match the legacy concrete examples; drop the duplicated “exemples concrets” grid and ensure every block ends with a “Discutons de votre projet” CTA.
    - Append the same contact form + blog preview used on `/professionals/index.html`, retain the tarifs paragraph, and follow the Bubble glassmorphism/charter layout.
    - Reposition `/professionals/solutions-wealth-managers` (FR/EN) so it strictly markets the Bubble Portfolio tool as a white-label solution for wealth managers (CGP in FR): replace the “Solutions clés” with one offer that explains the product, delete “Cas d’usage”, “Notre approche”, “Valeurs”, “Pourquoi Bubble”, “Tarifs”, “Amplifiez votre capacité…” etc., and add CTAs for “Discutons de votre projet” plus a placeholder “See the demo”.
@@ -708,7 +708,7 @@ src/frontend/pages/
 ├── professionals/
 │   ├── index.html                      (Vision page)
 │   ├── solutions-companies.html        (For companies/fintechs)
-│   ├── solutions-wealth-managers.html  (For CGPs/wealth advisors)
+│   ├── solutions-wealth-managers.html  (For wealth managers/wealth advisors)
 │   ├── demo.html                       (Professional demo page)
 │   ├── faq.html                        (Professional FAQ)
 │   └── contact.html                    (Contact/inquiry form)
@@ -794,11 +794,11 @@ src/frontend/pages/
 
 #### **B. `/professionals/solutions-companies.html`**
 
-**Target:** SMEs and independent CGPs that need pragmatic AI consulting (no fintech/banks focus).  
+**Target:** SMEs and independent wealth managers that need pragmatic AI consulting (no fintech/banks focus).  
 **Purpose:** Showcase custom AI workflow delivery (Claude Code, Codex, Gemini builders + API integrations) plus the `/api/business-contact` form.
 
 **Required structure (FR + EN):**
-1. **Hero** – Title: "AI consulting for SMEs & CGPs" (translation key `professionals.solutions.companies.hero.title`) with subtitle referencing custom AI copilots and CTA "Discutons de votre projet" → `#project-form`.
+1. **Hero** – Title: "AI consulting for SMEs & wealth managers" (translation key `professionals.solutions.companies.hero.title`) with subtitle referencing custom AI copilots and CTA "Discutons de votre projet" → `#project-form`.
 2. **Solutions Grid** – 5 tiles mapped to translation keys (`tile1`..`tile5`): custom AI workflow sprints, revenue recognition automation, monthly reporting copilots, client intelligence digests, custom dashboards.
 3. **CTA repeat** – Button below the grid linking to `#project-form`.
 4. **Pinned Blog Preview** – Section title "AI & Consulting Insights" with article + CTA pointing to the legacy slug.
@@ -807,7 +807,7 @@ src/frontend/pages/
 7. **Shared Footer + Floating Chatbot** – Links route to `/professionals` anchors (not `/#waitlist`).
 
 Implementation notes:
-- Only reference SMEs/CGPs and custom AI code builders; avoid promising managed services or low-code kits.
+- Only reference SMEs/wealth managers and custom AI code builders; avoid promising managed services or low-code kits.
 - CTA labels must use translation keys (`professionals.solutions.companies.form.button`) so FR/EN stay in sync.
 - Blog and pricing content appear once; no duplicate “approach/values/testimonials” blocks.
 

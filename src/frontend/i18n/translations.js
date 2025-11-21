@@ -2952,7 +2952,7 @@ const translations = {
     fr: "Conseil pragmatique pour déployer workflows simples et copilotes IA sur mesure pour vos équipes finance."
   },
   "professionals.solutions.companies.hero.title": {
-    en: "AI consulting for SMEs & CGPs",
+    en: "AI consulting for SMEs & wealth managers",
     fr: "Conseil IA pour PME & CGP"
   },
   "professionals.solutions.companies.hero.subtitle": {
