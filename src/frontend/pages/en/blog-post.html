@@ -39,10 +39,10 @@
     <link rel="alternate" id="hreflang-default" hreflang="x-default" href="https://bubbleinvest.org/blog/">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
-    <link rel="stylesheet" href="/assets/styles/styles.css" />
-    <link rel="stylesheet" href="/assets/styles/blog.css" />
-    <link rel="stylesheet" href="/assets/styles/blog-post.css" />
+    <link rel="icon" type="image/svg+xml" href="../assets/images/bubble-favicon.svg" />
+    <link rel="stylesheet" href="../assets/styles/styles.css" />
+    <link rel="stylesheet" href="../assets/styles/blog.css" />
+    <link rel="stylesheet" href="../assets/styles/blog-post.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -83,13 +83,20 @@
           <div class="tagline" data-translate="hero.tagline">Transparent investment in the AI era.</div>
         </div>
         <div class="header-right">
+          <!-- Mobile Language Switcher -->
+          <div class="mobile-language-switcher">
+            <button id="en-switch-mobile" class="active">EN</button>
+            <span>|</span>
+            <button id="fr-switch-mobile">FR</button>
+          </div>
+
           <!-- Hamburger Menu Button (Mobile Only) -->
-          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu" onclick="document.getElementById('mobile-nav-overlay').classList.toggle('active'); this.classList.toggle('active'); document.body.classList.toggle('mobile-menu-open');">
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
           </button>
-          
+
           <!-- Desktop Navigation -->
           <nav class="desktop-nav">
             <a href="/en/#about" data-translate="nav.vision">Vision</a>
@@ -109,13 +116,6 @@
               <button id="fr-switch">FR</button>
             </div>
           </nav>
-          
-          <!-- Mobile Language Switcher -->
-          <div class="mobile-language-switcher">
-            <button id="en-switch-mobile" class="active">EN</button>
-            <span>|</span>
-            <button id="fr-switch-mobile">FR</button>
-          </div>
         </div>
         
         <!-- Mobile Navigation Overlay -->
