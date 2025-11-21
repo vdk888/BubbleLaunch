@@ -177,7 +177,7 @@ Jusqu’ici, vous payiez un gérant ou un banquier pour des mots rassurants et u
 | English | French |
 |---------|--------|
 | A Complete Investment Agent | Un Agent d'Investissement Complet |
-| WWe’re developing the tool we use for our own investments: an automated system that optimizes portfolios through transparent quantitative strategies and rigorous backtests, rebalanced regularly. | Nous développons l'outil que nous utilisons pour nos investissements personnels : un système automatique qui optimise les portefeuilles via des stratégies quantitatives transparentes et des backtests rigoureux, rééquilibrés régulièrement. |
+| We’re developing the tool we use for our own investments: an automated system that optimizes portfolios through transparent quantitative strategies and rigorous backtests, rebalanced regularly. | Nous développons l'outil que nous utilisons pour nos investissements personnels : un système automatique qui optimise les portefeuilles via des stratégies quantitatives transparentes et des backtests rigoureux, rééquilibrés régulièrement. |
 | Our platform includes a full‑fledged AI agent that can act as your private manager: personalized advice, automated trading, and accessible financial education. | Notre plateforme intègre un véritable agent IA complet capable de jouer le rôle de votre gérant privé : conseils personnalisés, trading automatique, et éducation financière accessible. |
 
 ### Portfolio Simulator Preview

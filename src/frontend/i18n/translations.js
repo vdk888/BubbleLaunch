@@ -3791,6 +3791,142 @@ const translations = {
     fr: "P.S. Vous pouvez changer votre stratégie à tout moment, ajouter/retirer de l'argent à tout moment, ou me poser des questions 24h/24. Vous êtes toujours en contrôle - je rend juste tout sans effort."
   },
 
+  // ========== NEW PRICING MESSAGE (10.5) ==========
+  "beginner.message10_5.user": {
+    en: "How much does this cost?",
+    fr: "Combien ça coûte ?"
+  },
+  "beginner.message10_5.bot.intro": {
+    en: "Great question. Bubble flips the traditional fee model on its head.",
+    fr: "Excellente question. Bubble renverse le modèle traditionnel de frais."
+  },
+  "beginner.message10_5.bot.pricing_title": {
+    en: "How Bubble Saves You Money",
+    fr: "Comment Bubble Vous Économise de l'Argent"
+  },
+  "beginner.message10_5.bot.pricing_rows": [
+    {
+      name_en: "Traditional Robo-Advisors",
+      name_fr: "Robots-Conseillers Traditionnels",
+      fee_en: "0.85-1.6% AUM",
+      fee_fr: "0.85-1.6% sur encours",
+      example_en: "€1,700-€3,200/year on €200k",
+      example_fr: "1 700-3 200€/an sur 200 k€"
+    },
+    {
+      name_en: "Human Wealth Advisors",
+      name_fr: "Conseillers en Gestion de Patrimoine",
+      fee_en: "1.5-2.5% AUM",
+      fee_fr: "1.5-2.5% sur encours",
+      example_en: "€3,000-€5,000/year on €200k",
+      example_fr: "3 000-5 000€/an sur 200 k€"
+    },
+    {
+      name_en: "Bubble Portfolio",
+      name_fr: "Bubble Portfolio",
+      fee_en: "€5-10/month flat",
+      fee_fr: "5-10€/mois fixes",
+      example_en: "€60-€120/year, no matter what",
+      example_fr: "60-120€/an, peu importe la taille"
+    }
+  ],
+  "beginner.message10_5.bot.savings_calc": {
+    en: "On a €50,000 portfolio growing at 8% annually for 20 years:\n\n• With traditional 1.5% AUM fees: €7,600+ in fees\n• With Bubble: €24,000 in fees (€120/month × 12 × 20)\n• Your savings: €7,600+",
+    fr: "Sur un portefeuille de 50 000€ croissant de 8% par an pendant 20 ans :\n\n• Avec des frais AUM traditionnels de 1.5% : 7 600€+ en frais\n• Avec Bubble : 24 000€ en frais (120€/mois × 12 × 20)\n• Vos économies : 7 600€+"
+  },
+  "beginner.message10_5.bot.why_cheap": {
+    en: "Why can we charge so little? Because AI scales. One agent serves millions of investors. Zero cost per additional user. Traditional advisors can't compete with that math.",
+    fr: "Pourquoi pouvons-nous facturer aussi peu ? Parce que l'IA met à l'échelle. Un agent sert des millions d'investisseurs. Coût zéro par utilisateur supplémentaire. Les conseillers traditionnels ne peuvent pas rivaliser avec ces chiffres."
+  },
+  "beginner.message10_5.bot.closing": {
+    en: "You're not just getting a tool—you're getting the economics of a hedge fund at the cost of a coffee subscription.",
+    fr: "Vous ne recevez pas qu'un outil—vous obtenez l'économie d'un hedge fund au coût d'un abonnement à un café."
+  },
+
+  // ========== NEW CHATGPT DIFFERENTIATION MESSAGE ==========
+  "beginner.message11.user": {
+    en: "What's the difference with ChatGPT?",
+    fr: "Quelle est la différence avec ChatGPT ?"
+  },
+  "beginner.message11.bot.intro": {
+    en: "ChatGPT is brilliant—it answers questions and explains concepts. But it doesn't build and execute portfolios for you.",
+    fr: "ChatGPT est brillant—il répond aux questions et explique les concepts. Mais il ne construit pas et n'exécute pas de portefeuilles pour vous."
+  },
+  "beginner.message11.bot.comparison_title": {
+    en: "ChatGPT vs Bubble",
+    fr: "ChatGPT vs Bubble"
+  },
+  "beginner.message11.bot.comparison_items": [
+    {
+      feature_en: "Chat & Explanations",
+      feature_fr: "Chat et Explications",
+      chatgpt_en: "✓ Yes",
+      chatgpt_fr: "✓ Oui",
+      bubble_en: "✓ Yes",
+      bubble_fr: "✓ Oui"
+    },
+    {
+      feature_en: "Strategy Backtesting",
+      feature_fr: "Backtesting de Stratégies",
+      chatgpt_en: "✗ No (manual only)",
+      chatgpt_fr: "✗ Non (manuel)",
+      bubble_en: "✓ Full 20-year backtest",
+      bubble_fr: "✓ Backtest 20 ans complet"
+    },
+    {
+      feature_en: "Portfolio Construction",
+      feature_fr: "Construction de Portefeuille",
+      chatgpt_en: "✗ No",
+      chatgpt_fr: "✗ Non",
+      bubble_en: "✓ Automated allocation",
+      bubble_fr: "✓ Allocation automatisée"
+    },
+    {
+      feature_en: "Live Trading Execution",
+      feature_fr: "Exécution de Transactions",
+      chatgpt_en: "✗ No",
+      chatgpt_fr: "✗ Non",
+      bubble_en: "✓ Orders to your broker",
+      bubble_fr: "✓ Ordres vers votre courtier"
+    },
+    {
+      feature_en: "Ongoing Rebalancing",
+      feature_fr: "Rééquilibrage Continu",
+      chatgpt_en: "✗ No (you do it manually)",
+      chatgpt_fr: "✗ Non (vous le faites)",
+      bubble_en: "✓ Monthly automation",
+      bubble_fr: "✓ Automatisation mensuelle"
+    }
+  ],
+  "beginner.message11.bot.closing": {
+    en: "ChatGPT is a co-pilot. Bubble is your full portfolio autopilot. You talk, it builds, executes, and rebalances—24/7.",
+    fr: "ChatGPT est un co-pilote. Bubble est votre pilote automatique complet. Vous parlez, il construit, exécute et rééquilibre—24h/24."
+  },
+
+  // ========== NEW PRICING CALLOUT FOR INTERMEDIATE DEMO (message 6 enhance) ==========
+  "workflow.message6.bot.pricing_note": {
+    en: "And here's what makes this accessible: Bubble charges €5-10/month flat—vs traditional advisors at 1-2% AUM annually. On €100k, that's €10k+ saved over a decade.",
+    fr: "Et voici ce qui rend cela accessible : Bubble facture 5-10€/mois fixes—par rapport aux conseillers traditionnels à 1-2% sur encours annuels. Sur 100 k€, c'est 10 k€+ économisés en une décennie."
+  },
+
+  // ========== ChatGPT DIFFERENTIATION FOR INTERMEDIATE DEMO ==========
+  "workflow.message11_5.user": {
+    en: "How is Bubble different from ChatGPT?",
+    fr: "Comment Bubble est-il différent de ChatGPT ?"
+  },
+  "workflow.message11_5.bot.intro": {
+    en: "ChatGPT is a brilliant conversational AI, but Bubble does something fundamentally different: it doesn't just chat—it builds, backtests, and executes real portfolio strategies.",
+    fr: "ChatGPT est une IA conversationnelle brillante, mais Bubble fait quelque chose de fondamentalement différent : il ne se contente pas de chatter—il construit, teste et exécute de vraies stratégies de portefeuille."
+  },
+  "workflow.message11_5.bot.key_diff": {
+    en: "With ChatGPT, you ask 'how should I invest?' and get great advice. But then you have to do the work: find stocks, calculate allocations, place trades, rebalance.\n\nWith Bubble, you describe your goals, and it handles everything: screening candidates, backtesting strategies, executing orders, rebalancing monthly—all automated.",
+    fr: "Avec ChatGPT, vous posez la question « comment devrais-je investir ? » et obtenez de bons conseils. Mais ensuite vous devez faire le travail : trouver les actions, calculer les allocations, passer les ordres, rééquilibrer.\n\nAvec Bubble, vous décrivez vos objectifs, et il gère tout : recherche de candidats, backtesting, exécution d'ordres, rééquilibrage mensuel—complètement automatisé."
+  },
+  "workflow.message11_5.bot.closing": {
+    en: "ChatGPT empowers your thinking. Bubble empowers your execution. Both valuable—but totally different tools for totally different needs.",
+    fr: "ChatGPT autonomise votre réflexion. Bubble autonomise votre exécution. Les deux précieux—mais des outils complètement différents pour des besoins complètement différents."
+  },
+
   // ========== EXPERT DEMO (semiconductors-sortino) ==========
   "expert.message1.user": {
     en: "I'm interested in a concentrated sector play. Semiconductors have structural tailwinds but high volatility. Can you design a portfolio that captures upside while controlling downside risk?",

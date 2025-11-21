@@ -526,7 +526,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const summaryCard = createSummaryCard();
     msg6Bubble.appendChild(summaryCard);
 
+    // Add pricing note
+    msg6Bubble.appendChild(document.createElement('br'));
+    const pricingNoteText = workflowTranslations['workflow.message6.bot.pricing_note'][currentLanguage];
+    const pricingNoteSpan = document.createElement('span');
+    pricingNoteSpan.style.color = '#667eea';
+    pricingNoteSpan.style.fontWeight = '600';
+    pricingNoteSpan.textContent = pricingNoteText;
+    msg6Bubble.appendChild(pricingNoteSpan);
+
     // Add closing text
+    msg6Bubble.appendChild(document.createElement('br'));
     msg6Bubble.appendChild(document.createElement('br'));
     const msg6ClosingText = workflowTranslations['workflow.message6.bot.closing'][currentLanguage];
     const msg6ClosingSpan = document.createElement('span');
@@ -592,6 +602,46 @@ document.addEventListener('DOMContentLoaded', () => {
     typingIndicator5.remove();
 
     await typeMessage(msg11Bubble, msg11Text, 50);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    await safeDelay(2500);
+
+    // Message 11.5: User asks about ChatGPT difference
+    const msg11_5Text = workflowTranslations['workflow.message11_5.user'][currentLanguage];
+    await typeInInputAndSend(msg11_5Text);
+    const { bubble: bubble11_5 } = addMessage(msg11_5Text, true);
+    await safeDelay(2500);
+
+    // Message 11.5: Bot with ChatGPT explanation
+    const msg11_5IntroText = workflowTranslations['workflow.message11_5.bot.intro'][currentLanguage];
+    const { messageDiv: msg11_5Div, bubble: msg11_5Bubble } = addMessage('', false);
+
+    const typingIndicator11_5 = createTypingIndicator();
+    msg11_5Div.insertBefore(typingIndicator11_5, msg11_5Bubble.nextSibling);
+    await safeDelay(2500);
+    typingIndicator11_5.remove();
+
+    await typeMessage(msg11_5Bubble, msg11_5IntroText, 50);
+
+    // Add key difference text
+    msg11_5Bubble.appendChild(document.createElement('br'));
+    const keyDiffText = workflowTranslations['workflow.message11_5.bot.key_diff'][currentLanguage];
+    const keyDiffSpan = document.createElement('span');
+    keyDiffSpan.style.color = '#444444';
+    keyDiffSpan.style.whiteSpace = 'pre-wrap';
+    keyDiffSpan.style.lineHeight = '1.6';
+    keyDiffSpan.textContent = keyDiffText;
+    msg11_5Bubble.appendChild(keyDiffSpan);
+
+    // Add closing text
+    msg11_5Bubble.appendChild(document.createElement('br'));
+    msg11_5Bubble.appendChild(document.createElement('br'));
+    const msg11_5ClosingText = workflowTranslations['workflow.message11_5.bot.closing'][currentLanguage];
+    const closingSpan11_5 = document.createElement('span');
+    closingSpan11_5.style.color = '#667eea';
+    closingSpan11_5.style.fontWeight = '600';
+    closingSpan11_5.textContent = msg11_5ClosingText;
+    msg11_5Bubble.appendChild(closingSpan11_5);
+
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
     // Mark demo as shown
@@ -1129,6 +1179,158 @@ document.addEventListener('DOMContentLoaded', () => {
     return card;
   };
 
+  // Create pricing comparison card for message 10.5
+  const createBeginnerPricingCard = () => {
+    const card = document.createElement('div');
+    card.className = 'workflow-demo-enriched-card';
+
+    const header = document.createElement('div');
+    header.className = 'workflow-demo-enriched-header';
+    header.textContent = workflowTranslations['beginner.message10_5.bot.pricing_title'][currentLanguage];
+    card.appendChild(header);
+
+    const pricingRows = workflowTranslations['beginner.message10_5.bot.pricing_rows'];
+    const table = document.createElement('table');
+    table.style.width = '100%';
+    table.style.marginTop = '1rem';
+    table.style.marginBottom = '1rem';
+    table.style.borderCollapse = 'collapse';
+
+    const headerRow = document.createElement('tr');
+    headerRow.style.borderBottom = '2px solid #667eea';
+
+    const headers = ['Provider', 'Fee Model', 'Annual Cost (€200k)'];
+    headers.forEach((h, idx) => {
+      const th = document.createElement('th');
+      th.style.padding = '0.8rem';
+      th.style.textAlign = idx === 0 ? 'left' : 'center';
+      th.style.fontWeight = '700';
+      th.style.color = '#333333';
+      th.style.fontSize = '0.9rem';
+      th.textContent = h;
+      headerRow.appendChild(th);
+    });
+    table.appendChild(headerRow);
+
+    pricingRows.forEach((row, rowIdx) => {
+      const tr = document.createElement('tr');
+      tr.style.borderBottom = '1px solid rgba(102, 126, 234, 0.1)';
+
+      const tdProvider = document.createElement('td');
+      tdProvider.style.padding = '0.8rem';
+      tdProvider.style.fontWeight = '600';
+      tdProvider.style.color = '#333333';
+      tdProvider.textContent = row[`name_${currentLanguage}`];
+      tr.appendChild(tdProvider);
+
+      const tdFee = document.createElement('td');
+      tdFee.style.padding = '0.8rem';
+      tdFee.style.textAlign = 'center';
+      tdFee.style.color = '#666666';
+      tdFee.style.fontSize = '0.9rem';
+      tdFee.textContent = row[`fee_${currentLanguage}`];
+      tr.appendChild(tdFee);
+
+      const tdExample = document.createElement('td');
+      tdExample.style.padding = '0.8rem';
+      tdExample.style.textAlign = 'center';
+      tdExample.style.fontWeight = rowIdx === 2 ? '700' : '600';
+      tdExample.style.color = rowIdx === 2 ? '#667eea' : '#666666';
+      tdExample.style.fontSize = '0.9rem';
+      tdExample.textContent = row[`example_${currentLanguage}`];
+      tr.appendChild(tdExample);
+
+      table.appendChild(tr);
+    });
+
+    card.appendChild(table);
+
+    // Add savings calculation
+    const savingsDiv = document.createElement('div');
+    savingsDiv.style.marginTop = '1rem';
+    savingsDiv.style.padding = '1rem';
+    savingsDiv.style.backgroundColor = 'rgba(76, 175, 80, 0.08)';
+    savingsDiv.style.borderRadius = '8px';
+    savingsDiv.style.borderLeft = '4px solid #4CAF50';
+    savingsDiv.style.fontSize = '0.85rem';
+    savingsDiv.style.color = '#2e5c3e';
+    savingsDiv.style.lineHeight = '1.6';
+    savingsDiv.style.whiteSpace = 'pre-wrap';
+    savingsDiv.textContent = workflowTranslations['beginner.message10_5.bot.savings_calc'][currentLanguage];
+    card.appendChild(savingsDiv);
+
+    return card;
+  };
+
+  // Create ChatGPT comparison card for message 11
+  const createBeginnerChatGPTCard = () => {
+    const card = document.createElement('div');
+    card.className = 'workflow-demo-enriched-card';
+
+    const header = document.createElement('div');
+    header.className = 'workflow-demo-enriched-header';
+    header.textContent = workflowTranslations['beginner.message11.bot.comparison_title'][currentLanguage];
+    card.appendChild(header);
+
+    const comparisonItems = workflowTranslations['beginner.message11.bot.comparison_items'];
+    const table = document.createElement('table');
+    table.style.width = '100%';
+    table.style.marginTop = '1rem';
+    table.style.borderCollapse = 'collapse';
+
+    const headerRow = document.createElement('tr');
+    headerRow.style.borderBottom = '2px solid #667eea';
+
+    const headers = ['Feature', 'ChatGPT', 'Bubble'];
+    headers.forEach((h, idx) => {
+      const th = document.createElement('th');
+      th.style.padding = '0.8rem';
+      th.style.textAlign = idx === 0 ? 'left' : 'center';
+      th.style.fontWeight = '700';
+      th.style.color = '#333333';
+      th.style.fontSize = '0.9rem';
+      th.textContent = h;
+      headerRow.appendChild(th);
+    });
+    table.appendChild(headerRow);
+
+    comparisonItems.forEach(item => {
+      const tr = document.createElement('tr');
+      tr.style.borderBottom = '1px solid rgba(102, 126, 234, 0.1)';
+
+      const tdFeature = document.createElement('td');
+      tdFeature.style.padding = '0.8rem';
+      tdFeature.style.fontWeight = '600';
+      tdFeature.style.color = '#333333';
+      tdFeature.style.fontSize = '0.9rem';
+      tdFeature.textContent = item[`feature_${currentLanguage}`];
+      tr.appendChild(tdFeature);
+
+      const tdChatGPT = document.createElement('td');
+      tdChatGPT.style.padding = '0.8rem';
+      tdChatGPT.style.textAlign = 'center';
+      tdChatGPT.style.color = '#666666';
+      tdChatGPT.style.fontSize = '0.9rem';
+      tdChatGPT.textContent = item[`chatgpt_${currentLanguage}`];
+      tr.appendChild(tdChatGPT);
+
+      const tdBubble = document.createElement('td');
+      tdBubble.style.padding = '0.8rem';
+      tdBubble.style.textAlign = 'center';
+      tdBubble.style.fontWeight = '600';
+      tdBubble.style.color = '#667eea';
+      tdBubble.style.fontSize = '0.9rem';
+      tdBubble.textContent = item[`bubble_${currentLanguage}`];
+      tr.appendChild(tdBubble);
+
+      table.appendChild(tr);
+    });
+
+    card.appendChild(table);
+
+    return card;
+  };
+
   // ========== BEGINNER DEMO (macro-defense) ==========
   const runBeginnerDemo = async () => {
     console.log('[WorkflowDemo] Launching Beginner Demo (macro-defense)');
@@ -1308,6 +1510,82 @@ document.addEventListener('DOMContentLoaded', () => {
     psSpan.style.fontStyle = 'italic';
     psSpan.textContent = psText;
     msg10Bubble.appendChild(psSpan);
+
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    await safeDelay(2500);
+
+    // Message 10.5: User asks about pricing
+    const msg10_5Text = workflowTranslations['beginner.message10_5.user'][currentLanguage];
+    await typeInInputAndSend(msg10_5Text);
+    const { bubble: bubble10_5 } = addMessage(msg10_5Text, true);
+    await safeDelay(2500);
+
+    // Message 10.5: Bot with pricing card
+    const msg10_5IntroText = workflowTranslations['beginner.message10_5.bot.intro'][currentLanguage];
+    const { messageDiv: msg10_5Div, bubble: msg10_5Bubble } = addMessage('', false);
+
+    const typingIndicator10_5 = createTypingIndicator();
+    msg10_5Div.insertBefore(typingIndicator10_5, msg10_5Bubble.nextSibling);
+    await safeDelay(2500);
+    typingIndicator10_5.remove();
+
+    await typeMessage(msg10_5Bubble, msg10_5IntroText, 50);
+
+    // Add pricing card
+    msg10_5Bubble.appendChild(document.createElement('br'));
+    const pricingCard = createBeginnerPricingCard();
+    msg10_5Bubble.appendChild(pricingCard);
+
+    // Add why cheap text
+    msg10_5Bubble.appendChild(document.createElement('br'));
+    const whyCheapText = workflowTranslations['beginner.message10_5.bot.why_cheap'][currentLanguage];
+    const whyCheapSpan = document.createElement('span');
+    whyCheapSpan.style.color = '#444444';
+    whyCheapSpan.textContent = whyCheapText;
+    msg10_5Bubble.appendChild(whyCheapSpan);
+
+    // Add closing text
+    msg10_5Bubble.appendChild(document.createElement('br'));
+    msg10_5Bubble.appendChild(document.createElement('br'));
+    const msg10_5ClosingText = workflowTranslations['beginner.message10_5.bot.closing'][currentLanguage];
+    const closingSpan10_5 = document.createElement('span');
+    closingSpan10_5.style.color = '#667eea';
+    closingSpan10_5.style.fontWeight = '700';
+    closingSpan10_5.textContent = msg10_5ClosingText;
+    msg10_5Bubble.appendChild(closingSpan10_5);
+
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    await safeDelay(2500);
+
+    // Message 11: User asks about ChatGPT difference
+    const msg11Text = workflowTranslations['beginner.message11.user'][currentLanguage];
+    await typeInInputAndSend(msg11Text);
+    const { bubble: bubble11 } = addMessage(msg11Text, true);
+    await safeDelay(2500);
+
+    // Message 11: Bot with ChatGPT comparison card
+    const msg11IntroText = workflowTranslations['beginner.message11.bot.intro'][currentLanguage];
+    const { messageDiv: msg11Div, bubble: msg11Bubble } = addMessage('', false);
+
+    const typingIndicator11 = createTypingIndicator();
+    msg11Div.insertBefore(typingIndicator11, msg11Bubble.nextSibling);
+    await safeDelay(2500);
+    typingIndicator11.remove();
+
+    await typeMessage(msg11Bubble, msg11IntroText, 50);
+
+    // Add ChatGPT comparison card
+    msg11Bubble.appendChild(document.createElement('br'));
+    const chatgptCard = createBeginnerChatGPTCard();
+    msg11Bubble.appendChild(chatgptCard);
+
+    // Add closing text
+    msg11Bubble.appendChild(document.createElement('br'));
+    const msg11ClosingText = workflowTranslations['beginner.message11.bot.closing'][currentLanguage];
+    const closingSpan11 = document.createElement('span');
+    closingSpan11.style.color = '#444444';
+    closingSpan11.textContent = msg11ClosingText;
+    msg11Bubble.appendChild(closingSpan11);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
