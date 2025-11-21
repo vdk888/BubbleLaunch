@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const typeMessage = (element, text, speed = 60) => {
     return new Promise((resolve) => {
       let index = 0;
-      element.textContent = '';
+      element.innerHTML = '';
       const cursor = document.createElement('span');
       cursor.className = 'typing-cursor';
       element.appendChild(cursor);
@@ -104,6 +104,15 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(typeNextChar, speed);
         } else {
           cursor.remove();
+          // Get all accumulated text and set it cleanly
+          let accumulatedText = '';
+          for (let node of element.childNodes) {
+            if (node.nodeType === Node.TEXT_NODE) {
+              accumulatedText += node.textContent;
+            }
+          }
+          // Replace everything with clean text content
+          element.textContent = accumulatedText || text;
           resolve();
         }
       };
@@ -131,6 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const bubble = document.createElement('div');
     bubble.className = 'workflow-demo-message-bubble';
+
+    // Set text if provided
+    if (text) {
+      bubble.textContent = text;
+    }
+
     messageDiv.appendChild(bubble);
 
     if (enrichedContent) {
@@ -363,7 +378,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg1Text = workflowTranslations['workflow.message1.user'][currentLanguage];
     await typeInInputAndSend(msg1Text);
     const { bubble: bubble1 } = addMessage(msg1Text, true);
-    bubble1.textContent = msg1Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 2: Bot with research (all in one bubble)
@@ -398,7 +412,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg3Text = workflowTranslations['workflow.message3.user'][currentLanguage];
     await typeInInputAndSend(msg3Text);
     const { bubble: bubble3 } = addMessage(msg3Text, true);
-    bubble3.textContent = msg3Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 4: Bot with backtest (all in one bubble)
@@ -432,7 +445,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg5Text = workflowTranslations['workflow.message5.user'][currentLanguage];
     await typeInInputAndSend(msg5Text);
     const { bubble: bubble5 } = addMessage(msg5Text, true);
-    bubble5.textContent = msg5Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 6: Bot with summary (all in one bubble)
@@ -471,7 +483,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg8Text = workflowTranslations['workflow.message8.user'][currentLanguage];
     await typeInInputAndSend(msg8Text);
     const { bubble: bubble8 } = addMessage(msg8Text, true);
-    bubble8.textContent = msg8Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 9: Bubble with portfolio bar chart (all in one bubble)
@@ -505,7 +516,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg10Text = workflowTranslations['workflow.message10.user'][currentLanguage];
     await typeInInputAndSend(msg10Text);
     const { bubble: bubble10 } = addMessage(msg10Text, true);
-    bubble10.textContent = msg10Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 11: Bubble closing
@@ -1055,7 +1065,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg1Text = workflowTranslations['beginner.message1.user'][currentLanguage];
     await typeInInputAndSend(msg1Text);
     const { bubble: bubble1 } = addMessage(msg1Text, true);
-    bubble1.textContent = msg1Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 2: Bot intro with "Why This Works" card
@@ -1089,7 +1098,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg3Text = workflowTranslations['beginner.message3.user'][currentLanguage];
     await typeInInputAndSend(msg3Text);
     const { bubble: bubble3 } = addMessage(msg3Text, true);
-    bubble3.textContent = msg3Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 4: Bot with portfolio proposal and risk card
@@ -1120,7 +1128,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg5Text = workflowTranslations['beginner.message5.user'][currentLanguage];
     await typeInInputAndSend(msg5Text);
     const { bubble: bubble5 } = addMessage(msg5Text, true);
-    bubble5.textContent = msg5Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 6: Bot with automation checklist
@@ -1154,7 +1161,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg7Text = workflowTranslations['beginner.message7.user'][currentLanguage];
     await typeInInputAndSend(msg7Text);
     const { bubble: bubble7 } = addMessage(msg7Text, true);
-    bubble7.textContent = msg7Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 8: Bot with liquidity and timeline cards
@@ -1193,7 +1199,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg9Text = workflowTranslations['beginner.message9.user'][currentLanguage];
     await typeInInputAndSend(msg9Text);
     const { bubble: bubble9 } = addMessage(msg9Text, true);
-    bubble9.textContent = msg9Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 10: Bot with backtest card
@@ -1772,7 +1777,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg1Text = workflowTranslations['expert.message1.user'][currentLanguage];
     await typeInInputAndSend(msg1Text);
     const { bubble: bubble1 } = addMessage(msg1Text, true);
-    bubble1.textContent = msg1Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 2: Bot intro with strategy architecture
@@ -1806,7 +1810,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg3Text = workflowTranslations['expert.message3.user'][currentLanguage];
     await typeInInputAndSend(msg3Text);
     const { bubble: bubble3 } = addMessage(msg3Text, true);
-    bubble3.textContent = msg3Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 4: Bot with risk metrics and stress tests
@@ -1845,7 +1848,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg5Text = workflowTranslations['expert.message5.user'][currentLanguage];
     await typeInInputAndSend(msg5Text);
     const { bubble: bubble5 } = addMessage(msg5Text, true);
-    bubble5.textContent = msg5Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 6: Bot with rebalancing and black swan cards
@@ -1884,7 +1886,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg7Text = workflowTranslations['expert.message7.user'][currentLanguage];
     await typeInInputAndSend(msg7Text);
     const { bubble: bubble7 } = addMessage(msg7Text, true);
-    bubble7.textContent = msg7Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 8: Bot with execution card
@@ -1910,7 +1911,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg9Text = workflowTranslations['expert.message9.user'][currentLanguage];
     await typeInInputAndSend(msg9Text);
     const { bubble: bubble9 } = addMessage(msg9Text, true);
-    bubble9.textContent = msg9Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 10: Bot with timeline and implementation
@@ -1936,7 +1936,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg11Text = workflowTranslations['expert.message11.user'][currentLanguage];
     await typeInInputAndSend(msg11Text);
     const { bubble: bubble11 } = addMessage(msg11Text, true);
-    bubble11.textContent = msg11Text;
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Message 12: Bot with alpha decomposition
