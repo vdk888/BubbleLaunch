@@ -137,11 +137,22 @@ class ImageService {
 
   /**
    * Check if a URL is a broken Runware URL
+   * Only returns true for the specific broken image IDs from before the fix
    */
   isBrokenRunwareUrl(url) {
     if (!url) return false;
-    // Runware URLs that are no longer accessible
-    return url.includes('im.runware.ai');
+    // Specific broken Runware image IDs that returned 404
+    const brokenImageIds = [
+      '94fa839b-3247-43e7-b231-09442709dd31',
+      '74dc21d1-8a59-40c0-9cbc-8b02f67fa6e6',
+      '40a07784-cd6e-4dde-b08e-b66e828b4e52',
+      '1b04787c-47b7-406c-9e4a-e58c45d12039',
+      '33581d98-2a75-48ca-84c6-be6900fa9dab',
+      'cbbbd618-70ca-452b-ae8c-e64d98c65198',
+      '2b45a2e1-4dbc-42d5-b22d-9dd2874eeab2',
+    ];
+
+    return brokenImageIds.some(id => url.includes(id));
   }
 
   async generateArticleImage(
