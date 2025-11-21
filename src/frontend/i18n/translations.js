@@ -91,16 +91,16 @@ const translations = {
     fr: "Un Agent d'Investissement Complet",
   },
   "vision.platform.description1": {
-    en: "We're building the tool we use for our own investments: an AI agent that screens the universe, tests strategies on historical data, calculates optimal allocations, and executes orders for us. A private manager in our pocket, on its own app or directly in ChatGPT, at lower cost: <strong>a fixed price (e.g., €0-10/month) instead of 2% AUM fees.</strong>",
-    fr: "Nous développons l'outil que nous utilisons pour nos propres investissements : un agent IA qui screene l'univers, teste les stratégies sur les données historiques, calcule les allocations optimales et exécute les ordres à notre place. Un gérant privé dans votre poche, sur sa propre application ou directement dans ChatGPT, à moindre coût : <strong>un prix fixe (ex: 0-10€/mois) au lieu des 2% de frais sur encours.</strong>",
+    en: "We're building the tool we use for our own investments: a private manager in your pocket, on its own app or directly in ChatGPT, at lower cost: <strong>a fixed price (e.g., €0-10/month) instead of traditional 2% AUM fees.</strong>",
+    fr: "Nous développons l'outil que nous utilisons pour nos propres investissements : un gérant privé dans votre poche, sur sa propre application ou directement dans ChatGPT, à moindre coût : <strong>un prix fixe (ex: 0-10€/mois) au lieu des 2% de frais traditionnels sur encours.</strong>",
   },
   "vision.platform.description2": {
-    en: "The agent adapts to <strong>YOUR focus</strong>: ETFs, dividend stocks, emerging markets, crypto. You're not locked into pre-packaged portfolios. Every strategy is transparent, backtested, and explained so you understand exactly what you're buying. <strong>Financial expertise is now a commodity—accessible to everyone, regardless of portfolio size.</strong>",
-    fr: "L'agent s'adapte à <strong>VOTRE focus</strong> : ETF, actions à dividendes, marchés émergents, crypto. Vous n'êtes pas enfermé dans des portefeuilles pré-packagés. Chaque stratégie est transparente, backtestée et expliquée pour que vous compreniez exactement ce que vous achetez. <strong>L'expertise financière est désormais une commodité—accessible à tous, quelle que soit la taille du portefeuille.</strong>",
+    en: "An agent that adapts to <strong>YOUR asset focus</strong>: you're not locked into pre-packaged portfolios by your banker. Every strategy is transparent and explained so you understand exactly what's happening. <strong>Financial expertise is now a commodity—accessible to everyone through AI, regardless of portfolio size.</strong>",
+    fr: "Un agent qui s'adapte à <strong>VOTRE focus d'actifs</strong> : vous n'êtes pas enfermé dans des portefeuilles pré-packagés par votre banquier. Chaque stratégie est transparente et expliquée pour que vous compreniez exactement tout ce qui s'y passe. <strong>L'expertise financière est désormais une commodité—accessible à tous grâce à l'IA, quelle que soit la taille du portefeuille.</strong>",
   },
   "vision.platform.cta": {
-    en: "See How It Works →",
-    fr: "Voir Comment Ça Marche →",
+    en: "Get Early Access",
+    fr: "Obtenir un accès anticipé",
   },
   "vision.cost.title": {
     en: "Rethought Cost Structure",
@@ -419,12 +419,12 @@ const translations = {
 
   // Blog Preview Section
   "blogPreview.title": {
-    en: "Latest Insights",
-    fr: "Dernières Réflexions"
+    en: "Behind the Bubble ...",
+    fr: "Derrière la Bulle ..."
   },
   "blogPreview.subtitle": {
-    en: "Explore our analysis on AI, investing and quantitative finance",
-    fr: "Explorez nos analyses sur l'IA, l'investissement et la finance quantitative"
+    en: "Discover the behind the scenes of investment with our analysis on AI, investing and quantitative finance",
+    fr: "Découvrez les coulisses de l'investissement avec nos articles sur l'IA, l'investissement et la finance quantitative"
   },
   "blogPreview.viewAll": {
     en: "View all articles →",

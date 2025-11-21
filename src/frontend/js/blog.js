@@ -129,8 +129,8 @@ function displayFeaturedPost(post, container) {
         : (currentLanguage === 'fr' ? 'Article principal' : 'Featured Article');
     const readMoreText = currentLanguage === 'fr' ? 'Lire l\'article' : 'Read Article';
     const defaultSummary = currentLanguage === 'fr' ? 
-        'Découvrez nos dernières réflexions sur l\'investissement intelligent.' :
-        'Discover our latest thoughts on intelligent investing.';
+        'Perçons la bulle financière ensemble' :
+        'Let's pop the finance bubble together';
     
     container.innerHTML = `
         <div class="featured-card">
