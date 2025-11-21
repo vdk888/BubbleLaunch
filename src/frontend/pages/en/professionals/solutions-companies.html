@@ -11,6 +11,8 @@
     <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
     <link rel="stylesheet" href="/assets/styles/styles.css" />
     <link rel="stylesheet" href="/assets/styles/knowledge-overlay.css" />
+    <link rel="stylesheet" href="/assets/styles/pricing-workflow-demo.css" />
+    <link rel="stylesheet" href="/assets/styles/knowledge-overlay.css" />
     <link rel="canonical" href="https://bubbleinvest.org/en/professionals/solutions-companies" />
     <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/professionals/solutions-companies" />
     <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/professionals/solutions-companies" />
@@ -67,6 +69,31 @@
           <button class="knowledge-fallback-link" data-translate="knowledgeOverlay.fallback">
             Pas sûr ? Montrez-moi un exemple
           </button>
+        </div>
+      </div>
+    </div>
+    <div id="workflow-demo-overlay" class="workflow-demo-overlay hidden">
+      <button class="workflow-demo-close" id="workflow-demo-close" aria-label="Close demo"></button>
+      <div class="workflow-demo-card">
+        <div class="workflow-demo-chat-container">
+          <div class="workflow-demo-chat-header">
+            <div class="workflow-demo-header-info">
+              <img src="/assets/images/bubble-favicon.svg" class="workflow-demo-icon" alt="Bubble" width="28" height="28" />
+              <div class="workflow-demo-titles">
+                <span class="workflow-demo-title">Bubble AI Agent</span>
+                <span class="workflow-demo-subtitle">Interactive Demo</span>
+              </div>
+            </div>
+            <div class="workflow-demo-header-actions">
+              <button class="workflow-demo-switcher fr" id="workflow-demo-fr">FR</button>
+              <button class="workflow-demo-switcher en" id="workflow-demo-en">EN</button>
+            </div>
+          </div>
+          <div class="workflow-demo-messages" id="workflow-demo-messages" role="log" aria-live="polite"></div>
+          <div class="workflow-demo-input-container">
+            <textarea class="workflow-demo-input-field" placeholder="" readonly></textarea>
+            <button class="workflow-demo-send-button" aria-label="Send"></button>
+          </div>
         </div>
       </div>
     </div>
@@ -490,6 +517,7 @@
     <script src="/js/businesses-form.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/knowledge-overlay.js"></script>
+    <script src="/js/pricing-workflow-demo.js"></script>
     <script src="/js/chatbot-logic.js"></script>
     <script src="/js/chatbot-animations.js"></script>
     <script src="/js/chat-side-panel.js"></script>
