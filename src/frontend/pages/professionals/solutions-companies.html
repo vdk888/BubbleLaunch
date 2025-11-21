@@ -256,19 +256,15 @@
           </p>
         </div>
 
-        <div class="blog-featured-article">
-          <div class="blog-tile" style="opacity: 1; transform: none;">
-            <div class="blog-tile-content">
-              <h3 style="font-size: 1.3rem; font-weight: 700; color: #000; margin-bottom: 1rem; line-height: 1.4;" data-translate="professionals.solutions.companies.blog.article">
-                Conseil en IA : pourquoi nous avons quitté les Big Four et une grande banque privée pour faire différemment
-              </h3>
-              <p style="color: #666; line-height: 1.7; margin-bottom: 1.5rem; font-size: 1rem;" data-translate="professionals.solutions.companies.blog.description">
-                Ex-consultants Deloitte/KPMG et ex-portfolio manager UBS, nous analysons le marché français du conseil IA en finance : taux d'échec 70-85%, budgets gaspillés, POC éternels… Quelle est notre alternative ?
-              </p>
-              <a href="/blog/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment" class="blog-read-link" data-translate="professionals.solutions.companies.blog.cta">
-                Lire l'article →
-              </a>
+        <div class="blog-tiles-grid" id="blog-preview-grid">
+          <!-- Will be populated by JavaScript -->
+          <div class="blog-preview-loading">
+            <div class="loading-animation">
+              <div class="loading-bubble"></div>
+              <div class="loading-bubble"></div>
+              <div class="loading-bubble"></div>
             </div>
+            <p data-translate="blogPreview.loading">Chargement des articles...</p>
           </div>
         </div>
 
@@ -534,6 +530,7 @@
     <script src="/i18n/translations.js"></script>
     <script src="/js/businesses-form.js"></script>
     <script src="/js/script.js"></script>
+    <script src="/js/blog-preview.js"></script>
     <script src="/js/knowledge-overlay.js"></script>
     <script src="/js/pricing-workflow-demo.js"></script>
     <script src="/js/chatbot-logic.js"></script>

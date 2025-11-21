@@ -4341,6 +4341,64 @@ const translations = {
   "expert.message13.bot.ps": {
     en: "P.S. You can pause the strategy anytime, adjust the sector concentration (SMH weighting from 40-100%), modify hedge ratios, or ask questions about execution. Full transparency on all operations.",
     fr: "P.S. Vous pouvez mettre la stratégie en pause à tout moment, ajuster la concentration sectorielle (pondération SMH de 40-100%), modifier les ratios de couverture, ou poser des questions sur l'exécution. Transparence complète sur toutes les opérations."
+  },
+
+  // Academic & Backtesting Transparency
+  "academic.disclosure.title": {
+    en: "✓ Academic Formulas & Real Backtests",
+    fr: "✓ Formules Académiques & Vrais Backtests"
+  },
+  "academic.disclosure.subtitle": {
+    en: "All metrics are based on quantitative research, not LLM guesswork",
+    fr: "Tous les chiffres sont basés sur la recherche quantitative, pas sur des suppositions d'IA"
+  },
+  "academic.disclosure.description": {
+    en: "Every allocation shown in this demo comes from academic quantitative formulas tested against 20 years of real financial data. We don't make up numbers—we backtest them.",
+    fr: "Chaque allocation affichée dans cette démo provient de formules quantitatives académiques testées sur 20 ans de vraies données financières. Nous ne devinons pas les chiffres—nous les backtestons."
+  },
+  "academic.disclosure.formulas": [
+    {
+      name_en: "Risk Parity",
+      name_fr: "Parité des Risques",
+      desc_en: "Inverse-volatility weighting: assets are weighted so each contributes equally to portfolio risk",
+      desc_fr: "Pondération inverse à la volatilité : les actifs sont pondérés pour que chacun contribue également au risque du portefeuille"
+    },
+    {
+      name_en: "Momentum Tilt",
+      name_fr: "Inclinaison Momentum",
+      desc_en: "12-month price momentum + drawdown awareness: overweight recent winners, underweight recent losers",
+      desc_fr: "Momentum de prix à 12 mois + conscience du drawdown : surpondérer les récents gagnants, sous-pondérer les récents perdants"
+    },
+    {
+      name_en: "Hierarchical Clustering",
+      name_fr: "Clustering Hiérarchique",
+      desc_en: "Group correlated assets, apply risk parity within and across clusters to reduce concentration risk",
+      desc_fr: "Regroupez les actifs corrélés, appliquez la parité des risques dans les clusters pour réduire le risque de concentration"
+    },
+    {
+      name_en: "Sharpe Ratio Optimization",
+      name_fr: "Optimisation du Ratio de Sharpe",
+      desc_en: "Maximize risk-adjusted returns: return per unit of risk taken",
+      desc_fr: "Maximiser les rendements ajustés au risque : rendement par unité de risque prise"
+    },
+    {
+      name_en: "Calmar Ratio",
+      name_fr: "Ratio de Calmar",
+      desc_en: "Return vs. maximum drawdown: balances growth with downside protection",
+      desc_fr: "Rendement vs drawdown maximum : équilibre la croissance avec la protection contre les baisses"
+    }
+  ],
+  "academic.disclosure.data": {
+    en: "Historical data sourced from Yahoo Finance (SPY, IEF, GLD, EFA, EEM, VNQ) from 2005–2025. Monthly returns, 240 data points.",
+    fr: "Données historiques issues de Yahoo Finance (SPY, IEF, GLD, EFA, EEM, VNQ) de 2005-2025. Rendements mensuels, 240 points de données."
+  },
+  "academic.disclosure.metrics": {
+    en: "All percentages, Sharpe ratios, max drawdowns, and Calmar ratios are calculated, not estimated. Every backtest is reproducible.",
+    fr: "Tous les pourcentages, ratios de Sharpe, drawdowns maximums et ratios de Calmar sont calculés, pas estimés. Chaque backtest est reproductible."
+  },
+  "academic.disclosure.transparency": {
+    en: "No \"AI magic\" here—just well-known quantitative formulas applied to real price history. If you want to deep-dive, ask our chatbot for the underlying papers.",
+    fr: "Pas de \"magie IA\" ici—juste des formules quantitatives bien connues appliquées à l'historique réel des prix. Si vous voulez approfondir, demandez à notre chatbot les articles de recherche."
   }
 };
 

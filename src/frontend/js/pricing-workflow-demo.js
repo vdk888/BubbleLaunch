@@ -486,7 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator2_5.remove();
 
-    await typeMessage(msg2_5Bubble, msg2_5IntroText, 50);
+    await typeMessage(msg2_5Bubble, msg2_5IntroText, 70);
 
     // Add comparison text
     msg2_5Bubble.appendChild(document.createElement('br'));
@@ -633,6 +633,11 @@ document.addEventListener('DOMContentLoaded', () => {
     pricingNoteSpan.style.fontWeight = '600';
     pricingNoteSpan.textContent = pricingNoteText;
     msg6Bubble.appendChild(pricingNoteSpan);
+
+    // Add academic disclosure card
+    msg6Bubble.appendChild(document.createElement('br'));
+    const academicCardIntermediate = createAcademicDisclosureCard();
+    msg6Bubble.appendChild(academicCardIntermediate);
 
     // Add closing text
     msg6Bubble.appendChild(document.createElement('br'));
@@ -1443,6 +1448,99 @@ document.addEventListener('DOMContentLoaded', () => {
     return card;
   };
 
+  // Create academic formulas & backtesting transparency card
+  const createAcademicDisclosureCard = () => {
+    const card = document.createElement('div');
+    card.className = 'workflow-demo-enriched-card';
+
+    // Title
+    const title = document.createElement('div');
+    title.style.fontSize = '0.9rem';
+    title.style.fontWeight = '700';
+    title.style.color = '#667eea';
+    title.style.marginBottom = '0.6rem';
+    title.innerHTML = workflowTranslations['academic.disclosure.title'][currentLanguage];
+    card.appendChild(title);
+
+    // Subtitle
+    const subtitle = document.createElement('div');
+    subtitle.style.fontSize = '0.8rem';
+    subtitle.style.color = '#666666';
+    subtitle.style.fontStyle = 'italic';
+    subtitle.style.marginBottom = '0.8rem';
+    subtitle.textContent = workflowTranslations['academic.disclosure.subtitle'][currentLanguage];
+    card.appendChild(subtitle);
+
+    // Main description
+    const desc = document.createElement('div');
+    desc.style.fontSize = '0.85rem';
+    desc.style.color = '#444444';
+    desc.style.lineHeight = '1.5';
+    desc.style.marginBottom = '1rem';
+    desc.textContent = workflowTranslations['academic.disclosure.description'][currentLanguage];
+    card.appendChild(desc);
+
+    // Formulas list
+    const formulas = workflowTranslations['academic.disclosure.formulas'];
+    const formulasContainer = document.createElement('div');
+    formulasContainer.style.marginBottom = '1rem';
+
+    formulas.forEach(formula => {
+      const formulaDiv = document.createElement('div');
+      formulaDiv.style.marginBottom = '0.8rem';
+      formulaDiv.style.paddingLeft = '0.8rem';
+      formulaDiv.style.borderLeft = '3px solid #667eea';
+
+      const formulaName = document.createElement('div');
+      formulaName.style.fontWeight = '600';
+      formulaName.style.color = '#333333';
+      formulaName.style.fontSize = '0.85rem';
+      formulaName.style.marginBottom = '0.3rem';
+      formulaName.textContent = formula[`name_${currentLanguage}`];
+      formulaDiv.appendChild(formulaName);
+
+      const formulaDesc = document.createElement('div');
+      formulaDesc.style.fontSize = '0.75rem';
+      formulaDesc.style.color = '#666666';
+      formulaDesc.style.lineHeight = '1.4';
+      formulaDesc.textContent = formula[`desc_${currentLanguage}`];
+      formulaDiv.appendChild(formulaDesc);
+
+      formulasContainer.appendChild(formulaDiv);
+    });
+    card.appendChild(formulasContainer);
+
+    // Data sourcing
+    const dataDiv = document.createElement('div');
+    dataDiv.style.fontSize = '0.8rem';
+    dataDiv.style.color = '#666666';
+    dataDiv.style.marginBottom = '0.8rem';
+    dataDiv.style.paddingTop = '0.8rem';
+    dataDiv.style.borderTop = '1px solid rgba(102, 126, 234, 0.1)';
+    dataDiv.innerHTML = `<strong>Data:</strong> ${workflowTranslations['academic.disclosure.data'][currentLanguage]}`;
+    card.appendChild(dataDiv);
+
+    // Metrics reliability
+    const metricsDiv = document.createElement('div');
+    metricsDiv.style.fontSize = '0.8rem';
+    metricsDiv.style.color = '#666666';
+    metricsDiv.style.marginBottom = '0.8rem';
+    metricsDiv.innerHTML = `<strong>Metrics:</strong> ${workflowTranslations['academic.disclosure.metrics'][currentLanguage]}`;
+    card.appendChild(metricsDiv);
+
+    // Transparency message
+    const transparencyDiv = document.createElement('div');
+    transparencyDiv.style.fontSize = '0.8rem';
+    transparencyDiv.style.color = '#667eea';
+    transparencyDiv.style.fontStyle = 'italic';
+    transparencyDiv.style.paddingTop = '0.6rem';
+    transparencyDiv.style.borderTop = '1px solid rgba(102, 126, 234, 0.1)';
+    transparencyDiv.textContent = workflowTranslations['academic.disclosure.transparency'][currentLanguage];
+    card.appendChild(transparencyDiv);
+
+    return card;
+  };
+
   // ========== BEGINNER DEMO (macro-defense) ==========
   const runBeginnerDemo = async () => {
     console.log('[WorkflowDemo] Launching Beginner Demo (macro-defense)');
@@ -1463,7 +1561,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator2.remove();
 
-    await typeMessage(msg2Bubble, msg2IntroText, 50);
+    await typeMessage(msg2Bubble, msg2IntroText, 70);
 
     // Add "Why This Works" card
     msg2Bubble.appendChild(document.createElement('br'));
@@ -1507,6 +1605,11 @@ document.addEventListener('DOMContentLoaded', () => {
     msg4Bubble.appendChild(document.createElement('br'));
     const riskCard = createBeginnerRiskCard();
     msg4Bubble.appendChild(riskCard);
+
+    // Add academic disclosure card
+    msg4Bubble.appendChild(document.createElement('br'));
+    const academicCard = createAcademicDisclosureCard();
+    msg4Bubble.appendChild(academicCard);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
     await safeDelay(2500);
@@ -2366,6 +2469,11 @@ document.addEventListener('DOMContentLoaded', () => {
     msg8Bubble.appendChild(document.createElement('br'));
     const executionCard = createExpertExecutionCard();
     msg8Bubble.appendChild(executionCard);
+
+    // Add academic disclosure card
+    msg8Bubble.appendChild(document.createElement('br'));
+    const academicCardExpert = createAcademicDisclosureCard();
+    msg8Bubble.appendChild(academicCardExpert);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
     await safeDelay(2500);
