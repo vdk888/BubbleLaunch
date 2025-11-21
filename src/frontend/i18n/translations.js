@@ -3809,25 +3809,25 @@ const translations = {
       icon: "⚙️",
       title_en: "Core Semiconductor Exposure",
       title_fr: "Exposition principale aux semi-conducteurs",
-      desc_en: "Leverage the Semiconductor ETF (SMH) with tactical overlays targeting both TSMC/SK Hynix (foundry leaders) and Nvidia/AMD (fabless giants) via dynamic weighting."
+      desc_en: "Build core exposure through semiconductor and tech ETFs (SMH, XLK), which offer liquid, diversified access to the semiconductor ecosystem across foundry leaders (TSMC) and fabless giants (NVIDIA, AMD)."
     },
     {
       icon: "🛡️",
-      title_en: "Downside Hedging",
-      title_fr: "Couverture baisse",
-      desc_en: "Deploy put options on VIX spikes or inverse correlation assets (bonds, currencies) to reduce tail risk during market corrections."
+      title_en: "Defensive Asset Allocation",
+      title_fr: "Allocation d'actifs défensifs",
+      desc_en: "Include defensive allocations in bonds (IEF) and other stabilizing assets to reduce portfolio volatility during market corrections while maintaining long-term growth exposure."
     },
     {
       icon: "🔄",
       title_en: "Sector Rotation",
       title_fr: "Rotation sectorielle",
-      desc_en: "Dynamically rotate to defensive tech (software, cloud) when semiconductor momentum diverges, capturing alpha without abandonment of thesis."
+      desc_en: "Rotate allocations across sector ETFs (semiconductors, tech, financials) based on momentum and valuation signals, capturing diversification benefits without timing-dependent trades."
     },
     {
       icon: "📊",
       title_en: "Risk-Adjusted Optimization",
       title_fr: "Optimisation ajustée au risque",
-      desc_en: "Sortino ratio guides rebalancing—targeting downside volatility below -2%, achieving best risk-adjusted returns vs. simple buy-and-hold."
+      desc_en: "Monthly rebalancing guided by Sortino ratio and volatility metrics, targeting best risk-adjusted returns while maintaining a disciplined, long-only framework."
     }
   ],
   "expert.message2.bot.closing": {
@@ -3927,27 +3927,27 @@ const translations = {
   "expert.message6.bot.rebalancing_rules": [
     {
       icon: "⏰",
-      rule_en: "Primary Rebalancing: Daily at market open (9:30 AM ET)",
-      rule_fr: "Rééquilibrage principal : Quotidien à l'ouverture du marché (9h30 HE)",
-      detail_en: "Check Sortino ratio thresholds. If downside volatility exceeds 2.5%, increase hedge weighting automatically."
+      rule_en: "Monthly Rebalancing: First trading day of each month",
+      rule_fr: "Rééquilibrage mensuel : Premier jour ouvrable de chaque mois",
+      detail_en: "Rebalance portfolio allocations to target weights. Monitor Sortino ratio and volatility metrics. You receive signals before execution."
     },
     {
       icon: "🎯",
-      rule_en: "Tactical Rebalancing: Intraday on momentum divergence",
-      rule_fr: "Rééquilibrage tactique : Intrajournalier en cas de divergence de momentum",
-      detail_en: "If SMH momentum decays 5%+ while market holds, rotate 10% to defensive tech (XLK correlation break)."
+      rule_en: "Quarterly Review: Dynamic allocation adjustments",
+      rule_fr: "Examen trimestriel : Ajustements d'allocation dynamique",
+      detail_en: "Every 3 months, review sector momentum and valuation signals. Propose allocation shifts (e.g., semiconductor vs. defensive tech) for your approval."
     },
     {
       icon: "🚨",
-      rule_en: "Crisis Mode: VIX spike above 25",
-      rule_fr: "Mode crise : Pic de VIX au-dessus de 25",
-      detail_en: "Automatically increase put protection from 5% to 15% notional. This triggers within seconds—you sleep while hedges activate."
+      rule_en: "Volatility Alerts: Market stress monitoring",
+      rule_fr: "Alertes de volatilité : Surveillance du stress du marché",
+      detail_en: "When VIX spikes above 25, recommend increasing defensive allocations (bonds, cash). You control the final decision."
     },
     {
       icon: "📈",
-      rule_en: "Upside Capture: When trend confirms",
-      rule_fr: "Capture de hausse : Quand la tendance est confirmée",
-      detail_en: "Reduce hedging to 3% notional, reinvest proceeds into SMH. Maintain 70%+ SMH exposure during bull runs."
+      rule_en: "Dividend & Tax Management: Automatic reinvestment",
+      rule_fr: "Gestion des dividendes et fiscalité : Réinvestissement automatique",
+      detail_en: "Dividends reinvest automatically at NAV. In loss months, coordinate rebalancing with tax-loss harvesting opportunities."
     }
   ],
   "expert.message6.bot.black_swan_title": {
@@ -3957,34 +3957,34 @@ const translations = {
   "expert.message6.bot.black_swan_events": [
     {
       event: "COVID-19 Crash (March 2020)",
-      market_loss: "-34.2%",
+      market_loss: "-34.2% (S&P 500)",
       strategy: "-12.1%",
-      hedge_payout: "Puts returned 340% of notional—hedges paid for themselves 3.4x"
+      defense: "Diversified defensive allocations (bonds, cash) reduced downside by 65%. Recovered by August."
     },
     {
       event: "Fed Taper Tantrum (Feb 2018)",
       market_loss: "-8.7%",
       strategy: "-2.1%",
-      hedge_payout: "VIX spike hedges covered downside, recovered by April"
+      defense: "Volatility-responsive allocations with low correlation assets protected portfolio. Full recovery by Q2."
     },
     {
       event: "Recent Correction (Aug 2024)",
       market_loss: "-6.2%",
       strategy: "-1.8%",
-      hedge_payout: "Tail hedges reduced drawdown by 71%"
+      defense: "Sortino-optimized positioning reduced downside by 71%. Rebalancing signals kept you defensive at the right moment."
     }
   ],
   "expert.message6.bot.closing": {
-    en: "The hedges aren't free—they cost ~1.5% annually in drag. But during corrections, they typically return 3-5x their cost, making them asymmetrically profitable. This is sophisticated risk management, not insurance.",
-    fr: "Les couvertures ne sont pas gratuites—elles coûtent ~1,5% annuellement en drag. Mais lors des corrections, elles retournent généralement 3-5x leur coût, les rendant asymétriquement profitables. C'est une gestion sophistiquée du risque, pas une assurance."
+    en: "Defensive asset allocation isn't about avoiding markets—it's about sleeping well while staying invested. Bonds, cash, and low-correlation assets reduce drawdowns by 50-70%, letting you capture upside during recoveries without panic selling.",
+    fr: "L'allocation d'actifs défensifs n'est pas d'éviter les marchés—c'est de dormir tranquille en restant investi. Les obligations, le cash et les actifs à faible corrélation réduisent les drawdowns de 50-70%, vous permettant de capturer la hausse lors des reprises sans vendre en panique."
   },
   "expert.message7.user": {
-    en: "Smart. Now I need to understand implementation. How do you handle slippage on puts? What's your execution algorithm for the SMH core position? And how do you handle corporate actions (stock splits, earnings volatility)?",
-    fr: "Malin. Maintenant je dois comprendre l'implémentation. Comment gérez-vous le slippage sur les puts ? Quel est votre algorithme d'exécution pour la position principale SMH ? Et comment gérez-vous les événements d'entreprise (fractionnements d'actions, volatilité des bénéfices) ?"
+    en: "That makes sense. Now I want to understand how this works in practice. How do you execute trades? Do I control the final decision? What about corporate actions like stock splits and dividends? And how do you track performance?",
+    fr: "Ça a du sens. Maintenant je veux comprendre comment ça fonctionne en pratique. Comment exécutez-vous les ordres ? Est-ce que je contrôle la décision finale ? Et les actions d'entreprise comme les fractionnements d'actions et les dividendes ? Comment suivez-vous la performance ?"
   },
   "expert.message8.bot.intro": {
-    en: "Now we're into the operational trenches. These execution details determine whether you get textbook backtest returns or real-world slippage. Let me break it down.",
-    fr: "Maintenant on entre dans les tranchées opérationnelles. Ces détails d'exécution déterminent si vous obtenez les rendements du backtest ou le slippage du monde réel. Laisse-moi te l'expliquer."
+    en: "Excellent questions. Here's how Bubble works: I provide recommendations through our AI interface, you retain full control, and execute through your own broker. This keeps costs low and you in the driver's seat.",
+    fr: "Excellentes questions. Voici comment fonctionne Bubble : Je fournir des recommandations via notre interface IA, vous gardez le contrôle total, et exécutez via votre propre courtier. Cela permet de maintenir les coûts bas et vous aux commandes."
   },
   "expert.message8.bot.execution_title": {
     en: "Execution Architecture & Implementation",
@@ -3992,33 +3992,33 @@ const translations = {
   },
   "expert.message8.bot.execution_details": [
     {
-      component_en: "SMH Core Execution",
-      component_fr: "Exécution principale SMH",
-      details_en: "VWAP (volume-weighted avg price) orders split across 4 brokers to reduce market impact. Target execution window: 9:30-10:00 AM ET when SMH liquidity peaks. Typical slippage: -0.08% vs. VWAP."
+      component_en: "Recommendation Delivery",
+      component_fr: "Livraison des recommandations",
+      details_en: "I provide clear allocation recommendations (e.g., 40% SMH, 30% IEF, 20% XLK, 10% CASH) through the AI interface. You execute through your broker using standard market orders during liquid hours. Typical cost: minimal spread (~0.01-0.03% per trade)."
     },
     {
-      component_en: "Put Hedging",
-      component_fr: "Couverture de puts",
-      details_en: "Weekly out-of-the-money puts (1-2 months) from multiple brokers (IBKR, Cboe). Execution: Rolling auctions on Fridays to minimize premium bleed. Cost drag: ~1.5% annually (well-documented in academic literature)."
+      component_en: "Defensive Asset Management",
+      component_fr: "Gestion des actifs défensifs",
+      details_en: "Bond allocations (IEF) held through low-cost ETFs. Monthly rebalancing signals sent to your dashboard. You maintain full discretion—I recommend, you approve and execute."
     },
     {
       component_en: "Corporate Actions",
       component_fr: "Actions d'entreprise",
-      details_en: "Automatic dividend reinvestment at NAV. Stock splits trigger immediate rebalancing to maintain target weights. Earnings events: volatility-adjusted position sizing (reduce 10% pre-earnings, restore post)."
+      details_en: "Dividends reinvest automatically through your broker's DRIP program at NAV. Stock splits handled automatically by brokers. Monthly rebalancing accounts for earnings volatility without pre/post-event timing."
     },
     {
       component_en: "Tax Optimization",
       component_fr: "Optimisation fiscale",
-      details_en: "Wash-sale aware rebalancing in loss months. Harvest losses on put expiry for future carry-forward deductions. In EU: Optimize for withholding tax treatment on US dividend income."
+      details_en: "Rebalancing planned around tax-loss harvesting windows. Quarterly signals identify positions with losses for tax management. EU/US: Tax-efficient dividend income through ETF structures."
     }
   ],
   "expert.message8.bot.real_slippage": {
-    en: "Real-World Slippage Budget: -1.2% annually (0.8% execution + 0.4% bid-ask spreads). This is baked into the 22.3% return projection—you're seeing post-cost numbers.",
-    fr: "Budget de slippage réel : -1,2% annuellement (0,8% d'exécution + 0,4% spread acheteur-vendeur). C'est intégré dans la projection de rendement de 22,3%—tu vois les chiffres nets de coûts."
+    en: "Cost Reality: Monthly rebalancing in liquid ETFs typically costs 0.03-0.05% per rebalance (bid-ask spreads). Annual cost ~0.4-0.6%. This is already reflected in the backtests—you're seeing realistic post-cost returns.",
+    fr: "Réalité des coûts : Le rééquilibrage mensuel dans des ETFs liquides coûte généralement 0,03-0,05% par rééquilibrage (spreads acheteur-vendeur). Coût annuel ~0,4-0,6%. C'est déjà reflété dans les backtests—vous voyez des rendements réalistes nets de coûts."
   },
   "expert.message9.user": {
-    en: "This is exactly what I needed. I want to run this. What's the implementation timeline? Do you need broker integration first? And what about regulatory constraints—can I use leverage and options in my jurisdiction?",
-    fr: "C'est exactement ce qu'il me fallait. Je veux le mettre en œuvre. Quel est le calendrier de mise en œuvre ? Avez-vous besoin d'intégration de courtier en premier ? Et qu'en est-il des contraintes réglementaires—puis-je utiliser l'effet de levier et les options dans ma juridiction ?"
+    en: "Perfect. I'm convinced. What's the timeline to launch this? Do I need any special broker setup? And what regulatory factors should I be aware of?",
+    fr: "Parfait. Je suis convaincu. Quel est le calendrier pour lancer cela ? Ai-je besoin d'une configuration de courtier spéciale ? Et quels facteurs réglementaires dois-je connaître ?"
   },
   "expert.message10.bot.intro": {
     en: "Excellent. Let's walk through launch, regulatory checks, and the first 30 days of execution.",
@@ -4030,49 +4030,49 @@ const translations = {
   },
   "expert.message10.bot.timeline_steps": [
     {
-      step: "Phase 1 - Broker Integration (Today, ~30 mins)",
-      step_fr: "Phase 1 - Intégration courtier (Aujourd'hui, ~30 mins)",
+      step: "Phase 1 - Broker Connection (Today, ~15 mins)",
+      step_fr: "Phase 1 - Connexion courtier (Aujourd'hui, ~15 mins)",
       items: [
-        { icon: "🔗", text_en: "Connect your broker (IBKR recommended for options access)", text_fr: "Connectez votre courtier (IBKR recommandé pour l'accès aux options)" },
-        { icon: "⚙️", text_en: "Validate permissions: options trading, multi-leg strategies", text_fr: "Validez les permissions : trading d'options, stratégies multi-jambes" },
-        { icon: "📋", text_en: "Regulatory questionnaire: margin limits, risk profile", text_fr: "Questionnaire réglementaire : limites de marge, profil de risque" }
+        { icon: "🔗", text_en: "Connect your preferred broker (IBKR, Alpaca, Saxo Bank supported)", text_fr: "Connectez votre courtier préféré (IBKR, Alpaca, Saxo Bank supportés)" },
+        { icon: "⚙️", text_en: "Validate ETF trading permissions: SPY, IEF, SMH, XLK, etc.", text_fr: "Validez les permissions de trading ETF : SPY, IEF, SMH, XLK, etc." },
+        { icon: "📋", text_en: "Complete KYC questionnaire: investment profile, risk tolerance", text_fr: "Complétez le questionnaire KYC : profil d'investissement, tolérance au risque" }
       ]
     },
     {
-      step: "Phase 2 - Regulatory Clearance (1-3 days)",
-      step_fr: "Phase 2 - Approbation réglementaire (1-3 jours)",
+      step: "Phase 2 - Account Verification (1-2 days)",
+      step_fr: "Phase 2 - Vérification du compte (1-2 jours)",
       items: [
-        { icon: "✅", text_en: "Pre-trade compliance: net capital, leverage limits", text_fr: "Conformité pré-trading : capital net, limites d'effet de levier" },
-        { icon: "⚖️", text_en: "Jurisdiction check: Are puts legal in your location? (Yes, everywhere, but leverage may differ)", text_fr: "Vérification juridictionnelle : Les puts sont-ils légaux dans votre région ? (Oui, partout, mais l'effet de levier peut différer)" },
-        { icon: "📞", text_en: "Call with IBKR account manager if margin > 2:1 needed", text_fr: "Appel avec le gestionnaire de compte IBKR si marge > 2:1 nécessaire" }
+        { icon: "✅", text_en: "Compliance check: trading permissions confirmed", text_fr: "Vérification de conformité : permissions de trading confirmées" },
+        { icon: "⚖️", text_en: "Jurisdiction validation: ETF trading allowed in your location", text_fr: "Validation juridictionnelle : trading d'ETF autorisé dans votre région" },
+        { icon: "📞", text_en: "Broker confirms account is live and funded", text_fr: "Le courtier confirme que le compte est actif et financé" }
       ]
     },
     {
-      step: "Phase 3 - Paper Trading (1 week, optional but recommended)",
-      step_fr: "Phase 3 - Trading papier (1 semaine, optionnel mais recommandé)",
+      step: "Phase 3 - Strategy Configuration (1 week)",
+      step_fr: "Phase 3 - Configuration de la stratégie (1 semaine)",
       items: [
-        { icon: "📊", text_en: "Dry-run the strategy on simulated capital", text_fr: "Faire tourner la stratégie en capital simulé" },
-        { icon: "🎯", text_en: "Watch rebalancing mechanics: puts rolling, SMH adjustments", text_fr: "Regarder la mécanique de rééquilibrage : rolling de puts, ajustements SMH" },
-        { icon: "🚀", text_en: "If happy with results, move to live with 25% of target capital", text_fr: "Si satisfait, passez à la vie réelle avec 25% du capital cible" }
+        { icon: "📊", text_en: "Review allocation plan in Bubble dashboard (semiconductor 40%, bonds 30%, tech 20%, cash 10%)", text_fr: "Examinez le plan d'allocation dans le tableau de bord Bubble" },
+        { icon: "🎯", text_en: "Test rebalancing signals: receive monthly recommendations", text_fr: "Testez les signaux de rééquilibrage : recevez des recommandations mensuelles" },
+        { icon: "🚀", text_en: "Approve first rebalancing or paper-trade if preferred", text_fr: "Approuvez le premier rééquilibrage ou tradez sur papier si préféré" }
       ]
     },
     {
-      step: "Phase 4 - Live Trading (Gradual ramp-up, 4 weeks)",
-      step_fr: "Phase 4 - Trading en direct (Montée en puissance progressive, 4 semaines)",
+      step: "Phase 4 - Live Execution (Ongoing)",
+      step_fr: "Phase 4 - Exécution en direct (Continu)",
       items: [
-        { icon: "🚀", text_en: "Week 1-2: 25% capital, monitor execution quality", text_fr: "Semaine 1-2 : 25% capital, surveiller la qualité d'exécution" },
-        { icon: "📈", text_en: "Week 3-4: 50% capital, validate hedge mechanics during volatility", text_fr: "Semaine 3-4 : 50% capital, valider la mécanique des couvertures lors de volatilité" },
-        { icon: "💯", text_en: "Week 5+: 100% capital deployment, full automation active", text_fr: "Semaine 5+ : Déploiement de 100% du capital, automatisation complète active" }
+        { icon: "🚀", text_en: "Month 1: Execute at 50% target allocation, monitor portfolio", text_fr: "Mois 1 : Exécutez 50% de l'allocation cible, surveillez le portefeuille" },
+        { icon: "📈", text_en: "Month 2-3: Scale to full allocation, receive monthly rebalancing signals", text_fr: "Mois 2-3 : Montez à l'allocation complète, recevez les signaux mensuels" },
+        { icon: "💯", text_en: "Month 4+: Full strategy active, quarterly performance reviews", text_fr: "Mois 4+ : Stratégie complète active, examens trimestriels" }
       ]
     }
   ],
   "expert.message10.bot.leverage_note": {
-    en: "Leverage: This strategy uses ~1.2x notional (buying puts reduces net exposure), not aggressive leverage. Most brokers allow this under 'intermediate' risk profiles. EU regulations (ESMA leverage caps) may limit this to 1:1 for retail; we'll check your account.",
-    fr: "Effet de levier : Cette stratégie utilise ~1,2x notionnel (l'achat de puts réduit l'exposition nette), pas d'effet de levier agressif. La plupart des courtiers l'autorisent sous les profils de risque « intermédiaires ». Les réglementations de l'UE (limites d'effet de levier ESMA) peuvent le limiter à 1:1 pour les particuliers ; nous vérifierons votre compte."
+    en: "Broker Compatibility: This strategy uses standard long-only ETF trading with monthly rebalancing. No leverage, no options, no margin required. All major brokers (IBKR, Alpaca, Saxo, Degiro) fully support this strategy—zero regulatory complexity.",
+    fr: "Compatibilité du courtier : Cette stratégie utilise le trading ETF long uniquement avec rééquilibrage mensuel. Aucun effet de levier, aucune option, aucune marge requise. Tous les principaux courtiers (IBKR, Alpaca, Saxo, Degiro) supportent entièrement cette stratégie—zéro complexité réglementaire."
   },
   "expert.message11.user": {
-    en: "I'm ready. One final question: what's your alpha edge here? Why does this outperform passive SMH? Is it the hedging, the sector rotation, or something else? I need to understand where the alpha comes from before I commit capital.",
-    fr: "Je suis prêt. Une dernière question : quel est votre avantage alpha ici ? Pourquoi cela surperforme-t-il le SMH passif ? Est-ce la couverture, la rotation sectorielle, ou quelque chose d'autre ? Je dois comprendre d'où vient l'alpha avant de m'engager capital."
+    en: "Great. One final question: What's your alpha edge? Why does this outperform passive SMH? Is it the diversification, the timing, the Sortino optimization? I want to understand the mechanism before I commit capital.",
+    fr: "Parfait. Une dernière question : Quel est votre avantage alpha ? Pourquoi cela surperforme-t-il le SMH passif ? Est-ce la diversification, le timing, l'optimisation Sortino ? Je veux comprendre le mécanisme avant de m'engager capital."
   },
   "expert.message12.bot.intro": {
     en: "The best question. Let me decompose where the 4.2% annual outperformance (22.3% vs. 18.1%) comes from—this is where theory meets reality.",
@@ -4084,28 +4084,28 @@ const translations = {
   },
   "expert.message12.bot.alpha_sources": [
     {
-      source: "Dynamic Hedging (Put Selling)",
-      source_fr: "Couverture dynamique (Vente de puts)",
-      alpha: "+1.2%",
-      explanation: "Weekly put rolling in low-IV environments captures volatility premium. Cost: ~1.5% drag. Net: +0.3% after friction."
+      source: "Diversification Premium",
+      source_fr: "Prime de diversification",
+      alpha: "+1.5%",
+      explanation: "Semiconductor sector alone (SMH) has 35%+ volatility. Adding bonds (IEF) and tech (XLK) reduces volatility to ~20% while maintaining 80%+ of upside. Lower volatility = faster compounding."
     },
     {
-      source: "Sector Rotation Timing",
-      source_fr: "Timing de rotation sectorielle",
-      alpha: "+1.8%",
-      explanation: "When SMH momentum diverges from market (e.g., TSMC weakness despite broader tech strength), we rotate 10% to XLK. This captures value reversion gains."
+      source: "Sector Rotation (Valuation-based)",
+      source_fr: "Rotation sectorielle (basée sur la valorisation)",
+      alpha: "+1.2%",
+      explanation: "Monthly rebalancing buys underperforming sectors at lower valuations, sells outperformers. Captures mean reversion without timing—disciplined value capture."
     },
     {
       source: "Sortino Optimization",
       source_fr: "Optimisation Sortino",
-      alpha: "+1.1%",
-      explanation: "Downside volatility-targeting prevents drawdowns during corrections, reducing recovery time. Shorter drawdown windows = compounding advantage."
+      alpha: "+1.0%",
+      explanation: "Downside volatility-targeting prevents panic selling during drawdowns. Reduces recovery time and locks in higher compounding returns over the cycle."
     },
     {
-      source: "Execution & Rebalancing",
-      source_fr: "Exécution et rééquilibrage",
-      alpha: "+0.1%",
-      explanation: "VWAP execution + dividend reinvestment timing. Small but consistent edge in liquid markets."
+      source: "Dividend Reinvestment & Tax Efficiency",
+      source_fr: "Réinvestissement des dividendes et efficacité fiscale",
+      alpha: "+0.5%",
+      explanation: "Automatic dividend reinvestment captures compounding. Tax-loss harvesting in down months offsets gains. Net benefit: ~0.5% in realistic conditions."
     }
   ],
   "expert.message12.bot.alpha_caveat": {

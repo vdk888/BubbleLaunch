@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isAnimationRunning) break; // Stop if animation was cancelled
       inputField.value += text.charAt(i);
       autoResizeTextarea(); // Resize as text is added
-      await safeDelay(80);
+      await safeDelay(50);
     }
 
     if (!isAnimationRunning) return;
@@ -453,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
     typingIndicator.remove();
 
     // Type intro text
-    await typeMessage(msg2Bubble, msg2IntroText, 80);
+    await typeMessage(msg2Bubble, msg2IntroText, 50);
 
     // Add line break and research content
     msg2Bubble.appendChild(document.createElement('br'));
@@ -486,7 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator2.remove();
 
-    await typeMessage(msg4Bubble, msg4IntroText, 80);
+    await typeMessage(msg4Bubble, msg4IntroText, 50);
 
     // Add line break and backtest content
     msg4Bubble.appendChild(document.createElement('br'));
@@ -519,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator3.remove();
 
-    await typeMessage(msg6Bubble, msg6ConfirmText, 80);
+    await typeMessage(msg6Bubble, msg6ConfirmText, 50);
 
     // Add line break and summary content
     msg6Bubble.appendChild(document.createElement('br'));
@@ -557,7 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator4.remove();
 
-    await typeMessage(msg9Bubble, msg9CelebrationText, 80);
+    await typeMessage(msg9Bubble, msg9CelebrationText, 50);
 
     // Add line break and portfolio chart
     msg9Bubble.appendChild(document.createElement('br'));
@@ -591,7 +591,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator5.remove();
 
-    await typeMessage(msg11Bubble, msg11Text, 80);
+    await typeMessage(msg11Bubble, msg11Text, 50);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
     // Mark demo as shown
@@ -1149,7 +1149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator2.remove();
 
-    await typeMessage(msg2Bubble, msg2IntroText, 80);
+    await typeMessage(msg2Bubble, msg2IntroText, 50);
 
     // Add "Why This Works" card
     msg2Bubble.appendChild(document.createElement('br'));
@@ -1182,7 +1182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator4.remove();
 
-    await typeMessage(msg4Bubble, msg4IntroText, 80);
+    await typeMessage(msg4Bubble, msg4IntroText, 50);
 
     // Add portfolio card
     msg4Bubble.appendChild(document.createElement('br'));
@@ -1212,7 +1212,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator6.remove();
 
-    await typeMessage(msg6Bubble, msg6IntroText, 80);
+    await typeMessage(msg6Bubble, msg6IntroText, 50);
 
     // Add checklist card
     msg6Bubble.appendChild(document.createElement('br'));
@@ -1245,7 +1245,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator8.remove();
 
-    await typeMessage(msg8Bubble, msg8IntroText, 80);
+    await typeMessage(msg8Bubble, msg8IntroText, 50);
 
     // Add liquidity card
     msg8Bubble.appendChild(document.createElement('br'));
@@ -1283,7 +1283,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator10.remove();
 
-    await typeMessage(msg10Bubble, msg10IntroText, 80);
+    await typeMessage(msg10Bubble, msg10IntroText, 50);
 
     // Add backtest card
     msg10Bubble.appendChild(document.createElement('br'));
@@ -1861,7 +1861,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator2.remove();
 
-    await typeMessage(msg2Bubble, msg2IntroText, 80);
+    await typeMessage(msg2Bubble, msg2IntroText, 50);
 
     // Add strategy card
     msg2Bubble.appendChild(document.createElement('br'));
@@ -1894,7 +1894,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator4.remove();
 
-    await typeMessage(msg4Bubble, msg4IntroText, 80);
+    await typeMessage(msg4Bubble, msg4IntroText, 50);
 
     // Add risk metrics card
     msg4Bubble.appendChild(document.createElement('br'));
@@ -1932,7 +1932,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator6.remove();
 
-    await typeMessage(msg6Bubble, msg6IntroText, 80);
+    await typeMessage(msg6Bubble, msg6IntroText, 50);
 
     // Add rebalancing card
     msg6Bubble.appendChild(document.createElement('br'));
@@ -1970,7 +1970,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator8.remove();
 
-    await typeMessage(msg8Bubble, msg8IntroText, 80);
+    await typeMessage(msg8Bubble, msg8IntroText, 50);
 
     // Add execution card
     msg8Bubble.appendChild(document.createElement('br'));
@@ -1995,7 +1995,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator10.remove();
 
-    await typeMessage(msg10Bubble, msg10IntroText, 80);
+    await typeMessage(msg10Bubble, msg10IntroText, 50);
 
     // Add timeline card
     msg10Bubble.appendChild(document.createElement('br'));
@@ -2020,7 +2020,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator12.remove();
 
-    await typeMessage(msg12Bubble, msg12IntroText, 80);
+    await typeMessage(msg12Bubble, msg12IntroText, 50);
 
     // Add alpha card
     msg12Bubble.appendChild(document.createElement('br'));
@@ -2039,7 +2039,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await safeDelay(2500);
     typingIndicator13.remove();
 
-    await typeMessage(msg13Bubble, msg13IntroText, 80);
+    await typeMessage(msg13Bubble, msg13IntroText, 50);
 
     // Add next steps card
     msg13Bubble.appendChild(document.createElement('br'));
