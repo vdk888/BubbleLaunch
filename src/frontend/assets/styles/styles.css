@@ -6013,7 +6013,7 @@ footer .container {
 }
 
 .superpower-panel h2 {
-  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-size: clamp(1.7rem, 2.5vw, 2.3rem);
   margin: 0;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -6028,6 +6028,10 @@ footer .container {
   color: #1f2933;
   font-style: normal;
   font-family: 'Space Grotesk', 'Inter', sans-serif;
+}
+
+html[lang="fr"] .superpower-panel h2 {
+  font-size: clamp(1.5rem, 2vw, 1.9rem);
 }
 
 .superpower-panel .superpower-subtitle {
