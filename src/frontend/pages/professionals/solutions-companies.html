@@ -85,8 +85,8 @@
               </div>
             </div>
             <div class="workflow-demo-header-actions">
-              <button class="workflow-demo-switcher fr" id="workflow-demo-fr">FR</button>
-              <button class="workflow-demo-switcher en" id="workflow-demo-en">EN</button>
+              <button class="workflow-demo-switcher fr" id="fr-demo-switch">FR</button>
+              <button class="workflow-demo-switcher en" id="en-demo-switch">EN</button>
             </div>
           </div>
           <div class="workflow-demo-messages" id="workflow-demo-messages" role="log" aria-live="polite"></div>
@@ -247,17 +247,35 @@
     </section>
 
     <!-- Blog Preview Section -->
-    <section id="blog-preview" class="fade-in" style="padding: 5rem 0; background: #F8F8F8;">
-      <div class="container" style="max-width: 900px;">
-        <h2 style="text-align: center; margin-bottom: 1.5rem;" data-translate="professionals.solutions.companies.blog.title">Conseils & IA</h2>
-        <div style="background: white; padding: 2rem; border-radius: 24px; border-left: 4px solid #667eea; box-shadow: 0 8px 24px rgba(0,0,0,0.08);">
-          <h3 style="font-size: 1.3rem; font-weight: 700; color: #000; margin-bottom: 1rem;" data-translate="professionals.solutions.companies.blog.article">
-            Conseil en IA : pourquoi nous avons quitté les Big Four et une grande banque privée pour faire différemment
-          </h3>
-          <p style="color: #666; line-height: 1.7; margin-bottom: 1.25rem;" data-translate="professionals.solutions.companies.blog.description">
-            Ex-consultants Deloitte/KPMG et ex-portfolio manager UBS, nous analysons le marché français du conseil IA en finance : taux d'échec 70-85%, budgets gaspillés, POC éternels… Quelle est notre alternative ?
+    <section id="blog-preview" class="blog-preview fade-in">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-translate="professionals.solutions.companies.blog.title">Conseils & IA</h2>
+          <p class="section-subtitle" data-translate="professionals.solutions.companies.blog.subtitle">
+            Nos expériences et analyses sur le conseil en IA pour les entreprises
           </p>
-          <a href="/blog/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment" class="cta-button" data-translate="professionals.solutions.companies.blog.cta">Lire l'article</a>
+        </div>
+
+        <div class="blog-featured-article">
+          <div class="blog-tile" style="opacity: 1; transform: none;">
+            <div class="blog-tile-content">
+              <h3 style="font-size: 1.3rem; font-weight: 700; color: #000; margin-bottom: 1rem; line-height: 1.4;" data-translate="professionals.solutions.companies.blog.article">
+                Conseil en IA : pourquoi nous avons quitté les Big Four et une grande banque privée pour faire différemment
+              </h3>
+              <p style="color: #666; line-height: 1.7; margin-bottom: 1.5rem; font-size: 1rem;" data-translate="professionals.solutions.companies.blog.description">
+                Ex-consultants Deloitte/KPMG et ex-portfolio manager UBS, nous analysons le marché français du conseil IA en finance : taux d'échec 70-85%, budgets gaspillés, POC éternels… Quelle est notre alternative ?
+              </p>
+              <a href="/blog/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment" class="blog-read-link" data-translate="professionals.solutions.companies.blog.cta">
+                Lire l'article →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-cta">
+          <a href="/blog" class="cta-link" data-translate="blogPreview.viewAll">
+            Voir tous les articles →
+          </a>
         </div>
       </div>
     </section>

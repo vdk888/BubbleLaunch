@@ -116,6 +116,11 @@ class DualPathSelector {
   }
 
   updateReturnVisitorLabel() {
+    // Only update retail button if it exists on this page
+    if (!this.retailBtn) {
+      return;
+    }
+
     const stored = this.getStoredDemoExperience();
 
     if (stored && stored.level && stored.scenarioId) {

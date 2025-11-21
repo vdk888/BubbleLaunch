@@ -85,35 +85,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const typeInsight = (element, text, callback) => {
     let charIndex = 0;
-    let currentHtml = ""; // This will build the HTML string
-    element.innerHTML = ""; // Clear content initially
+    let currentText = ""; // Build text content
+    element.textContent = ""; // Clear content initially
     element.style.opacity = 1; // Ensure element is visible
 
     function typeNextCharInsight() {
       if (charIndex < text.length) {
-        if (text[charIndex] === '<') {
-          // Found the start of an HTML tag
-          const tagEndIndex = text.indexOf('>', charIndex);
-          if (tagEndIndex !== -1) {
-            // Extract the full tag (e.g., "<b>" or "</b>")
-            const tag = text.substring(charIndex, tagEndIndex + 1);
-            currentHtml += tag; // Add the whole tag to the HTML string
-            charIndex = tagEndIndex + 1; // Move index past the tag
-          } else {
-            // Malformed tag, treat as regular character (shouldn't happen with valid HTML)
-            currentHtml += text.charAt(charIndex);
-            charIndex++;
-          }
-        } else {
-          // It's a regular character, add it
-          currentHtml += text.charAt(charIndex);
-          charIndex++;
-        }
+        // Add one character at a time
+        currentText += text.charAt(charIndex);
+        charIndex++;
 
-        element.innerHTML = currentHtml; // Update the element's content
-        setTimeout(typeNextCharInsight, 20); // Adjust typing speed here
+        // Use textContent to avoid XSS and HTML parsing issues
+        element.textContent = currentText;
+
+        // Use requestAnimationFrame for smoother animation
+        requestAnimationFrame(() => {
+          setTimeout(typeNextCharInsight, 30); // Slightly slower for better readability
+        });
       } else {
-        // All characters typed, call callback if provided
+        // All characters typed, ensure final text is set
+        element.textContent = text;
+
+        // Call callback if provided
         if (callback) {
           callback();
         }
@@ -166,11 +159,15 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(`Typing insight: Key=${key}, Lang=${lang}, Text="${text}"`);
 
         // Clear only the current item's content and make it visible
-        item.innerHTML = "";
+        item.textContent = "";
         item.classList.remove("animating"); // Remove animating class to show item
 
         typeInsight(item, text, () => {
-          // After typing is complete, keep the item visible and move to next
+          // After typing is complete, ensure text remains and item stays visible
+          item.classList.remove("animating");
+          item.style.opacity = "1";
+
+          // Move to next item after pause
           insightAnimationTimeout = setTimeout(() => {
             i++;
             animateNextInsight();
@@ -179,10 +176,11 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         insightAnimationRunning = false;
         insightAnimationCompleted = true; // Mark as completed
-        
+
         // Ensure all items remain visible at the end
         insightItems.forEach((item) => {
           item.classList.remove("animating");
+          item.style.opacity = "1";
         });
       }
     }

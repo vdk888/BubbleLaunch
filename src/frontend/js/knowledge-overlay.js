@@ -181,11 +181,18 @@ class KnowledgeOverlay {
       'homepage_direct'
     ]);
 
+    // Only redirect if workflow-demo-overlay doesn't exist on current page
+    // If it exists, the demo will launch on the current page instead
     if (redirectEntryPoints.has(this.lastEntryPoint)) {
-      const investorsUrl = document.documentElement.lang === 'en'
-        ? '/en/investors'
-        : '/investors';
-      window.location.href = investorsUrl;
+      const workflowOverlay = document.getElementById('workflow-demo-overlay');
+
+      // If workflow overlay exists on this page, don't redirect (demo will show in-place)
+      if (!workflowOverlay) {
+        const investorsUrl = document.documentElement.lang === 'en'
+          ? '/en/investors'
+          : '/investors';
+        window.location.href = investorsUrl;
+      }
     }
   }
 

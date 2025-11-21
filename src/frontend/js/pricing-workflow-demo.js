@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     (typeof window !== "undefined" && window.translations) ||
     (typeof translations !== "undefined" ? translations : {});
   const DEMO_SHOWN_KEY = 'bubble_workflow_demo_shown';
+
+  // Track current scenario for routing
+  let currentScenario = 'japan-momentum'; // default to intermediate demo
   const overlay = document.getElementById('workflow-demo-overlay');
   const closeBtn = document.getElementById('workflow-demo-close');
   const messagesContainer = document.getElementById('workflow-demo-messages');
@@ -352,8 +355,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return card;
   };
 
-  // Main demo sequence
-  const runDemo = async () => {
+  // Intermediate Demo Sequence (Japan Momentum - Legacy)
+  const runIntermediateDemo = async () => {
     messagesContainer.innerHTML = '';
 
     // Message 1: User
@@ -539,9 +542,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // Route demo based on scenario
+  const routeDemo = () => {
+    console.log('[WorkflowDemo] Routing to scenario:', currentScenario);
+
+    switch(currentScenario) {
+      case 'macro-defense':
+        runBeginnerDemo();
+        break;
+      case 'japan-momentum':
+        runIntermediateDemo(); // Legacy demo
+        break;
+      case 'semiconductors-sortino':
+        runExpertDemo();
+        break;
+      default:
+        console.warn('[WorkflowDemo] Unknown scenario, defaulting to intermediate');
+        runIntermediateDemo();
+    }
+  };
+
   const launchWorkflowDemo = () => {
     showDemoOverlay();
-    runDemo();
+    routeDemo();
   };
 
   // Event listeners
@@ -561,7 +584,7 @@ document.addEventListener('DOMContentLoaded', () => {
     frDemoSwitch.addEventListener('click', () => {
       currentLanguage = 'fr';
       updateLanguageButtons();
-      runDemo();
+      routeDemo();
     });
   }
 
@@ -569,7 +592,7 @@ document.addEventListener('DOMContentLoaded', () => {
     enDemoSwitch.addEventListener('click', () => {
       currentLanguage = 'en';
       updateLanguageButtons();
-      runDemo();
+      routeDemo();
     });
   }
 
@@ -581,9 +604,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  window.addEventListener('launchDemo', () => {
+  window.addEventListener('launchDemo', (event) => {
+    const demoExperience = event.detail;
+    if (demoExperience && demoExperience.scenarioId) {
+      currentScenario = demoExperience.scenarioId;
+      console.log('[WorkflowDemo] Scenario set to:', currentScenario);
+    }
     launchWorkflowDemo();
   });
+
+  // ========== BEGINNER DEMO (macro-defense) ==========
+  const runBeginnerDemo = async () => {
+    console.log('[WorkflowDemo] Launching Beginner Demo (macro-defense)');
+    messagesContainer.innerHTML = '';
+    // TODO: Implement 10-message beginner demo sequence
+    // Placeholder for now - will be implemented with translations
+    const placeholderText = currentLanguage === 'en'
+      ? 'Beginner demo coming soon!'
+      : 'Démo débutant en préparation !';
+    const { bubble } = addMessage(placeholderText, false);
+    bubble.textContent = placeholderText;
+  };
+
+  // ========== EXPERT DEMO (semiconductors-sortino) ==========
+  const runExpertDemo = async () => {
+    console.log('[WorkflowDemo] Launching Expert Demo (semiconductors-sortino)');
+    messagesContainer.innerHTML = '';
+    // TODO: Implement 13-message expert demo sequence
+    // Placeholder for now - will be implemented with translations
+    const placeholderText = currentLanguage === 'en'
+      ? 'Expert demo coming soon!'
+      : 'Démo expert en préparation !';
+    const { bubble } = addMessage(placeholderText, false);
+    bubble.textContent = placeholderText;
+  };
 
   // Ensure overlay hidden on load
   closeDemo();
