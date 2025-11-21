@@ -560,6 +560,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const { bubble: bubble5 } = addMessage(msg5Text, true);
     await safeDelay(2500);
 
+    // Message 5: Bot acknowledges confirmation
+    const msg5BotText = "Excellent. I've logged this pocket into your account. Now, the important part: execution.";
+    const msg5BotTextFr = "Parfait. J'ai enregistré cette poche dans votre compte. Maintenant, la partie importante : l'exécution.";
+    const msg5BotConfirmText = currentLanguage === 'en' ? msg5BotText : msg5BotTextFr;
+    const { messageDiv: msg5BotDiv, bubble: msg5BotBubble } = addMessage('', false);
+
+    const typingIndicator5Bot = createTypingIndicator();
+    msg5BotDiv.insertBefore(typingIndicator5Bot, msg5BotBubble.nextSibling);
+    await safeDelay(2500);
+    typingIndicator5Bot.remove();
+
+    await typeMessage(msg5BotBubble, msg5BotConfirmText, 50);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    await safeDelay(2500);
+
     // Message 5.5: User asks about execution
     const msg5_5Text = workflowTranslations['workflow.message5_5.user'][currentLanguage];
     await typeInInputAndSend(msg5_5Text);
