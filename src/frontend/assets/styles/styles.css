@@ -453,8 +453,13 @@ header .container {
   color: var(--foreground);
   text-decoration: none;
   transition: all 0.2s ease;
-  min-height: 44px;
+  min-height: auto;
   cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+  width: 100%;
+  text-align: left;
 }
 
 .mobile-nav-dropdown-toggle::after {
@@ -659,6 +664,54 @@ body.mobile-menu-open {
   font-weight: 700;
 }
 
+/* Mobile nav button styling */
+.mobile-nav-link {
+  color: var(--foreground);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 1.5rem 2rem;
+  margin: 0.5rem 0;
+  border-radius: 24px;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 200px;
+  position: relative;
+  overflow: hidden;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.mobile-nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s;
+}
+
+.mobile-nav-link:hover::before {
+  left: 100%;
+}
+
+.mobile-nav-link:hover {
+  color: var(--primary);
+  background: rgba(51, 51, 51, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-nav-link.active {
+  color: var(--primary);
+  background: rgba(51, 51, 51, 0.1);
+  font-weight: 700;
+}
+
 /* Tablet adjustments (iPad) */
 @media (max-width: 1024px) and (min-width: 768px) {
   .hamburger-menu {
@@ -673,7 +726,8 @@ body.mobile-menu-open {
     display: flex;
   }
 
-  .mobile-nav a {
+  .mobile-nav a,
+  .mobile-nav-link {
     font-size: 1.75rem;
     padding: 2rem 2.5rem;
     margin: 0.75rem 0;

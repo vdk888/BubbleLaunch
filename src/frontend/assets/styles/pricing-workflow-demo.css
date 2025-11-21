@@ -118,45 +118,46 @@
 
 .language-switcher-demo {
   display: flex;
-  gap: 0.6rem;
+  gap: 0.4rem;
   align-items: center;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 0.35rem;
+  border-radius: 50px;
+  border: 1px solid #e5e5e5;
 }
 
 .language-switcher-demo button {
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  border: 1.5px solid #eeeeee;
-  background: white;
+  padding: 0.4rem 0.95rem;
+  border-radius: 40px;
+  border: none;
+  background: transparent;
   color: #666666;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  min-width: 44px;
-  min-height: 44px;
+  transition: all 0.25s ease;
+  min-width: 40px;
+  min-height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  letter-spacing: 0.3px;
 }
 
 .language-switcher-demo button:hover {
-  background: #f5f5f5;
-  border-color: #ddd;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  color: #333333;
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .language-switcher-demo button.active {
-  background: linear-gradient(135deg, #333333, #2a2a2a);
-  color: white;
-  border-color: #333333;
+  background: white;
+  color: #333333;
   font-weight: 700;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 .language-switcher-demo button.active:hover {
-  background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Messages Container */

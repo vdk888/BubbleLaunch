@@ -2195,7 +2195,7 @@ const translations = {
   },
   "investors.hero.subtitle": {
     en: "Build your portfolio with AI assistance while keeping 100% control over your investment decisions.",
-    fr: "Construisez votre portefeuille avec l'aide de l'IA, en gardant 100% du contrôle sur vos décisions d'investissement."
+    fr: "Construisez votre portefeuille avec l'IA, en gardant 100% du contrôle sur vos décisions d'investissement."
   },
 
   // Investors - Vision Section
