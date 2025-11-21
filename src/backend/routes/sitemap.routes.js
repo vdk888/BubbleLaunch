@@ -107,13 +107,6 @@ router.get('/sitemap.xml', async (req, res) => {
         lastmod: today
       },
       {
-        fr: '/investors/join-us',
-        en: '/en/investors/join-us',
-        priority: '0.6',
-        changefreq: 'monthly',
-        lastmod: today
-      },
-      {
         fr: '/professionals',
         en: '/en/professionals',
         priority: '0.7',

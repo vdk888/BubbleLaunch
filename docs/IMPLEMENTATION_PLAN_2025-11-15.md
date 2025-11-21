@@ -31,7 +31,7 @@ This document outlines the complete restructuring of BubbleLaunch from a unified
    - Rewrite the hero + summary copy on `/professionals/solutions-companies` (FR/EN) to target small enterprises, Wealth Managers, and family offices needing AI-enabled workflows—remove fintech/bank references.
    - Strip the consulting page down to the essentials requested: remove “Outils portefeuille professionnel”, “Cas d’usage typiques”, “Notre approche”, “Pourquoi Bubble”, “Valeurs et méthodologie”, “Prêt à transformer vos opérations”. Rebuild “Solutions clés” tiles so they match the legacy concrete examples; drop the duplicated “exemples concrets” grid and ensure every block ends with a “Discutons de votre projet” CTA.
    - Append the same contact form + blog preview used on `/professionals/index.html`, retain the tarifs paragraph, and follow the Bubble glassmorphism/charter layout.
-   - Reposition `/professionals/solutions-wealth-managers` (FR/EN) so it strictly markets the Bubble Portfolio tool as a white-label solution for Wealth Managers (CGP in FR): replace the “Solutions clés” with one offer that explains the product, delete “Cas d’usage”, “Notre approche”, “Valeurs”, “Pourquoi Bubble”, “Tarifs”, “Amplifiez votre capacité…” etc., and add CTAs for “Discutons de votre projet” plus a placeholder “See the demo”.
+   - Reposition `/professionals/solutions-wealth-managers` (FR/EN) so it strictly markets the Bubble Portfolio tool as a white-label solution for Wealth Managers (CGPs in FR): replace the “Solutions clés” with one offer that explains the product, delete “Cas d’usage”, “Notre approche”, “Valeurs”, “Pourquoi Bubble”, “Tarifs”, “Amplifiez votre capacité…” etc., and add CTAs for “Discutons de votre projet” plus a placeholder “See the demo”.
 2. **Floating chat + assistant parity**
    - Import the floating chat input and side panel on every professional page (FR + EN) so enterprise visitors can ask about consulting or Bubble Portfolio; confirm it still reuses the global chatbot logic.
 3. **Investor journey cleanup**
@@ -875,7 +875,7 @@ Implementation notes:
 - [x] `/professionals/demo` (FR + EN) shows the preconfigured prompt buttons (via `data-prompt-key`) and excludes the retail overlay.
 - [x] Enterprise CTA + waitlist anchor added to `/professionals` (FR + EN) so header CTAs have a dedicated target.
 - [ ] Ensure every professional subpage header (solutions, demo, FAQ, contact) matches the Bubble design charter: brand/tagline block, CTA → `#enterprise-waitlist`, `.lang-toggle` buttons.
-- [ ] `/professionals/solutions-companies` (FR + EN) uses the SME/CGP consulting layout: hero, 5 solutions tiles, blog preview, pricing paragraph, and the `/api/business-contact` form with translation keys only.
+- [ ] `/professionals/solutions-companies` (FR + EN) uses the SME/CGPs consulting layout: hero, 5 solutions tiles, blog preview, pricing paragraph, and the `/api/business-contact` form with translation keys only.
 - [ ] `/professionals/solutions-wealth-managers` (FR + EN) focuses solely on the white-label Bubble Portfolio with the 6-tile feature grid and the demo/contact CTA strip (no duplicate “approach/values/pricing” sections).
 - [ ] Confirm no professional footer/nav link references `/#waitlist`; all “join/contact” links route to `/professionals#enterprise-waitlist`.
 - [ ] Chatbot (floating input + side panel) is present on every professional page and receives the correct `pageContext` metadata (`professionals_companies` vs `professionals_wealth`).

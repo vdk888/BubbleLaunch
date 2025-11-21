@@ -66,7 +66,7 @@ The actual AI-agent-driven portfolio management platform that users will subscri
 
 ### Three-Tier System
 - **Retail**: Full automated portfolio management (€0-10/month)
-- **CGP (Wealth Advisors)**: Multi-client admin dashboard
+- **CGPs (Wealth Advisors)**: Multi-client admin dashboard
 - **Asset Managers**: Screening/backtesting tools for funds
 
 ### Distribution

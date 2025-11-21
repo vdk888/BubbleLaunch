@@ -58,6 +58,10 @@ const translations = {
     en: "Early Access",
     fr: "Accès anticipé",
   },
+  "hero.demo.cta": {
+    en: "See the demo",
+    fr: "Voir la démo",
+  },
 
   // Manifesto Section
   "manifesto.title": {
@@ -2087,7 +2091,7 @@ const translations = {
   },
   "professionals.nav.solutions.wealth": {
     en: "Wealth Managers",
-    fr: "CGP & Family Offices"
+    fr: "CGPs & Family Offices"
   },
   "professionals.nav.blog": {
     en: "Blog",
@@ -2949,7 +2953,7 @@ const translations = {
   },
   "professionals.solutions.companies.title": {
     en: "For SMEs & independent wealth advisors",
-    fr: "Pour les PME & CGP indépendants"
+    fr: "Pour les PME & CGPs indépendants"
   },
   "professionals.solutions.companies.description": {
     en: "Pragmatic consulting to deploy simple workflows and custom AI copilots for finance teams.",
@@ -3051,7 +3055,7 @@ const translations = {
   },
   "professionals.solutions.wealth.hero.title": {
     en: "AI tools for Wealth Managers",
-    fr: "Outils IA pour CGP et family offices"
+    fr: "Outils IA pour CGPs et family offices"
   },
   "professionals.solutions.wealth.hero.subtitle": {
     en: "Deploy Bubble Portfolio in white-label mode: multi-client dashboards, AI copilots per profile, automated reporting, broker APIs, and 20+ years of data.",

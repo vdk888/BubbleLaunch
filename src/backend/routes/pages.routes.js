@@ -376,10 +376,6 @@ router.get("/investors/pricing", (req, res) => {
   res.sendFile(path.join(frPagesDir, "investors/pricing.html"));
 });
 
-router.get("/investors/join-us", (req, res) => {
-  res.sendFile(path.join(frPagesDir, "investors/join-us.html"));
-});
-
 router.get("/investors/portfolio-simulator", (req, res) => {
   res.sendFile(path.join(frPagesDir, "investors/portfolio-simulator.html"));
 });
@@ -400,10 +396,6 @@ router.get("/en/investors/solution", (req, res) => {
 
 router.get("/en/investors/pricing", (req, res) => {
   res.sendFile(path.join(enPagesDir, "investors/pricing.html"));
-});
-
-router.get("/en/investors/join-us", (req, res) => {
-  res.sendFile(path.join(enPagesDir, "investors/join-us.html"));
 });
 
 router.get("/en/investors/portfolio-simulator", (req, res) => {

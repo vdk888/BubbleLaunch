@@ -1135,6 +1135,22 @@ body.mobile-menu-open {
   transform: translateY(-2px);
 }
 
+.hero-actions {
+  margin: 1.75rem auto 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.cta-button.hero-demo-cta {
+  background: #000000;
+  color: #ffffff;
+}
+
+.cta-button.hero-demo-cta:hover {
+  background: #1e1e1e;
+}
+
 /* Chat Suggestions Container - ensure flex display for proper toggling */
 .chat-suggestions {
   display: flex; /* Or 'block' if you prefer them stacked and not wrapping */

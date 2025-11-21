@@ -213,7 +213,7 @@
   function buildContextMetadata(context) {
     if (context === 'professionals_companies') {
       return [
-        'Visitor is reviewing the SME/CGP consulting page.',
+        'Visitor is reviewing the SME/CGPs consulting page.',
         'Highlight custom AI workflow sprints using Claude Code / Codex / Gemini, revenue recognition automation, monthly reporting copilots, client intelligence digests, and custom dashboards.',
         'Emphasize transparent €15k-30k projects delivered in 2-4 months and the /api/business-contact form for follow-up.',
         'Clarify that Bubble provides AI empowerment and automation, not financial advice.'

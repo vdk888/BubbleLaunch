@@ -77,7 +77,7 @@ The **Bubble Portfolio** is the actual product—a separate GitHub repository co
 - **Multi-Broker Support**: IBKR, Alpaca, Saxo Bank with intelligent routing
 - **Three User Tiers**:
   - **Retail**: Full automated execution with API-enabled brokers
-  - **CGP (Wealth Advisors)**: Admin interface managing multiple client accounts
+  - **CGPs (Wealth Advisors)**: Admin interface managing multiple client accounts
   - **Asset Managers**: Screening and backtesting tools for fund management
 - **Cost-Plus Pricing**: Transparent unit economics (€0-10/month retail) vs. traditional AUM fees
 - **Regulatory Ready**: KYC, GDPR, AMF compliance built-in from Day 1

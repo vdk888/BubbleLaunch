@@ -13,7 +13,7 @@ Bubble is building an automated trading and investment platform where retail inv
 - **Multilingual Support** (FR/EN) with client-side translations.
 - **AI Chatbot** (streaming via OpenRouter) that stays purely educational—never personal financial advice.
 - **Interactive Portfolio Simulator** comparing nine strategies across 20+ years of ETF data.
-- **Professional Solutions** detailing SME/CGP consulting workflows and the white-label Bubble Portfolio for Wealth Managers.
+- **Professional Solutions** detailing SME/CGPs consulting workflows and the white-label Bubble Portfolio for Wealth Managers.
 - **Dynamic Blog + Knowledge Garden** powered by Notion + AI enrichment.
 - **Glassmorphism UI** with floating chat input + side-panel assistant.
 
