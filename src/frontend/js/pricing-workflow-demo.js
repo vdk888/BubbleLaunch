@@ -2569,6 +2569,15 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.setItem(DEMO_SHOWN_KEY, 'true');
   };
 
+  // Wealth manager demo trigger button
+  const wealthDemoTrigger = document.getElementById('wealth-demo-trigger');
+  if (wealthDemoTrigger) {
+    wealthDemoTrigger.addEventListener('click', () => {
+      currentScenario = 'semiconductors-sortino'; // Expert demo
+      launchWorkflowDemo();
+    });
+  }
+
   // Ensure overlay hidden on load
   closeDemo();
 });

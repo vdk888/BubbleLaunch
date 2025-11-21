@@ -1070,6 +1070,16 @@ body.mobile-menu-open {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.cta-button.secondary-btn {
+  background: #111827;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button.secondary-btn:hover {
+  background: #4b5563;
+  transform: translateY(-2px);
+}
+
 /* Chat Suggestions Container - ensure flex display for proper toggling */
 .chat-suggestions {
   display: flex; /* Or 'block' if you prefer them stacked and not wrapping */

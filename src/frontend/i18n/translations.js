@@ -65,16 +65,12 @@ const translations = {
     fr: "Notre Constat",
   },
   "manifesto.paragraph1": {
-    en: "Until now, you paid a money manager or a banker for reassuring words and a jargon that few understand. Today, AIs make the \"technical\" vocabulary free, readable, verifiable, and comparable. The elitism of knowledge and obsolete intermediaries are over.",
-    fr: "Jusqu'ici, vous payiez un gérant ou un banquier pour des mots rassurants et un jargon que peu comprennent. Aujourd'hui, les IAs rendent le vocabulaire \"technique\" gratuit, lisible, vérifiable et comparable. Fini l'élitisme du savoir et les intermédiaires obsolètes.",
-  },
-  "manifesto.paragraph2": {
-    en: "LLMs (ChatGPT, Gemini, Claude...) democratize access to expertise, help you understand more clearly, and let you demand evidence. Fees must now reflect real value: useful insights and measurable outperformance. We pierce the financial bubble, lift the veil on fee opacity, and put value back where it belongs: with you.",
-    fr: "Les LLMs (tels que ChatGPT, Gemini, Claude...) démocratisent l'accès à l'expertise, vous donnent la capacité de mieux comprendre et d'exiger des preuves. Les frais doivent désormais refléter la valeur réelle : des éclairages utiles et une surperformance mesurable. Nous perçons la bulle financière, levons le voile sur l'opacité des frais et remettons la valeur à sa place : chez vous.",
+    en: "AI breaks down technical jargon and dissolves elitism: expertise becomes accessible to everyone, allowing you to demand proof, challenge your financial advisors, and insist that fees reflect clear, transparent value.",
+    fr: "L'IA casse le jargon technique et dissout l'élitisme : l'expertise devient accessible à tous et cela vous permet d'exiger des preuves, de challenger vos conseillers financiers et d'exiger que les frais reflètent une valeur concrète et transparente.",
   },
   "manifesto.insight": {
-    en: "Our ethics: putting power back in your hands so you can break free from the excessive fees of now‑obsolete intermediaries. The result: you finance the economy, and the economy pays you interest. That's it.",
-    fr: "Notre éthique : vous redonner le pouvoir pour vous libérer des frais excessifs d'intermédiaires désormais obsolètes. Résultat : vous financez l'économie, l'économie vous paye des intérêts. C'est tout.",
+    en: "Our ethics restore power to you and free you from excessive fees charged by obsolete intermediaries. Result: you finance the economy, the economy pays you interest. That's it.",
+    fr: "Nous vous redonons le pouvoir et vous libérerons des frais excessifs appliqués par des intermédiaires désormais obsolètes. Résultat : vous financez l'économie, l'économie vous paye des intérêts. C'est tout.",
   },
   "manifesto.commodity": {
     en: "Talk to your agent about your investment goals in natural language. It screens stocks, tests strategies, and executes orders for you like your personal private manager. Financial services are now a commodity. You just need the right agent.",
@@ -102,29 +98,33 @@ const translations = {
     en: "Get Early Access",
     fr: "Obtenir un accès anticipé",
   },
+  "vision.platform.simulator": {
+    en: "Découvrez le simulateur de portefeuille",
+    fr: "Découvrez le simulateur de portefeuille",
+  },
   "vision.cost.title": {
     en: "Rethought Cost Structure",
     fr: "Structure de Coûts Repensée",
   },
   "vision.cost.description": {
-    en: "A fixed cloud-tool subscription (plans from €0 to €10/month) instead of a percentage of your assets like a traditional manager (2% fees). The hedge‑fund approach becomes accessible to portfolios of any size.",
-    fr: "Un abonnement fixe pour outil cloud (offres de 0 à 10€/mois) plutôt qu'un pourcentage de vos actifs comme chez un gestionnaire traditionnel (2% de frais). L'approche hedge fund devient accessible dans toutes les poches.",
+    en: "A fixed cloud-tool subscription (plans from €0 to €10/month) instead of a percentage of your assets like a traditional manager (2% fees).",
+    fr: "Un abonnement fixe pour outil cloud (offres de 0 à 10€/mois) plutôt qu'un pourcentage de vos actifs comme chez un gestionnaire traditionnel (2% de frais).",
   },
   "vision.ai.title": {
     en: "Accessible AI Expertise",
     fr: "Expertise IA Accessible",
   },
   "vision.ai.description": {
-    en: "Every recommendation requires an explanation. The AI agent doesn't just say 'buy this'—it shows you the backtest results, explains the strategy logic, and lets you ask follow-up questions until you're confident. You stay in control, but with institutional-grade analysis at your fingertips.",
-    fr: "Chaque recommandation exige une explication. L'agent IA ne dit pas juste « achète ça »—il vous montre les résultats de backtest, explique la logique de la stratégie et vous laisse poser des questions de suivi jusqu'à ce que vous soyez confiant. Vous gardez le contrôle, mais avec une analyse de niveau institutionnel à portée de main.",
+    en: "Every recommendation requires an explanation. The AI agent doesn't just say 'buy this'—it shows you the results, explains the logic, and lets you ask questions until you're confident. You stay in control, but with institutional-grade analysis at your fingertips.",
+    fr: "Chaque recommandation exige une explication. L'agent IA vous montre les résultats, explique la logique et vous laisse poser des questions jusqu'à ce que vous soyez confiant. Vous gardez le contrôle, mais avec une analyse de niveau institutionnel à portée de main.",
   },
   "vision.crypto.title": {
     en: "Diversified Assets",
     fr: "Actifs Diversifiés",
   },
   "vision.crypto.description": {
-    en: "Bubble Portfolio supports low-cost ETFs, individual stocks, and cryptocurrencies. Connect your own brokerage and crypto accounts—Bubble recommends, you decide and execute. One strategy per pocket, one overall portfolio strategy. Completely flexible.",
-    fr: "Bubble Portfolio soutient les ETF à faible coût, les actions individuelles et les cryptomonnaies. Connectez vos propres comptes de courtage et de crypto—Bubble recommande, vous décidez et exécutez. Une stratégie par poche, une stratégie globale de portefeuille. Complètement flexible.",
+    en: "Low-cost ETFs, individual stocks, cryptocurrencies etc...Connect your own brokerage and crypto accounts—Bubble recommends, you decide and execute. One strategy per pocket, one overall portfolio strategy. Completely flexible.",
+    fr: "ETF à faible coût, actions individuelles, cryptomonnaies etc...Connectez vos propres comptes de courtage et de crypto—Bubble recommande, vous décidez et exécutez. Une stratégie par poche, une stratégie globale de portefeuille. Complètement flexible.",
   },
   "vision.portfolio.title": {
     en: "Educational Tool: Explore Strategy Concepts",
@@ -391,20 +391,16 @@ const translations = {
     fr: "Points Clés",
   },
   "key_insights.intro": {
-    en: "AI radically transforms the customer experience by automating expertise and democratizing access to professional-grade financial intelligence.",
-    fr: "L’IA transforme radicalement l’expérience client en automatisant l’expertise et en démocratisant l’accès à une intelligence financière de niveau professionnel.",
-  },
-  "key_insights.bullet1": {
-    en: "Today, you juggle between banks, online platforms, costly managers, and limited robo‑advisors.",
+    en: "Today you're juggling between banks, online platforms, costly managers, and limited robo-advisors.",
     fr: "Aujourd'hui, vous jonglez entre banques, plateformes en ligne, gestionnaires coûteux et robo-advisors limités.",
   },
-  "key_insights.bullet2": {
-    en: "Bubble brings together everything you need to invest smarter: a transparent decision-support tool, powerful analytics, and educational resources for everyone. You don’t need traditional financial intermediaries anymore when AI gives you the power. Every decision is explained simply, so investing is clear and accessible.",
-    fr: "Bubble réunit tout ce dont vous avez besoin pour investir plus intelligemment : un outil de décision transparent, des analyses puissantes et des ressources pédagogiques accessibles à tous. Vous n’avez plus besoin des intermédiaires financiers traditionnels quand l’IA vous donne la main. Chaque choix est expliqué simplement pour que l’investissement reste clair et accessible.",
+  "key_insights.bullet1": {
+    en: "Bubble brings everything you need to invest smarter with AI: a transparent decision tool, powerful analytics, and educational resources for everyone.",
+    fr: "Bubble réunit tout ce dont vous avez besoin pour investir plus intelligemment grâce à l'IA : un outil de décision transparent, des analyses puissantes et des ressources pédagogiques pour tous.",
   },
-  "key_insights.bullet3": {
-    en: "Designed for our own portfolios, Bubble explains professional-grade strategies in plain language so you can evaluate and execute them independently.",
-    fr: "Conçu d’abord pour nos propres portefeuilles, Bubble explique les stratégies de niveau professionnel en langage clair afin que vous puissiez les évaluer et les exécuter en autonomie.",
+  "key_insights.bullet2": {
+    en: "You no longer need traditional intermediaries—hedge-fund superpowers are now live in your pocket, letting you execute your own strategies autonomously.",
+    fr: "Vous n’avez plus besoin des intermédiaires financiers traditionnels. Les super-pouvoirs des hedge funds, sont maintenant dans votre poche et vous pouvez exécuter vos propres stratégies en toute autonomie.",
   },
 
   // Footer
