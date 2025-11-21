@@ -159,7 +159,7 @@ After re-submitting, monitor these metrics:
 **New Keywords to Monitor**:
 - "institutional portfolio management"
 - "democratized investing" / "démocratisation investissement"
-- "alternative to wealth managers" / "alternative à la gestion"
+- "alternative to Wealth Managers" / "alternative à la gestion"
 - "fixed-fee portfolio platform" / "frais fixes investissement"
 
 ---

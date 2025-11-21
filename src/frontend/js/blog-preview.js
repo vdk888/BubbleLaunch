@@ -10,6 +10,8 @@ async function loadBlogPreview() {
     console.warn('Blog preview grid not found');
     return;
   }
+  const onlyPinned = previewGrid.dataset.pinnedOnly === 'true';
+  const pinnedSlug = previewGrid.dataset.pinnedSlug;
 
   try {
     // Fetch blog posts from API
@@ -24,8 +26,7 @@ async function loadBlogPreview() {
     // Filter published posts and get latest 3
     const publishedPosts = posts
       .filter(post => post.status === 'Published')
-      .sort((a, b) => new Date(b.publicationDate) - new Date(a.publicationDate))
-      .slice(0, 3);
+      .sort((a, b) => new Date(b.publicationDate) - new Date(a.publicationDate));
 
     if (publishedPosts.length === 0) {
       // Show empty state
@@ -36,12 +37,26 @@ async function loadBlogPreview() {
       `;
       return;
     }
+    let postsToRender = publishedPosts.slice(0, 3);
+    if (onlyPinned) {
+      let pinnedPost = null;
+      if (pinnedSlug) {
+        pinnedPost = publishedPosts.find(post => post.slug === pinnedSlug);
+      }
+      if (!pinnedPost) {
+        pinnedPost = publishedPosts.find(post => post.isPinned);
+      }
+      if (!pinnedPost) {
+        pinnedPost = publishedPosts[0];
+      }
+      postsToRender = pinnedPost ? [pinnedPost] : [];
+    }
 
     // Get current language
     const currentLang = localStorage.getItem('bubbleLanguage') || 'fr';
 
     // Render blog tiles
-    previewGrid.innerHTML = publishedPosts.map(post => {
+    previewGrid.innerHTML = postsToRender.map(post => {
       const title = currentLang === 'en' && post.title.en ? post.title.en : post.title.fr;
       const summary = currentLang === 'en' && post.summary.en ? post.summary.en : post.summary.fr;
       const imageUrl = post.featuredImage || '/assets/images/blog-placeholder.jpg';

@@ -27,11 +27,11 @@ This document outlines the complete restructuring of BubbleLaunch from a unified
 - Added enterprise “Contact our team” CTAs and waitlist anchors on `/professionals` (FR + EN) so the professional nav buttons can point to a dedicated section.
 
 **Outstanding tasks before moving to the next phases**
-1. **Professional solutions refresh (Consulting for SMEs/wealth managers & Bubble Portfolio white-label)**
-   - Rewrite the hero + summary copy on `/professionals/solutions-companies` (FR/EN) to target small enterprises, wealth managers, and family offices needing AI-enabled workflows—remove fintech/bank references.
+1. **Professional solutions refresh (Consulting for SMEs/Wealth Managers & Bubble Portfolio white-label)**
+   - Rewrite the hero + summary copy on `/professionals/solutions-companies` (FR/EN) to target small enterprises, Wealth Managers, and family offices needing AI-enabled workflows—remove fintech/bank references.
    - Strip the consulting page down to the essentials requested: remove “Outils portefeuille professionnel”, “Cas d’usage typiques”, “Notre approche”, “Pourquoi Bubble”, “Valeurs et méthodologie”, “Prêt à transformer vos opérations”. Rebuild “Solutions clés” tiles so they match the legacy concrete examples; drop the duplicated “exemples concrets” grid and ensure every block ends with a “Discutons de votre projet” CTA.
    - Append the same contact form + blog preview used on `/professionals/index.html`, retain the tarifs paragraph, and follow the Bubble glassmorphism/charter layout.
-   - Reposition `/professionals/solutions-wealth-managers` (FR/EN) so it strictly markets the Bubble Portfolio tool as a white-label solution for wealth managers (CGP in FR): replace the “Solutions clés” with one offer that explains the product, delete “Cas d’usage”, “Notre approche”, “Valeurs”, “Pourquoi Bubble”, “Tarifs”, “Amplifiez votre capacité…” etc., and add CTAs for “Discutons de votre projet” plus a placeholder “See the demo”.
+   - Reposition `/professionals/solutions-wealth-managers` (FR/EN) so it strictly markets the Bubble Portfolio tool as a white-label solution for Wealth Managers (CGP in FR): replace the “Solutions clés” with one offer that explains the product, delete “Cas d’usage”, “Notre approche”, “Valeurs”, “Pourquoi Bubble”, “Tarifs”, “Amplifiez votre capacité…” etc., and add CTAs for “Discutons de votre projet” plus a placeholder “See the demo”.
 2. **Floating chat + assistant parity**
    - Import the floating chat input and side panel on every professional page (FR + EN) so enterprise visitors can ask about consulting or Bubble Portfolio; confirm it still reuses the global chatbot logic.
 3. **Investor journey cleanup**
@@ -45,7 +45,7 @@ This document outlines the complete restructuring of BubbleLaunch from a unified
 ### Key Objectives
 1. ✅ Restore interactive hero chat input with rotating sample questions
 2. ✅ Create `/investors` journey with vision, solution, pricing, simulator, and waitlist pages
-3. ✅ Create `/professionals` journey with vision, solutions (companies & wealth managers), demo, and contact pages
+3. ✅ Create `/professionals` journey with vision, solutions (companies & Wealth Managers), demo, and contact pages
 4. ✅ Integrate FAQ sections into both journeys (adapted from current pricing page)
 5. ✅ Implement for both French and English versions simultaneously
 6. ✅ Ensure accessibility, responsiveness, and SEO compliance
@@ -289,7 +289,7 @@ Keep existing dual-path structure but:
           <svg>...</svg>
         </div>
         <h3 class="card-title" data-translate="dualPath.professional.mainTitle">For Investment Professionals</h3>
-        <p class="card-subtitle" data-translate="dualPath.professional.subtitle">AI tools & advisory for firms and wealth managers</p>
+        <p class="card-subtitle" data-translate="dualPath.professional.subtitle">AI tools & advisory for firms and Wealth Managers</p>
 
         <!-- NEW: Bullet points -->
         <ul class="card-features">
@@ -391,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
   fr: "Pour les Professionnels de l'Investissement"
 },
 "dualPath.professional.subtitle": {
-  en: "AI tools & advisory for firms and wealth managers",
+  en: "AI tools & advisory for firms and Wealth Managers",
   fr: "Outils IA et conseil pour entreprises et gestionnaires de patrimoine"
 },
 "dualPath.professional.feature1": {
@@ -708,7 +708,7 @@ src/frontend/pages/
 ├── professionals/
 │   ├── index.html                      (Vision page)
 │   ├── solutions-companies.html        (For companies/fintechs)
-│   ├── solutions-wealth-managers.html  (For wealth managers/wealth advisors)
+│   ├── solutions-wealth-managers.html  (For Wealth Managers/wealth advisors)
 │   ├── demo.html                       (Professional demo page)
 │   ├── faq.html                        (Professional FAQ)
 │   └── contact.html                    (Contact/inquiry form)
@@ -794,11 +794,11 @@ src/frontend/pages/
 
 #### **B. `/professionals/solutions-companies.html`**
 
-**Target:** SMEs and independent wealth managers that need pragmatic AI consulting (no fintech/banks focus).  
+**Target:** SMEs and independent Wealth Managers that need pragmatic AI consulting (no fintech/banks focus).  
 **Purpose:** Showcase custom AI workflow delivery (Claude Code, Codex, Gemini builders + API integrations) plus the `/api/business-contact` form.
 
 **Required structure (FR + EN):**
-1. **Hero** – Title: "AI consulting for SMEs & wealth managers" (translation key `professionals.solutions.companies.hero.title`) with subtitle referencing custom AI copilots and CTA "Discutons de votre projet" → `#project-form`.
+1. **Hero** – Title: "AI consulting for SMEs & Wealth Managers" (translation key `professionals.solutions.companies.hero.title`) with subtitle referencing custom AI copilots and CTA "Discutons de votre projet" → `#project-form`.
 2. **Solutions Grid** – 5 tiles mapped to translation keys (`tile1`..`tile5`): custom AI workflow sprints, revenue recognition automation, monthly reporting copilots, client intelligence digests, custom dashboards.
 3. **CTA repeat** – Button below the grid linking to `#project-form`.
 4. **Pinned Blog Preview** – Section title "AI & Consulting Insights" with article + CTA pointing to the legacy slug.
@@ -807,13 +807,13 @@ src/frontend/pages/
 7. **Shared Footer + Floating Chatbot** – Links route to `/professionals` anchors (not `/#waitlist`).
 
 Implementation notes:
-- Only reference SMEs/wealth managers and custom AI code builders; avoid promising managed services or low-code kits.
+- Only reference SMEs/Wealth Managers and custom AI code builders; avoid promising managed services or low-code kits.
 - CTA labels must use translation keys (`professionals.solutions.companies.form.button`) so FR/EN stay in sync.
 - Blog and pricing content appear once; no duplicate “approach/values/testimonials” blocks.
 
 #### **C. `/professionals/solutions-wealth-managers.html`**
 
-**Target:** Wealth managers, family offices, RIAs evaluating the white-label Bubble Portfolio.  
+**Target:** Wealth Managers, family offices, RIAs evaluating the white-label Bubble Portfolio.  
 **Purpose:** Present Bubble Portfolio’s professional feature set without reintroducing the consulting sections.
 
 **Required structure (FR + EN):**

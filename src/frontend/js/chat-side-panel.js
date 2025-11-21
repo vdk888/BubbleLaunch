@@ -221,7 +221,7 @@
     }
     if (context === 'professionals_wealth') {
       return [
-        'Visitor is on the white-label Bubble Portfolio page for wealth managers/family offices.',
+        'Visitor is on the white-label Bubble Portfolio page for Wealth Managers/family offices.',
         'Focus on multi-client dashboards, personalized AI agents per client, advanced reporting, broker APIs (IBKR, Alpaca, Saxo), 20+ years of historical data, and the quant strategy library.',
         'Mention demo CTA (#pro-demo) and contact CTA pointing to /professionals#enterprise-waitlist.',
         'Reinforce that Bubble Portfolio is an automated trading copilot, not financial advice.'

@@ -247,17 +247,28 @@
     </section>
 
     <!-- Blog Preview Section -->
-    <section id="blog-preview" class="fade-in" style="padding: 5rem 0; background: #F8F8F8;">
-      <div class="container" style="max-width: 900px;">
-        <h2 style="text-align: center; margin-bottom: 1.5rem;" data-translate="professionals.solutions.companies.blog.title">AI & Consulting Insights</h2>
-        <div style="background: white; padding: 2rem; border-radius: 24px; border-left: 4px solid #667eea; box-shadow: 0 8px 24px rgba(0,0,0,0.08);">
-          <h3 style="font-size: 1.3rem; font-weight: 700; color: #000; margin-bottom: 1rem;" data-translate="professionals.solutions.companies.blog.article">
-            Why we left the Big Four and a private bank to build pragmatic AI consulting
-          </h3>
-          <p style="color: #666; line-height: 1.7; margin-bottom: 1.25rem;" data-translate="professionals.solutions.companies.blog.description">
-            Why we left the Big Four and a private bank to build pragmatic AI consulting for finance teams.
+    <section id="blog-preview" class="blog-preview fade-in">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-translate="professionals.solutions.companies.blog.title">AI & Consulting Insights</h2>
+          <p class="section-subtitle" data-translate="professionals.solutions.companies.blog.subtitle">
+            Our experiences and analysis on AI consulting for finance teams.
           </p>
-          <a href="/blog/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment" class="cta-button" data-translate="professionals.solutions.companies.blog.cta">Read the article</a>
+        </div>
+
+        <div class="blog-tiles-grid" id="blog-preview-grid" data-pinned-only="true" data-pinned-slug="conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment">
+          <div class="blog-preview-loading">
+            <div class="loading-animation">
+              <div class="loading-bubble"></div>
+              <div class="loading-bubble"></div>
+              <div class="loading-bubble"></div>
+            </div>
+            <p data-translate="blogPreview.loading">Loading articles...</p>
+          </div>
+        </div>
+
+        <div class="blog-cta">
+          <a href="/en/blog" class="cta-link" data-translate="blogPreview.viewAll">View all articles →</a>
         </div>
       </div>
     </section>
@@ -516,6 +527,7 @@
     <script src="/i18n/translations.js"></script>
     <script src="/js/businesses-form.js"></script>
     <script src="/js/script.js"></script>
+    <script src="/js/blog-preview.js"></script>
     <script src="/js/knowledge-overlay.js"></script>
     <script src="/js/pricing-workflow-demo.js"></script>
     <script src="/js/chatbot-logic.js"></script>

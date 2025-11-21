@@ -430,6 +430,10 @@ const translations = {
     en: "Loading articles...",
     fr: "Chargement des articles..."
   },
+  "blogPreview.noPosts": {
+    en: "No articles yet",
+    fr: "Aucun article pour le moment"
+  },
   "blogPreview.readMore": {
     en: "Read more",
     fr: "Lire la suite"
@@ -2042,7 +2046,7 @@ const translations = {
     fr: "Pour les professionnels de l'investissement"
   },
   "dualPath.professional.description": {
-    en: "AI tools & advisory for firms and wealth managers.",
+    en: "AI tools & advisory for firms and Wealth Managers.",
     fr: "Outils IA & advisory pour entreprises et CGP."
   },
   "dualPath.professional.feature1": {
@@ -2952,7 +2956,7 @@ const translations = {
     fr: "Conseil pragmatique pour déployer workflows simples et copilotes IA sur mesure pour vos équipes finance."
   },
   "professionals.solutions.companies.hero.title": {
-    en: "AI consulting for SMEs & wealth managers",
+    en: "AI consulting for SMEs & Wealth Managers",
     fr: "Conseil IA pour PME & CGP"
   },
   "professionals.solutions.companies.hero.subtitle": {
@@ -3007,6 +3011,10 @@ const translations = {
     en: "AI & Consulting Insights",
     fr: "Conseils & IA"
   },
+  "professionals.solutions.companies.blog.subtitle": {
+    en: "Our experiences and analysis on AI consulting for finance teams.",
+    fr: "Nos expériences et analyses sur le conseil en IA pour les entreprises."
+  },
   "professionals.solutions.companies.blog.article": {
     en: "Why we left the Big Four and a private bank to build pragmatic AI consulting",
     fr: "Conseil en IA : pourquoi nous avons quitté les Big Four et une grande banque privée"
@@ -3042,7 +3050,7 @@ const translations = {
     fr: "Bubble Portfolio en marque blanche avec gestion multi-client, analytics et copilotes IA."
   },
   "professionals.solutions.wealth.hero.title": {
-    en: "AI tools for wealth managers",
+    en: "AI tools for Wealth Managers",
     fr: "Outils IA pour CGP et family offices"
   },
   "professionals.solutions.wealth.hero.subtitle": {

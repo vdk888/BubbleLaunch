@@ -181,16 +181,7 @@ router.get("/blog/:slug", async (req, res) => {
 });
 
 /**
- * Test image generation page
- */
-router.get("/test-image", (req, res) => {
-  res.sendFile(
-    path.join(frPagesDir, "test-image-generation.html")
-  );
-});
-
-/**
- * Clear cache management page
+ * Clear cache management page (dev only)
  */
 router.get("/clear-cache", (req, res) => {
   res.sendFile(
@@ -209,13 +200,6 @@ router.get("/portfolio-simulator", (req, res) => {
 
 router.get(["/pricing", "/pricing.html"], (req, res) => {
   res.sendFile(path.join(frPagesDir, "pricing.html"));
-});
-
-/**
- * Pricing demo test page
- */
-router.get("/pricing-demo-test", (req, res) => {
-  res.sendFile(path.join(frPagesDir, "pricing-demo-test.html"));
 });
 
 /**
