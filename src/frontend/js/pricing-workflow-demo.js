@@ -521,7 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
     await safeDelay(2500);
 
-    // Message 3: User
+    // Message 3: User asks about implementation details (after ChatGPT question)
     const msg3Text = workflowTranslations['workflow.message3.user'][currentLanguage];
     await typeInInputAndSend(msg3Text);
     const { bubble: bubble3 } = addMessage(msg3Text, true);
