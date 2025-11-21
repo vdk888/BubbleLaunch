@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const typeMessage = (element, text, speed = 60) => {
     return new Promise((resolve) => {
       let index = 0;
-      element.textContent = '';
+      element.innerHTML = '';
       const cursor = document.createElement('span');
       cursor.className = 'typing-cursor';
       element.appendChild(cursor);
@@ -104,8 +104,15 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(typeNextChar, speed);
         } else {
           cursor.remove();
-          // Consolidate all text nodes into a single text content to prevent rendering corruption
-          element.textContent = text;
+          // Get all accumulated text and set it cleanly
+          let accumulatedText = '';
+          for (let node of element.childNodes) {
+            if (node.nodeType === Node.TEXT_NODE) {
+              accumulatedText += node.textContent;
+            }
+          }
+          // Replace everything with clean text content
+          element.textContent = accumulatedText || text;
           resolve();
         }
       };
@@ -133,6 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const bubble = document.createElement('div');
     bubble.className = 'workflow-demo-message-bubble';
+
+    // Set text if provided
+    if (text) {
+      bubble.textContent = text;
+    }
+
     messageDiv.appendChild(bubble);
 
     if (enrichedContent) {
