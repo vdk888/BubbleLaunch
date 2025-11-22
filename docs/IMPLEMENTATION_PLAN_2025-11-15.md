@@ -419,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ### 1.4 Homepage Neutrality + “Construisons l’avenir ensemble”
 
 1. Keep only the neutral sections on `/` + `/en/`: hero, dual-path selector, “Notre approche / Our approach”, and the shared blog preview. The manifesto, fee slider, simulator preview, and “What we’re building” tiles must live exclusively under `/investors`.
-2. Reintroduce the “Construisons l’avenir ensemble / Building the future together” block at the bottom of the homepage using the Bubble charter styling (two-column layout, large title, supporting paragraph). This block is now **CTA-only**—no form fields. Button copy: “Rejoindre la liste d’attente” (FR) / “Join the waitlist” (EN) → `/investors/join-us`.
+2. Reintroduce the “Construisons l’avenir ensemble / Building the future together” block at the bottom of the homepage using the Bubble charter styling (two-column layout, large title, supporting paragraph). This block is now **CTA-only**—no form fields. Button copy: “Accès Anticipé d’attente” (FR) / “Join the waitlist” (EN) → `/investors/join-us`.
 3. Remove any references to `/#waitlist`. All analytics/IDs should reflect the new CTA-only behavior (e.g., `data-cta="homepage_waitlist"`).
 4. Prepare translation keys for the headline, paragraph, and CTA label so FR/EN stay in sync.
 

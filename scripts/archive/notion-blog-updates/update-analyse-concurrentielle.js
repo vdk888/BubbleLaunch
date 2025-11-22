@@ -47,7 +47,7 @@ Nous ne sommes ni le consultant qui vous laisse agir seul, ni le gestionnaire qu
 
 Nous construisons la solution que nous aurions voulu avoir. Si les limites de WarrenAI vous frustrent, l'opacité des robo-advisors vous agace, ou si les outils pro sont hors de prix, vous êtes notre public. Partagez envies et retours avec nous.
 
-[Rejoindre la liste d'attente](https://bubbleinvest.org)
+[Accès Anticipé d'attente](https://bubbleinvest.org)
 
 ---
 

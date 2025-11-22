@@ -246,7 +246,7 @@ Jusqu’ici, vous payiez un gérant ou un banquier pour des mots rassurants et u
 | English | French |
 |---------|--------|
 | What interests you about our approach (optional) | Ce qui vous intéresse dans notre approche (optionnel) |
-| Join the List | Rejoindre la Liste |
+| Join the List | Accès Anticipé |
 
 ---
 

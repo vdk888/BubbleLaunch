@@ -165,7 +165,7 @@ const translations = {
     fr: 'Qu\'est-ce qui te frustre le plus dans le système financier actuel ? (Optionnel)',
   },
   'waitlist.form.button': {
-    en: 'Join Waitlist',
+    en: 'Early Access',
     fr: 'Je m\'ajoute à la waitlist',
   },
 

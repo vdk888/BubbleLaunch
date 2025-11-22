@@ -2206,23 +2206,25 @@
       </div>
 
       <div class="export-section hidden" id="exportActions">
-        <h3 style="font-size: 1.1rem; font-weight: 700; color: #4B5563;" data-translate="simulator.export.title">
-          Exports & Downloads
-        </h3>
-        <p style="color: #6B7280; margin-top: 0.5rem;" data-translate="simulator.export.description">
-          Capture the chart or download the key metrics to review the strategies offline.
-        </p>
-        <div class="export-buttons">
-          <button id="exportChartBtn" type="button" data-translate="simulator.export.chart">
-            Download Chart (PNG)
-          </button>
-          <button id="exportMetricsBtn" type="button" data-translate="simulator.export.metrics">
-            Export Metrics (CSV)
-          </button>
+        <div class="export-section-content">
+          <h3 class="export-section-title" data-translate="simulator.export.title">
+            Exports & Downloads
+          </h3>
+          <p class="export-section-description" data-translate="simulator.export.description">
+            Capture the chart or download the key metrics to review the strategies offline.
+          </p>
+          <div class="export-buttons">
+            <button id="exportChartBtn" type="button" class="export-button" data-translate="simulator.export.chart">
+              Download Chart (PNG)
+            </button>
+            <button id="exportMetricsBtn" type="button" class="export-button" data-translate="simulator.export.metrics">
+              Export Metrics (CSV)
+            </button>
+          </div>
+          <p class="export-status" id="exportStatus" data-translate="simulator.export.status.ready">
+            Choose an export to download.
+          </p>
         </div>
-        <p class="export-status" id="exportStatus" data-translate="simulator.export.status.ready">
-          Choose an export to download.
-        </p>
       </div>
 
       <!-- Call to Action - Chat for Help -->
@@ -2332,7 +2334,7 @@
                 <li><a href="/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
                 <li><a href="/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
                 <li><a href="/investors/portfolio-simulator" data-translate="footer.nav.investors.simulator">Simulateur de Portefeuille</a></li>
-                <li><a href="/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Rejoindre la Liste</a></li>
+                <li><a href="/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Accès Anticipé</a></li>
               </ul>
             </div>
 

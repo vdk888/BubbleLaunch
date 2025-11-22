@@ -134,7 +134,7 @@ UI Components (consistent with Bubble design)
 Chart Card: Glassmorphism card with subtle shadow
 Strategy Selector: Pills/tabs matching chatbot UI style
 Metrics Display: Grid layout similar to blog cards
-CTA Button: Gradient button matching "Join Waitlist" style
+CTA Button: Gradient button matching "Early Access" style
 Tooltips: Match existing tooltip design
 📊 Simplified Algorithm Design
 Three Strategies (detailed implementation)
@@ -270,7 +270,7 @@ Standalone Simulator Page
 │  "Risk Parity allocates more to stable assets       │
 │   like bonds, reducing portfolio volatility..."      │
 │                                                      │
-│  [Join Waitlist] (CTA button)                       │
+│  [Early Access] (CTA button)                       │
 │                                                      │
 └──────────────────────────────────────────────────────┘
 🎯 Success Metrics

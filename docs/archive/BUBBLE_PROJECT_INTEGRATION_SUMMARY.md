@@ -604,7 +604,7 @@ req.session.messageCount // Chat rate limiting
 - Educational: Simplify financial concepts
 
 // Tone: Confident, enthusiastic, revolutionary
-// Always include call-to-action to join waitlist
+// Always include call-to-action to Early Access
 ```
 
 ### Fee Comparison Model

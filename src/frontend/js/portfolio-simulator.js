@@ -2056,13 +2056,31 @@
    */
   function updateMetrics(data) {
     const tableBody = document.getElementById('metricsTableBody');
-    if (!tableBody) return;
+    if (!tableBody) {
+      console.warn('⚠️ Metrics table body not found in DOM');
+      return;
+    }
+
+    // Validate data structure
+    if (!data) {
+      console.error('❌ updateMetrics called with null/undefined data');
+      return;
+    }
+
+    if (!data.metrics) {
+      console.error('❌ Portfolio data loaded but metrics missing', {
+        dataKeys: data ? Object.keys(data) : [],
+        hasCacheMetadata: !!data?.cacheMetadata,
+      });
+      tableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 20px;">Unable to load performance metrics. Please refresh the page.</td></tr>';
+      return;
+    }
 
     // Debug logging to verify metrics data structure
     console.log('📈 Updating metrics table:', {
       leverage: data.leverage || currentLeverage,
       hasMetrics: !!data.metrics,
-      metricsKeys: data.metrics ? Object.keys(data.metrics) : [],
+      metricsKeys: Object.keys(data.metrics),
       sampleEqualWeightMetrics: data.metrics?.equalWeight || null,
       sampleOptimizedRPMetrics: data.metrics?.optimizedRP || null
     });
@@ -2077,6 +2095,8 @@
       sixtyForty: 'sixtyForty',
       hierarchicalRiskParity: 'hierarchicalRiskParity',
       customMix: 'customMix',
+      momentum: 'momentum',
+      regimeAwareRP: 'regimeAwareRP'
     };
 
     // Clear existing rows
@@ -2096,6 +2116,8 @@
       if (metrics) {
         const row = createMetricsRow(strategyKey, metrics, false);
         tableBody.appendChild(row);
+      } else {
+        console.warn(`⚠️ Metrics not found for strategy: ${strategyKey} (dataKey: ${dataKey})`);
       }
     });
 
@@ -2105,6 +2127,8 @@
       if (baselineMetrics) {
         const baselineRow = createMetricsRow('equalWeight', baselineMetrics, true);
         tableBody.appendChild(baselineRow);
+      } else {
+        console.warn('⚠️ Baseline metrics (equalWeight) not found in data');
       }
     }
 
@@ -2156,10 +2180,16 @@
       } else if (config.isRatio) {
         if (config.isCalmar) {
           // Calculate Calmar ratio
+          // Note: metrics.annualReturn and metrics.maxDrawdown are stored as percentages
+          // e.g., 7.39 = 7.39%, -36.8 = -36.8%
           if (typeof metrics.annualReturn === 'number' &&
               typeof metrics.maxDrawdown === 'number' &&
               metrics.maxDrawdown !== 0) {
-            formattedValue = Math.abs(metrics.annualReturn / metrics.maxDrawdown).toFixed(2);
+            // Convert percentages to decimals for the ratio calculation
+            const annualReturnDecimal = metrics.annualReturn / 100;
+            const maxDrawdownDecimal = Math.abs(metrics.maxDrawdown) / 100;
+            const calmarRatio = maxDrawdownDecimal !== 0 ? annualReturnDecimal / maxDrawdownDecimal : 0;
+            formattedValue = calmarRatio.toFixed(2);
           } else {
             formattedValue = '—';
           }
@@ -2180,9 +2210,15 @@
       } else if (config.key === 'totalReturn' || config.key === 'annualReturn') {
         cell.classList.add(value >= 0 ? 'positive' : 'negative');
       } else if (config.key === 'sharpeRatio' || config.isCalmar) {
-        const numValue = config.isCalmar ?
-          Math.abs(metrics.annualReturn / metrics.maxDrawdown) :
-          value;
+        let numValue;
+        if (config.isCalmar) {
+          // Use same calculation as display value
+          const annualReturnDecimal = metrics.annualReturn / 100;
+          const maxDrawdownDecimal = Math.abs(metrics.maxDrawdown) / 100;
+          numValue = maxDrawdownDecimal !== 0 ? annualReturnDecimal / maxDrawdownDecimal : 0;
+        } else {
+          numValue = value;
+        }
         cell.classList.add(numValue >= 0 ? 'positive' : 'negative');
       }
 

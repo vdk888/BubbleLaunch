@@ -123,7 +123,7 @@ Copy the GA4 tracking code below to the `<head>` section of **ALL** HTML pages (
 ```html
 <!-- Add to CTA buttons -->
 <button onclick="gtag('event', 'cta_click', { 'cta_name': 'waitlist', 'cta_location': 'homepage' })">
-  Join Waitlist
+  Early Access
 </button>
 ```
 
@@ -226,7 +226,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
 ## 📊 Conversion Funnel to Track
 
 ### Primary Funnel: Investor Waitlist
-1. **Homepage** → Click "Join Waitlist"
+1. **Homepage** → Click "Early Access"
 2. **Waitlist Modal/Page** → Fill form
 3. **Confirmation** → Thank you page
 

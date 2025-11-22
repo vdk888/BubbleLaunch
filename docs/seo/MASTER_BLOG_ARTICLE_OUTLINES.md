@@ -169,7 +169,7 @@ When writing about Bubble's product, always distinguish between what's available
 - Action step: Calculate your scenario using the calculator
 - CTAs:
   - "Try our portfolio simulator" → /portfolio-simulator
-  - "Join waitlist" → /#waitlist
+  - "Early Access" → /#waitlist
   - "Learn about quantitative strategies" → Blog article #4
 
 #### SEO Checklist
@@ -543,7 +543,7 @@ Result: You get institutional-quality portfolio analysis (what a professional ma
 **Conclusion (200 words)**
 - Recap: AI types, 11-step process, multi-factor scoring, backtesting, education, transparency
 - Key takeaway: AI as decision-support tool, not manager
-- Action steps: Try simulator, read Build in Public series, join waitlist
+- Action steps: Try simulator, read Build in Public series, Early Access
 - CTAs: Simulator, Blog series, Waitlist
 
 #### SEO Checklist

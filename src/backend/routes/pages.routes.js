@@ -220,14 +220,6 @@ router.get("/mentions-legales", (req, res) => {
   );
 });
 
-/**
- * Businesses page (B2B consulting services)
- */
-router.get("/businesses", (req, res) => {
-  res.sendFile(
-    path.join(frPagesDir, "businesses.html")
-  );
-});
 
 /**
  * English homepage
@@ -355,9 +347,6 @@ router.get("/en/legal-notice", (req, res) => {
   res.sendFile(path.join(enPagesDir, "legal-notice.html"));
 });
 
-router.get("/en/businesses", (req, res) => {
-  res.sendFile(path.join(enPagesDir, "businesses.html"));
-});
 
 /**
  * ============================================

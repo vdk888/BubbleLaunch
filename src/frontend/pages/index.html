@@ -414,18 +414,58 @@
       </div>
     </section>
 
-    <!-- Early Access CTA Section -->
-    <section id="waitlist" class="early-access-cta fade-in">
+    <!-- Waitlist CTA Section -->
+    <section id="waitlist" class="waitlist-cta fade-in">
       <div class="container">
-        <div class="early-access-content">
-          <h2 data-translate="waitlist.title">Construisons l'Avenir Ensemble</h2>
-          <p class="early-access-subtitle" data-translate="waitlist.subtitle">
-            Nous avons construit cet agent IA pour nos propres portefeuilles et nous le partageons avec vous. Si vous pensez que les services financiers doivent être automatisés, transparents et accessibles à tous—sans pseudo élitisme—rejoignez nos early adopters.
-          </p>
-          <p class="early-access-description" data-translate="waitlist.free">
-            Rejoindre notre liste d'attente est entièrement gratuit et sans engagement. Nous cherchons simplement à rencontrer des personnes qui partagent notre vision d'une finance plus transparente.
-          </p>
-          <a href="/investors#investor-waitlist" class="cta-button primary-btn" data-translate="nav.join">Accès Anticipé</a>
+        <div class="waitlist-grid">
+          <div class="waitlist-copy">
+            <h2 data-translate="waitlist.title">Construisons l'Avenir Ensemble</h2>
+            <p class="waitlist-subtitle" data-translate="waitlist.subtitle">
+              Nous avons construit cet agent IA pour nos propres portefeuilles et nous le partageons avec vous. Si vous pensez que les services financiers doivent être automatisés, transparents et accessibles à tous—sans pseudo élitisme—rejoignez nos early adopters.
+            </p>
+            <p class="waitlist-free-text" data-translate="waitlist.free">
+              Rejoindre notre liste d'attente est entièrement gratuit et sans engagement. Nous cherchons simplement à rencontrer des personnes qui partagent notre vision d'une finance plus transparente.
+            </p>
+          </div>
+          <div class="waitlist-form-wrapper">
+            <div class="form-container">
+              <h3 data-translate="investors.joinus.form.title">Accès Anticipé</h3>
+              <form id="waitlist-form">
+                <div class="form-group">
+                  <label for="name" data-translate="investors.joinus.form.name">Nom complet</label>
+                  <input type="text" id="name" name="name" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="email" data-translate="investors.joinus.form.email">Adresse email</label>
+                  <input type="email" id="email" name="email" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="profile" data-translate="investors.joinus.form.profile">Qui êtes-vous ?</label>
+                  <select id="profile" name="profile" required>
+                    <option value="" data-translate="investors.joinus.form.profile.placeholder">Sélectionnez votre profil</option>
+                    <option value="investor_beginner" data-translate="investors.joinus.form.profile.investor_beginner">Investisseur débutant</option>
+                    <option value="investor_experienced" data-translate="investors.joinus.form.profile.investor_experienced">Investisseur expérimenté</option>
+                    <option value="tech_professional" data-translate="investors.joinus.form.profile.tech_professional">Professionnel tech</option>
+                    <option value="finance_professional" data-translate="investors.joinus.form.profile.finance_professional">Professionnel finance</option>
+                    <option value="entrepreneur" data-translate="investors.joinus.form.profile.entrepreneur">Entrepreneur</option>
+                    <option value="student" data-translate="investors.joinus.form.profile.student">Étudiant</option>
+                    <option value="other" data-translate="investors.joinus.form.profile.other">Autre</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="comments" data-translate="investors.joinus.form.comments">Messages supplémentaires (optionnel)</label>
+                  <textarea id="comments" name="comments" rows="4"></textarea>
+                </div>
+
+                <button type="submit" class="cta-button primary-btn" data-translate="investors.joinus.form.button">
+                  M'inscrire
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -475,7 +515,7 @@
                 <li><a href="/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
                 <li><a href="/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
                 <li><a href="/investors/portfolio-simulator" data-translate="footer.nav.investors.simulator">Simulateur de Portefeuille</a></li>
-                <li><a href="/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Rejoindre la Liste</a></li>
+                <li><a href="/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Accès Anticipé</a></li>
               </ul>
             </div>
 

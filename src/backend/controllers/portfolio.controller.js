@@ -272,6 +272,7 @@ function recalculateMetricsForLeveragedStrategy(timeSeries) {
   console.log(`🔍 DEBUG recalculateMetrics: baseMetrics=`, JSON.stringify(baseMetrics, null, 2));
 
   // Calculate Calmar Ratio = Annual Return / |Max Drawdown|
+  // Note: baseMetrics values are in decimal format (0.0739 = 7.39%)
   const calmarRatio =
     baseMetrics.maxDrawdown !== 0
       ? Math.abs(baseMetrics.annualReturn / baseMetrics.maxDrawdown)

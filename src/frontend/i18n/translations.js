@@ -103,7 +103,7 @@ const translations = {
     fr: "Obtenir un accès anticipé",
   },
   "vision.platform.simulator": {
-    en: "Découvrez le simulateur de portefeuille",
+    en: "Discover the portfolio simulator",
     fr: "Découvrez le simulateur de portefeuille",
   },
   "vision.cost.title": {
@@ -324,11 +324,11 @@ const translations = {
   },
   "waitlist.form.button": {
     en: "Join the List",
-    fr: "Rejoindre la Liste",
+    fr: "Accès Anticipé",
   },
   "waitlist.cta": {
     en: "Join the waitlist",
-    fr: "Rejoindre la liste d'attente",
+    fr: "Accès Anticipé d'attente",
   },
   "waitlist.disclaimer": {
     en: "Profile information is collected solely to personalize your Bubble experience. It is never used for investment advice or recommendations specific to your financial situation.",
@@ -1070,8 +1070,8 @@ const translations = {
     fr: "Simulateur de Portefeuille"
   },
   "footer.nav.investors.joinWaitlist": {
-    en: "Join Waitlist",
-    fr: "Rejoindre la Liste"
+    en: "Early Access",
+    fr: "Accès Anticipé"
   },
 
   // Footer - New Structure (Professionals Column)
@@ -2953,7 +2953,7 @@ const translations = {
   },
   "professionals.solutions.companies.title": {
     en: "For SMEs & independent wealth advisors",
-    fr: "Pour les PME & CGPs indépendants"
+    fr: "Pour les PME & CGPss indépendants"
   },
   "professionals.solutions.companies.description": {
     en: "Pragmatic consulting to deploy simple workflows and custom AI copilots for finance teams.",
@@ -2961,7 +2961,7 @@ const translations = {
   },
   "professionals.solutions.companies.hero.title": {
     en: "AI consulting for SMEs & Wealth Managers",
-    fr: "Conseil IA pour PME & CGP"
+    fr: "Conseil IA pour PME & CGPs"
   },
   "professionals.solutions.companies.hero.subtitle": {
     en: "We build custom AI workflows and copilots  to modernize finance operations without Big-Four theatre.",
