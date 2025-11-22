@@ -2610,13 +2610,21 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.setItem(DEMO_SHOWN_KEY, 'true');
   };
 
-  // Wealth manager demo trigger button
+  // Wealth manager demo trigger buttons
   const wealthDemoTrigger = document.getElementById('wealth-demo-trigger');
+  const wealthDemoTriggerCta = document.getElementById('wealth-demo-trigger-cta');
+
+  const handleWealthDemoClick = () => {
+    currentScenario = 'semiconductors-sortino'; // Expert demo
+    launchWorkflowDemo();
+  };
+
   if (wealthDemoTrigger) {
-    wealthDemoTrigger.addEventListener('click', () => {
-      currentScenario = 'semiconductors-sortino'; // Expert demo
-      launchWorkflowDemo();
-    });
+    wealthDemoTrigger.addEventListener('click', handleWealthDemoClick);
+  }
+
+  if (wealthDemoTriggerCta) {
+    wealthDemoTriggerCta.addEventListener('click', handleWealthDemoClick);
   }
 
   // Ensure overlay hidden on load
