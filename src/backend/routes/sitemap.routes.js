@@ -135,6 +135,13 @@ router.get('/sitemap.xml', async (req, res) => {
         lastmod: today
       },
       {
+        fr: '/professionals/contact',
+        en: '/en/professionals/contact',
+        priority: '0.6',
+        changefreq: 'yearly',
+        lastmod: today
+      },
+      {
         fr: '/privacy',
         en: '/en/privacy',
         priority: '0.4',

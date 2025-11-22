@@ -3,22 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Démo Professionnelle · Bubble Businesses</title>
+    <title>Nous Contacter · Bubble Businesses</title>
     <meta
       name="description"
-      content="Essayez nos outils de portfolio management et automation. Voir la démo en action pour professionals."
+      content="Contactez l'équipe Bubble Businesses pour discuter de vos besoins en automation et consulting IA."
     />
     <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
     <link rel="stylesheet" href="/assets/styles/styles.css" />
     <link rel="canonical" href="https://bubbleinvest.org/professionals#enterprise-waitlist" />
-    <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/professionals/demo" />
-    <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/professionals/demo" />
+    <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/professionals#enterprise-waitlist" />
+    <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/professionals#enterprise-waitlist" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body class="professionals-demo-page">
+  <body class="professionals-contact-page">
     <!-- Navigation Header -->
     <header>
       <div class="container">
@@ -85,140 +85,105 @@
     <!-- Hero Section -->
     <section class="hero fade-in">
       <div class="container">
-        <h1 data-translate="professionals.demo.title">Explorez Nos Capacités</h1>
-        <p class="hero-subtitle" data-translate="professionals.demo.subtitle">
-          Testez le portfolio simulator et découvrez comment nos solutions transforment vos opérations.
+        <h1 data-translate="professionals.contact.title">Parlons de Votre Projet</h1>
+        <p class="hero-subtitle" data-translate="professionals.contact.subtitle">
+          Remplissez le formulaire et notre équipe vous contactera rapidement pour discuter de vos besoins.
         </p>
       </div>
     </section>
 
-    <!-- Prompt Suggestions -->
-    <section class="demo-prompts fade-in">
+    <!-- Contact Section -->
+    <section class="contact-section fade-in">
       <div class="container">
-        <h2 data-translate="professionals.demo.prompts.title">Plongez dans un flux réel</h2>
-        <p class="section-subtitle" data-translate="professionals.demo.prompts.subtitle">
-          Utilisez ces prompts pour explorer portefeuilles modèles, briefs réglementaires et automatisation.
-        </p>
-        <div class="prompt-buttons">
-          <button type="button" class="prompt-button chat-suggestion-btn" data-prompt-key="professionals.demo.prompts.portfolio.prompt" data-translate="professionals.demo.prompts.portfolio.label">
-            Portefeuille modèle · 45 ans risque modéré
-          </button>
-          <button type="button" class="prompt-button chat-suggestion-btn" data-prompt-key="professionals.demo.prompts.esg.prompt" data-translate="professionals.demo.prompts.esg.label">
-            Brief réglementaire pour CFO
-          </button>
-          <button type="button" class="prompt-button chat-suggestion-btn" data-prompt-key="professionals.demo.prompts.automation.prompt" data-translate="professionals.demo.prompts.automation.label">
-            Plan d'automatisation · onboarding 500 comptes
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Demo Tools Section -->
-    <section class="platform-section fade-in">
-      <div class="container">
-        <h2 data-translate="professionals.demo.tools.title">Nos Outils de Démo</h2>
-        <p class="section-subtitle" data-translate="professionals.demo.tools.subtitle">
-          Essayez dès maintenant nos technologies de pointe.
-        </p>
-
-        <div class="demo-tiles">
-          <a href="/portfolio-simulator" class="demo-tile">
-            <div class="demo-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                <polyline points="17 6 23 6 23 12"></polyline>
-              </svg>
+        <div class="contact-form-wrapper">
+          <form id="professionals-contact-form" class="contact-form">
+            <div class="form-group">
+              <label for="company_name" data-translate="professionals.contact.form.company">Nom de l'entreprise</label>
+              <input type="text" id="company_name" name="company_name" required />
             </div>
-            <h3 data-translate="professionals.demo.portfolio.title">Portfolio Simulator</h3>
-            <p data-translate="professionals.demo.portfolio.description">
-              Backtestez des stratégies sur 20 ans de données. Comparez les allocations, mesurez la performance.
+
+            <div class="form-group">
+              <label for="full_name" data-translate="professionals.contact.form.name">Nom complet</label>
+              <input type="text" id="full_name" name="full_name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email" data-translate="professionals.contact.form.email">Adresse email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone" data-translate="professionals.contact.form.phone">Téléphone (optionnel)</label>
+              <input type="tel" id="phone" name="phone" />
+            </div>
+
+            <div class="form-group">
+              <label for="role" data-translate="professionals.contact.form.role">Votre rôle</label>
+              <select id="role" name="role" required>
+                <option value="" data-translate="professionals.contact.form.role.placeholder">Sélectionnez votre rôle</option>
+                <option value="founder" data-translate="professionals.contact.form.role.founder">Fondateur/CEO</option>
+                <option value="cfo" data-translate="professionals.contact.form.role.cfo">CFO/Directeur Financier</option>
+                <option value="cto" data-translate="professionals.contact.form.role.cto">CTO/Directeur Technique</option>
+                <option value="operations" data-translate="professionals.contact.form.role.operations">Directeur des Opérations</option>
+                <option value="wealth_manager" data-translate="professionals.contact.form.role.wealth">Wealth Manager</option>
+                <option value="consultant" data-translate="professionals.contact.form.role.consultant">Consultant/Partenaire</option>
+                <option value="other" data-translate="professionals.contact.form.role.other">Autre</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="company_type" data-translate="professionals.contact.form.type">Type d'organisation</label>
+              <select id="company_type" name="company_type" required>
+                <option value="" data-translate="professionals.contact.form.type.placeholder">Sélectionnez le type</option>
+                <option value="fintech" data-translate="professionals.contact.form.type.fintech">Fintech/Crypto</option>
+                <option value="robo_advisor" data-translate="professionals.contact.form.type.robo">Robo-Advisor</option>
+                <option value="broker" data-translate="professionals.contact.form.type.broker">Courtier/Broker</option>
+                <option value="bank" data-translate="professionals.contact.form.type.bank">Banque Traditionnelle</option>
+                <option value="wealth_firm" data-translate="professionals.contact.form.type.wealth">Wealth Management</option>
+                <option value="asset_manager" data-translate="professionals.contact.form.type.asset">Asset Manager</option>
+                <option value="consulting" data-translate="professionals.contact.form.type.consulting">Cabinet de Conseil</option>
+                <option value="other" data-translate="professionals.contact.form.type.other">Autre</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="challenge" data-translate="professionals.contact.form.challenge">Quel est votre principal défi ?</label>
+              <textarea id="challenge" name="challenge" rows="4" placeholder="Décrivez votre situation..." required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="budget" data-translate="professionals.contact.form.budget">Budget estimé</label>
+              <select id="budget" name="budget" required>
+                <option value="" data-translate="professionals.contact.form.budget.placeholder">Sélectionnez une fourchette</option>
+                <option value="0-10k" data-translate="professionals.contact.form.budget.small">€0 - €10k</option>
+                <option value="10-30k" data-translate="professionals.contact.form.budget.medium">€10k - €30k</option>
+                <option value="30k+" data-translate="professionals.contact.form.budget.large">€30k+</option>
+                <option value="exploring" data-translate="professionals.contact.form.budget.exploring">En phase d'exploration</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="timeline" data-translate="professionals.contact.form.timeline">Timeline souhaitée</label>
+              <select id="timeline" name="timeline" required>
+                <option value="" data-translate="professionals.contact.form.timeline.placeholder">Sélectionnez une timeline</option>
+                <option value="urgent" data-translate="professionals.contact.form.timeline.urgent">Urgent (1-2 mois)</option>
+                <option value="soon" data-translate="professionals.contact.form.timeline.soon">Bientôt (2-3 mois)</option>
+                <option value="flexible" data-translate="professionals.contact.form.timeline.flexible">Flexible (3+ mois)</option>
+                <option value="exploring" data-translate="professionals.contact.form.timeline.exploring">En phase d'exploration</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message" data-translate="professionals.contact.form.message">Message supplémentaire (optionnel)</label>
+              <textarea id="message" name="message" rows="4" placeholder="Toute information supplémentaire que vous aimeriez partager..."></textarea>
+            </div>
+
+            <button type="submit" class="cta-button primary-btn" data-translate="professionals.contact.form.submit">Envoyer ma Demande</button>
+
+            <p class="form-note" data-translate="professionals.contact.form.note">
+              Nous répondons généralement dans les 24 heures.
             </p>
-            <span class="demo-link" data-translate="professionals.demo.portfolio.cta">Essayer →</span>
-          </a>
-
-          <div class="demo-tile coming-soon">
-            <div class="demo-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-              </svg>
-            </div>
-            <h3 data-translate="professionals.demo.automation.title">Automation Builder</h3>
-            <p data-translate="professionals.demo.automation.description">
-              Construisez vos workflows d'automation avec notre no-code builder. Disponible bientôt.
-            </p>
-            <span class="demo-badge" data-translate="professionals.demo.coming">Bientôt</span>
-          </div>
-
-          <div class="demo-tile coming-soon">
-            <div class="demo-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="1"></circle>
-                <path d="M12 1v6m0 6v6"></path>
-                <path d="M4.22 4.22l4.24 4.24m2.12 2.12l4.24 4.24"></path>
-                <path d="M1 12h6m6 0h6"></path>
-                <path d="M4.22 19.78l4.24-4.24m2.12-2.12l4.24-4.24"></path>
-              </svg>
-            </div>
-            <h3 data-translate="professionals.demo.api.title">API Documentation</h3>
-            <p data-translate="professionals.demo.api.description">
-              Consultez notre API reference complète pour intégrations personnalisées. Disponible bientôt.
-            </p>
-            <span class="demo-badge" data-translate="professionals.demo.coming">Bientôt</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features-section fade-in">
-      <div class="container">
-        <h2 data-translate="professionals.demo.features.title">Ce Que Vous Explorerez</h2>
-        <div class="features-list">
-          <div class="feature-item">
-            <div class="feature-icon">✓</div>
-            <div class="feature-text">
-              <h4 data-translate="professionals.demo.features.backtesting">Backtesting Avancé</h4>
-              <p data-translate="professionals.demo.features.backtesting.desc">20 ans de données historiques, multiples stratégies, métriques de risque complètes.</p>
-            </div>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">✓</div>
-            <div class="feature-text">
-              <h4 data-translate="professionals.demo.features.customization">Personnalisation</h4>
-              <p data-translate="professionals.demo.features.customization.desc">Créez vos propres stratégies, ajustez les paramètres, testez différents scénarios.</p>
-            </div>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">✓</div>
-            <div class="feature-text">
-              <h4 data-translate="professionals.demo.features.analytics">Analytics Détaillées</h4>
-              <p data-translate="professionals.demo.features.analytics.desc">Sharpe ratio, maximum drawdown, performance attribution, stress tests.</p>
-            </div>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">✓</div>
-            <div class="feature-text">
-              <h4 data-translate="professionals.demo.features.export">Export de Données</h4>
-              <p data-translate="professionals.demo.features.export.desc">Téléchargez les résultats en CSV, PNG ou PDF pour votre analyse.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section fade-in">
-      <div class="container">
-        <h2 data-translate="professionals.demo.cta.title">Prêt à Découvrir Plus ?</h2>
-        <p data-translate="professionals.demo.cta.subtitle">
-          Planifiez une démo personnalisée avec nos experts.
-        </p>
-        <div class="cta-buttons">
-          <a href="/professionals#enterprise-waitlist" class="cta-button primary-btn" data-translate="professionals.demo.cta.contact">Planifier une Démo</a>
-          <a href="/professionals" class="cta-button secondary-btn" data-translate="professionals.demo.cta.back">Retour</a>
+          </form>
         </div>
       </div>
     </section>
@@ -392,6 +357,5 @@
     <script src="/js/chat-side-panel.js"></script>
     <script src="/js/floating-chat-input.js"></script>
     <script src="/js/animations.js"></script>
-    <script src="/js/professional-demo-analytics.js"></script>
   </body>
 </html>
