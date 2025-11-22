@@ -769,6 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (pricingContent) {
       pricingContent.classList.remove('hidden');
     }
+    maybeRedirectAfterDemoClose();
   };
 
   // Route demo based on scenario

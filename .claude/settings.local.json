@@ -21,7 +21,8 @@
       "Bash(lsof:*)",
       "Bash(xargs kill -9)",
       "Bash(node -c:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(xargs sed -i '' 's|/professionals/contact|/professionals#enterprise-waitlist|g')"
     ],
     "deny": [],
     "ask": []
