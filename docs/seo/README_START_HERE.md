@@ -12,9 +12,10 @@
 - Canonical URLs implemented correctly
 - Hreflang tags (bilingual support) working
 - Comprehensive JSON-LD structured data
-- Professional robots.txt & sitemap.xml
+- Professional robots.txt & sitemap.xml (26 pages)
 - Mobile responsive design
 - GDPR-compliant cookie consent
+- Outdated /businesses pages deleted ✅
 
 ❌ **Critical Gaps to Fix**:
 - Google Analytics 4: NOT IMPLEMENTED (can't measure anything)
@@ -28,12 +29,12 @@
 ## The Plan (This Week)
 
 ### Priority 1: Google Search Console (20 minutes) 🔴 DO THIS TODAY
-Your sitemap is created but Google doesn't know about it. This gets 28 pages discovered within days.
+Your sitemap is created but Google doesn't know about it. This gets 26 pages discovered within days.
 
 **Document**: [GSC_QUICK_START.md](GSC_QUICK_START.md)
 **Action**: Verify domain → Submit sitemap → Request priority indexing
 **Time**: 20 minutes
-**Impact**: 20-28 pages indexed within 7 days
+**Impact**: 20-26 pages indexed within 7 days
 
 ### Priority 2: Google Analytics 4 (3 hours) 🔴 DO THIS TUESDAY-WEDNESDAY
 Set up measurement infrastructure so you can track conversions and user behavior.
@@ -114,7 +115,7 @@ You're reading it! ✅
 **Location**: `https://bubbleinvest.org/sitemap.xml`
 
 **What's included**:
-- 28 pages (14 French + 14 English)
+- 26 pages (13 French + 13 English)
 - Proper hreflang tags (bilingual)
 - Priority levels (1.0 for homepage, 0.4 for legal)
 - Change frequency indicators

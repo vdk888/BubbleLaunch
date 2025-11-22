@@ -73,7 +73,7 @@
 - [ ] `src/frontend/pages/en/legal-notice.html` - Legal notice EN
 - [ ] `src/frontend/pages/en/professionals/contact.html` - Professional contact EN (if exists)
 
-**Total Pages**: 28
+**Total Pages**: 26 (businesses.html pages deleted)
 
 ---
 

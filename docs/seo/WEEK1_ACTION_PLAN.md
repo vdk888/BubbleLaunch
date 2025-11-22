@@ -29,8 +29,8 @@ Your SEO foundation is **solid but incomplete**. This week you'll:
 
 ```
 [ ] 5 min: Verify domain in Google Search Console
-[ ] 2 min: Submit sitemap.xml
-[ ] 10 min: Request indexing for 16 high-priority pages
+[ ] 2 min: Submit sitemap.xml (26 pages, not 28)
+[ ] 10 min: Request indexing for 14 high-priority pages
 [ ] 3 min: Bookmark GSC reports for monitoring
 ```
 
@@ -73,16 +73,16 @@ Your SEO foundation is **solid but incomplete**. This week you'll:
 👉 **[GA4_IMPLEMENTATION_CHECKLIST.md](GA4_IMPLEMENTATION_CHECKLIST.md)** - Step-by-step checklist
 👉 **[ANALYTICS_SETUP.md](ANALYTICS_SETUP.md)** - Complete technical guide
 
-### Files Requiring GA4 Code (28 total):
+### Files Requiring GA4 Code (26 total):
 
-**French** (14):
+**French** (12):
 - `index.html`, `pricing.html`, `portfolio-simulator.html`, `blog.html`
 - `blog-post.html`, `investors/index.html`, `investors/pricing.html`
 - `professionals/index.html`, `professionals/demo.html`
 - `professionals/solutions-companies.html`, `professionals/solutions-wealth-managers.html`
 - `privacy.html`, `mentions-legales.html`
 
-**English** (14):
+**English** (12):
 - `en/index.html`, `en/pricing.html`, `en/portfolio-simulator.html`, `en/blog.html`
 - `en/blog-post.html`, `en/investors/index.html`, `en/investors/pricing.html`
 - `en/professionals/index.html`, `en/professionals/demo.html`
