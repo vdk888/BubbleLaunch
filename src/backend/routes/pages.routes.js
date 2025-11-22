@@ -412,6 +412,10 @@ router.get("/professionals/demo", (req, res) => {
   res.sendFile(path.join(frPagesDir, "professionals/demo.html"));
 });
 
+router.get("/professionals/portfolio-simulator", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "professionals/portfolio-simulator.html"));
+});
+
 /**
  * ============================================
  * PROFESSIONAL PAGES (English)
@@ -431,6 +435,10 @@ router.get("/en/professionals/solutions-wealth-managers", (req, res) => {
 
 router.get("/en/professionals/demo", (req, res) => {
   res.sendFile(path.join(enPagesDir, "professionals/demo.html"));
+});
+
+router.get("/en/professionals/portfolio-simulator", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "professionals/portfolio-simulator.html"));
 });
 
 module.exports = router;
