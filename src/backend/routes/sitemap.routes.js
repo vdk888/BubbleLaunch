@@ -65,6 +65,13 @@ router.get('/sitemap.xml', async (req, res) => {
         lastmod: today
       },
       {
+        fr: '/investors/portfolio-simulator',
+        en: '/en/investors/portfolio-simulator',
+        priority: '0.8',
+        changefreq: 'monthly',
+        lastmod: today
+      },
+      {
         fr: '/blog',
         en: '/en/blog',
         priority: '0.8',
@@ -125,6 +132,13 @@ router.get('/sitemap.xml', async (req, res) => {
         en: '/en/professionals/demo',
         priority: '0.6',
         changefreq: 'yearly',
+        lastmod: today
+      },
+      {
+        fr: '/professionals/portfolio-simulator',
+        en: '/en/professionals/portfolio-simulator',
+        priority: '0.7',
+        changefreq: 'monthly',
         lastmod: today
       },
       {
