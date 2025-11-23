@@ -22,7 +22,8 @@
       "Bash(xargs kill -9)",
       "Bash(node -c:*)",
       "Bash(rm:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(wc:*)"
     ],
     "deny": [],
     "ask": []

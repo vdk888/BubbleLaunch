@@ -5820,7 +5820,39 @@ footer .container {
 
 
 #tarteaucitronIcon {
-  display: none;
+  z-index: 2147483650;
+}
+
+#tarteaucitronIconTopRight {
+  top: 1.25rem !important;
+  right: 1.25rem !important;
+  bottom: auto !important;
+  left: auto !important;
+}
+
+#tarteaucitronIcon #tarteaucitronManager {
+  padding: 0.35rem 0.85rem !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(103, 126, 234, 0.3) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15) !important;
+  color: var(--primary) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  font-size: 0.78rem !important;
+}
+
+@media (max-width: 640px) {
+  #tarteaucitronIconTopRight {
+    top: 0.9rem !important;
+    right: 0.9rem !important;
+  }
+
+  #tarteaucitronIcon #tarteaucitronManager {
+    padding: 0.25rem 0.65rem !important;
+    font-size: 0.7rem !important;
+  }
 }
 
 /* Allocation Chart Toggle Button */

@@ -221,10 +221,10 @@ tarteaucitron.init({
   "closePopup": false,
 
   // Show tarteaucitron icon
-  "showIcon": true,
+  "showIcon": false,
 
   // Icon position
-  "iconPosition": "BottomLeft",
+  "iconPosition": "TopRight",
 
   // Adblocker detection
   "adblocker": false,

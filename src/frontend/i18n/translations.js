@@ -2054,8 +2054,8 @@ const translations = {
     fr: "Outils IA & conseil pour entreprises et CGP."
   },
   "dualPath.professional.feature1": {
-    en: "White-label portfolio manager with AI",
-    fr: "Gestion IA de portefeuille en marque blanche"
+    en: "White-label portfolio manager with AI agent",
+    fr: "Gestion de portefeuille en marque blanche avec agent IA"
   },
   "dualPath.professional.feature2": {
     en: "Automation with APIs integration",
@@ -2063,7 +2063,7 @@ const translations = {
   },
   "dualPath.professional.feature3": {
     en: "Custom projects from €3k",
-    fr: "Projets sur-mesure dès 3 k€"
+    fr: "Projets sur-mesure dès 3k€"
   },
   "dualPath.professional.cta": {
     en: "Discover",
