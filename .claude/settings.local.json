@@ -23,7 +23,16 @@
       "Bash(node -c:*)",
       "Bash(rm:*)",
       "Bash(node:*)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "Bash(cat:*)",
+      "Bash(sed:*)",
+      "Bash(\"/Users/jadethi-viet-lanhoang/Library/Mobile Documents/com~apple~CloudDocs/Bubble invest/BubbleLaunch/docs/seo/SEO_IMPLEMENTATION_PRIORITY.md\" )",
+      "Bash(\"/Users/jadethi-viet-lanhoang/Library/Mobile Documents/com~apple~CloudDocs/Bubble invest/BubbleLaunch/docs/seo/WEEK1_ACTION_PLAN.md\" )",
+      "Bash(\"/Users/jadethi-viet-lanhoang/Library/Mobile Documents/com~apple~CloudDocs/Bubble invest/BubbleLaunch/docs/seo/GSC_IMPLEMENTATION_CHECKLIST.md\" )",
+      "Bash(\"/Users/jadethi-viet-lanhoang/Library/Mobile Documents/com~apple~CloudDocs/Bubble invest/BubbleLaunch/docs/seo/GSC_QUICK_START.md\" )",
+      "Bash(\"/Users/jadethi-viet-lanhoang/Library/Mobile Documents/com~apple~CloudDocs/Bubble invest/BubbleLaunch/docs/seo/SEO_SUMMARY.txt\" )",
+      "Bash(\"/Users/jadethi-viet-lanhoang/Library/Mobile Documents/com~apple~CloudDocs/Bubble invest/BubbleLaunch/docs/seo/GA4_IMPLEMENTATION_CHECKLIST.md\")",
+      "Bash(/tmp/README-SEO-backup.md)"
     ],
     "deny": [],
     "ask": []

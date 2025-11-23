@@ -151,7 +151,7 @@ Jusqu’ici, vous payiez un gérant ou un banquier pour des mots rassurants et u
 | English | French |
 |---------|--------|
 | Share | Partager |
-| Because AI now makes expertise accessible to everyone, we're seizing this window to build a model where these efficiency gains allow us to give back what was historically captured by costly intermediaries. | Parce que l'IA rend désormais l'expertise accessible à tous, nous saisissons cette fenêtre pour construire un modèle où ce gain d'efficacité nous permet de vous rendre ce qui était historiquement capté par des intermédiaires coûteux. |
+| Because AI now makes expertise accessible to everyone, we're seizing this historical window to build a model where these efficiency gains allow us to give back what was historically captured by costly intermediaries. | Parce que l'IA rend désormais l'expertise accessible à tous, nous saisissons cette fenêtre pour construire un modèle où ce gain d'efficacité nous permet de vous rendre ce qui était historiquement capté par des intermédiaires coûteux. |
 
 ### Approach 4: Educate
 | English | French |

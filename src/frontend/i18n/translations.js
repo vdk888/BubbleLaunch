@@ -177,8 +177,8 @@ const translations = {
     fr: "Partager",
   },
   "approach.share.description": {
-    en: "Because AI now makes expertise accessible to everyone, we're seizing this window to build a model where these efficiency gains allow us to give back what was historically captured by costly intermediaries.",
-    fr: "Parce que l'IA rend désormais l'expertise accessible à tous, nous saisissons cette fenêtre pour construire un modèle où ce gain d'efficacité nous permet de vous rendre ce qui était historiquement capté par des intermédiaires coûteux.",
+    en: "Because AI now makes expertise accessible to everyone, we're seizing this historical window to build a model where these efficiency gains allow us to give back what was historically captured by costly intermediaries.",
+    fr: "Parce que l'IA rend désormais l'expertise accessible à tous, nous saisissons cette fenêtre historique  pour construire un modèle où ce gain d'efficacité nous permet de vous rendre ce qui était historiquement capté par des intermédiaires coûteux.",
   },
   "approach.educate.title": {
     en: "Educate",
