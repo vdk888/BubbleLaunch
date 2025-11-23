@@ -2,6 +2,9 @@
  * Cookie Consent with Tarteaucitron.js
  * CNIL/RGPD compliant cookie consent banner
  *
+ * Google Analytics 4 Consent Mode Integration
+ * Ensures GDPR compliance while enabling analytics
+ *
  * Documentation: https://opt-out.ferank.eu/en/
  */
 
@@ -12,26 +15,26 @@ var privacyPath = isFrenchLocale ? '/privacy' : '/en/privacy';
 var cookieLangOverrides = {
   en: {
     alertBig: "Choose the cookies you allow",
-    alertBigPrivacy: "Bubble keeps only essential cookies right now: chat session safety and language preference. No analytics or ads.",
+    alertBigPrivacy: "Bubble keeps essential cookies and optional analytics. Essential: chat safety, language preference. Optional: Google Analytics for performance tracking.",
     alertSmall: "Cookie settings",
     personalize: "Review choices",
     acceptAll: "Allow all cookies",
     denyAll: "Keep essential only",
     close: "Close",
-    noServices: "We only use essential cookies right now (chat session safety and language preference). You can reopen this panel any time via the \"Cookies\" badge.",
+    noServices: "We use essential cookies (chat safety, language) and optional analytics (Google Analytics). You can reopen this panel any time via the 'Cookies' badge.",
     icon: "Cookies",
     mandatoryTitle: "Essential cookies",
     mandatoryText: "These cookies keep the chat safe and remember your language. They are always on because the product will not work without them."
   },
   fr: {
     alertBig: "Choisissez les cookies autorises",
-    alertBigPrivacy: "Bubble conserve uniquement des cookies essentiels : securite du chat et preference de langue. Aucun suivi analytique ou publicitaire.",
+    alertBigPrivacy: "Bubble conserve les cookies essentiels et l'analytique optionnelle. Essentiels : securite du chat, preference de langue. Optionnel : Google Analytics pour le suivi des performances.",
     alertSmall: "Parametres cookies",
     personalize: "Revoir mes choix",
     acceptAll: "Autoriser tous les cookies",
     denyAll: "Conserver l'essentiel",
     close: "Fermer",
-    noServices: "Nous utilisons uniquement des cookies essentiels : securite du chat et preference de langue. Vous pouvez rouvrir ce panneau a tout moment via le badge \"Cookies\".",
+    noServices: "Nous utilisons les cookies essentiels (securite du chat, preference de langue) et l'analytique optionnelle (Google Analytics). Vous pouvez rouvrir ce panneau a tout moment via le badge 'Cookies'.",
     icon: "Cookies",
     mandatoryTitle: "Cookies essentiels",
     mandatoryText: "Ces cookies limitent le chat et gardent votre preference de langue. Ils sont toujours actifs car la plateforme ne fonctionne pas sans eux."
@@ -108,6 +111,44 @@ function registerBubbleServices() {
       tarteaucitron.job.push(service.key);
     }
   });
+
+  // Register Google Analytics 4 as optional service
+  tarteaucitron.services.ga4 = {
+    key: 'ga4',
+    type: 'analytics',
+    name: isFrenchLocale ? 'Google Analytics 4' : 'Google Analytics 4',
+    uri: 'https://policies.google.com/privacy',
+    needConsent: true,
+    cookies: ['_ga', '_gid', '_ga_T0MQEL0ZG0'],
+    js: function() {
+      // GA4 consent granted - enable analytics
+      if (window.gtag) {
+        gtag('consent', 'update', {
+          'analytics_storage': 'granted',
+          'ad_storage': 'denied'
+        });
+      }
+      console.log('[GA4] Analytics consent granted - tracking enabled');
+    },
+    fallback: function() {
+      // GA4 consent denied - disable analytics
+      if (window.gtag) {
+        gtag('consent', 'update', {
+          'analytics_storage': 'denied',
+          'ad_storage': 'denied'
+        });
+      }
+      console.log('[GA4] Analytics consent denied - tracking disabled');
+    }
+  };
+
+  // Add GA4 to the job queue
+  if (!tarteaucitron.job) {
+    tarteaucitron.job = [];
+  }
+  if (tarteaucitron.job.indexOf('ga4') === -1) {
+    tarteaucitron.job.push('ga4');
+  }
 }
 
 function bindEssentialOnlyHandlers() {
@@ -257,12 +298,4 @@ tarteaucitron.init({
   "mandatory": true
 });
 
-// Note: Google Analytics 4 setup is optional for €0 budget
-// Uncomment below if you decide to add GA4 later
-/*
-tarteaucitron.user.gtagUa = 'G-XXXXXXXXXX'; // Replace with your GA4 ID
-tarteaucitron.user.gtagMore = function () {
-  // Custom GA4 configuration
-};
-(tarteaucitron.job = tarteaucitron.job || []).push('gtag');
-*/
+console.log('[GA4] Cookie consent initialized with Consent Mode support');

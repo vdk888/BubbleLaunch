@@ -41,7 +41,33 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-  </head>
+  <!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  
+  // Consent mode for EEA users (GDPR)
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied'
+  });
+  
+  gtag('config', 'G-T0MQEL0ZG0', {
+    'anonymize_ip': true
+  });
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T0MQEL0ZG0', {
+    'cookie_flags': 'SameSite=None;Secure',
+    'anonymize_ip': true
+  });
+</script>
+</head>
   <body class="pricing-page">
     <!-- Knowledge Question Overlay -->
     <div id="knowledge-overlay" class="knowledge-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="knowledge-title">
@@ -889,5 +915,7 @@
     <script src="js/floating-chat-input.js"></script>
     <script src="js/knowledge-overlay.js"></script>
     <script src="js/pricing-workflow-demo.js"></script>
-  </body>
+  
+<script src="js/seo/ga4-events.js"></script>
+</body>
 </html>
