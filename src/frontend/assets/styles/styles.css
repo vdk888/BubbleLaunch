@@ -4964,6 +4964,20 @@ footer .container {
   .language-switcher button:active {
     background: rgba(51, 51, 51, 0.15);
   }
+
+  /* Keep the approach bubbles highlighted on touchscreens */
+  .approach-number span {
+    color: var(--bubble-purple);
+  }
+
+  .approach-item:active .approach-number {
+    animation: bubbleFloat 3s ease-in-out infinite;
+  }
+
+  .approach-item:active {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 25px rgba(0, 0, 0, 0.08);
+  }
 }
 
 /* Improve scrolling on iOS devices */

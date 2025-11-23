@@ -387,8 +387,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Dual-Path Professional
 "dualPath.professional.mainTitle": {
-  en: "For Investment Professionals",
-  fr: "Pour les Professionnels de l'Investissement"
+  en: "For Professionals",
+  fr: "Pour les Professionnels"
 },
 "dualPath.professional.subtitle": {
   en: "AI tools & advisory for firms and Wealth Managers",

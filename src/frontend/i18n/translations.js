@@ -2046,20 +2046,20 @@ const translations = {
     fr: "Commencer"
   },
   "dualPath.professional.mainTitle": {
-    en: "For investment professionals",
-    fr: "Pour les professionnels de l'investissement"
+    en: "For professionals",
+    fr: "Pour les professionnels"
   },
   "dualPath.professional.description": {
     en: "AI tools & advisory for firms and Wealth Managers.",
-    fr: "Outils IA & advisory pour entreprises et CGP."
+    fr: "Outils IA & conseil pour entreprises et CGP."
   },
   "dualPath.professional.feature1": {
-    en: "White-label advisor & APIs",
-    fr: "Conseiller white-label & APIs"
+    en: "White-label portfolio manager with AI",
+    fr: "Gestion IA de portefeuille en marque blanche"
   },
   "dualPath.professional.feature2": {
-    en: "Automation for reporting & compliance",
-    fr: "Automatisation reporting & compliance"
+    en: "Automation with APIs integration",
+    fr: "Automatisation avec integration APIs"
   },
   "dualPath.professional.feature3": {
     en: "Custom projects from €3k",
