@@ -119,8 +119,8 @@ const translations = {
     fr: "Expertise IA Accessible",
   },
   "vision.ai.description": {
-    en: "Every recommendation requires an explanation. The AI agent doesn't just say 'buy this'—it shows you the results, explains the logic, and lets you ask questions until you're confident. You stay in control, but with institutional-grade analysis at your fingertips.",
-    fr: "Chaque recommandation exige une explication. L'agent IA vous montre les résultats, explique la logique et vous laisse poser des questions jusqu'à ce que vous soyez confiant. Vous gardez le contrôle, mais avec une analyse de niveau institutionnel à portée de main.",
+    en: "Every recommendation requires an explanation. The AI agent shows you everything and lets you ask questions until you're confident. You stay in control, but with institutional-grade analysis at your fingertips.",
+    fr: "Chaque recommandation exige une explication. L'agent IA vous montre tout et vous laisse poser des questions jusqu'à ce que vous soyez confiant. Vous gardez le contrôle, mais avec une analyse de niveau institutionnel à portée de main.",
   },
   "vision.crypto.title": {
     en: "Diversified Assets",
@@ -161,24 +161,24 @@ const translations = {
     fr: "Automatiser",
   },
   "approach.automate.description": {
-    en: "Everything a portfolio manager does—screening stocks, calculating allocations, rebalancing, placing orders—is now automated through conversation with an AI agent. You just ask questions naturally. The agent handles everything. That's the future of financial services: fully automated, fully transparent.",
-    fr: "Tout ce qu'un gérant de portefeuille fait—screener les actions, calculer les allocations, rééquilibrer, passer les ordres—est désormais automatisé via conversation avec un agent IA. Vous posez juste des questions naturellement. L'agent s'occupe de tout. C'est l'avenir des services financiers : entièrement automatisé, entièrement transparent.",
+    en: "Everything a portfolio manager does—screening stocks, calculating allocations, rebalancing, placing orders—is now automated through conversation with an AI agent. You just ask questions naturally. The agent handles everything. That's the future of financial services: you decide, he executes.",
+    fr: "Tout ce qu'un gérant de portefeuille fait—screener les actions, calculer les allocations, rééquilibrer, passer les ordres—est désormais automatisé via conversation avec un agent IA. Vous posez juste des questions naturellement. L'agent s'occupe de tout. C'est l'avenir des services financiers : vous décidez, il exécute.",
   },
   "approach.clarify.title": {
     en: "Clarify",
     fr: "Clarifier",
   },
   "approach.clarify.description": {
-    en: "We lift the veil of opacity over how markets work. All our strategies are visible and explainable. No more blind spots.",
-    fr: "Nous levons le voile d'opacité sur les mécanismes du marché. Toutes nos stratégies sont visibles et explicables. Plus de zones d'ombre.",
+    en: "We lift the veil of opacity over how markets work. All our strategies are visible and explainable. No more blind spots. Let's pop the bubble.",
+    fr: "Nous levons le voile d'opacité sur les mécanismes du marché. Toutes nos stratégies sont visibles et explicables. Plus de zones d'ombre. Perçons la bulle. ",
   },
   "approach.share.title": {
     en: "Share",
     fr: "Partager",
   },
   "approach.share.description": {
-    en: "Because AI now makes expertise accessible to everyone, we're seizing this historical window to build a model where these efficiency gains allow us to give back what was historically captured by costly intermediaries.",
-    fr: "Parce que l'IA rend désormais l'expertise accessible à tous, nous saisissons cette fenêtre historique  pour construire un modèle où ce gain d'efficacité nous permet de vous rendre ce qui était historiquement capté par des intermédiaires coûteux.",
+    en: "Because AI now makes expertise accessible to everyone, we're seizing this historical window to build a model where these efficiency gains give back what was historically captured by costly intermediaries.",
+    fr: "Parce que l'IA rend désormais l'expertise accessible à tous, nous saisissons cette fenêtre historique  pour construire un modèle où ce gain d'efficacité vous rend ce qui était historiquement capté par des intermédiaires coûteux.",
   },
   "approach.educate.title": {
     en: "Educate",
@@ -263,12 +263,12 @@ const translations = {
     fr: "Construisons l'Avenir Ensemble",
   },
   "waitlist.subtitle": {
-    en: "We built this AI agent for our own portfolios and we're sharing it with you. If you believe financial services should be automated, transparent, and accessible to everyone—not just to pseudo elitists—join our early adopters.",
-    fr: "Nous avons construit cet agent IA pour nos propres portefeuilles et nous le partageons avec vous. Si vous pensez que les services financiers doivent être automatisés, transparents et accessibles à tous—sans pseudo élitisme—rejoignez nos early adopters.",
+    en: "We're sharing with you this AI agent we use for our own portfolios. If you're not satisfied with traditional financial services and want to seize this historic opportunity, join our early adopters.",
+    fr: "Nous partageons avec vous cet agent IA que nous utilisons pour nos propres portefeuilles. Si vous n'êtes pas satisfaits de vos services financiers traditionnels et voulez saisir cette opportunité historique - rejoignez nos early adopters.",
   },
   "waitlist.free": {
-    en: "Joining our waitlist is completely free and without commitment. We're simply looking to meet people who share our vision of more transparent finance.",
-    fr: "Rejoindre notre liste d'attente est entièrement gratuit et sans engagement. Nous cherchons simplement à rencontrer des personnes qui partagent notre vision d'une finance plus transparente.",
+    en: "Joining our waitlist is completely free and without commitment. We're simply looking to meet people who share our vision of investment for everyone.",
+    fr: "Rejoindre notre liste d'attente est entièrement gratuit et sans engagement. Nous cherchons simplement à rencontrer des personnes qui partagent notre vision de l'investissement pour tous.",
   },
   "waitlist.form.title": {
     en: "Early Access",
@@ -2202,8 +2202,8 @@ const translations = {
     fr: "L'IA pour Vos Investissements"
   },
   "investors.hero.subtitle": {
-    en: "Build your portfolio with AI assistance while keeping 100% control over your investment decisions.",
-    fr: "Construisez votre portefeuille avec l'IA, en gardant 100% du contrôle sur vos décisions d'investissement."
+    en: "Build your portfolio with AI assistance while keeping 100% control over everything.",
+    fr: "Construisez votre portefeuille avec l'IA, en gardant 100% du contrôle."
   },
 
   // Investors - Vision Section
