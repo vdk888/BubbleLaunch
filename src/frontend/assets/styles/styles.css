@@ -2617,19 +2617,167 @@ body.pricing-page {
   box-shadow: 0 12px 30px rgba(28, 82, 232, 0.35);
 }
 
-.pricing-notes-section {
-  margin-top: 3.5rem;
+/* Early Access Banner */
+.pricing-early-access-banner {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 
-.pricing-notes {
-  background: rgba(28, 82, 232, 0.08);
-  border: 1px solid rgba(28, 82, 232, 0.14);
-  border-radius: 20px;
-  padding: 1.75rem 2rem;
-  display: grid;
-  gap: 0.85rem;
-  font-size: 0.96rem;
-  color: #1e293b;
+.early-access-content {
+  background: linear-gradient(135deg, rgba(28, 82, 232, 0.12) 0%, rgba(118, 75, 162, 0.08) 100%);
+  border: 1px solid rgba(28, 82, 232, 0.2);
+  border-radius: 24px;
+  padding: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.early-access-text h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 0.75rem;
+}
+
+.early-access-text p {
+  font-size: 1rem;
+  color: #475569;
+  margin: 0.5rem 0;
+}
+
+.early-access-text p:last-child {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.pricing-disclaimer {
+  margin-top: 1rem !important;
+}
+
+.early-access-cta {
+  flex-shrink: 0;
+}
+
+.cta-button-primary {
+  display: inline-block;
+  background: linear-gradient(135deg, #1c52e8 0%, #764ba2 100%);
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cta-button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(28, 82, 232, 0.3);
+}
+
+/* Tablet responsive (1024px) */
+@media (max-width: 1024px) {
+  .pricing-early-access-banner {
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .early-access-content {
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+
+  .early-access-text h3 {
+    font-size: 1.35rem;
+  }
+
+  .early-access-text p {
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile responsive (768px) */
+@media (max-width: 768px) {
+  .pricing-early-access-banner {
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .early-access-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.75rem;
+    gap: 1.25rem;
+  }
+
+  .early-access-text {
+    width: 100%;
+  }
+
+  .early-access-text h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .early-access-text p {
+    font-size: 0.95rem;
+    margin: 0.35rem 0;
+  }
+
+  .early-access-text p:last-child {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .early-access-cta {
+    width: 100%;
+  }
+
+  .cta-button-primary {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Small mobile responsive (480px) */
+@media (max-width: 480px) {
+  .pricing-early-access-banner {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .early-access-content {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .early-access-text h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .early-access-text p {
+    font-size: 0.9rem;
+    margin: 0.25rem 0;
+  }
+
+  .early-access-text p:last-child {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .cta-button-primary {
+    padding: 0.7rem 1.25rem;
+    font-size: 0.9rem;
+  }
 }
 
 /* Value Proposition Section */
@@ -2743,8 +2891,30 @@ body.pricing-page {
   display: none;
 }
 
+.include-banner-summary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.include-banner-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #1c52e8 0%, #764ba2 100%);
+  border-radius: 8px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.include-banner-icon svg {
+  color: white;
+}
+
 .include-banner-title {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   margin: 0;
 }
@@ -2799,8 +2969,22 @@ body.pricing-page {
     padding: 1.25rem;
   }
 
+  .include-banner-summary {
+    gap: 0.75rem;
+  }
+
+  .include-banner-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .include-banner-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
   .include-banner-title {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 
   .include-banner summary::after {
@@ -2816,6 +3000,46 @@ body.pricing-page {
 
   .include-item {
     font-size: 0.9rem;
+  }
+}
+
+/* Small mobile responsive (480px) */
+@media (max-width: 480px) {
+  .include-banner summary {
+    padding: 1rem;
+  }
+
+  .include-banner-summary {
+    gap: 0.6rem;
+  }
+
+  .include-banner-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .include-banner-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .include-banner-title {
+    font-size: 0.95rem;
+  }
+
+  .include-banner summary::after {
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+  }
+
+  .include-content-grid {
+    padding: 0 1rem 1rem 1rem;
+    gap: 0.4rem;
+  }
+
+  .include-item {
+    font-size: 0.85rem;
+    gap: 0.5rem;
   }
 }
 
