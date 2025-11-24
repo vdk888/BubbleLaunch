@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     (typeof window !== "undefined" && window.translations) ||
     (typeof translations !== "undefined" ? translations : {});
   const DEMO_SHOWN_KEY = 'bubble_workflow_demo_shown';
+  const DEMO_EXPERIENCE_KEY = 'demoExperience';
 
   // Track current scenario for routing
   let currentScenario = 'japan-momentum'; // default to intermediate demo
@@ -47,6 +48,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const getInvestorsIndexUrl = () =>
     document.documentElement.lang === 'en' ? '/en/investors' : '/investors';
+
+  const getStoredDemoExperience = () => {
+    try {
+      const stored = sessionStorage.getItem(DEMO_EXPERIENCE_KEY);
+      return stored ? JSON.parse(stored) : null;
+    } catch (error) {
+      console.error('[WorkflowDemo] Failed to parse stored demo experience', error);
+      return null;
+    }
+  };
+
+  const syncScenarioFromStoredExperience = () => {
+    const storedExperience = getStoredDemoExperience();
+    if (storedExperience && storedExperience.scenarioId) {
+      currentScenario = storedExperience.scenarioId;
+    }
+  };
+
+  syncScenarioFromStoredExperience();
 
   const shouldRedirectAfterDemo = () => {
     const entryPoint = sessionStorage.getItem('demoEntryPoint');
@@ -769,6 +789,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (pricingContent) {
       pricingContent.classList.remove('hidden');
     }
+    maybeRedirectAfterDemoClose();
   };
 
   // Route demo based on scenario
@@ -837,6 +858,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Replay button
   if (replayBtn) {
     replayBtn.addEventListener('click', () => {
+      syncScenarioFromStoredExperience();
       sessionStorage.removeItem(DEMO_SHOWN_KEY);
       launchWorkflowDemo();
     });
