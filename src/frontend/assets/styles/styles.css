@@ -2714,6 +2714,111 @@ body.pricing-page {
   gap: 0.6rem;
 }
 
+/* All Plans Include Section */
+.pricing-all-plans-include {
+  padding: 2rem 0;
+}
+
+.include-banner {
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+  margin: 0 auto;
+  max-width: 800px;
+  overflow: hidden;
+}
+
+.include-banner summary {
+  padding: 1.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: #212529;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.include-banner summary::-webkit-details-marker {
+  display: none;
+}
+
+.include-banner-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.include-banner summary::after {
+  content: '+';
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #667eea;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+
+.include-banner summary:hover::after {
+  color: #764ba2;
+}
+
+.include-banner[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.include-content-grid {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.include-item {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.include-checkmark {
+  color: #667eea;
+  flex-shrink: 0;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .pricing-all-plans-include {
+    padding: 1.5rem 0;
+  }
+
+  .include-banner summary {
+    padding: 1.25rem;
+  }
+
+  .include-banner-title {
+    font-size: 1rem;
+  }
+
+  .include-banner summary::after {
+    font-size: 1.3rem;
+    margin-left: 0.75rem;
+  }
+
+  .include-content-grid {
+    padding: 0 1.25rem 1.25rem 1.25rem;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .include-item {
+    font-size: 0.9rem;
+  }
+}
+
 /* FAQ Section */
 .pricing-faq {
   padding: 4rem 0;
