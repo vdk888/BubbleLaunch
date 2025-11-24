@@ -367,8 +367,8 @@ const translations = {
     fr: "De quels frais parle-t-on ?",
   },
   "charts.fees_types_desc": {
-    en: "The diagram illustrates the cascade of traditional fees: advisory fees (1-2% of capital), management fees (1.5-2.5%), transaction costs, platform fees, and performance commissions. Each actor in the chain takes their cut. For a €200k portfolio, you're paying €4,000-5,400 per year. Bubble replaces all of this with one transparent €0–10/month subscription.",
-    fr: "Le schéma illustre la cascade de frais traditionnels : frais de conseil (1-2% du capital), frais de gestion (1,5-2,5%), frais de transaction, frais de plateforme et commissions de performance. Pour un portefeuille de 200 k€, vous payez 4 000 à 5 400€ par an. Bubble remplace tout cela par un abonnement transparent de 0 à 10€/mois."
+    en: "The diagram illustrates the cascade of traditional fees: advisory fees (1-2% of capital), management fees (1.5-2.5%), transaction costs, platform fees, and performance commissions. Each actor in the chain takes their cut. For a €200k portfolio, you're paying €4,000-5,400 per year (vs Bubble €0–10/month subscription).",
+    fr: "Le schéma illustre la cascade de frais traditionnels : frais de conseil (1-2% du capital), frais de gestion (1,5-2,5%), frais de transaction, frais de plateforme et commissions de performance. Pour un portefeuille de 200 k€, vous payez 4 000 à 5 400€ par an (vs un abonnement Bubble de 0 à 10€/mois)"
   },
   "charts.fees_types_note": {
     en: "Your banker says 'no advisory fees', but you're paying 2-3% annually through the products they sell. Each layer adds up: entry fees (2-5%), envelope fees (0.6-1%), management fees (1.5-2%), underlying fund costs (1.8-2.5%). Over 30 years, these hidden fees consume up to 50% of your potential returns. With Bubble: one transparent example price, around €8/month (~€96/year).",
