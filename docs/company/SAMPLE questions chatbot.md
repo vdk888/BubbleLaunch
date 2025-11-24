@@ -13,7 +13,7 @@
 
 ### EN — Advanced
 
-- Break down alpha vs beta vs factors.
+- Explain what drove last year's performance by sector, style, and region.
 - Compare Sharpe, Sortino, drawdown.
 - Run a Monte Carlo and show tail risk.
 - Stress test for rates, inflation, spreads.
@@ -41,7 +41,7 @@
 
 ### FR — Aguerri·e
 
-- Décomposez alpha, bêta, facteurs.
+- Expliquez ce qui a soutenu la performance de l'année dernière par secteur, style et région.
 - Comparez Sharpe, Sortino, drawdown.
 - Lancez une Monte Carlo et montrez le tail risk.
 - Stress test: taux, inflation, spreads.

@@ -205,7 +205,7 @@ const translations = {
   "chat.rotatingPlaceholders": {
     en: [
       "Why is AI a game-changer for investment?",
-      "Break down alpha vs beta vs factors...",
+      "Explain what drove last year's performance by sector, style, and region...",
       "How do you cut fees?",
       "Explain Sharpe ratio, Sortino ratio, drawdown...",
       "What is volatility, put simply?",
@@ -225,7 +225,7 @@ const translations = {
     ],
     fr: [
       "Pourquoi l'IA change la donne pour les investissements ?",
-      "Décompose alpha, bêta, facteurs...",
+      "Expliquez ce qui a soutenu la performance de l'année dernière par secteur, style et région...",
       "Comment réduisez-vous les frais ?",
       "Explique ce qu'est le Sharpe ratio, le Sortino ratio, le drawdown...",
       "C'est quoi la volatilité, simplement ?",

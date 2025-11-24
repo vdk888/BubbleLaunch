@@ -14,9 +14,9 @@
 
 ### English (Lines 190-208)
 ```javascript
-"en: [
+  "en: [
   "Why is AI a game-changer for investment?",
-  "Break down alpha vs beta vs factors...",
+  "Explain what drove last year's performance by sector, style, and region...",
   "How do you cut fees?",
   "Compare Sharpe, Sortino, drawdown...",
   "What is volatility, put simply?",
@@ -38,9 +38,9 @@
 
 ### French (Lines 210+)
 ```javascript
-"fr: [
+  "fr: [
   "Pourquoi l'IA change la donne pour les investissements ?",
-  "Décompose alpha, bêta, facteurs...",
+  "Expliquez ce qui a soutenu la performance de l'année dernière par secteur, style et région...",
   "Comment réduisez-vous les frais ?",
   "Compare Sharpe, Sortino, drawdown...",
   "C'est quoi la volatilité, simplement ?",
