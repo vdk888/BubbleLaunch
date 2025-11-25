@@ -205,7 +205,7 @@ const translations = {
   "chat.rotatingPlaceholders": {
     en: [
       "Why is AI a game-changer for investment?",
-      "Explain what drove last year's performance by sector, style, and region...",
+      "What's last year's performance for tech sector...",
       "How do you cut fees?",
       "Explain Sharpe ratio, Sortino ratio, drawdown...",
       "What is volatility, put simply?",
@@ -225,7 +225,7 @@ const translations = {
     ],
     fr: [
       "Pourquoi l'IA change la donne pour les investissements ?",
-      "Expliquez ce qui a soutenu la performance de l'année dernière par secteur, style et région...",
+      "Quelle est la performance de l'année dernière pour la tech...",
       "Comment réduisez-vous les frais ?",
       "Explique ce qu'est le Sharpe ratio, le Sortino ratio, le drawdown...",
       "C'est quoi la volatilité, simplement ?",
@@ -1020,7 +1020,7 @@ const translations = {
     fr: "Politique de Confidentialité"
   },
   "footer.nav.cookies": {
-    en: "Cookie Settings",
+    en: "Gérer les Cookies",
     fr: "Gérer les Cookies"
   },
   "footer.nav.contact": {
@@ -1065,9 +1065,9 @@ const translations = {
     en: "Pricing",
     fr: "Tarification"
   },
-  "footer.nav.investors.simulator": {
-    en: "Portfolio Simulator",
-    fr: "Simulateur de Portefeuille"
+  "footer.nav.investors.faq": {
+    en: "FAQ",
+    fr: "FAQ"
   },
   "footer.nav.investors.joinWaitlist": {
     en: "Early Access",
@@ -1080,12 +1080,12 @@ const translations = {
     fr: "Professionnels"
   },
   "footer.nav.professionals.solutions": {
-    en: "Solutions",
-    fr: "Solutions"
+    en: "Enterprises",
+    fr: "Entreprises"
   },
   "footer.nav.professionals.demo": {
-    en: "Demo",
-    fr: "Démo"
+    en: "Wealth managers",
+    fr: "Gestionnaires de patrimoine"
   },
   "footer.nav.professionals.faq": {
     en: "FAQ",
@@ -1104,10 +1104,6 @@ const translations = {
   "footer.nav.resources.demo": {
     en: "Demo",
     fr: "Démo"
-  },
-  "footer.nav.resources.joinUs": {
-    en: "Early Access",
-    fr: "Accès Anticipé"
   },
 
   // Businesses Page

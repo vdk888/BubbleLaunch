@@ -122,4 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     handleHeroChatSubmit(e);
   });
+  heroChatInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      handleHeroChatSubmit(event);
+    }
+  });
 });

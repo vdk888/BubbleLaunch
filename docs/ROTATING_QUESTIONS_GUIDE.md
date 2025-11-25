@@ -16,7 +16,7 @@
 ```javascript
   "en: [
   "Why is AI a game-changer for investment?",
-  "Explain what drove last year's performance by sector, style, and region...",
+  "What's last year's performance for the tech sector...",
   "How do you cut fees?",
   "Compare Sharpe, Sortino, drawdown...",
   "What is volatility, put simply?",
@@ -40,7 +40,7 @@
 ```javascript
   "fr: [
   "Pourquoi l'IA change la donne pour les investissements ?",
-  "Expliquez ce qui a soutenu la performance de l'année dernière par secteur, style et région...",
+  "Quelle est la performance de l'année dernière de la tech...",
   "Comment réduisez-vous les frais ?",
   "Compare Sharpe, Sortino, drawdown...",
   "C'est quoi la volatilité, simplement ?",
