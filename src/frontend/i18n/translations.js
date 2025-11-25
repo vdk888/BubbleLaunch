@@ -1130,12 +1130,12 @@ const translations = {
     fr: "Ce que nous faisons"
   },
   "businesses.what.p1": {
-    en: "We primarily support SMEs and asset management companies in modernizing their financial processes. At Bubble Invest, there's no selling dreams, endless PowerPoint diagnostics, or magical solutions that only work with an army of consultants. We prefer pragmatic projects: automation and optimization of concrete tasks, with simple or customized tools according to each need.",
-    fr: "Nous accompagnons principalement les PME et sociétés de gestion dans la modernisation de leurs processus financiers. Chez Bubble Invest, il n'est pas question de vendre du rêve, des diagnostics interminables sur PowerPoint ou des solutions magiques possibles qu'avec une armée de consultants. On préfère les projets pragmatiques : automatisation et optimisation de tâches concrètes, avec des outils simples ou personnalisés selon chaque besoin."
+    en: "We primarily support SMEs and asset management companies in modernizing their financial processes. We don't sell dreams, endless PowerPoint diagnostics, or magical solutions that only work with an army of consultants. We prefer pragmatic projects with simple or customized tools tailored to each need.",
+    fr: "Nous accompagnons principalement les PME et sociétés de gestion dans la modernisation de leurs processus financiers. Nous ne vendons pas du rêve, des diagnostics interminables sur PowerPoint ou des solutions magiques possibles qu'avec une armée de consultants. Nous préférons les projets pragmatiques avec des outils simples ou personnalisés selon chaque besoin."
   },
   "businesses.what.p2": {
-    en: "Like with Bubble Portfolio, our goal is to share everything that's now possible with modern AI code builders , direct API integrations, and lightweight custom services so every team can benefit—no generic low-code recipes.",
-    fr: "Comme pour Bubble Portfolio, notre objectif est de partager tout ce qui est désormais possible avec les AI code builders modernes , les intégrations API directes et des services personnalisés légers afin que chaque équipe puisse en bénéficier—sans recettes low code génériques."
+    en: "Just like Bubble Portfolio, our goal is to share everything that's now possible with modern AI code builders, direct API integrations, and lightweight bespoke services so every company can benefit at a lower cost.",
+    fr: "Comme pour Bubble Portfolio, notre objectif est de partager tout ce qui est désormais possible avec les AI code builders modernes, les intégrations API directes et des services personnalisés légers afin que chaque entreprise puisse en bénéficier à moindre coût."
   },
   "businesses.what.p3": {
     en: "In line with our finance experience and technological appetite, we use the most reliable and current intelligent tools with an agility that truly adapts to each client and context.",
@@ -1172,12 +1172,12 @@ const translations = {
     fr: "Après des années dans des cabinets de conseil et dans la gestion d'actifs, nous avons observé de nombreux travers : des missions à 6 chiffres qui ne débouchent sur rien, des consultants qui disparaissent après avoir présenté leur rapport, et beaucoup de promesses rarement tenues."
   },
   "businesses.why.p2": {
-    en: "At Bubble Invest, we chose to do things differently: focus on honesty and a genuine desire to help—even if it sometimes means saying no to a project.",
-    fr: "Chez Bubble Invest, nous avons choisi de faire autrement : miser sur l'honnêteté et l'envie d'aider vraiment – même si cela signifie parfois dire non à un projet."
+    en: "At Bubble Invest, we choose to do things differently: focus on honesty and a genuine desire to help—even if that sometimes means saying no to a project or acknowledging our limits.",
+    fr: "Chez Bubble Invest, nous avons choisi de faire autrement : miser sur l'honnêteté et l'envie d'aider vraiment – même si cela signifie parfois dire non à un projet ou reconnaître nos limites."
   },
   "businesses.why.p3": {
-    en: "We prefer to showcase our experience rather than pretend to know everything. We work with you, without selling you a technological revolution. On each project, we prioritize transparency, even if it means acknowledging our limitations.",
-    fr: "On préfère afficher notre expérience que prétendre tout savoir. Nous agissons avec vous, sans vous vendre une révolution technologique. Sur chaque projet, nous privilégions la transparence, même si cela veut dire reconnaître nos limites."
+    en: "We act with you and for you throughout the project: total transparency at every step.",
+    fr: "Nous agissons avec vous et pour vous tout au long du projet : une transparence totale à chaque étape."
   },
 
   // Examples Section
