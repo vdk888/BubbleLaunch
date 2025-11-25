@@ -2449,12 +2449,37 @@ body.pricing-page {
   text-align: center;
 }
 
-.pricing-hero .hero-eyebrow {
+.pricing-hero .hero-eyebrow,
+.hero-purple .hero-eyebrow {
   font-size: 0.95rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(17, 24, 39, 0.55);
   margin-bottom: 1.6rem;
+}
+
+/* Hero variant with pricing background */
+.hero.hero-purple {
+  background:
+    radial-gradient(circle at 20% 25%, rgba(119, 140, 255, 0.22), transparent 55%),
+    radial-gradient(circle at 80% 30%, rgba(162, 191, 255, 0.2), transparent 50%),
+    linear-gradient(140deg, #dedeff 0%, #e6e9ff 38%, #eef1ff 68%, #f5f7ff 100%);
+  color: #0f172a;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero.hero-purple::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.4) 58%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+.hero.hero-purple > .container {
+  position: relative;
+  z-index: 1;
 }
 
 .pricing-hero h1 {
