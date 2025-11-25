@@ -74,7 +74,7 @@ const translations = {
   },
   "manifesto.insight": {
     en: "Our ethics restore power to you and free you from excessive fees charged by obsolete intermediaries. Result: you finance the economy, the economy pays you interest. That's it.",
-    fr: "Nous vous redonons le pouvoir et vous libérerons des frais excessifs appliqués par des intermédiaires désormais obsolètes. Résultat : vous financez l'économie, l'économie vous paye des intérêts. C'est tout.",
+    fr: "Nous vous redonnons le pouvoir et vous libérerons des frais excessifs appliqués par des intermédiaires désormais obsolètes. Résultat : vous financez l'économie, l'économie vous paye des intérêts. C'est tout.",
   },
   "manifesto.commodity": {
     en: "Talk to your agent about your investment goals in natural language. It screens stocks, tests strategies, and executes orders for you like your personal private manager. Financial services are now a commodity. You just need the right agent.",

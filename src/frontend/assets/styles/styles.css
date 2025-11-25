@@ -4486,6 +4486,7 @@ form button:hover {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
   }
 
@@ -5994,6 +5995,7 @@ footer .container {
   line-height: 1.35;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   letter-spacing: -0.01em; /* Tight tracking */
@@ -6007,6 +6009,7 @@ footer .container {
   flex: 1;
   display: -webkit-box;
   -webkit-line-clamp: 2; /* 2 lines like OpenAI */
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
