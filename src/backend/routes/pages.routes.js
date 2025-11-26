@@ -183,11 +183,13 @@ router.get("/blog/:slug", async (req, res) => {
 /**
  * Clear cache management page (dev only)
  */
-router.get("/clear-cache", (req, res) => {
-  res.sendFile(
-    path.join(frPagesDir, "clear-cache.html")
-  );
-});
+if (process.env.NODE_ENV !== "production") {
+  router.get("/clear-cache", (req, res) => {
+    res.sendFile(
+      path.join(frPagesDir, "clear-cache.html")
+    );
+  });
+}
 
 /**
  * Portfolio simulator page

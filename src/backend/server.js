@@ -5,6 +5,7 @@ const routes = require("./routes");
 const errorHandler = require("./middleware/error-handler");
 const imageService = require("./services/imageService");
 const cacheScheduler = require("./services/cacheScheduler");
+const blogStatusScheduler = require("./services/blogStatusScheduler");
 
 const app = express();
 const port = env.PORT;
@@ -29,6 +30,9 @@ app.listen(port, () => {
 
   // Initialize cache scheduler (monthly regeneration on last Sunday at 2 AM UTC)
   cacheScheduler.initialize();
+
+  // Initialize blog status sync (hourly Scheduled -> Published sweep)
+  blogStatusScheduler.initialize();
 });
 
 // Graceful shutdown to save cache

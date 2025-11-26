@@ -59,8 +59,10 @@ The current codebase is a multilingual landing page with integrated AI chatbot, 
 - **Landing Page** (`index.html`) - Presents Bubble Portfolio product vision and value proposition
 - **Portfolio Simulator** (`portfolio-simulator.html`) - Educational demo of 9 backtested strategies for investors to explore investment concepts
 - **Blog** (`blog.html`, `/blog/*`) - SEO-driven content educating about investment strategies, AI, portfolio management, democratization
-- **Businesses** (`businesses.html`) - B2B consulting for SMEs & Wealth Managers: custom AI workflows and agents (€3k-€30k projects)
+- **Investors Section** (`/investors/`) - Dedicated landing pages for retail investors with solution overview and pricing
+- **Professionals Section** (`/professionals/`) - B2B pages for wealth managers and companies: custom AI workflows and agents (€3k-€30k projects)
 - **AI Chatbot** - Educational chatbot answering questions about investment, Bubble's approach, and product capabilities
+- **Localized Pages** (`/en/`) - Full English locale mirror of main pages
 
 ---
 

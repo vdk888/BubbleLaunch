@@ -44,7 +44,6 @@ src/backend/
 │   ├── llmEnrichmentService.js  # AI-powered metadata generation
 │   ├── yahooFinanceService.js   # ETF historical data fetching
 │   ├── portfolioCacheService.js # Simulator cache & preview orchestration
-│   ├── riskBudgetingService.js  # Advanced optimization helpers
 │   └── portfolioService.js      # Strategy orchestrator (9+ strategies)
 └── cache/
     ├── image-service-cache.json # Persistent image cache
@@ -115,22 +114,34 @@ src/frontend/
 │   ├── blog.html                # Blog listing
 │   ├── blog-post.html           # Individual post
 │   ├── portfolio-simulator.html # Portfolio simulator ✅
-│   ├── clear-cache.html         # Cache management
-│   └── test-image-generation.html # Image generation testing
+│   ├── pricing.html             # Pricing page
+│   ├── privacy.html             # Privacy policy
+│   ├── mentions-legales.html    # Legal mentions (FR)
+│   ├── 404.html                 # Error page
+│   ├── clear-cache.html         # Cache management (dev only)
+│   ├── investors/               # Investor-focused pages
+│   ├── professionals/           # B2B professional pages
+│   └── en/                      # English locale pages
 ├── js/
 │   ├── script.js                # Main app logic
 │   ├── chatbot-logic.js         # Unified assistant client logic
-│   ├── chatbot-animations.js    # Message animations & typing indicators ✅
+│   ├── chatbot-animations.js    # Message animations & typing indicators
+│   ├── chat-side-panel.js       # Side panel chat component
 │   ├── blog.js                  # Blog listing
 │   ├── blog-post.js             # Post rendering
+│   ├── blog-preview.js          # Blog preview component
 │   ├── references.js            # Knowledge Garden display
+│   ├── knowledge-overlay.js     # Knowledge garden UI overlay
 │   ├── animations.js            # Scroll animations
-│   ├── floating-bubble.js       # Interactive bubbles
-│   ├── floating-chat-input.js   # Glassmorphism floating input ✅
-│   ├── mini-chat.js             # Embedded chat widget ✅
-│   ├── charts.js                # Shared chart utilities ✅
-│   ├── portfolio-preview.js     # Landing page chart preview ✅
-│   └── portfolio-simulator.js   # Full simulator (multi-strategy, analytics) ✅
+│   ├── floating-chat-input.js   # Glassmorphism floating input
+│   ├── hero-chat-animation.js   # Hero section chat animation
+│   ├── charts.js                # Shared chart utilities
+│   ├── portfolio-preview.js     # Landing page chart preview
+│   ├── portfolio-simulator.js   # Full simulator (multi-strategy, analytics)
+│   ├── pricing-workflow-demo.js # Pricing page workflow demo
+│   ├── dual-path-selector.js    # Path selection logic
+│   ├── businesses-form.js       # B2B contact form
+│   └── professional-demo-analytics.js # Professional demo analytics
 ├── i18n/
 │   └── translations.js          # French/English translations
 ├── assets/

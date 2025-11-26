@@ -12,6 +12,7 @@
     "generate:portfolio-cache": "node scripts/generate-portfolio-cache.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.0",
     "@google/genai": "^1.7.0",
     "@notionhq/client": "^2.2.13",
     "@runware/sdk-js": "^1.2.0",
