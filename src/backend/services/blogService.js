@@ -788,31 +788,41 @@ async function getPostBySlug(slug) {
             featuredImage = 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=450&fit=crop';
         }
 
-        // Extract bilingual content
-        // FR: Try page blocks first (preserves formatting), fallback to property
-        let htmlContentFR = await extractPageContentAsHtml(matchingPage.id);
-
-        // If page blocks are empty, fallback to Content FR property
-        if (!htmlContentFR) {
-            const contentFRProperty = properties['Content FR'];
-            const contentFR = contentFRProperty?.rich_text?.map(block => block.text?.content || '').join('') || '';
-            htmlContentFR = contentFR ? formatPlainTextContent(contentFR) : '';
-        }
-
-        // EN: Use property-based content with rich text formatting (fallback to FR if empty)
+        // Extract bilingual content with complete fallback chains
+        const contentFRProperty = properties['Content FR'];
         const contentENProperty = properties['Content EN'];
+        let htmlContentFR = '';
         let htmlContentEN = '';
 
-        if (contentENProperty?.rich_text) {
-            // Extract formatted content from rich_text annotations (preserves bold, italic, etc.)
+        // FRENCH CONTENT: Property → Page Blocks → English Property
+        if (contentFRProperty?.rich_text) {
+            const richTextContent = richTextPropertyToHtml(contentFRProperty.rich_text);
+            htmlContentFR = richTextContent ? formatPlainTextContent(richTextContent) : '';
+        }
+
+        if (!htmlContentFR) {
+            htmlContentFR = await extractPageContentAsHtml(matchingPage.id);
+        }
+
+        if (!htmlContentFR && contentENProperty?.rich_text) {
             const richTextContent = richTextPropertyToHtml(contentENProperty.rich_text);
-            // Then apply paragraph and structure formatting
+            htmlContentFR = richTextContent ? formatPlainTextContent(richTextContent) : '';
+        }
+
+        // ENGLISH CONTENT: Property → Page Blocks → French Property
+        if (contentENProperty?.rich_text) {
+            const richTextContent = richTextPropertyToHtml(contentENProperty.rich_text);
             htmlContentEN = richTextContent ? formatPlainTextContent(richTextContent) : '';
         }
 
-        // Don't fallback EN to FR - keep languages separate!
-        // Frontend already handles display of FR when EN is unavailable
-        // htmlContentEN stays empty if no English content in Notion
+        if (!htmlContentEN) {
+            htmlContentEN = await extractPageContentAsHtml(matchingPage.id);
+        }
+
+        if (!htmlContentEN && contentFRProperty?.rich_text) {
+            const richTextContent = richTextPropertyToHtml(contentFRProperty.rich_text);
+            htmlContentEN = richTextContent ? formatPlainTextContent(richTextContent) : '';
+        }
 
         // Enhancement disabled for performance (enhancement already completed on articles)
         // Future: Move enhancement to background job queue if needed
