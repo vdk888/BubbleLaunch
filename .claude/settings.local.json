@@ -32,7 +32,13 @@
       "Bash(\"/Users/jadethi-viet-lanhoang/Library/Mobile Documents/com~apple~CloudDocs/Bubble invest/BubbleLaunch/docs/seo/GSC_QUICK_START.md\" )",
       "Bash(\"/Users/jadethi-viet-lanhoang/Library/Mobile Documents/com~apple~CloudDocs/Bubble invest/BubbleLaunch/docs/seo/SEO_SUMMARY.txt\" )",
       "Bash(\"/Users/jadethi-viet-lanhoang/Library/Mobile Documents/com~apple~CloudDocs/Bubble invest/BubbleLaunch/docs/seo/GA4_IMPLEMENTATION_CHECKLIST.md\")",
-      "Bash(/tmp/README-SEO-backup.md)"
+      "Bash(/tmp/README-SEO-backup.md)",
+      "Bash(python3:*)",
+      "Bash(npm install:*)",
+      "Bash(cd:*)",
+      "Bash(mkdir:*)",
+      "Bash(time curl:*)",
+      "Bash(mv:*)"
     ],
     "deny": [],
     "ask": []

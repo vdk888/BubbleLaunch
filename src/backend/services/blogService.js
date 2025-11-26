@@ -1,6 +1,7 @@
 const { Client } = require("@notionhq/client");
 const { NotionToMarkdown } = require("notion-to-md");
 const { marked } = require("marked");
+const Anthropic = require("@anthropic-ai/sdk");
 const imageService = require("./imageService");
 
 // Initialize Notion client
@@ -14,12 +15,70 @@ const notion = isBlogConfigured ? new Client({ auth: blogApiKey }) : null;
 
 // Initialize NotionToMarkdown
 const n2m = isBlogConfigured ? new NotionToMarkdown({ notionClient: notion }) : null;
+// Initialize Anthropic client for article formatting enhancement
+const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
+const anthropic = anthropicApiKey ? new Anthropic({ apiKey: anthropicApiKey }) : null;
 
 /**
  * Returns sample posts when Notion is not configured
  */
 function getSamplePosts() {
     return [];
+}
+
+/**
+ * Extract page content from Notion blocks and convert to HTML
+ * Preserves all formatting: headings, bold, lists, tables, etc.
+ */
+async function extractPageContentAsHtml(pageId) {
+    try {
+        const mdBlocks = await n2m.pageToMarkdown(pageId);
+        const markdownString = n2m.toMarkdownString(mdBlocks);
+        const htmlContent = marked(markdownString.parent || markdownString);
+        return htmlContent;
+    } catch (error) {
+        console.error(`Error extracting page content from ${pageId}:`, error);
+        return '';
+    }
+}
+
+/**
+ * Convert Notion rich_text property to HTML with preserved formatting
+ * Extracts bold, italic, code, links, underline from annotations
+ */
+function richTextPropertyToHtml(richTextArray) {
+    if (!richTextArray || !Array.isArray(richTextArray)) return '';
+
+    return richTextArray.map(block => {
+        let text = block.text?.content || block.plain_text || '';
+        if (!text) return '';
+
+        // Apply formatting based on annotations
+        if (block.annotations?.code) {
+            text = `<code>${text}</code>`;
+        } else {
+            // Only apply inline formatting if not code
+            if (block.annotations?.bold) {
+                text = `<strong>${text}</strong>`;
+            }
+            if (block.annotations?.italic) {
+                text = `<em>${text}</em>`;
+            }
+            if (block.annotations?.underline) {
+                text = `<u>${text}</u>`;
+            }
+            if (block.annotations?.strikethrough) {
+                text = `<s>${text}</s>`;
+            }
+        }
+
+        // Apply link if present
+        if (block.text?.link?.url) {
+            text = `<a href="${block.text.link.url}" target="_blank">${text}</a>`;
+        }
+
+        return text;
+    }).join('');
 }
 
 /**
@@ -240,6 +299,78 @@ function formatInlineContent(text) {
         // Clean up any remaining single hashtags that aren't part of headings
         .replace(/(?<!^|\s)#(\w+)/g, '$1');
 }
+
+/**
+ * Fetches published blog posts from the Notion database.
+ */
+/**
+ * Enhanced article formatting using Claude AI
+ * Intelligently adds subheadings, bold emphasis, and italic for weak articles
+ */
+async function enhanceArticleFormatting(htmlContent, language = 'fr') {
+    if (!anthropic) {
+        console.log('Anthropic client not configured, skipping formatting enhancement');
+        return htmlContent;
+    }
+
+    const strongCount = (htmlContent.match(/<strong>/g) || []).length;
+    const h2Count = (htmlContent.match(/<h2>/g) || []).length;
+    const h3Count = (htmlContent.match(/<h3>/g) || []).length;
+    const totalFormatting = strongCount + h2Count + h3Count;
+    const paragraphs = (htmlContent.match(/<p>/g) || []).length;
+
+    // Skip if already well-formatted (at least 1 h2 or 20% strong tags)
+    const hasMinimumFormatting = h2Count > 0 || strongCount >= Math.max(3, paragraphs * 0.2);
+    if (hasMinimumFormatting) {
+        console.log(`Article already well-formatted (${h2Count} h2, ${strongCount} strong), skipping`);
+        return htmlContent;
+    }
+
+    console.log(`Enhancing article formatting (${language}): ${strongCount} strong, ${h2Count} h2 tags`);
+
+    try {
+        const systemPrompt = language === 'fr' ?
+            `Tu es un expert en mise en forme de contenu journalistique en HTML. Tu dois améliorer un article HTML existant en:
+1. Ajoutant des sous-titres <h2> ou <h3> aux sections principales (ne pas ajouter de H1)
+2. Mettant en gras <strong> les concepts clés, les phrases importantes et les citations
+3. En italique <em> pour l'emphase stylisée et les voix d'auteur
+4. Préservant tous les liens existants <a> et le contenu original
+5. Gardant la structure HTML intacte et valide
+
+Réponds UNIQUEMENT avec le HTML amélioré, sans commentaires ni explications.` :
+            `You are an expert in HTML content formatting. You must enhance an existing HTML article by:
+1. Adding <h2> or <h3> subheadings to major sections (no H1)
+2. Making <strong> key concepts, important phrases and quotes
+3. Using <em> for stylized emphasis and author voice
+4. Preserving all existing links <a> and original content
+5. Keeping the HTML structure intact and valid
+
+Reply ONLY with the enhanced HTML, no comments or explanations.`;
+
+        const message = await anthropic.messages.create({
+            model: 'claude-opus-4-1-20250805',
+            max_tokens: 8000,
+            system: systemPrompt,
+            messages: [
+                {
+                    role: 'user',
+                    content: `Enhance this HTML article with better formatting (bold key concepts, add subheadings, italics for emphasis):\n\n${htmlContent}`
+                }
+            ]
+        });
+
+        const enhancedContent = message.content[0]?.text || htmlContent;
+        const newStrongCount = (enhancedContent.match(/<strong>/g) || []).length;
+        const newH2Count = (enhancedContent.match(/<h2>/g) || []).length;
+        console.log(`Enhancement complete: +${newStrongCount - strongCount} strong, +${newH2Count - h2Count} h2 tags`);
+
+        return enhancedContent;
+    } catch (error) {
+        console.error(`Error enhancing article formatting: ${error.message}`);
+        return htmlContent;
+    }
+}
+
 
 /**
  * Fetches published blog posts from the Notion database.
@@ -657,29 +788,35 @@ async function getPostBySlug(slug) {
             featuredImage = 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=450&fit=crop';
         }
 
-        // Extract bilingual content (concatenate all rich text blocks)
-        const contentFRProperty = properties['Content FR'];
-        const contentFR = contentFRProperty?.rich_text?.map(block => block.text?.content || '').join('') || '';
-        
-        const contentENProperty = properties['Content EN'];
-        const contentEN = contentENProperty?.rich_text?.map(block => block.text?.content || '').join('') || contentFR;
+        // Extract bilingual content
+        // FR: Try page blocks first (preserves formatting), fallback to property
+        let htmlContentFR = await extractPageContentAsHtml(matchingPage.id);
 
-        // Get the page content and convert to markdown (fallback if Content FR/EN are empty)
-        let markdownContentFR = contentFR;
-        let markdownContentEN = contentEN;
-        
-        // If Content FR/EN properties are empty, extract from Notion page content
-        if (!contentFR && !contentEN) {
-            const mdBlocks = await n2m.pageToMarkdown(matchingPage.id);
-            const markdownContent = n2m.toMarkdownString(mdBlocks);
-            markdownContentFR = markdownContent.parent;
-            markdownContentEN = markdownContent.parent; // Fallback to same content
+        // If page blocks are empty, fallback to Content FR property
+        if (!htmlContentFR) {
+            const contentFRProperty = properties['Content FR'];
+            const contentFR = contentFRProperty?.rich_text?.map(block => block.text?.content || '').join('') || '';
+            htmlContentFR = contentFR ? formatPlainTextContent(contentFR) : '';
         }
-        
-        // Convert markdown to HTML for both languages
-        // Apply basic formatting to plain text content
-        const htmlContentFR = contentFR ? formatPlainTextContent(markdownContentFR) : marked(markdownContentFR);
-        const htmlContentEN = contentEN ? formatPlainTextContent(markdownContentEN) : marked(markdownContentEN);
+
+        // EN: Use property-based content with rich text formatting (fallback to FR if empty)
+        const contentENProperty = properties['Content EN'];
+        let htmlContentEN = '';
+
+        if (contentENProperty?.rich_text) {
+            // Extract formatted content from rich_text annotations (preserves bold, italic, etc.)
+            const richTextContent = richTextPropertyToHtml(contentENProperty.rich_text);
+            // Then apply paragraph and structure formatting
+            htmlContentEN = richTextContent ? formatPlainTextContent(richTextContent) : '';
+        }
+
+        // Don't fallback EN to FR - keep languages separate!
+        // Frontend already handles display of FR when EN is unavailable
+        // htmlContentEN stays empty if no English content in Notion
+
+        // Enhancement disabled for performance (enhancement already completed on articles)
+        // Future: Move enhancement to background job queue if needed
+        // if (anthropic && process.env.ENABLE_ENHANCEMENT === 'true') { ... }
 
         return {
             id: matchingPage.id,
