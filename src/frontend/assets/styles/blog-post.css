@@ -812,9 +812,101 @@ header {
   .post-featured-image {
     image-rendering: -webkit-optimize-contrast;
   }
-  
+
   .post-content img {
     image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* Table Styles */
+.post-content table,
+.post-content .blog-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  overflow-x: auto;
+  display: block;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.post-content table thead {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.post-content table th {
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.post-content table td {
+  padding: 0.875rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #333;
+  line-height: 1.6;
+}
+
+.post-content table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.post-content table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.post-content table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.post-content table tbody tr:nth-child(even):hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Mobile responsive tables */
+@media (max-width: 768px) {
+  .post-content table,
+  .post-content .blog-table {
+    font-size: 0.875rem;
+    margin: 1.5rem 0;
+  }
+
+  .post-content table th,
+  .post-content table td {
+    padding: 0.75rem 0.875rem;
+  }
+
+  .post-content table th {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .post-content table,
+  .post-content .blog-table {
+    font-size: 0.8rem;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 1rem -1rem;
+    border-radius: 0;
+  }
+
+  .post-content table th,
+  .post-content table td {
+    padding: 0.625rem 0.75rem;
+    white-space: nowrap;
+  }
+
+  .post-content table th {
+    font-size: 0.75rem;
   }
 }
 
@@ -825,23 +917,38 @@ header {
   .back-to-blog-btn {
     display: none;
   }
-  
+
   .post-content {
     font-size: 12pt;
     line-height: 1.5;
     color: #000;
   }
-  
+
   .post-title {
     font-size: 18pt;
     color: #000;
   }
-  
+
   .post-content h1,
   .post-content h2,
   .post-content h3,
   .post-content h4 {
     color: #000;
     page-break-after: avoid;
+  }
+
+  .post-content table {
+    border: 1px solid #000;
+    page-break-inside: avoid;
+  }
+
+  .post-content table th,
+  .post-content table td {
+    border: 1px solid #000;
+    color: #000;
+  }
+
+  .post-content table th {
+    background: #f0f0f0;
   }
 }

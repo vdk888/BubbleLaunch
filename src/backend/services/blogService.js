@@ -82,17 +82,91 @@ function richTextPropertyToHtml(richTextArray) {
 }
 
 /**
+ * Check if a paragraph is a markdown table
+ */
+function isMarkdownTable(paragraph) {
+    const lines = paragraph.split('\n').filter(line => line.trim());
+    if (lines.length < 2) return false;
+
+    // Check if lines contain pipes (table delimiter)
+    const hasPipes = lines.every(line => line.includes('|'));
+    if (!hasPipes) return false;
+
+    // Check if second line is a separator line (e.g., |---|---|)
+    const secondLine = lines[1].trim();
+    const isSeparatorLine = /^\|?\s*[-:]+\s*(\|\s*[-:]+\s*)+\|?\s*$/.test(secondLine);
+
+    return isSeparatorLine;
+}
+
+/**
+ * Format a markdown table to HTML
+ */
+function formatMarkdownTable(tableText) {
+    const lines = tableText.split('\n').filter(line => line.trim());
+    if (lines.length < 2) return tableText;
+
+    const rows = [];
+    let headerRow = null;
+    let isFirstRow = true;
+
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+
+        // Skip separator line (second line with dashes)
+        if (i === 1 && /^\|?\s*[-:]+\s*(\|\s*[-:]+\s*)+\|?\s*$/.test(line)) {
+            continue;
+        }
+
+        // Parse table row
+        const cells = line
+            .split('|')
+            .map(cell => cell.trim())
+            .filter((cell, index, arr) => {
+                // Remove empty first/last cells from leading/trailing pipes
+                if (index === 0 && cell === '') return false;
+                if (index === arr.length - 1 && cell === '') return false;
+                return true;
+            });
+
+        if (cells.length === 0) continue;
+
+        if (isFirstRow) {
+            // First row is header
+            headerRow = cells.map(cell => `<th>${formatInlineContent(cell)}</th>`).join('');
+            isFirstRow = false;
+        } else {
+            // Data rows
+            const rowHtml = cells.map(cell => `<td>${formatInlineContent(cell)}</td>`).join('');
+            rows.push(`<tr>${rowHtml}</tr>`);
+        }
+    }
+
+    // Construct complete table
+    let tableHtml = '<table class="blog-table">\n';
+    if (headerRow) {
+        tableHtml += `<thead>\n<tr>${headerRow}</tr>\n</thead>\n`;
+    }
+    if (rows.length > 0) {
+        tableHtml += `<tbody>\n${rows.join('\n')}\n</tbody>\n`;
+    }
+    tableHtml += '</table>';
+
+    return tableHtml;
+}
+
+/**
  * Format plain text content with enhanced HTML formatting
  */
 function formatPlainTextContent(content) {
     if (!content) return '';
-    
+
     // Pre-process the content to handle different line break patterns
     const processedContent = content
         .replace(/\r\n/g, '\n')  // Normalize Windows line breaks
         .replace(/\r/g, '\n')   // Normalize old Mac line breaks
         .trim();
-    
+
     return processedContent
         // Split by double line breaks for paragraphs
         // But normalize multiple line breaks (3+) to just double (paragraph break)
@@ -108,9 +182,14 @@ function formatPlainTextContent(content) {
         })
         .map(paragraph => {
             if (!paragraph.trim()) return '';
-            
+
             // Trim whitespace
             paragraph = paragraph.trim();
+
+            // Check if it's a table (markdown table format with pipes)
+            if (isMarkdownTable(paragraph)) {
+                return formatMarkdownTable(paragraph);
+            }
             
             // Check if it's a heading (starts with #)
             if (paragraph.startsWith('#### ')) {
