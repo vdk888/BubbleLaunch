@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>AI Trading Arena | Regarde les Bots IA Trader - Bubble Invest</title>
+    <meta name="description" content="Regarde 4 bots IA s'affronter sur 20 ans de données historiques. Chaque bot explique ses décisions en temps réel. Voyage dans le temps et revis les grandes crises financières. 100% éducatif et gratuit." />
+    <meta name="keywords" content="AI trading arena, bot IA trading, simulation trading, apprentissage trading, risk parity, momentum, crises financières, backtesting" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bubbleinvest.org/investors/education/arena" />
+    <meta property="og:title" content="AI Trading Arena | Regarde les Bots IA Trader" />
+    <meta property="og:description" content="4 bots IA s'affrontent sur 20 ans de données. Chaque décision expliquée. Voyage dans le temps et revis les crises." />
+    <meta property="og:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://bubbleinvest.org/investors/education/arena" />
+    <meta name="twitter:title" content="AI Trading Arena | Regarde les Bots IA Trader" />
+    <meta name="twitter:description" content="4 bots IA s'affrontent sur 20 ans de données. Chaque décision expliquée en temps réel." />
+    <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bubbleinvest.org/investors/education/arena" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- Language Alternates -->
+    <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/investors/education/arena" />
+    <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/investors/education/arena" />
+    <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/investors/education/arena" />
+
+    <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
+    <link rel="stylesheet" href="/assets/styles/styles.css" />
+    <link rel="stylesheet" href="/assets/styles/education.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/css/tarteaucitron.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/tarteaucitron.min.js"></script>
+    <script src="/js/seo/cookie-consent.js"></script>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied'
+      });
+      gtag('config', 'G-T0MQEL0ZG0', {
+        'anonymize_ip': true
+      });
+    </script>
+  </head>
+
+  <body>
+    <!-- Navigation Header -->
+    <header>
+      <div class="container">
+        <div class="brand">
+          <a href="/investors" class="logo-link">
+            <div class="logo" style="display: flex; align-items: center; gap: 0.18em">
+              <span style="display: flex; align-items: center">
+                <svg width="36" height="36" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
+                  <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+                  <circle cx="59" cy="21" r="6" fill="#000"/>
+                </svg>
+              </span>
+              <span>Bubble.</span>
+            </div>
+          </a>
+          <div class="tagline" data-translate="hero.tagline">L'agent d'investissement transparent.</div>
+        </div>
+
+        <div class="header-right">
+          <!-- Hamburger Menu Button (Mobile Only) -->
+          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+
+          <!-- Desktop Navigation -->
+          <nav class="desktop-nav">
+            <a href="/investors" data-translate="nav.vision">Vision</a>
+            <div class="nav-dropdown">
+              <button class="nav-dropdown-toggle" data-translate="nav.solution">Solution</button>
+              <div class="nav-dropdown-menu">
+                <button class="dropdown-link js-retail-demo-trigger" data-entry-point="investor_nav_agent" data-translate="nav.solution.agent">Agent</button>
+                <a href="/investors/education" class="dropdown-link active" data-translate="nav.solution.education">Éducation</a>
+              </div>
+            </div>
+            <a href="/investors/pricing" data-translate="nav.pricing">Tarification</a>
+            <a href="/blog" data-translate="nav.blog">Blog</a>
+            <a href="/investors#investor-waitlist" data-translate="nav.join">Nous rejoindre</a>
+            <div class="language-switcher">
+              <button id="en-switch">EN</button>
+              <span>|</span>
+              <button id="fr-switch" class="active">FR</button>
+            </div>
+          </nav>
+
+          <!-- Mobile Language Switcher -->
+          <div class="mobile-language-switcher">
+            <button id="en-switch-mobile">EN</button>
+            <span>|</span>
+            <button id="fr-switch-mobile" class="active">FR</button>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation Overlay -->
+        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+          <nav class="mobile-nav">
+            <a href="/investors" data-translate="nav.vision">Vision</a>
+            <button class="mobile-nav-link js-retail-demo-trigger" data-entry-point="investor_nav_agent_mobile" data-translate="nav.solution.agent">Agent</button>
+            <a href="/investors/education" class="active" data-translate="nav.solution.education">Éducation</a>
+            <a href="/investors/pricing" data-translate="nav.pricing">Tarification</a>
+            <a href="/blog" data-translate="nav.blog">Blog</a>
+            <a href="/investors#investor-waitlist" data-translate="nav.join">Nous rejoindre</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section (matching /investors style) -->
+    <section class="hero hero-purple fade-in">
+      <div class="container">
+        <p class="hero-eyebrow" data-translate="education.arena.eyebrow">Observer & Apprendre</p>
+        <h1 data-translate="education.arena.title">Regarde l'IA penser à voix haute</h1>
+        <p class="hero-subtitle" data-translate="education.arena.subtitle">
+          4 bots, 4 stratégies, 20 ans de données. Chaque décision expliquée en temps réel.
+          Voyage dans le temps et comprends comment les pros gèrent les crises.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="arena-container">
+      <!-- Back Button -->
+      <a href="/investors/education" class="back-button" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #667eea; text-decoration: none; font-weight: 500; margin-bottom: 1.5rem;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span data-translate="education.arena.back">Retour</span>
+      </a>
+
+      <!-- Help Button (shows when tutorial is closed) -->
+      <button class="arena-help-btn" id="arenaHelpBtn" title="Tutoriel" aria-label="Voir le tutoriel">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </button>
+
+      <!-- Tutorial Overlay -->
+      <div class="tutorial-overlay" id="tutorialOverlay">
+        <section class="arena-tutorial" id="arenaTutorial">
+          <button class="tutorial-close-btn" id="tutorialCloseBtn" aria-label="Fermer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+          <div class="tutorial-header">
+            <h3 class="tutorial-title" data-translate="education.arena.tutorial.title">Bienvenue dans l'Arena</h3>
+            <span class="tutorial-progress">1 / 5</span>
+          </div>
+          <div class="tutorial-steps">
+            <div class="tutorial-step active"></div>
+            <div class="tutorial-step"></div>
+            <div class="tutorial-step"></div>
+            <div class="tutorial-step"></div>
+            <div class="tutorial-step"></div>
+          </div>
+          <div class="tutorial-content">
+            <p data-translate="education.arena.tutorial.step1">
+              <strong>Les 4 bots</strong> ci-dessous représentent différentes stratégies d'investissement.
+              Chacun a sa personnalité et sa façon de gérer le risque. Observez comment ils réagissent
+              aux mêmes conditions de marché.
+            </p>
+          </div>
+          <div class="tutorial-actions">
+            <button class="tutorial-btn primary" id="tutorialNext" data-translate="education.arena.tutorial.next">
+              Compris, continuer
+            </button>
+            <button class="tutorial-btn secondary" id="tutorialSkip" data-translate="education.arena.tutorial.skip">
+              Passer le tutoriel
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <!-- Bot Cards Grid -->
+      <section class="arena-bots-grid" id="arenaBotsGrid">
+        <!-- Équi Bot -->
+        <div class="arena-bot-card" data-bot="equi" style="--bot-color: #6B7280">
+          <div class="arena-bot-header">
+            <div class="arena-bot-avatar">É</div>
+            <div class="arena-bot-info">
+              <h3>Équi</h3>
+              <span class="bot-strategy" data-translate="education.arena.bot.equi.strategy">Allocation Égale</span>
+            </div>
+          </div>
+          <div class="arena-bot-dialogue" id="equiDialogue">
+            <div class="typing-indicator">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="arena-bot-pnl">
+            <span data-translate="education.arena.pnl">P&L</span>
+            <span class="pnl-value positive" id="equiPnl">+0.00%</span>
+          </div>
+        </div>
+
+        <!-- Pari Bot -->
+        <div class="arena-bot-card" data-bot="pari" style="--bot-color: #667eea">
+          <div class="arena-bot-header">
+            <div class="arena-bot-avatar">P</div>
+            <div class="arena-bot-info">
+              <h3>Pari</h3>
+              <span class="bot-strategy" data-translate="education.arena.bot.pari.strategy">Risk Parity</span>
+            </div>
+          </div>
+          <div class="arena-bot-dialogue" id="pariDialogue">
+            <div class="typing-indicator">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="arena-bot-pnl">
+            <span data-translate="education.arena.pnl">P&L</span>
+            <span class="pnl-value positive" id="pariPnl">+0.00%</span>
+          </div>
+        </div>
+
+        <!-- Momo Bot -->
+        <div class="arena-bot-card" data-bot="momo" style="--bot-color: #F97316">
+          <div class="arena-bot-header">
+            <div class="arena-bot-avatar">M</div>
+            <div class="arena-bot-info">
+              <h3>Momo</h3>
+              <span class="bot-strategy" data-translate="education.arena.bot.momo.strategy">Momentum</span>
+            </div>
+          </div>
+          <div class="arena-bot-dialogue" id="momoDialogue">
+            <div class="typing-indicator">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="arena-bot-pnl">
+            <span data-translate="education.arena.pnl">P&L</span>
+            <span class="pnl-value positive" id="momoPnl">+0.00%</span>
+          </div>
+        </div>
+
+        <!-- Sage Bot -->
+        <div class="arena-bot-card" data-bot="sage" style="--bot-color: #10B981">
+          <div class="arena-bot-header">
+            <div class="arena-bot-avatar">S</div>
+            <div class="arena-bot-info">
+              <h3>Sage</h3>
+              <span class="bot-strategy" data-translate="education.arena.bot.sage.strategy">Défensif</span>
+            </div>
+          </div>
+          <div class="arena-bot-dialogue" id="sageDialogue">
+            <div class="typing-indicator">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="arena-bot-pnl">
+            <span data-translate="education.arena.pnl">P&L</span>
+            <span class="pnl-value positive" id="sagePnl">+0.00%</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Chart Section -->
+      <section class="arena-chart-section">
+        <div class="arena-chart-header">
+          <h3 class="arena-chart-title" data-translate="education.arena.chart.title">Performance des Portefeuilles</h3>
+          <div class="arena-timeline-controls">
+            <button class="play-pause-btn" id="playPauseBtn" aria-label="Play/Pause">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" id="playIcon">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" id="pauseIcon" style="display: none;">
+                <rect x="6" y="4" width="4" height="16"/>
+                <rect x="14" y="4" width="4" height="16"/>
+              </svg>
+            </button>
+            <button class="timeline-btn" id="speedBtn" data-translate="education.arena.speed">1x</button>
+          </div>
+        </div>
+
+        <!-- Timeline Slider -->
+        <div class="arena-timeline-slider">
+          <input type="range" class="timeline-slider-track" id="timelineSlider" min="0" max="240" value="0" />
+          <div class="timeline-event-markers" id="eventMarkers">
+            <!-- Event markers will be added by JavaScript -->
+          </div>
+        </div>
+
+        <div class="arena-current-date" id="currentDate">Janvier 2005</div>
+
+        <!-- Chart Canvas -->
+        <div style="position: relative; height: 350px; margin-top: 1rem;">
+          <canvas id="arenaChart"></canvas>
+        </div>
+
+        <!-- Action Vignettes (appears during events) -->
+        <div class="action-vignettes" id="actionVignettes">
+          <!-- Dynamically populated when at event frames -->
+        </div>
+      </section>
+
+      <!-- Time Travel Events -->
+      <section class="arena-events" style="margin-bottom: 2rem;">
+        <h3 style="font-size: 1.125rem; font-weight: 700; color: #1F2937; margin-bottom: 1rem;" data-translate="education.arena.events.title">
+          Événements Historiques
+        </h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <button class="timeline-btn event-btn" data-event="2008-09" data-translate="education.arena.events.lehman">
+            Lehman (Sep 2008)
+          </button>
+          <button class="timeline-btn event-btn" data-event="2010-05" data-translate="education.arena.events.flashcrash">
+            Flash Crash (Mai 2010)
+          </button>
+          <button class="timeline-btn event-btn" data-event="2011-08" data-translate="education.arena.events.debt">
+            Crise Dette EU (Août 2011)
+          </button>
+          <button class="timeline-btn event-btn" data-event="2015-08" data-translate="education.arena.events.china">
+            Crash Chine (Août 2015)
+          </button>
+          <button class="timeline-btn event-btn" data-event="2018-12" data-translate="education.arena.events.volmageddon">
+            Volmageddon (Déc 2018)
+          </button>
+          <button class="timeline-btn event-btn" data-event="2020-03" data-translate="education.arena.events.covid">
+            COVID (Mars 2020)
+          </button>
+          <button class="timeline-btn event-btn" data-event="2022-02" data-translate="education.arena.events.ukraine">
+            Ukraine (Fév 2022)
+          </button>
+          <button class="timeline-btn event-btn" data-event="2023-03" data-translate="education.arena.events.svb">
+            SVB (Mars 2023)
+          </button>
+        </div>
+      </section>
+
+      <!-- Leaderboard + Trade Tape Side by Side -->
+      <div class="arena-sidebar-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+        <!-- Leaderboard -->
+        <section class="arena-leaderboard" style="margin-bottom: 0;">
+          <h3 class="leaderboard-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            <span data-translate="education.arena.leaderboard.title">Classement</span>
+          </h3>
+          <div class="leaderboard-list" id="leaderboardList">
+            <!-- Dynamically populated -->
+            <div class="leaderboard-item">
+              <div class="leaderboard-rank">1</div>
+              <div class="leaderboard-bot-info">
+                <div class="leaderboard-bot-avatar" style="--bot-color: #667eea">P</div>
+                <span class="leaderboard-bot-name">Pari</span>
+              </div>
+              <span class="leaderboard-pnl positive">+0.00%</span>
+            </div>
+            <div class="leaderboard-item">
+              <div class="leaderboard-rank">2</div>
+              <div class="leaderboard-bot-info">
+                <div class="leaderboard-bot-avatar" style="--bot-color: #10B981">S</div>
+                <span class="leaderboard-bot-name">Sage</span>
+              </div>
+              <span class="leaderboard-pnl positive">+0.00%</span>
+            </div>
+            <div class="leaderboard-item">
+              <div class="leaderboard-rank">3</div>
+              <div class="leaderboard-bot-info">
+                <div class="leaderboard-bot-avatar" style="--bot-color: #6B7280">É</div>
+                <span class="leaderboard-bot-name">Équi</span>
+              </div>
+              <span class="leaderboard-pnl positive">+0.00%</span>
+            </div>
+            <div class="leaderboard-item">
+              <div class="leaderboard-rank">4</div>
+              <div class="leaderboard-bot-info">
+                <div class="leaderboard-bot-avatar" style="--bot-color: #F97316">M</div>
+                <span class="leaderboard-bot-name">Momo</span>
+              </div>
+              <span class="leaderboard-pnl positive">+0.00%</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Trade Tape -->
+        <section class="arena-trade-tape" style="background: var(--education-card-bg, #F8F8F8); border-radius: 24px; padding: 1rem;">
+          <div class="trade-tape-header">
+            <h3 class="trade-tape-title" data-translate="education.arena.tradeTape.title">Activité de Trading</h3>
+          </div>
+          <div class="trade-tape" id="tradeTape">
+            <!-- Trade entries will be added dynamically by JavaScript -->
+            <div class="trade-entry trade-neutral visible" style="opacity: 0.5;">
+              <div class="trade-bot">
+                <span class="trade-bot-avatar" style="--bot-color: #667eea">P</span>
+                <span class="trade-bot-name">Pari</span>
+              </div>
+              <div class="trade-action" data-translate="education.arena.tradeTape.waiting">En attente du début...</div>
+              <div class="trade-details"></div>
+              <div class="trade-pnl positive">+0.00%</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <style>
+        @media (max-width: 768px) {
+          .arena-sidebar-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      </style>
+
+      <!-- Unified Chat Side Panel (matches main site) -->
+      <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+        <div class="chat-side-panel-header">
+          <div class="chat-side-panel-header-info">
+            <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+            <div class="chat-side-panel-titles">
+              <span class="chat-side-panel-title">Assistant Bubble</span>
+              <span class="chat-side-panel-subtitle" data-translate="floating_input.placeholder">Pose-moi n'importe quelle question...</span>
+            </div>
+          </div>
+          <div class="chat-side-panel-actions">
+            <button class="chat-side-panel-minimize" aria-label="Réduire le chat" type="button">-</button>
+            <button class="chat-side-panel-close" aria-label="Fermer le chat" type="button">✕</button>
+          </div>
+        </div>
+        <div class="chat-side-panel-messages" role="log" aria-live="polite">
+          <div class="chat-side-panel-message bot">
+            <div class="message-content">
+              Bonjour, je suis Bubble — comment puis-je t'aider ?
+            </div>
+          </div>
+          <div class="chat-side-panel-message bot">
+            <div class="message-content">
+              <strong>Suggestions rapides</strong><br/>
+              <div class="chat-suggestion-row">
+                <button class="chat-suggestion-btn" data-prompt="Pourquoi ce bot a vendu ?">Pourquoi ce bot a vendu ?</button>
+                <button class="chat-suggestion-btn" data-prompt="Compare deux bots sur ce mois">Compare deux bots sur ce mois</button>
+                <button class="chat-suggestion-btn" data-prompt="Montre-moi une crise (2008, COVID, SVB)">Montre-moi une crise (2008, COVID, SVB)</button>
+                <button class="chat-suggestion-btn" data-prompt="Explique la différence entre momentum et défensif">Explique la différence entre momentum et défensif</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="chat-side-panel-input-container" novalidate>
+          <input
+            type="text"
+            class="chat-side-panel-input"
+            placeholder="Pose tes questions..."
+            data-translate-placeholder="floating_input.placeholder"
+            aria-label="Saisis ton message"
+            autocomplete="off"
+          />
+          <button class="chat-side-panel-send" aria-label="Envoyer le message" type="submit">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M12 21V4" stroke-linecap="round" />
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Floating Glassmorphism Chat Input -->
+      <div
+        id="floating-chat-input"
+        class="floating-chat-input hidden"
+        data-page-context="education_arena"
+        data-trigger-selector=".hero"
+      >
+        <div class="floating-input-container">
+          <input
+            type="text"
+            class="floating-input-field"
+            placeholder="Ask me anything..."
+            data-translate-placeholder="floating_input.placeholder"
+            aria-label="Ask a question"
+          />
+          <button class="floating-input-submit" aria-label="Send message">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M12 21V4" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- CTA to Simulator -->
+      <section style="background: rgba(102, 126, 234, 0.08); border-radius: 24px; padding: 2rem; text-align: center; margin-bottom: 2rem; border: 1px solid rgba(102, 126, 234, 0.2);">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #667eea; margin-bottom: 0.75rem;" data-translate="education.arena.cta.title">
+          Prêt à créer ta propre stratégie ?
+        </h3>
+        <p style="color: #6B7280; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto;" data-translate="education.arena.cta.description">
+          Passe au Simulateur et construis ton allocation personnalisée avec l'aide de notre assistant IA.
+        </p>
+        <a href="/investors/education/simulator" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, #667eea, #818CF8); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;">
+          <span data-translate="education.arena.cta.button">Créer Ma Stratégie</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </section>
+
+      <!-- Compliance Ribbon -->
+      <div class="compliance-ribbon" style="margin: 0 -1.5rem -1.5rem; border-radius: 0;">
+        <div class="container">
+          <p data-translate="education.arena.compliance">
+            <strong>Information importante :</strong> Cette simulation utilise des données historiques à des fins éducatives uniquement.
+            Les performances passées ne préjugent pas des performances futures. Aucun conseil en investissement n'est fourni.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-left">
+            <div class="footer-logo" style="display: flex; align-items: center; gap: 0.18em">
+              <span style="display: flex; align-items: center">
+                <svg width="30" height="30" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
+                  <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+                  <circle cx="59" cy="21" r="6" fill="#000"/>
+                </svg>
+              </span>
+              <span>Bubble.</span>
+            </div>
+            <div class="footer-tagline" data-translate="footer.tagline">L'ère de l'IA change tout. Changeons avec elle.</div>
+            <div class="footer-copyright" data-translate="footer.copyright">© 2025 Bubble Invest SAS. Transparent by design.</div>
+          </div>
+
+          <nav class="footer-nav">
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.investors">Investisseurs</h4>
+              <ul>
+                <li><a href="/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
+                <li><a href="/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
+                <li><a href="/investors#faq" data-translate="footer.nav.investors.faq">FAQ</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.resources">Ressources</h4>
+              <ul>
+                <li><a href="/blog" data-translate="footer.nav.blog">Blog</a></li>
+                <li><a href="/investors/education" data-translate="footer.nav.resources.education">Éducation</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.legal">Légal</h4>
+              <ul>
+                <li><a href="/mentions-legales" data-translate="footer.nav.legal_notice">Mentions Légales</a></li>
+                <li><a href="/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.contact">Contact</h4>
+              <ul>
+                <li><a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/i18n/translations.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/seo/structured-data.js"></script>
+    <script src="/js/chat-side-panel.js"></script>
+    <script src="/js/floating-chat-input.js"></script>
+
+    <!-- Arena Timeline & Chart Logic -->
+    <script src="/js/arena.js"></script>
+
+    <!-- Tutorial Navigation (separate from arena.js timeline) -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const tutorialNext = document.getElementById('tutorialNext');
+        const tutorialSkip = document.getElementById('tutorialSkip');
+        const tutorial = document.getElementById('arenaTutorial');
+        const tutorialSteps = document.querySelectorAll('.tutorial-step');
+        const tutorialProgress = document.querySelector('.tutorial-progress');
+        const tutorialContent = document.querySelector('.tutorial-content p');
+        let currentStep = 1;
+        const totalSteps = 5;
+
+        const tutorialTexts = {
+          fr: [
+            `<strong>Les 4 bots</strong> ci-dessous représentent différentes stratégies d'investissement. Chacun a sa personnalité et sa façon de gérer le risque.`,
+            `<strong>Équi</strong> répartit son capital de manière égale. <strong>Pari</strong> équilibre le risque. <strong>Momo</strong> suit les tendances. <strong>Sage</strong> privilégie la prudence.`,
+            `Utilise la <strong>timeline</strong> pour naviguer dans le temps. Tu peux mettre en pause, accélérer ou sauter à un événement historique.`,
+            `Les <strong>bulles de dialogue</strong> affichent ce que chaque bot "pense" à chaque instant. C'est comme lire dans leurs pensées !`,
+            `<strong>Prêt ?</strong> Clique sur Play pour lancer la simulation. Bonne découverte !`
+          ],
+          en: [
+            `The <strong>4 bots</strong> below represent different investment strategies. Each has its personality and way of managing risk.`,
+            `<strong>Équi</strong> allocates capital equally. <strong>Pari</strong> balances risk. <strong>Momo</strong> follows trends. <strong>Sage</strong> prioritizes caution.`,
+            `Use the <strong>timeline</strong> to navigate through time. You can pause, speed up, or jump to historical events.`,
+            `The <strong>dialogue bubbles</strong> show what each bot "thinks" at each moment. It's like reading their minds!`,
+            `<strong>Ready?</strong> Click Play to start the simulation. Enjoy exploring!`
+          ]
+        };
+
+        const buttonTexts = {
+          fr: { next: "Compris, continuer", final: "C'est parti !" },
+          en: { next: "Got it, continue", final: "Let's go!" }
+        };
+
+        function getLang() {
+          return localStorage.getItem('bubbleLanguage') || document.documentElement.lang || 'fr';
+        }
+
+        function updateTutorial() {
+          const lang = getLang();
+          const texts = tutorialTexts[lang] || tutorialTexts.fr;
+          const buttons = buttonTexts[lang] || buttonTexts.fr;
+
+          tutorialProgress.textContent = `${currentStep} / ${totalSteps}`;
+
+          tutorialSteps.forEach((step, index) => {
+            step.classList.remove('active', 'completed');
+            if (index < currentStep - 1) step.classList.add('completed');
+            else if (index === currentStep - 1) step.classList.add('active');
+          });
+
+          tutorialContent.innerHTML = texts[currentStep - 1];
+          tutorialNext.textContent = currentStep === totalSteps ? buttons.final : buttons.next;
+        }
+
+        tutorialNext?.addEventListener('click', function() {
+          if (currentStep < totalSteps) {
+            currentStep++;
+            updateTutorial();
+          } else {
+            sessionStorage.setItem('arenaTutorialDone', 'true');
+            tutorial.style.display = 'none';
+          }
+        });
+
+        tutorialSkip?.addEventListener('click', function() {
+          sessionStorage.setItem('arenaTutorialDone', 'true');
+          tutorial.style.display = 'none';
+        });
+
+        // Check if tutorial was already completed this session
+        if (sessionStorage.getItem('arenaTutorialDone')) {
+          tutorial.style.display = 'none';
+        }
+
+        // Listen for language changes
+        window.addEventListener('languageChange', updateTutorial);
+      });
+    </script>
+  </body>
+</html>

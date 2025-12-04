@@ -2,6 +2,7 @@ const axios = require("axios");
 const fs = require("fs").promises;
 const path = require("path");
 const env = require("../config/env");
+const strategyBuilderService = require("../services/strategyBuilderService");
 
 // Document loading
 let missionDocument = "";
@@ -51,7 +52,36 @@ loadPricingDocument().catch(console.error);
  * UNIFIED SYSTEM PROMPT - Single chatbot across all pages
  * Adapts behavior and context based on page and conversation history
  */
-const unifiedSystemPrompt = (language, pageContext = 'index', waitlistShared = false) => `You are Bubble's AI Assistant - a unified conversational guide available across our entire platform (index page, pricing, portfolio simulator, and more).
+const unifiedSystemPrompt = (language, pageContext = 'index', waitlistShared = false) => {
+  // Normalize context for routing
+  const ctx = (pageContext || 'index').toLowerCase();
+
+  const isEducation =
+    ctx.includes('education') ||
+    ctx === 'arena' ||
+    ctx === 'education-arena' ||
+    ctx === 'education/arena' ||
+    ctx === 'simulator' ||
+    ctx === 'education-simulator' ||
+    ctx === 'education/simulator';
+
+  const isArena = ctx === 'arena' || ctx === 'education-arena' || ctx === 'education/arena';
+  const isSimulator = ctx === 'simulator' || ctx === 'education-simulator' || ctx === 'education/simulator';
+
+  const educationBlock = isEducation
+    ? `
+
+### EDUCATION CONTEXT
+- You are Bubble's **Education Guide** (separate from the main site bot) dedicated to Arena (watch bots trade) and Strategy Simulator (build from plain language).
+- Always remind: educational simulation only; past performance ≠ future results; not investment advice.
+- Keep answers concise (2-3 sentences) and pedagogical for non-experts.
+- If in Arena: explain trades, strategy behavior, risk/return, and differences between bots using current frame/trades/leaderboard context. Offer clarifying follow-ups (e.g., "Want to see why momentum sold?").
+- If in Simulator: infer user goals/risk from their words, propose 2–3 strategy options or blends, and explain pros/cons and when it fails. Encourage trying a safer/riskier variant.
+- When surfacing percentages, keep them simple (whole numbers) and tie to rationale. Encourage instant test/backtest rather than abstract theory.
+- Maintain conversational continuity if user moves between Arena and Simulator (use provided history).`
+    : '';
+
+  return `You are Bubble's AI Assistant - a unified conversational guide available across our entire platform (index page, pricing, portfolio simulator, and more).${educationBlock}
 
 Your goal is to be helpful, transparent, and embody Bubble's mission to democratize intelligent investing.
 
@@ -160,6 +190,7 @@ After greeting, suggest relevant quick-reply options based on the page context.
 ---
 
 Remember: You are Bubble's single, unified conversational AI. Maintain consistency in values and knowledge across all pages. Preserve conversation context so users who navigate between pages feel understood and supported.`;
+};
 
 const models = [
   "google/gemini-2.0-flash-001",
@@ -428,14 +459,17 @@ async function handleChat(req, res) {
   const {
     message,
     language = "fr",
+    lang,
     pageContext = "index",
+    context: contextOverride,
     chatbotType,
     history = [],
     contextMetadata = ""
   } = req.body;
 
   // Backward compatibility: map old chatbotType to new pageContext
-  const context = chatbotType || pageContext;
+  const context = contextOverride || chatbotType || pageContext;
+  const resolvedLanguage = language || lang || "fr";
 
   if (!message) {
     return res.status(400).json({ error: "Message is required." });
@@ -460,12 +494,26 @@ async function handleChat(req, res) {
     : false;
 
   // Get the unified system prompt with page context
-  let systemPromptContent = getSystemPrompt(language, context, waitlistShared);
+  let systemPromptContent = getSystemPrompt(resolvedLanguage, context, waitlistShared);
   let metadataBlock = "";
   if (typeof contextMetadata === "string") {
     metadataBlock = contextMetadata.trim();
   } else if (contextMetadata && typeof contextMetadata === "object") {
     metadataBlock = JSON.stringify(contextMetadata);
+  }
+
+  // Inject lightweight simulator heuristics to help the education chatbot propose mixes
+  if (
+    (contextOverride || chatbotType || pageContext || "").toLowerCase().includes("simulator") &&
+    typeof message === "string"
+  ) {
+    const heuristics = strategyBuilderService.getHeuristics(message, resolvedLanguage);
+    if (heuristics) {
+      const hint = typeof metadataBlock === "string" && metadataBlock.length > 0
+        ? `${metadataBlock}\n\n[Heuristics]\n${heuristics}`
+        : `[Heuristics]\n${heuristics}`;
+      metadataBlock = hint;
+    }
   }
   if (metadataBlock) {
     systemPromptContent = `${systemPromptContent}\n\n### PAGE CONTEXT NOTES:\n${metadataBlock}`;

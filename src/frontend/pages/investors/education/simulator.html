@@ -1,0 +1,1244 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>Strategy Simulator | Crée ta Stratégie d'Investissement - Bubble Invest</title>
+    <meta name="description" content="Crée ta stratégie d'investissement en langage naturel. L'assistant IA te guide pas à pas et teste instantanément ton allocation sur 20 ans de données réelles. 100% gratuit." />
+    <meta name="keywords" content="simulateur stratégie investissement, chatbot trading, backtesting gratuit, allocation portefeuille, assistant IA investissement, créer stratégie" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bubbleinvest.org/investors/education/simulator" />
+    <meta property="og:title" content="Strategy Simulator | Crée ta Stratégie" />
+    <meta property="og:description" content="Crée ta stratégie en langage naturel. L'IA teste instantanément sur 20 ans de données. 100% gratuit." />
+    <meta property="og:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://bubbleinvest.org/investors/education/simulator" />
+    <meta name="twitter:title" content="Strategy Simulator | Crée ta Stratégie" />
+    <meta name="twitter:description" content="Crée ta stratégie en langage naturel. Backtesting instantané sur 20 ans." />
+    <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bubbleinvest.org/investors/education/simulator" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- Language Alternates -->
+    <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/investors/education/simulator" />
+    <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/investors/education/simulator" />
+    <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/investors/education/simulator" />
+
+    <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
+    <link rel="stylesheet" href="/assets/styles/styles.css" />
+    <link rel="stylesheet" href="/assets/styles/education.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/css/tarteaucitron.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/tarteaucitron.min.js"></script>
+    <script src="/js/seo/cookie-consent.js"></script>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied'
+      });
+      gtag('config', 'G-T0MQEL0ZG0', {
+        'anonymize_ip': true
+      });
+    </script>
+  </head>
+
+  <body>
+    <!-- Navigation Header -->
+    <header>
+      <div class="container">
+        <div class="brand">
+          <a href="/investors" class="logo-link">
+            <div class="logo" style="display: flex; align-items: center; gap: 0.18em">
+              <span style="display: flex; align-items: center">
+                <svg width="36" height="36" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
+                  <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+                  <circle cx="59" cy="21" r="6" fill="#000"/>
+                </svg>
+              </span>
+              <span>Bubble.</span>
+            </div>
+          </a>
+          <div class="tagline" data-translate="hero.tagline">L'agent d'investissement transparent.</div>
+        </div>
+
+        <div class="header-right">
+          <!-- Hamburger Menu Button (Mobile Only) -->
+          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+
+          <!-- Desktop Navigation -->
+          <nav class="desktop-nav">
+            <a href="/investors" data-translate="nav.vision">Vision</a>
+            <div class="nav-dropdown">
+              <button class="nav-dropdown-toggle" data-translate="nav.solution">Solution</button>
+              <div class="nav-dropdown-menu">
+                <button class="dropdown-link js-retail-demo-trigger" data-entry-point="investor_nav_agent" data-translate="nav.solution.agent">Agent</button>
+                <a href="/investors/education" class="dropdown-link active" data-translate="nav.solution.education">Éducation</a>
+              </div>
+            </div>
+            <a href="/investors/pricing" data-translate="nav.pricing">Tarification</a>
+            <a href="/blog" data-translate="nav.blog">Blog</a>
+            <a href="/investors#investor-waitlist" data-translate="nav.join">Nous rejoindre</a>
+            <div class="language-switcher">
+              <button id="en-switch">EN</button>
+              <span>|</span>
+              <button id="fr-switch" class="active">FR</button>
+            </div>
+          </nav>
+
+          <!-- Mobile Language Switcher -->
+          <div class="mobile-language-switcher">
+            <button id="en-switch-mobile">EN</button>
+            <span>|</span>
+            <button id="fr-switch-mobile" class="active">FR</button>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation Overlay -->
+        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+          <nav class="mobile-nav">
+            <a href="/investors" data-translate="nav.vision">Vision</a>
+            <button class="mobile-nav-link js-retail-demo-trigger" data-entry-point="investor_nav_agent_mobile" data-translate="nav.solution.agent">Agent</button>
+            <a href="/investors/education" class="active" data-translate="nav.solution.education">Éducation</a>
+            <a href="/investors/pricing" data-translate="nav.pricing">Tarification</a>
+            <a href="/blog" data-translate="nav.blog">Blog</a>
+            <a href="/investors#investor-waitlist" data-translate="nav.join">Nous rejoindre</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section (matching /investors style) -->
+    <section class="hero hero-purple fade-in">
+      <div class="container">
+        <p class="hero-eyebrow" data-translate="education.simulator.eyebrow">Construire & Tester</p>
+        <h1 data-translate="education.simulator.title">Crée ta stratégie en langage naturel</h1>
+        <p class="hero-subtitle" data-translate="education.simulator.subtitle">
+          Décris simplement ce que tu veux. L'assistant IA traduit tes idées
+          en allocation et teste instantanément sur 20 ans de données réelles.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="simulator-edu-container">
+      <!-- Back Button -->
+      <a href="/investors/education" class="back-button" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #667eea; text-decoration: none; font-weight: 500; margin-bottom: 1.5rem;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span data-translate="education.simulator.back">Retour</span>
+      </a>
+
+      <!-- Help Button (shows when tutorial is closed) -->
+      <button class="arena-help-btn" id="builderHelpBtn" title="Tutoriel" aria-label="Voir le tutoriel">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </button>
+
+      <!-- Tutorial Overlay -->
+      <div class="tutorial-overlay" id="builderTutorialOverlay">
+        <section class="arena-tutorial" id="builderTutorial">
+          <button class="tutorial-close-btn" id="builderTutorialCloseBtn" aria-label="Fermer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+          <div class="tutorial-header">
+            <h3 class="tutorial-title">Bienvenue dans le Builder</h3>
+            <span class="tutorial-progress" id="builderTutorialProgress">1 / 5</span>
+          </div>
+          <div class="tutorial-steps">
+            <div class="tutorial-step active"></div>
+            <div class="tutorial-step"></div>
+            <div class="tutorial-step"></div>
+            <div class="tutorial-step"></div>
+            <div class="tutorial-step"></div>
+          </div>
+          <div class="tutorial-content">
+            <p id="builderTutorialContent">
+              Dis-moi ton intention : "je veux un portefeuille pas trop risqué" ou "je veux plus de rendement sans trop de stress".
+            </p>
+          </div>
+          <div class="tutorial-actions">
+            <button class="tutorial-btn primary" id="builderTutorialNext">
+              Compris, continuer
+            </button>
+            <button class="tutorial-btn secondary" id="builderTutorialSkip">
+              Passer le tutoriel
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <!-- Results Panel (Full width on mobile when chat closed) -->
+      <div class="simulator-results-panel">
+          <h3 class="results-title" data-translate="education.simulator.results.title">Résultats du Backtest</h3>
+
+          <!-- Strategy Summary -->
+          <div id="strategySummary" style="background: #F8F8F8; border-radius: 16px; padding: 1.25rem; margin-bottom: 1.5rem;">
+              <h4 style="font-size: 0.875rem; font-weight: 600; color: #6B7280; margin-bottom: 0.75rem;" data-translate="education.simulator.results.allocation">
+              Ton allocation
+            </h4>
+            <div id="allocationBars" style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="width: 60px; font-size: 0.8125rem; font-weight: 500;">Actions</span>
+                <div style="flex: 1; height: 8px; background: #E5E7EB; border-radius: 4px; overflow: hidden;">
+                  <div style="width: 50%; height: 100%; background: #667eea;"></div>
+                </div>
+                <span style="width: 40px; font-size: 0.8125rem; font-weight: 600; text-align: right;">50%</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="width: 60px; font-size: 0.8125rem; font-weight: 500;">Obligations</span>
+                <div style="flex: 1; height: 8px; background: #E5E7EB; border-radius: 4px; overflow: hidden;">
+                  <div style="width: 30%; height: 100%; background: #10B981;"></div>
+                </div>
+                <span style="width: 40px; font-size: 0.8125rem; font-weight: 600; text-align: right;">30%</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="width: 60px; font-size: 0.8125rem; font-weight: 500;">Or</span>
+                <div style="flex: 1; height: 8px; background: #E5E7EB; border-radius: 4px; overflow: hidden;">
+                  <div style="width: 20%; height: 100%; background: #F97316;"></div>
+                </div>
+                <span style="width: 40px; font-size: 0.8125rem; font-weight: 600; text-align: right;">20%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart -->
+          <div class="results-chart-container">
+            <canvas id="simulatorChart"></canvas>
+          </div>
+
+          <!-- Metrics Grid -->
+          <div class="results-metrics-grid">
+            <div class="results-metric-card">
+              <div class="results-metric-label" data-translate="simulator.metric.totalReturn">Rendement Total</div>
+              <div class="results-metric-value positive" id="metricTotalReturn">+185.4%</div>
+            </div>
+            <div class="results-metric-card">
+              <div class="results-metric-label" data-translate="simulator.metric.annualReturn">CAGR</div>
+              <div class="results-metric-value positive" id="metricCAGR">+5.4%</div>
+            </div>
+            <div class="results-metric-card">
+              <div class="results-metric-label" data-translate="simulator.metric.volatility">Volatilité</div>
+              <div class="results-metric-value" id="metricVolatility">9.2%</div>
+            </div>
+            <div class="results-metric-card">
+              <div class="results-metric-label" data-translate="simulator.metric.sharpeRatio">Sharpe</div>
+              <div class="results-metric-value positive" id="metricSharpe">0.58</div>
+            </div>
+            <div class="results-metric-card">
+              <div class="results-metric-label" data-translate="simulator.metric.maxDrawdown">Max Drawdown</div>
+              <div class="results-metric-value negative" id="metricDrawdown">-24.3%</div>
+            </div>
+            <div class="results-metric-card">
+              <div class="results-metric-label" data-translate="simulator.metric.calmarRatio">Calmar</div>
+              <div class="results-metric-value" id="metricCalmar">0.22</div>
+            </div>
+          </div>
+
+          <!-- Comparison with Pros -->
+          <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(102, 126, 234, 0.08); border-radius: 12px; border: 1px solid rgba(102, 126, 234, 0.2);">
+            <h4 style="font-size: 0.875rem; font-weight: 600; color: #667eea; margin-bottom: 0.5rem;" data-translate="education.simulator.results.comparison">
+              Comparaison
+            </h4>
+              <p style="font-size: 0.8125rem; color: #6B7280; line-height: 1.5;" data-translate="education.simulator.results.comparisonText">
+              Ta stratégie se situe entre <strong>Équi</strong> et <strong>Pari</strong> en termes de rapport risque/rendement.
+              Sharpe de 0.58 vs. Pari à 0.72.
+            </p>
+          </div>
+        </div>
+
+      <!-- CTA to Arena -->
+      <section style="background: rgba(102, 126, 234, 0.08); border-radius: 24px; padding: 2rem; text-align: center; margin: 3rem 0 2rem; border: 1px solid rgba(102, 126, 234, 0.2);">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #667eea; margin-bottom: 0.75rem;" data-translate="education.simulator.cta.title">
+          Envie de voir comment les pros tradent ?
+        </h3>
+        <p style="color: #6B7280; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto;" data-translate="education.simulator.cta.description">
+          Retourne dans l'Arena et regarde comment 4 bots IA appliquent différentes stratégies face aux mêmes conditions de marché.
+        </p>
+        <a href="/investors/education/arena" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, #667eea, #818CF8); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;">
+          <span data-translate="education.simulator.cta.button">Voir l'Arena</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </section>
+
+      <!-- Compliance Ribbon -->
+      <div class="compliance-ribbon" style="margin: 0 -1.5rem -1.5rem; border-radius: 0;">
+        <div class="container">
+          <p data-translate="education.simulator.compliance">
+            <strong>Information importante :</strong> Ce simulateur utilise des données historiques à des fins éducatives uniquement.
+            Les performances passées ne préjugent pas des performances futures. Aucun conseil en investissement n'est fourni.
+          </p>
+        </div>
+      </div>
+
+      <!-- Unified Chat Side Panel (matches main site) -->
+      <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+        <div class="chat-side-panel-header">
+          <div class="chat-side-panel-header-info">
+            <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+            <div class="chat-side-panel-titles">
+              <span class="chat-side-panel-title">Assistant Bubble</span>
+              <span class="chat-side-panel-subtitle" data-translate="floating_input.placeholder">Posez-moi n'importe quelle question...</span>
+            </div>
+          </div>
+          <div class="chat-side-panel-actions">
+            <button class="chat-side-panel-minimize" aria-label="Réduire le chat" type="button">-</button>
+            <button class="chat-side-panel-close" aria-label="Fermer le chat" type="button">✕</button>
+          </div>
+        </div>
+        <div class="chat-side-panel-messages" role="log" aria-live="polite">
+          <div class="chat-side-panel-message bot">
+            <div class="message-content">
+              Bonjour, je suis Bubble — comment puis-je t'aider ?
+            </div>
+          </div>
+          <div class="chat-side-panel-message bot">
+            <div class="message-content">
+              <strong>Suggestions rapides</strong><br/>
+              <div class="chat-suggestion-row">
+                <button class="chat-suggestion-btn" data-prompt="Propose 2 mixes pour un profil prudent">Propose 2 mixes pour un profil prudent</button>
+                <button class="chat-suggestion-btn" data-prompt="Rends ma stratégie plus défensive">Rends ma stratégie plus défensive</button>
+                <button class="chat-suggestion-btn" data-prompt="Ajoute du momentum si la tendance est forte">Ajoute du momentum si la tendance est forte</button>
+                <button class="chat-suggestion-btn" data-prompt="Compare ma stratégie au S&P 500">Compare ma stratégie au S&P 500</button>
+                <button class="chat-suggestion-btn" data-prompt="Explique les métriques (retour, volatilité, drawdown)">Explique les métriques (retour, volatilité, drawdown)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="chat-side-panel-input-container" novalidate>
+          <input
+            type="text"
+            class="chat-side-panel-input"
+            placeholder="Pose tes questions..."
+            data-translate-placeholder="floating_input.placeholder"
+            aria-label="Saisis ton message"
+            autocomplete="off"
+          />
+          <button class="chat-side-panel-send" aria-label="Envoyer le message" type="submit">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M12 21V4" stroke-linecap="round" />
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Floating Glassmorphism Chat Input -->
+      <div id="floating-chat-input" class="floating-chat-input hidden" data-page-context="education_simulator" data-trigger-selector=".hero">
+        <div class="floating-input-container">
+          <input
+            type="text"
+            class="floating-input-field"
+            placeholder="Ask me anything..."
+            data-translate-placeholder="floating_input.placeholder"
+            aria-label="Ask a question"
+          />
+          <button class="floating-input-submit" aria-label="Send message">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M12 21V4" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-left">
+            <div class="footer-logo" style="display: flex; align-items: center; gap: 0.18em">
+              <span style="display: flex; align-items: center">
+                <svg width="30" height="30" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
+                  <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+                  <circle cx="59" cy="21" r="6" fill="#000"/>
+                </svg>
+              </span>
+              <span>Bubble.</span>
+            </div>
+            <div class="footer-tagline" data-translate="footer.tagline">L'ère de l'IA change tout. Changeons avec elle.</div>
+            <div class="footer-copyright" data-translate="footer.copyright">© 2025 Bubble Invest SAS. Transparent by design.</div>
+          </div>
+
+          <nav class="footer-nav">
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.investors">Investisseurs</h4>
+              <ul>
+                <li><a href="/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
+                <li><a href="/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
+                <li><a href="/investors#faq" data-translate="footer.nav.investors.faq">FAQ</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.resources">Ressources</h4>
+              <ul>
+                <li><a href="/blog" data-translate="footer.nav.blog">Blog</a></li>
+                <li><a href="/investors/education" data-translate="footer.nav.resources.education">Éducation</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.legal">Légal</h4>
+              <ul>
+                <li><a href="/mentions-legales" data-translate="footer.nav.legal_notice">Mentions Légales</a></li>
+                <li><a href="/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.contact">Contact</h4>
+              <ul>
+                <li><a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/i18n/translations.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/seo/structured-data.js"></script>
+    <script src="/js/chat-side-panel.js"></script>
+    <script src="/js/floating-chat-input.js"></script>
+
+    <!-- Simulator JavaScript - Connected to real API -->
+    <script>
+      (function() {
+        'use strict';
+
+        // Configuration
+        const ASSET_MAPPING = {
+          'actions': 'SPY',
+          'stocks': 'SPY',
+          'actions américaines': 'SPY',
+          'us stocks': 'SPY',
+          'obligations': 'IEF',
+          'bonds': 'IEF',
+          'or': 'GLD',
+          'gold': 'GLD',
+          'cash': 'CASH',
+          'liquidités': 'CASH'
+        };
+
+        // Template allocations (predefined strategies)
+        const TEMPLATE_ALLOCATIONS = {
+          conservative: { SPY: 20, IEF: 70, GLD: 10 },
+          balanced: { SPY: 50, IEF: 40, GLD: 10 },
+          aggressive: { SPY: 80, IEF: 15, GLD: 5 },
+          allweather: { SPY: 30, IEF: 40, GLD: 15, VNQ: 7.5, CASH: 7.5 }  // Ray Dalio All-Weather simplified
+        };
+
+        let chart = null;
+        let currentAllocation = null;
+        let lastResult = null;
+        let lang = document.documentElement.lang === 'en' ? 'en' : 'fr';
+        let chatHistory = [];
+
+        // Listen for language changes
+        window.addEventListener('languageChange', (e) => {
+          lang = e.detail?.lang || 'fr';
+          updateChartLabels();
+          updateBuilderTutorial();
+        });
+
+        // Chat history helpers (session-scoped across education pages)
+        function loadChatHistory() {
+          try {
+            const raw = sessionStorage.getItem('educationChatHistory');
+            if (raw) chatHistory = JSON.parse(raw);
+          } catch {
+            chatHistory = [];
+          }
+        }
+
+        function persistChatHistory() {
+          try {
+            sessionStorage.setItem('educationChatHistory', JSON.stringify(chatHistory.slice(-12)));
+          } catch {
+            // ignore
+          }
+        }
+
+        function pushChatHistory(role, content) {
+          chatHistory.push({ role, content });
+          persistChatHistory();
+        }
+
+        // DOM Elements
+        const elements = {
+          chartCanvas: document.getElementById('simulatorChart'),
+          chatInput: document.getElementById('chatInput'),
+          chatSendBtn: document.getElementById('chatSendBtn'),
+          chatMessages: document.getElementById('chatMessages'),
+          allocationBars: document.getElementById('allocationBars'),
+          metricTotalReturn: document.getElementById('metricTotalReturn'),
+          metricCAGR: document.getElementById('metricCAGR'),
+          metricVolatility: document.getElementById('metricVolatility'),
+          metricSharpe: document.getElementById('metricSharpe'),
+          metricDrawdown: document.getElementById('metricDrawdown'),
+          metricCalmar: document.getElementById('metricCalmar'),
+          tutorialOverlay: document.getElementById('builderTutorialOverlay'),
+          tutorialCard: document.getElementById('builderTutorial'),
+          tutorialCloseBtn: document.getElementById('builderTutorialCloseBtn'),
+          tutorialHelpBtn: document.getElementById('builderHelpBtn'),
+          tutorialNextBtn: document.getElementById('builderTutorialNext'),
+          tutorialSkipBtn: document.getElementById('builderTutorialSkip'),
+          tutorialProgress: document.getElementById('builderTutorialProgress'),
+          tutorialContent: document.getElementById('builderTutorialContent'),
+          tutorialTitle: document.querySelector('#builderTutorial .tutorial-title'),
+          tutorialSteps: document.querySelectorAll('#builderTutorial .tutorial-step'),
+        };
+
+        // Initialize Chart
+        function initChart() {
+          if (!elements.chartCanvas) return;
+
+          chart = new Chart(elements.chartCanvas, {
+            type: 'line',
+            data: {
+              labels: [],
+              datasets: [
+                {
+                  label: lang === 'fr' ? 'Ta stratégie' : 'Your Strategy',
+                  data: [],
+                  borderColor: '#667eea',
+                  backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                  tension: 0.3,
+                  fill: true,
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  pointHoverRadius: 4
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              interaction: { intersect: false, mode: 'index' },
+              plugins: {
+                legend: {
+                  position: 'top',
+                  labels: {
+                    usePointStyle: true,
+                    font: { family: 'Inter', size: 11 }
+                  }
+                },
+                tooltip: {
+                  callbacks: {
+                    label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}`
+                  }
+                }
+              },
+              scales: {
+                x: { grid: { display: false } },
+                y: {
+                  beginAtZero: false,
+                  title: {
+                    display: true,
+                    text: lang === 'fr' ? 'Valeur (base 100)' : 'Value (base 100)'
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        function updateChartLabels() {
+          if (!chart) return;
+          chart.data.datasets[0].label = lang === 'fr' ? 'Ta stratégie' : 'Your Strategy';
+          chart.options.scales.y.title.text = lang === 'fr' ? 'Valeur (base 100)' : 'Value (base 100)';
+          chart.update();
+        }
+
+        // Parse allocation from user text
+        function parseAllocation(text) {
+          const allocation = {};
+          const lowerText = text.toLowerCase();
+
+          // Pattern: "X% asset" or "asset X%"
+          const patterns = [
+            /(\d+)%?\s*(?:en\s+)?(?:d[''])?(\w+[\s\w]*?)(?:\s|,|$|et)/gi,
+            /(\w+[\s\w]*?)\s*[:=]?\s*(\d+)%?/gi
+          ];
+
+          // Try to extract percentages
+          let matches = [...lowerText.matchAll(/(\d+)\s*%?\s*(?:en\s+)?(?:d[''])?([a-zéèàùâêîôûëïü\s]+?)(?:\s*[,;]|\s+et\s+|$)/gi)];
+
+          if (matches.length === 0) {
+            // Try reverse pattern: "actions 50%"
+            matches = [...lowerText.matchAll(/([a-zéèàùâêîôûëïü\s]+?)\s*[:=]?\s*(\d+)\s*%?/gi)];
+            matches = matches.map(m => [m[0], m[2], m[1]]); // Swap order
+          }
+
+          for (const match of matches) {
+            const pct = parseInt(match[1]);
+            const assetName = match[2].trim().toLowerCase();
+
+            if (pct > 0 && pct <= 100) {
+              // Map to ticker
+              const ticker = ASSET_MAPPING[assetName];
+              if (ticker) {
+                allocation[ticker] = (allocation[ticker] || 0) + pct;
+              }
+            }
+          }
+
+          // Validate sum
+          const total = Object.values(allocation).reduce((a, b) => a + b, 0);
+          if (total > 0 && Object.keys(allocation).length > 0) {
+            // Normalize to 100% if close
+            if (total >= 90 && total <= 110) {
+              const factor = 100 / total;
+              for (const key of Object.keys(allocation)) {
+                allocation[key] = Math.round(allocation[key] * factor);
+              }
+            }
+            return allocation;
+          }
+
+          return null;
+        }
+
+        // Call API to calculate portfolio
+        async function calculatePortfolio(allocation) {
+          try {
+            const response = await fetch('/api/portfolio/custom-allocation', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ allocation, period: 20 })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+              return data;
+            } else {
+              console.error('API error:', data.error);
+              return null;
+            }
+          } catch (error) {
+            console.error('Fetch error:', error);
+            return null;
+          }
+        }
+
+        // Update UI with results
+        function updateResults(data) {
+          if (!data) return;
+
+          lastResult = data;
+          currentAllocation = data.allocation;
+
+          // Update chart
+          if (chart && data.portfolio) {
+            const labels = data.portfolio.map(p => {
+              const date = new Date(p.date);
+              return date.getFullYear().toString();
+            }).filter((v, i, a) => i === 0 || a[i - 1] !== v); // Unique years
+
+            // Sample data to match labels
+            const step = Math.floor(data.portfolio.length / labels.length);
+            const chartData = labels.map((_, i) => {
+              const idx = Math.min(i * step, data.portfolio.length - 1);
+              return data.portfolio[idx].value;
+            });
+
+            chart.data.labels = labels;
+            chart.data.datasets[0].data = chartData;
+            chart.update();
+          }
+
+          // Update allocation bars
+          updateAllocationBars(data.allocation);
+
+          // Update metrics
+          const m = data.metrics;
+          if (elements.metricTotalReturn) {
+            elements.metricTotalReturn.textContent = `${m.totalReturn >= 0 ? '+' : ''}${m.totalReturn.toFixed(1)}%`;
+            elements.metricTotalReturn.className = `results-metric-value ${m.totalReturn >= 0 ? 'positive' : 'negative'}`;
+          }
+          if (elements.metricCAGR) {
+            elements.metricCAGR.textContent = `${m.annualReturn >= 0 ? '+' : ''}${m.annualReturn.toFixed(1)}%`;
+            elements.metricCAGR.className = `results-metric-value ${m.annualReturn >= 0 ? 'positive' : 'negative'}`;
+          }
+          if (elements.metricVolatility) {
+            elements.metricVolatility.textContent = `${m.volatility.toFixed(1)}%`;
+          }
+          if (elements.metricSharpe) {
+            elements.metricSharpe.textContent = m.sharpeRatio.toFixed(2);
+            elements.metricSharpe.className = `results-metric-value ${m.sharpeRatio >= 0.5 ? 'positive' : ''}`;
+          }
+          if (elements.metricDrawdown) {
+            elements.metricDrawdown.textContent = `-${m.maxDrawdown.toFixed(1)}%`;
+            elements.metricDrawdown.className = 'results-metric-value negative';
+          }
+          if (elements.metricCalmar) {
+            elements.metricCalmar.textContent = m.calmarRatio.toFixed(2);
+          }
+        }
+
+        function updateAllocationBars(allocation) {
+          if (!elements.allocationBars) return;
+
+          const assetLabels = {
+            SPY: { fr: 'Actions', en: 'Stocks', color: '#667eea' },
+            IEF: { fr: 'Obligations', en: 'Bonds', color: '#10B981' },
+            GLD: { fr: 'Or', en: 'Gold', color: '#F97316' },
+            VNQ: { fr: 'Immobilier', en: 'Real Estate', color: '#8B5CF6' },
+            CASH: { fr: 'Liquidités', en: 'Cash', color: '#6B7280' },
+            EFA: { fr: 'Int\'l Dev.', en: 'Int\'l Dev.', color: '#14B8A6' },
+            EEM: { fr: 'Émergents', en: 'Emerging', color: '#EC4899' }
+          };
+
+          let html = '';
+          for (const [ticker, pct] of Object.entries(allocation)) {
+            const asset = assetLabels[ticker] || { fr: ticker, en: ticker, color: '#6B7280' };
+            html += `
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="width: 70px; font-size: 0.8125rem; font-weight: 500;">${asset[lang]}</span>
+                <div style="flex: 1; height: 8px; background: #E5E7EB; border-radius: 4px; overflow: hidden;">
+                  <div style="width: ${pct}%; height: 100%; background: ${asset.color}; transition: width 0.5s ease;"></div>
+                </div>
+                <span style="width: 40px; font-size: 0.8125rem; font-weight: 600; text-align: right;">${pct}%</span>
+              </div>
+            `;
+          }
+          elements.allocationBars.innerHTML = html;
+        }
+
+        // Build context metadata for the education chatbot
+        function getContextMetadata() {
+          return {
+            page: 'education-simulator',
+            currentMix: currentAllocation,
+            backtestMetrics: lastResult?.metrics,
+            backtestPeriod: lastResult?.period,
+            language: lang
+          };
+        }
+
+        // Chat functionality
+        function addMessage(text, isUser = false, persist = true) {
+          const div = document.createElement('div');
+          div.className = `chat-message ${isUser ? 'user' : 'bot'}`;
+          div.innerHTML = `<span>${text}</span>`;
+          elements.chatMessages.appendChild(div);
+          elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+          if (persist) pushChatHistory(isUser ? 'user' : 'assistant', text);
+        }
+
+        function addTypingIndicator() {
+          const div = document.createElement('div');
+          div.className = 'chat-message bot typing';
+          div.id = 'typingIndicator';
+          div.innerHTML = '<span>...</span>';
+          elements.chatMessages.appendChild(div);
+          elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+          const indicator = document.getElementById('typingIndicator');
+          if (indicator) indicator.remove();
+        }
+
+        async function handleSend() {
+          const text = elements.chatInput.value.trim();
+          if (!text) return;
+
+          addMessage(text, true);
+          elements.chatInput.value = '';
+          addTypingIndicator();
+
+          // Try to parse allocation from text
+          const allocation = parseAllocation(text);
+
+          if (allocation && Object.keys(allocation).length > 0) {
+            // Calculate and display results
+            const result = await calculatePortfolio(allocation);
+            removeTypingIndicator();
+
+            if (result) {
+              updateResults(result);
+              const allocStr = Object.entries(result.allocation).map(([k, v]) => `${v}% ${k}`).join(', ');
+              const msg = lang === 'fr'
+                ? `Parfait ! J'ai testé ton allocation : <strong>${allocStr}</strong><br><br>
+                   <strong>Résultats sur ${result.period} ans :</strong><br>
+                   • Rendement total : ${result.metrics.totalReturn >= 0 ? '+' : ''}${result.metrics.totalReturn.toFixed(1)}%<br>
+                   • CAGR : ${result.metrics.annualReturn.toFixed(1)}%/an<br>
+                   • Volatilité : ${result.metrics.volatility.toFixed(1)}%<br>
+                   • Sharpe : ${result.metrics.sharpeRatio.toFixed(2)}<br>
+                   • Max Drawdown : -${result.metrics.maxDrawdown.toFixed(1)}%`
+                : `Great! I tested your allocation: <strong>${allocStr}</strong><br><br>
+                   <strong>Results over ${result.period} years:</strong><br>
+                   • Total Return: ${result.metrics.totalReturn >= 0 ? '+' : ''}${result.metrics.totalReturn.toFixed(1)}%<br>
+                   • CAGR: ${result.metrics.annualReturn.toFixed(1)}%/year<br>
+                   • Volatility: ${result.metrics.volatility.toFixed(1)}%<br>
+                   • Sharpe: ${result.metrics.sharpeRatio.toFixed(2)}<br>
+                   • Max Drawdown: -${result.metrics.maxDrawdown.toFixed(1)}%`;
+              addMessage(msg);
+            } else {
+              addMessage(lang === 'fr'
+                ? "Désolé, une erreur s'est produite lors du calcul. Peux-tu réessayer ?"
+                : "Sorry, an error occurred during calculation. Please try again.");
+            }
+          } else {
+            // No allocation detected - use LLM for conversation
+            await handleLLMConversation(text);
+          }
+        }
+
+        // LLM Conversation for non-allocation questions
+        async function handleLLMConversation(text) {
+          try {
+            const response = await fetch('/api/chat', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                message: text,
+                context: 'education-simulator',
+                lang: lang,
+                contextMetadata: getContextMetadata(),
+                history: chatHistory
+              })
+            });
+
+            if (!response.ok) {
+              throw new Error('Chat API error');
+            }
+
+            // Handle streaming response
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let botMessage = '';
+
+            // Create bot message element for streaming
+            removeTypingIndicator();
+            const div = document.createElement('div');
+            div.className = 'chat-message bot';
+            div.innerHTML = '<span></span>';
+            elements.chatMessages.appendChild(div);
+            const span = div.querySelector('span');
+
+            while (true) {
+              const { done, value } = await reader.read();
+              if (done) break;
+
+              const chunk = decoder.decode(value, { stream: true });
+              const lines = chunk.split('\n');
+
+              for (const line of lines) {
+                if (line.startsWith('data: ')) {
+                  const data = line.slice(6);
+                  if (data === '[DONE]') continue;
+                  try {
+                    const parsed = JSON.parse(data);
+                    if (parsed.content) {
+                      botMessage += parsed.content;
+                      span.innerHTML = botMessage;
+                      elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+                    }
+                  } catch (e) {
+                    // Not JSON, might be raw text
+                    if (data && data !== '[DONE]') {
+                      botMessage += data;
+                      span.innerHTML = botMessage;
+                    }
+                  }
+                }
+              }
+            }
+
+            // If no response was received, show help
+            if (!botMessage) {
+              botMessage = lang === 'fr'
+                ? `Je peux t'aider sur l'investissement ou tester tes allocations.<br><br>
+                   Pour créer une stratégie, dis par exemple :<br>
+                   <em>"Je veux un portefeuille équilibré et pas trop risqué"</em><br><br>
+                   Ou clique sur un template ci-dessus !`
+                : `I can help you with investment questions or test your allocations.<br><br>
+                   To create a strategy, say for example:<br>
+                   <em>"50% stocks, 30% bonds, 20% gold"</em><br><br>
+                   Or click a template above!`;
+              span.innerHTML = botMessage;
+            }
+            pushChatHistory('assistant', botMessage);
+          } catch (error) {
+            console.error('LLM error:', error);
+            removeTypingIndicator();
+            // Fallback help message
+            const helpMsg = lang === 'fr'
+              ? `Je peux t'aider sur l'investissement ou tester tes allocations.<br><br>
+                 Pour créer une stratégie, dis par exemple :<br>
+                 <em>"Je veux un portefeuille équilibré et pas trop risqué"</em><br><br>
+                 Ou clique sur un template ci-dessus !`
+              : `I can help you with investment questions or test your allocations.<br><br>
+                 To create a strategy, say for example:<br>
+                 <em>"50% stocks, 30% bonds, 20% gold"</em><br><br>
+                 Or click a template above!`;
+            addMessage(helpMsg, false);
+          }
+        }
+
+        // Quick chip template buttons (inside chat panel)
+        // These populate the input with a natural language allocation and submit
+        const TEMPLATE_MESSAGES = {
+          conservative: {
+            fr: '20% actions, 70% obligations, 10% or',
+            en: '20% stocks, 70% bonds, 10% gold'
+          },
+          balanced: {
+            fr: '50% actions, 40% obligations, 10% or',
+            en: '50% stocks, 40% bonds, 10% gold'
+          },
+          aggressive: {
+            fr: '80% actions, 15% obligations, 5% or',
+            en: '80% stocks, 15% bonds, 5% gold'
+          },
+          allweather: {
+            fr: '30% actions, 40% obligations, 15% or, 15% cash',
+            en: '30% stocks, 40% bonds, 15% gold, 15% cash'
+          }
+        };
+
+        function initQuickChips() {
+          document.querySelectorAll('.quick-chip').forEach(btn => {
+            btn.addEventListener('click', function() {
+              const templateKey = this.dataset.template;
+              const message = TEMPLATE_MESSAGES[templateKey]?.[lang];
+
+              if (message) {
+                // Highlight selected chip
+                document.querySelectorAll('.quick-chip').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+
+                // Populate input field and submit
+                elements.chatInput.value = message;
+                handleSend();
+              }
+            });
+          });
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Tutorial Overlay (Builder)
+        // ═══════════════════════════════════════════════════════════════
+
+        const BUILDER_TUTORIAL_TEXT = {
+          fr: [
+            'Dis-moi ton intention : "je veux un portefeuille pas trop risqué" ou "je veux plus de rendement sans trop de stress".',
+            'Tu peux préciser : "garde un peu de cash", "mets un biais tech", "reste défensif".',
+            'On te propose une allocation et on backteste automatiquement : courbe et chiffres se mettent à jour.',
+            'Si ça ne te convient pas, reformule : "encore moins risqué", "plus équilibré", "ajoute un peu d\'or".',
+            'Le chat à droite peut répondre à tes questions et comparer avec d\'autres profils.'
+          ],
+          en: [
+            'Tell me your intent: "I want a not-too-risky portfolio" or "I want more upside without big stress."',
+            'You can add hints: "keep some cash", "lean a bit into tech", "stay defensive".',
+            'We suggest an allocation and backtest it automatically: chart and metrics refresh.',
+            'If it feels off, just tweak: "even safer", "more balanced", "add a touch of gold".',
+            'The chat on the right can answer questions and compare with other profiles.'
+          ]
+        };
+
+        const BUILDER_TUTORIAL_STORAGE_KEY = 'simulatorTutorialSeen';
+        let builderTutorialStep = 0;
+
+        function initBuilderTutorial() {
+          if (!elements.tutorialOverlay) return;
+
+          const hasSeen = sessionStorage.getItem(BUILDER_TUTORIAL_STORAGE_KEY);
+
+          if (!hasSeen) {
+            openBuilderTutorial();
+          } else {
+            showBuilderHelpButton();
+          }
+
+          elements.tutorialCloseBtn?.addEventListener('click', closeBuilderTutorial);
+          elements.tutorialSkipBtn?.addEventListener('click', closeBuilderTutorial);
+          elements.tutorialNextBtn?.addEventListener('click', nextBuilderTutorialStep);
+          elements.tutorialHelpBtn?.addEventListener('click', openBuilderTutorial);
+
+          elements.tutorialOverlay?.addEventListener('click', (e) => {
+            if (e.target === elements.tutorialOverlay) {
+              closeBuilderTutorial();
+            }
+          });
+
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && elements.tutorialOverlay?.classList.contains('active')) {
+              closeBuilderTutorial();
+            }
+          });
+
+          updateBuilderTutorial();
+        }
+
+        function openBuilderTutorial() {
+          builderTutorialStep = 0;
+          elements.tutorialCard?.style.removeProperty('display');
+          updateBuilderTutorial();
+          elements.tutorialOverlay?.classList.add('active');
+          elements.tutorialHelpBtn?.classList.remove('visible');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeBuilderTutorial() {
+          elements.tutorialOverlay?.classList.remove('active');
+          document.body.style.overflow = '';
+          sessionStorage.setItem(BUILDER_TUTORIAL_STORAGE_KEY, 'true');
+          showBuilderHelpButton();
+        }
+
+        function showBuilderHelpButton() {
+          setTimeout(() => {
+            elements.tutorialHelpBtn?.classList.add('visible');
+          }, 300);
+        }
+
+        function nextBuilderTutorialStep() {
+          const totalSteps = (BUILDER_TUTORIAL_TEXT[lang] || BUILDER_TUTORIAL_TEXT.fr).length;
+          builderTutorialStep++;
+          if (builderTutorialStep >= totalSteps) {
+            closeBuilderTutorial();
+          } else {
+            updateBuilderTutorial();
+          }
+        }
+
+        function updateBuilderTutorial() {
+          if (!elements.tutorialContent || !elements.tutorialOverlay) return;
+
+          const texts = BUILDER_TUTORIAL_TEXT[lang] || BUILDER_TUTORIAL_TEXT.fr;
+          const totalSteps = texts.length;
+
+          if (elements.tutorialTitle) {
+            elements.tutorialTitle.textContent = lang === 'fr' ? 'Bienvenue dans le Builder' : 'Welcome to the Builder';
+          }
+
+          if (elements.tutorialProgress) {
+            elements.tutorialProgress.textContent = `${builderTutorialStep + 1} / ${totalSteps}`;
+          }
+
+          elements.tutorialContent.innerHTML = texts[builderTutorialStep] || texts[0];
+
+          elements.tutorialSteps?.forEach((step, index) => {
+            step.classList.remove('active', 'completed');
+            if (index < builderTutorialStep) {
+              step.classList.add('completed');
+            } else if (index === builderTutorialStep) {
+              step.classList.add('active');
+            }
+          });
+
+          if (elements.tutorialNextBtn) {
+            const isLast = builderTutorialStep === totalSteps - 1;
+            elements.tutorialNextBtn.textContent = isLast
+              ? (lang === 'fr' ? "C'est parti" : "Let's build")
+              : (lang === 'fr' ? 'Compris, continuer' : 'Got it, next');
+          }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Slider Controls
+        // ═══════════════════════════════════════════════════════════════
+
+        const SLIDER_COLORS = {
+          SPY: '#667eea',
+          IEF: '#10B981',
+          GLD: '#F97316'
+        };
+
+        function initSliders() {
+          const sliderRows = document.querySelectorAll('.slider-row');
+          const slidersTotal = document.getElementById('slidersTotal');
+          const applyBtn = document.getElementById('slidersApplyBtn');
+
+          sliderRows.forEach(row => {
+            const slider = row.querySelector('.allocation-slider');
+            const valueSpan = row.querySelector('.slider-value');
+            const fill = row.querySelector('.slider-fill');
+            const asset = row.dataset.asset;
+
+            slider?.addEventListener('input', function() {
+              const value = parseInt(this.value);
+              valueSpan.textContent = `${value}%`;
+              fill.style.width = `${value}%`;
+
+              // Update total
+              updateSlidersTotal();
+            });
+          });
+
+          // Apply button
+          applyBtn?.addEventListener('click', handleSliderApply);
+        }
+
+        function updateSlidersTotal() {
+          const sliderRows = document.querySelectorAll('.slider-row');
+          const slidersTotal = document.getElementById('slidersTotal');
+          const applyBtn = document.getElementById('slidersApplyBtn');
+
+          let total = 0;
+          sliderRows.forEach(row => {
+            const slider = row.querySelector('.allocation-slider');
+            total += parseInt(slider?.value || 0);
+          });
+
+          slidersTotal.textContent = `${total}%`;
+
+          // Style based on validity
+          slidersTotal.classList.remove('valid', 'invalid');
+          if (total === 100) {
+            slidersTotal.classList.add('valid');
+            applyBtn.disabled = false;
+          } else {
+            slidersTotal.classList.add('invalid');
+            applyBtn.disabled = true;
+          }
+        }
+
+        async function handleSliderApply() {
+          const sliderRows = document.querySelectorAll('.slider-row');
+          const allocation = {};
+
+          sliderRows.forEach(row => {
+            const slider = row.querySelector('.allocation-slider');
+            const asset = row.dataset.asset;
+            const value = parseInt(slider?.value || 0);
+            if (value > 0) {
+              allocation[asset] = value;
+            }
+          });
+
+          // Normalize to 100 if not exact
+          const total = Object.values(allocation).reduce((a, b) => a + b, 0);
+          if (total === 0) return;
+          if (total !== 100) {
+            const factor = 100 / total;
+            Object.keys(allocation).forEach((k) => {
+              allocation[k] = Math.round(allocation[k] * factor);
+            });
+            syncSlidersToAllocation(allocation);
+          }
+
+          // Add message to chat
+          const allocStr = Object.entries(allocation).map(([k, v]) => `${v}% ${k}`).join(', ');
+          addMessage(lang === 'fr'
+            ? `J'applique l'allocation : ${allocStr}`
+            : `Applying allocation: ${allocStr}`, true);
+
+          addTypingIndicator();
+          const result = await calculatePortfolio(allocation);
+          removeTypingIndicator();
+
+          if (result) {
+            updateResults(result);
+            addMessage(lang === 'fr'
+              ? `Allocation testée !<br><br>
+                 • Rendement total : ${result.metrics.totalReturn >= 0 ? '+' : ''}${result.metrics.totalReturn.toFixed(1)}%<br>
+                 • CAGR : ${result.metrics.annualReturn.toFixed(1)}%/an<br>
+                 • Sharpe : ${result.metrics.sharpeRatio.toFixed(2)}`
+              : `Allocation tested!<br><br>
+                 • Total Return: ${result.metrics.totalReturn >= 0 ? '+' : ''}${result.metrics.totalReturn.toFixed(1)}%<br>
+                 • CAGR: ${result.metrics.annualReturn.toFixed(1)}%/year<br>
+                 • Sharpe: ${result.metrics.sharpeRatio.toFixed(2)}`);
+          }
+        }
+
+        // Sync sliders with current allocation
+        function syncSlidersToAllocation(allocation) {
+          const sliderRows = document.querySelectorAll('.slider-row');
+
+          sliderRows.forEach(row => {
+            const slider = row.querySelector('.allocation-slider');
+            const valueSpan = row.querySelector('.slider-value');
+            const fill = row.querySelector('.slider-fill');
+            const asset = row.dataset.asset;
+
+            const value = allocation[asset] || 0;
+            slider.value = value;
+            valueSpan.textContent = `${value}%`;
+            fill.style.width = `${value}%`;
+          });
+
+          updateSlidersTotal();
+        }
+
+        // Override updateResults to also sync sliders
+        const originalUpdateResults = updateResults;
+        updateResults = function(data) {
+          originalUpdateResults(data);
+          if (data?.allocation) {
+            syncSlidersToAllocation(data.allocation);
+          }
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+          console.log('Strategy Simulator initialized');
+          loadChatHistory();
+          if (chatHistory.length && elements.chatMessages) {
+            elements.chatMessages.innerHTML = '';
+            chatHistory.forEach((h) => addMessage(h.content, h.role === 'user', false));
+          }
+          initChart();
+          initSliders();
+          initQuickChips();
+          initBuilderTutorial();
+
+          elements.chatSendBtn?.addEventListener('click', handleSend);
+          elements.chatInput?.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') handleSend();
+          });
+
+          // Load default balanced allocation
+          setTimeout(async () => {
+            const result = await calculatePortfolio(TEMPLATE_ALLOCATIONS.balanced);
+            if (result) updateResults(result);
+          }, 500);
+        });
+      })();
+    </script>
+  </body>
+</html>

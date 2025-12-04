@@ -545,10 +545,148 @@ async function regenerateCache(req, res) {
   }
 }
 
+/**
+ * Calculate custom allocation portfolio
+ * POST body: { allocation: { SPY: 50, IEF: 30, GLD: 20 }, period: 20 }
+ * Allocation values should sum to 100 (percentages)
+ */
+async function calculateCustomAllocation(req, res) {
+  try {
+    const { allocation, period = 20 } = req.body;
+
+    if (!allocation || typeof allocation !== 'object') {
+      return res.status(400).json({
+        success: false,
+        error: "allocation object is required (e.g., { SPY: 50, IEF: 30, GLD: 20 })",
+      });
+    }
+
+    // Validate allocation sums to 100 (allow small tolerance)
+    const total = Object.values(allocation).reduce((sum, val) => sum + val, 0);
+    if (Math.abs(total - 100) > 0.1) {
+      return res.status(400).json({
+        success: false,
+        error: `Allocation must sum to 100%. Current: ${total.toFixed(1)}%`,
+      });
+    }
+
+    // Load cached period data
+    const cacheDir = path.join(__dirname, "../cache");
+    const periodsPath = path.join(cacheDir, "portfolio-preview-periods.json");
+
+    let cachedData;
+    try {
+      const raw = await fs.readFile(periodsPath, "utf8");
+      cachedData = JSON.parse(raw);
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        error: "Cache not available. Please try again later.",
+      });
+    }
+
+    // Get the period data (use closest available)
+    const availablePeriods = Object.keys(cachedData.periods).map(Number).sort((a, b) => b - a);
+    const selectedPeriod = availablePeriods.find(p => p <= period) || availablePeriods[0];
+    const periodData = cachedData.periods[selectedPeriod];
+
+    if (!periodData || !periodData.data) {
+      return res.status(500).json({
+        success: false,
+        error: "No data available for requested period.",
+      });
+    }
+
+    // Calculate custom portfolio performance
+    const weights = {};
+    for (const [ticker, pct] of Object.entries(allocation)) {
+      weights[ticker] = pct / 100;
+    }
+
+    // Calculate portfolio values over time
+    const portfolioData = [];
+    const firstDataPoint = periodData.data[0];
+
+    // Calculate initial value (normalized to 100)
+    for (let i = 0; i < periodData.data.length; i++) {
+      const dataPoint = periodData.data[i];
+      let portfolioValue = 0;
+
+      for (const [ticker, weight] of Object.entries(weights)) {
+        const tickerValue = dataPoint[ticker];
+        const firstValue = firstDataPoint[ticker];
+        if (tickerValue && firstValue) {
+          // Calculate weighted return contribution
+          portfolioValue += weight * (tickerValue / firstValue) * 100;
+        }
+      }
+
+      portfolioData.push({
+        date: dataPoint.date,
+        value: portfolioValue,
+      });
+    }
+
+    // Calculate metrics
+    const values = portfolioData.map(d => d.value);
+    const totalReturn = (values[values.length - 1] / values[0] - 1) * 100;
+    const years = selectedPeriod;
+    const annualReturn = (Math.pow(values[values.length - 1] / values[0], 1 / years) - 1) * 100;
+
+    // Calculate volatility (monthly returns standard deviation, annualized)
+    const monthlyReturns = [];
+    for (let i = 1; i < values.length; i++) {
+      monthlyReturns.push((values[i] / values[i - 1]) - 1);
+    }
+    const avgReturn = monthlyReturns.reduce((a, b) => a + b, 0) / monthlyReturns.length;
+    const variance = monthlyReturns.reduce((sum, r) => sum + Math.pow(r - avgReturn, 2), 0) / monthlyReturns.length;
+    const volatility = Math.sqrt(variance) * Math.sqrt(12) * 100; // Annualized
+
+    // Calculate max drawdown
+    let maxDrawdown = 0;
+    let peak = values[0];
+    for (const val of values) {
+      if (val > peak) peak = val;
+      const drawdown = (peak - val) / peak;
+      if (drawdown > maxDrawdown) maxDrawdown = drawdown;
+    }
+
+    // Calculate Sharpe ratio (assuming 2% risk-free rate)
+    const riskFreeRate = 2;
+    const sharpeRatio = (annualReturn - riskFreeRate) / volatility;
+
+    // Calculate Calmar ratio
+    const calmarRatio = maxDrawdown > 0 ? annualReturn / (maxDrawdown * 100) : 0;
+
+    res.json({
+      success: true,
+      allocation,
+      period: selectedPeriod,
+      portfolio: portfolioData,
+      metrics: {
+        totalReturn: Math.round(totalReturn * 100) / 100,
+        annualReturn: Math.round(annualReturn * 100) / 100,
+        volatility: Math.round(volatility * 100) / 100,
+        sharpeRatio: Math.round(sharpeRatio * 100) / 100,
+        maxDrawdown: Math.round(maxDrawdown * 10000) / 100,
+        calmarRatio: Math.round(calmarRatio * 100) / 100,
+      },
+    });
+  } catch (error) {
+    console.error("Error calculating custom allocation:", error);
+    res.status(500).json({
+      success: false,
+      error: "Failed to calculate custom allocation",
+      details: error.message,
+    });
+  }
+}
+
 module.exports = {
   getPreviewData,
   getETFData,
   calculatePortfolio,
+  calculateCustomAllocation,
   clearCache,
   regenerateCache,
 };

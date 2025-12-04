@@ -42,17 +42,25 @@
 
   let panelOpen = Boolean(window.chatSidePanel?.isOpen && window.chatSidePanel.isOpen());
   let baseVisible = false;
+  const storageKey = `floatingChatUsed:${pageContext}`;
+  let alreadyUsed = false;
+
+  try {
+    alreadyUsed = sessionStorage.getItem(storageKey) === '1';
+  } catch (e) {
+    alreadyUsed = false;
+  }
 
   function applyVisibility() {
-    const shouldShow = baseVisible && !panelOpen;
+    const shouldShow = baseVisible && !panelOpen && !alreadyUsed;
     floatingInput.classList.toggle('hidden', !shouldShow);
   }
 
-  if (isSimulatorPage || alwaysVisible) {
+  if (alwaysVisible) {
     baseVisible = true;
     applyVisibility();
     console.log('[FloatingChatInput] Always visible mode enabled');
-  } else {
+  } else if (!alreadyUsed) {
     // Find the trigger element - the hero chat input section
     const triggerElement = customTriggerSelector
       ? document.querySelector(customTriggerSelector)
@@ -100,6 +108,12 @@
     if (window.chatSidePanel && typeof window.chatSidePanel.open === 'function') {
       window.chatSidePanel.open(message);
       panelOpen = true;
+      alreadyUsed = true;
+      try {
+        sessionStorage.setItem(storageKey, '1');
+      } catch (e) {
+        /* ignore */
+      }
       applyVisibility();
       inputField.value = '';
       inputField.blur();

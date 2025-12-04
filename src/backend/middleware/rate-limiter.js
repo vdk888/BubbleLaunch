@@ -1,13 +1,16 @@
 /**
  * Rate limiting middleware for chat endpoint
- * Limits users to 10 messages per session
+ * Limits users to a reasonable number of messages per session.
+ * Education pages need longer sessions for testing, so raise the cap.
  */
 const chatRateLimiter = (req, res, next) => {
   if (!req.session.messageCount) {
     req.session.messageCount = 0;
   }
 
-  if (req.session.messageCount >= 10) {
+  const MAX_MESSAGES = 100; // Increased to support education flows and QA
+
+  if (req.session.messageCount >= MAX_MESSAGES) {
     return res.status(429).json({ error: "Message limit reached" });
   }
 

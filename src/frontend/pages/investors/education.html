@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>Apprendre l'Investissement | Arena IA & Simulateur - Bubble Invest</title>
+    <meta name="description" content="Découvre l'investissement de façon interactive. Regarde des bots IA trader en temps réel dans l'Arena ou construis ta stratégie dans le Simulateur. 100% gratuit et éducatif." />
+    <meta name="keywords" content="apprendre investissement, éducation financière, simulateur trading, bot IA trading, stratégie portefeuille, risk parity, momentum, backtesting gratuit" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bubbleinvest.org/investors/education" />
+    <meta property="og:title" content="Apprendre l'Investissement | Arena IA & Simulateur" />
+    <meta property="og:description" content="Découvre l'investissement de façon interactive. Regarde des bots IA trader ou construis ta propre stratégie. 100% gratuit." />
+    <meta property="og:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://bubbleinvest.org/investors/education" />
+    <meta name="twitter:title" content="Apprendre l'Investissement | Arena IA & Simulateur" />
+    <meta name="twitter:description" content="Regarde des bots IA trader ou construis ta propre stratégie. 100% gratuit et éducatif." />
+    <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bubbleinvest.org/investors/education" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- Language Alternates -->
+    <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/investors/education" />
+    <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/investors/education" />
+    <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/investors/education" />
+
+    <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
+    <link rel="stylesheet" href="/assets/styles/styles.css" />
+    <link rel="stylesheet" href="/assets/styles/education.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/css/tarteaucitron.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/tarteaucitron.min.js"></script>
+    <script src="/js/seo/cookie-consent.js"></script>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied'
+      });
+      gtag('config', 'G-T0MQEL0ZG0', {
+        'anonymize_ip': true
+      });
+    </script>
+  </head>
+
+  <body>
+    <!-- Navigation Header -->
+    <header>
+      <div class="container">
+        <div class="brand">
+          <a href="/investors" class="logo-link">
+            <div class="logo" style="display: flex; align-items: center; gap: 0.18em">
+              <span style="display: flex; align-items: center">
+                <svg width="36" height="36" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
+                  <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+                  <circle cx="59" cy="21" r="6" fill="#000"/>
+                </svg>
+              </span>
+              <span>Bubble.</span>
+            </div>
+          </a>
+          <div class="tagline" data-translate="hero.tagline">L'agent d'investissement transparent.</div>
+        </div>
+
+        <div class="header-right">
+          <!-- Hamburger Menu Button (Mobile Only) -->
+          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+
+          <!-- Desktop Navigation -->
+          <nav class="desktop-nav">
+            <a href="/investors" data-translate="nav.vision">Vision</a>
+            <div class="nav-dropdown">
+              <button class="nav-dropdown-toggle" data-translate="nav.solution">Solution</button>
+              <div class="nav-dropdown-menu">
+                <button class="dropdown-link js-retail-demo-trigger" data-entry-point="investor_nav_agent" data-translate="nav.solution.agent">Agent</button>
+                <a href="/investors/education" class="dropdown-link active" data-translate="nav.solution.education">Éducation</a>
+              </div>
+            </div>
+            <a href="/investors/pricing" data-translate="nav.pricing">Tarification</a>
+            <a href="/blog" data-translate="nav.blog">Blog</a>
+            <a href="/investors#investor-waitlist" data-translate="nav.join">Nous rejoindre</a>
+            <div class="language-switcher">
+              <button id="en-switch">EN</button>
+              <span>|</span>
+              <button id="fr-switch" class="active">FR</button>
+            </div>
+          </nav>
+
+          <!-- Mobile Language Switcher -->
+          <div class="mobile-language-switcher">
+            <button id="en-switch-mobile">EN</button>
+            <span>|</span>
+            <button id="fr-switch-mobile" class="active">FR</button>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation Overlay -->
+        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+          <nav class="mobile-nav">
+            <a href="/investors" data-translate="nav.vision">Vision</a>
+            <button class="mobile-nav-link js-retail-demo-trigger" data-entry-point="investor_nav_agent_mobile" data-translate="nav.solution.agent">Agent</button>
+            <a href="/investors/education" class="active" data-translate="nav.solution.education">Éducation</a>
+            <a href="/investors/pricing" data-translate="nav.pricing">Tarification</a>
+            <a href="/blog" data-translate="nav.blog">Blog</a>
+            <a href="/investors#investor-waitlist" data-translate="nav.join">Nous rejoindre</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="education-hub">
+      <!-- Help Button for Tutorial -->
+      <button class="arena-help-btn" id="educationHelpBtn" title="Tutoriel" aria-label="Voir le tutoriel">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </button>
+
+      <!-- Tutorial Overlay -->
+      <div class="tutorial-overlay" id="educationTutorialOverlay">
+        <section class="arena-tutorial" id="educationTutorial">
+          <button class="tutorial-close-btn" id="educationTutorialCloseBtn" aria-label="Fermer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+          <div class="tutorial-header">
+            <h3 class="tutorial-title">Bienvenue dans l'espace Éducation</h3>
+            <span class="tutorial-progress" id="educationTutorialProgress">1 / 5</span>
+          </div>
+          <div class="tutorial-steps">
+            <div class="tutorial-step active"></div>
+            <div class="tutorial-step"></div>
+            <div class="tutorial-step"></div>
+            <div class="tutorial-step"></div>
+            <div class="tutorial-step"></div>
+          </div>
+          <div class="tutorial-content">
+            <p id="educationTutorialContent">
+              Choisis ton mode : observe dans l'Arena ou construis dans le Simulateur.
+            </p>
+          </div>
+          <div class="tutorial-actions">
+            <button class="tutorial-btn primary" id="educationTutorialNext">
+              Compris, continuer
+            </button>
+            <button class="tutorial-btn secondary" id="educationTutorialSkip">
+              Passer le tutoriel
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <!-- Hero Section (matching /investors style) -->
+      <section class="hero hero-purple fade-in">
+        <div class="container">
+          <p class="hero-eyebrow" data-translate="education.hub.eyebrow">Éducation</p>
+          <h1 data-translate="education.hub.title">L'IA est ton alliée, pas ton ennemie</h1>
+          <p class="hero-subtitle" data-translate="education.hub.subtitle">
+            Fini l'époque où quelques-uns prétendaient détenir un savoir inaccessible.
+            Utilise l'IA pour apprendre sur l'investissement, pas pour te laisser manipuler.
+            <strong>Le savoir pour tous, 100% gratuit, pour toujours.</strong>
+          </p>
+        </div>
+      </section>
+
+      <!-- Dual Path Selector -->
+      <section class="education-paths">
+        <div class="container">
+          <div class="paths-grid">
+            <!-- Arena Path -->
+            <a href="/investors/education/arena" class="path-card path-arena">
+              <div class="path-icon">
+                <!-- Eye icon - Observer -->
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </div>
+              <div class="path-badge" data-translate="education.hub.arena.badge">Observer</div>
+              <h2 class="path-title" data-translate="education.hub.arena.title">AI Trading Arena</h2>
+              <p class="path-description" data-translate="education.hub.arena.description">
+                Regardez 4 bots IA s'affronter sur 20 ans de données historiques.
+                Chaque bot explique ses décisions en temps réel. Voyagez dans le temps
+                et revivez les grandes crises financières.
+              </p>
+
+              <div class="path-features">
+                <div class="feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span data-translate="education.hub.arena.feature1">4 bots aux personnalités uniques</span>
+                </div>
+                <div class="feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span data-translate="education.hub.arena.feature2">12 événements historiques majeurs</span>
+                </div>
+                <div class="feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span data-translate="education.hub.arena.feature3">Tutoriels gamifiés interactifs</span>
+                </div>
+              </div>
+
+              <!-- Animated Chart Preview -->
+              <div class="path-chart-preview">
+                <div class="mini-chart-container">
+                  <svg class="mini-chart" viewBox="0 0 200 80" preserveAspectRatio="none">
+                    <!-- Grid lines -->
+                    <line x1="0" y1="20" x2="200" y2="20" stroke="#EEEEEE" stroke-width="0.5"/>
+                    <line x1="0" y1="40" x2="200" y2="40" stroke="#EEEEEE" stroke-width="0.5"/>
+                    <line x1="0" y1="60" x2="200" y2="60" stroke="#EEEEEE" stroke-width="0.5"/>
+
+                    <!-- Équi line (gray) -->
+                    <polyline class="chart-line chart-line-equi" fill="none" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                      points="0,60 25,55 50,45 75,50 100,40 125,35 150,30 175,25 200,20"/>
+
+                    <!-- Pari line (violet) - best performer -->
+                    <polyline class="chart-line chart-line-pari" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      points="0,60 25,52 50,40 75,42 100,32 125,25 150,18 175,12 200,8"/>
+
+                    <!-- Momo line (orange) -->
+                    <polyline class="chart-line chart-line-momo" fill="none" stroke="#F97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                      points="0,60 25,50 50,55 75,48 100,52 125,45 150,40 175,35 200,28"/>
+
+                    <!-- Sage line (green) -->
+                    <polyline class="chart-line chart-line-sage" fill="none" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                      points="0,60 25,54 50,48 75,46 100,38 125,32 150,26 175,20 200,15"/>
+
+                    <!-- Animated playhead -->
+                    <line class="chart-playhead" x1="0" y1="0" x2="0" y2="80" stroke="rgba(102,126,234,0.3)" stroke-width="1"/>
+                  </svg>
+                </div>
+                <div class="mini-chart-legend">
+                  <span class="legend-item" style="--legend-color: #667eea">Pari</span>
+                  <span class="legend-item" style="--legend-color: #10B981">Sage</span>
+                  <span class="legend-item" style="--legend-color: #6B7280">Équi</span>
+                  <span class="legend-item" style="--legend-color: #F97316">Momo</span>
+                </div>
+              </div>
+
+              <div class="path-bots">
+                <div class="bot-avatar" style="--bot-color: #6B7280" title="Équi - Equal Weight">É</div>
+                <div class="bot-avatar" style="--bot-color: #667eea" title="Pari - Risk Parity">P</div>
+                <div class="bot-avatar" style="--bot-color: #F97316" title="Momo - Momentum">M</div>
+                <div class="bot-avatar" style="--bot-color: #10B981" title="Sage - Defensive">S</div>
+              </div>
+
+              <div class="path-cta">
+                <span data-translate="education.hub.arena.cta">Entrer dans l'Arena</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+
+            <!-- Simulator Path -->
+            <a href="/investors/education/simulator" class="path-card path-simulator">
+              <div class="path-icon">
+                <!-- Sliders/Build icon - Construire -->
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="4" y1="21" x2="4" y2="14"/>
+                  <line x1="4" y1="10" x2="4" y2="3"/>
+                  <line x1="12" y1="21" x2="12" y2="12"/>
+                  <line x1="12" y1="8" x2="12" y2="3"/>
+                  <line x1="20" y1="21" x2="20" y2="16"/>
+                  <line x1="20" y1="12" x2="20" y2="3"/>
+                  <line x1="1" y1="14" x2="7" y2="14"/>
+                  <line x1="9" y1="8" x2="15" y2="8"/>
+                  <line x1="17" y1="16" x2="23" y2="16"/>
+                </svg>
+              </div>
+              <div class="path-badge" data-translate="education.hub.simulator.badge">Construire</div>
+              <h2 class="path-title" data-translate="education.hub.simulator.title">Strategy Simulator</h2>
+              <p class="path-description" data-translate="education.hub.simulator.description">
+                Crée ta propre stratégie en langage naturel. L'assistant IA
+                te guide pas à pas et teste instantanément ton allocation
+                sur 20 ans de données réelles.
+              </p>
+
+              <div class="path-features">
+                <div class="feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span data-translate="education.hub.simulator.feature1">Chatbot intelligent guidé</span>
+                </div>
+                <div class="feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span data-translate="education.hub.simulator.feature2">Backtesting instantané</span>
+                </div>
+                <div class="feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span data-translate="education.hub.simulator.feature3">Comparaison avec les pros</span>
+                </div>
+              </div>
+
+              <!-- Animated Chat Preview -->
+              <div class="path-chat-preview">
+                <div class="chat-bubble user chat-animate chat-animate-1">
+                  <span data-translate="education.hub.simulator.chatUser">Je veux 50% actions, 30% obligations...</span>
+                </div>
+                <div class="chat-typing-indicator chat-animate chat-animate-2">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="chat-bubble bot chat-animate chat-animate-3">
+                  <span data-translate="education.hub.simulator.chatBot">Analysons cette allocation...</span>
+                </div>
+              </div>
+
+              <div class="path-cta">
+                <span data-translate="education.hub.simulator.cta">Créer Ma Stratégie</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Learn Section -->
+      <section class="education-why">
+        <div class="container">
+          <h2 class="section-title" data-translate="education.hub.why.title">Pourquoi Apprendre Ici ?</h2>
+
+          <div class="why-grid">
+            <div class="why-card">
+              <div class="why-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <h3 data-translate="education.hub.why.safe.title">100% Sans Risque</h3>
+              <p data-translate="education.hub.why.safe.description">
+                Données historiques réelles, aucun argent en jeu.
+                Apprenez en toute sécurité.
+              </p>
+            </div>
+
+            <div class="why-card">
+              <div class="why-icon">
+                <!-- Bubble icon (matching Bubble logo style) -->
+                <svg width="32" height="32" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="36" cy="41" r="22" stroke="#667eea" stroke-width="4" stroke-linecap="round" stroke-dasharray="120 24" stroke-dashoffset="8"/>
+                  <circle cx="54" cy="22" r="5" fill="#667eea"/>
+                </svg>
+              </div>
+              <h3 data-translate="education.hub.why.transparent.title">Transparence Totale</h3>
+              <p data-translate="education.hub.why.transparent.description">
+                Les bots expliquent chaque décision.
+                Pas de boîte noire, que de la pédagogie.
+              </p>
+            </div>
+
+            <div class="why-card">
+              <div class="why-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <h3 data-translate="education.hub.why.free.title">Gratuit à Vie</h3>
+              <p data-translate="education.hub.why.free.description">
+                L'éducation financière devrait être accessible à tous.
+                Aucun abonnement requis.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Compliance Ribbon -->
+      <div class="compliance-ribbon">
+        <div class="container">
+          <p data-translate="education.hub.compliance">
+            <strong>Information importante :</strong> Cette plateforme est purement éducative.
+            Les simulations utilisent des données historiques et ne constituent pas un conseil en investissement.
+            Les performances passées ne préjugent pas des performances futures.
+          </p>
+        </div>
+      </div>
+
+      <!-- Waitlist CTA Section -->
+      <section class="education-cta-section">
+        <div class="container">
+          <div class="education-cta-card">
+            <h3 data-translate="education.hub.cta.title">Prêt à passer au niveau supérieur ?</h3>
+            <p data-translate="education.hub.cta.description">
+              Rejoins la liste d'attente pour accéder à Bubble Portfolio,
+              notre plateforme d'investissement automatisée alimentée par l'IA.
+            </p>
+            <a href="/investors#investor-waitlist" class="education-cta-button">
+              <span data-translate="education.hub.cta.button">Rejoindre la liste d'attente</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Unified Chat Side Panel (matches main site) -->
+    <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+      <div class="chat-side-panel-header">
+        <div class="chat-side-panel-header-info">
+          <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+          <div class="chat-side-panel-titles">
+            <span class="chat-side-panel-title">Assistant Bubble</span>
+            <span class="chat-side-panel-subtitle" data-translate="floating_input.placeholder">Pose-moi n'importe quelle question...</span>
+          </div>
+        </div>
+        <div class="chat-side-panel-actions">
+          <button class="chat-side-panel-minimize" aria-label="Réduire le chat" type="button">-</button>
+          <button class="chat-side-panel-close" aria-label="Fermer le chat" type="button">✕</button>
+        </div>
+      </div>
+      <div class="chat-side-panel-messages" role="log" aria-live="polite">
+        <div class="chat-side-panel-message bot">
+          <div class="message-content">
+            Bonjour, je suis Bubble — comment puis-je t'aider ?
+          </div>
+        </div>
+        <div class="chat-side-panel-message bot">
+          <div class="message-content">
+            <strong>Suggestions rapides</strong><br/>
+            <div class="chat-suggestion-row">
+              <button class="chat-suggestion-btn" data-translate="education.hub.chat.cta" data-prompt="Explique-moi l'Arena">Explique-moi l'Arena</button>
+              <button class="chat-suggestion-btn" data-prompt="Je veux construire une stratégie">Je veux construire une stratégie</button>
+              <button class="chat-suggestion-btn" data-prompt="Montre-moi un crash (2008 / COVID)">Montre-moi un crash (2008 / COVID)</button>
+              <button class="chat-suggestion-btn" data-prompt="Simplifie : Sharpe, drawdown, volatilité">Simplifie : Sharpe, drawdown, volatilité</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form class="chat-side-panel-input-container" novalidate>
+        <input
+          type="text"
+          class="chat-side-panel-input"
+          placeholder="Pose tes questions..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Saisis ton message"
+          autocomplete="off"
+        />
+        <button class="chat-side-panel-send" aria-label="Envoyer le message" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Floating Glassmorphism Chat Input -->
+    <div id="floating-chat-input" class="floating-chat-input hidden" data-page-context="education" data-trigger-selector=".hero">
+      <div class="floating-input-container">
+        <input
+          type="text"
+          class="floating-input-field"
+          placeholder="Ask me anything..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Ask a question"
+        />
+        <button class="floating-input-submit" aria-label="Send message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-left">
+            <div class="footer-logo" style="display: flex; align-items: center; gap: 0.18em">
+              <span style="display: flex; align-items: center">
+                <svg width="30" height="30" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
+                  <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+                  <circle cx="59" cy="21" r="6" fill="#000"/>
+                </svg>
+              </span>
+              <span>Bubble.</span>
+            </div>
+            <div class="footer-tagline" data-translate="footer.tagline">L'ère de l'IA change tout. Changeons avec elle.</div>
+            <div class="footer-copyright" data-translate="footer.copyright">© 2025 Bubble Invest SAS. Transparent by design.</div>
+          </div>
+
+          <nav class="footer-nav">
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.investors">Investisseurs</h4>
+              <ul>
+                <li><a href="/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
+                <li><a href="/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
+                <li><a href="/investors#faq" data-translate="footer.nav.investors.faq">FAQ</a></li>
+                <li><a href="/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Accès Anticipé</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.professionals">Professionnels</h4>
+              <ul>
+                <li><a href="/professionals/solutions-companies" data-translate="footer.nav.professionals.solutions">Solutions</a></li>
+                <li><a href="/professionals/solutions-wealth-managers" data-translate="footer.nav.professionals.demo">Démo</a></li>
+                <li><a href="/professionals#faq" data-translate="footer.nav.professionals.faq">FAQ</a></li>
+                <li><a href="/professionals#contact-form" data-translate="footer.nav.professionals.contact">Contact</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.resources">Ressources</h4>
+              <ul>
+                <li><a href="/blog" data-translate="footer.nav.blog">Blog</a></li>
+                <li><a href="/investors/education" data-translate="footer.nav.resources.education">Éducation</a></li>
+                <li><a href="/investors" class="js-retail-demo-trigger" data-entry-point="footer_resources_demo" data-translate="footer.nav.resources.demo">Démo</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.legal">Légal</h4>
+              <ul>
+                <li><a href="/mentions-legales" data-translate="footer.nav.legal_notice">Mentions Légales</a></li>
+                <li><a href="/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
+                <li><a href="#cookies" id="tarteaucitronRoot" data-translate="footer.nav.cookies">Gérer les Cookies</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4 data-translate="footer.nav.contact">Contact</h4>
+              <ul>
+                <li><a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></li>
+              </ul>
+              <div class="social-media-links">
+                <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect x="2" y="9" width="4" height="12"/>
+                    <circle cx="4" cy="4" r="2"/>
+                  </svg>
+                </a>
+                <a href="https://www.instagram.com/behindthefinancebubble/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/i18n/translations.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/seo/structured-data.js"></script>
+    <script src="/js/chat-side-panel.js"></script>
+    <script src="/js/floating-chat-input.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const overlay = document.getElementById('educationTutorialOverlay');
+        const card = document.getElementById('educationTutorial');
+        const closeBtn = document.getElementById('educationTutorialCloseBtn');
+        const helpBtn = document.getElementById('educationHelpBtn');
+        const nextBtn = document.getElementById('educationTutorialNext');
+        const skipBtn = document.getElementById('educationTutorialSkip');
+        const progress = document.getElementById('educationTutorialProgress');
+        const contentEl = document.getElementById('educationTutorialContent');
+        const steps = document.querySelectorAll('#educationTutorial .tutorial-step');
+        const STORAGE_KEY = 'educationHubTutorialSeen';
+        let step = 0;
+
+        const CONTENT = {
+          fr: [
+            "Choisis ton mode : observe dans l'Arena ou construis dans le Simulateur.",
+            "Tout se fait en langage naturel : tu poses tes questions, l'IA te répond et te guide.",
+            "Dans l'Arena, regarde 4 bots IA réagir aux mêmes marchés et comprends leurs stratégies.",
+            "Dans le Simulateur, dis ton intention et l'IA propose un mix + backtest en direct.",
+            "Le chat est toujours là pour expliquer les métriques ou la prochaine étape."
+          ],
+          en: [
+            "Pick your mode: watch in the Arena or build in the Simulator.",
+            "Everything is natural language: you ask, the AI guides and answers.",
+            "In the Arena, watch 4 AI bots react to the same markets and learn their strategies.",
+            "In the Simulator, state your intent and the AI proposes a mix + live backtest.",
+            "The chat is always there to explain metrics or the next step."
+          ]
+        };
+
+        function getLang() {
+          return document.documentElement.lang || 'fr';
+        }
+
+        function updateTutorial() {
+          const lang = getLang().startsWith('en') ? 'en' : 'fr';
+          const texts = CONTENT[lang] || CONTENT.fr;
+          const total = texts.length;
+          progress.textContent = `${step + 1} / ${total}`;
+          contentEl.innerHTML = texts[step] || texts[0];
+          steps.forEach((s, idx) => {
+            s.classList.remove('active', 'completed');
+            if (idx < step) s.classList.add('completed');
+            else if (idx === step) s.classList.add('active');
+          });
+          nextBtn.textContent = step === total - 1
+            ? (lang === 'fr' ? "C'est parti" : "Let's go")
+            : (lang === 'fr' ? 'Compris, continuer' : 'Got it, next');
+        }
+
+        function openTutorial() {
+          step = 0;
+          card?.style.removeProperty('display');
+          updateTutorial();
+          overlay?.classList.add('active');
+          helpBtn?.classList.remove('visible');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeTutorial() {
+          overlay?.classList.remove('active');
+          document.body.style.overflow = '';
+          sessionStorage.setItem(STORAGE_KEY, 'true');
+          setTimeout(() => helpBtn?.classList.add('visible'), 300);
+        }
+
+        if (!sessionStorage.getItem(STORAGE_KEY)) {
+          openTutorial();
+        } else {
+          setTimeout(() => helpBtn?.classList.add('visible'), 300);
+        }
+
+        nextBtn?.addEventListener('click', () => {
+          const lang = getLang().startsWith('en') ? 'en' : 'fr';
+          const total = (CONTENT[lang] || CONTENT.fr).length;
+          step++;
+          if (step >= total) {
+            closeTutorial();
+          } else {
+            updateTutorial();
+          }
+        });
+
+        skipBtn?.addEventListener('click', closeTutorial);
+        closeBtn?.addEventListener('click', closeTutorial);
+        helpBtn?.addEventListener('click', openTutorial);
+        overlay?.addEventListener('click', (e) => { if (e.target === overlay) closeTutorial(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay?.classList.contains('active')) closeTutorial(); });
+      });
+    </script>
+  </body>
+</html>

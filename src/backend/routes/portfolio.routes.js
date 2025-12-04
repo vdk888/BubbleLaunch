@@ -6,6 +6,7 @@ const portfolioController = require("../controllers/portfolio.controller");
 router.get("/preview-data", portfolioController.getPreviewData);
 router.get("/etf-data", portfolioController.getETFData);
 router.post("/calculate", portfolioController.calculatePortfolio);
+router.post("/custom-allocation", portfolioController.calculateCustomAllocation);
 router.post("/clear-cache", portfolioController.clearCache);
 router.post("/regenerate-cache", portfolioController.regenerateCache);
 

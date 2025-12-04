@@ -38,7 +38,8 @@
       "Bash(cd:*)",
       "Bash(mkdir:*)",
       "Bash(time curl:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(kill:*)"
     ],
     "deny": [],
     "ask": []

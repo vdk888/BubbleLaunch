@@ -15,11 +15,38 @@ Two **separate but connected** educational experiences, both driven by **natural
 | **Strategy Simulator** | Learn *strategies + build your own* | Plain language → strategy builder | Same 20-year backtest data |
 
 **Core Principles**:
-- 📱 **Mobile-first** (all designs start mobile, scale to desktop)
-- 💬 **Chatbot-first** (natural language for beginners to experts)
-- ⚡ **Instant feedback** (no lag, like current simulator)
-- 🎮 **Gamified but professional** (futuristic animations, achievement system)
-- 🎓 **Pedagogical** (every element teaches something)
+- Mobile-first (all designs start mobile, scale to desktop)
+- Chatbot-first (natural language for beginners to experts)
+- Instant feedback (no lag, like current simulator)
+- Gamified but professional (futuristic animations, achievement system)
+- Pedagogical (every element teaches something)
+
+**Latest Progress (Dec 2025)**
+- Education chatbot prompt now distinct from main site; hub + arena floating chat using shared light/glass UI; simulator chat passes mix/backtest metadata.
+- Strategy heuristics helper (`strategyBuilderService`) suggests mixes from user intent keywords for the simulator chatbot.
+- Arena P&L computation corrected for future timeline regenerations (cache preserved for now).
+- Session-scoped education chat history persists across hub/arena/simulator to reduce re-asking and clicks.
+
+---
+
+## IMPORTANT: Deployment & Approval Process
+
+> **Nothing will be committed or pushed without explicit owner approval.**
+
+**Migration Plan**:
+1. **Phase 1**: Build mock pages at `/education`, `/education/arena`, `/education/simulator`
+2. **Phase 2**: Owner reviews and validates mock pages
+3. **Phase 3**: Once approved, the new education experience will **replace** the current `/investors/portfolio-simulator` page
+4. **Phase 4**: Old simulator page redirects to new education hub
+
+**Current Page to Replace**:
+- `https://bubbleinvest.org/investors/portfolio-simulator` → will become part of `/education/simulator`
+
+**Git Workflow**:
+- All development on feature branch (not main)
+- No commits without owner review
+- No pushes without explicit approval
+- PR required for any merge to main
 
 ---
 
@@ -970,13 +997,13 @@ const EDUCATION_EVENTS = {
 ### Phase 1: Foundation (Week 1-2)
 **Goal**: Static pages with mock data, basic navigation
 
-- [ ] Create `education.html`, `education-arena.html`, `education-simulator.html`
-- [ ] Implement mobile-first layouts with CSS
-- [ ] Add chat input components (UI only, no backend)
+- [x] Create `education.html`, `education-arena.html`, `education-simulator.html`
+- [x] Implement mobile-first layouts with CSS (education.css)
+- [x] Add chat input components (UI live for simulator; arena chat pilot now wired to backend)
 - [ ] Create bot persona assets (avatars, colors)
 - [ ] Add compliance ribbon and gate modal
-- [ ] Wire navigation between pages
-- [ ] Add FR/EN translations for all static text
+- [x] Wire navigation between pages
+- [x] Add FR/EN translations for all static text
 
 **Deliverable**: Navigable education section with placeholder content
 

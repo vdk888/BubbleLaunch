@@ -462,7 +462,7 @@ const translations = {
   },
   "floating_input.placeholder": {
     en: "Ask me anything...",
-    fr: "Posez-moi une question..."
+    fr: "Pose-moi une question..."
   },
 
   // Blog Section
@@ -2460,8 +2460,8 @@ const translations = {
 
   // Investors - FAQ
   "investors.faq.title": {
-    en: "Frequently Asked Questions",
-    fr: "Questions Fréquemment Posées"
+    en: "Your questions, answered",
+    fr: "Vos questions, nos réponses"
   },
   "investors.faq.q1.question": {
     en: "How does Bubble work?",
@@ -3200,8 +3200,8 @@ const translations = {
 
   // Professionals - FAQ
   "professionals.faq.title": {
-    en: "Frequently Asked Questions",
-    fr: "Questions Fréquemment Posées"
+    en: "Your questions, answered",
+    fr: "Vos questions, nos réponses"
   },
   "professionals.faq.subtitle": {
     en: "Find answers to your questions about our services and solutions.",
@@ -3417,7 +3417,7 @@ const translations = {
   },
   "floating_input.placeholder": {
     en: "Ask me anything...",
-    fr: "Posez-moi n'importe quelle question..."
+    fr: "Pose-moi n'importe quelle question..."
   },
 
   // ========== BEGINNER DEMO TRANSLATIONS (macro-defense) ==========
@@ -4403,6 +4403,870 @@ const translations = {
   "academic.disclosure.transparency": {
     en: "No \"AI magic\" here—just well-known quantitative formulas applied to real price history. If you want to deep-dive, ask our chatbot for the underlying papers.",
     fr: "Pas de \"magie IA\" ici—juste des formules quantitatives bien connues appliquées à l'historique réel des prix. Si vous voulez approfondir, demandez à notre chatbot les articles de recherche."
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // EDUCATION MODULE TRANSLATIONS
+  // ═══════════════════════════════════════════════════════════════
+
+  // Education Hub Page
+  "education.hub.eyebrow": {
+    en: "Education",
+    fr: "Éducation"
+  },
+  "education.hub.title": {
+    en: "AI is your ally, not your enemy",
+    fr: "L'IA est ton alliée, pas ton ennemie"
+  },
+  "education.hub.subtitle": {
+    en: "Gone are the days when a few claimed to hold inaccessible knowledge. Use AI to learn about investing, not to be manipulated. <strong>Knowledge for all, 100% free, forever.</strong>",
+    fr: "Fini l'époque où quelques-uns prétendaient détenir un savoir inaccessible. Utilise l'IA pour apprendre sur l'investissement, pas pour te laisser manipuler. <strong>Le savoir pour tous, 100% gratuit, pour toujours.</strong>"
+  },
+  "education.hub.whyLearn.title": {
+    en: "Why Learn Here?",
+    fr: "Pourquoi Apprendre Ici ?"
+  },
+  "education.hub.whyLearn.realData": {
+    en: "Real Market Data",
+    fr: "Données Réelles"
+  },
+  "education.hub.whyLearn.realData.desc": {
+    en: "20 years of historical prices, not simulations",
+    fr: "20 ans de prix historiques, pas de simulations"
+  },
+  "education.hub.whyLearn.strategies": {
+    en: "Proven Strategies",
+    fr: "Stratégies Éprouvées"
+  },
+  "education.hub.whyLearn.strategies.desc": {
+    en: "Academic formulas used by quantitative funds",
+    fr: "Formules académiques utilisées par les fonds quantitatifs"
+  },
+  "education.hub.whyLearn.interactive": {
+    en: "Interactive Learning",
+    fr: "Apprentissage Interactif"
+  },
+  "education.hub.whyLearn.interactive.desc": {
+    en: "Watch, analyze, then practice building your own",
+    fr: "Regarde, analyse, puis entraîne-toi à créer"
+  },
+  "education.hub.cta.arena": {
+    en: "Enter the Arena",
+    fr: "Entrer dans l'Arène"
+  },
+  "education.hub.cta.simulator": {
+    en: "Build Strategies",
+    fr: "Créer des Stratégies"
+  },
+
+  // Education Hub - Arena Path
+  "education.hub.arena.badge": {
+    en: "Watch",
+    fr: "Observer"
+  },
+  "education.hub.arena.title": {
+    en: "AI Trading Arena",
+    fr: "AI Trading Arena"
+  },
+  "education.hub.arena.description": {
+    en: "Watch 4 AI bots compete over 20 years of historical data. Each bot explains its decisions in real-time. Travel through time and relive the great financial crises.",
+    fr: "Regarde 4 bots IA s'affronter sur 20 ans de données historiques. Chaque bot explique ses décisions en temps réel. Voyage dans le temps et revis les grandes crises financières."
+  },
+  "education.hub.arena.feature1": {
+    en: "4 bots with unique personalities",
+    fr: "4 bots aux personnalités uniques"
+  },
+  "education.hub.arena.feature2": {
+    en: "12 major historical events",
+    fr: "12 événements historiques majeurs"
+  },
+  "education.hub.arena.feature3": {
+    en: "Interactive gamified tutorials",
+    fr: "Tutoriels gamifiés interactifs"
+  },
+  "education.hub.arena.cta": {
+    en: "Enter the Arena",
+    fr: "Entrer dans l'Arena"
+  },
+
+  // Education Hub - Simulator Path
+  "education.hub.simulator.badge": {
+    en: "Build",
+    fr: "Construire"
+  },
+  "education.hub.simulator.title": {
+    en: "Strategy Simulator",
+    fr: "Strategy Simulator"
+  },
+  "education.hub.simulator.description": {
+    en: "Create your own strategy in natural language. The AI assistant guides you step by step and instantly tests your allocation on 20 years of real data.",
+    fr: "Crée ta stratégie en langage naturel. L'assistant IA te guide pas à pas et teste instantanément ton allocation sur 20 ans de données réelles."
+  },
+  "education.hub.simulator.feature1": {
+    en: "Intelligent guided chatbot",
+    fr: "Chatbot intelligent guidé"
+  },
+  "education.hub.simulator.feature2": {
+    en: "Instant backtesting",
+    fr: "Backtesting instantané"
+  },
+  "education.hub.simulator.feature3": {
+    en: "Compare with the pros",
+    fr: "Comparaison avec les pros"
+  },
+  "education.hub.simulator.chatUser": {
+    en: "I want 50% stocks, 30% bonds...",
+    fr: "Je veux 50% actions, 30% obligations..."
+  },
+  "education.hub.simulator.chatBot": {
+    en: "Let's analyze this allocation...",
+    fr: "Analysons cette allocation..."
+  },
+  "education.hub.simulator.cta": {
+    en: "Create My Strategy",
+    fr: "Créer Ma Stratégie"
+  },
+
+  // Education Hub - Why Section
+  "education.hub.why.title": {
+    en: "Why Learn Here?",
+    fr: "Pourquoi Apprendre Ici ?"
+  },
+  "education.hub.why.safe.title": {
+    en: "100% Risk-Free",
+    fr: "100% Sans Risque"
+  },
+  "education.hub.why.safe.description": {
+    en: "Real historical data, no money at stake. Learn in complete safety.",
+    fr: "Données historiques réelles, aucun argent en jeu. Apprenez en toute sécurité."
+  },
+  "education.hub.why.transparent.title": {
+    en: "Total Transparency",
+    fr: "Transparence Totale"
+  },
+  "education.hub.why.transparent.description": {
+    en: "The bots explain every decision. No black box, just education.",
+    fr: "Les bots expliquent chaque décision. Pas de boîte noire, que de la pédagogie."
+  },
+  "education.hub.why.free.title": {
+    en: "Free Forever",
+    fr: "Gratuit à Vie"
+  },
+  "education.hub.why.free.description": {
+    en: "Financial education should be accessible to everyone. No subscription required.",
+    fr: "L'éducation financière devrait être accessible à tous. Aucun abonnement requis."
+  },
+
+  // Education Hub - Compliance & CTA
+  "education.hub.compliance": {
+    en: "<strong>Important information:</strong> This platform is purely educational. Simulations use historical data and do not constitute investment advice. Past performance does not predict future results.",
+    fr: "<strong>Information importante :</strong> Cette plateforme est purement éducative. Les simulations utilisent des données historiques et ne constituent pas un conseil en investissement. Les performances passées ne préjugent pas des performances futures."
+  },
+  "education.hub.cta.title": {
+    en: "Ready to take the next step?",
+    fr: "Prêt à passer au niveau supérieur ?"
+  },
+  "education.hub.cta.description": {
+    en: "Join the waitlist to access Bubble Portfolio, our AI-powered automated investment platform.",
+    fr: "Rejoins la liste d'attente pour accéder à Bubble Portfolio, notre plateforme d'investissement automatisée alimentée par l'IA."
+  },
+  "education.hub.cta.button": {
+    en: "Join the waitlist",
+    fr: "Rejoindre la liste d'attente"
+  },
+  "education.hub.chat.cta": {
+    en: "Ask me anything",
+    fr: "Pose-moi n'importe quelle question"
+  },
+
+  // Arena Page - Hero & Main UI
+  "education.arena.eyebrow": {
+    en: "Watch & Learn",
+    fr: "Observer & Apprendre"
+  },
+  "education.arena.title": {
+    en: "Watch AI think out loud",
+    fr: "Regarde l'IA penser à voix haute"
+  },
+  "education.arena.subtitle": {
+    en: "Four AI-bots compete with different strategies over 20 years of real market data. Watch them react to crashes, panics, and euphoria—and understand what strategy would have worked best.",
+    fr: "Quatre bots IA s'affrontent avec différentes stratégies sur 20 ans de données réelles. Observe leurs réactions aux crashs, paniques et phases d'euphorie, et comprends quelle stratégie aurait le mieux fonctionné."
+  },
+  "education.arena.back": {
+    en: "Back",
+    fr: "Retour"
+  },
+  "education.arena.pnl": {
+    en: "P&L",
+    fr: "P&L"
+  },
+  "education.arena.speed": {
+    en: "1x",
+    fr: "1x"
+  },
+  "education.arena.tutorial.title": {
+    en: "Welcome to the Arena",
+    fr: "Bienvenue dans l'Arena"
+  },
+
+  // Arena Bot Tiles (singular "bot" keys used in HTML)
+  "education.arena.bot.equi.strategy": {
+    en: "Equal Weight",
+    fr: "Allocation Égale"
+  },
+  "education.arena.bot.pari.strategy": {
+    en: "Risk Parity",
+    fr: "Risk Parity"
+  },
+  "education.arena.bot.momo.strategy": {
+    en: "Momentum",
+    fr: "Momentum"
+  },
+  "education.arena.bot.sage.strategy": {
+    en: "Defensive",
+    fr: "Défensif"
+  },
+
+  // Arena Events Section
+  "education.arena.events.title": {
+    en: "Major Events",
+    fr: "Événements Majeurs"
+  },
+  "education.arena.events.lehman": {
+    en: "Lehman 2008",
+    fr: "Lehman 2008"
+  },
+  "education.arena.events.flashcrash": {
+    en: "Flash Crash",
+    fr: "Flash Crash"
+  },
+  "education.arena.events.debt": {
+    en: "Debt Crisis",
+    fr: "Crise Dette"
+  },
+  "education.arena.events.china": {
+    en: "China 2015",
+    fr: "Chine 2015"
+  },
+  "education.arena.events.volmageddon": {
+    en: "Volmageddon",
+    fr: "Volmageddon"
+  },
+  "education.arena.events.covid": {
+    en: "COVID-19",
+    fr: "COVID-19"
+  },
+  "education.arena.events.ukraine": {
+    en: "Ukraine",
+    fr: "Ukraine"
+  },
+  "education.arena.events.svb": {
+    en: "SVB Crisis",
+    fr: "Crise SVB"
+  },
+
+  // Arena CTA Section
+  "education.arena.cta.title": {
+    en: "Want to create your own strategy?",
+    fr: "Envie de créer ta propre stratégie ?"
+  },
+  "education.arena.cta.description": {
+    en: "Head to the Simulator and build your own portfolio allocation. Test it against the same 20 years of data and see how it performs.",
+    fr: "Rends-toi dans le Simulateur et construis ton allocation. Teste-la sur les mêmes 20 ans de données et vois comment elle performe."
+  },
+  "education.arena.cta.button": {
+    en: "Build My Strategy",
+    fr: "Créer Ma Stratégie"
+  },
+  "education.arena.chat.cta": {
+    en: "Ask me anything",
+    fr: "Pose-moi n'importe quelle question"
+  },
+  "education.arena.compliance": {
+    en: "<strong>Important information:</strong> This simulation uses historical data for educational purposes only. Past performance does not predict future results. No investment advice is provided.",
+    fr: "<strong>Information importante :</strong> Cette simulation utilise des données historiques à des fins éducatives uniquement. Les performances passées ne préjugent pas des performances futures. Aucun conseil en investissement n'est fourni."
+  },
+
+  // Arena Page - Tutorial
+  "education.arena.tutorial.step1.title": {
+    en: "Meet the Bots",
+    fr: "Découvre les bots"
+  },
+  "education.arena.tutorial.step1.desc": {
+    en: "Four AI traders with different strategies compete using real data from 2005-2025.",
+    fr: "Quatre bots IA avec différentes stratégies s'affrontent avec des données réelles de 2005-2025."
+  },
+  "education.arena.tutorial.step2.title": {
+    en: "Watch History Unfold",
+    fr: "Regarde l'histoire se dérouler"
+  },
+  "education.arena.tutorial.step2.desc": {
+    en: "Press play to see how each bot reacts to crashes, rallies, and market events.",
+    fr: "Appuie sur play pour voir comment chaque bot réagit aux crashs, rallyes et événements."
+  },
+  "education.arena.tutorial.step3.title": {
+    en: "Learn the Lessons",
+    fr: "Retire les bonnes leçons"
+  },
+  "education.arena.tutorial.step3.desc": {
+    en: "Understand why some strategies thrive while others struggle in different conditions.",
+    fr: "Comprends pourquoi certaines stratégies prospèrent tandis que d'autres peinent selon les conditions."
+  },
+  "education.arena.tutorial.prev": {
+    en: "Previous",
+    fr: "Précédent"
+  },
+  "education.arena.tutorial.next": {
+    en: "Next",
+    fr: "Suivant"
+  },
+  "education.arena.tutorial.skip": {
+    en: "Skip Tutorial",
+    fr: "Passer le Tutoriel"
+  },
+  "education.arena.tutorial.start": {
+    en: "Start Watching",
+    fr: "Commencer"
+  },
+
+  // Arena Page - Bots
+  "education.arena.bots.equi.name": {
+    en: "Équi",
+    fr: "Équi"
+  },
+  "education.arena.bots.equi.strategy": {
+    en: "Equal Weight",
+    fr: "Allocation Égale"
+  },
+  "education.arena.bots.equi.personality": {
+    en: "Steady & balanced",
+    fr: "Stable & équilibré"
+  },
+  "education.arena.bots.equi.intro": {
+    en: "I keep it simple - equal shares of everything. No predictions, no timing, just balance.",
+    fr: "Je reste simple - parts égales de tout. Pas de prédictions, pas de timing, juste l'équilibre."
+  },
+  "education.arena.bots.pari.name": {
+    en: "Pari",
+    fr: "Pari"
+  },
+  "education.arena.bots.pari.strategy": {
+    en: "Risk Parity",
+    fr: "Parité de Risque"
+  },
+  "education.arena.bots.pari.personality": {
+    en: "Risk-aware & defensive",
+    fr: "Prudent & défensif"
+  },
+  "education.arena.bots.pari.intro": {
+    en: "I balance risk, not dollars. When volatility rises, I shift to safer assets.",
+    fr: "J'équilibre le risque, pas les euros. Quand la volatilité monte, je passe aux actifs sûrs."
+  },
+  "education.arena.bots.momo.name": {
+    en: "Momo",
+    fr: "Momo"
+  },
+  "education.arena.bots.momo.strategy": {
+    en: "Momentum",
+    fr: "Momentum"
+  },
+  "education.arena.bots.momo.personality": {
+    en: "Trend-following & bold",
+    fr: "Suiveur de tendance & audacieux"
+  },
+  "education.arena.bots.momo.intro": {
+    en: "Winners keep winning! I ride trends and chase what's hot in the market.",
+    fr: "Les gagnants restent gagnants ! Je suis les tendances et ce qui performe."
+  },
+  "education.arena.bots.sage.name": {
+    en: "Sage",
+    fr: "Sage"
+  },
+  "education.arena.bots.sage.strategy": {
+    en: "Regime-Aware Risk Parity",
+    fr: "Parité Régime-Adaptive"
+  },
+  "education.arena.bots.sage.personality": {
+    en: "Adaptive & wise",
+    fr: "Adaptatif & sage"
+  },
+  "education.arena.bots.sage.intro": {
+    en: "I adapt to market conditions. Bull or bear, I adjust my strategy accordingly.",
+    fr: "Je m'adapte aux conditions du marché. Hausse ou baisse, j'ajuste ma stratégie."
+  },
+
+  // Arena Page - Controls
+  "education.arena.controls.play": {
+    en: "Play",
+    fr: "Lecture"
+  },
+  "education.arena.controls.pause": {
+    en: "Pause",
+    fr: "Pause"
+  },
+  "education.arena.controls.speed": {
+    en: "Speed",
+    fr: "Vitesse"
+  },
+  "education.arena.controls.reset": {
+    en: "Reset",
+    fr: "Réinitialiser"
+  },
+
+  // Arena Page - Chart
+  "education.arena.chart.title": {
+    en: "Portfolio Performance",
+    fr: "Performance des Portefeuilles"
+  },
+  "education.arena.chart.portfolioValue": {
+    en: "Portfolio Value",
+    fr: "Valeur du Portefeuille"
+  },
+  "education.arena.chart.startValue": {
+    en: "Starting: €10,000",
+    fr: "Départ : 10 000 €"
+  },
+
+  // Arena Page - Events
+  "education.arena.events.crash": {
+    en: "Market Crash",
+    fr: "Krach Boursier"
+  },
+  "education.arena.events.recovery": {
+    en: "Recovery",
+    fr: "Reprise"
+  },
+  "education.arena.events.rally": {
+    en: "Bull Rally",
+    fr: "Rallye Haussier"
+  },
+  "education.arena.events.geopolitical": {
+    en: "Geopolitical Event",
+    fr: "Événement Géopolitique"
+  },
+  "education.arena.events.policy": {
+    en: "Policy Change",
+    fr: "Changement de Politique"
+  },
+  "education.arena.events.volatility": {
+    en: "High Volatility",
+    fr: "Forte Volatilité"
+  },
+
+  // Arena Page - Leaderboard
+  "education.arena.leaderboard.title": {
+    en: "Leaderboard",
+    fr: "Classement"
+  },
+  "education.arena.leaderboard.rank": {
+    en: "Rank",
+    fr: "Rang"
+  },
+  "education.arena.leaderboard.bot": {
+    en: "Bot",
+    fr: "Bot"
+  },
+  "education.arena.leaderboard.value": {
+    en: "Value",
+    fr: "Valeur"
+  },
+  "education.arena.leaderboard.return": {
+    en: "Return",
+    fr: "Rendement"
+  },
+
+  // Arena Page - Dialogue Panel
+  "education.arena.dialogue.thinking": {
+    en: "Analyzing...",
+    fr: "Analyse en cours..."
+  },
+  "education.arena.dialogue.reacting": {
+    en: "is reacting to market conditions",
+    fr: "réagit aux conditions du marché"
+  },
+
+  // Arena Page - Bot Dialogues by Event Type
+  "education.arena.dialogue.equi.crash": {
+    en: "This too shall pass. I'm staying balanced and riding it out.",
+    fr: "Cela passera aussi. Je reste équilibré et je tiens bon."
+  },
+  "education.arena.dialogue.equi.recovery": {
+    en: "See? Patience pays off. All assets are contributing to the recovery.",
+    fr: "Vous voyez ? La patience paie. Tous les actifs contribuent à la reprise."
+  },
+  "education.arena.dialogue.equi.rally": {
+    en: "Everyone's winning today! My diversification is working perfectly.",
+    fr: "Tout le monde gagne aujourd'hui ! Ma diversification fonctionne parfaitement."
+  },
+  "education.arena.dialogue.pari.crash": {
+    en: "My defensive positioning is protecting the portfolio. Bonds are holding.",
+    fr: "Mon positionnement défensif protège le portefeuille. Les obligations tiennent."
+  },
+  "education.arena.dialogue.pari.recovery": {
+    en: "Gradual rebalancing as volatility drops. Safety first, then growth.",
+    fr: "Rééquilibrage progressif à mesure que la volatilité baisse. Sécurité d'abord."
+  },
+  "education.arena.dialogue.pari.rally": {
+    en: "I may trail in bull runs, but I protect capital when it matters most.",
+    fr: "Je peux être en retard en hausse, mais je protège le capital quand ça compte."
+  },
+  "education.arena.dialogue.momo.crash": {
+    en: "Ouch! The trend reversed fast. Time to cut losses and wait for new signals.",
+    fr: "Aïe ! La tendance s'est inversée vite. Il faut couper et attendre de nouveaux signaux."
+  },
+  "education.arena.dialogue.momo.recovery": {
+    en: "New trends forming! I'm positioning for the next move up.",
+    fr: "Nouvelles tendances ! Je me positionne pour la prochaine hausse."
+  },
+  "education.arena.dialogue.momo.rally": {
+    en: "This is my moment! Riding the momentum wave to maximum gains!",
+    fr: "C'est mon moment ! Je surfe sur la vague pour des gains maximum !"
+  },
+  "education.arena.dialogue.sage.crash": {
+    en: "Regime shift detected. Moving to defensive positioning automatically.",
+    fr: "Changement de régime détecté. Passage en mode défensif automatique."
+  },
+  "education.arena.dialogue.sage.recovery": {
+    en: "Conditions improving. Gradually increasing risk exposure again.",
+    fr: "Conditions en amélioration. Augmentation progressive de l'exposition."
+  },
+  "education.arena.dialogue.sage.rally": {
+    en: "Bull regime confirmed. Optimizing for growth while monitoring risks.",
+    fr: "Régime haussier confirmé. Optimisation pour la croissance."
+  },
+
+  // Arena Page - Metrics
+  "education.arena.metrics.totalReturn": {
+    en: "Total Return",
+    fr: "Rendement Total"
+  },
+  "education.arena.metrics.annualizedReturn": {
+    en: "Annualized Return",
+    fr: "Rendement Annualisé"
+  },
+  "education.arena.metrics.volatility": {
+    en: "Volatility",
+    fr: "Volatilité"
+  },
+  "education.arena.metrics.sharpe": {
+    en: "Sharpe Ratio",
+    fr: "Ratio de Sharpe"
+  },
+  "education.arena.metrics.maxDrawdown": {
+    en: "Max Drawdown",
+    fr: "Drawdown Max"
+  },
+  "education.arena.metrics.calmar": {
+    en: "Calmar Ratio",
+    fr: "Ratio de Calmar"
+  },
+
+  // Arena Page - CTA
+  "education.arena.cta.buildOwn": {
+    en: "Now build your own strategy",
+    fr: "Maintenant créez votre stratégie"
+  },
+  "education.arena.cta.trySimulator": {
+    en: "Try the Simulator",
+    fr: "Essayer le Simulateur"
+  },
+  "education.arena.cta.askBot": {
+    en: "Ask our AI",
+    fr: "Demander à notre IA"
+  },
+
+  // Arena Page - Trade Tape
+  "education.arena.tradeTape.title": {
+    en: "Trading Activity",
+    fr: "Activité de Trading"
+  },
+  "education.arena.tradeTape.waiting": {
+    en: "Waiting for simulation...",
+    fr: "En attente du début..."
+  },
+
+  // Simulator Page (Education version)
+  "education.simulator.title": {
+    en: "Create your strategy in natural language",
+    fr: "Crée ta stratégie en langage naturel"
+  },
+  "education.simulator.subtitle": {
+    en: "Simply describe what you want. The AI assistant translates your ideas into an allocation and instantly tests it on 20 years of real data.",
+    fr: "Décris simplement ce que tu veux. L'assistant IA traduit tes idées en allocation et teste instantanément sur 20 ans de données réelles."
+  },
+  "education.simulator.chat.placeholder": {
+    en: "Describe your strategy idea... (e.g., 'I want 60% stocks, 30% bonds, 10% gold')",
+    fr: "Décris ton idée de stratégie... (ex: 'Je veux un portefeuille équilibré et pas trop risqué')"
+  },
+  "education.simulator.chat.send": {
+    en: "Send",
+    fr: "Envoyer"
+  },
+  "education.simulator.results.title": {
+    en: "Backtest Results",
+    fr: "Résultats du Backtest"
+  },
+  "education.simulator.results.noData": {
+    en: "Configure your strategy to see results",
+    fr: "Configure ta stratégie pour voir les résultats"
+  },
+
+  // Simulator Page - Hero & Main UI
+  "education.simulator.eyebrow": {
+    en: "Build & Test",
+    fr: "Construire & Tester"
+  },
+  "education.simulator.back": {
+    en: "Back",
+    fr: "Retour"
+  },
+  "education.simulator.results.allocation": {
+    en: "Your Allocation",
+    fr: "Ton allocation"
+  },
+  "education.simulator.results.comparison": {
+    en: "Comparison",
+    fr: "Comparaison"
+  },
+  "education.simulator.results.comparisonText": {
+    en: "Your strategy sits between <strong>Équi</strong> and <strong>Pari</strong> in terms of risk/return ratio. Sharpe of 0.58 vs. Pari at 0.72.",
+    fr: "Ta stratégie se situe entre <strong>Équi</strong> et <strong>Pari</strong> en termes de rapport risque/rendement. Sharpe de 0.58 vs. Pari à 0.72."
+  },
+  "education.simulator.chat.title": {
+    en: "Strategy Assistant",
+    fr: "Assistant Stratégie"
+  },
+  "education.simulator.chat.status": {
+    en: "Online",
+    fr: "En ligne"
+  },
+  "education.simulator.chat.welcome": {
+    en: "Hello! I'm here to help you create your investment strategy. Simply describe what you want, for example:<br><br><em>\"I want 50% in US stocks, 30% in bonds, and 20% in gold\"</em><br><br>or ask me a question about investing.",
+    fr: "Bonjour ! Je suis là pour t'aider à créer ta stratégie d'investissement. Dis-moi simplement ce que tu souhaites, par exemple :<br><br><em>\"Je veux 50% en actions américaines, 30% en obligations et 20% en or\"</em><br><br>ou pose-moi une question sur l'investissement."
+  },
+  "education.simulator.templates.title": {
+    en: "Quick Templates",
+    fr: "Templates Rapides"
+  },
+  "education.simulator.templates.conservative": {
+    en: "Conservative (70% bonds)",
+    fr: "Conservateur (70% obligations)"
+  },
+  "education.simulator.templates.balanced": {
+    en: "Balanced (50/50)",
+    fr: "Équilibré (50/50)"
+  },
+  "education.simulator.templates.aggressive": {
+    en: "Dynamic (80% stocks)",
+    fr: "Dynamique (80% actions)"
+  },
+  "education.simulator.templates.allweather": {
+    en: "All-Weather (Ray Dalio)",
+    fr: "All-Weather (Ray Dalio)"
+  },
+  "education.simulator.sliders.title": {
+    en: "Adjust your allocation",
+    fr: "Ajustez votre allocation"
+  },
+  "education.simulator.sliders.stocks": {
+    en: "Stocks",
+    fr: "Actions"
+  },
+  "education.simulator.sliders.bonds": {
+    en: "Bonds",
+    fr: "Obligations"
+  },
+  "education.simulator.sliders.gold": {
+    en: "Gold",
+    fr: "Or"
+  },
+  "education.simulator.sliders.apply": {
+    en: "Test this allocation",
+    fr: "Tester cette allocation"
+  },
+  "education.simulator.chips.conservative": {
+    en: "Conservative",
+    fr: "Conservateur"
+  },
+  "education.simulator.chips.balanced": {
+    en: "Balanced",
+    fr: "Équilibré"
+  },
+  "education.simulator.chips.aggressive": {
+    en: "Dynamic",
+    fr: "Dynamique"
+  },
+  "education.simulator.chips.allweather": {
+    en: "All-Weather",
+    fr: "All-Weather"
+  },
+  "education.simulator.cta.title": {
+    en: "Want to see how the pros trade?",
+    fr: "Envie de voir comment les pros tradent ?"
+  },
+  "education.simulator.cta.description": {
+    en: "Head back to the Arena and watch how 4 AI bots apply different strategies under the same market conditions.",
+    fr: "Retourne dans l'Arena et regarde comment 4 bots IA appliquent différentes stratégies face aux mêmes conditions de marché."
+  },
+  "education.simulator.cta.button": {
+    en: "See the Arena",
+    fr: "Voir l'Arena"
+  },
+  "education.simulator.compliance": {
+    en: "<strong>Important information:</strong> This simulator uses historical data for educational purposes only. Past performance does not predict future results. No investment advice is provided.",
+    fr: "<strong>Information importante :</strong> Ce simulateur utilise des données historiques à des fins éducatives uniquement. Les performances passées ne préjugent pas des performances futures. Aucun conseil en investissement n'est fourni."
+  },
+
+  // Shared Education Translations
+  "education.shared.loading": {
+    en: "Loading...",
+    fr: "Chargement..."
+  },
+  "education.shared.error": {
+    en: "Something went wrong. Please try again.",
+    fr: "Une erreur s'est produite. Veuillez réessayer."
+  },
+  "education.shared.back": {
+    en: "Back",
+    fr: "Retour"
+  },
+  "education.shared.next": {
+    en: "Next",
+    fr: "Suivant"
+  },
+  "education.shared.close": {
+    en: "Close",
+    fr: "Fermer"
+  },
+
+  // Time Periods
+  "education.shared.periods.1Y": {
+    en: "1 Year",
+    fr: "1 An"
+  },
+  "education.shared.periods.3Y": {
+    en: "3 Years",
+    fr: "3 Ans"
+  },
+  "education.shared.periods.5Y": {
+    en: "5 Years",
+    fr: "5 Ans"
+  },
+  "education.shared.periods.10Y": {
+    en: "10 Years",
+    fr: "10 Ans"
+  },
+  "education.shared.periods.20Y": {
+    en: "20 Years",
+    fr: "20 Ans"
+  },
+  "education.shared.periods.all": {
+    en: "All Time",
+    fr: "Tout"
+  },
+
+  // Months
+  "education.shared.months.jan": { en: "Jan", fr: "Jan" },
+  "education.shared.months.feb": { en: "Feb", fr: "Fév" },
+  "education.shared.months.mar": { en: "Mar", fr: "Mar" },
+  "education.shared.months.apr": { en: "Apr", fr: "Avr" },
+  "education.shared.months.may": { en: "May", fr: "Mai" },
+  "education.shared.months.jun": { en: "Jun", fr: "Juin" },
+  "education.shared.months.jul": { en: "Jul", fr: "Juil" },
+  "education.shared.months.aug": { en: "Aug", fr: "Août" },
+  "education.shared.months.sep": { en: "Sep", fr: "Sep" },
+  "education.shared.months.oct": { en: "Oct", fr: "Oct" },
+  "education.shared.months.nov": { en: "Nov", fr: "Nov" },
+  "education.shared.months.dec": { en: "Dec", fr: "Déc" },
+
+  // Arena Historical Events
+  "education.arena.historicalEvents.2008crash.title": {
+    en: "2008 Financial Crisis",
+    fr: "Crise Financière 2008"
+  },
+  "education.arena.historicalEvents.2008crash.desc": {
+    en: "Global financial meltdown. Lehman Brothers collapses.",
+    fr: "Effondrement financier mondial. Faillite de Lehman Brothers."
+  },
+  "education.arena.historicalEvents.2009recovery.title": {
+    en: "2009 Recovery Begins",
+    fr: "Début de la Reprise 2009"
+  },
+  "education.arena.historicalEvents.2009recovery.desc": {
+    en: "Markets bottom out. QE begins.",
+    fr: "Creux des marchés. Début du QE."
+  },
+  "education.arena.historicalEvents.2011eurozone.title": {
+    en: "2011 Eurozone Crisis",
+    fr: "Crise de la Zone Euro 2011"
+  },
+  "education.arena.historicalEvents.2011eurozone.desc": {
+    en: "European debt concerns shake markets.",
+    fr: "Les inquiétudes sur la dette européenne secouent les marchés."
+  },
+  "education.arena.historicalEvents.2015china.title": {
+    en: "2015 China Slowdown",
+    fr: "Ralentissement Chinois 2015"
+  },
+  "education.arena.historicalEvents.2015china.desc": {
+    en: "Chinese market volatility spreads globally.",
+    fr: "La volatilité des marchés chinois se propage."
+  },
+  "education.arena.historicalEvents.2018volmageddon.title": {
+    en: "2018 Volmageddon",
+    fr: "Volmageddon 2018"
+  },
+  "education.arena.historicalEvents.2018volmageddon.desc": {
+    en: "Volatility spikes, XIV collapses.",
+    fr: "Pic de volatilité, effondrement du XIV."
+  },
+  "education.arena.historicalEvents.2020covid.title": {
+    en: "COVID-19 Crash",
+    fr: "Krach COVID-19"
+  },
+  "education.arena.historicalEvents.2020covid.desc": {
+    en: "Fastest bear market in history. Global pandemic.",
+    fr: "Le marché baissier le plus rapide de l'histoire. Pandémie mondiale."
+  },
+  "education.arena.historicalEvents.2020recovery.title": {
+    en: "2020 V-Recovery",
+    fr: "Reprise en V 2020"
+  },
+  "education.arena.historicalEvents.2020recovery.desc": {
+    en: "Historic stimulus drives fastest recovery.",
+    fr: "Relance historique pour la reprise la plus rapide."
+  },
+  "education.arena.historicalEvents.2021meme.title": {
+    en: "2021 Meme Stock Mania",
+    fr: "Folie des Meme Stocks 2021"
+  },
+  "education.arena.historicalEvents.2021meme.desc": {
+    en: "GameStop, AMC. Retail vs. Wall Street.",
+    fr: "GameStop, AMC. Particuliers vs Wall Street."
+  },
+  "education.arena.historicalEvents.2022inflation.title": {
+    en: "2022 Inflation Shock",
+    fr: "Choc Inflationniste 2022"
+  },
+  "education.arena.historicalEvents.2022inflation.desc": {
+    en: "Fed hikes rates aggressively. Bonds and stocks fall together.",
+    fr: "La Fed monte les taux agressivement. Obligations et actions chutent ensemble."
+  },
+  "education.arena.historicalEvents.2023ai.title": {
+    en: "2023 AI Rally",
+    fr: "Rallye IA 2023"
+  },
+  "education.arena.historicalEvents.2023ai.desc": {
+    en: "ChatGPT era. Tech leads the recovery.",
+    fr: "Ère ChatGPT. La tech mène la reprise."
+  },
+  "education.arena.historicalEvents.2024election.title": {
+    en: "2024 Election Volatility",
+    fr: "Volatilité Électorale 2024"
+  },
+  "education.arena.historicalEvents.2024election.desc": {
+    en: "US election uncertainty impacts markets.",
+    fr: "L'incertitude électorale américaine impacte les marchés."
   }
 };
 

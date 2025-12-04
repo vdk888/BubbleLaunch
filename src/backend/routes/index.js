@@ -6,6 +6,7 @@ const chatRoutes = require("./chat.routes");
 const blogRoutes = require("./blog.routes");
 const knowledgeGardenRoutes = require("./knowledge-garden.routes");
 const portfolioRoutes = require("./portfolio.routes");
+const arenaRoutes = require("./arena.routes");
 const businessContactRoutes = require("./business-contact.routes");
 const pagesRoutes = require("./pages.routes");
 const sitemapRoutes = require("./sitemap.routes");
@@ -23,6 +24,7 @@ router.use("/api", waitlistRoutes);
 router.use("/api/blog", blogRoutes);
 router.use("/api/knowledge-garden", knowledgeGardenRoutes);
 router.use("/api/portfolio", portfolioRoutes);
+router.use("/api/arena", arenaRoutes);
 router.use("/api/business-contact", businessContactRoutes);
 
 /**
