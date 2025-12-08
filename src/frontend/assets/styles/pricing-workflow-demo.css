@@ -164,11 +164,11 @@
 .workflow-demo-messages {
   flex: 1;
   overflow-y: auto;
-  padding: 1.5rem;
+  padding: 1.25rem;
   scroll-behavior: smooth;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.6rem;
 }
 
 /* Scrollbar Styling */
@@ -219,10 +219,10 @@
 
 /* Message Bubble */
 .workflow-demo-message-bubble {
-  padding: 1rem 1.2rem;
+  padding: 0.85rem 1.05rem;
   border-radius: 20px;
   word-wrap: break-word;
-  line-height: 1.5;
+  line-height: 1.45;
   font-size: 0.95rem;
 }
 
@@ -301,18 +301,18 @@
 
 /* Enriched Content Cards - Inline within bubble */
 .workflow-demo-enriched-card {
-  padding: 0.8rem 0;
+  padding: 0.5rem 0;
   border-radius: 0;
   background: transparent;
   border: none;
-  margin: 0.8rem 0;
+  margin: 0.5rem 0;
 }
 
 .workflow-demo-enriched-header {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
   font-weight: 600;
   color: #667eea;
   font-size: 0.9rem;
@@ -329,18 +329,18 @@
 .workflow-demo-research-list {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.4rem;
-  margin-top: 0.8rem;
+  gap: 0.2rem;
+  margin-top: 0.4rem;
 }
 
 .workflow-demo-research-item {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  padding: 0.3rem 0;
+  gap: 0.5rem;
+  padding: 0.15rem 0;
   font-size: 0.85rem;
   color: #444444;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 .workflow-demo-research-item::before {
@@ -353,13 +353,13 @@
 /* Backtest Metrics Table */
 .workflow-demo-metrics-table {
   width: 100%;
-  margin-top: 0.8rem;
+  margin-top: 0.4rem;
   border-collapse: collapse;
   font-size: 0.85rem;
 }
 
 .workflow-demo-metrics-table td {
-  padding: 0.5rem 0;
+  padding: 0.3rem 0;
   border-bottom: 1px solid rgba(102, 126, 234, 0.1);
 }
 
@@ -379,7 +379,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.6rem 0;
+  padding: 0.35rem 0;
   font-size: 0.85rem;
   border-bottom: 1px solid rgba(102, 126, 234, 0.1);
 }
@@ -416,9 +416,9 @@
 
 /* Summary Box */
 .workflow-demo-summary-box {
-  margin-top: 0.8rem;
-  padding: 1rem;
-  border-radius: 16px;
+  margin-top: 0.5rem;
+  padding: 0.6rem;
+  border-radius: 12px;
   background: rgba(102, 126, 234, 0.08);
   border-left: 3px solid #667eea;
 }
@@ -846,8 +846,8 @@
 
 /* Paragraph spacing in messages */
 .workflow-demo-message-bubble > p {
-  margin-bottom: 0.8rem;
-  line-height: 1.5;
+  margin-bottom: 0.4rem;
+  line-height: 1.45;
   margin-top: 0;
 }
 
@@ -861,14 +861,14 @@
 
 /* Enriched card spacing */
 .workflow-demo-enriched-card {
-  margin-top: 1.2rem;
-  margin-bottom: 1.2rem;
-  padding: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0;
 }
 
 /* Last enriched card in a message */
 .workflow-demo-message .workflow-demo-enriched-card:last-of-type {
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.3rem;
 }
 
 /* System Message (Time Transition) */
@@ -891,16 +891,16 @@
 
 /* Portfolio Bar Chart */
 .workflow-demo-bar-chart {
-  margin-top: 1.2rem;
+  margin-top: 0.6rem;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.5rem;
 }
 
 .portfolio-bar-item {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.25rem;
 }
 
 .portfolio-bar-label {

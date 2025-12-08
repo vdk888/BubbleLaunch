@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node src/backend/server.js",
-    "generate:portfolio-cache": "node scripts/generate-portfolio-cache.js"
+    "generate:portfolio-cache": "node scripts/generate-portfolio-cache.js",
+    "clear:blog-image-cache": "node scripts/clear-blog-image-cache.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.0",

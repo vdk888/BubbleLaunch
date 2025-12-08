@@ -21,11 +21,15 @@ Two **separate but connected** educational experiences, both driven by **natural
 - Gamified but professional (futuristic animations, achievement system)
 - Pedagogical (every element teaches something)
 
-**Latest Progress (Dec 2025)**
-- Education chatbot prompt now distinct from main site; hub + arena floating chat using shared light/glass UI; simulator chat passes mix/backtest metadata.
-- Strategy heuristics helper (`strategyBuilderService`) suggests mixes from user intent keywords for the simulator chatbot.
-- Arena P&L computation corrected for future timeline regenerations (cache preserved for now).
-- Session-scoped education chat history persists across hub/arena/simulator to reduce re-asking and clicks.
+**Current Build (Dec 5, 2025)**
+- FR/EN `/investors/education`, `/education/arena`, `/education/simulator` live with mobile-first layouts, tutorials, compliance ribbons, CTA blocks, floating chat input + side panel, and shared sessionStorage chat/tutorial state across the three pages.
+- Arena timeline API (`/api/arena/*`) built from the 20Y portfolio cache (2005-11 → 2025-11), rendered via Chart.js with playback, scrubbing, event markers/vignettes, leaderboard, trade tape, and typed bot dialogues (per persona + event).
+- Strategy Simulator wired to `/api/portfolio/custom-allocation` (20Y backtest) with natural-language allocation parsing, quick chips, sliders, Chart.js metrics view, and heuristic suggestions via `strategyBuilderService`; simulator chat sends mix/backtest metadata.
+- Chat controller now routes education contexts (hub/arena/simulator) with page-aware system prompt; routes + hreflang for education pages are mounted in `pages.routes.js` with SEO meta in place.
+
+**Known Gaps**
+- Compliance gate modal not yet implemented; achievements/progress/prediction modes still placeholders; education analytics events not wired.
+- Trade tape, action vignettes, and dialogue copy are synthetic (not derived from real allocation deltas); simulator lacks benchmark overlay; monthly P&L deltas use total-return diffs (approximate).
 
 ---
 
@@ -47,6 +51,9 @@ Two **separate but connected** educational experiences, both driven by **natural
 - No commits without owner review
 - No pushes without explicit approval
 - PR required for any merge to main
+
+**Progress Log (Dec 2025)**:
+- Education pages (FR/EN hub, arena, simulator) now tagged `noindex, nofollow` via meta and `X-Robots-Tag` headers so they stay reachable by URL but out of search until we replace `/investors/portfolio-simulator`; no other site pages touched.
 
 ---
 
@@ -990,6 +997,13 @@ const EDUCATION_EVENTS = {
 };
 ```
 
+## Data Cohesion & UX Improvements (Next)
+- **Make trades/data real**: Derive trade tape, action vignettes, and dialogue tone from actual allocation deltas/returns in the arena timeline (not synthetic); compute monthly returns as ratios instead of total-return diffs.
+- **Benchmark context**: Add benchmark/bot overlays in simulator charts + delta callouts (e.g., vs SPY and Pari) so users see relative performance, not just absolute metrics.
+- **Compliance & analytics**: Add the first-visit compliance gate + sticky ribbon across education pages; instrument GA4 events for play/pause, event jumps, chat sends, slider apply, template clicks, and tutorial completions.
+- **Cache + resilience**: Regenerate `arena-timeline.json` whenever portfolio caches refresh; show skeleton/error states when `/api/arena/timeline` is unavailable; add smoke tests for cache presence.
+- **Accessibility & motion**: Add focus trapping for overlays, `prefers-reduced-motion` fallbacks for typing/hover effects, and ensure sliders/buttons meet 44px touch targets on petit mobile.
+
 ---
 
 ## 10. Phased Implementation
@@ -999,9 +1013,10 @@ const EDUCATION_EVENTS = {
 
 - [x] Create `education.html`, `education-arena.html`, `education-simulator.html`
 - [x] Implement mobile-first layouts with CSS (education.css)
-- [x] Add chat input components (UI live for simulator; arena chat pilot now wired to backend)
-- [ ] Create bot persona assets (avatars, colors)
-- [ ] Add compliance ribbon and gate modal
+- [x] Add chat input components (floating input + side panel) with shared session history
+- [ ] Create bot persona visual assets (SVG avatars/illustrations)
+- [x] Add compliance ribbon on education pages
+- [ ] Add first-visit compliance gate modal
 - [x] Wire navigation between pages
 - [x] Add FR/EN translations for all static text
 
@@ -1010,36 +1025,38 @@ const EDUCATION_EVENTS = {
 ### Phase 2: Arena Core (Week 3-4)
 **Goal**: Functional arena with historical replay
 
-- [ ] Build `arenaTimelineService.js` with pre-computed data
-- [ ] Implement Chart.js timeline visualization
-- [ ] Create leaderboard component with animations
-- [ ] Build trade tape with slide-in entries
-- [ ] Add bot dialogue panel with typing effect
-- [ ] Implement auto-play and manual scrubbing
-- [ ] Connect arena chatbot for Q&A
+- [x] Build `arenaTimelineService.js` with pre-computed data (from portfolio cache) + disk cache
+- [x] Implement Chart.js timeline visualization with playback/scrubbing + event markers
+- [x] Create leaderboard component with animations
+- [x] Build trade tape with slide-in entries (currently synthetic actions)
+- [x] Add bot dialogue panel with typing effect
+- [x] Implement auto-play and manual scrubbing
+- [x] Connect arena chatbot for Q&A (context metadata + session chat history)
+- [ ] Tie trade/vignette/dialogue copy to actual allocation deltas for data fidelity
 
 **Deliverable**: Users can watch bots trade through history
 
 ### Phase 3: Simulator Chat (Week 5-6)
 **Goal**: Functional strategy builder via chat
 
-- [ ] Build `strategyBuilderService.js` with NLP mapping
-- [ ] Extend chat controller with simulator context
-- [ ] Create strategy suggestion UI
-- [ ] Build custom mix slider interface
-- [ ] Implement instant backtest visualization
-- [ ] Add comparison mode (mix vs benchmark)
+- [x] Build `strategyBuilderService.js` with NLP heuristics
+- [x] Extend chat controller with simulator context + metadata injection
+- [x] Create strategy suggestion UI (templates, chips, suggestions in chat)
+- [x] Build custom mix slider interface
+- [x] Implement instant backtest visualization (via `/api/portfolio/custom-allocation`)
+- [ ] Add comparison mode (mix vs benchmark/bots overlay)
+- [ ] Add education analytics for builder interactions
 
 **Deliverable**: Users can build strategies via natural language
 
 ### Phase 4: Tutorials & Gamification (Week 7-8)
 **Goal**: Complete learning experience
 
-- [ ] Build spotlight/tooltip tutorial system
-- [ ] Implement 6 arena lessons + 5 simulator lessons
+- [x] Build spotlight/tooltip tutorial system (hub + arena + simulator overlays)
+- [ ] Implement 6 arena lessons + 5 simulator lessons (current overlays are intro-only)
 - [ ] Create achievement system with storage
 - [ ] Add progress tracking UI
-- [ ] Implement "time travel to events" feature
+- [x] Implement "time travel to events" feature (event buttons + timeline markers)
 - [ ] Add prediction mode for arena
 
 **Deliverable**: Full gamified learning journey

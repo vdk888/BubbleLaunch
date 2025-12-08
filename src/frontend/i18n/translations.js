@@ -3457,10 +3457,10 @@ const translations = {
     },
     {
       icon: "🤖",
-      title_en: "I Do The Work",
-      title_fr: "Je fais le travail",
-      desc_en: "You don't need to learn finance - I handle everything",
-      desc_fr: "Vous n'avez pas besoin d'apprendre la finance - je gère tout"
+      title_en: "Your Personal Asset Manager",
+      title_fr: "Votre gestionnaire d'actifs personnel",
+      desc_en: "I do what an expensive advisor does - but you keep the decision power",
+      desc_fr: "Je fais ce qu'un conseiller coûteux fait - mais vous gardez le pouvoir de décision"
     }
   ],
   "beginner.message2.bot.closing": {
@@ -3472,8 +3472,8 @@ const translations = {
     fr: "Oui, mais je ne veux pas perdre d'argent. Tu peux être précis sur ce que tu investirais exactement ? Et c'est risqué à quel point ?"
   },
   "beginner.message4.bot.intro": {
-    en: "Great question - I want you to feel 100% comfortable! Here's exactly what I recommend for you:",
-    fr: "Excellente question - je veux que vous vous sentiez 100% à l'aise ! Voici exactement ce que je recommande pour vous :"
+    en: "Here's exactly what I'd invest in for you:",
+    fr: "Voici exactement ce que j'investirais pour vous :"
   },
   "beginner.message4.bot.portfolio_proposal": {
     en: "Your Proposed Portfolio",
@@ -3528,36 +3528,26 @@ const translations = {
   "beginner.message4.bot.risk_stats": [
     {
       icon: "✅",
-      stat_en: "Returned 6.5% per year on average (your €50k would have grown to €178k!)",
-      stat_fr: "A retourné 6,5% par an en moyenne (vos 50 000€ auraient crû à 178 000€ !)"
+      stat_en: "Average return: 6.5% per year",
+      stat_fr: "Rendement moyen : 6,5% par an"
     },
     {
       icon: "✅",
-      stat_en: "Even in 2008 crash, only lost -12% (vs -37% for stocks alone)",
-      stat_fr: "Même lors du crash de 2008, n'a perdu que -12% (vs -37% pour les actions seules)"
-    },
-    {
-      icon: "✅",
-      stat_en: "Recovered within 8 months every time",
-      stat_fr: "S'est rétabli en 8 mois à chaque fois"
-    },
-    {
-      icon: "✅",
-      stat_en: "Much safer than putting everything in stocks or crypto",
-      stat_fr: "Beaucoup plus sûr que de mettre tout en actions ou crypto"
+      stat_en: "Worst year (2008 crash): only -12% loss vs -37% for stocks alone",
+      stat_fr: "Pire année (crash 2008) : seulement -12% de perte vs -37% pour les actions seules"
     }
   ],
   "beginner.message4.bot.final_note": {
-    en: "I'm designed to be extra careful with your money - safety first, then growth. This isn't gambling, it's proven diversification that's protected millions of people's savings.",
-    fr: "Je suis conçue pour être très prudente avec votre argent - la sécurité d'abord, puis la croissance. Ce n'est pas du jeu, c'est une diversification éprouvée qui a protégé l'épargne de millions de personnes."
+    en: "This is proven diversification - safety first, then growth.",
+    fr: "C'est une diversification éprouvée - la sécurité d'abord, puis la croissance."
   },
   "beginner.message5.user": {
     en: "That actually sounds reasonable! But who manages all this? Do I need to watch the markets every day? I don't know how to do that...",
     fr: "En fait ça me semble raisonnable ! Mais qui gère tout ça ? Je dois surveiller les marchés tous les jours ? Je ne sais pas faire ça..."
   },
   "beginner.message6.bot.intro": {
-    en: "This is the best part - you do NOTHING! That's literally why I exist. Let me explain exactly what I do for you automatically:",
-    fr: "C'est la meilleure partie - vous ne faites RIEN ! C'est littéralement pour ça que j'existe. Laissez-moi expliquer exactement ce que je fais pour vous automatiquement :"
+    en: "Once you approve a strategy, I handle the daily execution. Here's what that means:",
+    fr: "Une fois que vous approuvez une stratégie, je gère l'exécution quotidienne. Voici ce que cela signifie :"
   },
   "beginner.message6.bot.checklist_title": {
     en: "What I Handle For You (Every Single Day)",
@@ -3627,46 +3617,32 @@ const translations = {
     fr: "Wow, ok c'est vraiment parfait pour moi ! Une dernière chose - et si j'ai besoin de mon argent en urgence ? Je peux le récupérer vite ?"
   },
   "beginner.message8.bot.intro": {
-    en: "Absolutely - this isn't locked away! Here's how it works:",
-    fr: "Absolument - ce n'est pas bloqué ! Voici comment ça marche :"
+    en: "Important: your money stays in YOUR broker account (like Interactive Brokers or Saxo). Bubble never holds your assets - I just send instructions to buy/sell. You keep full control.",
+    fr: "Important : votre argent reste dans VOTRE compte courtier (comme Interactive Brokers ou Saxo). Bubble ne détient jamais vos actifs - j'envoie juste des instructions d'achat/vente. Vous gardez le contrôle total."
   },
   "beginner.message8.bot.liquidity": {
-    en: "Liquidity Explained",
-    fr: "Liquidité expliquée"
+    en: "About withdrawals:",
+    fr: "Concernant les retraits :"
   },
   "beginner.message8.bot.liquidity_items": [
     {
-      icon: "💵",
-      title_en: "Your 5% cash (€2,500)",
-      title_fr: "Vos 5% d'argent (2 500€)",
-      desc_en: "Already available instantly in your broker account",
-      desc_fr: "Déjà disponible instantanément dans votre compte courtier"
-    },
-    {
       icon: "⚡",
-      title_en: "Bonds & stocks",
-      title_fr: "Obligations et actions",
-      desc_en: "Can be sold any business day, money in your account within 2-3 days",
-      desc_fr: "Peuvent être vendus n'importe quel jour ouvrable, argent dans votre compte en 2-3 jours"
+      title_en: "Quick access",
+      title_fr: "Accès rapide",
+      desc_en: "Sell any asset and get cash in 2-3 business days",
+      desc_fr: "Vendez n'importe quel actif et récupérez l'argent en 2-3 jours ouvrables"
     },
     {
       icon: "🚫",
       title_en: "No penalties",
       title_fr: "Pas de pénalités",
-      desc_en: "Unlike retirement accounts, you can withdraw anytime with no fees",
-      desc_fr: "Contrairement aux comptes de retraite, vous pouvez retirer à tout moment sans frais"
-    },
-    {
-      icon: "📞",
-      title_en: "Emergency mode",
-      title_fr: "Mode urgence",
-      desc_en: "If you need money urgently, just tell me and I'll start selling the safest assets first",
-      desc_fr: "Si vous avez besoin d'argent en urgence, dites-le moi et je commencerai à vendre les actifs les plus sûrs d'abord"
+      desc_en: "Withdraw anytime with no fees (unlike retirement accounts)",
+      desc_fr: "Retirez à tout moment sans frais (contrairement aux comptes retraite)"
     }
   ],
   "beginner.message8.bot.liquidity_reassurance": {
-    en: "Think of it like a high-yield savings account, except the money is working harder for you. It's liquid, just not instant like a checking account.",
-    fr: "Pensez-y comme un compte d'épargne à haut rendement, sauf que l'argent fonctionne plus dur pour vous. C'est liquide, juste pas instantané comme un compte courant."
+    en: "Your money is always accessible - just not instant like a checking account.",
+    fr: "Votre argent est toujours accessible - juste pas instantané comme un compte courant."
   },
   "beginner.message8.bot.timeline_title": {
     en: "What Happens Next",
@@ -3674,36 +3650,33 @@ const translations = {
   },
   "beginner.message8.bot.timeline_steps": [
     {
-      step: "Step 1 - Today (Right Now)",
-      step_fr: "Étape 1 - Aujourd'hui (Maintenant)",
+      step: "Step 1 - See the backtest",
+      step_fr: "Étape 1 - Voir le backtest",
       items: [
-        { icon: "✅", text_en: "I create your personalized portfolio plan", text_fr: "Je crée votre plan de portefeuille personnalisé" },
-        { icon: "✅", text_en: "I generate a backtest report (shows how this would have performed over 20 years)", text_fr: "Je génère un rapport de backtest (montre comment cela aurait fonctionné au cours des 20 dernières années)" },
-        { icon: "✅", text_en: "You review and approve", text_fr: "Vous révisez et approuvez" }
+        { icon: "📊", text_en: "A backtest = simulation using real historical data (20 years)", text_fr: "Un backtest = simulation avec des données historiques réelles (20 ans)" },
+        { icon: "✅", text_en: "See exactly how this strategy would have performed", text_fr: "Voyez exactement comment cette stratégie aurait performé" }
       ]
     },
     {
-      step: "Step 2 - Connect Your Broker (5 minutes)",
-      step_fr: "Étape 2 - Connectez votre courtier (5 minutes)",
+      step: "Step 2 - Connect your broker",
+      step_fr: "Étape 2 - Connecter votre courtier",
       items: [
-        { icon: "🔗", text_en: "You connect your broker account (IBKR, Alpaca, or Saxo) to Bubble", text_fr: "Vous connectez votre compte courtier (IBKR, Alpaca ou Saxo) à Bubble" },
-        { icon: "🔐", text_en: "This is secure API connection - I can place orders but never withdraw money", text_fr: "C'est une connexion API sécurisée - je peux placer des ordres mais jamais retirer d'argent" },
-        { icon: "💡", text_en: "Don't have a broker yet? No problem! I'll guide you step-by-step to open one (takes 10 minutes)", text_fr: "Vous n'avez pas encore de courtier ? Pas de problème ! Je vous guiderai étape par étape pour en ouvrir un (prend 10 minutes)" }
+        { icon: "🔗", text_en: "Link your broker account (IBKR, Alpaca, or Saxo)", text_fr: "Reliez votre compte courtier (IBKR, Alpaca ou Saxo)" },
+        { icon: "🔐", text_en: "Secure API - I can place orders but never withdraw money", text_fr: "API sécurisée - je peux placer des ordres mais jamais retirer d'argent" }
       ]
     },
     {
-      step: "Step 3 - Tomorrow Morning",
-      step_fr: "Étape 3 - Demain matin",
+      step: "Step 3 - Go live",
+      step_fr: "Étape 3 - Passer en live",
       items: [
-        { icon: "🚀", text_en: "First investments executed automatically at market open", text_fr: "Premiers investissements exécutés automatiquement à l'ouverture du marché" },
-        { icon: "📊", text_en: "Your portfolio goes live", text_fr: "Votre portefeuille devient actif" },
-        { icon: "🔄", text_en: "Automatic daily management starts", text_fr: "La gestion quotidienne automatique commence" }
+        { icon: "🚀", text_en: "First investments executed at market open", text_fr: "Premiers investissements exécutés à l'ouverture du marché" },
+        { icon: "🔄", text_en: "Automatic management starts", text_fr: "Gestion automatique commence" }
       ]
     }
   ],
   "beginner.message8.bot.closing": {
-    en: "Most people have their broker already set up, but if you don't, I'll walk you through it like I'm right there with you. The whole process takes 15 minutes total. Want to see your personalized backtest report first?",
-    fr: "La plupart des gens ont déjà configuré leur courtier, mais si ce n'est pas le cas, je vous guiderai comme si j'étais avec vous. Le processus entier prend 15 minutes au total. Voulez-vous d'abord voir votre rapport de backtest personnalisé ?"
+    en: "Want to see the backtest first?",
+    fr: "Voulez-vous d'abord voir le backtest ?"
   },
   "beginner.message9.user": {
     en: "Yes! Show me the backtest. And then yes, let's do this!",
@@ -3907,6 +3880,41 @@ const translations = {
     fr: "ChatGPT est un co-pilote. Bubble est votre pilote automatique complet. Vous parlez, il construit, exécute et rééquilibre—24h/24."
   },
 
+  // ========== BEGINNER CONCLUSION (user thanks + bot closing) ==========
+  "beginner.message12.user": {
+    en: "This is exactly what I was looking for. Let's do it!",
+    fr: "C'est exactement ce que je cherchais. Allons-y !"
+  },
+  "beginner.message13.bot.intro": {
+    en: "Excellent! I'm sending you an email right now with simple instructions to connect your broker account. It takes about 5 minutes.",
+    fr: "Excellent ! Je vous envoie un email maintenant avec les instructions simples pour connecter votre compte courtier. Ça prend environ 5 minutes."
+  },
+  "beginner.message13.bot.next_steps": {
+    en: "What happens next:",
+    fr: "Les prochaines étapes :"
+  },
+  "beginner.message13.bot.steps": [
+    {
+      icon: "1️⃣",
+      step_en: "Check your email and follow the broker connection link",
+      step_fr: "Consultez votre email et suivez le lien de connexion courtier"
+    },
+    {
+      icon: "2️⃣",
+      step_en: "Approve the portfolio I've designed for you",
+      step_fr: "Approuvez le portefeuille que j'ai conçu pour vous"
+    },
+    {
+      icon: "3️⃣",
+      step_en: "Tomorrow morning, your first investments will be executed automatically",
+      step_fr: "Demain matin, vos premiers investissements seront exécutés automatiquement"
+    }
+  ],
+  "beginner.message13.bot.closing": {
+    en: "I'm here 24/7 if you have any questions. Welcome to Bubble! 🛡️",
+    fr: "Je suis là 24h/24 si vous avez des questions. Bienvenue chez Bubble ! 🛡️"
+  },
+
   // ========== MESSAGE 2.5 - ChatGPT DIFFERENTIATION (EARLY, after research) ==========
   "workflow.message2_5.user": {
     en: "How is Bubble different from ChatGPT?",
@@ -3921,12 +3929,12 @@ const translations = {
     fr: "Avec ChatGPT : Vous demandez, il conseille, vous exécutez manuellement.\nAvec Bubble : Vous demandez, il recherche, teste, exécute et rééquilibre—automatiquement."
   },
   "workflow.message2_5.bot.who_for": {
-    en: "Bubble is perfect if you want to delegate the heavy lifting: investment research, strategy optimization, trade execution—everything. You just need to connect your broker account, and Bubble handles the rest.",
-    fr: "Bubble est parfait si vous voulez déléguer le gros du travail : recherche d'investissement, optimisation de stratégie, exécution des transactions—tout. Il suffit de connecter votre compte courtier, et Bubble gère le reste."
+    en: "You approve the strategy, then you can delegate execution to me - or review each trade yourself. Either way, you're in control.",
+    fr: "Vous approuvez la stratégie, puis vous pouvez me déléguer l'exécution - ou examiner chaque transaction vous-même. Dans tous les cas, vous gardez le contrôle."
   },
   "workflow.message2_5.bot.closing": {
-    en: "So while ChatGPT is your thinking partner, Bubble is your execution partner. Let me show you how.",
-    fr: "Donc tandis que ChatGPT est votre partenaire de réflexion, Bubble est votre partenaire d'exécution. Laisse-moi te montrer comment."
+    en: "Think of me as your personal asset manager - I do the daily work, but you make the decisions.",
+    fr: "Voyez-moi comme votre gestionnaire d'actifs personnel - je fais le travail quotidien, mais vous prenez les décisions."
   },
 
   // ========== MESSAGE 5.5 - BROKER ACCOUNT INTEGRATION (after backtest confirmation) ==========
@@ -3969,8 +3977,14 @@ const translations = {
     }
   ],
   "workflow.message5_5.bot.delegation_note": {
-    en: "This is perfect for beginners who want to delegate the work but stay informed. If you prefer to make all decisions yourself, you can always toggle automation off.",
-    fr: "C'est parfait pour les débutants qui veulent déléguer le travail mais rester informés. Si vous préférez prendre toutes les décisions vous-même, vous pouvez toujours désactiver l'automatisation."
+    en: "You make the decisions, I handle the execution. You can review every trade before it happens, or let me execute automatically based on rules you've approved.",
+    fr: "Vous prenez les décisions, je gère l'exécution. Vous pouvez revoir chaque transaction avant qu'elle n'ait lieu, ou me laisser exécuter automatiquement selon les règles que vous avez approuvées."
+  },
+
+  // Message 6: User confirms execution setup
+  "workflow.message6.user": {
+    en: "Got it. Let's set it up with automatic execution.",
+    fr: "Compris. Configurons-le avec l'exécution automatique."
   },
 
   // ========== NEW PRICING CALLOUT FOR INTERMEDIATE DEMO (message 6 enhance) ==========
@@ -3997,25 +4011,29 @@ const translations = {
       icon: "⚙️",
       title_en: "Core Semiconductor Exposure",
       title_fr: "Exposition principale aux semi-conducteurs",
-      desc_en: "Build core exposure through semiconductor and tech ETFs (SMH, XLK), which offer liquid, diversified access to the semiconductor ecosystem across foundry leaders (TSMC) and fabless giants (NVIDIA, AMD)."
+      desc_en: "Build core exposure through semiconductor and tech ETFs (SMH, XLK), which offer liquid, diversified access to the semiconductor ecosystem across foundry leaders (TSMC) and fabless giants (NVIDIA, AMD).",
+      desc_fr: "Construisez une exposition de base via les ETFs semiconducteurs et tech (SMH, XLK), qui offrent un accès liquide et diversifié à l'écosystème des semi-conducteurs, des leaders des fonderies (TSMC) aux géants fabless (NVIDIA, AMD)."
     },
     {
       icon: "🛡️",
       title_en: "Defensive Asset Allocation",
       title_fr: "Allocation d'actifs défensifs",
-      desc_en: "Include defensive allocations in bonds (IEF) and other stabilizing assets to reduce portfolio volatility during market corrections while maintaining long-term growth exposure."
+      desc_en: "Include defensive allocations in bonds (IEF) and other stabilizing assets to reduce portfolio volatility during market corrections while maintaining long-term growth exposure.",
+      desc_fr: "Incluez des allocations défensives en obligations (IEF) et autres actifs stabilisateurs pour réduire la volatilité du portefeuille lors des corrections de marché tout en maintenant une exposition à la croissance long terme."
     },
     {
       icon: "🔄",
       title_en: "Sector Rotation",
       title_fr: "Rotation sectorielle",
-      desc_en: "Rotate allocations across sector ETFs (semiconductors, tech, financials) based on momentum and valuation signals, capturing diversification benefits without timing-dependent trades."
+      desc_en: "Rotate allocations across sector ETFs (semiconductors, tech, financials) based on momentum and valuation signals, capturing diversification benefits without timing-dependent trades.",
+      desc_fr: "Faites tourner les allocations entre les ETFs sectoriels (semiconducteurs, tech, financières) selon les signaux de momentum et de valorisation, capturant les bénéfices de la diversification sans trades dépendants du timing."
     },
     {
       icon: "📊",
       title_en: "Risk-Adjusted Optimization",
       title_fr: "Optimisation ajustée au risque",
-      desc_en: "Monthly rebalancing guided by Sortino ratio and volatility metrics, targeting best risk-adjusted returns while maintaining a disciplined, long-only framework."
+      desc_en: "Monthly rebalancing guided by Sortino ratio and volatility metrics, targeting best risk-adjusted returns while maintaining a disciplined, long-only framework.",
+      desc_fr: "Rééquilibrage mensuel guidé par le ratio Sortino et les métriques de volatilité, ciblant les meilleurs rendements ajustés au risque tout en maintenant un cadre discipliné, long-only."
     }
   ],
   "expert.message2.bot.closing": {
@@ -4081,19 +4099,22 @@ const translations = {
       date: "2022-2023 Correction",
       smh_loss: "-32.4%",
       strategy_loss: "-18.7%",
-      hedge_benefit: "Hedges absorbed -13.7% of downside"
+      hedge_benefit_en: "Hedges absorbed -13.7% of downside",
+      hedge_benefit_fr: "Les hedges ont absorbé -13,7% de la baisse"
     },
     {
       date: "2023-2024 Rebound",
       smh_gain: "+56.2%",
       strategy_gain: "+48.1%",
-      note: "Lower hedging drag allowed participation in 86% of upside"
+      note_en: "Lower hedging drag allowed participation in 86% of upside",
+      note_fr: "Un drag de hedging réduit a permis de participer à 86% de la hausse"
     },
     {
       date: "Recent Volatility (Oct 2024)",
       smh_dd: "-8.3% daily swing",
       strategy_dd: "-4.1% daily swing",
-      note: "Sortino-optimized positioning reduced downside by 50%"
+      note_en: "Sortino-optimized positioning reduced downside by 50%",
+      note_fr: "Le positionnement optimisé Sortino a réduit la baisse de 50%"
     }
   ],
   "expert.message4.bot.closing": {
@@ -4148,22 +4169,28 @@ const translations = {
   },
   "expert.message6.bot.black_swan_events": [
     {
-      event: "COVID-19 Crash (March 2020)",
+      event_en: "COVID-19 Crash (March 2020)",
+      event_fr: "Crash COVID-19 (Mars 2020)",
       market_loss: "-34.2% (S&P 500)",
       strategy: "-12.1%",
-      defense: "Diversified defensive allocations (bonds, cash) reduced downside by 65%. Recovered by August."
+      defense_en: "Diversified defensive allocations (bonds, cash) reduced downside by 65%. Recovered by August.",
+      defense_fr: "Les allocations défensives diversifiées (obligations, cash) ont réduit la baisse de 65%. Récupération en août."
     },
     {
-      event: "Fed Taper Tantrum (Feb 2018)",
+      event_en: "Fed Taper Tantrum (Feb 2018)",
+      event_fr: "Fed Taper Tantrum (Fév 2018)",
       market_loss: "-8.7%",
       strategy: "-2.1%",
-      defense: "Volatility-responsive allocations with low correlation assets protected portfolio. Full recovery by Q2."
+      defense_en: "Volatility-responsive allocations with low correlation assets protected portfolio. Full recovery by Q2.",
+      defense_fr: "Les allocations réactives à la volatilité avec des actifs à faible corrélation ont protégé le portefeuille. Récupération complète au Q2."
     },
     {
-      event: "Recent Correction (Aug 2024)",
+      event_en: "Recent Correction (Aug 2024)",
+      event_fr: "Correction récente (Août 2024)",
       market_loss: "-6.2%",
       strategy: "-1.8%",
-      defense: "Sortino-optimized positioning reduced downside by 71%. Rebalancing signals kept you defensive at the right moment."
+      defense_en: "Sortino-optimized positioning reduced downside by 71%. Rebalancing signals kept you defensive at the right moment.",
+      defense_fr: "Le positionnement optimisé Sortino a réduit la baisse de 71%. Les signaux de rééquilibrage vous ont gardé défensif au bon moment."
     }
   ],
   "expert.message6.bot.closing": {
@@ -4283,25 +4310,29 @@ const translations = {
       source: "Diversification Premium",
       source_fr: "Prime de diversification",
       alpha: "+1.5%",
-      explanation: "Semiconductor sector alone (SMH) has 35%+ volatility. Adding bonds (IEF) and tech (XLK) reduces volatility to ~20% while maintaining 80%+ of upside. Lower volatility = faster compounding."
+      explanation_en: "Semiconductor sector alone (SMH) has 35%+ volatility. Adding bonds (IEF) and tech (XLK) reduces volatility to ~20% while maintaining 80%+ of upside. Lower volatility = faster compounding.",
+      explanation_fr: "Le secteur des semi-conducteurs seul (SMH) a 35%+ de volatilité. Ajouter des obligations (IEF) et tech (XLK) réduit la volatilité à ~20% tout en maintenant 80%+ du potentiel haussier. Volatilité plus basse = composition plus rapide."
     },
     {
       source: "Sector Rotation (Valuation-based)",
       source_fr: "Rotation sectorielle (basée sur la valorisation)",
       alpha: "+1.2%",
-      explanation: "Monthly rebalancing buys underperforming sectors at lower valuations, sells outperformers. Captures mean reversion without timing—disciplined value capture."
+      explanation_en: "Monthly rebalancing buys underperforming sectors at lower valuations, sells outperformers. Captures mean reversion without timing—disciplined value capture.",
+      explanation_fr: "Le rééquilibrage mensuel achète les secteurs sous-performants à des valorisations plus basses, vend les surperformants. Capture la réversion à la moyenne sans timing—capture de valeur disciplinée."
     },
     {
       source: "Sortino Optimization",
       source_fr: "Optimisation Sortino",
       alpha: "+1.0%",
-      explanation: "Downside volatility-targeting prevents panic selling during drawdowns. Reduces recovery time and locks in higher compounding returns over the cycle."
+      explanation_en: "Downside volatility-targeting prevents panic selling during drawdowns. Reduces recovery time and locks in higher compounding returns over the cycle.",
+      explanation_fr: "Le ciblage de la volatilité baissière empêche les ventes de panique pendant les drawdowns. Réduit le temps de récupération et verrouille des rendements composés plus élevés sur le cycle."
     },
     {
       source: "Dividend Reinvestment & Tax Efficiency",
       source_fr: "Réinvestissement des dividendes et efficacité fiscale",
       alpha: "+0.5%",
-      explanation: "Automatic dividend reinvestment captures compounding. Tax-loss harvesting in down months offsets gains. Net benefit: ~0.5% in realistic conditions."
+      explanation_en: "Automatic dividend reinvestment captures compounding. Tax-loss harvesting in down months offsets gains. Net benefit: ~0.5% in realistic conditions.",
+      explanation_fr: "Le réinvestissement automatique des dividendes capture la composition. La récolte de pertes fiscales dans les mois de baisse compense les gains. Bénéfice net : ~0,5% en conditions réalistes."
     }
   ],
   "expert.message12.bot.alpha_caveat": {
@@ -4345,6 +4376,46 @@ const translations = {
   "expert.message13.bot.ps": {
     en: "P.S. You can pause the strategy anytime, adjust the sector concentration (SMH weighting from 40-100%), modify hedge ratios, or ask questions about execution. Full transparency on all operations.",
     fr: "P.S. Vous pouvez mettre la stratégie en pause à tout moment, ajuster la concentration sectorielle (pondération SMH de 40-100%), modifier les ratios de couverture, ou poser des questions sur l'exécution. Transparence complète sur toutes les opérations."
+  },
+
+  // ========== EXPERT CONCLUSION (user thanks + bot closing) ==========
+  "expert.message14.user": {
+    en: "The thesis is solid and the risk parameters match my profile. Let's start with paper trading for 2 weeks, then go live.",
+    fr: "La thèse est solide et les paramètres de risque correspondent à mon profil. Commençons avec le paper trading pendant 2 semaines, puis passons en live."
+  },
+  "expert.message15.bot.intro": {
+    en: "Excellent approach. Paper trading first is the disciplined way to validate execution before capital deployment.",
+    fr: "Excellente approche. Le paper trading d'abord est la méthode disciplinée pour valider l'exécution avant le déploiement de capital."
+  },
+  "expert.message15.bot.setup": {
+    en: "I'm setting up your paper trading environment now:",
+    fr: "Je configure votre environnement de paper trading maintenant :"
+  },
+  "expert.message15.bot.setup_steps": [
+    {
+      icon: "📧",
+      step_en: "Email sent with broker API connection instructions",
+      step_fr: "Email envoyé avec les instructions de connexion API courtier"
+    },
+    {
+      icon: "📊",
+      step_en: "Paper trading mode activated (no real capital at risk)",
+      step_fr: "Mode paper trading activé (pas de capital réel à risque)"
+    },
+    {
+      icon: "⏰",
+      step_en: "First simulated trades execute tomorrow at market open",
+      step_fr: "Premières transactions simulées exécutées demain à l'ouverture"
+    },
+    {
+      icon: "📈",
+      step_en: "Daily performance reports sent to your dashboard",
+      step_fr: "Rapports de performance quotidiens envoyés à votre dashboard"
+    }
+  ],
+  "expert.message15.bot.closing": {
+    en: "After 2 weeks, we'll review the execution quality together and switch to live trading when you're ready. I'm here for any questions on strategy adjustments or market context. Let's execute this thesis.",
+    fr: "Après 2 semaines, nous examinerons ensemble la qualité d'exécution et passerons en live quand vous serez prêt. Je suis là pour toute question sur les ajustements de stratégie ou le contexte du marché. Exécutons cette thèse."
   },
 
   // Academic & Backtesting Transparency

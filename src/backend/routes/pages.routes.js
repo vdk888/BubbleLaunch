@@ -375,14 +375,17 @@ router.get("/investors/portfolio-simulator", (req, res) => {
  * Education Hub and Sub-pages (French)
  */
 router.get("/investors/education", (req, res) => {
+  res.set("X-Robots-Tag", "noindex, nofollow");
   res.sendFile(path.join(frPagesDir, "investors/education.html"));
 });
 
 router.get("/investors/education/arena", (req, res) => {
+  res.set("X-Robots-Tag", "noindex, nofollow");
   res.sendFile(path.join(frPagesDir, "investors/education/arena.html"));
 });
 
 router.get("/investors/education/simulator", (req, res) => {
+  res.set("X-Robots-Tag", "noindex, nofollow");
   res.sendFile(path.join(frPagesDir, "investors/education/simulator.html"));
 });
 
@@ -412,14 +415,17 @@ router.get("/en/investors/portfolio-simulator", (req, res) => {
  * Education Hub and Sub-pages (English)
  */
 router.get("/en/investors/education", (req, res) => {
+  res.set("X-Robots-Tag", "noindex, nofollow");
   res.sendFile(path.join(enPagesDir, "investors/education.html"));
 });
 
 router.get("/en/investors/education/arena", (req, res) => {
+  res.set("X-Robots-Tag", "noindex, nofollow");
   res.sendFile(path.join(enPagesDir, "investors/education/arena.html"));
 });
 
 router.get("/en/investors/education/simulator", (req, res) => {
+  res.set("X-Robots-Tag", "noindex, nofollow");
   res.sendFile(path.join(enPagesDir, "investors/education/simulator.html"));
 });
 

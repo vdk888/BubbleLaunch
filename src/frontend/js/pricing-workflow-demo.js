@@ -129,6 +129,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  // Calculate dynamic reading delay based on content length and complexity
+  const calculateReadingDelay = (content, hasEnrichedContent = false) => {
+    const baseDelay = 2500;
+    const wordsPerMinute = 200; // Average reading speed
+    const wordCount = content ? content.split(/\s+/).length : 0;
+    const readingTime = (wordCount / wordsPerMinute) * 60 * 1000;
+
+    // Add extra time for enriched content (cards, charts, tables)
+    // More time for complex content with multiple cards/graphs
+    const enrichedBonus = hasEnrichedContent ? 4000 : 0;
+
+    // Minimum 2.5s, maximum 10s for really long/complex messages
+    return Math.min(Math.max(baseDelay, readingTime + enrichedBonus), 10000);
+  };
+
   // Auto-resize textarea as content grows
   const autoResizeTextarea = () => {
     if (!inputField) return;
@@ -323,14 +338,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const strategy = document.createElement('div');
     strategy.style.fontWeight = '600';
     strategy.style.color = '#667eea';
-    strategy.style.marginTop = '0.8rem';
+    strategy.style.marginTop = '0.4rem';
     strategy.textContent = workflowTranslations['workflow.message4.bot.strategy'][currentLanguage];
     card.appendChild(strategy);
 
     const details = document.createElement('div');
     details.style.fontSize = '0.85rem';
     details.style.color = '#444444';
-    details.style.marginTop = '0.6rem';
+    details.style.marginTop = '0.3rem';
     details.style.lineHeight = '1.6';
     details.textContent = workflowTranslations['workflow.message4.bot.details'][currentLanguage];
     card.appendChild(details);
@@ -338,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const metricsHeader = document.createElement('div');
     metricsHeader.style.fontWeight = '600';
     metricsHeader.style.color = '#333333';
-    metricsHeader.style.marginTop = '1rem';
+    metricsHeader.style.marginTop = '0.5rem';
     metricsHeader.textContent = workflowTranslations['workflow.message4.bot.metrics_header'][currentLanguage];
     card.appendChild(metricsHeader);
 
@@ -401,7 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     items.forEach(item => {
       const itemDiv = document.createElement('div');
-      itemDiv.style.padding = '0.6rem 0';
+      itemDiv.style.padding = '0.3rem 0';
       itemDiv.style.borderBottom = '1px solid rgba(102, 126, 234, 0.1)';
       itemDiv.style.fontSize = '0.85rem';
 
@@ -435,8 +450,8 @@ document.addEventListener('DOMContentLoaded', () => {
     allocHeader.style.fontSize = '0.85rem';
     allocHeader.style.fontWeight = '600';
     allocHeader.style.color = '#333333';
-    allocHeader.style.marginTop = '0.8rem';
-    allocHeader.style.marginBottom = '0.8rem';
+    allocHeader.style.marginTop = '0.4rem';
+    allocHeader.style.marginBottom = '0.4rem';
     allocHeader.textContent = workflowTranslations['workflow.message9.bot.allocations'][currentLanguage];
     card.appendChild(allocHeader);
 
@@ -530,7 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg2Bubble.appendChild(closingSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg2IntroText + ' ' + msg2ClosingText, true));
 
     // Message 2.5: User asks about ChatGPT difference
     const msg2_5Text = workflowTranslations['workflow.message2_5.user'][currentLanguage];
@@ -580,7 +595,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg2_5Bubble.appendChild(closingSpan2_5);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg2_5IntroText + ' ' + comparisonText + ' ' + whoForText + ' ' + msg2_5ClosingText, false));
 
     // Message 3: User asks about implementation details (after ChatGPT question)
     const msg3Text = workflowTranslations['workflow.message3.user'][currentLanguage];
@@ -613,7 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg4Bubble.appendChild(conclusionSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg4IntroText + ' ' + msg4ConclusionText, true));
 
     // Message 5: User
     const msg5Text = workflowTranslations['workflow.message5.user'][currentLanguage];
@@ -668,6 +683,12 @@ document.addEventListener('DOMContentLoaded', () => {
     msg5_5Bubble.appendChild(delegationSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    await safeDelay(calculateReadingDelay(msg5_5IntroText + ' ' + delegationText, true));
+
+    // Message 6: User confirms to proceed
+    const msg6UserText = workflowTranslations['workflow.message6.user'][currentLanguage];
+    await typeInInputAndSend(msg6UserText);
+    const { bubble: bubble6User } = addMessage(msg6UserText, true);
     await safeDelay(2500);
 
     // Message 6: Bot with summary (all in one bubble)
@@ -710,7 +731,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg6Bubble.appendChild(msg6ClosingSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg6ConfirmText + ' ' + pricingNoteText + ' ' + msg6ClosingText, true));
 
     // Message 7: System message (Time transition)
     const timeTransition = workflowTranslations['workflow.message7.system'][currentLanguage];
@@ -748,7 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg9Bubble.appendChild(msg9ClosingSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg9CelebrationText + ' ' + msg9ClosingText, true));
 
     // Message 10: User thanks
     const msg10Text = workflowTranslations['workflow.message10.user'][currentLanguage];
@@ -889,20 +910,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const itemsContainer = document.createElement('div');
     itemsContainer.style.display = 'grid';
     itemsContainer.style.gridTemplateColumns = '1fr 1fr';
-    itemsContainer.style.gap = '1rem';
-    itemsContainer.style.marginTop = '1rem';
+    itemsContainer.style.gap = '0.5rem';
+    itemsContainer.style.marginTop = '0.5rem';
 
     items.forEach(item => {
       const itemDiv = document.createElement('div');
-      itemDiv.style.padding = '0.8rem';
+      itemDiv.style.padding = '0.5rem';
       itemDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
-      itemDiv.style.borderRadius = '12px';
+      itemDiv.style.borderRadius = '8px';
       itemDiv.style.borderLeft = '3px solid #667eea';
 
       const title = document.createElement('div');
       title.style.fontWeight = '600';
       title.style.color = '#333333';
-      title.style.marginBottom = '0.4rem';
+      title.style.marginBottom = '0.2rem';
       title.innerHTML = `${item.icon} ${item[`title_${currentLanguage}`]}`;
 
       const desc = document.createElement('div');
@@ -932,21 +953,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const assets = workflowTranslations['beginner.message4.bot.assets'];
     const assetsContainer = document.createElement('div');
-    assetsContainer.style.marginTop = '1rem';
+    assetsContainer.style.marginTop = '0.5rem';
 
     assets.forEach(asset => {
       const assetDiv = document.createElement('div');
-      assetDiv.style.padding = '0.8rem';
-      assetDiv.style.marginBottom = '0.8rem';
+      assetDiv.style.padding = '0.4rem 0.5rem';
+      assetDiv.style.marginBottom = '0.4rem';
       assetDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
-      assetDiv.style.borderRadius = '8px';
+      assetDiv.style.borderRadius = '6px';
       assetDiv.style.borderLeft = '3px solid #667eea';
 
       const nameRow = document.createElement('div');
       nameRow.style.display = 'flex';
       nameRow.style.justifyContent = 'space-between';
       nameRow.style.alignItems = 'center';
-      nameRow.style.marginBottom = '0.4rem';
+      nameRow.style.marginBottom = '0.15rem';
 
       const nameSpan = document.createElement('span');
       nameSpan.style.fontWeight = '600';
@@ -986,7 +1007,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const explDiv = document.createElement('div');
     explDiv.style.fontSize = '0.85rem';
     explDiv.style.color = '#444444';
-    explDiv.style.marginBottom = '1rem';
+    explDiv.style.marginBottom = '0.4rem';
     explDiv.textContent = riskExpl;
     card.appendChild(explDiv);
 
@@ -995,10 +1016,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     stats.forEach(stat => {
       const statDiv = document.createElement('div');
-      statDiv.style.padding = '0.6rem';
-      statDiv.style.marginBottom = '0.6rem';
+      statDiv.style.padding = '0.3rem';
+      statDiv.style.marginBottom = '0.3rem';
       statDiv.style.borderLeft = '3px solid #4CAF50';
-      statDiv.style.paddingLeft = '0.8rem';
+      statDiv.style.paddingLeft = '0.5rem';
       statDiv.style.fontSize = '0.85rem';
       statDiv.style.color = '#333333';
       statDiv.innerHTML = `${stat.icon} ${stat[`stat_${currentLanguage}`]}`;
@@ -1009,13 +1030,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const finalNote = workflowTranslations['beginner.message4.bot.final_note'][currentLanguage];
     const noteDiv = document.createElement('div');
-    noteDiv.style.marginTop = '1rem';
-    noteDiv.style.padding = '0.8rem';
+    noteDiv.style.marginTop = '0.5rem';
+    noteDiv.style.padding = '0.4rem 0.5rem';
     noteDiv.style.backgroundColor = 'rgba(76, 175, 80, 0.1)';
-    noteDiv.style.borderRadius = '8px';
+    noteDiv.style.borderRadius = '6px';
     noteDiv.style.fontSize = '0.85rem';
     noteDiv.style.color = '#2e5c3e';
-    noteDiv.style.lineHeight = '1.5';
+    noteDiv.style.lineHeight = '1.4';
     noteDiv.textContent = finalNote;
     card.appendChild(noteDiv);
 
@@ -1034,26 +1055,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const items = workflowTranslations['beginner.message6.bot.checklist_items'];
     const listContainer = document.createElement('div');
-    listContainer.style.marginTop = '1rem';
+    listContainer.style.marginTop = '0.5rem';
 
     items.forEach((item, index) => {
       const itemDiv = document.createElement('div');
-      itemDiv.style.padding = '0.8rem';
-      itemDiv.style.marginBottom = '0.6rem';
+      itemDiv.style.padding = '0.4rem 0.5rem';
+      itemDiv.style.marginBottom = '0.3rem';
       itemDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
-      itemDiv.style.borderRadius = '8px';
+      itemDiv.style.borderRadius = '6px';
       itemDiv.style.borderLeft = '3px solid #667eea';
 
       const title = document.createElement('div');
       title.style.fontWeight = '600';
       title.style.color = '#333333';
-      title.style.marginBottom = '0.4rem';
+      title.style.marginBottom = '0.15rem';
       title.innerHTML = `${item.icon} ${item[`title_${currentLanguage}`]}`;
 
       const desc = document.createElement('div');
       desc.style.fontSize = '0.8rem';
       desc.style.color = '#666666';
-      desc.style.lineHeight = '1.4';
+      desc.style.lineHeight = '1.3';
       desc.textContent = item[`desc_${currentLanguage}`];
 
       itemDiv.appendChild(title);
@@ -1065,15 +1086,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const example = workflowTranslations['beginner.message6.bot.real_life_example'][currentLanguage];
     const exampleDiv = document.createElement('div');
-    exampleDiv.style.marginTop = '1rem';
-    exampleDiv.style.padding = '0.8rem';
+    exampleDiv.style.marginTop = '0.5rem';
+    exampleDiv.style.padding = '0.4rem 0.5rem';
     exampleDiv.style.backgroundColor = 'rgba(255, 193, 7, 0.1)';
-    exampleDiv.style.borderRadius = '8px';
+    exampleDiv.style.borderRadius = '6px';
     exampleDiv.style.fontSize = '0.85rem';
     exampleDiv.style.color = '#5d4037';
-    exampleDiv.style.lineHeight = '1.5';
+    exampleDiv.style.lineHeight = '1.4';
     exampleDiv.style.borderLeft = '3px solid #FFC107';
-    exampleDiv.style.paddingLeft = '0.8rem';
+    exampleDiv.style.paddingLeft = '0.5rem';
     exampleDiv.textContent = example;
     card.appendChild(exampleDiv);
 
@@ -1092,26 +1113,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const items = workflowTranslations['beginner.message8.bot.liquidity_items'];
     const itemsContainer = document.createElement('div');
-    itemsContainer.style.marginTop = '1rem';
+    itemsContainer.style.marginTop = '0.4rem';
 
     items.forEach(item => {
       const itemDiv = document.createElement('div');
-      itemDiv.style.padding = '0.8rem';
-      itemDiv.style.marginBottom = '0.6rem';
+      itemDiv.style.padding = '0.4rem 0.5rem';
+      itemDiv.style.marginBottom = '0.3rem';
       itemDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
-      itemDiv.style.borderRadius = '8px';
+      itemDiv.style.borderRadius = '6px';
       itemDiv.style.borderLeft = '3px solid #667eea';
 
       const title = document.createElement('div');
       title.style.fontWeight = '600';
       title.style.color = '#333333';
-      title.style.marginBottom = '0.4rem';
+      title.style.marginBottom = '0.15rem';
       title.innerHTML = `${item.icon} ${item[`title_${currentLanguage}`]}`;
 
       const desc = document.createElement('div');
       desc.style.fontSize = '0.8rem';
       desc.style.color = '#666666';
-      desc.style.lineHeight = '1.4';
+      desc.style.lineHeight = '1.3';
       desc.textContent = item[`desc_${currentLanguage}`];
 
       itemDiv.appendChild(title);
@@ -1123,13 +1144,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const reassurance = workflowTranslations['beginner.message8.bot.liquidity_reassurance'][currentLanguage];
     const reassuranceDiv = document.createElement('div');
-    reassuranceDiv.style.marginTop = '1rem';
-    reassuranceDiv.style.padding = '0.8rem';
+    reassuranceDiv.style.marginTop = '0.4rem';
+    reassuranceDiv.style.padding = '0.4rem 0.5rem';
     reassuranceDiv.style.backgroundColor = 'rgba(76, 175, 80, 0.1)';
-    reassuranceDiv.style.borderRadius = '8px';
+    reassuranceDiv.style.borderRadius = '6px';
     reassuranceDiv.style.fontSize = '0.85rem';
     reassuranceDiv.style.color = '#2e5c3e';
-    reassuranceDiv.style.lineHeight = '1.5';
+    reassuranceDiv.style.lineHeight = '1.4';
     reassuranceDiv.textContent = reassurance;
     card.appendChild(reassuranceDiv);
 
@@ -1148,32 +1169,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const steps = workflowTranslations['beginner.message8.bot.timeline_steps'];
     const timelineContainer = document.createElement('div');
-    timelineContainer.style.marginTop = '1rem';
+    timelineContainer.style.marginTop = '0.4rem';
 
     steps.forEach((step, stepIndex) => {
       const stepDiv = document.createElement('div');
-      stepDiv.style.marginBottom = '1rem';
-      stepDiv.style.paddingLeft = '1rem';
+      stepDiv.style.marginBottom = '0.5rem';
+      stepDiv.style.paddingLeft = '0.6rem';
       stepDiv.style.borderLeft = '3px solid #667eea';
       stepDiv.style.position = 'relative';
 
       const stepTitle = document.createElement('div');
       stepTitle.style.fontWeight = '700';
       stepTitle.style.color = '#333333';
-      stepTitle.style.marginBottom = '0.6rem';
-      stepTitle.style.fontSize = '0.95rem';
+      stepTitle.style.marginBottom = '0.25rem';
+      stepTitle.style.fontSize = '0.9rem';
       stepTitle.textContent = step[`step${currentLanguage === 'en' ? '' : '_fr'}`];
       stepDiv.appendChild(stepTitle);
 
       const itemsList = document.createElement('div');
-      itemsList.style.marginLeft = '0.5rem';
+      itemsList.style.marginLeft = '0.3rem';
 
       step.items.forEach(item => {
         const itemDiv = document.createElement('div');
-        itemDiv.style.padding = '0.4rem 0';
-        itemDiv.style.fontSize = '0.85rem';
+        itemDiv.style.padding = '0.15rem 0';
+        itemDiv.style.fontSize = '0.8rem';
         itemDiv.style.color = '#666666';
-        itemDiv.style.lineHeight = '1.4';
+        itemDiv.style.lineHeight = '1.3';
         itemDiv.innerHTML = `${item.icon} ${item[`text_${currentLanguage}`]}`;
         itemsList.appendChild(itemDiv);
       });
@@ -1200,8 +1221,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const table = document.createElement('table');
     table.className = 'workflow-demo-metrics-table';
     table.style.width = '100%';
-    table.style.marginTop = '0.8rem';
-    table.style.marginBottom = '1rem';
+    table.style.marginTop = '0.5rem';
+    table.style.marginBottom = '0.5rem';
 
     const rows = [
       {
@@ -1237,7 +1258,7 @@ document.addEventListener('DOMContentLoaded', () => {
     rows.forEach(row => {
       const tr = document.createElement('tr');
       const tdLabel = document.createElement('td');
-      tdLabel.style.paddingRight = '1rem';
+      tdLabel.style.paddingRight = '0.6rem';
       tdLabel.style.fontWeight = '600';
       tdLabel.style.color = '#333333';
       tdLabel.textContent = row.label;
@@ -1259,16 +1280,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const compHeader = document.createElement('div');
     compHeader.style.fontWeight = '600';
     compHeader.style.color = '#333333';
-    compHeader.style.marginTop = '1rem';
-    compHeader.style.marginBottom = '0.8rem';
+    compHeader.style.marginTop = '0.5rem';
+    compHeader.style.marginBottom = '0.4rem';
     compHeader.textContent = workflowTranslations['beginner.message10.bot.comparison_title'][currentLanguage];
     card.appendChild(compHeader);
 
     const compContainer = document.createElement('div');
     comparison.forEach(comp => {
       const compDiv = document.createElement('div');
-      compDiv.style.padding = '0.8rem';
-      compDiv.style.marginBottom = '0.6rem';
+      compDiv.style.padding = '0.4rem 0.5rem';
+      compDiv.style.marginBottom = '0.3rem';
       compDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       compDiv.style.borderRadius = '8px';
 
@@ -1293,8 +1314,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const finalNote = workflowTranslations['beginner.message10.bot.final_note'][currentLanguage];
     const noteDiv = document.createElement('div');
-    noteDiv.style.marginTop = '1rem';
-    noteDiv.style.padding = '0.8rem';
+    noteDiv.style.marginTop = '0.5rem';
+    noteDiv.style.padding = '0.4rem 0.5rem';
     noteDiv.style.backgroundColor = 'rgba(76, 175, 80, 0.1)';
     noteDiv.style.borderRadius = '8px';
     noteDiv.style.fontSize = '0.85rem';
@@ -1319,8 +1340,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const pricingRows = workflowTranslations['beginner.message10_5.bot.pricing_rows'];
     const table = document.createElement('table');
     table.style.width = '100%';
-    table.style.marginTop = '1rem';
-    table.style.marginBottom = '1rem';
+    table.style.marginTop = '0.5rem';
+    table.style.marginBottom = '0.5rem';
     table.style.borderCollapse = 'collapse';
 
     const headerRow = document.createElement('tr');
@@ -1329,7 +1350,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const headers = ['Provider', 'Fee Model', 'Annual Cost (€200k)'];
     headers.forEach((h, idx) => {
       const th = document.createElement('th');
-      th.style.padding = '0.8rem';
+      th.style.padding = '0.4rem';
       th.style.textAlign = idx === 0 ? 'left' : 'center';
       th.style.fontWeight = '700';
       th.style.color = '#333333';
@@ -1344,14 +1365,14 @@ document.addEventListener('DOMContentLoaded', () => {
       tr.style.borderBottom = '1px solid rgba(102, 126, 234, 0.1)';
 
       const tdProvider = document.createElement('td');
-      tdProvider.style.padding = '0.8rem';
+      tdProvider.style.padding = '0.4rem';
       tdProvider.style.fontWeight = '600';
       tdProvider.style.color = '#333333';
       tdProvider.textContent = row[`name_${currentLanguage}`];
       tr.appendChild(tdProvider);
 
       const tdFee = document.createElement('td');
-      tdFee.style.padding = '0.8rem';
+      tdFee.style.padding = '0.4rem';
       tdFee.style.textAlign = 'center';
       tdFee.style.color = '#666666';
       tdFee.style.fontSize = '0.9rem';
@@ -1359,7 +1380,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tr.appendChild(tdFee);
 
       const tdExample = document.createElement('td');
-      tdExample.style.padding = '0.8rem';
+      tdExample.style.padding = '0.4rem';
       tdExample.style.textAlign = 'center';
       tdExample.style.fontWeight = rowIdx === 2 ? '700' : '600';
       tdExample.style.color = rowIdx === 2 ? '#667eea' : '#666666';
@@ -1374,8 +1395,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add savings calculation
     const savingsDiv = document.createElement('div');
-    savingsDiv.style.marginTop = '1rem';
-    savingsDiv.style.padding = '1rem';
+    savingsDiv.style.marginTop = '0.5rem';
+    savingsDiv.style.padding = '0.5rem';
     savingsDiv.style.backgroundColor = 'rgba(76, 175, 80, 0.08)';
     savingsDiv.style.borderRadius = '8px';
     savingsDiv.style.borderLeft = '4px solid #4CAF50';
@@ -1402,7 +1423,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const comparisonItems = workflowTranslations['beginner.message11.bot.comparison_items'];
     const table = document.createElement('table');
     table.style.width = '100%';
-    table.style.marginTop = '1rem';
+    table.style.marginTop = '0.5rem';
     table.style.borderCollapse = 'collapse';
 
     const headerRow = document.createElement('tr');
@@ -1411,7 +1432,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const headers = ['Feature', 'ChatGPT', 'Bubble'];
     headers.forEach((h, idx) => {
       const th = document.createElement('th');
-      th.style.padding = '0.8rem';
+      th.style.padding = '0.4rem 0.5rem';
       th.style.textAlign = idx === 0 ? 'left' : 'center';
       th.style.fontWeight = '700';
       th.style.color = '#333333';
@@ -1426,7 +1447,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tr.style.borderBottom = '1px solid rgba(102, 126, 234, 0.1)';
 
       const tdFeature = document.createElement('td');
-      tdFeature.style.padding = '0.8rem';
+      tdFeature.style.padding = '0.4rem 0.5rem';
       tdFeature.style.fontWeight = '600';
       tdFeature.style.color = '#333333';
       tdFeature.style.fontSize = '0.9rem';
@@ -1434,7 +1455,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tr.appendChild(tdFeature);
 
       const tdChatGPT = document.createElement('td');
-      tdChatGPT.style.padding = '0.8rem';
+      tdChatGPT.style.padding = '0.4rem 0.5rem';
       tdChatGPT.style.textAlign = 'center';
       tdChatGPT.style.color = '#666666';
       tdChatGPT.style.fontSize = '0.9rem';
@@ -1442,7 +1463,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tr.appendChild(tdChatGPT);
 
       const tdBubble = document.createElement('td');
-      tdBubble.style.padding = '0.8rem';
+      tdBubble.style.padding = '0.4rem 0.5rem';
       tdBubble.style.textAlign = 'center';
       tdBubble.style.fontWeight = '600';
       tdBubble.style.color = '#667eea';
@@ -1470,12 +1491,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const steps = workflowTranslations['workflow.message5_5.bot.execution_steps'];
     const stepsContainer = document.createElement('div');
-    stepsContainer.style.marginTop = '1rem';
+    stepsContainer.style.marginTop = '0.5rem';
 
     steps.forEach((step, idx) => {
       const stepDiv = document.createElement('div');
-      stepDiv.style.padding = '1rem';
-      stepDiv.style.marginBottom = '0.8rem';
+      stepDiv.style.padding = '0.6rem';
+      stepDiv.style.marginBottom = '0.5rem';
       stepDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       stepDiv.style.borderRadius = '8px';
       stepDiv.style.borderLeft = '4px solid #667eea';
@@ -1484,7 +1505,7 @@ document.addEventListener('DOMContentLoaded', () => {
       stepNum.style.fontSize = '0.75rem';
       stepNum.style.fontWeight = '700';
       stepNum.style.color = '#667eea';
-      stepNum.style.marginBottom = '0.4rem';
+      stepNum.style.marginBottom = '0.3rem';
       stepNum.style.textTransform = 'uppercase';
       stepNum.textContent = `${step.icon} Step ${idx + 1}`;
       stepDiv.appendChild(stepNum);
@@ -1492,7 +1513,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const title = document.createElement('div');
       title.style.fontWeight = '700';
       title.style.color = '#333333';
-      title.style.marginBottom = '0.6rem';
+      title.style.marginBottom = '0.3rem';
       title.style.fontSize = '0.95rem';
       title.textContent = step[`step_${currentLanguage}`];
       stepDiv.appendChild(title);
@@ -1539,19 +1560,19 @@ document.addEventListener('DOMContentLoaded', () => {
     desc.style.fontSize = '0.85rem';
     desc.style.color = '#444444';
     desc.style.lineHeight = '1.5';
-    desc.style.marginBottom = '1rem';
+    desc.style.marginBottom = '0.5rem';
     desc.textContent = workflowTranslations['academic.disclosure.description'][currentLanguage];
     card.appendChild(desc);
 
     // Formulas list
     const formulas = workflowTranslations['academic.disclosure.formulas'];
     const formulasContainer = document.createElement('div');
-    formulasContainer.style.marginBottom = '1rem';
+    formulasContainer.style.marginBottom = '0.5rem';
 
     formulas.forEach(formula => {
       const formulaDiv = document.createElement('div');
-      formulaDiv.style.marginBottom = '0.8rem';
-      formulaDiv.style.paddingLeft = '0.8rem';
+      formulaDiv.style.marginBottom = '0.4rem';
+      formulaDiv.style.paddingLeft = '0.5rem';
       formulaDiv.style.borderLeft = '3px solid #667eea';
 
       const formulaName = document.createElement('div');
@@ -1578,7 +1599,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dataDiv.style.fontSize = '0.8rem';
     dataDiv.style.color = '#666666';
     dataDiv.style.marginBottom = '0.8rem';
-    dataDiv.style.paddingTop = '0.8rem';
+    dataDiv.style.paddingTop = '0.5rem';
     dataDiv.style.borderTop = '1px solid rgba(102, 126, 234, 0.1)';
     dataDiv.innerHTML = `<strong>Data:</strong> ${workflowTranslations['academic.disclosure.data'][currentLanguage]}`;
     card.appendChild(dataDiv);
@@ -1587,7 +1608,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const metricsDiv = document.createElement('div');
     metricsDiv.style.fontSize = '0.8rem';
     metricsDiv.style.color = '#666666';
-    metricsDiv.style.marginBottom = '0.8rem';
+    metricsDiv.style.marginBottom = '0.5rem';
     metricsDiv.innerHTML = `<strong>Metrics:</strong> ${workflowTranslations['academic.disclosure.metrics'][currentLanguage]}`;
     card.appendChild(metricsDiv);
 
@@ -1640,7 +1661,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg2Bubble.appendChild(closingSpan2);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg2IntroText + ' ' + msg2ClosingText, true));
 
     // Message 3: User
     const msg3Text = workflowTranslations['beginner.message3.user'][currentLanguage];
@@ -1675,7 +1696,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg4Bubble.appendChild(academicCard);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg4IntroText, true));
 
     // Message 5: User
     const msg5Text = workflowTranslations['beginner.message5.user'][currentLanguage];
@@ -1708,7 +1729,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg6Bubble.appendChild(closingSpan6);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg6IntroText + ' ' + msg6ClosingText, true));
 
     // Message 7: User
     const msg7Text = workflowTranslations['beginner.message7.user'][currentLanguage];
@@ -1746,7 +1767,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg8Bubble.appendChild(closingSpan8);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg8IntroText + ' ' + msg8ClosingText, true));
 
     // Message 9: User
     const msg9Text = workflowTranslations['beginner.message9.user'][currentLanguage];
@@ -1790,7 +1811,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg10Bubble.appendChild(psSpan);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg10IntroText + ' ' + msg10ClosingText + ' ' + psText, true));
 
     // Message 10.5: User asks about pricing
     const msg10_5Text = workflowTranslations['beginner.message10_5.user'][currentLanguage];
@@ -1833,7 +1854,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg10_5Bubble.appendChild(closingSpan10_5);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg10_5IntroText + ' ' + whyCheapText + ' ' + msg10_5ClosingText, true));
 
     // Message 11: User asks about ChatGPT difference
     const msg11Text = workflowTranslations['beginner.message11.user'][currentLanguage];
@@ -1866,6 +1887,67 @@ document.addEventListener('DOMContentLoaded', () => {
     msg11Bubble.appendChild(closingSpan11);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    await safeDelay(calculateReadingDelay(msg11IntroText + ' ' + msg11ClosingText, true));
+
+    // Message 12: User confirms to proceed
+    const msg12Text = workflowTranslations['beginner.message12.user'][currentLanguage];
+    await typeInInputAndSend(msg12Text);
+    const { bubble: bubble12 } = addMessage(msg12Text, true);
+    await safeDelay(2500);
+
+    // Message 13: Bot sends closing with next steps
+    const msg13IntroText = workflowTranslations['beginner.message13.bot.intro'][currentLanguage];
+    const { messageDiv: msg13Div, bubble: msg13Bubble } = addMessage('', false);
+
+    const typingIndicator13 = createTypingIndicator();
+    msg13Div.insertBefore(typingIndicator13, msg13Bubble.nextSibling);
+    await safeDelay(2500);
+    typingIndicator13.remove();
+
+    await typeMessage(msg13Bubble, msg13IntroText, 50);
+
+    // Add next steps header
+    msg13Bubble.appendChild(document.createElement('br'));
+    msg13Bubble.appendChild(document.createElement('br'));
+    const nextStepsHeader = document.createElement('div');
+    nextStepsHeader.style.fontWeight = '700';
+    nextStepsHeader.style.color = '#333333';
+    nextStepsHeader.style.marginBottom = '0.8rem';
+    nextStepsHeader.textContent = workflowTranslations['beginner.message13.bot.next_steps'][currentLanguage];
+    msg13Bubble.appendChild(nextStepsHeader);
+
+    // Add steps
+    const steps = workflowTranslations['beginner.message13.bot.steps'];
+    steps.forEach(step => {
+      const stepDiv = document.createElement('div');
+      stepDiv.style.display = 'flex';
+      stepDiv.style.alignItems = 'flex-start';
+      stepDiv.style.marginBottom = '0.6rem';
+      stepDiv.style.paddingLeft = '0.5rem';
+
+      const icon = document.createElement('span');
+      icon.style.marginRight = '0.6rem';
+      icon.textContent = step.icon;
+      stepDiv.appendChild(icon);
+
+      const text = document.createElement('span');
+      text.style.color = '#444444';
+      text.textContent = step[`step_${currentLanguage}`];
+      stepDiv.appendChild(text);
+
+      msg13Bubble.appendChild(stepDiv);
+    });
+
+    // Add final closing
+    msg13Bubble.appendChild(document.createElement('br'));
+    const msg13ClosingText = workflowTranslations['beginner.message13.bot.closing'][currentLanguage];
+    const closingSpan13 = document.createElement('span');
+    closingSpan13.style.color = '#667eea';
+    closingSpan13.style.fontWeight = '700';
+    closingSpan13.textContent = msg13ClosingText;
+    msg13Bubble.appendChild(closingSpan13);
+
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
     // Mark demo as shown
     sessionStorage.setItem(DEMO_SHOWN_KEY, 'true');
@@ -1885,12 +1967,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const layers = workflowTranslations['expert.message2.bot.strategy_layers'];
     const layersContainer = document.createElement('div');
-    layersContainer.style.marginTop = '1rem';
+    layersContainer.style.marginTop = '0.5rem';
 
     layers.forEach((layer, idx) => {
       const layerDiv = document.createElement('div');
-      layerDiv.style.padding = '1rem';
-      layerDiv.style.marginBottom = '0.8rem';
+      layerDiv.style.padding = '0.5rem';
+      layerDiv.style.marginBottom = '0.4rem';
       layerDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       layerDiv.style.borderRadius = '8px';
       layerDiv.style.borderLeft = '4px solid #667eea';
@@ -1907,7 +1989,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const title = document.createElement('div');
       title.style.fontWeight = '700';
       title.style.color = '#333333';
-      title.style.marginBottom = '0.6rem';
+      title.style.marginBottom = '0.3rem';
       title.style.fontSize = '0.95rem';
       title.innerHTML = `${layer.icon} ${layer[`title_${currentLanguage}`]}`;
       layerDiv.appendChild(title);
@@ -1916,7 +1998,7 @@ document.addEventListener('DOMContentLoaded', () => {
       desc.style.fontSize = '0.85rem';
       desc.style.color = '#666666';
       desc.style.lineHeight = '1.5';
-      desc.textContent = layer.desc_en; // Using English description as they're not translated per item
+      desc.textContent = layer[`desc_${currentLanguage}`];
       layerDiv.appendChild(desc);
 
       layersContainer.appendChild(layerDiv);
@@ -1940,28 +2022,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const table = document.createElement('table');
     table.className = 'workflow-demo-metrics-table';
     table.style.width = '100%';
-    table.style.marginTop = '1rem';
+    table.style.marginTop = '0.5rem';
 
     const headerRow = document.createElement('tr');
     const thMetric = document.createElement('th');
     thMetric.style.textAlign = 'left';
     thMetric.style.fontWeight = '700';
     thMetric.style.color = '#333333';
-    thMetric.style.paddingBottom = '0.8rem';
+    thMetric.style.paddingBottom = '0.4rem';
     thMetric.textContent = 'Metric';
 
     const thStrategy = document.createElement('th');
     thStrategy.style.textAlign = 'right';
     thStrategy.style.fontWeight = '700';
     thStrategy.style.color = '#667eea';
-    thStrategy.style.paddingBottom = '0.8rem';
+    thStrategy.style.paddingBottom = '0.4rem';
     thStrategy.textContent = 'Our Strategy';
 
     const thBench = document.createElement('th');
     thBench.style.textAlign = 'right';
     thBench.style.fontWeight = '700';
     thBench.style.color = '#888888';
-    thBench.style.paddingBottom = '0.8rem';
+    thBench.style.paddingBottom = '0.4rem';
     thBench.textContent = 'Benchmark (SMH)';
 
     headerRow.appendChild(thMetric);
@@ -1974,21 +2056,21 @@ document.addEventListener('DOMContentLoaded', () => {
       tr.style.borderTop = '1px solid rgba(102, 126, 234, 0.1)';
 
       const tdMetric = document.createElement('td');
-      tdMetric.style.padding = '0.8rem 0';
+      tdMetric.style.padding = '0.3rem 0';
       tdMetric.style.fontWeight = '600';
       tdMetric.style.color = '#333333';
       tdMetric.style.fontSize = '0.9rem';
       tdMetric.textContent = metric[`metric_${currentLanguage}`];
 
       const tdStrategy = document.createElement('td');
-      tdStrategy.style.padding = '0.8rem 0.8rem 0.8rem 0';
+      tdStrategy.style.padding = '0.3rem 0.4rem 0.3rem 0';
       tdStrategy.style.textAlign = 'right';
       tdStrategy.style.color = '#667eea';
       tdStrategy.style.fontWeight = '700';
       tdStrategy.textContent = metric.strategy;
 
       const tdBench = document.createElement('td');
-      tdBench.style.padding = '0.8rem 0';
+      tdBench.style.padding = '0.3rem 0';
       tdBench.style.textAlign = 'right';
       tdBench.style.color = '#888888';
       tdBench.textContent = metric.benchmark;
@@ -2015,12 +2097,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const scenarios = workflowTranslations['expert.message4.bot.stress_scenarios'];
     const scenariosContainer = document.createElement('div');
-    scenariosContainer.style.marginTop = '1rem';
+    scenariosContainer.style.marginTop = '0.5rem';
 
     scenarios.forEach(scenario => {
       const scDiv = document.createElement('div');
-      scDiv.style.padding = '0.8rem';
-      scDiv.style.marginBottom = '0.8rem';
+      scDiv.style.padding = '0.4rem 0.5rem';
+      scDiv.style.marginBottom = '0.4rem';
       scDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       scDiv.style.borderRadius = '8px';
       scDiv.style.borderLeft = '3px solid #667eea';
@@ -2028,15 +2110,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const periodDiv = document.createElement('div');
       periodDiv.style.fontWeight = '700';
       periodDiv.style.color = '#333333';
-      periodDiv.style.marginBottom = '0.6rem';
+      periodDiv.style.marginBottom = '0.3rem';
       periodDiv.textContent = scenario.date;
       scDiv.appendChild(periodDiv);
 
       const comparisonDiv = document.createElement('div');
       comparisonDiv.style.display = 'grid';
       comparisonDiv.style.gridTemplateColumns = '1fr 1fr';
-      comparisonDiv.style.gap = '0.8rem';
-      comparisonDiv.style.marginBottom = '0.6rem';
+      comparisonDiv.style.gap = '0.4rem';
+      comparisonDiv.style.marginBottom = '0.3rem';
 
       const smhDiv = document.createElement('div');
       smhDiv.innerHTML = `<div style="font-size: 0.75rem; color: #888888; text-transform: uppercase;">SMH</div><div style="font-weight: 700; color: #f44336; font-size: 1rem;">${scenario.smh_loss || scenario.smh_gain || scenario.smh_dd}</div>`;
@@ -2054,10 +2136,10 @@ document.addEventListener('DOMContentLoaded', () => {
       noteDiv.style.fontSize = '0.85rem';
       noteDiv.style.color = '#666666';
       noteDiv.style.fontStyle = 'italic';
-      noteDiv.style.padding = '0.6rem';
+      noteDiv.style.padding = '0.3rem 0.4rem';
       noteDiv.style.backgroundColor = 'rgba(255, 193, 7, 0.1)';
       noteDiv.style.borderRadius = '4px';
-      noteDiv.textContent = scenario.hedge_benefit || scenario.note;
+      noteDiv.textContent = scenario[`hedge_benefit_${currentLanguage}`] || scenario[`note_${currentLanguage}`];
       scDiv.appendChild(noteDiv);
 
       scenariosContainer.appendChild(scDiv);
@@ -2079,12 +2161,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const rules = workflowTranslations['expert.message6.bot.rebalancing_rules'];
     const rulesContainer = document.createElement('div');
-    rulesContainer.style.marginTop = '1rem';
+    rulesContainer.style.marginTop = '0.5rem';
 
     rules.forEach(rule => {
       const ruleDiv = document.createElement('div');
-      ruleDiv.style.padding = '0.8rem';
-      ruleDiv.style.marginBottom = '0.8rem';
+      ruleDiv.style.padding = '0.4rem 0.5rem';
+      ruleDiv.style.marginBottom = '0.4rem';
       ruleDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       ruleDiv.style.borderRadius = '8px';
       ruleDiv.style.borderLeft = '3px solid #667eea';
@@ -2092,7 +2174,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const ruleName = document.createElement('div');
       ruleName.style.fontWeight = '700';
       ruleName.style.color = '#333333';
-      ruleName.style.marginBottom = '0.6rem';
+      ruleName.style.marginBottom = '0.3rem';
       ruleName.innerHTML = `${rule.icon} ${rule[`rule_${currentLanguage}`]}`;
       ruleDiv.appendChild(ruleName);
 
@@ -2122,12 +2204,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const events = workflowTranslations['expert.message6.bot.black_swan_events'];
     const eventsContainer = document.createElement('div');
-    eventsContainer.style.marginTop = '1rem';
+    eventsContainer.style.marginTop = '0.5rem';
+
+    // Labels for bilingual support
+    const marketLabel = currentLanguage === 'fr' ? 'Marché' : 'Market';
+    const strategyLabel = currentLanguage === 'fr' ? 'Stratégie' : 'Strategy';
+    const defenseLabel = currentLanguage === 'fr' ? 'Défense' : 'Defense';
 
     events.forEach(event => {
       const eventDiv = document.createElement('div');
-      eventDiv.style.padding = '1rem';
-      eventDiv.style.marginBottom = '0.8rem';
+      eventDiv.style.padding = '0.5rem';
+      eventDiv.style.marginBottom = '0.4rem';
       eventDiv.style.backgroundColor = 'rgba(244, 67, 54, 0.05)';
       eventDiv.style.borderRadius = '8px';
       eventDiv.style.borderLeft = '3px solid #f44336';
@@ -2135,29 +2222,38 @@ document.addEventListener('DOMContentLoaded', () => {
       const eventTitle = document.createElement('div');
       eventTitle.style.fontWeight = '700';
       eventTitle.style.color = '#d32f2f';
-      eventTitle.style.marginBottom = '0.8rem';
+      eventTitle.style.marginBottom = '0.4rem';
       eventTitle.style.fontSize = '0.95rem';
-      eventTitle.textContent = event.event;
+      eventTitle.textContent = event[`event_${currentLanguage}`];
       eventDiv.appendChild(eventTitle);
 
       const metricsGrid = document.createElement('div');
       metricsGrid.style.display = 'grid';
-      metricsGrid.style.gridTemplateColumns = '1fr 1fr 1fr';
-      metricsGrid.style.gap = '0.8rem';
+      metricsGrid.style.gridTemplateColumns = '1fr 1fr';
+      metricsGrid.style.gap = '0.4rem';
 
       const markets = document.createElement('div');
-      markets.innerHTML = `<div style="font-size: 0.75rem; color: #888888; text-transform: uppercase;">Market</div><div style="font-weight: 700; color: #f44336;">${event.market_loss}</div>`;
+      markets.innerHTML = `<div style="font-size: 0.75rem; color: #888888; text-transform: uppercase;">${marketLabel}</div><div style="font-weight: 700; color: #f44336;">${event.market_loss}</div>`;
       metricsGrid.appendChild(markets);
 
       const strat = document.createElement('div');
-      strat.innerHTML = `<div style="font-size: 0.75rem; color: #667eea; text-transform: uppercase;">Strategy</div><div style="font-weight: 700; color: #667eea;">${event.strategy}</div>`;
+      strat.innerHTML = `<div style="font-size: 0.75rem; color: #667eea; text-transform: uppercase;">${strategyLabel}</div><div style="font-weight: 700; color: #667eea;">${event.strategy}</div>`;
       metricsGrid.appendChild(strat);
 
-      const payout = document.createElement('div');
-      payout.innerHTML = `<div style="font-size: 0.75rem; color: #4caf50; text-transform: uppercase;">Hedge Payout</div><div style="font-weight: 700; color: #4caf50; font-size: 0.85rem;">${event.hedge_payout}</div>`;
-      metricsGrid.appendChild(payout);
-
       eventDiv.appendChild(metricsGrid);
+
+      // Add defense explanation
+      const defenseDiv = document.createElement('div');
+      defenseDiv.style.marginTop = '0.5rem';
+      defenseDiv.style.fontSize = '0.85rem';
+      defenseDiv.style.color = '#666666';
+      defenseDiv.style.fontStyle = 'italic';
+      defenseDiv.style.padding = '0.4rem 0.5rem';
+      defenseDiv.style.backgroundColor = 'rgba(76, 175, 80, 0.1)';
+      defenseDiv.style.borderRadius = '4px';
+      defenseDiv.textContent = event[`defense_${currentLanguage}`];
+      eventDiv.appendChild(defenseDiv);
+
       eventsContainer.appendChild(eventDiv);
     });
 
@@ -2177,12 +2273,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const details = workflowTranslations['expert.message8.bot.execution_details'];
     const detailsContainer = document.createElement('div');
-    detailsContainer.style.marginTop = '1rem';
+    detailsContainer.style.marginTop = '0.5rem';
 
     details.forEach(detail => {
       const detailDiv = document.createElement('div');
-      detailDiv.style.padding = '0.8rem';
-      detailDiv.style.marginBottom = '0.8rem';
+      detailDiv.style.padding = '0.5rem';
+      detailDiv.style.marginBottom = '0.4rem';
       detailDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       detailDiv.style.borderRadius = '8px';
       detailDiv.style.borderLeft = '3px solid #667eea';
@@ -2190,7 +2286,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const title = document.createElement('div');
       title.style.fontWeight = '700';
       title.style.color = '#333333';
-      title.style.marginBottom = '0.6rem';
+      title.style.marginBottom = '0.3rem';
       title.style.fontSize = '0.95rem';
       title.textContent = detail[`component_${currentLanguage}`];
       detailDiv.appendChild(title);
@@ -2209,15 +2305,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const slippageNote = workflowTranslations['expert.message8.bot.real_slippage'][currentLanguage];
     const slippageDiv = document.createElement('div');
-    slippageDiv.style.marginTop = '1rem';
-    slippageDiv.style.padding = '0.8rem';
+    slippageDiv.style.marginTop = '0.5rem';
+    slippageDiv.style.padding = '0.5rem';
     slippageDiv.style.backgroundColor = 'rgba(76, 175, 80, 0.1)';
     slippageDiv.style.borderRadius = '8px';
     slippageDiv.style.fontSize = '0.85rem';
     slippageDiv.style.color = '#2e5c3e';
     slippageDiv.style.lineHeight = '1.5';
     slippageDiv.style.borderLeft = '3px solid #4caf50';
-    slippageDiv.style.paddingLeft = '0.8rem';
+    slippageDiv.style.paddingLeft = '0.5rem';
     slippageDiv.textContent = slippageNote;
     card.appendChild(slippageDiv);
 
@@ -2236,19 +2332,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const steps = workflowTranslations['expert.message10.bot.timeline_steps'];
     const timelineContainer = document.createElement('div');
-    timelineContainer.style.marginTop = '1rem';
+    timelineContainer.style.marginTop = '0.5rem';
 
     steps.forEach((step, stepIndex) => {
       const stepDiv = document.createElement('div');
-      stepDiv.style.marginBottom = '1.2rem';
-      stepDiv.style.paddingLeft = '1rem';
+      stepDiv.style.marginBottom = '0.6rem';
+      stepDiv.style.paddingLeft = '0.6rem';
       stepDiv.style.borderLeft = '3px solid #667eea';
       stepDiv.style.position = 'relative';
 
       const stepTitle = document.createElement('div');
       stepTitle.style.fontWeight = '700';
       stepTitle.style.color = '#333333';
-      stepTitle.style.marginBottom = '0.8rem';
+      stepTitle.style.marginBottom = '0.3rem';
       stepTitle.style.fontSize = '0.95rem';
       stepTitle.textContent = step[`step${currentLanguage === 'en' ? '' : '_fr'}`];
       stepDiv.appendChild(stepTitle);
@@ -2258,7 +2354,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       step.items.forEach(item => {
         const itemDiv = document.createElement('div');
-        itemDiv.style.padding = '0.5rem 0';
+        itemDiv.style.padding = '0.25rem 0';
         itemDiv.style.fontSize = '0.85rem';
         itemDiv.style.color = '#666666';
         itemDiv.style.lineHeight = '1.4';
@@ -2274,15 +2370,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const leverageNote = workflowTranslations['expert.message10.bot.leverage_note'][currentLanguage];
     const leverageDiv = document.createElement('div');
-    leverageDiv.style.marginTop = '1rem';
-    leverageDiv.style.padding = '0.8rem';
+    leverageDiv.style.marginTop = '0.5rem';
+    leverageDiv.style.padding = '0.5rem';
     leverageDiv.style.backgroundColor = 'rgba(255, 193, 7, 0.1)';
     leverageDiv.style.borderRadius = '8px';
     leverageDiv.style.fontSize = '0.85rem';
     leverageDiv.style.color = '#5d4037';
     leverageDiv.style.lineHeight = '1.5';
     leverageDiv.style.borderLeft = '3px solid #FFC107';
-    leverageDiv.style.paddingLeft = '0.8rem';
+    leverageDiv.style.paddingLeft = '0.5rem';
     leverageDiv.textContent = leverageNote;
     card.appendChild(leverageDiv);
 
@@ -2301,12 +2397,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const sources = workflowTranslations['expert.message12.bot.alpha_sources'];
     const sourcesContainer = document.createElement('div');
-    sourcesContainer.style.marginTop = '1rem';
+    sourcesContainer.style.marginTop = '0.5rem';
 
     sources.forEach((src, idx) => {
       const srcDiv = document.createElement('div');
-      srcDiv.style.padding = '0.8rem';
-      srcDiv.style.marginBottom = '0.8rem';
+      srcDiv.style.padding = '0.5rem';
+      srcDiv.style.marginBottom = '0.4rem';
       srcDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       srcDiv.style.borderRadius = '8px';
       srcDiv.style.borderLeft = '3px solid #667eea';
@@ -2315,7 +2411,7 @@ document.addEventListener('DOMContentLoaded', () => {
       sourceTitle.style.display = 'flex';
       sourceTitle.style.justifyContent = 'space-between';
       sourceTitle.style.alignItems = 'center';
-      sourceTitle.style.marginBottom = '0.6rem';
+      sourceTitle.style.marginBottom = '0.3rem';
 
       const title = document.createElement('span');
       title.style.fontWeight = '700';
@@ -2336,7 +2432,7 @@ document.addEventListener('DOMContentLoaded', () => {
       explanation.style.fontSize = '0.85rem';
       explanation.style.color = '#666666';
       explanation.style.lineHeight = '1.5';
-      explanation.textContent = src.explanation;
+      explanation.textContent = src[`explanation_${currentLanguage}`];
       srcDiv.appendChild(explanation);
 
       sourcesContainer.appendChild(srcDiv);
@@ -2346,15 +2442,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const caveat = workflowTranslations['expert.message12.bot.alpha_caveat'][currentLanguage];
     const caveatDiv = document.createElement('div');
-    caveatDiv.style.marginTop = '1rem';
-    caveatDiv.style.padding = '0.8rem';
+    caveatDiv.style.marginTop = '0.5rem';
+    caveatDiv.style.padding = '0.5rem';
     caveatDiv.style.backgroundColor = 'rgba(244, 67, 54, 0.1)';
     caveatDiv.style.borderRadius = '8px';
     caveatDiv.style.fontSize = '0.85rem';
     caveatDiv.style.color = '#5d4037';
     caveatDiv.style.lineHeight = '1.5';
     caveatDiv.style.borderLeft = '3px solid #f44336';
-    caveatDiv.style.paddingLeft = '0.8rem';
+    caveatDiv.style.paddingLeft = '0.5rem';
     caveatDiv.textContent = caveat;
     card.appendChild(caveatDiv);
 
@@ -2373,12 +2469,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const steps = workflowTranslations['expert.message13.bot.steps'];
     const stepsContainer = document.createElement('div');
-    stepsContainer.style.marginTop = '1rem';
+    stepsContainer.style.marginTop = '0.5rem';
 
     steps.forEach((step, idx) => {
       const stepDiv = document.createElement('div');
-      stepDiv.style.padding = '0.8rem';
-      stepDiv.style.marginBottom = '0.8rem';
+      stepDiv.style.padding = '0.5rem';
+      stepDiv.style.marginBottom = '0.4rem';
       stepDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       stepDiv.style.borderRadius = '8px';
       stepDiv.style.borderLeft = '3px solid #667eea';
@@ -2433,7 +2529,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg2Bubble.appendChild(closingSpan2);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg2IntroText + ' ' + msg2ClosingText, true));
 
     // Message 3: User
     const msg3Text = workflowTranslations['expert.message3.user'][currentLanguage];
@@ -2471,7 +2567,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg4Bubble.appendChild(closingSpan4);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg4IntroText + ' ' + msg4ClosingText, true));
 
     // Message 5: User
     const msg5Text = workflowTranslations['expert.message5.user'][currentLanguage];
@@ -2509,7 +2605,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg6Bubble.appendChild(closingSpan6);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg6IntroText + ' ' + msg6ClosingText, true));
 
     // Message 7: User
     const msg7Text = workflowTranslations['expert.message7.user'][currentLanguage];
@@ -2539,7 +2635,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg8Bubble.appendChild(academicCardExpert);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg8IntroText, true));
 
     // Message 9: User
     const msg9Text = workflowTranslations['expert.message9.user'][currentLanguage];
@@ -2564,7 +2660,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg10Bubble.appendChild(timelineCard);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg10IntroText, true));
 
     // Message 11: User
     const msg11Text = workflowTranslations['expert.message11.user'][currentLanguage];
@@ -2589,7 +2685,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg12Bubble.appendChild(alphaCard);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(calculateReadingDelay(msg12IntroText, true));
 
     // Message 13: Bot closing with next steps
     const msg13IntroText = workflowTranslations['expert.message13.bot.intro'][currentLanguage];
@@ -2625,6 +2721,67 @@ document.addEventListener('DOMContentLoaded', () => {
     psSpan.style.fontStyle = 'italic';
     psSpan.textContent = psText;
     msg13Bubble.appendChild(psSpan);
+
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    await safeDelay(calculateReadingDelay(msg13IntroText + ' ' + msg13ClosingText + ' ' + psText, true));
+
+    // Message 14: User confirms to proceed with paper trading
+    const msg14Text = workflowTranslations['expert.message14.user'][currentLanguage];
+    await typeInInputAndSend(msg14Text);
+    const { bubble: bubble14 } = addMessage(msg14Text, true);
+    await safeDelay(2500);
+
+    // Message 15: Bot sends closing with setup steps
+    const msg15IntroText = workflowTranslations['expert.message15.bot.intro'][currentLanguage];
+    const { messageDiv: msg15Div, bubble: msg15Bubble } = addMessage('', false);
+
+    const typingIndicator15 = createTypingIndicator();
+    msg15Div.insertBefore(typingIndicator15, msg15Bubble.nextSibling);
+    await safeDelay(2500);
+    typingIndicator15.remove();
+
+    await typeMessage(msg15Bubble, msg15IntroText, 50);
+
+    // Add setup header
+    msg15Bubble.appendChild(document.createElement('br'));
+    msg15Bubble.appendChild(document.createElement('br'));
+    const setupHeader = document.createElement('div');
+    setupHeader.style.fontWeight = '700';
+    setupHeader.style.color = '#333333';
+    setupHeader.style.marginBottom = '0.8rem';
+    setupHeader.textContent = workflowTranslations['expert.message15.bot.setup'][currentLanguage];
+    msg15Bubble.appendChild(setupHeader);
+
+    // Add setup steps
+    const setupSteps = workflowTranslations['expert.message15.bot.setup_steps'];
+    setupSteps.forEach(step => {
+      const stepDiv = document.createElement('div');
+      stepDiv.style.display = 'flex';
+      stepDiv.style.alignItems = 'flex-start';
+      stepDiv.style.marginBottom = '0.6rem';
+      stepDiv.style.paddingLeft = '0.5rem';
+
+      const icon = document.createElement('span');
+      icon.style.marginRight = '0.6rem';
+      icon.textContent = step.icon;
+      stepDiv.appendChild(icon);
+
+      const text = document.createElement('span');
+      text.style.color = '#444444';
+      text.textContent = step[`step_${currentLanguage}`];
+      stepDiv.appendChild(text);
+
+      msg15Bubble.appendChild(stepDiv);
+    });
+
+    // Add final closing
+    msg15Bubble.appendChild(document.createElement('br'));
+    const msg15ClosingText = workflowTranslations['expert.message15.bot.closing'][currentLanguage];
+    const closingSpan15 = document.createElement('span');
+    closingSpan15.style.color = '#667eea';
+    closingSpan15.style.fontWeight = '700';
+    closingSpan15.textContent = msg15ClosingText;
+    msg15Bubble.appendChild(closingSpan15);
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 

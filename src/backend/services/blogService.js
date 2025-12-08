@@ -34,8 +34,10 @@ async function extractPageContentAsHtml(pageId) {
     try {
         const mdBlocks = await n2m.pageToMarkdown(pageId);
         const markdownString = n2m.toMarkdownString(mdBlocks);
-        const htmlContent = marked(markdownString.parent || markdownString);
-        return htmlContent;
+        const markdownContent = markdownString.parent || markdownString;
+        const normalizedMarkdown = normalizeHeadingMarkers(markdownContent);
+        const htmlContent = marked(normalizedMarkdown);
+        return normalizeHeadingParagraphs(htmlContent);
     } catch (error) {
         console.error(`Error extracting page content from ${pageId}:`, error);
         return '';
@@ -79,6 +81,20 @@ function richTextPropertyToHtml(richTextArray) {
 
         return text;
     }).join('');
+}
+
+/**
+ * Normalize heading markers by removing decorative prefixes so markdown parsers detect them
+ */
+function normalizeHeadingMarkers(text) {
+    if (!text) return '';
+    return text
+        // Ensure headings break onto a new paragraph even if they were inline
+        .replace(/([^\n\r])\s*(?:<br\s*\/?>\s*)*(?:[-–—•*]+\s*)?(#{1,6}\s+)/g, '$1\n\n$2')
+        // Remove decorative prefixes like --- or •• before heading markers
+        .replace(/^[\s]*[-–—•*]+\s*(#{1,6})\s*/gm, '$1 ')
+        // Ensure a space after the hashes so markdown parsers detect the heading
+        .replace(/^(#{1,6})([^\s#])/gm, '$1 $2');
 }
 
 /**
@@ -162,12 +178,12 @@ function formatPlainTextContent(content) {
     if (!content) return '';
 
     // Pre-process the content to handle different line break patterns
-    const processedContent = content
+    const processedContent = normalizeHeadingMarkers(content)
         .replace(/\r\n/g, '\n')  // Normalize Windows line breaks
         .replace(/\r/g, '\n')   // Normalize old Mac line breaks
         .trim();
 
-    return processedContent
+    const htmlResult = processedContent
         // Split by double line breaks for paragraphs
         // But normalize multiple line breaks (3+) to just double (paragraph break)
         .replace(/\n\n\n+/g, '\n\n')  // Normalize excessive line breaks
@@ -190,20 +206,13 @@ function formatPlainTextContent(content) {
             if (isMarkdownTable(paragraph)) {
                 return formatMarkdownTable(paragraph);
             }
-            
-            // Check if it's a heading (starts with #)
-            if (paragraph.startsWith('#### ')) {
-                const title = paragraph.substring(5).trim();
-                return `<h4>${formatInlineContent(title)}</h4>`;
-            } else if (paragraph.startsWith('### ')) {
-                const title = paragraph.substring(4).trim();
-                return `<h3>${formatInlineContent(title)}</h3>`;
-            } else if (paragraph.startsWith('## ')) {
-                const title = paragraph.substring(3).trim();
-                return `<h2>${formatInlineContent(title)}</h2>`;
-            } else if (paragraph.startsWith('# ')) {
-                const title = paragraph.substring(2).trim();
-                return `<h1>${formatInlineContent(title)}</h1>`;
+
+            // Normalize headings even if they are prefixed by decorative dashes/bullets
+            const headingMatch = paragraph.match(/^[-–—\s]*(#{1,4})\s*(.+)$/);
+            if (headingMatch) {
+                const headingLevel = Math.min(headingMatch[1].length, 4);
+                const title = headingMatch[2].trim();
+                return `<h${headingLevel}>${formatInlineContent(title)}</h${headingLevel}>`;
             }
             
             // Check for list items - improved handling (supports both - and • bullets)
@@ -326,7 +335,7 @@ function formatPlainTextContent(content) {
         .join('\n\n');
     
     // Post-process to merge consecutive numbered lists
-    return mergeConsecutiveNumberedLists(result);
+    return normalizeHeadingParagraphs(mergeConsecutiveNumberedLists(htmlResult));
 }
 
 /**
@@ -377,6 +386,35 @@ function formatInlineContent(text) {
         .replace(/`([^`]+)`/g, '<code>$1</code>')
         // Clean up any remaining single hashtags that aren't part of headings
         .replace(/(?<!^|\s)#(\w+)/g, '$1');
+}
+
+/**
+ * Convert paragraphs that still contain heading markers into actual heading tags
+ */
+function normalizeHeadingParagraphs(html) {
+    if (!html) return '';
+    return html.replace(/<p[^>]*>([\s\S]*?)<\/p>/g, (match, inner) => {
+        const textOnly = inner.replace(/<[^>]+>/g, '').trim();
+        const headingMatch = textOnly.match(/^[-–—\s]*(#{1,6})\s*(.+)$/);
+        if (headingMatch && headingMatch[1]) {
+            const level = Math.min(headingMatch[1].length, 6);
+            const title = headingMatch[2].trim();
+            return `<h${level}>${formatInlineContent(title)}</h${level}>`;
+        }
+
+        // Handle paragraphs that contain a heading marker after some text
+        const splitHeading = textOnly.match(/(.+?)\s+[-–—\s]*(#{1,6})\s+(.+)/);
+        if (splitHeading && splitHeading[2]) {
+            const before = splitHeading[1].trim();
+            const level = Math.min(splitHeading[2].length, 6);
+            const title = splitHeading[3].trim();
+            const beforeHtml = before ? `<p>${formatInlineContent(before)}</p>` : '';
+            const headingHtml = `<h${level}>${formatInlineContent(title)}</h${level}>`;
+            return `${beforeHtml}${headingHtml}`;
+        }
+
+        return match;
+    });
 }
 
 /**
