@@ -181,9 +181,21 @@ function extractStrategyTimeSeries(chartData, strategyKey) {
     return [];
   }
 
-  return chartData.map((point) => ({
+  // Get raw values
+  const rawData = chartData.map((point) => ({
     date: point.date,
     value: point[strategyKey],
+  })).filter(p => p.value !== undefined && p.value !== null);
+
+  if (rawData.length === 0) return [];
+
+  // Normalize to base 100 (start from 100)
+  const firstValue = rawData[0].value;
+  if (firstValue === 0) return rawData;
+
+  return rawData.map((point) => ({
+    date: point.date,
+    value: (point.value / firstValue) * 100,
   }));
 }
 
@@ -547,17 +559,31 @@ async function regenerateCache(req, res) {
 
 /**
  * Calculate custom allocation portfolio
- * POST body: { allocation: { SPY: 50, IEF: 30, GLD: 20 }, period: 20 }
+ * POST body: {
+ *   allocation: { SPY: 50, IEF: 30, GLD: 20 },
+ *   period: 20,
+ *   leverage: 1 or 2 (default: 1)
+ * }
  * Allocation values should sum to 100 (percentages)
+ *
+ * Response includes baseline strategies for comparison (optimizedRP, equalWeight)
  */
 async function calculateCustomAllocation(req, res) {
   try {
-    const { allocation, period = 20 } = req.body;
+    const { allocation, period = 20, leverage = 1 } = req.body;
 
     if (!allocation || typeof allocation !== 'object') {
       return res.status(400).json({
         success: false,
         error: "allocation object is required (e.g., { SPY: 50, IEF: 30, GLD: 20 })",
+      });
+    }
+
+    // Validate leverage: only 1 or 2 allowed
+    if (leverage !== 1 && leverage !== 2) {
+      return res.status(400).json({
+        success: false,
+        error: "Invalid leverage value. Only 1 or 2 are allowed.",
       });
     }
 
@@ -604,7 +630,7 @@ async function calculateCustomAllocation(req, res) {
     }
 
     // Calculate portfolio values over time
-    const portfolioData = [];
+    let portfolioData = [];
     const firstDataPoint = periodData.data[0];
 
     // Calculate initial value (normalized to 100)
@@ -627,50 +653,94 @@ async function calculateCustomAllocation(req, res) {
       });
     }
 
-    // Calculate metrics
-    const values = portfolioData.map(d => d.value);
-    const totalReturn = (values[values.length - 1] / values[0] - 1) * 100;
-    const years = selectedPeriod;
-    const annualReturn = (Math.pow(values[values.length - 1] / values[0], 1 / years) - 1) * 100;
-
-    // Calculate volatility (monthly returns standard deviation, annualized)
-    const monthlyReturns = [];
-    for (let i = 1; i < values.length; i++) {
-      monthlyReturns.push((values[i] / values[i - 1]) - 1);
-    }
-    const avgReturn = monthlyReturns.reduce((a, b) => a + b, 0) / monthlyReturns.length;
-    const variance = monthlyReturns.reduce((sum, r) => sum + Math.pow(r - avgReturn, 2), 0) / monthlyReturns.length;
-    const volatility = Math.sqrt(variance) * Math.sqrt(12) * 100; // Annualized
-
-    // Calculate max drawdown
-    let maxDrawdown = 0;
-    let peak = values[0];
-    for (const val of values) {
-      if (val > peak) peak = val;
-      const drawdown = (peak - val) / peak;
-      if (drawdown > maxDrawdown) maxDrawdown = drawdown;
+    // Apply leverage if requested (2x)
+    if (leverage > 1) {
+      portfolioData = applyLeverageToSeries(portfolioData, leverage);
     }
 
-    // Calculate Sharpe ratio (assuming 2% risk-free rate)
-    const riskFreeRate = 2;
-    const sharpeRatio = (annualReturn - riskFreeRate) / volatility;
+    // Calculate metrics for custom allocation
+    const customMetrics = calculateCustomMetrics(portfolioData, selectedPeriod);
 
-    // Calculate Calmar ratio
-    const calmarRatio = maxDrawdown > 0 ? annualReturn / (maxDrawdown * 100) : 0;
+    // ═══════════════════════════════════════════════════════════════
+    // Extract baseline strategies and ETF benchmarks for comparison
+    // ═══════════════════════════════════════════════════════════════
+
+    // All 9 strategies from legacy portfolio simulator
+    const strategyBaselines = [
+      'equalWeight',
+      'sixtyForty',
+      'simpleRP',
+      'optimizedRP',
+      'hierarchicalRiskParity',
+      'momentum',
+      'enhancedRiskParityDCC',
+      'optimizedRiskBudgeting',
+      'regimeAwareRP'
+    ];
+
+    // All 7 ETF benchmarks
+    const etfBenchmarks = ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'VNQ', 'CASH'];
+
+    const baselines = {
+      strategies: {},
+      etfs: {}
+    };
+
+    // Extract strategy baselines
+    for (const strategyKey of strategyBaselines) {
+      const strategyData = extractStrategyTimeSeries(periodData.data, strategyKey);
+
+      if (strategyData && strategyData.length > 0) {
+        // Apply leverage if requested (applies to portfolio strategies)
+        let finalStrategyData = strategyData;
+        if (leverage > 1) {
+          finalStrategyData = applyLeverageToSeries(strategyData, leverage);
+        }
+
+        // Use cached metrics if available and no leverage, else recalculate
+        let strategyMetrics;
+        if (leverage === 1 && periodData.metrics && periodData.metrics[strategyKey]) {
+          strategyMetrics = periodData.metrics[strategyKey];
+        } else {
+          strategyMetrics = calculateCustomMetrics(finalStrategyData, selectedPeriod);
+        }
+
+        baselines.strategies[strategyKey] = {
+          values: finalStrategyData,
+          metrics: strategyMetrics,
+        };
+      }
+    }
+
+    // Extract ETF benchmarks (no leverage applied to raw ETFs)
+    for (const etfKey of etfBenchmarks) {
+      const etfData = extractStrategyTimeSeries(periodData.data, etfKey);
+
+      if (etfData && etfData.length > 0) {
+        // ETF benchmarks don't get leverage applied - they're pure benchmark comparisons
+        let etfMetrics;
+        if (periodData.metrics && periodData.metrics[etfKey]) {
+          etfMetrics = periodData.metrics[etfKey];
+        } else {
+          etfMetrics = calculateCustomMetrics(etfData, selectedPeriod);
+        }
+
+        baselines.etfs[etfKey] = {
+          values: etfData,
+          metrics: etfMetrics,
+        };
+      }
+    }
 
     res.json({
       success: true,
       allocation,
       period: selectedPeriod,
+      leverage,
+      periodsAvailable: availablePeriods,
       portfolio: portfolioData,
-      metrics: {
-        totalReturn: Math.round(totalReturn * 100) / 100,
-        annualReturn: Math.round(annualReturn * 100) / 100,
-        volatility: Math.round(volatility * 100) / 100,
-        sharpeRatio: Math.round(sharpeRatio * 100) / 100,
-        maxDrawdown: Math.round(maxDrawdown * 10000) / 100,
-        calmarRatio: Math.round(calmarRatio * 100) / 100,
-      },
+      metrics: customMetrics,
+      baselines,
     });
   } catch (error) {
     console.error("Error calculating custom allocation:", error);
@@ -680,6 +750,63 @@ async function calculateCustomAllocation(req, res) {
       details: error.message,
     });
   }
+}
+
+/**
+ * Calculate metrics for a portfolio time series
+ * @param {Array} portfolioData - Array of {date, value} objects
+ * @param {number} years - Number of years for annualization
+ * @returns {Object} Metrics object
+ */
+function calculateCustomMetrics(portfolioData, years) {
+  if (!portfolioData || portfolioData.length === 0) {
+    return {
+      totalReturn: 0,
+      annualReturn: 0,
+      volatility: 0,
+      sharpeRatio: 0,
+      maxDrawdown: 0,
+      calmarRatio: 0,
+    };
+  }
+
+  const values = portfolioData.map(d => d.value);
+  const totalReturn = (values[values.length - 1] / values[0] - 1) * 100;
+  const annualReturn = (Math.pow(values[values.length - 1] / values[0], 1 / years) - 1) * 100;
+
+  // Calculate volatility (daily returns standard deviation, annualized)
+  const dailyReturns = [];
+  for (let i = 1; i < values.length; i++) {
+    dailyReturns.push((values[i] / values[i - 1]) - 1);
+  }
+  const avgReturn = dailyReturns.reduce((a, b) => a + b, 0) / dailyReturns.length;
+  const variance = dailyReturns.reduce((sum, r) => sum + Math.pow(r - avgReturn, 2), 0) / dailyReturns.length;
+  const volatility = Math.sqrt(variance) * Math.sqrt(252) * 100; // Annualized (252 trading days)
+
+  // Calculate max drawdown
+  let maxDrawdown = 0;
+  let peak = values[0];
+  for (const val of values) {
+    if (val > peak) peak = val;
+    const drawdown = (peak - val) / peak;
+    if (drawdown > maxDrawdown) maxDrawdown = drawdown;
+  }
+
+  // Calculate Sharpe ratio (assuming 2% risk-free rate)
+  const riskFreeRate = 2;
+  const sharpeRatio = volatility > 0 ? (annualReturn - riskFreeRate) / volatility : 0;
+
+  // Calculate Calmar ratio
+  const calmarRatio = maxDrawdown > 0 ? annualReturn / (maxDrawdown * 100) : 0;
+
+  return {
+    totalReturn: Math.round(totalReturn * 100) / 100,
+    annualReturn: Math.round(annualReturn * 100) / 100,
+    volatility: Math.round(volatility * 100) / 100,
+    sharpeRatio: Math.round(sharpeRatio * 100) / 100,
+    maxDrawdown: Math.round(maxDrawdown * 10000) / 100,
+    calmarRatio: Math.round(calmarRatio * 100) / 100,
+  };
 }
 
 module.exports = {

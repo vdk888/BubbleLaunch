@@ -957,40 +957,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     assets.forEach(asset => {
       const assetDiv = document.createElement('div');
-      assetDiv.style.padding = '0.4rem 0.5rem';
-      assetDiv.style.marginBottom = '0.4rem';
-      assetDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
-      assetDiv.style.borderRadius = '6px';
-      assetDiv.style.borderLeft = '3px solid #667eea';
-
-      const nameRow = document.createElement('div');
-      nameRow.style.display = 'flex';
-      nameRow.style.justifyContent = 'space-between';
-      nameRow.style.alignItems = 'center';
-      nameRow.style.marginBottom = '0.15rem';
+      assetDiv.style.display = 'flex';
+      assetDiv.style.justifyContent = 'space-between';
+      assetDiv.style.alignItems = 'center';
+      assetDiv.style.padding = '0.25rem 0';
+      assetDiv.style.borderBottom = '1px solid rgba(102, 126, 234, 0.1)';
 
       const nameSpan = document.createElement('span');
-      nameSpan.style.fontWeight = '600';
+      nameSpan.style.fontWeight = '500';
       nameSpan.style.color = '#333333';
+      nameSpan.style.fontSize = '0.9rem';
       nameSpan.innerHTML = `${asset.icon} ${asset[`name_${currentLanguage}`]}`;
 
       const percentageSpan = document.createElement('span');
       percentageSpan.style.fontWeight = '700';
       percentageSpan.style.color = '#667eea';
-      percentageSpan.style.fontSize = '1rem';
       percentageSpan.textContent = asset.percentage;
 
-      nameRow.appendChild(nameSpan);
-      nameRow.appendChild(percentageSpan);
-      assetDiv.appendChild(nameRow);
-
-      const descSpan = document.createElement('div');
-      descSpan.style.fontSize = '0.8rem';
-      descSpan.style.color = '#666666';
-      descSpan.style.lineHeight = '1.4';
-      descSpan.textContent = asset[`desc_${currentLanguage}`];
-      assetDiv.appendChild(descSpan);
-
+      assetDiv.appendChild(nameSpan);
+      assetDiv.appendChild(percentageSpan);
       assetsContainer.appendChild(assetDiv);
     });
 
@@ -1117,43 +1102,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     items.forEach(item => {
       const itemDiv = document.createElement('div');
-      itemDiv.style.padding = '0.4rem 0.5rem';
-      itemDiv.style.marginBottom = '0.3rem';
-      itemDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
-      itemDiv.style.borderRadius = '6px';
-      itemDiv.style.borderLeft = '3px solid #667eea';
-
-      const title = document.createElement('div');
-      title.style.fontWeight = '600';
-      title.style.color = '#333333';
-      title.style.marginBottom = '0.15rem';
-      title.innerHTML = `${item.icon} ${item[`title_${currentLanguage}`]}`;
-
-      const desc = document.createElement('div');
-      desc.style.fontSize = '0.8rem';
-      desc.style.color = '#666666';
-      desc.style.lineHeight = '1.3';
-      desc.textContent = item[`desc_${currentLanguage}`];
-
-      itemDiv.appendChild(title);
-      itemDiv.appendChild(desc);
+      itemDiv.style.padding = '0.2rem 0';
+      itemDiv.style.fontSize = '0.9rem';
+      itemDiv.style.color = '#333333';
+      itemDiv.innerHTML = `${item.icon} ${item[`title_${currentLanguage}`]}`;
       itemsContainer.appendChild(itemDiv);
     });
 
     card.appendChild(itemsContainer);
-
-    const reassurance = workflowTranslations['beginner.message8.bot.liquidity_reassurance'][currentLanguage];
-    const reassuranceDiv = document.createElement('div');
-    reassuranceDiv.style.marginTop = '0.4rem';
-    reassuranceDiv.style.padding = '0.4rem 0.5rem';
-    reassuranceDiv.style.backgroundColor = 'rgba(76, 175, 80, 0.1)';
-    reassuranceDiv.style.borderRadius = '6px';
-    reassuranceDiv.style.fontSize = '0.85rem';
-    reassuranceDiv.style.color = '#2e5c3e';
-    reassuranceDiv.style.lineHeight = '1.4';
-    reassuranceDiv.textContent = reassurance;
-    card.appendChild(reassuranceDiv);
-
     return card;
   };
 
@@ -1551,7 +1507,7 @@ document.addEventListener('DOMContentLoaded', () => {
     subtitle.style.fontSize = '0.8rem';
     subtitle.style.color = '#666666';
     subtitle.style.fontStyle = 'italic';
-    subtitle.style.marginBottom = '0.8rem';
+    subtitle.style.marginBottom = '0.4rem';
     subtitle.textContent = workflowTranslations['academic.disclosure.subtitle'][currentLanguage];
     card.appendChild(subtitle);
 
@@ -1598,8 +1554,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const dataDiv = document.createElement('div');
     dataDiv.style.fontSize = '0.8rem';
     dataDiv.style.color = '#666666';
-    dataDiv.style.marginBottom = '0.8rem';
-    dataDiv.style.paddingTop = '0.5rem';
+    dataDiv.style.marginBottom = '0.4rem';
+    dataDiv.style.paddingTop = '0.3rem';
     dataDiv.style.borderTop = '1px solid rgba(102, 126, 234, 0.1)';
     dataDiv.innerHTML = `<strong>Data:</strong> ${workflowTranslations['academic.disclosure.data'][currentLanguage]}`;
     card.appendChild(dataDiv);
@@ -1908,11 +1864,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add next steps header
     msg13Bubble.appendChild(document.createElement('br'));
-    msg13Bubble.appendChild(document.createElement('br'));
     const nextStepsHeader = document.createElement('div');
     nextStepsHeader.style.fontWeight = '700';
     nextStepsHeader.style.color = '#333333';
-    nextStepsHeader.style.marginBottom = '0.8rem';
+    nextStepsHeader.style.marginBottom = '0.4rem';
     nextStepsHeader.textContent = workflowTranslations['beginner.message13.bot.next_steps'][currentLanguage];
     msg13Bubble.appendChild(nextStepsHeader);
 
@@ -2744,11 +2699,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add setup header
     msg15Bubble.appendChild(document.createElement('br'));
-    msg15Bubble.appendChild(document.createElement('br'));
     const setupHeader = document.createElement('div');
     setupHeader.style.fontWeight = '700';
     setupHeader.style.color = '#333333';
-    setupHeader.style.marginBottom = '0.8rem';
+    setupHeader.style.marginBottom = '0.4rem';
     setupHeader.textContent = workflowTranslations['expert.message15.bot.setup'][currentLanguage];
     msg15Bubble.appendChild(setupHeader);
 

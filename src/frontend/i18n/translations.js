@@ -3427,7 +3427,7 @@ const translations = {
   },
   "beginner.message2.bot.intro": {
     en: "I completely understand your concern! Inflation is indeed eating away at the purchasing power of cash in savings accounts. The good news is: I can help you build a simple, safe portfolio that protects your money while helping it grow.\n\nThink of it like this: instead of keeping all your eggs in one basket (cash losing value), we'll spread your money across different types of investments that historically do well when inflation rises.",
-    fr: "Je comprends parfaitement votre inquiétude ! L'inflation érode effectivement le pouvoir d'achat de l'argent sur les comptes d'épargne. La bonne nouvelle : je peux vous aider à construire un portefeuille simple et sûr qui protège votre argent tout en le faisant croître.\n\nVoici comment l'imaginer : au lieu de garder tous les œufs dans un panier (l'argent qui perd de la valeur), nous répartirons votre argent entre différents types d'investissements qui historiquement fonctionnent bien quand l'inflation monte."
+    fr: "Je comprends parfaitement votre inquiétude ! L'inflation érode effectivement le pouvoir d'achat de l'argent sur les comptes d'épargne. La bonne nouvelle : je peux vous aider à construire un portefeuille simple et sûr qui protège votre argent tout en le faisant croître.\n\nVoici comment l'imaginer : au lieu de garder tous les œufs dans un même panier (l'argent qui perd de la valeur), nous répartirons votre argent entre différents types d'investissements qui historiquement fonctionnent bien quand l'inflation monte."
   },
   "beginner.message2.bot.why_works": {
     en: "Why This Works",
@@ -3482,48 +3482,38 @@ const translations = {
   "beginner.message4.bot.assets": [
     {
       percentage: "40%",
-      name_en: "Government & Corporate Bonds",
-      name_fr: "Obligations gouvernementales et entreprises",
-      icon: "🏦",
-      desc_en: "These are like loans to stable governments and big companies. Very safe, steady income.",
-      desc_fr: "Ce sont comme des prêts à des gouvernements stables et de grandes entreprises. Très sûr, revenu régulier."
+      name_en: "Bonds",
+      name_fr: "Obligations",
+      icon: "🏦"
     },
     {
       percentage: "30%",
-      name_en: "Large US Companies (S&P 500)",
-      name_fr: "Grandes entreprises américaines (S&P 500)",
-      icon: "🇺🇸",
-      desc_en: "The biggest, most stable American companies like Apple, Microsoft. They grow steadily.",
-      desc_fr: "Les plus grandes et stables entreprises américaines comme Apple, Microsoft. Elles croissent régulièrement."
+      name_en: "US Stocks (S&P 500)",
+      name_fr: "Actions US (S&P 500)",
+      icon: "🇺🇸"
     },
     {
       percentage: "15%",
-      name_en: "European Companies",
-      name_fr: "Entreprises européennes",
-      icon: "🇪🇺",
-      desc_en: "Diversification across Europe's strongest companies. Reduces risk.",
-      desc_fr: "Diversification entre les plus fortes entreprises d'Europe. Réduit le risque."
+      name_en: "European Stocks",
+      name_fr: "Actions européennes",
+      icon: "🇪🇺"
     },
     {
       percentage: "10%",
-      name_en: "Gold & Commodities",
-      name_fr: "Or et matières premières",
-      icon: "💰",
-      desc_en: "Gold historically protects against inflation - when cash loses value, gold often rises.",
-      desc_fr: "L'or protège historiquement contre l'inflation - quand l'argent perd de la valeur, l'or monte souvent."
+      name_en: "Gold",
+      name_fr: "Or",
+      icon: "💰"
     },
     {
       percentage: "5%",
-      name_en: "Cash Reserve",
-      name_fr: "Réserve de trésorerie",
-      icon: "💵",
-      desc_en: "Always keep some cash available for emergencies. No waiting to sell.",
-      desc_fr: "Gardez toujours un peu d'argent disponible pour les urgences. Pas besoin d'attendre pour vendre."
+      name_en: "Cash",
+      name_fr: "Cash",
+      icon: "💵"
     }
   ],
   "beginner.message4.bot.risk_explanation": {
-    en: "Now about risk: Over the past 20 years, this type of balanced portfolio:",
-    fr: "Maintenant sur le risque : Au cours des 20 dernières années, ce type de portefeuille équilibré :"
+    en: "Risk over 20 years:",
+    fr: "Risque sur 20 ans :"
   },
   "beginner.message4.bot.risk_stats": [
     {
@@ -3546,137 +3536,113 @@ const translations = {
     fr: "En fait ça me semble raisonnable ! Mais qui gère tout ça ? Je dois surveiller les marchés tous les jours ? Je ne sais pas faire ça..."
   },
   "beginner.message6.bot.intro": {
-    en: "Once you approve a strategy, I handle the daily execution. Here's what that means:",
-    fr: "Une fois que vous approuvez une stratégie, je gère l'exécution quotidienne. Voici ce que cela signifie :"
+    en: "Once you approve, I handle everything:",
+    fr: "Une fois que vous approuvez, je gère tout :"
   },
   "beginner.message6.bot.checklist_title": {
-    en: "What I Handle For You (Every Single Day)",
-    fr: "Ce que je gère pour vous (Chaque jour)"
+    en: "What I Do For You",
+    fr: "Ce que je fais pour vous"
   },
   "beginner.message6.bot.checklist_items": [
     {
-      icon: "✅",
-      title_en: "Monitor Markets 24/7",
-      title_fr: "Surveille les marchés 24h/24",
-      desc_en: "I watch thousands of stocks, bonds, and assets constantly. You never have to.",
-      desc_fr: "Je surveille constamment des milliers d'actions, d'obligations et d'actifs. Vous n'avez jamais à le faire."
+      icon: "📊",
+      title_en: "Monitor & Rebalance",
+      title_fr: "Surveille & Rééquilibre",
+      desc_en: "I watch markets and adjust your portfolio every morning to keep the perfect balance.",
+      desc_fr: "Je surveille les marchés et ajuste votre portefeuille chaque matin pour garder l'équilibre parfait."
     },
     {
-      icon: "✅",
-      title_en: "Rebalance Every Morning",
-      title_fr: "Rééquilibre chaque matin",
-      desc_en: "If your portfolio drifts from the target mix (like stocks grew to 35% instead of 30%), I automatically buy/sell to keep the perfect balance.",
-      desc_fr: "Si votre portefeuille s'éloigne du mélange cible (comme les actions croissent à 35% au lieu de 30%), j'achète/vends automatiquement pour garder l'équilibre parfait."
+      icon: "⚡",
+      title_en: "Execute Orders",
+      title_fr: "Exécute les ordres",
+      desc_en: "I place orders at 9:30am with your broker at the best prices.",
+      desc_fr: "Je place les ordres à 9h30 avec votre courtier aux meilleurs prix."
     },
     {
-      icon: "✅",
-      title_en: "Execute Orders at Best Prices",
-      title_fr: "Exécute les ordres aux meilleurs prix",
-      desc_en: "Every morning around 9:30am, I place orders with your broker if rebalancing is needed. I always find the best prices.",
-      desc_fr: "Chaque matin vers 9h30, je place des ordres avec votre courtier si un rééquilibrage est nécessaire. Je trouve toujours les meilleurs prix."
+      icon: "🛡️",
+      title_en: "Protect During Crashes",
+      title_fr: "Protège lors des krachs",
+      desc_en: "If markets get risky, I shift money to bonds automatically.",
+      desc_fr: "Si les marchés deviennent risqués, je transfère l'argent vers les obligations automatiquement."
     },
     {
-      icon: "✅",
-      title_en: "Protect You During Crashes",
-      title_fr: "Vous protège lors des krachs",
-      desc_en: "If markets get very risky, I automatically shift more money to bonds (safety) temporarily.",
-      desc_fr: "Si les marchés deviennent très risqués, j'augmente automatiquement l'argent en obligations (sécurité) temporairement."
-    },
-    {
-      icon: "✅",
-      title_en: "Send You Simple Updates",
-      title_fr: "Vous envoie des mises à jour simples",
-      desc_en: "Once a month, you get an email: 'Your portfolio grew X% this month.' That's it - no jargon.",
-      desc_fr: "Une fois par mois, vous recevez un email : 'Votre portefeuille a crû de X% ce mois'. C'est tout - pas de jargon."
-    },
-    {
-      icon: "✅",
-      title_en: "Optimize For Lower Taxes",
-      title_fr: "Optimise pour réduire les impôts",
-      desc_en: "When I rebalance, I'm smart about which assets to sell to minimize taxes you owe.",
-      desc_fr: "Quand je rééquilibre, je suis intelligent sur les actifs à vendre pour minimiser les impôts que vous devez."
-    },
-    {
-      icon: "✅",
-      title_en: "Answer Your Questions Anytime",
-      title_fr: "Répond à vos questions à tout moment",
-      desc_en: "Confused about something? Just ask me like we're chatting now. I explain in plain language.",
-      desc_fr: "Confus sur quelque chose ? Posez-moi simplement la question comme nous discutons maintenant. J'explique en langage simple."
+      icon: "📧",
+      title_en: "Monthly Updates",
+      title_fr: "Résumés mensuels",
+      desc_en: "Once a month: 'Your portfolio grew X%.' No jargon.",
+      desc_fr: "Une fois par mois : 'Votre portefeuille a crû de X%.' Pas de jargon."
     }
   ],
   "beginner.message6.bot.real_life_example": {
-    en: "Here's what a typical day looks like: While you're sleeping or having breakfast, I check if your portfolio needs adjusting. If yes, I execute orders. By 10am, everything is done. You might get a notification: 'Rebalanced +2% bonds today.' That's it. You just live your life!",
-    fr: "Voici à quoi ressemble une journée typique : Pendant que vous dormez ou prenez le petit-déjeuner, je vérifie si votre portefeuille a besoin d'ajustements. Si oui, j'exécute les ordres. À 10h, tout est fait. Vous pourriez recevoir une notification : 'Rééquilibré +2% obligations aujourd'hui.' C'est tout. Vous vivez juste votre vie !"
+    en: "Every morning while you sleep, I check and adjust if needed. By 10am, everything is done. You just live your life!",
+    fr: "Chaque matin pendant que vous dormez, je vérifie et ajuste si besoin. À 10h, tout est fait. Vous vivez juste votre vie !"
   },
   "beginner.message6.bot.closing": {
-    en: "You never log into trading platforms, never pick stocks, never worry about timing. I'm like having a financial advisor working for you 24/7, except I cost €5/month instead of €5,000/year. Sound good?",
-    fr: "Vous ne vous connectez jamais à des plates-formes de trading, ne choisissez jamais d'actions, ne vous inquiétez jamais du timing. C'est comme avoir un conseiller financier travaillant pour vous 24h/24, sauf que je coûte 5€/mois au lieu de 5 000€/an. Ça vous semble bon ?"
+    en: "Like a financial advisor 24/7, except €5/month instead of €5,000/year.",
+    fr: "Comme un conseiller financier 24h/24, sauf 5€/mois au lieu de 5 000€/an."
   },
   "beginner.message7.user": {
     en: "Wow, okay that's actually perfect for me! One last thing - what if I need my money urgently? Can I get it back quickly?",
     fr: "Wow, ok c'est vraiment parfait pour moi ! Une dernière chose - et si j'ai besoin de mon argent en urgence ? Je peux le récupérer vite ?"
   },
   "beginner.message8.bot.intro": {
-    en: "Important: your money stays in YOUR broker account (like Interactive Brokers or Saxo). Bubble never holds your assets - I just send instructions to buy/sell. You keep full control.",
-    fr: "Important : votre argent reste dans VOTRE compte courtier (comme Interactive Brokers ou Saxo). Bubble ne détient jamais vos actifs - j'envoie juste des instructions d'achat/vente. Vous gardez le contrôle total."
+    en: "Your money stays in YOUR broker account (IBKR, Saxo). Bubble never holds your assets - I just send buy/sell instructions.",
+    fr: "Votre argent reste dans VOTRE compte courtier (IBKR, Saxo). Bubble ne détient jamais vos actifs - j'envoie juste les instructions d'achat/vente."
   },
   "beginner.message8.bot.liquidity": {
-    en: "About withdrawals:",
-    fr: "Concernant les retraits :"
+    en: "Withdrawals:",
+    fr: "Retraits :"
   },
   "beginner.message8.bot.liquidity_items": [
     {
       icon: "⚡",
-      title_en: "Quick access",
-      title_fr: "Accès rapide",
-      desc_en: "Sell any asset and get cash in 2-3 business days",
-      desc_fr: "Vendez n'importe quel actif et récupérez l'argent en 2-3 jours ouvrables"
+      title_en: "2-3 days to get cash",
+      title_fr: "2-3 jours pour récupérer le cash",
+      desc_en: "",
+      desc_fr: ""
     },
     {
       icon: "🚫",
-      title_en: "No penalties",
-      title_fr: "Pas de pénalités",
-      desc_en: "Withdraw anytime with no fees (unlike retirement accounts)",
-      desc_fr: "Retirez à tout moment sans frais (contrairement aux comptes retraite)"
+      title_en: "No penalties or fees",
+      title_fr: "Pas de pénalités ni frais",
+      desc_en: "",
+      desc_fr: ""
     }
   ],
   "beginner.message8.bot.liquidity_reassurance": {
-    en: "Your money is always accessible - just not instant like a checking account.",
-    fr: "Votre argent est toujours accessible - juste pas instantané comme un compte courant."
+    en: "",
+    fr: ""
   },
   "beginner.message8.bot.timeline_title": {
-    en: "What Happens Next",
-    fr: "Que se passe-t-il ensuite"
+    en: "Next Steps",
+    fr: "Prochaines étapes"
   },
   "beginner.message8.bot.timeline_steps": [
     {
-      step: "Step 1 - See the backtest",
-      step_fr: "Étape 1 - Voir le backtest",
+      step: "1. Backtest",
+      step_fr: "1. Backtest",
       items: [
-        { icon: "📊", text_en: "A backtest = simulation using real historical data (20 years)", text_fr: "Un backtest = simulation avec des données historiques réelles (20 ans)" },
-        { icon: "✅", text_en: "See exactly how this strategy would have performed", text_fr: "Voyez exactement comment cette stratégie aurait performé" }
+        { icon: "📊", text_en: "See how this strategy performed over 20 years", text_fr: "Voir comment cette stratégie a performé sur 20 ans" }
       ]
     },
     {
-      step: "Step 2 - Connect your broker",
-      step_fr: "Étape 2 - Connecter votre courtier",
+      step: "2. Connect broker",
+      step_fr: "2. Connecter courtier",
       items: [
-        { icon: "🔗", text_en: "Link your broker account (IBKR, Alpaca, or Saxo)", text_fr: "Reliez votre compte courtier (IBKR, Alpaca ou Saxo)" },
-        { icon: "🔐", text_en: "Secure API - I can place orders but never withdraw money", text_fr: "API sécurisée - je peux placer des ordres mais jamais retirer d'argent" }
+        { icon: "🔗", text_en: "Link IBKR, Alpaca, or Saxo (secure API)", text_fr: "Relier IBKR, Alpaca ou Saxo (API sécurisée)" }
       ]
     },
     {
-      step: "Step 3 - Go live",
-      step_fr: "Étape 3 - Passer en live",
+      step: "3. Go live",
+      step_fr: "3. Passer en live",
       items: [
-        { icon: "🚀", text_en: "First investments executed at market open", text_fr: "Premiers investissements exécutés à l'ouverture du marché" },
-        { icon: "🔄", text_en: "Automatic management starts", text_fr: "Gestion automatique commence" }
+        { icon: "🚀", text_en: "Automatic management starts", text_fr: "Gestion automatique commence" }
       ]
     }
   ],
   "beginner.message8.bot.closing": {
-    en: "Want to see the backtest first?",
-    fr: "Voulez-vous d'abord voir le backtest ?"
+    en: "Want to see the backtest?",
+    fr: "Voulez-vous voir le backtest ?"
   },
   "beginner.message9.user": {
     en: "Yes! Show me the backtest. And then yes, let's do this!",
@@ -3816,8 +3782,8 @@ const translations = {
     fr: "Pourquoi pouvons-nous facturer aussi peu ? Parce que l'IA met à l'échelle. Un agent sert des millions d'investisseurs. Coût zéro par utilisateur supplémentaire. Les conseillers traditionnels ne peuvent pas rivaliser avec ces chiffres."
   },
   "beginner.message10_5.bot.closing": {
-    en: "You're not just getting a tool—you're getting the economics of a hedge fund at the cost of a coffee subscription.",
-    fr: "Vous ne recevez pas qu'un outil—vous obtenez l'économie d'un hedge fund au coût d'un abonnement à un café."
+    en: "You're not just getting a tool—you're getting hedge fund tools at the cost of a Netflix subscription.",
+    fr: "Vous ne recevez pas qu'un outil—vous obtenez les outils d'un hedge fund au coût d'un abonnement Netflix."
   },
 
   // ========== NEW CHATGPT DIFFERENTIATION MESSAGE ==========
@@ -5186,6 +5152,74 @@ const translations = {
   "education.simulator.compliance": {
     en: "<strong>Important information:</strong> This simulator uses historical data for educational purposes only. Past performance does not predict future results. No investment advice is provided.",
     fr: "<strong>Information importante :</strong> Ce simulateur utilise des données historiques à des fins éducatives uniquement. Les performances passées ne préjugent pas des performances futures. Aucun conseil en investissement n'est fourni."
+  },
+
+  // Education Simulator - Period/Leverage/Baseline/Export Controls
+  "simulator.period": {
+    en: "Period",
+    fr: "Période"
+  },
+  "simulator.leverage": {
+    en: "Leverage",
+    fr: "Levier"
+  },
+  "simulator.leverageWarning": {
+    en: "8%/year cost",
+    fr: "Coût 8%/an"
+  },
+  "simulator.compareWith": {
+    en: "Compare:",
+    fr: "Comparer :"
+  },
+  "simulator.vsPari": {
+    en: "vs Pari:",
+    fr: "vs Pari :"
+  },
+  "simulator.return": {
+    en: "return",
+    fr: "retour"
+  },
+  "simulator.vol": {
+    en: "vol",
+    fr: "vol"
+  },
+  "simulator.exportChart": {
+    en: "PNG",
+    fr: "PNG"
+  },
+  "simulator.exportMetrics": {
+    en: "CSV",
+    fr: "CSV"
+  },
+  "simulator.share": {
+    en: "Share",
+    fr: "Partager"
+  },
+  "simulator.shareCopied": {
+    en: "Copied!",
+    fr: "Copié !"
+  },
+
+  // Phase 9: Expanded comparison toggles
+  "simulator.yourAllocation": {
+    en: "Your Strategy",
+    fr: "Ta stratégie"
+  },
+  "simulator.strategies": {
+    en: "Strategies",
+    fr: "Stratégies"
+  },
+  "simulator.etfBenchmarks": {
+    en: "ETF Benchmarks",
+    fr: "ETF Benchmarks"
+  },
+  "simulator.etfNotice": {
+    en: "All strategies use ETFs (SPY, IEF, GLD, EFA, EEM, VNQ, CASH)",
+    fr: "Toutes les stratégies utilisent des ETF (SPY, IEF, GLD, EFA, EEM, VNQ, CASH)"
+  },
+  "simulator.cash": {
+    en: "Cash",
+    fr: "Liquidités"
   },
 
   // Shared Education Translations

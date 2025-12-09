@@ -55,6 +55,28 @@ Two **separate but connected** educational experiences, both driven by **natural
 **Progress Log (Dec 2025)**:
 - Education pages (FR/EN hub, arena, simulator) now tagged `noindex, nofollow` via meta and `X-Robots-Tag` headers so they stay reachable by URL but out of search until we replace `/investors/portfolio-simulator`; no other site pages touched.
 
+**Audit Status (Jan 2026)**:
+- Phase 1 (mock FR/EN pages at /investors/education, /arena, /simulator) ✅ live with tutorials + chat; SEO set to `noindex`.
+- Phase 2 (owner review/validation) ⚠️ not recorded as complete.
+- Phase 3 (replace `/investors/portfolio-simulator`) ⏳ not started; nav still points to legacy simulator; no replacement/redirect.
+- Phase 4 (redirect old simulator to education hub) ⏳ not started.
+- Legacy parity gaps remain: education simulator is single-series, 20y-only backtest; missing period/leverage toggles, ETF baselines, multi-strategy overlays, allocation history, metrics table, exports; chat not yet wired to trigger those controls.
+- Compliance/analytics gaps from “Known Gaps” still open (gate modal, achievements, prediction mode, analytics wiring).
+
+**Implementation Plan — Strategy Simulator parity with legacy portfolio simulator**
+- **UX parity (desktop/mobile)**: Desktop keeps full controls (periods, leverage, overlays, toggles) while the chatbot can drive all the same actions; mobile defaults to chatbot-first but can collapse the chat to reveal controls. Every action (chat or click) should update the same state and re-run the backtest.
+- **Chat → same power as UI**: Ensure the chatbot can: pick legacy templates (optimizedRP, momentum, equalWeight, etc.), build arbitrary custom mixes, change period/leverage, toggle ETF baselines, and request exports. Mirror these commands to the UI state so both stay in sync.
+- **Session + data scope**: Keep session-scoped state so all asks in one session reuse the 20-year cache/backtests (with selected period/leverage) and can iteratively refine any strategy.
+- **Chat-surface metrics/graphs**: When chat is open (esp. mobile), the bot can surface the same metrics and chart snapshots (period/leverage + overlays) that the UI shows—either by updating the shared chart behind the chat or posting inline chart/metric summaries—so nothing is “chat-only” or “UI-only.”
+- **Reuse data + controls**: Wire the education simulator to the same multi-period cache used in `portfolio-simulator` (1/3/5/10/20y, leverage 1x/2x), or extend `/api/portfolio/custom-allocation` to accept `periodYears` + `leverage` and return matching metrics/allocations. Keep response shape aligned with legacy JSON for chart reuse.
+- **Multi-series chart overlay**: Replace the single-line Chart.js setup with the legacy overlay model: user allocation + baseline strategies (e.g., optimizedRP, momentum, equalWeight) + optional ETF benchmarks with toggle buttons. Keep mobile-first downsampling to protect performance.
+- **Timeframe + leverage toggles**: Port the period buttons and leverage pills; persist the selection and re-run backtest with the chosen horizon/leverage. Show stale-cache banner when cache age > threshold.
+- **Allocation history**: Add the allocation-history chart (stacked areas) for strategies with fixed weights; show a notice for dynamic ones. Reuse selector UI to switch the displayed strategy/allocation.
+- **Metrics and exports**: Bring the metrics table and CSV/PNG exports; ensure translations and formatting match the education style. Keep compliance copy and “educational only” reminders.
+- **Chat integration**: Pass context metadata (selected period, leverage, visible baselines, metrics) into the chatbot so answers stay in sync with the visible chart/backtest.
+- **Performance + sharing**: Use the legacy downsampling helpers, local persistence for ETF visibility/toggles, and loading states/skeletons. Consider a shareable URL/query string for the current allocation + period/leverage.
+- **QA checklist**: Verify parity with legacy results for each period/leverage, ETF toggles, allocation chart visibility rules, metrics exports, and mobile responsiveness.
+
 ---
 
 ## 1. The Two Modules

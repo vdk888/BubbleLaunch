@@ -206,39 +206,169 @@
       <div class="simulator-results-panel">
           <h3 class="results-title" data-translate="education.simulator.results.title">Résultats du Backtest</h3>
 
-          <!-- Strategy Summary -->
-          <div id="strategySummary" style="background: #F8F8F8; border-radius: 16px; padding: 1.25rem; margin-bottom: 1.5rem;">
-              <h4 style="font-size: 0.875rem; font-weight: 600; color: #6B7280; margin-bottom: 0.75rem;" data-translate="education.simulator.results.allocation">
-              Ton allocation
-            </h4>
-            <div id="allocationBars" style="display: flex; flex-direction: column; gap: 0.5rem;">
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <span style="width: 60px; font-size: 0.8125rem; font-weight: 500;">Actions</span>
-                <div style="flex: 1; height: 8px; background: #E5E7EB; border-radius: 4px; overflow: hidden;">
-                  <div style="width: 50%; height: 100%; background: #667eea;"></div>
-                </div>
-                <span style="width: 40px; font-size: 0.8125rem; font-weight: 600; text-align: right;">50%</span>
+          <!-- Allocation Sliders -->
+          <div id="allocationSliders" class="allocation-sliders-panel">
+            <h4 class="sliders-title" data-translate="education.simulator.results.allocation">Ton allocation</h4>
+
+            <!-- Total indicator -->
+            <div class="allocation-total-row">
+              <span data-translate="simulator.total">Total :</span>
+              <span id="allocationTotal" class="allocation-total-value">100%</span>
+            </div>
+
+            <!-- SPY Slider -->
+            <div class="slider-row" data-ticker="SPY">
+              <label class="slider-label">
+                <span class="slider-label-text" data-translate="simulator.asset.stocks">Actions</span>
+                <span class="slider-ticker">SPY</span>
+              </label>
+              <div class="slider-container">
+                <input type="range" class="allocation-slider" id="sliderSPY" min="0" max="100" value="50" data-color="#667eea">
+                <div class="slider-track-fill" style="width: 50%; background: #667eea;"></div>
               </div>
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <span style="width: 60px; font-size: 0.8125rem; font-weight: 500;">Obligations</span>
-                <div style="flex: 1; height: 8px; background: #E5E7EB; border-radius: 4px; overflow: hidden;">
-                  <div style="width: 30%; height: 100%; background: #10B981;"></div>
-                </div>
-                <span style="width: 40px; font-size: 0.8125rem; font-weight: 600; text-align: right;">30%</span>
+              <span class="slider-value" id="valueSPY">50%</span>
+            </div>
+
+            <!-- IEF Slider -->
+            <div class="slider-row" data-ticker="IEF">
+              <label class="slider-label">
+                <span class="slider-label-text" data-translate="simulator.asset.bonds">Obligations</span>
+                <span class="slider-ticker">IEF</span>
+              </label>
+              <div class="slider-container">
+                <input type="range" class="allocation-slider" id="sliderIEF" min="0" max="100" value="30" data-color="#10B981">
+                <div class="slider-track-fill" style="width: 30%; background: #10B981;"></div>
               </div>
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <span style="width: 60px; font-size: 0.8125rem; font-weight: 500;">Or</span>
-                <div style="flex: 1; height: 8px; background: #E5E7EB; border-radius: 4px; overflow: hidden;">
-                  <div style="width: 20%; height: 100%; background: #F97316;"></div>
-                </div>
-                <span style="width: 40px; font-size: 0.8125rem; font-weight: 600; text-align: right;">20%</span>
+              <span class="slider-value" id="valueIEF">30%</span>
+            </div>
+
+            <!-- GLD Slider -->
+            <div class="slider-row" data-ticker="GLD">
+              <label class="slider-label">
+                <span class="slider-label-text" data-translate="simulator.asset.gold">Or</span>
+                <span class="slider-ticker">GLD</span>
+              </label>
+              <div class="slider-container">
+                <input type="range" class="allocation-slider" id="sliderGLD" min="0" max="100" value="20" data-color="#F97316">
+                <div class="slider-track-fill" style="width: 20%; background: #F97316;"></div>
+              </div>
+              <span class="slider-value" id="valueGLD">20%</span>
+            </div>
+
+            <!-- CASH Slider -->
+            <div class="slider-row" data-ticker="CASH">
+              <label class="slider-label">
+                <span class="slider-label-text" data-translate="simulator.asset.cash">Liquidités</span>
+                <span class="slider-ticker">CASH</span>
+              </label>
+              <div class="slider-container">
+                <input type="range" class="allocation-slider" id="sliderCASH" min="0" max="100" value="0" data-color="#6B7280">
+                <div class="slider-track-fill" style="width: 0%; background: #6B7280;"></div>
+              </div>
+              <span class="slider-value" id="valueCASH">0%</span>
+            </div>
+
+            <!-- Apply button -->
+            <button class="apply-allocation-btn" id="applyAllocationBtn" data-translate="simulator.applyAllocation">
+              Appliquer
+            </button>
+          </div>
+
+          <!-- Period & Leverage Controls -->
+          <div class="simulator-controls-row">
+            <!-- Period Selector -->
+            <div class="period-selector">
+              <span class="control-label" data-translate="simulator.period">Période</span>
+              <div class="period-buttons">
+                <button class="period-btn" data-period="1">1Y</button>
+                <button class="period-btn" data-period="3">3Y</button>
+                <button class="period-btn" data-period="5">5Y</button>
+                <button class="period-btn" data-period="10">10Y</button>
+                <button class="period-btn active" data-period="20">20Y</button>
+              </div>
+            </div>
+
+            <!-- Leverage Toggle -->
+            <div class="leverage-toggle">
+              <span class="control-label" data-translate="simulator.leverage">Levier</span>
+              <div class="leverage-pills">
+                <button class="leverage-pill active" data-leverage="1">1×</button>
+                <button class="leverage-pill" data-leverage="2">2×</button>
+              </div>
+              <div class="leverage-warning hidden" id="leverageWarning">
+                ⚠️ <span data-translate="simulator.leverageWarning">Coût 8%/an</span>
               </div>
             </div>
           </div>
 
+          <!-- Your Allocation Toggle -->
+          <div class="allocation-toggle-row">
+            <label class="allocation-toggle">
+              <input type="checkbox" id="showYourAllocation" checked>
+              <span class="toggle-label" data-translate="simulator.yourAllocation">Ta stratégie</span>
+            </label>
+            <span class="allocation-badge" id="allocationBadge">50% SPY, 30% IEF, 20% GLD</span>
+          </div>
+
+          <!-- Strategy Comparisons (collapsible) -->
+          <div class="comparison-section">
+            <button class="comparison-header" id="toggleStrategies">
+              <span data-translate="simulator.strategies">Stratégies</span>
+              <span class="chip-count" id="strategyChipCount">(2/9)</span>
+              <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="comparison-chips" id="strategyChips">
+              <button class="baseline-chip active" data-baseline="optimizedRP">✨ Pari Optimisé</button>
+              <button class="baseline-chip active" data-baseline="equalWeight">Équi</button>
+              <button class="baseline-chip" data-baseline="sixtyForty">60/40</button>
+              <button class="baseline-chip" data-baseline="simpleRP">Risk Parity</button>
+              <button class="baseline-chip" data-baseline="momentum">Momentum</button>
+              <button class="baseline-chip" data-baseline="hierarchicalRiskParity">HRP</button>
+              <button class="baseline-chip" data-baseline="enhancedRiskParityDCC">DCC</button>
+              <button class="baseline-chip" data-baseline="optimizedRiskBudgeting">Risk Budget</button>
+              <button class="baseline-chip" data-baseline="regimeAwareRP">Regime RP</button>
+            </div>
+          </div>
+
+          <!-- ETF Benchmarks (collapsible) -->
+          <div class="comparison-section">
+            <button class="comparison-header" id="toggleETFs">
+              <span data-translate="simulator.etfBenchmarks">ETF Benchmarks</span>
+              <span class="chip-count" id="etfChipCount">(0/7)</span>
+              <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="comparison-chips collapsed" id="etfChips">
+              <button class="etf-chip" data-etf="SPY">SPY (S&P 500)</button>
+              <button class="etf-chip" data-etf="IEF">IEF (Bonds)</button>
+              <button class="etf-chip" data-etf="GLD">GLD (Gold)</button>
+              <button class="etf-chip" data-etf="EFA">EFA (Int'l Dev)</button>
+              <button class="etf-chip" data-etf="EEM">EEM (Emerging)</button>
+              <button class="etf-chip" data-etf="VNQ">VNQ (REITs)</button>
+              <button class="etf-chip" data-etf="CASH">CASH (2%/yr)</button>
+            </div>
+          </div>
+
+          <!-- ETF Notice -->
+          <p class="etf-notice" data-translate="simulator.etfNotice">
+            Toutes les stratégies utilisent des ETF (SPY, IEF, GLD, EFA, EEM, VNQ, CASH)
+          </p>
+
           <!-- Chart -->
           <div class="results-chart-container">
             <canvas id="simulatorChart"></canvas>
+          </div>
+
+          <!-- Comparison Callout -->
+          <div class="comparison-callout" id="comparisonCallout">
+            <span data-translate="simulator.vsPari">vs Pari :</span>
+            <strong id="deltaPariReturn" class="positive">--</strong>
+            <span data-translate="simulator.return">retour</span>,
+            <strong id="deltaPariVol">--</strong>
+            <span data-translate="simulator.vol">vol</span>
           </div>
 
           <!-- Metrics Grid -->
@@ -269,15 +399,35 @@
             </div>
           </div>
 
-          <!-- Comparison with Pros -->
-          <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(102, 126, 234, 0.08); border-radius: 12px; border: 1px solid rgba(102, 126, 234, 0.2);">
-            <h4 style="font-size: 0.875rem; font-weight: 600; color: #667eea; margin-bottom: 0.5rem;" data-translate="education.simulator.results.comparison">
-              Comparaison
-            </h4>
-              <p style="font-size: 0.8125rem; color: #6B7280; line-height: 1.5;" data-translate="education.simulator.results.comparisonText">
-              Ta stratégie se situe entre <strong>Équi</strong> et <strong>Pari</strong> en termes de rapport risque/rendement.
-              Sharpe de 0.58 vs. Pari à 0.72.
-            </p>
+          <!-- Export & Share Actions -->
+          <div class="export-share-actions">
+            <button class="export-btn" id="exportChartBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+              <span data-translate="simulator.exportChart">PNG</span>
+            </button>
+            <button class="export-btn" id="exportMetricsBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              <span data-translate="simulator.exportMetrics">CSV</span>
+            </button>
+            <button class="share-btn" id="shareStrategyBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+              <span data-translate="simulator.share">Partager</span>
+            </button>
+            <span id="shareStatus">✓ <span data-translate="simulator.shareCopied">Copié !</span></span>
           </div>
         </div>
 
@@ -475,6 +625,65 @@
         let lang = document.documentElement.lang === 'en' ? 'en' : 'fr';
         let chatHistory = [];
 
+        // New state for period, leverage, and baselines
+        let currentPeriod = 20;
+        let currentLeverage = 1;
+        let showYourAllocation = true; // Toggle user's allocation line
+
+        // Expanded state for all 9 strategies
+        let visibleStrategies = {
+          optimizedRP: true,
+          equalWeight: true,
+          sixtyForty: false,
+          simpleRP: false,
+          momentum: false,
+          hierarchicalRiskParity: false,
+          enhancedRiskParityDCC: false,
+          optimizedRiskBudgeting: false,
+          regimeAwareRP: false
+        };
+
+        // State for 7 ETF benchmarks
+        let visibleETFs = {
+          SPY: false,
+          IEF: false,
+          GLD: false,
+          EFA: false,
+          EEM: false,
+          VNQ: false,
+          CASH: false
+        };
+
+        // Legacy alias for backward compatibility (used in context metadata)
+        let visibleBaselines = visibleStrategies;
+
+        // Strategy colors and config (all 9 strategies)
+        const STRATEGY_CONFIG = {
+          optimizedRP: { label: { fr: '✨ Pari Optimisé', en: '✨ Optimized RP' }, color: '#667eea', borderWidth: 3, isBest: true },
+          equalWeight: { label: { fr: 'Équi', en: 'Equal Weight' }, color: '#6B7280', borderWidth: 1.5 },
+          sixtyForty: { label: { fr: '60/40', en: '60/40' }, color: '#4B5563', borderWidth: 2.2 },
+          simpleRP: { label: { fr: 'Risk Parity', en: 'Risk Parity' }, color: '#333333', borderWidth: 2.5 },
+          momentum: { label: { fr: 'Momentum', en: 'Momentum' }, color: '#F97316', borderWidth: 2.7, borderDash: [5, 2] },
+          hierarchicalRiskParity: { label: { fr: 'HRP', en: 'HRP' }, color: '#F59E0B', borderWidth: 2.4, borderDash: [4, 4] },
+          enhancedRiskParityDCC: { label: { fr: 'DCC', en: 'DCC' }, color: '#0EA5E9', borderWidth: 2.6, borderDash: [6, 3] },
+          optimizedRiskBudgeting: { label: { fr: 'Risk Budget', en: 'Risk Budget' }, color: '#7C3AED', borderWidth: 3 },
+          regimeAwareRP: { label: { fr: 'Regime RP', en: 'Regime RP' }, color: '#10B981', borderWidth: 2.8, borderDash: [8, 4] }
+        };
+
+        // ETF benchmark colors and config
+        const ETF_CONFIG = {
+          SPY: { label: 'SPY (S&P 500)', color: '#667eea', borderDash: [4, 4] },
+          IEF: { label: 'IEF (Bonds)', color: '#10B981', borderDash: [4, 4] },
+          GLD: { label: 'GLD (Gold)', color: '#F97316', borderDash: [4, 4] },
+          EFA: { label: 'EFA (Int\'l Dev)', color: '#14B8A6', borderDash: [4, 4] },
+          EEM: { label: 'EEM (Emerging)', color: '#EC4899', borderDash: [4, 4] },
+          VNQ: { label: 'VNQ (REITs)', color: '#8B5CF6', borderDash: [4, 4] },
+          CASH: { label: 'CASH (2%/yr)', color: '#6B7280', borderDash: [4, 4] }
+        };
+
+        // Legacy alias for backward compatibility
+        const BASELINE_CONFIG = STRATEGY_CONFIG;
+
         // Listen for language changes
         window.addEventListener('languageChange', (e) => {
           lang = e.detail?.lang || 'fr';
@@ -528,6 +737,28 @@
           tutorialContent: document.getElementById('builderTutorialContent'),
           tutorialTitle: document.querySelector('#builderTutorial .tutorial-title'),
           tutorialSteps: document.querySelectorAll('#builderTutorial .tutorial-step'),
+          // New elements for period/leverage/baselines/exports
+          periodButtons: document.querySelectorAll('.period-btn'),
+          leveragePills: document.querySelectorAll('.leverage-pill'),
+          leverageWarning: document.getElementById('leverageWarning'),
+          baselineChips: document.querySelectorAll('.baseline-chip'),
+          comparisonCallout: document.getElementById('comparisonCallout'),
+          deltaPariReturn: document.getElementById('deltaPariReturn'),
+          deltaPariVol: document.getElementById('deltaPariVol'),
+          exportChartBtn: document.getElementById('exportChartBtn'),
+          exportMetricsBtn: document.getElementById('exportMetricsBtn'),
+          shareStrategyBtn: document.getElementById('shareStrategyBtn'),
+          shareStatus: document.getElementById('shareStatus'),
+          // Phase 9: New elements for expanded toggle UI
+          showYourAllocationCheckbox: document.getElementById('showYourAllocation'),
+          allocationBadge: document.getElementById('allocationBadge'),
+          toggleStrategiesBtn: document.getElementById('toggleStrategies'),
+          toggleETFsBtn: document.getElementById('toggleETFs'),
+          strategyChips: document.getElementById('strategyChips'),
+          etfChips: document.getElementById('etfChips'),
+          strategyChipCount: document.getElementById('strategyChipCount'),
+          etfChipCount: document.getElementById('etfChipCount'),
+          etfChipButtons: document.querySelectorAll('.etf-chip'),
         };
 
         // Initialize Chart
@@ -646,7 +877,11 @@
             const response = await fetch('/api/portfolio/custom-allocation', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ allocation, period: 20 })
+              body: JSON.stringify({
+                allocation,
+                period: currentPeriod,
+                leverage: currentLeverage
+              })
             });
 
             const data = await response.json();
@@ -662,6 +897,13 @@
           }
         }
 
+        // Downsample data for chart display
+        function downsampleData(data, targetPoints = 50) {
+          if (!data || data.length <= targetPoints) return data;
+          const step = Math.floor(data.length / targetPoints);
+          return data.filter((_, i) => i % step === 0 || i === data.length - 1);
+        }
+
         // Update UI with results
         function updateResults(data) {
           if (!data) return;
@@ -669,27 +911,89 @@
           lastResult = data;
           currentAllocation = data.allocation;
 
-          // Update chart
+          // Update chart with multi-series support
           if (chart && data.portfolio) {
-            const labels = data.portfolio.map(p => {
+            // Downsample for performance
+            const sampledPortfolio = downsampleData(data.portfolio, 80);
+            const labels = sampledPortfolio.map(p => {
               const date = new Date(p.date);
-              return date.getFullYear().toString();
-            }).filter((v, i, a) => i === 0 || a[i - 1] !== v); // Unique years
-
-            // Sample data to match labels
-            const step = Math.floor(data.portfolio.length / labels.length);
-            const chartData = labels.map((_, i) => {
-              const idx = Math.min(i * step, data.portfolio.length - 1);
-              return data.portfolio[idx].value;
+              return `${date.getMonth() + 1}/${date.getFullYear().toString().slice(-2)}`;
             });
 
+            // Primary dataset (user's strategy)
+            const datasets = [{
+              label: lang === 'fr' ? 'Ta stratégie' : 'Your Strategy',
+              data: sampledPortfolio.map(p => p.value),
+              borderColor: '#667eea',
+              backgroundColor: 'rgba(102, 126, 234, 0.1)',
+              tension: 0.3,
+              fill: true,
+              borderWidth: 2.5,
+              pointRadius: 0,
+              pointHoverRadius: 4,
+              order: 0
+            }];
+
+            // Add strategy baseline datasets (Phase 9: now from baselines.strategies)
+            if (data.baselines?.strategies) {
+              for (const [key, baseline] of Object.entries(data.baselines.strategies)) {
+                const config = STRATEGY_CONFIG[key];
+                if (!config || !baseline.values) continue;
+
+                const isVisible = visibleStrategies[key];
+                const sampledBaseline = downsampleData(baseline.values, 80);
+
+                datasets.push({
+                  label: config.label[lang],
+                  data: sampledBaseline.map(p => p.value),
+                  borderColor: config.color,
+                  backgroundColor: 'transparent',
+                  tension: 0.3,
+                  fill: false,
+                  borderWidth: config.borderWidth,
+                  borderDash: config.borderDash || [],
+                  pointRadius: 0,
+                  pointHoverRadius: 3,
+                  hidden: !isVisible,
+                  order: 1
+                });
+              }
+            }
+
+            // Add ETF benchmark datasets (Phase 9: from baselines.etfs)
+            if (data.baselines?.etfs) {
+              for (const [key, etfData] of Object.entries(data.baselines.etfs)) {
+                const config = ETF_CONFIG[key];
+                if (!config || !etfData.values) continue;
+
+                const isVisible = visibleETFs[key];
+                const sampledETF = downsampleData(etfData.values, 80);
+
+                datasets.push({
+                  label: config.label,
+                  data: sampledETF.map(p => p.value),
+                  borderColor: config.color,
+                  backgroundColor: 'transparent',
+                  tension: 0.3,
+                  fill: false,
+                  borderWidth: 1.5,
+                  borderDash: config.borderDash || [4, 4],
+                  pointRadius: 0,
+                  pointHoverRadius: 3,
+                  hidden: !isVisible,
+                  order: 2
+                });
+              }
+            }
+
             chart.data.labels = labels;
-            chart.data.datasets[0].data = chartData;
+            chart.data.datasets = datasets;
             chart.update();
           }
 
-          // Update allocation bars
+          // Update allocation bars and badge (Phase 9)
           updateAllocationBars(data.allocation);
+          updateAllocationBadge(data.allocation);
 
           // Update metrics
           const m = data.metrics;
@@ -715,6 +1019,29 @@
           if (elements.metricCalmar) {
             elements.metricCalmar.textContent = m.calmarRatio.toFixed(2);
           }
+
+          // Update comparison callout
+          updateComparisonCallout(data);
+        }
+
+        // Update comparison callout with delta vs Pari
+        function updateComparisonCallout(data) {
+          if (!elements.deltaPariReturn || !data.baselines?.optimizedRP) return;
+
+          const userReturn = data.metrics.totalReturn;
+          const userVol = data.metrics.volatility;
+          const pariReturn = data.baselines.optimizedRP.metrics?.totalReturn || 0;
+          const pariVol = data.baselines.optimizedRP.metrics?.volatility || 0;
+
+          const deltaReturn = userReturn - pariReturn;
+          const deltaVol = userVol - pariVol;
+
+          elements.deltaPariReturn.textContent = `${deltaReturn >= 0 ? '+' : ''}${deltaReturn.toFixed(1)}%`;
+          elements.deltaPariReturn.className = deltaReturn >= 0 ? 'positive' : 'negative';
+          elements.deltaPariReturn.style.color = deltaReturn >= 0 ? '#10B981' : '#EF4444';
+
+          elements.deltaPariVol.textContent = `${deltaVol >= 0 ? '+' : ''}${deltaVol.toFixed(1)}%`;
+          elements.deltaPariVol.style.color = deltaVol <= 0 ? '#10B981' : '#F97316'; // Lower vol is better
         }
 
         function updateAllocationBars(allocation) {
@@ -752,9 +1079,345 @@
             page: 'education-simulator',
             currentMix: currentAllocation,
             backtestMetrics: lastResult?.metrics,
-            backtestPeriod: lastResult?.period,
+            backtestPeriod: currentPeriod,
+            backtestLeverage: currentLeverage,
+            visibleBaselines: Object.entries(visibleBaselines).filter(([k, v]) => v).map(([k]) => k),
             language: lang
           };
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Period Controls
+        // ═══════════════════════════════════════════════════════════════
+        function initPeriodControls() {
+          elements.periodButtons.forEach(btn => {
+            btn.addEventListener('click', async function() {
+              const newPeriod = parseInt(this.dataset.period);
+              if (newPeriod === currentPeriod) return;
+
+              // Update UI
+              elements.periodButtons.forEach(b => {
+                b.classList.remove('active');
+                b.style.border = '1px solid #E5E7EB';
+                b.style.background = 'white';
+                b.style.color = '#4B5563';
+                b.style.fontWeight = '500';
+              });
+              this.classList.add('active');
+              this.style.border = '1px solid #667eea';
+              this.style.background = 'rgba(102, 126, 234, 0.1)';
+              this.style.color = '#667eea';
+              this.style.fontWeight = '600';
+
+              currentPeriod = newPeriod;
+
+              // Re-run backtest with current allocation
+              if (currentAllocation) {
+                const result = await calculatePortfolio(currentAllocation);
+                if (result) updateResults(result);
+              }
+            });
+          });
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Leverage Controls
+        // ═══════════════════════════════════════════════════════════════
+        function initLeverageControls() {
+          elements.leveragePills.forEach(pill => {
+            pill.addEventListener('click', async function() {
+              const newLeverage = parseInt(this.dataset.leverage);
+              if (newLeverage === currentLeverage) return;
+
+              // Update UI
+              elements.leveragePills.forEach(p => {
+                p.classList.remove('active');
+                p.style.border = '1px solid #E5E7EB';
+                p.style.background = 'white';
+                p.style.color = '#4B5563';
+                p.style.fontWeight = '500';
+              });
+              this.classList.add('active');
+              this.style.border = '1px solid #667eea';
+              this.style.background = 'rgba(102, 126, 234, 0.1)';
+              this.style.color = '#667eea';
+              this.style.fontWeight = '600';
+
+              currentLeverage = newLeverage;
+
+              // Show/hide warning
+              if (elements.leverageWarning) {
+                elements.leverageWarning.style.display = newLeverage > 1 ? 'flex' : 'none';
+              }
+
+              // Re-run backtest with current allocation
+              if (currentAllocation) {
+                const result = await calculatePortfolio(currentAllocation);
+                if (result) updateResults(result);
+              }
+            });
+          });
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Phase 9: Your Allocation Toggle
+        // ═══════════════════════════════════════════════════════════════
+        function initAllocationToggle() {
+          elements.showYourAllocationCheckbox?.addEventListener('change', function() {
+            showYourAllocation = this.checked;
+            if (chart && chart.data.datasets.length > 0) {
+              chart.data.datasets[0].hidden = !showYourAllocation;
+              chart.update();
+            }
+          });
+        }
+
+        // Update allocation badge display
+        function updateAllocationBadge(allocation) {
+          if (!elements.allocationBadge || !allocation) return;
+          const parts = Object.entries(allocation)
+            .filter(([k, v]) => v > 0)
+            .map(([k, v]) => `${v}% ${k}`)
+            .join(', ');
+          elements.allocationBadge.textContent = parts || '–';
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Phase 9: Collapsible Comparison Sections
+        // ═══════════════════════════════════════════════════════════════
+        function initComparisonSections() {
+          elements.toggleStrategiesBtn?.addEventListener('click', function() {
+            elements.strategyChips?.classList.toggle('collapsed');
+            this.querySelector('.chevron')?.classList.toggle('rotated');
+          });
+
+          elements.toggleETFsBtn?.addEventListener('click', function() {
+            elements.etfChips?.classList.toggle('collapsed');
+            this.querySelector('.chevron')?.classList.toggle('rotated');
+          });
+        }
+
+        // Update chip count display
+        function updateChipCounts() {
+          const strategyCount = Object.values(visibleStrategies).filter(v => v).length;
+          const etfCount = Object.values(visibleETFs).filter(v => v).length;
+
+          if (elements.strategyChipCount) {
+            elements.strategyChipCount.textContent = `(${strategyCount}/9)`;
+          }
+          if (elements.etfChipCount) {
+            elements.etfChipCount.textContent = `(${etfCount}/7)`;
+          }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Strategy Baseline Toggle Controls
+        // ═══════════════════════════════════════════════════════════════
+        function initBaselineControls() {
+          // Strategy chips (use visibleStrategies state)
+          elements.baselineChips.forEach(chip => {
+            chip.addEventListener('click', function() {
+              const strategyKey = this.dataset.baseline;
+              visibleStrategies[strategyKey] = !visibleStrategies[strategyKey];
+
+              // Update chip style
+              const isActive = visibleStrategies[strategyKey];
+              const config = STRATEGY_CONFIG[strategyKey];
+              if (isActive) {
+                this.classList.add('active');
+                this.style.border = `1px solid ${config?.color || '#667eea'}`;
+                this.style.background = `${config?.color || '#667eea'}15`;
+                this.style.color = config?.color || '#667eea';
+              } else {
+                this.classList.remove('active');
+                this.style.border = '1px solid #E5E7EB';
+                this.style.background = 'white';
+                this.style.color = '#9CA3AF';
+              }
+
+              // Toggle dataset visibility in chart
+              if (chart) {
+                const label = config?.label[lang] || strategyKey;
+                const datasetIndex = chart.data.datasets.findIndex(d =>
+                  d.label.includes(strategyKey) || d.label.includes(label)
+                );
+                if (datasetIndex >= 0) {
+                  chart.data.datasets[datasetIndex].hidden = !isActive;
+                  chart.update();
+                }
+              }
+
+              updateChipCounts();
+            });
+          });
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Phase 9: ETF Benchmark Toggle Controls
+        // ═══════════════════════════════════════════════════════════════
+        function initETFControls() {
+          elements.etfChipButtons.forEach(chip => {
+            chip.addEventListener('click', function() {
+              const etfKey = this.dataset.etf;
+              visibleETFs[etfKey] = !visibleETFs[etfKey];
+
+              // Update chip style
+              const isActive = visibleETFs[etfKey];
+              const config = ETF_CONFIG[etfKey];
+              if (isActive) {
+                this.classList.add('active');
+                this.style.border = `1px solid ${config?.color || '#667eea'}`;
+                this.style.background = `${config?.color || '#667eea'}15`;
+                this.style.color = config?.color || '#667eea';
+              } else {
+                this.classList.remove('active');
+                this.style.border = '1px solid #E5E7EB';
+                this.style.background = 'white';
+                this.style.color = '#9CA3AF';
+              }
+
+              // Toggle dataset visibility in chart
+              if (chart) {
+                const label = config?.label || etfKey;
+                const datasetIndex = chart.data.datasets.findIndex(d =>
+                  d.label.includes(etfKey) || d.label.includes(label)
+                );
+                if (datasetIndex >= 0) {
+                  chart.data.datasets[datasetIndex].hidden = !isActive;
+                  chart.update();
+                }
+              }
+
+              updateChipCounts();
+            });
+          });
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // Export Functions
+        // ═══════════════════════════════════════════════════════════════
+        function initExportControls() {
+          // PNG Export
+          elements.exportChartBtn?.addEventListener('click', function() {
+            if (!chart) return;
+            const url = chart.toBase64Image();
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `bubble-strategy-${currentPeriod}y${currentLeverage > 1 ? '-' + currentLeverage + 'x' : ''}.png`;
+            link.click();
+          });
+
+          // CSV Export
+          elements.exportMetricsBtn?.addEventListener('click', function() {
+            if (!lastResult) return;
+
+            const m = lastResult.metrics;
+            const alloc = Object.entries(lastResult.allocation).map(([k, v]) => `${k}:${v}%`).join('; ');
+            const headers = ['allocation', 'period', 'leverage', 'totalReturn%', 'annualReturn%', 'volatility%', 'sharpeRatio', 'maxDrawdown%', 'calmarRatio'];
+            const values = [
+              `"${alloc}"`,
+              currentPeriod,
+              currentLeverage,
+              m.totalReturn.toFixed(2),
+              m.annualReturn.toFixed(2),
+              m.volatility.toFixed(2),
+              m.sharpeRatio.toFixed(2),
+              m.maxDrawdown.toFixed(2),
+              m.calmarRatio.toFixed(2)
+            ];
+
+            const csv = headers.join(',') + '\n' + values.join(',');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `bubble-strategy-metrics-${currentPeriod}y.csv`;
+            link.click();
+            URL.revokeObjectURL(url);
+          });
+
+          // Share Button
+          elements.shareStrategyBtn?.addEventListener('click', function() {
+            if (!currentAllocation) return;
+
+            const params = new URLSearchParams();
+            params.set('mix', Object.entries(currentAllocation).map(([k, v]) => `${k}:${v}`).join(','));
+            params.set('period', currentPeriod);
+            if (currentLeverage > 1) params.set('leverage', currentLeverage);
+
+            const shareURL = `${window.location.origin}${window.location.pathname}?${params}`;
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(shareURL).then(() => {
+              if (elements.shareStatus) {
+                elements.shareStatus.style.display = 'flex';
+                setTimeout(() => {
+                  elements.shareStatus.style.display = 'none';
+                }, 2000);
+              }
+            });
+          });
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // URL Parameter Handling
+        // ═══════════════════════════════════════════════════════════════
+        function applyQueryParams() {
+          const params = new URLSearchParams(window.location.search);
+
+          // Parse mix: ?mix=SPY:50,IEF:30,GLD:20
+          if (params.has('mix')) {
+            const mixStr = params.get('mix');
+            const allocation = {};
+            mixStr.split(',').forEach(pair => {
+              const [ticker, value] = pair.split(':');
+              if (ticker && value) {
+                allocation[ticker.toUpperCase()] = parseFloat(value);
+              }
+            });
+            if (Object.keys(allocation).length > 0) {
+              currentAllocation = allocation;
+            }
+          }
+
+          // Parse period
+          if (params.has('period')) {
+            const p = parseInt(params.get('period'));
+            if ([1, 3, 5, 10, 20].includes(p)) {
+              currentPeriod = p;
+              // Update button UI
+              elements.periodButtons.forEach(btn => {
+                const isActive = parseInt(btn.dataset.period) === p;
+                btn.classList.toggle('active', isActive);
+                btn.style.border = isActive ? '1px solid #667eea' : '1px solid #E5E7EB';
+                btn.style.background = isActive ? 'rgba(102, 126, 234, 0.1)' : 'white';
+                btn.style.color = isActive ? '#667eea' : '#4B5563';
+                btn.style.fontWeight = isActive ? '600' : '500';
+              });
+            }
+          }
+
+          // Parse leverage
+          if (params.has('leverage')) {
+            const l = parseInt(params.get('leverage'));
+            if (l === 1 || l === 2) {
+              currentLeverage = l;
+              // Update pill UI
+              elements.leveragePills.forEach(pill => {
+                const isActive = parseInt(pill.dataset.leverage) === l;
+                pill.classList.toggle('active', isActive);
+                pill.style.border = isActive ? '1px solid #667eea' : '1px solid #E5E7EB';
+                pill.style.background = isActive ? 'rgba(102, 126, 234, 0.1)' : 'white';
+                pill.style.color = isActive ? '#667eea' : '#4B5563';
+                pill.style.fontWeight = isActive ? '600' : '500';
+              });
+              if (elements.leverageWarning) {
+                elements.leverageWarning.style.display = l > 1 ? 'flex' : 'none';
+              }
+            }
+          }
+
+          return currentAllocation;
         }
 
         // Chat functionality
@@ -1086,38 +1749,71 @@
         const SLIDER_COLORS = {
           SPY: '#667eea',
           IEF: '#10B981',
-          GLD: '#F97316'
+          GLD: '#F97316',
+          CASH: '#6B7280'
         };
 
         function initSliders() {
           const sliderRows = document.querySelectorAll('.slider-row');
-          const slidersTotal = document.getElementById('slidersTotal');
-          const applyBtn = document.getElementById('slidersApplyBtn');
+          const totalDisplay = document.getElementById('allocationTotal');
+          const applyBtn = document.getElementById('applyAllocationBtn');
+
+          console.log('initSliders called, applyBtn:', applyBtn);
 
           sliderRows.forEach(row => {
             const slider = row.querySelector('.allocation-slider');
             const valueSpan = row.querySelector('.slider-value');
-            const fill = row.querySelector('.slider-fill');
-            const asset = row.dataset.asset;
+            const fill = row.querySelector('.slider-track-fill');
+            const ticker = row.dataset.ticker;
+            const color = slider?.dataset.color || SLIDER_COLORS[ticker] || '#667eea';
 
             slider?.addEventListener('input', function() {
               const value = parseInt(this.value);
               valueSpan.textContent = `${value}%`;
               fill.style.width = `${value}%`;
+              fill.style.background = color;
 
-              // Update total
+              // Update total and badge
               updateSlidersTotal();
+              updateSliderBadge();
             });
           });
 
-          // Apply button
-          applyBtn?.addEventListener('click', handleSliderApply);
+          // Apply button - add click handler directly
+          if (applyBtn) {
+            applyBtn.addEventListener('click', function() {
+              console.log('Apply button clicked');
+              handleSliderApply();
+            });
+          }
+
+          // Initial total calculation and badge
+          updateSlidersTotal();
+          updateSliderBadge();
+        }
+
+        // Update allocation badge from current slider values
+        function updateSliderBadge() {
+          const badge = document.getElementById('allocationBadge');
+          if (!badge) return;
+
+          const sliderRows = document.querySelectorAll('.slider-row');
+          const parts = [];
+          sliderRows.forEach(row => {
+            const slider = row.querySelector('.allocation-slider');
+            const ticker = row.dataset.ticker;
+            const value = parseInt(slider?.value || 0);
+            if (value > 0) {
+              parts.push(`${value}% ${ticker}`);
+            }
+          });
+          badge.textContent = parts.length > 0 ? parts.join(', ') : '–';
         }
 
         function updateSlidersTotal() {
           const sliderRows = document.querySelectorAll('.slider-row');
-          const slidersTotal = document.getElementById('slidersTotal');
-          const applyBtn = document.getElementById('slidersApplyBtn');
+          const totalDisplay = document.getElementById('allocationTotal');
+          const applyBtn = document.getElementById('applyAllocationBtn');
 
           let total = 0;
           sliderRows.forEach(row => {
@@ -1125,35 +1821,61 @@
             total += parseInt(slider?.value || 0);
           });
 
-          slidersTotal.textContent = `${total}%`;
+          totalDisplay.textContent = `${total}%`;
 
           // Style based on validity
-          slidersTotal.classList.remove('valid', 'invalid');
+          totalDisplay.classList.remove('valid', 'invalid');
           if (total === 100) {
-            slidersTotal.classList.add('valid');
+            totalDisplay.classList.add('valid');
             applyBtn.disabled = false;
           } else {
-            slidersTotal.classList.add('invalid');
+            totalDisplay.classList.add('invalid');
             applyBtn.disabled = true;
           }
         }
 
         async function handleSliderApply() {
+          console.log('handleSliderApply called');
+          const applyBtn = document.getElementById('applyAllocationBtn');
+          const totalDisplay = document.getElementById('allocationTotal');
+
+          const setLoading = (isLoading) => {
+            if (!applyBtn) return;
+            if (isLoading) {
+              applyBtn.dataset.originalLabel = applyBtn.textContent;
+              applyBtn.textContent = lang === 'fr' ? 'Calcul...' : 'Running...';
+              applyBtn.classList.add('is-loading');
+              applyBtn.disabled = true;
+              totalDisplay?.classList.remove('valid');
+            } else {
+              if (applyBtn.dataset.originalLabel) {
+                applyBtn.textContent = applyBtn.dataset.originalLabel;
+              }
+              applyBtn.classList.remove('is-loading');
+              applyBtn.disabled = false;
+            }
+          };
+
           const sliderRows = document.querySelectorAll('.slider-row');
           const allocation = {};
 
           sliderRows.forEach(row => {
             const slider = row.querySelector('.allocation-slider');
-            const asset = row.dataset.asset;
+            const ticker = row.dataset.ticker;
             const value = parseInt(slider?.value || 0);
             if (value > 0) {
-              allocation[asset] = value;
+              allocation[ticker] = value;
             }
           });
 
+          console.log('Allocation from sliders:', allocation);
+
           // Normalize to 100 if not exact
           const total = Object.values(allocation).reduce((a, b) => a + b, 0);
-          if (total === 0) return;
+          if (total === 0) {
+            console.log('Total is 0, returning');
+            return;
+          }
           if (total !== 100) {
             const factor = 100 / total;
             Object.keys(allocation).forEach((k) => {
@@ -1162,27 +1884,42 @@
             syncSlidersToAllocation(allocation);
           }
 
-          // Add message to chat
+          setLoading(true);
+
+          // Add message to chat (only if chat is available)
           const allocStr = Object.entries(allocation).map(([k, v]) => `${v}% ${k}`).join(', ');
-          addMessage(lang === 'fr'
-            ? `J'applique l'allocation : ${allocStr}`
-            : `Applying allocation: ${allocStr}`, true);
-
-          addTypingIndicator();
-          const result = await calculatePortfolio(allocation);
-          removeTypingIndicator();
-
-          if (result) {
-            updateResults(result);
+          if (elements.chatMessages) {
             addMessage(lang === 'fr'
-              ? `Allocation testée !<br><br>
-                 • Rendement total : ${result.metrics.totalReturn >= 0 ? '+' : ''}${result.metrics.totalReturn.toFixed(1)}%<br>
-                 • CAGR : ${result.metrics.annualReturn.toFixed(1)}%/an<br>
-                 • Sharpe : ${result.metrics.sharpeRatio.toFixed(2)}`
-              : `Allocation tested!<br><br>
-                 • Total Return: ${result.metrics.totalReturn >= 0 ? '+' : ''}${result.metrics.totalReturn.toFixed(1)}%<br>
-                 • CAGR: ${result.metrics.annualReturn.toFixed(1)}%/year<br>
-                 • Sharpe: ${result.metrics.sharpeRatio.toFixed(2)}`);
+              ? `J'applique l'allocation : ${allocStr}`
+              : `Applying allocation: ${allocStr}`, true);
+            addTypingIndicator();
+          }
+
+          console.log('Calling calculatePortfolio with:', allocation);
+          try {
+            const result = await calculatePortfolio(allocation);
+            console.log('calculatePortfolio result:', result);
+
+            if (elements.chatMessages) {
+              removeTypingIndicator();
+            }
+
+            if (result) {
+              updateResults(result);
+              if (elements.chatMessages) {
+                addMessage(lang === 'fr'
+                  ? `Allocation testée !<br><br>
+                     • Rendement total : ${result.metrics.totalReturn >= 0 ? '+' : ''}${result.metrics.totalReturn.toFixed(1)}%<br>
+                     • CAGR : ${result.metrics.annualReturn.toFixed(1)}%/an<br>
+                     • Sharpe : ${result.metrics.sharpeRatio.toFixed(2)}`
+                  : `Allocation tested!<br><br>
+                     • Total Return: ${result.metrics.totalReturn >= 0 ? '+' : ''}${result.metrics.totalReturn.toFixed(1)}%<br>
+                     • CAGR: ${result.metrics.annualReturn.toFixed(1)}%/year<br>
+                     • Sharpe: ${result.metrics.sharpeRatio.toFixed(2)}`);
+              }
+            }
+          } finally {
+            setLoading(false);
           }
         }
 
@@ -1193,15 +1930,18 @@
           sliderRows.forEach(row => {
             const slider = row.querySelector('.allocation-slider');
             const valueSpan = row.querySelector('.slider-value');
-            const fill = row.querySelector('.slider-fill');
-            const asset = row.dataset.asset;
+            const fill = row.querySelector('.slider-track-fill');
+            const ticker = row.dataset.ticker;
+            const color = slider?.dataset.color || SLIDER_COLORS[ticker] || '#667eea';
 
-            const value = allocation[asset] || 0;
+            const value = allocation[ticker] || 0;
             slider.value = value;
             valueSpan.textContent = `${value}%`;
             fill.style.width = `${value}%`;
+            fill.style.background = color;
           });
 
+          updateAllocationBadge(allocation);
           updateSlidersTotal();
         }
 
@@ -1227,14 +1967,30 @@
           initQuickChips();
           initBuilderTutorial();
 
+          // Initialize new controls (period, leverage, baselines, exports)
+          initPeriodControls();
+          initLeverageControls();
+          initBaselineControls();
+          initExportControls();
+
+          // Phase 9: Initialize expanded comparison controls
+          initAllocationToggle();
+          initComparisonSections();
+          initETFControls();
+          updateChipCounts();
+
           elements.chatSendBtn?.addEventListener('click', handleSend);
           elements.chatInput?.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') handleSend();
           });
 
-          // Load default balanced allocation
+          // Apply URL parameters (returns allocation if present)
+          const urlAllocation = applyQueryParams();
+
+          // Load initial allocation (URL params or default balanced)
           setTimeout(async () => {
-            const result = await calculatePortfolio(TEMPLATE_ALLOCATIONS.balanced);
+            const initialAllocation = urlAllocation || TEMPLATE_ALLOCATIONS.balanced;
+            const result = await calculatePortfolio(initialAllocation);
             if (result) updateResults(result);
           }, 500);
         });
