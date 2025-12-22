@@ -21,6 +21,7 @@ function configureExpress(app) {
           "'unsafe-inline'", // Required for inline scripts (GA4, etc.)
           "https://www.googletagmanager.com",
           "https://www.google-analytics.com",
+          "https://cdn.jsdelivr.net", // Required for Chart.js
         ],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         fontSrc: ["'self'", "https://fonts.gstatic.com"],
