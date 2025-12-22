@@ -2,7 +2,7 @@ const { Client } = require("@notionhq/client");
 
 // Initialize Notion client using the existing blog API key
 const knowledgeGardenApiKey = process.env.NOTION_BLOG_API_KEY;
-const knowledgeGardenDatabaseId = "1ffcfc520644805b8bb9c9207fb2cb31";
+const knowledgeGardenDatabaseId = process.env.NOTION_KNOWLEDGE_GARDEN_DATABASE_ID;
 
 // Check if knowledge garden configuration is available
 const isKnowledgeGardenConfigured = knowledgeGardenApiKey && knowledgeGardenDatabaseId;

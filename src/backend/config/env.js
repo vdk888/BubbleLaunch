@@ -13,6 +13,7 @@ const env = {
   NOTION_DATABASE_ID_BUSINESS: process.env.NOTION_DATABASE_ID_BUSINESS,
   NOTION_BLOG_API_KEY: process.env.NOTION_BLOG_API_KEY,
   NOTION_BLOG_DATABASE_ID: process.env.NOTION_BLOG_DATABASE_ID,
+  NOTION_KNOWLEDGE_GARDEN_DATABASE_ID: process.env.NOTION_KNOWLEDGE_GARDEN_DATABASE_ID,
 
   // OpenRouter (Chat)
   OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY,
@@ -29,6 +30,7 @@ const env = {
  */
 function validateEnv() {
   const required = [
+    "SESSION_SECRET",
     "NOTION_TOKEN",
     "NOTION_DATABASE_ID_WAITLIST",
     "OPENROUTER_API_KEY",

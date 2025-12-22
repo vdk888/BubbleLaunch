@@ -4,36 +4,89 @@ const env = require("../config/env");
 const notion = new Client({ auth: env.NOTION_TOKEN });
 const databaseId = env.NOTION_DATABASE_ID_BUSINESS || env.NOTION_DATABASE_ID_WAITLIST; // Fallback to waitlist DB for now
 
+// Input validation constants
+const MAX_COMPANY_LENGTH = 200;
+const MAX_NAME_LENGTH = 100;
+const MAX_EMAIL_LENGTH = 254; // RFC 5321
+const MAX_USECASE_LENGTH = 2000;
+const VALID_BUDGETS = ["diagnostic", "small", "medium", "large", "unknown"];
+const VALID_TIMELINES = ["urgent", "soon", "planning", "exploring"];
+
+/**
+ * Sanitize string input - remove potential injection characters
+ */
+function sanitizeString(str, maxLength) {
+  if (typeof str !== "string") return "";
+  return str
+    .trim()
+    .slice(0, maxLength)
+    .replace(/[<>]/g, ""); // Remove HTML brackets
+}
+
+/**
+ * Validate email format (stricter than basic regex)
+ */
+function isValidEmail(email) {
+  if (typeof email !== "string" || email.length > MAX_EMAIL_LENGTH) return false;
+  // RFC 5322 compliant regex (simplified)
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+  return emailRegex.test(email);
+}
+
 /**
  * Handle business contact form submission
  */
 async function submitBusinessContact(req, res) {
   const { company, contactName, email, useCase, budget, timeline } = req.body;
 
-  // Validation
+  // Required field validation
   if (!company || !contactName || !email || !useCase) {
     return res.status(400).json({
       error: "Company, name, email, and use case description are required."
     });
   }
 
+  // Type validation
+  if (typeof company !== "string" || typeof contactName !== "string" ||
+      typeof email !== "string" || typeof useCase !== "string") {
+    return res.status(400).json({ error: "Invalid input types." });
+  }
+
+  // Length validation
+  if (company.length > MAX_COMPANY_LENGTH) {
+    return res.status(400).json({ error: `Company name must be under ${MAX_COMPANY_LENGTH} characters.` });
+  }
+  if (contactName.length > MAX_NAME_LENGTH) {
+    return res.status(400).json({ error: `Contact name must be under ${MAX_NAME_LENGTH} characters.` });
+  }
+  if (useCase.length > MAX_USECASE_LENGTH) {
+    return res.status(400).json({ error: `Use case must be under ${MAX_USECASE_LENGTH} characters.` });
+  }
+
   // Email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
+  if (!isValidEmail(email)) {
     return res.status(400).json({ error: "Invalid email format." });
   }
+
+  // Sanitize all inputs
+  const sanitizedCompany = sanitizeString(company, MAX_COMPANY_LENGTH);
+  const sanitizedName = sanitizeString(contactName, MAX_NAME_LENGTH);
+  const sanitizedEmail = email.trim().toLowerCase().slice(0, MAX_EMAIL_LENGTH);
+  const sanitizedUseCase = sanitizeString(useCase, MAX_USECASE_LENGTH);
+  const sanitizedBudget = VALID_BUDGETS.includes(budget) ? budget : "unknown";
+  const sanitizedTimeline = VALID_TIMELINES.includes(timeline) ? timeline : "exploring";
 
   try {
     // Format the comprehensive request details
     const requestDetails = `
-📧 Contact: ${contactName} (${email})
-🏢 Company: ${company}
+📧 Contact: ${sanitizedName} (${sanitizedEmail})
+🏢 Company: ${sanitizedCompany}
 
 💼 Use Case:
-${useCase}
+${sanitizedUseCase}
 
-💰 Budget: ${budget || 'Not specified'}
-⏱️ Timeline: ${timeline || 'Not specified'}
+💰 Budget: ${sanitizedBudget || 'Not specified'}
+⏱️ Timeline: ${sanitizedTimeline || 'Not specified'}
 
 ---
 📅 Submitted: ${new Date().toISOString()}
@@ -65,7 +118,7 @@ ${useCase}
           title: [
             {
               text: {
-                content: `${company}`,
+                content: sanitizedCompany,
               },
             },
           ],
@@ -75,20 +128,20 @@ ${useCase}
           rich_text: [
             {
               text: {
-                content: contactName,
+                content: sanitizedName,
               },
             },
           ],
         },
         'Professional email': {
-          email: email,
+          email: sanitizedEmail,
         },
         // Use case
         'Use case description': {
           rich_text: [
             {
               text: {
-                content: useCase,
+                content: sanitizedUseCase,
               },
             },
           ],
@@ -96,12 +149,12 @@ ${useCase}
         // Budget and timeline
         'Budget range': {
           select: {
-            name: budgetMapping[budget] || 'Non spécifié',
+            name: budgetMapping[sanitizedBudget] || 'Non spécifié',
           },
         },
         'Timeline': {
           select: {
-            name: timelineMapping[timeline] || '🔍 En exploration (6+ mois)',
+            name: timelineMapping[sanitizedTimeline] || '🔍 En exploration (6+ mois)',
           },
         },
         // Status
@@ -129,7 +182,7 @@ ${useCase}
       },
     });
 
-    console.log(`✅ Business contact received from ${company} (${email})`);
+    console.log(`✅ Business contact received from ${sanitizedCompany} (${sanitizedEmail})`);
 
     res.status(201).json({
       message: "Request received successfully! We'll respond within 48h."
@@ -139,7 +192,7 @@ ${useCase}
     console.error("Error saving business contact to Notion:", error);
 
     // Send email notification as backup if Notion fails
-    console.error(`⚠️ URGENT: Business lead lost! Company: ${company}, Email: ${email}, Budget: ${budget}`);
+    console.error(`⚠️ URGENT: Business lead lost! Company: ${sanitizedCompany}, Email: ${sanitizedEmail}, Budget: ${sanitizedBudget}`);
 
     res.status(500).json({
       error: "Failed to submit request. Please contact us directly at contact@bubbleinvest.org"

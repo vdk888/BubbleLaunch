@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const helmet = require("helmet");
 const sessionMiddleware = require("../middleware/session");
 
 /**
@@ -9,6 +10,35 @@ const sessionMiddleware = require("../middleware/session");
 function configureExpress(app) {
   // Trust proxy headers (needed for Cloudflare/DigitalOcean)
   app.set('trust proxy', true);
+
+  // Security headers via helmet
+  app.use(helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'", // Required for inline scripts (GA4, etc.)
+          "https://www.googletagmanager.com",
+          "https://www.google-analytics.com",
+        ],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        imgSrc: ["'self'", "data:", "https:", "blob:"],
+        connectSrc: [
+          "'self'",
+          "https://www.google-analytics.com",
+          "https://api.notion.com",
+          "https://openrouter.ai",
+        ],
+        frameSrc: ["'none'"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+      },
+    },
+    crossOriginEmbedderPolicy: false, // Disable for external images
+    crossOriginResourcePolicy: { policy: "cross-origin" }, // Allow external resources
+  }));
 
   // Redirect www to non-www
   app.use((req, res, next) => {
