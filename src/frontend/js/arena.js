@@ -31,10 +31,18 @@
       sage: '#10B981',
     },
     BOT_NAMES: {
-      equi: 'Équi',
-      pari: 'Pari',
-      momo: 'Momo',
-      sage: 'Sage',
+      fr: {
+        equi: 'Ours',
+        pari: 'Renard',
+        momo: 'Faucon',
+        sage: 'Hérisson',
+      },
+      en: {
+        equi: 'Bear',
+        pari: 'Fox',
+        momo: 'Hawk',
+        sage: 'Hedgehog',
+      },
     },
   };
 
@@ -52,7 +60,22 @@
     chart: null,
     language: document.documentElement.lang || 'fr',
     chatHistory: [],
+    selectedBot: null, // Track selected bot for highlighting
   };
+
+  // ═══════════════════════════════════════════════════════════════
+  // Helper Functions
+  // ═══════════════════════════════════════════════════════════════
+
+  /**
+   * Get bot name based on current language
+   * @param {string} botId - Bot identifier (equi, pari, momo, sage)
+   * @returns {string} Localized bot name
+   */
+  function getBotName(botId) {
+    const lang = state.language === 'en' ? 'en' : 'fr';
+    return CONFIG.BOT_NAMES[lang][botId] || botId;
+  }
 
   // ═══════════════════════════════════════════════════════════════
   // DOM Elements
@@ -372,7 +395,7 @@
 
     // Prepare datasets for each bot
     const datasets = Object.keys(CONFIG.BOT_COLORS).map((botId) => ({
-      label: CONFIG.BOT_NAMES[botId],
+      label: getBotName(botId),
       data: [],
       borderColor: CONFIG.BOT_COLORS[botId],
       backgroundColor: hexToRgba(CONFIG.BOT_COLORS[botId], 0.1),
@@ -491,6 +514,51 @@
     }
   }
 
+  /**
+   * Highlight a specific bot's line in the chart
+   * @param {string} botId - Bot identifier to highlight
+   */
+  function highlightBotInChart(botId) {
+    if (!state.chart) return;
+
+    const botIds = ['equi', 'pari', 'momo', 'sage'];
+    const botIndex = botIds.indexOf(botId);
+    if (botIndex === -1) return;
+
+    state.chart.data.datasets.forEach((dataset, index) => {
+      if (index === botIndex) {
+        // Highlight selected bot
+        dataset.borderWidth = 4;
+        dataset.borderColor = CONFIG.BOT_COLORS[botIds[index]];
+        dataset.backgroundColor = hexToRgba(CONFIG.BOT_COLORS[botIds[index]], 0.2);
+      } else {
+        // Dim other bots
+        dataset.borderWidth = 1;
+        dataset.borderColor = hexToRgba(CONFIG.BOT_COLORS[botIds[index]], 0.3);
+        dataset.backgroundColor = hexToRgba(CONFIG.BOT_COLORS[botIds[index]], 0.05);
+      }
+    });
+
+    state.chart.update('none');
+  }
+
+  /**
+   * Reset chart highlighting to default state
+   */
+  function resetChartHighlight() {
+    if (!state.chart) return;
+
+    const botIds = ['equi', 'pari', 'momo', 'sage'];
+
+    state.chart.data.datasets.forEach((dataset, index) => {
+      dataset.borderWidth = 2;
+      dataset.borderColor = CONFIG.BOT_COLORS[botIds[index]];
+      dataset.backgroundColor = hexToRgba(CONFIG.BOT_COLORS[botIds[index]], 0.1);
+    });
+
+    state.chart.update('none');
+  }
+
   // ═══════════════════════════════════════════════════════════════
   // Action Vignettes - Show bot buy/sell explanations
   // ═══════════════════════════════════════════════════════════════
@@ -567,17 +635,25 @@
     }
 
     const lang = state.language;
+    const eventLabel = frame.event.label[lang];
+    const askWhyText = lang === 'fr' ? 'Demander' : 'Ask why';
+    const chatIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+
     let html = `
       <div class="vignettes-header">
         <span class="vignettes-title">${lang === 'fr' ? 'Actions des Bots' : 'Bot Actions'}</span>
-        <span class="vignettes-event">${frame.event.label[lang]}</span>
+        <span class="vignettes-event">${eventLabel}</span>
       </div>
       <div class="vignettes-grid">
     `;
 
     Object.entries(actions).forEach(([botId, { action, reason }]) => {
       const color = ACTION_COLORS[action] || '#6B7280';
-      const botName = CONFIG.BOT_NAMES[botId];
+      const botName = getBotName(botId);
+      const askQuestion = lang === 'fr'
+        ? `Pourquoi ${botName} a choisi ${action} pendant ${eventLabel} ?`
+        : `Why did ${botName} choose ${action} during ${eventLabel}?`;
+
       html += `
         <div class="vignette-item" style="--action-color: ${color}; --bot-color: ${CONFIG.BOT_COLORS[botId]}">
           <div class="vignette-bot">
@@ -586,13 +662,54 @@
           </div>
           <div class="vignette-action">${action}</div>
           <div class="vignette-reason">${reason[lang]}</div>
+          <button class="vignette-ask-btn" data-question="${askQuestion}">
+            ${chatIcon} ${askWhyText}
+          </button>
         </div>
       `;
     });
 
     html += '</div>';
+
+    // Add proactive chatbot prompt
+    const proactiveText = lang === 'fr'
+      ? `<strong>Curieux ?</strong> Demandez-moi pourquoi chaque bot a réagi différemment à cet événement.`
+      : `<strong>Curious?</strong> Ask me why each bot reacted differently to this event.`;
+    const askBtnText = lang === 'fr' ? 'Poser une question' : 'Ask a question';
+    const defaultQuestion = lang === 'fr'
+      ? `Explique-moi les différentes réactions des bots pendant ${eventLabel}`
+      : `Explain the different bot reactions during ${eventLabel}`;
+
+    html += `
+      <div class="proactive-prompt">
+        <div class="proactive-prompt-content">
+          <div class="proactive-prompt-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <div class="proactive-prompt-text">${proactiveText}</div>
+        </div>
+        <button class="proactive-prompt-btn" data-question="${defaultQuestion}">
+          ${askBtnText}
+        </button>
+      </div>
+    `;
+
     container.innerHTML = html;
     container.classList.add('visible');
+
+    // Add click handlers for vignette ask buttons
+    container.querySelectorAll('.vignette-ask-btn, .proactive-prompt-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const question = btn.dataset.question;
+        if (question && window.chatSidePanel?.open) {
+          window.chatSidePanel.open(question);
+        }
+      });
+    });
   }
 
   function hideActionVignettes() {
@@ -619,6 +736,32 @@
     // Event buttons
     document.querySelectorAll('.event-btn').forEach((btn) => {
       btn.addEventListener('click', () => jumpToEvent(btn.dataset.event));
+    });
+
+    // Bot card click handlers - highlight bot in chart
+    document.querySelectorAll('.arena-bot-card').forEach((card) => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        const botId = card.dataset.bot;
+        if (!botId) return;
+
+        // Toggle selection: if already selected, deselect; otherwise select
+        if (state.selectedBot === botId) {
+          state.selectedBot = null;
+          // Remove active class from all cards
+          document.querySelectorAll('.arena-bot-card').forEach((c) => c.classList.remove('active'));
+          // Reset all chart lines to normal
+          resetChartHighlight();
+        } else {
+          state.selectedBot = botId;
+          // Update active class on cards
+          document.querySelectorAll('.arena-bot-card').forEach((c) => {
+            c.classList.toggle('active', c.dataset.bot === botId);
+          });
+          // Highlight selected bot in chart
+          highlightBotInChart(botId);
+        }
+      });
     });
 
     // "Explain this trade" buttons - use event delegation since they're dynamically created
@@ -648,10 +791,15 @@
   function togglePlayback() {
     state.isPlaying = !state.isPlaying;
 
-    // Update icons
+    // Update icons and button state
     if (elements.playIcon && elements.pauseIcon) {
       elements.playIcon.style.display = state.isPlaying ? 'none' : 'block';
       elements.pauseIcon.style.display = state.isPlaying ? 'block' : 'none';
+    }
+
+    // Toggle playing class for CSS styling (stops pulse animation)
+    if (elements.playPauseBtn) {
+      elements.playPauseBtn.classList.toggle('playing', state.isPlaying);
     }
 
     if (state.isPlaying) {
@@ -679,6 +827,10 @@
         if (elements.playIcon && elements.pauseIcon) {
           elements.playIcon.style.display = 'block';
           elements.pauseIcon.style.display = 'none';
+        }
+        // Remove playing class to restore pulse animation
+        if (elements.playPauseBtn) {
+          elements.playPauseBtn.classList.remove('playing');
         }
       }
     }, intervalMs);
@@ -716,6 +868,10 @@
       if (elements.playIcon && elements.pauseIcon) {
         elements.playIcon.style.display = 'block';
         elements.pauseIcon.style.display = 'none';
+      }
+      // Remove playing class to restore pulse animation
+      if (elements.playPauseBtn) {
+        elements.playPauseBtn.classList.remove('playing');
       }
     }
   }
@@ -842,7 +998,7 @@
     const botRankings = Object.entries(frame.bots)
       .map(([botId, data]) => ({
         botId,
-        name: CONFIG.BOT_NAMES[botId],
+        name: getBotName(botId),
         color: CONFIG.BOT_COLORS[botId],
         initial: botId.charAt(0).toUpperCase(),
         pnl: data.pnlPercent,
@@ -953,7 +1109,7 @@
       entry.innerHTML = `
         <div class="trade-bot">
           <span class="trade-bot-avatar" style="--bot-color: ${CONFIG.BOT_COLORS[trade.botId]}">${trade.botId.charAt(0).toUpperCase()}</span>
-          <span class="trade-bot-name">${CONFIG.BOT_NAMES[trade.botId]}</span>
+          <span class="trade-bot-name">${getBotName(trade.botId)}</span>
         </div>
         <div class="trade-action">${trade.action}</div>
         <div class="trade-details">
@@ -962,7 +1118,7 @@
         <div class="trade-pnl ${trade.pnl >= 0 ? 'positive' : 'negative'}">
           ${trade.pnl >= 0 ? '+' : ''}${trade.pnl.toFixed(2)}%
         </div>
-        <button class="ask-trade-btn" data-question="${CONFIG.BOT_NAMES[trade.botId]} ${trade.action} — ${trade.assets.join(', ')}">
+        <button class="ask-trade-btn" data-question="${getBotName(trade.botId)} ${trade.action} — ${trade.assets.join(', ')}">
           ${state.language === 'fr' ? 'Expliquer ce trade' : 'Explain this trade'}
         </button>
       `;
@@ -1058,7 +1214,7 @@
     const finalTrades = shuffleArray(trades).slice(0, 2);
     if (finalTrades.length) {
       frame.latestTradePrompt = finalTrades
-        .map((t) => `${CONFIG.BOT_NAMES[t.botId]} ${t.action}`)
+        .map((t) => `${getBotName(t.botId)} ${t.action}`)
         .join(' | ');
     }
     return finalTrades;
@@ -1242,8 +1398,8 @@
         const botId = btn.dataset.askBot;
         const prompt =
           state.language === 'fr'
-            ? `Pourquoi ${CONFIG.BOT_NAMES[botId]} a agi ainsi ?`
-            : `Why did ${CONFIG.BOT_NAMES[botId]} act this way?`;
+            ? `Pourquoi ${getBotName(botId)} a agi ainsi ?`
+            : `Why did ${getBotName(botId)} act this way?`;
         setChatInput(prompt);
       });
     });
@@ -1267,7 +1423,7 @@
     const leaderboard = Object.entries(frame.bots)
       .map(([id, data]) => ({ id, pnl: data.pnlPercent }))
       .sort((a, b) => b.pnl - a.pnl)
-      .map((b) => `${CONFIG.BOT_NAMES[b.id]} ${b.pnl.toFixed(2)}%`)
+      .map((b) => `${getBotName(b.id)} ${b.pnl.toFixed(2)}%`)
       .join(', ');
 
     return {
@@ -1377,8 +1533,8 @@
     if (!frame) return;
     const hint =
       state.language === 'fr'
-        ? `Vous regardez ${formatMonthYearFull(frame.month, 'fr')}. Demandez « Pourquoi ${CONFIG.BOT_NAMES.pari} a vendu ? »`
-        : `You are viewing ${formatMonthYearFull(frame.month, 'en')}. Ask “Why did ${CONFIG.BOT_NAMES.pari} sell?”`;
+        ? `Vous regardez ${formatMonthYearFull(frame.month, 'fr')}. Demandez « Pourquoi ${getBotName('pari')} a vendu ? »`
+        : `You are viewing ${formatMonthYearFull(frame.month, 'en')}. Ask "Why did ${getBotName('pari')} sell?"`;
     appendChatMessage(hint, 'bot');
   }
 

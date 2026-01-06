@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- SEO Meta Tags -->
-    <title>Learn Investing | AI Arena & Strategy Simulator - Bubble Invest</title>
-    <meta name="description" content="Discover investing interactively. Watch AI bots trade in real-time in the Arena or build your own strategy in the Simulator. 100% free and educational." />
+    <title>Bubble Playground | AI Arena & Strategy Simulator - Bubble Invest</title>
+    <meta name="description" content="Discover investing interactively and have fun. Watch AI bots trade in real-time in the Arena or build your own strategy in the Simulator. 100% free." />
     <meta name="keywords" content="learn investing, financial education, trading simulator, AI trading bot, portfolio strategy, risk parity, momentum, free backtesting" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bubbleinvest.org/en/investors/education" />
-    <meta property="og:title" content="Learn Investing | AI Arena & Strategy Simulator" />
+    <meta property="og:title" content="Bubble Playground | AI Arena & Strategy Simulator" />
     <meta property="og:description" content="Discover investing interactively. Watch AI bots trade or build your own strategy. 100% free." />
     <meta property="og:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
     <meta property="og:locale" content="en_US" />
@@ -21,7 +21,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://bubbleinvest.org/en/investors/education" />
-    <meta name="twitter:title" content="Learn Investing | AI Arena & Strategy Simulator" />
+    <meta name="twitter:title" content="Bubble Playground | AI Arena & Strategy Simulator" />
     <meta name="twitter:description" content="Watch AI bots trade or build your own strategy. 100% free and educational." />
     <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
 
@@ -45,9 +45,8 @@
     />
 
     <!-- Cookie Consent -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/css/tarteaucitron.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/tarteaucitron.min.js"></script>
-    <script src="/js/seo/cookie-consent.js"></script>
+    <link rel="stylesheet" href="/assets/styles/cookie-banner.css">
+    <script src="/js/seo/cookie-banner.js"></script>
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
@@ -136,61 +135,41 @@
 
     <!-- Main Content -->
     <main class="education-hub">
-      <!-- Help Button for Tutorial -->
-      <button class="arena-help-btn" id="educationHelpBtn" title="Tutorial" aria-label="Show tutorial">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-          <line x1="12" y1="17" x2="12.01" y2="17"/>
-        </svg>
-      </button>
-
-      <!-- Tutorial Overlay -->
-      <div class="tutorial-overlay" id="educationTutorialOverlay">
-        <section class="arena-tutorial" id="educationTutorial">
-          <button class="tutorial-close-btn" id="educationTutorialCloseBtn" aria-label="Close">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="18" y1="6" x2="6" y2="18"/>
-              <line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
-          </button>
-          <div class="tutorial-header">
-            <h3 class="tutorial-title">Welcome to Education</h3>
-            <span class="tutorial-progress" id="educationTutorialProgress">1 / 5</span>
-          </div>
-          <div class="tutorial-steps">
-            <div class="tutorial-step active"></div>
-            <div class="tutorial-step"></div>
-            <div class="tutorial-step"></div>
-            <div class="tutorial-step"></div>
-            <div class="tutorial-step"></div>
-          </div>
-          <div class="tutorial-content">
-            <p id="educationTutorialContent">
-              Pick your mode: watch in the Arena or build in the Simulator.
+      <!-- Chatbot-First Hero Section -->
+      <section class="hub-chat-hero">
+        <div class="container">
+          <div class="hero-header">
+            <span class="hero-eyebrow" data-translate="education.hub.eyebrow">Bubble Playground</span>
+            <h1 data-translate="education.hub.title">Discover your investor profile</h1>
+            <p class="hero-subtitle" data-translate="education.hub.subtitle">
+              A few simple questions to understand your relationship with risk. No math, no jargon.
             </p>
           </div>
-          <div class="tutorial-actions">
-            <button class="tutorial-btn primary" id="educationTutorialNext">
-              Got it, next
-            </button>
-            <button class="tutorial-btn secondary" id="educationTutorialSkip">
-              Skip tutorial
-            </button>
-          </div>
-        </section>
-      </div>
 
-      <!-- Hero Section (matching /investors style) -->
-      <section class="hero hero-purple fade-in">
-        <div class="container">
-          <p class="hero-eyebrow" data-translate="education.hub.eyebrow">Education</p>
-          <h1 data-translate="education.hub.title">AI is your ally, not your enemy</h1>
-          <p class="hero-subtitle" data-translate="education.hub.subtitle">
-            Gone are the days when a few claimed to hold inaccessible knowledge.
-            Use AI to learn about investing, not to be manipulated.
-            <strong>Knowledge for all, 100% free, forever.</strong>
-          </p>
+          <!-- Main Chatbot Interface -->
+          <div class="playground-chat-wrapper">
+            <div class="playground-chat-container">
+              <div class="playground-messages" id="playgroundMessages">
+                <!-- Messages will be added dynamically by playground-chat.js -->
+              </div>
+              <form class="playground-input-container" id="playgroundInputForm" novalidate>
+                <input
+                  type="text"
+                  class="playground-input"
+                  id="playgroundInput"
+                  placeholder="Ask your question..."
+                  data-translate-placeholder="education.hub.chat.placeholder"
+                  autocomplete="off"
+                />
+                <button class="playground-send-btn" type="submit" aria-label="Send">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M12 21V4" stroke-linecap="round" />
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -266,18 +245,26 @@
                   </svg>
                 </div>
                 <div class="mini-chart-legend">
-                  <span class="legend-item" style="--legend-color: #667eea">Pari</span>
-                  <span class="legend-item" style="--legend-color: #10B981">Sage</span>
-                  <span class="legend-item" style="--legend-color: #6B7280">Equi</span>
-                  <span class="legend-item" style="--legend-color: #F97316">Momo</span>
+                  <span class="legend-item" style="--legend-color: #667eea" data-translate="education.arena.bots.pari.name">Fox</span>
+                  <span class="legend-item" style="--legend-color: #10B981" data-translate="education.arena.bots.sage.name">Hedgehog</span>
+                  <span class="legend-item" style="--legend-color: #6B7280" data-translate="education.arena.bots.equi.name">Bear</span>
+                  <span class="legend-item" style="--legend-color: #F97316" data-translate="education.arena.bots.momo.name">Hawk</span>
                 </div>
               </div>
 
               <div class="path-bots">
-                <div class="bot-avatar" style="--bot-color: #6B7280" title="Equi - Equal Weight">E</div>
-                <div class="bot-avatar" style="--bot-color: #667eea" title="Pari - Risk Parity">P</div>
-                <div class="bot-avatar" style="--bot-color: #F97316" title="Momo - Momentum">M</div>
-                <div class="bot-avatar" style="--bot-color: #10B981" title="Sage - Defensive">S</div>
+                <div class="bot-avatar" style="--bot-color: #6B7280" title="Bear (Equal Weight)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="6"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/></svg>
+                </div>
+                <div class="bot-avatar" style="--bot-color: #667eea" title="Fox (Risk Parity)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 18c-3 0-6-2-6-6 0-2 1-3 2-4l1-3 2 2h2l2-2 1 3c1 1 2 2 2 4 0 4-3 6-6 6z"/></svg>
+                </div>
+                <div class="bot-avatar" style="--bot-color: #F97316" title="Hawk (Momentum)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5c-2 0-3 1-4 2s-1 3 0 5l4 6 4-6c1-2 1-4 0-5s-2-2-4-2z"/><path d="M8 6l-2-2M16 6l2-2"/></svg>
+                </div>
+                <div class="bot-avatar" style="--bot-color: #10B981" title="Hedgehog (Defensive)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="13" rx="6" ry="4"/><path d="M6 10l-1-3M9 9l-.5-3M12 8V5M15 9l.5-3M18 10l1-3"/></svg>
+                </div>
               </div>
 
               <div class="path-cta">
@@ -406,6 +393,112 @@
                 No subscription required.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Learn More Videos Section -->
+      <section class="education-videos" id="educationVideos">
+        <div class="container">
+          <div class="videos-header">
+            <h2 class="section-title" data-translate="education.hub.videos.title">Deepen Your Knowledge</h2>
+            <p class="videos-subtitle" data-translate="education.hub.videos.subtitle">
+              Curated videos to understand investing and the strategies used by the bots.
+            </p>
+          </div>
+
+          <div class="videos-grid">
+            <!-- Video Card 1: ETF Basics -->
+            <a href="https://www.youtube.com/watch?v=OwpFBi_jUVw" target="_blank" rel="noopener" class="video-card">
+              <div class="video-thumbnail">
+                <img src="https://img.youtube.com/vi/OwpFBi_jUVw/mqdefault.jpg" alt="What is an ETF?" loading="lazy" />
+                <div class="video-play-overlay">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"/>
+                  </svg>
+                </div>
+                <span class="video-duration">8:42</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title" data-translate="education.hub.videos.etf.title">What is an ETF?</h3>
+                <p class="video-description" data-translate="education.hub.videos.etf.description">
+                  Understanding ETFs (trackers) in 10 minutes. The favorite tool of passive investors.
+                </p>
+                <div class="video-meta">
+                  <span class="video-channel">Finary</span>
+                  <span class="video-tag" data-translate="education.hub.videos.beginner">Beginner</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Video Card 2: Risk Parity -->
+            <a href="https://www.youtube.com/watch?v=Nu4lHaSh7D4" target="_blank" rel="noopener" class="video-card">
+              <div class="video-thumbnail">
+                <img src="https://img.youtube.com/vi/Nu4lHaSh7D4/mqdefault.jpg" alt="Risk Parity Explained" loading="lazy" />
+                <div class="video-play-overlay">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"/>
+                  </svg>
+                </div>
+                <span class="video-duration">12:15</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title" data-translate="education.hub.videos.riskparity.title">Understanding Risk Parity</h3>
+                <p class="video-description" data-translate="education.hub.videos.riskparity.description">
+                  Fox's favorite strategy. How to balance risk, not amounts.
+                </p>
+                <div class="video-meta">
+                  <span class="video-channel">Ben Felix</span>
+                  <span class="video-tag" data-translate="education.hub.videos.intermediate">Intermediate</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Video Card 3: Portfolio Diversification -->
+            <a href="https://www.youtube.com/watch?v=jgWbCVkwZGc" target="_blank" rel="noopener" class="video-card">
+              <div class="video-thumbnail">
+                <img src="https://img.youtube.com/vi/jgWbCVkwZGc/mqdefault.jpg" alt="Diversification Portfolio" loading="lazy" />
+                <div class="video-play-overlay">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"/>
+                  </svg>
+                </div>
+                <span class="video-duration">15:30</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title" data-translate="education.hub.videos.diversification.title">The Art of Diversification</h3>
+                <p class="video-description" data-translate="education.hub.videos.diversification.description">
+                  Why diversification reduces risk without sacrificing returns.
+                </p>
+                <div class="video-meta">
+                  <span class="video-channel">Two Cents</span>
+                  <span class="video-tag" data-translate="education.hub.videos.beginner">Beginner</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Video Card 4: Market Crashes -->
+            <a href="https://www.youtube.com/watch?v=PHe0bXAIuk0" target="_blank" rel="noopener" class="video-card">
+              <div class="video-thumbnail">
+                <img src="https://img.youtube.com/vi/PHe0bXAIuk0/mqdefault.jpg" alt="Market Crashes History" loading="lazy" />
+                <div class="video-play-overlay">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"/>
+                  </svg>
+                </div>
+                <span class="video-duration">18:45</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title" data-translate="education.hub.videos.crashes.title">Major Market Crashes</h3>
+                <p class="video-description" data-translate="education.hub.videos.crashes.description">
+                  2000, 2008, 2020... How do markets behave during crises?
+                </p>
+                <div class="video-meta">
+                  <span class="video-channel">Plain Bagel</span>
+                  <span class="video-tag" data-translate="education.hub.videos.intermediate">Intermediate</span>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </section>
@@ -691,6 +784,17 @@
         helpBtn?.addEventListener('click', openTutorial);
         overlay?.addEventListener('click', (e) => { if (e.target === overlay) closeTutorial(); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay?.classList.contains('active')) closeTutorial(); });
+      });
+    </script>
+
+    <!-- Playground LLM Chatbot -->
+    <script src="/js/playground-llm-chat.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Initialize the LLM-powered playground chatbot
+        if (typeof PlaygroundLLMChat !== 'undefined') {
+          PlaygroundLLMChat.init('playgroundMessages', 'playgroundInput');
+        }
       });
     </script>
   </body>

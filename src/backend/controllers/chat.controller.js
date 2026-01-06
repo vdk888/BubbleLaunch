@@ -52,7 +52,7 @@ loadPricingDocument().catch(console.error);
  * UNIFIED SYSTEM PROMPT - Single chatbot across all pages
  * Adapts behavior and context based on page and conversation history
  */
-const unifiedSystemPrompt = (language, pageContext = 'index', waitlistShared = false) => {
+const unifiedSystemPrompt = (language, pageContext = 'index', waitlistShared = false, userProfile = null) => {
   // Normalize context for routing
   const ctx = (pageContext || 'index').toLowerCase();
 
@@ -65,10 +65,72 @@ const unifiedSystemPrompt = (language, pageContext = 'index', waitlistShared = f
     ctx === 'education-simulator' ||
     ctx === 'education/simulator';
 
+  const isPlayground = ctx === 'playground' || ctx.includes('playground');
   const isArena = ctx === 'arena' || ctx === 'education-arena' || ctx === 'education/arena';
   const isSimulator = ctx === 'simulator' || ctx === 'education-simulator' || ctx === 'education/simulator';
 
-  const educationBlock = isEducation
+  // Build user profile block if available
+  let profileBlock = '';
+  if (userProfile && isPlayground) {
+    const levelMap = {
+      beginner: { fr: 'Debutant', en: 'Beginner' },
+      intermediate: { fr: 'Intermediaire', en: 'Intermediate' },
+      advanced: { fr: 'Avance', en: 'Advanced' }
+    };
+    const goalMap = {
+      learn_basics: { fr: 'Apprendre les bases', en: 'Learn the basics' },
+      build_strategy: { fr: 'Construire une strategie', en: 'Build a strategy' },
+      watch_arena: { fr: 'Observer les bots', en: 'Watch AI bots' },
+      test_portfolio: { fr: 'Tester un portefeuille', en: 'Test a portfolio' }
+    };
+    const styleMap = {
+      videos: { fr: 'Videos', en: 'Videos' },
+      exercises: { fr: 'Exercices pratiques', en: 'Hands-on exercises' },
+      dialogue: { fr: 'Questions-reponses', en: 'Q&A dialogue' },
+      explore: { fr: 'Auto-exploration', en: 'Self-exploration' }
+    };
+
+    const level = levelMap[userProfile.level]?.[language] || userProfile.level || 'unknown';
+    const goal = goalMap[userProfile.goal]?.[language] || userProfile.goal || 'exploring';
+    const style = styleMap[userProfile.learningStyle]?.[language] || userProfile.learningStyle || 'mixed';
+
+    profileBlock = `
+
+### USER PROFILE (from onboarding)
+- Knowledge Level: ${level}
+- Primary Goal: ${goal}
+- Learning Style: ${style}
+- Onboarding Complete: ${userProfile.onboardingComplete ? 'Yes' : 'No'}
+
+IMPORTANT: Adapt your vocabulary, depth, and examples based on this profile:
+- For BEGINNERS: Use simple analogies, avoid jargon, explain step by step
+- For INTERMEDIATE: Use standard financial terms with brief explanations
+- For ADVANCED: Be technical, reference specific metrics and strategies`;
+  }
+
+  // Playground-specific context
+  const playgroundBlock = isPlayground
+    ? `
+
+### PLAYGROUND CONTEXT
+You are the **Bubble Playground Assistant** - a friendly, motivating guide to financial education.
+Your personality:
+- Friendly and encouraging - never academic or boring
+- Use metaphors and real-life examples
+- Celebrate small wins and discoveries
+- Ask clarifying questions rather than assuming
+- Suggest next steps proactively
+
+When relevant, suggest exploring:
+- The Arena (watch AI bots trade through crises)
+- The Simulator (build and test your own strategy)
+- Educational videos on ETFs, diversification, risk
+
+Keep responses concise (2-4 sentences typically) but expand when explaining concepts.
+Always offer to go deeper or move to the next topic.${profileBlock}`
+    : '';
+
+  const educationBlock = (isEducation && !isPlayground)
     ? `
 
 ### EDUCATION CONTEXT
@@ -81,7 +143,7 @@ const unifiedSystemPrompt = (language, pageContext = 'index', waitlistShared = f
 - Maintain conversational continuity if user moves between Arena and Simulator (use provided history).`
     : '';
 
-  return `You are Bubble's AI Assistant - a unified conversational guide available across our entire platform (index page, pricing, portfolio simulator, and more).${educationBlock}
+  return `You are Bubble's AI Assistant - a unified conversational guide available across our entire platform (index page, pricing, portfolio simulator, and more).${playgroundBlock}${educationBlock}
 
 Your goal is to be helpful, transparent, and embody Bubble's mission to democratize intelligent investing.
 
@@ -443,9 +505,10 @@ async function handlePortfolioChat(req, res) {
 /**
  * Get unified system prompt (replaces page-specific prompts)
  * PageContext tells the chatbot which page the user is on
+ * userProfile contains onboarding data for playground context
  */
-function getSystemPrompt(language, pageContext = 'index', waitlistShared = false) {
-  return unifiedSystemPrompt(language, pageContext, waitlistShared);
+function getSystemPrompt(language, pageContext = 'index', waitlistShared = false, userProfile = null) {
+  return unifiedSystemPrompt(language, pageContext, waitlistShared, userProfile);
 }
 
 /**
@@ -493,14 +556,25 @@ async function handleChat(req, res) {
       )
     : false;
 
-  // Get the unified system prompt with page context
-  let systemPromptContent = getSystemPrompt(resolvedLanguage, context, waitlistShared);
+  // Extract user profile from contextMetadata for playground
+  let userProfile = null;
   let metadataBlock = "";
   if (typeof contextMetadata === "string") {
     metadataBlock = contextMetadata.trim();
   } else if (contextMetadata && typeof contextMetadata === "object") {
-    metadataBlock = JSON.stringify(contextMetadata);
+    // Extract profile for playground context
+    if (contextMetadata.profile) {
+      userProfile = contextMetadata.profile;
+    }
+    // Build metadata block without profile (to avoid duplication)
+    const { profile, ...otherMetadata } = contextMetadata;
+    if (Object.keys(otherMetadata).length > 0) {
+      metadataBlock = JSON.stringify(otherMetadata);
+    }
   }
+
+  // Get the unified system prompt with page context and user profile
+  let systemPromptContent = getSystemPrompt(resolvedLanguage, context, waitlistShared, userProfile);
 
   // Inject lightweight simulator heuristics to help the education chatbot propose mixes
   if (

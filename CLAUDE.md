@@ -279,7 +279,40 @@ The application features an intelligent reference enrichment system for the Know
 - **Focused Prompts:** Only generates essential metadata and legal links
 - **Intelligent Caching:** Prevents redundant API calls for already enriched references
 
-### Portfolio Simulator
+### Bubble Playground (Education Module)
+**Status**: 🔄 **In Development** - Replacing legacy portfolio-simulator
+
+**Mission**: Transform financial education into a fun, engaging, and accessible experience.
+
+**Documentation**: See [docs/BUBBLE_PLAYGROUND_PROJECT.md](docs/BUBBLE_PLAYGROUND_PROJECT.md) for detailed project tracking.
+
+**Pages**:
+- **Playground Hub** (`/investors/education`) - Gateway with two learning paths
+- **AI Trading Arena** (`/investors/education/arena`) - Watch 4 AI bots compete on 20 years of data
+- **Strategy Simulator** (`/investors/education/simulator`) - Chat-driven portfolio builder
+
+**Bot Mascots** (Animal-themed for memorability):
+| Animal (FR) | Animal (EN) | Strategy | Color |
+|-------------|-------------|----------|-------|
+| Ours | Bear | Equal Weight | #6B7280 |
+| Renard | Fox | Risk Parity | #667eea |
+| Faucon | Hawk | Momentum | #F97316 |
+| Hérisson | Hedgehog | Defensive | #10B981 |
+
+**Key Features**:
+- Session-based gamification (no accounts required)
+- Proactive chatbot engagement
+- Quiz integration from Notion
+- YouTube video references
+- Mobile-first simulator design
+
+**Development Guidelines**:
+- Test changes in both FR and EN pages
+- Update translations in `src/frontend/i18n/translations.js`
+- Follow glassmorphism design patterns
+- Use `data-translate` attributes for bilingual text
+
+### Portfolio Simulator (Legacy)
 **Status**: ✅ **Production-ready** (v1.2) - Fully integrated and deployed
 
 The application includes a **lightweight, interactive portfolio simulator** integrated into the main Bubble project:

@@ -29,8 +29,10 @@ function configureExpress(app) {
         connectSrc: [
           "'self'",
           "https://www.google-analytics.com",
+          "https://*.google-analytics.com", // Allow all GA4 regions (region1, etc.)
           "https://api.notion.com",
           "https://openrouter.ai",
+          "https://cdn.jsdelivr.net", // Allow Chart.js source maps
         ],
         frameSrc: ["'none'"],
         objectSrc: ["'none'"],

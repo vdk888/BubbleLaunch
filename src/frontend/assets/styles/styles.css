@@ -4798,7 +4798,7 @@ footer .container {
 
   /* Add extra padding to footer to prevent overlap with floating elements */
   footer {
-    padding-bottom: 6rem !important; /* Space for floating chat bubble and cookie banner */
+    padding-bottom: 3rem !important; /* Space for floating chat bubble */
   }
 
   /* Ensure footer contact section has proper spacing */
@@ -6234,52 +6234,6 @@ footer .container {
 
   .blog-tile-cta {
     font-size: 0.8125rem;
-  }
-}
-
-/* Cookie banner styling */
-#tarteaucitronAlertBig {
-  max-width: 420px;
-  border-radius: 18px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
-}
-
-
-
-
-#tarteaucitronIcon {
-  z-index: 2147483650;
-}
-
-#tarteaucitronIconTopRight {
-  top: 1.25rem !important;
-  right: 1.25rem !important;
-  bottom: auto !important;
-  left: auto !important;
-}
-
-#tarteaucitronIcon #tarteaucitronManager {
-  padding: 0.35rem 0.85rem !important;
-  border-radius: 999px !important;
-  border: 1px solid rgba(103, 126, 234, 0.3) !important;
-  background: rgba(255, 255, 255, 0.95) !important;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15) !important;
-  color: var(--primary) !important;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 600;
-  font-size: 0.78rem !important;
-}
-
-@media (max-width: 640px) {
-  #tarteaucitronIconTopRight {
-    top: 0.9rem !important;
-    right: 0.9rem !important;
-  }
-
-  #tarteaucitronIcon #tarteaucitronManager {
-    padding: 0.25rem 0.65rem !important;
-    font-size: 0.7rem !important;
   }
 }
 

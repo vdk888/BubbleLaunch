@@ -46,9 +46,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
     <!-- Cookie Consent -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/css/tarteaucitron.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/tarteaucitron.min.js"></script>
-    <script src="/js/seo/cookie-consent.js"></script>
+    <link rel="stylesheet" href="/assets/styles/cookie-banner.css">
+    <script src="/js/seo/cookie-banner.js"></script>
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
@@ -100,7 +99,7 @@
               <button class="nav-dropdown-toggle" data-translate="nav.solution">Solution</button>
               <div class="nav-dropdown-menu">
                 <button class="dropdown-link js-retail-demo-trigger" data-entry-point="investor_nav_agent" data-translate="nav.solution.agent">Agent</button>
-                <a href="/investors/education" class="dropdown-link active" data-translate="nav.solution.education">Éducation</a>
+                <a href="/investors/playground" class="dropdown-link active" data-translate="nav.solution.education">Playground</a>
               </div>
             </div>
             <a href="/investors/pricing" data-translate="nav.pricing">Tarification</a>
@@ -126,7 +125,7 @@
           <nav class="mobile-nav">
             <a href="/investors" data-translate="nav.vision">Vision</a>
             <button class="mobile-nav-link js-retail-demo-trigger" data-entry-point="investor_nav_agent_mobile" data-translate="nav.solution.agent">Agent</button>
-            <a href="/investors/education" class="active" data-translate="nav.solution.education">Éducation</a>
+            <a href="/investors/playground" class="active" data-translate="nav.solution.education">Playground</a>
             <a href="/investors/pricing" data-translate="nav.pricing">Tarification</a>
             <a href="/blog" data-translate="nav.blog">Blog</a>
             <a href="/investors#investor-waitlist" data-translate="nav.join">Nous rejoindre</a>
@@ -150,7 +149,7 @@
     <!-- Main Content -->
     <main class="simulator-edu-container">
       <!-- Back Button -->
-      <a href="/investors/education" class="back-button" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #667eea; text-decoration: none; font-weight: 500; margin-bottom: 1.5rem;">
+      <a href="/investors/playground/resources" class="back-button" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #667eea; text-decoration: none; font-weight: 500; margin-bottom: 1.5rem;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M19 12H5M12 19l-7-7 7-7"/>
         </svg>
@@ -165,6 +164,45 @@
           <line x1="12" y1="17" x2="12.01" y2="17"/>
         </svg>
       </button>
+
+      <!-- Mobile Chat Hero (Primary interface on mobile) -->
+      <section class="simulator-chat-hero" id="simulatorChatHero">
+        <div class="simulator-chat-hero-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span data-translate="education.simulator.chat.heroTitle">Décris ta stratégie</span>
+        </div>
+
+        <div class="simulator-chat-input-wrapper">
+          <input
+            type="text"
+            class="simulator-chat-input"
+            id="simulatorChatInput"
+            placeholder="Ex: je veux 60% actions, 30% obligations, 10% or..."
+            data-translate-placeholder="education.simulator.chat.placeholder"
+            autocomplete="off"
+          />
+          <button class="simulator-chat-send-btn" id="simulatorChatSend" aria-label="Envoyer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M12 21V4" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="simulator-quick-actions">
+          <button class="simulator-quick-chip" data-action="defensive" data-translate="education.simulator.chat.defensive">Plus défensif</button>
+          <button class="simulator-quick-chip" data-action="aggressive" data-translate="education.simulator.chat.aggressive">Plus de rendement</button>
+          <button class="simulator-quick-chip" data-action="balanced" data-translate="education.simulator.chat.balanced">Équilibré 60/40</button>
+          <button class="simulator-quick-chip" data-action="gold" data-translate="education.simulator.chat.gold">Ajouter de l'or</button>
+        </div>
+
+        <!-- Chat Response Area -->
+        <div class="simulator-chat-responses" id="simulatorChatResponses">
+          <!-- Responses will be added here dynamically -->
+        </div>
+      </section>
 
       <!-- Tutorial Overlay -->
       <div class="tutorial-overlay" id="builderTutorialOverlay">
@@ -431,6 +469,29 @@
           </div>
         </div>
 
+      <!-- CTA Hook: Join Waitlist -->
+      <section class="arena-cta-hook" id="simulatorCTAHook">
+        <div class="cta-hook-content">
+          <div class="cta-hook-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <div class="cta-hook-text">
+            <h4 data-translate="education.simulator.ctaWaitlist.title">Ta stratégie te convient ?</h4>
+            <p data-translate="education.simulator.ctaWaitlist.description">
+              Bubble Portfolio peut l'appliquer automatiquement sur ton vrai portefeuille.
+            </p>
+          </div>
+          <a href="/investors#investor-waitlist" class="cta-hook-button">
+            <span data-translate="education.simulator.ctaWaitlist.button">Rejoindre la liste d'attente</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </section>
+
       <!-- CTA to Arena -->
       <section style="background: rgba(102, 126, 234, 0.08); border-radius: 24px; padding: 2rem; text-align: center; margin: 3rem 0 2rem; border: 1px solid rgba(102, 126, 234, 0.2);">
         <h3 style="font-size: 1.25rem; font-weight: 700; color: #667eea; margin-bottom: 0.75rem;" data-translate="education.simulator.cta.title">
@@ -510,7 +571,7 @@
       </div>
 
       <!-- Floating Glassmorphism Chat Input -->
-      <div id="floating-chat-input" class="floating-chat-input hidden" data-page-context="education_simulator" data-trigger-selector=".hero">
+      <div id="floating-chat-input" class="floating-chat-input hidden" data-page-context="education_simulator" data-trigger-selector=".hero" data-always-visible="true">
         <div class="floating-input-container">
           <input
             type="text"
@@ -931,7 +992,8 @@
               borderWidth: 2.5,
               pointRadius: 0,
               pointHoverRadius: 4,
-              order: 0
+              order: 0,
+              hidden: !showYourAllocation // Respect toggle state
             }];
 
             // Add strategy baseline datasets (Phase 9: now from baselines.strategies)
@@ -1081,7 +1143,8 @@
             backtestMetrics: lastResult?.metrics,
             backtestPeriod: currentPeriod,
             backtestLeverage: currentLeverage,
-            visibleBaselines: Object.entries(visibleBaselines).filter(([k, v]) => v).map(([k]) => k),
+            visibleStrategies: Object.entries(visibleStrategies).filter(([k, v]) => v).map(([k]) => k),
+            visibleETFs: Object.entries(visibleETFs).filter(([k, v]) => v).map(([k]) => k),
             language: lang
           };
         }
@@ -1490,9 +1553,206 @@
           }
         }
 
+        // Try to parse quick actions from chat text
+        function parseActionIntent(text = '') {
+          const lower = text.toLowerCase();
+
+          // Period detection
+          const periodMap = { '1': 1, '3': 3, '5': 5, '10': 10, '20': 20 };
+          for (const [key, val] of Object.entries(periodMap)) {
+            if (lower.match(new RegExp(`\\b${key}\\s*(an|ans|year|years|y)\\b`))) {
+              return { action: 'setPeriod', value: val };
+            }
+            if (lower.includes(`${key}y`)) {
+              return { action: 'setPeriod', value: val };
+            }
+          }
+
+          // Leverage detection
+          if (lower.includes('2x') || lower.includes('levier 2') || lower.includes('leveraged')) {
+            return { action: 'setLeverage', value: 2 };
+          }
+          if (lower.includes('no leverage') || lower.includes('sans levier') || lower.includes('1x')) {
+            return { action: 'setLeverage', value: 1 };
+          }
+
+          const strategyAliases = {
+            optimizedrp: 'optimizedRP',
+            optimized: 'optimizedRP',
+            pari: 'optimizedRP',
+            equalweight: 'equalWeight',
+            equi: 'equalWeight',
+            sixtyforty: 'sixtyForty',
+            '60/40': 'sixtyForty',
+            simplerp: 'simpleRP',
+            riskparity: 'simpleRP',
+            momentum: 'momentum',
+            hrp: 'hierarchicalRiskParity',
+            hierarchical: 'hierarchicalRiskParity',
+            dcc: 'enhancedRiskParityDCC',
+            'risk budget': 'optimizedRiskBudgeting',
+            regime: 'regimeAwareRP'
+          };
+
+          const etfAliases = {
+            spy: 'SPY',
+            ief: 'IEF',
+            gld: 'GLD',
+            efa: 'EFA',
+            eem: 'EEM',
+            vnq: 'VNQ',
+            cash: 'CASH'
+          };
+
+          const toggleTokens = ['compare', 'show', 'add', 'affiche', 'montre', 'masque', 'cache', 'hide', 'remove'];
+
+          // Strategy toggles
+          for (const [alias, key] of Object.entries(strategyAliases)) {
+            if (lower.includes(alias)) {
+              const isOff = toggleTokens.some(t => lower.includes(t) && (lower.includes('hide') || lower.includes('cache') || lower.includes('masque') || lower.includes('remove')));
+              return { action: 'toggleStrategy', key, value: !isOff };
+            }
+          }
+
+          // ETF toggles
+          for (const [alias, key] of Object.entries(etfAliases)) {
+            if (lower.includes(alias)) {
+              const isOff = toggleTokens.some(t => lower.includes(t) && (lower.includes('hide') || lower.includes('cache') || lower.includes('masque') || lower.includes('remove')));
+              return { action: 'toggleETF', key, value: !isOff };
+            }
+          }
+
+          // Share / export intent
+          if (lower.includes('share') || lower.includes('lien') || lower.includes('copie') || lower.includes('copy link')) {
+            return { action: 'share' };
+          }
+
+          if (lower.includes('export') || lower.includes('csv') || lower.includes('png')) {
+            return { action: 'export', value: lower.includes('csv') ? 'csv' : 'png' };
+          }
+
+          return null;
+        }
+
+        function getAllocationFromSliders() {
+          const sliderRows = document.querySelectorAll('.slider-row');
+          const allocation = {};
+          sliderRows.forEach(row => {
+            const slider = row.querySelector('.allocation-slider');
+            const ticker = row.dataset.ticker;
+            const value = parseInt(slider?.value || 0);
+            if (value > 0) allocation[ticker] = value;
+          });
+          return allocation;
+        }
+
+        async function executeActionIntent(intent) {
+          if (!intent) return;
+
+          const runBacktest = async () => {
+            const allocation = currentAllocation || getAllocationFromSliders();
+            const total = Object.values(allocation || {}).reduce((a, b) => a + b, 0);
+            if (!allocation || total === 0) {
+              addMessage(lang === 'fr'
+                ? 'Ajuste ton allocation (sliders) avant de lancer le backtest.'
+                : 'Adjust your allocation (sliders) before running the backtest.');
+              return;
+            }
+            const result = await calculatePortfolio(allocation);
+            if (result) {
+              updateResults(result);
+            }
+          };
+
+          switch (intent.action) {
+            case 'setPeriod': {
+              currentPeriod = intent.value;
+              elements.periodButtons.forEach(btn => {
+                const isActive = parseInt(btn.dataset.period) === currentPeriod;
+                btn.classList.toggle('active', isActive);
+              });
+              await runBacktest();
+              break;
+            }
+            case 'setLeverage': {
+              currentLeverage = intent.value;
+              elements.leveragePills.forEach(pill => {
+                const isActive = parseInt(pill.dataset.leverage) === currentLeverage;
+                pill.classList.toggle('active', isActive);
+              });
+              await runBacktest();
+              break;
+            }
+            case 'toggleStrategy': {
+              visibleStrategies[intent.key] = intent.value;
+              // Update chip styles
+              elements.baselineChips.forEach(chip => {
+                if (chip.dataset.baseline === intent.key) {
+                  chip.classList.toggle('active', intent.value);
+                }
+              });
+              if (chart) {
+                const cfg = STRATEGY_CONFIG[intent.key];
+                const label = cfg?.label[lang] || intent.key;
+                const idx = chart.data.datasets.findIndex(d =>
+                  d.label.includes(intent.key) || d.label.includes(label)
+                );
+                if (idx >= 0) {
+                  chart.data.datasets[idx].hidden = !intent.value;
+                  chart.update();
+                }
+              }
+              updateChipCounts();
+              break;
+            }
+            case 'toggleETF': {
+              visibleETFs[intent.key] = intent.value;
+              elements.etfChipButtons.forEach(chip => {
+                if (chip.dataset.etf === intent.key) {
+                  chip.classList.toggle('active', intent.value);
+                }
+              });
+              if (chart) {
+                const cfg = ETF_CONFIG[intent.key];
+                const label = cfg?.label || intent.key;
+                const idx = chart.data.datasets.findIndex(d =>
+                  d.label.includes(intent.key) || d.label.includes(label)
+                );
+                if (idx >= 0) {
+                  chart.data.datasets[idx].hidden = !intent.value;
+                  chart.update();
+                }
+              }
+              updateChipCounts();
+              break;
+            }
+            case 'share': {
+              if (elements.shareStrategyBtn) {
+                elements.shareStrategyBtn.click();
+              }
+              break;
+            }
+            case 'export': {
+              if (intent.value === 'csv' && elements.exportMetricsBtn) {
+                elements.exportMetricsBtn.click();
+              } else if (elements.exportChartBtn) {
+                elements.exportChartBtn.click();
+              }
+              break;
+            }
+            default:
+              break;
+          }
+        }
+
         // LLM Conversation for non-allocation questions
         async function handleLLMConversation(text) {
           try {
+            const intent = parseActionIntent(text);
+            if (intent) {
+              await executeActionIntent(intent);
+            }
+
             const response = await fetch('/api/chat', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -1995,6 +2255,81 @@
           }, 500);
         });
       })();
+    </script>
+
+    <!-- Floating Playground Chatbot -->
+    <div class="floating-playground-chat" id="floatingPlaygroundChat">
+      <div class="floating-playground-panel">
+        <div class="floating-playground-header">
+          <div class="floating-playground-header-info">
+            <div class="floating-playground-avatar">
+              <svg width="16" height="16" viewBox="0 0 72 72" fill="none">
+                <circle cx="36" cy="41" r="22" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="120 24" stroke-dashoffset="8"/>
+                <circle cx="54" cy="22" r="5" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <span class="floating-playground-title">Bubble Assistant</span>
+              <span class="floating-playground-subtitle" data-translate="education.floating.subtitle">Ton profil investisseur</span>
+            </div>
+          </div>
+          <button class="floating-playground-close" aria-label="Fermer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+        <div class="floating-playground-messages" id="floatingPlaygroundMessages">
+          <!-- Messages loaded from session -->
+        </div>
+        <form class="floating-playground-input-container" id="floatingPlaygroundForm" novalidate>
+          <input
+            type="text"
+            class="floating-playground-input"
+            id="floatingPlaygroundInput"
+            placeholder="Pose ta question..."
+            autocomplete="off"
+          />
+          <button class="floating-playground-send" type="submit" aria-label="Envoyer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 21V4" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+      <button class="floating-playground-toggle" aria-label="Ouvrir le chat">
+        <svg class="icon-chat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <script src="/js/playground-chat.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const floatingChat = document.getElementById('floatingPlaygroundChat');
+        const toggleBtn = floatingChat?.querySelector('.floating-playground-toggle');
+        const closeBtn = floatingChat?.querySelector('.floating-playground-close');
+
+        // Toggle floating chat
+        toggleBtn?.addEventListener('click', () => {
+          floatingChat.classList.toggle('open');
+          if (floatingChat.classList.contains('open') && typeof PlaygroundChat !== 'undefined') {
+            // Initialize or resume session in floating chat
+            PlaygroundChat.init('floatingPlaygroundMessages', 'floatingPlaygroundInput');
+          }
+        });
+
+        closeBtn?.addEventListener('click', () => {
+          floatingChat.classList.remove('open');
+        });
+      });
     </script>
   </body>
 </html>

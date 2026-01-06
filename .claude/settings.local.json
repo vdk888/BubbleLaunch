@@ -39,7 +39,19 @@
       "Bash(mkdir:*)",
       "Bash(time curl:*)",
       "Bash(mv:*)",
-      "Bash(kill:*)"
+      "Bash(kill:*)",
+      "Bash(~/.zshrc)",
+      "Bash(source ~/.zshrc)",
+      "Bash(~/.bashrc)",
+      "Bash(source ~/.bashrc)",
+      "Bash(claude:*)",
+      "Bash(export PATH=\"$HOME/.local/bin:$PATH\")",
+      "Bash(chsh:*)",
+      "Bash(grep:*)",
+      "Bash(for file in **/*.html)",
+      "Bash(do if grep -q \"cookie-consent\\\\.js\" \"$file\")",
+      "Bash(! grep -q \"tarteaucitronjs.*\\\\.css\" \"$file\")",
+      "Bash(then echo \"$file\")"
     ],
     "deny": [],
     "ask": []

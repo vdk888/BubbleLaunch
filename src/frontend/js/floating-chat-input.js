@@ -52,12 +52,13 @@
   }
 
   function applyVisibility() {
-    const shouldShow = baseVisible && !panelOpen && !alreadyUsed;
+    const shouldShow = baseVisible && !panelOpen && (!alreadyUsed || alwaysVisible);
     floatingInput.classList.toggle('hidden', !shouldShow);
   }
 
   if (alwaysVisible) {
     baseVisible = true;
+    alreadyUsed = false; // force show even if previously used
     applyVisibility();
     console.log('[FloatingChatInput] Always visible mode enabled');
   } else if (!alreadyUsed) {

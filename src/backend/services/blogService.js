@@ -90,7 +90,7 @@ function normalizeHeadingMarkers(text) {
     if (!text) return '';
     return text
         // Ensure headings break onto a new paragraph even if they were inline
-        .replace(/([^\n\r])\s*(?:<br\s*\/?>\s*)*(?:[-–—•*]+\s*)?(#{1,6}\s+)/g, '$1\n\n$2')
+        .replace(/([^\n])\s*(?:<br\s*\/?>\s*)*(?:[-–—•*]+\s*)?(#{1,6}\s+)/g, '$1\n\n$2')
         // Remove decorative prefixes like --- or •• before heading markers
         .replace(/^[\s]*[-–—•*]+\s*(#{1,6})\s*/gm, '$1 ')
         // Ensure a space after the hashes so markdown parsers detect the heading
@@ -108,7 +108,7 @@ function isMarkdownTable(paragraph) {
     const hasPipes = lines.every(line => line.includes('|'));
     if (!hasPipes) return false;
 
-    // Check if second line is a separator line (e.g., |---|---|)
+    // Check if second line is a separator line (e.g., |---|---|) 
     const secondLine = lines[1].trim();
     const isSeparatorLine = /^\|?\s*[-:]+\s*(\|\s*[-:]+\s*)+\|?\s*$/.test(secondLine);
 
@@ -378,10 +378,10 @@ function formatInlineContent(text) {
         .replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '<em>$1</em>')
         .replace(/(?<!_)_([^_]+)_(?!_)/g, '<em>$1</em>')
         // Format links [text](url)
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+        .replace(/\<span class="notion-link-text">([^\]]+)<\/span\u003E\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
         // Auto-detect bare URLs (http or https) and convert to clickable links
         // This regex matches URLs but avoids converting URLs already in markdown or HTML format
-        .replace(/(?<![\[\("])(https?:\/\/[^\s<>'"]+)(?![\]\)"'])/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>')
+        .replace(/(?<![["(\])(https?:\/\/[^\s<>'"`]+)(?![\\\])"'])/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>')
         // Format inline code `code`
         .replace(/`([^`]+)`/g, '<code>$1</code>')
         // Clean up any remaining single hashtags that aren't part of headings
@@ -416,78 +416,6 @@ function normalizeHeadingParagraphs(html) {
         return match;
     });
 }
-
-/**
- * Fetches published blog posts from the Notion database.
- */
-/**
- * Enhanced article formatting using Claude AI
- * Intelligently adds subheadings, bold emphasis, and italic for weak articles
- */
-async function enhanceArticleFormatting(htmlContent, language = 'fr') {
-    if (!anthropic) {
-        console.log('Anthropic client not configured, skipping formatting enhancement');
-        return htmlContent;
-    }
-
-    const strongCount = (htmlContent.match(/<strong>/g) || []).length;
-    const h2Count = (htmlContent.match(/<h2>/g) || []).length;
-    const h3Count = (htmlContent.match(/<h3>/g) || []).length;
-    const totalFormatting = strongCount + h2Count + h3Count;
-    const paragraphs = (htmlContent.match(/<p>/g) || []).length;
-
-    // Skip if already well-formatted (at least 1 h2 or 20% strong tags)
-    const hasMinimumFormatting = h2Count > 0 || strongCount >= Math.max(3, paragraphs * 0.2);
-    if (hasMinimumFormatting) {
-        console.log(`Article already well-formatted (${h2Count} h2, ${strongCount} strong), skipping`);
-        return htmlContent;
-    }
-
-    console.log(`Enhancing article formatting (${language}): ${strongCount} strong, ${h2Count} h2 tags`);
-
-    try {
-        const systemPrompt = language === 'fr' ?
-            `Tu es un expert en mise en forme de contenu journalistique en HTML. Tu dois améliorer un article HTML existant en:
-1. Ajoutant des sous-titres <h2> ou <h3> aux sections principales (ne pas ajouter de H1)
-2. Mettant en gras <strong> les concepts clés, les phrases importantes et les citations
-3. En italique <em> pour l'emphase stylisée et les voix d'auteur
-4. Préservant tous les liens existants <a> et le contenu original
-5. Gardant la structure HTML intacte et valide
-
-Réponds UNIQUEMENT avec le HTML amélioré, sans commentaires ni explications.` :
-            `You are an expert in HTML content formatting. You must enhance an existing HTML article by:
-1. Adding <h2> or <h3> subheadings to major sections (no H1)
-2. Making <strong> key concepts, important phrases and quotes
-3. Using <em> for stylized emphasis and author voice
-4. Preserving all existing links <a> and original content
-5. Keeping the HTML structure intact and valid
-
-Reply ONLY with the enhanced HTML, no comments or explanations.`;
-
-        const message = await anthropic.messages.create({
-            model: 'claude-opus-4-1-20250805',
-            max_tokens: 8000,
-            system: systemPrompt,
-            messages: [
-                {
-                    role: 'user',
-                    content: `Enhance this HTML article with better formatting (bold key concepts, add subheadings, italics for emphasis):\n\n${htmlContent}`
-                }
-            ]
-        });
-
-        const enhancedContent = message.content[0]?.text || htmlContent;
-        const newStrongCount = (enhancedContent.match(/<strong>/g) || []).length;
-        const newH2Count = (enhancedContent.match(/<h2>/g) || []).length;
-        console.log(`Enhancement complete: +${newStrongCount - strongCount} strong, +${newH2Count - h2Count} h2 tags`);
-
-        return enhancedContent;
-    } catch (error) {
-        console.error(`Error enhancing article formatting: ${error.message}`);
-        return htmlContent;
-    }
-}
-
 
 /**
  * Fetches published blog posts from the Notion database.
@@ -533,20 +461,11 @@ async function getPublishedPosts() {
                     direction: 'descending',
                 },
             ],
-            // Note: Pinned sort is commented out until 'Pinned' property is added to Notion
-            // sorts: [
-            //     {
-            //         property: 'Pinned',
-            //         direction: 'descending',
-            //     },
-            //     {
-            //         property: 'Publication Date',
-            //         direction: 'descending',
-            //     },
-            // ],
         });
 
-        const posts = await Promise.all(response.results.map(async page => {
+        const posts = [];
+        // Sequential processing to avoid rate limits with Runware
+        for (const page of response.results) {
             const properties = page.properties;
             
             // Extract bilingual titles using correct property names
@@ -605,7 +524,7 @@ async function getPublishedPosts() {
             let featuredImage = null;
             try {
                 // Check if image is already cached first (prioritize cache for consistency)
-                featuredImage = imageService.getCachedImage(page.id);
+                featuredImage = await imageService.getCachedImage(page.id);
 
                 if (!featuredImage) {
                     // Check if image exists in Notion properties
@@ -630,77 +549,13 @@ async function getPublishedPosts() {
                 
                 // If no image generated, use a unique fallback placeholder based on article ID
                 if (!featuredImage) {
-                    // Create unique fallback images based on article ID hash
-                    const articleHash = Math.abs(page.id.replace(/-/g, '').split('').reduce((hash, char, index) => 
-                        ((hash << 3) + hash) + char.charCodeAt(0) + index, 0));
-                    
-                    const isFinanceTheme = tags.some(tag => 
-                        ['finance', 'investment', 'trading', 'market'].includes(tag.toLowerCase())
-                    );
-                    const isAITheme = tags.some(tag => 
-                        ['ai', 'intelligence', 'technology', 'tech'].includes(tag.toLowerCase())
-                    );
-                    
-                    // Different image sets for different themes
-                    let imagePool = [];
-                    const localFallbacks = {
-                        newest: [
-                            encodeURI('/assets/images/blog-fallbacks/ChatGPT Image Nov 8, 2025, 10_22_56 PM.png'),
-                            encodeURI('/assets/images/blog-fallbacks/ChatGPT Image Nov 8, 2025, 10_26_37 PM.png'),
-                        ],
-                        hybrid: [
-                            '/assets/images/blog-fallbacks/Gemini_Generated_Image_53mmaw53mmaw53mm.png',
-                            '/assets/images/blog-fallbacks/Gemini_Generated_Image_lekvajlekvajlekv.png',
-                            '/assets/images/blog-fallbacks/Gemini_Generated_Image_w0dl0hw0dl0hw0dl.png',
-                            encodeURI('/assets/images/blog-fallbacks/ChatGPT Image Nov 8, 2025, 10_22_56 PM.png'),
-                        ],
-                        finance: [
-                            '/assets/images/blog-fallbacks/Gemini_Generated_Image_53mmaw53mmaw53mm.png',
-                            '/assets/images/blog-fallbacks/fallback-2.png',
-                            '/assets/images/blog-fallbacks/fallback-1.png',
-                            encodeURI('/assets/images/blog-fallbacks/ChatGPT Image Nov 8, 2025, 10_26_37 PM.png'),
-                        ],
-                        ai: [
-                            '/assets/images/blog-fallbacks/Gemini_Generated_Image_lekvajlekvajlekv.png',
-                            '/assets/images/blog-fallbacks/Gemini_Generated_Image_w0dl0hw0dl0hw0dl.png',
-                            '/assets/images/blog-fallbacks/fallback-3.png',
-                            encodeURI('/assets/images/blog-fallbacks/ChatGPT Image Nov 8, 2025, 10_22_56 PM.png'),
-                            encodeURI('/assets/images/blog-fallbacks/ChatGPT Image Nov 8, 2025, 10_26_37 PM.png'),
-                        ],
-                        general: [
-                            '/assets/images/blog-fallbacks/Gemini_Generated_Image_53mmaw53mmaw53mm.png',
-                            '/assets/images/blog-fallbacks/Gemini_Generated_Image_lekvajlekvajlekv.png',
-                            '/assets/images/blog-fallbacks/Gemini_Generated_Image_w0dl0hw0dl0hw0dl.png',
-                            '/assets/images/blog-fallbacks/fallback-1.png',
-                            '/assets/images/blog-fallbacks/fallback-2.png',
-                            '/assets/images/blog-fallbacks/fallback-3.png',
-                            '/assets/images/blog-fallbacks/fallback-4.png',
-                            encodeURI('/assets/images/blog-fallbacks/ChatGPT Image Nov 8, 2025, 10_22_56 PM.png'),
-                            encodeURI('/assets/images/blog-fallbacks/ChatGPT Image Nov 8, 2025, 10_26_37 PM.png'),
-                        ],
-                    };
-
-                    if (isFinanceTheme && isAITheme) {
-                        imagePool = localFallbacks.hybrid;
-                    } else if (isFinanceTheme) {
-                        imagePool = localFallbacks.finance;
-                    } else if (isAITheme) {
-                        imagePool = localFallbacks.ai;
-                    } else {
-                        imagePool = localFallbacks.general;
-                    }
-                    
-                    // Select image based on article ID hash
-                    featuredImage = imagePool[articleHash % imagePool.length];
-                    console.log(`📷 Using unique fallback image for "${titleFR}" (hash: ${articleHash}): ${featuredImage}`);
+                    console.log(`⚠️ No image available for "${titleFR}" (Runware failed or returned null)`);
                 }
             } catch (error) {
                 console.error(`Failed to generate image for article "${titleFR}":`, error);
-                // Default fallback
-                featuredImage = 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=450&fit=crop';
             }
 
-            return {
+            posts.push({
                 id: page.id,
                 title: {
                     fr: titleFR,
@@ -717,8 +572,8 @@ async function getPublishedPosts() {
                 tags,
                 isPinned,
                 url: `/blog/${slug}`
-            };
-        }));
+            });
+        }
 
         return posts;
     } catch (error) {
@@ -856,53 +711,10 @@ async function getPostBySlug(slug) {
             
             // If no image generated, use a unique fallback placeholder based on article ID
             if (!featuredImage) {
-                // Create unique fallback images based on article ID hash
-                const articleHash = Math.abs(matchingPage.id.replace(/-/g, '').split('').reduce((hash, char, index) => 
-                    ((hash << 3) + hash) + char.charCodeAt(0) + index, 0));
-                
-                const isFinanceTheme = tags.some(tag => 
-                    ['finance', 'investment', 'trading', 'market'].includes(tag.toLowerCase())
-                );
-                const isAITheme = tags.some(tag => 
-                    ['ai', 'intelligence', 'technology', 'tech'].includes(tag.toLowerCase())
-                );
-                
-                // Different image sets for different themes
-                let imagePool = [];
-                if (isFinanceTheme && isAITheme) {
-                    imagePool = [
-                        'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=450&fit=crop',
-                        'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&h=450&fit=crop',
-                        'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=450&fit=crop'
-                    ];
-                } else if (isFinanceTheme) {
-                    imagePool = [
-                        'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&h=450&fit=crop',
-                        'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=450&fit=crop',
-                        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop'
-                    ];
-                } else if (isAITheme) {
-                    imagePool = [
-                        'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=450&fit=crop',
-                        'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=450&fit=crop',
-                        'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=450&fit=crop'
-                    ];
-                } else {
-                    imagePool = [
-                        'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=450&fit=crop',
-                        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop',
-                        'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=800&h=450&fit=crop'
-                    ];
-                }
-                
-                // Select image based on article ID hash
-                featuredImage = imagePool[articleHash % imagePool.length];
-                console.log(`📷 Using unique fallback image for "${titleFR}" (hash: ${articleHash}): ${featuredImage}`);
+                console.log(`⚠️ No image available for "${titleFR}" (Runware failed or returned null)`);
             }
         } catch (error) {
             console.error(`Failed to generate image for article "${titleFR}":`, error);
-            // Default fallback
-            featuredImage = 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=450&fit=crop';
         }
 
         // Extract bilingual content with complete fallback chains

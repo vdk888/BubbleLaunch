@@ -46,9 +46,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
     <!-- Cookie Consent -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/css/tarteaucitron.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/tarteaucitron.min.js"></script>
-    <script src="/js/seo/cookie-consent.js"></script>
+    <link rel="stylesheet" href="/assets/styles/cookie-banner.css">
+    <script src="/js/seo/cookie-banner.js"></script>
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
@@ -100,7 +99,7 @@
               <button class="nav-dropdown-toggle" data-translate="nav.solution">Solution</button>
               <div class="nav-dropdown-menu">
                 <button class="dropdown-link js-retail-demo-trigger" data-entry-point="investor_nav_agent" data-translate="nav.solution.agent">Agent</button>
-                <a href="/en/investors/education" class="dropdown-link active" data-translate="nav.solution.education">Education</a>
+                <a href="/en/investors/playground" class="dropdown-link active" data-translate="nav.solution.education">Playground</a>
               </div>
             </div>
             <a href="/en/investors/pricing" data-translate="nav.pricing">Pricing</a>
@@ -126,7 +125,7 @@
           <nav class="mobile-nav">
             <a href="/investors" data-translate="nav.vision">Vision</a>
             <button class="mobile-nav-link js-retail-demo-trigger" data-entry-point="investor_nav_agent_mobile" data-translate="nav.solution.agent">Agent</button>
-            <a href="/investors/education" class="active" data-translate="nav.solution.education">Éducation</a>
+            <a href="/en/investors/playground" class="active" data-translate="nav.solution.education">Playground</a>
             <a href="/investors/pricing" data-translate="nav.pricing">Tarification</a>
             <a href="/blog" data-translate="nav.blog">Blog</a>
             <a href="/investors#investor-waitlist" data-translate="nav.join">Nous rejoindre</a>
@@ -150,11 +149,11 @@
     <!-- Main Content -->
     <main class="arena-container">
       <!-- Back Button -->
-      <a href="/investors/education" class="back-button" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #667eea; text-decoration: none; font-weight: 500; margin-bottom: 1.5rem;">
+      <a href="/en/investors/playground/resources" class="back-button" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #667eea; text-decoration: none; font-weight: 500; margin-bottom: 1.5rem;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M19 12H5M12 19l-7-7 7-7"/>
         </svg>
-        <span data-translate="education.arena.back">Retour</span>
+        <span data-translate="education.arena.back">Back</span>
       </a>
 
       <!-- Help Button (shows when tutorial is closed) -->
@@ -206,13 +205,22 @@
 
       <!-- Bot Cards Grid -->
       <section class="arena-bots-grid" id="arenaBotsGrid">
-        <!-- Équi Bot -->
+        <!-- Bear Bot (Equal Weight) -->
         <div class="arena-bot-card" data-bot="equi" style="--bot-color: #6B7280">
           <div class="arena-bot-header">
-            <div class="arena-bot-avatar">É</div>
+            <div class="arena-bot-avatar">
+              <!-- Bear SVG Icon -->
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="7"/>
+                <circle cx="9" cy="10" r="1" fill="currentColor"/>
+                <circle cx="15" cy="10" r="1" fill="currentColor"/>
+                <path d="M9.5 14.5c1 1 4 1 5 0"/>
+                <circle cx="5" cy="6" r="2.5"/>
+                <circle cx="19" cy="6" r="2.5"/>
+              </svg>
+            </div>
             <div class="arena-bot-info">
-              <h3>Équi</h3>
-              <span class="bot-strategy" data-translate="education.arena.bot.equi.strategy">Allocation Égale</span>
+              <h3 data-translate="education.arena.bots.equi.label">Bear (Equal Weight)</h3>
             </div>
           </div>
           <div class="arena-bot-dialogue" id="equiDialogue">
@@ -226,13 +234,21 @@
           </div>
         </div>
 
-        <!-- Pari Bot -->
+        <!-- Fox Bot (Risk Parity) -->
         <div class="arena-bot-card" data-bot="pari" style="--bot-color: #667eea">
           <div class="arena-bot-header">
-            <div class="arena-bot-avatar">P</div>
+            <div class="arena-bot-avatar">
+              <!-- Fox SVG Icon -->
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20c-4 0-8-3-8-8 0-2 1-4 2-5l2-4 2 3h4l2-3 2 4c1 1 2 3 2 5 0 5-4 8-8 8z"/>
+                <circle cx="9" cy="11" r="1" fill="currentColor"/>
+                <circle cx="15" cy="11" r="1" fill="currentColor"/>
+                <path d="M12 14v2"/>
+                <path d="M10 17h4"/>
+              </svg>
+            </div>
             <div class="arena-bot-info">
-              <h3>Pari</h3>
-              <span class="bot-strategy" data-translate="education.arena.bot.pari.strategy">Risk Parity</span>
+              <h3 data-translate="education.arena.bots.pari.label">Fox (Risk Parity)</h3>
             </div>
           </div>
           <div class="arena-bot-dialogue" id="pariDialogue">
@@ -246,13 +262,22 @@
           </div>
         </div>
 
-        <!-- Momo Bot -->
+        <!-- Hawk Bot (Momentum) -->
         <div class="arena-bot-card" data-bot="momo" style="--bot-color: #F97316">
           <div class="arena-bot-header">
-            <div class="arena-bot-avatar">M</div>
+            <div class="arena-bot-avatar">
+              <!-- Hawk SVG Icon -->
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 4c-2 0-4 1-5 3-1 2-1 4 0 6l5 7 5-7c1-2 1-4 0-6-1-2-3-3-5-3z"/>
+                <circle cx="10" cy="9" r="1" fill="currentColor"/>
+                <circle cx="14" cy="9" r="1" fill="currentColor"/>
+                <path d="M12 12l-1 2h2l-1-2"/>
+                <path d="M8 5l-3-2"/>
+                <path d="M16 5l3-2"/>
+              </svg>
+            </div>
             <div class="arena-bot-info">
-              <h3>Momo</h3>
-              <span class="bot-strategy" data-translate="education.arena.bot.momo.strategy">Momentum</span>
+              <h3 data-translate="education.arena.bots.momo.label">Hawk (Momentum)</h3>
             </div>
           </div>
           <div class="arena-bot-dialogue" id="momoDialogue">
@@ -266,13 +291,24 @@
           </div>
         </div>
 
-        <!-- Sage Bot -->
+        <!-- Hedgehog Bot (Defensive) -->
         <div class="arena-bot-card" data-bot="sage" style="--bot-color: #10B981">
           <div class="arena-bot-header">
-            <div class="arena-bot-avatar">S</div>
+            <div class="arena-bot-avatar">
+              <!-- Hedgehog SVG Icon -->
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="14" rx="8" ry="5"/>
+                <circle cx="9" cy="13" r="1" fill="currentColor"/>
+                <path d="M13 14c0 .5-.5 1-1 1s-1-.5-1-1"/>
+                <path d="M6 10l-2-4"/>
+                <path d="M9 9l-1-4"/>
+                <path d="M12 8V4"/>
+                <path d="M15 9l1-4"/>
+                <path d="M18 10l2-4"/>
+              </svg>
+            </div>
             <div class="arena-bot-info">
-              <h3>Sage</h3>
-              <span class="bot-strategy" data-translate="education.arena.bot.sage.strategy">Défensif</span>
+              <h3 data-translate="education.arena.bots.sage.label">Hedgehog (Defensive)</h3>
             </div>
           </div>
           <div class="arena-bot-dialogue" id="sageDialogue">
@@ -374,32 +410,32 @@
             <div class="leaderboard-item">
               <div class="leaderboard-rank">1</div>
               <div class="leaderboard-bot-info">
-                <div class="leaderboard-bot-avatar" style="--bot-color: #667eea">P</div>
-                <span class="leaderboard-bot-name">Pari</span>
+                <div class="leaderboard-bot-avatar" style="--bot-color: #667eea">F</div>
+                <span class="leaderboard-bot-name">Fox</span>
               </div>
               <span class="leaderboard-pnl positive">+0.00%</span>
             </div>
             <div class="leaderboard-item">
               <div class="leaderboard-rank">2</div>
               <div class="leaderboard-bot-info">
-                <div class="leaderboard-bot-avatar" style="--bot-color: #10B981">S</div>
-                <span class="leaderboard-bot-name">Sage</span>
+                <div class="leaderboard-bot-avatar" style="--bot-color: #10B981">H</div>
+                <span class="leaderboard-bot-name">Hedgehog</span>
               </div>
               <span class="leaderboard-pnl positive">+0.00%</span>
             </div>
             <div class="leaderboard-item">
               <div class="leaderboard-rank">3</div>
               <div class="leaderboard-bot-info">
-                <div class="leaderboard-bot-avatar" style="--bot-color: #6B7280">É</div>
-                <span class="leaderboard-bot-name">Équi</span>
+                <div class="leaderboard-bot-avatar" style="--bot-color: #6B7280">B</div>
+                <span class="leaderboard-bot-name">Bear</span>
               </div>
               <span class="leaderboard-pnl positive">+0.00%</span>
             </div>
             <div class="leaderboard-item">
               <div class="leaderboard-rank">4</div>
               <div class="leaderboard-bot-info">
-                <div class="leaderboard-bot-avatar" style="--bot-color: #F97316">M</div>
-                <span class="leaderboard-bot-name">Momo</span>
+                <div class="leaderboard-bot-avatar" style="--bot-color: #F97316">H</div>
+                <span class="leaderboard-bot-name">Hawk</span>
               </div>
               <span class="leaderboard-pnl positive">+0.00%</span>
             </div>
@@ -433,6 +469,29 @@
           }
         }
       </style>
+
+      <!-- CTA Hook: Join Waitlist -->
+      <section class="arena-cta-hook" id="arenaCTAHook">
+        <div class="cta-hook-content">
+          <div class="cta-hook-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <div class="cta-hook-text">
+            <h4 data-translate="education.arena.ctaWaitlist.title">Like what you see?</h4>
+            <p data-translate="education.arena.ctaWaitlist.description">
+              Bubble Portfolio applies these strategies to your real portfolio, 100% automated.
+            </p>
+          </div>
+          <a href="/en/investors#investor-waitlist" class="cta-hook-button">
+            <span data-translate="education.arena.ctaWaitlist.button">Join the Waitlist</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </section>
 
       <!-- CTA to Simulator -->
       <section style="background: rgba(102, 126, 234, 0.08); border-radius: 24px; padding: 2rem; text-align: center; margin-bottom: 2rem; border: 1px solid rgba(102, 126, 234, 0.2);">
@@ -678,6 +737,81 @@
 
         // Listen for language changes
         window.addEventListener('languageChange', updateTutorial);
+      });
+    </script>
+
+    <!-- Floating Playground Chatbot -->
+    <div class="floating-playground-chat" id="floatingPlaygroundChat">
+      <div class="floating-playground-panel">
+        <div class="floating-playground-header">
+          <div class="floating-playground-header-info">
+            <div class="floating-playground-avatar">
+              <svg width="16" height="16" viewBox="0 0 72 72" fill="none">
+                <circle cx="36" cy="41" r="22" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="120 24" stroke-dashoffset="8"/>
+                <circle cx="54" cy="22" r="5" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <span class="floating-playground-title">Bubble Assistant</span>
+              <span class="floating-playground-subtitle" data-translate="education.floating.subtitle">Ton profil investisseur</span>
+            </div>
+          </div>
+          <button class="floating-playground-close" aria-label="Close">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+        <div class="floating-playground-messages" id="floatingPlaygroundMessages">
+          <!-- Messages loaded from session -->
+        </div>
+        <form class="floating-playground-input-container" id="floatingPlaygroundForm" novalidate>
+          <input
+            type="text"
+            class="floating-playground-input"
+            id="floatingPlaygroundInput"
+            placeholder="Ask your question..."
+            autocomplete="off"
+          />
+          <button class="floating-playground-send" type="submit" aria-label="Send">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 21V4" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+      <button class="floating-playground-toggle" aria-label="Open chat">
+        <svg class="icon-chat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <script src="/js/playground-chat.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const floatingChat = document.getElementById('floatingPlaygroundChat');
+        const toggleBtn = floatingChat?.querySelector('.floating-playground-toggle');
+        const closeBtn = floatingChat?.querySelector('.floating-playground-close');
+
+        // Toggle floating chat
+        toggleBtn?.addEventListener('click', () => {
+          floatingChat.classList.toggle('open');
+          if (floatingChat.classList.contains('open') && typeof PlaygroundChat !== 'undefined') {
+            // Initialize or resume session in floating chat
+            PlaygroundChat.init('floatingPlaygroundMessages', 'floatingPlaygroundInput');
+          }
+        });
+
+        closeBtn?.addEventListener('click', () => {
+          floatingChat.classList.remove('open');
+        });
       });
     </script>
   </body>

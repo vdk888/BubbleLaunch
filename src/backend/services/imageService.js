@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { Runware } = require("@runware/sdk-js");
+const axios = require("axios");
 
 class ImageService {
   constructor() {
@@ -9,10 +10,6 @@ class ImageService {
     this.runware = null;
     this.connectionReady = false;
     this.runwareInitPromise = null;
-
-    // Local fallback images stored in assets
-    this.fallbackImagesDir = path.join(__dirname, "../../frontend/assets/images/blog-fallbacks");
-    this.fallbackImages = this.loadFallbackImages();
 
     this.imageCache = new Map();
     this.cacheFile = path.join(__dirname, "../cache/image-service-cache.json");
@@ -35,11 +32,10 @@ class ImageService {
     }
     console.log("  - Model: Runware Flux Schnell (runware:100@1)");
     console.log("  - Cost: ~$0.0004/image");
-    console.log("  - Fallback images loaded:", this.fallbackImages.length);
     console.log("  - Cache entries:", this.imageCache.size);
 
     if (!this.runwareApiKey) {
-      console.warn("❌ RUNWARE_API_KEY not found. Image generation will use local fallback images only.");
+      console.warn("❌ RUNWARE_API_KEY not found. Image generation will not work.");
     } else {
       // Kick off initialization; consumers await ensureRunwareReady before use
       this.runwareInitPromise = this.initializeRunware();
@@ -85,34 +81,25 @@ class ImageService {
   }
 
   /**
-   * Load local fallback images from the blog-fallbacks directory
+   * Check if a URL is valid via HEAD request
    */
-  loadFallbackImages() {
-    const fallbacks = [];
+  async checkUrlValidity(url) {
+    if (!url) return false;
+    
+    // Only check Runware URLs or other external links that might expire
+    // Skip local assets or already known bad domains
+    if (!url.includes('runware.ai') && !url.includes('http')) return true;
+
     try {
-      if (fs.existsSync(this.fallbackImagesDir)) {
-        const files = fs.readdirSync(this.fallbackImagesDir);
-        files.forEach((file) => {
-          if (/\.(jpg|jpeg|png|webp|gif)$/i.test(file)) {
-            const filePath = path.join(this.fallbackImagesDir, file);
-            fallbacks.push({
-              filename: file,
-              path: filePath,
-              url: `/assets/images/blog-fallbacks/${file}`
-            });
-          }
-        });
-        console.log(`✅ Loaded ${fallbacks.length} fallback images from ${this.fallbackImagesDir}`);
-      } else {
-        console.warn(`⚠️ Fallback images directory not found: ${this.fallbackImagesDir}`);
-      }
+      await axios.head(url, { timeout: 2000 }); // Short timeout for checking
+      return true;
     } catch (error) {
-      console.error("❌ Error loading fallback images:", error.message);
+      // 404 or connection error
+      return false;
     }
-    return fallbacks;
   }
 
-  getCachedImage(articleId) {
+  async getCachedImage(articleId) {
     if (!articleId) {
       return null;
     }
@@ -121,14 +108,26 @@ class ImageService {
     if (this.imageCache.has(cacheKey)) {
       const cachedUrl = this.imageCache.get(cacheKey);
 
-      // Validate cached URL - if it's a broken Runware URL, return null to trigger regeneration
+      // 1. Check hardcoded broken list first (fastest)
       if (cachedUrl && this.isBrokenRunwareUrl(cachedUrl)) {
-        console.log(`⚠️ Cached Runware URL is broken for article ID: ${articleId}, will regenerate`);
+        console.log(`⚠️ Cached Runware URL is in broken list for article ID: ${articleId}, removing`);
         this.imageCache.delete(cacheKey);
+        this.savePersistentCache();
         return null;
       }
 
-      console.log(`📦 Found cached image for article ID: ${articleId}`);
+      // 2. Check live validity for Runware URLs
+      if (cachedUrl && cachedUrl.includes('runware.ai')) {
+        const isValid = await this.checkUrlValidity(cachedUrl);
+        if (!isValid) {
+          console.log(`⚠️ Cached Runware URL is dead (404) for article ID: ${articleId}, removing`);
+          this.imageCache.delete(cacheKey);
+          this.savePersistentCache();
+          return null;
+        }
+      }
+
+      console.log(`📦 Found valid cached image for article ID: ${articleId}`);
       return cachedUrl;
     }
 
@@ -164,27 +163,19 @@ class ImageService {
   ) {
     const cacheKey = this.getCacheKey(articleId, articleTitle, articleSummary, tags);
 
-    if (!bypassCache && this.imageCache.has(cacheKey)) {
-      const cachedUrl = this.imageCache.get(cacheKey);
-
-      // Validate cached URL - skip broken Runware URLs
-      if (cachedUrl && !this.isBrokenRunwareUrl(cachedUrl)) {
-        console.log(`📦 Using cached image for: "${articleTitle}"`);
-        return cachedUrl;
-      } else if (cachedUrl && this.isBrokenRunwareUrl(cachedUrl)) {
-        console.log(`⚠️ Cached Runware URL is broken for: "${articleTitle}", regenerating...`);
-        this.imageCache.delete(cacheKey);
+    if (!bypassCache) {
+      // Use the async getCachedImage which performs validation
+      const cachedUrl = await this.getCachedImage(articleId);
+      if (cachedUrl) {
+         return cachedUrl;
       }
     }
 
     const ready = await this.ensureRunwareReady();
 
     if (!ready) {
-      console.log("Runware connection not available, using local fallback image.");
-      const fallback = this.getFallbackImage(articleId);
-      this.imageCache.set(cacheKey, fallback);
-      this.savePersistentCache();
-      return fallback;
+      console.log("Runware connection not available, and fallbacks are disabled.");
+      return null;
     }
 
     const prompt = this.createImagePrompt();
@@ -207,11 +198,8 @@ class ImageService {
       return imageUrl;
     }
 
-    console.log(`🖼️ Falling back to local image for: "${articleTitle}"`);
-    const fallback = this.getFallbackImage(articleId);
-    this.imageCache.set(cacheKey, fallback);
-    this.savePersistentCache();
-    return fallback;
+    console.log(`❌ Failed to generate image for: "${articleTitle}" and fallbacks are disabled.`);
+    return null;
   }
 
   async generateImage(prompt) {
@@ -327,30 +315,6 @@ class ImageService {
     return prompt;
   }
 
-  /**
-   * Get a random local fallback image using deterministic selection based on article ID
-   */
-  getFallbackImage(articleId = null) {
-    if (this.fallbackImages.length === 0) {
-      console.warn("⚠️ No fallback images available");
-      return null;
-    }
-
-    // Use article ID for deterministic selection, or random if no ID
-    const articleHash = articleId
-      ? Math.abs(this.getSimpleHash(articleId))
-      : Math.floor(Math.random() * 1000);
-
-    const selectedIndex = articleHash % this.fallbackImages.length;
-    const selectedImage = this.fallbackImages[selectedIndex];
-
-    console.log(
-      `🎨 Selected local fallback image [${selectedIndex}]: ${selectedImage.filename}`
-    );
-
-    return selectedImage.url;
-  }
-
   getSimpleHash(str) {
     let hash = 0;
     const input = String(str || "");
@@ -435,7 +399,6 @@ class ImageService {
     return {
       entries: this.imageCache.size,
       cacheFile: this.cacheFile,
-      fallbackImagesAvailable: this.fallbackImages.length,
       runwareConnected: this.connectionReady,
     };
   }

@@ -56,9 +56,10 @@ async function loadBlogPosts() {
     console.log('🔄 Starting to load blog posts...');
 
     try {
-        // Fetch posts from the API
-        console.log('📡 Fetching /api/blog/posts');
-        const response = await fetch('/api/blog/posts');
+        // Fetch posts from the API with cache busting
+        const timestamp = new Date().getTime();
+        console.log(`📡 Fetching /api/blog/posts?t=${timestamp}`);
+        const response = await fetch(`/api/blog/posts?t=${timestamp}`);
 
         console.log('📩 Got response:', response.status);
 
@@ -68,6 +69,9 @@ async function loadBlogPosts() {
 
         allPosts = await response.json();
         console.log('✅ Posts loaded:', allPosts.length);
+        if (allPosts.length > 0) {
+            console.log('🖼️ First post image:', allPosts[0].featuredImage);
+        }
 
         // Hide loading state
         loadingState.style.display = 'none';

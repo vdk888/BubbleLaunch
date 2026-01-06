@@ -13,8 +13,8 @@ const translations = {
     fr: "Agent",
   },
   "nav.solution.education": {
-    en: "Education",
-    fr: "Éducation",
+    en: "Playground",
+    fr: "Playground",
   },
   "nav.approach": {
     en: "Approach",
@@ -1098,8 +1098,8 @@ const translations = {
 
   // Footer - New Structure (Resources Column)
   "footer.nav.resources.education": {
-    en: "Education",
-    fr: "Éducation"
+    en: "Playground",
+    fr: "Playground"
   },
   "footer.nav.resources.demo": {
     en: "Demo",
@@ -4448,8 +4448,8 @@ const translations = {
 
   // Education Hub Page
   "education.hub.eyebrow": {
-    en: "Education",
-    fr: "Éducation"
+    en: "Bubble Playground",
+    fr: "Bubble Playground"
   },
   "education.hub.title": {
     en: "AI is your ally, not your enemy",
@@ -4611,9 +4611,334 @@ const translations = {
     en: "Join the waitlist",
     fr: "Rejoindre la liste d'attente"
   },
+
+  // Education Hub - Video Section
+  "education.hub.videos.title": {
+    en: "Deepen Your Knowledge",
+    fr: "Approfondis tes Connaissances"
+  },
+  "education.hub.videos.subtitle": {
+    en: "Curated videos to understand investing and the strategies used by the bots.",
+    fr: "Vidéos sélectionnées pour comprendre l'investissement et les stratégies utilisées par les bots."
+  },
+  "education.hub.videos.beginner": {
+    en: "Beginner",
+    fr: "Débutant"
+  },
+  "education.hub.videos.intermediate": {
+    en: "Intermediate",
+    fr: "Intermédiaire"
+  },
+  "education.hub.videos.etf.title": {
+    en: "What is an ETF?",
+    fr: "C'est quoi un ETF ?"
+  },
+  "education.hub.videos.etf.description": {
+    en: "Understanding ETFs (trackers) in 10 minutes. The favorite tool of passive investors.",
+    fr: "Comprendre les ETF (trackers) en 10 minutes. L'outil favori des investisseurs passifs."
+  },
+  "education.hub.videos.riskparity.title": {
+    en: "Understanding Risk Parity",
+    fr: "Comprendre la Risk Parity"
+  },
+  "education.hub.videos.riskparity.description": {
+    en: "Fox's favorite strategy. How to balance risk, not amounts.",
+    fr: "La stratégie préférée de Renard (Fox). Comment équilibrer le risque, pas les montants."
+  },
+  "education.hub.videos.diversification.title": {
+    en: "The Art of Diversification",
+    fr: "L'Art de la Diversification"
+  },
+  "education.hub.videos.diversification.description": {
+    en: "Why diversification reduces risk without sacrificing returns.",
+    fr: "Pourquoi la diversification réduit le risque sans sacrifier le rendement."
+  },
+  "education.hub.videos.crashes.title": {
+    en: "Major Market Crashes",
+    fr: "Les Grandes Crises Boursières"
+  },
+  "education.hub.videos.crashes.description": {
+    en: "2000, 2008, 2020... How do markets behave during crises?",
+    fr: "2000, 2008, 2020... Comment les marchés se comportent-ils pendant les crises ?"
+  },
+
   "education.hub.chat.cta": {
     en: "Ask me anything",
     fr: "Pose-moi n'importe quelle question"
+  },
+  "education.hub.chat.placeholder": {
+    en: "Ask your question...",
+    fr: "Pose ta question..."
+  },
+
+  // Playground Chatbot - Onboarding
+  "playground.chat.welcome": {
+    en: "Welcome to the Bubble Playground!",
+    fr: "Bienvenue dans le Bubble Playground !"
+  },
+  "playground.chat.intro": {
+    en: "I'm here to help you discover investing in a simple, fun way.",
+    fr: "Je suis la pour t'aider a decouvrir l'investissement de facon simple et fun."
+  },
+  "playground.onboarding.level.question": {
+    en: "To start, tell me where you are:",
+    fr: "Pour commencer, dis-moi ou tu en es :"
+  },
+  "playground.onboarding.level.beginner": {
+    en: "Beginner - I'm discovering",
+    fr: "Debutant - Je decouvre"
+  },
+  "playground.onboarding.level.intermediate": {
+    en: "Intermediate - I know the basics",
+    fr: "Intermediaire - Je connais les bases"
+  },
+  "playground.onboarding.level.advanced": {
+    en: "Advanced - I already know well",
+    fr: "Avance - Je maitrise deja"
+  },
+  "playground.onboarding.goal.question": {
+    en: "Great! What interests you most today?",
+    fr: "Super ! Et qu'est-ce qui t'interesse le plus aujourd'hui ?"
+  },
+  "playground.onboarding.goal.learn": {
+    en: "Learn the basics",
+    fr: "Apprendre les bases"
+  },
+  "playground.onboarding.goal.build": {
+    en: "Build a strategy",
+    fr: "Construire une strategie"
+  },
+  "playground.onboarding.goal.watch": {
+    en: "Watch AI bots trade",
+    fr: "Observer des bots trader"
+  },
+  "playground.onboarding.goal.test": {
+    en: "Test a portfolio",
+    fr: "Tester un portefeuille"
+  },
+  "playground.onboarding.style.question": {
+    en: "How do you prefer to learn?",
+    fr: "Comment preferes-tu apprendre ?"
+  },
+  "playground.onboarding.style.videos": {
+    en: "Videos and visual explanations",
+    fr: "Videos et explications visuelles"
+  },
+  "playground.onboarding.style.exercises": {
+    en: "Hands-on exercises",
+    fr: "Exercices pratiques"
+  },
+  "playground.onboarding.style.dialogue": {
+    en: "Q&A dialogue",
+    fr: "Dialogue et questions-reponses"
+  },
+  "playground.onboarding.style.explore": {
+    en: "Explore on my own",
+    fr: "Explorer par moi-meme"
+  },
+  "playground.cta.arena": {
+    en: "Arena",
+    fr: "Arena"
+  },
+  "playground.cta.simulator": {
+    en: "Simulator",
+    fr: "Simulateur"
+  },
+  "playground.cta.subscribe": {
+    en: "Join Bubble",
+    fr: "Rejoindre Bubble"
+  },
+
+  // Playground Fullscreen Page
+  "playground.exit": {
+    en: "Explore",
+    fr: "Explorer"
+  },
+  "playground.input.placeholder": {
+    en: "Type anything or use voice...",
+    fr: "Tape ici ou utilise le micro..."
+  },
+  "playground.action.arena": {
+    en: "Arena",
+    fr: "Arena"
+  },
+  "playground.action.simulator": {
+    en: "Simulator",
+    fr: "Simulateur"
+  },
+  "playground.action.explore": {
+    en: "Explore Playground",
+    fr: "Explorer le Playground"
+  },
+  "playground.action.subscribe": {
+    en: "Join Bubble",
+    fr: "Rejoindre Bubble"
+  },
+
+  // Playground Resources Page
+  "playground.resources.back": {
+    en: "Back to Playground",
+    fr: "Retour au Playground"
+  },
+  "playground.resources.eyebrow": {
+    en: "Resources & Tools",
+    fr: "Ressources & Outils"
+  },
+  "playground.resources.title": {
+    en: "Explore Bubble Tools",
+    fr: "Explore les Outils Bubble"
+  },
+  "playground.resources.subtitle": {
+    en: "Watch AI bots trade, build your strategy, and deepen your knowledge.",
+    fr: "Observe des bots IA trader, construis ta strategie, et approfondis tes connaissances."
+  },
+  "playground.resources.arena.badge": {
+    en: "Watch",
+    fr: "Observer"
+  },
+  "playground.resources.arena.title": {
+    en: "AI Trading Arena",
+    fr: "AI Trading Arena"
+  },
+  "playground.resources.arena.description": {
+    en: "Watch 4 AI bots compete over 20 years of historical data. Each bot explains its decisions in real-time. Travel through time and relive major financial crises.",
+    fr: "Regarde 4 bots IA s'affronter sur 20 ans de donnees historiques. Chaque bot explique ses decisions en temps reel. Voyage dans le temps et revis les grandes crises financieres."
+  },
+  "playground.resources.arena.feature1": {
+    en: "4 bots with unique personalities",
+    fr: "4 bots aux personnalites uniques"
+  },
+  "playground.resources.arena.feature2": {
+    en: "12 major historical events",
+    fr: "12 evenements historiques majeurs"
+  },
+  "playground.resources.arena.feature3": {
+    en: "Interactive gamified tutorials",
+    fr: "Tutoriels gamifies interactifs"
+  },
+  "playground.resources.arena.cta": {
+    en: "Enter the Arena",
+    fr: "Entrer dans l'Arena"
+  },
+  "playground.resources.simulator.badge": {
+    en: "Build",
+    fr: "Construire"
+  },
+  "playground.resources.simulator.title": {
+    en: "Strategy Simulator",
+    fr: "Strategy Simulator"
+  },
+  "playground.resources.simulator.description": {
+    en: "Create your own strategy in natural language. The AI assistant guides you step by step and instantly tests your allocation on 20 years of real data.",
+    fr: "Cree ta propre strategie en langage naturel. L'assistant IA te guide pas a pas et teste instantanement ton allocation sur 20 ans de donnees reelles."
+  },
+  "playground.resources.simulator.feature1": {
+    en: "Intelligent guided chatbot",
+    fr: "Chatbot intelligent guide"
+  },
+  "playground.resources.simulator.feature2": {
+    en: "Instant backtesting",
+    fr: "Backtesting instantane"
+  },
+  "playground.resources.simulator.feature3": {
+    en: "Comparison with the pros",
+    fr: "Comparaison avec les pros"
+  },
+  "playground.resources.simulator.cta": {
+    en: "Create My Strategy",
+    fr: "Creer Ma Strategie"
+  },
+  "playground.resources.why.title": {
+    en: "Why Learn Here?",
+    fr: "Pourquoi Apprendre Ici ?"
+  },
+  "playground.resources.why.safe.title": {
+    en: "100% Risk-Free",
+    fr: "100% Sans Risque"
+  },
+  "playground.resources.why.safe.description": {
+    en: "Real historical data, no money at stake. Learn safely.",
+    fr: "Donnees historiques reelles, aucun argent en jeu. Apprends en toute securite."
+  },
+  "playground.resources.why.transparent.title": {
+    en: "Total Transparency",
+    fr: "Transparence Totale"
+  },
+  "playground.resources.why.transparent.description": {
+    en: "Bots explain every decision. No black box, just education.",
+    fr: "Les bots expliquent chaque decision. Pas de boite noire, que de la pedagogie."
+  },
+  "playground.resources.why.free.title": {
+    en: "Free Forever",
+    fr: "Gratuit a Vie"
+  },
+  "playground.resources.why.free.description": {
+    en: "Financial education should be accessible to everyone. No subscription required.",
+    fr: "L'education financiere devrait etre accessible a tous. Aucun abonnement requis."
+  },
+  "playground.resources.videos.title": {
+    en: "Deepen Your Knowledge",
+    fr: "Approfondis tes Connaissances"
+  },
+  "playground.resources.videos.subtitle": {
+    en: "Selected videos to understand investing and the strategies used by the bots.",
+    fr: "Videos selectionnees pour comprendre l'investissement et les strategies utilisees par les bots."
+  },
+  "playground.resources.videos.etf.title": {
+    en: "What is an ETF?",
+    fr: "C'est quoi un ETF ?"
+  },
+  "playground.resources.videos.etf.description": {
+    en: "Understand ETFs (trackers) in 10 minutes. The favorite tool of passive investors.",
+    fr: "Comprendre les ETF (trackers) en 10 minutes. L'outil favori des investisseurs passifs."
+  },
+  "playground.resources.videos.riskparity.title": {
+    en: "Understanding Risk Parity",
+    fr: "Comprendre la Risk Parity"
+  },
+  "playground.resources.videos.riskparity.description": {
+    en: "Fox's favorite strategy. How to balance risk, not amounts.",
+    fr: "La strategie preferee de Renard (Fox). Comment equilibrer le risque, pas les montants."
+  },
+  "playground.resources.videos.diversification.title": {
+    en: "The Art of Diversification",
+    fr: "L'Art de la Diversification"
+  },
+  "playground.resources.videos.diversification.description": {
+    en: "Why diversification reduces risk without sacrificing returns.",
+    fr: "Pourquoi la diversification reduit le risque sans sacrifier le rendement."
+  },
+  "playground.resources.videos.crashes.title": {
+    en: "Major Stock Market Crashes",
+    fr: "Les Grandes Crises Boursieres"
+  },
+  "playground.resources.videos.crashes.description": {
+    en: "2000, 2008, 2020... How do markets behave during crises?",
+    fr: "2000, 2008, 2020... Comment les marches se comportent-ils pendant les crises ?"
+  },
+  "playground.resources.videos.beginner": {
+    en: "Beginner",
+    fr: "Debutant"
+  },
+  "playground.resources.videos.intermediate": {
+    en: "Intermediate",
+    fr: "Intermediaire"
+  },
+  "playground.resources.compliance": {
+    en: "<strong>Important information:</strong> This platform is purely educational. Simulations use historical data and do not constitute investment advice. Past performance does not guarantee future results.",
+    fr: "<strong>Information importante :</strong> Cette plateforme est purement educative. Les simulations utilisent des donnees historiques et ne constituent pas un conseil en investissement. Les performances passees ne prejugent pas des performances futures."
+  },
+  "playground.resources.cta.title": {
+    en: "Ready to level up?",
+    fr: "Pret a passer au niveau superieur ?"
+  },
+  "playground.resources.cta.description": {
+    en: "Join the waitlist to access Bubble Portfolio, our AI-powered automated investment platform.",
+    fr: "Rejoins la liste d'attente pour acceder a Bubble Portfolio, notre plateforme d'investissement automatisee alimentee par l'IA."
+  },
+  "playground.resources.cta.button": {
+    en: "Join the waitlist",
+    fr: "Rejoindre la liste d'attente"
   },
 
   // Arena Page - Hero & Main UI
@@ -4715,6 +5040,21 @@ const translations = {
     en: "Build My Strategy",
     fr: "Créer Ma Stratégie"
   },
+
+  // Arena Waitlist CTA Hook
+  "education.arena.ctaWaitlist.title": {
+    en: "Like what you see?",
+    fr: "Tu aimes ce que tu vois ?"
+  },
+  "education.arena.ctaWaitlist.description": {
+    en: "Bubble Portfolio applies these strategies to your real portfolio, 100% automated.",
+    fr: "Bubble Portfolio applique ces stratégies sur ton vrai portefeuille, 100% automatisé."
+  },
+  "education.arena.ctaWaitlist.button": {
+    en: "Join the Waitlist",
+    fr: "Rejoindre la liste d'attente"
+  },
+
   "education.arena.chat.cta": {
     en: "Ask me anything",
     fr: "Pose-moi n'importe quelle question"
@@ -4768,8 +5108,8 @@ const translations = {
 
   // Arena Page - Bots
   "education.arena.bots.equi.name": {
-    en: "Équi",
-    fr: "Équi"
+    en: "Bear",
+    fr: "Ours"
   },
   "education.arena.bots.equi.strategy": {
     en: "Equal Weight",
@@ -4784,8 +5124,8 @@ const translations = {
     fr: "Je reste simple - parts égales de tout. Pas de prédictions, pas de timing, juste l'équilibre."
   },
   "education.arena.bots.pari.name": {
-    en: "Pari",
-    fr: "Pari"
+    en: "Fox",
+    fr: "Renard"
   },
   "education.arena.bots.pari.strategy": {
     en: "Risk Parity",
@@ -4800,8 +5140,8 @@ const translations = {
     fr: "J'équilibre le risque, pas les euros. Quand la volatilité monte, je passe aux actifs sûrs."
   },
   "education.arena.bots.momo.name": {
-    en: "Momo",
-    fr: "Momo"
+    en: "Hawk",
+    fr: "Faucon"
   },
   "education.arena.bots.momo.strategy": {
     en: "Momentum",
@@ -4816,8 +5156,8 @@ const translations = {
     fr: "Les gagnants restent gagnants ! Je suis les tendances et ce qui performe."
   },
   "education.arena.bots.sage.name": {
-    en: "Sage",
-    fr: "Sage"
+    en: "Hedgehog",
+    fr: "Hérisson"
   },
   "education.arena.bots.sage.strategy": {
     en: "Regime-Aware Risk Parity",
@@ -4830,6 +5170,24 @@ const translations = {
   "education.arena.bots.sage.intro": {
     en: "I adapt to market conditions. Bull or bear, I adjust my strategy accordingly.",
     fr: "Je m'adapte aux conditions du marché. Hausse ou baisse, j'ajuste ma stratégie."
+  },
+
+  // Arena Page - Bot Labels (Animal + Strategy combined)
+  "education.arena.bots.equi.label": {
+    en: "Bear (Equal Weight)",
+    fr: "Ours (Allocation Égale)"
+  },
+  "education.arena.bots.pari.label": {
+    en: "Fox (Risk Parity)",
+    fr: "Renard (Parité de Risque)"
+  },
+  "education.arena.bots.momo.label": {
+    en: "Hawk (Momentum)",
+    fr: "Faucon (Momentum)"
+  },
+  "education.arena.bots.sage.label": {
+    en: "Hedgehog (Defensive)",
+    fr: "Hérisson (Défensif)"
   },
 
   // Arena Page - Controls
@@ -5039,6 +5397,26 @@ const translations = {
     en: "Send",
     fr: "Envoyer"
   },
+  "education.simulator.chat.heroTitle": {
+    en: "Describe your strategy",
+    fr: "Décris ta stratégie"
+  },
+  "education.simulator.chat.defensive": {
+    en: "More defensive",
+    fr: "Plus défensif"
+  },
+  "education.simulator.chat.aggressive": {
+    en: "More returns",
+    fr: "Plus de rendement"
+  },
+  "education.simulator.chat.balanced": {
+    en: "Balanced 60/40",
+    fr: "Équilibré 60/40"
+  },
+  "education.simulator.chat.gold": {
+    en: "Add gold",
+    fr: "Ajouter de l'or"
+  },
   "education.simulator.results.title": {
     en: "Backtest Results",
     fr: "Résultats du Backtest"
@@ -5149,6 +5527,21 @@ const translations = {
     en: "See the Arena",
     fr: "Voir l'Arena"
   },
+
+  // Simulator Waitlist CTA Hook
+  "education.simulator.ctaWaitlist.title": {
+    en: "Happy with your strategy?",
+    fr: "Ta stratégie te convient ?"
+  },
+  "education.simulator.ctaWaitlist.description": {
+    en: "Bubble Portfolio can apply it automatically to your real portfolio.",
+    fr: "Bubble Portfolio peut l'appliquer automatiquement sur ton vrai portefeuille."
+  },
+  "education.simulator.ctaWaitlist.button": {
+    en: "Join the Waitlist",
+    fr: "Rejoindre la liste d'attente"
+  },
+
   "education.simulator.compliance": {
     en: "<strong>Important information:</strong> This simulator uses historical data for educational purposes only. Past performance does not predict future results. No investment advice is provided.",
     fr: "<strong>Information importante :</strong> Ce simulateur utilise des données historiques à des fins éducatives uniquement. Les performances passées ne préjugent pas des performances futures. Aucun conseil en investissement n'est fourni."

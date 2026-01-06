@@ -192,12 +192,11 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 /**
- * Portfolio simulator page
+ * Portfolio simulator page - Redirect to playground simulator
+ * Legacy route maintained for backwards compatibility and SEO
  */
 router.get("/portfolio-simulator", (req, res) => {
-  res.sendFile(
-    path.join(frPagesDir, "portfolio-simulator.html")
-  );
+  res.redirect(301, "/investors/playground/simulator");
 });
 
 router.get(["/pricing", "/pricing.html"], (req, res) => {
@@ -372,21 +371,42 @@ router.get("/investors/portfolio-simulator", (req, res) => {
 });
 
 /**
- * Education Hub and Sub-pages (French)
+ * Bubble Playground Hub and Sub-pages (French)
+ * Primary chatbot-first experience for investor education
  */
-router.get("/investors/education", (req, res) => {
+router.get("/investors/playground", (req, res) => {
   res.set("X-Robots-Tag", "noindex, nofollow");
-  res.sendFile(path.join(frPagesDir, "investors/education.html"));
+  res.sendFile(path.join(frPagesDir, "investors/playground.html"));
 });
 
-router.get("/investors/education/arena", (req, res) => {
+router.get("/investors/playground/resources", (req, res) => {
+  res.set("X-Robots-Tag", "noindex, nofollow");
+  res.sendFile(path.join(frPagesDir, "investors/playground/resources.html"));
+});
+
+router.get("/investors/playground/arena", (req, res) => {
   res.set("X-Robots-Tag", "noindex, nofollow");
   res.sendFile(path.join(frPagesDir, "investors/education/arena.html"));
 });
 
-router.get("/investors/education/simulator", (req, res) => {
+router.get("/investors/playground/simulator", (req, res) => {
   res.set("X-Robots-Tag", "noindex, nofollow");
   res.sendFile(path.join(frPagesDir, "investors/education/simulator.html"));
+});
+
+/**
+ * Legacy Education Routes - Redirect to Playground (French)
+ */
+router.get("/investors/education", (req, res) => {
+  res.redirect(301, "/investors/playground");
+});
+
+router.get("/investors/education/arena", (req, res) => {
+  res.redirect(301, "/investors/playground/arena");
+});
+
+router.get("/investors/education/simulator", (req, res) => {
+  res.redirect(301, "/investors/playground/simulator");
 });
 
 
@@ -412,21 +432,42 @@ router.get("/en/investors/portfolio-simulator", (req, res) => {
 });
 
 /**
- * Education Hub and Sub-pages (English)
+ * Bubble Playground Hub and Sub-pages (English)
+ * Primary chatbot-first experience for investor education
  */
-router.get("/en/investors/education", (req, res) => {
+router.get("/en/investors/playground", (req, res) => {
   res.set("X-Robots-Tag", "noindex, nofollow");
-  res.sendFile(path.join(enPagesDir, "investors/education.html"));
+  res.sendFile(path.join(enPagesDir, "investors/playground.html"));
 });
 
-router.get("/en/investors/education/arena", (req, res) => {
+router.get("/en/investors/playground/resources", (req, res) => {
+  res.set("X-Robots-Tag", "noindex, nofollow");
+  res.sendFile(path.join(enPagesDir, "investors/playground/resources.html"));
+});
+
+router.get("/en/investors/playground/arena", (req, res) => {
   res.set("X-Robots-Tag", "noindex, nofollow");
   res.sendFile(path.join(enPagesDir, "investors/education/arena.html"));
 });
 
-router.get("/en/investors/education/simulator", (req, res) => {
+router.get("/en/investors/playground/simulator", (req, res) => {
   res.set("X-Robots-Tag", "noindex, nofollow");
   res.sendFile(path.join(enPagesDir, "investors/education/simulator.html"));
+});
+
+/**
+ * Legacy Education Routes - Redirect to Playground (English)
+ */
+router.get("/en/investors/education", (req, res) => {
+  res.redirect(301, "/en/investors/playground");
+});
+
+router.get("/en/investors/education/arena", (req, res) => {
+  res.redirect(301, "/en/investors/playground/arena");
+});
+
+router.get("/en/investors/education/simulator", (req, res) => {
+  res.redirect(301, "/en/investors/playground/simulator");
 });
 
 /**
