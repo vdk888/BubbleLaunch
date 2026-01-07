@@ -62,6 +62,70 @@ const translations = {
     en: "See the demo",
     fr: "Voir la démo",
   },
+  "hero.cta.playground": {
+    en: "Explore the Playground",
+    fr: "Explorer le Playground",
+  },
+
+  // Playground Promo Banner
+  "promo.badge": {
+    en: "New",
+    fr: "Nouveau",
+  },
+  "promo.title": {
+    en: "Discover your investor profile",
+    fr: "Découvre ton profil d'investisseur",
+  },
+  "promo.subtitle": {
+    en: "An interactive chatbot that identifies your risk tolerance in 5 minutes. 100% free.",
+    fr: "Un chatbot interactif qui identifie ta tolérance au risque en 5 minutes. 100% gratuit.",
+  },
+  "promo.cta.start": {
+    en: "Start for free",
+    fr: "Commencer gratuitement",
+  },
+  "promo.cta.learn": {
+    en: "Learn more",
+    fr: "En savoir plus",
+  },
+
+  // Preview Cards Section
+  "preview.demo.title": {
+    en: "Discover Bubble Agent",
+    fr: "Découvre l'Agent Bubble",
+  },
+  "preview.demo.desc": {
+    en: "A 3-minute interactive demo",
+    fr: "Une démo interactive de 3 minutes",
+  },
+  "preview.demo.cta": {
+    en: "Launch demo",
+    fr: "Lancer la démo",
+  },
+  "preview.playground.title": {
+    en: "Explore the Playground",
+    fr: "Explore le Playground",
+  },
+  "preview.playground.desc": {
+    en: "Discover your risk profile for free",
+    fr: "Découvre ton profil de risque gratuitement",
+  },
+  "preview.playground.cta": {
+    en: "Start",
+    fr: "Commencer",
+  },
+  "preview.waitlist.title": {
+    en: "Early Access",
+    fr: "Accès Anticipé",
+  },
+  "preview.waitlist.desc": {
+    en: "Join 500+ investors on the waitlist",
+    fr: "Rejoins 500+ investisseurs sur la liste",
+  },
+  "preview.waitlist.cta": {
+    en: "Sign up",
+    fr: "S'inscrire",
+  },
 
   // Manifesto Section
   "manifesto.title": {

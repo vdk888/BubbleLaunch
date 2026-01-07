@@ -267,7 +267,7 @@
             </svg>
           </button>
         </form>
-        <div style="margin-top: 2rem; text-align: center;">
+        <div class="hero-cta-group">
           <button
             type="button"
             class="cta-button primary-btn js-retail-demo-trigger"
@@ -276,6 +276,37 @@
           >
             Voir la démo
           </button>
+          <a
+            href="/investors/playground"
+            class="cta-button playground-btn"
+            data-translate="hero.cta.playground"
+          >
+            Explorer le Playground
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Playground Promo Banner -->
+    <section class="playground-promo fade-in">
+      <div class="container">
+        <div class="playground-promo-content">
+          <div class="playground-promo-badge" data-translate="promo.badge">Nouveau</div>
+          <h2 class="playground-promo-title" data-translate="promo.title">Découvre ton profil d'investisseur</h2>
+          <p class="playground-promo-subtitle" data-translate="promo.subtitle">
+            Un chatbot interactif qui identifie ta tolérance au risque en 5 minutes. 100% gratuit.
+          </p>
+          <div class="playground-promo-ctas">
+            <a href="/investors/playground" class="cta-button playground-btn" data-translate="promo.cta.start">
+              Commencer gratuitement
+            </a>
+            <a href="/investors/playground/resources" class="promo-link" data-translate="promo.cta.learn">
+              En savoir plus
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -416,6 +447,56 @@
       </div>
     </section>
 
+    <!-- Preview Cards Section -->
+    <section class="preview-cards-section fade-in">
+      <div class="container">
+        <div class="preview-cards-grid">
+          <!-- Demo Card -->
+          <div class="preview-card preview-card-demo">
+            <div class="preview-card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+            <h3 class="preview-card-title" data-translate="preview.demo.title">Découvre l'Agent Bubble</h3>
+            <p class="preview-card-desc" data-translate="preview.demo.desc">Une démo interactive de 3 minutes</p>
+            <button class="preview-card-cta js-retail-demo-trigger" data-entry-point="preview_card_demo" data-translate="preview.demo.cta">
+              Lancer la démo
+            </button>
+          </div>
+
+          <!-- Playground Card -->
+          <a href="/investors/playground" class="preview-card preview-card-playground">
+            <div class="preview-card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                <path d="M2 12h20"/>
+              </svg>
+            </div>
+            <h3 class="preview-card-title" data-translate="preview.playground.title">Explore le Playground</h3>
+            <p class="preview-card-desc" data-translate="preview.playground.desc">Découvre ton profil de risque gratuitement</p>
+            <span class="preview-card-cta" data-translate="preview.playground.cta">Commencer</span>
+          </a>
+
+          <!-- Waitlist Card -->
+          <a href="#investor-waitlist" class="preview-card preview-card-waitlist">
+            <div class="preview-card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+              </svg>
+            </div>
+            <h3 class="preview-card-title" data-translate="preview.waitlist.title">Accès Anticipé</h3>
+            <p class="preview-card-desc" data-translate="preview.waitlist.desc">Rejoins 500+ investisseurs sur la liste</p>
+            <span class="preview-card-cta" data-translate="preview.waitlist.cta">S'inscrire</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- What We're Building Section -->
     <section id="vision" class="vision fade-in">
       <div class="container">
@@ -547,8 +628,9 @@
                 <path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>
               </svg>
             </div>
-            <h3>Agent IA Éducatif</h3>
-            <p>Bubble vous fournit insights, analyses et aide à la décision. Vous conservez le contrôle total : validez chaque stratégie, et l'exécution se fait selon vos approbations, jamais contre votre volonté.</p>
+            <h3 data-translate="investors.value.education.title">Agent IA Éducatif</h3>
+            <p data-translate="investors.value.education.description">Bubble vous fournit insights, analyses et aide à la décision. Vous conservez le contrôle total : validez chaque stratégie, et l'exécution se fait selon vos approbations, jamais contre votre volonté.</p>
+            <a href="/investors/playground" class="feature-card-link" data-translate="investors.value.education.cta">Essayer gratuitement</a>
           </div>
         </div>
       </div>

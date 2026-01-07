@@ -1176,6 +1176,276 @@ body.mobile-menu-open {
   transform: translateY(-2px);
 }
 
+/* Hero CTA Group - dual buttons layout */
+.hero-cta-group {
+  margin-top: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 576px) {
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-cta-group .cta-button {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* Purple gradient button for Playground */
+.cta-button.playground-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+}
+
+.cta-button.playground-btn:hover {
+  background: linear-gradient(135deg, #5a6fd6 0%, #6a4190 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);
+}
+
+.cta-button.playground-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.25);
+}
+
+/* Playground Promo Banner */
+.playground-promo {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 3rem 0;
+  margin: 0;
+}
+
+.playground-promo-content {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.playground-promo-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.35rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.playground-promo-title {
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.2;
+}
+
+.playground-promo-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.125rem;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.5;
+}
+
+.playground-promo-ctas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.playground-promo .cta-button.playground-btn {
+  background: white;
+  color: #667eea;
+}
+
+.playground-promo .cta-button.playground-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.promo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.promo-link:hover {
+  opacity: 0.85;
+}
+
+.promo-link svg {
+  transition: transform 0.2s ease;
+}
+
+.promo-link:hover svg {
+  transform: translateX(3px);
+}
+
+@media (max-width: 576px) {
+  .playground-promo {
+    padding: 2rem 0;
+  }
+
+  .playground-promo-title {
+    font-size: 1.5rem;
+  }
+
+  .playground-promo-subtitle {
+    font-size: 1rem;
+  }
+
+  .playground-promo-ctas {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* Preview Cards Section */
+.preview-cards-section {
+  padding: 4rem 0;
+  background: #f8f8f8;
+}
+
+.preview-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.preview-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid #eeeeee;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.preview-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  border-color: transparent;
+}
+
+.preview-card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.preview-card-demo .preview-card-icon {
+  background: linear-gradient(135deg, #333333 0%, #555555 100%);
+  color: white;
+}
+
+.preview-card-playground .preview-card-icon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.preview-card-waitlist .preview-card-icon {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.preview-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #111827;
+}
+
+.preview-card-desc {
+  font-size: 0.95rem;
+  color: #666666;
+  margin: 0 0 1.25rem 0;
+  line-height: 1.4;
+}
+
+.preview-card-cta {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.preview-card-demo .preview-card-cta {
+  background: #333333;
+  color: white;
+}
+
+.preview-card-demo .preview-card-cta:hover {
+  background: #444444;
+}
+
+.preview-card-playground .preview-card-cta {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.preview-card-playground:hover .preview-card-cta {
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.preview-card-waitlist .preview-card-cta {
+  background: #10b981;
+  color: white;
+}
+
+.preview-card-waitlist:hover .preview-card-cta {
+  background: #059669;
+}
+
+@media (max-width: 768px) {
+  .preview-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 400px;
+  }
+
+  .preview-card {
+    padding: 1.5rem;
+  }
+
+  .preview-cards-section {
+    padding: 3rem 0;
+  }
+}
+
 .hero-actions {
   margin: 1.75rem auto 0;
   display: flex;
