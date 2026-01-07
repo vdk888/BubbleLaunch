@@ -202,6 +202,17 @@
   line-height: 1.5;
 }
 
+/* Multi-paragraph message styling (when content contains <br> tags) */
+.playground-message .message-content br {
+  display: block;
+  content: '';
+  margin: 0.5rem 0;
+}
+
+.playground-message .message-content br + br {
+  margin-top: 0.25rem;
+}
+
 .playground-message.bot .message-content {
   background: #F5F5F5;
   color: #333333;
@@ -221,10 +232,15 @@
   gap: 0.5rem;
   margin-top: 0.75rem;
   padding-left: 48px; /* Align with message content */
+  align-items: center;
 }
 
 .playground-option {
   padding: 0.75rem 1.25rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: white;
   border: 2px solid #E5E5E5;
   border-radius: 50px;
@@ -235,6 +251,7 @@
   transition: all 0.2s ease;
   animation: optionFadeIn 0.3s ease-out forwards;
   opacity: 0;
+  vertical-align: middle;
 }
 
 @keyframes optionFadeIn {
@@ -284,6 +301,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem 1.25rem;
+  min-height: 44px;
   background: white;
   border: 1px solid #E5E5E5;
   border-radius: 16px;
@@ -493,9 +511,11 @@
   display: flex;
   gap: 0.5rem;
   overflow-x: auto;
+  padding: 0.5rem 0;
   padding-bottom: 0.25rem;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  align-items: center;
 }
 
 .playground-quick-actions::-webkit-scrollbar {
@@ -503,19 +523,36 @@
 }
 
 .playground-action {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 1rem;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.875rem;
+  min-height: 44px;
   background: white;
   border: 1px solid #E5E5E5;
   border-radius: 50px;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   color: #555555;
   text-decoration: none;
   white-space: nowrap;
   transition: all 0.2s ease;
+  vertical-align: middle;
+}
+
+.playground-action .action-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.playground-action .action-icon svg {
+  width: 14px;
+  height: 14px;
 }
 
 .playground-action:hover {
@@ -543,19 +580,6 @@
   background: linear-gradient(135deg, #5a6fd6, #6a4190);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-}
-
-.playground-action .action-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-}
-
-.playground-action .action-icon svg {
-  width: 16px;
-  height: 16px;
 }
 
 /* Profile Result Card */
@@ -659,6 +683,64 @@
   margin: 0;
 }
 
+/* Isolate hover effects for non-touch devices */
+@media (hover: hover) {
+  .playground-lang-toggle:hover {
+    background: #EEEEEE;
+    color: #333333;
+  }
+
+  .playground-close-btn:hover {
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05);
+    color: #333333;
+  }
+
+  .playground-option:hover {
+    border-color: #333333;
+    background: #FAFAFA;
+    transform: translateY(-2px);
+  }
+
+  .playground-nav-card:hover {
+    border-color: #333333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .playground-nav-card:hover .nav-card-arrow {
+    transform: translateX(4px);
+    color: #333333;
+  }
+
+  .playground-action:hover {
+    border-color: #333333;
+    color: #333333;
+  }
+
+  .playground-action.primary:hover {
+    background: linear-gradient(135deg, #444444, #555555);
+  }
+
+  .playground-action.purple:hover {
+    background: linear-gradient(135deg, #5a6fd6, #6a4190);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  }
+
+  .playground-mic-btn:hover {
+    background: #EEEEEE;
+    border-color: #333333;
+    color: #333333;
+  }
+
+  .playground-send-btn:hover {
+    background: linear-gradient(135deg, #444444, #555555);
+    transform: scale(1.05);
+  }
+}
+
 /* Mobile Responsive */
 @media (max-width: 640px) {
   .playground-header {
@@ -727,9 +809,154 @@
     margin-left: 40px;
     padding: 1.25rem;
   }
+
+  /* Allow allocation items to wrap on mobile */
+  .playground-profile-card .profile-allocation {
+    flex-wrap: wrap;
+  }
 }
 
-/* Very small screens */
+/* Extra small screens (360px and below) */
+@media (max-width: 360px) {
+  .playground-header {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .playground-lang-toggle {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .playground-chat-wrapper {
+    padding: 0 0.5rem;
+  }
+
+  .playground-messages {
+    padding: 1rem 0;
+  }
+
+  .playground-message {
+    max-width: 95%;
+    gap: 0.5rem;
+  }
+
+  .playground-message .message-avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .playground-message .message-content {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.9rem;
+  }
+
+  .playground-options {
+    padding-left: 28px;
+    gap: 0.375rem;
+  }
+
+  .playground-option {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.85rem;
+  }
+
+  .playground-nav-cards {
+    padding-left: 28px;
+  }
+
+  .playground-nav-card {
+    padding: 0.875rem 1rem;
+  }
+
+  .playground-nav-card .nav-card-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .playground-nav-card .nav-card-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .playground-input-form {
+    gap: 0.5rem;
+  }
+
+  .playground-input {
+    padding: 0.75rem 1rem;
+    font-size: 16px;
+  }
+
+  .playground-mic-btn {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .playground-send-btn {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .playground-input-area {
+    padding: 0.65rem 0 0.85rem;
+  }
+
+  /* Hide quick-action text labels on very small screens */
+  .playground-action span:not(.action-icon) {
+    display: none;
+  }
+
+  /* Make quick-action buttons square with proper spacing */
+  .playground-action {
+    padding: 0.625rem;
+    min-width: 40px;
+    height: 40px;
+    width: 40px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Increase icon size for better visibility on very small screens */
+  .playground-action .action-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .playground-action .action-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .playground-quick-actions {
+    gap: 0.375rem;
+  }
+
+  .playground-profile-card {
+    margin-left: 28px;
+    padding: 1rem;
+  }
+
+  .playground-profile-card .profile-description {
+    font-size: 0.95rem;
+  }
+
+  .playground-profile-card .profile-allocation {
+    gap: 0.5rem;
+  }
+
+  .playground-profile-card .allocation-item {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .playground-typing {
+    padding-left: 28px;
+  }
+}
+
+/* Very small screens (380px) */
 @media (max-width: 380px) {
   .playground-options {
     padding-left: 0;
@@ -741,5 +968,9 @@
 
   .playground-profile-card {
     margin-left: 0;
+  }
+
+  .playground-typing {
+    padding-left: 0;
   }
 }

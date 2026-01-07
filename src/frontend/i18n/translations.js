@@ -4876,6 +4876,66 @@ const translations = {
     en: "Financial education should be accessible to everyone. No subscription required.",
     fr: "L'éducation financière devrait être accessible à tous. Aucun abonnement requis."
   },
+  "playground.resources.foundation.title": {
+    en: "Investment Fundamentals",
+    fr: "Les Fondamentaux de l'Investissement"
+  },
+  "playground.resources.foundation.subtitle": {
+    en: "A series of 4 progressive guides explaining everything you need to know before investing.",
+    fr: "Une série de 4 guides progressifs qui expliquent tout ce que tu dois savoir avant d'investir."
+  },
+  "playground.resources.foundation.lesson0.title": {
+    en: "Understanding Investments",
+    fr: "Comprendre les Placements"
+  },
+  "playground.resources.foundation.lesson0.description": {
+    en: "Stocks, bonds, real estate... Basic concepts explained with concrete examples.",
+    fr: "Actions, obligations, immobilier... Les concepts de base expliqués avec des exemples concrets."
+  },
+  "playground.resources.foundation.lesson0.cta": {
+    en: "Read the guide",
+    fr: "Lire le guide"
+  },
+  "playground.resources.foundation.lesson1.title": {
+    en: "Safe Investments (Zero Risk)",
+    fr: "Placement Sécurisé (Zéro Risque)"
+  },
+  "playground.resources.foundation.lesson1.description": {
+    en: "How to start with a solid foundation using bonds and insurance accounts.",
+    fr: "Comment commencer par une base solide avec des fonds euros et assurance-vie."
+  },
+  "playground.resources.foundation.lesson1.cta": {
+    en: "Read the guide",
+    fr: "Lire le guide"
+  },
+  "playground.resources.foundation.lesson2.title": {
+    en: "Investing in Stock ETFs",
+    fr: "Investir dans les ETF Actions"
+  },
+  "playground.resources.foundation.lesson2.description": {
+    en: "Become a co-owner of the world's best companies at minimal cost.",
+    fr: "Deviens copropriétaire des meilleures entreprises du monde à moindre coût."
+  },
+  "playground.resources.foundation.lesson2.cta": {
+    en: "Read the guide",
+    fr: "Lire le guide"
+  },
+  "playground.resources.foundation.lesson3.title": {
+    en: "Building Your Strategy",
+    fr: "Composer Ta Stratégie"
+  },
+  "playground.resources.foundation.lesson3.description": {
+    en: "How to intelligently allocate your money based on your risk tolerance.",
+    fr: "Comment répartir intelligemment ton argent selon ta tolérance au risque."
+  },
+  "playground.resources.foundation.lesson3.cta": {
+    en: "Read the guide",
+    fr: "Lire le guide"
+  },
+  "playground.resources.foundation.note": {
+    en: "💡 <strong>Tip:</strong> These 4 guides form the pedagogical foundation of the Playground. The chatbot asks questions based on the principles explained here to discover your true risk tolerance.",
+    fr: "💡 <strong>Conseil :</strong> Ces 4 guides forment la base pédagogique du Playground. Le chatbot pose des questions basées sur les principes expliqués ici pour découvrir ta vraie tolérance au risque."
+  },
   "playground.resources.videos.title": {
     en: "Deepen Your Knowledge",
     fr: "Approfondis tes Connaissances"

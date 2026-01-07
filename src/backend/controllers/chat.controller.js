@@ -52,7 +52,7 @@ loadPricingDocument().catch(console.error);
  * UNIFIED SYSTEM PROMPT - Single chatbot across all pages
  * Adapts behavior and context based on page and conversation history
  */
-const unifiedSystemPrompt = (language, pageContext = 'index', waitlistShared = false, userProfile = null) => {
+const unifiedSystemPrompt = (language, pageContext = 'index', waitlistShared = false, userProfile = null, isOnboarding = false, onboardingStage = null) => {
   // Normalize context for routing
   const ctx = (pageContext || 'index').toLowerCase();
 
@@ -121,14 +121,79 @@ Your personality:
 - Ask clarifying questions rather than assuming
 - Suggest next steps proactively
 
-When relevant, suggest exploring:
-- The Arena (watch AI bots trade through crises)
-- The Simulator (build and test your own strategy)
-- Educational videos on ETFs, diversification, risk
+**Proactive suggestions - Timing matters:**
+- **During onboarding**: NEVER suggest Arena/Simulator (breaks flow)
+- **After profile reveal**: Suggest ONCE after explaining profile, then wait for user cue
+- **In free chat**: Suggest when user expresses curiosity about strategies, skepticism about performance, or desire to learn
+- **Never push**: Offer once, respect "non merci", move on
 
-Keep responses concise (2-4 sentences typically) but expand when explaining concepts.
-Always offer to go deeper or move to the next topic.${profileBlock}`
+**Response length discipline:**
+- **During onboarding**: MAX 2 sentences per response (forces focus)
+- **Free chat**: 3-4 sentences standard, max 6 for complex explanations
+- **Rule**: If you wrote more than 4 sentences, cut it in half and offer "Veux-tu que je développe ?"
+- **Check yourself**: Count sentences before responding. Brevity = respect for user's time.
+
+**During onboarding (before free chat):**
+- Stay laser-focused on helping user discover their risk profile
+- If user asks off-topic question:
+  - Acknowledge briefly (1 sentence max)
+  - Redirect gently: "Bonne question ! On y reviendra. Pour l'instant, découvrons ton profil de risque..."
+  - Use finance-related questions as teaching moments tied to current scenario
+- Do NOT give full explanations during onboarding - keep user engaged in the profile flow
+- After profile reveal, you can explore topics freely
+
+${isOnboarding ? `🚨 **ONBOARDING MODE ACTIVE** (Stage: ${onboardingStage})
+Follow onboarding scope constraints above. Stay focused on risk profile discovery.` : `✅ **FREE CHAT MODE**
+Full exploration allowed. Suggest resources proactively when appropriate.`}${profileBlock}`
     : '';
+
+  // Simplicity philosophy for Playground
+  const simplicityBlock = isPlayground
+    ? `
+
+### CORE PHILOSOPHY: "PAS DE JARGON. QUE DES EXEMPLES CONCRETS. PROMIS."
+
+**Your fundamental mission:**
+La finance n'est pas compliquée. C'est juste du vocabulaire inutilement compliqué qui cache des concepts hyper simples qu'on maîtrise déjà au quotidien.
+
+**How to embody this (based on actual Bubble educational content):**
+
+1. **Start with the familiar**
+   - Actions = Immobilier ("Une action, c'est exactement comme un appartement, mais pour une entreprise")
+   - ETF = Panier de courses ("Un ETF, c'est un panier qui contient des centaines d'actions")
+   - Dividendes = Loyer ("C'est votre revenu régulier, comme le loyer d'un appartement")
+   - Plus-value = Valeur de l'appart qui monte
+
+2. **Translate jargon immediately - Kill the English/Technical Terms**
+   - "ETF = Exchange Traded Fund" → "Oubliez le nom anglais. Voici ce que c'est vraiment : un panier d'actions"
+   - "Volatilité" → "Les hauts et les bas"
+   - "Allocation d'actifs" → "Comment répartir ton argent"
+   - "Diversification" → "Ne pas mettre tous tes œufs dans le même panier"
+
+3. **Use concrete examples with real numbers**
+   - LVMH: "1 action à 700€, tu deviens copropriétaire. Chaque année, 13€ de dividendes, comme un loyer."
+   - Real estate: "Appart acheté 200k€, loué 1000€/mois, vaut 250k€ aujourd'hui = 170k€ de gains en 10 ans"
+   - ETF: "Au lieu de 500 transactions, tu achètes 1 part de panier"
+
+4. **Show pain first, then relief**
+   - "Sans ETF ❌ : 500 transactions, plusieurs dizaines de milliers d'euros, gestion cauchemar"
+   - "Avec ETF ✅ : 1 clic, quelques euros, 30 secondes"
+
+5. **"C'est ça, la vraie question" - Reveal the secret**
+   - When user asks the RIGHT question, celebrate: "Vous avez raison, c'est ça, la bonne question."
+   - Empower: "Il n'y a pas de meilleure réponse universelle, seulement la stratégie qui correspond à VOTRE relation au risque"
+
+6. **No prescriptive answers - Empower personal choice**
+   - Instead of prescribing, say: "Il n'existe pas de réponse universelle. Il y a des façons différentes de penser au risque."
+   - Reframe: "Le vrai choix porte sur : quelle est la stratégie qui correspond à VOTRE relation au risque ?"
+
+**Response Formula:**
+1. Make a promise ("Pas de jargon. Que des exemples concrets.")
+2. Start with familiar analogy ("C'est comme [everyday thing]...")
+3. Give concrete example with numbers ("LVMH à 700€, 13€ de dividendes...")
+4. Connect to what they already know ("Exactement comme le loyer d'un appartement")
+5. Empower their judgment ("Il n'y a pas de meilleure réponse, seulement VOTRE réponse")
+` : '';
 
   const educationBlock = (isEducation && !isPlayground)
     ? `
@@ -143,7 +208,7 @@ Always offer to go deeper or move to the next topic.${profileBlock}`
 - Maintain conversational continuity if user moves between Arena and Simulator (use provided history).`
     : '';
 
-  return `You are Bubble's AI Assistant - a unified conversational guide available across our entire platform (index page, pricing, portfolio simulator, and more).${playgroundBlock}${educationBlock}
+  return `You are Bubble's AI Assistant - a unified conversational guide available across our entire platform (index page, pricing, portfolio simulator, and more).${playgroundBlock}${simplicityBlock}${educationBlock}
 
 Your goal is to be helpful, transparent, and embody Bubble's mission to democratize intelligent investing.
 
@@ -507,8 +572,8 @@ async function handlePortfolioChat(req, res) {
  * PageContext tells the chatbot which page the user is on
  * userProfile contains onboarding data for playground context
  */
-function getSystemPrompt(language, pageContext = 'index', waitlistShared = false, userProfile = null) {
-  return unifiedSystemPrompt(language, pageContext, waitlistShared, userProfile);
+function getSystemPrompt(language, pageContext = 'index', waitlistShared = false, userProfile = null, isOnboarding = false, onboardingStage = null) {
+  return unifiedSystemPrompt(language, pageContext, waitlistShared, userProfile, isOnboarding, onboardingStage);
 }
 
 /**
@@ -556,9 +621,12 @@ async function handleChat(req, res) {
       )
     : false;
 
-  // Extract user profile from contextMetadata for playground
+  // Extract user profile and onboarding state from contextMetadata for playground
   let userProfile = null;
   let metadataBlock = "";
+  let isOnboarding = false;
+  let onboardingStage = null;
+
   if (typeof contextMetadata === "string") {
     metadataBlock = contextMetadata.trim();
   } else if (contextMetadata && typeof contextMetadata === "object") {
@@ -566,15 +634,22 @@ async function handleChat(req, res) {
     if (contextMetadata.profile) {
       userProfile = contextMetadata.profile;
     }
-    // Build metadata block without profile (to avoid duplication)
-    const { profile, ...otherMetadata } = contextMetadata;
+    // Extract onboarding state
+    if (contextMetadata.isOnboarding !== undefined) {
+      isOnboarding = contextMetadata.isOnboarding;
+    }
+    if (contextMetadata.onboardingStage !== undefined) {
+      onboardingStage = contextMetadata.onboardingStage;
+    }
+    // Build metadata block without profile and onboarding state (to avoid duplication)
+    const { profile, isOnboarding: _, onboardingStage: __, ...otherMetadata } = contextMetadata;
     if (Object.keys(otherMetadata).length > 0) {
       metadataBlock = JSON.stringify(otherMetadata);
     }
   }
 
-  // Get the unified system prompt with page context and user profile
-  let systemPromptContent = getSystemPrompt(resolvedLanguage, context, waitlistShared, userProfile);
+  // Get the unified system prompt with page context, user profile, and onboarding state
+  let systemPromptContent = getSystemPrompt(resolvedLanguage, context, waitlistShared, userProfile, isOnboarding, onboardingStage);
 
   // Inject lightweight simulator heuristics to help the education chatbot propose mixes
   if (

@@ -61,6 +61,7 @@ const PlaygroundFullscreenChat = (function() {
 
   // Conversation stages - expanded for education
   const STAGES = {
+    introduction: 'introduction',
     welcome: 'welcome',
     education_problem: 'education_problem',
     education_spectrum: 'education_spectrum',
@@ -76,15 +77,36 @@ const PlaygroundFullscreenChat = (function() {
 
   // Educational & Scripted content - Bubble's Raison d'Etre
   const CONTENT = {
+    introduction: {
+      messages: {
+        fr: [
+          "Bienvenue dans le Playground Bubble ! 👋",
+          "Je suis ton assistant investissement. Ici, tu vas découvrir ton profil de risque - c'est-à-dire : la stratégie d'investissement qui te correspond vraiment.",
+          "Pas de généralités. Pas de solutions toutes faites. Juste TOI et TA tolérance au risque.",
+          "Je vais te poser quelques scénarios concrets. Il n'y a pas de bonne ou mauvaise réponse - juste ce qui te correspond.",
+          "À la fin, tu verras ta stratégie personnalisée et comment elle aurait performé sur 20 ans. Prêt ?"
+        ],
+        en: [
+          "Welcome to the Bubble Playground! 👋",
+          "I'm your investment assistant. Here, you'll discover your risk profile - that is: the investment strategy that truly fits you.",
+          "No generalities. No one-size-fits-all solutions. Just YOU and YOUR risk tolerance.",
+          "I'm going to ask you some concrete scenarios. There are no right or wrong answers - just what fits you.",
+          "At the end, you'll see your personalized strategy and how it would have performed over 20 years. Ready?"
+        ]
+      },
+      cta: {
+        fr: "Commençons !",
+        en: "Let's start!"
+      }
+    },
+
     welcome: {
       messages: {
         fr: [
-          "Salut ! Je suis Bubble, ton assistant investissement.",
-          "Avant de parler chiffres, laisse-moi te poser une question simple..."
+          "Commençons par une question clé pour découvrir ton profil :"
         ],
         en: [
-          "Hey! I'm Bubble, your investment assistant.",
-          "Before talking numbers, let me ask you a simple question..."
+          "Let's start with a key question to discover your profile:"
         ]
       },
       question: {
@@ -413,11 +435,13 @@ const PlaygroundFullscreenChat = (function() {
 
     session = {
       started: Date.now(),
-      stage: STAGES.welcome,
+      stage: STAGES.introduction,
       scores: [],
       profile: null,
       answers: {},
-      conversation: []
+      conversation: [],
+      onboardingPaused: false,        // Track if user paused onboarding to ask questions
+      lastOnboardingStage: null       // Remember stage where user paused
     };
     saveSession();
     return false;
@@ -437,6 +461,38 @@ const PlaygroundFullscreenChat = (function() {
     if (session.scores.length === 0) return 50;
     const avg = session.scores.reduce((a, b) => a + b, 0) / session.scores.length;
     return Math.round(avg / 10) * 10;
+  }
+
+  /**
+   * Get the next onboarding stage based on current stage
+   */
+  function getNextOnboardingStage(currentStage) {
+    switch (currentStage) {
+      case STAGES.introduction:
+        return STAGES.welcome;
+      case STAGES.welcome:
+        return STAGES.education_problem;
+      case STAGES.education_problem:
+        return STAGES.education_spectrum;
+      case STAGES.education_spectrum:
+        return STAGES.scenario_crisis;
+      case STAGES.scenario_crisis:
+        return STAGES.scenario_bonus;
+      case STAGES.scenario_bonus:
+        return STAGES.scenario_horizon;
+      case STAGES.scenario_horizon:
+        return STAGES.scenario_friends;
+      case STAGES.scenario_friends:
+        return STAGES.scenario_layoffs;
+      case STAGES.scenario_layoffs:
+        return STAGES.profile_reveal;
+      case STAGES.profile_reveal:
+        return STAGES.bubble_solution;
+      case STAGES.bubble_solution:
+        return STAGES.free_chat;
+      default:
+        return STAGES.free_chat;
+    }
   }
 
   /**
@@ -503,25 +559,29 @@ const PlaygroundFullscreenChat = (function() {
 
   /**
    * Add message with typing delay
+   * Supports both string and array of strings (combined into single bubble with paragraphs)
    */
   async function addMessage(content, type = 'bot', delay = 0) {
     return new Promise(resolve => {
+      // Convert array to single string with paragraph breaks
+      const messageContent = Array.isArray(content) ? content.join('\n\n') : content;
+
       if (delay > 0 && type === 'bot') {
         const typing = showTyping();
         setTimeout(() => {
           typing.remove();
-          const bubble = createMessageBubble(content, type);
+          const bubble = createMessageBubble(messageContent, type);
           messagesContainer.appendChild(bubble);
           scrollToBottom();
-          session.conversation.push({ role: type === 'bot' ? 'assistant' : 'user', content });
+          session.conversation.push({ role: type === 'bot' ? 'assistant' : 'user', content: messageContent });
           saveSession();
           resolve();
         }, delay);
       } else {
-        const bubble = createMessageBubble(content, type);
+        const bubble = createMessageBubble(messageContent, type);
         messagesContainer.appendChild(bubble);
         scrollToBottom();
-        session.conversation.push({ role: type === 'bot' ? 'assistant' : 'user', content });
+        session.conversation.push({ role: type === 'bot' ? 'assistant' : 'user', content: messageContent });
         saveSession();
         resolve();
       }
@@ -624,14 +684,35 @@ const PlaygroundFullscreenChat = (function() {
   }
 
   /**
+   * Handle introduction stage - introduces the playground
+   */
+  async function handleIntroduction() {
+    const messages = t(CONTENT.introduction.messages);
+
+    // Combine all introduction messages into single bubble
+    await addMessage(messages, 'bot', 600);
+
+    setTimeout(() => {
+      const options = createOptions([
+        { id: 'intro', text: CONTENT.introduction.cta, score: 0 }
+      ], () => {
+        addMessage(t(CONTENT.introduction.cta), 'user');
+        session.stage = STAGES.welcome;
+        saveSession();
+        setTimeout(() => handleWelcome(), 500);
+      });
+      addElement(options);
+    }, 800);
+  }
+
+  /**
    * Handle welcome stage - poses the key question
    */
   async function handleWelcome() {
     const messages = t(CONTENT.welcome.messages);
 
-    for (let i = 0; i < messages.length; i++) {
-      await addMessage(messages[i], 'bot', i === 0 ? 600 : 1000);
-    }
+    // Combine all welcome messages into single bubble
+    await addMessage(messages, 'bot', 600);
 
     // Ask the key question about 50k allocation
     await addMessage(t(CONTENT.welcome.question), 'bot', 1200);
@@ -655,9 +736,8 @@ const PlaygroundFullscreenChat = (function() {
   async function handleEducationProblem() {
     const messages = t(CONTENT.education_problem.messages);
 
-    for (let i = 0; i < messages.length; i++) {
-      await addMessage(messages[i], 'bot', i === 0 ? 800 : 1200);
-    }
+    // Combine all education problem messages into single bubble
+    await addMessage(messages, 'bot', 800);
 
     setTimeout(() => {
       const options = createOptions([
@@ -678,9 +758,8 @@ const PlaygroundFullscreenChat = (function() {
   async function handleEducationSpectrum() {
     const messages = t(CONTENT.education_spectrum.messages);
 
-    for (let i = 0; i < messages.length; i++) {
-      await addMessage(messages[i], 'bot', i === 0 ? 800 : 1200);
-    }
+    // Combine all spectrum messages into single bubble
+    await addMessage(messages, 'bot', 800);
 
     setTimeout(() => {
       const options = createOptions([
@@ -761,9 +840,8 @@ const PlaygroundFullscreenChat = (function() {
   async function handleBubbleSolution() {
     const messages = t(CONTENT.bubble_solution.messages);
 
-    for (let i = 0; i < messages.length; i++) {
-      await addMessage(messages[i], 'bot', i === 0 ? 1000 : 1500);
-    }
+    // Combine all bubble solution messages into single bubble
+    await addMessage(messages, 'bot', 1000);
 
     setTimeout(async () => {
       await addMessage(t(CONTENT.transition), 'bot', 1000);
@@ -811,6 +889,8 @@ const PlaygroundFullscreenChat = (function() {
           pageContext: 'playground',
           history: session.conversation.slice(-10),
           contextMetadata: {
+            isOnboarding: session.stage !== STAGES.free_chat,
+            onboardingStage: session.stage,
             profile: {
               level: session.profile <= 30 ? 'beginner' : session.profile <= 60 ? 'intermediate' : 'advanced',
               riskProfile: session.profile,
@@ -855,6 +935,31 @@ const PlaygroundFullscreenChat = (function() {
         saveSession();
       }
 
+      // If user is still in onboarding and paused to ask a question, show Resume button
+      if (session.stage !== STAGES.free_chat && session.onboardingPaused) {
+        setTimeout(() => {
+          const resumeButton = createOptions(
+            [{
+              id: 'resume',
+              text: {
+                fr: 'Étape suivante',
+                en: 'Next step'
+              },
+              score: 0
+            }],
+            () => {
+              // Resume onboarding from where user paused
+              session.onboardingPaused = false;
+              const resumeStage = session.lastOnboardingStage;
+              session.stage = resumeStage;
+              saveSession();
+              handleStage(resumeStage);
+            }
+          );
+          addElement(resumeButton);
+        }, 300);
+      }
+
     } catch (error) {
       typing.remove();
       if (error.name === 'AbortError') return;
@@ -870,7 +975,14 @@ const PlaygroundFullscreenChat = (function() {
    * Resume from saved session
    */
   function resumeSession() {
-    // Replay last few messages
+    // If onboarding is paused (user asked a question), start fresh from next stage
+    // Don't replay messages to avoid confusion
+    if (session.onboardingPaused) {
+      handleStage(session.stage);
+      return;
+    }
+
+    // Replay last few messages for free chat
     const recent = session.conversation.slice(-6);
     recent.forEach(msg => {
       const bubble = createMessageBubble(msg.content, msg.role === 'assistant' ? 'bot' : 'user');
@@ -974,11 +1086,9 @@ const PlaygroundFullscreenChat = (function() {
       const transcript = event.results[0][0].transcript;
       if (transcript && inputField) {
         inputField.value = transcript;
-        // Auto-submit if in free chat mode
-        if (session.stage === STAGES.free_chat) {
-          handleUserInput(transcript);
-          inputField.value = '';
-        }
+        // Auto-submit voice input (works in both onboarding and free chat modes)
+        handleUserInput(transcript);
+        inputField.value = '';
       }
     };
 
@@ -1022,14 +1132,22 @@ const PlaygroundFullscreenChat = (function() {
   }
 
   /**
-   * Enable text/voice input
+   * Enable text/voice input with context-aware placeholder
    */
   function enableInput() {
     if (inputField) {
       inputField.disabled = false;
-      inputField.placeholder = getLang() === 'fr'
-        ? 'Tape ici ou utilise le micro...'
-        : 'Type anything or use voice...';
+      // Context-aware placeholder: different during onboarding vs free chat
+      const isOnboarding = session.stage !== STAGES.free_chat;
+      if (isOnboarding) {
+        inputField.placeholder = getLang() === 'fr'
+          ? 'Pose une question ou utilise les boutons...'
+          : 'Ask a question or use the buttons...';
+      } else {
+        inputField.placeholder = getLang() === 'fr'
+          ? 'Tape ici ou utilise le micro...'
+          : 'Type anything or use voice...';
+      }
     }
     if (sendButton) {
       sendButton.disabled = false;
@@ -1080,9 +1198,6 @@ const PlaygroundFullscreenChat = (function() {
       });
     }
 
-    // Enable input from the start - users can type or use voice at any time
-    enableInput();
-
     // Setup form submission - FIX: bind directly to input and button
     if (inputForm) {
       inputForm.addEventListener('submit', (e) => {
@@ -1109,13 +1224,16 @@ const PlaygroundFullscreenChat = (function() {
       });
     }
 
-    // Load session
+    // Load session FIRST (before enabling input)
     const hasSession = loadSession();
+
+    // Enable input from the start - users can type or use voice at any time
+    enableInput();
 
     if (hasSession && session.conversation.length > 0) {
       resumeSession();
     } else {
-      handleWelcome();
+      handleIntroduction();
     }
   }
 
@@ -1133,19 +1251,21 @@ const PlaygroundFullscreenChat = (function() {
 
   /**
    * Handle user input - works in both scripted and free-chat modes
+   * Now also enables LLM responses during onboarding (typing & voice)
    */
   function handleUserInput(text) {
     if (!text.trim()) return;
 
-    // In free-chat mode, send to LLM
-    if (session.stage === STAGES.free_chat) {
-      sendToLLM(text);
-      return;
+    // Always send to LLM for intelligent responses
+    // Set onboarding pause flag if still in onboarding
+    if (session.stage !== STAGES.free_chat && !session.onboardingPaused) {
+      session.onboardingPaused = true;
+      // Save the NEXT stage to resume to (not the current stage)
+      session.lastOnboardingStage = getNextOnboardingStage(session.stage);
+      saveSession();
     }
 
-    // During onboarding, show user message but don't process (options handle the flow)
-    // This allows the user to see their typed input even during scripted mode
-    addMessage(text, 'user');
+    sendToLLM(text);
   }
 
   /**

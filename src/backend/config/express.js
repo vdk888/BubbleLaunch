@@ -34,7 +34,7 @@ function configureExpress(app) {
           "https://openrouter.ai",
           "https://cdn.jsdelivr.net", // Allow Chart.js source maps
         ],
-        frameSrc: ["'none'"],
+        frameSrc: ["'self'", "https://www.youtube.com", "https://youtube.com"],
         objectSrc: ["'none'"],
         upgradeInsecureRequests: [],
       },

@@ -51,7 +51,8 @@
       "Bash(for file in **/*.html)",
       "Bash(do if grep -q \"cookie-consent\\\\.js\" \"$file\")",
       "Bash(! grep -q \"tarteaucitronjs.*\\\\.css\" \"$file\")",
-      "Bash(then echo \"$file\")"
+      "Bash(then echo \"$file\")",
+      "Bash(node test_responsive.js:*)"
     ],
     "deny": [],
     "ask": []
