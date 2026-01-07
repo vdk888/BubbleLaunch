@@ -53,7 +53,8 @@
       "Bash(! grep -q \"tarteaucitronjs.*\\\\.css\" \"$file\")",
       "Bash(then echo \"$file\")",
       "Bash(node test_responsive.js:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nFix: Mobile input placeholder and action button layout issues\n\n- Add !important to force nav cards into vertical stacking on mobile\n- Fix input field placeholder text truncation \\(reduce font-size on mobile\\)\n- Improve nav card title truncation with text-overflow: ellipsis\n- Reduce input padding on small screens to show more placeholder text\n- Add responsive input sizing for 640px, 480px, and 360px breakpoints\n- Ensure nav card icons have proper flex-shrink: 0 to prevent compression\n- Use white-space: nowrap on titles to prevent wrapping\n- Set min-width: 0 on content container for proper ellipsis behavior\n- Adjust button heights and gaps for ultra-small screens \\(360px\\)\n\nFixes:\n- Input placeholder \"Pose une question ou utilise le...\" now fully visible\n- Quick action buttons now properly stack vertically on mobile\n- No more text overlap on action buttons\n- Responsive input styling for all screen sizes\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
     ],
     "deny": [],
     "ask": []
