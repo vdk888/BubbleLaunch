@@ -523,58 +523,6 @@
         </div>
       </div>
 
-      <!-- Unified Chat Side Panel (matches main site) -->
-      <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
-        <div class="chat-side-panel-header">
-          <div class="chat-side-panel-header-info">
-            <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
-            <div class="chat-side-panel-titles">
-              <span class="chat-side-panel-title">Bubble Assistant</span>
-              <span class="chat-side-panel-subtitle" data-translate="floating_input.placeholder">Ask me anything...</span>
-            </div>
-          </div>
-          <div class="chat-side-panel-actions">
-            <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
-            <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
-          </div>
-        </div>
-        <div class="chat-side-panel-messages" role="log" aria-live="polite">
-          <div class="chat-side-panel-message bot">
-            <div class="message-content">
-              Hello, I'm Bubble — how can I help you?
-            </div>
-          </div>
-          <div class="chat-side-panel-message bot">
-            <div class="message-content">
-              <strong>Quick suggestions</strong><br/>
-              <div class="chat-suggestion-row">
-                <button class="chat-suggestion-btn" data-prompt="Suggest 2 mixes for a conservative profile">Suggest 2 mixes for a conservative profile</button>
-                <button class="chat-suggestion-btn" data-prompt="Make my strategy more defensive">Make my strategy more defensive</button>
-                <button class="chat-suggestion-btn" data-prompt="Add momentum if the trend is strong">Add momentum if the trend is strong</button>
-                <button class="chat-suggestion-btn" data-prompt="Compare my strategy to the S&P 500">Compare my strategy to the S&P 500</button>
-                <button class="chat-suggestion-btn" data-prompt="Explain the metrics (return, volatility, drawdown)">Explain the metrics (return, volatility, drawdown)</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <form class="chat-side-panel-input-container" novalidate>
-          <input
-            type="text"
-            class="chat-side-panel-input"
-            placeholder="Ask your questions..."
-            data-translate-placeholder="floating_input.placeholder"
-            aria-label="Type your message"
-            autocomplete="off"
-          />
-          <button class="chat-side-panel-send" aria-label="Send message" type="submit">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M12 21V4" stroke-linecap="round" />
-            </svg>
-          </button>
-        </form>
-      </div>
-
       <!-- Floating Glassmorphism Chat Input -->
       <div id="floating-chat-input" class="floating-chat-input hidden" data-page-context="education_simulator" data-trigger-selector=".hero" data-always-visible="true">
         <div class="floating-input-container">
@@ -686,8 +634,8 @@
     <script src="/js/script.js"></script>
     <script src="/js/animations.js"></script>
     <script src="/js/seo/structured-data.js"></script>
-    <script src="/js/chat-side-panel.js"></script>
     <script src="/js/floating-chat-input.js"></script>
+    <script src="/js/education-floating-chat.js"></script>
 
     <!-- Simulator JavaScript - Connected to real API -->
     <script>
@@ -2269,79 +2217,5 @@
       })();
     </script>
 
-    <!-- Floating Playground Chatbot -->
-    <div class="floating-playground-chat" id="floatingPlaygroundChat">
-      <div class="floating-playground-panel">
-        <div class="floating-playground-header">
-          <div class="floating-playground-header-info">
-            <div class="floating-playground-avatar">
-              <svg width="16" height="16" viewBox="0 0 72 72" fill="none">
-                <circle cx="36" cy="41" r="22" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="120 24" stroke-dashoffset="8"/>
-                <circle cx="54" cy="22" r="5" fill="currentColor"/>
-              </svg>
-            </div>
-            <div>
-              <span class="floating-playground-title">Bubble Assistant</span>
-              <span class="floating-playground-subtitle" data-translate="education.floating.subtitle">Ton profil investisseur</span>
-            </div>
-          </div>
-          <button class="floating-playground-close" aria-label="Close">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="18" y1="6" x2="6" y2="18"/>
-              <line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
-          </button>
-        </div>
-        <div class="floating-playground-messages" id="floatingPlaygroundMessages">
-          <!-- Messages loaded from session -->
-        </div>
-        <form class="floating-playground-input-container" id="floatingPlaygroundForm" novalidate>
-          <input
-            type="text"
-            class="floating-playground-input"
-            id="floatingPlaygroundInput"
-            placeholder="Ask your question..."
-            autocomplete="off"
-          />
-          <button class="floating-playground-send" type="submit" aria-label="Send">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 21V4" stroke-linecap="round"/>
-            </svg>
-          </button>
-        </form>
-      </div>
-      <button class="floating-playground-toggle" aria-label="Open chat">
-        <svg class="icon-chat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
-        <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"/>
-          <line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-    </div>
-
-    <script src="/js/playground-chat.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const floatingChat = document.getElementById('floatingPlaygroundChat');
-        const toggleBtn = floatingChat?.querySelector('.floating-playground-toggle');
-        const closeBtn = floatingChat?.querySelector('.floating-playground-close');
-
-        // Toggle floating chat
-        toggleBtn?.addEventListener('click', () => {
-          floatingChat.classList.toggle('open');
-          if (floatingChat.classList.contains('open') && typeof PlaygroundChat !== 'undefined') {
-            // Initialize or resume session in floating chat
-            PlaygroundChat.init('floatingPlaygroundMessages', 'floatingPlaygroundInput');
-          }
-        });
-
-        closeBtn?.addEventListener('click', () => {
-          floatingChat.classList.remove('open');
-        });
-      });
-    </script>
   </body>
 </html>

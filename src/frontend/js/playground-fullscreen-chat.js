@@ -1173,6 +1173,57 @@ const PlaygroundFullscreenChat = (function() {
   }
 
   /**
+   * Handle language change - update UI elements
+   */
+  function handleLanguageChange() {
+    const lang = getLang();
+    console.log('[PlaygroundChat] Language changed to:', lang);
+
+    // Update input placeholder
+    if (inputField) {
+      const isOnboarding = session && session.stage !== STAGES.free_chat;
+      if (isOnboarding) {
+        inputField.placeholder = lang === 'fr'
+          ? 'Pose une question ou utilise les boutons...'
+          : 'Ask a question or use the buttons...';
+      } else {
+        inputField.placeholder = lang === 'fr'
+          ? 'Tape ici ou utilise le micro...'
+          : 'Type anything or use voice...';
+      }
+    }
+
+    // Update voice recognition language
+    if (recognition) {
+      recognition.lang = lang === 'fr' ? 'fr-FR' : 'en-US';
+    }
+
+    // Update navigation cards if they exist
+    const navCards = messagesContainer?.querySelector('.playground-nav-cards');
+    if (navCards) {
+      const newNavCards = createNavCards();
+      navCards.replaceWith(newNavCards);
+    }
+
+    // Update option buttons if they exist
+    const optionsContainer = messagesContainer?.querySelector('.playground-options');
+    if (optionsContainer) {
+      const buttons = optionsContainer.querySelectorAll('.playground-option');
+      buttons.forEach(btn => {
+        // We can't easily update these without knowing the original data
+        // But at least new options will be in the correct language
+      });
+    }
+
+    // Update profile card if it exists
+    const profileCard = messagesContainer?.querySelector('.playground-profile-card');
+    if (profileCard && session?.profile !== null) {
+      const newProfileCard = createProfileCard(session.profile);
+      profileCard.replaceWith(newProfileCard);
+    }
+  }
+
+  /**
    * Initialize
    */
   function init() {
@@ -1223,6 +1274,10 @@ const PlaygroundFullscreenChat = (function() {
         }
       });
     }
+
+    // Listen for language changes
+    document.addEventListener('languageChanged', handleLanguageChange);
+    window.addEventListener('languageChange', handleLanguageChange);
 
     // Load session FIRST (before enabling input)
     const hasSession = loadSession();
