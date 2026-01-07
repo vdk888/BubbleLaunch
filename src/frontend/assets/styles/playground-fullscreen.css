@@ -21,6 +21,11 @@
   height: 100dvh;
   width: 100vw;
   background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
+
+  /* Safe area support for notched phones (iPhone X+, modern Android) */
+  padding-left: max(0px, env(safe-area-inset-left));
+  padding-right: max(0px, env(safe-area-inset-right));
+  padding-top: max(0px, env(safe-area-inset-top));
 }
 
 /* Header */
@@ -155,8 +160,21 @@
 .playground-message {
   display: flex;
   gap: 0.75rem;
-  max-width: 85%;
+  max-width: 90%;
   animation: messageSlideIn 0.3s ease-out forwards;
+}
+
+@media (max-width: 768px) {
+  .playground-message {
+    max-width: 85%;
+  }
+}
+
+@media (max-width: 480px) {
+  .playground-message {
+    max-width: 88%;
+    gap: 0.5rem;
+  }
 }
 
 @keyframes messageSlideIn {
@@ -180,8 +198,8 @@
 }
 
 .playground-message .message-avatar {
-  width: 36px;
-  height: 36px;
+  width: var(--avatar-size-md, 36px);
+  height: var(--avatar-size-md, 36px);
   border-radius: 50%;
   background: linear-gradient(135deg, #333333, #555555);
   display: flex;
@@ -400,7 +418,7 @@
 /* Input Area */
 .playground-input-area {
   flex-shrink: 0;
-  padding: 1rem 0 1.5rem;
+  padding: 1rem 0 calc(1.5rem + max(0px, env(safe-area-inset-bottom)));
   background: white;
   border-top: 1px solid #F0F0F0;
 }
@@ -764,8 +782,8 @@
   }
 
   .playground-message .message-avatar {
-    width: 32px;
-    height: 32px;
+    width: var(--avatar-size-sm, 32px);
+    height: var(--avatar-size-sm, 32px);
   }
 
   .playground-message .message-content {
@@ -841,8 +859,8 @@
   }
 
   .playground-message .message-avatar {
-    width: 28px;
-    height: 28px;
+    width: var(--avatar-size-xs, 28px);
+    height: var(--avatar-size-xs, 28px);
   }
 
   .playground-message .message-content {
