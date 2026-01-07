@@ -49,10 +49,10 @@ const EducationFloatingChat = (function() {
 
     if (isArenaPage) {
       return lang === 'fr' ? [
-        { text: "Explique-moi la strategie du Renard", prompt: "Explique-moi la strategie Risk Parity du Renard" },
-        { text: "Pourquoi le Herisson performe bien en crise?", prompt: "Pourquoi la strategie defensive du Herisson performe bien pendant les crises?" },
-        { text: "Compare Faucon et Ours", prompt: "Compare la strategie Momentum du Faucon avec l'allocation egale de l'Ours" },
-        { text: "Quel bot me correspond?", prompt: "Quel bot d'investissement correspond le mieux a mon profil?" }
+        { text: "Explique-moi la stratégie du Renard", prompt: "Explique-moi la stratégie Risk Parity du Renard" },
+        { text: "Pourquoi le Hérisson performe bien en crise?", prompt: "Pourquoi la stratégie défensive du Hérisson performe bien pendant les crises?" },
+        { text: "Compare Faucon et Ours", prompt: "Compare la stratégie Momentum du Faucon avec l'allocation égale de l'Ours" },
+        { text: "Quel bot me correspond?", prompt: "Quel bot d'investissement correspond le mieux à mon profil?" }
       ] : [
         { text: "Explain the Fox strategy", prompt: "Explain the Risk Parity strategy of the Fox" },
         { text: "Why does Hedgehog perform well in crisis?", prompt: "Why does the Hedgehog's defensive strategy perform well during crises?" },
@@ -63,10 +63,10 @@ const EducationFloatingChat = (function() {
 
     if (isSimulatorPage) {
       return lang === 'fr' ? [
-        { text: "Aide-moi a trouver mon profil", prompt: "Aide-moi a determiner mon profil d'investisseur (ours, renard, faucon ou herisson)" },
-        { text: "Je suis prudent, que choisir?", prompt: "Je suis plutot prudent avec mes investissements. Quelle strategie me recommandes-tu?" },
-        { text: "Difference actions/obligations?", prompt: "Quelle est la difference entre investir en actions et en obligations?" },
-        { text: "Comment mixer les strategies?", prompt: "Comment puis-je mixer plusieurs strategies pour creer mon allocation personnalisee?" }
+        { text: "Aide-moi à trouver mon profil", prompt: "Aide-moi à déterminer mon profil d'investisseur (ours, renard, faucon ou hérisson)" },
+        { text: "Je suis prudent, que choisir?", prompt: "Je suis plutôt prudent avec mes investissements. Quelle stratégie me recommandes-tu?" },
+        { text: "Différence actions/obligations?", prompt: "Quelle est la différence entre investir en actions et en obligations?" },
+        { text: "Comment mixer les stratégies?", prompt: "Comment puis-je mixer plusieurs stratégies pour créer mon allocation personnalisée?" }
       ] : [
         { text: "Help me find my profile", prompt: "Help me determine my investor profile (bear, fox, hawk or hedgehog)" },
         { text: "I'm conservative, what to choose?", prompt: "I'm rather conservative with my investments. What strategy do you recommend?" },
@@ -274,10 +274,10 @@ const EducationFloatingChat = (function() {
       const lang = getLang();
       const welcomeMsg = isArenaPage
         ? (lang === 'fr'
-          ? "Salut ! Je suis la pour t'aider a comprendre les differentes strategies de trading. Pose-moi tes questions sur les bots !"
+          ? "Salut ! Je suis là pour t'aider à comprendre les différentes stratégies de trading. Pose-moi tes questions sur les bots !"
           : "Hi! I'm here to help you understand the different trading strategies. Ask me your questions about the bots!")
         : (lang === 'fr'
-          ? "Salut ! Je vais t'aider a trouver la strategie qui te correspond. On decouvre ensemble ton profil d'investisseur ?"
+          ? "Salut ! Je vais t'aider à trouver la stratégie qui te correspond. On découvre ensemble ton profil d'investisseur ?"
           : "Hi! I'll help you find the strategy that fits you. Shall we discover your investor profile together?");
 
       addMessageBubble(welcomeMsg, 'bot');
@@ -575,10 +575,10 @@ const EducationFloatingChat = (function() {
       if (existingWelcome) {
         const welcomeMsg = isArenaPage
           ? (lang === 'fr'
-            ? "Salut ! Je suis la pour t'aider a comprendre les differentes strategies de trading. Pose-moi tes questions sur les bots !"
+            ? "Salut ! Je suis là pour t'aider à comprendre les différentes stratégies de trading. Pose-moi tes questions sur les bots !"
             : "Hi! I'm here to help you understand the different trading strategies. Ask me your questions about the bots!")
           : (lang === 'fr'
-            ? "Salut ! Je vais t'aider a trouver la strategie qui te correspond. On decouvre ensemble ton profil d'investisseur ?"
+            ? "Salut ! Je vais t'aider à trouver la stratégie qui te correspond. On découvre ensemble ton profil d'investisseur ?"
             : "Hi! I'll help you find the strategy that fits you. Shall we discover your investor profile together?");
 
         const contentEl = existingWelcome.querySelector('.message-content');
