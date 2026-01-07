@@ -46,16 +46,16 @@ const PlaygroundFullscreenChat = (function() {
 
   // 11-Profile Spectrum (0% to 100% stocks) - using SVG icons instead of emojis
   const PROFILES = {
-    0: { name: { fr: 'Securite Absolue', en: 'Absolute Security' }, stocks: 0, bonds: 100, icon: 'shield', description: { fr: 'Tu preferes la tranquillite. Ton argent dort en securite.', en: 'You prefer peace of mind. Your money sleeps safely.' } },
-    10: { name: { fr: 'Tres Prudent', en: 'Very Conservative' }, stocks: 10, bonds: 90, icon: 'turtle', description: { fr: 'Un tout petit pied dans les marches, juste pour voir.', en: 'A tiny foot in the markets, just to see.' } },
+    0: { name: { fr: 'Sécurité Absolue', en: 'Absolute Security' }, stocks: 0, bonds: 100, icon: 'shield', description: { fr: 'Tu préfères la tranquillité. Ton argent dort en sécurité.', en: 'You prefer peace of mind. Your money sleeps safely.' } },
+    10: { name: { fr: 'Très Prudent', en: 'Very Conservative' }, stocks: 10, bonds: 90, icon: 'turtle', description: { fr: 'Un tout petit pied dans les marchés, juste pour voir.', en: 'A tiny foot in the markets, just to see.' } },
     20: { name: { fr: 'Prudent', en: 'Conservative' }, stocks: 20, bonds: 80, icon: 'seedling', description: { fr: 'Tu acceptes un peu de mouvement pour un peu plus de rendement.', en: 'You accept some movement for a bit more return.' } },
-    30: { name: { fr: 'Prudent+', en: 'Conservative+' }, stocks: 30, bonds: 70, icon: 'leaf', description: { fr: 'Tu commences a apprecier le potentiel des marches.', en: 'You start appreciating market potential.' } },
-    40: { name: { fr: 'Equilibre Defensif', en: 'Defensive Balanced' }, stocks: 40, bonds: 60, icon: 'scale', description: { fr: 'Un bon equilibre penche vers la securite.', en: 'A good balance leaning toward safety.' } },
-    50: { name: { fr: 'Equilibre', en: 'Balanced' }, stocks: 50, bonds: 50, icon: 'target', description: { fr: 'Le classique 50/50 : moitie securite, moitie croissance.', en: 'The classic 50/50: half safety, half growth.' } },
-    60: { name: { fr: 'Equilibre Dynamique', en: 'Dynamic Balanced' }, stocks: 60, bonds: 40, icon: 'trendUp', description: { fr: 'Tu privilegie la croissance avec un filet de securite.', en: 'You favor growth with a safety net.' } },
+    30: { name: { fr: 'Prudent+', en: 'Conservative+' }, stocks: 30, bonds: 70, icon: 'leaf', description: { fr: 'Tu commences à apprécier le potentiel des marchés.', en: 'You start appreciating market potential.' } },
+    40: { name: { fr: 'Équilibre Défensif', en: 'Defensive Balanced' }, stocks: 40, bonds: 60, icon: 'scale', description: { fr: 'Un bon équilibre penché vers la sécurité.', en: 'A good balance leaning toward safety.' } },
+    50: { name: { fr: 'Équilibré', en: 'Balanced' }, stocks: 50, bonds: 50, icon: 'target', description: { fr: 'Le classique 50/50 : moitié sécurité, moitié croissance.', en: 'The classic 50/50: half safety, half growth.' } },
+    60: { name: { fr: 'Équilibre Dynamique', en: 'Dynamic Balanced' }, stocks: 60, bonds: 40, icon: 'trendUp', description: { fr: 'Tu privilégies la croissance avec un filet de sécurité.', en: 'You favor growth with a safety net.' } },
     70: { name: { fr: 'Dynamique', en: 'Growth' }, stocks: 70, bonds: 30, icon: 'rocket', description: { fr: 'Tu acceptes les montagnes russes pour viser plus haut.', en: 'You accept roller coasters to aim higher.' } },
     80: { name: { fr: 'Dynamique+', en: 'Growth+' }, stocks: 80, bonds: 20, icon: 'bolt', description: { fr: 'Les baisses temporaires ne te font pas peur.', en: 'Temporary drops don\'t scare you.' } },
-    90: { name: { fr: 'Tres Dynamique', en: 'Very Aggressive' }, stocks: 90, bonds: 10, icon: 'flame', description: { fr: 'Tu vois les krachs comme des opportunites d\'achat.', en: 'You see crashes as buying opportunities.' } },
+    90: { name: { fr: 'Très Dynamique', en: 'Very Aggressive' }, stocks: 90, bonds: 10, icon: 'flame', description: { fr: 'Tu vois les krachs comme des opportunités d\'achat.', en: 'You see crashes as buying opportunities.' } },
     100: { name: { fr: 'Croissance Max', en: 'Maximum Growth' }, stocks: 100, bonds: 0, icon: 'gem', description: { fr: '100% actions. Tu joues le long terme sans filet.', en: '100% stocks. You play the long game with no safety net.' } }
   };
 
@@ -88,7 +88,7 @@ const PlaygroundFullscreenChat = (function() {
         ]
       },
       question: {
-        fr: "Tu as 50 000 euros. Comment les repartir entre placements surs (livrets, fonds euros) et actions (bourse) ?",
+        fr: "Tu as 50 000 euros. Comment les répartir entre placements sûrs (livrets, fonds euros) et actions (bourse) ?",
         en: "You have 50,000 euros. How would you split it between safe investments (savings, bonds) and stocks?"
       },
       cta: {
@@ -100,8 +100,8 @@ const PlaygroundFullscreenChat = (function() {
     education_problem: {
       messages: {
         fr: [
-          "Si tu hesites, c'est normal. La plupart des gens ne savent pas repondre a cette question.",
-          "Et c'est exactement LE probleme que Bubble resout.",
+          "Si tu hésites, c'est normal. La plupart des gens ne savent pas répondre à cette question.",
+          "Et c'est exactement LE problème que Bubble résout.",
           "La vraie question n'est pas QUE choisir, mais COMMENT choisir. Et surtout : qu'est-ce qui te correspond vraiment ?"
         ],
         en: [
@@ -111,7 +111,7 @@ const PlaygroundFullscreenChat = (function() {
         ]
       },
       cta: {
-        fr: "Ca m'interesse",
+        fr: "Ça m'intéresse",
         en: "I'm interested"
       }
     },
@@ -119,10 +119,10 @@ const PlaygroundFullscreenChat = (function() {
     education_spectrum: {
       messages: {
         fr: [
-          "Voici le secret : il n'y a pas de bonne ou mauvaise reponse. Chacun a sa propre tolerance au risque.",
-          "Chez Bubble, on a identifie 11 profils differents - de 0% actions (securite totale) a 100% actions (croissance maximale).",
-          "Ton profil ideal depend de comment tu VIS emotionnellement les hauts et les bas. Pas de ce que tu PENSES vouloir.",
-          "Je vais te poser quelques scenarios concrets. Reponds spontanement - il n'y a pas de piege !"
+          "Voici le secret : il n'y a pas de bonne ou mauvaise réponse. Chacun a sa propre tolérance au risque.",
+          "Chez Bubble, on a identifié 11 profils différents - de 0% actions (sécurité totale) à 100% actions (croissance maximale).",
+          "Ton profil idéal dépend de comment tu VIS émotionnellement les hauts et les bas. Pas de ce que tu PENSES vouloir.",
+          "Je vais te poser quelques scénarios concrets. Réponds spontanément - il n'y a pas de piège !"
         ],
         en: [
           "Here's the secret: there's no right or wrong answer. Everyone has their own risk tolerance.",
@@ -139,7 +139,7 @@ const PlaygroundFullscreenChat = (function() {
 
     scenario_crisis: {
       intro: {
-        fr: "Mars 2020. Le confinement est annonce. Les marches s'effondrent de 35% en 3 semaines. Ton portefeuille affiche -18 000€.",
+        fr: "Mars 2020. Le confinement est annoncé. Les marchés s'effondrent de 35% en 3 semaines. Ton portefeuille affiche -18 000€.",
         en: "March 2020. Lockdown is announced. Markets crash 35% in 3 weeks. Your portfolio shows -€18,000."
       },
       question: {
@@ -149,17 +149,17 @@ const PlaygroundFullscreenChat = (function() {
       options: [
         {
           id: 'panic',
-          text: { fr: "Je vends tout immediatement. Et si ca ne remontait jamais ?", en: "I sell everything immediately. What if it never recovers?" },
+          text: { fr: "Je vends tout immédiatement. Et si ça ne remontait jamais ?", en: "I sell everything immediately. What if it never recovers?" },
           score: 0
         },
         {
           id: 'anxious',
-          text: { fr: "Tres inquiet, je regarde 5x/jour, mais je ne vends pas", en: "Very worried, I check 5x/day, but I don't sell" },
+          text: { fr: "Très inquiet, je regarde 5x/jour, mais je ne vends pas", en: "Very worried, I check 5x/day, but I don't sell" },
           score: 25
         },
         {
           id: 'stressed',
-          text: { fr: "Stresse mais je me dis 'c'est temporaire'. Je regarde 1x/semaine", en: "Stressed but I tell myself 'it's temporary'. I check once a week" },
+          text: { fr: "Stressé mais je me dis 'c'est temporaire'. Je regarde 1x/semaine", en: "Stressed but I tell myself 'it's temporary'. I check once a week" },
           score: 50
         },
         {
@@ -177,7 +177,7 @@ const PlaygroundFullscreenChat = (function() {
 
     scenario_bonus: {
       intro: {
-        fr: "Tu recois un bonus de 10 000€. L'economie va bien, les marches ont fait +25% cette annee.",
+        fr: "Tu reçois un bonus de 10 000€. L'économie va bien, les marchés ont fait +25% cette année.",
         en: "You receive a €10,000 bonus. The economy is doing well, markets are up 25% this year."
       },
       question: {
@@ -187,12 +187,12 @@ const PlaygroundFullscreenChat = (function() {
       options: [
         {
           id: 'all_safe',
-          text: { fr: "Tout en fonds euros. Les marches sont trop hauts", en: "All in bonds/cash. Markets are too high" },
+          text: { fr: "Tout en fonds euros. Les marchés sont trop hauts", en: "All in bonds/cash. Markets are too high" },
           score: 0
         },
         {
           id: 'mostly_safe',
-          text: { fr: "2 000€ en actions, 8 000€ en securise", en: "€2k in stocks, €8k in safe assets" },
+          text: { fr: "2 000€ en actions, 8 000€ en sécurisé", en: "€2k in stocks, €8k in safe assets" },
           score: 25
         },
         {
@@ -202,7 +202,7 @@ const PlaygroundFullscreenChat = (function() {
         },
         {
           id: 'mostly_stocks',
-          text: { fr: "7 000€ en actions, 3 000€ securise", en: "€7k in stocks, €3k safe" },
+          text: { fr: "7 000€ en actions, 3 000€ sécurisé", en: "€7k in stocks, €3k safe" },
           score: 75
         },
         {
@@ -215,7 +215,7 @@ const PlaygroundFullscreenChat = (function() {
 
     scenario_horizon: {
       intro: {
-        fr: "Tu as 50 000€ a investir aujourd'hui.",
+        fr: "Tu as 50 000€ à investir aujourd'hui.",
         en: "You have €50,000 to invest today."
       },
       question: {
@@ -263,27 +263,27 @@ const PlaygroundFullscreenChat = (function() {
       options: [
         {
           id: 'avoid',
-          text: { fr: "Moi je ne touche pas a la bourse, c'est trop risque", en: "I don't touch the stock market, too risky" },
+          text: { fr: "Moi je ne touche pas à la bourse, c'est trop risqué", en: "I don't touch the stock market, too risky" },
           score: 0
         },
         {
           id: 'cautious',
-          text: { fr: "J'ai mis un petit peu, mais vraiment tres peu", en: "I put in a little, but really very little" },
+          text: { fr: "J'ai mis un petit peu, mais vraiment très peu", en: "I put in a little, but really very little" },
           score: 25
         },
         {
           id: 'balanced_talk',
-          text: { fr: "J'ai un mix actions/fonds euros. L'equilibre, quoi", en: "I have a stocks/bonds mix. Balance, you know" },
+          text: { fr: "J'ai un mix actions/fonds euros. L'équilibre, quoi", en: "I have a stocks/bonds mix. Balance, you know" },
           score: 50
         },
         {
           id: 'growth_talk',
-          text: { fr: "Majoritairement en actions, avec un peu de securise", en: "Mostly stocks, with some safe assets" },
+          text: { fr: "Majoritairement en actions, avec un peu de sécurisé", en: "Mostly stocks, with some safe assets" },
           score: 75
         },
         {
           id: 'aggressive_talk',
-          text: { fr: "100% actions ! Les krachs ? Des opportunites d'achat", en: "100% stocks! Crashes? Buying opportunities" },
+          text: { fr: "100% actions ! Les krachs ? Des opportunités d'achat", en: "100% stocks! Crashes? Buying opportunities" },
           score: 100
         }
       ]
@@ -291,7 +291,7 @@ const PlaygroundFullscreenChat = (function() {
 
     scenario_layoffs: {
       intro: {
-        fr: "Ton secteur d'activite connait des licenciements. Tu n'es pas concerne, mais l'ambiance est anxiogene.",
+        fr: "Ton secteur d'activité connaît des licenciements. Tu n'es pas concerné, mais l'ambiance est anxiogène.",
         en: "Your industry is seeing layoffs. You're not affected, but the atmosphere is anxious."
       },
       question: {
@@ -301,22 +301,22 @@ const PlaygroundFullscreenChat = (function() {
       options: [
         {
           id: 'reduce',
-          text: { fr: "Je reduis ma part d'actions. Et si j'etais le prochain ?", en: "I reduce my stock allocation. What if I'm next?" },
+          text: { fr: "Je réduis ma part d'actions. Et si j'étais le prochain ?", en: "I reduce my stock allocation. What if I'm next?" },
           score: 0
         },
         {
           id: 'uncomfortable',
-          text: { fr: "Je ne change rien mais je verifie mon epargne de precaution", en: "I don't change but check my emergency fund" },
+          text: { fr: "Je ne change rien mais je vérifie mon épargne de précaution", en: "I don't change but check my emergency fund" },
           score: 33
         },
         {
           id: 'separate',
-          text: { fr: "Je ne change rien. Mon epargne de precaution est la pour ca", en: "I don't change. My emergency fund is for that" },
+          text: { fr: "Je ne change rien. Mon épargne de précaution est là pour ça", en: "I don't change. My emergency fund is for that" },
           score: 66
         },
         {
           id: 'opportunity',
-          text: { fr: "Si mon secteur va mal, les actions vont baisser. Opportunite !", en: "If my sector struggles, stocks will drop. Opportunity!" },
+          text: { fr: "Si mon secteur va mal, les actions vont baisser. Opportunité !", en: "If my sector struggles, stocks will drop. Opportunity!" },
           score: 100
         }
       ]
@@ -324,11 +324,11 @@ const PlaygroundFullscreenChat = (function() {
 
     profile_reveal: {
       intro: {
-        fr: "Merci pour tes reponses ! Voici ton profil de risque :",
+        fr: "Merci pour tes réponses ! Voici ton profil de risque :",
         en: "Thanks for your answers! Here's your risk profile:"
       },
       explanation: {
-        fr: "Ce profil reflete ta tolerance au risque basee sur tes reponses emotionnelles. Il n'y a pas de bon ou mauvais profil - juste celui qui te correspond.",
+        fr: "Ce profil reflète ta tolérance au risque basée sur tes réponses émotionnelles. Il n'y a pas de bon ou mauvais profil - juste celui qui te correspond.",
         en: "This profile reflects your risk tolerance based on your emotional responses. There's no good or bad profile - just the one that fits you."
       }
     },
@@ -336,11 +336,11 @@ const PlaygroundFullscreenChat = (function() {
     bubble_solution: {
       messages: {
         fr: [
-          "Et maintenant, la question a 1 million d'euros : qui va gerer ton portefeuille selon ce profil ?",
-          "C'est la que Bubble entre en jeu.",
-          "Bubble cree des portefeuilles personnalises bases sur TON profil de risque. Pas une solution generique vendue a tout le monde.",
-          "On teste chaque strategie sur 20+ ans de donnees historiques. Tu vois exactement comment ton portefeuille aurait performe pendant les crises, les euphories, et tout le reste.",
-          "Tu merites une strategie qui te ressemble, pas une solution toute faite."
+          "Et maintenant, la question à 1 million d'euros : qui va gérer ton portefeuille selon ce profil ?",
+          "C'est là que Bubble entre en jeu.",
+          "Bubble crée des portefeuilles personnalisés basés sur TON profil de risque. Pas une solution générique vendue à tout le monde.",
+          "On teste chaque stratégie sur 20+ ans de données historiques. Tu vois exactement comment ton portefeuille aurait performé pendant les crises, les euphories, et tout le reste.",
+          "Tu mérites une stratégie qui te ressemble, pas une solution toute faite."
         ],
         en: [
           "And now, the million-dollar question: who's going to manage your portfolio according to this profile?",
@@ -353,7 +353,7 @@ const PlaygroundFullscreenChat = (function() {
     },
 
     transition: {
-      fr: "Maintenant tu peux explorer nos outils, me poser des questions, ou rejoindre Bubble pour automatiser tout ca :",
+      fr: "Maintenant tu peux explorer nos outils, me poser des questions, ou rejoindre Bubble pour automatiser tout ça :",
       en: "Now you can explore our tools, ask me questions, or join Bubble to automate all of this:"
     },
 
@@ -361,19 +361,19 @@ const PlaygroundFullscreenChat = (function() {
       arena: {
         iconKey: 'eye',
         title: { fr: "Observer l'Arena", en: "Watch the Arena" },
-        desc: { fr: "4 bots IA s'affrontent sur 20 ans de donnees", en: "4 AI bots compete over 20 years of data" },
+        desc: { fr: "4 bots IA s'affrontent sur 20 ans de données", en: "4 AI bots compete over 20 years of data" },
         url: { fr: '/investors/education/arena', en: '/en/investors/education/arena' }
       },
       simulator: {
         iconKey: 'wrench',
-        title: { fr: "Creer ma Strategie", en: "Build My Strategy" },
+        title: { fr: "Créer ma Stratégie", en: "Build My Strategy" },
         desc: { fr: "Construis et teste ton allocation", en: "Build and test your allocation" },
         url: { fr: '/investors/education/simulator', en: '/en/investors/education/simulator' }
       },
       resources: {
         iconKey: 'book',
         title: { fr: "Approfondir", en: "Learn More" },
-        desc: { fr: "Videos et ressources educatives", en: "Videos and educational resources" },
+        desc: { fr: "Vidéos et ressources éducatives", en: "Videos and educational resources" },
         url: { fr: '/investors/playground/resources', en: '/en/investors/playground/resources' }
       }
     }
@@ -860,7 +860,7 @@ const PlaygroundFullscreenChat = (function() {
       if (error.name === 'AbortError') return;
 
       const errorMsg = getLang() === 'fr'
-        ? "Desole, une erreur s'est produite. Reessaie."
+        ? "Désolé, une erreur s'est produite. Réessaie."
         : "Sorry, an error occurred. Try again.";
       addMessage(errorMsg, 'bot');
     }
@@ -1003,7 +1003,7 @@ const PlaygroundFullscreenChat = (function() {
       if (!supported) {
         const lang = getLang();
         const errorMsg = lang === 'fr'
-          ? "La reconnaissance vocale n'est pas supportee par ton navigateur."
+          ? "La reconnaissance vocale n'est pas supportée par ton navigateur."
           : "Voice recognition is not supported in your browser.";
         addMessage(errorMsg, 'bot', 300);
         return;

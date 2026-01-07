@@ -4678,27 +4678,27 @@ const translations = {
   },
   "playground.chat.intro": {
     en: "I'm here to help you discover investing in a simple, fun way.",
-    fr: "Je suis la pour t'aider a decouvrir l'investissement de facon simple et fun."
+    fr: "Je suis là pour t'aider à découvrir l'investissement de façon simple et fun."
   },
   "playground.onboarding.level.question": {
     en: "To start, tell me where you are:",
-    fr: "Pour commencer, dis-moi ou tu en es :"
+    fr: "Pour commencer, dis-moi où tu en es :"
   },
   "playground.onboarding.level.beginner": {
     en: "Beginner - I'm discovering",
-    fr: "Debutant - Je decouvre"
+    fr: "Débutant - Je découvre"
   },
   "playground.onboarding.level.intermediate": {
     en: "Intermediate - I know the basics",
-    fr: "Intermediaire - Je connais les bases"
+    fr: "Intermédiaire - Je connais les bases"
   },
   "playground.onboarding.level.advanced": {
     en: "Advanced - I already know well",
-    fr: "Avance - Je maitrise deja"
+    fr: "Avancé - Je maîtrise déjà"
   },
   "playground.onboarding.goal.question": {
     en: "Great! What interests you most today?",
-    fr: "Super ! Et qu'est-ce qui t'interesse le plus aujourd'hui ?"
+    fr: "Super ! Et qu'est-ce qui t'intéresse le plus aujourd'hui ?"
   },
   "playground.onboarding.goal.learn": {
     en: "Learn the basics",
@@ -4706,7 +4706,7 @@ const translations = {
   },
   "playground.onboarding.goal.build": {
     en: "Build a strategy",
-    fr: "Construire une strategie"
+    fr: "Construire une stratégie"
   },
   "playground.onboarding.goal.watch": {
     en: "Watch AI bots trade",
@@ -4718,11 +4718,11 @@ const translations = {
   },
   "playground.onboarding.style.question": {
     en: "How do you prefer to learn?",
-    fr: "Comment preferes-tu apprendre ?"
+    fr: "Comment préfères-tu apprendre ?"
   },
   "playground.onboarding.style.videos": {
     en: "Videos and visual explanations",
-    fr: "Videos et explications visuelles"
+    fr: "Vidéos et explications visuelles"
   },
   "playground.onboarding.style.exercises": {
     en: "Hands-on exercises",
@@ -4730,11 +4730,11 @@ const translations = {
   },
   "playground.onboarding.style.dialogue": {
     en: "Q&A dialogue",
-    fr: "Dialogue et questions-reponses"
+    fr: "Dialogue et questions-réponses"
   },
   "playground.onboarding.style.explore": {
     en: "Explore on my own",
-    fr: "Explorer par moi-meme"
+    fr: "Explorer par moi-même"
   },
   "playground.cta.arena": {
     en: "Arena",
@@ -4790,7 +4790,7 @@ const translations = {
   },
   "playground.resources.subtitle": {
     en: "Watch AI bots trade, build your strategy, and deepen your knowledge.",
-    fr: "Observe des bots IA trader, construis ta strategie, et approfondis tes connaissances."
+    fr: "Observe des bots IA trader, construis ta stratégie, et approfondis tes connaissances."
   },
   "playground.resources.arena.badge": {
     en: "Watch",
@@ -4802,19 +4802,19 @@ const translations = {
   },
   "playground.resources.arena.description": {
     en: "Watch 4 AI bots compete over 20 years of historical data. Each bot explains its decisions in real-time. Travel through time and relive major financial crises.",
-    fr: "Regarde 4 bots IA s'affronter sur 20 ans de donnees historiques. Chaque bot explique ses decisions en temps reel. Voyage dans le temps et revis les grandes crises financieres."
+    fr: "Regarde 4 bots IA s'affronter sur 20 ans de données historiques. Chaque bot explique ses décisions en temps réel. Voyage dans le temps et revis les grandes crises financières."
   },
   "playground.resources.arena.feature1": {
     en: "4 bots with unique personalities",
-    fr: "4 bots aux personnalites uniques"
+    fr: "4 bots aux personnalités uniques"
   },
   "playground.resources.arena.feature2": {
     en: "12 major historical events",
-    fr: "12 evenements historiques majeurs"
+    fr: "12 événements historiques majeurs"
   },
   "playground.resources.arena.feature3": {
     en: "Interactive gamified tutorials",
-    fr: "Tutoriels gamifies interactifs"
+    fr: "Tutoriels gamifiés interactifs"
   },
   "playground.resources.arena.cta": {
     en: "Enter the Arena",
@@ -4830,7 +4830,7 @@ const translations = {
   },
   "playground.resources.simulator.description": {
     en: "Create your own strategy in natural language. The AI assistant guides you step by step and instantly tests your allocation on 20 years of real data.",
-    fr: "Cree ta propre strategie en langage naturel. L'assistant IA te guide pas a pas et teste instantanement ton allocation sur 20 ans de donnees reelles."
+    fr: "Crée ta propre stratégie en langage naturel. L'assistant IA te guide pas à pas et teste instantanément ton allocation sur 20 ans de données réelles."
   },
   "playground.resources.simulator.feature1": {
     en: "Intelligent guided chatbot",
@@ -4838,7 +4838,7 @@ const translations = {
   },
   "playground.resources.simulator.feature2": {
     en: "Instant backtesting",
-    fr: "Backtesting instantane"
+    fr: "Backtesting instantané"
   },
   "playground.resources.simulator.feature3": {
     en: "Comparison with the pros",
@@ -4846,7 +4846,7 @@ const translations = {
   },
   "playground.resources.simulator.cta": {
     en: "Create My Strategy",
-    fr: "Creer Ma Strategie"
+    fr: "Créer Ma Stratégie"
   },
   "playground.resources.why.title": {
     en: "Why Learn Here?",
@@ -4858,7 +4858,7 @@ const translations = {
   },
   "playground.resources.why.safe.description": {
     en: "Real historical data, no money at stake. Learn safely.",
-    fr: "Donnees historiques reelles, aucun argent en jeu. Apprends en toute securite."
+    fr: "Données historiques réelles, aucun argent en jeu. Apprends en toute sécurité."
   },
   "playground.resources.why.transparent.title": {
     en: "Total Transparency",
@@ -4866,15 +4866,15 @@ const translations = {
   },
   "playground.resources.why.transparent.description": {
     en: "Bots explain every decision. No black box, just education.",
-    fr: "Les bots expliquent chaque decision. Pas de boite noire, que de la pedagogie."
+    fr: "Les bots expliquent chaque décision. Pas de boîte noire, que de la pédagogie."
   },
   "playground.resources.why.free.title": {
     en: "Free Forever",
-    fr: "Gratuit a Vie"
+    fr: "Gratuit à Vie"
   },
   "playground.resources.why.free.description": {
     en: "Financial education should be accessible to everyone. No subscription required.",
-    fr: "L'education financiere devrait etre accessible a tous. Aucun abonnement requis."
+    fr: "L'éducation financière devrait être accessible à tous. Aucun abonnement requis."
   },
   "playground.resources.videos.title": {
     en: "Deepen Your Knowledge",
@@ -4882,7 +4882,7 @@ const translations = {
   },
   "playground.resources.videos.subtitle": {
     en: "Selected videos to understand investing and the strategies used by the bots.",
-    fr: "Videos selectionnees pour comprendre l'investissement et les strategies utilisees par les bots."
+    fr: "Vidéos sélectionnées pour comprendre l'investissement et les stratégies utilisées par les bots."
   },
   "playground.resources.videos.etf.title": {
     en: "What is an ETF?",
@@ -4898,7 +4898,7 @@ const translations = {
   },
   "playground.resources.videos.riskparity.description": {
     en: "Fox's favorite strategy. How to balance risk, not amounts.",
-    fr: "La strategie preferee de Renard (Fox). Comment equilibrer le risque, pas les montants."
+    fr: "La stratégie préférée de Renard (Fox). Comment équilibrer le risque, pas les montants."
   },
   "playground.resources.videos.diversification.title": {
     en: "The Art of Diversification",
@@ -4906,35 +4906,35 @@ const translations = {
   },
   "playground.resources.videos.diversification.description": {
     en: "Why diversification reduces risk without sacrificing returns.",
-    fr: "Pourquoi la diversification reduit le risque sans sacrifier le rendement."
+    fr: "Pourquoi la diversification réduit le risque sans sacrifier le rendement."
   },
   "playground.resources.videos.crashes.title": {
     en: "Major Stock Market Crashes",
-    fr: "Les Grandes Crises Boursieres"
+    fr: "Les Grandes Crises Boursières"
   },
   "playground.resources.videos.crashes.description": {
     en: "2000, 2008, 2020... How do markets behave during crises?",
-    fr: "2000, 2008, 2020... Comment les marches se comportent-ils pendant les crises ?"
+    fr: "2000, 2008, 2020... Comment les marchés se comportent-ils pendant les crises ?"
   },
   "playground.resources.videos.beginner": {
     en: "Beginner",
-    fr: "Debutant"
+    fr: "Débutant"
   },
   "playground.resources.videos.intermediate": {
     en: "Intermediate",
-    fr: "Intermediaire"
+    fr: "Intermédiaire"
   },
   "playground.resources.compliance": {
     en: "<strong>Important information:</strong> This platform is purely educational. Simulations use historical data and do not constitute investment advice. Past performance does not guarantee future results.",
-    fr: "<strong>Information importante :</strong> Cette plateforme est purement educative. Les simulations utilisent des donnees historiques et ne constituent pas un conseil en investissement. Les performances passees ne prejugent pas des performances futures."
+    fr: "<strong>Information importante :</strong> Cette plateforme est purement éducative. Les simulations utilisent des données historiques et ne constituent pas un conseil en investissement. Les performances passées ne préjugent pas des performances futures."
   },
   "playground.resources.cta.title": {
     en: "Ready to level up?",
-    fr: "Pret a passer au niveau superieur ?"
+    fr: "Prêt à passer au niveau supérieur ?"
   },
   "playground.resources.cta.description": {
     en: "Join the waitlist to access Bubble Portfolio, our AI-powered automated investment platform.",
-    fr: "Rejoins la liste d'attente pour acceder a Bubble Portfolio, notre plateforme d'investissement automatisee alimentee par l'IA."
+    fr: "Rejoins la liste d'attente pour accéder à Bubble Portfolio, notre plateforme d'investissement automatisée alimentée par l'IA."
   },
   "playground.resources.cta.button": {
     en: "Join the waitlist",
