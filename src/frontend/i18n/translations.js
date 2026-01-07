@@ -4825,8 +4825,8 @@ const translations = {
     fr: "Construire"
   },
   "playground.resources.simulator.title": {
-    en: "Strategy Simulator",
-    fr: "Strategy Simulator"
+    en: "Strategy Builder",
+    fr: "Strategy Builder"
   },
   "playground.resources.simulator.description": {
     en: "Create your own strategy in natural language. The AI assistant guides you step by step and instantly tests your allocation on 20 years of real data.",

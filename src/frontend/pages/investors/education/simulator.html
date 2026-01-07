@@ -192,10 +192,16 @@
         </div>
 
         <div class="simulator-quick-actions">
-          <button class="simulator-quick-chip" data-action="defensive" data-translate="education.simulator.chat.defensive">Plus défensif</button>
+          <button class="simulator-quick-chip" data-action="defensive" data-translate="education.simulator.chat.defensive">Plus defensif</button>
           <button class="simulator-quick-chip" data-action="aggressive" data-translate="education.simulator.chat.aggressive">Plus de rendement</button>
-          <button class="simulator-quick-chip" data-action="balanced" data-translate="education.simulator.chat.balanced">Équilibré 60/40</button>
+          <button class="simulator-quick-chip" data-action="balanced" data-translate="education.simulator.chat.balanced">Equilibre 60/40</button>
           <button class="simulator-quick-chip" data-action="gold" data-translate="education.simulator.chat.gold">Ajouter de l'or</button>
+        </div>
+        <div class="simulator-quick-actions" style="margin-top: 0.5rem;">
+          <button class="simulator-quick-chip question-chip" data-question="Quelle strategie est la moins risquee ?">Moins risque ?</button>
+          <button class="simulator-quick-chip question-chip" data-question="Explique-moi le Risk Parity">Risk Parity ?</button>
+          <button class="simulator-quick-chip question-chip" data-question="Quel est mon Sharpe ratio ?">Sharpe ?</button>
+          <button class="simulator-quick-chip question-chip" data-question="C'est quoi le Max Drawdown ?">Drawdown ?</button>
         </div>
 
         <!-- Chat Response Area -->
@@ -240,9 +246,14 @@
         </section>
       </div>
 
+      <!-- Cache Warning Banner (shown if data is stale) -->
+      <div id="cacheWarningBanner" class="cache-warning-banner" style="display: none; background: #FEF3C7; border: 1px solid #F59E0B; border-radius: 12px; padding: 0.75rem 1rem; margin-bottom: 1rem; text-align: center; font-size: 0.875rem; color: #92400E;">
+        <span data-translate="simulator.cacheWarning">Les donnees sont en cours de rafraichissement. La derniere mise a jour sera disponible bientot.</span>
+      </div>
+
       <!-- Results Panel (Full width on mobile when chat closed) -->
       <div class="simulator-results-panel">
-          <h3 class="results-title" data-translate="education.simulator.results.title">Résultats du Backtest</h3>
+          <h3 class="results-title" data-translate="education.simulator.results.title">Resultats du Backtest</h3>
 
           <!-- Allocation Sliders -->
           <div id="allocationSliders" class="allocation-sliders-panel">
@@ -437,6 +448,42 @@
             </div>
           </div>
 
+          <!-- Metrics Explanations Section (collapsible) -->
+          <div class="metrics-explanations-section" style="margin-top: 1.5rem; padding: 1rem; background: rgba(102, 126, 234, 0.04); border-radius: 12px; border: 1px solid rgba(102, 126, 234, 0.1);">
+            <button class="metrics-explanations-toggle" id="toggleMetricsExplanations" style="display: flex; justify-content: space-between; align-items: center; width: 100%; background: none; border: none; cursor: pointer; padding: 0; font-size: 0.9375rem; font-weight: 600; color: #667eea;">
+              <span data-translate="simulator.metricsExplanations.title">Comprendre les metriques</span>
+              <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transition: transform 0.2s;">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div id="metricsExplanationsContent" class="metrics-explanations-content" style="display: none; margin-top: 1rem;">
+              <div class="metric-explanation" style="padding: 0.75rem 0; border-bottom: 1px solid rgba(102, 126, 234, 0.1);">
+                <strong style="color: #4B5563;">Rendement Total</strong>
+                <p style="font-size: 0.8125rem; color: #6B7280; margin-top: 0.25rem;">Gain ou perte cumule sur toute la periode. Un rendement de +185% signifie que 10 000 EUR seraient devenus 28 500 EUR.</p>
+              </div>
+              <div class="metric-explanation" style="padding: 0.75rem 0; border-bottom: 1px solid rgba(102, 126, 234, 0.1);">
+                <strong style="color: #4B5563;">CAGR (Taux de croissance annuel compose)</strong>
+                <p style="font-size: 0.8125rem; color: #6B7280; margin-top: 0.25rem;">Rendement annualise moyen. Un CAGR de 5.4% signifie que votre portefeuille a grandi de 5.4% par an en moyenne.</p>
+              </div>
+              <div class="metric-explanation" style="padding: 0.75rem 0; border-bottom: 1px solid rgba(102, 126, 234, 0.1);">
+                <strong style="color: #4B5563;">Volatilite</strong>
+                <p style="font-size: 0.8125rem; color: #6B7280; margin-top: 0.25rem;">Mesure de la variation des rendements. Plus la volatilite est elevee, plus les fluctuations sont importantes. Une volatilite de 9% est consideree comme moderee.</p>
+              </div>
+              <div class="metric-explanation" style="padding: 0.75rem 0; border-bottom: 1px solid rgba(102, 126, 234, 0.1);">
+                <strong style="color: #4B5563;">Ratio de Sharpe</strong>
+                <p style="font-size: 0.8125rem; color: #6B7280; margin-top: 0.25rem;">Rendement ajuste au risque. Un Sharpe > 0.5 est bon, > 1 est excellent. Il mesure combien de rendement vous obtenez par unite de risque.</p>
+              </div>
+              <div class="metric-explanation" style="padding: 0.75rem 0; border-bottom: 1px solid rgba(102, 126, 234, 0.1);">
+                <strong style="color: #4B5563;">Max Drawdown</strong>
+                <p style="font-size: 0.8125rem; color: #6B7280; margin-top: 0.25rem;">Perte maximale depuis un sommet. Un drawdown de -24% signifie que a un moment, le portefeuille a perdu 24% de sa valeur maximale.</p>
+              </div>
+              <div class="metric-explanation" style="padding: 0.75rem 0;">
+                <strong style="color: #4B5563;">Ratio de Calmar</strong>
+                <p style="font-size: 0.8125rem; color: #6B7280; margin-top: 0.25rem;">CAGR divise par le Max Drawdown. Un Calmar > 0.5 est bon. Il indique combien de rendement annuel vous obtenez pour chaque unite de perte maximale.</p>
+              </div>
+            </div>
+          </div>
+
           <!-- Export & Share Actions -->
           <div class="export-share-actions">
             <button class="export-btn" id="exportChartBtn">
@@ -465,7 +512,7 @@
               </svg>
               <span data-translate="simulator.share">Partager</span>
             </button>
-            <span id="shareStatus">✓ <span data-translate="simulator.shareCopied">Copié !</span></span>
+            <span id="shareStatus">&#10003; <span data-translate="simulator.shareCopied">Copie !</span></span>
           </div>
         </div>
 
@@ -536,18 +583,42 @@
         <div class="chat-side-panel-messages" role="log" aria-live="polite">
           <div class="chat-side-panel-message bot">
             <div class="message-content">
-              Bonjour, je suis Bubble — comment puis-je t'aider ?
+              Bonjour, je suis Bubble - ton assistant investissement. Je peux t'expliquer les strategies, les metriques, et t'aider a construire ton portefeuille. Pose-moi n'importe quelle question !
             </div>
           </div>
           <div class="chat-side-panel-message bot">
             <div class="message-content">
-              <strong>Suggestions rapides</strong><br/>
+              <strong>Questions sur les strategies</strong><br/>
               <div class="chat-suggestion-row">
-                <button class="chat-suggestion-btn" data-prompt="Propose 2 mixes pour un profil prudent">Propose 2 mixes pour un profil prudent</button>
-                <button class="chat-suggestion-btn" data-prompt="Rends ma stratégie plus défensive">Rends ma stratégie plus défensive</button>
-                <button class="chat-suggestion-btn" data-prompt="Ajoute du momentum si la tendance est forte">Ajoute du momentum si la tendance est forte</button>
-                <button class="chat-suggestion-btn" data-prompt="Compare ma stratégie au S&P 500">Compare ma stratégie au S&P 500</button>
-                <button class="chat-suggestion-btn" data-prompt="Explique les métriques (retour, volatilité, drawdown)">Explique les métriques (retour, volatilité, drawdown)</button>
+                <button class="chat-suggestion-btn" data-prompt="Quelle strategie est la moins risquee ?">Quelle strategie est la moins risquee ?</button>
+                <button class="chat-suggestion-btn" data-prompt="Explique-moi le Risk Parity">Explique-moi le Risk Parity</button>
+                <button class="chat-suggestion-btn" data-prompt="Compare 60/40 vs Equal Weight">Compare 60/40 vs Equal Weight</button>
+                <button class="chat-suggestion-btn" data-prompt="Qu'est-ce que le Momentum ?">Qu'est-ce que le Momentum ?</button>
+                <button class="chat-suggestion-btn" data-prompt="Explique la strategie HRP (Hierarchical Risk Parity)">Explique la strategie HRP</button>
+              </div>
+            </div>
+          </div>
+          <div class="chat-side-panel-message bot">
+            <div class="message-content">
+              <strong>Questions sur les metriques</strong><br/>
+              <div class="chat-suggestion-row">
+                <button class="chat-suggestion-btn" data-prompt="Quel est mon Sharpe ratio et que signifie-t-il ?">Quel est mon Sharpe ratio ?</button>
+                <button class="chat-suggestion-btn" data-prompt="Explique le Max Drawdown et pourquoi c'est important">Qu'est-ce que le Max Drawdown ?</button>
+                <button class="chat-suggestion-btn" data-prompt="C'est quoi le ratio de Calmar ?">C'est quoi le ratio de Calmar ?</button>
+                <button class="chat-suggestion-btn" data-prompt="Qu'est-ce que le CAGR (rendement annualise) ?">C'est quoi le CAGR ?</button>
+                <button class="chat-suggestion-btn" data-prompt="Comment interpreter la volatilite de mon portefeuille ?">Comment interpreter la volatilite ?</button>
+              </div>
+            </div>
+          </div>
+          <div class="chat-side-panel-message bot">
+            <div class="message-content">
+              <strong>Construire ton portefeuille</strong><br/>
+              <div class="chat-suggestion-row">
+                <button class="chat-suggestion-btn" data-prompt="Propose 2 mixes pour un profil prudent">Propose des mixes prudents</button>
+                <button class="chat-suggestion-btn" data-prompt="Rends ma strategie plus defensive">Plus defensif</button>
+                <button class="chat-suggestion-btn" data-prompt="Je veux plus de rendement, que faire ?">Plus de rendement</button>
+                <button class="chat-suggestion-btn" data-prompt="Compare ma strategie au S&P 500">Compare au S&P 500</button>
+                <button class="chat-suggestion-btn" data-prompt="Optimise mon portefeuille pour reduire le risque">Reduire le risque</button>
               </div>
             </div>
           </div>
@@ -1274,6 +1345,23 @@
         }
 
         // ═══════════════════════════════════════════════════════════════
+        // Metrics Explanations Toggle
+        // ═══════════════════════════════════════════════════════════════
+        function initMetricsExplanations() {
+          const toggleBtn = document.getElementById('toggleMetricsExplanations');
+          const content = document.getElementById('metricsExplanationsContent');
+          const chevron = toggleBtn?.querySelector('.chevron');
+
+          toggleBtn?.addEventListener('click', function() {
+            const isHidden = content.style.display === 'none';
+            content.style.display = isHidden ? 'block' : 'none';
+            if (chevron) {
+              chevron.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0)';
+            }
+          });
+        }
+
+        // ═══════════════════════════════════════════════════════════════
         // Strategy Baseline Toggle Controls
         // ═══════════════════════════════════════════════════════════════
         function initBaselineControls() {
@@ -1880,6 +1968,28 @@
               }
             });
           });
+
+          // Handle question chips (for strategy/metrics explanations)
+          document.querySelectorAll('.question-chip').forEach(btn => {
+            btn.addEventListener('click', function() {
+              const question = this.dataset.question;
+              if (question && elements.chatInput) {
+                elements.chatInput.value = question;
+                handleSend();
+              }
+            });
+          });
+
+          // Handle chat suggestion buttons
+          document.querySelectorAll('.chat-suggestion-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+              const prompt = this.dataset.prompt;
+              if (prompt && elements.chatInput) {
+                elements.chatInput.value = prompt;
+                handleSend();
+              }
+            });
+          });
         }
 
         // ═══════════════════════════════════════════════════════════════
@@ -2238,6 +2348,9 @@
           initComparisonSections();
           initETFControls();
           updateChipCounts();
+
+          // Initialize metrics explanations toggle
+          initMetricsExplanations();
 
           elements.chatSendBtn?.addEventListener('click', handleSend);
           elements.chatInput?.addEventListener('keypress', function(e) {

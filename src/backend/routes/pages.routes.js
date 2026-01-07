@@ -332,8 +332,11 @@ router.get("/en/blog/:slug", async (req, res) => {
   }
 });
 
+/**
+ * English Portfolio simulator page - Redirect to playground simulator
+ */
 router.get("/en/portfolio-simulator", (req, res) => {
-  res.sendFile(path.join(enPagesDir, "portfolio-simulator.html"));
+  res.redirect(301, "/en/investors/playground/simulator");
 });
 
 router.get(["/en/pricing", "/en/pricing.html"], (req, res) => {
@@ -366,8 +369,11 @@ router.get("/investors/pricing", (req, res) => {
   res.sendFile(path.join(frPagesDir, "investors/pricing.html"));
 });
 
+/**
+ * Investors Portfolio simulator - Redirect to playground simulator
+ */
 router.get("/investors/portfolio-simulator", (req, res) => {
-  res.sendFile(path.join(frPagesDir, "investors/portfolio-simulator.html"));
+  res.redirect(301, "/investors/playground/simulator");
 });
 
 /**
@@ -427,8 +433,11 @@ router.get("/en/investors/pricing", (req, res) => {
   res.sendFile(path.join(enPagesDir, "investors/pricing.html"));
 });
 
+/**
+ * English Investors Portfolio simulator - Redirect to playground simulator
+ */
 router.get("/en/investors/portfolio-simulator", (req, res) => {
-  res.sendFile(path.join(enPagesDir, "investors/portfolio-simulator.html"));
+  res.redirect(301, "/en/investors/playground/simulator");
 });
 
 /**
