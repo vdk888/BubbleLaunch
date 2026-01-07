@@ -4984,6 +4984,14 @@ const translations = {
     en: "Intermediate",
     fr: "Intermédiaire"
   },
+  "playground.resources.articles.title": {
+    en: "Educational Articles",
+    fr: "Articles Éducatifs"
+  },
+  "playground.resources.articles.subtitle": {
+    en: "Explore our articles written to demystify investing and share Bubble's principles.",
+    fr: "Explore nos articles écrits pour démystifier l'investissement et partager les principes de Bubble."
+  },
   "playground.resources.compliance": {
     en: "<strong>Important information:</strong> This platform is purely educational. Simulations use historical data and do not constitute investment advice. Past performance does not guarantee future results.",
     fr: "<strong>Information importante :</strong> Cette plateforme est purement éducative. Les simulations utilisent des données historiques et ne constituent pas un conseil en investissement. Les performances passées ne préjugent pas des performances futures."
