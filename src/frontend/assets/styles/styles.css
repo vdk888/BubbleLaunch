@@ -2588,6 +2588,36 @@ section h2 {
   margin: 0 auto 1.5rem;
 }
 
+/* Vision Learn More Link */
+.vision-learn-more {
+  text-align: center;
+  margin: 2rem 0 3rem 0;
+}
+
+.vision-learn-more-link {
+  color: var(--bubble-purple);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.vision-learn-more-link::after {
+  content: ' →';
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.vision-learn-more-link:hover {
+  color: #5a6fd6;
+}
+
+.vision-learn-more-link:hover::after {
+  opacity: 1;
+}
+
 /* Approach Section */
 .approach {
   background-color: #ffffff;

@@ -37,6 +37,12 @@ const translations = {
     fr: "Accès Anticipé",
   },
 
+  // Vision Section
+  "vision.learnMore": {
+    en: "Learn more about our pricing",
+    fr: "En savoir plus sur nos tarifs",
+  },
+
   // Hero Section
   "hero.title": {
     en: "Bubble.",
@@ -4885,8 +4891,8 @@ const translations = {
     fr: "Explore les Outils Bubble"
   },
   "playground.resources.subtitle": {
-    en: "Watch AI bots trade, build your strategy, and deepen your knowledge.",
-    fr: "Observe des bots IA trader, construis ta stratégie, et approfondis tes connaissances."
+    en: "Watch AI bots trade, build your strategy, and deepen your knowledge. AI is your ally. ",
+    fr: "Observe des bots IA trader, construis ta stratégie, et approfondis tes connaissances. L'IA est ton alliée."
   },
   "playground.resources.arena.badge": {
     en: "Watch",

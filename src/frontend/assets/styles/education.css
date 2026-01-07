@@ -5199,6 +5199,13 @@ body.chat-open .chat-fab {
   margin: 0 auto;
 }
 
+.hero-subtitle .subtitle-tagline {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #667eea;
+  letter-spacing: 0.02em;
+}
+
 /* Mobile Responsive */
 @media (max-width: 640px) {
   .playground-chat-container {
