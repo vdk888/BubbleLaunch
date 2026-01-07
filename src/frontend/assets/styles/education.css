@@ -1085,13 +1085,23 @@
 }
 
 @media (max-width: 640px) {
+  /* Convert grid to horizontal carousel on mobile */
   .arena-bots-grid {
-    grid-template-columns: 1fr;
-    gap: 0.875rem;
-    padding: 0 0.5rem;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Momentum scrolling on iOS */
+    gap: 1rem;
+    padding: 0 1rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    margin-bottom: 2rem;
   }
 
   .arena-bot-card {
+    flex: 0 0 calc(100% - 2rem);
+    scroll-snap-align: start;
     padding: 1rem;
   }
 
@@ -1292,6 +1302,31 @@
   background: var(--education-accent);
   color: white;
   border-color: var(--education-accent);
+}
+
+/* Mobile: Convert event buttons to horizontal scrollable timeline */
+@media (max-width: 768px) {
+  .arena-events {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .arena-events > div {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.5rem;
+    padding: 0 0 0.5rem 0;
+  }
+
+  .timeline-btn {
+    flex: 0 0 auto;
+    min-width: fit-content;
+    scroll-snap-align: start;
+    white-space: nowrap;
+    height: var(--touch-target-min, 44px);
+  }
 }
 
 /* Play/Pause Button - Prominent */
@@ -3524,6 +3559,52 @@ body.chat-open .chat-fab {
   }
 }
 
+/* Mobile: Accordion pattern for Trade Tape section */
+@media (max-width: 768px) {
+  /* Container should stack vertically on tablet and below */
+  [style*="grid-template-columns: 1fr 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .trade-tape {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    opacity: 0;
+  }
+
+  .trade-tape.expanded {
+    max-height: 400px;
+    opacity: 1;
+  }
+
+  /* Toggle button styling */
+  .trade-tape-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+    background: var(--education-card-bg);
+    border: 1px solid var(--education-border);
+    border-radius: var(--education-radius-card);
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--education-primary);
+    transition: all 0.3s ease;
+  }
+
+  .trade-tape-toggle:active {
+    background: var(--education-accent-light);
+  }
+
+  .trade-tape-toggle.expanded {
+    background: var(--education-accent-light);
+    border-color: var(--education-accent);
+  }
+}
+
 @media (max-width: 480px) {
   .trade-tape {
     max-height: 180px;
@@ -5125,9 +5206,23 @@ body.chat-open .chat-fab {
     min-height: calc(100vh - 120px);
   }
 
+  /* Auto-collapse older messages - show only last 4 */
   .playground-messages {
     max-height: calc(100vh - 200px);
     padding: 1rem;
+  }
+
+  .playground-message {
+    display: flex;
+  }
+
+  .playground-message:nth-child(-n+1) {
+    display: none; /* Hide first message */
+  }
+
+  /* "Earlier messages" toggle could be implemented with JavaScript */
+  .playground-messages.expanded .playground-message {
+    display: flex;
   }
 
   .playground-message .message-content {
