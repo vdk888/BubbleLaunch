@@ -1081,3 +1081,58 @@
     font-size: 0.8rem !important;
   }
 }
+
+/* ========================================
+   CRITICAL FIX: Quick Actions Mobile Layout
+   Force vertical stacking on narrow screens
+   ======================================== */
+@media (max-width: 640px) {
+  .playground-quick-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 0.5rem !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    padding: 0.5rem 0 !important;
+    width: 100% !important;
+  }
+
+  .playground-action {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.75rem 1rem !important;
+    min-height: 44px !important;
+    white-space: nowrap !important;
+    border-radius: 24px !important;
+  }
+
+  .playground-action .action-icon {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .playground-action .action-icon svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .playground-action {
+    padding: 0.625rem 0.875rem !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .playground-quick-actions {
+    gap: 0.375rem !important;
+  }
+
+  .playground-action {
+    padding: 0.5rem 0.75rem !important;
+    min-height: 40px !important;
+    font-size: 0.75rem !important;
+  }
+}
