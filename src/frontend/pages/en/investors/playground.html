@@ -151,6 +151,9 @@
             const newLang = currentLang === 'en' ? 'fr' : 'en';
             localStorage.setItem('bubbleLanguage', newLang);
 
+            // Clear playground session to avoid language mixing in conversation history
+            sessionStorage.removeItem('bubblePlaygroundFullscreenSession');
+
             // Redirect to corresponding language version
             if (newLang === 'fr') {
               window.location.href = '/investors/playground';
