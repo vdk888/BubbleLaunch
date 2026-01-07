@@ -381,7 +381,7 @@ function formatInlineContent(text) {
         .replace(/\<span class="notion-link-text">([^\]]+)<\/span\u003E\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
         // Auto-detect bare URLs (http or https) and convert to clickable links
         // This regex matches URLs but avoids converting URLs already in markdown or HTML format
-        .replace(/(?<![["(\])(https?:\/\/[^\s<>'"`]+)(?![\\\])"'])/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>')
+        .replace(/(https?:\/\/[^<>\s"'()[\]]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>')
         // Format inline code `code`
         .replace(/`([^`]+)`/g, '<code>$1</code>')
         // Clean up any remaining single hashtags that aren't part of headings

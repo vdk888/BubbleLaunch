@@ -849,34 +849,66 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Mobile dropdown accordion functionality
-    const mobileDropdownToggle = document.querySelector('.mobile-nav-dropdown-toggle');
-    const mobileDropdownMenu = document.querySelector('.mobile-nav-dropdown-menu');
+    const mobileDropdownToggles = document.querySelectorAll('.mobile-nav-dropdown-toggle');
 
-    if (mobileDropdownToggle && mobileDropdownMenu) {
-      mobileDropdownToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    mobileDropdownToggles.forEach(toggle => {
+      const dropdown = toggle.closest('.mobile-nav-dropdown');
+      const menu = dropdown ? dropdown.querySelector('.mobile-nav-dropdown-menu') : null;
 
-        // Toggle active class
-        mobileDropdownToggle.classList.toggle('active');
-        mobileDropdownMenu.classList.toggle('active');
-      });
+      if (toggle && menu) {
+        toggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
 
-      // Close dropdown when clicking on a sub-link
-      const mobileDropdownLinks = mobileDropdownMenu.querySelectorAll('a');
-      mobileDropdownLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          // Close the dropdown
-          mobileDropdownToggle.classList.remove('active');
-          mobileDropdownMenu.classList.remove('active');
-
-          // Then close the mobile menu
-          if (hamburgerMenu.classList.contains('active')) {
-            toggleMobileMenu();
-          }
+          // Toggle active class
+          toggle.classList.toggle('active');
+          menu.classList.toggle('active');
         });
-      });
-    }
+
+        // Close dropdown when clicking on a sub-link
+        const mobileDropdownLinks = menu.querySelectorAll('a');
+        mobileDropdownLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            // Close the dropdown
+            toggle.classList.remove('active');
+            menu.classList.remove('active');
+
+            // Then close the mobile menu
+            if (hamburgerMenu.classList.contains('active')) {
+              toggleMobileMenu();
+            }
+          });
+        });
+
+        // Also handle buttons inside dropdown (like Agent demo trigger)
+        const mobileDropdownButtons = menu.querySelectorAll('button');
+        mobileDropdownButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            // For demo trigger buttons, let the event propagate and close menu after a slight delay
+            if (button.classList.contains('js-retail-demo-trigger')) {
+              // Close the dropdown and menu after the demo trigger has time to fire
+              setTimeout(() => {
+                toggle.classList.remove('active');
+                menu.classList.remove('active');
+
+                if (hamburgerMenu.classList.contains('active')) {
+                  toggleMobileMenu();
+                }
+              }, 50);
+            } else {
+              // For other buttons, close immediately
+              toggle.classList.remove('active');
+              menu.classList.remove('active');
+
+              // Then close the mobile menu
+              if (hamburgerMenu.classList.contains('active')) {
+                toggleMobileMenu();
+              }
+            }
+          });
+        });
+      }
+    });
 
     // Close menu when clicking on overlay (outside nav)
     mobileNavOverlay.addEventListener('click', function(e) {

@@ -1,0 +1,627 @@
+{
+  "timestamp": 1767805731127,
+  "data": [
+    {
+      "id": "82abe41f-e21f-4079-8423-56349bcfb072",
+      "title": "The Expert Myth",
+      "author": "Veritasium",
+      "sourceType": "Video",
+      "mainTheme": "General",
+      "category": [],
+      "topics": [
+        "Behavioral Biases",
+        "Decision Making",
+        "Heuristics",
+        "Predictability"
+      ],
+      "url": "https://youtu.be/5eW6Eagr9XA?si=6wMl_fHMyDnB0hTe",
+      "summary": "Why people overestimate experts and how to avoid the trap. A quick look at prediction limits, incentives, and better decision frameworks.",
+      "summary_en": "Why people overestimate experts and how to avoid the trap. A quick look at prediction limits, incentives, and better decision frameworks.",
+      "summary_fr": "Pourquoi les gens surestiment les experts et comment éviter le piège. Un aperçu rapide des limites de la prédiction, des incitations et de meilleures cadres de décision.",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-11-05T19:32:00.000Z",
+      "lastEditedDate": "2025-11-09T20:43:00.000Z",
+      "isVideo": true,
+      "videoEmbedUrl": "https://www.youtube.com/embed/5eW6Eagr9XA",
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=The%20Expert%20Myth%20Veritasium",
+        "openLibrary": "https://openlibrary.org/search?q=The+Expert+Myth+Veritasium"
+      }
+    },
+    {
+      "id": "92d77a97-58ae-479a-b74f-41e2fc0508b4",
+      "title": "The Black Swan Theory",
+      "author": "Aperture",
+      "sourceType": "Video",
+      "mainTheme": "General",
+      "category": [],
+      "topics": [
+        "Black Swan events",
+        "Risk management",
+        "Randomness",
+        "Reversion to the Mean",
+        "Diversification"
+      ],
+      "url": "https://youtu.be/dp1mMGaI9uw?si=qnT0XTE4c01tiPjM",
+      "summary": "Black Swan theory, fat tails, and why rare events dominate outcomes in finance and life.",
+      "summary_en": "Black Swan theory, fat tails, and why rare events dominate outcomes in finance and life.",
+      "summary_fr": "Théorie du cygne noir, queues épaisses, et pourquoi les événements rares dominent les résultats en finance et dans la vie.",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-11-05T19:32:00.000Z",
+      "lastEditedDate": "2025-11-09T20:43:00.000Z",
+      "isVideo": true,
+      "videoEmbedUrl": "https://www.youtube.com/embed/dp1mMGaI9uw",
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=The%20Black%20Swan%20Theory%20Aperture",
+        "openLibrary": "https://openlibrary.org/search?q=The+Black+Swan+Theory+Aperture"
+      }
+    },
+    {
+      "id": "aec6f370-9541-4135-b86b-a4a0304ffc27",
+      "title": "Principles for Dealing with the Changing World Order by Ray Dali",
+      "author": "Ray Dalio",
+      "sourceType": "Video",
+      "mainTheme": "General",
+      "category": [],
+      "topics": [
+        "Business cycles",
+        "Interest rates",
+        "Debt management",
+        "Risk management",
+        "Asset allocation"
+      ],
+      "url": "https://youtu.be/xguam0TKMw8?si=4v_Kb2PW8xXl8q9L",
+      "summary": "Ray Dalio’s big‑cycle framework and how debt, productivity, and geopolitics interact over decades.",
+      "summary_en": "Ray Dalio’s big‑cycle framework and how debt, productivity, and geopolitics interact over decades.",
+      "summary_fr": "Le cadre des grands cycles de Ray Dalio et comment la dette, la productivité et la géopolitique interagissent au fil des décennies.",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-11-05T19:32:00.000Z",
+      "lastEditedDate": "2025-11-09T20:44:00.000Z",
+      "isVideo": true,
+      "videoEmbedUrl": "https://www.youtube.com/embed/xguam0TKMw8",
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=Principles%20for%20Dealing%20with%20the%20Changing%20World%20Order%20by%20Ray%20Dali%20Ray%20Dalio",
+        "openLibrary": "https://openlibrary.org/search?q=Principles+for+Dealing+with+the+Changing+World+Order+by+Ray+Dali+Ray+Dalio"
+      }
+    },
+    {
+      "id": "ec9c0820-ab27-4720-aac4-2acb7aa5c566",
+      "title": "The Illusion of MONEY, TIME & EGO - Alan Watts",
+      "author": "After Skool",
+      "sourceType": "Video",
+      "mainTheme": "General",
+      "category": [],
+      "topics": [
+        "Investment Psychology",
+        "Behavioral Economics",
+        "Decision Making",
+        "Dealing with not knowing"
+      ],
+      "url": "https://youtu.be/dYSQ1NF1hvw?si=n_Ges8YujG2Q_mZM",
+      "summary": "Animated Alan Watts talk on money, time, and ego illusions, reframed as tools rather than ends.",
+      "summary_en": "Animated Alan Watts talk on money, time, and ego illusions, reframed as tools rather than ends.",
+      "summary_fr": "Discours animé d'Alan Watts sur l'argent, le temps et les illusions de l'ego, recontextualisé comme des outils plutôt que des fins.",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-11-05T19:32:00.000Z",
+      "lastEditedDate": "2025-11-09T20:44:00.000Z",
+      "isVideo": true,
+      "videoEmbedUrl": "https://www.youtube.com/embed/dYSQ1NF1hvw",
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=The%20Illusion%20of%20MONEY%2C%20TIME%20%26%20EGO%20-%20Alan%20Watts%20After%20Skool",
+        "openLibrary": "https://openlibrary.org/search?q=The+Illusion+of+MONEY%2C+TIME+%26+EGO+-+Alan+Watts+After+Skool"
+      }
+    },
+    {
+      "id": "ce6c53e6-61db-4a40-9b55-3948cb0203d5",
+      "title": "Épicure — Mécanismes de pensée",
+      "author": "Épicure",
+      "sourceType": "Document",
+      "mainTheme": "General",
+      "category": [],
+      "topics": [],
+      "url": null,
+      "summary": "",
+      "summary_en": "",
+      "summary_fr": "",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": "2025-10-26",
+      "createdDate": "2025-10-26T11:30:00.000Z",
+      "lastEditedDate": "2025-11-03T17:29:00.000Z",
+      "isVideo": false,
+      "videoEmbedUrl": null,
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=%C3%89picure%20%E2%80%94%20M%C3%A9canismes%20de%20pens%C3%A9e%20%C3%89picure",
+        "openLibrary": "https://openlibrary.org/search?q=%C3%89picure+%E2%80%94+M%C3%A9canismes+de+pens%C3%A9e+%C3%89picure"
+      }
+    },
+    {
+      "id": "293cfc52-0644-81e5-9066-e523fdf83f50",
+      "title": "Shift Technology - About",
+      "author": "Shift Technology",
+      "sourceType": "Article",
+      "mainTheme": "General",
+      "category": [
+        "Pure Players IA",
+        "Insurtech"
+      ],
+      "topics": [
+        "Intelligence Artificielle",
+        "Détection de Fraude",
+        "Assurance"
+      ],
+      "url": "https://www.shift-technology.com/about",
+      "summary": "Présentation de Shift Technology, plateforme IA leader pour les assureurs",
+      "summary_en": "Présentation de Shift Technology, plateforme IA leader pour les assureurs",
+      "summary_fr": "Présentation de Shift Technology, plateforme IA leader pour les assureurs",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-10-21T20:53:00.000Z",
+      "lastEditedDate": "2025-10-21T22:16:00.000Z",
+      "isVideo": false,
+      "videoEmbedUrl": null,
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=Shift%20Technology%20-%20About%20Shift%20Technology",
+        "openLibrary": "https://openlibrary.org/search?q=Shift+Technology+-+About+Shift+Technology",
+        "journal": null
+      }
+    },
+    {
+      "id": "b3d6a06f-2963-4f77-8689-7d80df7b31b2",
+      "title": "The Hopeless Philosophy That's Worse Than Nihilism",
+      "author": "Aperture",
+      "sourceType": "Video",
+      "mainTheme": "General",
+      "category": [],
+      "topics": [],
+      "url": "https://www.youtube.com/watch?v=62_1U_kG62U&feature=youtu.be",
+      "summary": "Le doomérisme est une vision pessimiste de l'avenir, alimentée par des crises économiques et des tensions géopolitiques. Il se distingue du nihilisme et propose des alternatives constructives comme l'absurdisme et l'existentialisme. L'engagement civique et des actions concrètes sont encouragés pour transformer l'angoisse en espoir actif. Des recommandations pratiques incluent la contextualisation des risques et l'adoption d'hypothèses à tester pour remplacer les récits de fatalité.",
+      "summary_en": "Le doomérisme est une vision pessimiste de l'avenir, alimentée par des crises économiques et des tensions géopolitiques. Il se distingue du nihilisme et propose des alternatives constructives comme l'absurdisme et l'existentialisme. L'engagement civique et des actions concrètes sont encouragés pour transformer l'angoisse en espoir actif. Des recommandations pratiques incluent la contextualisation des risques et l'adoption d'hypothèses à tester pour remplacer les récits de fatalité.",
+      "summary_fr": "Le doomérisme est une vision pessimiste de l'avenir, alimentée par des crises économiques et des tensions géopolitiques. Il se distingue du nihilisme et propose des alternatives constructives comme l'absurdisme et l'existentialisme. L'engagement civique et des actions concrètes sont encouragés pour transformer l'angoisse en espoir actif. Des recommandations pratiques incluent la contextualisation des risques et l'adoption d'hypothèses à tester pour remplacer les récits de fatalité.",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-10-14T20:29:00.000Z",
+      "lastEditedDate": "2025-11-09T20:35:00.000Z",
+      "isVideo": true,
+      "videoEmbedUrl": "https://www.youtube.com/embed/62_1U_kG62U",
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=The%20Hopeless%20Philosophy%20That's%20Worse%20Than%20Nihilism%20Aperture",
+        "openLibrary": "https://openlibrary.org/search?q=The+Hopeless+Philosophy+That's+Worse+Than+Nihilism+Aperture"
+      }
+    },
+    {
+      "id": "28ccfc52-0644-8049-912f-efddd6f7445f",
+      "title": "Buffett on Berkshire's Cash Position and Investing Strategy",
+      "author": "Warren Buffett",
+      "sourceType": "Video",
+      "mainTheme": "General",
+      "category": [],
+      "topics": [],
+      "url": "https://youtu.be/uVqEnuXo554?si=nV71OjZAN_NryUpg",
+      "summary": "Warren Buffett discute de la gestion de la trésorerie de plus de 300 milliards de dollars de Berkshire Hathaway, affirmant que cette stratégie est opportuniste et non liée à une préparation pour un changement de leadership. Il préfère attendre des opportunités d'investissement exceptionnelles plutôt que d'investir de manière précipitée.",
+      "summary_en": "Warren Buffett discute de la gestion de la trésorerie de plus de 300 milliards de dollars de Berkshire Hathaway, affirmant que cette stratégie est opportuniste et non liée à une préparation pour un changement de leadership. Il préfère attendre des opportunités d'investissement exceptionnelles plutôt que d'investir de manière précipitée.",
+      "summary_fr": "Warren Buffett discute de la gestion de la trésorerie de plus de 300 milliards de dollars de Berkshire Hathaway, affirmant que cette stratégie est opportuniste et non liée à une préparation pour un changement de leadership. Il préfère attendre des opportunités d'investissement exceptionnelles plutôt que d'investir de manière précipitée.",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-10-14T20:19:00.000Z",
+      "lastEditedDate": "2025-10-14T20:24:00.000Z",
+      "isVideo": true,
+      "videoEmbedUrl": "https://www.youtube.com/embed/uVqEnuXo554",
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=Buffett%20on%20Berkshire's%20Cash%20Position%20and%20Investing%20Strategy%20Warren%20Buffett",
+        "openLibrary": "https://openlibrary.org/search?q=Buffett+on+Berkshire's+Cash+Position+and+Investing+Strategy+Warren+Buffett"
+      }
+    },
+    {
+      "id": "27acfc52-0644-802d-a396-f0f8aae85daa",
+      "title": "The dawn of the post-literate society",
+      "author": "Unknown Author",
+      "sourceType": "Article",
+      "mainTheme": "General",
+      "category": [
+        "Economics"
+      ],
+      "topics": [],
+      "url": "https://jmarriott.substack.com/p/the-dawn-of-the-post-literate-society-aa1?r=dq5mk&utm_medium=ios&triedRedirect=true",
+      "summary": "",
+      "summary_en": "",
+      "summary_fr": "",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-09-26T15:42:00.000Z",
+      "lastEditedDate": "2025-09-30T14:10:00.000Z",
+      "isVideo": false,
+      "videoEmbedUrl": null,
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=The%20dawn%20of%20the%20post-literate%20society",
+        "openLibrary": "https://openlibrary.org/search?q=The+dawn+of+the+post-literate+society",
+        "journal": null
+      }
+    },
+    {
+      "id": "27acfc52-0644-80a9-8e74-c1aeab020e8a",
+      "title": "The death of corporate job",
+      "author": "Unknown Author",
+      "sourceType": "Article",
+      "mainTheme": "General",
+      "category": [
+        "Economics"
+      ],
+      "topics": [
+        "business"
+      ],
+      "url": "https://open.substack.com/pub/thestillwandering/p/the-death-of-the-corporate-job?r=dq5mk&utm_medium=ios",
+      "summary": "",
+      "summary_en": "",
+      "summary_fr": "",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-09-26T13:20:00.000Z",
+      "lastEditedDate": "2025-09-30T15:29:00.000Z",
+      "isVideo": false,
+      "videoEmbedUrl": null,
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=The%20death%20of%20corporate%20job",
+        "openLibrary": "https://openlibrary.org/search?q=The+death+of+corporate+job",
+        "journal": null
+      }
+    },
+    {
+      "id": "23acfc52-0644-8141-a536-cad769748578",
+      "title": "CHARLIE MUNGER ON THE PSYCHOLOGY OF HUMAN MISJUDGMENT",
+      "author": "Unknown Author",
+      "sourceType": "Article",
+      "mainTheme": "General",
+      "category": [
+        "Economics",
+        "Behavioral Finance"
+      ],
+      "topics": [
+        "Incentive-caused bias",
+        "Psychological denial",
+        "Pavlovian association",
+        "Consistency and commitment tendency",
+        "Social proof"
+      ],
+      "url": "https://drive.google.com/file/d/1Y_m6VjHxKdAl2zf1EcWGdpFF0v3GonzS/view",
+      "summary": "Charlie Munger's speech at Harvard University discusses the psychology of human misjudgment, outlining 24 standard causes of human misjudgment with real-world examples. He emphasizes the importance of understanding these psychological tendencies to make better decisions in finance, economics, and life. Munger draws on examples from his own experiences, academic research, and historical events to illustrate how cognitive biases can lead to errors in judgment. He advocates for a multidisciplinary approach, integrating psychology and economics, and stresses the need for critical thinking and awareness of one's own biases. The speech covers a wide range of topics, including incentive-caused bias, psychological denial, Pavlovian association, and the influence of social proof, providing a framework for understanding and mitigating the effects of human misjudgment.",
+      "summary_en": "Charlie Munger's speech at Harvard University discusses the psychology of human misjudgment, outlining 24 standard causes of human misjudgment with real-world examples. He emphasizes the importance of understanding these psychological tendencies to make better decisions in finance, economics, and life. Munger draws on examples from his own experiences, academic research, and historical events to illustrate how cognitive biases can lead to errors in judgment. He advocates for a multidisciplinary approach, integrating psychology and economics, and stresses the need for critical thinking and awareness of one's own biases. The speech covers a wide range of topics, including incentive-caused bias, psychological denial, Pavlovian association, and the influence of social proof, providing a framework for understanding and mitigating the effects of human misjudgment.",
+      "summary_fr": "Le discours de Charlie Munger à l'Université de Harvard aborde la psychologie des erreurs de jugement humain, décrivant 24 causes standard des erreurs de jugement humain avec des exemples du monde réel. Il souligne l'importance de comprendre ces tendances psychologiques pour prendre de meilleures décisions en finance, en économie et dans la vie. Munger s'appuie sur des exemples tirés de ses propres expériences, de recherches académiques et d'événements historiques pour illustrer comment les biais cognitifs peuvent mener à des erreurs de jugement. Il plaide pour une approche pluridisciplinaire, intégrant la psychologie et l'économie, et insiste sur la nécessité de penser de manière critique et d'être conscient de ses propres biais. Le discours couvre un large éventail de sujets, y compris le biais causé par les incitations, le déni psychologique, l'association pavlovienne et l'influence de la preuve sociale, fournissant un cadre pour comprendre et atténuer les effets des erreurs de jugement humain.",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-07-24T16:52:00.000Z",
+      "lastEditedDate": "2025-11-03T17:30:00.000Z",
+      "isVideo": false,
+      "videoEmbedUrl": null,
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=CHARLIE%20MUNGER%20ON%20THE%20PSYCHOLOGY%20OF%20HUMAN%20MISJUDGMENT",
+        "openLibrary": "https://openlibrary.org/search?q=CHARLIE+MUNGER+ON+THE+PSYCHOLOGY+OF+HUMAN+MISJUDGMENT",
+        "journal": null
+      }
+    },
+    {
+      "id": "239cfc52-0644-81c8-9fee-caf59fb28851",
+      "title": "Et si vous en saviez assez pour gagner en Bourse...",
+      "author": "Unknown Author",
+      "sourceType": "Book",
+      "mainTheme": "General",
+      "category": [
+        "Value Investing",
+        "Risk Management",
+        "Asset Management"
+      ],
+      "topics": [
+        "10-baggers",
+        "Value investing",
+        "Earnings",
+        "Assets",
+        "Cyclical stocks"
+      ],
+      "url": "https://drive.google.com/file/d/12_LujASSYPPkiKpLi4gV5xfYnYLoHTXG/view",
+      "summary": "This book, written by legendary investor Peter Lynch, provides guidance on how to approach the stock market and achieve investment success. It emphasizes a bottom-up approach, focusing on individual stock selection based on understanding a company's business, financial health, and growth potential. Lynch encourages investors to look for opportunities in familiar areas and industries, and to avoid getting caught up in market hype or complex financial theories. The book covers various aspects of investing, including identifying different types of stocks, analyzing financial statements, constructing a portfolio, and making informed decisions about when to buy and sell. It also discusses the importance of long-term perspective and the dangers of speculation.",
+      "summary_en": "This book, written by legendary investor Peter Lynch, provides guidance on how to approach the stock market and achieve investment success. It emphasizes a bottom-up approach, focusing on individual stock selection based on understanding a company's business, financial health, and growth potential. Lynch encourages investors to look for opportunities in familiar areas and industries, and to avoid getting caught up in market hype or complex financial theories. The book covers various aspects of investing, including identifying different types of stocks, analyzing financial statements, constructing a portfolio, and making informed decisions about when to buy and sell. It also discusses the importance of long-term perspective and the dangers of speculation.",
+      "summary_fr": "Ce livre, écrit par l'investisseur légendaire Peter Lynch, fournit des conseils sur la manière d'aborder le marché boursier et d'atteindre le succès en matière d'investissement. Il met l'accent sur une approche ascendante, se concentrant sur la sélection d'actions individuelles en fonction de la compréhension de l'activité d'une entreprise, de sa santé financière et de son potentiel de croissance. Lynch encourage les investisseurs à rechercher des opportunités dans des domaines et des secteurs familiers, et à éviter de se laisser emporter par l'engouement du marché ou des théories financières complexes. Le livre aborde divers aspects de l'investissement, y compris l'identification des différents types d'actions, l'analyse des états financiers, la construction d'un portefeuille et la prise de décisions éclairées sur le moment d'acheter et de vendre. Il discute également de l'importance d'une perspective à long terme et des dangers de la spéculation.",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-07-23T17:20:00.000Z",
+      "lastEditedDate": "2025-11-03T17:33:00.000Z",
+      "isVideo": false,
+      "videoEmbedUrl": null,
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=Et%20si%20vous%20en%20saviez%20assez%20pour%20gagner%20en%20Bourse...",
+        "openLibrary": "https://openlibrary.org/search?q=Et+si+vous+en+saviez+assez+pour+gagner+en+Bourse...",
+        "amazon": "https://www.amazon.com/s?k=Et%20si%20vous%20en%20saviez%20assez%20pour%20gagner%20en%20Bourse...",
+        "goodreads": "https://www.goodreads.com/search?q=Et%20si%20vous%20en%20saviez%20assez%20pour%20gagner%20en%20Bourse...",
+        "bookshop": "https://bookshop.org/search?q=Et%20si%20vous%20en%20saviez%20assez%20pour%20gagner%20en%20Bourse..."
+      }
+    },
+    {
+      "id": "239cfc52-0644-81ac-95a4-c00d49494719",
+      "title": "The Most Important Thing",
+      "author": "Unknown Author",
+      "sourceType": "Book",
+      "mainTheme": "General",
+      "category": [
+        "Behavioral Finance",
+        "Value Investing",
+        "Asset Management"
+      ],
+      "topics": [
+        "Intrinsic Value",
+        "Risk Aversion",
+        "market cycles",
+        "second-level thinking",
+        "contrarian investing"
+      ],
+      "url": "https://drive.google.com/file/d/1KFdrxcjAqSXUnndbdZ1ktfvlD040xHgG/view",
+      "summary": "In 'The Most Important Thing,' Howard Marks discusses the critical factors for successful investing, emphasizing the importance of second-level thinking, understanding market cycles, and the relationship between price and value. Marks advocates for a contrarian approach, disciplined risk management, and recognizing the role of luck. The book stresses the significance of defensive investing and avoiding common pitfalls, providing a framework for thoughtful and long-term investment strategies.",
+      "summary_en": "In 'The Most Important Thing,' Howard Marks discusses the critical factors for successful investing, emphasizing the importance of second-level thinking, understanding market cycles, and the relationship between price and value. Marks advocates for a contrarian approach, disciplined risk management, and recognizing the role of luck. The book stresses the significance of defensive investing and avoiding common pitfalls, providing a framework for thoughtful and long-term investment strategies.",
+      "summary_fr": "Dans 'La Chose la Plus Importante', Howard Marks discute des facteurs critiques pour un investissement réussi, en soulignant l'importance de la pensée de second niveau, de la compréhension des cycles de marché et de la relation entre prix et valeur. Marks plaide en faveur d'une approche contrarienne, d'une gestion des risques disciplinée et de la reconnaissance du rôle de la chance. Le livre souligne l'importance de l'investissement défensif et de l'évitement des pièges courants, fournissant un cadre pour des stratégies d'investissement réfléchies et à long terme.",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-07-23T13:32:00.000Z",
+      "lastEditedDate": "2025-11-21T19:21:00.000Z",
+      "isVideo": false,
+      "videoEmbedUrl": null,
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=The%20Most%20Important%20Thing",
+        "openLibrary": "https://openlibrary.org/search?q=The+Most+Important+Thing",
+        "amazon": "https://www.amazon.com/s?k=The%20Most%20Important%20Thing",
+        "goodreads": "https://www.goodreads.com/search?q=The%20Most%20Important%20Thing",
+        "bookshop": "https://bookshop.org/search?q=The%20Most%20Important%20Thing"
+      }
+    },
+    {
+      "id": "239cfc52-0644-812b-aa32-eb49fb6e6aad",
+      "title": "Freakonomics",
+      "author": "Unknown Author",
+      "sourceType": "Book",
+      "mainTheme": "General",
+      "category": [
+        "Economics",
+        "Financial Analysis"
+      ],
+      "topics": [
+        "Information asymmetry",
+        "Conventional wisdom",
+        "Data analysis",
+        "Incentives",
+        "Unintended consequences"
+      ],
+      "url": "https://drive.google.com/file/d/15jAteSqWvpFonOPutzZtqvwHb5QxjGPf/view",
+      "summary": "Freakonomics explores the hidden side of everything, applying economic principles to a diverse range of real-world issues. It challenges conventional wisdom by analyzing data to uncover unexpected truths. Topics include: the incentives that drive cheating among schoolteachers and sumo wrestlers; the similarities between the Ku Klux Klan and real estate agents in terms of information control; why drug dealers still live with their mothers; the factors behind the drop in crime rates; what makes a perfect parent; and the importance of names. The book emphasizes the power of incentives and the importance of data-driven analysis in understanding modern life.",
+      "summary_en": "Freakonomics explores the hidden side of everything, applying economic principles to a diverse range of real-world issues. It challenges conventional wisdom by analyzing data to uncover unexpected truths. Topics include: the incentives that drive cheating among schoolteachers and sumo wrestlers; the similarities between the Ku Klux Klan and real estate agents in terms of information control; why drug dealers still live with their mothers; the factors behind the drop in crime rates; what makes a perfect parent; and the importance of names. The book emphasizes the power of incentives and the importance of data-driven analysis in understanding modern life.",
+      "summary_fr": "Freakonomics explore le côté caché de tout, appliquant des principes économiques à une gamme diversifiée de problèmes du monde réel. Il remet en question la sagesse conventionnelle en analysant des données pour découvrir des vérités inattendues. Les sujets incluent : les incitations qui poussent à tricher parmi les enseignants et les lutteurs de sumo ; les similitudes entre le Ku Klux Klan et les agents immobiliers en termes de contrôle de l'information ; pourquoi les trafiquants de drogue vivent encore avec leur mère ; les facteurs derrière la baisse des taux de criminalité ; ce qui fait un parent parfait ; et l'importance des noms. Le livre met l'accent sur le pouvoir des incitations et l'importance de l'analyse basée sur les données pour comprendre la vie moderne.",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-07-23T13:23:00.000Z",
+      "lastEditedDate": "2025-11-21T19:58:00.000Z",
+      "isVideo": false,
+      "videoEmbedUrl": null,
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=Freakonomics",
+        "openLibrary": "https://openlibrary.org/search?q=Freakonomics",
+        "amazon": "https://www.amazon.com/s?k=Freakonomics",
+        "goodreads": "https://www.goodreads.com/search?q=Freakonomics",
+        "bookshop": "https://bookshop.org/search?q=Freakonomics"
+      }
+    },
+    {
+      "id": "229cfc52-0644-805b-82be-d381a0c2e3aa",
+      "title": "The Future of FinTech: Six Trends Defining 2025",
+      "author": "Unknown Author",
+      "sourceType": "Article",
+      "mainTheme": "General",
+      "category": [],
+      "topics": [],
+      "url": "https://www.wns.com/perspectives/articles/the-future-of-fintech-six-trends-defining-2025",
+      "summary": "The FinTech industry is projected to reach a $1.5 Trillion market by 2030, driven by six trends: redefined payments with local methods, the rise of agentic AI for autonomous decision-making, scaling embedded finance in non-financial platforms, increased cryptocurrency adoption, enhanced cybersecurity measures, and a focus on financial wellbeing through innovative tools. Companies must adapt and build trust through integrity and strategic partnerships to succeed in this evolving landscape.",
+      "summary_en": "The FinTech industry is projected to reach a $1.5 Trillion market by 2030, driven by six trends: redefined payments with local methods, the rise of agentic AI for autonomous decision-making, scaling embedded finance in non-financial platforms, increased cryptocurrency adoption, enhanced cybersecurity measures, and a focus on financial wellbeing through innovative tools. Companies must adapt and build trust through integrity and strategic partnerships to succeed in this evolving landscape.",
+      "summary_fr": "Le secteur de la FinTech devrait atteindre un marché de 1,5 trillion de dollars d'ici 2030, soutenu par six tendances : des paiements redéfinis avec des méthodes locales, l'essor de l'IA agentique pour la prise de décision autonome, l'expansion de la finance intégrée sur des plateformes non financières, une adoption accrue des cryptomonnaies, des mesures de cybersécurité renforcées, et un accent sur le bien-être financier grâce à des outils innovants. Les entreprises doivent s'adapter et instaurer la confiance par l'intégrité et des partenariats stratégiques pour réussir dans ce paysage en évolution.",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-07-07T21:19:00.000Z",
+      "lastEditedDate": "2025-09-30T19:55:00.000Z",
+      "isVideo": false,
+      "videoEmbedUrl": null,
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=The%20Future%20of%20FinTech%3A%20Six%20Trends%20Defining%202025",
+        "openLibrary": "https://openlibrary.org/search?q=The+Future+of+FinTech%3A+Six+Trends+Defining+2025",
+        "journal": null
+      }
+    },
+    {
+      "id": "225cfc52-0644-81c8-ba60-fafb7f73c15f",
+      "title": "Ego Is the Enemy",
+      "author": "Unknown Author",
+      "sourceType": "Book",
+      "mainTheme": "General",
+      "category": [
+        "Value Investing",
+        "Strategy"
+      ],
+      "topics": [
+        "Ego as an obstacle to success",
+        "Importance of self-awareness and humility",
+        "Dangers of unchecked ambition",
+        "Need for continuous learning",
+        "Value of purpose over passion"
+      ],
+      "url": "https://drive.google.com/file/d/1Q5C01xeJcUzSDg9p79T9E2u2JWVxR101/view",
+      "summary": "In 'Ego Is the Enemy', Ryan Holiday examines how ego, defined as an unhealthy belief in one's own importance, hinders success and fulfillment in various aspects of life. The book is divided into three parts: Aspiration, Success, and Failure, each exploring how ego manifests and can be overcome in these different stages. Through historical examples and philosophical insights, Holiday emphasizes the importance of humility, self-awareness, discipline, and purpose in achieving true success and avoiding the pitfalls of ego-driven behavior. The book serves as a guide to managing and minimizing the negative effects of ego in order to lead a more fulfilling and successful life.",
+      "summary_en": "In 'Ego Is the Enemy', Ryan Holiday examines how ego, defined as an unhealthy belief in one's own importance, hinders success and fulfillment in various aspects of life. The book is divided into three parts: Aspiration, Success, and Failure, each exploring how ego manifests and can be overcome in these different stages. Through historical examples and philosophical insights, Holiday emphasizes the importance of humility, self-awareness, discipline, and purpose in achieving true success and avoiding the pitfalls of ego-driven behavior. The book serves as a guide to managing and minimizing the negative effects of ego in order to lead a more fulfilling and successful life.",
+      "summary_fr": "Dans 'L'Ego est l'Ennemi', Ryan Holiday examine comment l'ego, défini comme une croyance malsaine en sa propre importance, entrave le succès et l'épanouissement dans divers aspects de la vie. Le livre est divisé en trois parties : Aspiration, Succès et Échec, chacune explorant comment l'ego se manifeste et peut être surmonté à ces différentes étapes. À travers des exemples historiques et des réflexions philosophiques, Holiday souligne l'importance de l'humilité, de la conscience de soi, de la discipline et du but pour atteindre un véritable succès et éviter les pièges d'un comportement guidé par l'ego. Le livre sert de guide pour gérer et minimiser les effets négatifs de l'ego afin de mener une vie plus épanouissante et réussie.",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-07-03T16:51:00.000Z",
+      "lastEditedDate": "2025-09-30T14:10:00.000Z",
+      "isVideo": false,
+      "videoEmbedUrl": null,
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=Ego%20Is%20the%20Enemy",
+        "openLibrary": "https://openlibrary.org/search?q=Ego+Is+the+Enemy",
+        "amazon": "https://www.amazon.com/s?k=Ego%20Is%20the%20Enemy",
+        "goodreads": "https://www.goodreads.com/search?q=Ego%20Is%20the%20Enemy",
+        "bookshop": "https://bookshop.org/search?q=Ego%20Is%20the%20Enemy"
+      }
+    },
+    {
+      "id": "225cfc52-0644-8160-92a9-cb1fd3260df5",
+      "title": "More Money Than God",
+      "author": "Unknown Author",
+      "sourceType": "Book",
+      "mainTheme": "General",
+      "category": [
+        "Financial Analysis",
+        "Asset Management",
+        "Market Theory"
+      ],
+      "topics": [
+        "Alpha",
+        "Leverage",
+        "Hedged Strategies",
+        "Market Inefficiencies",
+        "Risk-Adjusted Return"
+      ],
+      "url": "https://drive.google.com/file/d/15vALI5uDZfIZJYqQoFswhfQnotYKGh07/view",
+      "summary": "More Money Than God chronicles the history of hedge funds and the individuals who shaped the industry. Starting with Alfred Winslow Jones, the book explores the evolution of hedge funds, their strategies, and their impact on financial markets. It covers key figures like George Soros, Julian Robertson, and Michael Steinhardt, examining their investment philosophies and successes. The book also delves into major events such as the 1987 stock market crash, the Asian financial crisis, and the collapse of Long-Term Capital Management, analyzing how hedge funds navigated these events. It discusses the rise of quantitative investing and the increasing influence of hedge funds on global finance, as well as the regulatory challenges and debates surrounding the industry.",
+      "summary_en": "More Money Than God chronicles the history of hedge funds and the individuals who shaped the industry. Starting with Alfred Winslow Jones, the book explores the evolution of hedge funds, their strategies, and their impact on financial markets. It covers key figures like George Soros, Julian Robertson, and Michael Steinhardt, examining their investment philosophies and successes. The book also delves into major events such as the 1987 stock market crash, the Asian financial crisis, and the collapse of Long-Term Capital Management, analyzing how hedge funds navigated these events. It discusses the rise of quantitative investing and the increasing influence of hedge funds on global finance, as well as the regulatory challenges and debates surrounding the industry.",
+      "summary_fr": "More Money Than God chronique l'histoire des fonds spéculatifs et des individus qui ont façonné l'industrie. En commençant par Alfred Winslow Jones, le livre explore l'évolution des fonds spéculatifs, leurs stratégies et leur impact sur les marchés financiers. Il couvre des figures clés comme George Soros, Julian Robertson et Michael Steinhardt, examinant leurs philosophies d'investissement et leurs succès. Le livre plonge également dans des événements majeurs tels que le krach boursier de 1987, la crise financière asiatique et l'effondrement de Long-Term Capital Management, analysant comment les fonds spéculatifs ont navigué à travers ces événements. Il discute de la montée de l'investissement quantitatif et de l'influence croissante des fonds spéculatifs sur la finance mondiale, ainsi que des défis réglementaires et des débats entourant l'industrie.",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-07-03T16:47:00.000Z",
+      "lastEditedDate": "2025-11-03T17:32:00.000Z",
+      "isVideo": false,
+      "videoEmbedUrl": null,
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=More%20Money%20Than%20God",
+        "openLibrary": "https://openlibrary.org/search?q=More+Money+Than+God",
+        "amazon": "https://www.amazon.com/s?k=More%20Money%20Than%20God",
+        "goodreads": "https://www.goodreads.com/search?q=More%20Money%20Than%20God",
+        "bookshop": "https://bookshop.org/search?q=More%20Money%20Than%20God"
+      }
+    },
+    {
+      "id": "225cfc52-0644-814c-a837-cbff1f95d9a1",
+      "title": "Warren Buffett Accounting Book",
+      "author": "Unknown Author",
+      "sourceType": "Book",
+      "mainTheme": "General",
+      "category": [
+        "Value Investing",
+        "Financial Analysis",
+        "Market Theory"
+      ],
+      "topics": [
+        "Value investing",
+        "Financial Statements Analysis",
+        "Intrinsic Value Calculation",
+        "Mr. Market",
+        "Margin of Safety"
+      ],
+      "url": "https://drive.google.com/file/d/1aoAUFIguZwmUVtxHkIjv28EmgDRJLAYF/view",
+      "summary": "Warren Buffett Accounting Book” aims to teach essential accounting terminology and techniques for value investors. It explains how to analyze financial statements (income statement, balance sheet, and cash flow statement) to assess a company's profitability, stability, and value. The book introduces key concepts such as value investing principles, margin of safety, and ratio analysis. It also provides guidance on calculating intrinsic value and understanding the relationship between accounting data and investment decisions. The book emphasizes a long-term investment approach and the importance of understanding a company's fundamentals before investing.",
+      "summary_en": "Warren Buffett Accounting Book” aims to teach essential accounting terminology and techniques for value investors. It explains how to analyze financial statements (income statement, balance sheet, and cash flow statement) to assess a company's profitability, stability, and value. The book introduces key concepts such as value investing principles, margin of safety, and ratio analysis. It also provides guidance on calculating intrinsic value and understanding the relationship between accounting data and investment decisions. The book emphasizes a long-term investment approach and the importance of understanding a company's fundamentals before investing.",
+      "summary_fr": "Le livre \"Warren Buffett Accounting Book\" vise à enseigner la terminologie et les techniques comptables essentielles pour les investisseurs en valeur. Il explique comment analyser les états financiers (compte de résultat, bilan et tableau des flux de trésorerie) pour évaluer la rentabilité, la stabilité et la valeur d'une entreprise. Le livre introduit des concepts clés tels que les principes de l'investissement de valeur, la marge de sécurité et l'analyse des ratios. Il fournit également des conseils sur le calcul de la valeur intrinsèque et la compréhension de la relation entre les données comptables et les décisions d'investissement. Le livre met l'accent sur une approche d'investissement à long terme et l'importance de comprendre les fondamentaux d'une entreprise avant d'investir.",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-07-03T16:23:00.000Z",
+      "lastEditedDate": "2025-11-21T19:56:00.000Z",
+      "isVideo": false,
+      "videoEmbedUrl": null,
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=Warren%20Buffett%20Accounting%20Book",
+        "openLibrary": "https://openlibrary.org/search?q=Warren+Buffett+Accounting+Book",
+        "amazon": "https://www.amazon.com/s?k=Warren%20Buffett%20Accounting%20Book",
+        "goodreads": "https://www.goodreads.com/search?q=Warren%20Buffett%20Accounting%20Book",
+        "bookshop": "https://bookshop.org/search?q=Warren%20Buffett%20Accounting%20Book"
+      }
+    },
+    {
+      "id": "210cfc52-0644-80f8-b5cc-c0ce730fa4b7",
+      "title": "Sam Altman ",
+      "author": "Sam Altman",
+      "sourceType": "Article",
+      "mainTheme": "General",
+      "category": [
+        "Behavioral Finance"
+      ],
+      "topics": [],
+      "url": "https://blog.samaltman.com/the-gentle-singularity",
+      "summary": "Humanity is approaching the creation of digital superintelligence, which will significantly enhance productivity and scientific progress. While challenges exist, such as job displacement and safety concerns, the potential for abundant intelligence and energy could lead to unprecedented advancements. The integration of AI into daily life will transform how tasks are performed, with the expectation that new tools will foster creativity and innovation. Ensuring equitable access to superintelligence and addressing alignment issues will be crucial for maximizing benefits while minimizing risks.",
+      "summary_en": "Humanity is approaching the creation of digital superintelligence, which will significantly enhance productivity and scientific progress. While challenges exist, such as job displacement and safety concerns, the potential for abundant intelligence and energy could lead to unprecedented advancements. The integration of AI into daily life will transform how tasks are performed, with the expectation that new tools will foster creativity and innovation. Ensuring equitable access to superintelligence and addressing alignment issues will be crucial for maximizing benefits while minimizing risks.",
+      "summary_fr": "L'humanité s'approche de la création d'une superintelligence numérique, qui améliorera considérablement la productivité et le progrès scientifique. Bien que des défis existent, tels que le déplacement de l'emploi et les préoccupations en matière de sécurité, le potentiel d'une intelligence et d'une énergie abondantes pourrait conduire à des avancées sans précédent. L'intégration de l'IA dans la vie quotidienne transformera la manière dont les tâches sont effectuées, avec l'espoir que de nouveaux outils favoriseront la créativité et l'innovation. Assurer un accès équitable à la superintelligence et aborder les problèmes d'alignement sera crucial pour maximiser les bénéfices tout en minimisant les risques.",
+      "bubbleBlogStatus": [
+        "Published"
+      ],
+      "status": "Draft",
+      "date": null,
+      "createdDate": "2025-06-12T10:35:00.000Z",
+      "lastEditedDate": "2025-09-30T19:52:00.000Z",
+      "isVideo": false,
+      "videoEmbedUrl": null,
+      "legalLinks": {
+        "googleScholar": "https://scholar.google.com/scholar?q=Sam%20Altman%20%20Sam%20Altman",
+        "openLibrary": "https://openlibrary.org/search?q=Sam+Altman++Sam+Altman",
+        "journal": null
+      }
+    }
+  ]
+}

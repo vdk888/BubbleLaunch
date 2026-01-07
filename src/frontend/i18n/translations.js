@@ -321,6 +321,12 @@ const translations = {
     fr: "Tapez votre message..."
   },
 
+  // Social Proof Section
+  "socialProof.text": {
+    en: "Join 500+ investors on our waitlist",
+    fr: "Rejoignez 500+ investisseurs sur notre liste d'attente"
+  },
+
   // Waitlist Section
   "waitlist.title": {
     en: "Building the Future Together",
@@ -2786,6 +2792,32 @@ const translations = {
   "investors.value.pricing.description": {
     en: "€0-10/month depending on your plan. No percentage-based AUM fees. Transparent pricing.",
     fr: "0-10€/mois selon votre forfait. Pas de frais basés sur le pourcentage du portefeuille. Prix transparent."
+  },
+  "investors.value.education.title": {
+    en: "Educational AI Agent",
+    fr: "Agent IA Éducatif"
+  },
+  "investors.value.education.description": {
+    en: "Bubble provides insights, analysis, and decision support. You maintain complete control: validate each strategy, and execution happens with your approval, never against your will.",
+    fr: "Bubble vous fournit insights, analyses et aide à la décision. Vous conservez le contrôle total : validez chaque stratégie, et l'exécution se fait selon vos approbations, jamais contre votre volonté."
+  },
+  "investors.value.education.cta": {
+    en: "Try for free",
+    fr: "Essayer gratuitement"
+  },
+
+  // Mobile FAB
+  "fab.demo": {
+    en: "Demo",
+    fr: "Démo"
+  },
+  "fab.playground": {
+    en: "Playground",
+    fr: "Playground"
+  },
+  "fab.waitlist": {
+    en: "Sign up",
+    fr: "S'inscrire"
   },
 
   // Investors - Solution Features

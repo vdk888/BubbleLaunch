@@ -230,8 +230,13 @@
         <div class="mobile-nav-overlay" id="mobile-nav-overlay">
           <nav class="mobile-nav">
             <a href="/investors" data-translate="nav.vision">Vision</a>
-            <button class="mobile-nav-link js-retail-demo-trigger" data-entry-point="investor_nav_agent_mobile" data-translate="nav.solution.agent">Agent</button>
-            <a href="/investors/playground" data-translate="nav.solution.education">Playground</a>
+            <div class="mobile-nav-dropdown">
+              <button class="mobile-nav-dropdown-toggle" data-translate="nav.solution">Solution</button>
+              <div class="mobile-nav-dropdown-menu">
+                <button class="mobile-nav-link js-retail-demo-trigger" data-entry-point="investor_nav_agent_mobile" data-translate="nav.solution.agent">Agent</button>
+                <a href="/investors/playground" data-translate="nav.solution.education">Playground</a>
+              </div>
+            </div>
             <a href="/investors/pricing" data-translate="nav.pricing">Tarification</a>
             <a href="/blog" data-translate="nav.blog">Blog</a>
             <a href="/investors#investor-waitlist" data-translate="nav.join">Nous rejoindre</a>
@@ -287,26 +292,52 @@
       </div>
     </section>
 
-    <!-- Playground Promo Banner -->
-    <section class="playground-promo fade-in">
+    <!-- Preview Cards Section -->
+    <section class="preview-cards-section fade-in">
       <div class="container">
-        <div class="playground-promo-content">
-          <div class="playground-promo-badge" data-translate="promo.badge">Nouveau</div>
-          <h2 class="playground-promo-title" data-translate="promo.title">Découvre ton profil d'investisseur</h2>
-          <p class="playground-promo-subtitle" data-translate="promo.subtitle">
-            Un chatbot interactif qui identifie ta tolérance au risque en 5 minutes. 100% gratuit.
-          </p>
-          <div class="playground-promo-ctas">
-            <a href="/investors/playground" class="cta-button playground-btn" data-translate="promo.cta.start">
-              Commencer gratuitement
-            </a>
-            <a href="/investors/playground/resources" class="promo-link" data-translate="promo.cta.learn">
-              En savoir plus
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
+        <div class="preview-cards-grid">
+          <!-- Demo Card -->
+          <div class="preview-card preview-card-demo">
+            <div class="preview-card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"/>
               </svg>
-            </a>
+            </div>
+            <h3 class="preview-card-title" data-translate="preview.demo.title">Decouvre l'Agent Bubble</h3>
+            <p class="preview-card-desc" data-translate="preview.demo.desc">Une demo interactive de 3 minutes</p>
+            <button class="preview-card-cta js-retail-demo-trigger" data-entry-point="preview_card_demo" data-translate="preview.demo.cta">
+              Lancer la demo
+            </button>
           </div>
+
+          <!-- Playground Card -->
+          <a href="/investors/playground" class="preview-card preview-card-playground">
+            <div class="preview-card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                <path d="M2 12h20"/>
+              </svg>
+            </div>
+            <h3 class="preview-card-title" data-translate="preview.playground.title">Explore le Playground</h3>
+            <p class="preview-card-desc" data-translate="preview.playground.desc">Decouvre ton profil de risque gratuitement</p>
+            <span class="preview-card-cta" data-translate="preview.playground.cta">Commencer</span>
+          </a>
+
+          <!-- Waitlist Card -->
+          <a href="#investor-waitlist" class="preview-card preview-card-waitlist">
+            <div class="preview-card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+              </svg>
+            </div>
+            <h3 class="preview-card-title" data-translate="preview.waitlist.title">Acces Anticipe</h3>
+            <p class="preview-card-desc" data-translate="preview.waitlist.desc">Rejoins 500+ investisseurs sur la liste</p>
+            <span class="preview-card-cta" data-translate="preview.waitlist.cta">S'inscrire</span>
+          </a>
         </div>
       </div>
     </section>
@@ -333,14 +364,6 @@
                     <canvas id="performanceChart"></canvas>
                   </div>
                 </div>
-                <!-- START: New Slide 2 - Fee Types -->
-<div class="chart-slide" data-chart-title-key="charts.fees_types_title">
-    <h3 class="chart-title" data-translate="charts.fees_types_title"></h3>
-    <div class="chart-container">
-        <img src="/assets/images/investment-choices-fees.jpg" alt="Investment Fees Breakdown" class="chart-image">
-    </div>
-</div>
-<!-- END: New Slide 2 - Fee Types -->
                 <div
                   class="chart-slide"
                   data-chart-title-key="charts.subscription_advantage_title"
@@ -355,14 +378,6 @@
                     <canvas id="portfolioEvolutionChart"></canvas>
                   </div>
                 </div>
-<!-- START: New Slide 4 - Investment Journey -->
-<div class="chart-slide" data-chart-title-key="charts.journey_title">
-    <h3 class="chart-title" data-translate="charts.journey_title"></h3>
-    <div class="chart-container">
-        <img src="/assets/images/investment-journey-def-en.jpg" alt="Investment Journey Comparison" class="chart-image">
-    </div>
-</div>
-<!-- END: New Slide 4 - Investment Journey -->
               </div>
               <div class="slider-nav">
                 <button class="slider-arrow prev" aria-label="Previous chart">
@@ -397,16 +412,8 @@
               </p>
             </div>
             <div class="chart-description-item" data-slide-index="1">
-              <p class="chart-description">Un portefeuille traditionnel de 200 k€ accumule plusieurs couches de frais : frais de conseil (1-2%), frais de gestion (1,5-2,5%), frais de transaction, frais de plateforme et commissions de performance. Total : 4 000 à 5 400€ par an.</p>
-              <p class="chart-note">Bubble remplace toute cette pile par un seul abonnement transparent : 0 à 10€/mois. Aucun frais caché. Aucuns frais qui augmentent avec votre patrimoine. Vous économisez jusqu'à 87% en gardant le contrôle total.</p>
-            </div>
-            <div class="chart-description-item" data-slide-index="2">
               <p class="chart-description">Tandis que les frais traditionnels augmentent exponentiellement avec votre portefeuille, l'abonnement Bubble de 0 à 10€/mois reste constant, maximisant votre accumulation de patrimoine.</p>
               <p class="chart-note">Comparaison cumulée des frais dans le temps. L'abonnement fixe reste constant tandis que les frais basés sur un pourcentage augmentent exponentiellement.</p>
-            </div>
-            <div class="chart-description-item" data-slide-index="3">
-              <p class="chart-description"><strong>Le parcours actuel est fragmenté et mal aligné.</strong> Bubble rassemble tout dans une plateforme transparente d'aide à la décision : explications claires à chaque étape, analyses puissantes, et vous restez aux commandes du début à la fin.</p>
-              <p class="chart-note"><strong>Parcours traditionnel :</strong> rendez-vous bancaire (attentes) → conseil biaisé (commissions) → sélection de fonds « maison » (chers) → reporting décalé → frais cachés.<br><br><strong>Parcours Bubble :</strong> réponses IA instantanées 24/7, stratégies transparentes avec explications et backtests, suivi automatisé avec instructions exportables, exécution en temps réel sur vos propres comptes courtiers.</p>
             </div>
           </div>
 
@@ -432,72 +439,7 @@
       </div>
     </section>
 
-    <!-- Commodity Statement Section -->
-    <section class="manifesto-commodity-section">
-      <div class="container">
-        <p class="commodity-statement" data-translate="manifesto.commodity"></p>
-      </div>
-    </section>
-
-    <section class="pre-vision-cta fade-in">
-      <div class="container" style="text-align: center; margin-bottom: 2rem;">
-        <a href="#investor-waitlist" class="cta-button primary-btn">
-          Obtenez un accès anticipé
-        </a>
-      </div>
-    </section>
-
-    <!-- Preview Cards Section -->
-    <section class="preview-cards-section fade-in">
-      <div class="container">
-        <div class="preview-cards-grid">
-          <!-- Demo Card -->
-          <div class="preview-card preview-card-demo">
-            <div class="preview-card-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="5 3 19 12 5 21 5 3"/>
-              </svg>
-            </div>
-            <h3 class="preview-card-title" data-translate="preview.demo.title">Découvre l'Agent Bubble</h3>
-            <p class="preview-card-desc" data-translate="preview.demo.desc">Une démo interactive de 3 minutes</p>
-            <button class="preview-card-cta js-retail-demo-trigger" data-entry-point="preview_card_demo" data-translate="preview.demo.cta">
-              Lancer la démo
-            </button>
-          </div>
-
-          <!-- Playground Card -->
-          <a href="/investors/playground" class="preview-card preview-card-playground">
-            <div class="preview-card-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
-                <path d="M2 12h20"/>
-              </svg>
-            </div>
-            <h3 class="preview-card-title" data-translate="preview.playground.title">Explore le Playground</h3>
-            <p class="preview-card-desc" data-translate="preview.playground.desc">Découvre ton profil de risque gratuitement</p>
-            <span class="preview-card-cta" data-translate="preview.playground.cta">Commencer</span>
-          </a>
-
-          <!-- Waitlist Card -->
-          <a href="#investor-waitlist" class="preview-card preview-card-waitlist">
-            <div class="preview-card-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
-                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
-              </svg>
-            </div>
-            <h3 class="preview-card-title" data-translate="preview.waitlist.title">Accès Anticipé</h3>
-            <p class="preview-card-desc" data-translate="preview.waitlist.desc">Rejoins 500+ investisseurs sur la liste</p>
-            <span class="preview-card-cta" data-translate="preview.waitlist.cta">S'inscrire</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- What We're Building Section -->
+    <!-- What We're Building + Value Proposition Section (Merged) -->
     <section id="vision" class="vision fade-in">
       <div class="container">
         <h2 data-translate="vision.title">Ce Que Nous Construisons</h2>
@@ -507,65 +449,26 @@
             Un Agent IA d'Investissement Complet
           </h3>
           <p data-translate="vision.platform.description1">
-            Nous développons l'outil que nous utilisons pour nos propres investissements : un gérant privé dans votre poche, sur sa propre application ou directement dans ChatGPT, à moindre coût : un prix fixe (ex: 0-10€/mois) au lieu des 2% de frais traditionnels sur encours.
+            Nous developpons l'outil que nous utilisons pour nos propres investissements : un gerant prive dans votre poche, sur sa propre application ou directement dans ChatGPT, a moindre cout : un prix fixe (ex: 0-10€/mois) au lieu des 2% de frais traditionnels sur encours.
           </p>
           <div style="text-align: center; margin: 2rem 0;">
             <img src="/assets/images/bubble-investment-journey.png" alt="Bubble Investment Journey" style="max-width: 100%; height: auto; max-height: 400px;">
           </div>
           <p data-translate="vision.platform.description2">
-            Un agent qui s'adapte à VOTRE focus d'actifs : vous n'êtes pas enfermé dans des portefeuilles pré-packagés par votre banquier. Chaque stratégie est transparente et expliquée pour que vous compreniez exactement tout ce qui s'y passe. L'expertise financière est désormais une commodité—accessible à tous grâce à l'IA, quelle que soit la taille du portefeuille.
+            Un agent qui s'adapte a VOTRE focus d'actifs : vous n'etes pas enferme dans des portefeuilles pre-packages par votre banquier. Chaque strategie est transparente et expliquee pour que vous compreniez exactement tout ce qui s'y passe. L'expertise financiere est desormais une commodite—accessible a tous grace a l'IA, quelle que soit la taille du portefeuille.
           </p>
-          <div style="text-align: center; margin-top: 2rem;">
-            <a href="#investor-waitlist" class="cta-button primary-btn" data-translate="vision.platform.cta">
-              Obtenir un accès anticipé
-            </a>
-          </div>
-          <div style="text-align: center; margin-top: 1rem;">
-            <a href="/investors/playground" class="cta-button secondary-btn" data-translate="vision.platform.simulator">
-              Playground
-            </a>
-          </div>
         </div>
 
-        <div class="features-grid">
-          <div class="feature-item">
-            <h4 data-translate="vision.cost.title">
-              Structure de Coûts Repensée
-            </h4>
-            <p data-translate="vision.cost.description">
-              Abonnement fixe (ex : 0 à 10€/mois) plutôt qu'un pourcentage de vos
-              actifs. L'automatisation nous permet de réduire drastiquement les
-              frais.
-            </p>
-          </div>
-          <div class="feature-item">
-            <h4 data-translate="vision.ai.title">Expertise IA Accessible</h4>
-            <p data-translate="vision.ai.description">
-              L'IA conversationnelle de Bubble traduit des analyses complexes en assistance décisionnelle claire pour que vous puissiez examiner les scénarios et choisir vous-même la suite.
-            </p>
-          </div>
-          <div class="feature-item">
-            <h4 data-translate="vision.crypto.title">Actifs Diversifiés</h4>
-            <p data-translate="vision.crypto.description">
-              Nos portefeuilles intègrent les cryptomonnaies pour s'adapter à
-              l'évolution du paysage financier.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Value Proposition Section -->
-    <section class="platform-section fade-in">
-      <div class="container">
-        <div style="text-align: center; margin-bottom: 3rem;">
-          <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">
+        <!-- Your Investment Superpowers -->
+        <div style="text-align: center; margin: 3rem 0 2rem 0;">
+          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">
             Vos Super-Pouvoirs d'Investissement
-          </h2>
-          <p style="font-size: 1.2rem; color: #666;">
-            Vous décidez, Bubble exécute.
+          </h3>
+          <p style="font-size: 1.1rem; color: #666;">
+            Vous decidez, Bubble execute.
           </p>
         </div>
+
         <div class="features-grid">
           <div class="platform-card">
             <div class="card-icon">
@@ -575,7 +478,7 @@
               </svg>
             </div>
             <h3 data-translate="investors.value.screening.title">Screening Intelligent</h3>
-            <p data-translate="investors.value.screening.description">Trouvez les meilleures opportunités d'investissement avec notre moteur de screening alimenté par l'IA.</p>
+            <p data-translate="investors.value.screening.description">Trouvez les meilleures opportunites d'investissement avec notre moteur de screening alimente par l'IA.</p>
           </div>
 
           <div class="platform-card">
@@ -586,7 +489,7 @@
               </svg>
             </div>
             <h3 data-translate="investors.value.backtest.title">Backtesting Approfondi</h3>
-            <p data-translate="investors.value.backtest.description">Testez vos stratégies sur 20 ans de données historiques avant d'investir votre argent réel.</p>
+            <p data-translate="investors.value.backtest.description">Testez vos strategies sur 20 ans de donnees historiques avant d'investir votre argent reel.</p>
           </div>
 
           <div class="platform-card">
@@ -596,8 +499,8 @@
                 <path d="M12 6v6l4 2"></path>
               </svg>
             </div>
-            <h3 data-translate="investors.value.automation.title">Exécution Automatisée</h3>
-            <p data-translate="investors.value.automation.description">Automatisez l'exécution de vos stratégies auprès de vos courtiers préférés (IBKR, Alpaca, Saxo Bank).</p>
+            <h3 data-translate="investors.value.automation.title">Execution Automatisee</h3>
+            <p data-translate="investors.value.automation.description">Automatisez l'execution de vos strategies aupres de vos courtiers preferes (IBKR, Alpaca, Saxo Bank).</p>
           </div>
 
           <div class="platform-card">
@@ -606,8 +509,8 @@
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
               </svg>
             </div>
-            <h3 data-translate="investors.value.control.title">100% du Contrôle</h3>
-            <p data-translate="investors.value.control.description">Gardez le contrôle total de vos décisions. Bubble fournit des insights, pas des recommandations obligatoires.</p>
+            <h3 data-translate="investors.value.control.title">100% du Controle</h3>
+            <p data-translate="investors.value.control.description">Gardez le controle total de vos decisions. Bubble fournit des insights, pas des recommandations obligatoires.</p>
           </div>
 
           <div class="platform-card">
@@ -617,22 +520,17 @@
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
               </svg>
             </div>
-            <h3 data-translate="investors.value.pricing.title">Frais Équitables</h3>
-            <p data-translate="investors.value.pricing.description"><strong>0-10€/mois selon votre forfait.</strong> Pas de frais sur encours, pas d'intermédiaires coûteux. Nos intérêts sont alignés avec les vôtres.</p>
-          </div>
-
-          <div class="platform-card">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2"/>
-                <path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>
-              </svg>
-            </div>
-            <h3 data-translate="investors.value.education.title">Agent IA Éducatif</h3>
-            <p data-translate="investors.value.education.description">Bubble vous fournit insights, analyses et aide à la décision. Vous conservez le contrôle total : validez chaque stratégie, et l'exécution se fait selon vos approbations, jamais contre votre volonté.</p>
-            <a href="/investors/playground" class="feature-card-link" data-translate="investors.value.education.cta">Essayer gratuitement</a>
+            <h3 data-translate="investors.value.pricing.title">Frais Equitables</h3>
+            <p data-translate="investors.value.pricing.description"><strong>0-10€/mois selon votre forfait.</strong> Pas de frais sur encours, pas d'intermediaires couteux. Nos interets sont alignes avec les votres.</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof-section fade-in">
+      <div class="container">
+        <p class="social-proof-text" data-translate="socialProof.text">Rejoignez 500+ investisseurs sur notre liste d'attente</p>
       </div>
     </section>
 
@@ -772,80 +670,51 @@
 
           <details class="faq-item">
             <summary>
-              <h3>Bubble est-il adapté aux débutants ?</h3>
+              <h3>Bubble est-il adapte aux debutants ?</h3>
             </summary>
             <p>
-              <strong>Oui.</strong> Notre agent conversationnel est conçu pour <strong>éduquer et guider</strong> :
+              <strong>Oui.</strong> Notre agent conversationnel est concu pour <strong>eduquer et guider</strong> :
               <br><br>
-              • <strong>Explications en langage simple</strong> : pas de jargon technique<br>
-              • <strong>Stratégies prédéfinies ou personnalisées</strong> : choisissez parmi nos stratégies éprouvées ou créez votre propre mix selon vos préférences<br>
-              • <strong>Recommandations personnalisées</strong> basées sur vos réponses<br>
-              • <strong>Backtests éducatifs</strong> : comprenez comment chaque stratégie réagit aux crises
+              - <strong>Explications en langage simple</strong> : pas de jargon technique<br>
+              - <strong>Strategies predefinies ou personnalisees</strong> : choisissez parmi nos strategies eprouvees ou creez votre propre mix selon vos preferences<br>
+              - <strong>Recommandations personnalisees</strong> basees sur vos reponses<br>
+              - <strong>Backtests educatifs</strong> : comprenez comment chaque strategie reagit aux crises
               <br><br>
-              Vous n'avez pas besoin d'être un expert en finance quantitative.
-            </p>
-          </details>
-
-          <details class="faq-item">
-            <summary>
-              <h3>Quelle est la différence avec ChatGPT + finance ?</h3>
-            </summary>
-            <p>
-              ChatGPT peut discuter de finance, mais <strong>ne peut pas :</strong>
-              <br><br>
-              ❌ Accéder à vos données de portefeuille en temps réel<br>
-              ❌ Backtester des stratégies sur 17+ ans de données historiques<br>
-              ❌ Se connecter à votre courtier pour exécuter des ordres<br>
-              ❌ Monitorer vos positions et vous alerter de rebalancements
-              <br><br>
-              Bubble est un <strong>agent spécialisé</strong>, avec accès aux données de marché,
-              moteur de backtest, et intégrations courtiers. ChatGPT est généraliste.
-            </p>
-          </details>
-
-          <details class="faq-item">
-            <summary>
-              <h3>Combien puis-je économiser par rapport à un gestionnaire traditionnel ?</h3>
-            </summary>
-            <p>
-              <strong>Énormément.</strong> Voici un exemple concret :
-              <br><br>
-              <strong>Portefeuille de €100 000</strong>
-              <br>
-              • <strong>Gestionnaire traditionnel :</strong> €850–1 600/an (frais de 0,85%–1,6% des actifs)<br>
-              • <strong>Bubble PRO :</strong> €120/an (10€/mois)<br>
-              <strong>→ Vous économisez : €730–1 480/an (87% de réduction)</strong>
-              <br><br>
-              Et votre coût <strong>ne change pas si votre portefeuille grandit</strong> de €100k à €1M.
-              <br>
-              Avec un gestionnaire traditionnel, vous paieriez €8 500–16 000/an sur €1M.
-            </p>
-          </details>
-
-          <details class="faq-item">
-            <summary>
-              <h3>Pourquoi Bubble ne facture-t-il pas un % des actifs comme les conseillers traditionnels ?</h3>
-            </summary>
-            <p>
-              Parce que <strong>les frais basés sur les actifs créent un conflit d'intérêts</strong>.
-              <br><br>
-              <strong>Les conseillers traditionnels gagnent plus si :</strong><br>
-              • Votre portefeuille devient plus grand (pas nécessairement mieux)<br>
-              • Vous faites plus de transactions (frais de gestion additionnels)<br>
-              • Vous restez client longtemps (même si vos besoins changent)
-              <br><br>
-              <strong>Bubble fonctionne différemment :</strong><br>
-              • Nous facturons l'<strong>infrastructure que vous utilisez</strong> (serveurs, données, IA)<br>
-              • Nos coûts ne dépendent pas de la taille de votre portefeuille<br>
-              • <strong>Notre intérêt aligné avec le vôtre :</strong> vous aider à investir mieux, pas à gérer plus d'argent
-              <br><br>
-              C'est plus <strong>transparent, juste, et éthique</strong>.
+              Vous n'avez pas besoin d'etre un expert en finance quantitative.
             </p>
           </details>
         </div>
       </div>
     </section>
 
+    <!-- Mobile FAB -->
+    <div class="mobile-fab" id="mobile-fab">
+      <button class="fab-toggle" id="fab-toggle" aria-label="Quick actions">
+        <svg class="fab-icon-open" width="24" height="24" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+          <circle cx="59" cy="21" r="6" fill="currentColor"/>
+        </svg>
+        <svg class="fab-icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div class="fab-actions" id="fab-actions">
+        <a href="#investor-waitlist" class="fab-action fab-action-waitlist" data-translate="fab.waitlist">
+          <span class="fab-action-label">S'inscrire</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </a>
+        <button class="fab-action fab-action-demo js-retail-demo-trigger" data-entry-point="fab_mobile_demo" data-translate="fab.demo">
+          <span class="fab-action-label">Demo</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+        </button>
+      </div>
+    </div>
 
     <footer>
       <div class="container">
@@ -1023,5 +892,75 @@
     <script src="/js/pricing-workflow-demo.js"></script>
   
 <script src="../js/seo/ga4-events.js"></script>
+
+    <!-- Mobile FAB Script -->
+    <script>
+      (function() {
+        const fab = document.getElementById('mobile-fab');
+        const fabToggle = document.getElementById('fab-toggle');
+        const floatingInput = document.getElementById('floating-chat-input');
+        const chatPanel = document.getElementById('chat-side-panel');
+        let lastScrollY = 0;
+        let ticking = false;
+
+        function updateFabVisibility() {
+          const scrollY = window.scrollY;
+          const isChatVisible = (floatingInput && !floatingInput.classList.contains('hidden')) ||
+                                (chatPanel && chatPanel.classList.contains('open'));
+
+          if (scrollY > 300 && !isChatVisible) {
+            fab.classList.add('visible');
+            fab.classList.remove('hidden-by-chat');
+          } else if (isChatVisible) {
+            fab.classList.add('hidden-by-chat');
+            fab.classList.remove('visible');
+          } else {
+            fab.classList.remove('visible');
+          }
+
+          lastScrollY = scrollY;
+          ticking = false;
+        }
+
+        function onScroll() {
+          if (!ticking) {
+            requestAnimationFrame(updateFabVisibility);
+            ticking = true;
+          }
+        }
+
+        fabToggle.addEventListener('click', function() {
+          fab.classList.toggle('open');
+        });
+
+        // Close FAB when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!fab.contains(e.target) && fab.classList.contains('open')) {
+            fab.classList.remove('open');
+          }
+        });
+
+        // Close FAB when action is clicked
+        document.querySelectorAll('.fab-action').forEach(function(action) {
+          action.addEventListener('click', function() {
+            fab.classList.remove('open');
+          });
+        });
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Observe chat visibility changes
+        if (floatingInput) {
+          const observer = new MutationObserver(updateFabVisibility);
+          observer.observe(floatingInput, { attributes: true, attributeFilter: ['class'] });
+        }
+        if (chatPanel) {
+          const observer = new MutationObserver(updateFabVisibility);
+          observer.observe(chatPanel, { attributes: true, attributeFilter: ['class'] });
+        }
+
+        updateFabVisibility();
+      })();
+    </script>
 </body>
 </html>

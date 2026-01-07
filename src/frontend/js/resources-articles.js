@@ -51,12 +51,22 @@ function createArticleCard(article) {
 
   // Use featured image if available, otherwise use placeholder
   const imageHTML = article.featuredImage
-    ? `<img src="${article.featuredImage}" alt="${article.title}" class="article-image" loading="lazy" />`
+    ? `<img src="${article.featuredImage}" alt="${(article.title.fr || article.title)}" class="article-image" loading="lazy" />`
     : `<div class="article-image-placeholder">📰</div>`;
 
   // Get article title and summary for the current language
-  const title = langCode === 'en' ? (article.titleEn || article.title) : article.title;
-  const summary = langCode === 'en' ? (article.summaryEn || article.summary) : (article.summary || '');
+  let title = article.title;
+  if (typeof title === 'object' && title !== null) {
+    title = langCode === 'en' ? (title.en || title.fr) : (title.fr || title.en);
+  }
+
+  let summary = article.summary;
+  if (typeof summary === 'object' && summary !== null) {
+    summary = langCode === 'en' ? (summary.en || summary.fr) : (summary.fr || summary.en);
+  } else {
+    // Legacy fallback
+    summary = langCode === 'en' ? (article.summaryEn || article.summary) : (article.summary || '');
+  }
 
   return `
     <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="article-card">
@@ -112,7 +122,11 @@ async function loadBlogArticles() {
     // Filter articles with educational tone (by tags or title)
     const educationalArticles = articles.filter(article => {
       const tags = (article.tags || []).map(t => t.toLowerCase());
-      const title = (article.title || '').toLowerCase();
+      
+      // Handle title object {fr, en} or string
+      const titleObj = article.title || {};
+      const titleStr = typeof titleObj === 'string' ? titleObj : (titleObj.fr || titleObj.en || '');
+      const title = titleStr.toLowerCase();
 
       // Include articles with educational tags
       const educationalTags = [

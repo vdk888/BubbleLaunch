@@ -1488,8 +1488,13 @@
         <div class="mobile-nav-overlay" id="mobile-nav-overlay">
           <nav class="mobile-nav">
             <a href="/en/investors" data-translate="nav.vision">Vision</a>
-            <button class="mobile-nav-link js-retail-demo-trigger" data-entry-point="investor_nav_agent_mobile" data-translate="nav.solution.agent">Agent</button>
-            <a href="/en/investors/portfolio-simulator" data-translate="nav.solution.education">Education</a>
+            <div class="mobile-nav-dropdown">
+              <button class="mobile-nav-dropdown-toggle" data-translate="nav.solution">Solution</button>
+              <div class="mobile-nav-dropdown-menu">
+                <button class="mobile-nav-link js-retail-demo-trigger" data-entry-point="investor_nav_agent_mobile" data-translate="nav.solution.agent">Agent</button>
+                <a href="/en/investors/portfolio-simulator" data-translate="nav.solution.education">Education</a>
+              </div>
+            </div>
             <a href="/en/investors/pricing" data-translate="nav.pricing">Pricing</a>
             <a href="/en/blog" data-translate="nav.blog">Blog</a>
             <a href="/en/investors#investor-waitlist" data-translate="nav.join">Join us</a>
