@@ -61,7 +61,88 @@
     language: document.documentElement.lang || 'fr',
     chatHistory: [],
     selectedBot: null, // Track selected bot for highlighting
+    previousLeaderboard: [], // Track previous leaderboard for change detection
   };
+
+  // ═══════════════════════════════════════════════════════════════
+  // Onboarding Awareness Check
+  // ═══════════════════════════════════════════════════════════════
+
+  const PLAYGROUND_SESSION_KEY = 'bubblePlaygroundFullscreenSession';
+  const ONBOARDING_DISMISSED_KEY = 'arenaOnboardingPromptDismissed';
+
+  /**
+   * Check if user has completed onboarding in playground
+   * @returns {boolean}
+   */
+  function hasCompletedOnboarding() {
+    const stored = sessionStorage.getItem(PLAYGROUND_SESSION_KEY);
+    if (!stored) return false;
+    try {
+      const session = JSON.parse(stored);
+      // User completed onboarding if they have a profile or completed quiz
+      return session.profile !== null || (session.scores && session.scores.length > 0);
+    } catch {
+      return false;
+    }
+  }
+
+  /**
+   * Show onboarding prompt if user hasn't completed playground onboarding
+   */
+  function checkOnboardingAwareness() {
+    // Skip if already dismissed or completed
+    if (sessionStorage.getItem(ONBOARDING_DISMISSED_KEY)) return;
+    if (hasCompletedOnboarding()) return;
+
+    const lang = state.language;
+    const container = document.querySelector('.arena-container');
+    if (!container) return;
+
+    const prompt = document.createElement('div');
+    prompt.id = 'arenaOnboardingPrompt';
+    prompt.className = 'arena-onboarding-prompt';
+    prompt.innerHTML = `
+      <div class="onboarding-prompt-content">
+        <div class="onboarding-prompt-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+        </div>
+        <div class="onboarding-prompt-text">
+          <strong>${lang === 'fr' ? 'Nouveau ici ?' : 'New here?'}</strong>
+          <p>${lang === 'fr'
+            ? "L'Arena est plus fun une fois que tu comprends les bases. Envie d'un petit tour d'abord ?"
+            : "The Arena is more fun once you understand the basics. Want a quick tour first?"}</p>
+        </div>
+        <div class="onboarding-prompt-actions">
+          <a href="${lang === 'fr' ? '/investors/playground' : '/en/investors/playground'}" class="onboarding-prompt-btn primary">
+            ${lang === 'fr' ? 'Commencer le Tour' : 'Start Onboarding'}
+          </a>
+          <button class="onboarding-prompt-btn secondary" id="dismissOnboardingPrompt">
+            ${lang === 'fr' ? "Non merci, j'explore" : "No thanks, I'll explore"}
+          </button>
+        </div>
+      </div>
+    `;
+
+    // Insert after back button
+    const backBtn = container.querySelector('.back-button');
+    if (backBtn && backBtn.nextSibling) {
+      container.insertBefore(prompt, backBtn.nextSibling);
+    } else {
+      container.insertBefore(prompt, container.firstChild);
+    }
+
+    // Dismiss handler
+    document.getElementById('dismissOnboardingPrompt')?.addEventListener('click', () => {
+      sessionStorage.setItem(ONBOARDING_DISMISSED_KEY, 'true');
+      prompt.classList.add('dismissed');
+      setTimeout(() => prompt.remove(), 300);
+    });
+  }
 
   // ═══════════════════════════════════════════════════════════════
   // Helper Functions
@@ -122,6 +203,9 @@
     // Detect language
     detectLanguage();
 
+    // Check onboarding awareness
+    checkOnboardingAwareness();
+
     // Load timeline data
     try {
       await loadTimelineData();
@@ -147,7 +231,62 @@
     // Initialize tutorial overlay
     initTutorial();
 
+    // Expose arena state for chatbot integration
+    exposeArenaState();
+
     console.log('[Arena] Initialization complete');
+  }
+
+  /**
+   * Expose arena state globally for chatbot context integration
+   */
+  function exposeArenaState() {
+    window.arenaState = {
+      getCurrentState: () => {
+        const frame = state.frames[state.currentFrameIndex];
+        if (!frame) return null;
+
+        // Build leaderboard
+        const leaderboard = Object.entries(frame.bots)
+          .map(([botId, data]) => ({
+            bot: botId,
+            name: getBotName(botId),
+            pnl: data.pnlPercent,
+          }))
+          .sort((a, b) => b.pnl - a.pnl);
+
+        return {
+          currentFrame: state.currentFrameIndex,
+          totalFrames: state.frames.length,
+          currentMonth: frame.month,
+          isPlaying: state.isPlaying,
+          playbackSpeed: CONFIG.PLAYBACK_SPEEDS[state.playbackSpeedIndex],
+          leadingBot: leaderboard[0]?.bot || null,
+          leadingBotName: leaderboard[0]?.name || null,
+          recentEvent: frame.event ? {
+            type: frame.event.type,
+            label: frame.event.label[state.language] || frame.event.label.fr,
+          } : null,
+          leaderboard: leaderboard,
+          language: state.language,
+        };
+      },
+      jumpToFrame: (frameIndex) => {
+        if (frameIndex >= 0 && frameIndex < state.frames.length) {
+          updateFrame(frameIndex);
+          if (elements.timelineSlider) {
+            elements.timelineSlider.value = frameIndex;
+          }
+        }
+      },
+      togglePlayback: () => {
+        togglePlayback();
+      },
+      getBotName: getBotName,
+    };
+
+    // Dispatch event to notify chatbot that arena state is available
+    window.dispatchEvent(new CustomEvent('arenaStateReady', { detail: window.arenaState }));
   }
 
   function cacheElements() {
@@ -800,6 +939,15 @@
     // Toggle playing class for CSS styling (stops pulse animation)
     if (elements.playPauseBtn) {
       elements.playPauseBtn.classList.toggle('playing', state.isPlaying);
+
+      // Add tap animation
+      elements.playPauseBtn.classList.add('tapped');
+      setTimeout(() => elements.playPauseBtn.classList.remove('tapped'), 150);
+    }
+
+    // Trigger haptic feedback on mobile
+    if ('vibrate' in navigator) {
+      navigator.vibrate(10);
     }
 
     if (state.isPlaying) {
@@ -860,6 +1008,11 @@
   function handleSliderInput(e) {
     const frameIndex = parseInt(e.target.value, 10);
     updateFrame(frameIndex);
+
+    // Trigger haptic feedback if supported (mobile)
+    if ('vibrate' in navigator) {
+      navigator.vibrate(5); // Light haptic feedback
+    }
 
     // Pause playback when manually scrubbing
     if (state.isPlaying) {
@@ -1005,12 +1158,33 @@
       }))
       .sort((a, b) => b.pnl - a.pnl);
 
-    // Build leaderboard HTML
+    // Check for position changes from previous leaderboard
+    const previousRanks = {};
+    state.previousLeaderboard.forEach((bot, idx) => {
+      previousRanks[bot.botId] = idx + 1;
+    });
+
+    // Build leaderboard HTML with change indicators
     const html = botRankings
-      .map(
-        (bot, index) => `
-      <div class="leaderboard-item ${index === 0 ? 'leader' : ''}" data-rank="${index + 1}">
-        <div class="leaderboard-rank">${index + 1}</div>
+      .map((bot, index) => {
+        const currentRank = index + 1;
+        const previousRank = previousRanks[bot.botId];
+        let changeClass = '';
+        let changeIndicator = '';
+
+        if (previousRank !== undefined && previousRank !== currentRank) {
+          if (currentRank < previousRank) {
+            changeClass = 'rank-up';
+            changeIndicator = '<span class="rank-change up">&#9650;</span>';
+          } else {
+            changeClass = 'rank-down';
+            changeIndicator = '<span class="rank-change down">&#9660;</span>';
+          }
+        }
+
+        return `
+      <div class="leaderboard-item ${index === 0 ? 'leader' : ''} ${changeClass}" data-rank="${currentRank}" data-bot="${bot.botId}">
+        <div class="leaderboard-rank">${currentRank}${changeIndicator}</div>
         <div class="leaderboard-bot-info">
           <div class="leaderboard-bot-avatar" style="--bot-color: ${bot.color}">${bot.initial}</div>
           <span class="leaderboard-bot-name">${bot.name}</span>
@@ -1019,11 +1193,22 @@
           ${bot.pnl >= 0 ? '+' : ''}${bot.pnl.toFixed(2)}%
         </span>
       </div>
-    `
-      )
+    `;
+      })
       .join('');
 
     elements.leaderboardList.innerHTML = html;
+
+    // Store current leaderboard for next comparison
+    state.previousLeaderboard = [...botRankings];
+
+    // Trigger highlight animation for changed positions
+    requestAnimationFrame(() => {
+      elements.leaderboardList.querySelectorAll('.rank-up, .rank-down').forEach((item) => {
+        item.classList.add('highlight');
+        setTimeout(() => item.classList.remove('highlight', 'rank-up', 'rank-down'), 600);
+      });
+    });
   }
 
   // ═══════════════════════════════════════════════════════════════

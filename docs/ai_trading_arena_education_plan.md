@@ -55,13 +55,22 @@ Two **separate but connected** educational experiences, both driven by **natural
 **Progress Log (Dec 2025)**:
 - Education pages (FR/EN hub, arena, simulator) now tagged `noindex, nofollow` via meta and `X-Robots-Tag` headers so they stay reachable by URL but out of search until we replace `/investors/portfolio-simulator`; no other site pages touched.
 
-**Audit Status (Jan 2026)**:
+**Audit Status (Jan 2026)** *(Updated 2026-01-08)*:
 - Phase 1 (mock FR/EN pages at /investors/education, /arena, /simulator) ✅ live with tutorials + chat; SEO set to `noindex`.
 - Phase 2 (owner review/validation) ⚠️ not recorded as complete.
 - Phase 3 (replace `/investors/portfolio-simulator`) ⏳ not started; nav still points to legacy simulator; no replacement/redirect.
 - Phase 4 (redirect old simulator to education hub) ⏳ not started.
-- Legacy parity gaps remain: education simulator is single-series, 20y-only backtest; missing period/leverage toggles, ETF baselines, multi-strategy overlays, allocation history, metrics table, exports; chat not yet wired to trigger those controls.
-- Compliance/analytics gaps from “Known Gaps” still open (gate modal, achievements, prediction mode, analytics wiring).
+- ✅ **NEW (Jan 8, 2026)**: Major UX improvements via multi-agent orchestration:
+  - `window.simulatorBridge` API: setAllocation, setLeverage, setPeriod, toggleStrategy, getCurrentState, getMetricsSummary
+  - `window.arenaState` API: getCurrentState, jumpToFrame, togglePlayback, getBotName
+  - Onboarding awareness in both pages (checks `bubblePlaygroundFullscreenSession`)
+  - Action-based chatbot suggestions with chat-UI sync
+  - Metric tooltips with info icons (hover/tap)
+  - Mobile carousel for strategy chips (scroll-snap)
+  - Leaderboard rank change indicators (▲▼) with animations
+  - Haptic feedback for timeline scrubbing
+- Legacy parity gaps remain: education simulator is single-series, 20y-only backtest; missing period/leverage toggles, ETF baselines, multi-strategy overlays, allocation history, metrics table, exports. **Note**: simulatorBridge API now supports period/leverage programmatically but UI controls not yet added.
+- Compliance/analytics gaps from "Known Gaps" still open (gate modal, achievements, prediction mode, analytics wiring).
 
 **Implementation Plan — Strategy Simulator parity with legacy portfolio simulator**
 - **UX parity (desktop/mobile)**: Desktop keeps full controls (periods, leverage, overlays, toggles) while the chatbot can drive all the same actions; mobile defaults to chatbot-first but can collapse the chat to reveal controls. Every action (chat or click) should update the same state and re-run the backtest.

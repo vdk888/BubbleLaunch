@@ -6401,3 +6401,909 @@ body.chat-open .chat-fab {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   SIMULATOR IMPROVEMENTS - Phase 2
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Task 1: Onboarding CTA in Chat */
+.education-chat-onboarding-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(139, 92, 246, 0.08));
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 16px;
+  animation: fadeInUp 0.4s ease;
+}
+
+.onboarding-start-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.25rem;
+  background: linear-gradient(135deg, #667eea, #8b5cf6);
+  color: white;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.onboarding-start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.onboarding-start-btn:active {
+  transform: scale(0.98);
+}
+
+.onboarding-skip-btn {
+  padding: 0.625rem 1rem;
+  background: transparent;
+  color: var(--education-neutral);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.onboarding-skip-btn:hover {
+  color: var(--education-primary);
+}
+
+/* Task 2: Hide "Describe your strategy" card on mobile */
+@media (max-width: 768px) {
+  .simulator-chat-hero {
+    display: none !important;
+  }
+}
+
+/* Task 5: Metrics Tooltips */
+.results-metric-card {
+  position: relative;
+}
+
+.metric-info-icon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 18px;
+  height: 18px;
+  color: var(--education-neutral);
+  opacity: 0.5;
+  cursor: help;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.metric-info-icon:hover {
+  opacity: 1;
+  color: var(--education-accent);
+}
+
+.metric-tooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 240px;
+  padding: 0.75rem 1rem;
+  background: var(--education-primary);
+  color: white;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.metric-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: var(--education-primary);
+}
+
+.results-metric-card:hover .metric-tooltip,
+.results-metric-card:focus-within .metric-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.metric-tooltip-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.6875rem;
+  text-decoration: underline;
+}
+
+.metric-tooltip-link:hover {
+  color: white;
+}
+
+/* Mobile: tap to show tooltip */
+@media (max-width: 768px) {
+  .metric-tooltip {
+    left: 0;
+    right: 0;
+    transform: none;
+    max-width: none;
+    margin: 0 -0.5rem;
+  }
+
+  .metric-tooltip::before {
+    left: calc(50% - 6px);
+    transform: none;
+  }
+}
+
+/* Task 6: Strategy Presets Mobile Carousel */
+@media (max-width: 768px) {
+  .baseline-toggles {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+    margin: 0 -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    scrollbar-width: none;
+  }
+
+  .baseline-toggles::-webkit-scrollbar {
+    display: none;
+  }
+
+  .baseline-chip,
+  .etf-chip {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .comparison-chips {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0.5rem 0;
+  }
+
+  .comparison-chips::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Task 7: Control Info Icons */
+.control-info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-left: 0.25rem;
+  color: var(--education-neutral);
+  opacity: 0.6;
+  cursor: help;
+  transition: opacity 0.2s ease;
+  vertical-align: middle;
+}
+
+.control-info-icon:hover {
+  opacity: 1;
+}
+
+.control-label-with-tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.control-tooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: max-content;
+  max-width: 220px;
+  padding: 0.625rem 0.875rem;
+  background: var(--education-primary);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.4;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.control-label-with-tooltip:hover .control-tooltip,
+.control-label-with-tooltip:focus-within .control-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Task 8: Chart Legend Cleanup */
+.chart-legend-item.hidden {
+  display: none !important;
+}
+
+.chart-legend-item:not(.active) {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Task 9: Remove vs bet card - hide by default */
+.vs-bet-card,
+.comparison-vs-bet {
+  display: none !important;
+}
+
+/* Task 10: Smooth Animations */
+.simulator-results-panel,
+.results-metric-card,
+.results-chart-container,
+.allocation-sliders-panel,
+.simulator-controls-row,
+.comparison-section {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.results-metric-value {
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.results-metric-value.animating {
+  animation: metricPulse 0.4s ease;
+}
+
+@keyframes metricPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Panel expand/collapse animation */
+.comparison-chips {
+  transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.2s ease;
+}
+
+.comparison-chips.collapsed {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+}
+
+/* Chart update animation */
+.results-chart-container canvas {
+  transition: opacity 0.15s ease;
+}
+
+.results-chart-container.updating canvas {
+  opacity: 0.6;
+}
+
+/* Slider animation */
+.slider-track-fill {
+  transition: width 0.15s ease-out;
+}
+
+/* Mobile-specific animation tweaks */
+@media (max-width: 768px) {
+  /* Reduce motion on mobile for performance */
+  .simulator-results-panel,
+  .results-metric-card,
+  .results-chart-container {
+    transition-duration: 0.2s;
+  }
+
+  /* Disable transform animations on low-power devices */
+  @media (prefers-reduced-motion: reduce) {
+    .results-metric-value.animating,
+    .comparison-chips,
+    .slider-track-fill {
+      transition: none;
+      animation: none;
+    }
+  }
+}
+
+/* Strategy pill info tooltips */
+.baseline-chip,
+.etf-chip {
+  position: relative;
+}
+
+.chip-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 200px;
+  padding: 0.5rem 0.75rem;
+  background: var(--education-primary);
+  color: white;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  white-space: normal;
+  text-align: center;
+}
+
+.chip-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--education-primary);
+}
+
+.baseline-chip:hover .chip-tooltip,
+.etf-chip:hover .chip-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile: touch to show */
+@media (max-width: 768px) {
+  .chip-tooltip {
+    bottom: auto;
+    top: calc(100% + 8px);
+    font-size: 0.75rem;
+    max-width: 180px;
+  }
+
+  .chip-tooltip::after {
+    top: auto;
+    bottom: 100%;
+    border-top-color: transparent;
+    border-bottom-color: var(--education-primary);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ARENA IMPROVEMENTS - Mobile & Animations
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Arena Onboarding Prompt */
+.arena-onboarding-prompt {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(139, 92, 246, 0.08));
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: var(--education-radius-card, 24px);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  animation: slideInDown 0.3s ease;
+}
+
+.arena-onboarding-prompt.dismissed {
+  animation: slideOutUp 0.3s ease forwards;
+}
+
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideOutUp {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-20px); }
+}
+
+.onboarding-prompt-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.onboarding-prompt-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.onboarding-prompt-text {
+  flex: 1;
+  min-width: 200px;
+}
+
+.onboarding-prompt-text strong {
+  display: block;
+  font-size: 1rem;
+  color: var(--education-primary, #1F2937);
+  margin-bottom: 0.25rem;
+}
+
+.onboarding-prompt-text p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--education-neutral, #6B7280);
+  line-height: 1.5;
+}
+
+.onboarding-prompt-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.onboarding-prompt-btn {
+  padding: 0.625rem 1.25rem;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.onboarding-prompt-btn.primary {
+  background: linear-gradient(135deg, #667eea, #8b5cf6);
+  color: white;
+  border: none;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.onboarding-prompt-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.onboarding-prompt-btn.secondary {
+  background: transparent;
+  color: var(--education-neutral, #6B7280);
+  border: 1px solid var(--education-border, #E5E7EB);
+}
+
+.onboarding-prompt-btn.secondary:hover {
+  border-color: var(--education-accent, #667eea);
+  color: var(--education-accent, #667eea);
+}
+
+/* Mobile onboarding prompt */
+@media (max-width: 480px) {
+  .onboarding-prompt-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .onboarding-prompt-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .onboarding-prompt-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+/* Play/Pause Button Tap Animation */
+.play-pause-btn.tapped {
+  transform: scale(0.9);
+}
+
+/* Speed indicator more prominent on mobile */
+@media (max-width: 768px) {
+  #speedBtn {
+    background: var(--education-accent-light, rgba(102, 126, 234, 0.1));
+    border-color: var(--education-accent, #667eea);
+    color: var(--education-accent, #667eea);
+    font-weight: 700;
+    min-width: 60px;
+  }
+}
+
+/* Leaderboard Change Animations */
+.leaderboard-item.highlight {
+  animation: leaderboardHighlight 0.6s ease;
+}
+
+.leaderboard-item.rank-up .leaderboard-rank {
+  background: linear-gradient(135deg, #10B981, #059669) !important;
+}
+
+.leaderboard-item.rank-down .leaderboard-rank {
+  background: linear-gradient(135deg, #EF4444, #DC2626) !important;
+}
+
+@keyframes leaderboardHighlight {
+  0%, 100% { background: var(--education-card-bg); }
+  50% { background: rgba(102, 126, 234, 0.15); }
+}
+
+.rank-change {
+  font-size: 0.625rem;
+  margin-left: 0.25rem;
+  display: inline-block;
+  animation: rankChangePopIn 0.3s ease;
+}
+
+.rank-change.up {
+  color: #10B981;
+}
+
+.rank-change.down {
+  color: #EF4444;
+}
+
+@keyframes rankChangePopIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Trade Tape Mobile Improvements */
+@media (max-width: 768px) {
+  /* Full-width stacked cards on mobile */
+  .arena-trade-tape {
+    padding: 0.75rem !important;
+  }
+
+  .arena-sidebar-grid .trade-tape {
+    max-height: none !important;
+    overflow: visible !important;
+    opacity: 1 !important;
+  }
+
+  .arena-sidebar-grid .trade-entry {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+    padding: 0.875rem !important;
+    min-height: var(--touch-target-min, 44px);
+  }
+
+  .arena-sidebar-grid .trade-entry .trade-bot {
+    justify-content: flex-start;
+  }
+
+  .arena-sidebar-grid .trade-entry .trade-action {
+    font-size: 0.8125rem !important;
+    white-space: normal !important;
+  }
+
+  .arena-sidebar-grid .trade-entry .trade-details {
+    display: flex !important;
+    flex-wrap: wrap;
+  }
+
+  .arena-sidebar-grid .trade-entry .trade-pnl {
+    text-align: left !important;
+    font-size: 1rem !important;
+  }
+
+  .arena-sidebar-grid .trade-entry .ask-trade-btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    min-height: var(--touch-target-min, 44px);
+    margin-top: 0.5rem;
+  }
+
+  .arena-sidebar-grid .trade-bot-avatar {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 0.875rem !important;
+  }
+
+  .arena-sidebar-grid .trade-bot-name {
+    display: inline !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Trade entry slide-in animation (improved) */
+.trade-entry.slide-in {
+  animation: tradeSlideIn 0.2s ease-out forwards;
+}
+
+@keyframes tradeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Leaderboard Mobile Improvements */
+@media (max-width: 768px) {
+  .arena-leaderboard {
+    padding: 1rem !important;
+  }
+
+  .arena-leaderboard .leaderboard-item {
+    padding: 0.875rem 1rem !important;
+    min-height: var(--touch-target-min, 44px);
+  }
+
+  .arena-leaderboard .leaderboard-rank {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1rem !important;
+  }
+
+  .arena-leaderboard .leaderboard-bot-avatar {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 1.125rem !important;
+  }
+
+  .arena-leaderboard .leaderboard-bot-name {
+    font-size: 0.9375rem !important;
+  }
+
+  .arena-leaderboard .leaderboard-pnl {
+    font-size: 1rem !important;
+  }
+}
+
+/* Action Vignettes Mobile Improvements */
+@media (max-width: 480px) {
+  .action-vignettes.visible {
+    padding: 1rem;
+    max-height: none;
+  }
+
+  .action-vignettes .vignettes-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem;
+  }
+
+  .action-vignettes .vignette-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    padding: 0.875rem !important;
+    gap: 0.75rem;
+    position: relative;
+    padding-right: 6rem !important;
+  }
+
+  .action-vignettes .vignette-bot {
+    flex-direction: row;
+    margin-bottom: 0 !important;
+    flex-shrink: 0;
+  }
+
+  .action-vignettes .vignette-avatar {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1rem !important;
+  }
+
+  .action-vignettes .vignette-name {
+    font-size: 0.875rem !important;
+  }
+
+  .action-vignettes .vignette-action {
+    font-size: 0.75rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .action-vignettes .vignette-reason {
+    font-size: 0.75rem !important;
+    flex: 1;
+  }
+
+  .action-vignettes .vignette-ask-btn {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto !important;
+    margin-top: 0 !important;
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.75rem !important;
+    min-height: 36px;
+  }
+
+  /* Proactive prompt on mobile */
+  .action-vignettes .proactive-prompt {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .action-vignettes .proactive-prompt-content {
+    flex-direction: column;
+  }
+
+  .action-vignettes .proactive-prompt-btn {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
+    min-height: var(--touch-target-min, 44px);
+  }
+}
+
+/* Event Buttons Mobile Carousel */
+@media (max-width: 768px) {
+  .arena-events > div {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 0.75rem !important;
+    margin: 0 -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .arena-events > div::-webkit-scrollbar {
+    display: none;
+  }
+
+  .arena-events .event-btn {
+    flex: 0 0 auto !important;
+    scroll-snap-align: start !important;
+    white-space: nowrap !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.8125rem !important;
+  }
+}
+
+/* Timeline Controls Mobile Improvements */
+@media (max-width: 768px) {
+  .arena-chart-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .arena-timeline-controls {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .arena-timeline-controls .play-pause-btn {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  .arena-timeline-controls .play-pause-btn svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  /* Timeline slider touch friendly */
+  .arena-timeline-slider {
+    margin: 1.5rem 0;
+    padding: 0.5rem 0;
+  }
+
+  .arena-timeline-slider .timeline-slider-track {
+    height: 8px !important;
+  }
+
+  .arena-timeline-slider .timeline-slider-track::-webkit-slider-thumb {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .arena-timeline-slider .timeline-slider-track::-moz-range-thumb {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .arena-current-date {
+    font-size: 1rem !important;
+    text-align: center;
+  }
+
+  .arena-current-date .event-badge {
+    display: block;
+    margin-top: 0.25rem;
+  }
+}
+
+/* Bot Cards Mobile Spacing */
+@media (max-width: 768px) {
+  .arena-bots-grid {
+    gap: 0.75rem !important;
+    margin-bottom: 1.5rem;
+  }
+
+  .arena-bot-card {
+    padding: 1rem !important;
+  }
+
+  .arena-bot-header {
+    gap: 0.75rem;
+  }
+
+  .arena-bot-avatar {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .arena-bot-avatar svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .arena-bot-info h3 {
+    font-size: 0.875rem !important;
+  }
+
+  .arena-bot-dialogue {
+    font-size: 0.8125rem !important;
+    min-height: 3rem;
+  }
+
+  .arena-bot-pnl {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+  }
+
+  .arena-bot-pnl .pnl-value {
+    font-size: 1.125rem !important;
+  }
+}
+
+/* 2x2 grid on tablets */
+@media (min-width: 480px) and (max-width: 768px) {
+  .arena-bots-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.875rem !important;
+  }
+}

@@ -250,13 +250,18 @@
   }
 
   // Handle "Manage Cookies" link in footer
-  function bindFooterLink() {
+  function bindFooterLink(retryCount = 0) {
+    const MAX_RETRIES = 5; // Max 2.5 seconds of retries (5 × 500ms)
     const footerLinks = document.querySelectorAll('a[href="#cookies"], #tarteaucitronRoot');
 
     if (footerLinks.length === 0) {
-      console.warn('[Cookie Consent] No footer links found for cookie management. Will retry...');
-      // Retry after a short delay (for dynamically loaded content)
-      setTimeout(bindFooterLink, 500);
+      if (retryCount < MAX_RETRIES) {
+        console.warn('[Cookie Consent] No footer links found for cookie management. Will retry... (attempt', retryCount + 1, '/', MAX_RETRIES, ')');
+        // Retry after a short delay (for dynamically loaded content)
+        setTimeout(() => bindFooterLink(retryCount + 1), 500);
+      } else {
+        console.log('[Cookie Consent] No footer links found after', MAX_RETRIES, 'attempts. Some pages may not have cookie management links.');
+      }
       return;
     }
 

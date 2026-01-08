@@ -319,9 +319,13 @@
 
           <!-- Period & Leverage Controls -->
           <div class="simulator-controls-row">
-            <!-- Period Selector -->
+            <!-- Period Selector (with info tooltip) -->
             <div class="period-selector">
-              <span class="control-label" data-translate="simulator.period">Period</span>
+              <span class="control-label-with-tooltip">
+                <span class="control-label" data-translate="simulator.period">Period</span>
+                <svg class="control-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <span class="control-tooltip" data-translate="simulator.tooltip.period">Simulation timeframe. Longer = more market cycles included.</span>
+              </span>
               <div class="period-buttons">
                 <button class="period-btn" data-period="1">1Y</button>
                 <button class="period-btn" data-period="3">3Y</button>
@@ -331,15 +335,19 @@
               </div>
             </div>
 
-            <!-- Leverage Toggle -->
+            <!-- Leverage Toggle (with info tooltip) -->
             <div class="leverage-toggle">
-              <span class="control-label" data-translate="simulator.leverage">Leverage</span>
+              <span class="control-label-with-tooltip">
+                <span class="control-label" data-translate="simulator.leverage">Leverage</span>
+                <svg class="control-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <span class="control-tooltip" data-translate="simulator.tooltip.leverage">2x amplifies gains AND losses. Costs ~8%/year in interest.</span>
+              </span>
               <div class="leverage-pills">
-                <button class="leverage-pill active" data-leverage="1">1×</button>
-                <button class="leverage-pill" data-leverage="2">2×</button>
+                <button class="leverage-pill active" data-leverage="1">1x</button>
+                <button class="leverage-pill" data-leverage="2">2x</button>
               </div>
               <div class="leverage-warning hidden" id="leverageWarning">
-                ⚠️ <span data-translate="simulator.leverageWarning">8%/year cost</span>
+                <span data-translate="simulator.leverageWarning">8%/year cost</span>
               </div>
             </div>
           </div>
@@ -363,15 +371,42 @@
               </svg>
             </button>
             <div class="comparison-chips" id="strategyChips">
-              <button class="baseline-chip active" data-baseline="optimizedRP">✨ Optimized RP</button>
-              <button class="baseline-chip active" data-baseline="equalWeight">Equal Weight</button>
-              <button class="baseline-chip" data-baseline="sixtyForty">60/40</button>
-              <button class="baseline-chip" data-baseline="simpleRP">Risk Parity</button>
-              <button class="baseline-chip" data-baseline="momentum">Momentum</button>
-              <button class="baseline-chip" data-baseline="hierarchicalRiskParity">HRP</button>
-              <button class="baseline-chip" data-baseline="enhancedRiskParityDCC">DCC</button>
-              <button class="baseline-chip" data-baseline="optimizedRiskBudgeting">Risk Budget</button>
-              <button class="baseline-chip" data-baseline="regimeAwareRP">Regime RP</button>
+              <button class="baseline-chip active" data-baseline="optimizedRP">
+                Optimized RP
+                <span class="chip-tooltip" data-translate="simulator.strategy.optimizedRP.tooltip">Weights adjusted by volatility and correlation. Our best strategy.</span>
+              </button>
+              <button class="baseline-chip active" data-baseline="equalWeight">
+                Equal Weight
+                <span class="chip-tooltip" data-translate="simulator.strategy.equalWeight.tooltip">Equal allocation across all assets. Simple but effective.</span>
+              </button>
+              <button class="baseline-chip" data-baseline="sixtyForty">
+                60/40
+                <span class="chip-tooltip" data-translate="simulator.strategy.sixtyForty.tooltip">Classic 60% stocks, 40% bonds. Traditional benchmark.</span>
+              </button>
+              <button class="baseline-chip" data-baseline="simpleRP">
+                Risk Parity
+                <span class="chip-tooltip" data-translate="simulator.strategy.simpleRP.tooltip">Weights inverse to volatility. Balances risk contribution.</span>
+              </button>
+              <button class="baseline-chip" data-baseline="momentum">
+                Momentum
+                <span class="chip-tooltip" data-translate="simulator.strategy.momentum.tooltip">Follows recent trends. More dynamic approach.</span>
+              </button>
+              <button class="baseline-chip" data-baseline="hierarchicalRiskParity">
+                HRP
+                <span class="chip-tooltip" data-translate="simulator.strategy.hrp.tooltip">Hierarchical Risk Parity. Smart clustering.</span>
+              </button>
+              <button class="baseline-chip" data-baseline="enhancedRiskParityDCC">
+                DCC
+                <span class="chip-tooltip" data-translate="simulator.strategy.dcc.tooltip">Dynamic Conditional Correlation. Adapts to correlations.</span>
+              </button>
+              <button class="baseline-chip" data-baseline="optimizedRiskBudgeting">
+                Risk Budget
+                <span class="chip-tooltip" data-translate="simulator.strategy.riskBudget.tooltip">Risk budget per asset. Fine-grained risk control.</span>
+              </button>
+              <button class="baseline-chip" data-baseline="regimeAwareRP">
+                Regime RP
+                <span class="chip-tooltip" data-translate="simulator.strategy.regimeAware.tooltip">Adapts to market regimes (bull/bear).</span>
+              </button>
             </div>
           </div>
 
@@ -385,13 +420,34 @@
               </svg>
             </button>
             <div class="comparison-chips collapsed" id="etfChips">
-              <button class="etf-chip" data-etf="SPY">SPY (S&P 500)</button>
-              <button class="etf-chip" data-etf="IEF">IEF (Bonds)</button>
-              <button class="etf-chip" data-etf="GLD">GLD (Gold)</button>
-              <button class="etf-chip" data-etf="EFA">EFA (Int'l Dev)</button>
-              <button class="etf-chip" data-etf="EEM">EEM (Emerging)</button>
-              <button class="etf-chip" data-etf="VNQ">VNQ (REITs)</button>
-              <button class="etf-chip" data-etf="CASH">CASH (2%/yr)</button>
+              <button class="etf-chip" data-etf="SPY">
+                SPY (S&P 500)
+                <span class="chip-tooltip">500 largest US companies. Stock benchmark.</span>
+              </button>
+              <button class="etf-chip" data-etf="IEF">
+                IEF (Bonds)
+                <span class="chip-tooltip">US 7-10yr Treasury bonds. Stability and income.</span>
+              </button>
+              <button class="etf-chip" data-etf="GLD">
+                GLD (Gold)
+                <span class="chip-tooltip">Physical gold. Inflation hedge.</span>
+              </button>
+              <button class="etf-chip" data-etf="EFA">
+                EFA (Int'l Dev)
+                <span class="chip-tooltip">Developed markets ex-US. Diversification.</span>
+              </button>
+              <button class="etf-chip" data-etf="EEM">
+                EEM (Emerging)
+                <span class="chip-tooltip">Emerging market stocks. Higher risk/return.</span>
+              </button>
+              <button class="etf-chip" data-etf="VNQ">
+                VNQ (REITs)
+                <span class="chip-tooltip">US real estate. Income and diversification.</span>
+              </button>
+              <button class="etf-chip" data-etf="CASH">
+                CASH (2%/yr)
+                <span class="chip-tooltip">Cash at 2%/year. Maximum safety.</span>
+              </button>
             </div>
           </div>
 
@@ -414,31 +470,61 @@
             <span data-translate="simulator.vol">vol</span>
           </div>
 
-          <!-- Metrics Grid -->
+          <!-- Metrics Grid (with hover/tap tooltips) -->
           <div class="results-metrics-grid">
-            <div class="results-metric-card">
+            <div class="results-metric-card" tabindex="0">
+              <svg class="metric-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
               <div class="results-metric-label" data-translate="simulator.metric.totalReturn">Total Return</div>
               <div class="results-metric-value positive" id="metricTotalReturn">+185.4%</div>
+              <div class="metric-tooltip" data-translate-html="simulator.tooltip.totalReturn">
+                Cumulative gain over the period. +185% = $10k becomes $28.5k.
+                <a href="#" class="metric-tooltip-link" data-translate="simulator.tooltip.learnMore">Learn more</a>
+              </div>
             </div>
-            <div class="results-metric-card">
+            <div class="results-metric-card" tabindex="0">
+              <svg class="metric-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
               <div class="results-metric-label" data-translate="simulator.metric.annualReturn">CAGR</div>
               <div class="results-metric-value positive" id="metricCAGR">+5.4%</div>
+              <div class="metric-tooltip" data-translate-html="simulator.tooltip.cagr">
+                Compound annual growth rate. 5.4%/year = doubles in ~13 years.
+                <a href="#" class="metric-tooltip-link" data-translate="simulator.tooltip.learnMore">Learn more</a>
+              </div>
             </div>
-            <div class="results-metric-card">
+            <div class="results-metric-card" tabindex="0">
+              <svg class="metric-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
               <div class="results-metric-label" data-translate="simulator.metric.volatility">Volatility</div>
               <div class="results-metric-value" id="metricVolatility">9.2%</div>
+              <div class="metric-tooltip" data-translate-html="simulator.tooltip.volatility">
+                Return fluctuation amplitude. 9% = moderate. Higher = more swings.
+                <a href="#" class="metric-tooltip-link" data-translate="simulator.tooltip.learnMore">Learn more</a>
+              </div>
             </div>
-            <div class="results-metric-card">
+            <div class="results-metric-card" tabindex="0">
+              <svg class="metric-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
               <div class="results-metric-label" data-translate="simulator.metric.sharpeRatio">Sharpe</div>
               <div class="results-metric-value positive" id="metricSharpe">0.58</div>
+              <div class="metric-tooltip" data-translate-html="simulator.tooltip.sharpe">
+                Return per unit of risk. >0.5 = good, >1 = excellent.
+                <a href="#" class="metric-tooltip-link" data-translate="simulator.tooltip.learnMore">Learn more</a>
+              </div>
             </div>
-            <div class="results-metric-card">
+            <div class="results-metric-card" tabindex="0">
+              <svg class="metric-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
               <div class="results-metric-label" data-translate="simulator.metric.maxDrawdown">Max Drawdown</div>
               <div class="results-metric-value negative" id="metricDrawdown">-24.3%</div>
+              <div class="metric-tooltip" data-translate-html="simulator.tooltip.drawdown">
+                Maximum loss from peak. -24% = worst temporary decline.
+                <a href="#" class="metric-tooltip-link" data-translate="simulator.tooltip.learnMore">Learn more</a>
+              </div>
             </div>
-            <div class="results-metric-card">
+            <div class="results-metric-card" tabindex="0">
+              <svg class="metric-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
               <div class="results-metric-label" data-translate="simulator.metric.calmarRatio">Calmar</div>
               <div class="results-metric-value" id="metricCalmar">0.22</div>
+              <div class="metric-tooltip" data-translate-html="simulator.tooltip.calmar">
+                CAGR / Max Drawdown. >0.5 = good return/risk balance.
+                <a href="#" class="metric-tooltip-link" data-translate="simulator.tooltip.learnMore">Learn more</a>
+              </div>
             </div>
           </div>
 
@@ -701,6 +787,146 @@
 
         // Legacy alias for backward compatibility (used in context metadata)
         let visibleBaselines = visibleStrategies;
+
+        // ═══════════════════════════════════════════════════════════════
+        // window.simulatorBridge API - Chat-UI Synchronization
+        // ═══════════════════════════════════════════════════════════════
+        window.simulatorBridge = {
+          /**
+           * Set allocation percentages and trigger backtest
+           * @param {Object} allocations - e.g., { SPY: 50, IEF: 30, GLD: 20 }
+           */
+          setAllocation: async function(allocations) {
+            if (!allocations || typeof allocations !== 'object') return false;
+
+            // Normalize to 100%
+            const total = Object.values(allocations).reduce((a, b) => a + Number(b) || 0, 0);
+            if (total === 0) return false;
+
+            const normalized = {};
+            Object.keys(allocations).forEach(k => {
+              normalized[k] = Math.round((allocations[k] / total) * 100);
+            });
+
+            // Sync sliders
+            syncSlidersToAllocation(normalized);
+
+            // Calculate and update
+            const result = await calculatePortfolio(normalized);
+            if (result) {
+              updateResults(result);
+              return true;
+            }
+            return false;
+          },
+
+          /**
+           * Set leverage (1 or 2)
+           * @param {number} leverage - 1 or 2
+           */
+          setLeverage: function(leverage) {
+            const lev = parseInt(leverage);
+            if (lev !== 1 && lev !== 2) return false;
+
+            currentLeverage = lev;
+            document.querySelectorAll('.leverage-pill').forEach(pill => {
+              pill.classList.toggle('active', parseInt(pill.dataset.leverage) === lev);
+            });
+
+            const warning = document.querySelector('.leverage-warning');
+            if (warning) {
+              warning.classList.toggle('hidden', lev === 1);
+            }
+
+            // Recalculate if we have an allocation
+            if (currentAllocation) {
+              calculatePortfolio(currentAllocation).then(result => {
+                if (result) updateResults(result);
+              });
+            }
+            return true;
+          },
+
+          /**
+           * Set time period
+           * @param {string} period - '1Y', '3Y', '5Y', '10Y', or '20Y'
+           */
+          setPeriod: function(period) {
+            const validPeriods = ['1Y', '3Y', '5Y', '10Y', '20Y'];
+            const periodMap = { '1Y': 1, '3Y': 3, '5Y': 5, '10Y': 10, '20Y': 20 };
+
+            if (!validPeriods.includes(period)) return false;
+
+            currentPeriod = periodMap[period];
+            document.querySelectorAll('.period-btn').forEach(btn => {
+              btn.classList.toggle('active', btn.dataset.period === period);
+            });
+
+            // Recalculate
+            if (currentAllocation) {
+              calculatePortfolio(currentAllocation).then(result => {
+                if (result) updateResults(result);
+              });
+            }
+            return true;
+          },
+
+          /**
+           * Toggle strategy visibility
+           * @param {string} strategyKey - Strategy key (e.g., 'optimizedRP', 'momentum')
+           * @param {boolean} visible - Whether to show or hide
+           */
+          toggleStrategy: function(strategyKey, visible) {
+            if (!(strategyKey in visibleStrategies)) return false;
+
+            visibleStrategies[strategyKey] = !!visible;
+
+            // Update chip UI
+            const chip = document.querySelector(`.baseline-chip[data-baseline="${strategyKey}"]`);
+            if (chip) {
+              chip.classList.toggle('active', visible);
+            }
+
+            // Update chart
+            if (chart && lastResult) {
+              updateResults(lastResult);
+            }
+            return true;
+          },
+
+          /**
+           * Get current simulator state
+           * @returns {Object} Current state including allocations, period, leverage
+           */
+          getCurrentState: function() {
+            return {
+              allocations: currentAllocation ? { ...currentAllocation } : null,
+              period: currentPeriod,
+              leverage: currentLeverage,
+              visibleStrategies: { ...visibleStrategies },
+              visibleETFs: { ...visibleETFs },
+              metrics: lastResult?.metrics ? { ...lastResult.metrics } : null
+            };
+          },
+
+          /**
+           * Get metrics summary for chatbot response
+           * @returns {Object} Formatted metrics for display
+           */
+          getMetricsSummary: function() {
+            if (!lastResult?.metrics) return null;
+
+            const m = lastResult.metrics;
+            return {
+              totalReturn: m.totalReturn?.toFixed(1) + '%',
+              cagr: m.annualReturn?.toFixed(1) + '%/yr',
+              volatility: m.volatility?.toFixed(1) + '%',
+              sharpe: m.sharpeRatio?.toFixed(2),
+              maxDrawdown: m.maxDrawdown?.toFixed(1) + '%',
+              calmar: m.calmarRatio?.toFixed(2)
+            };
+          }
+        };
 
         // Strategy colors and config (all 9 strategies)
         const STRATEGY_CONFIG = {

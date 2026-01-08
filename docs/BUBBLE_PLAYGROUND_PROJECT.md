@@ -35,6 +35,22 @@
 | Simulator: Add mobile-first chatbot interface | ✅ Done | 2026-01-06 |
 | Add YouTube video references to Hub | ✅ Done | 2026-01-06 |
 | Add CTA hooks throughout pages (Arena, Simulator) | ✅ Done | 2026-01-06 |
+| **Simulator UX Improvements (SimulatorAgent)** | ✅ Done | 2026-01-08 |
+| - Add `window.simulatorBridge` API | ✅ Done | 2026-01-08 |
+| - Add onboarding CTA in floating chat | ✅ Done | 2026-01-08 |
+| - Add action-based suggestion buttons | ✅ Done | 2026-01-08 |
+| - Add metric tooltips with info icons | ✅ Done | 2026-01-08 |
+| - Add control tooltips (Period, Leverage) | ✅ Done | 2026-01-08 |
+| - Hide chat hero on mobile (<768px) | ✅ Done | 2026-01-08 |
+| - Mobile strategy carousel (scroll-snap) | ✅ Done | 2026-01-08 |
+| **Arena UX Improvements (ArenaAgent)** | ✅ Done | 2026-01-08 |
+| - Add `window.arenaState` API | ✅ Done | 2026-01-08 |
+| - Add onboarding awareness prompt | ✅ Done | 2026-01-08 |
+| - Add leaderboard rank change indicators | ✅ Done | 2026-01-08 |
+| - Add haptic feedback for timeline scrubbing | ✅ Done | 2026-01-08 |
+| - Add play/pause button tap animation | ✅ Done | 2026-01-08 |
+| - Arena-chat context integration | ✅ Done | 2026-01-08 |
+| - Event-specific dynamic suggestions | ✅ Done | 2026-01-08 |
 
 ### In Progress
 
@@ -129,12 +145,72 @@
 
 ---
 
+## JavaScript APIs
+
+### window.simulatorBridge (Simulator Page)
+
+Exposes controls for the strategy simulator, enabling chatbot integration.
+
+```javascript
+window.simulatorBridge = {
+  // Set allocation percentages (e.g., { SPY: 50, IEF: 30, GLD: 20 })
+  setAllocation: async function(allocations) { ... },
+
+  // Set leverage (1 or 2)
+  setLeverage: function(leverage) { ... },
+
+  // Set period ('1Y', '3Y', '5Y', '10Y', '20Y')
+  setPeriod: function(period) { ... },
+
+  // Toggle strategy visibility
+  toggleStrategy: function(strategyKey, visible) { ... },
+
+  // Get current state (allocations, period, leverage, metrics)
+  getCurrentState: function() { ... },
+
+  // Get formatted metrics summary
+  getMetricsSummary: function() { ... }
+};
+```
+
+### window.arenaState (Arena Page)
+
+Exposes arena state for chatbot context integration.
+
+```javascript
+window.arenaState = {
+  // Get current simulation state
+  getCurrentState: function() {
+    return {
+      currentFrame, totalFrames, currentMonth,
+      isPlaying, playbackSpeed,
+      leadingBot, leadingBotName,
+      recentEvent, leaderboard, language
+    };
+  },
+
+  // Jump to specific frame
+  jumpToFrame: function(frameIndex) { ... },
+
+  // Toggle play/pause
+  togglePlayback: function() { ... },
+
+  // Get localized bot name
+  getBotName: function(botId) { ... }
+};
+
+// Event dispatched when arena state is ready
+window.dispatchEvent(new CustomEvent('arenaStateReady'));
+```
+
+---
+
 ## Next Steps
 
-1. **Immediate**: Complete English page updates
-2. **Short-term**: Arena Play button enhancement
-3. **Medium-term**: Mobile-first simulator redesign
-4. **Long-term**: Quiz and video integration
+1. **Immediate**: QA testing of all new features
+2. **Short-term**: Quiz integration from Notion
+3. **Medium-term**: Replace legacy portfolio-simulator
+4. **Long-term**: Advanced chatbot interactions
 
 ---
 
@@ -154,4 +230,4 @@
 
 ---
 
-*Last Updated: 2026-01-05 (English pages sync complete)*
+*Last Updated: 2026-01-08 (SimulatorAgent + ArenaAgent UX improvements complete)*

@@ -1,7 +1,7 @@
 # Bubble Project – Current Status
 
-**Last Updated**: 2025-11-26
-**Version**: 2.1 – GA4 analytics, SEO optimization, codebase cleanup
+**Last Updated**: 2026-01-08
+**Version**: 2.2 – Bubble Playground UX improvements, multi-agent orchestration
 
 ---
 
@@ -51,6 +51,13 @@
 6. **Content Systems**
    - Blog: Notion CMS, OpenAI image generation with persistent cache
    - Knowledge Garden: LLM enrichment, legal link generation
+
+7. **Bubble Playground (Education Module)** ✨ NEW
+   - Hub: `/investors/education` - Gateway with two learning paths
+   - Arena: `/investors/education/arena` - 4 AI bots competing over 20 years
+   - Simulator: `/investors/education/simulator` - Chat-driven strategy builder
+   - Features: Onboarding awareness, chatbot-first UX, mobile-optimized
+   - APIs: `window.simulatorBridge`, `window.arenaState` for chat-UI sync
 
 ---
 
@@ -113,7 +120,17 @@ BubbleLaunch/
 
 ---
 
-## 🆕 Recent Updates (Nov 2025)
+## 🆕 Recent Updates
+
+### v2.2 (Jan 8, 2026)
+- **Bubble Playground UX Overhaul** via multi-agent orchestration:
+  - SimulatorAgent: Onboarding awareness, `window.simulatorBridge` API, metric tooltips, action-based suggestions
+  - ArenaAgent: `window.arenaState` API, leaderboard animations, haptic feedback, arena-chat integration
+  - AuditAgent: Comprehensive QA validation, documentation updates
+- New JS APIs for chat-UI synchronization (`simulatorBridge`, `arenaState`)
+- Mobile improvements: scroll-snap carousels, 44px touch targets, hidden hero on mobile
+- Added ~400 lines of CSS for tooltips, animations, mobile layouts
+- Updated `BUBBLE_PLAYGROUND_PROJECT.md`, `ai_trading_arena_education_plan.md`
 
 ### v2.1 (Nov 26, 2025)
 - Archived orphaned files: `server.backup.js`, `server.old.js`, `riskBudgetingService.js`, `simulator-chat.js`
