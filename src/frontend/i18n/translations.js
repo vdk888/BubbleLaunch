@@ -4843,8 +4843,8 @@ const translations = {
     fr: "Arena"
   },
   "playground.cta.simulator": {
-    en: "Simulator",
-    fr: "Simulateur"
+    en: "Strategy Builder",
+    fr: "Strategy Builder"
   },
   "playground.cta.subscribe": {
     en: "Join Bubble",
@@ -4865,8 +4865,8 @@ const translations = {
     fr: "Arena"
   },
   "playground.action.simulator": {
-    en: "Simulator",
-    fr: "Simulateur"
+    en: "Strategy Builder",
+    fr: "Strategy Builder"
   },
   "playground.action.explore": {
     en: "Explore Playground",

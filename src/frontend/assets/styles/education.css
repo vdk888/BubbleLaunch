@@ -1909,6 +1909,9 @@
   padding: 1rem;
   min-height: 100vh;
   padding-bottom: 100px; /* Space for FAB */
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -2167,6 +2170,13 @@
   .simulator-controls-content {
     max-height: none;
     overflow: visible;
+  }
+}
+
+/* Mobile: More padding at bottom for floating chat input */
+@media (max-width: 767px) {
+  .simulator-edu-container {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
   }
 }
 
@@ -2728,6 +2738,10 @@ body.chat-open .chat-fab {
   border: 1px solid var(--education-border);
   border-radius: var(--education-radius-card);
   padding: 1rem;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
@@ -2752,15 +2766,25 @@ body.chat-open .chat-fab {
 
 /* Results Chart - Mobile First with Responsive Aspect Ratio */
 .results-chart-container {
-  aspect-ratio: 1.2 / 1;
-  max-height: 220px;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 4 / 3;
+  min-height: 250px;
+  max-height: 350px;
   margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.results-chart-container canvas {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 @media (min-width: 768px) {
   .results-chart-container {
     aspect-ratio: 16 / 9;
-    max-height: 280px;
+    min-height: 280px;
+    max-height: 400px;
     margin-bottom: 1.5rem;
   }
 }
@@ -2768,7 +2792,8 @@ body.chat-open .chat-fab {
 @media (min-width: 1024px) {
   .results-chart-container {
     aspect-ratio: 16 / 9;
-    max-height: 300px;
+    min-height: 320px;
+    max-height: 450px;
   }
 }
 
@@ -4006,9 +4031,23 @@ body.chat-open .chat-fab {
   transform: translateX(-50%);
   width: min(90vw, 420px);
   z-index: 1200;
+  /* Safe area support for phones with home indicator */
+  bottom: max(1.25rem, env(safe-area-inset-bottom, 1.25rem));
 }
+
 .floating-chat-input[data-page-context^="education"] .floating-input-container {
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* Mobile: Full width floating chat */
+@media (max-width: 768px) {
+  .floating-chat-input[data-page-context^="education"] {
+    left: 1rem;
+    right: 1rem;
+    transform: none;
+    width: auto;
+    bottom: max(0.75rem, calc(env(safe-area-inset-bottom, 0px) + 0.75rem));
+  }
 }
 
 /* Hide subtitle in chat panel for education pages */
@@ -4062,11 +4101,13 @@ body.chat-open .chat-fab {
 
   /* Chart height expansion */
   .results-chart-container {
-    transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: min-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   body.chat-collapsed .results-chart-container {
-    height: 380px;
+    min-height: 400px;
+    max-height: 500px;
   }
 
   /* Metrics grid expansion - 3 columns when chat collapsed */
@@ -4097,7 +4138,8 @@ body.chat-open .chat-fab {
   }
 
   body.chat-collapsed .results-chart-container {
-    height: 420px;
+    min-height: 450px;
+    max-height: 550px;
   }
 
   body.chat-collapsed .results-metrics-grid {

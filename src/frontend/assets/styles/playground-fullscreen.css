@@ -893,13 +893,25 @@
   }
 
   .playground-mic-btn {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+  }
+
+  .playground-mic-btn svg {
+    width: 22px;
+    height: 22px;
   }
 
   .playground-send-btn {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+  }
+
+  .playground-send-btn svg {
+    width: 22px;
+    height: 22px;
   }
 
   .playground-input-area {
@@ -989,15 +1001,25 @@
   }
 
   .playground-mic-btn {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+
+  .playground-mic-btn svg {
+    width: 20px;
+    height: 20px;
   }
 
   .playground-send-btn {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+
+  .playground-send-btn svg {
+    width: 20px;
+    height: 20px;
   }
 
   .playground-input-area {
@@ -1302,6 +1324,7 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .profile-graph-container {
+  position: relative; /* Required for absolute positioning of toggle button */
   flex-shrink: 0;
   width: 280px;
   min-width: 280px;
@@ -1604,39 +1627,48 @@
 
 /* ═══════════════════════════════════════════════════════════════════════════
    RESPONSIVE: Profile Graph Mobile Behavior
+   Push-content layout with circular toggle button at left edge
    ═══════════════════════════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
-  /* On mobile, content wrapper stacks vertically */
-  .playground-content-wrapper {
-    flex-direction: column;
+  /* Hide logo text on mobile - show only icon */
+  .playground-logo-text {
+    display: none;
   }
 
-  /* Profile panel becomes a slide-out drawer from left, below header */
+  /* On mobile, content wrapper keeps row direction for push effect */
+  .playground-content-wrapper {
+    flex-direction: row;
+    position: relative;
+  }
+
+  /* Profile panel pushes content */
   .profile-graph-container {
-    position: fixed;
-    left: 0;
-    top: 60px; /* Below header */
-    bottom: 0;
+    position: relative;
     width: 280px;
     min-width: 280px;
-    z-index: 100;
-    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, width 0.3s ease;
+    height: 100%;
+    z-index: 10;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
+    transition: width 0.3s ease, min-width 0.3s ease;
     background: #FAFAFA;
+    flex-shrink: 0;
+    overflow: visible; /* Allow toggle button to show when collapsed */
   }
 
-  /* When collapsed, hide panel off-screen but show toggle button */
+  /* When collapsed, collapse to 0 width (no negative margin) */
   .profile-graph-container.panel-collapsed,
   .profile-graph-container:has(.profile-graph-panel.collapsed) {
-    transform: translateX(-232px);
-    width: 280px;
-    min-width: 280px;
+    width: 0;
+    min-width: 0;
     box-shadow: none;
   }
 
   .profile-graph-panel {
+    width: 280px;
+    min-width: 280px;
     transform: none !important; /* Override desktop transform */
+    overflow: hidden;
   }
 
   .profile-graph-panel.collapsed .profile-graph-content {
@@ -1644,72 +1676,63 @@
     pointer-events: none;
   }
 
-  /* Toggle button styling for mobile - Bubble logo visible when collapsed */
+  /* Toggle button - same circular style as desktop */
   .profile-graph-toggle {
-    position: absolute;
-    right: -48px; /* Position outside the panel to be visible when collapsed */
-    top: 20%;
+    position: fixed;
+    left: 8px;
+    top: 50%;
     transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
-    border-radius: 0 22px 22px 0;
+    right: auto;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
     background: white;
-    color: #333;
-    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.12);
+    color: #666;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid #E5E5E5;
-    border-left: none;
     z-index: 101;
+    transition: left 0.3s ease;
+  }
+
+  /* When panel is expanded, move toggle to panel edge */
+  .profile-graph-container:not(.panel-collapsed) .profile-graph-toggle,
+  .profile-graph-container:not(:has(.profile-graph-panel.collapsed)) .profile-graph-toggle {
+    left: 236px;
   }
 
   .profile-graph-toggle .toggle-icon {
-    color: #333;
-    width: 24px;
-    height: 24px;
+    color: #666;
+    width: 18px;
+    height: 18px;
   }
 
   .profile-graph-toggle .toggle-icon svg {
-    stroke: #333;
-    width: 24px;
-    height: 24px;
+    stroke: currentColor;
+    width: 18px;
+    height: 18px;
   }
 
-  /* Overlay when panel is open */
+  /* No overlay needed for push layout */
   .profile-graph-container::before {
-    content: '';
-    position: fixed;
-    top: 60px;
-    left: 280px;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
-    opacity: 1;
-    pointer-events: auto;
-    transition: opacity 0.3s ease;
-    z-index: -1;
-  }
-
-  .profile-graph-container.panel-collapsed::before,
-  .profile-graph-container:has(.profile-graph-panel.collapsed)::before {
-    opacity: 0;
-    pointer-events: none;
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
   .profile-graph-container {
-    width: 260px;
-    min-width: 260px;
+    width: 240px;
+    min-width: 240px;
   }
 
-  /* When collapsed, slide panel off-screen */
-  .profile-graph-container.panel-collapsed,
-  .profile-graph-container:has(.profile-graph-panel.collapsed) {
-    transform: translateX(-212px);
+  .profile-graph-panel {
+    width: 240px;
+    min-width: 240px;
   }
 
-  /* Overlay position adjustment */
-  .profile-graph-container::before {
-    left: 260px;
+  /* Toggle position when expanded */
+  .profile-graph-container:not(.panel-collapsed) .profile-graph-toggle,
+  .profile-graph-container:not(:has(.profile-graph-panel.collapsed)) .profile-graph-toggle {
+    left: 196px;
   }
 
   .profile-graph-content {

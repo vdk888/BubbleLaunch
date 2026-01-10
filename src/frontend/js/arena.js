@@ -1905,6 +1905,45 @@
   }
 
   // ═══════════════════════════════════════════════════════════════
+  // Chart resize on chat panel state changes
+  // ═══════════════════════════════════════════════════════════════
+
+  function resizeChartOnPanelChange() {
+    // Delay to let CSS transitions complete (0.4s = 400ms in education.css)
+    setTimeout(() => {
+      if (state.chart) {
+        // Force chart to recalculate size based on new container dimensions
+        state.chart.resize();
+        state.chart.update('none'); // Update without animation for smoother resize
+      }
+    }, 450); // Slightly longer than CSS transition (400ms)
+  }
+
+  // Listen for chat panel events
+  window.addEventListener('chatSidePanel:opened', resizeChartOnPanelChange);
+  window.addEventListener('chatSidePanel:closed', resizeChartOnPanelChange);
+  window.addEventListener('chatSidePanel:minimized', resizeChartOnPanelChange);
+  window.addEventListener('chatSidePanel:restored', resizeChartOnPanelChange);
+
+  // Also watch for body class changes as a fallback
+  const bodyObserver = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.attributeName === 'class') {
+        const hasCollapsed = document.body.classList.contains('chat-collapsed');
+        const hadCollapsed = mutation.oldValue?.includes('chat-collapsed');
+        if (hasCollapsed !== hadCollapsed) {
+          resizeChartOnPanelChange();
+        }
+      }
+    }
+  });
+  bodyObserver.observe(document.body, {
+    attributes: true,
+    attributeFilter: ['class'],
+    attributeOldValue: true
+  });
+
+  // ═══════════════════════════════════════════════════════════════
   // Initialize on DOM Ready
   // ═══════════════════════════════════════════════════════════════
 

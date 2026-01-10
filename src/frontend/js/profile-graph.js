@@ -272,12 +272,8 @@ const ProfileGraph = (function() {
     if (toggle) {
       const icon = toggle.querySelector('.toggle-icon');
       if (icon) {
-        // On mobile, show Bubble logo when collapsed, chevron when expanded
-        if (isMobile) {
-          icon.innerHTML = isExpanded ? ICONS.chevronLeft : ICONS.bubble;
-        } else {
-          icon.innerHTML = isExpanded ? ICONS.chevronLeft : ICONS.chevronRight;
-        }
+        // Always use chevrons - same on mobile and desktop
+        icon.innerHTML = isExpanded ? ICONS.chevronLeft : ICONS.chevronRight;
       }
     }
 
@@ -401,7 +397,8 @@ const ProfileGraph = (function() {
       container.classList.add('panel-collapsed'); // CSS fallback
       const icon = container.querySelector('.toggle-icon');
       if (icon) {
-        icon.innerHTML = isMobile ? ICONS.bubble : ICONS.chevronRight;
+        // Always use chevron
+        icon.innerHTML = ICONS.chevronRight;
       }
     }
 
@@ -429,14 +426,14 @@ const ProfileGraph = (function() {
         if (panel) panel.classList.add('collapsed');
         container.classList.add('panel-collapsed');
         const icon = container.querySelector('.toggle-icon');
-        if (icon) icon.innerHTML = ICONS.bubble;
+        if (icon) icon.innerHTML = ICONS.chevronRight;
       }
 
-      // Update toggle icon on viewport change
+      // Update toggle icon on viewport change - always chevron
       if (wasMobile !== isMobile) {
         const icon = container.querySelector('.toggle-icon');
         if (icon && !isExpanded) {
-          icon.innerHTML = isMobile ? ICONS.bubble : ICONS.chevronRight;
+          icon.innerHTML = ICONS.chevronRight;
         }
       }
     });
