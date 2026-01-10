@@ -134,7 +134,7 @@ Et **on propose de la maintenance post-implémentation**. Parce qu'un outil auto
 
 On ne travaille pas pour tout le monde. Nos clients types :
 
-1. **PME de 20 à 250 employés** avec des processus financiers manuels à automatiser (reporting, consolidation, suivi de trésorerie, facturation)
+1. **PME de 20 à 250 employés** avec des processus manuels à automatiser (reporting, tâches manuelles répétitives et quotidiennes etc..)
 
 2. **Sociétés de gestion <2Mds€ d'encours** qui veulent améliorer leur efficacité opérationnelle sans recruter trois personnes en back-office
 
@@ -154,7 +154,7 @@ Autant être clair sur ce qu'on ne fait pas. Ça évitera des malentendus :
 
 ### Budget réaliste
 
-Nos projets se situent dans une fourchette de **15 000€ à 30 000€** pour une mission structurante sur 2-4 mois. C'est 5 à 10 fois moins cher que les Big Four pour un résultat concret et déployé.
+Nos projets se situent dans une fourchette raisonnable de 30 000€ maximum pour une mission structurante sur 2-4 mois. C'est 5 à 10 fois moins cher que les Big Four pour un résultat concret et déployé.
 
 Concrètement :
 - **Diagnostic + roadmap** : 3 000 - 5 000€ (1-2 semaines)
@@ -191,7 +191,7 @@ C'est une grosse différence avec les Big Four : eux vous disent quoi faire. Nou
 
 ### Approche remote : cohérente avec notre vision
 
-On est basés entre Paris et la Suisse, mais on travaille partout en France et en Europe francophone. En remote. Pourquoi ?
+On travaille d'où on veut en remote mais nous sommes principalement basés à Paris. Pourquoi ?
 
 - Parce que c'est **cohérent avec notre vision de l'automatisation** : on ne peut pas prêcher l'efficacité et passer 10 heures par semaine dans les transports.
 - Parce que **les outils modernes le permettent** : Notion, Slack, Figma, Loom, on n'a pas besoin d'être dans la même pièce pour collaborer efficacement.
@@ -395,7 +395,7 @@ And **we offer post-implementation maintenance**. Because an automated tool evol
 
 We don't work for everyone. Our typical clients:
 
-1. **SMEs with 20 to 250 employees** with manual financial processes to automate (reporting, consolidation, cash flow tracking, invoicing)
+1. **SMEs with 20 to 250 employees** with manual processes to automate (reporting, repetitive daily manual tasks, etc.)
 
 2. **Asset management firms <€2Bn AUM** wanting to improve operational efficiency without hiring three back-office people
 

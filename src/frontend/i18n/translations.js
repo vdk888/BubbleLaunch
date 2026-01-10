@@ -265,12 +265,12 @@ const translations = {
 
   // Chat Section
   "chat.welcome": {
-    en: "Hello, I'm Bubble. How can I help you today?",
-    fr: "Bonjour, je suis Bubble. Comment puis-je vous aider ?"
+    en: "Hey! I'm Bubble - we're democratizing investing. What brings you here today?",
+    fr: "Salut ! Je suis Bubble - ici on démocratise l'investissement. Qu'est-ce qui t'amène ici ?"
   },
   "chat.disclaimer": {
-    en: "I am Bubble, your AI assistant for educational investment questions. My responses provide general education and insights, never personalized financial advice. If you need tailored recommendations, consult a qualified advisor.",
-    fr: "Je suis Bubble, votre assistant IA pour des questions éducatives sur l’investissement. Mes réponses fournissent des informations générales et ne constituent jamais un conseil financier personnalisé. En cas de doute, consultez un conseiller qualifié.",
+    en: "I'm Bubble, your AI assistant for investment questions. My answers are educational and never personalized financial advice. If you need specific recommendations, consult a qualified advisor.",
+    fr: "Je suis Bubble, ton assistant IA pour les questions d'investissement. Mes réponses sont éducatives et ne constituent jamais un conseil financier personnalisé. En cas de doute, consulte un conseiller qualifié.",
   },
   "chat.rotatingPlaceholders": {
     en: [
@@ -529,8 +529,8 @@ const translations = {
     fr: "Assistant IA Bubble"
   },
   "floating_bubble.welcome": {
-    en: "Hello! How can I help you today?",
-    fr: "Bonjour ! Comment puis-je vous aider aujourd'hui ?"
+    en: "Hey! I'm Bubble - we're democratizing investing. What brings you here today?",
+    fr: "Salut ! Je suis Bubble - ici on démocratise l'investissement. Qu'est-ce qui t'amène ici ?"
   },
   "floating_bubble.placeholder": {
     en: "Type your message...",
@@ -1206,8 +1206,8 @@ const translations = {
     fr: "Ce que nous faisons"
   },
   "businesses.what.p1": {
-    en: "We primarily support SMEs and asset management companies in modernizing their financial processes. We don't sell dreams, endless PowerPoint diagnostics, or magical solutions that only work with an army of consultants. We prefer pragmatic projects with simple or customized tools tailored to each need.",
-    fr: "Nous accompagnons principalement les PME et sociétés de gestion dans la modernisation de leurs processus financiers. Nous ne vendons pas du rêve, des diagnostics interminables sur PowerPoint ou des solutions magiques possibles qu'avec une armée de consultants. Nous préférons les projets pragmatiques avec des outils simples ou personnalisés selon chaque besoin."
+    en: "We primarily support SMEs and asset management companies in modernizing their processes. We don't sell dreams, endless PowerPoint diagnostics, or magical solutions that only work with an army of consultants. We prefer pragmatic projects with simple or customized tools tailored to each need.",
+    fr: "Nous accompagnons principalement les PME et sociétés de gestion dans la modernisation de leurs processus. Nous ne vendons pas du rêve, des diagnostics interminables sur PowerPoint ou des solutions magiques possibles qu'avec une armée de consultants. Nous préférons les projets pragmatiques avec des outils simples ou personnalisés selon chaque besoin."
   },
   "businesses.what.p2": {
     en: "Just like Bubble Portfolio, our goal is to share everything that's now possible with modern AI code builders, direct API integrations, and lightweight bespoke services so every company can benefit at a lower cost.",
@@ -1292,8 +1292,8 @@ const translations = {
     fr: "Pragmatisme"
   },
   "businesses.values.pragmatism.text": {
-    en: "Proven and adaptable tools, no technology for technology's sake.",
-    fr: "Outils éprouvés et adaptables, pas de technologie pour la technologie."
+    en: "Proven and adaptable tools to each job and sector.",
+    fr: "Outils éprouvés et adaptables à chaque poste et secteur."
   },
   "businesses.values.transparency.title": {
     en: "Transparency",
@@ -4983,8 +4983,8 @@ const translations = {
     fr: "Les Fondamentaux de l'Investissement"
   },
   "playground.resources.foundation.subtitle": {
-    en: "A series of 4 progressive guides explaining everything you need to know before investing.",
-    fr: "Une série de 4 guides progressifs qui expliquent tout ce que tu dois savoir avant d'investir."
+    en: "A series of our 4 progressive guides explaining everything you need to know before investing.",
+    fr: "Une série de nos 4 guides progressifs qui expliquent tout ce que tu dois savoir avant d'investir."
   },
   "playground.resources.foundation.lesson0.title": {
     en: "Understanding Investments",

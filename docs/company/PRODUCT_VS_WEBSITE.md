@@ -10,7 +10,7 @@
 | **Distribution** | Single website (bubble.invest) | ChatGPT app (primary), web, MCP |
 | **Repository** | This one (BubbleLaunch) | Separate GitHub repo (under development) |
 | **Audience** | Website visitors, blog readers, B2B prospects | Product users: retail, CGP, asset managers |
-| **Status** | Live & maintained | In development with ITEXUS supplier |
+| **Status** | Live & maintained | In development |
 
 ---
 
@@ -52,7 +52,7 @@ Visitor → Landing Page → Blog (education) → Portfolio Simulator (demo) →
 ## Bubble Portfolio Product (Separate Repository)
 
 ### What It Is
-The actual AI-agent-driven portfolio management platform that users will subscribe to. It's currently under development with external supplier ITEXUS.
+The actual AI-agent-driven portfolio management platform that users will subscribe to. It's currently under development.
 
 ### Core Architecture
 1. **AI Agent Orchestrator** - Conversational interface (ChatGPT native app)
@@ -132,7 +132,7 @@ The actual AI-agent-driven portfolio management platform that users will subscri
 - 🔜 **Future**: Waitlist email integration improvements, analytics
 
 ### Bubble Portfolio (Separate Repo)
-- 🔄 **In development**: ITEXUS working on main platform
+- 🔄 **In development**
 - 🔄 **Current status**: Beta for founders' portfolios (IBKR, Alpaca, Saxo automation)
 - ⏳ **Next**: Regulatory compliance, ChatGPT app SDK integration
 - 🚀 **Target**: Launch to retail users post-beta
@@ -141,11 +141,10 @@ The actual AI-agent-driven portfolio management platform that users will subscri
 
 ## Key Contacts / Resources
 
-- **Bubble Team**: Co-founders (Joris + partner)
-- **ITEXUS**: External supplier for Bubble Portfolio development
+- **Bubble Team**: Co-founders (Joris + Jade)
 - **GitHub Repos**:
   - BubbleLaunch: This repository
-  - Bubble Portfolio: Separate repository (under ITEXUS development)
+  - Bubble Portfolio: Separate repository
 
 ---
 

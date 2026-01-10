@@ -133,7 +133,7 @@ Et **on propose de la maintenance post-implémentation**. Parce qu'un outil auto
 
 On ne travaille pas pour tout le monde. Nos clients types :
 
-1. **PME de 20 à 250 employés** avec des processus financiers manuels à automatiser (reporting, consolidation, suivi de trésorerie, facturation)
+1. **PME de 20 à 250 employés** avec des processus manuels à automatiser (reporting, consolidation, suivi de trésorerie, facturation)
 
 2. **Sociétés de gestion <2Mds€ d'encours** qui veulent améliorer leur efficacité opérationnelle sans recruter trois personnes en back-office
 
@@ -394,7 +394,7 @@ And **we offer post-implementation maintenance**. Because an automated tool evol
 
 We don't work for everyone. Our typical clients:
 
-1. **SMEs with 20 to 250 employees** with manual financial processes to automate (reporting, consolidation, cash flow tracking, invoicing)
+1. **SMEs with 20 to 250 employees** with manual processes to automate (reporting, repetitive daily tasks etc.)
 
 2. **Asset management firms <€2Bn AUM** wanting to improve operational efficiency without hiring three back-office people
 

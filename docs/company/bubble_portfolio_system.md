@@ -1,6 +1,6 @@
 #Bubble Portfolio Management System
 
-**Note**: Technical documentation for Bubble Portfolio, the main AI-agent-driven portfolio management platform (separate GitHub repository, currently in development with ITEXUS).
+**Note**: Technical documentation for Bubble Portfolio, the main AI-agent-driven portfolio management platform (separate GitHub repository, currently in development).
 
 ---
 

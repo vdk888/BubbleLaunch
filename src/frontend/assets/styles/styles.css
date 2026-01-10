@@ -1149,6 +1149,10 @@ body.mobile-menu-open {
   box-sizing: border-box;
 }
 
+.hero-chat-input:focus {
+  outline: none;
+}
+
 .hero-chat-input::placeholder {
   color: #999;
 }
@@ -2284,8 +2288,14 @@ body.mobile-menu-open {
 
 .chat-side-panel-input:focus {
   outline: none;
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.15);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: none;
+}
+
+/* Show focus ring only for keyboard navigation (accessibility) */
+.chat-side-panel-input:focus-visible {
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2);
 }
 
 .chat-side-panel-send {
@@ -6336,6 +6346,11 @@ footer .container {
 
 .floating-input-field::placeholder {
   color: rgba(107, 114, 128, 0.7);
+}
+
+.floating-input-field:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .floating-input-submit {

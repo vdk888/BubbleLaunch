@@ -1,8 +1,8 @@
 /**
  * Bubble Playground - Full-Screen Chatbot Experience
- * Scripted onboarding that EDUCATES users about WHY strategies matter
- * Explains Bubble's raison d'etre: personalized portfolios based on risk profile
- * Transitions to LLM after profile determination
+ * CONVERSATIONAL onboarding that discovers user risk profile through natural dialogue
+ * Leverages BubbleAgentMemory for persistent profile building
+ * Supports French and English with automatic language detection
  */
 
 const PlaygroundFullscreenChat = (function() {
@@ -23,6 +23,9 @@ const PlaygroundFullscreenChat = (function() {
   // Session state
   const SESSION_KEY = 'bubblePlaygroundFullscreenSession';
   let session = null;
+
+  // Reference to BubbleAgentMemory (loaded externally)
+  let Memory = null;
 
   // SVG Icons (no emojis)
   const ICONS = {
@@ -59,326 +62,139 @@ const PlaygroundFullscreenChat = (function() {
     100: { name: { fr: 'Croissance Max', en: 'Maximum Growth' }, stocks: 100, bonds: 0, icon: 'gem', description: { fr: '100% actions. Tu joues le long terme sans filet.', en: '100% stocks. You play the long game with no safety net.' } }
   };
 
-  // Conversation stages - expanded for education
+  // Conversation stages - simplified for conversational onboarding
   const STAGES = {
-    introduction: 'introduction',
-    welcome: 'welcome',
-    education_problem: 'education_problem',
-    education_spectrum: 'education_spectrum',
-    scenario_crisis: 'scenario_crisis',
-    scenario_bonus: 'scenario_bonus',
-    scenario_horizon: 'scenario_horizon',
-    scenario_friends: 'scenario_friends',
-    scenario_layoffs: 'scenario_layoffs',
-    profile_reveal: 'profile_reveal',
-    bubble_solution: 'bubble_solution',
-    free_chat: 'free_chat'
+    onboarding_active: 'onboarding_active',  // LLM-driven conversational discovery
+    profile_reveal: 'profile_reveal',         // Show calculated profile
+    free_chat: 'free_chat'                    // Post-onboarding free questions
   };
 
-  // Educational & Scripted content - Bubble's Raison d'Etre
+  // Minimum confidence to complete onboarding (0-100)
+  const MIN_CONFIDENCE_TO_REVEAL = 70;
+  // Minimum exchanges before allowing profile reveal
+  const MIN_EXCHANGES_FOR_PROFILE = 3;
+
+  /**
+   * Parse PROFILE_UPDATE from LLM response
+   * Format: <!-- PROFILE_UPDATE {...json...} -->
+   * @param {string} response - LLM response text
+   * @returns {{ cleanResponse: string, profileUpdate: object|null }}
+   */
+  function parseProfileUpdate(response) {
+    const regex = /<!--\s*PROFILE_UPDATE\s*([\s\S]*?)\s*-->/;
+    const match = response.match(regex);
+
+    if (!match) {
+      return { cleanResponse: response, profileUpdate: null };
+    }
+
+    // Remove the profile update block from visible response
+    const cleanResponse = response.replace(regex, '').trim();
+
+    try {
+      // Normalize whitespace: trim and collapse internal whitespace for multi-line JSON
+      let jsonStr = match[1].trim();
+      // Replace multiple whitespace (including newlines) between JSON tokens with single space
+      // This handles multi-line JSON with inconsistent indentation
+      jsonStr = jsonStr.replace(/\s+/g, ' ');
+
+      const profileUpdate = JSON.parse(jsonStr);
+      console.log('[PlaygroundChat] Successfully parsed PROFILE_UPDATE:', profileUpdate);
+      return { cleanResponse, profileUpdate };
+    } catch (e) {
+      // Debug logging with raw content for troubleshooting
+      console.warn('[PlaygroundChat] Failed to parse PROFILE_UPDATE JSON:', e);
+      console.debug('[PlaygroundChat] Raw PROFILE_UPDATE content:', match[1]);
+      console.debug('[PlaygroundChat] Trimmed content length:', match[1]?.trim()?.length);
+      return { cleanResponse, profileUpdate: null };
+    }
+  }
+
+  /**
+   * Apply profile update from LLM to BubbleAgentMemory
+   * @param {object} update - Parsed profile update object
+   */
+  function applyProfileUpdate(update) {
+    if (!Memory || !update) return;
+
+    try {
+      // Use BubbleAgentMemory's built-in method
+      Memory.applyProfileUpdate(update);
+
+      // Sync session with memory state
+      const profile = Memory.getProfile();
+      if (profile) {
+        session.riskScore = profile.riskScore;
+        session.riskConfidence = profile.riskConfidence;
+        session.traits = profile.traits || [];
+        saveSession();
+      }
+
+      console.log('[PlaygroundChat] Profile updated:', {
+        riskScore: profile?.riskScore,
+        confidence: profile?.riskConfidence,
+        traits: profile?.traits?.length
+      });
+    } catch (e) {
+      console.error('[PlaygroundChat] Failed to apply profile update:', e);
+    }
+  }
+
+  /**
+   * Check if onboarding is complete based on confidence
+   * @returns {boolean}
+   */
+  function isOnboardingComplete() {
+    if (!Memory) return false;
+    const profile = Memory.getProfile();
+    const journey = Memory.getJourney();
+
+    const confidence = profile?.riskConfidence || 0;
+    const exchanges = journey?.questionsAsked || 0;
+
+    return confidence >= MIN_CONFIDENCE_TO_REVEAL && exchanges >= MIN_EXCHANGES_FOR_PROFILE;
+  }
+
+  /**
+   * Initialize BubbleAgentMemory reference
+   */
+  function initMemory() {
+    if (typeof BubbleAgentMemory !== 'undefined') {
+      Memory = BubbleAgentMemory;
+
+      // Sync current language with memory
+      const lang = getLang();
+      Memory.setPreferredLanguage(lang);
+
+      // Log initialization
+      console.log('[PlaygroundChat] BubbleAgentMemory initialized, language:', lang);
+      return true;
+    }
+
+    console.warn('[PlaygroundChat] BubbleAgentMemory not available');
+    return false;
+  }
+
+  /**
+   * Sync language preference with memory
+   */
+  function syncLanguageWithMemory() {
+    if (!Memory) return;
+    const lang = getLang();
+    Memory.setPreferredLanguage(lang);
+  }
+
+  // Content used for profile display and navigation
   const CONTENT = {
-    introduction: {
-      messages: {
-        fr: [
-          "Bienvenue dans le Playground Bubble ! 👋",
-          "Je suis ton assistant investissement. Ici, tu vas découvrir ton profil de risque - c'est-à-dire : la stratégie d'investissement qui te correspond vraiment.",
-          "Pas de généralités. Pas de solutions toutes faites. Juste TOI et TA tolérance au risque.",
-          "Je vais te poser quelques scénarios concrets. Il n'y a pas de bonne ou mauvaise réponse - juste ce qui te correspond.",
-          "À la fin, tu verras ta stratégie personnalisée et comment elle aurait performé sur 20 ans. Prêt ?"
-        ],
-        en: [
-          "Welcome to the Bubble Playground! 👋",
-          "I'm your investment assistant. Here, you'll discover your risk profile - that is: the investment strategy that truly fits you.",
-          "No generalities. No one-size-fits-all solutions. Just YOU and YOUR risk tolerance.",
-          "I'm going to ask you some concrete scenarios. There are no right or wrong answers - just what fits you.",
-          "At the end, you'll see your personalized strategy and how it would have performed over 20 years. Ready?"
-        ]
-      },
-      cta: {
-        fr: "Commençons !",
-        en: "Let's start!"
-      }
-    },
-
-    welcome: {
-      messages: {
-        fr: [
-          "Commençons par une question clé pour découvrir ton profil :"
-        ],
-        en: [
-          "Let's start with a key question to discover your profile:"
-        ]
-      },
-      question: {
-        fr: "Tu as 50 000 euros. Comment les répartir entre placements sûrs (livrets, fonds euros) et actions (bourse) ?",
-        en: "You have 50,000 euros. How would you split it between safe investments (savings, bonds) and stocks?"
-      },
-      cta: {
-        fr: "Bonne question...",
-        en: "Good question..."
-      }
-    },
-
-    education_problem: {
-      messages: {
-        fr: [
-          "Si tu hésites, c'est normal. La plupart des gens ne savent pas répondre à cette question.",
-          "Et c'est exactement LE problème que Bubble résout.",
-          "La vraie question n'est pas QUE choisir, mais COMMENT choisir. Et surtout : qu'est-ce qui te correspond vraiment ?"
-        ],
-        en: [
-          "If you're hesitating, that's normal. Most people don't know how to answer this question.",
-          "And that's exactly THE problem Bubble solves.",
-          "The real question isn't WHAT to choose, but HOW to choose. And most importantly: what really fits YOU?"
-        ]
-      },
-      cta: {
-        fr: "Ça m'intéresse",
-        en: "I'm interested"
-      }
-    },
-
-    education_spectrum: {
-      messages: {
-        fr: [
-          "Voici le secret : il n'y a pas de bonne ou mauvaise réponse. Chacun a sa propre tolérance au risque.",
-          "Chez Bubble, on a identifié 11 profils différents - de 0% actions (sécurité totale) à 100% actions (croissance maximale).",
-          "Ton profil idéal dépend de comment tu VIS émotionnellement les hauts et les bas. Pas de ce que tu PENSES vouloir.",
-          "Je vais te poser quelques scénarios concrets. Réponds spontanément - il n'y a pas de piège !"
-        ],
-        en: [
-          "Here's the secret: there's no right or wrong answer. Everyone has their own risk tolerance.",
-          "At Bubble, we identified 11 different profiles - from 0% stocks (total safety) to 100% stocks (maximum growth).",
-          "Your ideal profile depends on how you LIVE emotionally through the ups and downs. Not what you THINK you want.",
-          "I'm going to ask you a few concrete scenarios. Answer spontaneously - there's no trick!"
-        ]
-      },
-      cta: {
-        fr: "C'est parti !",
-        en: "Let's go!"
-      }
-    },
-
-    scenario_crisis: {
-      intro: {
-        fr: "Mars 2020. Le confinement est annoncé. Les marchés s'effondrent de 35% en 3 semaines. Ton portefeuille affiche -18 000€.",
-        en: "March 2020. Lockdown is announced. Markets crash 35% in 3 weeks. Your portfolio shows -€18,000."
-      },
-      question: {
-        fr: "Que fais-tu ?",
-        en: "What do you do?"
-      },
-      options: [
-        {
-          id: 'panic',
-          text: { fr: "Je vends tout immédiatement. Et si ça ne remontait jamais ?", en: "I sell everything immediately. What if it never recovers?" },
-          score: 0
-        },
-        {
-          id: 'anxious',
-          text: { fr: "Très inquiet, je regarde 5x/jour, mais je ne vends pas", en: "Very worried, I check 5x/day, but I don't sell" },
-          score: 25
-        },
-        {
-          id: 'stressed',
-          text: { fr: "Stressé mais je me dis 'c'est temporaire'. Je regarde 1x/semaine", en: "Stressed but I tell myself 'it's temporary'. I check once a week" },
-          score: 50
-        },
-        {
-          id: 'calm',
-          text: { fr: "Je ne regarde pas pendant 2 mois. Quand je regarde, c'est remonte", en: "I don't check for 2 months. When I look, it's recovered" },
-          score: 75
-        },
-        {
-          id: 'opportunist',
-          text: { fr: "Super, c'est en solde ! J'augmente mes versements", en: "Great, it's on sale! I increase my contributions" },
-          score: 100
-        }
-      ]
-    },
-
-    scenario_bonus: {
-      intro: {
-        fr: "Tu reçois un bonus de 10 000€. L'économie va bien, les marchés ont fait +25% cette année.",
-        en: "You receive a €10,000 bonus. The economy is doing well, markets are up 25% this year."
-      },
-      question: {
-        fr: "Qu'en fais-tu ?",
-        en: "What do you do with it?"
-      },
-      options: [
-        {
-          id: 'all_safe',
-          text: { fr: "Tout en fonds euros. Les marchés sont trop hauts", en: "All in bonds/cash. Markets are too high" },
-          score: 0
-        },
-        {
-          id: 'mostly_safe',
-          text: { fr: "2 000€ en actions, 8 000€ en sécurisé", en: "€2k in stocks, €8k in safe assets" },
-          score: 25
-        },
-        {
-          id: 'balanced',
-          text: { fr: "50/50 - Je profite avec un filet de securite", en: "50/50 - I benefit with a safety net" },
-          score: 50
-        },
-        {
-          id: 'mostly_stocks',
-          text: { fr: "7 000€ en actions, 3 000€ sécurisé", en: "€7k in stocks, €3k safe" },
-          score: 75
-        },
-        {
-          id: 'all_stocks',
-          text: { fr: "100% actions. Sur 20 ans, ca montera encore", en: "100% stocks. In 20 years, it'll go higher" },
-          score: 100
-        }
-      ]
-    },
-
-    scenario_horizon: {
-      intro: {
-        fr: "Tu as 50 000€ à investir aujourd'hui.",
-        en: "You have €50,000 to invest today."
-      },
-      question: {
-        fr: "Dans combien de temps auras-tu besoin de cet argent ?",
-        en: "When will you need this money?"
-      },
-      options: [
-        {
-          id: 'short',
-          text: { fr: "Moins de 3 ans (ou je ne sais pas)", en: "Less than 3 years (or I don't know)" },
-          score: 0
-        },
-        {
-          id: 'medium_short',
-          text: { fr: "3-5 ans (achat immo, travaux...)", en: "3-5 years (real estate, renovations...)" },
-          score: 25
-        },
-        {
-          id: 'medium',
-          text: { fr: "5-10 ans (projet moyen terme)", en: "5-10 years (medium-term project)" },
-          score: 50
-        },
-        {
-          id: 'long',
-          text: { fr: "10-20 ans (retraite, projet lointain)", en: "10-20 years (retirement, distant project)" },
-          score: 75
-        },
-        {
-          id: 'very_long',
-          text: { fr: "20-30 ans minimum (retraite lointaine)", en: "20-30 years minimum (distant retirement)" },
-          score: 100
-        }
-      ]
-    },
-
-    scenario_friends: {
-      intro: {
-        fr: "Tu es au restaurant avec des amis. Ils parlent de leurs investissements.",
-        en: "You're at a restaurant with friends. They're talking about their investments."
-      },
-      question: {
-        fr: "Que ressens-tu ?",
-        en: "How do you feel?"
-      },
-      options: [
-        {
-          id: 'avoid',
-          text: { fr: "Moi je ne touche pas à la bourse, c'est trop risqué", en: "I don't touch the stock market, too risky" },
-          score: 0
-        },
-        {
-          id: 'cautious',
-          text: { fr: "J'ai mis un petit peu, mais vraiment très peu", en: "I put in a little, but really very little" },
-          score: 25
-        },
-        {
-          id: 'balanced_talk',
-          text: { fr: "J'ai un mix actions/fonds euros. L'équilibre, quoi", en: "I have a stocks/bonds mix. Balance, you know" },
-          score: 50
-        },
-        {
-          id: 'growth_talk',
-          text: { fr: "Majoritairement en actions, avec un peu de sécurisé", en: "Mostly stocks, with some safe assets" },
-          score: 75
-        },
-        {
-          id: 'aggressive_talk',
-          text: { fr: "100% actions ! Les krachs ? Des opportunités d'achat", en: "100% stocks! Crashes? Buying opportunities" },
-          score: 100
-        }
-      ]
-    },
-
-    scenario_layoffs: {
-      intro: {
-        fr: "Ton secteur d'activité connaît des licenciements. Tu n'es pas concerné, mais l'ambiance est anxiogène.",
-        en: "Your industry is seeing layoffs. You're not affected, but the atmosphere is anxious."
-      },
-      question: {
-        fr: "Que fais-tu avec tes placements ?",
-        en: "What do you do with your investments?"
-      },
-      options: [
-        {
-          id: 'reduce',
-          text: { fr: "Je réduis ma part d'actions. Et si j'étais le prochain ?", en: "I reduce my stock allocation. What if I'm next?" },
-          score: 0
-        },
-        {
-          id: 'uncomfortable',
-          text: { fr: "Je ne change rien mais je vérifie mon épargne de précaution", en: "I don't change but check my emergency fund" },
-          score: 33
-        },
-        {
-          id: 'separate',
-          text: { fr: "Je ne change rien. Mon épargne de précaution est là pour ça", en: "I don't change. My emergency fund is for that" },
-          score: 66
-        },
-        {
-          id: 'opportunity',
-          text: { fr: "Si mon secteur va mal, les actions vont baisser. Opportunité !", en: "If my sector struggles, stocks will drop. Opportunity!" },
-          score: 100
-        }
-      ]
-    },
-
+    // Profile explanation shown in profile card
     profile_reveal: {
-      intro: {
-        fr: "Merci pour tes réponses ! Voici ton profil de risque :",
-        en: "Thanks for your answers! Here's your risk profile:"
-      },
       explanation: {
-        fr: "Ce profil reflète ta tolérance au risque basée sur tes réponses émotionnelles. Il n'y a pas de bon ou mauvais profil - juste celui qui te correspond.",
-        en: "This profile reflects your risk tolerance based on your emotional responses. There's no good or bad profile - just the one that fits you."
+        fr: "Ce profil reflète ta tolérance au risque basée sur nos échanges. Il n'y a pas de bon ou mauvais profil - juste celui qui te correspond.",
+        en: "This profile reflects your risk tolerance based on our conversation. There's no good or bad profile - just the one that fits you."
       }
     },
 
-    bubble_solution: {
-      messages: {
-        fr: [
-          "Et maintenant, la question à 1 million d'euros : qui va gérer ton portefeuille selon ce profil ?",
-          "C'est là que Bubble entre en jeu.",
-          "Bubble crée des portefeuilles personnalisés basés sur TON profil de risque. Pas une solution générique vendue à tout le monde.",
-          "On teste chaque stratégie sur 20+ ans de données historiques. Tu vois exactement comment ton portefeuille aurait performé pendant les crises, les euphories, et tout le reste.",
-          "Tu mérites une stratégie qui te ressemble, pas une solution toute faite."
-        ],
-        en: [
-          "And now, the million-dollar question: who's going to manage your portfolio according to this profile?",
-          "That's where Bubble comes in.",
-          "Bubble creates personalized portfolios based on YOUR risk profile. Not a generic solution sold to everyone.",
-          "We test each strategy on 20+ years of historical data. You see exactly how your portfolio would have performed during crises, euphoria, and everything in between.",
-          "You deserve a strategy that fits you, not a one-size-fits-all solution."
-        ]
-      }
-    },
-
-    transition: {
-      fr: "Maintenant tu peux explorer nos outils, me poser des questions, ou rejoindre Bubble pour automatiser tout ça :",
-      en: "Now you can explore our tools, ask me questions, or join Bubble to automate all of this:"
-    },
-
+    // Navigation cards shown after onboarding
     nav_cards: {
       arena: {
         iconKey: 'eye',
@@ -398,8 +214,140 @@ const PlaygroundFullscreenChat = (function() {
         desc: { fr: "Vidéos et ressources éducatives", en: "Videos and educational resources" },
         url: { fr: '/investors/playground/resources', en: '/en/investors/playground/resources' }
       }
+    },
+
+    // Profile-based bot recommendations for Arena
+    bot_recommendations: {
+      conservative: { // Risk 0-30
+        primary: 'hedgehog', // Defensive
+        fr: "Avec ton profil prudent, tu devrais observer le **Hérisson** (Défensif) - il minimise les pertes pendant les crises.",
+        en: "With your conservative profile, you should watch the **Hedgehog** (Defensive) - it minimizes losses during crises."
+      },
+      balanced: { // Risk 40-60
+        primary: 'fox', // Risk Parity
+        fr: "Ton profil équilibré s'aligne bien avec le **Renard** (Risk Parity) - il balance automatiquement risque et rendement.",
+        en: "Your balanced profile aligns well with the **Fox** (Risk Parity) - it automatically balances risk and return."
+      },
+      growth: { // Risk 70-100
+        primary: 'hawk', // Momentum
+        fr: "Avec ton appétit pour la croissance, le **Faucon** (Momentum) devrait t'intéresser - il surfe sur les tendances fortes.",
+        en: "With your appetite for growth, the **Hawk** (Momentum) should interest you - it rides strong trends."
+      }
+    },
+
+    // Returning user messages based on time away - proactive and engaging
+    returning_user: {
+      short: { // < 24 hours
+        fr: "Content de te revoir si vite ! Alors, tu as repensé à notre discussion ? Qu'est-ce qui t'a marqué ?",
+        en: "Good to see you back so soon! So, have you been thinking about our chat? What stood out to you?"
+      },
+      medium: { // 1-7 days
+        fr: "Ça fait quelques jours ! J'espère que tu as pu réfléchir à tout ça. Dis-moi, il s'est passé quelque chose côté finances depuis ?",
+        en: "It's been a few days! I hope you've had time to think things through. Tell me, has anything happened on the finance side since then?"
+      },
+      long: { // > 7 days
+        fr: "Ça fait un moment ! Ravi de te revoir. Alors, quoi de neuf ? Tu as eu des réflexions sur l'investissement entre-temps ?",
+        en: "It's been a while! Great to see you again. So, what's new? Have you had any thoughts about investing in the meantime?"
+      }
     }
   };
+
+  // ===========================================
+  // POST-ONBOARDING PERSONALIZATION HELPERS
+  // ===========================================
+
+  /**
+   * Get profile-based recommendation category
+   * @returns {'conservative'|'balanced'|'growth'}
+   */
+  function getProfileCategory() {
+    const score = getProfileLevel();
+    if (score <= 30) return 'conservative';
+    if (score <= 60) return 'balanced';
+    return 'growth';
+  }
+
+  /**
+   * Get time away category for returning users
+   * @returns {'short'|'medium'|'long'|null}
+   */
+  function getTimeAwayCategory() {
+    if (!Memory) return null;
+    const hours = Memory.getHoursSinceLastVisit();
+    if (hours < 24) return 'short';
+    if (hours < 168) return 'medium'; // 7 days
+    return 'long';
+  }
+
+  /**
+   * Build personalized welcome back message
+   */
+  function buildReturningUserWelcome() {
+    const lang = getLang();
+    const timeCategory = getTimeAwayCategory();
+    const profile = Memory ? Memory.getProfile() : null;
+    const journey = Memory ? Memory.getJourney() : null;
+
+    let message = '';
+
+    // Base welcome based on time away
+    if (timeCategory && CONTENT.returning_user[timeCategory]) {
+      message = t(CONTENT.returning_user[timeCategory]);
+    } else {
+      message = lang === 'fr' ? 'Content de te revoir !' : 'Good to see you again!';
+    }
+
+    // Add profile reminder if completed onboarding
+    if (journey?.onboardingCompleted && profile?.riskScore !== null) {
+      const profileLevel = getProfileLevel();
+      const profileData = PROFILES[profileLevel];
+      if (profileData) {
+        const profileName = t(profileData.name);
+        const reminder = lang === 'fr'
+          ? `\n\nPour rappel, ton profil : **${profileName}** (${profileLevel}% actions)`
+          : `\n\nAs a reminder, your profile: **${profileName}** (${profileLevel}% stocks)`;
+        message += reminder;
+      }
+    }
+
+    // Add journey progress
+    if (journey) {
+      const strategiesTested = journey.strategiesTested?.length || 0;
+      const pagesVisited = journey.pagesVisited?.length || 0;
+
+      if (strategiesTested > 0 || pagesVisited > 3) {
+        const progress = lang === 'fr'
+          ? `\n\nTu as déjà ${strategiesTested > 0 ? `testé ${strategiesTested} stratégie${strategiesTested > 1 ? 's' : ''}` : ''}${strategiesTested > 0 && pagesVisited > 3 ? ' et ' : ''}${pagesVisited > 3 ? 'exploré plusieurs pages' : ''}.`
+          : `\n\nYou've already ${strategiesTested > 0 ? `tested ${strategiesTested} strateg${strategiesTested > 1 ? 'ies' : 'y'}` : ''}${strategiesTested > 0 && pagesVisited > 3 ? ' and ' : ''}${pagesVisited > 3 ? 'explored several pages' : ''}.`;
+        message += progress;
+      }
+    }
+
+    return message;
+  }
+
+  /**
+   * Create personalized recommendation card based on profile
+   */
+  function createPersonalizedRecommendation() {
+    const lang = getLang();
+    const category = getProfileCategory();
+    const rec = CONTENT.bot_recommendations[category];
+
+    const container = document.createElement('div');
+    container.className = 'playground-recommendation';
+    container.innerHTML = `
+      <div class="recommendation-content">
+        <p>${formatMessage(t(rec))}</p>
+      </div>
+      <a href="${t(CONTENT.nav_cards.arena.url)}" class="recommendation-cta">
+        ${ICONS.eye}
+        <span>${lang === 'fr' ? "Voir dans l'Arena" : "Watch in Arena"}</span>
+      </a>
+    `;
+
+    return container;
+  }
 
   /**
    * Get current language
@@ -427,6 +375,19 @@ const PlaygroundFullscreenChat = (function() {
     if (stored) {
       try {
         session = JSON.parse(stored);
+        // Migrate old stage names if necessary
+        if (session.stage && !Object.values(STAGES).includes(session.stage)) {
+          // Map old stages to new simplified stages
+          if (session.stage === 'free_chat') {
+            session.stage = STAGES.free_chat;
+          } else if (session.stage === 'profile_reveal' || session.stage === 'bubble_solution') {
+            session.stage = STAGES.profile_reveal;
+          } else {
+            // Any other old stage becomes onboarding_active
+            session.stage = STAGES.onboarding_active;
+          }
+          saveSession();
+        }
         return true;
       } catch (e) {
         console.error('Failed to parse session:', e);
@@ -435,13 +396,11 @@ const PlaygroundFullscreenChat = (function() {
 
     session = {
       started: Date.now(),
-      stage: STAGES.introduction,
-      scores: [],
-      profile: null,
-      answers: {},
-      conversation: [],
-      onboardingPaused: false,        // Track if user paused onboarding to ask questions
-      lastOnboardingStage: null       // Remember stage where user paused
+      stage: STAGES.onboarding_active,
+      riskScore: 50,                  // Current risk score (synced with Memory)
+      riskConfidence: 0,              // Profile confidence (0-100)
+      traits: [],                     // Personality traits discovered
+      conversation: []                // Chat history
     };
     saveSession();
     return false;
@@ -455,44 +414,20 @@ const PlaygroundFullscreenChat = (function() {
   }
 
   /**
-   * Calculate profile from scores (0-100 scale, rounded to nearest 10)
+   * Get calculated profile level (0-100, rounded to nearest 10) from Memory
    */
-  function calculateProfile() {
-    if (session.scores.length === 0) return 50;
-    const avg = session.scores.reduce((a, b) => a + b, 0) / session.scores.length;
-    return Math.round(avg / 10) * 10;
-  }
-
-  /**
-   * Get the next onboarding stage based on current stage
-   */
-  function getNextOnboardingStage(currentStage) {
-    switch (currentStage) {
-      case STAGES.introduction:
-        return STAGES.welcome;
-      case STAGES.welcome:
-        return STAGES.education_problem;
-      case STAGES.education_problem:
-        return STAGES.education_spectrum;
-      case STAGES.education_spectrum:
-        return STAGES.scenario_crisis;
-      case STAGES.scenario_crisis:
-        return STAGES.scenario_bonus;
-      case STAGES.scenario_bonus:
-        return STAGES.scenario_horizon;
-      case STAGES.scenario_horizon:
-        return STAGES.scenario_friends;
-      case STAGES.scenario_friends:
-        return STAGES.scenario_layoffs;
-      case STAGES.scenario_layoffs:
-        return STAGES.profile_reveal;
-      case STAGES.profile_reveal:
-        return STAGES.bubble_solution;
-      case STAGES.bubble_solution:
-        return STAGES.free_chat;
-      default:
-        return STAGES.free_chat;
+  function getProfileLevel() {
+    if (Memory) {
+      const profile = Memory.getProfile();
+      if (profile && typeof profile.riskScore === 'number') {
+        return Math.round(profile.riskScore / 10) * 10;
+      }
     }
+    // Fallback to session
+    if (typeof session?.riskScore === 'number') {
+      return Math.round(session.riskScore / 10) * 10;
+    }
+    return 50; // Default balanced
   }
 
   /**
@@ -683,201 +618,115 @@ const PlaygroundFullscreenChat = (function() {
     return container;
   }
 
-  /**
-   * Handle introduction stage - introduces the playground
-   */
-  async function handleIntroduction() {
-    const messages = t(CONTENT.introduction.messages);
+  // ===========================================
+  // LEGACY MCQ HANDLERS REMOVED
+  // Conversational onboarding now handled via LLM
+  // See startConversationalOnboarding() and sendToLLM()
+  // ===========================================
 
-    // Combine all introduction messages into single bubble
-    await addMessage(messages, 'bot', 600);
-
-    setTimeout(() => {
-      const options = createOptions([
-        { id: 'intro', text: CONTENT.introduction.cta, score: 0 }
-      ], () => {
-        addMessage(t(CONTENT.introduction.cta), 'user');
-        session.stage = STAGES.welcome;
-        saveSession();
-        setTimeout(() => handleWelcome(), 500);
-      });
-      addElement(options);
-    }, 800);
-  }
+  // LocalStorage key for tracking interrupted onboarding transitions
+  const ONBOARDING_TRANSITION_KEY = 'bubbleOnboardingTransitionPending';
 
   /**
-   * Handle welcome stage - poses the key question
-   */
-  async function handleWelcome() {
-    const messages = t(CONTENT.welcome.messages);
-
-    // Combine all welcome messages into single bubble
-    await addMessage(messages, 'bot', 600);
-
-    // Ask the key question about 50k allocation
-    await addMessage(t(CONTENT.welcome.question), 'bot', 1200);
-
-    setTimeout(() => {
-      const options = createOptions([
-        { id: 'start', text: CONTENT.welcome.cta, score: 0 }
-      ], () => {
-        addMessage(t(CONTENT.welcome.cta), 'user');
-        session.stage = STAGES.education_problem;
-        saveSession();
-        setTimeout(() => handleEducationProblem(), 500);
-      });
-      addElement(options);
-    }, 800);
-  }
-
-  /**
-   * Handle education about the problem most people face
-   */
-  async function handleEducationProblem() {
-    const messages = t(CONTENT.education_problem.messages);
-
-    // Combine all education problem messages into single bubble
-    await addMessage(messages, 'bot', 800);
-
-    setTimeout(() => {
-      const options = createOptions([
-        { id: 'interested', text: CONTENT.education_problem.cta, score: 0 }
-      ], () => {
-        addMessage(t(CONTENT.education_problem.cta), 'user');
-        session.stage = STAGES.education_spectrum;
-        saveSession();
-        setTimeout(() => handleEducationSpectrum(), 500);
-      });
-      addElement(options);
-    }, 800);
-  }
-
-  /**
-   * Handle education about the 11-profile spectrum
-   */
-  async function handleEducationSpectrum() {
-    const messages = t(CONTENT.education_spectrum.messages);
-
-    // Combine all spectrum messages into single bubble
-    await addMessage(messages, 'bot', 800);
-
-    setTimeout(() => {
-      const options = createOptions([
-        { id: 'ready', text: CONTENT.education_spectrum.cta, score: 0 }
-      ], () => {
-        addMessage(t(CONTENT.education_spectrum.cta), 'user');
-        session.stage = STAGES.scenario_crisis;
-        saveSession();
-        setTimeout(() => handleScenario('crisis'), 500);
-      });
-      addElement(options);
-    }, 800);
-  }
-
-  /**
-   * Handle scenario questions
-   */
-  async function handleScenario(scenarioKey) {
-    const scenarioMap = {
-      'crisis': { content: CONTENT.scenario_crisis, next: STAGES.scenario_bonus },
-      'bonus': { content: CONTENT.scenario_bonus, next: STAGES.scenario_horizon },
-      'horizon': { content: CONTENT.scenario_horizon, next: STAGES.scenario_friends },
-      'friends': { content: CONTENT.scenario_friends, next: STAGES.scenario_layoffs },
-      'layoffs': { content: CONTENT.scenario_layoffs, next: STAGES.profile_reveal }
-    };
-
-    const scenario = scenarioMap[scenarioKey];
-    if (!scenario) return;
-
-    await addMessage(t(scenario.content.intro), 'bot', 800);
-    await addMessage(t(scenario.content.question), 'bot', 600);
-
-    setTimeout(() => {
-      const options = createOptions(scenario.content.options, (selected) => {
-        addMessage(t(selected.text), 'user');
-        session.scores.push(selected.score);
-        session.answers[scenarioKey] = selected.id;
-        session.stage = scenario.next;
-        saveSession();
-
-        if (scenario.next === STAGES.profile_reveal) {
-          setTimeout(() => handleProfileReveal(), 500);
-        } else {
-          const nextKey = scenario.next.replace('scenario_', '');
-          setTimeout(() => handleScenario(nextKey), 500);
-        }
-      });
-      addElement(options);
-    }, 400);
-  }
-
-  /**
-   * Handle profile reveal
+   * Handle profile reveal - shows calculated profile and transitions to free chat
    */
   async function handleProfileReveal() {
-    const profileLevel = calculateProfile();
-    session.profile = profileLevel;
+    const profileLevel = getProfileLevel();
+    const lang = getLang();
+
+    // Update session stage
+    session.stage = STAGES.profile_reveal;
     saveSession();
 
-    await addMessage(t(CONTENT.profile_reveal.intro), 'bot', 800);
+    // Mark onboarding complete in memory
+    if (Memory) {
+      Memory.completeOnboarding();
+    }
+
+    // Introduction message
+    const introMsg = lang === 'fr'
+      ? "Merci pour notre discussion ! J'ai maintenant une bonne idée de ton profil d'investisseur. Voici ce que j'ai compris :"
+      : "Thanks for our chat! I now have a good sense of your investor profile. Here's what I understood:";
+
+    await addMessage(introMsg, 'bot', 800);
 
     setTimeout(() => {
       const profileCard = createProfileCard(profileLevel);
       addElement(profileCard);
 
+      // Add traits if available
+      const profile = Memory ? Memory.getProfile() : null;
+      if (profile?.traits && profile.traits.length > 0) {
+        setTimeout(async () => {
+          const traitsMsg = lang === 'fr'
+            ? `Tes traits principaux : ${profile.traits.slice(0, 4).join(', ')}`
+            : `Your main traits: ${profile.traits.slice(0, 4).join(', ')}`;
+          await addMessage(traitsMsg, 'bot', 400);
+        }, 600);
+      }
+
       setTimeout(async () => {
-        // Now explain Bubble's solution
-        session.stage = STAGES.bubble_solution;
-        saveSession();
-        await handleBubbleSolution();
+        // Profile-based recommendation message
+        const category = getProfileCategory();
+        const recMsg = t(CONTENT.bot_recommendations[category]);
+        await addMessage(recMsg, 'bot', 600);
+
+        setTimeout(() => {
+          // Personalized recommendation card
+          const recommendation = createPersonalizedRecommendation();
+          addElement(recommendation);
+
+          setTimeout(async () => {
+            // Transition message
+            const transitionMsg = lang === 'fr'
+              ? "Tu peux aussi explorer le Simulateur, me poser des questions, ou simplement continuer à discuter !"
+              : "You can also explore the Simulator, ask me questions, or just keep chatting!";
+            await addMessage(transitionMsg, 'bot', 500);
+
+            setTimeout(() => {
+              const navCards = createNavCards();
+              addElement(navCards);
+
+              session.stage = STAGES.free_chat;
+              saveSession();
+
+              // Clear the transition flag - onboarding completed successfully
+              localStorage.removeItem(ONBOARDING_TRANSITION_KEY);
+              console.log('[PlaygroundChat] Onboarding transition completed successfully');
+
+              enableInput();
+            }, 400);
+          }, 600);
+        }, 500);
       }, 1500);
     }, 500);
   }
 
   /**
-   * Handle Bubble solution explanation - the "raison d'etre"
-   */
-  async function handleBubbleSolution() {
-    const messages = t(CONTENT.bubble_solution.messages);
-
-    // Combine all bubble solution messages into single bubble
-    await addMessage(messages, 'bot', 1000);
-
-    setTimeout(async () => {
-      await addMessage(t(CONTENT.transition), 'bot', 1000);
-
-      // Add voice input hint message with mic icon
-      const lang = getLang();
-      const voiceHint = lang === 'fr'
-        ? 'Tu peux répondre en tapant ou en utilisant le micro.'
-        : 'You can type your answer or use voice input.';
-      await addMessage(voiceHint, 'bot', 600);
-
-      setTimeout(() => {
-        const navCards = createNavCards();
-        addElement(navCards);
-
-        session.stage = STAGES.free_chat;
-        saveSession();
-
-        // Enable input for free-form questions (text + voice)
-        enableInput();
-      }, 500);
-    }, 1000);
-  }
-
-  /**
-   * Send message to LLM
+   * Send message to LLM with profile extraction support
    */
   async function sendToLLM(message) {
     if (abortController) abortController.abort();
     abortController = new AbortController();
 
     addMessage(message, 'user');
+
+    // Track that user is engaging (journey tracking)
+    if (Memory) {
+      Memory.recordQuestion('onboarding');
+    }
+
     const typing = showTyping();
 
     const bubble = createMessageBubble('', 'bot');
     const contentEl = bubble.querySelector('.message-content');
+
+    // Build context metadata from Memory
+    const memoryProfile = Memory ? Memory.getProfile() : null;
+    const memoryJourney = Memory ? Memory.getJourney() : null;
+    // keyInsights is in Memory.getMemory(), not in the profile object
+    const memoryData = Memory ? Memory.getMemory() : null;
+    const isOnboarding = session.stage === STAGES.onboarding_active;
 
     try {
       const response = await fetch('/api/chat', {
@@ -889,13 +738,27 @@ const PlaygroundFullscreenChat = (function() {
           pageContext: 'playground',
           history: session.conversation.slice(-10),
           contextMetadata: {
-            isOnboarding: session.stage !== STAGES.free_chat,
-            onboardingStage: session.stage,
-            profile: {
-              level: session.profile <= 30 ? 'beginner' : session.profile <= 60 ? 'intermediate' : 'advanced',
-              riskProfile: session.profile,
-              answers: session.answers
-            }
+            isOnboarding,
+            onboardingStage: isOnboarding ? 'conversational' : 'free_chat',
+            profile: memoryProfile ? {
+              riskScore: memoryProfile.riskScore,
+              riskConfidence: memoryProfile.riskConfidence,
+              traits: memoryProfile.traits,
+              goal: memoryProfile.goal,
+              horizon: memoryProfile.horizon,
+              level: memoryProfile.level,
+              // Fix BUG 9: keyInsights is in Memory.getMemory(), not memoryProfile
+              keyInsights: memoryData?.keyInsights?.slice(-5).map(i => i.insight) || []
+            } : {
+              riskScore: session.riskScore || 50,
+              riskConfidence: session.riskConfidence || 0,
+              traits: session.traits || []
+            },
+            journey: memoryJourney ? {
+              questionsAsked: memoryJourney.questionsAsked,
+              sessionsCount: memoryJourney.sessionsCount,
+              currentPhase: memoryJourney.currentPhase
+            } : null
           }
         }),
         signal: abortController.signal
@@ -923,41 +786,42 @@ const PlaygroundFullscreenChat = (function() {
             const parsed = JSON.parse(data);
             if (parsed.content) {
               fullResponse += parsed.content;
-              contentEl.innerHTML = formatMessage(fullResponse);
+              // Display with profile update block hidden (temporary, will be cleaned after)
+              const tempClean = fullResponse.replace(/<!--\s*PROFILE_UPDATE[\s\S]*?-->/g, '');
+              contentEl.innerHTML = formatMessage(tempClean);
               scrollToBottom();
             }
           } catch (e) {}
         }
       }
 
-      if (fullResponse) {
-        session.conversation.push({ role: 'assistant', content: fullResponse });
+      // Parse and apply profile update from LLM response
+      const { cleanResponse, profileUpdate } = parseProfileUpdate(fullResponse);
+
+      // Update display with clean response (no JSON block)
+      contentEl.innerHTML = formatMessage(cleanResponse);
+
+      // Apply profile update to memory
+      if (profileUpdate) {
+        applyProfileUpdate(profileUpdate);
+      }
+
+      // Save clean response to conversation history
+      if (cleanResponse) {
+        session.conversation.push({ role: 'assistant', content: cleanResponse });
         saveSession();
       }
 
-      // If user is still in onboarding and paused to ask a question, show Resume button
-      if (session.stage !== STAGES.free_chat && session.onboardingPaused) {
+      // Check if onboarding should complete (confidence threshold met)
+      if (isOnboarding && isOnboardingComplete()) {
+        // Set transition flag BEFORE starting the reveal process
+        // This allows recovery if user navigates away during the 800ms timeout
+        localStorage.setItem(ONBOARDING_TRANSITION_KEY, 'true');
+        console.log('[PlaygroundChat] Onboarding complete - starting profile reveal transition');
+
         setTimeout(() => {
-          const resumeButton = createOptions(
-            [{
-              id: 'resume',
-              text: {
-                fr: 'Étape suivante',
-                en: 'Next step'
-              },
-              score: 0
-            }],
-            () => {
-              // Resume onboarding from where user paused
-              session.onboardingPaused = false;
-              const resumeStage = session.lastOnboardingStage;
-              session.stage = resumeStage;
-              saveSession();
-              handleStage(resumeStage);
-            }
-          );
-          addElement(resumeButton);
-        }, 300);
+          handleProfileReveal();
+        }, 800);
       }
 
     } catch (error) {
@@ -975,14 +839,7 @@ const PlaygroundFullscreenChat = (function() {
    * Resume from saved session
    */
   function resumeSession() {
-    // If onboarding is paused (user asked a question), start fresh from next stage
-    // Don't replay messages to avoid confusion
-    if (session.onboardingPaused) {
-      handleStage(session.stage);
-      return;
-    }
-
-    // Replay last few messages for free chat
+    // Replay last few messages
     const recent = session.conversation.slice(-6);
     recent.forEach(msg => {
       const bubble = createMessageBubble(msg.content, msg.role === 'assistant' ? 'bot' : 'user');
@@ -991,60 +848,78 @@ const PlaygroundFullscreenChat = (function() {
     });
     scrollToBottom();
 
+    const lang = getLang();
+    const journey = Memory ? Memory.getJourney() : null;
+    const isReturning = Memory ? Memory.isReturningUser() : false;
+
     // Continue based on stage
     if (session.stage === STAGES.free_chat) {
-      // Enable input for free-form questions (text + voice)
       enableInput();
-      // Show welcome back
-      const lang = getLang();
       setTimeout(async () => {
-        await addMessage(
-          lang === 'fr'
-            ? "Content de te revoir ! Tu peux continuer à me poser des questions en tapant ou en utilisant le micro."
-            : "Good to see you again! Feel free to keep asking questions by typing or using voice input.",
-          'bot', 500
-        );
-        const navCards = createNavCards();
-        addElement(navCards);
-      }, 300);
-    } else {
-      // Continue onboarding
-      handleStage(session.stage);
-    }
-  }
+        // Use personalized welcome for returning users - always end with a question
+        const welcomeMsg = isReturning
+          ? buildReturningUserWelcome()
+          : (lang === 'fr'
+              ? "Content de te revoir ! Alors, qu'est-ce qui t'amène aujourd'hui ? Une question, une curiosité ?"
+              : "Good to see you again! So, what brings you here today? A question, something you're curious about?");
 
-  function handleStage(stage) {
-    switch (stage) {
-      case STAGES.welcome:
-        handleWelcome();
-        break;
-      case STAGES.education_problem:
-        handleEducationProblem();
-        break;
-      case STAGES.education_spectrum:
-        handleEducationSpectrum();
-        break;
-      case STAGES.scenario_crisis:
-        handleScenario('crisis');
-        break;
-      case STAGES.scenario_bonus:
-        handleScenario('bonus');
-        break;
-      case STAGES.scenario_horizon:
-        handleScenario('horizon');
-        break;
-      case STAGES.scenario_friends:
-        handleScenario('friends');
-        break;
-      case STAGES.scenario_layoffs:
-        handleScenario('layoffs');
-        break;
-      case STAGES.profile_reveal:
-        handleProfileReveal();
-        break;
-      case STAGES.bubble_solution:
-        handleBubbleSolution();
-        break;
+        await addMessage(welcomeMsg, 'bot', 500);
+
+        // Show personalized recommendation if onboarding completed
+        if (journey?.onboardingCompleted) {
+          setTimeout(() => {
+            const recommendation = createPersonalizedRecommendation();
+            addElement(recommendation);
+
+            setTimeout(() => {
+              const navCards = createNavCards();
+              addElement(navCards);
+            }, 400);
+          }, 600);
+        } else {
+          const navCards = createNavCards();
+          addElement(navCards);
+        }
+      }, 300);
+    } else if (session.stage === STAGES.profile_reveal) {
+      // Show profile and transition to free chat
+      handleProfileReveal();
+    } else {
+      // Onboarding active - show welcome back and enable input
+      enableInput();
+      setTimeout(async () => {
+        const memoryProfile = Memory ? Memory.getProfile() : null;
+        const confidence = memoryProfile?.riskConfidence || 0;
+
+        if (confidence > 0 && isReturning) {
+          // Returning user with some profile data - be proactive
+          const timeCategory = getTimeAwayCategory();
+          let welcomeBase = t(CONTENT.returning_user[timeCategory] || CONTENT.returning_user.short);
+
+          await addMessage(
+            `${welcomeBase}\n\n${lang === 'fr'
+              ? `On avait bien avancé sur ton profil (${confidence}% de confiance). Tu veux qu'on continue à creuser ensemble ?`
+              : `We made good progress on your profile (${confidence}% confidence). Want to keep digging together?`}`,
+            'bot', 500
+          );
+        } else if (confidence > 0) {
+          // Has some profile data - be proactive
+          await addMessage(
+            lang === 'fr'
+              ? `Content de te revoir ! On avait commencé à cerner ton profil (${confidence}% de confiance). Dis-moi, tu as eu de nouvelles réflexions depuis ?`
+              : `Good to see you again! We started figuring out your profile (${confidence}% confidence). Tell me, have you had any new thoughts since then?`,
+            'bot', 500
+          );
+        } else {
+          // Fresh onboarding - be proactive and invite engagement
+          await addMessage(
+            lang === 'fr'
+              ? "Content de te revoir ! Alors, tu as eu le temps de réfléchir depuis la dernière fois ? Qu'est-ce qui te trotte dans la tête côté investissement ?"
+              : "Good to see you again! So, have you had time to think since last time? What's been on your mind when it comes to investing?",
+            'bot', 500
+          );
+        }
+      }, 300);
     }
   }
 
@@ -1217,9 +1092,102 @@ const PlaygroundFullscreenChat = (function() {
 
     // Update profile card if it exists
     const profileCard = messagesContainer?.querySelector('.playground-profile-card');
-    if (profileCard && session?.profile !== null) {
-      const newProfileCard = createProfileCard(session.profile);
+    if (profileCard) {
+      const profileLevel = getProfileLevel();
+      const newProfileCard = createProfileCard(profileLevel);
       profileCard.replaceWith(newProfileCard);
+    }
+
+    // Sync language with Memory
+    syncLanguageWithMemory();
+  }
+
+  /**
+   * Start conversational onboarding - first message from LLM
+   */
+  async function startConversationalOnboarding() {
+    const lang = getLang();
+
+    // Send initial context to LLM to get a personalized greeting
+    // The message should make the assistant proactive and invite user engagement
+    const initMessage = lang === 'fr'
+      ? '[SYSTEM: L\'utilisateur vient d\'arriver sur le Playground. Accueille-le chaleureusement comme un ami curieux (utilise "tu"). Pose une question engageante et personnelle pour démarrer la conversation - quelque chose qui l\'invite vraiment à partager son expérience ou ses pensées. Finis ABSOLUMENT par une question ouverte qui donne envie de répondre. Exemple de fin : "Et toi, qu\'est-ce qui t\'amène à t\'intéresser à l\'investissement ?" ou "Tu as déjà mis de l\'argent de côté quelque part ?"]'
+      : '[SYSTEM: The user just arrived at the Playground. Welcome them warmly like a curious friend. Ask an engaging, personal question to start the conversation - something that genuinely invites them to share their experience or thoughts. You MUST end with an open question that makes them want to respond. Example endings: "What got you interested in investing?" or "Have you ever put money aside somewhere?"]';
+
+    // Show typing indicator
+    const typing = showTyping();
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: initMessage,
+          language: lang,
+          pageContext: 'playground',
+          history: [],
+          contextMetadata: {
+            isOnboarding: true,
+            onboardingStage: 'conversational',
+            profile: { riskScore: 50, riskConfidence: 0, traits: [] },
+            isFirstMessage: true
+          }
+        })
+      });
+
+      typing.remove();
+
+      const bubble = createMessageBubble('', 'bot');
+      const contentEl = bubble.querySelector('.message-content');
+      messagesContainer.appendChild(bubble);
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let fullResponse = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = chunk.split('\n').filter(line => line.startsWith('data: '));
+
+        for (const line of lines) {
+          const data = line.replace('data: ', '');
+          if (data === '[DONE]') continue;
+
+          try {
+            const parsed = JSON.parse(data);
+            if (parsed.content) {
+              fullResponse += parsed.content;
+              const tempClean = fullResponse.replace(/<!--\s*PROFILE_UPDATE[\s\S]*?-->/g, '');
+              contentEl.innerHTML = formatMessage(tempClean);
+              scrollToBottom();
+            }
+          } catch (e) {}
+        }
+      }
+
+      // Parse any profile update
+      const { cleanResponse, profileUpdate } = parseProfileUpdate(fullResponse);
+      contentEl.innerHTML = formatMessage(cleanResponse);
+
+      if (profileUpdate) {
+        applyProfileUpdate(profileUpdate);
+      }
+
+      if (cleanResponse) {
+        session.conversation.push({ role: 'assistant', content: cleanResponse });
+        saveSession();
+      }
+
+    } catch (error) {
+      typing.remove();
+      // Fallback to static greeting - make it proactive and engaging
+      const fallbackMsg = lang === 'fr'
+        ? "Salut ! Super content de te voir ici. Je suis curieux de te connaître un peu mieux. Dis-moi, c'est quoi ton histoire avec l'argent ? Tu as déjà essayé d'investir ou c'est tout nouveau pour toi ?"
+        : "Hey there! Really excited to meet you. I'm curious to get to know you a bit better. So tell me, what's your story with money? Have you tried investing before, or is this all new to you?";
+      await addMessage(fallbackMsg, 'bot', 500);
     }
   }
 
@@ -1238,6 +1206,9 @@ const PlaygroundFullscreenChat = (function() {
       return;
     }
 
+    // Initialize BubbleAgentMemory
+    initMemory();
+
     // Initialize voice recognition if supported
     initVoiceRecognition();
 
@@ -1249,7 +1220,7 @@ const PlaygroundFullscreenChat = (function() {
       });
     }
 
-    // Setup form submission - FIX: bind directly to input and button
+    // Setup form submission
     if (inputForm) {
       inputForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -1279,16 +1250,40 @@ const PlaygroundFullscreenChat = (function() {
     document.addEventListener('languageChanged', handleLanguageChange);
     window.addEventListener('languageChange', handleLanguageChange);
 
-    // Load session FIRST (before enabling input)
+    // Load session
     const hasSession = loadSession();
 
-    // Enable input from the start - users can type or use voice at any time
+    // Check for interrupted onboarding transition
+    const transitionPending = localStorage.getItem(ONBOARDING_TRANSITION_KEY);
+    if (transitionPending === 'true') {
+      console.log('[PlaygroundChat] Detected interrupted onboarding transition - resuming profile reveal');
+      // The transition was interrupted, resume the profile reveal
+      // First replay any conversation history, then trigger the reveal
+      if (hasSession && session.conversation.length > 0) {
+        const recent = session.conversation.slice(-6);
+        recent.forEach(msg => {
+          const bubble = createMessageBubble(msg.content, msg.role === 'assistant' ? 'bot' : 'user');
+          bubble.style.animation = 'none';
+          messagesContainer.appendChild(bubble);
+        });
+        scrollToBottom();
+      }
+      enableInput();
+      // Resume the profile reveal after a brief delay
+      setTimeout(() => {
+        handleProfileReveal();
+      }, 500);
+      return;
+    }
+
+    // Enable input from the start
     enableInput();
 
     if (hasSession && session.conversation.length > 0) {
       resumeSession();
     } else {
-      handleIntroduction();
+      // Start fresh conversational onboarding
+      startConversationalOnboarding();
     }
   }
 
@@ -1305,26 +1300,15 @@ const PlaygroundFullscreenChat = (function() {
   }
 
   /**
-   * Handle user input - works in both scripted and free-chat modes
-   * Now also enables LLM responses during onboarding (typing & voice)
+   * Handle user input - all input goes to LLM for conversational flow
    */
   function handleUserInput(text) {
     if (!text.trim()) return;
-
-    // Always send to LLM for intelligent responses
-    // Set onboarding pause flag if still in onboarding
-    if (session.stage !== STAGES.free_chat && !session.onboardingPaused) {
-      session.onboardingPaused = true;
-      // Save the NEXT stage to resume to (not the current stage)
-      session.lastOnboardingStage = getNextOnboardingStage(session.stage);
-      saveSession();
-    }
-
     sendToLLM(text);
   }
 
   /**
-   * Reset session
+   * Reset session - clears both session and memory
    */
   function reset() {
     if (abortController) abortController.abort();
@@ -1333,9 +1317,15 @@ const PlaygroundFullscreenChat = (function() {
     }
     sessionStorage.removeItem(SESSION_KEY);
     if (messagesContainer) messagesContainer.innerHTML = '';
+
+    // Reset memory but preserve GDPR compliance
+    if (Memory) {
+      Memory.reset();
+    }
+
     loadSession();
     enableInput();
-    handleWelcome();
+    startConversationalOnboarding();
   }
 
   return {
@@ -1344,7 +1334,9 @@ const PlaygroundFullscreenChat = (function() {
     enableInput,
     disableInput,
     getSession: () => session ? { ...session } : null,
-    getProfile: () => session?.profile
+    getProfile: () => Memory ? Memory.getProfile() : null,
+    getProfileLevel,
+    isOnboardingComplete
   };
 })();
 

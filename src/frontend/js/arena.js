@@ -65,23 +65,126 @@
   };
 
   // ═══════════════════════════════════════════════════════════════
-  // Onboarding Awareness Check
+  // BubbleAgentMemory Integration
   // ═══════════════════════════════════════════════════════════════
 
-  const PLAYGROUND_SESSION_KEY = 'bubblePlaygroundFullscreenSession';
+  let Memory = null;
+
+  /**
+   * Dynamically load BubbleAgentMemory if not already loaded
+   */
+  function loadBubbleAgentMemory() {
+    if (typeof BubbleAgentMemory !== 'undefined') {
+      Memory = BubbleAgentMemory;
+      console.log('[Arena] BubbleAgentMemory already loaded');
+      return Promise.resolve();
+    }
+
+    return new Promise((resolve) => {
+      const script = document.createElement('script');
+      script.src = '/js/bubble-agent-memory.js';
+      script.async = true;
+      script.onload = () => {
+        if (typeof BubbleAgentMemory !== 'undefined') {
+          Memory = BubbleAgentMemory;
+          Memory.init();
+          console.log('[Arena] BubbleAgentMemory loaded dynamically');
+        }
+        resolve();
+      };
+      script.onerror = () => {
+        console.warn('[Arena] Failed to load BubbleAgentMemory - continuing without it');
+        resolve();
+      };
+      document.head.appendChild(script);
+    });
+  }
+
+  /**
+   * Get user's risk profile category for bot recommendations
+   * @returns {'conservative'|'balanced'|'growth'|null}
+   */
+  function getUserProfileCategory() {
+    if (!Memory) return null;
+    const profile = Memory.getProfile();
+    if (!profile || profile.riskScore === null) return null;
+
+    const score = profile.riskScore;
+    if (score <= 30) return 'conservative';
+    if (score <= 60) return 'balanced';
+    return 'growth';
+  }
+
+  /**
+   * Get recommended bot based on user profile
+   * @returns {string|null} Bot ID (equi, pari, momo, sage) or null
+   */
+  function getRecommendedBot() {
+    const category = getUserProfileCategory();
+    if (!category) return null;
+
+    // Map profile categories to recommended bots
+    const recommendations = {
+      conservative: 'sage',  // Hedgehog - Defensive
+      balanced: 'pari',      // Fox - Risk Parity
+      growth: 'momo'         // Hawk - Momentum
+    };
+
+    return recommendations[category] || null;
+  }
+
+  /**
+   * Track that user viewed a specific bot in Arena
+   * @param {string} botId - Bot identifier
+   */
+  function trackBotViewed(botId) {
+    if (!Memory) return;
+
+    const strategyMap = {
+      equi: 'equal_weight',
+      pari: 'risk_parity',
+      momo: 'momentum',
+      sage: 'defensive'
+    };
+
+    const strategy = strategyMap[botId];
+    if (strategy) {
+      // Record topic instead of strategy test (which needs allocation data)
+      Memory.recordTopic(strategy);
+    }
+  }
+
+  /**
+   * Record Arena page visit and track engagement
+   */
+  function recordArenaVisit() {
+    if (!Memory) return;
+    Memory.recordPageVisit('/investors/education/arena');
+    Memory.recordTopic('arena');
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // Onboarding Awareness Check (uses BubbleAgentMemory)
+  // ═══════════════════════════════════════════════════════════════
+
   const ONBOARDING_DISMISSED_KEY = 'arenaOnboardingPromptDismissed';
 
   /**
-   * Check if user has completed onboarding in playground
+   * Check if user has completed onboarding using BubbleAgentMemory
    * @returns {boolean}
    */
   function hasCompletedOnboarding() {
-    const stored = sessionStorage.getItem(PLAYGROUND_SESSION_KEY);
+    if (Memory) {
+      const journey = Memory.getJourney();
+      return journey?.onboardingCompleted || false;
+    }
+
+    // Fallback to old session check
+    const stored = sessionStorage.getItem('bubblePlaygroundFullscreenSession');
     if (!stored) return false;
     try {
       const session = JSON.parse(stored);
-      // User completed onboarding if they have a profile or completed quiz
-      return session.profile !== null || (session.scores && session.scores.length > 0);
+      return session.stage === 'free_chat' || session.profile !== null;
     } catch {
       return false;
     }
@@ -144,6 +247,38 @@
     });
   }
 
+  /**
+   * Highlight recommended bot card based on user profile
+   */
+  function highlightRecommendedBot() {
+    const recommendedBot = getRecommendedBot();
+    if (!recommendedBot) return;
+
+    const lang = state.language;
+    const botCard = document.querySelector(`.arena-bot-card[data-bot="${recommendedBot}"]`);
+    if (!botCard) return;
+
+    // Add recommended badge
+    const badge = document.createElement('div');
+    badge.className = 'arena-bot-recommended-badge';
+    badge.innerHTML = `
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+      <span>${lang === 'fr' ? 'Recommandé pour toi' : 'Recommended for you'}</span>
+    `;
+
+    botCard.classList.add('recommended');
+    botCard.insertBefore(badge, botCard.firstChild);
+
+    // Track that we showed this recommendation
+    if (Memory) {
+      Memory.addKeyInsight(`Recommended ${getBotName(recommendedBot)} bot based on profile`);
+    }
+
+    console.log('[Arena] Highlighted recommended bot:', recommendedBot);
+  }
+
   // ═══════════════════════════════════════════════════════════════
   // Helper Functions
   // ═══════════════════════════════════════════════════════════════
@@ -197,13 +332,19 @@
   async function init() {
     console.log('[Arena] Initializing...');
 
+    // Load BubbleAgentMemory first (for profile-based features)
+    await loadBubbleAgentMemory();
+
     // Cache DOM elements
     cacheElements();
 
     // Detect language
     detectLanguage();
 
-    // Check onboarding awareness
+    // Record Arena visit in memory
+    recordArenaVisit();
+
+    // Check onboarding awareness (uses Memory if available)
     checkOnboardingAwareness();
 
     // Load timeline data
@@ -231,10 +372,33 @@
     // Initialize tutorial overlay
     initTutorial();
 
+    // Highlight recommended bot based on user profile
+    highlightRecommendedBot();
+
+    // Setup bot card click tracking
+    setupBotTracking();
+
     // Expose arena state for chatbot integration
     exposeArenaState();
 
     console.log('[Arena] Initialization complete');
+  }
+
+  /**
+   * Setup click tracking on bot cards
+   */
+  function setupBotTracking() {
+    const botCards = document.querySelectorAll('.arena-bot-card');
+    botCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const botId = card.dataset.bot;
+        if (botId) {
+          trackBotViewed(botId);
+          // Visual feedback
+          card.classList.add('viewed');
+        }
+      });
+    });
   }
 
   /**

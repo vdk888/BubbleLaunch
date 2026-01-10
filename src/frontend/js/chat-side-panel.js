@@ -26,8 +26,328 @@
     return;
   }
 
+  // ═══════════════════════════════════════════════════════════════════════════
+  // BUBBLE AGENT MEMORY INTEGRATION
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /**
+   * Dynamically load BubbleAgentMemory if not already loaded
+   * This ensures the omniscient chatbot works on ALL pages without editing every HTML file
+   */
+  function loadBubbleAgentMemory() {
+    if (typeof BubbleAgentMemory !== 'undefined') {
+      console.log('[chat-side-panel] BubbleAgentMemory already loaded');
+      return Promise.resolve();
+    }
+
+    // Try multiple path variations for different deployment environments
+    const pathsToTry = [
+      '/js/bubble-agent-memory.js',  // Absolute path (most common)
+    ];
+
+    // Try to compute relative path based on current script location
+    try {
+      const currentScript = document.currentScript || document.querySelector('script[src*="chat-side-panel"]');
+      if (currentScript && currentScript.src) {
+        const scriptUrl = new URL(currentScript.src);
+        const basePath = scriptUrl.pathname.substring(0, scriptUrl.pathname.lastIndexOf('/'));
+        pathsToTry.push(`${basePath}/bubble-agent-memory.js`);
+      }
+    } catch (e) {
+      // Ignore URL parsing errors
+    }
+
+    // Add relative path as final fallback
+    pathsToTry.push('./bubble-agent-memory.js');
+
+    /**
+     * Attempt to load script from a specific path
+     * @param {string} path - Script path to try
+     * @returns {Promise} Resolves on success, rejects on failure
+     */
+    function tryLoadScript(path) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = path;
+        script.async = true;
+        script.onload = () => {
+          console.log(`[chat-side-panel] BubbleAgentMemory loaded from ${path}`);
+          // Initialize it
+          if (typeof BubbleAgentMemory !== 'undefined') {
+            BubbleAgentMemory.init();
+          }
+          resolve();
+        };
+        script.onerror = () => {
+          // Clean up failed script element
+          script.remove();
+          reject(new Error(`Failed to load from ${path}`));
+        };
+        document.head.appendChild(script);
+      });
+    }
+
+    /**
+     * Try loading from each path sequentially until one succeeds
+     * @param {number} index - Current path index to try
+     * @returns {Promise}
+     */
+    function tryNextPath(index) {
+      if (index >= pathsToTry.length) {
+        console.warn('[chat-side-panel] Failed to load BubbleAgentMemory from all paths - continuing without it');
+        return Promise.resolve(); // Graceful degradation
+      }
+
+      return tryLoadScript(pathsToTry[index]).catch(() => {
+        console.log(`[chat-side-panel] Path ${pathsToTry[index]} failed, trying next...`);
+        return tryNextPath(index + 1);
+      });
+    }
+
+    return tryNextPath(0);
+  }
+
+  // Attempt to load BubbleAgentMemory dynamically (non-blocking)
+  loadBubbleAgentMemory().catch(() => {});
+
+  /**
+   * Get BubbleAgentMemory if available (graceful degradation)
+   * @returns {Object|null} Memory module or null
+   */
+  function getMemory() {
+    return typeof BubbleAgentMemory !== 'undefined' ? BubbleAgentMemory : null;
+  }
+
+  /**
+   * Build user context for LLM from BubbleAgentMemory
+   * Token-efficient format for inclusion in system context
+   * @returns {string} Formatted user context or empty string
+   */
+  function buildUserProfileContext() {
+    const Memory = getMemory();
+    if (!Memory) return '';
+
+    const ctx = Memory.getContextForLLM();
+    if (!ctx) return '';
+
+    const parts = [];
+
+    // Profile information
+    if (ctx.profile) {
+      if (ctx.profile.riskScore !== null) {
+        parts.push(`Risk Profile: ${ctx.profile.riskScore}/100 (confidence: ${ctx.profile.riskConfidence}%)`);
+      }
+      if (ctx.profile.traits && ctx.profile.traits.length > 0) {
+        parts.push(`Traits: ${ctx.profile.traits.join(', ')}`);
+      }
+      if (ctx.profile.goal) {
+        parts.push(`Investment Goal: ${ctx.profile.goal}`);
+      }
+      if (ctx.profile.horizon) {
+        parts.push(`Time Horizon: ${ctx.profile.horizon}`);
+      }
+      if (ctx.profile.level) {
+        parts.push(`Knowledge Level: ${ctx.profile.level}`);
+      }
+    }
+
+    // Journey information
+    if (ctx.journey) {
+      if (ctx.journey.isReturningUser) {
+        parts.push(`Returning user (visit #${ctx.journey.totalVisits})`);
+      }
+      if (ctx.journey.onboardingCompleted) {
+        parts.push('Onboarding completed');
+      } else if (ctx.journey.onboardingProgress > 0) {
+        parts.push(`Onboarding: ${ctx.journey.onboardingProgress}% complete`);
+      }
+      if (ctx.journey.strategiesTestedCount > 0) {
+        parts.push(`Tested ${ctx.journey.strategiesTestedCount} strategies`);
+      }
+    }
+
+    // Memory insights
+    if (ctx.memory) {
+      if (ctx.memory.keyInsights && ctx.memory.keyInsights.length > 0) {
+        parts.push(`Key insights: ${ctx.memory.keyInsights.slice(-3).join('; ')}`);
+      }
+      if (ctx.memory.topicsDiscussed && ctx.memory.topicsDiscussed.length > 0) {
+        parts.push(`Topics discussed: ${ctx.memory.topicsDiscussed.slice(-5).join(', ')}`);
+      }
+    }
+
+    if (parts.length === 0) return '';
+
+    return `[User Profile Context: ${parts.join(' | ')}]`;
+  }
+
+  /**
+   * Track conversation in memory
+   * @param {string} userMessage - User's message
+   * @param {string} assistantResponse - Assistant's response
+   */
+  function trackConversationInMemory(userMessage, assistantResponse) {
+    const Memory = getMemory();
+    if (!Memory) return;
+
+    // Increment conversation count
+    Memory.setConversationSummary(`Last exchange on ${new Date().toLocaleDateString()}`);
+
+    // Try to extract topic from the conversation
+    const topicKeywords = {
+      'risk': ['risk', 'risque', 'volatility', 'volatilité'],
+      'portfolio': ['portfolio', 'portefeuille', 'allocation'],
+      'strategy': ['strategy', 'stratégie', 'momentum', 'risk parity'],
+      'pricing': ['price', 'prix', 'cost', 'coût', 'fee', 'frais'],
+      'simulation': ['simulate', 'simuler', 'backtest', 'test'],
+      'education': ['learn', 'apprendre', 'explain', 'expliquer', 'understand', 'comprendre'],
+      'waitlist': ['waitlist', 'liste d\'attente', 'join', 'rejoindre', 'subscribe', 's\'inscrire']
+    };
+
+    const lowerMessage = userMessage.toLowerCase();
+    for (const [topic, keywords] of Object.entries(topicKeywords)) {
+      if (keywords.some(kw => lowerMessage.includes(kw))) {
+        Memory.recordTopic(topic);
+        break;
+      }
+    }
+  }
+
+  /**
+   * Record page visit in memory
+   */
+  function recordPageVisitInMemory() {
+    const Memory = getMemory();
+    if (!Memory) return;
+
+    const path = window.location.pathname;
+    Memory.recordPageVisit(path);
+
+    // Sync language preference
+    const lang = getLanguage();
+    if (lang) {
+      Memory.setPreferredLanguage(lang.startsWith('fr') ? 'fr' : 'en');
+    }
+  }
+
+  // Record page visit on load
+  recordPageVisitInMemory();
+
   const initialMessagesHTML = messagesContainer.innerHTML;
   const pageContext = getPageContext();
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // UNIFIED CHATBOT - SITE-WIDE CONVERSATION HISTORY
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  const UNIFIED_HISTORY_KEY = 'bubbleUnifiedChatHistory';
+  const CHAT_VERSION_KEY = 'bubbleChatVersion';
+  const CURRENT_CHAT_VERSION = '2.1'; // Increment when greeting format changes
+
+  // Clear old conversations when version changes (ensures fresh greeting)
+  (function clearStaleConversations() {
+    try {
+      const storedVersion = localStorage.getItem(CHAT_VERSION_KEY);
+      if (storedVersion !== CURRENT_CHAT_VERSION) {
+        console.log('[chat-side-panel] Chat version changed, clearing old conversations');
+        localStorage.removeItem(UNIFIED_HISTORY_KEY);
+        sessionStorage.removeItem('educationChatHistoryShared');
+        // Also clear BubbleAgentMemory conversation data to prevent duplicate greetings
+        localStorage.removeItem('bubbleAgentMemory');
+        localStorage.setItem(CHAT_VERSION_KEY, CURRENT_CHAT_VERSION);
+      }
+    } catch (e) {
+      console.warn('[chat-side-panel] Failed to check chat version:', e);
+    }
+  })();
+
+  /**
+   * Check if current page is within the /investors section
+   * @returns {boolean} True if on an investor page
+   */
+  function isInvestorPage() {
+    const path = window.location.pathname;
+    return path.startsWith('/investors') || path.startsWith('/en/investors');
+  }
+
+  /**
+   * Load unified conversation history (shared across ALL investor pages)
+   * @returns {Array} Conversation history
+   */
+  function loadUnifiedHistory() {
+    try {
+      const raw = localStorage.getItem(UNIFIED_HISTORY_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.warn('[chat-side-panel] Failed to load unified history:', e);
+    }
+    return [];
+  }
+
+  /**
+   * Save unified conversation history
+   * @param {Array} history - Conversation to save
+   */
+  function saveUnifiedHistory(history) {
+    try {
+      // Keep last 20 messages to prevent localStorage bloat
+      const trimmed = Array.isArray(history) ? history.slice(-20) : [];
+      localStorage.setItem(UNIFIED_HISTORY_KEY, JSON.stringify(trimmed));
+    } catch (e) {
+      console.warn('[chat-side-panel] Failed to save unified history:', e);
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ONBOARDING STATUS CHECK
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /**
+   * Check if onboarding is completed using BubbleAgentMemory
+   * @returns {boolean} True if onboarding is complete
+   */
+  function isOnboardingComplete() {
+    const Memory = getMemory();
+    if (!Memory) return false;
+
+    try {
+      const journey = Memory.getJourney();
+      return journey && journey.onboardingCompleted;
+    } catch (e) {
+      console.warn('[chat-side-panel] Error checking onboarding status:', e);
+      return false;
+    }
+  }
+
+  /**
+   * Get onboarding progress percentage
+   * @returns {number} Progress percentage (0-100)
+   */
+  function getOnboardingProgress() {
+    const Memory = getMemory();
+    if (!Memory) return 0;
+
+    try {
+      const journey = Memory.getJourney();
+      return journey ? journey.onboardingProgress || 0 : 0;
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  /**
+   * Get playground URL based on current language
+   * @returns {string} Playground URL
+   */
+  function getPlaygroundUrl() {
+    const lang = getLanguage();
+    return lang.startsWith('fr') ? '/investors/playground' : '/en/investors/playground';
+  }
 
   const state = {
     isOpen: false,
@@ -52,73 +372,238 @@
   }
 
   function loadPersistedConversation() {
-    if (!isEducationContext) return;
-    try {
-      const raw = sessionStorage.getItem('educationChatHistoryShared');
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) {
-          state.conversation = parsed;
-          messagesContainer.innerHTML = '';
-          parsed.forEach((msg) => {
-            const contentEl = createMessageElement(msg.role === 'user' ? 'user' : 'bot', msg.content);
-            if (msg.role !== 'user' && contentEl) {
-              contentEl.innerHTML = msg.content;
-            }
-          });
-        }
+    // For ALL investor pages, load unified conversation history
+    if (isInvestorPage()) {
+      const unifiedHistory = loadUnifiedHistory();
+      if (unifiedHistory.length > 0) {
+        state.conversation = unifiedHistory;
+        console.log('[chat-side-panel] Loaded unified history with', unifiedHistory.length, 'messages');
       }
-    } catch {
-      // ignore
+    }
+
+    // First try to load from BubbleAgentMemory for cross-page context
+    const Memory = getMemory();
+    if (Memory) {
+      try {
+        const memoryData = Memory.getMemory();
+        const journey = Memory.getJourney();
+
+        // If we have key insights or conversation summary, show context-aware greeting
+        if (memoryData && (memoryData.keyInsights.length > 0 || memoryData.lastConversationSummary)) {
+          const lang = getLanguage();
+          const isReturning = journey && journey.totalVisits > 1;
+
+          // For returning users on ANY investor page, show personalized context
+          if (isReturning && isOnboardingComplete() && isInvestorPage()) {
+            const profile = Memory?.getProfile?.();
+            const profileName = profile && Memory?.getProfileName?.(profile.riskScore);
+
+            let contextGreeting = '';
+            if (pageContext === 'education_arena') {
+              contextGreeting = lang.startsWith('fr')
+                ? `Content de te revoir dans l'Arena ! ${profileName ? `En tant qu'investisseur ${profileName.toLowerCase()}, ` : ''}je peux t'aider à comprendre comment les différents bots réagissent aux événements de marché.`
+                : `Welcome back to the Arena! ${profileName ? `As a ${profileName.toLowerCase()} investor, ` : ''}I can help you understand how different bots react to market events.`;
+            } else if (pageContext === 'education_simulator') {
+              contextGreeting = lang.startsWith('fr')
+                ? `Content de te revoir dans le Strategy Builder ! ${profileName ? `Avec ton profil ${profileName.toLowerCase()}, ` : ''}on peut créer des stratégies adaptées à tes objectifs.`
+                : `Welcome back to the Strategy Builder! ${profileName ? `With your ${profileName.toLowerCase()} profile, ` : ''}we can create strategies suited to your goals.`;
+            } else if (isInvestorPage()) {
+              // Generic welcome for other investor pages
+              contextGreeting = lang.startsWith('fr')
+                ? `Content de te revoir ! ${profileName ? `En tant qu'investisseur ${profileName.toLowerCase()}, ` : ''}je suis là pour t'aider.`
+                : `Welcome back! ${profileName ? `As a ${profileName.toLowerCase()} investor, ` : ''}I'm here to help.`;
+            }
+
+            if (contextGreeting && !messagesContainer.querySelector('.context-greeting')) {
+              const greetingWrapper = document.createElement('div');
+              greetingWrapper.className = 'chat-side-panel-message bot context-greeting';
+              greetingWrapper.innerHTML = `<div class="message-content"><p>${contextGreeting}</p></div>`;
+              messagesContainer.appendChild(greetingWrapper);
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('[chat-side-panel] Error loading from BubbleAgentMemory:', e);
+      }
+    }
+
+    // Also load sessionStorage conversation for continuity within session (legacy for education)
+    if (isEducationContext) {
+      try {
+        const raw = sessionStorage.getItem('educationChatHistoryShared');
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) {
+            // Merge with unified history if not already present
+            if (state.conversation.length === 0) {
+              state.conversation = parsed;
+            }
+            // Only restore UI if there are messages to show
+            if (parsed.length > 0 && !messagesContainer.querySelector('.chat-side-panel-message.user')) {
+              parsed.forEach((msg) => {
+                const contentEl = createMessageElement(msg.role === 'user' ? 'user' : 'bot', msg.content);
+                if (msg.role !== 'user' && contentEl) {
+                  contentEl.innerHTML = msg.content;
+                }
+              });
+            }
+          }
+        }
+      } catch {
+        // ignore
+      }
     }
   }
 
   function persistConversation() {
-    if (!isEducationContext) return;
-    try {
-      sessionStorage.setItem('educationChatHistoryShared', JSON.stringify(state.conversation.slice(-12)));
-    } catch {
-      // ignore
+    // Save to unified history for ALL investor pages
+    if (isInvestorPage()) {
+      saveUnifiedHistory(state.conversation);
     }
+
+    // Also save to sessionStorage for education (legacy)
+    if (isEducationContext) {
+      try {
+        sessionStorage.setItem('educationChatHistoryShared', JSON.stringify(state.conversation.slice(-12)));
+      } catch {
+        // ignore
+      }
+    }
+  }
+
+  /**
+   * Show proactive onboarding invitation for users who haven't completed onboarding
+   * Works on ALL investor pages, not just education
+   */
+  function showProactiveOnboardingInvitation() {
+    const Memory = getMemory();
+    if (!Memory) return false;
+
+    // Skip if already onboarded
+    if (isOnboardingComplete()) return false;
+
+    // Skip if onboarding prompt already shown
+    if (messagesContainer.querySelector('.proactive-onboarding-prompt')) return false;
+
+    const lang = getLanguage();
+    const playgroundUrl = getPlaygroundUrl();
+    const progress = getOnboardingProgress();
+
+    // Create the proactive invitation message (as per issue requirements)
+    let invitationText = lang.startsWith('fr')
+      ? "Je vois que tu n'as pas encore decouvert ton profil investisseur. Veux-tu qu'on fasse ca ensemble ?"
+      : "I see you haven't discovered your investor profile yet. Want to do it together?";
+
+    // If they started but didn't finish, acknowledge progress
+    if (progress > 0 && progress < 100) {
+      invitationText = lang.startsWith('fr')
+        ? `Tu as deja commence ton onboarding (${progress}% fait) ! On continue ?`
+        : `You already started your onboarding (${progress}% done)! Shall we continue?`;
+    }
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'chat-side-panel-message bot proactive-onboarding-prompt';
+    wrapper.innerHTML = `
+      <div class="message-content">
+        <p>${invitationText}</p>
+        <div class="proactive-onboarding-buttons" style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
+          <a href="${playgroundUrl}" class="onboarding-start-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 13px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon points="10,8 16,12 10,16" fill="currentColor"/>
+            </svg>
+            ${progress > 0 ? (lang.startsWith('fr') ? 'Continuer' : 'Continue') : (lang.startsWith('fr') ? 'Oui, allons-y !' : 'Yes, let\'s go!')}
+          </a>
+          <button class="skip-proactive-onboarding-btn" style="padding: 8px 14px; background: transparent; border: 1px solid #e5e7eb; color: #6b7280; border-radius: 8px; font-size: 13px; cursor: pointer;">
+            ${lang.startsWith('fr') ? 'Plus tard' : 'Maybe later'}
+          </button>
+        </div>
+      </div>
+    `;
+
+    messagesContainer.appendChild(wrapper);
+
+    // Handle skip button click
+    const skipBtn = wrapper.querySelector('.skip-proactive-onboarding-btn');
+    if (skipBtn) {
+      skipBtn.addEventListener('click', () => {
+        // Hide the buttons but keep the message
+        const buttonsDiv = wrapper.querySelector('.proactive-onboarding-buttons');
+        if (buttonsDiv) {
+          buttonsDiv.style.display = 'none';
+        }
+        // Add a friendly follow-up
+        const followUp = document.createElement('p');
+        followUp.style.marginTop = '8px';
+        followUp.style.fontSize = '13px';
+        followUp.style.color = '#6b7280';
+        followUp.textContent = lang.startsWith('fr')
+          ? "Pas de souci ! Je reste disponible si tu as des questions."
+          : "No problem! I'm here if you have questions.";
+        wrapper.querySelector('.message-content').appendChild(followUp);
+      });
+    }
+
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    return true;
   }
 
   function addEducationSuggestions() {
     if (!isEducationContext) return;
     // If suggestions already present, skip
     if (messagesContainer.querySelector('.chat-suggestion-btn')) return;
+
+    // Check onboarding status - hide suggestions if not complete
+    if (!isOnboardingComplete()) {
+      addOnboardingPrompt();
+      return;
+    }
+
     const lang = getLanguage();
     const base = lang.startsWith('fr')
       ? {
-          intro: 'Suggestions rapides',
+          intro: 'Comment puis-je t\'aider ?',
+          general: [
+            'Je débute, par où commencer ?',
+            'J\'ai un peu d\'épargne, que faire ?',
+            'C\'est quoi un ETF en fait ?',
+            'Comment savoir si je prends trop de risque ?',
+          ],
           arena: [
-            'Expliquer ce trade',
-            'Comparer deux bots ce mois-ci',
-            'Montrer une crise (2008, COVID, SVB)',
-            'Différence momentum vs défensif',
+            'Explique-moi ce trade',
+            'Compare ces deux bots',
+            'Montre-moi la crise de 2008',
+            'C\'est quoi la différence momentum vs défensif ?',
           ],
           simulator: [
-            'Propose 2 mixes pour un profil prudent',
-            'Rends ma stratégie plus défensive',
-            'Ajoute du momentum si la tendance est forte',
+            'Aide-moi à créer une stratégie prudente',
+            'Comment rendre ma stratégie moins risquée ?',
+            'C\'est quoi le momentum en fait ?',
             'Compare ma stratégie au S&P 500',
           ],
-          waitlist: 'Je veux la version complète (liste d’attente)',
+          waitlist: "Je veux essayer la version complète !",
         }
       : {
-          intro: 'Quick suggestions',
+          intro: 'How can I help you?',
+          general: [
+            'I\'m new, where do I start?',
+            'I have some savings, what should I do?',
+            'What\'s an ETF actually?',
+            'How do I know if I\'m taking too much risk?',
+          ],
           arena: [
-            'Explain this trade',
-            'Compare two bots this month',
-            'Jump to a crisis (2008, COVID, SVB)',
-            'Difference between momentum and defensive',
+            'Explain this trade to me',
+            'Compare these two bots',
+            'Show me the 2008 crisis',
+            'What\'s the difference between momentum and defensive?',
           ],
           simulator: [
-            'Suggest 2 mixes for a cautious profile',
-            'Make my strategy more defensive',
-            'Add momentum only if trend is strong',
+            'Help me create a conservative strategy',
+            'How do I make my strategy less risky?',
+            'What\'s momentum actually?',
             'Compare my strategy to the S&P 500',
           ],
-          waitlist: 'I want the full version (join waitlist)',
+          waitlist: 'I want to try the full version!',
         };
 
     const rows = [];
@@ -127,9 +612,13 @@
     } else if (pageContext === 'education_simulator') {
       rows.push(...base.simulator);
     } else {
-      rows.push(...base.arena.slice(0, 2), ...base.simulator.slice(0, 2));
+      // On main page and other pages, show friendly general suggestions
+      rows.push(...base.general);
     }
-    rows.push(base.waitlist);
+    // Only add waitlist on non-playground pages
+    if (!pageContext.includes('playground') && !pageContext.includes('education')) {
+      rows.push(base.waitlist);
+    }
 
     rows.forEach((label) => {
       const btn = document.createElement('button');
@@ -144,6 +633,137 @@
       wrapper.appendChild(content);
       messagesContainer.appendChild(wrapper);
     });
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  /**
+   * Add onboarding prompt when user hasn't completed onboarding
+   * Shows a context-aware message encouraging onboarding completion
+   */
+  function addOnboardingPrompt() {
+    const lang = getLanguage();
+    const playgroundUrl = getPlaygroundUrl();
+    const progress = getOnboardingProgress();
+
+    // Create context-aware welcome message
+    let welcomeText = '';
+    let ctaText = '';
+
+    if (pageContext === 'education_arena') {
+      welcomeText = lang.startsWith('fr')
+        ? 'Bienvenue dans l\'Arena ! Avant d\'explorer les stratégies des bots, un rapide onboarding va personnaliser ton expérience et rendre les concepts comme le Sharpe ratio et le drawdown beaucoup plus clairs.'
+        : 'Welcome to the Arena! Before exploring the bot strategies, a quick onboarding will personalize your experience and make concepts like Sharpe ratio and drawdown much clearer.';
+      ctaText = lang.startsWith('fr') ? 'Commencer l\'onboarding' : 'Start Onboarding';
+    } else if (pageContext === 'education_simulator') {
+      welcomeText = lang.startsWith('fr')
+        ? 'Bienvenue dans le Strategy Builder ! Avant de créer des stratégies, un rapide onboarding va t\'aider à comprendre des concepts clés comme la volatilité et l\'allocation d\'actifs.'
+        : 'Welcome to the Strategy Builder! Before creating strategies, a quick onboarding will help you understand key concepts like volatility and asset allocation.';
+      ctaText = lang.startsWith('fr') ? 'Commencer l\'onboarding' : 'Start Onboarding';
+    } else {
+      welcomeText = lang.startsWith('fr')
+        ? 'Bienvenue ! Pour personnaliser ton expérience, commence par un rapide onboarding qui va t\'aider à découvrir ton profil d\'investisseur.'
+        : 'Welcome! To personalize your experience, start with a quick onboarding that will help you discover your investor profile.';
+      ctaText = lang.startsWith('fr') ? 'Découvrir mon profil' : 'Discover My Profile';
+    }
+
+    // Add progress info if started but not complete
+    if (progress > 0 && progress < 100) {
+      const progressText = lang.startsWith('fr')
+        ? ` Tu as déjà ${progress}% de fait !`
+        : ` You're already ${progress}% through!`;
+      welcomeText += progressText;
+      ctaText = lang.startsWith('fr') ? 'Continuer l\'onboarding' : 'Continue Onboarding';
+    }
+
+    // Create welcome message
+    const welcomeWrapper = document.createElement('div');
+    welcomeWrapper.className = 'chat-side-panel-message bot onboarding-prompt';
+    welcomeWrapper.innerHTML = `
+      <div class="message-content">
+        <p>${welcomeText}</p>
+        <div class="onboarding-cta-container" style="margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+          <a href="${playgroundUrl}" class="onboarding-cta-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 14px; transition: transform 0.2s, box-shadow 0.2s;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon points="10,8 16,12 10,16" fill="currentColor"/>
+            </svg>
+            ${ctaText}
+          </a>
+          <button class="skip-onboarding-btn" style="background: none; border: none; color: #6b7280; font-size: 13px; cursor: pointer; padding: 6px;">
+            ${lang.startsWith('fr') ? 'Explorer sans onboarding' : 'Explore without onboarding'}
+          </button>
+        </div>
+      </div>
+    `;
+
+    messagesContainer.appendChild(welcomeWrapper);
+
+    // Handle skip button click
+    const skipBtn = welcomeWrapper.querySelector('.skip-onboarding-btn');
+    if (skipBtn) {
+      skipBtn.addEventListener('click', () => {
+        welcomeWrapper.remove();
+        // Show regular suggestions after skip
+        showSuggestionsAfterSkip();
+      });
+    }
+
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  /**
+   * Show limited suggestions after user skips onboarding
+   */
+  function showSuggestionsAfterSkip() {
+    const lang = getLanguage();
+
+    // Show a simplified help message
+    const helpMsg = lang.startsWith('fr')
+      ? 'Pas de souci ! Je suis là pour t\'aider. Tu peux me poser des questions sur les stratégies d\'investissement, ou utiliser les suggestions ci-dessous.'
+      : 'No problem! I\'m here to help. You can ask me questions about investment strategies, or use the suggestions below.';
+
+    const helpWrapper = document.createElement('div');
+    helpWrapper.className = 'chat-side-panel-message bot';
+    helpWrapper.innerHTML = `<div class="message-content"><p>${helpMsg}</p></div>`;
+    messagesContainer.appendChild(helpWrapper);
+
+    // Show basic suggestions (limited set for non-onboarded users)
+    const basicSuggestions = lang.startsWith('fr')
+      ? [
+          { text: 'Qu\'est-ce que le ratio de Sharpe ?', prompt: 'Explique-moi le ratio de Sharpe' },
+          { text: 'Comment fonctionne l\'Arena ?', prompt: 'Comment fonctionne l\'Arena et les bots ?' },
+          { text: 'Commencer l\'onboarding', prompt: '__START_ONBOARDING__' }
+        ]
+      : [
+          { text: 'What is the Sharpe ratio?', prompt: 'Explain the Sharpe ratio to me' },
+          { text: 'How does the Arena work?', prompt: 'How does the Arena and the bots work?' },
+          { text: 'Start onboarding', prompt: '__START_ONBOARDING__' }
+        ];
+
+    basicSuggestions.forEach((suggestion) => {
+      const btn = document.createElement('button');
+      btn.className = 'chat-suggestion-btn';
+      btn.textContent = suggestion.text;
+      btn.dataset.prompt = suggestion.prompt;
+
+      // Special handling for onboarding button
+      if (suggestion.prompt === '__START_ONBOARDING__') {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          window.location.href = getPlaygroundUrl();
+        });
+      }
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'chat-side-panel-message bot';
+      const content = document.createElement('div');
+      content.className = 'message-content';
+      content.appendChild(btn);
+      wrapper.appendChild(content);
+      messagesContainer.appendChild(wrapper);
+    });
+
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
 
@@ -218,7 +838,7 @@
     input.setSelectionRange(input.value.length, input.value.length);
   }
 
-  const markdownLinkRegex = /\[([^[\]]+)\]\((https?:\/\/[^\s)]+|\/#[^\s)]+)\)/g;
+  const markdownLinkRegex = /\[([^[\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]+)\)/g;
 
   function escapeHtml(text) {
     return text
@@ -231,6 +851,9 @@
 
   function applyInlineFormatting(text) {
     if (!text) return '';
+
+    // Reset regex state (important for global regex reuse)
+    markdownLinkRegex.lastIndex = 0;
 
     let html = '';
     let lastIndex = 0;
@@ -254,7 +877,7 @@
       return `${prefix}<em>${content}</em>${trailing}`;
     });
 
-    html = html.replace(/(^|[\s>])((?:https?:\/\/[^\s<]+)|(?:\/#[^\s<]+))/g, (_, prefix, url) => {
+    html = html.replace(/(^|[\s>])((?:https?:\/\/[^\s<]+)|(?:\/[^\s<]+))/g, (_, prefix, url) => {
       const isRelative = url.startsWith('/');
       return `${prefix}<a href="${url}" target="${isRelative ? '_self' : '_blank'}" rel="noopener noreferrer">${url}</a>`;
     });
@@ -412,9 +1035,122 @@
     return content;
   }
 
+  // Track if we've shown the onboarding suggestion for this session
+  let hasShownOnboardingInterrupt = false;
+
+  /**
+   * Check if message suggests user needs onboarding
+   * @param {string} message - User's message
+   * @returns {boolean} True if message suggests basic question
+   */
+  function detectBasicQuestion(message) {
+    const basicPatterns = [
+      // English patterns
+      /what is (a |the )?(leverage|levier)/i,
+      /what('s| is) (a |the )?(benchmark|volatility|risk parity|etf|sharpe ratio|drawdown|cagr|rebalancing|allocation|portfolio)/i,
+      /how does (this|it) work/i,
+      /explain (me |to me )?(what|how|the)/i,
+      /i don't understand/i,
+      /i('m| am) (lost|confused|new)/i,
+      /can you explain/i,
+      /help me understand/i,
+      // French patterns
+      /c'est quoi (le |la |un |une )?(levier|volatilit[eé]|etf|benchmark|sharpe|drawdown)/i,
+      /expliqu(e|ez)(-moi)? /i,
+      /qu'est[- ]ce que/i,
+      /je (ne |)comprends pas/i,
+      /aidez-moi [aà] comprendre/i,
+      /je suis perdu/i,
+      /comment [cç]a (marche|fonctionne)/i
+    ];
+    return basicPatterns.some(regex => regex.test(message));
+  }
+
+  /**
+   * Show onboarding suggestion when user asks basic questions
+   */
+  function showOnboardingInterrupt(userMessage) {
+    const lang = getLanguage();
+    const playgroundUrl = getPlaygroundUrl();
+
+    const suggestionText = lang.startsWith('fr')
+      ? "Il semble que tu découvres ces concepts ! Avant de continuer, un rapide onboarding va rendre tout beaucoup plus clair. Veux-tu que je te guide ?"
+      : "It looks like you're new to these concepts! Before we continue, a quick onboarding will make everything much clearer. Want me to guide you?";
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'chat-side-panel-message bot onboarding-interrupt';
+    wrapper.innerHTML = `
+      <div class="message-content">
+        <p>${suggestionText}</p>
+        <div class="onboarding-interrupt-buttons" style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
+          <a href="${playgroundUrl}" class="onboarding-start-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 13px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon points="10,8 16,12 10,16" fill="currentColor"/>
+            </svg>
+            ${lang.startsWith('fr') ? 'Commencer l\'onboarding' : 'Start Onboarding'}
+          </a>
+          <button class="onboarding-answer-btn" data-pending-message="${escapeHtml(userMessage)}" style="padding: 8px 14px; background: transparent; border: 1px solid #e5e7eb; color: #6b7280; border-radius: 8px; font-size: 13px; cursor: pointer;">
+            ${lang.startsWith('fr') ? 'Réponds à ma question' : 'Answer my question'}
+          </button>
+        </div>
+      </div>
+    `;
+
+    messagesContainer.appendChild(wrapper);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+    // Handle "Answer my question" button
+    const answerBtn = wrapper.querySelector('.onboarding-answer-btn');
+    if (answerBtn) {
+      answerBtn.addEventListener('click', () => {
+        const pendingMsg = answerBtn.dataset.pendingMessage;
+        wrapper.remove();
+        // Proceed with the original question, skipping onboarding check
+        // Note: skipUserBubble=true because user message was already displayed in sendMessage()
+        sendMessageDirect(pendingMsg, pendingMsg, { skipUserBubble: true });
+      });
+    }
+
+    hasShownOnboardingInterrupt = true;
+  }
+
   async function sendMessage(displayMessage, promptOverride) {
     const display = (displayMessage || '').trim();
     const prompt = (promptOverride || display).trim();
+
+    if (!prompt || state.isProcessing) {
+      return;
+    }
+
+    // Check if user hasn't completed onboarding and is asking a basic question
+    // Only show interrupt once per session on education pages
+    if (isEducationContext && !isOnboardingComplete() && !hasShownOnboardingInterrupt) {
+      if (detectBasicQuestion(prompt)) {
+        // Show user message first
+        createMessageElement('user', display);
+        // Then show onboarding suggestion
+        showOnboardingInterrupt(prompt);
+        return;
+      }
+    }
+
+    // Proceed with normal message sending
+    return sendMessageDirect(displayMessage, promptOverride);
+  }
+
+  /**
+   * Send message directly without onboarding checks
+   * Used after user confirms they want to skip onboarding
+   * @param {string} displayMessage - The message to display
+   * @param {string} promptOverride - The prompt to send to the API
+   * @param {Object} options - Optional configuration
+   * @param {boolean} options.skipUserBubble - If true, skip creating the user message bubble (already displayed)
+   */
+  async function sendMessageDirect(displayMessage, promptOverride, options = {}) {
+    const display = (displayMessage || '').trim();
+    const prompt = (promptOverride || display).trim();
+    const { skipUserBubble = false } = options;
 
     if (!prompt || state.isProcessing) {
       return;
@@ -424,8 +1160,14 @@
     input.disabled = true;
     sendButton.disabled = true;
 
-    // Render user message
-    createMessageElement('user', display);
+    // Remove initial suggestions when user sends first message
+    const initialSuggestions = messagesContainer.querySelectorAll('.initial-suggestions');
+    initialSuggestions.forEach(el => el.remove());
+
+    // Render user message (unless already displayed via onboarding interrupt)
+    if (!skipUserBubble) {
+      createMessageElement('user', display);
+    }
 
     // Prepare bot message placeholder
     const botMessageContent = createMessageElement('bot', '');
@@ -441,9 +1183,15 @@
         pageContext,
         history: state.conversation.slice(-10),
       };
+      // Add page-specific context
       const metadata = buildContextMetadata(pageContext);
       if (metadata) {
         payload.contextMetadata = metadata;
+      }
+      // Add user profile context from BubbleAgentMemory (if available)
+      const userProfileContext = buildUserProfileContext();
+      if (userProfileContext) {
+        payload.userProfileContext = userProfileContext;
       }
       const response = await fetch('/api/chat', {
         method: 'POST',
@@ -512,6 +1260,9 @@
 
       state.conversation.push({ role: 'assistant', content: collected || '...' });
       persistConversation();
+
+      // Track conversation in BubbleAgentMemory
+      trackConversationInMemory(prompt, collected);
     } catch (error) {
       console.error('chat-side-panel.js: sendMessage failed', error);
       const errorText = error.name === 'AbortError' ? '' : (error.message || 'Une erreur est survenue.');
@@ -553,6 +1304,15 @@
       document.body.classList.add('chat-side-panel-open');
       document.body.classList.remove('chat-collapsed');
       emit('chatSidePanel:opened');
+
+      // For ALL investor pages, show proactive onboarding invitation if not completed
+      // This ensures consistent onboarding experience across the entire investor section
+      if (isInvestorPage() && !isEducationContext) {
+        // Wait for BubbleAgentMemory to be loaded (it's async)
+        setTimeout(() => {
+          showProactiveOnboardingInvitation();
+        }, 100);
+      }
 
       // Ensure scroll position at bottom for existing messages
       messagesContainer.scrollTop = messagesContainer.scrollHeight;

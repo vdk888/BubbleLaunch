@@ -1132,6 +1132,73 @@
   background: var(--education-accent-light);
 }
 
+/* Recommended Bot Badge (Profile-based) */
+.arena-bot-card.recommended {
+  border-color: var(--bot-color, var(--education-accent));
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15), 0 8px 24px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.arena-bot-recommended-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 50px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.35);
+  z-index: 10;
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+.arena-bot-recommended-badge svg {
+  width: 12px;
+  height: 12px;
+  fill: #FFE066;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.35);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.55);
+  }
+}
+
+/* Viewed Bot Card (user has clicked/interacted) */
+.arena-bot-card.viewed::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background: var(--education-gain);
+  border-radius: 50%;
+}
+
+@media (max-width: 600px) {
+  .arena-bot-recommended-badge {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.6rem;
+    top: -8px;
+  }
+
+  .arena-bot-recommended-badge svg {
+    width: 10px;
+    height: 10px;
+  }
+}
+
 .arena-bot-header {
   display: flex;
   align-items: center;
@@ -1848,13 +1915,9 @@
    Mobile-First Chatbot Interface
    ═══════════════════════════════════════════════════════════════ */
 
-/* Mobile Chat Hero Section - Primary interface on mobile */
+/* Chat Hero Section - HIDDEN (functionality moved to chatbot panel) */
 .simulator-chat-hero {
-  background: linear-gradient(135deg, var(--education-accent-light), rgba(139, 92, 246, 0.08));
-  border: 1px solid rgba(102, 126, 234, 0.2);
-  border-radius: var(--education-radius-card);
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;
+  display: none !important; /* Quick actions are now in the floating chatbot */
 }
 
 .simulator-chat-hero-title {
@@ -2091,7 +2154,7 @@
   max-height: 1000px;
 }
 
-/* Hide chat hero on desktop (use side panel instead) */
+/* Hide chat hero on all screens - quick actions are in the chatbot */
 @media (min-width: 1024px) {
   .simulator-chat-hero {
     display: none;
@@ -6346,6 +6409,48 @@ body.chat-open .chat-fab {
 
 .education-chat-send:active {
   transform: scale(0.95);
+}
+
+/* Mic button for voice input */
+.education-chat-mic {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--education-border);
+  background: var(--education-card-bg);
+  color: var(--education-neutral);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.education-chat-mic:hover {
+  border-color: var(--education-accent);
+  color: var(--education-accent);
+  transform: scale(1.05);
+}
+
+.education-chat-mic:active {
+  transform: scale(0.95);
+}
+
+.education-chat-mic.recording {
+  background: #EF4444;
+  border-color: #EF4444;
+  color: white;
+  animation: pulse-recording 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-recording {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+  }
 }
 
 /* Mobile touch target fixes for education pages */

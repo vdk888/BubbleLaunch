@@ -21,10 +21,102 @@ const EducationFloatingChat = (function() {
   let messagesContainer = null;
   let inputField = null;
   let closeBtn = null;
+  let micButton = null;
   let session = null;
   let abortController = null;
   let hasShownOnboardingPrompt = false;
+  let hasShownBasicQuestionPrompt = false; // Track if we've shown onboarding suggestion for basic questions
   let currentBuilderStep = 0; // Track step-by-step builder flow
+
+  // Voice recognition
+  let recognition = null;
+  let isRecording = false;
+
+  // Module-scoped variable for pending basic question (BUG 16 fix - avoids global namespace pollution)
+  let pendingBasicQuestion = null;
+
+  // SVG Icons for mic button
+  const MIC_ICONS = {
+    mic: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>',
+    micOff: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"/><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>'
+  };
+
+  /**
+   * Detect if user is asking a basic question that suggests they need onboarding
+   * Returns true if the message contains basic investment concepts questions
+   * @param {string} message - User's message
+   * @returns {boolean} - True if basic question detected
+   */
+  function detectBasicQuestion(message) {
+    const basicQuestions = [
+      // English patterns
+      /what is (a |the )?(leverage|levier)/i,
+      /what('s| is) (a |the )?(benchmark|indice de r[eé]f[eé]rence)/i,
+      /what('s| is) (a |the )?(volatility|volatilit[eé])/i,
+      /what('s| is) (a |the )?(risk parity|parit[eé] des risques)/i,
+      /what('s| is) (a |the )?(etf|fonds indiciel)/i,
+      /what('s| is) (a |the )?(sharpe ratio|ratio de sharpe)/i,
+      /what('s| is) (a |the )?(drawdown|perte maximale)/i,
+      /what('s| is) (a |the )?(max drawdown)/i,
+      /what('s| is) (a |the )?(cagr|annualized return)/i,
+      /what('s| is) (a |the )?(rebalancing|r[eé][eé]quilibrage)/i,
+      /what('s| is) (a |the )?(allocation|portfolio)/i,
+      // French patterns
+      /c'est quoi (le |la |un |une )?(leverage|levier|volatilit[eé]|etf|benchmark)/i,
+      /expliqu(e|ez)(-moi)? (le |la |les )?(leverage|levier|volatilit[eé])/i,
+      /qu'est[- ]ce que (le |la |l')?(levier|volatilit[eé]|sharpe|drawdown)/i,
+      // Confusion indicators
+      /je (ne |)comprends pas/i,
+      /i don't understand/i,
+      /help me understand/i,
+      /aidez-moi [aà] comprendre/i,
+      /je suis perdu/i,
+      /i('m| am) (lost|confused)/i,
+      /can you explain/i,
+      /peux-tu (m')?expliquer/i,
+      /comment [cç]a marche/i,
+      /how does (this|it) work/i
+    ];
+    return basicQuestions.some(regex => regex.test(message));
+  }
+
+  /**
+   * Show onboarding suggestion when user asks basic questions
+   * Adds a bot message with buttons to start onboarding or continue
+   */
+  function showOnboardingSuggestionForBasicQuestion() {
+    if (!messagesContainer) return;
+
+    const lang = getLang();
+    const playgroundUrl = getPlaygroundUrl();
+
+    const suggestionMsg = lang === 'fr'
+      ? "Il semble que tu d\u00e9couvres ces concepts ! Avant de cr\u00e9er des strat\u00e9gies ensemble, un rapide onboarding te rendra la volatilit\u00e9 et l'effet de levier beaucoup plus clairs. Veux-tu que je te guide \u00e0 travers les bases ?"
+      : "It looks like you're new to these concepts! Before we build strategies together, a quick onboarding will make concepts like volatility and leverage much easier. Want me to guide you through the basics?";
+
+    addMessageBubble(suggestionMsg, 'bot');
+
+    // Add onboarding CTA buttons
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'education-chat-onboarding-cta';
+    buttonContainer.innerHTML = `
+      <a href="${playgroundUrl}" class="onboarding-start-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <polygon points="10,8 16,12 10,16"/>
+        </svg>
+        <span>${lang === 'fr' ? 'Commencer l\'onboarding' : 'Start Onboarding'}</span>
+      </a>
+      <button class="onboarding-skip-btn" id="skipOnboardingForQuestion">
+        ${lang === 'fr' ? 'R\u00e9ponds \u00e0 ma question' : 'Answer my question'}
+      </button>
+    `;
+
+    messagesContainer.appendChild(buttonContainer);
+    scrollToBottom();
+
+    hasShownBasicQuestionPrompt = true;
+  }
 
   // Page context detection - check both /education/ and /playground/ paths
   const isArenaPage = window.location.pathname.includes('/education/arena') ||
@@ -54,13 +146,48 @@ const EducationFloatingChat = (function() {
   };
 
   /**
+   * Get BubbleAgentMemory if available
+   * @returns {Object|null} Memory module or null
+   */
+  function getMemory() {
+    return typeof BubbleAgentMemory !== 'undefined' ? BubbleAgentMemory : null;
+  }
+
+  /**
    * Check if user has completed onboarding
-   * Returns: { completed: boolean, stage: string, profile: object|null }
+   * Prioritizes BubbleAgentMemory, falls back to sessionStorage
+   * Returns: { completed: boolean, stage: string, profile: object|null, progress: number }
    */
   function checkOnboardingStatus() {
+    // First check BubbleAgentMemory (persistent across sessions)
+    const Memory = getMemory();
+    if (Memory) {
+      try {
+        const journey = Memory.getJourney();
+        const profile = Memory.getProfile();
+        if (journey && journey.onboardingCompleted) {
+          return {
+            completed: true,
+            stage: 'free_chat',
+            profile: profile,
+            progress: 100
+          };
+        }
+        return {
+          completed: false,
+          stage: journey ? journey.currentOnboardingStage : null,
+          profile: profile.riskScore !== null ? profile : null,
+          progress: journey ? journey.onboardingProgress || 0 : 0
+        };
+      } catch (e) {
+        console.warn('[EducationChat] Error checking BubbleAgentMemory:', e);
+      }
+    }
+
+    // Fall back to sessionStorage
     const stored = sessionStorage.getItem(SESSION_KEY);
     if (!stored) {
-      return { completed: false, stage: null, profile: null };
+      return { completed: false, stage: null, profile: null, progress: 0 };
     }
     try {
       const data = JSON.parse(stored);
@@ -68,10 +195,11 @@ const EducationFloatingChat = (function() {
       return {
         completed,
         stage: data.stage || null,
-        profile: data.profile || null
+        profile: data.profile || null,
+        progress: completed ? 100 : 0
       };
     } catch (e) {
-      return { completed: false, stage: null, profile: null };
+      return { completed: false, stage: null, profile: null, progress: 0 };
     }
   }
 
@@ -336,9 +464,12 @@ const EducationFloatingChat = (function() {
             type="text"
             class="education-chat-input"
             id="educationChatInput"
-            placeholder="${lang === 'fr' ? 'Pose ta question...' : 'Ask your question...'}"
+            placeholder="${lang === 'fr' ? 'Pose ta question ou utilise le micro...' : 'Ask your question or use voice...'}"
             autocomplete="off"
           />
+          <button class="education-chat-mic" type="button" id="educationChatMic" aria-label="${lang === 'fr' ? 'Activer le micro' : 'Enable microphone'}">
+            ${MIC_ICONS.mic}
+          </button>
           <button class="education-chat-send" type="submit" aria-label="${lang === 'fr' ? 'Envoyer' : 'Send'}">
             ${ICONS.send}
           </button>
@@ -352,6 +483,7 @@ const EducationFloatingChat = (function() {
     messagesContainer = modal.querySelector('#educationChatMessages');
     inputField = modal.querySelector('#educationChatInput');
     closeBtn = modal.querySelector('.education-chat-close');
+    micButton = modal.querySelector('#educationChatMic');
 
     // Event listeners
     closeBtn.addEventListener('click', closeModal);
@@ -362,11 +494,124 @@ const EducationFloatingChat = (function() {
     const form = modal.querySelector('#educationChatForm');
     form.addEventListener('submit', handleSubmit);
 
+    // Mic button event listener
+    if (micButton) {
+      micButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleVoiceRecording();
+      });
+    }
+
+    // Initialize voice recognition
+    initVoiceRecognition();
+
     // Escape key to close
     document.addEventListener('keydown', handleEscape);
 
     // Render suggestions
     renderSuggestions();
+  }
+
+  /**
+   * Initialize voice recognition (Web Speech API)
+   */
+  function initVoiceRecognition() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      console.warn('Speech recognition not supported in this browser');
+      // Hide mic button if not supported
+      if (micButton) micButton.style.display = 'none';
+      return false;
+    }
+
+    recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    // Set language based on current language
+    const lang = getLang();
+    recognition.lang = lang === 'fr' ? 'fr-FR' : 'en-US';
+
+    recognition.onstart = function() {
+      isRecording = true;
+      if (micButton) {
+        micButton.classList.add('recording');
+        micButton.innerHTML = MIC_ICONS.micOff;
+        micButton.setAttribute('aria-label', getLang() === 'fr' ? 'Arrêter l\'enregistrement' : 'Stop recording');
+      }
+    };
+
+    recognition.onend = function() {
+      isRecording = false;
+      if (micButton) {
+        micButton.classList.remove('recording');
+        micButton.innerHTML = MIC_ICONS.mic;
+        micButton.setAttribute('aria-label', getLang() === 'fr' ? 'Activer le micro' : 'Enable microphone');
+      }
+    };
+
+    recognition.onresult = function(event) {
+      const transcript = event.results[0][0].transcript;
+      if (transcript && inputField) {
+        inputField.value = transcript;
+        // Auto-submit voice input
+        sendMessage(transcript);
+        inputField.value = '';
+        // Hide suggestions after voice input
+        const suggestionsContainer = modal?.querySelector('#educationChatSuggestions');
+        if (suggestionsContainer) suggestionsContainer.style.display = 'none';
+      }
+    };
+
+    recognition.onerror = function(event) {
+      console.error('Speech recognition error:', event.error);
+      isRecording = false;
+      if (micButton) {
+        micButton.classList.remove('recording');
+        micButton.innerHTML = MIC_ICONS.mic;
+      }
+      // Show error message for common issues
+      if (event.error === 'not-allowed') {
+        const lang = getLang();
+        addMessageBubble(
+          lang === 'fr'
+            ? "L'accès au microphone a été refusé. Vérifie les permissions de ton navigateur."
+            : "Microphone access was denied. Please check your browser permissions.",
+          'bot'
+        );
+      }
+    };
+
+    return true;
+  }
+
+  /**
+   * Toggle voice recording
+   */
+  function toggleVoiceRecording() {
+    if (!recognition) {
+      const supported = initVoiceRecognition();
+      if (!supported) {
+        const lang = getLang();
+        addMessageBubble(
+          lang === 'fr'
+            ? "La reconnaissance vocale n'est pas supportée par ton navigateur. Essaie Chrome ou Edge."
+            : "Voice recognition is not supported in your browser. Try Chrome or Edge.",
+          'bot'
+        );
+        return;
+      }
+    }
+
+    // Update language on each use
+    const lang = getLang();
+    recognition.lang = lang === 'fr' ? 'fr-FR' : 'en-US';
+
+    if (isRecording) {
+      recognition.stop();
+    } else {
+      recognition.start();
+    }
   }
 
   /**
@@ -500,31 +745,85 @@ const EducationFloatingChat = (function() {
 
     messagesContainer.innerHTML = '';
     const lang = getLang();
+    const Memory = getMemory();
 
     // Add welcome message if no conversation
     if (session.conversation.length === 0) {
-      // Check onboarding status for simulator page
-      if (isSimulatorPage && !hasShownOnboardingPrompt) {
-        const onboardingStatus = checkOnboardingStatus();
+      const onboardingStatus = checkOnboardingStatus();
 
+      // Check if returning user with profile
+      const isReturning = Memory && Memory.isReturningUser();
+      let profileName = null;
+
+      if (Memory && onboardingStatus.completed) {
+        const profile = Memory.getProfile();
+        if (profile && profile.riskScore !== null) {
+          profileName = Memory.getProfileName(profile.riskScore);
+        }
+      }
+
+      // SIMULATOR: Proactive onboarding greeting
+      if (isSimulatorPage && !hasShownOnboardingPrompt) {
         if (!onboardingStatus.completed) {
-          // Show onboarding prompt
-          const onboardingMsg = lang === 'fr'
-            ? "Salut ! Avant de construire ta strategie ensemble, un petit onboarding va rendre les concepts comme la volatilite et le levier beaucoup plus clairs. Tu veux que je te guide ?"
-            : "Hi! Before we build strategies together, a quick onboarding will make concepts like volatility and leverage much easier. Want me to guide you through the basics?";
+          let onboardingMsg = '';
+          const progress = onboardingStatus.progress || 0;
+
+          if (progress > 0 && progress < 100) {
+            // Continue onboarding
+            onboardingMsg = lang === 'fr'
+              ? `Content de te revoir dans le Strategy Builder ! Tu as deja ${progress}% de l'onboarding de fait. On continue ensemble ?`
+              : `Welcome back to the Strategy Builder! You're already ${progress}% through onboarding. Shall we continue?`;
+          } else {
+            onboardingMsg = lang === 'fr'
+              ? "Bienvenue dans le Strategy Builder ! Avant de construire des strategies ensemble, un rapide onboarding va rendre les concepts comme la volatilite et l'effet de levier beaucoup plus clairs. Tu veux que je te guide a travers les bases ?"
+              : "Welcome to the Strategy Builder! Before we build strategies together, a quick onboarding will make concepts like volatility and leverage much easier. Want me to guide you through the basics?";
+          }
 
           addMessageBubble(onboardingMsg, 'bot');
-
-          // Add onboarding CTA button
-          setTimeout(() => {
-            addOnboardingButton();
-          }, 500);
-
+          setTimeout(() => addOnboardingButton(), 500);
           hasShownOnboardingPrompt = true;
+          return;
+        } else if (isReturning && profileName) {
+          // Returning user with profile - show personalized greeting
+          const welcomeMsg = lang === 'fr'
+            ? `Content de te revoir dans le Strategy Builder ! Avec ton profil ${profileName.toLowerCase()}, on peut creer des strategies adaptees a tes objectifs. Dis-moi ce que tu veux explorer !`
+            : `Welcome back to the Strategy Builder! With your ${profileName.toLowerCase()} profile, we can create strategies suited to your goals. Tell me what you'd like to explore!`;
+          addMessageBubble(welcomeMsg, 'bot');
           return;
         }
       }
 
+      // ARENA: Proactive onboarding greeting
+      if (isArenaPage && !hasShownOnboardingPrompt) {
+        if (!onboardingStatus.completed) {
+          let onboardingMsg = '';
+          const progress = onboardingStatus.progress || 0;
+
+          if (progress > 0 && progress < 100) {
+            onboardingMsg = lang === 'fr'
+              ? `Content de te revoir dans l'Arena ! Tu as deja ${progress}% de l'onboarding de fait. On continue avant de regarder les bots s'affronter ?`
+              : `Welcome back to the Arena! You're already ${progress}% through onboarding. Shall we continue before watching the bots compete?`;
+          } else {
+            onboardingMsg = lang === 'fr'
+              ? "Bienvenue dans l'Arena ! Avant de regarder les bots s'affronter, un rapide onboarding va rendre les concepts comme le P&L, le ratio de Sharpe et le drawdown beaucoup plus clairs. Tu veux que je te guide a travers les bases ?"
+              : "Welcome to the Trading Arena! Before you watch the bots compete, a quick onboarding will make concepts like P&L, Sharpe ratio, and drawdowns much clearer. Want me to guide you through the basics?";
+          }
+
+          addMessageBubble(onboardingMsg, 'bot');
+          setTimeout(() => addOnboardingButton(), 500);
+          hasShownOnboardingPrompt = true;
+          return;
+        } else if (isReturning && profileName) {
+          // Returning user with profile - show personalized greeting
+          const welcomeMsg = lang === 'fr'
+            ? `Content de te revoir dans l'Arena ! En tant qu'investisseur ${profileName.toLowerCase()}, je peux t'aider a comprendre comment les differents bots reagissent aux evenements de marche. Quel bot veux-tu explorer ?`
+            : `Welcome back to the Arena! As a ${profileName.toLowerCase()} investor, I can help you understand how different bots react to market events. Which bot would you like to explore?`;
+          addMessageBubble(welcomeMsg, 'bot');
+          return;
+        }
+      }
+
+      // Default welcome messages (when onboarding is complete but not returning)
       const welcomeMsg = isArenaPage
         ? (lang === 'fr'
           ? "Salut ! Je suis la pour t'aider a comprendre les differentes strategies de trading. Pose-moi tes questions sur les bots !"
@@ -552,6 +851,14 @@ const EducationFloatingChat = (function() {
 
     const lang = getLang();
     const playgroundUrl = getPlaygroundUrl();
+    const onboardingStatus = checkOnboardingStatus();
+    const progress = onboardingStatus.progress || 0;
+
+    // Customize CTA text based on progress
+    let ctaText = lang === 'fr' ? 'Commencer l\'onboarding' : 'Start Onboarding';
+    if (progress > 0 && progress < 100) {
+      ctaText = lang === 'fr' ? `Continuer l'onboarding (${progress}%)` : `Continue Onboarding (${progress}%)`;
+    }
 
     const buttonContainer = document.createElement('div');
     buttonContainer.className = 'education-chat-onboarding-cta';
@@ -561,7 +868,7 @@ const EducationFloatingChat = (function() {
           <circle cx="12" cy="12" r="10"/>
           <polygon points="10,8 16,12 10,16"/>
         </svg>
-        <span>${lang === 'fr' ? 'Commencer l\'onboarding' : 'Start Onboarding'}</span>
+        <span>${ctaText}</span>
       </a>
       <button class="onboarding-skip-btn">
         ${lang === 'fr' ? 'Continuer sans' : 'Skip for now'}
@@ -677,11 +984,52 @@ const EducationFloatingChat = (function() {
   /**
    * Send message to LLM
    */
-  async function sendMessage(message) {
+  async function sendMessage(message, skipOnboardingCheck = false) {
+    // Check if user is asking a basic question and hasn't completed onboarding
+    // Works on both Arena and Simulator pages, only once per session, and only if not skipping
+    if (!skipOnboardingCheck && isEducationPage && !hasShownBasicQuestionPrompt) {
+      const onboardingStatus = checkOnboardingStatus();
+      if (!onboardingStatus.completed && detectBasicQuestion(message)) {
+        // Show the user's message first
+        addMessageBubble(message, 'user');
+        // Then show onboarding suggestion
+        showOnboardingSuggestionForBasicQuestion();
+
+        // Store the pending message so we can send it if user clicks "Answer my question"
+        // Using module-scoped variable instead of window global (BUG 16 fix)
+        pendingBasicQuestion = message;
+
+        // Add handler for the skip button
+        setTimeout(() => {
+          const skipBtn = document.getElementById('skipOnboardingForQuestion');
+          if (skipBtn) {
+            skipBtn.addEventListener('click', () => {
+              // Remove the CTA container
+              skipBtn.closest('.education-chat-onboarding-cta')?.remove();
+              // Send the original message, skipping the onboarding check
+              if (pendingBasicQuestion) {
+                const messageToSend = pendingBasicQuestion;
+                pendingBasicQuestion = null; // Clean up before sending (BUG 16 fix)
+                sendMessage(messageToSend, true);
+              }
+            });
+          }
+        }, 100);
+
+        return; // Don't send to API yet
+      }
+    }
+
     if (abortController) abortController.abort();
     abortController = new AbortController();
 
-    addMessageBubble(message, 'user');
+    // BUG 17 fix: Clarified conditional logic for message display
+    // When skipOnboardingCheck is true, the message was already displayed earlier
+    // (at line ~994 before showing the onboarding suggestion), so skip adding it again
+    // When skipOnboardingCheck is false, this is a fresh message that needs to be displayed
+    if (!skipOnboardingCheck) {
+      addMessageBubble(message, 'user');
+    }
     const typing = showTyping();
 
     // Create streaming response bubble
@@ -791,19 +1139,42 @@ const EducationFloatingChat = (function() {
   }
 
   /**
-   * Escape HTML
+   * Sanitize HTML - XSS Prevention (High Priority Security Fix)
+   * Escapes all potentially dangerous HTML characters to prevent XSS attacks
+   * Applied to: user messages, and LLM responses via formatMessage()
+   * @param {string} text - Raw text input
+   * @returns {string} - Sanitized text safe for innerHTML
+   */
+  function sanitizeHTML(text) {
+    if (!text) return '';
+    return text
+      .replace(/&/g, '&amp;')   // Must be first to avoid double-escaping
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#x27;'); // Use hex entity for single quote (safer than &apos;)
+  }
+
+  /**
+   * Escape HTML (alias for sanitizeHTML for backward compatibility)
+   * @deprecated Use sanitizeHTML() instead
    */
   function escapeHtml(text) {
-    if (!text) return '';
-    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return sanitizeHTML(text);
   }
 
   /**
    * Format message with basic markdown
+   * XSS Prevention: All text is sanitized before any HTML formatting is applied
+   * Only safe markdown patterns (bold, line breaks) are converted to HTML
+   * @param {string} text - Raw text from LLM response
+   * @returns {string} - Sanitized HTML with markdown formatting
    */
   function formatMessage(text) {
     if (!text) return '';
-    let html = escapeHtml(text);
+    // First sanitize all HTML entities (XSS Prevention)
+    let html = sanitizeHTML(text);
+    // Then apply safe markdown transformations on sanitized content
     html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     html = html.replace(/\n/g, '<br>');
     return html;
@@ -870,7 +1241,7 @@ const EducationFloatingChat = (function() {
 
     // Update input placeholder
     const input = modal.querySelector('#educationChatInput');
-    if (input) input.placeholder = lang === 'fr' ? 'Pose ta question...' : 'Ask your question...';
+    if (input) input.placeholder = lang === 'fr' ? 'Pose ta question ou utilise le micro...' : 'Ask your question or use voice...';
 
     // Update close button aria-label
     const closeButton = modal.querySelector('.education-chat-close');
@@ -879,6 +1250,17 @@ const EducationFloatingChat = (function() {
     // Update send button aria-label
     const sendButton = modal.querySelector('.education-chat-send');
     if (sendButton) sendButton.setAttribute('aria-label', lang === 'fr' ? 'Envoyer' : 'Send');
+
+    // Update mic button aria-label
+    const micBtn = modal.querySelector('#educationChatMic');
+    if (micBtn && !isRecording) {
+      micBtn.setAttribute('aria-label', lang === 'fr' ? 'Activer le micro' : 'Enable microphone');
+    }
+
+    // Update voice recognition language
+    if (recognition) {
+      recognition.lang = lang === 'fr' ? 'fr-FR' : 'en-US';
+    }
 
     // Re-render suggestions with new language
     renderSuggestions();

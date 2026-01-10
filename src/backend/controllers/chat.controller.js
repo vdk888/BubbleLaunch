@@ -69,43 +69,86 @@ const unifiedSystemPrompt = (language, pageContext = 'index', waitlistShared = f
   const isArena = ctx === 'arena' || ctx === 'education-arena' || ctx === 'education/arena';
   const isSimulator = ctx === 'simulator' || ctx === 'education-simulator' || ctx === 'education/simulator';
 
-  // Build user profile block if available
+  // Build user profile block if available (supports both legacy and new BubbleAgentMemory format)
+  // Enable on ALL pages, not just Playground, for unified personalized experience
   let profileBlock = '';
-  if (userProfile && isPlayground) {
+  if (userProfile) {
+    // Level mapping
     const levelMap = {
-      beginner: { fr: 'Debutant', en: 'Beginner' },
-      intermediate: { fr: 'Intermediaire', en: 'Intermediate' },
-      advanced: { fr: 'Avance', en: 'Advanced' }
+      beginner: { fr: 'Débutant', en: 'Beginner' },
+      intermediate: { fr: 'Intermédiaire', en: 'Intermediate' },
+      advanced: { fr: 'Avancé', en: 'Advanced' }
     };
+    // Goal mapping
     const goalMap = {
       learn_basics: { fr: 'Apprendre les bases', en: 'Learn the basics' },
-      build_strategy: { fr: 'Construire une strategie', en: 'Build a strategy' },
+      build_strategy: { fr: 'Construire une stratégie', en: 'Build a strategy' },
       watch_arena: { fr: 'Observer les bots', en: 'Watch AI bots' },
-      test_portfolio: { fr: 'Tester un portefeuille', en: 'Test a portfolio' }
+      test_portfolio: { fr: 'Tester un portefeuille', en: 'Test a portfolio' },
+      retirement: { fr: 'Retraite', en: 'Retirement' },
+      house: { fr: 'Achat immobilier', en: 'House purchase' },
+      growth: { fr: 'Croissance', en: 'Growth' },
+      learn: { fr: 'Apprendre', en: 'Learn' }
     };
+    // Style mapping
     const styleMap = {
-      videos: { fr: 'Videos', en: 'Videos' },
+      videos: { fr: 'Vidéos', en: 'Videos' },
       exercises: { fr: 'Exercices pratiques', en: 'Hands-on exercises' },
-      dialogue: { fr: 'Questions-reponses', en: 'Q&A dialogue' },
-      explore: { fr: 'Auto-exploration', en: 'Self-exploration' }
+      dialogue: { fr: 'Questions-réponses', en: 'Q&A dialogue' },
+      explore: { fr: 'Auto-exploration', en: 'Self-exploration' },
+      visual: { fr: 'Visuel', en: 'Visual' },
+      hands_on: { fr: 'Pratique', en: 'Hands-on' }
+    };
+    // Horizon mapping
+    const horizonMap = {
+      short: { fr: 'Court terme (<3 ans)', en: 'Short term (<3 years)' },
+      medium: { fr: 'Moyen terme (3-7 ans)', en: 'Medium term (3-7 years)' },
+      long: { fr: 'Long terme (7-15 ans)', en: 'Long term (7-15 years)' },
+      very_long: { fr: 'Très long terme (15+ ans)', en: 'Very long term (15+ years)' }
     };
 
-    const level = levelMap[userProfile.level]?.[language] || userProfile.level || 'unknown';
-    const goal = goalMap[userProfile.goal]?.[language] || userProfile.goal || 'exploring';
-    const style = styleMap[userProfile.learningStyle]?.[language] || userProfile.learningStyle || 'mixed';
+    // Support both legacy format (level, goal) and new BubbleAgentMemory format (profile.level, profile.goal)
+    const profile = userProfile.profile || userProfile;
+
+    const level = levelMap[profile.level || profile.knowledgeLevel]?.[language] || profile.level || profile.knowledgeLevel || 'unknown';
+    const goal = goalMap[profile.goal || profile.investmentGoal]?.[language] || profile.goal || profile.investmentGoal || 'exploring';
+    const style = styleMap[profile.learningStyle || profile.style]?.[language] || profile.learningStyle || profile.style || 'dialogue';
+    const horizon = horizonMap[profile.horizon || profile.investmentHorizon]?.[language] || profile.horizon || profile.investmentHorizon || null;
+
+    // Risk profile (new BubbleAgentMemory format)
+    const riskScore = profile.riskScore;
+    const riskConfidence = profile.riskConfidence || 0;
+    const traits = Array.isArray(profile.traits) ? profile.traits.slice(-5) : [];
+
+    // Journey info
+    const journey = userProfile.journey || {};
+    const onboardingComplete = journey.onboardingCompleted || profile.onboardingComplete || userProfile.onboardingComplete;
+    const isReturningUser = journey.isReturningUser || journey.totalVisits > 1;
+
+    // Memory/conversation context
+    const memory = userProfile.memory || {};
+    const keyInsights = Array.isArray(memory.keyInsights) ? memory.keyInsights.slice(-5).map(i => typeof i === 'string' ? i : i.insight) : [];
 
     profileBlock = `
 
-### USER PROFILE (from onboarding)
+### USER PROFILE (Progressive - BubbleAgentMemory)
+${riskScore !== null && riskScore !== undefined ? `- Risk Score: ${riskScore}/100 (Confidence: ${riskConfidence}%)` : '- Risk Score: Not yet determined'}
+${traits.length > 0 ? `- Traits: ${traits.join(', ')}` : ''}
 - Knowledge Level: ${level}
 - Primary Goal: ${goal}
+${horizon ? `- Investment Horizon: ${horizon}` : ''}
 - Learning Style: ${style}
-- Onboarding Complete: ${userProfile.onboardingComplete ? 'Yes' : 'No'}
+- Onboarding Complete: ${onboardingComplete ? 'Yes' : 'In Progress'}
+${isReturningUser ? '- Returning User: Yes (remember them warmly!)' : ''}
+
+${keyInsights.length > 0 ? `### WHAT WE KNOW ABOUT THEM
+${keyInsights.map(i => `- ${i}`).join('\n')}` : ''}
 
 IMPORTANT: Adapt your vocabulary, depth, and examples based on this profile:
 - For BEGINNERS: Use simple analogies, avoid jargon, explain step by step
 - For INTERMEDIATE: Use standard financial terms with brief explanations
-- For ADVANCED: Be technical, reference specific metrics and strategies`;
+- For ADVANCED: Be technical, reference specific metrics and strategies
+${riskScore !== null && riskScore !== undefined ? `- Risk tolerance: ${riskScore < 30 ? 'Conservative (emphasize safety, stability)' : riskScore < 60 ? 'Balanced (discuss trade-offs)' : 'Aggressive (can discuss volatility openly)'}` : ''}`;
   }
 
   // Playground-specific context
@@ -120,6 +163,19 @@ Your personality:
 - Celebrate small wins and discoveries
 - Ask clarifying questions rather than assuming
 - Suggest next steps proactively
+
+**PROACTIVE CONVERSATION STYLE (CRITICAL):**
+- ALWAYS end your message with a clear, engaging question to invite a response
+- Use conversational hooks like "Et toi ?" / "What about you?" / "Et toi, tu en penses quoi ?"
+- Make it obvious that you're waiting for and excited about their response
+- Questions should feel like a curious friend, not a survey
+- Examples of good endings:
+  - "Et toi, ça te parle ce genre de situation ?"
+  - "Tu as déjà vécu ça ?"
+  - "Qu'est-ce qui t'attire le plus dans tout ça ?"
+  - "What would you do in that situation?"
+  - "Does that resonate with you?"
+- NEVER end with a statement alone - always invite dialogue
 
 **Proactive suggestions - Timing matters:**
 - **During onboarding**: NEVER suggest Arena/Simulator (breaks flow)
@@ -143,8 +199,55 @@ Your personality:
 - After profile reveal, you can explore topics freely
 
 ${isOnboarding ? `🚨 **ONBOARDING MODE ACTIVE** (Stage: ${onboardingStage})
-Follow onboarding scope constraints above. Stay focused on risk profile discovery.` : `✅ **FREE CHAT MODE**
-Full exploration allowed. Suggest resources proactively when appropriate.`}${profileBlock}`
+Follow onboarding scope constraints above. Stay focused on risk profile discovery.
+
+### PROFILE EXTRACTION PROTOCOL (CRITICAL)
+After EACH user response during onboarding, you MUST:
+1. Respond warmly and naturally like a friend (2-3 sentences max, use "tu")
+2. Extract profile insights in INVISIBLE structured format
+
+**EXTRACTION FORMAT** - Append to your response as HTML comment:
+<!-- PROFILE_UPDATE
+{
+  "riskScoreAdjustment": <number -30 to +30>,
+  "traits": ["trait1", "trait2"],
+  "goalHint": "<string or null>",
+  "horizonHint": "<short|medium|long|very_long or null>",
+  "levelHint": "<beginner|intermediate|advanced or null>",
+  "insight": "<one sentence insight about this user>"
+}
+-->
+
+**SCORING GUIDE:**
+- Panic/fear of loss, "je vendrais tout" → riskScoreAdjustment: -20 to -30
+- Cautious, wants safety, "ça me stresse" → riskScoreAdjustment: -10 to -15
+- Balanced, pragmatic, "j'attendrais" → riskScoreAdjustment: 0
+- Growth-oriented, patient, "opportunité" → riskScoreAdjustment: +10 to +15
+- Aggressive, "j'achèterais plus" → riskScoreAdjustment: +20 to +30
+
+**CONVERSATION STYLE:**
+- Always use "tu" (intimate, not "vous")
+- Feel like a helpful friend with whimsical personality
+- Never judgmental, always curious
+- Celebrate every response
+- If off-topic: acknowledge briefly ("Ah oui !") then redirect gently back to profile discovery
+- **ALWAYS end your message with a question to keep the conversation going**
+- Use hooks like "Et toi ?" / "Tu en penses quoi ?" / "Ça t'est déjà arrivé ?"
+- Your questions should make the user WANT to respond - be genuinely curious about THEIR experience` : `✅ **FREE CHAT MODE**
+Full exploration allowed. Suggest resources proactively when appropriate.
+
+**Profile-aware suggestions (use naturally in conversation):**
+${userProfile?.profile?.riskScore !== undefined ?
+  (userProfile.profile.riskScore <= 30 ?
+    `- User is CONSERVATIVE (${userProfile.profile.riskScore}/100): Suggest watching the **Hérisson/Hedgehog** (Defensive bot) in Arena. Emphasize capital preservation and stability.`
+  : userProfile.profile.riskScore <= 60 ?
+    `- User is BALANCED (${userProfile.profile.riskScore}/100): Suggest the **Renard/Fox** (Risk Parity bot) in Arena. Highlight the balance between risk and return.`
+  :
+    `- User is GROWTH-ORIENTED (${userProfile.profile.riskScore}/100): Suggest the **Faucon/Hawk** (Momentum bot) in Arena. Can discuss volatility and trend-following openly.`)
+: '- No profile yet. Focus on discovery questions.'}
+- If user asks about strategy building → suggest Simulator
+- If user asks about bot performance → suggest Arena
+- If user asks about learning → suggest Resources`}${profileBlock}`
     : '';
 
   // Simplicity philosophy for Playground
@@ -239,24 +342,42 @@ ${portfolioSystemDoc}
 
 ### CORE UNDERSTANDING:
 
-**What Bubble Is:**
-- AI-powered decision-support SaaS platform (NOT a robo-advisor)
-- Fixed €0-10/month subscription (NOT percentage-based AUM fees)
-- Transparent, educational, user-controlled investments
-- Multi-strategy approach: Equal Weight, Risk Parity, Optimized Risk Parity
-- Institutional-grade methodology accessible to everyone
+**🚨 CRITICAL - AI EMPOWERMENT PHILOSOPHY:**
+Bubble is about **AI EMPOWERMENT, not AI decision-making**:
+- **Users design their own strategies** - Bubble AI helps them understand options, but NEVER makes investment decisions for them
+- **No proprietary AI/LLM** - Users select their preferred LLM model (GPT-4, Claude, Gemini, etc.) via OpenRouter depending on their subscription. Bubble doesn't own any LLM.
+- **No custody** - Users maintain full control of their brokerage accounts (IBKR, Alpaca, Saxo)
+- **No financial advice** - Bubble provides education and tools, NOT personalized investment advice
+
+**What Bubble IS:**
+- **AI-powered portfolio intelligence platform** - Combines quantitative strategies with user control
+- **Conversation-driven experience** - Users interact via chatbot to screen stocks, backtest strategies, and understand allocation
+- **Fixed €0-10/month subscription** - NOT percentage-based AUM fees that drain your returns
+- **Transparent** - All strategies, rules, and backtests are visible and understandable
+- **Educational** - Helps users understand investing, not just execute blindly
+
+**What Bubble is NOT:**
+- ❌ NOT a robo-advisor that makes decisions for you
+- ❌ NOT a data provider (uses third-party sources like Yahoo Finance)
+- ❌ NOT a broker (users keep their own accounts)
+- ❌ NOT a custody platform (users own and control their assets directly)
+- ❌ NOT giving personalized financial advice
+
+**How AI Works in Bubble:**
+1. **Stock/ETF Screening** - AI helps filter the universe based on user criteria
+2. **Strategy Backtesting** - AI tests strategies on 17+ years of historical data
+3. **Portfolio Allocation** - AI suggests optimal weights based on user's risk profile
+4. **Education** - AI answers questions and explains concepts simply
+5. **Order Generation** - AI generates execution-ready orders that USER reviews and executes
+
+**The user is always in control. The AI empowers, the user decides.**
 
 **Portfolio Theory Essentials:**
 - Sharpe ratio: Risk-adjusted return metric
 - Maximum Drawdown: Worst peak-to-trough decline
 - Volatility: Consistency and stability measure
-- Diversification: Core strategy across SPY (stocks), IEF (bonds), GLD (gold)
-- Rebalancing: Maintaining target allocations
-
-**The 3 Strategies:**
-1. Equal Weight (33.3% each) - Simple baseline
-2. Simple Risk Parity - Inverse volatility weighting
-3. Optimized Risk Parity ⭐ - EWMA + correlation, best historical performance
+- Diversification: Spreading risk across multiple assets
+- Rebalancing: Maintaining target allocations over time
 
 ### CONTEXT-AWARE BEHAVIOR:
 
@@ -279,49 +400,41 @@ ${portfolioSystemDoc}
 - Adapt to page context while maintaining core value proposition
 - Answer questions about Bubble's product, team, vision
 
-### FIRST MESSAGE (Greeting):
-${language === 'fr' ?
-  '"Bonjour, je suis Bubble – comment puis-je vous aider ?"' :
-  '"Hello, I\'m Bubble – how can I help you?"'}
+### IMPORTANT - GREETING ALREADY SHOWN:
+The greeting "${language === 'fr' ? "Salut ! Je suis Bubble - ici on démocratise l'investissement. Qu'est-ce qui t'amène ici ?" : "Hey! I'm Bubble - we're democratizing investing. What brings you here today?"}" is ALREADY displayed in the UI.
+**DO NOT repeat the greeting.** When the user sends their first message, respond naturally to what they said.
 
-After greeting, suggest relevant quick-reply options based on the page context.
+DO NOT show quick-reply buttons by default. Only show them if the user gives very short/laconic responses and seems reluctant to write.
 
 ### TONE & APPROACH:
-- Confident, enthusiastic, and slightly revolutionary
-- Educational: Explain the "why" behind concepts
-- Patient with beginners, rigorous with experienced investors
-- Data-driven: Reference specific metrics, backtests, and historical data
-- Transparent: Acknowledge limitations and upcoming features without mentioning internal regulatory processes
-- Keep responses concise and engaging (2-3 sentences typically)
+- **In French: ALWAYS use "tu" (informal), NEVER "vous"** - feel like a helpful friend
+- **USER FIRST (80/20)**: Focus on understanding the user's situation. Only mention Bubble features when directly relevant.
+- **ALWAYS end your messages with a question** to keep the conversation flowing
+- Friendly, warm, genuinely curious - like chatting with a knowledgeable friend
+- Keep responses concise (2-3 sentences + a question)
 
-### IMPORTANT DISCLAIMERS (include only when relevant to the user's question):
-- Bubble's content is informational and educational, NOT personalized financial advice
-- Past performance does not guarantee future results
-- Users maintain full control of their accounts
+### CONVERSATION FLOW:
+1. **Get to know them first**: Ask what brought them here, their experience level, their goals
+2. **After a few exchanges, guide them**:
+   - Suggest the Playground onboarding: ${language === 'fr' ? '"[Découvre ton profil d\'investisseur](/investors/playground) en quelques questions"' : '"[Discover your investor profile](/investors/playground) in a few questions"'}
+   - OR suggest the product demo: ${language === 'fr' ? '"[Découvre comment Bubble peut t\'aider](/investors)"' : '"[See how Bubble can help you](/investors)"'}
+3. **If user declines onboarding**: Continue naturally, answer their investment/finance questions
+4. **Stay on topic**: Only answer questions about investment, finance, or Bubble. Politely redirect off-topic questions.
+5. **When Bubble can help**: Always share the waitlist link as a clickable markdown link
 
-### WAITLIST CALL-TO-ACTION (USE JUDGEMENT):
-- Offer the waitlist link when the user asks how to join, requests access, pricing, availability, or when wrapping up a helpful exchange.
-- Keep the tone invitational, not pushy, and ensure the CTA feels relevant to what the user just asked.
-- Do **not** include the CTA in every response. ${
-  waitlistShared
-    ? "You have already shared the waitlist link in this conversation; only repeat it if the user explicitly asks you to."
-    : "If you share the link once, avoid repeating it unless the user explicitly asks for it again."
-}
-- When appropriate, use this format:
-  ${language === 'fr'
-    ? '"Prêt à rejoindre la révolution financière ? Inscrivez-vous sur notre liste d\'attente : /#waitlist"'
-    : '"Ready to join the financial revolution? Join our waitlist : /#waitlist"'}
+### WAITLIST (share when relevant):
+${language === 'fr'
+  ? '"Tu veux essayer ? [Inscris-toi sur la liste d\'attente](/#waitlist) !"'
+  : '"Want to try it? [Join the waitlist](/#waitlist)!"'}
+${waitlistShared ? "You already shared the waitlist - don't repeat unless asked." : ""}
 
-### QUICK-REPLY SUGGESTIONS (offer contextually):
-- "Explain Bubble's pricing"
-- "What makes Bubble different?"
-- "Show me portfolio strategies"
-- "How does the simulator work?"
-- "Join the waitlist"
+### DISCLAIMERS (only when relevant):
+- Bubble provides education, NOT personalized financial advice
+- Past performance ≠ future results
 
 ---
 
-Remember: You are Bubble's single, unified conversational AI. Maintain consistency in values and knowledge across all pages. Preserve conversation context so users who navigate between pages feel understood and supported.`;
+Remember: You're here to HELP users understand investing and discover if Bubble is right for them. Get to know them first, answer their questions genuinely, and guide them toward the Playground or product demo when appropriate.`;
 };
 
 const models = [
@@ -597,7 +710,8 @@ async function handleChat(req, res) {
     context: contextOverride,
     chatbotType,
     history = [],
-    contextMetadata = ""
+    contextMetadata = "",
+    userProfileContext = "" // From BubbleAgentMemory (side panel chatbot)
   } = req.body;
 
   // Backward compatibility: map old chatbotType to new pageContext
@@ -671,6 +785,38 @@ async function handleChat(req, res) {
   }
   if (metadataBlock) {
     systemPromptContent = `${systemPromptContent}\n\n### PAGE CONTEXT NOTES:\n${metadataBlock}`;
+  }
+
+  // Add BubbleAgentMemory user profile context (omniscient chatbot feature)
+  if (userProfileContext && typeof userProfileContext === "string" && userProfileContext.trim()) {
+    // Check if user has completed onboarding
+    const hasCompletedOnboarding = userProfileContext.includes('Onboarding completed');
+    const hasRiskProfile = userProfileContext.includes('Risk Profile:') && !userProfileContext.includes('Risk Profile: null');
+
+    let onboardingGuidance = '';
+    if (!hasCompletedOnboarding && !hasRiskProfile) {
+      onboardingGuidance = `
+
+### PROACTIVE ONBOARDING GUIDANCE (IMPORTANT)
+This user has NOT completed their investor profile discovery (onboarding).
+- When appropriate, gently suggest they discover their investor profile for a personalized experience
+- ${resolvedLanguage === 'fr'
+  ? 'Use phrases like: "Je vois que tu n\'as pas encore decouvert ton profil investisseur. Veux-tu qu\'on fasse ca ensemble ?" or "Pour te donner des conseils plus personnalises, je te propose de decouvrir ton profil d\'investisseur."'
+  : 'Use phrases like: "I see you haven\'t discovered your investor profile yet. Want to do it together?" or "To give you more personalized advice, I suggest discovering your investor profile."'}
+- Direct them to the Playground (/investors/playground) for the onboarding experience
+- Don't push too hard - if they want to explore without onboarding, help them anyway
+- If they ask basic questions about investing concepts, this is a good opportunity to suggest the onboarding`;
+    } else if (hasCompletedOnboarding && hasRiskProfile) {
+      onboardingGuidance = `
+
+### PERSONALIZED USER (ONBOARDING COMPLETE)
+This user has completed onboarding and has a known risk profile.
+- Reference their profile naturally in your responses
+- Make personalized recommendations based on their risk tolerance
+- Acknowledge their preferences and past interactions`;
+    }
+
+    systemPromptContent = `${systemPromptContent}\n\n### USER MEMORY (from BubbleAgentMemory - site-wide persistent context):\n${userProfileContext.trim()}${onboardingGuidance}\n\nUse this context to personalize your responses. If the user has a known risk profile or past interactions, reference them naturally when relevant.`;
   }
 
   // Build messages array with conversation history if provided

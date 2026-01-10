@@ -635,7 +635,27 @@
       <div class="chat-side-panel-messages" role="log" aria-live="polite">
         <div class="chat-side-panel-message bot">
           <div class="message-content">
-            <p data-translate="floating_bubble.welcome">Hello! How can I help you today?</p>
+            <p data-translate="floating_bubble.welcome">Hey! I'm Bubble - we're democratizing investing. What brings you here today?</p>
+          </div>
+        </div>
+        <div class="chat-side-panel-message bot initial-suggestions">
+          <div class="message-content">
+            <button class="chat-suggestion-btn" data-prompt="I'm new to investing, where do I start?">I'm new, where do I start?</button>
+          </div>
+        </div>
+        <div class="chat-side-panel-message bot initial-suggestions">
+          <div class="message-content">
+            <button class="chat-suggestion-btn" data-prompt="I have some savings, what should I do with them?">I have some savings, what should I do?</button>
+          </div>
+        </div>
+        <div class="chat-side-panel-message bot initial-suggestions">
+          <div class="message-content">
+            <button class="chat-suggestion-btn" data-prompt="How does Bubble work? What makes you different?">What is Bubble exactly?</button>
+          </div>
+        </div>
+        <div class="chat-side-panel-message bot initial-suggestions">
+          <div class="message-content">
+            <button class="chat-suggestion-btn" data-prompt="I want to join the waitlist to try Bubble">Join the waitlist</button>
           </div>
         </div>
       </div>
@@ -676,6 +696,7 @@
       </div>
     </div>
 
+    <script src="/js/bubble-agent-memory.js"></script>
     <script src="/js/chat-side-panel.js"></script>
     <script src="/js/floating-chat-input.js"></script>
     <script src="/js/pricing-workflow-demo.js"></script>

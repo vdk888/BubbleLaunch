@@ -161,6 +161,67 @@
         <span data-translate="education.simulator.back">Retour</span>
       </a>
 
+      <!-- Onboarding Awareness Card (shown only if onboarding not done) -->
+      <div class="arena-onboarding-prompt" id="simulatorOnboardingCard" style="display: none;">
+        <div class="onboarding-prompt-content">
+          <div class="onboarding-prompt-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <div class="onboarding-prompt-text">
+            <strong data-translate="education.simulator.new_here">Nouveau ici ?</strong>
+            <p data-translate="education.simulator.start_tour">Le simulateur est plus fun une fois que tu comprends les bases. Envie d'un petit tour d'abord ?</p>
+          </div>
+          <div class="onboarding-prompt-actions">
+            <a href="/investors/playground" class="onboarding-prompt-btn primary" data-translate="education.simulator.take_tour">
+              Commencer le Tour
+            </a>
+            <button class="onboarding-prompt-btn secondary" id="dismissSimulatorOnboarding" data-translate="education.simulator.skip_tour">
+              Non merci, j'explore
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        // Show onboarding card only if onboarding not done
+        document.addEventListener('DOMContentLoaded', function() {
+          const SESSION_KEY = 'bubblePlaygroundFullscreenSession';
+          const DISMISSED_KEY = 'simulatorOnboardingDismissed';
+          const card = document.getElementById('simulatorOnboardingCard');
+
+          if (!card) return;
+
+          // Check if onboarding is done
+          const stored = sessionStorage.getItem(SESSION_KEY);
+          let onboardingDone = false;
+          if (stored) {
+            try {
+              const data = JSON.parse(stored);
+              onboardingDone = data.stage === 'free_chat' && data.profile !== null;
+            } catch (e) {}
+          }
+
+          // Check if already dismissed
+          const dismissed = sessionStorage.getItem(DISMISSED_KEY);
+
+          // Show card only if onboarding not done and not dismissed
+          if (!onboardingDone && !dismissed) {
+            card.style.display = 'block';
+          }
+
+          // Dismiss handler
+          document.getElementById('dismissSimulatorOnboarding')?.addEventListener('click', function() {
+            sessionStorage.setItem(DISMISSED_KEY, 'true');
+            card.classList.add('dismissed');
+            setTimeout(function() { card.remove(); }, 300);
+          });
+        });
+      </script>
+
       <!-- Help Button (shows when tutorial is closed) -->
       <button class="arena-help-btn" id="builderHelpBtn" title="Tutoriel" aria-label="Voir le tutoriel">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -472,15 +533,6 @@
             <canvas id="simulatorChart"></canvas>
           </div>
 
-          <!-- Comparison Callout -->
-          <div class="comparison-callout" id="comparisonCallout">
-            <span data-translate="simulator.vsPari">vs Pari :</span>
-            <strong id="deltaPariReturn" class="positive">--</strong>
-            <span data-translate="simulator.return">retour</span>,
-            <strong id="deltaPariVol">--</strong>
-            <span data-translate="simulator.vol">vol</span>
-          </div>
-
           <!-- Metrics Grid (with hover/tap tooltips) -->
           <div class="results-metrics-grid">
             <div class="results-metric-card" tabindex="0">
@@ -676,6 +728,45 @@
       </div>
     </main>
 
+    <!-- Chat Side Panel (Unified Chatbot) -->
+    <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+      <div class="chat-side-panel-header">
+        <div class="chat-side-panel-header-info">
+          <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+          <div class="chat-side-panel-titles">
+            <span class="chat-side-panel-title">Assistant Bubble</span>
+          </div>
+        </div>
+        <div class="chat-side-panel-actions">
+          <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
+          <button class="chat-side-panel-close" aria-label="Close chat" type="button">x</button>
+        </div>
+      </div>
+      <div class="chat-side-panel-messages" role="log" aria-live="polite">
+        <div class="chat-side-panel-message bot">
+          <div class="message-content">
+            Bonjour, je suis Bubble. Comment puis-je t'aider a creer ta strategie ?
+          </div>
+        </div>
+      </div>
+      <form class="chat-side-panel-input-container" novalidate>
+        <input
+          type="text"
+          class="chat-side-panel-input"
+          placeholder="Posez vos questions..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Type your message"
+          autocomplete="off"
+        />
+        <button class="chat-side-panel-send" aria-label="Send message" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
     <!-- Footer -->
     <footer>
       <div class="container">
@@ -767,6 +858,9 @@
     <script src="/js/script.js"></script>
     <script src="/js/animations.js"></script>
     <script src="/js/seo/structured-data.js"></script>
+    <!-- Unified Agent Memory - Site-wide persistent user context -->
+    <script src="/js/bubble-agent-memory.js"></script>
+    <script src="/js/chat-side-panel.js"></script>
     <script src="/js/floating-chat-input.js"></script>
     <script src="/js/education-floating-chat.js"></script>
 
@@ -976,16 +1070,17 @@
         };
 
         // Strategy colors and config (all 9 strategies)
+        // Colors aligned with Bubble charte graphique: violet #667eea, gray #6B7280, orange #F97316, green #10B981
         const STRATEGY_CONFIG = {
-          optimizedRP: { label: { fr: '✨ Pari Optimisé', en: '✨ Optimized RP' }, color: '#667eea', borderWidth: 3, isBest: true },
-          equalWeight: { label: { fr: 'Équi', en: 'Equal Weight' }, color: '#6B7280', borderWidth: 1.5 },
-          sixtyForty: { label: { fr: '60/40', en: '60/40' }, color: '#4B5563', borderWidth: 2.2 },
-          simpleRP: { label: { fr: 'Risk Parity', en: 'Risk Parity' }, color: '#333333', borderWidth: 2.5 },
-          momentum: { label: { fr: 'Momentum', en: 'Momentum' }, color: '#F97316', borderWidth: 2.7, borderDash: [5, 2] },
-          hierarchicalRiskParity: { label: { fr: 'HRP', en: 'HRP' }, color: '#F59E0B', borderWidth: 2.4, borderDash: [4, 4] },
-          enhancedRiskParityDCC: { label: { fr: 'DCC', en: 'DCC' }, color: '#0EA5E9', borderWidth: 2.6, borderDash: [6, 3] },
-          optimizedRiskBudgeting: { label: { fr: 'Risk Budget', en: 'Risk Budget' }, color: '#7C3AED', borderWidth: 3 },
-          regimeAwareRP: { label: { fr: 'Regime RP', en: 'Regime RP' }, color: '#10B981', borderWidth: 2.8, borderDash: [8, 4] }
+          optimizedRP: { label: { fr: 'Pari Optimisé', en: 'Optimized RP' }, color: '#667eea', borderWidth: 3, isBest: true },
+          equalWeight: { label: { fr: 'Équi', en: 'Equal Weight' }, color: '#6B7280', borderWidth: 2 },
+          sixtyForty: { label: { fr: '60/40', en: '60/40' }, color: '#9CA3AF', borderWidth: 2 },
+          simpleRP: { label: { fr: 'Risk Parity', en: 'Risk Parity' }, color: '#4B5563', borderWidth: 2 },
+          momentum: { label: { fr: 'Momentum', en: 'Momentum' }, color: '#F97316', borderWidth: 2 },
+          hierarchicalRiskParity: { label: { fr: 'HRP', en: 'HRP' }, color: '#F59E0B', borderWidth: 2 },
+          enhancedRiskParityDCC: { label: { fr: 'DCC', en: 'DCC' }, color: '#818CF8', borderWidth: 2 },
+          optimizedRiskBudgeting: { label: { fr: 'Risk Budget', en: 'Risk Budget' }, color: '#A78BFA', borderWidth: 2 },
+          regimeAwareRP: { label: { fr: 'Regime RP', en: 'Regime RP' }, color: '#10B981', borderWidth: 2 }
         };
 
         // ETF benchmark colors and config
@@ -1110,7 +1205,12 @@
                   position: 'top',
                   labels: {
                     usePointStyle: true,
-                    font: { family: 'Inter', size: 11 }
+                    font: { family: 'Inter', size: 11 },
+                    // Hide inactive datasets from legend (don't strikethrough)
+                    filter: function(legendItem, chartData) {
+                      const dataset = chartData.datasets[legendItem.datasetIndex];
+                      return dataset && !dataset.hidden;
+                    }
                   }
                 },
                 tooltip: {

@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is the **marketing website** for **Bubble Invest**, a fintech startup. This codebase is NOT the main product—it's the public-facing website that presents Bubble Invest's services and product vision.
 
 - **This Codebase (BubbleLaunch)**: Landing page, blog, portfolio simulator demo, B2B consulting page, and waitlist
-- **Main Product (Bubble Portfolio)**: Separate GitHub repository containing the AI-agent-driven portfolio management platform (currently in development with external supplier, probably ITEXUS)
+- **Main Product (Bubble Portfolio)**: Separate GitHub repository containing the AI-agent-driven portfolio management platform 
 
 ---
 
@@ -46,7 +46,7 @@ This is the **marketing website** for **Bubble Invest**, a fintech startup. This
 
 ### Current Status
 
-**Bubble Portfolio**: Under development with external supplier ITEXUS (separate GitHub repository). Founders' own portfolios use current beta automation with IBKR/Alpaca/Saxo. User-side automation planned post-regulatory approval.
+**Bubble Portfolio**: Under development(separate GitHub repository). Founders' own portfolios use current beta automation with IBKR/Alpaca/Saxo. User-side automation planned post-regulatory approval.
 
 **BubbleLaunch Website** (this codebase): Marketing presence with educational simulator and waitlist for beta access.
 
@@ -68,7 +68,7 @@ The current codebase is a multilingual landing page with integrated AI chatbot, 
 
 ## Bubble Portfolio Product (Separate Repository)
 
-**Status**: Main AI-agent platform currently in development with external supplier ITEXUS
+**Status**: Main AI-agent platform currently in development (maybe with external supplier)
 
 The **Bubble Portfolio** is the actual product—a separate GitHub repository containing the AI-agent-driven portfolio management platform. This is what the BubbleLaunch website promotes.
 
@@ -165,6 +165,7 @@ The **Bubble Portfolio** is the actual product—a separate GitHub repository co
   - `floating-bubble.js` - Interactive bubble elements
   - `floating-chat-input.js` - Glassmorphism floating chat input
   - `mini-chat.js` - Embedded chat widget
+  - `bubble-agent-memory.js` - **Unified Agent Memory System** (localStorage-based persistent memory for user profiles, journey tracking, and conversation context)
 - **`i18n/translations.js`** - Internationalization (French/English)
 - **`assets/`** - Static resources (styles, images)
   - `styles/styles.css` - Main stylesheet (3,769 lines)
@@ -280,37 +281,76 @@ The application features an intelligent reference enrichment system for the Know
 - **Intelligent Caching:** Prevents redundant API calls for already enriched references
 
 ### Bubble Playground (Education Module)
-**Status**: 🔄 **In Development** - Replacing legacy portfolio-simulator
+**Status**: ✅ **Production-ready** - Unified Agent Architecture implemented
 
 **Mission**: Transform financial education into a fun, engaging, and accessible experience.
 
 **Documentation**: See [docs/BUBBLE_PLAYGROUND_PROJECT.md](docs/BUBBLE_PLAYGROUND_PROJECT.md) for detailed project tracking.
 
 **Pages**:
-- **Playground Hub** (`/investors/education`) - Gateway with two learning paths
+- **Playground Chat** (`/investors/playground`) - Full-screen conversational onboarding with profile discovery
 - **AI Trading Arena** (`/investors/education/arena`) - Watch 4 AI bots compete on 20 years of data
 - **Strategy Simulator** (`/investors/education/simulator`) - Chat-driven portfolio builder
+- **Resources Hub** (`/investors/playground/resources`) - Educational videos and materials
 
 **Bot Mascots** (Animal-themed for memorability):
-| Animal (FR) | Animal (EN) | Strategy | Color |
-|-------------|-------------|----------|-------|
-| Ours | Bear | Equal Weight | #6B7280 |
-| Renard | Fox | Risk Parity | #667eea |
-| Faucon | Hawk | Momentum | #F97316 |
-| Hérisson | Hedgehog | Defensive | #10B981 |
+| Animal (FR) | Animal (EN) | Strategy | Color | Profile Match |
+|-------------|-------------|----------|-------|---------------|
+| Ours | Bear | Equal Weight | #6B7280 | - |
+| Renard | Fox | Risk Parity | #667eea | Balanced (40-60) |
+| Faucon | Hawk | Momentum | #F97316 | Growth (70-100) |
+| Hérisson | Hedgehog | Defensive | #10B981 | Conservative (0-30) |
+
+#### Unified Agent Architecture (BubbleAgentMemory)
+
+**Core Module**: `bubble-agent-memory.js` - localStorage-based persistent memory system
 
 **Key Features**:
-- Session-based gamification (no accounts required)
-- Proactive chatbot engagement
-- Quiz integration from Notion
-- YouTube video references
-- Mobile-first simulator design
+- **Conversational Onboarding**: LLM-driven profile discovery (replaces scripted MCQ flow)
+- **Progressive Profile Building**: Risk score refined through natural conversation
+- **Profile Extraction Protocol**: LLM outputs `<!-- PROFILE_UPDATE {...} -->` in responses
+- **Confidence Tracking**: Profile revealed when confidence reaches 70% (min 3 exchanges)
+- **Site-wide Memory**: User context persists across all pages (/investors, /professionals)
+- **Bilingual Support**: Full FR/EN with language sync
+
+**Memory API** (BubbleAgentMemory):
+```javascript
+// Profile Management
+BubbleAgentMemory.getProfile()           // { riskScore, riskConfidence, traits, goal, horizon, level }
+BubbleAgentMemory.applyProfileUpdate()   // Apply LLM-extracted profile updates
+
+// Journey Tracking
+BubbleAgentMemory.getJourney()           // { onboardingCompleted, questionsAsked, strategiesTested }
+BubbleAgentMemory.recordPageVisit(path)  // Track page visits
+BubbleAgentMemory.recordStrategyTested() // Track strategies explored
+
+// LLM Context
+BubbleAgentMemory.getContextForLLM()     // Token-efficient context for system prompts
+```
+
+**Integration Points**:
+- `chat-side-panel.js` - Floating chatbot loads memory dynamically, includes user context in API calls
+- `playground-fullscreen-chat.js` - Conversational onboarding with profile extraction
+- `profile-graph.js` - Left sidebar visualization (risk gauge, traits, confidence bar)
+- `arena.js` - Highlights recommended bot based on profile, tracks strategies viewed
+
+**Profile-Based Recommendations**:
+- Conservative (0-30%) → Hedgehog (Defensive)
+- Balanced (40-60%) → Fox (Risk Parity)
+- Growth (70-100%) → Hawk (Momentum)
+
+**Post-Onboarding Features**:
+- Personalized returning user welcome (time-aware greetings)
+- Profile reminder with risk allocation
+- Journey progress tracking
+- Proactive LLM suggestions based on profile
 
 **Development Guidelines**:
 - Test changes in both FR and EN pages
 - Update translations in `src/frontend/i18n/translations.js`
 - Follow glassmorphism design patterns
 - Use `data-translate` attributes for bilingual text
+- Always null-check Memory: `if (!Memory) return;`
 
 ### Portfolio Simulator (Legacy)
 **Status**: ✅ **Production-ready** (v1.2) - Fully integrated and deployed

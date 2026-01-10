@@ -45,8 +45,11 @@
         </div>
       </header>
 
-      <!-- Chat Container - Takes full viewport -->
-      <main class="playground-chat-main">
+      <!-- Content wrapper for profile graph + chat side by side -->
+      <div class="playground-content-wrapper">
+
+        <!-- Chat Container - Takes remaining space -->
+        <main class="playground-chat-main">
         <div class="playground-chat-wrapper">
 
           <!-- Messages Area -->
@@ -127,38 +130,29 @@
         </div>
       </main>
 
+      </div> <!-- End playground-content-wrapper -->
+
     </div>
 
     <!-- Scripts -->
     <script src="/i18n/translations.js"></script>
     <script src="/js/language-switcher.js"></script>
+    <script src="/js/bubble-agent-memory.js"></script>
+    <script src="/js/profile-graph.js"></script>
     <script src="/js/playground-fullscreen-chat.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Profile Graph (left sidebar)
+        if (typeof ProfileGraph !== 'undefined') {
+          ProfileGraph.init('#playgroundFullscreen');
+        }
+
         // Initialize the full-screen playground chatbot
         if (typeof PlaygroundFullscreenChat !== 'undefined') {
           PlaygroundFullscreenChat.init();
         }
 
-        // Language toggle
-        const langToggle = document.getElementById('langToggle');
-        if (langToggle) {
-          langToggle.addEventListener('click', function() {
-            const currentLang = localStorage.getItem('bubbleLanguage') || 'fr';
-            const newLang = currentLang === 'fr' ? 'en' : 'fr';
-            localStorage.setItem('bubbleLanguage', newLang);
-
-            // Clear playground session to avoid language mixing in conversation history
-            sessionStorage.removeItem('bubblePlaygroundFullscreenSession');
-
-            // Redirect to corresponding language version
-            if (newLang === 'en') {
-              window.location.href = '/en/investors/playground';
-            } else {
-              window.location.href = '/investors/playground';
-            }
-          });
-        }
+        // Language toggle is handled by language-switcher.js
       });
     </script>
   </body>
