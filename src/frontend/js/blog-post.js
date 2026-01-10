@@ -114,9 +114,10 @@ async function loadBlogPost(slug) {
 
 function displayBlogPost(post) {
     // Get language-specific content
-    const title = post.title[currentLanguage] || post.title.fr;
-    const summary = post.summary[currentLanguage] || post.summary.fr;
-    const content = post.content[currentLanguage] || post.content.fr;
+    const title = post.title?.[currentLanguage] || post.title?.fr || post.title || '';
+    const summary = post.summary?.[currentLanguage] || post.summary?.fr || '';
+    const contentSource = post.content || {};
+    const content = (contentSource[currentLanguage] || contentSource.fr || '') || '';
 
     const defaultSummary = currentLanguage === 'fr' ?
         'Découvrez cet article sur l\'investissement intelligent.' :
@@ -124,11 +125,13 @@ function displayBlogPost(post) {
     const metaSummary = summary || defaultSummary;
     const metaTitle = `${title} | Blog Bubble`;
     const isEnglishRoute = window.location.pathname.startsWith("/en/");
-    const canonicalPath = isEnglishRoute ? `/en/blog/${post.slug}` : `/blog/${post.slug}`;
+    const frPath = post.url || `/blog/${post.slug}`;
+    const enPath = post.urlEn || (frPath.startsWith('/en/') ? frPath : `/en${frPath}`);
+    const canonicalPath = isEnglishRoute ? enPath : frPath;
     const currentUrl = `https://bubbleinvest.org${canonicalPath}`;
-    const frUrl = `https://bubbleinvest.org/blog/${post.slug}`;
-    const enUrl = `https://bubbleinvest.org/en/blog/${post.slug}`;
-    const imageUrl = post.imageUrl || 'https://bubbleinvest.org/assets/images/bubble-logo-single.svg';
+    const frUrl = `https://bubbleinvest.org${frPath}`;
+    const enUrl = `https://bubbleinvest.org${enPath}`;
+    const imageUrl = post.featuredImage || 'https://bubbleinvest.org/assets/images/bubble-logo-single.svg';
 
     // Update page title and SEO meta tags
     document.title = metaTitle;

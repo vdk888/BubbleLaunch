@@ -50,7 +50,8 @@ const ProfileGraph = (function() {
     gem: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>',
     chevronLeft: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>',
     chevronRight: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>',
-    user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
+    user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+    bubble: '<svg viewBox="0 0 72 72" fill="none"><circle cx="36" cy="41" r="26" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/><circle cx="59" cy="21" r="6" fill="currentColor"/></svg>'
   };
 
   /**
@@ -95,12 +96,12 @@ const ProfileGraph = (function() {
     const traitsLabel = lang === 'fr' ? 'Traits découverts' : 'Discovered traits';
     const noTraitsYet = lang === 'fr' ? 'Continue à discuter pour découvrir tes traits' : 'Keep chatting to discover your traits';
 
+    // Toggle button is outside the panel (on container) so it doesn't transform with panel
     return `
+      <button class="profile-graph-toggle" id="profileGraphToggle" aria-label="Toggle profile panel">
+        <span class="toggle-icon">${ICONS.chevronLeft}</span>
+      </button>
       <div class="profile-graph-panel" id="profileGraphPanel">
-        <button class="profile-graph-toggle" id="profileGraphToggle" aria-label="Toggle profile panel">
-          <span class="toggle-icon">${ICONS.chevronLeft}</span>
-        </button>
-
         <div class="profile-graph-content">
           <div class="profile-graph-header">
             <span class="profile-graph-icon">${ICONS.user}</span>
@@ -263,10 +264,20 @@ const ProfileGraph = (function() {
       panel.classList.toggle('collapsed', !isExpanded);
     }
 
+    // Also toggle on container for CSS fallback (browsers without :has() support)
+    if (container) {
+      container.classList.toggle('panel-collapsed', !isExpanded);
+    }
+
     if (toggle) {
       const icon = toggle.querySelector('.toggle-icon');
       if (icon) {
-        icon.innerHTML = isExpanded ? ICONS.chevronLeft : ICONS.chevronRight;
+        // On mobile, show Bubble logo when collapsed, chevron when expanded
+        if (isMobile) {
+          icon.innerHTML = isExpanded ? ICONS.chevronLeft : ICONS.bubble;
+        } else {
+          icon.innerHTML = isExpanded ? ICONS.chevronLeft : ICONS.chevronRight;
+        }
       }
     }
 
@@ -387,8 +398,11 @@ const ProfileGraph = (function() {
     const panel = container.querySelector('.profile-graph-panel');
     if (panel && !isExpanded) {
       panel.classList.add('collapsed');
+      container.classList.add('panel-collapsed'); // CSS fallback
       const icon = container.querySelector('.toggle-icon');
-      if (icon) icon.innerHTML = ICONS.chevronRight;
+      if (icon) {
+        icon.innerHTML = isMobile ? ICONS.bubble : ICONS.chevronRight;
+      }
     }
 
     // Setup toggle button
@@ -413,6 +427,17 @@ const ProfileGraph = (function() {
         isExpanded = false;
         const panel = container.querySelector('.profile-graph-panel');
         if (panel) panel.classList.add('collapsed');
+        container.classList.add('panel-collapsed');
+        const icon = container.querySelector('.toggle-icon');
+        if (icon) icon.innerHTML = ICONS.bubble;
+      }
+
+      // Update toggle icon on viewport change
+      if (wasMobile !== isMobile) {
+        const icon = container.querySelector('.toggle-icon');
+        if (icon && !isExpanded) {
+          icon.innerHTML = isMobile ? ICONS.bubble : ICONS.chevronRight;
+        }
       }
     });
 

@@ -48,6 +48,9 @@ function createArticleCard(article) {
   const translatedLevel = translateDifficultyLevel(level);
   const formattedDate = formatDate(article.publishedDate);
   const langCode = document.documentElement.lang || 'fr';
+  const url = langCode === 'en'
+    ? (article.urlEn || article.url || `/en/blog/${article.slug}`)
+    : (article.url || `/blog/${article.slug}`);
 
   // Use featured image if available, otherwise use placeholder
   const imageHTML = article.featuredImage
@@ -69,7 +72,7 @@ function createArticleCard(article) {
   }
 
   return `
-    <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="article-card">
+    <a href="${url}" target="_blank" rel="noopener noreferrer" class="article-card">
       ${imageHTML}
       <div class="article-content">
         <div class="article-meta">
@@ -104,7 +107,7 @@ async function loadBlogArticles() {
     const langCode = document.documentElement.lang || 'fr';
 
     // Fetch published blog articles
-    const response = await fetch('/api/blog/posts?status=published');
+    const response = await fetch(`/api/blog/posts?status=published&t=${Date.now()}`);
 
     if (!response.ok) {
       throw new Error(`Failed to fetch articles: ${response.status}`);
@@ -143,8 +146,8 @@ async function loadBlogArticles() {
     // Sort by pinned status and date
     educationalArticles.sort((a, b) => {
       // Pinned articles first
-      const aPinned = a.pinned || false;
-      const bPinned = b.pinned || false;
+      const aPinned = a.isPinned || a.pinned || false;
+      const bPinned = b.isPinned || b.pinned || false;
 
       if (aPinned !== bPinned) return bPinned - aPinned;
 

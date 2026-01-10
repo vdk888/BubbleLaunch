@@ -13,6 +13,59 @@ const notion = isBlogConfigured ? new Client({ auth: blogApiKey }) : null;
 const n2m = isBlogConfigured ? new NotionToMarkdown({ notionClient: notion }) : null;
 
 const CACHE_FILE = path.join(__dirname, "../cache/blog-posts-cache.json");
+const SITE_ORIGIN = "https://bubbleinvest.org";
+
+function getRichTextArray(property) {
+    if (!property) return [];
+    if (Array.isArray(property.title)) return property.title;
+    if (Array.isArray(property.rich_text)) return property.rich_text;
+    return [];
+}
+
+function getPlainText(property) {
+    const richText = getRichTextArray(property);
+    return richText.map((item) => item?.plain_text || "").join("");
+}
+
+function slugify(text) {
+    return String(text || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+}
+
+function getUrlPath(rawUrl) {
+    if (!rawUrl) return null;
+    try {
+        const url = new URL(rawUrl, SITE_ORIGIN);
+        return url.pathname;
+    } catch (e) {
+        return null;
+    }
+}
+
+function buildFrUrl(rawUrl, slug) {
+    const path = getUrlPath(rawUrl);
+    if (path) {
+        return path.startsWith("/en/") ? path.replace(/^\/en/, "") : path;
+    }
+    return `/blog/${slug}`;
+}
+
+function buildEnUrl(frUrl, slug, hasEnglish) {
+    if (!hasEnglish) return frUrl;
+    const base = frUrl || `/blog/${slug}`;
+    return base.startsWith("/en/") ? base : `/en${base}`;
+}
+
+function extractContentFromProperties(properties) {
+    const frMarkdown = getPlainText(properties?.["Content FR"]);
+    const enMarkdown = getPlainText(properties?.["Content EN"]);
+    return {
+        fr: frMarkdown ? marked(frMarkdown) : "",
+        en: enMarkdown ? marked(enMarkdown) : ""
+    };
+}
 
 function loadCache() {
     try {
@@ -51,25 +104,53 @@ async function getPublishedPosts() {
             const posts = [];
             for (const page of response.results) {
                 const p = page.properties;
-                const title = p["Title FR"]?.title[0]?.plain_text || "Untitled";
-                const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+                const titleFr = getPlainText(p["Title FR"]) || "Untitled";
+                const titleEnRaw = getPlainText(p["Title EN"]);
+                const summaryFr = getPlainText(p["Content Summary FR"]);
+                const summaryEnRaw = getPlainText(p["Content Summary EN"]);
+                const contentEnRaw = getPlainText(p["Content EN"]);
+                const status = p["Status"]?.select?.name || null;
+                const isPinned = Boolean(p["Pinned"]?.checkbox);
+                const tags = (p["Topic Tags"]?.multi_select || [])
+                    .map((tag) => tag?.name)
+                    .filter(Boolean);
+                const websiteUrl = p["Website URL"]?.url || getPlainText(p["Website URL"]);
+                const slug = getUrlPath(websiteUrl)
+                    ? getUrlPath(websiteUrl).split("/").filter(Boolean).pop()
+                    : slugify(titleFr);
+                const hasEnglish = Boolean(
+                    (titleEnRaw && titleEnRaw.trim()) ||
+                    (summaryEnRaw && summaryEnRaw.trim()) ||
+                    (contentEnRaw && contentEnRaw.trim())
+                );
+                const url = buildFrUrl(websiteUrl, slug);
+                const urlEn = buildEnUrl(url, slug, hasEnglish);
                 let img = await imageService.getCachedImage(page.id);
-                if (!img) img = await imageService.generateArticleImage(title, "", [], page.id);
+                if (!img) {
+                    img = await imageService.generateArticleImage(titleFr, summaryFr, tags, page.id);
+                }
                 posts.push({
                     id: page.id,
-                    title: { fr: title, en: p["Title EN"]?.rich_text[0]?.plain_text || title },
+                    title: { fr: titleFr, en: titleEnRaw || titleFr },
                     slug,
-                    summary: { fr: p["Content Summary FR"]?.rich_text[0]?.plain_text || "", en: p["Content Summary EN"]?.rich_text[0]?.plain_text || "" },
+                    summary: { fr: summaryFr || "", en: summaryEnRaw || "" },
                     publishedDate: p["Publication Date"]?.date?.start || null,
                     featuredImage: img,
-                    url: "/blog/" + slug
+                    url,
+                    urlEn,
+                    status,
+                    isPinned,
+                    tags
                 });
             }
+            posts._source = "notion";
             saveCache(posts);
             return posts;
         } catch (e) { console.error(e); }
     }
-    return loadCache() || [];
+    const cachedPosts = loadCache() || [];
+    cachedPosts._source = "cache";
+    return cachedPosts;
 }
 
 async function getPostBySlug(slug) {
@@ -77,7 +158,15 @@ async function getPostBySlug(slug) {
     const post = posts.find(p => p.slug === slug);
     if (!post) return null;
     try {
-        post.content = { fr: await extractPageContentAsHtml(post.id), en: "" };
+        if (isBlogConfigured) {
+            const page = await notion.pages.retrieve({ page_id: post.id });
+            const content = extractContentFromProperties(page.properties);
+            const frContent = content.fr || await extractPageContentAsHtml(post.id);
+            const enContent = content.en || frContent;
+            post.content = { fr: frContent, en: enContent };
+        } else if (!post.content) {
+            post.content = { fr: "", en: "" };
+        }
     } catch (e) {}
     return post;
 }

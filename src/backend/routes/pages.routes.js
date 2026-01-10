@@ -52,6 +52,9 @@ async function renderBlogPage(res, templatePath, lang = "fr") {
 
     html = html.replace("</body>", `${seoContent}</body>`);
 
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
     res.send(html);
   } catch (error) {
     console.error("Error fetching blog posts:", error);
@@ -173,6 +176,9 @@ router.get("/blog/:slug", async (req, res) => {
     `;
 
     html = html.replace("</body>", `${seoContent}</body>`);
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
     res.send(html);
   } catch (error) {
     console.error("Error serving blog post page:", error);
@@ -325,6 +331,9 @@ router.get("/en/blog/:slug", async (req, res) => {
     `;
 
     html = html.replace("</body>", `${seoContent}</body>`);
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
     res.send(html);
   } catch (error) {
     console.error("Error serving EN blog post page:", error);

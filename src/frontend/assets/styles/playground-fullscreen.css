@@ -1345,40 +1345,41 @@
   min-width: 48px;
 }
 
-/* Toggle button - ALWAYS visible, even when collapsed */
+/* Toggle button - ALWAYS visible, positioned on the container not the panel */
 .profile-graph-toggle {
   position: absolute;
   right: 8px;
   top: 50%;
   transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: white;
   border: 1px solid #E5E5E5;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
+  z-index: 20;
   transition: all 0.3s ease;
 }
 
-/* When collapsed, move toggle button to stay visible at the edge of the collapsed panel */
-.profile-graph-panel.collapsed .profile-graph-toggle {
-  right: -12px; /* Position at the right edge of the visible 48px collapsed panel */
-  left: auto;
+/* When collapsed on desktop, position toggle at right edge of 48px container */
+.profile-graph-container.panel-collapsed .profile-graph-toggle,
+.profile-graph-container:has(.profile-graph-panel.collapsed) .profile-graph-toggle {
+  right: 6px;
 }
 
 .profile-graph-toggle:hover {
   background: #F5F5F5;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-50%) scale(1.05);
 }
 
 .profile-graph-toggle .toggle-icon {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   color: #666;
   display: flex;
   align-items: center;
@@ -1386,8 +1387,8 @@
 }
 
 .profile-graph-toggle .toggle-icon svg {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
 }
 
 /* Content area */
@@ -1611,52 +1612,86 @@
     flex-direction: column;
   }
 
-  /* Profile panel becomes a collapsible drawer from left */
+  /* Profile panel becomes a slide-out drawer from left, below header */
   .profile-graph-container {
     position: fixed;
     left: 0;
-    top: 0;
+    top: 60px; /* Below header */
     bottom: 0;
     width: 280px;
     min-width: 280px;
     z-index: 100;
-    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
-    transition: width 0.3s ease, min-width 0.3s ease;
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, width 0.3s ease;
+    background: #FAFAFA;
   }
 
-  .profile-graph-panel.collapsed {
-    transform: translateX(-232px); /* Leave 48px visible for the toggle */
-  }
-
-  /* Container shrinks when panel is collapsed - :has() selector */
+  /* When collapsed, hide panel off-screen but show toggle button */
+  .profile-graph-container.panel-collapsed,
   .profile-graph-container:has(.profile-graph-panel.collapsed) {
-    width: 48px;
-    min-width: 48px;
+    transform: translateX(-232px);
+    width: 280px;
+    min-width: 280px;
     box-shadow: none;
   }
 
-  /* Fallback for browsers without :has() support */
-  .profile-graph-container.panel-collapsed {
-    width: 48px;
-    min-width: 48px;
-    box-shadow: none;
+  .profile-graph-panel {
+    transform: none !important; /* Override desktop transform */
   }
 
-  /* Toggle button styling for mobile */
+  .profile-graph-panel.collapsed .profile-graph-content {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Toggle button styling for mobile - Bubble logo visible when collapsed */
   .profile-graph-toggle {
-    right: 8px;
-    width: 48px;
-    height: 48px;
-    border-radius: 0 24px 24px 0;
+    position: absolute;
+    right: -48px; /* Position outside the panel to be visible when collapsed */
+    top: 20%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 0 22px 22px 0;
     background: white;
-    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+    color: #333;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.12);
+    border: 1px solid #E5E5E5;
+    border-left: none;
+    z-index: 101;
   }
 
-  /* When collapsed on mobile, position toggle button at the visible edge */
-  .profile-graph-panel.collapsed .profile-graph-toggle {
-    right: -12px; /* Position at the right edge of the visible 48px collapsed panel */
-    left: auto;
-    border-radius: 0 24px 24px 0;
+  .profile-graph-toggle .toggle-icon {
+    color: #333;
+    width: 24px;
+    height: 24px;
+  }
+
+  .profile-graph-toggle .toggle-icon svg {
+    stroke: #333;
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Overlay when panel is open */
+  .profile-graph-container::before {
+    content: '';
+    position: fixed;
+    top: 60px;
+    left: 280px;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .profile-graph-container.panel-collapsed::before,
+  .profile-graph-container:has(.profile-graph-panel.collapsed)::before {
+    opacity: 0;
+    pointer-events: none;
   }
 }
 
@@ -1666,14 +1701,15 @@
     min-width: 260px;
   }
 
-  .profile-graph-panel.collapsed {
-    transform: translateX(-212px); /* Leave 48px visible for the toggle */
+  /* When collapsed, slide panel off-screen */
+  .profile-graph-container.panel-collapsed,
+  .profile-graph-container:has(.profile-graph-panel.collapsed) {
+    transform: translateX(-212px);
   }
 
-  /* When collapsed on smaller mobile, position toggle at the visible edge */
-  .profile-graph-panel.collapsed .profile-graph-toggle {
-    right: -12px; /* Position at the right edge of the visible 48px collapsed panel */
-    left: auto;
+  /* Overlay position adjustment */
+  .profile-graph-container::before {
+    left: 260px;
   }
 
   .profile-graph-content {

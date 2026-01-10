@@ -5,6 +5,13 @@ const blogTranslations =
 let currentLanguage = 'fr'; // Default to French
 let allPosts = []; // Store all posts for language switching
 
+function getPostUrl(post, lang) {
+    if (lang === 'en') {
+        return post.urlEn || post.url || `/en/blog/${post.slug}`;
+    }
+    return post.url || `/blog/${post.slug}`;
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     // Detect language from URL route (similar to script.js)
     const isEnglishRoute = window.location.pathname.startsWith('/en/');
@@ -113,7 +120,7 @@ function renderPosts() {
     if (allPosts.length === 0) return;
 
     // Find first pinned post or fallback to most recent
-    const pinnedPost = allPosts.find(post => post.isPinned) || allPosts[0];
+    const pinnedPost = allPosts.find(post => post.isPinned || post.pinned) || allPosts[0];
 
     // Display pinned/featured post
     displayFeaturedPost(pinnedPost, featuredPost);
@@ -128,7 +135,7 @@ function displayFeaturedPost(post, container) {
     const title = post.title[currentLanguage] || post.title.fr;
     const summary = post.summary[currentLanguage] || post.summary.fr;
 
-    const featuredTag = post.isPinned
+    const featuredTag = (post.isPinned || post.pinned)
         ? (currentLanguage === 'fr' ? '📌 Épinglé' : '📌 Pinned')
         : (currentLanguage === 'fr' ? 'Article principal' : 'Featured Article');
     const readMoreText = currentLanguage === 'fr' ? 'Lire l\'article' : 'Read Article';
@@ -151,7 +158,7 @@ function displayFeaturedPost(post, container) {
                 </div>
                 <h2>${title}</h2>
                 <p>${summary || defaultSummary}</p>
-                <a href="/blog/${post.slug}" class="read-more-btn">
+                <a href="${getPostUrl(post, currentLanguage)}" class="read-more-btn">
                     ${readMoreText}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -189,7 +196,7 @@ function createPostCard(post) {
     const postTag = currentLanguage === 'fr' ? 'Article' : 'Article';
 
     return `
-        <a href="/blog/${post.slug}" class="post-card">
+        <a href="${getPostUrl(post, currentLanguage)}" class="post-card">
             <div class="post-image">
                 ${post.featuredImage ?
                     `<img src="${post.featuredImage}" alt="${title}" loading="lazy">` :
@@ -199,7 +206,7 @@ function createPostCard(post) {
             <div class="post-content">
                 <div class="post-meta">
                     <span class="post-date">${formattedDate}</span>
-                    ${post.isPinned ?
+                    ${(post.isPinned || post.pinned) ?
                         `<span class="post-tag pinned-tag">${currentLanguage === 'fr' ? '📌 Épinglé' : '📌 Pinned'}</span>` :
                         `<span class="post-tag">${postTag}</span>`
                     }

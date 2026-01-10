@@ -13,9 +13,16 @@ async function loadBlogPreview() {
   const onlyPinned = previewGrid.dataset.pinnedOnly === 'true';
   const pinnedSlug = previewGrid.dataset.pinnedSlug;
 
+  const getPostUrl = (post, lang) => {
+    if (lang === 'en') {
+      return post.urlEn || post.url || `/en/blog/${post.slug}`;
+    }
+    return post.url || `/blog/${post.slug}`;
+  };
+
   try {
     // Fetch blog posts from API
-    const response = await fetch('/api/blog/posts');
+    const response = await fetch(`/api/blog/posts?t=${Date.now()}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -25,8 +32,8 @@ async function loadBlogPreview() {
 
     // Filter published posts and get latest 3
     const publishedPosts = posts
-      .filter(post => post.status === 'Published')
-      .sort((a, b) => new Date(b.publicationDate) - new Date(a.publicationDate));
+      .filter(post => !post.status || post.status === 'Published')
+      .sort((a, b) => new Date(b.publishedDate || b.publicationDate || 0) - new Date(a.publishedDate || a.publicationDate || 0));
 
     if (publishedPosts.length === 0) {
       // Show empty state
@@ -44,7 +51,7 @@ async function loadBlogPreview() {
         pinnedPost = publishedPosts.find(post => post.slug === pinnedSlug);
       }
       if (!pinnedPost) {
-        pinnedPost = publishedPosts.find(post => post.isPinned);
+        pinnedPost = publishedPosts.find(post => post.isPinned || post.pinned);
       }
       if (!pinnedPost) {
         pinnedPost = publishedPosts[0];
@@ -57,12 +64,13 @@ async function loadBlogPreview() {
 
     // Render blog tiles
     previewGrid.innerHTML = postsToRender.map(post => {
-      const title = currentLang === 'en' && post.title.en ? post.title.en : post.title.fr;
-      const summary = currentLang === 'en' && post.summary.en ? post.summary.en : post.summary.fr;
-      const imageUrl = post.featuredImage || '/assets/images/blog-placeholder.jpg';
+      const title = currentLang === 'en' && post.title?.en ? post.title.en : (post.title?.fr || post.title || '');
+      const summary = currentLang === 'en' && post.summary?.en ? post.summary.en : (post.summary?.fr || '');
+      const imageUrl = post.featuredImage || '';
+      const postUrl = getPostUrl(post, currentLang);
 
       // Format date
-      const date = new Date(post.publishedDate);
+      const date = new Date(post.publishedDate || post.publicationDate || 0);
       const formattedDate = date.toLocaleDateString(currentLang === 'en' ? 'en-US' : 'fr-FR', {
         year: 'numeric',
         month: 'long',
@@ -70,18 +78,21 @@ async function loadBlogPreview() {
       });
 
       // Get first tag for category badge
-      const category = post.tags && post.tags.length > 0 ? post.tags[0] : '';
+      const category = Array.isArray(post.tags) && post.tags.length > 0 ? post.tags[0] : '';
+      const imageMarkup = imageUrl
+        ? `<img src="${imageUrl}" alt="${title}" loading="lazy" />`
+        : '';
 
       return `
         <article class="blog-tile" data-slug="${post.slug}">
-          <a href="/blog/${post.slug}" class="blog-tile-link">
+          <a href="${postUrl}" class="blog-tile-link">
             <div class="blog-tile-image">
-              <img src="${imageUrl}" alt="${title}" loading="lazy" />
+              ${imageMarkup}
               ${category ? `<span class="blog-tile-category">${category}</span>` : ''}
             </div>
             <div class="blog-tile-content">
               <div class="blog-tile-meta">
-                <time datetime="${post.publishedDate}">${formattedDate}</time>
+                <time datetime="${post.publishedDate || ''}">${formattedDate}</time>
               </div>
               <h3 class="blog-tile-title">${title}</h3>
               <span class="blog-tile-cta" data-translate="blogPreview.readMore">Lire la suite →</span>
@@ -121,4 +132,4 @@ if (document.readyState === 'loading') {
 }
 
 // Reload preview when language changes
-window.addEventListener('languageChanged', loadBlogPreview);
+document.addEventListener('languageChanged', loadBlogPreview);

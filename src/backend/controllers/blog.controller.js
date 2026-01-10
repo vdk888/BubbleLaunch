@@ -7,6 +7,12 @@ const imageService = require("../services/imageService");
 async function getPosts(req, res) {
   try {
     const posts = await getPublishedPosts();
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
+    if (posts && posts._source) {
+      res.setHeader("X-Cache-Status", posts._source);
+    }
     res.json(posts);
   } catch (error) {
     console.error("Error fetching blog posts for API:", error);
@@ -26,6 +32,9 @@ async function getPost(req, res) {
       return res.status(404).json({ error: "Blog post not found" });
     }
 
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
     res.json(post);
   } catch (error) {
     console.error("Error fetching blog post by slug:", error);
