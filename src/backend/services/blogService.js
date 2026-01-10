@@ -37,6 +37,11 @@ function slugify(text) {
 function getUrlPath(rawUrl) {
     if (!rawUrl) return null;
     try {
+        // Handle markdown-style links like [https://...](https://...)
+        const markdownMatch = rawUrl.match(/\[([^\]]+)\]\(([^)]+)\)/);
+        if (markdownMatch) {
+            rawUrl = markdownMatch[2]; // Use the URL from parentheses
+        }
         const url = new URL(rawUrl, SITE_ORIGIN);
         return url.pathname;
     } catch (e) {
@@ -44,10 +49,38 @@ function getUrlPath(rawUrl) {
     }
 }
 
+function extractWebsiteUrl(property) {
+    // Try URL type first
+    if (property?.url) {
+        return property.url;
+    }
+    // Try rich_text - may contain markdown links or plain URLs
+    const plainText = getPlainText(property);
+    if (!plainText) return null;
+
+    // Check for markdown link format: [text](url)
+    const markdownMatch = plainText.match(/\[([^\]]+)\]\(([^)]+)\)/);
+    if (markdownMatch) {
+        return markdownMatch[2];
+    }
+
+    // Check if it's a plain URL
+    if (plainText.startsWith('http://') || plainText.startsWith('https://') || plainText.startsWith('/')) {
+        return plainText;
+    }
+
+    return null;
+}
+
 function buildFrUrl(rawUrl, slug) {
     const path = getUrlPath(rawUrl);
     if (path) {
-        return path.startsWith("/en/") ? path.replace(/^\/en/, "") : path;
+        // Only use URL path if it's a full article path (not just /blog or /en/blog)
+        const cleanPath = path.startsWith("/en/") ? path.replace(/^\/en/, "") : path;
+        const parts = cleanPath.split("/").filter(Boolean);
+        if (parts.length > 1 && parts[0] === 'blog') {
+            return cleanPath;
+        }
     }
     return `/blog/${slug}`;
 }
@@ -86,11 +119,19 @@ function saveCache(posts) {
 }
 
 async function extractPageContentAsHtml(pageId) {
+    if (!n2m) {
+        console.error(`[BlogService] NotionToMarkdown not initialized - cannot extract page content`);
+        return "";
+    }
     try {
         const mdBlocks = await n2m.pageToMarkdown(pageId);
         const md = n2m.toMarkdownString(mdBlocks);
-        return marked(md.parent || md);
-    } catch (e) { return ""; }
+        const content = md.parent || md;
+        return marked(typeof content === 'string' ? content : '');
+    } catch (e) {
+        console.error(`[BlogService] Error extracting page content for ${pageId}:`, e.message);
+        return "";
+    }
 }
 
 async function getPublishedPosts() {
@@ -114,9 +155,13 @@ async function getPublishedPosts() {
                 const tags = (p["Topic Tags"]?.multi_select || [])
                     .map((tag) => tag?.name)
                     .filter(Boolean);
-                const websiteUrl = p["Website URL"]?.url || getPlainText(p["Website URL"]);
-                const slug = getUrlPath(websiteUrl)
-                    ? getUrlPath(websiteUrl).split("/").filter(Boolean).pop()
+                const websiteUrl = extractWebsiteUrl(p["Website URL"]);
+                const urlPath = getUrlPath(websiteUrl);
+                // Only use URL path if it's a full article path (e.g., /blog/article-slug)
+                // Fall back to slugifying title if URL is just /blog or empty
+                const pathParts = urlPath ? urlPath.split("/").filter(Boolean) : [];
+                const slug = (pathParts.length > 1 && pathParts[0] === 'blog')
+                    ? pathParts[pathParts.length - 1]
                     : slugify(titleFr);
                 const hasEnglish = Boolean(
                     (titleEnRaw && titleEnRaw.trim()) ||
@@ -159,15 +204,32 @@ async function getPostBySlug(slug) {
     if (!post) return null;
     try {
         if (isBlogConfigured) {
+            console.log(`[BlogService] Fetching full content for post: ${slug} (id: ${post.id})`);
             const page = await notion.pages.retrieve({ page_id: post.id });
             const content = extractContentFromProperties(page.properties);
-            const frContent = content.fr || await extractPageContentAsHtml(post.id);
+            console.log(`[BlogService] Content from properties - FR: ${content.fr ? content.fr.length : 0} chars, EN: ${content.en ? content.en.length : 0} chars`);
+
+            let frContent = content.fr;
+            if (!frContent) {
+                console.log(`[BlogService] No FR content in properties, extracting from page blocks...`);
+                frContent = await extractPageContentAsHtml(post.id);
+                console.log(`[BlogService] Extracted FR content: ${frContent ? frContent.length : 0} chars`);
+            }
+
             const enContent = content.en || frContent;
             post.content = { fr: frContent, en: enContent };
+            console.log(`[BlogService] Final content set - FR: ${post.content.fr.length} chars, EN: ${post.content.en.length} chars`);
         } else if (!post.content) {
             post.content = { fr: "", en: "" };
         }
-    } catch (e) {}
+    } catch (e) {
+        console.error(`[BlogService] Error fetching content for post ${slug}:`, e.message);
+        console.error(e.stack);
+        // Ensure content is at least an empty object
+        if (!post.content) {
+            post.content = { fr: "", en: "" };
+        }
+    }
     return post;
 }
 

@@ -12,7 +12,15 @@
     },
     "publishedDate": "2026-01-07",
     "featuredImage": "https://im.runware.ai/image/ws/2/ii/6086ad3c-3869-464d-a8a1-6f674096fb6c.png",
-    "url": "/blog/d-mocratiser-l-investissement-la-vision-bubble"
+    "url": "/blog/d-mocratiser-l-investissement-la-vision-bubble",
+    "urlEn": "/en/blog/d-mocratiser-l-investissement-la-vision-bubble",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "Investment Strategy",
+      "Financial Education",
+      "FinTech"
+    ]
   },
   {
     "id": "284cfc52-0644-8174-a29c-c5f480398d97",
@@ -27,7 +35,15 @@
     },
     "publishedDate": "2025-12-24",
     "featuredImage": "https://im.runware.ai/image/ws/2/ii/ce81abcf-24be-4168-bd8c-676e18f60d5a.png",
-    "url": "/blog/la-monnaie-comme-signal-de-confiance-anatomie-d-un-syst-me-corrompu"
+    "url": "/blog/la-monnaie-comme-signal-de-confiance-anatomie-d-un-syst-me-corrompu",
+    "urlEn": "/en/blog/la-monnaie-comme-signal-de-confiance-anatomie-d-un-syst-me-corrompu",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "Behavioral Finance",
+      "Economics",
+      "Financial Education"
+    ]
   },
   {
     "id": "23dcfc52-0644-81a0-9d06-ca1fe5a1822f",
@@ -42,7 +58,15 @@
     },
     "publishedDate": "2025-12-17",
     "featuredImage": "https://im.runware.ai/image/ws/2/ii/6cde16a4-255f-43ed-a819-1c893ac954b6.png",
-    "url": "/blog/les-5-erreurs-communes-en-investissement-value"
+    "url": "/blog/les-5-erreurs-communes-en-investissement-value",
+    "urlEn": "/en/blog/les-5-erreurs-communes-en-investissement-value",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "Value Investing",
+      "Investment Strategy",
+      "Financial Education"
+    ]
   },
   {
     "id": "23dcfc52-0644-8147-b191-cb8f2060ca38",
@@ -57,7 +81,15 @@
     },
     "publishedDate": "2025-12-10",
     "featuredImage": "https://im.runware.ai/image/ws/2/ii/50c4e307-4180-4f79-b795-54ba042c3eb2.png",
-    "url": "/blog/ia-et-finance-6-tendances-qui-red-finissent-l-investissement"
+    "url": "/blog/ia-et-finance-6-tendances-qui-red-finissent-l-investissement",
+    "urlEn": "/en/blog/ia-et-finance-6-tendances-qui-red-finissent-l-investissement",
+    "status": "Published",
+    "isPinned": true,
+    "tags": [
+      "AI & Finance",
+      "FinTech",
+      "Market Analysis"
+    ]
   },
   {
     "id": "259cfc52-0644-80f1-9dfb-fbd7819b0108",
@@ -72,7 +104,15 @@
     },
     "publishedDate": "2025-12-03",
     "featuredImage": "https://im.runware.ai/image/ws/2/ii/1923269a-06b1-474f-a756-10a22c5b5288.png",
-    "url": "/blog/la-preuve-scientifique-de-l-arnaque"
+    "url": "/blog/la-preuve-scientifique-de-l-arnaque",
+    "urlEn": "/en/blog/la-preuve-scientifique-de-l-arnaque",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "Behavioral Finance",
+      "Market Analysis",
+      "AI & Finance"
+    ]
   },
   {
     "id": "2b6cfc52-0644-8035-9426-f33ecc9e0e47",
@@ -87,7 +127,14 @@
     },
     "publishedDate": "2025-11-25",
     "featuredImage": "https://im.runware.ai/image/ws/2/ii/62956dd2-6fc2-48cb-bbd5-38d25996ad8f.png",
-    "url": "/blog/le-crime-de-ceux-qui-savaient"
+    "url": "/blog/le-crime-de-ceux-qui-savaient",
+    "urlEn": "/en/blog/le-crime-de-ceux-qui-savaient",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "Behavioral Finance",
+      "Financial Education"
+    ]
   },
   {
     "id": "fbd47e2a-6709-4081-85bd-026967d41da8",
@@ -102,7 +149,15 @@
     },
     "publishedDate": "2025-11-03",
     "featuredImage": "https://im.runware.ai/image/ws/2/ii/49c3e2d0-50ee-405b-9506-ff11da01f032.png",
-    "url": "/blog/frais-fixes-vs-frais-en-pourcentage-le-vrai-calcul-sur-20-ans"
+    "url": "/blog/frais-fixes-vs-frais-en-pourcentage-le-vrai-calcul-sur-20-ans",
+    "urlEn": "/en/blog/frais-fixes-vs-frais-en-pourcentage-le-vrai-calcul-sur-20-ans",
+    "status": "Published",
+    "isPinned": true,
+    "tags": [
+      "Finance",
+      "comparatif robo advisor",
+      "frais investissement"
+    ]
   },
   {
     "id": "293cfc52-0644-8142-bc02-fbadda702ab8",
@@ -117,7 +172,18 @@
     },
     "publishedDate": "2025-10-21",
     "featuredImage": "https://im.runware.ai/image/ws/2/ii/4846e535-78ed-4813-8773-d279732f6698.png",
-    "url": "/blog/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment"
+    "url": "/blog/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment",
+    "urlEn": "/en/blog/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment",
+    "status": "Published",
+    "isPinned": true,
+    "tags": [
+      "IA",
+      "Conseil",
+      "Finance",
+      "No-Code",
+      "Automatisation",
+      "Big Four"
+    ]
   },
   {
     "id": "277cfc52-0644-81c6-9d85-e956290bb975",
@@ -132,7 +198,17 @@
     },
     "publishedDate": "2025-09-23",
     "featuredImage": "https://im.runware.ai/image/ws/2/ii/e8d9fb12-3e32-4e24-97dc-45e2e609b2c6.png",
-    "url": "/blog/le-complexe-industriel-de-la-pr-diction-comment-l-industrie-du-conseil-organise-la-plus-grande-arnaque-de-l-histoire-moderne"
+    "url": "/blog/le-complexe-industriel-de-la-pr-diction-comment-l-industrie-du-conseil-organise-la-plus-grande-arnaque-de-l-histoire-moderne",
+    "urlEn": "/en/blog/le-complexe-industriel-de-la-pr-diction-comment-l-industrie-du-conseil-organise-la-plus-grande-arnaque-de-l-histoire-moderne",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "Investment Strategy",
+      "Financial Education",
+      "Market Analysis",
+      "Behavioral Finance",
+      "Economics"
+    ]
   },
   {
     "id": "23fcfc52-0644-8127-a18c-f4d64ac9b6e1",
@@ -147,7 +223,16 @@
     },
     "publishedDate": "2025-07-30",
     "featuredImage": "https://im.runware.ai/image/ws/2/ii/9a44b0eb-44fb-4b21-a1d3-c40a3390d608.png",
-    "url": "/blog/dix-ans-d-checs-une-le-on-pourquoi-automatiser-son-portefeuille"
+    "url": "/blog/dix-ans-d-checs-une-le-on-pourquoi-automatiser-son-portefeuille",
+    "urlEn": "/en/blog/dix-ans-d-checs-une-le-on-pourquoi-automatiser-son-portefeuille",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "Investment Strategy",
+      "Portfolio Management",
+      "Behavioral Finance",
+      "Financial Education"
+    ]
   },
   {
     "id": "23ecfc52-0644-809c-bb91-edf329d64015",
@@ -162,7 +247,17 @@
     },
     "publishedDate": "2025-07-28",
     "featuredImage": "https://im.runware.ai/image/ws/2/ii/203e2ed1-c4a1-4691-be82-5702768bd608.png",
-    "url": "/blog/analyse-concurrentielle-pourquoi-bubble-invest-r-invente-le-conseil-en-investissement"
+    "url": "/blog/analyse-concurrentielle-pourquoi-bubble-invest-r-invente-le-conseil-en-investissement",
+    "urlEn": "/en/blog/analyse-concurrentielle-pourquoi-bubble-invest-r-invente-le-conseil-en-investissement",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "Market Analysis",
+      "AI & Finance",
+      "Portfolio Management",
+      "Investment Strategy",
+      "Financial Education"
+    ]
   },
   {
     "id": "23dcfc52-0644-8117-abb3-efa7abd925e3",
@@ -173,11 +268,20 @@
     "slug": "bubble-une-exp-rience-radicale-m-lant-d-cence-transparence-et-finance-pilot-e-par-l-ia",
     "summary": {
       "fr": "Manifeste fondateur de Bubble : un récit personnel sur la création d'une plateforme d'investissement basée sur la transparence, l'IA et des tarifs équitables. Explore les défis de construire une entreprise décente dans la finance traditionnelle.",
-      "en": "Founding Manifesto of Bubble : A Personal Story on Creating an Investment Platform Rooted in Transparency, AI, and Fair Pricing."
+      "en": "Founding Manifesto of Bubble : A Personal Story on Creating an Investment Platform Rooted in Transparency, AI, and Fair Pricing.\nIt explores the challenges of building a decent company within the traditional finance industry."
     },
     "publishedDate": "2025-07-27",
     "featuredImage": "https://im.runware.ai/image/ws/2/ii/fca0f6e3-c3a5-4ec2-a18b-e2b3b58749c6.png",
-    "url": "/blog/bubble-une-exp-rience-radicale-m-lant-d-cence-transparence-et-finance-pilot-e-par-l-ia"
+    "url": "/blog/bubble-une-exp-rience-radicale-m-lant-d-cence-transparence-et-finance-pilot-e-par-l-ia",
+    "urlEn": "/en/blog/bubble-une-exp-rience-radicale-m-lant-d-cence-transparence-et-finance-pilot-e-par-l-ia",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "Investment Strategy",
+      "FinTech",
+      "AI & Finance",
+      "Financial Education"
+    ]
   },
   {
     "id": "24fcfc52-0644-8132-89b1-e5dc1a8622e4",
@@ -192,6 +296,14 @@
     },
     "publishedDate": "2025-01-14",
     "featuredImage": "https://im.runware.ai/image/ws/2/ii/d4db5583-8175-4aa2-a98d-b59005c7b196.png",
-    "url": "/blog/l-automatisation-totale-vers-l-effondrement-cr-ateur-du-capitalisme"
+    "url": "/blog/l-automatisation-totale-vers-l-effondrement-cr-ateur-du-capitalisme",
+    "urlEn": "/en/blog/l-automatisation-totale-vers-l-effondrement-cr-ateur-du-capitalisme",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "Economics",
+      "AI & Finance",
+      "FinTech"
+    ]
   }
 ]
