@@ -89,18 +89,46 @@
       <!-- Scrollable Chat Container -->
       <div class="workflow-demo-chat-container">
         <div class="workflow-demo-chat-header">
-          <div class="workflow-demo-header-info">
-            <img src="/assets/images/bubble-favicon.svg" class="workflow-demo-icon" alt="Bubble" width="28" height="28" />
-            <div class="workflow-demo-titles">
-              <span class="workflow-demo-title">Bubble AI Agent</span>
-              <span class="workflow-demo-subtitle">Interactive Demo</span>
+          <div class="workflow-demo-header-row">
+            <div class="workflow-demo-header-info">
+              <img src="/assets/images/bubble-favicon.svg" class="workflow-demo-icon" alt="Bubble" width="28" height="28" />
+              <div class="workflow-demo-titles">
+                <span class="workflow-demo-title">Bubble AI Agent</span>
+                <span class="workflow-demo-subtitle">Interactive Demo</span>
+              </div>
+            </div>
+            <div class="workflow-demo-header-actions">
+              <div class="workflow-demo-controls" role="group" aria-label="Demo controls">
+                <button class="workflow-demo-control-btn workflow-demo-speed-toggle" id="demo-speed-toggle" type="button" aria-label="Playback speed">1x</button>
+                <button class="workflow-demo-control-btn workflow-demo-pause-toggle" id="demo-pause-toggle" type="button" aria-label="Pause">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <line x1="9" y1="6" x2="9" y2="18"></line>
+                    <line x1="15" y1="6" x2="15" y2="18"></line>
+                  </svg>
+                </button>
+                <button class="workflow-demo-control-btn workflow-demo-skip-toggle" id="demo-skip-toggle" data-demo-action="skip" type="button" aria-label="Skip">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M5 12h10"></path>
+                    <path d="M13 6l6 6-6 6"></path>
+                  </svg>
+                </button>
+              </div>
+              <button class="workflow-demo-lang-toggle" id="demo-lang-toggle" type="button" aria-label="Switch language">
+                <span class="lang-current">EN</span>
+              </button>
+            </div>
+
+
+
+          </div>
+          <div class="workflow-demo-progress">
+            <span id="workflow-demo-progress-label" class="workflow-demo-progress-label">0%</span>
+            <div id="workflow-demo-progress-track" class="workflow-demo-progress-track">
+              <div id="workflow-demo-progress-fill" class="workflow-demo-progress-fill" style="width: 0%;"></div>
             </div>
           </div>
-          <div class="language-switcher-demo">
-            <button id="fr-demo-switch">FR</button>
-            <button id="en-demo-switch" class="active">EN</button>
-          </div>
         </div>
+
 
         <!-- Scrollable Messages Area -->
         <div class="workflow-demo-messages" id="workflow-demo-messages" role="log" aria-live="polite">
@@ -636,26 +664,6 @@
         <div class="chat-side-panel-message bot">
           <div class="message-content">
             <p data-translate="floating_bubble.welcome">Hey! I'm Bubble - we're democratizing investing. What brings you here today?</p>
-          </div>
-        </div>
-        <div class="chat-side-panel-message bot initial-suggestions">
-          <div class="message-content">
-            <button class="chat-suggestion-btn" data-prompt="I'm new to investing, where do I start?">I'm new, where do I start?</button>
-          </div>
-        </div>
-        <div class="chat-side-panel-message bot initial-suggestions">
-          <div class="message-content">
-            <button class="chat-suggestion-btn" data-prompt="I have some savings, what should I do with them?">I have some savings, what should I do?</button>
-          </div>
-        </div>
-        <div class="chat-side-panel-message bot initial-suggestions">
-          <div class="message-content">
-            <button class="chat-suggestion-btn" data-prompt="How does Bubble work? What makes you different?">What is Bubble exactly?</button>
-          </div>
-        </div>
-        <div class="chat-side-panel-message bot initial-suggestions">
-          <div class="message-content">
-            <button class="chat-suggestion-btn" data-prompt="I want to join the waitlist to try Bubble">Join the waitlist</button>
           </div>
         </div>
       </div>

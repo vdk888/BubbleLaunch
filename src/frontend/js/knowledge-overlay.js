@@ -11,6 +11,7 @@ class KnowledgeOverlay {
     this.closeButton = this.overlay ? this.overlay.querySelector('.knowledge-close-button') : null;
     this.sessionKey = 'demoExperience';
     this.lastEntryPoint = 'homepage';
+    this.memoryInitialized = false;
     this.scenarioMap = {
       'beginner': 'macro-defense',
       'intermediate': 'japan-momentum',
@@ -91,6 +92,41 @@ class KnowledgeOverlay {
     }
   }
 
+  getBubbleMemory() {
+    if (typeof BubbleAgentMemory === 'undefined') {
+      return null;
+    }
+    if (!this.memoryInitialized) {
+      try {
+        BubbleAgentMemory.getProfile();
+      } catch (error) {
+        try {
+          BubbleAgentMemory.init();
+        } catch (initError) {
+          console.warn('[KnowledgeOverlay] BubbleAgentMemory init failed:', initError);
+          return null;
+        }
+      }
+      this.memoryInitialized = true;
+    }
+    return BubbleAgentMemory;
+  }
+
+  seedMemoryForLevel(level) {
+    const Memory = this.getBubbleMemory();
+    if (!Memory) return;
+
+    const hints = {
+      beginner: { riskAdjustment: -15, traits: ['cautious', 'learner'] },
+      intermediate: { riskAdjustment: 0, traits: ['balanced', 'analytical'] },
+      expert: { riskAdjustment: 15, traits: ['experienced', 'risk-aware'] }
+    };
+
+    const hint = hints[level] || hints.intermediate;
+    Memory.adjustRiskScore(hint.riskAdjustment, 1);
+    Memory.addTraits(hint.traits);
+  }
+
   handleOptionSelect(event) {
     const button = event.currentTarget;
     const level = button.getAttribute('data-level');
@@ -130,6 +166,9 @@ class KnowledgeOverlay {
     };
 
     sessionStorage.setItem(this.sessionKey, JSON.stringify(demoExperience));
+
+    // Seed initial profile hints in BubbleAgentMemory
+    this.seedMemoryForLevel(level);
 
     // Track analytics
     this.trackAnalytics('demo_knowledge_selected', {

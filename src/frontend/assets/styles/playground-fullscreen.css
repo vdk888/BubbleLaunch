@@ -252,7 +252,8 @@
   border-bottom-right-radius: 6px;
 }
 
-/* Option Chips (Scripted choices) */
+/* Option Chips Container (Scripted choices) */
+/* NOTE: Button styles (.playground-option) are unified in styles.css as .chat-suggestion-btn */
 .playground-options {
   display: flex;
   flex-wrap: wrap;
@@ -260,58 +261,6 @@
   margin-top: 0.75rem;
   padding-left: 48px; /* Align with message content */
   align-items: center;
-}
-
-.playground-option {
-  padding: 0.75rem 1.25rem;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
-  border: 2px solid #E5E5E5;
-  border-radius: 50px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #333333;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  animation: optionFadeIn 0.3s ease-out forwards;
-  opacity: 0;
-  vertical-align: middle;
-}
-
-@keyframes optionFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.playground-option:nth-child(1) { animation-delay: 0.1s; }
-.playground-option:nth-child(2) { animation-delay: 0.15s; }
-.playground-option:nth-child(3) { animation-delay: 0.2s; }
-.playground-option:nth-child(4) { animation-delay: 0.25s; }
-.playground-option:nth-child(5) { animation-delay: 0.3s; }
-
-.playground-option:hover {
-  border-color: #333333;
-  background: #FAFAFA;
-  transform: translateY(-2px);
-}
-
-.playground-option:active {
-  transform: translateY(0);
-}
-
-.playground-option.selected {
-  background: linear-gradient(135deg, #333333, #444444);
-  color: white;
-  border-color: transparent;
 }
 
 /* Navigation Cards */
@@ -798,11 +747,7 @@
     color: #333333;
   }
 
-  .playground-option:hover {
-    border-color: #333333;
-    background: #FAFAFA;
-    transform: translateY(-2px);
-  }
+  /* NOTE: .playground-option hover styles are now in styles.css (.chat-suggestion-btn) */
 
   .playground-nav-card:hover {
     border-color: #333333;
@@ -878,10 +823,7 @@
     padding-left: 40px;
   }
 
-  .playground-option {
-    padding: 0.625rem 1rem;
-    font-size: 0.9rem;
-  }
+  /* NOTE: .playground-option styles unified in styles.css (.chat-suggestion-btn) */
 
   .playground-nav-cards {
     padding-left: 40px;
@@ -968,10 +910,7 @@
     gap: 0.375rem;
   }
 
-  .playground-option {
-    padding: 0.5rem 0.875rem;
-    font-size: 0.85rem;
-  }
+  /* NOTE: .playground-option styles unified in styles.css (.chat-suggestion-btn) */
 
   .playground-nav-cards {
     padding-left: 28px;

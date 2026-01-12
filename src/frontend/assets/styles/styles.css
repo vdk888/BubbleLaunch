@@ -1761,6 +1761,47 @@ body.mobile-menu-open {
   background-color: #e9e9e9;
 }
 
+/* Chat Suggestion Buttons - Unified across all pages */
+.chat-suggestions-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.chat-suggestion-btn {
+  padding: 0.75rem 1.25rem;
+  min-height: 44px;
+  background: white;
+  border: 1.5px solid #E5E5E5;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  animation: suggestionFadeIn 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+.chat-suggestion-btn:hover {
+  border-color: #333;
+  background: #FAFAFA;
+  transform: translateY(-1px);
+}
+
+.chat-suggestion-btn:active,
+.chat-suggestion-btn.selected {
+  background: #333;
+  color: white;
+  border-color: #333;
+}
+
+@keyframes suggestionFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* Charts Section */
 .charts-section-container {
   padding: 6rem 0;
@@ -4756,6 +4797,76 @@ form button:hover {
 .chat-suggestion-btn.active {
   background: #F3F4F6;
   border-color: #D1D5DB;
+}
+
+/* ========================================
+   UNIFIED BUTTON STYLES: .playground-option
+   These styles unify playground suggestion buttons with .chat-suggestion-btn
+   ======================================== */
+.playground-option {
+  background: transparent;
+  border: 1px solid #E5E7EB;
+  color: #374151;
+  padding: 0.75rem 1.25rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 400;
+  transition: all 0.2s ease;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: optionFadeIn 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes optionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.playground-option:nth-child(1) { animation-delay: 0.1s; }
+.playground-option:nth-child(2) { animation-delay: 0.15s; }
+.playground-option:nth-child(3) { animation-delay: 0.2s; }
+.playground-option:nth-child(4) { animation-delay: 0.25s; }
+.playground-option:nth-child(5) { animation-delay: 0.3s; }
+
+.playground-option:hover {
+  background: #F9FAFB;
+  border-color: #D1D5DB;
+  transform: translateY(-2px);
+}
+
+.playground-option:active {
+  transform: translateY(0);
+}
+
+.playground-option.selected {
+  background: linear-gradient(135deg, #333333, #444444);
+  color: white;
+  border-color: transparent;
+}
+
+/* Responsive adjustments for playground-option */
+@media (max-width: 640px) {
+  .playground-option {
+    padding: 0.625rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .playground-option {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.85rem;
+  }
 }
 
 .chat-input-container {

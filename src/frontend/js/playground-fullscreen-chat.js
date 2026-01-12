@@ -532,6 +532,19 @@ const PlaygroundFullscreenChat = (function() {
   }
 
   /**
+   * Remove all suggestion buttons with smooth fade-out animation
+   */
+  function removeAllSuggestionButtons() {
+    const buttons = messagesContainer.querySelectorAll('.playground-option, .playground-options, .chat-suggestion-btn, .chat-suggestions-container');
+    buttons.forEach(el => {
+      el.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(-8px)';
+      setTimeout(() => el.remove(), 200);
+    });
+  }
+
+  /**
    * Create option buttons
    */
   function createOptions(options, onSelect) {
@@ -544,12 +557,11 @@ const PlaygroundFullscreenChat = (function() {
       btn.textContent = t(option.text);
       btn.style.animationDelay = `${0.1 + index * 0.05}s`;
       btn.addEventListener('click', () => {
-        container.querySelectorAll('.playground-option').forEach(b => b.disabled = true);
-        btn.classList.add('selected');
+        // Remove all suggestion buttons (including this container) before processing
+        removeAllSuggestionButtons();
         setTimeout(() => {
-          container.remove();
           onSelect(option);
-        }, 300);
+        }, 200);
       });
       container.appendChild(btn);
     });
@@ -1294,6 +1306,8 @@ const PlaygroundFullscreenChat = (function() {
     if (!inputField) return;
     const text = inputField.value.trim();
     if (text) {
+      // Remove all suggestion buttons when user sends a typed message
+      removeAllSuggestionButtons();
       handleUserInput(text);
       inputField.value = '';
     }

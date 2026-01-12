@@ -9,6 +9,33 @@ document.addEventListener('DOMContentLoaded', () => {
     (typeof translations !== "undefined" ? translations : {});
   const DEMO_SHOWN_KEY = 'bubble_workflow_demo_shown';
   const DEMO_EXPERIENCE_KEY = 'demoExperience';
+  const TIMING = {
+    typeSpeed: {
+      user: 32,
+      botShort: 22,
+      botNormal: 20,
+      botComplex: 18
+    },
+    readingDelay: {
+      base: 1400,
+      maxDelay: 8000,
+      enrichedBonus: 2200,
+      wordsPerMinute: 220
+    },
+    responseDelay: 900,
+    pauseCheck: 60,
+    typingTick: 6
+  };
+  const SPEED_PRESETS = [
+    { key: 'demo.speed.normal', multiplier: 1 },
+    { key: 'demo.speed.fast', multiplier: 1.5 },
+    { key: 'demo.speed.faster', multiplier: 2 }
+  ];
+  const DEMO_STEPS = {
+    'macro-defense': 16,
+    'japan-momentum': 17,
+    'semiconductors-sortino': 15
+  };
 
   // Track current scenario for routing
   let currentScenario = 'japan-momentum'; // default to intermediate demo
@@ -19,9 +46,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const replayBtn = document.getElementById('replay-demo');
   const inputField = document.querySelector('.workflow-demo-input-field');
   const sendButton = document.querySelector('.workflow-demo-send-button');
-
-  const frDemoSwitch = document.getElementById('fr-demo-switch');
-  const enDemoSwitch = document.getElementById('en-demo-switch');
+  const progressLabel = document.getElementById('workflow-demo-progress-label');
+  const progressFill = document.getElementById('workflow-demo-progress-fill');
+  const progressTrack = document.getElementById('workflow-demo-progress-track');
+  const speedToggleButton = document.getElementById('demo-speed-toggle');
+  const pauseToggleButton = document.getElementById('demo-pause-toggle');
+  const skipButton = document.getElementById('demo-skip-toggle') ||
+    document.querySelector('[data-demo-action="skip"]');
+  const langToggleButton = document.getElementById('demo-lang-toggle');
+  const langCurrentSpan = langToggleButton ? langToggleButton.querySelector('.lang-current') : null;
+  const pausedIndicator = document.getElementById('workflow-demo-paused-indicator');
 
   const redirectEntryPoints = new Set([
     'dual_path_homepage',
@@ -88,26 +122,545 @@ document.addEventListener('DOMContentLoaded', () => {
                         window.location.pathname.startsWith('/en') ? 'en' : 'fr';
 
   // Demo control flags and timeouts
-  let demoAbortController = null;
   let pendingTimeouts = [];
   let isAnimationRunning = false;
+  let isPaused = false;
+  let manualPaused = false;
+  let hoverPaused = false;
+  let isSkipping = false;
+  let skipMode = false;
+  let pendingSkipBotMessages = 0;
+  let fastForwardTargetStep = null;
+  let progressJumpPending = false;
+  let isTypingBotMessage = false;
+  let hasCompleted = false;
+  let speedMultiplier = 1;
+  let completedSteps = 0;
+  let totalSteps = 0;
+  let demoStartTime = null;
+  let pausedAt = null;
+  let pausedDuration = 0;
+  let completionPanel = null;
+  let memoryInitialized = false;
 
   // Update language display buttons
   const updateLanguageButtons = () => {
-    if (frDemoSwitch) {
-      frDemoSwitch.classList.toggle('active', currentLanguage === 'fr');
-      enDemoSwitch.classList.toggle('active', currentLanguage === 'en');
+    if (!langToggleButton) return;
+    const label = currentLanguage === 'en' ? 'EN' : 'FR';
+    if (langCurrentSpan) {
+      langCurrentSpan.textContent = label;
+    } else {
+      langToggleButton.textContent = label;
+    }
+    const toggleLabel = getTranslation('demo.control.language', 'Switch language');
+    langToggleButton.setAttribute('aria-label', toggleLabel);
+    langToggleButton.setAttribute('title', toggleLabel);
+  };
+
+  const getTranslation = (key, fallback = '') => {
+    const entry = workflowTranslations[key];
+    if (entry && entry[currentLanguage]) {
+      return entry[currentLanguage];
+    }
+    if (entry && entry.en) {
+      return entry.en;
+    }
+    return fallback;
+  };
+
+  const pauseIcons = {
+    play: `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+    `,
+    pause: `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="9" y1="6" x2="9" y2="18"></line>
+        <line x1="15" y1="6" x2="15" y2="18"></line>
+      </svg>
+    `
+  };
+
+  const updateSpeedControls = () => {
+    if (speedToggleButton) {
+      const preset = SPEED_PRESETS.find(item => item.multiplier === speedMultiplier) || SPEED_PRESETS[0];
+      speedToggleButton.textContent = getTranslation(preset.key, `${preset.multiplier}x`);
+      const speedLabel = getTranslation('demo.control.speed', 'Playback speed');
+      speedToggleButton.setAttribute('aria-label', speedLabel);
+      speedToggleButton.setAttribute('title', speedLabel);
+    }
+    updateSkipControl();
+  };
+
+  const updateSkipControl = () => {
+    if (!skipButton) return;
+    const label = getTranslation('demo.speed.skip', 'Skip');
+    skipButton.setAttribute('aria-label', label);
+    skipButton.setAttribute('title', label);
+  };
+
+  const updatePauseControl = () => {
+    if (!pauseToggleButton) return;
+    const isPausedState = isPaused;
+    const labelKey = isPausedState ? 'demo.control.play' : 'demo.control.pause';
+    const fallback = isPausedState ? 'Play' : 'Pause';
+    const label = getTranslation(labelKey, fallback);
+    pauseToggleButton.innerHTML = isPausedState ? pauseIcons.play : pauseIcons.pause;
+    pauseToggleButton.setAttribute('aria-label', label);
+    pauseToggleButton.setAttribute('title', label);
+    pauseToggleButton.setAttribute('aria-pressed', isPausedState ? 'true' : 'false');
+    pauseToggleButton.disabled = !isAnimationRunning;
+    pauseToggleButton.classList.toggle('active', isPausedState);
+  };
+
+  const updatePausedIndicator = () => {
+    if (!pausedIndicator) return;
+    pausedIndicator.textContent = getTranslation('demo.pause.indicator', 'Paused - tap to continue');
+  };
+
+  const updateDemoUILabels = () => {
+    updateLanguageButtons();
+    updateSpeedControls();
+    updatePausedIndicator();
+    updatePauseControl();
+    if (completionPanel && !completionPanel.classList.contains('hidden')) {
+      renderCompletionPanel();
     }
   };
 
-  updateLanguageButtons();
+  updateDemoUILabels();
+
+  const shouldRunDemo = () => isAnimationRunning && !isSkipping;
+
+  const updateProgress = (ratio) => {
+    if (!progressLabel || !progressFill) return;
+    const percentage = Math.max(0, Math.min(100, Math.round(ratio * 100)));
+    progressLabel.textContent = `${percentage}%`;
+    progressFill.style.width = `${percentage}%`;
+  };
+
+  const resetProgress = () => {
+    totalSteps = DEMO_STEPS[currentScenario] || 0;
+    completedSteps = 0;
+    updateProgress(0);
+  };
+
+  const advanceProgress = () => {
+    if (!shouldRunDemo() || totalSteps === 0) return;
+    completedSteps = Math.min(totalSteps, completedSteps + 1);
+    updateProgress(completedSteps / totalSteps);
+    if (fastForwardTargetStep !== null && completedSteps >= fastForwardTargetStep) {
+      fastForwardTargetStep = null;
+      pendingSkipBotMessages = 0;
+      setSkipMode(false);
+    }
+  };
+
+  const setSpeedMultiplier = (multiplier) => {
+    speedMultiplier = multiplier;
+    updateSpeedControls();
+  };
+
+  const getAdjustedDelay = (ms) => {
+    if (skipMode) return 0;
+    return Math.max(0, Math.round(ms / speedMultiplier));
+  };
+
+  const applyPauseState = () => {
+    const shouldPause = (manualPaused || hoverPaused) && !skipMode;
+    if (!isAnimationRunning && isPaused) {
+      isPaused = false;
+    }
+    if (shouldPause === isPaused) return;
+    isPaused = shouldPause;
+    if (isPaused) {
+      pausedAt = Date.now();
+      if (pausedIndicator && manualPaused) {
+        pausedIndicator.classList.add('visible');
+      }
+      if (overlay) {
+        overlay.classList.add('paused');
+      }
+    } else {
+      if (pausedAt) {
+        pausedDuration += Date.now() - pausedAt;
+        pausedAt = null;
+      }
+      if (pausedIndicator) {
+        pausedIndicator.classList.remove('visible');
+      }
+      if (overlay) {
+        overlay.classList.remove('paused');
+      }
+    }
+    updatePauseControl();
+  };
+
+  const setManualPaused = (paused) => {
+    if (!isAnimationRunning) return;
+    manualPaused = paused;
+    applyPauseState();
+  };
+
+  const toggleManualPause = () => {
+    setManualPaused(!manualPaused);
+  };
+
+  const setHoverPaused = (paused) => {
+    if (!isAnimationRunning) return;
+    hoverPaused = paused;
+    applyPauseState();
+  };
+
+  const setSkipMode = (enabled) => {
+    skipMode = enabled;
+    if (skipMode) {
+      manualPaused = false;
+      hoverPaused = false;
+    }
+    applyPauseState();
+  };
+
+  const getBubbleMemory = () => {
+    if (typeof BubbleAgentMemory === 'undefined') {
+      return null;
+    }
+    if (!memoryInitialized) {
+      try {
+        BubbleAgentMemory.getProfile();
+      } catch (error) {
+        try {
+          BubbleAgentMemory.init();
+        } catch (initError) {
+          console.warn('[WorkflowDemo] BubbleAgentMemory init failed:', initError);
+          return null;
+        }
+      }
+      memoryInitialized = true;
+    }
+    return BubbleAgentMemory;
+  };
+
+  const getLevelFromScenario = (scenarioId) => {
+    switch (scenarioId) {
+      case 'macro-defense':
+        return 'beginner';
+      case 'semiconductors-sortino':
+        return 'expert';
+      case 'japan-momentum':
+      default:
+        return 'intermediate';
+    }
+  };
+
+  const getActiveLevel = () => {
+    const experience = getStoredDemoExperience();
+    if (experience && experience.level) {
+      return experience.level;
+    }
+    return getLevelFromScenario(currentScenario);
+  };
+
+  const getCompletionConfig = (level) => {
+    const waitlistHref = `${getInvestorsIndexUrl()}#investor-waitlist`;
+    const playgroundHref = currentLanguage === 'en'
+      ? '/en/investors/playground'
+      : '/investors/playground';
+    const simulatorHref = currentLanguage === 'en'
+      ? '/en/investors/education/simulator'
+      : '/investors/education/simulator';
+
+    const configByLevel = {
+      beginner: {
+        primaryText: getTranslation('demo.complete.cta.beginner', 'Discover my investor profile'),
+        primaryHref: playgroundHref,
+        hint: getTranslation('demo.complete.hint.beginner', 'Start with a profile walkthrough to personalize your strategy.')
+      },
+      intermediate: {
+        primaryText: getTranslation('demo.complete.cta.intermediate', 'Test strategies'),
+        primaryHref: simulatorHref,
+        hint: getTranslation('demo.complete.hint.intermediate', 'Try the simulator to compare allocations and risk levels.')
+      },
+      expert: {
+        primaryText: getTranslation('demo.complete.cta.expert', 'Get priority access'),
+        primaryHref: waitlistHref,
+        hint: getTranslation('demo.complete.hint.expert', 'Get priority access to discuss deployment details.')
+      }
+    };
+
+    return configByLevel[level] || configByLevel.intermediate;
+  };
+
+  function renderCompletionPanel() {
+    if (!messagesContainer) return;
+    const level = getActiveLevel();
+    const config = getCompletionConfig(level);
+    const titleText = getTranslation('demo.complete.title', 'Demo Complete!');
+    const waitlistText = getTranslation('demo.complete.waitlist', 'Waitlist');
+    const replayText = getTranslation('demo.complete.replay', 'Replay Demo');
+    const waitlistHref = `${getInvestorsIndexUrl()}#investor-waitlist`;
+
+    if (!completionPanel) {
+      completionPanel = document.createElement('div');
+      completionPanel.className = 'workflow-demo-completion-panel hidden';
+      messagesContainer.appendChild(completionPanel);
+    }
+
+    completionPanel.replaceChildren();
+    completionPanel.dataset.level = level;
+
+    const icon = document.createElement('div');
+    icon.className = 'workflow-demo-completion-icon';
+    icon.innerHTML = `
+      <svg class="workflow-demo-completion-check" viewBox="0 0 52 52" aria-hidden="true">
+        <circle class="workflow-demo-completion-circle" cx="26" cy="26" r="25" fill="none"></circle>
+        <path class="workflow-demo-completion-mark" fill="none" d="M14 27l7 7 17-17"></path>
+      </svg>
+    `;
+
+    const title = document.createElement('div');
+    title.className = 'workflow-demo-completion-title';
+    title.textContent = titleText;
+
+    const hint = document.createElement('div');
+    hint.className = 'workflow-demo-completion-hint';
+    hint.textContent = config.hint;
+
+    const actions = document.createElement('div');
+    actions.className = 'workflow-demo-completion-actions';
+
+    const primary = document.createElement('a');
+    primary.className = 'workflow-demo-cta primary';
+    primary.href = config.primaryHref;
+    primary.textContent = config.primaryText;
+    primary.setAttribute('data-demo-action', 'primary-cta');
+
+    const secondaryRow = document.createElement('div');
+    secondaryRow.className = 'workflow-demo-completion-secondary';
+
+    const waitlist = document.createElement('a');
+    waitlist.className = 'workflow-demo-cta secondary';
+    waitlist.href = waitlistHref;
+    waitlist.textContent = waitlistText;
+
+    const replay = document.createElement('button');
+    replay.className = 'workflow-demo-cta ghost';
+    replay.type = 'button';
+    replay.textContent = replayText;
+    replay.setAttribute('data-demo-action', 'replay');
+
+    secondaryRow.appendChild(waitlist);
+    secondaryRow.appendChild(replay);
+
+    actions.appendChild(primary);
+    actions.appendChild(secondaryRow);
+
+    completionPanel.appendChild(icon);
+    completionPanel.appendChild(title);
+    completionPanel.appendChild(hint);
+    completionPanel.appendChild(actions);
+  }
+
+  const recordDemoCompletion = (reason) => {
+    const Memory = getBubbleMemory();
+    if (!Memory) return;
+
+    const level = getActiveLevel();
+    const scenario = currentScenario;
+    const durationMs = demoStartTime
+      ? Math.max(0, Date.now() - demoStartTime - pausedDuration)
+      : null;
+
+    Memory.recordAction('demo_completed', {
+      scenario,
+      level,
+      durationMs,
+      speedMultiplier,
+      reason
+    });
+
+    const profile = Memory.getProfile();
+    if (!profile.knowledgeLevel) {
+      const mappedLevel = level === 'expert' ? 'advanced' : level;
+      Memory.setKnowledgeLevel(mappedLevel);
+    }
+
+    const insightKey = `demo.complete.insight.${level}`;
+    const insightText = getTranslation(
+      insightKey,
+      'User showed interest in a personalized investing workflow.'
+    );
+    Memory.addKeyInsight(insightText, 'demo');
+  };
+
+  const finishDemo = (reason = 'completed') => {
+    if (hasCompleted) return;
+    hasCompleted = true;
+    isSkipping = reason === 'skipped';
+    fastForwardTargetStep = null;
+    pendingSkipBotMessages = 0;
+    progressJumpPending = false;
+    isAnimationRunning = false;
+    manualPaused = false;
+    hoverPaused = false;
+    if (pausedAt) {
+      pausedDuration += Date.now() - pausedAt;
+      pausedAt = null;
+    }
+    isPaused = false;
+    setSkipMode(false);
+    pendingTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
+    pendingTimeouts = [];
+    if (pausedIndicator) {
+      pausedIndicator.classList.remove('visible');
+    }
+    if (overlay) {
+      overlay.classList.remove('paused');
+    }
+
+    updateProgress(1);
+    renderCompletionPanel();
+    if (completionPanel && messagesContainer) {
+      completionPanel.classList.remove('hidden');
+      messagesContainer.appendChild(completionPanel);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    sessionStorage.setItem(DEMO_SHOWN_KEY, 'true');
+    recordDemoCompletion(reason);
+  };
+
+  const startDemoRun = () => {
+    isAnimationRunning = true;
+    isSkipping = false;
+    hasCompleted = false;
+    manualPaused = false;
+    hoverPaused = false;
+    isPaused = false;
+    pausedAt = null;
+    pausedDuration = 0;
+    demoStartTime = Date.now();
+    resetProgress();
+    if (completionPanel) {
+      completionPanel.remove();
+      completionPanel = null;
+    }
+    if (pausedIndicator) {
+      pausedIndicator.classList.remove('visible');
+    }
+    if (overlay) {
+      overlay.classList.remove('paused');
+    }
+    pendingSkipBotMessages = 0;
+    if (progressJumpPending && fastForwardTargetStep !== null && fastForwardTargetStep > 0) {
+      setSkipMode(true);
+    } else {
+      fastForwardTargetStep = null;
+      setSkipMode(false);
+    }
+    progressJumpPending = false;
+    updateSpeedControls();
+    updatePauseControl();
+  };
+
+  const confirmSkip = () => {
+    const message = getTranslation(
+      'demo.skip.confirm',
+      'Skip the demo and jump to next steps?'
+    );
+    return window.confirm(message);
+  };
+
+  const skipDemo = (reason = 'skipped') => {
+    if (hasCompleted) return;
+    finishDemo(reason);
+  };
+
+  const skipToNextBotMessage = () => {
+    if (!isAnimationRunning || hasCompleted) return;
+    fastForwardTargetStep = null;
+    progressJumpPending = false;
+    const skipCount = isTypingBotMessage ? 2 : 1;
+    pendingSkipBotMessages = Math.max(pendingSkipBotMessages, skipCount);
+    setSkipMode(true);
+  };
+
+  const getSpeedIndex = () => {
+    return SPEED_PRESETS.findIndex(item => item.multiplier === speedMultiplier);
+  };
+
+  const stepSpeed = (direction) => {
+    const index = getSpeedIndex();
+    if (index === -1) return;
+    const nextIndex = Math.min(
+      SPEED_PRESETS.length - 1,
+      Math.max(0, index + direction)
+    );
+    const next = SPEED_PRESETS[nextIndex];
+    if (next && next.multiplier !== speedMultiplier) {
+      setSpeedMultiplier(next.multiplier);
+    }
+  };
+
+  const jumpToProgressStep = (event) => {
+    if (!isAnimationRunning || !progressTrack || totalSteps === 0) return;
+    const rect = progressTrack.getBoundingClientRect();
+    if (!rect.width) return;
+    const rawRatio = (event.clientX - rect.left) / rect.width;
+    const ratio = Math.max(0, Math.min(1, rawRatio));
+    const targetStep = Math.max(0, Math.min(totalSteps, Math.round(ratio * totalSteps)));
+
+    if (targetStep === completedSteps) return;
+
+    fastForwardTargetStep = targetStep;
+    pendingSkipBotMessages = 0;
+
+    if (targetStep <= 0) {
+      fastForwardTargetStep = null;
+      progressJumpPending = true;
+      routeDemo();
+      return;
+    }
+
+    if (targetStep < completedSteps) {
+      progressJumpPending = true;
+      routeDemo();
+    } else {
+      setSkipMode(true);
+    }
+  };
 
   // Cancel all pending animations and timeouts
   const cancelAnimations = () => {
     isAnimationRunning = false;
-    pendingTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
+    isSkipping = false;
+    skipMode = false;
+    pendingTimeouts = pendingTimeouts.filter(timeoutId => {
+      clearTimeout(timeoutId);
+      return false;
+    });
+    pendingSkipBotMessages = 0;
+    hasCompleted = false;
+    manualPaused = false;
+    hoverPaused = false;
+    isPaused = false;
+    pausedAt = null;
+    pausedDuration = 0;
     pendingTimeouts = [];
     if (inputField) inputField.value = '';
+    if (pausedIndicator) {
+      pausedIndicator.classList.remove('visible');
+    }
+    if (overlay) {
+      overlay.classList.remove('paused');
+    }
+    if (completionPanel) {
+      completionPanel.remove();
+      completionPanel = null;
+    }
+    updateProgress(0);
+    updatePauseControl();
   };
 
   // Wrapped setTimeout that tracks timeouts for cancellation
@@ -123,25 +676,56 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Wrapped Promise.resolve for delays that respects cancellation
-  const safeDelay = (ms) => {
+  const safeDelay = (ms, options = {}) => {
     return new Promise((resolve) => {
-      const timeoutId = safeSetTimeout(resolve, ms);
+      if (!shouldRunDemo()) {
+        resolve();
+        return;
+      }
+      if (skipMode) {
+        resolve();
+        return;
+      }
+      const tickMs = options.tickMs || TIMING.pauseCheck;
+      let elapsed = 0;
+      const tick = () => {
+        if (!shouldRunDemo()) {
+          resolve();
+          return;
+        }
+        if (skipMode) {
+          resolve();
+          return;
+        }
+        if (!isPaused) {
+          elapsed += tickMs * speedMultiplier;
+        }
+        if (elapsed >= ms) {
+          resolve();
+          return;
+        }
+        safeSetTimeout(tick, tickMs);
+      };
+      safeSetTimeout(tick, tickMs);
     });
   };
 
   // Calculate dynamic reading delay based on content length and complexity
   const calculateReadingDelay = (content, hasEnrichedContent = false) => {
-    const baseDelay = 2500;
-    const wordsPerMinute = 200; // Average reading speed
+    const baseDelay = TIMING.readingDelay.base;
+    const wordsPerMinute = TIMING.readingDelay.wordsPerMinute;
     const wordCount = content ? content.split(/\s+/).length : 0;
     const readingTime = (wordCount / wordsPerMinute) * 60 * 1000;
 
     // Add extra time for enriched content (cards, charts, tables)
     // More time for complex content with multiple cards/graphs
-    const enrichedBonus = hasEnrichedContent ? 4000 : 0;
+    const enrichedBonus = hasEnrichedContent ? TIMING.readingDelay.enrichedBonus : 0;
 
     // Minimum 2.5s, maximum 10s for really long/complex messages
-    return Math.min(Math.max(baseDelay, readingTime + enrichedBonus), 10000);
+    return Math.min(
+      Math.max(baseDelay, readingTime + enrichedBonus),
+      TIMING.readingDelay.maxDelay
+    );
   };
 
   // Auto-resize textarea as content grows
@@ -151,34 +735,59 @@ document.addEventListener('DOMContentLoaded', () => {
     inputField.style.height = Math.min(inputField.scrollHeight, 120) + 'px';
   };
 
+  const resolveBotTypingSpeed = (text, speedOverride) => {
+    const length = text ? text.length : 0;
+    let speed = TIMING.typeSpeed.botNormal;
+    if (length <= 80) {
+      speed = TIMING.typeSpeed.botShort;
+    } else if (length > 180) {
+      speed = TIMING.typeSpeed.botComplex;
+    }
+    if (typeof speedOverride === 'number') {
+      if (speedOverride >= 65) {
+        speed = Math.max(14, speed - 2);
+      } else if (speedOverride <= 35) {
+        speed = speed + 2;
+      }
+    }
+    return speed;
+  };
+
   // Type in input field, animate send button, then show message as user
   const typeInInputAndSend = async (text) => {
     if (!inputField || !sendButton || !isAnimationRunning) return;
+    if (skipMode) {
+      inputField.value = '';
+      autoResizeTextarea();
+      return;
+    }
 
     // Type character by character in textarea
     inputField.value = '';
     autoResizeTextarea();
 
+    const typingSpeed = TIMING.typeSpeed.user;
+
     for (let i = 0; i < text.length; i++) {
-      if (!isAnimationRunning) break; // Stop if animation was cancelled
+      if (!shouldRunDemo()) break; // Stop if animation was cancelled
       inputField.value += text.charAt(i);
       autoResizeTextarea(); // Resize as text is added
-      await safeDelay(50);
+      await safeDelay(typingSpeed, { tickMs: TIMING.typingTick });
     }
 
-    if (!isAnimationRunning) return;
+    if (!shouldRunDemo()) return;
 
     // Wait briefly
     await safeDelay(500);
 
-    if (!isAnimationRunning) return;
+    if (!shouldRunDemo()) return;
 
     // Animate send button
     sendButton.classList.add('sending');
     await safeDelay(600);
     sendButton.classList.remove('sending');
 
-    if (!isAnimationRunning) return;
+    if (!shouldRunDemo()) return;
 
     // Clear input and reset height
     inputField.value = '';
@@ -198,16 +807,27 @@ document.addEventListener('DOMContentLoaded', () => {
     content.textContent = text;
 
     systemDiv.appendChild(content);
-    messagesContainer.appendChild(systemDiv);
+    if (shouldRunDemo() && messagesContainer) {
+      messagesContainer.appendChild(systemDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      advanceProgress();
+    }
 
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    return systemDiv;
   };
 
   // Typing animation function
-  const typeMessage = (element, text, speed = 60) => {
-    return new Promise((resolve) => {
-      if (!isAnimationRunning) {
-        resolve();
+  const typeMessage = async (element, text, speedOverride = null) => {
+    if (!element || !text) return;
+    if (!shouldRunDemo()) return;
+
+    isTypingBotMessage = true;
+    try {
+      if (skipMode) {
+        element.innerHTML = '';
+        const textDiv = document.createElement('div');
+        textDiv.textContent = text;
+        element.appendChild(textDiv);
         return;
       }
 
@@ -217,47 +837,55 @@ document.addEventListener('DOMContentLoaded', () => {
       cursor.className = 'typing-cursor';
       element.appendChild(cursor);
 
-      const typeNextChar = () => {
-        if (!isAnimationRunning) {
-          resolve();
-          return;
-        }
+      const typingSpeed = resolveBotTypingSpeed(text, speedOverride);
 
-        if (index < text.length) {
-          element.insertBefore(document.createTextNode(text.charAt(index)), cursor);
-          index++;
-          safeSetTimeout(typeNextChar, speed);
-        } else {
-          if (cursor && cursor.parentNode) {
-            cursor.remove();
-          }
-          // Collect all text nodes and consolidate them into a text-content div
+      while (index < text.length) {
+        if (!shouldRunDemo()) break;
+        if (skipMode) {
+          element.innerHTML = '';
           const textDiv = document.createElement('div');
-          let textContent = '';
-          const nodesToRemove = [];
-
-          for (let node of element.childNodes) {
-            if (node.nodeType === Node.TEXT_NODE) {
-              textContent += node.textContent;
-              nodesToRemove.push(node);
-            }
-          }
-
-          // Remove individual text nodes
-          nodesToRemove.forEach(node => node.remove());
-
-          // Add consolidated text as the first child
-          if (textContent) {
-            textDiv.textContent = textContent;
-            element.insertBefore(textDiv, element.firstChild);
-          }
-
-          resolve();
+          textDiv.textContent = text;
+          element.appendChild(textDiv);
+          break;
         }
-      };
+        element.insertBefore(document.createTextNode(text.charAt(index)), cursor);
+        index++;
+        await safeDelay(typingSpeed, { tickMs: TIMING.typingTick });
+      }
 
-      typeNextChar();
-    });
+      if (cursor && cursor.parentNode) {
+        cursor.remove();
+      }
+
+      // Collect all text nodes and consolidate them into a text-content div
+      const textDiv = document.createElement('div');
+      let textContent = '';
+      const nodesToRemove = [];
+
+      for (let node of element.childNodes) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          textContent += node.textContent;
+          nodesToRemove.push(node);
+        }
+      }
+
+      // Remove individual text nodes
+      nodesToRemove.forEach(node => node.remove());
+
+      // Add consolidated text as the first child
+      if (textContent) {
+        textDiv.textContent = textContent;
+        element.insertBefore(textDiv, element.firstChild);
+      }
+    } finally {
+      isTypingBotMessage = false;
+      if (skipMode && pendingSkipBotMessages > 0) {
+        pendingSkipBotMessages -= 1;
+        if (pendingSkipBotMessages === 0 && fastForwardTargetStep === null) {
+          setSkipMode(false);
+        }
+      }
+    }
   };
 
   // Create typing indicator
@@ -291,12 +919,15 @@ document.addEventListener('DOMContentLoaded', () => {
       messageDiv.appendChild(enrichedContent);
     }
 
-    messagesContainer.appendChild(messageDiv);
+    if (shouldRunDemo() && messagesContainer) {
+      messagesContainer.appendChild(messageDiv);
 
-    // Auto-scroll to bottom
-    setTimeout(() => {
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }, 80);
+      // Auto-scroll to bottom
+      setTimeout(() => {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }, 80);
+      advanceProgress();
+    }
 
     return { messageDiv, bubble };
   };
@@ -499,10 +1130,11 @@ document.addEventListener('DOMContentLoaded', () => {
       chartContainer.appendChild(barItem);
 
       // Animate bars after a delay (stagger effect)
-      setTimeout(() => {
+      safeSetTimeout(() => {
+        if (!shouldRunDemo()) return;
         barFill.style.width = item.percentage;
         barFill.classList.remove('animating');
-      }, 100 + (index * 80));
+      }, getAdjustedDelay(100 + (index * 80)));
     });
 
     card.appendChild(chartContainer);
@@ -517,7 +1149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg1Text = workflowTranslations['workflow.message1.user'][currentLanguage];
     await typeInInputAndSend(msg1Text);
     const { bubble: bubble1 } = addMessage(msg1Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 2: Bot with research (all in one bubble)
     const msg2IntroText = workflowTranslations['workflow.message2.bot.intro'][currentLanguage];
@@ -525,7 +1157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator = createTypingIndicator();
     msg2Div.insertBefore(typingIndicator, msg2Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator.remove();
 
     // Type intro text
@@ -551,7 +1183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg2_5Text = workflowTranslations['workflow.message2_5.user'][currentLanguage];
     await typeInInputAndSend(msg2_5Text);
     const { bubble: bubble2_5 } = addMessage(msg2_5Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 2.5: Bot with ChatGPT explanation
     const msg2_5IntroText = workflowTranslations['workflow.message2_5.bot.intro'][currentLanguage];
@@ -559,7 +1191,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator2_5 = createTypingIndicator();
     msg2_5Div.insertBefore(typingIndicator2_5, msg2_5Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator2_5.remove();
 
     await typeMessage(msg2_5Bubble, msg2_5IntroText, 70);
@@ -601,7 +1233,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg3Text = workflowTranslations['workflow.message3.user'][currentLanguage];
     await typeInInputAndSend(msg3Text);
     const { bubble: bubble3 } = addMessage(msg3Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 4: Bot with backtest (all in one bubble)
     const msg4IntroText = workflowTranslations['workflow.message4.bot.intro'][currentLanguage];
@@ -609,7 +1241,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator2 = createTypingIndicator();
     msg4Div.insertBefore(typingIndicator2, msg4Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator2.remove();
 
     await typeMessage(msg4Bubble, msg4IntroText, 50);
@@ -634,7 +1266,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg5Text = workflowTranslations['workflow.message5.user'][currentLanguage];
     await typeInInputAndSend(msg5Text);
     const { bubble: bubble5 } = addMessage(msg5Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 5: Bot acknowledges confirmation
     const msg5BotText = "Excellent. I've logged this pocket into your account. Now, the important part: execution.";
@@ -644,18 +1276,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator5Bot = createTypingIndicator();
     msg5BotDiv.insertBefore(typingIndicator5Bot, msg5BotBubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator5Bot.remove();
 
     await typeMessage(msg5BotBubble, msg5BotConfirmText, 50);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 5.5: User asks about execution
     const msg5_5Text = workflowTranslations['workflow.message5_5.user'][currentLanguage];
     await typeInInputAndSend(msg5_5Text);
     const { bubble: bubble5_5 } = addMessage(msg5_5Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 5.5: Bot with execution flow
     const msg5_5IntroText = workflowTranslations['workflow.message5_5.bot.intro'][currentLanguage];
@@ -663,7 +1295,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator5_5 = createTypingIndicator();
     msg5_5Div.insertBefore(typingIndicator5_5, msg5_5Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator5_5.remove();
 
     await typeMessage(msg5_5Bubble, msg5_5IntroText, 50);
@@ -689,7 +1321,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg6UserText = workflowTranslations['workflow.message6.user'][currentLanguage];
     await typeInInputAndSend(msg6UserText);
     const { bubble: bubble6User } = addMessage(msg6UserText, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 6: Bot with summary (all in one bubble)
     const msg6ConfirmText = workflowTranslations['workflow.message6.bot.confirmation'][currentLanguage];
@@ -697,7 +1329,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator3 = createTypingIndicator();
     msg6Div.insertBefore(typingIndicator3, msg6Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator3.remove();
 
     await typeMessage(msg6Bubble, msg6ConfirmText, 50);
@@ -736,13 +1368,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Message 7: System message (Time transition)
     const timeTransition = workflowTranslations['workflow.message7.system'][currentLanguage];
     addSystemMessage(timeTransition);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 8: User
     const msg8Text = workflowTranslations['workflow.message8.user'][currentLanguage];
     await typeInInputAndSend(msg8Text);
     const { bubble: bubble8 } = addMessage(msg8Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 9: Bubble with portfolio bar chart (all in one bubble)
     const msg9CelebrationText = workflowTranslations['workflow.message9.bot.celebration'][currentLanguage];
@@ -750,7 +1382,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator4 = createTypingIndicator();
     msg9Div.insertBefore(typingIndicator4, msg9Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator4.remove();
 
     await typeMessage(msg9Bubble, msg9CelebrationText, 50);
@@ -775,7 +1407,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg10Text = workflowTranslations['workflow.message10.user'][currentLanguage];
     await typeInInputAndSend(msg10Text);
     const { bubble: bubble10 } = addMessage(msg10Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 11: Bubble closing
     const msg11Text = workflowTranslations['workflow.message11.bot'][currentLanguage];
@@ -784,14 +1416,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator5 = createTypingIndicator();
     msg11Div.appendChild(typingIndicator5);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator5.remove();
 
     await typeMessage(msg11Bubble, msg11Text, 50);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-    // Mark demo as shown
-    sessionStorage.setItem(DEMO_SHOWN_KEY, 'true');
+    finishDemo('completed');
   };
 
   const showDemoOverlay = () => {
@@ -805,6 +1436,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Close demo and show pricing
   const closeDemo = () => {
     cancelAnimations();
+    fastForwardTargetStep = null;
+    pendingSkipBotMessages = 0;
+    progressJumpPending = false;
+    setSkipMode(false);
     if (!overlay) return;
     overlay.classList.add('hidden');
     if (pricingContent) {
@@ -824,7 +1459,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Start the new animation
-    isAnimationRunning = true;
+    startDemoRun();
 
     switch(currentScenario) {
       case 'macro-defense':
@@ -847,43 +1482,140 @@ document.addEventListener('DOMContentLoaded', () => {
     routeDemo();
   };
 
+  const handleReplay = () => {
+    syncScenarioFromStoredExperience();
+    sessionStorage.removeItem(DEMO_SHOWN_KEY);
+    launchWorkflowDemo();
+  };
+
   // Event listeners
   if (closeBtn) {
     closeBtn.addEventListener('click', closeDemo);
   }
 
+  if (speedToggleButton) {
+    speedToggleButton.addEventListener('click', () => {
+      const index = getSpeedIndex();
+      const nextIndex = index === -1 ? 0 : (index + 1) % SPEED_PRESETS.length;
+      const nextPreset = SPEED_PRESETS[nextIndex];
+      if (nextPreset) {
+        setSpeedMultiplier(nextPreset.multiplier);
+      }
+    });
+  }
+
+  if (pauseToggleButton) {
+    pauseToggleButton.addEventListener('click', () => {
+      if (!isAnimationRunning) return;
+      toggleManualPause();
+    });
+  }
+
+  if (skipButton) {
+    skipButton.addEventListener('click', () => {
+      skipToNextBotMessage();
+    });
+  }
+
+  if (progressTrack) {
+    progressTrack.addEventListener('click', (event) => {
+      jumpToProgressStep(event);
+    });
+  }
+
+  let touchStartY = null;
+  let touchStartX = null;
+  let longPressTimer = null;
+  let longPressTriggered = false;
+
+  const clearLongPressTimer = () => {
+    if (longPressTimer) {
+      clearTimeout(longPressTimer);
+      longPressTimer = null;
+    }
+  };
+
+  if (messagesContainer) {
+    messagesContainer.addEventListener('touchstart', (event) => {
+      if (!isAnimationRunning) return;
+      const touch = event.touches[0];
+      touchStartY = touch.clientY;
+      touchStartX = touch.clientX;
+      longPressTriggered = false;
+      clearLongPressTimer();
+      longPressTimer = setTimeout(() => {
+        longPressTriggered = true;
+        if (confirmSkip()) {
+          skipDemo('skipped');
+        }
+      }, 800);
+    }, { passive: true });
+
+    messagesContainer.addEventListener('touchmove', (event) => {
+      if (touchStartY === null) return;
+      const touch = event.touches[0];
+      const deltaY = touch.clientY - touchStartY;
+      const deltaX = touch.clientX - touchStartX;
+      if (Math.abs(deltaY) > 12 || Math.abs(deltaX) > 12) {
+        clearLongPressTimer();
+      }
+    }, { passive: true });
+
+    messagesContainer.addEventListener('touchend', (event) => {
+      clearLongPressTimer();
+      if (touchStartY === null || touchStartX === null) return;
+      const touch = event.changedTouches[0];
+      const deltaY = touch.clientY - touchStartY;
+      const deltaX = touch.clientX - touchStartX;
+      touchStartY = null;
+      touchStartX = null;
+
+      if (longPressTriggered) return;
+      if (Math.abs(deltaY) > 50 && Math.abs(deltaY) > Math.abs(deltaX)) {
+        if (deltaY < 0) {
+          stepSpeed(1);
+        } else {
+          stepSpeed(-1);
+        }
+      }
+    }, { passive: true });
+  }
+
   // Keyboard support
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay && !overlay.classList.contains('hidden')) {
+    if (!overlay || overlay.classList.contains('hidden')) return;
+    if (e.key === 'Escape') {
       closeDemo();
+      return;
+    }
+    if (e.code === 'Space') {
+      const activeTag = document.activeElement?.tagName;
+      if (activeTag === 'INPUT' || activeTag === 'TEXTAREA') return;
+      e.preventDefault();
+      toggleManualPause();
     }
   });
 
   // Language switching
-  if (frDemoSwitch) {
-    frDemoSwitch.addEventListener('click', () => {
-      currentLanguage = 'fr';
-      updateLanguageButtons();
-      routeDemo();
-    });
-  }
-
-  if (enDemoSwitch) {
-    enDemoSwitch.addEventListener('click', () => {
-      currentLanguage = 'en';
-      updateLanguageButtons();
+  if (langToggleButton) {
+    langToggleButton.addEventListener('click', () => {
+      currentLanguage = currentLanguage === 'en' ? 'fr' : 'en';
+      updateDemoUILabels();
       routeDemo();
     });
   }
 
   // Replay button
   if (replayBtn) {
-    replayBtn.addEventListener('click', () => {
-      syncScenarioFromStoredExperience();
-      sessionStorage.removeItem(DEMO_SHOWN_KEY);
-      launchWorkflowDemo();
-    });
+    replayBtn.addEventListener('click', handleReplay);
   }
+
+  document.addEventListener('click', (event) => {
+    const replayAction = event.target.closest('[data-demo-action="replay"]');
+    if (!replayAction) return;
+    event.preventDefault();
+    handleReplay();
+  });
 
   window.addEventListener('launchDemo', (event) => {
     const demoExperience = event.detail;
@@ -1590,7 +2322,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg1Text = workflowTranslations['beginner.message1.user'][currentLanguage];
     await typeInInputAndSend(msg1Text);
     const { bubble: bubble1 } = addMessage(msg1Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 2: Bot intro with "Why This Works" card
     const msg2IntroText = workflowTranslations['beginner.message2.bot.intro'][currentLanguage];
@@ -1598,7 +2330,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator2 = createTypingIndicator();
     msg2Div.insertBefore(typingIndicator2, msg2Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator2.remove();
 
     await typeMessage(msg2Bubble, msg2IntroText, 70);
@@ -1623,7 +2355,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg3Text = workflowTranslations['beginner.message3.user'][currentLanguage];
     await typeInInputAndSend(msg3Text);
     const { bubble: bubble3 } = addMessage(msg3Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 4: Bot with portfolio proposal and risk card
     const msg4IntroText = workflowTranslations['beginner.message4.bot.intro'][currentLanguage];
@@ -1631,7 +2363,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator4 = createTypingIndicator();
     msg4Div.insertBefore(typingIndicator4, msg4Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator4.remove();
 
     await typeMessage(msg4Bubble, msg4IntroText, 50);
@@ -1658,7 +2390,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg5Text = workflowTranslations['beginner.message5.user'][currentLanguage];
     await typeInInputAndSend(msg5Text);
     const { bubble: bubble5 } = addMessage(msg5Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 6: Bot with automation checklist
     const msg6IntroText = workflowTranslations['beginner.message6.bot.intro'][currentLanguage];
@@ -1666,7 +2398,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator6 = createTypingIndicator();
     msg6Div.insertBefore(typingIndicator6, msg6Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator6.remove();
 
     await typeMessage(msg6Bubble, msg6IntroText, 50);
@@ -1691,7 +2423,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg7Text = workflowTranslations['beginner.message7.user'][currentLanguage];
     await typeInInputAndSend(msg7Text);
     const { bubble: bubble7 } = addMessage(msg7Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 8: Bot with liquidity and timeline cards
     const msg8IntroText = workflowTranslations['beginner.message8.bot.intro'][currentLanguage];
@@ -1699,7 +2431,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator8 = createTypingIndicator();
     msg8Div.insertBefore(typingIndicator8, msg8Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator8.remove();
 
     await typeMessage(msg8Bubble, msg8IntroText, 50);
@@ -1729,7 +2461,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg9Text = workflowTranslations['beginner.message9.user'][currentLanguage];
     await typeInInputAndSend(msg9Text);
     const { bubble: bubble9 } = addMessage(msg9Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 10: Bot with backtest card
     const msg10IntroText = workflowTranslations['beginner.message10.bot.intro'][currentLanguage];
@@ -1737,7 +2469,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator10 = createTypingIndicator();
     msg10Div.insertBefore(typingIndicator10, msg10Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator10.remove();
 
     await typeMessage(msg10Bubble, msg10IntroText, 50);
@@ -1773,7 +2505,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg10_5Text = workflowTranslations['beginner.message10_5.user'][currentLanguage];
     await typeInInputAndSend(msg10_5Text);
     const { bubble: bubble10_5 } = addMessage(msg10_5Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 10.5: Bot with pricing card
     const msg10_5IntroText = workflowTranslations['beginner.message10_5.bot.intro'][currentLanguage];
@@ -1781,7 +2513,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator10_5 = createTypingIndicator();
     msg10_5Div.insertBefore(typingIndicator10_5, msg10_5Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator10_5.remove();
 
     await typeMessage(msg10_5Bubble, msg10_5IntroText, 50);
@@ -1816,7 +2548,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg11Text = workflowTranslations['beginner.message11.user'][currentLanguage];
     await typeInInputAndSend(msg11Text);
     const { bubble: bubble11 } = addMessage(msg11Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 11: Bot with ChatGPT comparison card
     const msg11IntroText = workflowTranslations['beginner.message11.bot.intro'][currentLanguage];
@@ -1824,7 +2556,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator11 = createTypingIndicator();
     msg11Div.insertBefore(typingIndicator11, msg11Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator11.remove();
 
     await typeMessage(msg11Bubble, msg11IntroText, 50);
@@ -1849,7 +2581,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg12Text = workflowTranslations['beginner.message12.user'][currentLanguage];
     await typeInInputAndSend(msg12Text);
     const { bubble: bubble12 } = addMessage(msg12Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 13: Bot sends closing with next steps
     const msg13IntroText = workflowTranslations['beginner.message13.bot.intro'][currentLanguage];
@@ -1857,7 +2589,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator13 = createTypingIndicator();
     msg13Div.insertBefore(typingIndicator13, msg13Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator13.remove();
 
     await typeMessage(msg13Bubble, msg13IntroText, 50);
@@ -1904,8 +2636,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-    // Mark demo as shown
-    sessionStorage.setItem(DEMO_SHOWN_KEY, 'true');
+    finishDemo('completed');
   };
 
   // ========== EXPERT DEMO VISUAL HELPERS ==========
@@ -2457,7 +3188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg1Text = workflowTranslations['expert.message1.user'][currentLanguage];
     await typeInInputAndSend(msg1Text);
     const { bubble: bubble1 } = addMessage(msg1Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 2: Bot intro with strategy architecture
     const msg2IntroText = workflowTranslations['expert.message2.bot.intro'][currentLanguage];
@@ -2465,7 +3196,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator2 = createTypingIndicator();
     msg2Div.insertBefore(typingIndicator2, msg2Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator2.remove();
 
     await typeMessage(msg2Bubble, msg2IntroText, 50);
@@ -2490,7 +3221,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg3Text = workflowTranslations['expert.message3.user'][currentLanguage];
     await typeInInputAndSend(msg3Text);
     const { bubble: bubble3 } = addMessage(msg3Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 4: Bot with risk metrics and stress tests
     const msg4IntroText = workflowTranslations['expert.message4.bot.intro'][currentLanguage];
@@ -2498,7 +3229,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator4 = createTypingIndicator();
     msg4Div.insertBefore(typingIndicator4, msg4Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator4.remove();
 
     await typeMessage(msg4Bubble, msg4IntroText, 50);
@@ -2528,7 +3259,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg5Text = workflowTranslations['expert.message5.user'][currentLanguage];
     await typeInInputAndSend(msg5Text);
     const { bubble: bubble5 } = addMessage(msg5Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 6: Bot with rebalancing and black swan cards
     const msg6IntroText = workflowTranslations['expert.message6.bot.intro'][currentLanguage];
@@ -2536,7 +3267,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator6 = createTypingIndicator();
     msg6Div.insertBefore(typingIndicator6, msg6Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator6.remove();
 
     await typeMessage(msg6Bubble, msg6IntroText, 50);
@@ -2566,7 +3297,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg7Text = workflowTranslations['expert.message7.user'][currentLanguage];
     await typeInInputAndSend(msg7Text);
     const { bubble: bubble7 } = addMessage(msg7Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 8: Bot with execution card
     const msg8IntroText = workflowTranslations['expert.message8.bot.intro'][currentLanguage];
@@ -2574,7 +3305,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator8 = createTypingIndicator();
     msg8Div.insertBefore(typingIndicator8, msg8Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator8.remove();
 
     await typeMessage(msg8Bubble, msg8IntroText, 50);
@@ -2596,7 +3327,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg9Text = workflowTranslations['expert.message9.user'][currentLanguage];
     await typeInInputAndSend(msg9Text);
     const { bubble: bubble9 } = addMessage(msg9Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 10: Bot with timeline and implementation
     const msg10IntroText = workflowTranslations['expert.message10.bot.intro'][currentLanguage];
@@ -2604,7 +3335,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator10 = createTypingIndicator();
     msg10Div.insertBefore(typingIndicator10, msg10Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator10.remove();
 
     await typeMessage(msg10Bubble, msg10IntroText, 50);
@@ -2621,7 +3352,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg11Text = workflowTranslations['expert.message11.user'][currentLanguage];
     await typeInInputAndSend(msg11Text);
     const { bubble: bubble11 } = addMessage(msg11Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 12: Bot with alpha decomposition
     const msg12IntroText = workflowTranslations['expert.message12.bot.intro'][currentLanguage];
@@ -2629,7 +3360,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator12 = createTypingIndicator();
     msg12Div.insertBefore(typingIndicator12, msg12Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator12.remove();
 
     await typeMessage(msg12Bubble, msg12IntroText, 50);
@@ -2648,7 +3379,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator13 = createTypingIndicator();
     msg13Div.insertBefore(typingIndicator13, msg13Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator13.remove();
 
     await typeMessage(msg13Bubble, msg13IntroText, 50);
@@ -2684,7 +3415,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg14Text = workflowTranslations['expert.message14.user'][currentLanguage];
     await typeInInputAndSend(msg14Text);
     const { bubble: bubble14 } = addMessage(msg14Text, true);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
 
     // Message 15: Bot sends closing with setup steps
     const msg15IntroText = workflowTranslations['expert.message15.bot.intro'][currentLanguage];
@@ -2692,7 +3423,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const typingIndicator15 = createTypingIndicator();
     msg15Div.insertBefore(typingIndicator15, msg15Bubble.nextSibling);
-    await safeDelay(2500);
+    await safeDelay(TIMING.responseDelay);
     typingIndicator15.remove();
 
     await typeMessage(msg15Bubble, msg15IntroText, 50);
@@ -2739,8 +3470,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-    // Mark demo as shown
-    sessionStorage.setItem(DEMO_SHOWN_KEY, 'true');
+    finishDemo('completed');
   };
 
   // Wealth manager demo trigger buttons
@@ -2748,7 +3478,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const wealthDemoTriggerCta = document.getElementById('wealth-demo-trigger-cta');
 
   const handleWealthDemoClick = () => {
-    currentScenario = 'semiconductors-sortino'; // Expert demo
+    const knowledgeOverlay = document.getElementById('knowledge-overlay');
+    if (knowledgeOverlay) {
+      window.dispatchEvent(new CustomEvent('openKnowledgeOverlay', {
+        detail: { entryPoint: 'professional_demo' }
+      }));
+      return;
+    }
+    currentScenario = 'semiconductors-sortino'; // Expert demo fallback
     launchWorkflowDemo();
   };
 

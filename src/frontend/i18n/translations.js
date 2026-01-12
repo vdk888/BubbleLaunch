@@ -2245,6 +2245,94 @@ const translations = {
     en: "This interactive demo shows how you'll use Bubble: feel free to try several scenarios!",
     fr: "Cette démo interactive montre comment vous utiliserez Bubble : n'hésitez pas à essayez plusieurs scénarios !"
   },
+  "demo.speed.normal": {
+    en: "1x",
+    fr: "1x"
+  },
+  "demo.speed.fast": {
+    en: "1.5x",
+    fr: "1,5x"
+  },
+  "demo.speed.faster": {
+    en: "2x",
+    fr: "2x"
+  },
+  "demo.speed.skip": {
+    en: "Skip",
+    fr: "Passer"
+  },
+  "demo.control.speed": {
+    en: "Playback speed",
+    fr: "Vitesse de lecture"
+  },
+  "demo.control.pause": {
+    en: "Pause",
+    fr: "Pause"
+  },
+  "demo.control.play": {
+    en: "Play",
+    fr: "Reprendre"
+  },
+  "demo.control.language": {
+    en: "Switch language",
+    fr: "Changer de langue"
+  },
+  "demo.pause.indicator": {
+    en: "Paused - tap to continue",
+    fr: "En pause - touchez pour continuer"
+  },
+  "demo.skip.confirm": {
+    en: "Skip the demo and jump to next steps?",
+    fr: "Passer la démo et aller aux prochaines étapes ?"
+  },
+  "demo.complete.title": {
+    en: "Demo Complete!",
+    fr: "Démo terminée !"
+  },
+  "demo.complete.cta.beginner": {
+    en: "Discover my investor profile",
+    fr: "Découvrir mon profil investisseur"
+  },
+  "demo.complete.cta.intermediate": {
+    en: "Test strategies",
+    fr: "Tester des stratégies"
+  },
+  "demo.complete.cta.expert": {
+    en: "Get priority access",
+    fr: "Accès prioritaire"
+  },
+  "demo.complete.hint.beginner": {
+    en: "Start with a profile walkthrough to personalize your strategy.",
+    fr: "Commencez par votre profil pour personnaliser la stratégie."
+  },
+  "demo.complete.hint.intermediate": {
+    en: "Try the simulator to compare allocations and risk levels.",
+    fr: "Testez le simulateur pour comparer allocations et niveaux de risque."
+  },
+  "demo.complete.hint.expert": {
+    en: "Get priority access to discuss deployment details.",
+    fr: "Accédez en priorité pour discuter du déploiement."
+  },
+  "demo.complete.waitlist": {
+    en: "Waitlist",
+    fr: "Liste d'attente"
+  },
+  "demo.complete.replay": {
+    en: "Replay Demo",
+    fr: "Relancer la démo"
+  },
+  "demo.complete.insight.beginner": {
+    en: "Interested in defensive portfolio building and capital preservation.",
+    fr: "Intéressé par la construction défensive et la préservation du capital."
+  },
+  "demo.complete.insight.intermediate": {
+    en: "Interested in momentum strategies and data-backed allocation.",
+    fr: "Intéressé par les stratégies momentum et l'allocation basée sur les données."
+  },
+  "demo.complete.insight.expert": {
+    en: "Interested in risk-adjusted strategies and advanced execution details.",
+    fr: "Intéressé par les stratégies ajustées au risque et l'exécution avancée."
+  },
 
   // ===================================
   // INVESTOR PAGES TRANSLATIONS

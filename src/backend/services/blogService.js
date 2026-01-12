@@ -34,16 +34,28 @@ function slugify(text) {
         .replace(/^-|-$/g, "");
 }
 
-function getUrlPath(rawUrl) {
+function extractUrlCandidate(rawUrl) {
     if (!rawUrl) return null;
+    const trimmed = String(rawUrl).trim();
+    if (!trimmed) return null;
+    const markdownMatch = trimmed.match(/\((https?:\/\/[^)]+)\)/);
+    const candidate = markdownMatch ? markdownMatch[1].trim() : trimmed;
+    if (candidate.includes("[") || candidate.includes("]")) return null;
+    return candidate;
+}
+
+function isGenericBlogPath(pathname) {
+    return pathname === "" || pathname === "/" || pathname === "/blog" || pathname === "/en/blog";
+}
+
+function getUrlPath(rawUrl) {
+    const candidate = extractUrlCandidate(rawUrl);
+    if (!candidate) return null;
     try {
-        // Handle markdown-style links like [https://...](https://...)
-        const markdownMatch = rawUrl.match(/\[([^\]]+)\]\(([^)]+)\)/);
-        if (markdownMatch) {
-            rawUrl = markdownMatch[2]; // Use the URL from parentheses
-        }
-        const url = new URL(rawUrl, SITE_ORIGIN);
-        return url.pathname;
+        const url = new URL(candidate, SITE_ORIGIN);
+        const normalized = url.pathname.replace(/\/+$/, "");
+        if (isGenericBlogPath(normalized || "/")) return null;
+        return normalized;
     } catch (e) {
         return null;
     }

@@ -154,6 +154,18 @@ const EducationFloatingChat = (function() {
   }
 
   /**
+   * Check if suggestions should be shown based on onboarding completion and profile confidence
+   * Only show suggestions if user has completed FULL onboarding (profile is known)
+   * @returns {boolean} - True if suggestions should be displayed
+   */
+  function shouldShowSuggestions() {
+    if (typeof BubbleAgentMemory === 'undefined') return false;
+    const journey = BubbleAgentMemory.getJourney();
+    const profile = BubbleAgentMemory.getProfile();
+    return journey?.onboardingCompleted === true && (profile?.riskConfidence || 0) >= 70;
+  }
+
+  /**
    * Check if user has completed onboarding
    * Prioritizes BubbleAgentMemory, falls back to sessionStorage
    * Returns: { completed: boolean, stage: string, profile: object|null, progress: number }
@@ -616,12 +628,20 @@ const EducationFloatingChat = (function() {
 
   /**
    * Render context-aware suggestions
+   * Only renders suggestions if user has completed full onboarding
    */
   function renderSuggestions() {
     if (!modal) return;
 
     const container = modal.querySelector('#educationChatSuggestions');
     if (!container) return;
+
+    // Only show suggestions if user has completed full onboarding (profile is known)
+    if (!shouldShowSuggestions()) {
+      container.style.display = 'none';
+      container.innerHTML = '';
+      return;
+    }
 
     const suggestions = getContextSuggestions();
 
