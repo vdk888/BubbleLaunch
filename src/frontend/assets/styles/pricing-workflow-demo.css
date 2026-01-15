@@ -230,6 +230,7 @@
   cursor: pointer;
   border: 1px solid #e5e5e5;
   background: rgba(0, 0, 0, 0.04);
+  flex-shrink: 0;
 }
 
 .workflow-demo-lang-toggle .lang-current {
@@ -771,12 +772,14 @@
   .workflow-demo-header-actions {
     width: 100%;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 0.5rem;
   }
 
   .workflow-demo-speed-controls,
   .workflow-demo-controls {
+    flex: 1;
+    min-width: 0;
     padding: 0.25rem;
   }
 
@@ -882,7 +885,8 @@
     right: 0.6rem;
   }
 
-  .language-switcher-demo button {
+  .language-switcher-demo button,
+  .workflow-demo-lang-toggle {
     font-size: 0.85rem;
     padding: 0.5rem 0.9rem;
     min-width: 44px;
@@ -929,13 +933,15 @@
   .workflow-demo-header-actions {
     width: 100%;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 0.4rem;
   }
 
   .workflow-demo-speed-controls,
   .workflow-demo-controls {
-    width: 100%;
+    width: auto;
+    flex: 1;
+    min-width: 0;
     justify-content: space-between;
     padding: 0.2rem;
   }
@@ -943,9 +949,9 @@
   .speed-control,
   .workflow-demo-control-btn {
     font-size: 0.68rem;
-    min-height: 30px;
-    min-width: 30px;
-    padding: 0.25rem 0.55rem;
+    min-height: 28px;
+    min-width: 28px;
+    padding: 0.2rem 0.45rem;
   }
 
   .workflow-demo-progress {
@@ -971,12 +977,13 @@
     align-items: center;
   }
 
-  .language-switcher-demo button {
+  .language-switcher-demo button,
+  .workflow-demo-lang-toggle {
     font-size: 0.85rem;
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 50px;
-    min-width: 44px;
-    min-height: 44px;
+    min-width: 40px;
+    min-height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -984,7 +991,8 @@
     transition: all 0.2s ease;
   }
 
-  .language-switcher-demo button:active {
+  .language-switcher-demo button:active,
+  .workflow-demo-lang-toggle:active {
     transform: scale(0.95);
   }
 

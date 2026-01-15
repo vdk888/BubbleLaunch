@@ -23,6 +23,7 @@ const PlaygroundFullscreenChat = (function() {
   // Session state
   const SESSION_KEY = 'bubblePlaygroundFullscreenSession';
   let session = null;
+  let hasShownWelcomeMessage = false;
 
   // Reference to BubbleAgentMemory (loaded externally)
   let Memory = null;
@@ -868,6 +869,7 @@ const PlaygroundFullscreenChat = (function() {
     if (session.stage === STAGES.free_chat) {
       enableInput();
       setTimeout(async () => {
+        if (hasShownWelcomeMessage) return;
         // Use personalized welcome for returning users - always end with a question
         const welcomeMsg = isReturning
           ? buildReturningUserWelcome()
@@ -876,6 +878,7 @@ const PlaygroundFullscreenChat = (function() {
               : "Good to see you again! So, what brings you here today? A question, something you're curious about?");
 
         await addMessage(welcomeMsg, 'bot', 500);
+        hasShownWelcomeMessage = true;
 
         // Show personalized recommendation if onboarding completed
         if (journey?.onboardingCompleted) {
@@ -900,8 +903,11 @@ const PlaygroundFullscreenChat = (function() {
       // Onboarding active - show welcome back and enable input
       enableInput();
       setTimeout(async () => {
+        if (hasShownWelcomeMessage) return;
         const memoryProfile = Memory ? Memory.getProfile() : null;
-        const confidence = memoryProfile?.riskConfidence || 0;
+        const confidence = journey?.onboardingCompleted
+          ? (memoryProfile?.riskConfidence || 0)
+          : 0;
 
         if (confidence > 0 && isReturning) {
           // Returning user with some profile data - be proactive
@@ -931,6 +937,7 @@ const PlaygroundFullscreenChat = (function() {
             'bot', 500
           );
         }
+        hasShownWelcomeMessage = true;
       }, 300);
     }
   }
@@ -1264,6 +1271,19 @@ const PlaygroundFullscreenChat = (function() {
 
     // Load session
     const hasSession = loadSession();
+
+    // If onboarding not complete, reset session to onboarding_active and clear history
+    if (!isOnboardingComplete()) {
+      session.stage = STAGES.onboarding_active;
+      session.conversation = [];
+      saveSession();
+      messagesContainer.innerHTML = '';
+      hasShownWelcomeMessage = false;
+      if (Memory && typeof Memory.reset === 'function') {
+        Memory.reset();
+        console.log('[PlaygroundChat] Reset BubbleAgentMemory for fresh onboarding');
+      }
+    }
 
     // Check for interrupted onboarding transition
     const transitionPending = localStorage.getItem(ONBOARDING_TRANSITION_KEY);

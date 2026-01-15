@@ -31,7 +31,12 @@
   const isSimulatorPage = window.location.pathname.includes('portfolio-simulator');
   const pageContext = dataset.pageContext || (isSimulatorPage ? 'portfolio-simulator' : 'landing');
   const customTriggerSelector = dataset.triggerSelector;
-  const alwaysVisible = dataset.alwaysVisible === 'true';
+  let alwaysVisible = dataset.alwaysVisible === 'true';
+
+  // Force always-visible for professionals pages to avoid missing trigger warnings
+  if (pageContext.startsWith('professionals')) {
+    alwaysVisible = true;
+  }
 
   // Skip event handling on education pages - delegated to education-floating-chat.js
   // BUT still set up language change listener for placeholder updates
@@ -103,7 +108,9 @@
     // Find the trigger element - the hero chat input section
     const triggerElement = customTriggerSelector
       ? document.querySelector(customTriggerSelector)
-      : document.querySelector('.hero-chat-form') || document.querySelector('.hero-section');
+      : document.querySelector('.hero-chat-form') ||
+        document.querySelector('.hero') ||
+        document.querySelector('.hero-section');
 
     if (triggerElement) {
       console.log('[FloatingChatInput] Trigger element found:', triggerElement.className);

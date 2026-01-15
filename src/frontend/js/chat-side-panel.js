@@ -111,6 +111,63 @@
   loadBubbleAgentMemory().catch(() => {});
 
   /**
+   * Dynamically load StrategyEventBus if not already loaded
+   */
+  function loadStrategyEventBus() {
+    if (typeof window.StrategyEventBus !== 'undefined') {
+      return Promise.resolve();
+    }
+
+    const pathsToTry = [
+      '/js/strategy-event-bus.js',
+    ];
+
+    // Try to compute relative path based on current script location
+    try {
+      const currentScript = document.currentScript || document.querySelector('script[src*="chat-side-panel"]');
+      if (currentScript && currentScript.src) {
+        const scriptUrl = new URL(currentScript.src);
+        const basePath = scriptUrl.pathname.substring(0, scriptUrl.pathname.lastIndexOf('/'));
+        pathsToTry.push(`${basePath}/strategy-event-bus.js`);
+      }
+    } catch (e) {
+      // Ignore URL parsing errors
+    }
+    
+    pathsToTry.push('./strategy-event-bus.js');
+
+    function tryLoadScript(path) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = path;
+        script.async = true;
+        script.onload = () => {
+          console.log(`[chat-side-panel] StrategyEventBus loaded from ${path}`);
+          resolve();
+        };
+        script.onerror = () => {
+          script.remove();
+          reject(new Error(`Failed to load from ${path}`));
+        };
+        document.head.appendChild(script);
+      });
+    }
+
+    function tryNextPath(index) {
+      if (index >= pathsToTry.length) {
+        console.warn('[chat-side-panel] Failed to load StrategyEventBus from all paths');
+        return Promise.resolve();
+      }
+      return tryLoadScript(pathsToTry[index]).catch(() => tryNextPath(index + 1));
+    }
+
+    return tryNextPath(0);
+  }
+
+  // Attempt to load StrategyEventBus dynamically (non-blocking)
+  loadStrategyEventBus().catch(() => {});
+
+  /**
    * Get BubbleAgentMemory if available (graceful degradation)
    * @returns {Object|null} Memory module or null
    */
@@ -233,7 +290,11 @@
   // Record page visit on load
   recordPageVisitInMemory();
 
-  const initialMessagesHTML = messagesContainer.innerHTML;
+  let initialMessagesHTML = messagesContainer.innerHTML;
+  if (window.location.pathname.includes('/playground/resources')) {
+    initialMessagesHTML = '';
+    messagesContainer.innerHTML = '';
+  }
   const pageContext = getPageContext();
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -372,6 +433,17 @@
   }
 
   function loadPersistedConversation() {
+    // Playground resources: force fresh start, avoid old history and duplicate greetings
+    if (pageContext === 'playground_resources') {
+      state.conversation = [];
+      messagesContainer.innerHTML = '';
+      initialMessagesHTML = '';
+      if (!isOnboardingComplete()) {
+        addOnboardingPrompt();
+      }
+      return;
+    }
+
     // For ALL investor pages, load unified conversation history
     if (isInvestorPage()) {
       const unifiedHistory = loadUnifiedHistory();
@@ -452,6 +524,18 @@
       } catch {
         // ignore
       }
+    }
+
+    // If no user messages yet and onboarding not complete on investor pages,
+    // replace the static greeting with a single onboarding prompt to avoid duplicates.
+    if (
+      isInvestorPage() &&
+      !isOnboardingComplete() &&
+      !messagesContainer.querySelector('.chat-side-panel-message.user') &&
+      !messagesContainer.querySelector('.onboarding-prompt')
+    ) {
+      messagesContainer.innerHTML = '';
+      addOnboardingPrompt();
     }
   }
 
@@ -939,6 +1023,7 @@
     const path = window.location.pathname;
     if (path.includes('pricing')) return 'pricing';
     if (path.includes('portfolio-simulator')) return 'simulator';
+    if (path.includes('/playground/resources')) return 'playground_resources';
     if (path.includes('/education/arena')) return 'education_arena';
     if (path.includes('/education/simulator')) return 'education_simulator';
     if (path.includes('/education')) return 'education';
@@ -1033,6 +1118,154 @@
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
     return content;
+  }
+
+  /**
+   * Dynamically load ToolResultVisualizer if not already loaded
+   */
+  function loadToolResultVisualizer() {
+    if (typeof window.ToolResultVisualizer !== 'undefined') {
+      return Promise.resolve();
+    }
+
+    const pathsToTry = [
+      '/js/tool-result-visualizer.js',
+    ];
+
+    function tryLoadScript(path) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = path;
+        script.async = true;
+        script.onload = () => {
+          console.log(`[chat-side-panel] ToolResultVisualizer loaded from ${path}`);
+          resolve();
+        };
+        script.onerror = () => {
+          script.remove();
+          reject(new Error(`Failed to load from ${path}`));
+        };
+        document.head.appendChild(script);
+      });
+    }
+
+    function tryNextPath(index) {
+      if (index >= pathsToTry.length) {
+        console.warn('[chat-side-panel] Failed to load ToolResultVisualizer - using fallback');
+        return Promise.resolve();
+      }
+      return tryLoadScript(pathsToTry[index]).catch(() => tryNextPath(index + 1));
+    }
+
+    return tryNextPath(0);
+  }
+
+  // Attempt to load ToolResultVisualizer (non-blocking)
+  loadToolResultVisualizer().catch(() => {});
+
+  /**
+   * Render tool result using ToolResultVisualizer or fallback
+   * @param {Object} toolResult - Tool result from SSE
+   * @param {HTMLElement} anchorEl - Anchor element for visualization
+   */
+  function renderToolResult(toolResult, anchorEl) {
+    if (!toolResult || !anchorEl) return;
+
+    // Use ToolResultVisualizer if available
+    if (window.ToolResultVisualizer) {
+      window.ToolResultVisualizer.handleToolResult(toolResult, anchorEl);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      return;
+    }
+
+    // Fallback to basic rendering
+    const wrapper = anchorEl.closest('.chat-side-panel-message');
+    if (!wrapper) return;
+
+    const card = document.createElement('div');
+    card.className = 'tool-result-card';
+    card.style.marginTop = '8px';
+    card.style.padding = '12px';
+    card.style.border = '1px solid #e3e7ef';
+    card.style.borderRadius = '10px';
+    card.style.background = '#f8fafc';
+    card.style.width = '100%';
+    card.style.boxSizing = 'border-box';
+
+    const name = document.createElement('div');
+    name.style.fontWeight = '600';
+    name.style.marginBottom = '6px';
+    name.textContent = toolResult.name || 'Resultat outil';
+    card.appendChild(name);
+
+    const result = toolResult.result || {};
+
+    // Metrics list
+    if (result.data?.metrics) {
+      const m = result.data.metrics;
+      const list = document.createElement('div');
+      list.style.display = 'flex';
+      list.style.flexWrap = 'wrap';
+      list.style.gap = '6px 12px';
+      list.style.fontSize = '13px';
+      list.style.color = '#334155';
+      const entries = [
+        ['Rendement total', m.totalReturn, '%'],
+        ['Annualise', m.annualizedReturn, '%'],
+        ['Volatilite', m.volatility, '%'],
+        ['Sharpe', m.sharpeRatio, ''],
+        ['Max DD', m.maxDrawdown, '%'],
+      ];
+      entries.forEach(([label, val, suffix]) => {
+        if (val === undefined || val === null || Number.isNaN(val)) return;
+        const item = document.createElement('div');
+        item.textContent = `${label}: ${val}${suffix}`;
+        list.appendChild(item);
+      });
+      card.appendChild(list);
+    }
+
+    // Chart (sparkline) if data present
+    const series = result.data?.chartData;
+    if (Array.isArray(series) && series.length > 1) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 100 40');
+      svg.setAttribute('preserveAspectRatio', 'none');
+      svg.style.width = '100%';
+      svg.style.height = '120px';
+      svg.style.marginTop = '10px';
+
+      const values = series.map((p) => p.value).filter((v) => typeof v === 'number');
+      const min = Math.min(...values);
+      const max = Math.max(...values);
+      const span = max - min || 1;
+      const pts = series.map((p, i) => {
+        const x = (i / (series.length - 1)) * 100;
+        const y = 40 - ((p.value - min) / span) * 40;
+        return `${x.toFixed(2)},${y.toFixed(2)}`;
+      });
+
+      const polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+      polyline.setAttribute('fill', 'none');
+      polyline.setAttribute('stroke', '#4f46e5');
+      polyline.setAttribute('stroke-width', '1.5');
+      polyline.setAttribute('points', pts.join(' '));
+
+      const baseline = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      baseline.setAttribute('x1', '0');
+      baseline.setAttribute('x2', '100');
+      baseline.setAttribute('y1', '40');
+      baseline.setAttribute('y2', '40');
+      baseline.setAttribute('stroke', '#e5e7eb');
+      baseline.setAttribute('stroke-width', '0.5');
+
+      svg.appendChild(baseline);
+      svg.appendChild(polyline);
+      card.appendChild(svg);
+    }
+
+    wrapper.appendChild(card);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
 
   // Track if we've shown the onboarding suggestion for this session
@@ -1193,6 +1426,14 @@
       if (userProfileContext) {
         payload.userProfileContext = userProfileContext;
       }
+      // Add full user profile for tool execution (get_profile_visualization)
+      const Memory = getMemory();
+      if (Memory) {
+        const profile = Memory.getProfile();
+        if (profile) {
+          payload.userProfile = profile;
+        }
+      }
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
@@ -1234,6 +1475,28 @@
           try {
             const payload = JSON.parse(data);
             if (payload.done) {
+              continue;
+            }
+            if (payload.typing) {
+              // ensure typing indicator is visible if no content yet
+              if (isFirstChunk) {
+                botMessageContent.innerHTML = '<div class="typing-indicator"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
+              }
+              continue;
+            }
+            if (payload.tool_result) {
+              renderToolResult(payload.tool_result, botMessageContent);
+              // If tool result carries an error flag, surface it as text too
+              if (payload.tool_result.result && payload.tool_result.result.success === false) {
+                const errText = payload.tool_result.result.error || 'Une erreur est survenue avec l’outil.';
+                botMessageContent.textContent = errText;
+              }
+              continue;
+            }
+            if (payload.error && payload.is_error) {
+              botMessageContent.textContent = payload.text || payload.error || 'Erreur';
+              isFirstChunk = false;
+              collected += botMessageContent.textContent;
               continue;
             }
             if (payload.content) {

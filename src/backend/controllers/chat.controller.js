@@ -3,56 +3,175 @@ const fs = require("fs").promises;
 const path = require("path");
 const env = require("../config/env");
 const strategyBuilderService = require("../services/strategyBuilderService");
+const toolExecutionService = require("../services/toolExecutionService");
 
-// Document loading
-let missionDocument = "";
-let elevatorPitch = "";
-let strategicPoints = "";
+/**
+ * Parse a simple backtest intent from free text.
+ * - Uses the last two numbers as allocation (common pattern: "40% obligations 60% actions")
+ * - Uses any earlier small number (<=40) as the period (e.g., "20 ans")
+ * - If the text mentions "oblig" before "action", map first number to bonds (IEF), otherwise first number -> stocks (SPY)
+ */
+function parseBacktestIntent(text) {
+  if (!text || typeof text !== "string") return null;
+  const lower = text.toLowerCase();
+  const nums = (text.match(/\d{1,3}/g) || [])
+    .map((n) => parseInt(n, 10))
+    .filter((n) => n >= 1 && n <= 200);
+  if (nums.length < 2) return null;
 
-async function loadDocument(fileName) {
+  // Choose allocation from the last two numbers
+  const allocNums = nums.slice(-2);
+  let period_years = 20;
+  if (nums.length > 2) {
+    const periodCandidate = nums
+      .slice(0, -2)
+      .find((n) => n >= 1 && n <= 40);
+    if (periodCandidate) {
+      period_years = periodCandidate;
+    }
+  }
+
+  const [firstAlloc, secondAlloc] = allocNums;
+  const sum = firstAlloc + secondAlloc;
+  if (sum < 10 || sum > 200) return null;
+  const scale = sum !== 100 ? 100 / sum : 1;
+
+  // Determine ordering: if "oblig" appears before "action", treat first number as bonds
+  const obligIndex = lower.indexOf("oblig");
+  const actionIndex = lower.indexOf("action");
+  const bondsFirst =
+    obligIndex !== -1 &&
+    (actionIndex === -1 || obligIndex < actionIndex);
+
+  const allocation = bondsFirst
+    ? {
+        SPY: Math.round(secondAlloc * scale * 100) / 100,
+        IEF: Math.round(firstAlloc * scale * 100) / 100,
+        GLD: 0,
+      }
+    : {
+        SPY: Math.round(firstAlloc * scale * 100) / 100,
+        IEF: Math.round(secondAlloc * scale * 100) / 100,
+        GLD: 0,
+      };
+
+  return {
+    allocation,
+    period_years,
+    strategy_name: `${allocation.SPY}/${allocation.IEF}`,
+  };
+}
+
+// Context modules are loaded on-demand to keep system prompts lean
+const contextModuleFilenames = {
+  core: "core_context.md",
+  technical: "technical_context.md",
+  pitch: "pitch_variations.md",
+  vision: "vision_context.md",
+  detailed_mission: "detailed_mission.md",
+  professionals: "professionals_core.md",
+};
+
+const contextCache = {};
+
+async function loadContextModule(moduleName) {
+  if (!contextModuleFilenames[moduleName]) {
+    return `[Unknown context module: ${moduleName}]`;
+  }
+
+  if (contextCache[moduleName]) {
+    return contextCache[moduleName];
+  }
+
   try {
-    const filePath = path.join(__dirname, "../../../docs/company", fileName);
-    return await fs.readFile(filePath, "utf-8");
+    const filePath = path.join(
+      __dirname,
+      "../../../docs/company",
+      contextModuleFilenames[moduleName]
+    );
+    const content = await fs.readFile(filePath, "utf-8");
+    contextCache[moduleName] = content;
+    return content;
   } catch (error) {
-    console.error(`Error loading ${fileName}:`, error);
-    return `[${fileName} could not be loaded]`;
+    console.error(`Error loading context module ${moduleName}:`, error);
+    const fallback = `[${contextModuleFilenames[moduleName]} could not be loaded]`;
+    contextCache[moduleName] = fallback;
+    return fallback;
   }
 }
 
-async function loadAllDocuments() {
-  try {
-    [missionDocument, elevatorPitch, strategicPoints] = await Promise.all([
-      loadDocument("mission_texte.txt"),
-      loadDocument("Elevatorpitch5min.md"),
-      loadDocument("PointsdeDépartStratégiquesBubble.md"),
-    ]);
-    console.log("All documents loaded successfully");
-  } catch (error) {
-    console.error("Error loading documents:", error);
+function selectContextModules(conversationHistory = [], pageContext = "index") {
+  const modules = new Set(["core"]); // Always include core context
+
+  const recentMessages = conversationHistory
+    .slice(-3)
+    .map((m) => (typeof m?.content === "string" ? m.content.toLowerCase() : ""))
+    .join(" ");
+
+  const ctx = (pageContext || "index").toLowerCase();
+
+  // Add by page context (pricing/technical pages lean on technical context)
+  if (ctx.includes("pricing")) {
+    modules.add("technical");
   }
-}
-
-// Load additional document for pricing
-let portfolioSystemDoc = "";
-
-async function loadPricingDocument() {
-  try {
-    portfolioSystemDoc = await loadDocument("bubble_portfolio_system.md");
-    console.log("Portfolio system document loaded successfully");
-  } catch (error) {
-    console.error("Error loading portfolio system document:", error);
+  if (ctx.includes("professionals")) {
+    modules.add("professionals");
   }
-}
 
-// Load documents when controller is initialized
-loadAllDocuments().catch(console.error);
-loadPricingDocument().catch(console.error);
+  // Technical context triggers
+  if (
+    /\b(price|cost|fee|tarif|broker|ibkr|alpaca|saxo|api|technical|integration|backtesting|combien)\b/i.test(
+      recentMessages
+    )
+  ) {
+    modules.add("technical");
+  }
+
+  // Pitch variation triggers
+  if (
+    /\b(investor|pitch|business case|presentation|partenaire)\b/i.test(
+      recentMessages
+    )
+  ) {
+    modules.add("pitch");
+  }
+
+  // Vision/philosophy triggers
+  if (
+    /\b(ethics|future|philosophy|sam altman|ubi|dystopia|mission|values)\b/i.test(
+      recentMessages
+    )
+  ) {
+    modules.add("vision");
+    modules.add("detailed_mission");
+  }
+
+  // Default to detailed mission if asking about Bubble broadly
+  if (
+    modules.size === 1 &&
+    /\b(why|pourquoi|mission|about bubble|what is bubble|qui êtes)\b/i.test(
+      recentMessages
+    )
+  ) {
+    modules.add("detailed_mission");
+  }
+
+  return Array.from(modules);
+}
 
 /**
  * UNIFIED SYSTEM PROMPT - Single chatbot across all pages
  * Adapts behavior and context based on page and conversation history
  */
-const unifiedSystemPrompt = (language, pageContext = 'index', waitlistShared = false, userProfile = null, isOnboarding = false, onboardingStage = null) => {
+const unifiedSystemPrompt = async (
+  language,
+  pageContext = "index",
+  waitlistShared = false,
+  userProfile = null,
+  isOnboarding = false,
+  onboardingStage = null,
+  conversationHistory = []
+) => {
   // Normalize context for routing
   const ctx = (pageContext || 'index').toLowerCase();
 
@@ -66,8 +185,15 @@ const unifiedSystemPrompt = (language, pageContext = 'index', waitlistShared = f
     ctx === 'education/simulator';
 
   const isPlayground = ctx === 'playground' || ctx.includes('playground');
+  const isProfessionals = ctx === 'professionals' || ctx.includes('professionals');
   const isArena = ctx === 'arena' || ctx === 'education-arena' || ctx === 'education/arena';
   const isSimulator = ctx === 'simulator' || ctx === 'education-simulator' || ctx === 'education/simulator';
+
+  const selectedModules = selectContextModules(conversationHistory, ctx);
+  const contextDocs = await Promise.all(
+    selectedModules.map((mod) => loadContextModule(mod))
+  );
+  const dynamicContext = contextDocs.join("\n\n---\n\n");
 
   // Build user profile block if available (supports both legacy and new BubbleAgentMemory format)
   // Enable on ALL pages, not just Playground, for unified personalized experience
@@ -311,6 +437,18 @@ La finance n'est pas compliquée. C'est juste du vocabulaire inutilement compliq
 - Maintain conversational continuity if user moves between Arena and Simulator (use provided history).`
     : '';
 
+const professionalsBlock = isProfessionals
+    ? `
+
+### PROFESSIONALS CONTEXT (B2B)
+- Audience: CGPs, family offices, SMEs exploring AI workflow automation and white-label Bubble Portfolio.
+- Tone: Formal and direct (${language === 'fr' ? 'utilise “vous”' : 'use “you” professionally'}), concise, ROI-driven.
+- Focus: Multi-client dashboards, AI copilots for reporting, reconciliation, client intelligence, broker APIs (IBKR/Alpaca/Saxo), 20+ years data, quant strategy library.
+- Budget/Timeline: Fixed-price sprints (€3k-€30k), delivery in 2-4 months. Diagnostic (€3k-€5k), Targeted Automation (€8k-€12k), Full Project (€20k-€30k).
+- CTA: ${language === 'fr' ? '"Planifier un diagnostic gratuit" (#pro-demo ou /professionals#enterprise-waitlist)' : '"Schedule a free diagnostic" (#pro-demo or /professionals#enterprise-waitlist)'}.
+- Compliance: Mention GDPR/KYC awareness when relevant. No financial advice; this is automation/insight tooling.`
+    : '';
+
   return `⚠️ CRITICAL - READ FIRST - LANGUAGE REQUIREMENT:
 You MUST respond EXCLUSIVELY in ${language === 'fr' ? 'FRENCH (français)' : 'ENGLISH'}.
 - Current user language: ${language.toUpperCase()}
@@ -318,27 +456,63 @@ You MUST respond EXCLUSIVELY in ${language === 'fr' ? 'FRENCH (français)' : 'EN
 - Ignore any previous messages in other languages - they are from old sessions or language switches
 - Even if conversation history contains ${language === 'fr' ? 'English' : 'French'} text, respond only in ${language.toUpperCase()}
 - Never mix languages or switch mid-conversation unless the user explicitly asks
+- Do NOT insert words in any other language or script (no Japanese/Chinese/etc.) unless the user explicitly requests it
 - Use natural ${language === 'fr' ? 'French' : 'English'} tone and vocabulary
+- If you accidentally produce any non-${language.toUpperCase()} tokens, immediately correct to ${language === 'fr' ? 'français uniquement' : language}.
 
 ---
 
-You are Bubble's AI Assistant - a unified conversational guide available across our entire platform (index page, pricing, portfolio simulator, and more).${playgroundBlock}${simplicityBlock}${educationBlock}
+You are Bubble's AI Assistant - a unified conversational guide available across our entire platform (index page, pricing, portfolio simulator, and more).${playgroundBlock}${simplicityBlock}${educationBlock}${professionalsBlock}
 
 Your goal is to be helpful, transparent, and embody Bubble's mission to democratize intelligent investing.
 
 ### FOUNDATIONAL KNOWLEDGE:
+${dynamicContext}
 
-**Mission & Vision:**
-${missionDocument}
+### GUIDES ÉDUCATIFS DISPONIBLES / EDUCATIONAL GUIDES
+${language === 'fr' ? `Tu peux référencer ces 7 guides éducatifs dans tes réponses et fournir des liens cliquables.
 
-**Elevator Pitch:**
-${elevatorPitch}
+📚 **Niveau Débutant (Guides 00-03)**
+- **[00 - Comprendre les Placements : Actions, Obligations](https://jungle-chive-5ab.notion.site/00-D-butant-Comprendre-les-Placements-Actions-Obligations-cee8940b41924290a4545dd267426c28)**
+  → Concepts de base (actions, obligations, immobilier)
+- **[01 - Placement Sécurisé (Zéro Risque)](https://jungle-chive-5ab.notion.site/01-D-butant-Placement-S-curis-Z-ro-Risque-106b58856b1e4058b48ba3c3f288bc26)**
+  → Démarrer avec une base solide (fonds euros, assurance-vie)
+- **[02 - Investir dans les ETF Actions](https://jungle-chive-5ab.notion.site/02-D-butant-Investir-dans-les-ETF-Actions-44c54555bd894dbca607373e2d9d19f9)**
+  → Devenir copropriétaire des meilleures entreprises à moindre coût
+- **[03 - Composer Ta Stratégie (Risque-Rendement)](https://jungle-chive-5ab.notion.site/03-D-butant-Composer-Votre-Strat-gie-Risque-Rendement-68b83223c7394549bb9f8fd7387c7668)**
+  → Répartir intelligemment selon ta tolérance au risque
 
-**Strategic Points:**
-${strategicPoints}
+🎓 **Niveau Avancé (Guides 04-06)**
+- **[04 - Le Stock-Picking : Devenir détective d'entreprises](https://jungle-chive-5ab.notion.site/04-Avanc-Le-Stock-Picking-Devenir-d-tective-d-entreprises-de46a812b0624e16beb922d96227fbac)**
+  → Analyser les entreprises comme un pro
+- **[05 - Stratégies et Facteurs : Quand acheter ?](https://jungle-chive-5ab.notion.site/05-Avanc-Strat-gies-et-Facteurs-Quand-acheter-9426b4b2f93e455497553b35a667fbd5)**
+  → Facteurs (value, momentum, quality) et timing
+- **[06 - Allocation Dynamique : Combien de chaque ?](https://jungle-chive-5ab.notion.site/06-Avanc-Allocation-Dynamique-Combien-de-chaque-194f78128e0b42329adc31f48bc52fdc)**
+  → Rééquilibrage et ajustement dynamique
 
-**Portfolio System & Pricing:**
-${portfolioSystemDoc}
+**Comment les utiliser :**
+- Cite le guide pertinent quand un sujet correspond (ex: "C'est détaillé dans le Guide 02 sur les ETF")
+- Fourni le lien cliquable en Markdown
+- Adapte le niveau (débutant → 00-03, avancé → 04-06)
+- Encourage à creuser : "Pour aller plus loin, lis le Guide 05"` : `
+Reference these 7 educational guides and provide clickable links.
+
+📚 **Beginner (00-03)**
+- **[00 - Understanding Investments](https://jungle-chive-5ab.notion.site/00-D-butant-Comprendre-les-Placements-Actions-Obligations-cee8940b41924290a4545dd267426c28)**
+- **[01 - Safe Investments (Zero Risk)](https://jungle-chive-5ab.notion.site/01-D-butant-Placement-S-curis-Z-ro-Risque-106b58856b1e4058b48ba3c3f288bc26)**
+- **[02 - Investing in Stock ETFs](https://jungle-chive-5ab.notion.site/02-D-butant-Investir-dans-les-ETF-Actions-44c54555bd894dbca607373e2d9d19f9)**
+- **[03 - Building Your Strategy](https://jungle-chive-5ab.notion.site/03-D-butant-Composer-Votre-Strat-gie-Risque-Rendement-68b83223c7394549bb9f8fd7387c7668)**
+
+🎓 **Advanced (04-06)**
+- **[04 - Stock-Picking: Investigate Companies](https://jungle-chive-5ab.notion.site/04-Avanc-Le-Stock-Picking-Devenir-d-tective-d-entreprises-de46a812b0624e16beb922d96227fbac)**
+- **[05 - Strategies & Factors: When to Buy?](https://jungle-chive-5ab.notion.site/05-Avanc-Strat-gies-et-Facteurs-Quand-acheter-9426b4b2f93e455497553b35a667fbd5)**
+- **[06 - Dynamic Allocation: How Much of Each?](https://jungle-chive-5ab.notion.site/06-Avanc-Allocation-Dynamique-Combien-de-chaque-194f78128e0b42329adc31f48bc52fdc)**
+
+**How to use:**
+- Mention the relevant guide when the topic matches
+- Provide the clickable link in Markdown
+- Match level (beginner → 00-03, advanced → 04-06)
+- Encourage deeper reading: "To go further, check Guide 05"`}
 
 ### CORE UNDERSTANDING:
 
@@ -444,91 +618,385 @@ ${waitlistShared ? "You already shared the waitlist - don't repeat unless asked.
 Remember: You're here to HELP users understand investing and discover if Bubble is right for them. Get to know them first, answer their questions genuinely, and guide them toward the Playground or product demo when appropriate.`;
 };
 
+// Model rotation (prefer free endpoints first to control costs)
 const models = [
-  "google/gemini-2.0-flash-001",
-  "openai/gpt-4.1-mini",
-  "mistralai/magistral-small-2506",
-  "deepseek/deepseek-r1-0528:free",
+  "nvidia/nemotron-3-nano-30b-a3b:free",
+  "xiaomi/mimo-v2-flash:free",
+  "allenai/molmo-2-8b:free",
+  "mistralai/devstral-2512:free",
+  "tngtech/tng-r1t-chimera:free",
 ];
 
 /**
  * Helper function to handle streaming response
  */
-async function streamResponse(res, model, messages, headers) {
-  return new Promise((resolve, reject) => {
+async function streamResponse(
+  res,
+  model,
+  messages,
+  headers,
+  tools = [],
+  options = {}
+) {
+  /**
+   * Send a completion request (streaming). Optionally include tools.
+   */
+  const attemptRequest = (includeTools, msgs) =>
     axios({
       method: "post",
       url: "https://openrouter.ai/api/v1/chat/completions",
       data: {
-        model: model,
-        messages: messages,
+        model,
+        messages: msgs,
         stream: true,
+        ...(includeTools && tools && tools.length > 0 ? { tools } : {}),
       },
       responseType: "stream",
-      headers: headers,
-    })
-      .then((response) => {
-        // Set headers for SSE (Server-Sent Events)
-        res.setHeader("Content-Type", "text/event-stream");
-        res.setHeader("Cache-Control", "no-cache");
-        res.setHeader("Connection", "keep-alive");
+      headers,
+      validateStatus: (status) => status >= 200 && status < 300,
+    });
+
+  /**
+   * Execute a single streaming pass. If a tool call is detected, the caller can trigger
+   * a follow-up completion with the tool result.
+   */
+  const runStream = (includeTools, msgs, hasRetried) =>
+    new Promise((resolve, reject) => {
+      attemptRequest(includeTools, msgs)
+        .then((response) => {
+          if (response.status !== 200) {
+            reject(
+              new Error(
+                `OpenRouter returned status ${response.status} for model ${model}`
+              )
+            );
+            return;
+          }
+
+          // SSE headers
+          if (!res.headersSent) {
+            res.setHeader("Content-Type", "text/event-stream");
+            res.setHeader("Cache-Control", "no-cache");
+            res.setHeader("Connection", "keep-alive");
         res.flushHeaders();
+        // Emit typing indicator to keep UI showing activity
+        res.write(`data: ${JSON.stringify({ typing: true })}\n\n`);
+          }
 
-        let fullResponse = "";
+          let fullResponse = "";
+          let contentSent = false;
+          let toolUsedFromText = false;
+          let pendingTool = null;
+          let toolArgsBuffer = "";
 
-        response.data.on("data", (chunk) => {
-          const lines = chunk
-            .toString()
-            .split("\n")
-            .filter((line) => line.trim() !== "");
-
-          for (const line of lines) {
-            const message = line.replace(/^data: /, "").trim();
-
-            if (message === "[DONE]") {
+          const finishStream = (isDone = true) => {
+            if (isDone && !res.writableEnded) {
               res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
-              res.end();
-              resolve(fullResponse);
+            }
+          };
+
+          response.data.on("data", (chunk) => {
+            const lines = chunk
+              .toString()
+              .split("\n")
+              .filter((line) => line.trim() !== "");
+
+            for (const line of lines) {
+              const message = line.replace(/^data: /, "").trim();
+
+              if (message === "[DONE]") {
+                // If there was a tool call captured, resolve with the pending tool info
+                if (pendingTool) {
+                  resolve({ fullResponse, pendingTool });
+                } else {
+                  finishStream(true);
+                  resolve({ fullResponse });
+                }
+                return;
+              }
+
+              // Skip comments/heartbeats
+              if (message.startsWith(":")) {
+                continue;
+              }
+
+              // Parse JSON lines only
+              if (message.startsWith("{") || message.startsWith("[")) {
+                try {
+                  const parsed = JSON.parse(message);
+                  const choice = parsed.choices?.[0];
+
+                  // Handle streamed content tokens
+                  if (choice?.delta?.content) {
+                    const content = choice.delta.content;
+                    fullResponse += content;
+                    contentSent = true;
+                    res.write(`data: ${JSON.stringify({ content, text: content })}\n\n`);
+
+                    // Text-based tool-call fallback: detect "TOOL:tool_name|{json}"
+                    if (!pendingTool && !toolUsedFromText) {
+                      const match = content.match(/TOOL:([a-zA-Z0-9_\\-]+)\\|(\\{.*\\})/);
+                      if (match && match[1] && match[2]) {
+                        try {
+                          const toolName = match[1];
+                          const args = JSON.parse(match[2]);
+                          toolUsedFromText = true;
+                          (async () => {
+                            try {
+                              const result = await toolExecutionService.executeTool(toolName, args);
+                    res.write(
+                      `data: ${JSON.stringify({
+                        content: `Résultat ${toolName}: ${JSON.stringify(result)}`,
+                        text: `Résultat ${toolName}: ${JSON.stringify(result)}`
+                      })}\n\n`
+                    );
+                            } catch (err) {
+                      res.write(
+                        `data: ${JSON.stringify({
+                          content: `Erreur lors de l'exécution de ${toolName}: ${err.message}`,
+                          text: `Erreur lors de l'exécution de ${toolName}: ${err.message}`,
+                          is_error: true,
+                        })}\n\n`
+                      );
+                            }
+                          })();
+                        } catch (err) {
+                          console.error("Failed to parse text-based tool call:", err);
+                        }
+                      }
+                    }
+                  }
+
+                  // Handle tool calls (OpenAI/Anthropic style)
+                  if (choice?.delta?.tool_calls?.length) {
+                    const tc = choice.delta.tool_calls[0];
+                    pendingTool = {
+                      id: tc.id || `tool_${Date.now()}`,
+                      name: tc.function?.name,
+                      arguments: "",
+                    };
+                    if (tc.function?.arguments) {
+                      toolArgsBuffer += tc.function.arguments;
+                      pendingTool.arguments = toolArgsBuffer;
+                    }
+                  }
+
+                  // Finish reason may indicate tool_calls complete
+                  if (
+                    pendingTool &&
+                    (choice?.finish_reason === "tool_calls" ||
+                      choice?.finish_reason === "stop")
+                  ) {
+                    pendingTool.arguments = toolArgsBuffer || pendingTool.arguments;
+                    resolve({ fullResponse, pendingTool });
+                    return;
+                  }
+                } catch {
+                  // Ignore malformed fragments
+                }
+              }
+            }
+          });
+
+          response.data.on("end", () => {
+            if (pendingTool) {
+              resolve({ fullResponse, pendingTool });
               return;
             }
+            finishStream(true);
+            resolve({ fullResponse, contentSent });
+          });
 
-            try {
-              const parsed = JSON.parse(message);
-              if (parsed.choices && parsed.choices[0].delta.content) {
-                const content = parsed.choices[0].delta.content;
-                fullResponse += content;
-                res.write(`data: ${JSON.stringify({ content })}\n\n`);
-              }
-            } catch (e) {
-              console.error("Error parsing message:", e);
+          response.data.on("error", (err) => {
+            console.error("Stream error:", err);
+            if (!res.writableEnded) {
+              res.write(
+                `data: ${JSON.stringify({ error: "Stream error occurred", text: "Stream error occurred", is_error: true })}\n\n`
+              );
+              res.end();
             }
+            reject(err);
+          });
+        })
+        .catch((error) => {
+          const status = error?.response?.status;
+          if (includeTools && !hasRetried && (status === 400 || status === 422)) {
+            console.warn(
+              `Model ${model} rejected tools (status ${status}). Retrying without tools.`
+            );
+            runStream(false, msgs, true).then(resolve).catch(reject);
+            return;
           }
-        });
-
-        response.data.on("end", () => {
-          if (!res.writableEnded) {
-            res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
-            res.end();
-            resolve(fullResponse);
+          console.error("Request failed:", error);
+          if (!res.headersSent) {
+            res.setHeader("Content-Type", "text/event-stream");
+            res.setHeader("Cache-Control", "no-cache");
+            res.setHeader("Connection", "keep-alive");
+            res.flushHeaders();
           }
-        });
-
-        response.data.on("error", (err) => {
-          console.error("Stream error:", err);
           if (!res.writableEnded) {
             res.write(
-              `data: ${JSON.stringify({ error: "Stream error occurred" })}\n\n`
+              `data: ${JSON.stringify({ error: "Chat request failed", text: "Chat request failed", is_error: true })}\n\n`
             );
+            res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
             res.end();
           }
-          reject(err);
+          reject(error);
         });
+    });
+
+  // Execute streaming with possible tool call follow-up
+  let currentMessages = messages;
+  let includeTools = tools && tools.length > 0;
+
+  // First pass (may contain tool call)
+  const firstPass = await runStream(includeTools, currentMessages, false);
+
+  if (firstPass.pendingTool && firstPass.pendingTool.name) {
+    // Convert single pendingTool to array for consistent processing
+    const toolCalls = [firstPass.pendingTool];
+    const toolResults = await Promise.all(
+      toolCalls.map(async (tc) => {
+        let parsedArgs = {};
+        try {
+          parsedArgs = tc.arguments ? JSON.parse(tc.arguments) : {};
+        } catch (err) {
+          console.error("Failed to parse tool arguments:", err);
+        }
+        const argsWithProfile =
+          tc.name === "get_profile_visualization" && options?.userProfile
+            ? { ...parsedArgs, profile: options.userProfile }
+            : parsedArgs;
+        let toolResult;
+        try {
+          toolResult = await toolExecutionService.executeTool(tc.name, argsWithProfile);
+        } catch (err) {
+          toolResult = { success: false, error: err.message };
+        }
+        // Send individual tool result to client
+        res.write(
+          `data: ${JSON.stringify({
+            tool_result: { name: tc.name, result: toolResult },
+          })}\n\n`
+        );
+        return { tc, toolResult, args: argsWithProfile };
       })
-      .catch((error) => {
-        console.error("Request failed:", error);
-        reject(error);
-      });
-  });
+    );
+
+    // Build assistant message with all tool calls
+    const assistantToolCallMsg = {
+      role: "assistant",
+      tool_calls: toolResults.map(({ tc }) => ({
+        id: tc.id,
+        type: "function",
+        function: {
+          name: tc.name,
+          arguments: tc.arguments || "{}",
+        },
+      })),
+    };
+
+    // Build tool result messages with Anthropic-compliant is_error and text fields
+    const toolResultMessages = toolResults.map(({ tc, toolResult }) => ({
+      role: "tool",
+      tool_call_id: tc.id,
+      content: JSON.stringify(toolResult),
+      is_error: !toolResult?.success,
+      text: toolResult?.success
+        ? `Tool ${tc.name} executed successfully`
+        : `Tool ${tc.name} failed: ${toolResult?.error || 'Unknown error'}`
+    }));
+
+    currentMessages = [...currentMessages, assistantToolCallMsg, ...toolResultMessages];
+
+    const secondPass = await runStream(includeTools, currentMessages, false);
+    if (!secondPass.contentSent && !firstPass.fullResponse) {
+      const fallback = "J'ai vérifié l'info et je peux continuer si tu veux.";
+      res.write(`data: ${JSON.stringify({ content: fallback })}\n\n`);
+      res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
+      res.end();
+    }
+    const finalText = secondPass.fullResponse || firstPass.fullResponse || "";
+    if (!res.writableEnded) {
+      res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
+      res.end();
+    }
+    return finalText;
+  }
+
+  // No tool call; return accumulated text
+  if (!firstPass.contentSent && !firstPass.fullResponse) {
+    let manualContentSent = false;
+    // Attempt a lightweight manual tool invocation if tools were provided but no content came back.
+    if (tools && tools.length > 0 && options?.pageContext) {
+      const toolNames = tools
+        .map((t) => t.function?.name || t.name)
+        .filter(Boolean);
+
+      const lastUserMessage =
+        options.lastUserMessage ||
+        messages
+          .slice()
+          .reverse()
+          .find((m) => m.role === "user")?.content ||
+        "";
+
+      const lowerCtx = (options.pageContext || "").toLowerCase();
+      const isSimulator =
+        lowerCtx.includes("simulator") ||
+        lowerCtx.includes("education") ||
+        lowerCtx.includes("arena");
+
+      if (isSimulator && toolNames.includes("backtest_strategy")) {
+        const parsed = parseBacktestIntent(lastUserMessage);
+        if (parsed) {
+          try {
+            const backtestResult = await toolExecutionService.executeTool(
+              "backtest_strategy",
+              parsed
+            );
+            if (backtestResult?.success) {
+              const m = backtestResult.data?.metrics || {};
+              const content = `Backtest ${parsed.strategy_name} sur ${
+                parsed.period_years
+              } ans:\n- Rendement total: ${m.totalReturn ?? "n/a"}%\n- Annualisé: ${
+                m.annualizedReturn ?? "n/a"
+              }%\n- Volatilité: ${m.volatility ?? "n/a"}%\n- Sharpe: ${
+                m.sharpeRatio ?? "n/a"
+              }\n- Max drawdown: ${m.maxDrawdown ?? "n/a"}%`;
+              res.write(`data: ${JSON.stringify({ content })}\n\n`);
+              manualContentSent = true;
+              // We consider this a response; do not fall through to generic fallback.
+              if (!res.writableEnded) {
+                res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
+                res.end();
+              }
+              return parsed;
+            }
+          } catch (err) {
+            console.error("Manual backtest fallback failed:", err);
+          }
+        }
+      }
+    }
+
+    if (!manualContentSent) {
+      // Provide a helpful fallback so the UI never looks stuck
+      const fallback =
+        "Je n'ai pas reçu de réponse du modèle pour cette requête. On peut essayer autrement : " +
+        "par exemple une allocation 60/40 actions/obligations sur 20 ans donne souvent ~7-8% annualisé avec des drawdowns d'environ 20-25%. " +
+        "Veux-tu que je relance le test avec des ETF précis (ex: SPY/IEF/GLD) ?";
+      res.write(`data: ${JSON.stringify({ content: fallback })}\n\n`);
+      res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
+      res.end();
+    }
+  }
+  const finalText = firstPass.fullResponse || "";
+  if (!res.writableEnded) {
+    res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
+    res.end();
+  }
+  return finalText;
 }
 
 /**
@@ -645,7 +1113,15 @@ async function handlePortfolioChat(req, res) {
   const portfolioContextSection = buildPortfolioContextSection(context, language);
 
   // For backward compatibility, portfolio endpoint uses unified chatbot prompt with simulator context
-  const systemPromptContent = unifiedSystemPrompt(language, 'simulator', false);
+  const systemPromptContent = await unifiedSystemPrompt(
+    language,
+    "simulator",
+    false,
+    null,
+    false,
+    null,
+    []
+  );
 
   const messages = [
     {
@@ -697,8 +1173,24 @@ async function handlePortfolioChat(req, res) {
  * PageContext tells the chatbot which page the user is on
  * userProfile contains onboarding data for playground context
  */
-function getSystemPrompt(language, pageContext = 'index', waitlistShared = false, userProfile = null, isOnboarding = false, onboardingStage = null) {
-  return unifiedSystemPrompt(language, pageContext, waitlistShared, userProfile, isOnboarding, onboardingStage);
+async function getSystemPrompt(
+  language,
+  pageContext = "index",
+  waitlistShared = false,
+  userProfile = null,
+  isOnboarding = false,
+  onboardingStage = null,
+  conversationHistory = []
+) {
+  return unifiedSystemPrompt(
+    language,
+    pageContext,
+    waitlistShared,
+    userProfile,
+    isOnboarding,
+    onboardingStage,
+    conversationHistory
+  );
 }
 
 /**
@@ -718,7 +1210,8 @@ async function handleChat(req, res) {
     chatbotType,
     history = [],
     contextMetadata = "",
-    userProfileContext = "" // From BubbleAgentMemory (side panel chatbot)
+    userProfileContext = "", // From BubbleAgentMemory (side panel chatbot)
+    userProfile: requestUserProfile = null // Full profile object for tool execution (get_profile_visualization)
   } = req.body;
 
   // Backward compatibility: map old chatbotType to new pageContext
@@ -748,7 +1241,8 @@ async function handleChat(req, res) {
     : false;
 
   // Extract user profile and onboarding state from contextMetadata for playground
-  let userProfile = null;
+  // Prefer userProfile from request body (BubbleAgentMemory) over contextMetadata.profile
+  let userProfile = requestUserProfile || null;
   let metadataBlock = "";
   let isOnboarding = false;
   let onboardingStage = null;
@@ -756,8 +1250,8 @@ async function handleChat(req, res) {
   if (typeof contextMetadata === "string") {
     metadataBlock = contextMetadata.trim();
   } else if (contextMetadata && typeof contextMetadata === "object") {
-    // Extract profile for playground context
-    if (contextMetadata.profile) {
+    // Extract profile for playground context (fallback if no request profile)
+    if (!userProfile && contextMetadata.profile) {
       userProfile = contextMetadata.profile;
     }
     // Extract onboarding state
@@ -775,7 +1269,15 @@ async function handleChat(req, res) {
   }
 
   // Get the unified system prompt with page context, user profile, and onboarding state
-  let systemPromptContent = getSystemPrompt(resolvedLanguage, context, waitlistShared, userProfile, isOnboarding, onboardingStage);
+  let systemPromptContent = await getSystemPrompt(
+    resolvedLanguage,
+    context,
+    waitlistShared,
+    userProfile,
+    isOnboarding,
+    onboardingStage,
+    history
+  );
 
   // Inject lightweight simulator heuristics to help the education chatbot propose mixes
   if (
@@ -827,6 +1329,106 @@ This user has completed onboarding and has a known risk profile.
   }
 
   // Build messages array with conversation history if provided
+  // Attach tool definitions based on page context (for model function calling)
+  const toolsForContext = toolExecutionService.getToolsForPageContext(context);
+
+  /**
+   * Lightweight preflight: if on simulator/education and the user clearly asked
+   * for a simple allocation backtest (e.g., "40/60 sur 20 ans"), run the
+   * backtest tool immediately so the user is not left waiting when models
+   * ignore tool calls.
+   */
+  const lowerCtx = (context || "").toLowerCase();
+  const simulatorLike =
+    lowerCtx.includes("simulator") ||
+    lowerCtx.includes("education") ||
+    lowerCtx.includes("arena");
+
+  if (simulatorLike && toolsForContext.some((t) => t.function?.name === "backtest_strategy")) {
+    const parsedIntent = parseBacktestIntent(message);
+    if (parsedIntent) {
+      try {
+        const backtestResult = await toolExecutionService.executeTool(
+          "backtest_strategy",
+          parsedIntent
+        );
+        const m = backtestResult?.data?.metrics || {};
+        const content = `Backtest ${parsedIntent.strategy_name} sur ${
+          parsedIntent.period_years
+        } ans:\n- Rendement total: ${m.totalReturn ?? "n/a"}%\n- Annualisé: ${
+          m.annualizedReturn ?? "n/a"
+        }%\n- Volatilité: ${m.volatility ?? "n/a"}%\n- Sharpe: ${
+          m.sharpeRatio ?? "n/a"
+        }\n- Max drawdown: ${m.maxDrawdown ?? "n/a"}%`;
+
+        // SSE immediate response
+        res.setHeader("Content-Type", "text/event-stream");
+        res.setHeader("Cache-Control", "no-cache");
+        res.setHeader("Connection", "keep-alive");
+        res.write(`data: ${JSON.stringify({ content })}\n\n`);
+        res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
+        res.end();
+        return;
+      } catch (err) {
+        console.error("Preflight backtest failed:", err);
+        // Fall through to normal model handling
+      }
+    }
+  }
+
+  /**
+   * Preflight for profile visualization: if the user explicitly asks for their profile
+   * and the tool is available, return it immediately using the injected userProfile (if any).
+   */
+  const wantsProfile =
+    typeof message === "string" &&
+    /\b(profil|profile|risk score|profil investisseur|mon profil)\b/i.test(message);
+
+  if (
+    wantsProfile &&
+    toolsForContext.some((t) => t.function?.name === "get_profile_visualization")
+  ) {
+    try {
+      const profileResult = await toolExecutionService.executeTool(
+        "get_profile_visualization",
+        { include_recommendations: true, profile: userProfile || null }
+      );
+
+      const p = profileResult?.data?.profile || {};
+      const recs = profileResult?.data?.recommendations || [];
+      const summary = [
+        `Profil: risk=${p.riskScore ?? "n/a"}/100 (confiance ${p.riskConfidence ?? "n/a"}%)`,
+        p.traits ? `Traits: ${p.traits.join(", ")}` : null,
+        p.goal ? `Objectif: ${p.goal}` : null,
+        p.horizon ? `Horizon: ${p.horizon}` : null,
+        p.level ? `Niveau: ${p.level}` : null,
+      ]
+        .filter(Boolean)
+        .join(" | ");
+
+      const recText = recs.length
+        ? "\nRecommandations: " +
+          recs
+            .map((r) => `${r.bot || r.strategy || "bot"} (${r.match || ""})`)
+            .join(", ")
+        : "";
+
+      const content =
+        summary || "Je n'ai pas encore de données de profil pour toi." + recText;
+
+      res.setHeader("Content-Type", "text/event-stream");
+      res.setHeader("Cache-Control", "no-cache");
+      res.setHeader("Connection", "keep-alive");
+      res.write(`data: ${JSON.stringify({ content })}\n\n`);
+      res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
+      res.end();
+      return;
+    } catch (err) {
+      console.error("Preflight profile failed:", err);
+      // fall through to normal model handling
+    }
+  }
+
   const messages = [
     { role: "system", content: systemPromptContent },
     ...history.map(h => ({
@@ -841,13 +1443,20 @@ This user has completed onboarding and has a known risk profile.
     "Content-Type": "application/json",
   };
 
+  let lastModelError = null;
+
   try {
     for (const model of models) {
       try {
-        await streamResponse(res, model, messages, headers);
+        await streamResponse(res, model, messages, headers, toolsForContext, {
+          pageContext: context,
+          lastUserMessage: message,
+          userProfile,
+        });
         console.log(`✅ Chat streamed using model: ${model} (context: ${context})`);
         return; // If we get here, streaming was successful
       } catch (error) {
+        lastModelError = error;
         console.error(`Error with model ${model}:`, error.message);
         // Try the next model
       }
@@ -855,10 +1464,27 @@ This user has completed onboarding and has a known risk profile.
 
     // If we've tried all models and none worked
     if (!res.headersSent) {
-      res.status(500).json({
-        error: "All LLM providers failed. Please try again later.",
-        details: error?.message,
-      });
+      // SSE fallback so the UI is not left hanging
+      res.setHeader("Content-Type", "text/event-stream");
+      res.setHeader("Cache-Control", "no-cache");
+      res.setHeader("Connection", "keep-alive");
+      res.write(
+        `data: ${JSON.stringify({
+          content:
+            "Je n'ai pas pu obtenir de réponse du modèle pour le moment. On peut réessayer ou tester une allocation simple (ex: 60/40 SPY/IEF) si tu veux.",
+        })}\n\n`
+      );
+      res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
+      res.end();
+    } else if (!res.writableEnded) {
+      res.write(
+        `data: ${JSON.stringify({
+          content:
+            "Je n'ai pas pu obtenir de réponse du modèle pour le moment. On peut réessayer ou tester une allocation simple (ex: 60/40 SPY/IEF) si tu veux.",
+        })}\n\n`
+      );
+      res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
+      res.end();
     }
   } catch (error) {
     console.error("Error in chat endpoint:", error);

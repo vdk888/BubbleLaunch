@@ -393,7 +393,7 @@
           <div class="foundation-header">
             <h2 class="section-title" data-translate="playground.resources.foundation.title">Investment Fundamentals</h2>
             <p class="foundation-subtitle" data-translate="playground.resources.foundation.subtitle">
-              A series of 4 progressive guides explaining everything you need to know before investing.
+              A series of 7 progressive guides explaining everything you need to know before investing.
             </p>
           </div>
 
@@ -496,12 +496,74 @@
                 </svg>
               </div>
             </a>
+
+            <!-- Lesson 4: Stock-Picking -->
+            <a href="https://jungle-chive-5ab.notion.site/04-Avanc-Le-Stock-Picking-Devenir-d-tective-d-entreprises-de46a812b0624e16beb922d96227fbac" target="_blank" rel="noopener" class="foundation-card foundation-card-4">
+              <div class="foundation-step">04</div>
+              <div class="foundation-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="7"/>
+                  <line x1="16" y1="16" x2="21" y2="21"/>
+                </svg>
+              </div>
+              <h3 class="foundation-title" data-translate="playground.resources.foundation.lesson4.title">Stock-Picking: Become a detective</h3>
+              <p class="foundation-description" data-translate="playground.resources.foundation.lesson4.description">
+                Analyze companies like a pro to decide what to buy.
+              </p>
+              <div class="foundation-cta">
+                <span data-translate="playground.resources.foundation.lesson4.cta">Read the guide</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+
+            <!-- Lesson 5: Strategies & Factors -->
+            <a href="https://jungle-chive-5ab.notion.site/05-Avanc-Strat-gies-et-Facteurs-Quand-acheter-9426b4b2f93e455497553b35a667fbd5" target="_blank" rel="noopener" class="foundation-card foundation-card-5">
+              <div class="foundation-step">05</div>
+              <div class="foundation-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 17 9 11 13 15 21 7"/>
+                  <polyline points="14 7 21 7 21 14"/>
+                </svg>
+              </div>
+              <h3 class="foundation-title" data-translate="playground.resources.foundation.lesson5.title">Strategies & Factors: When to buy?</h3>
+              <p class="foundation-description" data-translate="playground.resources.foundation.lesson5.description">
+                Value/momentum/quality factors and buy timing.
+              </p>
+              <div class="foundation-cta">
+                <span data-translate="playground.resources.foundation.lesson5.cta">Read the guide</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+
+            <!-- Lesson 6: Dynamic Allocation -->
+            <a href="https://jungle-chive-5ab.notion.site/06-Avanc-Allocation-Dynamique-Combien-de-chaque-194f78128e0b42329adc31f48bc52fdc" target="_blank" rel="noopener" class="foundation-card foundation-card-6">
+              <div class="foundation-step">06</div>
+              <div class="foundation-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19h16M4 12h12M4 5h8"/>
+                </svg>
+              </div>
+              <h3 class="foundation-title" data-translate="playground.resources.foundation.lesson6.title">Dynamic Allocation: How much of each?</h3>
+              <p class="foundation-description" data-translate="playground.resources.foundation.lesson6.description">
+                Rebalancing and adjusting with market conditions.
+              </p>
+              <div class="foundation-cta">
+                <span data-translate="playground.resources.foundation.lesson6.cta">Read the guide</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
           </div>
 
           <div class="foundation-note">
             <p data-translate="playground.resources.foundation.note">
-              💡 <strong>Tip:</strong> These 4 guides form the pedagogical foundation of the Playground.
-              The chatbot asks questions based on the principles explained here to discover your true risk tolerance.
+              💡 <strong>Tip:</strong> These 7 guides form the pedagogical foundation of the Playground.
+              The chatbot has access to all of them and uses them to discover your true risk tolerance.
             </p>
           </div>
         </div>
@@ -749,6 +811,69 @@
       </div>
     </footer>
 
+    <!-- Floating Chat Input -->
+    <div
+      id="floating-chat-input"
+      class="floating-chat-input hidden"
+      data-page-context="playground_resources"
+      data-always-visible="true"
+    >
+      <div class="floating-input-container">
+        <input
+          type="text"
+          class="floating-input-field"
+          placeholder="Ask me anything..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Ask a question"
+        />
+        <button class="floating-input-submit" aria-label="Send message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 21V4" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Chat Side Panel (Unified Chatbot) -->
+    <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+      <div class="chat-side-panel-header">
+        <div class="chat-side-panel-header-info">
+          <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+          <div class="chat-side-panel-titles">
+            <span class="chat-side-panel-title">Bubble Assistant</span>
+          </div>
+        </div>
+        <div class="chat-side-panel-actions">
+          <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
+          <button class="chat-side-panel-close" aria-label="Close chat" type="button">x</button>
+        </div>
+      </div>
+      <div class="chat-side-panel-messages" role="log" aria-live="polite">
+        <div class="chat-side-panel-message bot">
+          <div class="message-content">
+            Hi, I'm Bubble. How can I help?
+          </div>
+        </div>
+      </div>
+      <form class="chat-side-panel-input-container" novalidate>
+        <input
+          type="text"
+          class="chat-side-panel-input"
+          placeholder="Ask your questions..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Type your message"
+          autocomplete="off"
+        />
+        <button class="chat-side-panel-send" aria-label="Send message" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
     <!-- Scripts -->
     <script src="/i18n/translations.js"></script>
     <script src="/js/script.js"></script>
@@ -760,6 +885,11 @@
         localStorage.setItem('bubbleLanguage', 'en');
       });
     </script>
+    <!-- Unified Agent Memory - Site-wide persistent user context -->
+    <script src="/js/bubble-agent-memory.js"></script>
+    <script src="/js/chat-side-panel.js"></script>
+    <script src="/js/floating-chat-input.js"></script>
+    <script src="/js/education-floating-chat.js"></script>
     <script src="/js/resources-articles.js"></script>
   </body>
 </html>
