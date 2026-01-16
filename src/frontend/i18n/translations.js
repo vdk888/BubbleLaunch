@@ -5071,8 +5071,8 @@ const translations = {
     fr: "Les Fondamentaux de l'Investissement"
   },
   "playground.resources.foundation.subtitle": {
-    en: "A series of our 4 progressive guides explaining everything you need to know before investing.",
-    fr: "Une série de nos 4 guides progressifs qui expliquent tout ce que tu dois savoir avant d'investir."
+    en: "A series of our 7 progressive guides explaining everything you need to know before investing.",
+    fr: "Une série de nos 7 guides progressifs qui expliquent tout ce que tu dois savoir avant d'investir."
   },
   "playground.resources.foundation.lesson0.title": {
     en: "Understanding Investments",
@@ -5123,8 +5123,44 @@ const translations = {
     fr: "Lire le guide"
   },
   "playground.resources.foundation.note": {
-    en: "💡 <strong>Tip:</strong> These 4 guides form the pedagogical foundation of the Playground. The chatbot asks questions based on the principles explained here to discover your true risk tolerance.",
-    fr: "💡 <strong>Conseil :</strong> Ces 4 guides forment la base pédagogique du Playground. Le chatbot pose des questions basées sur les principes expliqués ici pour découvrir ta vraie tolérance au risque."
+    en: "💡 <strong>Tip:</strong> These 7 guides form the pedagogical foundation of the Playground. The chatbot has access to all of them and uses them to discover your true risk tolerance.",
+    fr: "💡 <strong>Conseil :</strong> Ces 7 guides forment la base pédagogique du Playground. Le chatbot a accès à tout le contenu et s'en sert pour découvrir ta vraie tolérance au risque."
+  },
+  "playground.resources.foundation.lesson4.title": {
+    en: "Stock-Picking: Become a detective",
+    fr: "Stock-Picking : Devenir détective"
+  },
+  "playground.resources.foundation.lesson4.description": {
+    en: "Analyze companies like a pro to decide what to buy.",
+    fr: "Analyse les entreprises comme un pro pour décider quoi acheter."
+  },
+  "playground.resources.foundation.lesson4.cta": {
+    en: "Read the guide",
+    fr: "Lire le guide"
+  },
+  "playground.resources.foundation.lesson5.title": {
+    en: "Strategies & Factors: When to buy?",
+    fr: "Stratégies & Facteurs : Quand acheter ?"
+  },
+  "playground.resources.foundation.lesson5.description": {
+    en: "Value/momentum/quality factors and buy timing.",
+    fr: "Facteurs value/momentum/quality et timing d'achat."
+  },
+  "playground.resources.foundation.lesson5.cta": {
+    en: "Read the guide",
+    fr: "Lire le guide"
+  },
+  "playground.resources.foundation.lesson6.title": {
+    en: "Dynamic Allocation: How much of each?",
+    fr: "Allocation Dynamique : Combien de chaque ?"
+  },
+  "playground.resources.foundation.lesson6.description": {
+    en: "Rebalancing and adjusting with market conditions.",
+    fr: "Rééquilibrage et ajustement selon le marché."
+  },
+  "playground.resources.foundation.lesson6.cta": {
+    en: "Read the guide",
+    fr: "Lire le guide"
   },
   "playground.resources.videos.title": {
     en: "Deepen Your Knowledge",

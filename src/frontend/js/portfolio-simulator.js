@@ -438,6 +438,16 @@
       isBest: false,
       isCustom: true,
     },
+    chatBacktest: {
+      labelKey: 'simulator.strategy.chatBacktest',
+      dataKey: 'chatBacktest',
+      color: '#ec4899', // Pink
+      borderWidth: 3,
+      borderDash: [],
+      order: 0.1,
+      isBest: false,
+      isCustom: true,
+    },
   };
 
   /**
@@ -460,6 +470,7 @@
         'simulator.strategy.optimizedRiskParity': lang === 'en' ? '✨ Optimized' : '✨ Optimisé',
         'simulator.strategy.regimeAwareRP': lang === 'en' ? 'Regime-Aware RP' : 'RP Adaptatif',
         'simulator.strategy.momentum': 'Momentum',
+        'simulator.strategy.chatBacktest': lang === 'en' ? 'Chat Strategy' : 'Stratégie Chat',
       };
       return fallbacks[labelKey] || labelKey;
     }
@@ -2857,7 +2868,63 @@
     });
   }
 
+  function handleChatBacktest(data) {
+    if (!portfolioData || !data.chartData) return;
+
+    // Check if period matches current view, if not we might want to switch period
+    // For this MVP we just overlay on current chart if dates match
+    if (data.period && data.period.years !== currentPeriod) {
+       console.log(`Chat backtest period (${data.period.years}y) differs from current view (${currentPeriod}y). Switching...`);
+       // Trigger period switch
+       const periodBtn = document.querySelector(`.time-period-btn[data-period="${data.period.years}"]`);
+       if (periodBtn) {
+         periodBtn.click();
+         // Wait for data reload then apply? 
+         // For now we assume the user will see the chart update if they switch manually or we just overlay what we can.
+       }
+    }
+
+    const chatMap = new Map(data.chartData.map(d => [d.date, d.value]));
+    
+    portfolioData.data.forEach(row => {
+      if (chatMap.has(row.date)) {
+        row.chatBacktest = chatMap.get(row.date);
+      } else {
+         // If dates don't align perfectly, we might leave it undefined or handle interpolation
+      }
+    });
+    
+    if (data.metrics) {
+      // Map tool metrics to simulator metrics format
+      portfolioData.metrics.chatBacktest = {
+        ...data.metrics,
+        annualReturn: data.metrics.annualizedReturn, // Alias
+      };
+    }
+    
+    // Force cache invalidation
+    if (portfolioData.normalizedCache) delete portfolioData.normalizedCache;
+
+    visibleStrategies.add('chatBacktest');
+    prominentStrategy = 'chatBacktest';
+    
+    updateActiveStrategyPills();
+    updateChart(portfolioData, prominentStrategy);
+    updateMetrics(portfolioData);
+    
+    // Scroll to chart
+    const chartEl = document.getElementById('portfolioChart');
+    if (chartEl) chartEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
   function initializeSimulator() {
+    // Listen for Chat events
+    if (window.StrategyEventBus) {
+      window.StrategyEventBus.on('backtest:complete', (data) => {
+        handleChatBacktest(data);
+      });
+    }
+
     loadCustomStrategyState();
     applyQueryParams();
     cacheCustomStrategyElements();

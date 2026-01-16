@@ -7894,3 +7894,630 @@ html[lang="fr"] .superpower-panel h2 {
     font-size: 0.9rem;
   }
 }
+
+/* ==========================================================================
+   TOOL RESULT VISUALIZATIONS
+   Glassmorphism-styled visualizations for chatbot tool results
+   ========================================================================== */
+
+/* Base container for all tool results */
+.tool-result {
+  margin-top: 12px;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Light mode adjustments */
+@media (prefers-color-scheme: light) {
+  .tool-result {
+    background: rgba(248, 250, 252, 0.9);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+}
+
+/* ====== BACKTEST CHART VISUALIZATION ====== */
+.tool-result-chart {
+  padding: 16px;
+}
+
+.tool-result-chart .chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.tool-result-chart .chart-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1F2937;
+}
+
+.tool-result-chart .chart-title svg {
+  color: #667eea;
+}
+
+.tool-result-chart .chart-period {
+  font-size: 0.85rem;
+  color: #6B7280;
+  background: rgba(102, 126, 234, 0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* Metrics Grid */
+.tool-result-chart .metrics-grid,
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.metrics-grid .metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 8px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+.metrics-grid .metric .metric-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+.metrics-grid .metric .metric-label {
+  font-size: 0.75rem;
+  color: #6B7280;
+  margin-top: 4px;
+  text-align: center;
+}
+
+.metrics-grid .metric.positive .metric-value {
+  color: #10B981;
+}
+
+.metrics-grid .metric.negative .metric-value {
+  color: #EF4444;
+}
+
+/* Chart wrapper */
+.tool-result-chart .chart-wrapper {
+  position: relative;
+  height: 160px;
+  margin-top: 12px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.3);
+}
+
+/* ====== PROFILE CARD VISUALIZATION ====== */
+.tool-result-profile {
+  padding: 20px;
+}
+
+.tool-result-profile .profile-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.tool-result-profile .profile-emoji {
+  font-size: 2rem;
+}
+
+.tool-result-profile .profile-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+.tool-result-profile .profile-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #10B981, #059669);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  margin-left: auto;
+}
+
+/* Risk Gauge */
+.risk-gauge {
+  margin-bottom: 20px;
+}
+
+.risk-gauge .gauge-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #6B7280;
+  margin-bottom: 8px;
+}
+
+.risk-gauge .gauge-bar {
+  position: relative;
+  height: 12px;
+  background: linear-gradient(90deg, #10B981 0%, #F59E0B 50%, #EF4444 100%);
+  border-radius: 6px;
+  overflow: visible;
+}
+
+.risk-gauge .gauge-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: transparent;
+  border-radius: 6px;
+}
+
+.risk-gauge .gauge-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 3px solid #1F2937;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.risk-gauge .gauge-value {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1F2937;
+  background: white;
+  padding: 2px 8px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+.risk-gauge .gauge-confidence {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #6B7280;
+  margin-top: 16px;
+}
+
+/* Profile Traits */
+.tool-result-profile .profile-traits {
+  margin-bottom: 16px;
+}
+
+.tool-result-profile .traits-label {
+  font-size: 0.8rem;
+  color: #6B7280;
+  margin-bottom: 8px;
+}
+
+.tool-result-profile .traits-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tool-result-profile .trait-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Profile Info Grid */
+.tool-result-profile .profile-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.tool-result-profile .profile-info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 8px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.4);
+}
+
+.tool-result-profile .info-icon {
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+}
+
+.tool-result-profile .info-label {
+  font-size: 0.7rem;
+  color: #6B7280;
+}
+
+.tool-result-profile .info-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1F2937;
+  margin-top: 2px;
+}
+
+/* Profile Recommendation */
+.tool-result-profile .profile-recommendation {
+  padding: 14px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  border-radius: 12px;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.tool-result-profile .recommendation-label {
+  font-size: 0.75rem;
+  color: #6B7280;
+  margin-bottom: 6px;
+}
+
+.tool-result-profile .recommendation-bot {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tool-result-profile .recommendation-bot strong {
+  font-size: 1rem;
+  color: #667eea;
+}
+
+.tool-result-profile .recommendation-reason {
+  font-size: 0.85rem;
+  color: #4B5563;
+}
+
+/* ====== COMPARISON TABLE VISUALIZATION ====== */
+.tool-result-comparison {
+  padding: 16px;
+}
+
+.tool-result-comparison .comparison-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1F2937;
+  margin-bottom: 16px;
+}
+
+.tool-result-comparison .comparison-header svg {
+  color: #667eea;
+}
+
+/* Comparison Table */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.comparison-table th {
+  text-align: left;
+  padding: 10px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6B7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid rgba(226, 232, 240, 0.8);
+}
+
+.comparison-table td {
+  padding: 12px 8px;
+  color: #1F2937;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.4);
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table .strategy-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.comparison-table .winner-row {
+  background: linear-gradient(90deg, rgba(102, 126, 234, 0.08), transparent);
+}
+
+.comparison-table .winner-badge {
+  font-size: 1rem;
+}
+
+/* Comparison Recommendation */
+.tool-result-comparison .comparison-recommendation {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px;
+  background: rgba(102, 126, 234, 0.06);
+  border-radius: 12px;
+  border-left: 3px solid #667eea;
+}
+
+.tool-result-comparison .recommendation-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.tool-result-comparison .comparison-recommendation span:last-child {
+  font-size: 0.9rem;
+  color: #4B5563;
+  line-height: 1.5;
+}
+
+/* ====== TRADE EXPLANATION VISUALIZATION ====== */
+.tool-result-trade {
+  padding: 16px;
+}
+
+.tool-result-trade .trade-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.tool-result-trade .trade-bot-emoji {
+  font-size: 2rem;
+}
+
+.tool-result-trade .trade-bot-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+.tool-result-trade .trade-date {
+  margin-left: auto;
+  font-size: 0.85rem;
+  color: #6B7280;
+  background: rgba(107, 114, 128, 0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* Trade Stats */
+.tool-result-trade .trade-stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.tool-result-trade .trade-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+.tool-result-trade .stat-label {
+  font-size: 0.75rem;
+  color: #6B7280;
+  margin-bottom: 4px;
+}
+
+.tool-result-trade .stat-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+.tool-result-trade .stat-value.positive {
+  color: #10B981;
+}
+
+.tool-result-trade .stat-value.negative {
+  color: #EF4444;
+}
+
+/* Trade Event */
+.tool-result-trade .trade-event {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: rgba(249, 115, 22, 0.08);
+  border-radius: 12px;
+  border-left: 3px solid #F97316;
+  margin-bottom: 16px;
+}
+
+.tool-result-trade .event-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.tool-result-trade .event-type {
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.tool-result-trade .event-desc {
+  font-size: 0.85rem;
+  color: #6B7280;
+  margin-left: 4px;
+}
+
+/* Trade Dialogue */
+.trade-dialogue {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+  border-radius: 16px;
+  margin-bottom: 16px;
+}
+
+.trade-dialogue .dialogue-emoji {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.trade-dialogue .dialogue-text {
+  font-size: 0.95rem;
+  color: #374151;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* Trade Explanation */
+.tool-result-trade .trade-explanation {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+}
+
+.tool-result-trade .trade-explanation p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #4B5563;
+  line-height: 1.6;
+}
+
+/* ====== RESPONSIVE ADJUSTMENTS ====== */
+@media (max-width: 768px) {
+  .tool-result {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .metrics-grid .metric .metric-value {
+    font-size: 1rem;
+  }
+
+  .tool-result-chart .chart-wrapper {
+    height: 140px;
+    padding: 10px;
+  }
+
+  .tool-result-profile .profile-info-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .comparison-table {
+    font-size: 0.85rem;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 8px 6px;
+  }
+
+  .tool-result-trade .trade-stats {
+    gap: 10px;
+  }
+
+  .tool-result-trade .trade-stat {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tool-result {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .metrics-grid .metric {
+    padding: 8px 6px;
+  }
+
+  .metrics-grid .metric .metric-value {
+    font-size: 0.95rem;
+  }
+
+  .metrics-grid .metric .metric-label {
+    font-size: 0.7rem;
+  }
+
+  .tool-result-profile .profile-emoji {
+    font-size: 1.75rem;
+  }
+
+  .tool-result-profile .profile-name {
+    font-size: 1.1rem;
+  }
+
+  .tool-result-profile .profile-info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tool-result-trade .trade-bot-emoji {
+    font-size: 1.75rem;
+  }
+
+  .tool-result-trade .trade-bot-name {
+    font-size: 1rem;
+  }
+
+  .tool-result-trade .trade-stats {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .trade-dialogue {
+    padding: 12px;
+  }
+
+  .trade-dialogue .dialogue-emoji {
+    font-size: 1.25rem;
+  }
+
+  .trade-dialogue .dialogue-text {
+    font-size: 0.9rem;
+  }
+}

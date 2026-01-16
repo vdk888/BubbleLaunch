@@ -852,6 +852,45 @@
         </div>
       </div>
     </footer>
+    
+    <!-- Chat Side Panel (Unified Chatbot) -->
+    <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+      <div class="chat-side-panel-header">
+        <div class="chat-side-panel-header-info">
+          <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+          <div class="chat-side-panel-titles">
+            <span class="chat-side-panel-title">Assistant Bubble</span>
+          </div>
+        </div>
+        <div class="chat-side-panel-actions">
+          <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
+          <button class="chat-side-panel-close" aria-label="Close chat" type="button">x</button>
+        </div>
+      </div>
+      <div class="chat-side-panel-messages" role="log" aria-live="polite">
+        <div class="chat-side-panel-message bot">
+          <div class="message-content">
+            Bonjour, je suis Bubble. Comment puis-je t'aider a explorer le Simulateur ?
+          </div>
+        </div>
+      </div>
+      <form class="chat-side-panel-input-container" novalidate>
+        <input
+          type="text"
+          class="chat-side-panel-input"
+          placeholder="Posez vos questions..."
+          data-translate-placeholder="floating_input.placeholder"
+          aria-label="Type your message"
+          autocomplete="off"
+        />
+        <button class="chat-side-panel-send" aria-label="Send message" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </form>
+    </div>
 
     <!-- Scripts -->
     <script src="/i18n/translations.js"></script>
@@ -2641,6 +2680,35 @@
           elements.chatSendBtn?.addEventListener('click', handleSend);
           elements.chatInput?.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') handleSend();
+          });
+
+          // Open unified chat side-panel when user interacts with the simulator chat
+          function openUnifiedChat(message) {
+            if (window.chatSidePanel && typeof window.chatSidePanel.open === 'function') {
+              window.chatSidePanel.open(message || '');
+              return;
+            }
+            // Fallback: poll briefly for chatSidePanel to become available
+            const iv = setInterval(() => {
+              if (window.chatSidePanel && typeof window.chatSidePanel.open === 'function') {
+                clearInterval(iv);
+                window.chatSidePanel.open(message || '');
+              }
+            }, 100);
+            setTimeout(() => clearInterval(iv), 5000);
+          }
+
+          elements.chatSendBtn?.addEventListener('click', function(e) {
+            const msg = (elements.chatInput && elements.chatInput.value) ? elements.chatInput.value.trim() : null;
+            openUnifiedChat(msg);
+          });
+
+          // Quick chips and question chips should also open the unified chat with the prompt
+          document.querySelectorAll('.simulator-quick-chip, .question-chip').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+              const question = btn.dataset.question || btn.getAttribute('data-action') || btn.textContent;
+              openUnifiedChat(typeof question === 'string' ? question.trim() : question);
+            });
           });
 
           // Apply URL parameters (returns allocation if present)
