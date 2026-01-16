@@ -1559,6 +1559,42 @@ const translations = {
     en: "Monitoring, bug fixes, minor evolutions, technical support. <strong>SLA:</strong> response < 24h business days, critical resolution < 48h.",
     fr: "Monitoring, bug fixes, évolutions mineures, support technique. <strong>SLA :</strong> réponse < 24h ouvrées, résolution critique < 48h."
   },
+  "businesses.services.formation.title": {
+    en: "AI Training",
+    fr: "Formation IA"
+  },
+  "businesses.services.formation.icon": {
+    en: "📚",
+    fr: "📚"
+  },
+  "businesses.services.formation.description": {
+    en: "• Stay current with frequent AI tool and model releases<br>• Learn practical workflows for Claude, Gemini, and ChatGPT<br>• Boost productivity with document automation and data analysis<br>• Monthly on-site sessions + dedicated support: €50/month/employee",
+    fr: "• Restez à jour avec les releases fréquentes d'outils et de modèles AI<br>• Apprenez des workflows pratiques pour Claude, Gemini et ChatGPT<br>• Augmentez votre productivité avec l'automatisation de documents et l'analyse de données<br>• Sessions mensuelles sur site + support dédié : 50€/mois/employé"
+  },
+  "businesses.services.implementation.title": {
+    en: "Custom AI Solutions",
+    fr: "Solutions AI sur Mesure"
+  },
+  "businesses.services.implementation.icon": {
+    en: "🛠️",
+    fr: "🛠️"
+  },
+  "businesses.services.implementation.description": {
+    en: "• Tailored AI applications for financial automation<br>• Custom solutions for reporting, reconciliation, and portfolio management<br>• Transparent fixed-price quoting: €3k–€30k projects<br>• Clear delivery timelines and measurable ROI",
+    fr: "• Applications AI adaptées pour l'automatisation financière<br>• Solutions personnalisées pour le reporting, la réconciliation et la gestion de portefeuille<br>• Devis fixes transparents : projets de 3k€–30k€<br>• Délais de livraison clairs et ROI mesurable"
+  },
+  "businesses.services.autopilot.title": {
+    en: "Bubble Portfolio for Professionals",
+    fr: "Bubble Portfolio pour Professionnels"
+  },
+  "businesses.services.autopilot.icon": {
+    en: "🚀",
+    fr: "🚀"
+  },
+  "businesses.services.autopilot.description": {
+    en: "• Complete AI-powered portfolio management platform<br>• Connect your trading accounts for automated execution<br>• Transparent, explainable strategies tailored to your goals<br>• No hidden fees, complete asset control",
+    fr: "• Plateforme complète de gestion de portefeuille alimentée par l'IA<br>• Connectez vos comptes de trading pour une exécution automatisée<br>• Stratégies transparentes et expliquables adaptées à vos objectifs<br>• Aucun frais caché, contrôle total de vos actifs"
+  },
 
   // Professional Portfolio Tools Section
   "businesses.what_we_do.portfolio_platform": {
