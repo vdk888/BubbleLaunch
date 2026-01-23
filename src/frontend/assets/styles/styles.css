@@ -8521,3 +8521,59 @@ html[lang="fr"] .superpower-panel h2 {
     font-size: 0.9rem;
   }
 }
+
+/* Professional Service Tiles */
+.professional-service-tile {
+  background: white;
+  padding: 2rem;
+  border-radius: 24px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid transparent;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.professional-service-tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15); /* Bubble Purple with low opacity */
+  border-color: rgba(102, 126, 234, 0.3); /* Bubble Purple border */
+}
+
+.professional-service-tile .tile-icon {
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: #f8f9fa;
+  border-radius: 16px;
+}
+
+.professional-service-tile:hover .tile-icon {
+  color: var(--bubble-purple);
+  background: rgba(102, 126, 234, 0.1);
+  transform: scale(1.05);
+}
+
+.professional-service-tile h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+.professional-service-tile:hover h3 {
+  color: var(--bubble-purple);
+}
+
+.professional-service-tile p {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.95rem;
+}

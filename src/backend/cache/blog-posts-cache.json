@@ -1,5 +1,31 @@
 [
   {
+    "id": "29bcfc52-0644-817e-bedc-c7de75ad04df",
+    "title": {
+      "fr": "Yomoni vs Nalo vs Bubble : Analyse Comparative Complète 2025",
+      "en": "Yomoni vs Nalo vs Bubble: Complete Comparison 2025"
+    },
+    "slug": "yomoni-vs-nalo-vs-bubble-analyse-comparative-compl-te-2025",
+    "summary": {
+      "fr": "Analyse détaillée de Yomoni, Nalo et Bubble : frais, confort d’usage, transparence et pour quels profils chaque plateforme est vraiment adaptée en 2025.",
+      "en": "Deep‑dive comparison of Yomoni, Nalo, and Bubble: fees, convenience, transparency, and who each platform really serves in 2025."
+    },
+    "publishedDate": "2026-01-21",
+    "featuredImage": "https://im.runware.ai/image/ws/3/ii/6437beeb-2740-47fa-a8cb-389fadd8caef.png",
+    "url": "/blog/yomoni-vs-nalo-vs-bubble-analyse-comparative-compl-te-2025",
+    "urlEn": "/en/blog/yomoni-vs-nalo-vs-bubble-analyse-comparative-compl-te-2025",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "yomoni",
+      "nalo",
+      "comparatif robo advisor",
+      "alternative robo advisor",
+      "meilleur robo advisor",
+      "frais investissement"
+    ]
+  },
+  {
     "id": "302c3956-9033-484f-a66a-9d76611c56a7",
     "title": {
       "fr": "Course à l’IA en entreprise : pourquoi Bubble construit depuis 2023 une AI entreprise",
@@ -11,7 +37,7 @@
       "en": "Opinion article inspired by the report “The State of Enterprise AI” from OpenAI: how AI is becoming the invisible infrastructure of businesses, why a gap is widening between pioneers and laggards, and how Bubble chose as early as 2023 to operate as a “AI company” by fully relying on AI agents, automation, and internal copilots, both in the product and in the organization (and even in personal life)."
     },
     "publishedDate": "2026-01-15",
-    "featuredImage": "https://im.runware.ai/image/ws/3/ii/336e8152-60d9-4d57-9647-a9f751943d1d.png",
+    "featuredImage": "https://im.runware.ai/image/ws/2/ii/d8a2c808-8608-4c75-89c5-ecd598822ba6.png",
     "url": "/blog/course-l-ia-en-entreprise-pourquoi-bubble-construit-depuis-2023-une-ai-entreprise",
     "urlEn": "/en/blog/course-l-ia-en-entreprise-pourquoi-bubble-construit-depuis-2023-une-ai-entreprise",
     "status": "Published",
@@ -35,7 +61,7 @@
       "en": "Traditional asset management sells expertise but mostly delivers high fees. Learn why most active funds lag simple index trackers and how systematic, low-cost investing lets you take back control."
     },
     "publishedDate": "2026-01-14",
-    "featuredImage": "https://im.runware.ai/image/ws/3/ii/a28246be-0c83-4512-8195-29f8b136a1ac.png",
+    "featuredImage": "https://im.runware.ai/image/ws/3/ii/419658ed-b1b7-47c4-b64d-5f19b6cbf205.png",
     "url": "/blog/l-asset-management-la-plus-grande-arnaque-marketing-de-l-histoire-financi-re",
     "urlEn": "/en/blog/l-asset-management-la-plus-grande-arnaque-marketing-de-l-histoire-financi-re",
     "status": "Published",
@@ -59,7 +85,7 @@
       "en": "Bubble Portfolio puts a true quantitative portfolio manager in your pocket—without ever taking control of your accounts. An AI copilot, illustrative flat fees (€0–10/month), and pro‑grade tools that quietly shift power back to individual investors."
     },
     "publishedDate": "2026-01-07",
-    "featuredImage": "https://im.runware.ai/image/ws/3/ii/239183a0-c188-4a83-8e3f-97954a937931.png",
+    "featuredImage": "https://im.runware.ai/image/ws/3/ii/2b941ce3-7fe3-440b-b261-71fa7360e4c4.png",
     "url": "/blog/d-mocratiser-l-investissement-la-vision-bubble",
     "urlEn": "/en/blog/d-mocratiser-l-investissement-la-vision-bubble",
     "status": "Published",
@@ -82,7 +108,7 @@
       "en": "Short essay on how money, meant to be a signal of trust and value creation, is corrupted when fortunes come from fees, rents, and opacity instead of real work. Uses the example of a Parisian wealth manager to argue for radical transparency, fair flat fees, and simple, low‑cost investing."
     },
     "publishedDate": "2025-12-24",
-    "featuredImage": "https://im.runware.ai/image/ws/2/ii/6eb48a8f-2293-4aea-9945-e1e3f60af9de.png",
+    "featuredImage": "https://im.runware.ai/image/ws/2/ii/2d06da6c-5bb2-4f69-989f-1023dbe417a5.png",
     "url": "/blog/la-monnaie-comme-signal-de-confiance-anatomie-d-un-syst-me-corrompu",
     "urlEn": "/en/blog/la-monnaie-comme-signal-de-confiance-anatomie-d-un-syst-me-corrompu",
     "status": "Published",
@@ -105,7 +131,7 @@
       "en": "Practical guide to the 5 classic mistakes value investors make—chasing “cheap” stocks, ignoring quality and capital allocation, over-trusting narratives, and underestimating time horizon—and how to avoid them using Buffett and Graham’s principles."
     },
     "publishedDate": "2025-12-17",
-    "featuredImage": "https://im.runware.ai/image/ws/2/ii/bc6b40d6-65bf-4efc-8f37-073dec1be0fc.png",
+    "featuredImage": "https://im.runware.ai/image/ws/3/ii/5a7d4a2e-5480-4db0-90de-b3aae9681ffa.png",
     "url": "/blog/les-5-erreurs-communes-en-investissement-value",
     "urlEn": "/en/blog/les-5-erreurs-communes-en-investissement-value",
     "status": "Published",
@@ -151,7 +177,7 @@
       "en": "Concept note for a deep dive on why much of modern finance is a statistical scam, using large language models, information theory, and chaos to show that most “alpha” and expert prediction is indistinguishable from noise."
     },
     "publishedDate": "2025-12-03",
-    "featuredImage": "https://im.runware.ai/image/ws/3/ii/618789f4-644d-47f5-8167-2676a9d249af.png",
+    "featuredImage": "https://im.runware.ai/image/ws/3/ii/72ab9d7e-2fa8-41a8-8744-06dd399a2b2c.png",
     "url": "/blog/la-preuve-scientifique-de-l-arnaque",
     "urlEn": "/en/blog/la-preuve-scientifique-de-l-arnaque",
     "status": "Published",
@@ -196,7 +222,7 @@
       "en": "Hidden fees quietly eat your returns. Over 20 years, 1% a year can erase a quarter of your terminal wealth. Here’s why a fixed subscription — plans from €0 to €10/month (example pricing) — is often the most honest, predictable, and cost‑efficient choice."
     },
     "publishedDate": "2025-11-03",
-    "featuredImage": "https://im.runware.ai/image/ws/3/ii/59211091-7e53-4a48-b568-22dbc3a924cb.png",
+    "featuredImage": "https://im.runware.ai/image/ws/3/ii/5a6d1b42-35e1-452b-ae90-da080da1d85f.png",
     "url": "/blog/frais-fixes-vs-frais-en-pourcentage-le-vrai-calcul-sur-20-ans",
     "urlEn": "/en/blog/frais-fixes-vs-frais-en-pourcentage-le-vrai-calcul-sur-20-ans",
     "status": "Published",
@@ -219,7 +245,7 @@
       "en": "From Big Four slideware to small, focused AI projects: how Bubble wants to replace bloated consulting with fast, measurable automation for finance teams."
     },
     "publishedDate": "2025-10-21",
-    "featuredImage": "https://im.runware.ai/image/ws/3/ii/cd5afbda-455c-423f-8384-1b359d7a1228.png",
+    "featuredImage": "https://im.runware.ai/image/ws/3/ii/e49f196e-f1cf-4294-841d-71572250b0f8.png",
     "url": "/blog/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment",
     "urlEn": "/en/blog/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment",
     "status": "Published",
@@ -294,7 +320,7 @@
       "en": "Positioning piece that compares WarrenAI, robo‑advisors, and institutional tools, and explains why Bubble wants to be the missing AI financial coach in between."
     },
     "publishedDate": "2025-07-28",
-    "featuredImage": "https://im.runware.ai/image/ws/3/ii/a6afaa06-251d-497e-a374-d56334966a97.png",
+    "featuredImage": "https://im.runware.ai/image/ws/3/ii/e7cfa8f0-c2c5-404f-86cc-ff5fc80e1228.png",
     "url": "/blog/analyse-concurrentielle-pourquoi-bubble-invest-r-invente-le-conseil-en-investissement",
     "urlEn": "/en/blog/analyse-concurrentielle-pourquoi-bubble-invest-r-invente-le-conseil-en-investissement",
     "status": "Published",
@@ -343,7 +369,7 @@
       "en": "Speculative essay on how full automation and AI could collapse profit from routine work, force capitalism to eat itself, and push us toward an open‑source, contribution‑based economy."
     },
     "publishedDate": "2025-01-14",
-    "featuredImage": "https://im.runware.ai/image/ws/3/ii/6a0ce6fc-9cf1-41f1-9296-0106c24d5f12.png",
+    "featuredImage": "https://im.runware.ai/image/ws/3/ii/33e7cd29-9499-4c30-8f30-242392eb4614.png",
     "url": "/blog/l-automatisation-totale-vers-l-effondrement-cr-ateur-du-capitalisme",
     "urlEn": "/en/blog/l-automatisation-totale-vers-l-effondrement-cr-ateur-du-capitalisme",
     "status": "Published",

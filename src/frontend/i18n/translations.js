@@ -570,7 +570,7 @@ const translations = {
     en: "Our first articles are coming soon. Stay tuned!",
     fr: "Nos premiers articles arrivent bientôt. Restez connectés !"
   },
-  
+
   // Blog Post Page
   "blog.loading": {
     en: "Loading article...",
@@ -1573,7 +1573,7 @@ const translations = {
   },
   "businesses.services.implementation.title": {
     en: "Custom AI Solutions",
-    fr: "Solutions AI sur Mesure"
+    fr: "Solutions IA sur Mesure"
   },
   "businesses.services.implementation.icon": {
     en: "🛠️",
@@ -3193,45 +3193,53 @@ const translations = {
     en: "Core consulting modules",
     fr: "Nos solutions clés"
   },
+  "professionals.solutions.companies.tile0.title": {
+    en: "AI Training",
+    fr: "Formation IA"
+  },
+  "professionals.solutions.companies.tile0.description": {
+    en: "Master AI tools: LLMs, Notion, automation. Practical sessions and ongoing support.",
+    fr: "Maîtrisez les outils IA : LLMs, Notion, automatisation. Sessions pratiques et support continu."
+  },
   "professionals.solutions.companies.tile1.title": {
-    en: "Custom AI workflow sprints",
-    fr: "Sprints de workflows IA sur mesure"
+    en: "Custom AI Apps",
+    fr: "Applications IA sur mesure"
   },
   "professionals.solutions.companies.tile1.description": {
-    en: "Claude Code/Codex/Gemini builders wired to your stack to automate repetitive finance tasks in weeks.",
-    fr: "Builders Claude Code/Codex/Gemini branchés à votre stack pour automatiser vos tâches finance en quelques semaines."
+    en: "Lightweight web apps integrating LLMs and APIs to automate your repetitive tasks.",
+    fr: "Applications web légères intégrant LLMs et APIs pour automatiser vos tâches répétitives."
   },
   "professionals.solutions.companies.tile2.title": {
-    en: "Revenue recognition automation",
-    fr: "Automatisation de la reconnaissance du revenu"
+    en: "API Integrations",
+    fr: "Intégrations API"
   },
   "professionals.solutions.companies.tile2.description": {
-    en: "Billing workflows, accounting reconciliation, and budget tracking delivered in weeks.",
-    fr: "Workflows de facturation, rapprochement comptable et suivi budgétaire livrés en quelques semaines."
+    en: "Connect your existing tools: CRM, ERP, databases. Automated data flows.",
+    fr: "Connectez vos outils existants : CRM, ERP, bases de données. Flux de données automatisés."
   },
   "professionals.solutions.companies.tile3.title": {
-    en: "Monthly reporting copilots",
-    fr: "Reporting financier mensuel automatisé"
+    en: "Intelligent Monitoring",
+    fr: "Veille intelligente"
   },
   "professionals.solutions.companies.tile3.description": {
-    en: "Up to 15h saved per month with automated data pulls, controls, and exports.",
-    fr: "Jusqu'à 15h gagnées par mois grâce aux extractions automatiques, contrôles et exports."
+    en: "Automated monitoring of multiple sources with AI enrichment and custom alerts.",
+    fr: "Surveillance automatisée de sources multiples avec enrichissement IA et alertes personnalisées."
   },
   "professionals.solutions.companies.tile4.title": {
-    en: "News intelligence digests",
-    fr: "Digests d'intelligence média"
+    en: "Automated Reporting",
+    fr: "Reporting automatisé"
   },
   "professionals.solutions.companies.tile4.description": {
-    en: "Continuous news monitoring for fund managers: AI scores materiality, links alerts to mandates, and escalates insights automatically.",
-    fr: "Monitoring continu pour gérants : l'IA score la matérialité, rattache les alertes aux mandats et escalade automatiquement les insights clés."
+    en: "Automatic generation of reports and summaries from your raw data.",
+    fr: "Génération automatique de rapports et synthèses à partir de vos données brutes."
   },
   "professionals.solutions.companies.tile5.title": {
-    en: "Custom performance dashboards",
-    fr: "Dashboards personnalisés de performance"
+    en: "Custom Dashboards",
+    fr: "Tableaux de bord sur mesure"
   },
   "professionals.solutions.companies.tile5.description": {
-    en: "White-label dashboards delivered at roughly a quarter of typical vendor costs.",
-    fr: "Dashboards clé-en-main pour un coût divisé par 4 vs les éditeurs traditionnels."
+    en: "Real-time visualization of your essential KPIs and business metrics.",
+    fr: "Visualisation temps réel de vos KPIs et métriques métier essentiels."
   },
   "professionals.solutions.companies.blog.title": {
     en: "AI & Consulting Insights",

@@ -1,612 +1,696 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Conseil IA pour PME & CGPss · Bubble</title>
-    <meta
-      name="description"
-      content="Bubble conçoit des workflows IA et des copilotes sur mesure pour PME et CGPs : automatisation finance, reporting, reconnaissance du revenu, dashboards."
-    />
-    <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
-    <link rel="stylesheet" href="/assets/styles/styles.css" />
-    <link rel="stylesheet" href="/assets/styles/knowledge-overlay.css" />
-    <link rel="stylesheet" href="/assets/styles/pricing-workflow-demo.css" />
-    <link rel="canonical" href="https://bubbleinvest.org/professionals/solutions-companies" />
-    <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/professionals/solutions-companies" />
-    <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/professionals/solutions-companies" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conseil IA pour PME & CGPss · Bubble</title>
+  <meta name="description"
+    content="Bubble conçoit des workflows IA et des copilotes sur mesure pour PME et CGPs : automatisation finance, reporting, reconnaissance du revenu, dashboards." />
+  <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
+  <link rel="stylesheet" href="/assets/styles/styles.css" />
+  <link rel="stylesheet" href="/assets/styles/knowledge-overlay.css" />
+  <link rel="stylesheet" href="/assets/styles/pricing-workflow-demo.css" />
+  <link rel="canonical" href="https://bubbleinvest.org/professionals/solutions-companies" />
+  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/professionals/solutions-companies" />
+  <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/professionals/solutions-companies" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  
-  // Consent mode for EEA users (GDPR)
-  gtag('consent', 'default', {
-    'analytics_storage': 'denied',
-    'ad_storage': 'denied'
-  });
-  
-  gtag('config', 'G-T0MQEL0ZG0', {
-    'anonymize_ip': true
-  });
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-T0MQEL0ZG0', {
-    'cookie_flags': 'SameSite=None;Secure',
-    'anonymize_ip': true
-  });
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    // Consent mode for EEA users (GDPR)
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied'
+    });
+
+    gtag('config', 'G-T0MQEL0ZG0', {
+      'anonymize_ip': true
+    });
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-T0MQEL0ZG0', {
+      'cookie_flags': 'SameSite=None;Secure',
+      'anonymize_ip': true
+    });
+  </script>
 </head>
-  <body class="professionals-solutions-page">
-    <div id="knowledge-overlay" class="knowledge-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="knowledge-title">
-      <div class="knowledge-overlay-card">
-        <button class="knowledge-close-button" type="button" aria-label="Fermer">✕</button>
-        <h2 id="knowledge-title" class="knowledge-title" data-translate="knowledgeOverlay.question">
-          Quel est votre niveau d'expérience en investissement?
-        </h2>
-        <p class="knowledge-subtitle" data-translate="knowledgeOverlay.subtitle">
-          Choisissez l'expérience qui vous convient.
-        </p>
 
-        <div class="knowledge-options">
-          <button class="knowledge-option beginner-option" data-level="beginner" role="button" aria-pressed="false">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 3v18M3 12h18" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <div class="option-content">
-              <span class="option-title" data-translate="knowledgeOverlay.beginner">Débutant</span>
-              <span class="option-description" data-translate="knowledgeOverlay.beginnerDesc">Je suis nouveau</span>
-            </div>
-          </button>
+<body class="professionals-solutions-page">
+  <div id="knowledge-overlay" class="knowledge-overlay hidden" role="dialog" aria-modal="true"
+    aria-labelledby="knowledge-title">
+    <div class="knowledge-overlay-card">
+      <button class="knowledge-close-button" type="button" aria-label="Fermer">✕</button>
+      <h2 id="knowledge-title" class="knowledge-title" data-translate="knowledgeOverlay.question">
+        Quel est votre niveau d'expérience en investissement?
+      </h2>
+      <p class="knowledge-subtitle" data-translate="knowledgeOverlay.subtitle">
+        Choisissez l'expérience qui vous convient.
+      </p>
 
-          <button class="knowledge-option intermediate-option active" data-level="intermediate" role="button" aria-pressed="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-              <polyline points="17 6 23 6 23 12"></polyline>
-            </svg>
-            <div class="option-content">
-              <span class="option-title" data-translate="knowledgeOverlay.intermediate">Intermédiaire</span>
-              <span class="option-description" data-translate="knowledgeOverlay.intermediateDesc">J'ai de l'expérience</span>
-            </div>
-          </button>
-
-          <button class="knowledge-option expert-option" data-level="expert" role="button" aria-pressed="false">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <div class="option-content">
-              <span class="option-title" data-translate="knowledgeOverlay.expert">Expert</span>
-              <span class="option-description" data-translate="knowledgeOverlay.expertDesc">Je maîtrise déjà</span>
-            </div>
-          </button>
-        </div>
-
-        <div class="knowledge-fallback">
-          <button class="knowledge-fallback-link" data-translate="knowledgeOverlay.fallback">
-            Pas sûr ? Montrez-moi un exemple
-          </button>
-        </div>
-      </div>
-    </div>
-    <div id="workflow-demo-overlay" class="workflow-demo-overlay hidden">
-      <!-- Close Button (Always Visible) -->
-      <button class="workflow-demo-close" id="workflow-demo-close" aria-label="Close demo">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 6L6 18M6 6L18 18" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </button>
-
-      <!-- Scrollable Chat Container -->
-      <div class="workflow-demo-chat-container">
-        <div class="workflow-demo-chat-header">
-          <div class="workflow-demo-header-row">
-            <div class="workflow-demo-header-info">
-              <img src="/assets/images/bubble-favicon.svg" class="workflow-demo-icon" alt="Bubble" width="28" height="28" />
-              <div class="workflow-demo-titles">
-                <span class="workflow-demo-title">Bubble AI Agent</span>
-                <span class="workflow-demo-subtitle">Interactive Demo</span>
-              </div>
-            </div>
-            <div class="workflow-demo-header-actions">
-              <div class="workflow-demo-controls" role="group" aria-label="Demo controls">
-                <button class="workflow-demo-control-btn workflow-demo-speed-toggle" id="demo-speed-toggle" type="button" aria-label="Playback speed">1x</button>
-                <button class="workflow-demo-control-btn workflow-demo-pause-toggle" id="demo-pause-toggle" type="button" aria-label="Pause">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <line x1="9" y1="6" x2="9" y2="18"></line>
-                    <line x1="15" y1="6" x2="15" y2="18"></line>
-                  </svg>
-                </button>
-                <button class="workflow-demo-control-btn workflow-demo-skip-toggle" id="demo-skip-toggle" data-demo-action="skip" type="button" aria-label="Skip">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M5 12h10"></path>
-                    <path d="M13 6l6 6-6 6"></path>
-                  </svg>
-                </button>
-              </div>
-              <button class="workflow-demo-lang-toggle" id="demo-lang-toggle" type="button" aria-label="Switch language">
-                <span class="lang-current">FR</span>
-              </button>
-            </div>
-
-
-
-          </div>
-          <div class="workflow-demo-progress">
-            <span id="workflow-demo-progress-label" class="workflow-demo-progress-label">0%</span>
-            <div id="workflow-demo-progress-track" class="workflow-demo-progress-track">
-              <div id="workflow-demo-progress-fill" class="workflow-demo-progress-fill" style="width: 0%;"></div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="workflow-demo-messages" id="workflow-demo-messages" role="log" aria-live="polite"></div>
-        <div class="workflow-demo-input-container">
-          <textarea class="workflow-demo-input-field" placeholder="" readonly></textarea>
-          <button class="workflow-demo-send-button" aria-label="Send">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M12 21V4" stroke-linecap="round" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-    <!-- Navigation Header -->
-    <header>
-      <div class="container">
-        <div class="brand">
-          <a href="/" class="logo-link">
-            <div class="logo" style="display: flex; align-items: center; gap: 0.18em">
-              <span style="display: flex; align-items: center">
-                <svg width="36" height="36" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
-                  <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
-                  <circle cx="59" cy="21" r="6" fill="#000"/>
-                </svg>
-              </span>
-              <span>Bubble.</span>
-            </div>
-          </a>
-          <div class="tagline" data-translate="hero.tagline.professional">L'agent d'investissement transparent.</div>
-        </div>
-        <div class="header-right">
-          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-          </button>
-          <nav class="desktop-nav professional-nav">
-            <a href="/professionals" data-translate="professionals.nav.vision">Vision</a>
-            <div class="nav-dropdown">
-              <button class="nav-dropdown-toggle" data-translate="professionals.nav.solutions">Solutions</button>
-              <div class="nav-dropdown-menu">
-                <a href="/professionals/solutions-companies" data-translate="professionals.nav.solutions.companies">Entreprises</a>
-                <a href="/professionals/solutions-wealth-managers" data-translate="professionals.nav.solutions.wealth">CGPs & Family Offices</a>
-              </div>
-            </div>
-            <a href="/blog" data-translate="professionals.nav.blog">Blog</a>
-            <a href="/professionals#enterprise-waitlist" class="nav-cta" data-translate="professionals.nav.cta">Contactez-nous</a>
-            <div class="language-switcher">
-              <button id="en-switch">EN</button>
-              <span>|</span>
-              <button id="fr-switch" class="active">FR</button>
-            </div>
-          </nav>
-          <div class="mobile-language-switcher">
-            <button id="en-switch-mobile">EN</button>
-            <span>|</span>
-            <button id="fr-switch-mobile" class="active">FR</button>
-          </div>
-        </div>
-        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
-          <nav class="mobile-nav">
-            <a href="/professionals" data-translate="professionals.nav.vision">Vision</a>
-            <div class="mobile-nav-dropdown">
-              <button class="mobile-nav-dropdown-toggle" data-translate="professionals.nav.solutions">Solutions</button>
-              <div class="mobile-nav-dropdown-menu">
-                <a href="/professionals/solutions-companies" data-translate="professionals.nav.solutions.companies">Entreprises</a>
-                <a href="/professionals/solutions-wealth-managers" data-translate="professionals.nav.solutions.wealth">CGPs & Family Offices</a>
-              </div>
-            </div>
-            <a href="/blog" data-translate="professionals.nav.blog">Blog</a>
-            <a href="/professionals#enterprise-waitlist" data-translate="professionals.nav.cta">Contactez-nous</a>
-          </nav>
-        </div>
-      </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero hero-purple fade-in">
-      <div class="container" style="text-align: center;">
-        <p class="hero-eyebrow">Entreprises</p>
-        <h1 data-translate="professionals.solutions.companies.hero.title">Conseil IA pour PME & CGPs</h1>
-        <p class="hero-subtitle" data-translate="professionals.solutions.companies.hero.subtitle">
-          Nous créons des workflows IA et copilotes sur mesure  pour moderniser vos opérations finance sans théâtre façon Big Four.
-        </p>
-        <a href="#project-form" class="cta-button" data-translate="professionals.solutions.companies.form.button">Discutons de votre projet</a>
-      </div>
-    </section>
-
-    <!-- Solutions Clés Grid -->
-    <section class="platform-section fade-in">
-      <div class="container">
-        <div class="features-grid">
-          <div class="platform-card">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-              </svg>
-            </div>
-            <h3 data-translate="professionals.solutions.companies.tile1.title">Sprints de workflows IA sur mesure</h3>
-            <p data-translate="professionals.solutions.companies.tile1.description">
-              Builders Claude Code/Codex/Gemini branchés à votre stack pour automatiser vos tâches finance en quelques semaines.
-            </p>
-          </div>
-
-          <div class="platform-card">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                <path d="M16 11h-3.5a2.5 2.5 0 0 0 0 5H16"></path>
-              </svg>
-            </div>
-            <h3 data-translate="professionals.solutions.companies.tile2.title">Automatisation de la reconnaissance du revenu</h3>
-            <p data-translate="professionals.solutions.companies.tile2.description">
-              Workflow de facturation client, réconciliation comptable, suivi budgétaire simplifié.
-            </p>
-          </div>
-
-          <div class="platform-card">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="20" x2="18" y2="10"></line>
-                <line x1="12" y1="20" x2="12" y2="4"></line>
-                <line x1="6" y1="20" x2="6" y2="14"></line>
-              </svg>
-            </div>
-            <h3 data-translate="professionals.solutions.companies.tile3.title">Reporting financier mensuel automatisé</h3>
-            <p data-translate="professionals.solutions.companies.tile3.description">
-              Jusqu'à 15h/mois économisées, zéro erreur de saisie manuelle.
-            </p>
-          </div>
-
-          <div class="platform-card">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-              </svg>
-            </div>
-            <h3 data-translate="professionals.solutions.companies.tile4.title">Digests d'intelligence client</h3>
-            <p data-translate="professionals.solutions.companies.tile4.description">
-              Résumés automatisés de résultats, updates réglementaires et alertes de risques par mandat (5-7h/semaine gagnées).
-            </p>
-          </div>
-
-          <div class="platform-card">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
-                <path d="M21 3v5h-5"></path>
-              </svg>
-            </div>
-            <h3 data-translate="professionals.solutions.companies.tile5.title">Dashboards personnalisés de performance</h3>
-            <p data-translate="professionals.solutions.companies.tile5.description">
-              Budget divisé par 4 vs solutions vendeurs traditionnels.
-            </p>
-          </div>
-        </div>
-        <div style="text-align: center; margin-top: 2rem;">
-          <a href="#project-form" class="cta-button" data-translate="professionals.solutions.companies.form.button">Discutons de votre projet</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Blog Preview Section -->
-    <section id="blog-preview" class="blog-preview fade-in">
-      <div class="container">
-        <div class="section-header">
-          <h2 data-translate="professionals.solutions.companies.blog.title">Conseils & IA</h2>
-          <p class="section-subtitle" data-translate="professionals.solutions.companies.blog.subtitle">
-            Nos expériences et analyses sur le conseil en IA pour les entreprises
-          </p>
-        </div>
-
-        <div class="blog-tiles-grid" id="blog-preview-grid" data-pinned-only="true" data-pinned-slug="conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment">
-          <!-- Will be populated by JavaScript -->
-          <div class="blog-preview-loading">
-            <div class="loading-animation">
-              <div class="loading-bubble"></div>
-              <div class="loading-bubble"></div>
-              <div class="loading-bubble"></div>
-            </div>
-            <p data-translate="blogPreview.loading">Chargement des articles...</p>
-          </div>
-        </div>
-
-        <div class="blog-cta">
-          <a href="/blog" class="cta-link" data-translate="blogPreview.viewAll">
-            Voir tous les articles →
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="fade-in" style="padding: 5.5rem 0; background: #FFFFFF;">
-      <div class="container" style="max-width: 800px;">
-        <h2 style="font-size: 2rem; font-weight: 600; color: #000; text-align: center; letter-spacing: -0.01em; margin-bottom: 2.5rem;" data-translate="businesses.pricing.title">Tarifs</h2>
-
-        <p style="margin: 0; font-size: 1.125rem; line-height: 1.85; color: #333; text-align: center;" data-translate="businesses.pricing.text">
-          Nos projets se situent dans une fourchette réaliste : de 15 000 à 30 000 € livrés en 2 à 4 mois, avec devis transparent et phase de diagnostic et maintenance incluse. Nous ne cherchons pas à rivaliser avec les grandes agences sur le volume, mais sur la qualité et la pertinence de ce que nous livrons à nos clients. Notre objectif ? Que les outils d'aujourd'hui soit disponible pour les petites comme les grandes entreprises, sans tarifs discriminants.
-        </p>
-      </div>
-    </section>
-
-    <!-- Project Discussion Form Section -->
-    <section id="project-form" class="fade-in" style="padding: 5.5rem 0; background: #F8F8F8;">
-      <div class="container" style="max-width: 900px;">
-        <h2 style="font-size: 2rem; font-weight: 600; color: #000; text-align: center; letter-spacing: -0.01em;" data-translate="businesses.contact.title">Discutons de votre projet</h2>
-        <p class="waitlist-subtitle" data-translate="businesses.contact.subtitle" style="max-width: 700px; margin: 0 auto 2.5rem;">
-          Décrivez-nous votre besoin en quelques lignes. Nous vous répondons sous 48h avec une première estimation de faisabilité et budget.
-        </p>
-
-        <div class="form-container">
-          <h3 data-translate="businesses.form.title">Demande de Contact</h3>
-          <form id="business-contact-form">
-            <div class="form-group">
-              <label for="company" data-translate="businesses.form.company">Entreprise</label>
-              <input type="text" id="company" name="company" required placeholder="Nom de votre entreprise" data-translate-placeholder="businesses.form.company.placeholder" />
-            </div>
-
-            <div class="form-group">
-              <label for="contact-name" data-translate="businesses.form.name">Votre nom</label>
-              <input type="text" id="contact-name" name="contact-name" required placeholder="Prénom Nom" data-translate-placeholder="businesses.form.name.placeholder" />
-            </div>
-
-            <div class="form-group">
-              <label for="email" data-translate="businesses.form.email">Email professionnel</label>
-              <input type="email" id="email" name="email" required placeholder="votre.email@entreprise.com" data-translate-placeholder="businesses.form.email.placeholder" />
-            </div>
-
-            <div class="form-group">
-              <label for="use-case" data-translate="businesses.form.usecase">Décrivez votre besoin</label>
-              <textarea id="use-case" name="use-case" rows="5" required data-translate-placeholder="businesses.form.usecase.placeholder"></textarea>
-            </div>
-
-            <div class="form-group">
-              <label for="budget" data-translate="businesses.form.budget">Budget envisagé</label>
-              <select id="budget" name="budget" required>
-                <option value="" disabled selected data-translate="businesses.form.budget.select">Sélectionnez une fourchette</option>
-                <option value="diagnostic" data-translate="businesses.form.budget.diagnostic">€3k-€5k (Diagnostic uniquement)</option>
-                <option value="small" data-translate="businesses.form.budget.small">€8k-€12k (Automatisation simple)</option>
-                <option value="medium" data-translate="businesses.form.budget.medium">€20k-€30k (Projet complet)</option>
-                <option value="large" data-translate="businesses.form.budget.large">€30k+ (Projet complexe)</option>
-                <option value="unknown" data-translate="businesses.form.budget.unknown">Je ne sais pas encore</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="timeline" data-translate="businesses.form.timeline">Timeline souhaitée</label>
-              <select id="timeline" name="timeline" required>
-                <option value="" disabled selected data-translate="businesses.form.timeline.select">Quand souhaitez-vous démarrer ?</option>
-                <option value="urgent" data-translate="businesses.form.timeline.urgent">Urgent (< 1 mois)</option>
-                <option value="soon" data-translate="businesses.form.timeline.soon">Prochainement (1-3 mois)</option>
-                <option value="planning" data-translate="businesses.form.timeline.planning">En planification (3-6 mois)</option>
-                <option value="exploring" data-translate="businesses.form.timeline.exploring">En exploration (6+ mois)</option>
-              </select>
-            </div>
-
-            <button type="submit" data-translate="businesses.form.submit">Envoyer ma demande</button>
-            <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 1rem;" data-translate="businesses.form.note">
-              Réponse sous 48h • Diagnostic initial gratuit • Aucun engagement
-            </p>
-          </form>
-
-          <div id="form-success" style="display: none; text-align: center; padding: 2rem; background: rgba(16, 185, 129, 0.1); border-radius: 24px; margin-top: 2rem;">
-            <h3 style="color: #10b981; margin-bottom: 1rem;" data-translate="businesses.form.success.title">✅ Message envoyé !</h3>
-            <p data-translate="businesses.form.success.message">Nous avons bien reçu votre demande. Un membre de notre équipe vous répondra sous 48h à l'adresse <strong id="submitted-email"></strong>.</p>
-          </div>
-
-          <div id="form-error" style="display: none; text-align: center; padding: 2rem; background: rgba(239, 68, 68, 0.1); border-radius: 24px; margin-top: 2rem;">
-            <h3 style="color: #ef4444; margin-bottom: 1rem;" data-translate="businesses.form.error.title">❌ Erreur d'envoi</h3>
-            <p data-translate="businesses.form.error.message">Une erreur est survenue. Contactez-nous directement à <a href="mailto:contact@bubbleinvest.org" style="color: #667eea; text-decoration: underline;">contact@bubbleinvest.org</a></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-left">
-            <div class="footer-logo" style="display: flex; align-items: center; gap: 0.18em">
-              <span style="display: flex; align-items: center"
-                ><svg
-                  width="30"
-                  height="30"
-                  viewBox="0 0 72 72"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style="display: inline-block; vertical-align: middle"
-                >
-                  <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10" />
-                  <circle cx="59" cy="21" r="6" fill="#000" /></svg></span
-              ><span>Bubble.</span>
-            </div>
-            <div class="footer-tagline" data-translate="footer.tagline">
-              L'ère de l'IA change tout. Changeons avec elle.
-            </div>
-            <div class="footer-copyright" data-translate="footer.copyright">
-              © 2025 Bubble Invest SAS. Transparent by design.
-            </div>
-          </div>
-
-          <nav class="footer-nav">
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.investors">Investisseurs</h4>
-              <ul>
-                <li><a href="/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
-                <li><a href="/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
-                <li><a href="/investors#faq" data-translate="footer.nav.investors.faq">FAQ</a></li>
-                <li><a href="/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Accès Anticipé</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.professionals">Professionnels</h4>
-              <ul>
-                <li><a href="/professionals/solutions-companies" data-translate="footer.nav.professionals.solutions">Solutions</a></li>
-                <li><a href="/professionals/solutions-wealth-managers" data-translate="footer.nav.professionals.demo">Démo</a></li>
-                <li><a href="/professionals#faq" data-translate="footer.nav.professionals.faq">FAQ</a></li>
-                <li><a href="/professionals#enterprise-waitlist" data-translate="footer.nav.professionals.contact">Contact</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.resources">Ressources</h4>
-              <ul>
-                <li><a href="/blog" data-translate="footer.nav.blog">Blog</a></li>
-                <li><a href="/investors/playground" data-translate="footer.nav.resources.education">Playground</a></li>
-                <li><a href="/investors" class="js-retail-demo-trigger" data-entry-point="footer_resources_demo" data-translate="footer.nav.resources.demo">Démo</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.legal">Légal</h4>
-              <ul>
-                <li><a href="/mentions-legales" data-translate="footer.nav.legal_notice">Mentions Légales</a></li>
-                <li><a href="/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
-                <li><a href="#cookies" id="tarteaucitronRoot" data-translate="footer.nav.cookies">Gérer les Cookies</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.contact">Contact</h4>
-              <ul>
-                <li><a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></li>
-              </ul>
-              <div class="social-media-links">
-                <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn" data-handle="Bubble Invest AI">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                    <rect x="2" y="9" width="4" height="12"/>
-                    <circle cx="4" cy="4" r="2"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.linkedin">Bubble Invest AI</span>
-                </a>
-                <a href="https://www.instagram.com/behindthefinancebubble/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram" data-handle="@behindthefinancebubble">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.instagram">@behindthefinancebubble</span>
-                </a>
-                <a href="https://www.tiktok.com/@behind.the.bubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok" data-handle="@behind.the.bubble">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.tiktok">@behind.the.bubble</span>
-                </a>
-                <a href="https://www.youtube.com/@behindthefinancebubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube" data-handle="@behindthefinancebubble">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
-                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.youtube">@behindthefinancebubble</span>
-                </a>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Floating Chat Input -->
-    <div id="floating-chat-input" class="floating-chat-input hidden" data-always-visible="true" data-page-context="professionals_companies">
-      <div class="floating-input-container">
-        <input
-          type="text"
-          class="floating-input-field"
-          placeholder="Ask me anything..."
-          data-translate-placeholder="floating_input.placeholder"
-          aria-label="Ask a question"
-        />
-        <button class="floating-input-submit" aria-label="Send message">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <div class="knowledge-options">
+        <button class="knowledge-option beginner-option" data-level="beginner" role="button" aria-pressed="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 3v18M3 12h18" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
+          <div class="option-content">
+            <span class="option-title" data-translate="knowledgeOverlay.beginner">Débutant</span>
+            <span class="option-description" data-translate="knowledgeOverlay.beginnerDesc">Je suis nouveau</span>
+          </div>
+        </button>
+
+        <button class="knowledge-option intermediate-option active" data-level="intermediate" role="button"
+          aria-pressed="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+            <polyline points="17 6 23 6 23 12"></polyline>
+          </svg>
+          <div class="option-content">
+            <span class="option-title" data-translate="knowledgeOverlay.intermediate">Intermédiaire</span>
+            <span class="option-description" data-translate="knowledgeOverlay.intermediateDesc">J'ai de
+              l'expérience</span>
+          </div>
+        </button>
+
+        <button class="knowledge-option expert-option" data-level="expert" role="button" aria-pressed="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <div class="option-content">
+            <span class="option-title" data-translate="knowledgeOverlay.expert">Expert</span>
+            <span class="option-description" data-translate="knowledgeOverlay.expertDesc">Je maîtrise déjà</span>
+          </div>
+        </button>
+      </div>
+
+      <div class="knowledge-fallback">
+        <button class="knowledge-fallback-link" data-translate="knowledgeOverlay.fallback">
+          Pas sûr ? Montrez-moi un exemple
         </button>
       </div>
     </div>
+  </div>
+  <div id="workflow-demo-overlay" class="workflow-demo-overlay hidden">
+    <!-- Close Button (Always Visible) -->
+    <button class="workflow-demo-close" id="workflow-demo-close" aria-label="Close demo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6L18 18" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
 
-    <!-- Chat Side Panel -->
-    <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
-      <div class="chat-side-panel-header">
-        <div class="chat-side-panel-header-info">
-          <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
-          <div class="chat-side-panel-titles">
-            <span class="chat-side-panel-title">Bubble Assistant</span>
+    <!-- Scrollable Chat Container -->
+    <div class="workflow-demo-chat-container">
+      <div class="workflow-demo-chat-header">
+        <div class="workflow-demo-header-row">
+          <div class="workflow-demo-header-info">
+            <img src="/assets/images/bubble-favicon.svg" class="workflow-demo-icon" alt="Bubble" width="28"
+              height="28" />
+            <div class="workflow-demo-titles">
+              <span class="workflow-demo-title">Bubble AI Agent</span>
+              <span class="workflow-demo-subtitle">Interactive Demo</span>
+            </div>
+          </div>
+          <div class="workflow-demo-header-actions">
+            <div class="workflow-demo-controls" role="group" aria-label="Demo controls">
+              <button class="workflow-demo-control-btn workflow-demo-speed-toggle" id="demo-speed-toggle" type="button"
+                aria-label="Playback speed">1x</button>
+              <button class="workflow-demo-control-btn workflow-demo-pause-toggle" id="demo-pause-toggle" type="button"
+                aria-label="Pause">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  aria-hidden="true">
+                  <line x1="9" y1="6" x2="9" y2="18"></line>
+                  <line x1="15" y1="6" x2="15" y2="18"></line>
+                </svg>
+              </button>
+              <button class="workflow-demo-control-btn workflow-demo-skip-toggle" id="demo-skip-toggle"
+                data-demo-action="skip" type="button" aria-label="Skip">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  aria-hidden="true">
+                  <path d="M5 12h10"></path>
+                  <path d="M13 6l6 6-6 6"></path>
+                </svg>
+              </button>
+            </div>
+            <button class="workflow-demo-lang-toggle" id="demo-lang-toggle" type="button" aria-label="Switch language">
+              <span class="lang-current">FR</span>
+            </button>
+          </div>
+
+
+
+        </div>
+        <div class="workflow-demo-progress">
+          <span id="workflow-demo-progress-label" class="workflow-demo-progress-label">0%</span>
+          <div id="workflow-demo-progress-track" class="workflow-demo-progress-track">
+            <div id="workflow-demo-progress-fill" class="workflow-demo-progress-fill" style="width: 0%;"></div>
           </div>
         </div>
-        <div class="chat-side-panel-actions">
-          <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
-          <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
-        </div>
       </div>
-      <div class="chat-side-panel-messages" role="log" aria-live="polite">
-        <div class="chat-side-panel-message bot">
-          <div class="message-content">
-            Salut ! Je suis Bubble - ici on démocratise l'investissement. Qu'est-ce qui t'amène ici ?
-          </div>
-        </div>
-      </div>
-      <form class="chat-side-panel-input-container" novalidate>
-        <input
-          type="text"
-          class="chat-side-panel-input"
-          placeholder="Posez vos questions..."
-          data-translate-placeholder="floating_input.placeholder"
-          aria-label="Type your message"
-          autocomplete="off"
-        />
-        <button class="chat-side-panel-send" aria-label="Send message" type="submit">
+
+
+      <div class="workflow-demo-messages" id="workflow-demo-messages" role="log" aria-live="polite"></div>
+      <div class="workflow-demo-input-container">
+        <textarea class="workflow-demo-input-field" placeholder="" readonly></textarea>
+        <button class="workflow-demo-send-button" aria-label="Send">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M12 21V4" stroke-linecap="round" />
           </svg>
         </button>
-      </form>
+      </div>
     </div>
+  </div>
+  <!-- Navigation Header -->
+  <header>
+    <div class="container">
+      <div class="brand">
+        <a href="/" class="logo-link">
+          <div class="logo" style="display: flex; align-items: center; gap: 0.18em">
+            <span style="display: flex; align-items: center">
+              <svg width="36" height="36" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"
+                style="display: inline-block; vertical-align: middle">
+                <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round"
+                  stroke-dasharray="145 29" stroke-dashoffset="10" />
+                <circle cx="59" cy="21" r="6" fill="#000" />
+              </svg>
+            </span>
+            <span>Bubble.</span>
+          </div>
+        </a>
+        <div class="tagline" data-translate="hero.tagline.professional">L'agent d'investissement transparent.</div>
+      </div>
+      <div class="header-right">
+        <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <nav class="desktop-nav professional-nav">
+          <a href="/professionals" data-translate="professionals.nav.vision">Vision</a>
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" data-translate="professionals.nav.solutions">Solutions</button>
+            <div class="nav-dropdown-menu">
+              <a href="/professionals/solutions-companies"
+                data-translate="professionals.nav.solutions.companies">Entreprises</a>
+              <a href="/professionals/solutions-wealth-managers"
+                data-translate="professionals.nav.solutions.wealth">CGPs & Family Offices</a>
+            </div>
+          </div>
+          <a href="/blog" data-translate="professionals.nav.blog">Blog</a>
+          <a href="/professionals#enterprise-waitlist" class="nav-cta"
+            data-translate="professionals.nav.cta">Contactez-nous</a>
+          <div class="language-switcher">
+            <button id="en-switch">EN</button>
+            <span>|</span>
+            <button id="fr-switch" class="active">FR</button>
+          </div>
+        </nav>
+        <div class="mobile-language-switcher">
+          <button id="en-switch-mobile">EN</button>
+          <span>|</span>
+          <button id="fr-switch-mobile" class="active">FR</button>
+        </div>
+      </div>
+      <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+        <nav class="mobile-nav">
+          <a href="/professionals" data-translate="professionals.nav.vision">Vision</a>
+          <div class="mobile-nav-dropdown">
+            <button class="mobile-nav-dropdown-toggle" data-translate="professionals.nav.solutions">Solutions</button>
+            <div class="mobile-nav-dropdown-menu">
+              <a href="/professionals/solutions-companies"
+                data-translate="professionals.nav.solutions.companies">Entreprises</a>
+              <a href="/professionals/solutions-wealth-managers"
+                data-translate="professionals.nav.solutions.wealth">CGPs & Family Offices</a>
+            </div>
+          </div>
+          <a href="/blog" data-translate="professionals.nav.blog">Blog</a>
+          <a href="/professionals#enterprise-waitlist" data-translate="professionals.nav.cta">Contactez-nous</a>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-    <!-- Scripts -->
-    <script src="/i18n/translations.js"></script>
-    <script src="/js/businesses-form.js"></script>
-    <script src="/js/script.js"></script>
-    <script src="/js/blog-preview.js"></script>
-    <script src="/js/knowledge-overlay.js"></script>
-    <script src="/js/pricing-workflow-demo.js"></script>
-    <script src="/js/chatbot-logic.js"></script>
-    <script src="/js/chatbot-animations.js"></script>
-    <script src="/js/chat-side-panel.js"></script>
-    <script src="/js/floating-chat-input.js"></script>
-    <script src="/js/animations.js"></script>
+  <!-- Hero Section -->
+  <section class="hero hero-purple fade-in">
+    <div class="container" style="text-align: center;">
+      <p class="hero-eyebrow">Entreprises</p>
+      <h1 data-translate="professionals.solutions.companies.hero.title">Conseil IA pour PME & CGPs</h1>
+      <p class="hero-subtitle" data-translate="professionals.solutions.companies.hero.subtitle">
+        Nous créons des workflows IA et copilotes sur mesure pour moderniser vos opérations finance sans théâtre façon
+        Big Four.
+      </p>
+      <a href="#project-form" class="cta-button"
+        data-translate="professionals.solutions.companies.form.button">Discutons de votre projet</a>
+    </div>
+  </section>
 
-<script src="../js/seo/ga4-events.js"></script>
+  <!-- Solutions Clés Grid -->
+  <section class="platform-section fade-in">
+    <div class="container">
+      <div class="features-grid">
+        <div class="platform-card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+              <path d="M6 12v5c3 3 9 3 12 0v-5" />
+            </svg>
+          </div>
+          <h3 data-translate="professionals.solutions.companies.tile0.title">Formation IA</h3>
+          <p data-translate="professionals.solutions.companies.tile0.description">
+            Maîtrisez les outils IA : LLMs, Notion, automatisation. Sessions pratiques et support continu.
+          </p>
+        </div>
+
+        <div class="platform-card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h3 data-translate="professionals.solutions.companies.tile1.title">Applications IA sur mesure</h3>
+          <p data-translate="professionals.solutions.companies.tile1.description">
+            Applications web légères intégrant LLMs et APIs pour automatiser vos tâches répétitives.
+          </p>
+        </div>
+
+        <div class="platform-card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v4"></path>
+              <path d="M12 18v4"></path>
+              <path d="M4.93 4.93l2.83 2.83"></path>
+              <path d="M16.24 16.24l2.83 2.83"></path>
+              <path d="M2 12h4"></path>
+              <path d="M18 12h4"></path>
+              <path d="M4.93 19.07l2.83-2.83"></path>
+              <path d="M16.24 7.76l2.83-2.83"></path>
+            </svg>
+          </div>
+          <h3 data-translate="professionals.solutions.companies.tile2.title">Intégrations API</h3>
+          <p data-translate="professionals.solutions.companies.tile2.description">
+            Connectez vos outils existants : CRM, ERP, bases de données. Flux de données automatisés.
+          </p>
+        </div>
+
+        <div class="platform-card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </div>
+          <h3 data-translate="professionals.solutions.companies.tile3.title">Veille intelligente</h3>
+          <p data-translate="professionals.solutions.companies.tile3.description">
+            Surveillance automatisée de sources multiples avec enrichissement IA et alertes personnalisées.
+          </p>
+        </div>
+
+        <div class="platform-card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <line x1="10" y1="9" x2="8" y2="9"></line>
+            </svg>
+          </div>
+          <h3 data-translate="professionals.solutions.companies.tile4.title">Reporting automatisé</h3>
+          <p data-translate="professionals.solutions.companies.tile4.description">
+            Génération automatique de rapports et synthèses à partir de vos données brutes.
+          </p>
+        </div>
+
+        <div class="platform-card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </div>
+          <h3 data-translate="professionals.solutions.companies.tile5.title">Tableaux de bord sur mesure</h3>
+          <p data-translate="professionals.solutions.companies.tile5.description">
+            Visualisation temps réel de vos KPIs et métriques métier essentiels.
+          </p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="#project-form" class="cta-button"
+          data-translate="professionals.solutions.companies.form.button">Discutons de votre projet</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Preview Section -->
+  <section id="blog-preview" class="blog-preview fade-in">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-translate="professionals.solutions.companies.blog.title">Conseils & IA</h2>
+        <p class="section-subtitle" data-translate="professionals.solutions.companies.blog.subtitle">
+          Nos expériences et analyses sur le conseil en IA pour les entreprises
+        </p>
+      </div>
+
+      <div class="blog-tiles-grid" id="blog-preview-grid" data-pinned-only="true"
+        data-pinned-slug="conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment">
+        <!-- Will be populated by JavaScript -->
+        <div class="blog-preview-loading">
+          <div class="loading-animation">
+            <div class="loading-bubble"></div>
+            <div class="loading-bubble"></div>
+            <div class="loading-bubble"></div>
+          </div>
+          <p data-translate="blogPreview.loading">Chargement des articles...</p>
+        </div>
+      </div>
+
+      <div class="blog-cta">
+        <a href="/blog" class="cta-link" data-translate="blogPreview.viewAll">
+          Voir tous les articles →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="fade-in" style="padding: 5.5rem 0; background: #FFFFFF;">
+    <div class="container" style="max-width: 800px;">
+      <h2
+        style="font-size: 2rem; font-weight: 600; color: #000; text-align: center; letter-spacing: -0.01em; margin-bottom: 2.5rem;"
+        data-translate="businesses.pricing.title">Tarifs</h2>
+
+      <p style="margin: 0; font-size: 1.125rem; line-height: 1.85; color: #333; text-align: center;"
+        data-translate="businesses.pricing.text">
+        Nos projets se situent dans une fourchette réaliste : de 15 000 à 30 000 € livrés en 2 à 4 mois, avec devis
+        transparent et phase de diagnostic et maintenance incluse. Nous ne cherchons pas à rivaliser avec les grandes
+        agences sur le volume, mais sur la qualité et la pertinence de ce que nous livrons à nos clients. Notre objectif
+        ? Que les outils d'aujourd'hui soit disponible pour les petites comme les grandes entreprises, sans tarifs
+        discriminants.
+      </p>
+    </div>
+  </section>
+
+  <!-- Project Discussion Form Section -->
+  <section id="project-form" class="fade-in" style="padding: 5.5rem 0; background: #F8F8F8;">
+    <div class="container" style="max-width: 900px;">
+      <h2 style="font-size: 2rem; font-weight: 600; color: #000; text-align: center; letter-spacing: -0.01em;"
+        data-translate="businesses.contact.title">Discutons de votre projet</h2>
+      <p class="waitlist-subtitle" data-translate="businesses.contact.subtitle"
+        style="max-width: 700px; margin: 0 auto 2.5rem;">
+        Décrivez-nous votre besoin en quelques lignes. Nous vous répondons sous 48h avec une première estimation de
+        faisabilité et budget.
+      </p>
+
+      <div class="form-container">
+        <h3 data-translate="businesses.form.title">Demande de Contact</h3>
+        <form id="business-contact-form">
+          <div class="form-group">
+            <label for="company" data-translate="businesses.form.company">Entreprise</label>
+            <input type="text" id="company" name="company" required placeholder="Nom de votre entreprise"
+              data-translate-placeholder="businesses.form.company.placeholder" />
+          </div>
+
+          <div class="form-group">
+            <label for="contact-name" data-translate="businesses.form.name">Votre nom</label>
+            <input type="text" id="contact-name" name="contact-name" required placeholder="Prénom Nom"
+              data-translate-placeholder="businesses.form.name.placeholder" />
+          </div>
+
+          <div class="form-group">
+            <label for="email" data-translate="businesses.form.email">Email professionnel</label>
+            <input type="email" id="email" name="email" required placeholder="votre.email@entreprise.com"
+              data-translate-placeholder="businesses.form.email.placeholder" />
+          </div>
+
+          <div class="form-group">
+            <label for="use-case" data-translate="businesses.form.usecase">Décrivez votre besoin</label>
+            <textarea id="use-case" name="use-case" rows="5" required
+              data-translate-placeholder="businesses.form.usecase.placeholder"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="budget" data-translate="businesses.form.budget">Budget envisagé</label>
+            <select id="budget" name="budget" required>
+              <option value="" disabled selected data-translate="businesses.form.budget.select">Sélectionnez une
+                fourchette</option>
+              <option value="diagnostic" data-translate="businesses.form.budget.diagnostic">€3k-€5k (Diagnostic
+                uniquement)</option>
+              <option value="small" data-translate="businesses.form.budget.small">€8k-€12k (Automatisation simple)
+              </option>
+              <option value="medium" data-translate="businesses.form.budget.medium">€20k-€30k (Projet complet)</option>
+              <option value="large" data-translate="businesses.form.budget.large">€30k+ (Projet complexe)</option>
+              <option value="unknown" data-translate="businesses.form.budget.unknown">Je ne sais pas encore</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="timeline" data-translate="businesses.form.timeline">Timeline souhaitée</label>
+            <select id="timeline" name="timeline" required>
+              <option value="" disabled selected data-translate="businesses.form.timeline.select">Quand souhaitez-vous
+                démarrer ?</option>
+              <option value="urgent" data-translate="businesses.form.timeline.urgent">Urgent (< 1 mois)</option>
+              <option value="soon" data-translate="businesses.form.timeline.soon">Prochainement (1-3 mois)</option>
+              <option value="planning" data-translate="businesses.form.timeline.planning">En planification (3-6 mois)
+              </option>
+              <option value="exploring" data-translate="businesses.form.timeline.exploring">En exploration (6+ mois)
+              </option>
+            </select>
+          </div>
+
+          <button type="submit" data-translate="businesses.form.submit">Envoyer ma demande</button>
+          <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 1rem;"
+            data-translate="businesses.form.note">
+            Réponse sous 48h • Diagnostic initial gratuit • Aucun engagement
+          </p>
+        </form>
+
+        <div id="form-success"
+          style="display: none; text-align: center; padding: 2rem; background: rgba(16, 185, 129, 0.1); border-radius: 24px; margin-top: 2rem;">
+          <h3 style="color: #10b981; margin-bottom: 1rem;" data-translate="businesses.form.success.title">✅ Message
+            envoyé !</h3>
+          <p data-translate="businesses.form.success.message">Nous avons bien reçu votre demande. Un membre de notre
+            équipe vous répondra sous 48h à l'adresse <strong id="submitted-email"></strong>.</p>
+        </div>
+
+        <div id="form-error"
+          style="display: none; text-align: center; padding: 2rem; background: rgba(239, 68, 68, 0.1); border-radius: 24px; margin-top: 2rem;">
+          <h3 style="color: #ef4444; margin-bottom: 1rem;" data-translate="businesses.form.error.title">❌ Erreur d'envoi
+          </h3>
+          <p data-translate="businesses.form.error.message">Une erreur est survenue. Contactez-nous directement à <a
+              href="mailto:contact@bubbleinvest.org"
+              style="color: #667eea; text-decoration: underline;">contact@bubbleinvest.org</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <div class="footer-logo" style="display: flex; align-items: center; gap: 0.18em">
+            <span style="display: flex; align-items: center"><svg width="30" height="30" viewBox="0 0 72 72" fill="none"
+                xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
+                <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round"
+                  stroke-dasharray="145 29" stroke-dashoffset="10" />
+                <circle cx="59" cy="21" r="6" fill="#000" />
+              </svg></span><span>Bubble.</span>
+          </div>
+          <div class="footer-tagline" data-translate="footer.tagline">
+            L'ère de l'IA change tout. Changeons avec elle.
+          </div>
+          <div class="footer-copyright" data-translate="footer.copyright">
+            © 2025 Bubble Invest SAS. Transparent by design.
+          </div>
+        </div>
+
+        <nav class="footer-nav">
+          <div class="footer-column">
+            <h4 data-translate="footer.nav.investors">Investisseurs</h4>
+            <ul>
+              <li><a href="/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
+              <li><a href="/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
+              <li><a href="/investors#faq" data-translate="footer.nav.investors.faq">FAQ</a></li>
+              <li><a href="/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Accès
+                  Anticipé</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 data-translate="footer.nav.professionals">Professionnels</h4>
+            <ul>
+              <li><a href="/professionals/solutions-companies"
+                  data-translate="footer.nav.professionals.solutions">Solutions</a></li>
+              <li><a href="/professionals/solutions-wealth-managers"
+                  data-translate="footer.nav.professionals.demo">Démo</a></li>
+              <li><a href="/professionals#faq" data-translate="footer.nav.professionals.faq">FAQ</a></li>
+              <li><a href="/professionals#enterprise-waitlist"
+                  data-translate="footer.nav.professionals.contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 data-translate="footer.nav.resources">Ressources</h4>
+            <ul>
+              <li><a href="/blog" data-translate="footer.nav.blog">Blog</a></li>
+              <li><a href="/investors/playground" data-translate="footer.nav.resources.education">Playground</a></li>
+              <li><a href="/investors" class="js-retail-demo-trigger" data-entry-point="footer_resources_demo"
+                  data-translate="footer.nav.resources.demo">Démo</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 data-translate="footer.nav.legal">Légal</h4>
+            <ul>
+              <li><a href="/mentions-legales" data-translate="footer.nav.legal_notice">Mentions Légales</a></li>
+              <li><a href="/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
+              <li><a href="#cookies" id="tarteaucitronRoot" data-translate="footer.nav.cookies">Gérer les Cookies</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 data-translate="footer.nav.contact">Contact</h4>
+            <ul>
+              <li><a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></li>
+            </ul>
+            <div class="social-media-links">
+              <a href="https://substack.com/@bubbleinvest?utm_campaign=profile&utm_medium=profile-page" target="_blank"
+                rel="noopener noreferrer" class="social-link" aria-label="Substack" data-handle="Bubble Invest">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                  stroke="none">
+                  <path d="M22.5 6H1.5V9H22.5V6ZM1.5 10.5V24L12 18L22.5 24V10.5H1.5ZM22.5 0H1.5V3H22.5V0Z" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.substack">Bubble Invest</span>
+              </a>
+              <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" rel="noopener noreferrer"
+                class="social-link" aria-label="LinkedIn" data-handle="Bubble Invest AI">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.linkedin">Bubble Invest AI</span>
+              </a>
+              <a href="https://www.instagram.com/behindthefinancebubble/" target="_blank" rel="noopener noreferrer"
+                class="social-link" aria-label="Instagram" data-handle="@behindthefinancebubble">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.instagram">@behindthefinancebubble</span>
+              </a>
+              <a href="https://www.tiktok.com/@behind.the.bubble" target="_blank" rel="noopener noreferrer"
+                class="social-link" aria-label="TikTok" data-handle="@behind.the.bubble">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.tiktok">@behind.the.bubble</span>
+              </a>
+              <a href="https://www.youtube.com/@behindthefinancebubble" target="_blank" rel="noopener noreferrer"
+                class="social-link" aria-label="YouTube" data-handle="@behindthefinancebubble">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.youtube">@behindthefinancebubble</span>
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Chat Input -->
+  <div id="floating-chat-input" class="floating-chat-input hidden" data-always-visible="true"
+    data-page-context="professionals_companies">
+    <div class="floating-input-container">
+      <input type="text" class="floating-input-field" placeholder="Ask me anything..."
+        data-translate-placeholder="floating_input.placeholder" aria-label="Ask a question" />
+      <button class="floating-input-submit" aria-label="Send message">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Chat Side Panel -->
+  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+    <div class="chat-side-panel-header">
+      <div class="chat-side-panel-header-info">
+        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+        <div class="chat-side-panel-titles">
+          <span class="chat-side-panel-title">Bubble Assistant</span>
+        </div>
+      </div>
+      <div class="chat-side-panel-actions">
+        <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
+        <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
+      </div>
+    </div>
+    <div class="chat-side-panel-messages" role="log" aria-live="polite">
+      <div class="chat-side-panel-message bot">
+        <div class="message-content">
+          Salut ! Je suis Bubble - ici on démocratise l'investissement. Qu'est-ce qui t'amène ici ?
+        </div>
+      </div>
+    </div>
+    <form class="chat-side-panel-input-container" novalidate>
+      <input type="text" class="chat-side-panel-input" placeholder="Posez vos questions..."
+        data-translate-placeholder="floating_input.placeholder" aria-label="Type your message" autocomplete="off" />
+      <button class="chat-side-panel-send" aria-label="Send message" type="submit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M12 21V4" stroke-linecap="round" />
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/i18n/translations.js"></script>
+  <script src="/js/businesses-form.js"></script>
+  <script src="/js/script.js"></script>
+  <script src="/js/blog-preview.js"></script>
+  <script src="/js/knowledge-overlay.js"></script>
+  <script src="/js/pricing-workflow-demo.js"></script>
+  <script src="/js/chatbot-logic.js"></script>
+  <script src="/js/chatbot-animations.js"></script>
+  <script src="/js/chat-side-panel.js"></script>
+  <script src="/js/floating-chat-input.js"></script>
+  <script src="/js/animations.js"></script>
+
+  <script src="../js/seo/ga4-events.js"></script>
 
   <!-- Cookie Consent (Tarteaucitron) - MUST load before other scripts -->
   <link rel="stylesheet" href="/assets/styles/cookie-banner.css">
-    <script src="/js/seo/cookie-banner.js"></script>
+  <script src="/js/seo/cookie-banner.js"></script>
 </body>
+
 </html>
