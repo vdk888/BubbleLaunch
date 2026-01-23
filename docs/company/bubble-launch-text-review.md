@@ -157,7 +157,7 @@ Jusqu’ici, vous payiez un gérant ou un banquier pour des mots rassurants et u
 | English | French |
 |---------|--------|
 | Educate | Éduquer |
-| We explain financial concepts simply and we help you understand your portfolio's performance in real-time. | Nous expliquons les concepts financiers simplement et nous vous aidons à comprendre la performance de votre portefeuille en temps réel. |
+| We explain financial and technological concepts in simple terms, so you always keep full control over every decision. | Nous expliquons les concepts financiers et les technologies d’IA qui les rendent possibles, pour que vous gardiez toujours le pouvoir de tout décider en comprenant ce qui se passe “sous le capot”. |
 
 ### Philosophy Statement
 | English | French |

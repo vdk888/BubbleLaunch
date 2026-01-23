@@ -255,8 +255,8 @@ const translations = {
     fr: "Éduquer",
   },
   "approach.educate.description": {
-    en: "We explain financial concepts simply and we help you understand your portfolio's performance in real-time.",
-    fr: "Nous expliquons les concepts financiers simplement et nous vous aidons à comprendre la performance de votre portefeuille en temps réel.",
+    en: "We explain financial and technological concepts in simple terms, so you always keep full control over every decision.",
+    fr: "Nous expliquons les concepts financiers et les technologies d’IA qui les rendent possibles, pour que vous gardiez toujours le pouvoir de tout décider en comprenant ce qui se passe “sous le capot”.",
   },
   "approach.philosophy": {
     en: "We don't claim to beat the market. We give you access to our tool so you can manage your portfolio according to your objectives and at lower cost.",
@@ -1571,6 +1571,22 @@ const translations = {
     en: "• Stay current with frequent AI tool and model releases<br>• Learn practical workflows for Claude, Gemini, and ChatGPT<br>• Boost productivity with document automation and data analysis<br>• Monthly on-site sessions + dedicated support: €50/month/employee",
     fr: "• Restez à jour avec les releases fréquentes d'outils et de modèles AI<br>• Apprenez des workflows pratiques pour Claude, Gemini et ChatGPT<br>• Augmentez votre productivité avec l'automatisation de documents et l'analyse de données<br>• Sessions mensuelles sur site + support dédié : 50€/mois/employé"
   },
+  "businesses.services.formation.tagline": {
+    en: "Master AI tools: LLMs, Notion & automation.",
+    fr: "Maîtrisez les outils IA : LLMs, Notion, workflows d'automatisation."
+  },
+  "businesses.services.formation.benefit1": {
+    en: "Monthly on-site sessions",
+    fr: "Sessions mensuelles sur site"
+  },
+  "businesses.services.formation.benefit2": {
+    en: "Dedicated ongoing support",
+    fr: "Support dédié continu"
+  },
+  "businesses.services.formation.benefit3": {
+    en: "€50/month per employee",
+    fr: "50€/mois par employé"
+  },
   "businesses.services.implementation.title": {
     en: "Custom AI Solutions",
     fr: "Solutions IA sur Mesure"
@@ -1583,6 +1599,22 @@ const translations = {
     en: "• Tailored AI applications for financial automation<br>• Custom solutions for reporting, reconciliation, and portfolio management<br>• Transparent fixed-price quoting: €3k–€30k projects<br>• Clear delivery timelines and measurable ROI",
     fr: "• Applications AI adaptées pour l'automatisation financière<br>• Solutions personnalisées pour le reporting, la réconciliation et la gestion de portefeuille<br>• Devis fixes transparents : projets de 3k€–30k€<br>• Délais de livraison clairs et ROI mesurable"
   },
+  "businesses.services.implementation.tagline": {
+    en: "Custom applications to automate your processes.",
+    fr: "Applications personnalisées pour automatiser vos processus."
+  },
+  "businesses.services.implementation.benefit1": {
+    en: "Transparent fixed quotes",
+    fr: "Devis fixes transparents"
+  },
+  "businesses.services.implementation.benefit2": {
+    en: "€3k–€30k projects",
+    fr: "Projets 3k€–30k€"
+  },
+  "businesses.services.implementation.benefit3": {
+    en: "Measurable ROI",
+    fr: "ROI mesurable"
+  },
   "businesses.services.autopilot.title": {
     en: "Bubble Portfolio for Professionals",
     fr: "Bubble Portfolio pour Professionnels"
@@ -1594,6 +1626,26 @@ const translations = {
   "businesses.services.autopilot.description": {
     en: "• Complete AI-powered portfolio management platform<br>• Connect your trading accounts for automated execution<br>• Transparent, explainable strategies tailored to your goals<br>• No hidden fees, complete asset control",
     fr: "• Plateforme complète de gestion de portefeuille alimentée par l'IA<br>• Connectez vos comptes de trading pour une exécution automatisée<br>• Stratégies transparentes et expliquables adaptées à vos objectifs<br>• Aucun frais caché, contrôle total de vos actifs"
+  },
+  "businesses.services.autopilot.tagline": {
+    en: "AI-powered portfolio management platform for professionals.",
+    fr: "Plateforme de gestion pilotée par l'IA pour professionnels."
+  },
+  "businesses.services.autopilot.benefit1": {
+    en: "Automated execution",
+    fr: "Exécution automatisée"
+  },
+  "businesses.services.autopilot.benefit2": {
+    en: "Transparent strategies",
+    fr: "Stratégies transparentes"
+  },
+  "businesses.services.autopilot.benefit3": {
+    en: "Full asset control",
+    fr: "Contrôle total des actifs"
+  },
+  "businesses.services.cta": {
+    en: "Learn more",
+    fr: "En savoir plus"
   },
 
   // Professional Portfolio Tools Section
@@ -2159,7 +2211,7 @@ const translations = {
   },
   "dualPath.professional.description": {
     en: "AI tools & advisory for firms and Wealth Managers.",
-    fr: "Outils IA & conseil pour entreprises et CGP."
+    fr: "Outils IA & conseils pour entreprises et CGP."
   },
   "dualPath.professional.feature1": {
     en: "White-label portfolio manager with AI agent",
@@ -3186,8 +3238,8 @@ const translations = {
     fr: "Conseil IA pour PME & CGPs"
   },
   "professionals.solutions.companies.hero.subtitle": {
-    en: "We build custom AI workflows and copilots  to modernize finance operations without Big-Four theatre.",
-    fr: "Nous créons des workflows IA et copilotes sur mesure  pour moderniser vos opérations finance sans théâtre façon Big Four."
+    en: "We build custom AI apps to connect your tools and automate your processes — progress for everyone, not just large corporations.",
+    fr: "Nous créons des applications IA sur mesure pour connecter vos outils et automatiser vos processus — le progrès pour tous, pas seulement pour les grands groupes."
   },
   "professionals.solutions.companies.overview.title": {
     en: "Core consulting modules",

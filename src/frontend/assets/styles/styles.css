@@ -8522,58 +8522,163 @@ html[lang="fr"] .superpower-panel h2 {
   }
 }
 
-/* Professional Service Tiles */
+/* Professional Service Tiles - Enhanced 2025 Design */
 .professional-service-tile {
-  background: white;
+  background: linear-gradient(135deg, #ffffff 0%, #fafaff 100%);
   padding: 2rem;
   border-radius: 24px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  border: 1px solid transparent;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(102, 126, 234, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.professional-service-tile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--bubble-purple) 0%, rgba(102, 126, 234, 0.3) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .professional-service-tile:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15); /* Bubble Purple with low opacity */
-  border-color: rgba(102, 126, 234, 0.3); /* Bubble Purple border */
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.18);
+  border-color: rgba(102, 126, 234, 0.2);
+}
+
+.professional-service-tile:hover::before {
+  opacity: 1;
 }
 
 .professional-service-tile .tile-icon {
   margin-bottom: 1.5rem;
-  color: var(--primary);
-  transition: all 0.3s ease;
+  color: var(--bubble-purple);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  background: #f8f9fa;
-  border-radius: 16px;
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(102, 126, 234, 0.04) 100%);
+  border-radius: 20px;
+}
+
+.professional-service-tile .tile-icon svg {
+  width: 36px;
+  height: 36px;
 }
 
 .professional-service-tile:hover .tile-icon {
-  color: var(--bubble-purple);
-  background: rgba(102, 126, 234, 0.1);
-  transform: scale(1.05);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.18) 0%, rgba(102, 126, 234, 0.08) 100%);
+  transform: scale(1.08) rotate(-2deg);
 }
 
 .professional-service-tile h3 {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--primary);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   transition: color 0.3s ease;
+  letter-spacing: -0.01em;
 }
 
 .professional-service-tile:hover h3 {
   color: var(--bubble-purple);
 }
 
-.professional-service-tile p {
-  color: #666;
+.professional-service-tile .tile-tagline {
+  font-size: 1rem;
+  color: #444;
   line-height: 1.6;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+
+.professional-service-tile .tile-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.professional-service-tile .tile-benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.professional-service-tile .tile-benefit::before {
+  content: '✓';
+  color: var(--bubble-purple);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.professional-service-tile .tile-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--bubble-purple);
+  text-decoration: none;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  transition: gap 0.3s ease;
+}
+
+.professional-service-tile .tile-cta:hover {
+  gap: 0.6rem;
+}
+
+.professional-service-tile .tile-cta svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.professional-service-tile:hover .tile-cta svg {
+  transform: translateX(3px);
+}
+
+/* Legacy paragraph support (for pages not yet updated) */
+.professional-service-tile p:not(.tile-tagline) {
+  color: #555;
+  line-height: 1.7;
   margin: 0;
   font-size: 0.95rem;
+}
+
+/* Responsive adjustments for professional tiles */
+@media (max-width: 768px) {
+  .professional-service-tile {
+    padding: 1.5rem;
+  }
+
+  .professional-service-tile .tile-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .professional-service-tile .tile-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .professional-service-tile h3 {
+    font-size: 1.2rem;
+  }
 }
