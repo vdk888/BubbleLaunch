@@ -26,6 +26,28 @@
     ]
   },
   {
+    "id": "1c87af22-f521-416c-b96e-a4a546454960",
+    "title": {
+      "fr": "Bienvenue dans le Bubble Knowledge Garden : Pourquoi on fait tout ça",
+      "en": "Bienvenue dans le Bubble Knowledge Garden : Pourquoi on fait tout ça"
+    },
+    "slug": "bienvenue-dans-le-bubble-knowledge-garden-pourquoi-on-fait-tout-a",
+    "summary": {
+      "fr": "",
+      "en": ""
+    },
+    "publishedDate": "2026-01-20",
+    "featuredImage": "https://substackcdn.com/image/fetch/w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4588465a-7e31-426a-82f3-697d15a2d70f_1019x651.jpeg",
+    "url": "https://open.substack.com/pub/bubbleinvest/p/behind-the-bubble?r=78b2yb&utm_campaign=post&utm_medium=web",
+    "urlEn": "https://open.substack.com/pub/bubbleinvest/p/behind-the-bubble?r=78b2yb&utm_campaign=post&utm_medium=web",
+    "status": "Published",
+    "isPinned": true,
+    "tags": [
+      "Financial Education",
+      "AI & Finance"
+    ]
+  },
+  {
     "id": "302c3956-9033-484f-a66a-9d76611c56a7",
     "title": {
       "fr": "Course à l’IA en entreprise : pourquoi Bubble construit depuis 2023 une AI entreprise",
@@ -158,7 +180,7 @@
     "url": "/blog/ia-et-finance-6-tendances-qui-red-finissent-l-investissement",
     "urlEn": "/en/blog/ia-et-finance-6-tendances-qui-red-finissent-l-investissement",
     "status": "Published",
-    "isPinned": true,
+    "isPinned": false,
     "tags": [
       "AI & Finance",
       "FinTech",
@@ -204,7 +226,7 @@
     "url": "/blog/le-crime-de-ceux-qui-savaient",
     "urlEn": "/en/blog/le-crime-de-ceux-qui-savaient",
     "status": "Published",
-    "isPinned": true,
+    "isPinned": false,
     "tags": [
       "Behavioral Finance",
       "Financial Education"
@@ -226,7 +248,7 @@
     "url": "/blog/frais-fixes-vs-frais-en-pourcentage-le-vrai-calcul-sur-20-ans",
     "urlEn": "/en/blog/frais-fixes-vs-frais-en-pourcentage-le-vrai-calcul-sur-20-ans",
     "status": "Published",
-    "isPinned": true,
+    "isPinned": false,
     "tags": [
       "Finance",
       "comparatif robo advisor",
@@ -249,7 +271,7 @@
     "url": "/blog/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment",
     "urlEn": "/en/blog/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment",
     "status": "Published",
-    "isPinned": true,
+    "isPinned": false,
     "tags": [
       "IA",
       "Conseil",

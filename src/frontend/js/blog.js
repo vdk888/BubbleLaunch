@@ -5,6 +5,16 @@ const blogTranslations =
 let currentLanguage = 'fr'; // Default to French
 let allPosts = []; // Store all posts for language switching
 
+// Substack icon SVG (small, for external link indicator)
+const SUBSTACK_ICON = `<svg class="substack-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>`;
+
+/**
+ * Check if a URL is a Substack link
+ */
+function isSubstackUrl(url) {
+    return url && (url.includes('substack.com') || url.includes('.substack.'));
+}
+
 function getPostUrl(post, lang) {
     if (lang === 'en') {
         return post.urlEn || post.url || `/en/blog/${post.slug}`;
@@ -134,22 +144,26 @@ function displayFeaturedPost(post, container) {
     const formattedDate = formatDate(post.publishedDate);
     const title = post.title[currentLanguage] || post.title.fr;
     const summary = post.summary[currentLanguage] || post.summary.fr;
+    const postUrl = getPostUrl(post, currentLanguage);
+    const isExternal = isSubstackUrl(postUrl);
+    const linkAttrs = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
 
     const featuredTag = (post.isPinned || post.pinned)
         ? (currentLanguage === 'fr' ? '📌 Épinglé' : '📌 Pinned')
         : (currentLanguage === 'fr' ? 'Article principal' : 'Featured Article');
     const readMoreText = currentLanguage === 'fr' ? 'Lire l\'article' : 'Read Article';
-    const defaultSummary = currentLanguage === 'fr' ? 
+    const defaultSummary = currentLanguage === 'fr' ?
         'Perçons la bulle financière ensemble' :
         'Let\'s pop the finance bubble together';
-    
+
     container.innerHTML = `
-        <div class="featured-card">
+        <div class="featured-card${isExternal ? ' is-external' : ''}">
             <div class="featured-image">
-                ${post.featuredImage ? 
+                ${post.featuredImage ?
                     `<img src="${post.featuredImage}" alt="${title}" loading="lazy">` :
                     `<div class="post-image-placeholder">📝</div>`
                 }
+                ${isExternal ? `<span class="substack-badge substack-badge-lg">${SUBSTACK_ICON}</span>` : ''}
             </div>
             <div class="featured-content">
                 <div class="featured-meta">
@@ -158,8 +172,9 @@ function displayFeaturedPost(post, container) {
                 </div>
                 <h2>${title}</h2>
                 <p>${summary || defaultSummary}</p>
-                <a href="${getPostUrl(post, currentLanguage)}" class="read-more-btn">
+                <a href="${postUrl}" class="read-more-btn" ${linkAttrs}>
                     ${readMoreText}
+                    ${isExternal ? SUBSTACK_ICON : ''}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
@@ -192,16 +207,20 @@ function displayPostsGrid(posts, container) {
 function createPostCard(post) {
     const formattedDate = formatDate(post.publishedDate);
     const title = post.title[currentLanguage] || post.title.fr;
+    const postUrl = getPostUrl(post, currentLanguage);
+    const isExternal = isSubstackUrl(postUrl);
+    const linkAttrs = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
 
     const postTag = currentLanguage === 'fr' ? 'Article' : 'Article';
 
     return `
-        <a href="${getPostUrl(post, currentLanguage)}" class="post-card">
+        <a href="${postUrl}" class="post-card${isExternal ? ' is-external' : ''}" ${linkAttrs}>
             <div class="post-image">
                 ${post.featuredImage ?
                     `<img src="${post.featuredImage}" alt="${title}" loading="lazy">` :
                     `<div class="post-image-placeholder">📝</div>`
                 }
+                ${isExternal ? `<span class="substack-badge">${SUBSTACK_ICON}</span>` : ''}
             </div>
             <div class="post-content">
                 <div class="post-meta">

@@ -326,6 +326,62 @@
   color: #667eea;
 }
 
+/* Substack Badge - External Link Indicator */
+.substack-badge {
+  position: absolute;
+  top: 0.875rem;
+  right: 0.875rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.substack-badge .substack-icon {
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.post-card:hover .substack-badge .substack-icon,
+.featured-card:hover .substack-badge .substack-icon {
+  color: #FF6719; /* Substack orange */
+}
+
+.post-card:hover .substack-badge,
+.featured-card:hover .substack-badge {
+  background: rgba(255, 103, 25, 0.1);
+  box-shadow: 0 4px 12px rgba(255, 103, 25, 0.15);
+}
+
+/* Larger badge for featured posts */
+.substack-badge-lg {
+  padding: 0.625rem;
+}
+
+.substack-badge-lg .substack-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Substack icon in read more button */
+.read-more-btn .substack-icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 0.25rem;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.read-more-btn:hover .substack-icon {
+  color: #FF6719;
+}
+
 .post-title {
   font-size: 1.25rem;
   font-weight: 600;

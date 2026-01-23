@@ -6,6 +6,9 @@ const imageService = require("./imageService");
 const fs = require("fs");
 const path = require("path");
 
+// Cache for OG images to avoid repeated fetches
+const ogImageCache = new Map();
+
 const blogApiKey = process.env.NOTION_BLOG_API_KEY;
 const blogDatabaseId = process.env.NOTION_BLOG_DATABASE_ID;
 const isBlogConfigured = blogApiKey && blogDatabaseId;
@@ -48,6 +51,30 @@ function isGenericBlogPath(pathname) {
     return pathname === "" || pathname === "/" || pathname === "/blog" || pathname === "/en/blog";
 }
 
+/**
+ * Check if a URL is external (not on bubbleinvest.org)
+ */
+function isExternalUrl(rawUrl) {
+    const candidate = extractUrlCandidate(rawUrl);
+    if (!candidate) return false;
+    try {
+        const url = new URL(candidate);
+        // External if it has a different host than our site
+        return !url.hostname.includes('bubbleinvest.org') &&
+               !url.hostname.includes('localhost') &&
+               url.protocol.startsWith('http');
+    } catch (e) {
+        return false;
+    }
+}
+
+/**
+ * Check if a URL is a Substack link
+ */
+function isSubstackUrl(url) {
+    return url && (url.includes('substack.com') || url.includes('.substack.'));
+}
+
 function getUrlPath(rawUrl) {
     const candidate = extractUrlCandidate(rawUrl);
     if (!candidate) return null;
@@ -85,6 +112,11 @@ function extractWebsiteUrl(property) {
 }
 
 function buildFrUrl(rawUrl, slug) {
+    // If it's an external URL, return it as-is
+    if (isExternalUrl(rawUrl)) {
+        return extractUrlCandidate(rawUrl);
+    }
+
     const path = getUrlPath(rawUrl);
     if (path) {
         // Only use URL path if it's a full article path (not just /blog or /en/blog)
@@ -98,9 +130,107 @@ function buildFrUrl(rawUrl, slug) {
 }
 
 function buildEnUrl(frUrl, slug, hasEnglish) {
+    // If it's an external URL, return it as-is (same URL for both languages)
+    if (frUrl && (frUrl.startsWith('http://') || frUrl.startsWith('https://'))) {
+        return frUrl;
+    }
+
     if (!hasEnglish) return frUrl;
     const base = frUrl || `/blog/${slug}`;
     return base.startsWith("/en/") ? base : `/en${base}`;
+}
+
+/**
+ * Fetch Open Graph image from an external URL (like Substack)
+ * @param {string} url - The external URL to fetch OG image from
+ * @returns {Promise<string|null>} - The OG image URL or null
+ */
+async function fetchOgImage(url) {
+    if (!url) return null;
+
+    // Check cache first
+    if (ogImageCache.has(url)) {
+        const cached = ogImageCache.get(url);
+        console.log(`[BlogService] Using cached OG image for ${url}: ${cached ? 'found' : 'none'}`);
+        return cached;
+    }
+
+    try {
+        console.log(`[BlogService] Fetching OG image from: ${url}`);
+
+        // Use a browser-like User-Agent to avoid being blocked
+        const response = await fetch(url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.5',
+                'Accept-Encoding': 'identity', // Avoid compression issues
+                'Connection': 'keep-alive',
+            },
+            redirect: 'follow',
+        });
+
+        if (!response.ok) {
+            console.warn(`[BlogService] Failed to fetch ${url}: ${response.status}`);
+            return null;
+        }
+
+        const html = await response.text();
+        console.log(`[BlogService] Fetched ${html.length} bytes from ${url}`);
+
+        // Multiple regex patterns to catch different meta tag formats
+        const ogPatterns = [
+            // Standard format: property="og:image" content="..."
+            /<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i,
+            // Reversed format: content="..." property="og:image"
+            /<meta[^>]*content=["']([^"']+)["'][^>]*property=["']og:image["']/i,
+            // With data attributes (Substack uses data-rh="true")
+            /<meta[^>]*property="og:image"[^>]*content="([^"]+)"/i,
+        ];
+
+        let imageUrl = null;
+
+        for (const pattern of ogPatterns) {
+            const match = html.match(pattern);
+            if (match && match[1]) {
+                imageUrl = match[1];
+                console.log(`[BlogService] Found OG image with pattern ${pattern}: ${imageUrl.substring(0, 100)}...`);
+                break;
+            }
+        }
+
+        // Fallback: look for twitter:image
+        if (!imageUrl) {
+            const twitterPatterns = [
+                /<meta[^>]*name=["']twitter:image["'][^>]*content=["']([^"']+)["']/i,
+                /<meta[^>]*content=["']([^"']+)["'][^>]*name=["']twitter:image["']/i,
+            ];
+
+            for (const pattern of twitterPatterns) {
+                const match = html.match(pattern);
+                if (match && match[1]) {
+                    imageUrl = match[1];
+                    console.log(`[BlogService] Found Twitter image: ${imageUrl.substring(0, 100)}...`);
+                    break;
+                }
+            }
+        }
+
+        if (imageUrl) {
+            // Decode HTML entities if present
+            imageUrl = imageUrl.replace(/&amp;/g, '&');
+            ogImageCache.set(url, imageUrl);
+            return imageUrl;
+        }
+
+        console.log(`[BlogService] No OG image found for: ${url}`);
+        console.log(`[BlogService] HTML head preview: ${html.substring(0, 2000)}`);
+        ogImageCache.set(url, null);
+        return null;
+    } catch (e) {
+        console.error(`[BlogService] Error fetching OG image from ${url}:`, e.message);
+        return null;
+    }
 }
 
 function extractContentFromProperties(properties) {
@@ -168,6 +298,7 @@ async function getPublishedPosts() {
                     .map((tag) => tag?.name)
                     .filter(Boolean);
                 const websiteUrl = extractWebsiteUrl(p["Website URL"]);
+                console.log(`[BlogService] Post "${titleFr}" - Website URL: ${websiteUrl || 'none'}`);
                 const urlPath = getUrlPath(websiteUrl);
                 // Only use URL path if it's a full article path (e.g., /blog/article-slug)
                 // Fall back to slugifying title if URL is just /blog or empty
@@ -182,9 +313,31 @@ async function getPublishedPosts() {
                 );
                 const url = buildFrUrl(websiteUrl, slug);
                 const urlEn = buildEnUrl(url, slug, hasEnglish);
+
+                // For Substack posts, fetch OG image instead of generating
                 let img = await imageService.getCachedImage(page.id);
+                const isSubstack = isSubstackUrl(websiteUrl);
+                console.log(`[BlogService] Post "${titleFr}" - isSubstack: ${isSubstack}, hasCachedImage: ${!!img}`);
+
                 if (!img) {
-                    img = await imageService.generateArticleImage(titleFr, summaryFr, tags, page.id);
+                    if (isSubstack) {
+                        // Try to fetch OG image from Substack URL
+                        const substackUrl = extractUrlCandidate(websiteUrl);
+                        console.log(`[BlogService] Attempting to fetch OG image for Substack URL: ${substackUrl}`);
+                        img = await fetchOgImage(substackUrl);
+                        if (img) {
+                            // Cache the OG image URL
+                            console.log(`[BlogService] Successfully fetched OG image, caching...`);
+                            imageService.setCachedImage(page.id, img);
+                        } else {
+                            console.log(`[BlogService] No OG image found for Substack URL`);
+                        }
+                    }
+                    // Fall back to generating an image if no OG image found
+                    if (!img) {
+                        console.log(`[BlogService] Generating image for post "${titleFr}"`);
+                        img = await imageService.generateArticleImage(titleFr, summaryFr, tags, page.id);
+                    }
                 }
                 posts.push({
                     id: page.id,

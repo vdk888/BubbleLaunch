@@ -373,6 +373,17 @@ class ImageService {
     }
   }
 
+  /**
+   * Manually set a cached image URL for an article (e.g., for external OG images)
+   */
+  setCachedImage(articleId, imageUrl) {
+    if (!articleId || !imageUrl) return;
+    const cacheKey = `article-${articleId}`;
+    this.imageCache.set(cacheKey, imageUrl);
+    console.log(`📦 Cached external image for article: ${articleId}`);
+    this.savePersistentCache();
+  }
+
   clearCacheForArticle(articleId) {
     if (!articleId) return;
     const cacheKey = `article-${articleId}`;

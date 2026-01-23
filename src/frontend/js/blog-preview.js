@@ -3,6 +3,16 @@
  * Displays latest 3 blog posts as tiles on the homepage
  */
 
+// Substack icon SVG (small, for external link indicator)
+const SUBSTACK_ICON = `<svg class="substack-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>`;
+
+/**
+ * Check if a URL is a Substack link
+ */
+function isSubstackUrl(url) {
+  return url && (url.includes('substack.com') || url.includes('.substack.'));
+}
+
 async function loadBlogPreview() {
   const previewGrid = document.getElementById('blog-preview-grid');
 
@@ -83,12 +93,16 @@ async function loadBlogPreview() {
         ? `<img src="${imageUrl}" alt="${title}" loading="lazy" />`
         : '';
 
+      const isExternal = isSubstackUrl(postUrl);
+      const linkAttrs = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
+
       return `
-        <article class="blog-tile" data-slug="${post.slug}">
-          <a href="${postUrl}" class="blog-tile-link">
+        <article class="blog-tile${isExternal ? ' is-external' : ''}" data-slug="${post.slug}">
+          <a href="${postUrl}" class="blog-tile-link" ${linkAttrs}>
             <div class="blog-tile-image">
               ${imageMarkup}
               ${category ? `<span class="blog-tile-category">${category}</span>` : ''}
+              ${isExternal ? `<span class="substack-badge">${SUBSTACK_ICON}</span>` : ''}
             </div>
             <div class="blog-tile-content">
               <div class="blog-tile-meta">
