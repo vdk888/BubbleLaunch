@@ -7628,17 +7628,20 @@ html[lang="fr"] .superpower-panel h2 {
 }
 
 .dual-path-card {
-  background: #f8f8f8;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
   border-radius: 24px;
   padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .dual-path-card::before {
@@ -7656,8 +7659,9 @@ html[lang="fr"] .superpower-panel h2 {
 
 .dual-path-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-  border-color: rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border-color: rgba(0, 0, 0, 0.08);
 }
 
 .dual-path-card:hover::before {
@@ -7719,24 +7723,36 @@ html[lang="fr"] .superpower-panel h2 {
   padding-left: 1.5rem;
   margin-bottom: 0.75rem;
   position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-features li:hover::before {
+  border-color: var(--bubble-primary-hover);
+  color: var(--bubble-primary-hover);
+  background: var(--bubble-primary-03);
+  transform: scale(1.15);
 }
 
 .card-features li::before {
   content: '✓';
   position: absolute;
   left: 0;
-  color: #333;
+  top: 0.15rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid var(--bubble-primary);
+  color: var(--bubble-primary);
+  font-size: 11px;
   font-weight: 700;
-  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.retail-card:hover {
-  background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
-}
-
-.professional-card:hover {
-  background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
-}
+/* Hover styles for cards are now handled by .dual-path-card:hover */
 
 /* CTA Buttons in dual-path cards */
 .dual-path-card .cta-button {
@@ -7760,19 +7776,20 @@ html[lang="fr"] .superpower-panel h2 {
 }
 
 .retail-demo-btn:hover {
-  background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, var(--bubble-primary), var(--gradient-purple-light));
+  box-shadow: 0 6px 16px var(--bubble-primary-30);
   transform: translateY(-2px);
 }
 
 .gray-btn {
-  background: #e5e5e5;
+  background: rgba(0, 0, 0, 0.05);
   color: #333;
 }
 
 .gray-btn:hover {
-  background: #d9d9d9;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(135deg, var(--bubble-primary), var(--gradient-purple-light));
+  color: white;
+  box-shadow: 0 6px 16px var(--bubble-primary-30);
   transform: translateY(-2px);
 }
 
