@@ -4226,28 +4226,28 @@ body.pricing-page {
 }
 
 .pricing-main .tooltip-term {
-  border-bottom: 1px dashed rgba(28, 82, 232, 0.45);
+  border-bottom: 1px dashed rgba(107, 114, 128, 0.45);
 }
 
 .tooltip-term:hover,
 .tooltip-term:focus {
-  color: #1c52e8;
+  color: #6B7280;
 }
 
 .pricing-hero .tooltip-term {
-  border-bottom: 1px dashed rgba(28, 82, 232, 0.35);
+  border-bottom: 1px dashed rgba(107, 114, 128, 0.35);
 }
 
 .pricing-tooltip {
   position: absolute;
   max-width: 280px;
   padding: 1.05rem 1.15rem;
-  background: rgba(28, 82, 232, 0.9);
-  color: #f8fafc;
+  background: rgba(107, 114, 128, 0.9);
+  color: #ffffff;
   border-radius: 12px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 14px 35px rgba(13, 40, 110, 0.35);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.2);
   opacity: 0;
   transform: translateY(6px);
   pointer-events: none;
