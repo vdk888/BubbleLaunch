@@ -452,7 +452,64 @@ All glassmorphism cards implement:
 
 ---
 
-### 6. Form Elements & Buttons
+### 6. Tooltips & Vignettes (Light Gray)
+
+**Location**: Pricing pages — hover explanations for plan terms and features
+
+**Design Principle**: Tooltips use **light gray** (not purple) to avoid color dominance and maintain neutral information presentation.
+
+**Styling**:
+
+```css
+.tooltip-term {
+  position: relative;
+  border-bottom: 1px dashed rgba(107, 114, 128, 0.45);
+  cursor: help;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.tooltip-term:hover,
+.tooltip-term:focus {
+  color: #6B7280;                       /* Light gray on hover */
+}
+
+.pricing-tooltip {
+  position: absolute;
+  max-width: 280px;
+  padding: 1.05rem 1.15rem;
+  background: rgba(107, 114, 128, 0.9);  /* Light gray background */
+  color: #ffffff;                       /* White text for contrast */
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 999;
+  font-size: 0.87rem;
+  line-height: 1.5;
+}
+
+.pricing-tooltip.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+```
+
+**Color Details**:
+- **Dashed Border**: `rgba(107, 114, 128, 0.45)` — light gray at 45% opacity
+- **Hover Text**: `#6B7280` — light gray
+- **Tooltip Background**: `rgba(107, 114, 128, 0.9)` — light gray at 90% opacity
+- **Tooltip Text**: `#ffffff` — white for readability on gray background
+- **Shadow**: Dark shadow for depth (not purple-tinted)
+
+---
+
+### 7. Form Elements & Buttons
 
 #### CTA Buttons
 
@@ -643,6 +700,7 @@ form button:hover {
 | **Phase 4** | Typography Enhancement | ✅ Complete | 63bd9e1 |
 | **Phase 5** | Floating Animations | ✅ Complete | design-mock.html |
 | **Bonus** | CTA Button Updates (all forms) | ✅ Complete | 0e52f7d |
+| **Bonus** | Tooltip/Vignette Light Gray Update | ✅ Complete | 67ccafb |
 
 ### Pages Updated
 
@@ -824,6 +882,12 @@ Includes:
 - ✅ 18-20px diameter consistent
 - ✅ Three variants (light, dark, premium)
 - ❌ NO filled backgrounds except premium hover
+
+### Tooltips & Vignettes
+- ✅ Light gray background (not purple or blue)
+- ✅ White text for contrast on gray
+- ✅ Gray dashed borders for hint indicators
+- ✅ Neutral, informational appearance
 
 ### Animations
 - ✅ 4-8px vertical movement
