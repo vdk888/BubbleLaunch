@@ -205,7 +205,7 @@
 }
 
 .reference-link:hover .reference-title {
-  color: #667eea;
+  color: var(--bubble-primary);
 }
 
 .reference-no-link {
@@ -319,7 +319,7 @@
 }
 
 .category-header:hover .source-icon {
-  fill: #667eea;
+  fill: var(--bubble-primary);
 }
 
 .reference-header .source-icon {
@@ -385,24 +385,24 @@
   width: 100%;
   height: 100%;
   border: 3px solid transparent;
-  border-top-color: #667eea;
+  border-top-color: var(--bubble-primary);
   border-radius: 50%;
   animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
 }
 
 .spinner-ring:nth-child(1) {
   animation-delay: -0.45s;
-  border-top-color: rgba(102, 126, 234, 0.8);
+  border-top-color: rgba(var(--bubble-primary-rgb), 0.8);
 }
 
 .spinner-ring:nth-child(2) {
   animation-delay: -0.3s;
-  border-top-color: rgba(102, 126, 234, 0.5);
+  border-top-color: rgba(var(--bubble-primary-rgb), 0.5);
 }
 
 .spinner-ring:nth-child(3) {
   animation-delay: -0.15s;
-  border-top-color: rgba(102, 126, 234, 0.3);
+  border-top-color: rgba(var(--bubble-primary-rgb), 0.3);
 }
 
 @keyframes spin {

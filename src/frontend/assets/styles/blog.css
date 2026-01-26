@@ -315,15 +315,15 @@
 }
 
 .post-tag.pinned-tag {
-  background: rgba(102, 126, 234, 0.08);
-  color: #667eea;
-  border-color: rgba(102, 126, 234, 0.2);
+  background: var(--bubble-primary-08);
+  color: var(--bubble-primary);
+  border-color: var(--bubble-primary-20);
   font-weight: 600;
 }
 
 .post-tag.pinned-tag:hover {
-  background: rgba(102, 126, 234, 0.12);
-  color: #667eea;
+  background: rgba(var(--bubble-primary-rgb), 0.12);
+  color: var(--bubble-primary);
 }
 
 /* Substack Badge - External Link Indicator */

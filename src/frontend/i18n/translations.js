@@ -1903,8 +1903,8 @@ const translations = {
     fr: "❌ Erreur d'envoi"
   },
   "businesses.form.error.message": {
-    en: "Something went wrong. Contact us directly at <a href=\"mailto:contact@bubbleinvest.org\" style=\"color: #667eea; text-decoration: underline;\">contact@bubbleinvest.org</a>",
-    fr: "Une erreur est survenue. Contactez-nous directement à <a href=\"mailto:contact@bubbleinvest.org\" style=\"color: #667eea; text-decoration: underline;\">contact@bubbleinvest.org</a>"
+    en: "Something went wrong. Contact us directly at <a href=\"mailto:contact@bubbleinvest.org\" style=\"color: #6666ff; text-decoration: underline;\">contact@bubbleinvest.org</a>",
+    fr: "Une erreur est survenue. Contactez-nous directement à <a href=\"mailto:contact@bubbleinvest.org\" style=\"color: #6666ff; text-decoration: underline;\">contact@bubbleinvest.org</a>"
   },
 
   // 404 Error Page

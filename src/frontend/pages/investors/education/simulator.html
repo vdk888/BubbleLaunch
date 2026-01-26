@@ -154,7 +154,7 @@
     <!-- Main Content -->
     <main class="simulator-edu-container">
       <!-- Back Button -->
-      <a href="/investors/playground/resources" class="back-button" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #667eea; text-decoration: none; font-weight: 500; margin-bottom: 1.5rem;">
+      <a href="/investors/playground/resources" class="back-button" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #6666ff; text-decoration: none; font-weight: 500; margin-bottom: 1.5rem;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M19 12H5M12 19l-7-7 7-7"/>
         </svg>
@@ -338,8 +338,8 @@
                 <span class="slider-ticker">SPY</span>
               </label>
               <div class="slider-container">
-                <input type="range" class="allocation-slider" id="sliderSPY" min="0" max="100" value="50" data-color="#667eea">
-                <div class="slider-track-fill" style="width: 50%; background: #667eea;"></div>
+                <input type="range" class="allocation-slider" id="sliderSPY" min="0" max="100" value="50" data-color="#6666ff">
+                <div class="slider-track-fill" style="width: 50%; background: #6666ff;"></div>
               </div>
               <span class="slider-value" id="valueSPY">50%</span>
             </div>
@@ -593,7 +593,7 @@
 
           <!-- Metrics Explanations Section (collapsible) -->
           <div class="metrics-explanations-section" style="margin-top: 1.5rem; padding: 1rem; background: rgba(102, 126, 234, 0.04); border-radius: 12px; border: 1px solid rgba(102, 126, 234, 0.1);">
-            <button class="metrics-explanations-toggle" id="toggleMetricsExplanations" style="display: flex; justify-content: space-between; align-items: center; width: 100%; background: none; border: none; cursor: pointer; padding: 0; font-size: 0.9375rem; font-weight: 600; color: #667eea;">
+            <button class="metrics-explanations-toggle" id="toggleMetricsExplanations" style="display: flex; justify-content: space-between; align-items: center; width: 100%; background: none; border: none; cursor: pointer; padding: 0; font-size: 0.9375rem; font-weight: 600; color: #6666ff;">
               <span data-translate="simulator.metricsExplanations.title">Comprendre les metriques</span>
               <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transition: transform 0.2s;">
                 <polyline points="6 9 12 15 18 9"></polyline>
@@ -684,13 +684,13 @@
 
       <!-- CTA to Arena -->
       <section style="background: rgba(102, 126, 234, 0.08); border-radius: 24px; padding: 2rem; text-align: center; margin: 3rem 0 2rem; border: 1px solid rgba(102, 126, 234, 0.2);">
-        <h3 style="font-size: 1.25rem; font-weight: 700; color: #667eea; margin-bottom: 0.75rem;" data-translate="education.simulator.cta.title">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #6666ff; margin-bottom: 0.75rem;" data-translate="education.simulator.cta.title">
           Envie de voir comment les pros tradent ?
         </h3>
         <p style="color: #6B7280; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto;" data-translate="education.simulator.cta.description">
           Retourne dans l'Arena et regarde comment 4 bots IA appliquent différentes stratégies face aux mêmes conditions de marché.
         </p>
-        <a href="/investors/education/arena" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, #667eea, #818CF8); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;">
+        <a href="/investors/education/arena" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, #6666ff, #818CF8); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;">
           <span data-translate="education.simulator.cta.button">Voir l'Arena</span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1115,9 +1115,9 @@
         };
 
         // Strategy colors and config (all 9 strategies)
-        // Colors aligned with Bubble charte graphique: violet #667eea, gray #6B7280, orange #F97316, green #10B981
+        // Colors aligned with Bubble charte graphique: violet #6666ff, gray #6B7280, orange #F97316, green #10B981
         const STRATEGY_CONFIG = {
-          optimizedRP: { label: { fr: 'Pari Optimisé', en: 'Optimized RP' }, color: '#667eea', borderWidth: 3, isBest: true },
+          optimizedRP: { label: { fr: 'Pari Optimisé', en: 'Optimized RP' }, color: '#6666ff', borderWidth: 3, isBest: true },
           equalWeight: { label: { fr: 'Équi', en: 'Equal Weight' }, color: '#6B7280', borderWidth: 2 },
           sixtyForty: { label: { fr: '60/40', en: '60/40' }, color: '#9CA3AF', borderWidth: 2 },
           simpleRP: { label: { fr: 'Risk Parity', en: 'Risk Parity' }, color: '#4B5563', borderWidth: 2 },
@@ -1130,7 +1130,7 @@
 
         // ETF benchmark colors and config
         const ETF_CONFIG = {
-          SPY: { label: 'SPY (S&P 500)', color: '#667eea', borderDash: [4, 4] },
+          SPY: { label: 'SPY (S&P 500)', color: '#6666ff', borderDash: [4, 4] },
           IEF: { label: 'IEF (Bonds)', color: '#10B981', borderDash: [4, 4] },
           GLD: { label: 'GLD (Gold)', color: '#F97316', borderDash: [4, 4] },
           EFA: { label: 'EFA (Int\'l Dev)', color: '#14B8A6', borderDash: [4, 4] },
@@ -1231,7 +1231,7 @@
                 {
                   label: lang === 'fr' ? 'Ta stratégie' : 'Your Strategy',
                   data: [],
-                  borderColor: '#667eea',
+                  borderColor: '#6666ff',
                   backgroundColor: 'rgba(102, 126, 234, 0.1)',
                   tension: 0.3,
                   fill: true,
@@ -1387,7 +1387,7 @@
             const datasets = [{
               label: lang === 'fr' ? 'Ta stratégie' : 'Your Strategy',
               data: sampledPortfolio.map(p => p.value),
-              borderColor: '#667eea',
+              borderColor: '#6666ff',
               backgroundColor: 'rgba(102, 126, 234, 0.1)',
               tension: 0.3,
               fill: true,
@@ -1512,7 +1512,7 @@
           if (!elements.allocationBars) return;
 
           const assetLabels = {
-            SPY: { fr: 'Actions', en: 'Stocks', color: '#667eea' },
+            SPY: { fr: 'Actions', en: 'Stocks', color: '#6666ff' },
             IEF: { fr: 'Obligations', en: 'Bonds', color: '#10B981' },
             GLD: { fr: 'Or', en: 'Gold', color: '#F97316' },
             VNQ: { fr: 'Immobilier', en: 'Real Estate', color: '#8B5CF6' },
@@ -1569,9 +1569,9 @@
                 b.style.fontWeight = '500';
               });
               this.classList.add('active');
-              this.style.border = '1px solid #667eea';
+              this.style.border = '1px solid #6666ff';
               this.style.background = 'rgba(102, 126, 234, 0.1)';
-              this.style.color = '#667eea';
+              this.style.color = '#6666ff';
               this.style.fontWeight = '600';
 
               currentPeriod = newPeriod;
@@ -1603,9 +1603,9 @@
                 p.style.fontWeight = '500';
               });
               this.classList.add('active');
-              this.style.border = '1px solid #667eea';
+              this.style.border = '1px solid #6666ff';
               this.style.background = 'rgba(102, 126, 234, 0.1)';
-              this.style.color = '#667eea';
+              this.style.color = '#6666ff';
               this.style.fontWeight = '600';
 
               currentLeverage = newLeverage;
@@ -1707,9 +1707,9 @@
               const config = STRATEGY_CONFIG[strategyKey];
               if (isActive) {
                 this.classList.add('active');
-                this.style.border = `1px solid ${config?.color || '#667eea'}`;
-                this.style.background = `${config?.color || '#667eea'}15`;
-                this.style.color = config?.color || '#667eea';
+                this.style.border = `1px solid ${config?.color || '#6666ff'}`;
+                this.style.background = `${config?.color || '#6666ff'}15`;
+                this.style.color = config?.color || '#6666ff';
               } else {
                 this.classList.remove('active');
                 this.style.border = '1px solid #E5E7EB';
@@ -1748,9 +1748,9 @@
               const config = ETF_CONFIG[etfKey];
               if (isActive) {
                 this.classList.add('active');
-                this.style.border = `1px solid ${config?.color || '#667eea'}`;
-                this.style.background = `${config?.color || '#667eea'}15`;
-                this.style.color = config?.color || '#667eea';
+                this.style.border = `1px solid ${config?.color || '#6666ff'}`;
+                this.style.background = `${config?.color || '#6666ff'}15`;
+                this.style.color = config?.color || '#6666ff';
               } else {
                 this.classList.remove('active');
                 this.style.border = '1px solid #E5E7EB';
@@ -1871,9 +1871,9 @@
               elements.periodButtons.forEach(btn => {
                 const isActive = parseInt(btn.dataset.period) === p;
                 btn.classList.toggle('active', isActive);
-                btn.style.border = isActive ? '1px solid #667eea' : '1px solid #E5E7EB';
+                btn.style.border = isActive ? '1px solid #6666ff' : '1px solid #E5E7EB';
                 btn.style.background = isActive ? 'rgba(102, 126, 234, 0.1)' : 'white';
-                btn.style.color = isActive ? '#667eea' : '#4B5563';
+                btn.style.color = isActive ? '#6666ff' : '#4B5563';
                 btn.style.fontWeight = isActive ? '600' : '500';
               });
             }
@@ -1888,9 +1888,9 @@
               elements.leveragePills.forEach(pill => {
                 const isActive = parseInt(pill.dataset.leverage) === l;
                 pill.classList.toggle('active', isActive);
-                pill.style.border = isActive ? '1px solid #667eea' : '1px solid #E5E7EB';
+                pill.style.border = isActive ? '1px solid #6666ff' : '1px solid #E5E7EB';
                 pill.style.background = isActive ? 'rgba(102, 126, 234, 0.1)' : 'white';
-                pill.style.color = isActive ? '#667eea' : '#4B5563';
+                pill.style.color = isActive ? '#6666ff' : '#4B5563';
                 pill.style.fontWeight = isActive ? '600' : '500';
               });
               if (elements.leverageWarning) {
@@ -2448,7 +2448,7 @@
         // ═══════════════════════════════════════════════════════════════
 
         const SLIDER_COLORS = {
-          SPY: '#667eea',
+          SPY: '#6666ff',
           IEF: '#10B981',
           GLD: '#F97316',
           CASH: '#6B7280'
@@ -2466,7 +2466,7 @@
             const valueSpan = row.querySelector('.slider-value');
             const fill = row.querySelector('.slider-track-fill');
             const ticker = row.dataset.ticker;
-            const color = slider?.dataset.color || SLIDER_COLORS[ticker] || '#667eea';
+            const color = slider?.dataset.color || SLIDER_COLORS[ticker] || '#6666ff';
 
             slider?.addEventListener('input', function() {
               const value = parseInt(this.value);
@@ -2633,7 +2633,7 @@
             const valueSpan = row.querySelector('.slider-value');
             const fill = row.querySelector('.slider-track-fill');
             const ticker = row.dataset.ticker;
-            const color = slider?.dataset.color || SLIDER_COLORS[ticker] || '#667eea';
+            const color = slider?.dataset.color || SLIDER_COLORS[ticker] || '#6666ff';
 
             const value = allocation[ticker] || 0;
             slider.value = value;

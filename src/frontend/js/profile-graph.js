@@ -78,7 +78,7 @@ const ProfileGraph = (function() {
     // Balanced (40-60): Purple/violet tones
     // Aggressive (70-100): Orange/red tones
     if (riskScore <= 30) {
-      return '#667eea'; // Blue-purple
+      return '#6666ff'; // Blue-purple
     } else if (riskScore <= 60) {
       return '#764ba2'; // Purple
     } else {
@@ -164,7 +164,7 @@ const ProfileGraph = (function() {
     const fill = container.querySelector('#riskGaugeFill');
     if (fill) {
       fill.style.width = `${riskScore}%`;
-      fill.style.background = `linear-gradient(90deg, #667eea 0%, ${color} 100%)`;
+      fill.style.background = `linear-gradient(90deg, #6666ff 0%, ${color} 100%)`;
     }
 
     // Update marker position

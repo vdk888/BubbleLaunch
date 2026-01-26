@@ -591,7 +591,7 @@
       <div class="message-content">
         <p>${invitationText}</p>
         <div class="proactive-onboarding-buttons" style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
-          <a href="${playgroundUrl}" class="onboarding-start-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 13px;">
+          <a href="${playgroundUrl}" class="onboarding-start-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: linear-gradient(135deg, #6666ff 0%, #764ba2 100%); color: white; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 13px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10"/>
               <polygon points="10,8 16,12 10,16" fill="currentColor"/>
@@ -766,7 +766,7 @@
       <div class="message-content">
         <p>${welcomeText}</p>
         <div class="onboarding-cta-container" style="margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
-          <a href="${playgroundUrl}" class="onboarding-cta-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 14px; transition: transform 0.2s, box-shadow 0.2s;">
+          <a href="${playgroundUrl}" class="onboarding-cta-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 16px; background: linear-gradient(135deg, #6666ff 0%, #764ba2 100%); color: white; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 14px; transition: transform 0.2s, box-shadow 0.2s;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10"/>
               <polygon points="10,8 16,12 10,16" fill="currentColor"/>
@@ -1316,7 +1316,7 @@
       <div class="message-content">
         <p>${suggestionText}</p>
         <div class="onboarding-interrupt-buttons" style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
-          <a href="${playgroundUrl}" class="onboarding-start-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 13px;">
+          <a href="${playgroundUrl}" class="onboarding-start-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: linear-gradient(135deg, #6666ff 0%, #764ba2 100%); color: white; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 13px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10"/>
               <polygon points="10,8 16,12 10,16" fill="currentColor"/>

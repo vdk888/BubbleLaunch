@@ -195,6 +195,15 @@ if (process.env.NODE_ENV !== "production") {
       path.join(frPagesDir, "clear-cache.html")
     );
   });
+
+  /**
+   * Design mock page for graphic charter validation (dev only)
+   */
+  router.get("/design-mock", (req, res) => {
+    res.sendFile(
+      path.join(frPagesDir, "design-mock.html")
+    );
+  });
 }
 
 /**

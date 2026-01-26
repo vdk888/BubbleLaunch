@@ -26,7 +26,7 @@
     TYPING_SPEED_MS: 30, // Typing effect speed
     BOT_COLORS: {
       equi: '#6B7280',
-      pari: '#667eea',
+      pari: '#6666ff',
       momo: '#F97316',
       sage: '#10B981',
     },
@@ -921,7 +921,7 @@
     BUY: '#10B981',    // Green
     SELL: '#EF4444',   // Red
     HOLD: '#6B7280',   // Gray
-    REBAL: '#667eea',  // Violet
+    REBAL: '#6666ff',  // Violet
     REDUCE: '#F97316', // Orange
   };
 

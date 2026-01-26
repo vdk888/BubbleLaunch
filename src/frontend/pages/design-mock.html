@@ -1,0 +1,945 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bubble Design System Mock - Charte Graphique Remastered</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* NEW BUBBLE DESIGN SYSTEM - CHARTE GRAPHIQUE REMASTERED */
+
+    :root {
+      /* EXISTING (for comparison) */
+      --bubble-purple-old: #6666ff;
+
+      /* NEW: Primary Color System */
+      --bubble-primary: #6666ff;
+      --bubble-primary-rgb: 102, 102, 255;
+      --bubble-primary-hover: #5555ee;
+
+      /* Opacity Variations */
+      --bubble-primary-03: rgba(var(--bubble-primary-rgb), 0.03);
+      --bubble-primary-08: rgba(var(--bubble-primary-rgb), 0.08);
+      --bubble-primary-15: rgba(var(--bubble-primary-rgb), 0.15);
+      --bubble-primary-20: rgba(var(--bubble-primary-rgb), 0.2);
+      --bubble-primary-30: rgba(var(--bubble-primary-rgb), 0.3);
+      --bubble-primary-50: rgba(var(--bubble-primary-rgb), 0.5);
+
+      /* Gradient Endpoints */
+      --gradient-purple-dark: #764ba2;
+      --gradient-purple-light: #8b5cf6;
+
+      /* Glassmorphism System */
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-bg-elevated: rgba(255, 255, 255, 0.25);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --glass-blur: 20px;
+
+      /* Typography Weights */
+      --weight-medium: 500;
+      --weight-semibold: 600;
+      --weight-bold: 700;
+      --weight-extrabold: 800;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: #000;
+      line-height: 1.6;
+      padding: 3rem 1.5rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Header Section */
+    .mock-header {
+      background: white;
+      border-radius: 24px;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .mock-header h1 {
+      font-size: 2.5rem;
+      font-weight: var(--weight-extrabold);
+      color: #0f172a;
+      margin-bottom: 0.5rem;
+    }
+
+    .mock-header p {
+      font-size: 1.1rem;
+      color: #535359;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .color-comparison {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .color-swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .color-box {
+      width: 120px;
+      height: 80px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: var(--weight-bold);
+      font-size: 0.9rem;
+    }
+
+    .color-box.old {
+      background: #6666ff;
+    }
+
+    .color-box.new {
+      background: var(--bubble-primary);
+    }
+
+    .color-label {
+      font-size: 0.85rem;
+      font-weight: var(--weight-semibold);
+      color: #364155;
+      text-align: center;
+    }
+
+    /* Section Dividers */
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: var(--weight-bold);
+      color: #0f172a;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-badge {
+      background: #333333;
+      color: white;
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.05em;
+    }
+
+    .section-description {
+      font-size: 1rem;
+      color: #535359;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    /* COMPONENT 1: GLASSMORPHISM PRICING CARDS */
+    .pricing-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      margin-bottom: 3rem;
+    }
+
+    .pricing-card {
+      /* Glassmorphism with WHITE dominance */
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 24px;
+      padding: 2.5rem 2.25rem;
+      box-shadow:
+        0 16px 44px rgba(15, 27, 58, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 1.65rem;
+      position: relative;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pricing-card:hover {
+      background: rgba(255, 255, 255, 0.95);
+      transform: translateY(-6px);
+      box-shadow:
+        0 24px 60px rgba(16, 38, 95, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    /* Recommended plan: Subtle purple accent */
+    .pricing-card.highlight {
+      border: 2px solid var(--bubble-primary-20);
+      box-shadow:
+        0 26px 70px var(--bubble-primary-15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    /* Enterprise/Premium plan: DARK GRAY with white text */
+    .pricing-card.dark {
+      background: rgba(30, 30, 40, 0.95);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow:
+        0 16px 44px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .pricing-card.dark:hover {
+      background: rgba(40, 40, 50, 0.95);
+    }
+
+    .pricing-card.dark .plan-name,
+    .pricing-card.dark .plan-tagline,
+    .pricing-card.dark .plan-price-value {
+      color: white;
+    }
+
+    .pricing-card.dark .plan-tagline {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .plan-badge {
+      position: absolute;
+      top: -0.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bubble-primary);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.05em;
+      box-shadow: 0 4px 12px var(--bubble-primary-20);
+    }
+
+    /* COMPONENT 2: ENHANCED TYPOGRAPHY */
+    .plan-name {
+      font-size: 2rem;
+      font-weight: var(--weight-bold);
+      letter-spacing: -0.02em;
+      color: #0f172a;
+    }
+
+    .plan-tagline {
+      font-size: 1rem;
+      font-style: italic; /* NEW */
+      font-weight: var(--weight-semibold);
+      color: #535359;
+      line-height: 1.5;
+    }
+
+    .plan-price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .plan-price-value {
+      font-size: 2.5rem;
+      font-weight: var(--weight-extrabold);
+      letter-spacing: -0.03em;
+      color: var(--bubble-primary);
+    }
+
+    .plan-price-period {
+      font-size: 0.95rem;
+      color: #616c89;
+      font-weight: var(--weight-medium);
+    }
+
+    .plan-divider {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(15, 24, 51, 0), rgba(15, 24, 51, 0.18), rgba(15, 24, 51, 0));
+    }
+
+    /* COMPONENT 3: CIRCULAR CHECKMARK BULLETS (OUTLINED) */
+    .plan-feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .plan-feature-list li {
+      position: relative;
+      padding-left: 2rem;
+      line-height: 1.55;
+      font-size: 0.95rem;
+      font-weight: var(--weight-semibold); /* NEW: Bold features */
+      color: #364155;
+    }
+
+    .plan-feature-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0.15rem;
+      /* NEW: OUTLINED Circular Checkmark (border only, not filled) */
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: transparent;
+      border: 2px solid var(--bubble-primary);
+      color: var(--bubble-primary);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .plan-feature-list li:hover::before {
+      border-color: var(--bubble-primary-hover);
+      color: var(--bubble-primary-hover);
+      background: var(--bubble-primary-03);
+      transform: scale(1.15);
+    }
+
+    /* Dark card variant (white outline on dark background) */
+    .pricing-card.dark .plan-feature-list li {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .pricing-card.dark .plan-feature-list li::before {
+      border-color: white;
+      color: white;
+    }
+
+    .plan-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.5rem;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #6b7280, #4b5563);
+      color: white;
+      text-decoration: none;
+      font-weight: var(--weight-semibold);
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .plan-cta:hover {
+      background: linear-gradient(135deg, var(--bubble-primary), var(--bubble-primary-hover));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--bubble-primary-30);
+    }
+
+    /* COMPONENT 4: CHECKMARK VARIATIONS SHOWCASE */
+    .checkmark-showcase {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .checkmark-demo-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .checkmark-demo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    /* Dark card: DARK GRAY like Enterprise plan, NOT purple */
+    .checkmark-demo-card.dark {
+      background: rgba(30, 30, 40, 0.95);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .checkmark-demo-card.dark:hover {
+      background: rgba(40, 40, 50, 0.95);
+    }
+
+    .checkmark-demo-card h3 {
+      font-size: 1.25rem;
+      font-weight: var(--weight-bold);
+      margin-bottom: 1.5rem;
+    }
+
+    .demo-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .demo-list li {
+      position: relative;
+      padding-left: 2rem;
+      line-height: 1.55;
+      font-size: 0.95rem;
+      font-weight: var(--weight-semibold);
+    }
+
+    /* On white background - OUTLINED */
+    .checkmark-demo-card.light .demo-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0.15rem;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: transparent;
+      border: 2px solid var(--bubble-primary);
+      color: var(--bubble-primary);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* On dark background - OUTLINED */
+    .checkmark-demo-card.dark .demo-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0.15rem;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Premium variant - Glassmorphism with gradient accent on hover */
+    .checkmark-demo-card.premium {
+      background: rgba(255, 255, 255, 0.25);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .checkmark-demo-card.premium::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--bubble-primary-08), var(--bubble-primary-15));
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .checkmark-demo-card.premium:hover::after {
+      opacity: 1;
+    }
+
+    .checkmark-demo-card.premium h3,
+    .checkmark-demo-card.premium .demo-list {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Premium checkmarks - Circular with gradient on hover */
+    .checkmark-demo-card.premium .demo-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0.15rem;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: transparent;
+      border: 2px solid var(--bubble-primary);
+      color: var(--bubble-primary);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .checkmark-demo-card.premium:hover .demo-list li::before {
+      background: linear-gradient(135deg, var(--bubble-primary), var(--gradient-purple-light));
+      border-color: transparent;
+      color: white;
+      transform: scale(1.15);
+      box-shadow: 0 4px 12px var(--bubble-primary-30);
+    }
+
+    /* COMPONENT 5: ADDITIONAL GLASSMORPHISM EXAMPLES */
+    .glass-examples {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    .glass-service-tile {
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      position: relative;
+      border-radius: 24px;
+      padding: 2rem;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Gradient border via pseudo-element */
+    .glass-service-tile::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      padding: 2px;
+      background: linear-gradient(135deg, rgba(0,0,0,0.08), rgba(0,0,0,0.12));
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .glass-service-tile:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 48px var(--bubble-primary-15);
+    }
+
+    .tile-icon {
+      width: 56px;
+      height: 56px;
+      background: transparent; /* No background by default */
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .tile-icon svg {
+      color: #333333;
+      transition: all 0.3s ease;
+    }
+
+    /* Hover state: reveal purple */
+    .glass-service-tile:hover .tile-icon {
+      background: var(--bubble-primary-08); /* Subtle purple background on hover */
+    }
+
+    .glass-service-tile:hover .tile-icon svg {
+      color: var(--bubble-primary); /* Purple icon on hover */
+    }
+
+
+    .tile-title {
+      font-size: 1.5rem;
+      font-weight: var(--weight-bold);
+      color: #0f172a;
+      margin-bottom: 0.75rem;
+    }
+
+    .tile-description {
+      font-size: 0.95rem;
+      color: #535359;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Footer Note */
+    .mock-footer {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      margin-top: 4rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .mock-footer h3 {
+      font-size: 1.25rem;
+      font-weight: var(--weight-bold);
+      color: #0f172a;
+      margin-bottom: 0.75rem;
+    }
+
+    .mock-footer p {
+      font-size: 0.95rem;
+      color: #535359;
+      line-height: 1.6;
+    }
+
+    /* Floating Animation - "Floating in Water" Effect */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes floatSubtle {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-4px);
+      }
+    }
+
+    .glass-service-tile {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .glass-service-tile:nth-child(2) {
+      animation-delay: 1s;
+    }
+
+    .glass-service-tile:hover {
+      animation: none;
+    }
+
+    .checkmark-demo-card {
+      animation: floatSubtle 5s ease-in-out infinite;
+    }
+
+    .checkmark-demo-card:nth-child(2) {
+      animation-delay: 0.8s;
+    }
+
+    .checkmark-demo-card:nth-child(3) {
+      animation-delay: 1.6s;
+    }
+
+    .checkmark-demo-card:hover {
+      animation: none;
+    }
+
+    .pricing-card {
+      animation: floatSubtle 7s ease-in-out infinite;
+    }
+
+    .pricing-card:nth-child(2) {
+      animation-delay: 1.2s;
+    }
+
+    .pricing-card:nth-child(3) {
+      animation-delay: 2.4s;
+    }
+
+    .pricing-card:hover {
+      animation: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .mock-header h1 {
+        font-size: 2rem;
+      }
+
+      .color-comparison {
+        flex-direction: column;
+      }
+
+      .pricing-grid,
+      .checkmark-showcase,
+      .glass-examples {
+        grid-template-columns: 1fr;
+      }
+
+      .plan-name {
+        font-size: 1.5rem;
+      }
+
+      .plan-price-value {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header Section -->
+    <div class="mock-header">
+      <h1>Bubble Charte Graphique Remastered</h1>
+      <p>Mock Page - Validation des nouveaux composants du design system</p>
+
+      <div class="color-comparison">
+        <div class="color-swatch">
+          <div class="color-box old">Ancien</div>
+          <div class="color-label">#6666ff<br><small>(102, 126, 234)</small></div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box new">Nouveau</div>
+          <div class="color-label">#6666ff<br><small>(102, 102, 255)</small></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1: Glassmorphism Pricing Cards -->
+    <div class="section">
+      <h2 class="section-title">
+        <span class="section-badge">1</span>
+        Glassmorphism Pricing Cards
+      </h2>
+      <p class="section-description">
+        Cartes avec effet verre dépoli (backdrop-filter: blur(20px), 15% opacité, bordures transparentes, ombres douces avec inset highlight)
+      </p>
+
+      <div class="pricing-grid">
+        <!-- Card 1: Starter -->
+        <div class="pricing-card">
+          <div class="plan-name">Starter</div>
+          <div class="plan-tagline">Pour commencer votre aventure</div>
+          <div class="plan-price">
+            <span class="plan-price-value">€0</span>
+            <span class="plan-price-period">/mois</span>
+          </div>
+          <div class="plan-divider"></div>
+          <ul class="plan-feature-list">
+            <li>Accès au portfolio simulator</li>
+            <li>3 stratégies prédéfinies</li>
+            <li>Historique 10 ans</li>
+            <li>Exports CSV basiques</li>
+            <li>Support communautaire</li>
+          </ul>
+          <a href="#" class="plan-cta">Commencer gratuitement</a>
+        </div>
+
+        <!-- Card 2: Pro (Highlighted) -->
+        <div class="pricing-card highlight">
+          <div class="plan-badge">Recommandé</div>
+          <div class="plan-name">Pro</div>
+          <div class="plan-tagline">L'essentiel pour investisseurs sérieux</div>
+          <div class="plan-price">
+            <span class="plan-price-value">€5</span>
+            <span class="plan-price-period">/mois</span>
+          </div>
+          <div class="plan-divider"></div>
+          <ul class="plan-feature-list">
+            <li>9 stratégies avancées</li>
+            <li>Backtesting 20 ans</li>
+            <li>Custom portfolio mix</li>
+            <li>Exports PNG + CSV</li>
+            <li>AI chatbot assistant</li>
+            <li>Support prioritaire</li>
+          </ul>
+          <a href="#" class="plan-cta">Essayer Pro</a>
+        </div>
+
+        <!-- Card 3: Enterprise (DARK GRAY) -->
+        <div class="pricing-card dark">
+          <div class="plan-name">Enterprise</div>
+          <div class="plan-tagline">Pour gestionnaires et advisors</div>
+          <div class="plan-price">
+            <span class="plan-price-value">€10</span>
+            <span class="plan-price-period">/mois</span>
+          </div>
+          <div class="plan-divider"></div>
+          <ul class="plan-feature-list">
+            <li>Toutes les stratégies</li>
+            <li>Multi-client management</li>
+            <li>API access + webhooks</li>
+            <li>White-label options</li>
+            <li>Custom integrations</li>
+            <li>Dedicated support</li>
+          </ul>
+          <a href="#" class="plan-cta">Nous contacter</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Circular Checkmark Variations -->
+    <div class="section">
+      <h2 class="section-title">
+        <span class="section-badge">2</span>
+        Circular Checkmark Bullets (Outlined)
+      </h2>
+      <p class="section-description">
+        Checkmarks circulaires OUTLINED (18px) avec bordure colorée uniquement - 3 variantes : sur fond blanc (bordure bleue), sur fond foncé dark gray Enterprise-style (bordure blanche), et premium glassmorphism (gradient reveal au hover)
+      </p>
+
+      <div class="checkmark-showcase">
+        <!-- Light Background -->
+        <div class="checkmark-demo-card light">
+          <h3>Sur Fond Clair</h3>
+          <ul class="demo-list">
+            <li>Bordure bleue (#6666ff) 2px</li>
+            <li>Background transparent</li>
+            <li>Checkmark bleu à l'intérieur</li>
+            <li>Hover: léger background + scale</li>
+          </ul>
+        </div>
+
+        <!-- Dark Background (Enterprise Style) -->
+        <div class="checkmark-demo-card dark">
+          <h3>Sur Fond Foncé</h3>
+          <ul class="demo-list">
+            <li>Dark gray (rgba 30,30,40) comme Enterprise</li>
+            <li>Bordure blanche 2px outlined</li>
+            <li>Checkmark blanc transparent</li>
+            <li>NO purple dominance</li>
+          </ul>
+        </div>
+
+        <!-- Premium Glassmorphism Variant -->
+        <div class="checkmark-demo-card premium">
+          <h3>Variante Premium</h3>
+          <ul class="demo-list">
+            <li>Glassmorphism avancé (25% opacité)</li>
+            <li>Hover: gradient background reveal</li>
+            <li>Checkmarks: outlined → filled gradient</li>
+            <li>Animation fluide et élégante</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Enhanced Typography -->
+    <div class="section">
+      <h2 class="section-title">
+        <span class="section-badge">3</span>
+        Enhanced Typography
+      </h2>
+      <p class="section-description">
+        Hiérarchie typographique renforcée : titres plus grands (2rem), taglines italiques, features en semibold (600)
+      </p>
+
+      <div style="background: white; border-radius: 24px; padding: 2.5rem; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);">
+        <div class="plan-name" style="margin-bottom: 0.75rem;">Plan Title - 2rem Bold</div>
+        <div class="plan-tagline" style="margin-bottom: 1rem;">Plan tagline - 1rem Italic Semibold - Décrit la proposition de valeur</div>
+        <div class="plan-price" style="margin-bottom: 1.5rem;">
+          <span class="plan-price-value">€5</span>
+          <span class="plan-price-period">/mois</span>
+        </div>
+        <div style="border-top: 1px solid #eeeeee; padding-top: 1.5rem;">
+          <p style="font-size: 0.95rem; font-weight: 600; color: #364155; line-height: 1.55;">
+            Feature labels - 0.95rem Semibold (600) - Meilleure lisibilité et hiérarchie visuelle claire
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Glassmorphism Service Tiles -->
+    <div class="section">
+      <h2 class="section-title">
+        <span class="section-badge">4</span>
+        Glassmorphism Service Tiles
+      </h2>
+      <p class="section-description">
+        Tuiles de services avec verre dépoli + bordure gradient (via pseudo-élément ::before)
+      </p>
+
+      <div class="glass-examples">
+        <div class="glass-service-tile">
+          <div class="tile-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="tile-title">Formation IA</h3>
+          <p class="tile-description">
+            Ateliers personnalisés pour maîtriser les outils d'IA générative et automatiser vos workflows.
+          </p>
+          <ul class="demo-list" style="list-style: none; padding: 0;">
+            <li style="position: relative; padding-left: 2rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="position: absolute; left: 0; top: 0.15rem; width: 18px; height: 18px; border-radius: 50%; background: transparent; border: 2px solid var(--bubble-primary); color: var(--bubble-primary); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center;">✓</span>
+              Durée 2-4 jours
+            </li>
+            <li style="position: relative; padding-left: 2rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="position: absolute; left: 0; top: 0.15rem; width: 18px; height: 18px; border-radius: 50%; background: transparent; border: 2px solid var(--bubble-primary); color: var(--bubble-primary); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center;">✓</span>
+              Budget €3k-€5k
+            </li>
+          </ul>
+        </div>
+
+        <div class="glass-service-tile">
+          <div class="tile-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+          </div>
+          <h3 class="tile-title">Solutions IA</h3>
+          <p class="tile-description">
+            Automatisation de workflows métier avec Claude Code, Codex, et intégrations API sur mesure.
+          </p>
+          <ul class="demo-list" style="list-style: none; padding: 0;">
+            <li style="position: relative; padding-left: 2rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="position: absolute; left: 0; top: 0.15rem; width: 18px; height: 18px; border-radius: 50%; background: transparent; border: 2px solid var(--bubble-primary); color: var(--bubble-primary); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center;">✓</span>
+              Durée 2-4 mois
+            </li>
+            <li style="position: relative; padding-left: 2rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+              <span style="position: absolute; left: 0; top: 0.15rem; width: 18px; height: 18px; border-radius: 50%; background: transparent; border: 2px solid var(--bubble-primary); color: var(--bubble-primary); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center;">✓</span>
+              Budget €20k-€30k
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Note -->
+    <div class="mock-footer">
+      <h3>🎨 Design System Validation Complete</h3>
+      <p>
+        Cette page de mock présente les 4 composants clés de la charte graphique remastered :<br>
+        <strong>1. Nouveau Bleu (#6666ff)</strong> • <strong>2. Checkmarks Circulaires OUTLINED</strong> • <strong>3. Glassmorphism (White/Dark Gray dominant)</strong> • <strong>4. Typographie Améliorée</strong>
+      </p>
+      <p style="margin-top: 1rem; font-size: 0.85rem; color: #616c89;">
+        <strong>Hiérarchie des couleurs:</strong> Blanc/Gris Foncé/Noir (dominants) • Bleu #6666ff (accent CTA, hover, bullets)<br>
+        <strong>Enterprise plan:</strong> Dark gray avec texte blanc et checkmarks outlined blancs
+      </p>
+      <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #616c89;">
+        Une fois validé, le document CHARTE_GRAPHIQUE.md sera mis à jour avec ces spécifications.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

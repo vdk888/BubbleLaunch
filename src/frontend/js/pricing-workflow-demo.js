@@ -968,7 +968,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const strategy = document.createElement('div');
     strategy.style.fontWeight = '600';
-    strategy.style.color = '#667eea';
+    strategy.style.color = '#6666ff';
     strategy.style.marginTop = '0.4rem';
     strategy.textContent = workflowTranslations['workflow.message4.bot.strategy'][currentLanguage];
     card.appendChild(strategy);
@@ -1211,7 +1211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg2_5Bubble.appendChild(document.createElement('br'));
     const whoForText = workflowTranslations['workflow.message2_5.bot.who_for'][currentLanguage];
     const whoForSpan = document.createElement('span');
-    whoForSpan.style.color = '#667eea';
+    whoForSpan.style.color = '#6666ff';
     whoForSpan.style.fontWeight = '600';
     whoForSpan.textContent = whoForText;
     msg2_5Bubble.appendChild(whoForSpan);
@@ -1343,7 +1343,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg6Bubble.appendChild(document.createElement('br'));
     const pricingNoteText = workflowTranslations['workflow.message6.bot.pricing_note'][currentLanguage];
     const pricingNoteSpan = document.createElement('span');
-    pricingNoteSpan.style.color = '#667eea';
+    pricingNoteSpan.style.color = '#6666ff';
     pricingNoteSpan.style.fontWeight = '600';
     pricingNoteSpan.textContent = pricingNoteText;
     msg6Bubble.appendChild(pricingNoteSpan);
@@ -1650,7 +1650,7 @@ document.addEventListener('DOMContentLoaded', () => {
       itemDiv.style.padding = '0.5rem';
       itemDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       itemDiv.style.borderRadius = '8px';
-      itemDiv.style.borderLeft = '3px solid #667eea';
+      itemDiv.style.borderLeft = '3px solid #6666ff';
 
       const title = document.createElement('div');
       title.style.fontWeight = '600';
@@ -1703,7 +1703,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const percentageSpan = document.createElement('span');
       percentageSpan.style.fontWeight = '700';
-      percentageSpan.style.color = '#667eea';
+      percentageSpan.style.color = '#6666ff';
       percentageSpan.textContent = asset.percentage;
 
       assetDiv.appendChild(nameSpan);
@@ -1780,7 +1780,7 @@ document.addEventListener('DOMContentLoaded', () => {
       itemDiv.style.marginBottom = '0.3rem';
       itemDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       itemDiv.style.borderRadius = '6px';
-      itemDiv.style.borderLeft = '3px solid #667eea';
+      itemDiv.style.borderLeft = '3px solid #6666ff';
 
       const title = document.createElement('div');
       title.style.fontWeight = '600';
@@ -1863,7 +1863,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const stepDiv = document.createElement('div');
       stepDiv.style.marginBottom = '0.5rem';
       stepDiv.style.paddingLeft = '0.6rem';
-      stepDiv.style.borderLeft = '3px solid #667eea';
+      stepDiv.style.borderLeft = '3px solid #6666ff';
       stepDiv.style.position = 'relative';
 
       const stepTitle = document.createElement('div');
@@ -1953,7 +1953,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const tdValue = document.createElement('td');
       tdValue.style.textAlign = 'right';
-      tdValue.style.color = '#667eea';
+      tdValue.style.color = '#6666ff';
       tdValue.style.fontWeight = '600';
       tdValue.textContent = row.value;
 
@@ -1989,7 +1989,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const result = document.createElement('div');
       result.style.fontSize = '0.85rem';
-      result.style.color = '#667eea';
+      result.style.color = '#6666ff';
       result.style.fontWeight = '600';
       result.textContent = comp[`result${currentLanguage === 'en' ? '' : '_fr'}`];
 
@@ -2033,7 +2033,7 @@ document.addEventListener('DOMContentLoaded', () => {
     table.style.borderCollapse = 'collapse';
 
     const headerRow = document.createElement('tr');
-    headerRow.style.borderBottom = '2px solid #667eea';
+    headerRow.style.borderBottom = '2px solid #6666ff';
 
     const headers = ['Provider', 'Fee Model', 'Annual Cost (€200k)'];
     headers.forEach((h, idx) => {
@@ -2071,7 +2071,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tdExample.style.padding = '0.4rem';
       tdExample.style.textAlign = 'center';
       tdExample.style.fontWeight = rowIdx === 2 ? '700' : '600';
-      tdExample.style.color = rowIdx === 2 ? '#667eea' : '#666666';
+      tdExample.style.color = rowIdx === 2 ? '#6666ff' : '#666666';
       tdExample.style.fontSize = '0.9rem';
       tdExample.textContent = row[`example_${currentLanguage}`];
       tr.appendChild(tdExample);
@@ -2115,7 +2115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     table.style.borderCollapse = 'collapse';
 
     const headerRow = document.createElement('tr');
-    headerRow.style.borderBottom = '2px solid #667eea';
+    headerRow.style.borderBottom = '2px solid #6666ff';
 
     const headers = ['Feature', 'ChatGPT', 'Bubble'];
     headers.forEach((h, idx) => {
@@ -2154,7 +2154,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tdBubble.style.padding = '0.4rem 0.5rem';
       tdBubble.style.textAlign = 'center';
       tdBubble.style.fontWeight = '600';
-      tdBubble.style.color = '#667eea';
+      tdBubble.style.color = '#6666ff';
       tdBubble.style.fontSize = '0.9rem';
       tdBubble.textContent = item[`bubble_${currentLanguage}`];
       tr.appendChild(tdBubble);
@@ -2187,12 +2187,12 @@ document.addEventListener('DOMContentLoaded', () => {
       stepDiv.style.marginBottom = '0.5rem';
       stepDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       stepDiv.style.borderRadius = '8px';
-      stepDiv.style.borderLeft = '4px solid #667eea';
+      stepDiv.style.borderLeft = '4px solid #6666ff';
 
       const stepNum = document.createElement('div');
       stepNum.style.fontSize = '0.75rem';
       stepNum.style.fontWeight = '700';
-      stepNum.style.color = '#667eea';
+      stepNum.style.color = '#6666ff';
       stepNum.style.marginBottom = '0.3rem';
       stepNum.style.textTransform = 'uppercase';
       stepNum.textContent = `${step.icon} Step ${idx + 1}`;
@@ -2229,7 +2229,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const title = document.createElement('div');
     title.style.fontSize = '0.9rem';
     title.style.fontWeight = '700';
-    title.style.color = '#667eea';
+    title.style.color = '#6666ff';
     title.style.marginBottom = '0.6rem';
     title.innerHTML = workflowTranslations['academic.disclosure.title'][currentLanguage];
     card.appendChild(title);
@@ -2261,7 +2261,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const formulaDiv = document.createElement('div');
       formulaDiv.style.marginBottom = '0.4rem';
       formulaDiv.style.paddingLeft = '0.5rem';
-      formulaDiv.style.borderLeft = '3px solid #667eea';
+      formulaDiv.style.borderLeft = '3px solid #6666ff';
 
       const formulaName = document.createElement('div');
       formulaName.style.fontWeight = '600';
@@ -2303,7 +2303,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Transparency message
     const transparencyDiv = document.createElement('div');
     transparencyDiv.style.fontSize = '0.8rem';
-    transparencyDiv.style.color = '#667eea';
+    transparencyDiv.style.color = '#6666ff';
     transparencyDiv.style.fontStyle = 'italic';
     transparencyDiv.style.paddingTop = '0.6rem';
     transparencyDiv.style.borderTop = '1px solid rgba(102, 126, 234, 0.1)';
@@ -2536,7 +2536,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg10_5Bubble.appendChild(document.createElement('br'));
     const msg10_5ClosingText = workflowTranslations['beginner.message10_5.bot.closing'][currentLanguage];
     const closingSpan10_5 = document.createElement('span');
-    closingSpan10_5.style.color = '#667eea';
+    closingSpan10_5.style.color = '#6666ff';
     closingSpan10_5.style.fontWeight = '700';
     closingSpan10_5.textContent = msg10_5ClosingText;
     msg10_5Bubble.appendChild(closingSpan10_5);
@@ -2629,7 +2629,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg13Bubble.appendChild(document.createElement('br'));
     const msg13ClosingText = workflowTranslations['beginner.message13.bot.closing'][currentLanguage];
     const closingSpan13 = document.createElement('span');
-    closingSpan13.style.color = '#667eea';
+    closingSpan13.style.color = '#6666ff';
     closingSpan13.style.fontWeight = '700';
     closingSpan13.textContent = msg13ClosingText;
     msg13Bubble.appendChild(closingSpan13);
@@ -2661,12 +2661,12 @@ document.addEventListener('DOMContentLoaded', () => {
       layerDiv.style.marginBottom = '0.4rem';
       layerDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       layerDiv.style.borderRadius = '8px';
-      layerDiv.style.borderLeft = '4px solid #667eea';
+      layerDiv.style.borderLeft = '4px solid #6666ff';
 
       const layerNum = document.createElement('div');
       layerNum.style.fontSize = '0.75rem';
       layerNum.style.fontWeight = '700';
-      layerNum.style.color = '#667eea';
+      layerNum.style.color = '#6666ff';
       layerNum.style.marginBottom = '0.4rem';
       layerNum.style.textTransform = 'uppercase';
       layerNum.textContent = `Layer ${idx + 1}`;
@@ -2721,7 +2721,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const thStrategy = document.createElement('th');
     thStrategy.style.textAlign = 'right';
     thStrategy.style.fontWeight = '700';
-    thStrategy.style.color = '#667eea';
+    thStrategy.style.color = '#6666ff';
     thStrategy.style.paddingBottom = '0.4rem';
     thStrategy.textContent = 'Our Strategy';
 
@@ -2751,7 +2751,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const tdStrategy = document.createElement('td');
       tdStrategy.style.padding = '0.3rem 0.4rem 0.3rem 0';
       tdStrategy.style.textAlign = 'right';
-      tdStrategy.style.color = '#667eea';
+      tdStrategy.style.color = '#6666ff';
       tdStrategy.style.fontWeight = '700';
       tdStrategy.textContent = metric.strategy;
 
@@ -2791,7 +2791,7 @@ document.addEventListener('DOMContentLoaded', () => {
       scDiv.style.marginBottom = '0.4rem';
       scDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       scDiv.style.borderRadius = '8px';
-      scDiv.style.borderLeft = '3px solid #667eea';
+      scDiv.style.borderLeft = '3px solid #6666ff';
 
       const periodDiv = document.createElement('div');
       periodDiv.style.fontWeight = '700';
@@ -2811,7 +2811,7 @@ document.addEventListener('DOMContentLoaded', () => {
       comparisonDiv.appendChild(smhDiv);
 
       const strategyDiv = document.createElement('div');
-      strategyDiv.innerHTML = `<div style="font-size: 0.75rem; color: #667eea; text-transform: uppercase;">Strategy</div><div style="font-weight: 700; color: #667eea; font-size: 1rem;">${scenario.strategy_loss || scenario.strategy_gain || scenario.strategy_dd}</div>`;
+      strategyDiv.innerHTML = `<div style="font-size: 0.75rem; color: #6666ff; text-transform: uppercase;">Strategy</div><div style="font-weight: 700; color: #6666ff; font-size: 1rem;">${scenario.strategy_loss || scenario.strategy_gain || scenario.strategy_dd}</div>`;
       comparisonDiv.appendChild(strategyDiv);
 
       comparisonDiv.appendChild(smhDiv);
@@ -2855,7 +2855,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ruleDiv.style.marginBottom = '0.4rem';
       ruleDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       ruleDiv.style.borderRadius = '8px';
-      ruleDiv.style.borderLeft = '3px solid #667eea';
+      ruleDiv.style.borderLeft = '3px solid #6666ff';
 
       const ruleName = document.createElement('div');
       ruleName.style.fontWeight = '700';
@@ -2923,7 +2923,7 @@ document.addEventListener('DOMContentLoaded', () => {
       metricsGrid.appendChild(markets);
 
       const strat = document.createElement('div');
-      strat.innerHTML = `<div style="font-size: 0.75rem; color: #667eea; text-transform: uppercase;">${strategyLabel}</div><div style="font-weight: 700; color: #667eea;">${event.strategy}</div>`;
+      strat.innerHTML = `<div style="font-size: 0.75rem; color: #6666ff; text-transform: uppercase;">${strategyLabel}</div><div style="font-weight: 700; color: #6666ff;">${event.strategy}</div>`;
       metricsGrid.appendChild(strat);
 
       eventDiv.appendChild(metricsGrid);
@@ -2967,7 +2967,7 @@ document.addEventListener('DOMContentLoaded', () => {
       detailDiv.style.marginBottom = '0.4rem';
       detailDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       detailDiv.style.borderRadius = '8px';
-      detailDiv.style.borderLeft = '3px solid #667eea';
+      detailDiv.style.borderLeft = '3px solid #6666ff';
 
       const title = document.createElement('div');
       title.style.fontWeight = '700';
@@ -3024,7 +3024,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const stepDiv = document.createElement('div');
       stepDiv.style.marginBottom = '0.6rem';
       stepDiv.style.paddingLeft = '0.6rem';
-      stepDiv.style.borderLeft = '3px solid #667eea';
+      stepDiv.style.borderLeft = '3px solid #6666ff';
       stepDiv.style.position = 'relative';
 
       const stepTitle = document.createElement('div');
@@ -3091,7 +3091,7 @@ document.addEventListener('DOMContentLoaded', () => {
       srcDiv.style.marginBottom = '0.4rem';
       srcDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       srcDiv.style.borderRadius = '8px';
-      srcDiv.style.borderLeft = '3px solid #667eea';
+      srcDiv.style.borderLeft = '3px solid #6666ff';
 
       const sourceTitle = document.createElement('div');
       sourceTitle.style.display = 'flex';
@@ -3106,7 +3106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const alpha = document.createElement('span');
       alpha.style.fontWeight = '700';
-      alpha.style.color = '#667eea';
+      alpha.style.color = '#6666ff';
       alpha.style.fontSize = '1.1rem';
       alpha.textContent = src.alpha;
 
@@ -3163,7 +3163,7 @@ document.addEventListener('DOMContentLoaded', () => {
       stepDiv.style.marginBottom = '0.4rem';
       stepDiv.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
       stepDiv.style.borderRadius = '8px';
-      stepDiv.style.borderLeft = '3px solid #667eea';
+      stepDiv.style.borderLeft = '3px solid #6666ff';
 
       const stepText = document.createElement('div');
       stepText.style.fontSize = '0.9rem';
@@ -3463,7 +3463,7 @@ document.addEventListener('DOMContentLoaded', () => {
     msg15Bubble.appendChild(document.createElement('br'));
     const msg15ClosingText = workflowTranslations['expert.message15.bot.closing'][currentLanguage];
     const closingSpan15 = document.createElement('span');
-    closingSpan15.style.color = '#667eea';
+    closingSpan15.style.color = '#6666ff';
     closingSpan15.style.fontWeight = '700';
     closingSpan15.textContent = msg15ClosingText;
     msg15Bubble.appendChild(closingSpan15);

@@ -413,7 +413,7 @@
     optimizedRiskParity: {
       labelKey: 'simulator.strategy.optimizedRiskParity',
       dataKey: 'optimizedRP',
-      color: '#667eea', // Brand violet for best strategy
+      color: '#6666ff', // Brand violet for best strategy
       borderWidth: 3,
       borderDash: [],
       order: 1,
