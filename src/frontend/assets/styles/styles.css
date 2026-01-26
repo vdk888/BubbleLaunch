@@ -3269,6 +3269,49 @@ body.pricing-page {
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* Enterprise Plan - Dark Gray Glassmorphism (validated in mock page) */
+.plan-enterprise {
+  background: rgba(30, 30, 40, 0.95);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.plan-enterprise:hover {
+  background: rgba(40, 40, 50, 0.95);
+}
+
+.plan-enterprise .plan-name,
+.plan-enterprise .plan-tagline,
+.plan-enterprise .plan-price-value,
+.plan-enterprise .plan-purpose {
+  color: white;
+}
+
+.plan-enterprise .plan-tagline {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.plan-enterprise .plan-feature-list li::before {
+  border-color: white;
+  color: white;
+  background: transparent;
+}
+
+.plan-enterprise .plan-cta {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.plan-enterprise .plan-cta:hover {
+  background: linear-gradient(135deg, var(--bubble-primary), var(--gradient-purple-light));
+  border-color: transparent;
+  color: white;
+}
+
 .plan-header {
   display: flex;
   flex-direction: column;
