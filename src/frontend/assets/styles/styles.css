@@ -3312,6 +3312,14 @@ body.pricing-page {
   color: white;
 }
 
+/* Ensure ALL text in enterprise plan is white */
+.plan-enterprise p,
+.plan-enterprise li,
+.plan-enterprise span,
+.plan-enterprise a:not(.plan-cta) {
+  color: white;
+}
+
 .plan-header {
   display: flex;
   flex-direction: column;
