@@ -4855,17 +4855,19 @@ button.loading::after {
 form button {
   width: 100%;
   padding: 0.75rem;
-  background-color: var(--primary);
+  background: linear-gradient(135deg, #333333 0%, #444444 100%);
   color: white;
   border: none;
   border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 form button:hover {
-  background-color: var(--primary-hover);
+  background: linear-gradient(135deg, var(--bubble-primary), var(--gradient-purple-light));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--bubble-primary-30);
 }
 
 /* Chat Interface - No container, just content */
@@ -8101,9 +8103,9 @@ html[lang="fr"] .superpower-panel h2 {
 }
 
 .waitlist-cta .cta-button:hover {
-  background: #6b7280;
+  background: linear-gradient(135deg, var(--bubble-primary), var(--gradient-purple-light));
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 16px var(--bubble-primary-30);
 }
 
 .waitlist-grid {
