@@ -3331,6 +3331,10 @@ body.pricing-page {
   color: rgba(255, 255, 255, 0.8);
 }
 
+.plan-enterprise .plan-feature-list li {
+  color: white;
+}
+
 .plan-enterprise .plan-feature-list li::before {
   border-color: white;
   color: white;
