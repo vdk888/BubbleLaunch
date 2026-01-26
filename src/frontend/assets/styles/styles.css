@@ -1279,9 +1279,9 @@ body.mobile-menu-open {
 }
 
 .cta-button:hover {
-  background: #6b7280;
+  background: linear-gradient(135deg, var(--bubble-primary), var(--gradient-purple-light));
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 16px var(--bubble-primary-30);
 }
 
 .cta-button:active {
@@ -3390,18 +3390,18 @@ body.pricing-page {
 
 .plan-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(15, 31, 68, 0.18);
-  background: linear-gradient(135deg, rgba(28, 82, 232, 0.16), rgba(28, 82, 232, 0.28));
+  box-shadow: 0 12px 24px var(--bubble-primary-20);
+  background: linear-gradient(135deg, var(--bubble-primary-15), var(--bubble-primary-25));
 }
 
 .plan-cta-primary {
-  background: linear-gradient(135deg, #1c52e8 0%, #3557ff 100%);
-  color: #f8fafc;
-  box-shadow: 0 18px 35px rgba(34, 64, 201, 0.28);
+  background: linear-gradient(135deg, var(--bubble-primary), var(--gradient-purple-light));
+  color: white;
+  box-shadow: 0 18px 35px var(--bubble-primary-30);
 }
 
 .plan-cta-primary:hover {
-  background: linear-gradient(135deg, #1a4fe1 0%, #2845d8 100%);
+  background: linear-gradient(135deg, var(--bubble-primary-hover), var(--gradient-purple-dark));
 }
 
 .plan-divider {
@@ -3597,13 +3597,16 @@ body.pricing-page {
 }
 
 .plan-highlight {
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.98) 0%, rgba(225, 233, 255, 0.98) 55%, rgba(205, 219, 255, 0.95) 100%);
-  border: 1px solid rgba(28, 82, 232, 0.25);
-  box-shadow: 0 26px 70px rgba(28, 82, 232, 0.2);
+  /* White glassmorphism with purple accent border (matching new charter) */
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  border: 2px solid var(--bubble-primary-20); /* Subtle purple border accent */
+  box-shadow: 0 26px 70px var(--bubble-primary-15), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .plan-highlight .plan-name {
-  color: #1b2f7f;
+  color: #0f172a; /* Black text (not blue) */
 }
 
 .plan-badge {
@@ -3611,14 +3614,14 @@ body.pricing-page {
   top: -0.75rem;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: linear-gradient(135deg, rgba(28, 82, 232, 0.9), rgba(57, 138, 255, 0.9));
-  color: #f8fafc;
+  background: linear-gradient(135deg, var(--bubble-primary), var(--gradient-purple-light));
+  color: white;
   padding: 0.45rem 1.35rem;
   border-radius: 999px;
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-  box-shadow: 0 12px 30px rgba(28, 82, 232, 0.35);
+  box-shadow: 0 12px 30px var(--bubble-primary-30);
 }
 
 /* Early Access Banner */
@@ -3628,8 +3631,10 @@ body.pricing-page {
 }
 
 .early-access-content {
-  background: linear-gradient(135deg, rgba(28, 82, 232, 0.12) 0%, rgba(118, 75, 162, 0.08) 100%);
-  border: 1px solid rgba(28, 82, 232, 0.2);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  border: 1px solid var(--bubble-primary-20);
   border-radius: 24px;
   padding: 2.5rem;
   display: flex;
@@ -3667,7 +3672,7 @@ body.pricing-page {
 
 .cta-button-primary {
   display: inline-block;
-  background: linear-gradient(135deg, #1c52e8 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--bubble-primary), var(--gradient-purple-light));
   color: white;
   padding: 0.875rem 2rem;
   border-radius: 50px;
@@ -3681,7 +3686,7 @@ body.pricing-page {
 
 .cta-button-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(28, 82, 232, 0.3);
+  box-shadow: 0 8px 20px var(--bubble-primary-30);
 }
 
 /* Tablet responsive (1024px) */
