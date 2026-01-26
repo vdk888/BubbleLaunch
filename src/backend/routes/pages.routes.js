@@ -204,6 +204,15 @@ if (process.env.NODE_ENV !== "production") {
       path.join(frPagesDir, "design-mock.html")
     );
   });
+
+  /**
+   * Workflow visualization mock page for animation validation (dev only)
+   */
+  router.get("/workflow-visualization-mock", (req, res) => {
+    res.sendFile(
+      path.join(frPagesDir, "workflow-visualization-mock.html")
+    );
+  });
 }
 
 /**

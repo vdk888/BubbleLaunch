@@ -21,6 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
     fadeInObserver.observe(el);
   });
 
+  // Observe workflow visualization components for staggered animations
+  document.querySelectorAll(".workflow-step, .workflow-connector").forEach((el) => {
+    fadeInObserver.observe(el);
+  });
+
   // Parallax effect for hero section
   const hero = document.querySelector(".hero");
   if (hero) {

@@ -43,6 +43,46 @@ const translations = {
     fr: "En savoir plus sur nos tarifs",
   },
 
+  // Workflow Visualization Section (3-step animated workflow)
+  "workflow.step1.number": {
+    en: "Step 1",
+    fr: "Étape 1",
+  },
+  "workflow.step1.title": {
+    en: "Smart Screening",
+    fr: "Screening Intelligent",
+  },
+  "workflow.step1.description": {
+    en: "Find investment opportunities matching <strong>your criteria</strong> with <strong>AI-powered</strong> search.",
+    fr: "Trouvez des opportunités d'investissement correspondant à <strong>vos critères</strong> grâce à une recherche <strong>alimentée par l'IA</strong>.",
+  },
+
+  "workflow.step2.number": {
+    en: "Step 2",
+    fr: "Étape 2",
+  },
+  "workflow.step2.title": {
+    en: "Deep Backtesting",
+    fr: "Backtesting Approfondi",
+  },
+  "workflow.step2.description": {
+    en: "Test your strategies on <strong>20 years</strong> of historical data before investing <strong>real money</strong>.",
+    fr: "Testez vos stratégies sur <strong>20 ans</strong> de données historiques avant d'investir de <strong>l'argent réel</strong>.",
+  },
+
+  "workflow.step3.number": {
+    en: "Step 3",
+    fr: "Étape 3",
+  },
+  "workflow.step3.title": {
+    en: "Automated Execution",
+    fr: "Exécution Automatisée",
+  },
+  "workflow.step3.description": {
+    en: "Execute your approved strategies <strong>automatically</strong> with your <strong>preferred brokers</strong>.",
+    fr: "Exécutez <strong>automatiquement</strong> vos stratégies approuvées avec vos <strong>courtiers préférés</strong>.",
+  },
+
   // Hero Section
   "hero.title": {
     en: "Bubble.",

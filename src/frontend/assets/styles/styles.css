@@ -9204,3 +9204,547 @@ html[lang="fr"] .superpower-panel h2 {
 .professional-service-tile {
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* ============================================================================
+   Workflow Visualization Component (3-Step Animated Workflow)
+   Added: 2026-01-26
+   Purpose: Animated glassmorphic card for "Complete Investment Agent" section
+   ============================================================================ */
+
+.workflow-visualization-container {
+  margin: 3rem 0;
+  padding: 0;
+  width: 100%;
+}
+
+.workflow-steps {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ============================================================================
+   Step Cards - Core Styling
+   ============================================================================ */
+
+.workflow-step {
+  flex: 1;
+  max-width: 280px;
+  min-height: 320px;
+
+  /* Glassmorphism */
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(15px) saturate(150%);
+  -webkit-backdrop-filter: blur(15px) saturate(150%);
+  border: 1px solid rgba(102, 102, 255, 0.15);
+  border-radius: 24px;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  /* Layout */
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+
+  /* Animation prep - Hidden initially */
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.6s ease-out;
+
+  position: relative;
+  z-index: 1;
+}
+
+/* Fade-in animation hook for scroll trigger */
+.workflow-step.fade-in-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Staggered floating animations */
+.workflow-step[data-step="1"].fade-in-visible {
+  animation: floatWorkflow 4s ease-in-out infinite 1s;
+}
+
+.workflow-step[data-step="2"].fade-in-visible {
+  animation: floatWorkflow 4s ease-in-out infinite 2.33s;
+}
+
+.workflow-step[data-step="3"].fade-in-visible {
+  animation: floatWorkflow 4s ease-in-out infinite 3.66s;
+}
+
+/* Hover state */
+.workflow-step:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border-color: rgba(102, 102, 255, 0.25);
+  animation-play-state: paused;
+}
+
+/* ============================================================================
+   Step Icons - Gradient Circles with Pulse
+   ============================================================================ */
+
+.workflow-step-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6666ff 0%, #8b5cf6 100%);
+  box-shadow: 0 4px 12px rgba(102, 102, 255, 0.3);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+.workflow-step:hover .workflow-step-icon {
+  transform: scale(1.05) rotate(5deg);
+  box-shadow: 0 4px 20px rgba(102, 102, 255, 0.5);
+  animation-play-state: paused;
+}
+
+.workflow-step-icon svg {
+  width: 40px;
+  height: 40px;
+  stroke: white;
+  stroke-width: 2;
+}
+
+/* ============================================================================
+   Step Content - Typography
+   ============================================================================ */
+
+.workflow-step-number {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(102, 102, 255, 0.8);
+  margin-top: 0.5rem;
+}
+
+.workflow-step-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.workflow-step-description {
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #64748b;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* Bold text emphasis in descriptions */
+.workflow-step-description strong {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* ============================================================================
+   Connectors (SVG Arrows) - Draw Animation
+   ============================================================================ */
+
+.workflow-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 60px;
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+}
+
+.workflow-connector.fade-in-visible {
+  opacity: 1;
+}
+
+.workflow-connector svg {
+  width: 60px;
+  height: 40px;
+}
+
+.workflow-connector .connector-path {
+  stroke: #6666ff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Animate connector on fade-in */
+.workflow-connector.fade-in-visible .connector-path {
+  stroke-dashoffset: 0;
+}
+
+/* ============================================================================
+   Keyframe Animations
+   ============================================================================ */
+
+@keyframes floatWorkflow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(102, 102, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(102, 102, 255, 0.5);
+  }
+}
+
+/* ============================================================================
+   Responsive Design - Tablet (768px)
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .workflow-steps {
+    gap: 0;
+  }
+
+  .workflow-step {
+    max-width: 220px;
+    min-height: 300px;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .workflow-step-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .workflow-step-icon svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .workflow-step-title {
+    font-size: 1.15rem;
+  }
+
+  .workflow-step-description {
+    font-size: 0.9rem;
+  }
+
+  .workflow-connector {
+    width: 40px;
+  }
+
+  .workflow-connector svg {
+    width: 40px;
+    height: 30px;
+  }
+}
+
+/* ============================================================================
+   Responsive Design - Mobile (480px)
+   ============================================================================ */
+
+@media (max-width: 480px) {
+  .workflow-visualization-container {
+    margin: 2rem 0;
+  }
+
+  .workflow-steps {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .workflow-step {
+    max-width: 100%;
+    width: 100%;
+    min-height: auto;
+    padding: 1.5rem 1rem;
+
+    /* Disable floating on mobile for performance */
+    animation: none !important;
+  }
+
+  .workflow-step:hover {
+    animation: none;
+  }
+
+  .workflow-connector {
+    width: 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .workflow-connector svg {
+    width: 40px;
+    height: 60px;
+    transform: rotate(90deg);
+  }
+
+  .workflow-step-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .workflow-step-icon svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .workflow-step-title {
+    font-size: 1.2rem;
+  }
+
+  .workflow-step-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+/* ============================================================================
+   Performance Optimizations
+   ============================================================================ */
+
+/* Reduce backdrop blur on mobile for GPU performance */
+@media (max-width: 768px) {
+  .workflow-step {
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+  }
+}
+
+/* ============================================================================
+   Accessibility - Reduced Motion Support
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .workflow-step,
+  .workflow-step-icon,
+  .workflow-connector .connector-path {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .workflow-step.fade-in-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================================================
+   Social Proof Tile - Enhanced Design
+   ============================================================================ */
+
+.social-proof-section-mini {
+  padding: 3rem 0;
+  background: linear-gradient(135deg, rgba(102, 102, 255, 0.03) 0%, rgba(139, 92, 246, 0.03) 100%);
+}
+
+.social-proof-tile {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 2.5rem 3rem;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(15px) saturate(150%);
+  -webkit-backdrop-filter: blur(15px) saturate(150%);
+  border: 1px solid rgba(102, 102, 255, 0.2);
+  border-radius: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: none;
+}
+
+.social-proof-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(102, 102, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border-color: rgba(102, 102, 255, 0.4);
+}
+
+.social-proof-icon {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6666ff 0%, #8b5cf6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 102, 255, 0.3);
+}
+
+.social-proof-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.social-proof-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.social-proof-content .social-proof-text {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.social-proof-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #6666ff 0%, #8b5cf6 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(102, 102, 255, 0.3);
+  width: fit-content;
+}
+
+.social-proof-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 102, 255, 0.4);
+}
+
+.social-proof-cta:active {
+  transform: translateY(0);
+}
+
+/* Responsive - Social Proof Tile */
+
+/* Desktop Large (1200px+) */
+@media (min-width: 1200px) {
+  .social-proof-section-mini {
+    padding: 4rem 0;
+  }
+
+  .social-proof-tile {
+    gap: 3rem;
+    padding: 3rem 4rem;
+  }
+
+  .social-proof-title {
+    font-size: 1.4rem;
+  }
+
+  .social-proof-content .social-proof-text {
+    font-size: 1.05rem;
+  }
+}
+
+/* Tablet (768px - 1199px) */
+@media (min-width: 769px) and (max-width: 1199px) {
+  .social-proof-tile {
+    gap: 2rem;
+    padding: 2rem 2.5rem;
+  }
+}
+
+/* Small Tablet / Large Mobile (max 768px) */
+@media (max-width: 768px) {
+  .social-proof-section-mini {
+    padding: 2rem 0;
+  }
+
+  .social-proof-tile {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .social-proof-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .social-proof-title {
+    font-size: 1.1rem;
+  }
+
+  .social-proof-content .social-proof-text {
+    font-size: 0.95rem;
+  }
+
+  .social-proof-cta {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-proof-section-mini {
+    padding: 1.5rem 0;
+  }
+
+  .social-proof-tile {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .social-proof-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .social-proof-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .social-proof-title {
+    font-size: 1rem;
+  }
+
+  .social-proof-content .social-proof-text {
+    font-size: 0.9rem;
+  }
+
+  .social-proof-cta {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}

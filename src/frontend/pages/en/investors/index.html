@@ -317,50 +317,179 @@
       </div>
     </section>
 
-    <!-- Preview Cards Section -->
-    <section class="preview-cards-section fade-in">
+    <!-- What We're Building + Value Proposition Section (Position 2 for maximum impact) -->
+    <section id="vision" class="vision fade-in">
       <div class="container">
-        <div class="preview-cards-grid">
-          <!-- Demo Card -->
-          <div class="preview-card preview-card-demo">
-            <div class="preview-card-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="5 3 19 12 5 21 5 3"/>
+        <h2 data-translate="vision.title">What We're Building</h2>
+
+        <div class="platform-card">
+          <h3 data-translate="vision.platform.title">A Complete Investment Agent</h3>
+          <p data-translate="vision.platform.description1">We're developing the tool we use for our own investments: a private manager in your pocket, on its own app or directly in ChatGPT, at lower cost: a fixed price (e.g., €0-10/month) instead of traditional 2% AUM fees.</p>
+          <!-- Workflow Visualization: 3-step animated component -->
+          <div class="workflow-visualization-container">
+            <div class="workflow-steps">
+
+              <!-- Step 1: Screening -->
+              <div class="workflow-step fade-in" data-step="1">
+                <div class="workflow-step-icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                    <path d="M11 8v6"></path>
+                    <path d="M8 11h6"></path>
+                  </svg>
+                </div>
+                <span class="workflow-step-number" data-translate="workflow.step1.number">Step 1</span>
+                <h4 class="workflow-step-title" data-translate="workflow.step1.title">Smart Screening</h4>
+                <p class="workflow-step-description" data-translate="workflow.step1.description">Find investment opportunities matching your criteria with AI-powered search.</p>
+              </div>
+
+              <!-- Connector 1 -->
+              <div class="workflow-connector fade-in" aria-hidden="true">
+                <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
+                  <path d="M5 20 L50 20 M45 15 L50 20 L45 25" stroke="#6666ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="connector-path"></path>
+                </svg>
+              </div>
+
+              <!-- Step 2: Backtesting -->
+              <div class="workflow-step fade-in" data-step="2">
+                <div class="workflow-step-icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                  </svg>
+                </div>
+                <span class="workflow-step-number" data-translate="workflow.step2.number">Step 2</span>
+                <h4 class="workflow-step-title" data-translate="workflow.step2.title">Deep Backtesting</h4>
+                <p class="workflow-step-description" data-translate="workflow.step2.description">Test your strategies on 20 years of historical data before investing real money.</p>
+              </div>
+
+              <!-- Connector 2 -->
+              <div class="workflow-connector fade-in" aria-hidden="true">
+                <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
+                  <path d="M5 20 L50 20 M45 15 L50 20 L45 25" stroke="#6666ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="connector-path"></path>
+                </svg>
+              </div>
+
+              <!-- Step 3: Execution -->
+              <div class="workflow-step fade-in" data-step="3">
+                <div class="workflow-step-icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 6v6l4 2"></path>
+                  </svg>
+                </div>
+                <span class="workflow-step-number" data-translate="workflow.step3.number">Step 3</span>
+                <h4 class="workflow-step-title" data-translate="workflow.step3.title">Automated Execution</h4>
+                <p class="workflow-step-description" data-translate="workflow.step3.description">Execute your approved strategies automatically with your preferred brokers.</p>
+              </div>
+
+            </div>
+          </div>
+          <p data-translate="vision.platform.description2">An agent that adapts to YOUR asset focus: you're not locked into pre-packaged portfolios by your banker. Every strategy is transparent and explained so you understand exactly what's happening. Financial expertise is now a commodity—accessible to everyone through AI, regardless of portfolio size.</p>
+        </div>
+
+        <!-- Your Investment Superpowers -->
+        <div style="text-align: center; margin: 3rem 0 2rem 0;">
+          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; margin-right: 0.5rem; vertical-align: middle;">
+              <!-- Wand handle (diagonal line) -->
+              <line x1="20" y1="20" x2="8" y2="8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- Main star at tip (4-pointed) -->
+              <path d="M8 2 L10 7 L15 9 L10 11 L8 16 L6 11 L1 9 L6 7 Z" fill="currentColor"/>
+              <!-- Top right sparkle -->
+              <path d="M18 3 L19 5 L21 6 L19 7 L18 9 L17 7 L15 6 L17 5 Z" fill="currentColor" opacity="0.8"/>
+              <!-- Bottom right sparkle -->
+              <path d="M19 16 L19.8 18 L21.6 18.8 L19.8 19.6 L19 21.4 L18.2 19.6 L16.4 18.8 L18.2 18 Z" fill="currentColor" opacity="0.6"/>
+              <!-- Left sparkle -->
+              <path d="M4 14 L4.8 16 L6.6 16.8 L4.8 17.6 L4 19.4 L3.2 17.6 L1.4 16.8 L3.2 16 Z" fill="currentColor" opacity="0.7"/>
+            </svg>
+            Your Investment Superpowers
+          </h3>
+          <p style="font-size: 1.1rem; color: #666;">
+            You decide, Bubble executes.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="platform-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
               </svg>
             </div>
-            <h3 class="preview-card-title" data-translate="preview.demo.title">Discover Bubble Agent</h3>
-            <p class="preview-card-desc" data-translate="preview.demo.desc">A 3-minute interactive demo</p>
-            <button class="preview-card-cta js-retail-demo-trigger" data-entry-point="preview_card_demo" data-translate="preview.demo.cta">Launch demo</button>
+            <h3 data-translate="investors.value.screening.title">Smart Screening</h3>
+            <p data-translate="investors.value.screening.description">Find the best investment opportunities with our AI-powered screening engine.</p>
           </div>
 
-          <!-- Playground Card -->
-          <a href="/en/investors/playground" class="preview-card preview-card-playground">
-            <div class="preview-card-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
-                <path d="M2 12h20"/>
+          <div class="platform-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
               </svg>
             </div>
-            <h3 class="preview-card-title" data-translate="preview.playground.title">Explore the Playground</h3>
-            <p class="preview-card-desc" data-translate="preview.playground.desc">Discover your risk profile for free</p>
-            <span class="preview-card-cta" data-translate="preview.playground.cta">Get started</span>
-          </a>
+            <h3 data-translate="investors.value.backtest.title">Deep Backtesting</h3>
+            <p data-translate="investors.value.backtest.description">Test your strategies on 20 years of historical data before investing real money.</p>
+          </div>
 
-          <!-- Waitlist Card -->
-          <a href="#investor-waitlist" class="preview-card preview-card-waitlist">
-            <div class="preview-card-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
-                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+          <div class="platform-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 6v6l4 2"></path>
               </svg>
             </div>
-            <h3 class="preview-card-title" data-translate="preview.waitlist.title">Early Access</h3>
-            <p class="preview-card-desc" data-translate="preview.waitlist.desc">Join 500+ investors on the waitlist</p>
-            <span class="preview-card-cta" data-translate="preview.waitlist.cta">Sign up</span>
-          </a>
+            <h3 data-translate="investors.value.automation.title">Automated Execution</h3>
+            <p data-translate="investors.value.automation.description">Automate execution of your strategies with your preferred brokers (IBKR, Alpaca, Saxo Bank).</p>
+          </div>
+
+          <div class="platform-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+              </svg>
+            </div>
+            <h3 data-translate="investors.value.control.title">100% Control</h3>
+            <p data-translate="investors.value.control.description">Stay in control of your decisions. Bubble provides insights, not mandatory recommendations.</p>
+          </div>
+
+          <div class="platform-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <h3 data-translate="investors.value.pricing.title">Fair Pricing</h3>
+            <p data-translate="investors.value.pricing.description"><strong>€0-10/month depending on your plan.</strong> No AUM fees, no costly intermediaries. Our interests are aligned with yours.</p>
+          </div>
+        </div>
+
+        <div class="vision-learn-more">
+          <a href="/en/investors/pricing" class="vision-learn-more-link" data-translate="vision.learnMore">Learn more about our pricing</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Proof Section (Redesigned with CTA) -->
+    <section class="social-proof-section-mini fade-in">
+      <div class="container">
+        <div class="social-proof-tile">
+          <div class="social-proof-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="social-proof-content">
+            <h3 class="social-proof-title">Join Our Growing Community</h3>
+            <p class="social-proof-text" data-translate="socialProof.text">Join 500+ investors already on our waitlist</p>
+            <a href="#investor-waitlist" class="social-proof-cta">Get Early Access</a>
+          </div>
         </div>
       </div>
     </section>
@@ -444,92 +573,6 @@
         <p data-translate="manifesto.paragraph1">AI breaks down technical jargon and dissolves elitism: expertise becomes accessible to everyone, allowing you to demand proof, challenge your financial advisors, and insist that fees reflect clear, transparent value.</p>
         <div class="insight-box">
           <p data-translate="manifesto.insight">Our ethics restore power to you and free you from excessive fees charged by obsolete intermediaries. Result: you finance the economy, the economy pays you interest. That's it.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- What We're Building + Value Proposition Section (Merged) -->
-    <section id="vision" class="vision fade-in">
-      <div class="container">
-        <h2 data-translate="vision.title">What We're Building</h2>
-
-        <div class="platform-card">
-          <h3 data-translate="vision.platform.title">A Complete Investment Agent</h3>
-          <p data-translate="vision.platform.description1">We're developing the tool we use for our own investments: a private manager in your pocket, on its own app or directly in ChatGPT, at lower cost: a fixed price (e.g., €0-10/month) instead of traditional 2% AUM fees.</p>
-          <div style="text-align: center; margin: 2rem 0;">
-            <img src="/assets/images/bubble-investment-journey.png" alt="Bubble Investment Journey" style="max-width: 100%; height: auto; max-height: 400px;">
-          </div>
-          <p data-translate="vision.platform.description2">An agent that adapts to YOUR asset focus: you're not locked into pre-packaged portfolios by your banker. Every strategy is transparent and explained so you understand exactly what's happening. Financial expertise is now a commodity—accessible to everyone through AI, regardless of portfolio size.</p>
-        </div>
-
-        <div class="vision-learn-more">
-          <a href="/en/investors/pricing" class="vision-learn-more-link" data-translate="vision.learnMore">Learn more about our pricing</a>
-        </div>
-
-        <!-- Your Investment Superpowers -->
-        <div style="text-align: center; margin: 3rem 0 2rem 0;">
-          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">
-            Your Investment Superpowers
-          </h3>
-          <p style="font-size: 1.1rem; color: #666;">
-            You decide, Bubble executes.
-          </p>
-        </div>
-
-        <div class="features-grid">
-          <div class="platform-card">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                <polyline points="17 6 23 6 23 12"></polyline>
-              </svg>
-            </div>
-            <h3 data-translate="investors.value.screening.title">Smart Screening</h3>
-            <p data-translate="investors.value.screening.description">Find the best investment opportunities with our AI-powered screening engine.</p>
-          </div>
-
-          <div class="platform-card">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <polyline points="19 12 12 19 5 12"></polyline>
-              </svg>
-            </div>
-            <h3 data-translate="investors.value.backtest.title">Deep Backtesting</h3>
-            <p data-translate="investors.value.backtest.description">Test your strategies on 20 years of historical data before investing real money.</p>
-          </div>
-
-          <div class="platform-card">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M12 6v6l4 2"></path>
-              </svg>
-            </div>
-            <h3 data-translate="investors.value.automation.title">Automated Execution</h3>
-            <p data-translate="investors.value.automation.description">Automate execution of your strategies with your preferred brokers (IBKR, Alpaca, Saxo Bank).</p>
-          </div>
-
-          <div class="platform-card">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
-              </svg>
-            </div>
-            <h3 data-translate="investors.value.control.title">100% Control</h3>
-            <p data-translate="investors.value.control.description">Stay in control of your decisions. Bubble provides insights, not mandatory recommendations.</p>
-          </div>
-
-          <div class="platform-card">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-              </svg>
-            </div>
-            <h3 data-translate="investors.value.pricing.title">Fair Pricing</h3>
-            <p data-translate="investors.value.pricing.description"><strong>€0-10/month depending on your plan.</strong> No AUM fees, no costly intermediaries. Our interests are aligned with yours.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -629,13 +672,6 @@
           </details>
 
         </div>
-      </div>
-    </section>
-
-    <!-- Social Proof Section -->
-    <section class="social-proof-section fade-in">
-      <div class="container">
-        <p class="social-proof-text" data-translate="socialProof.text">Join 500+ investors on our waitlist</p>
       </div>
     </section>
 
