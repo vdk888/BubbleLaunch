@@ -220,6 +220,18 @@ class KnowledgeOverlay {
       'homepage_direct'
     ]);
 
+    // Never redirect if already on investors or professionals route
+    const path = window.location.pathname;
+    const isOnInvestorsOrProfessionals = 
+      path.startsWith('/investors') || 
+      path.startsWith('/en/investors') ||
+      path.startsWith('/professionals') || 
+      path.startsWith('/en/professionals');
+    
+    if (isOnInvestorsOrProfessionals) {
+      return;
+    }
+
     // Only redirect if workflow-demo-overlay doesn't exist on current page
     // If it exists, the demo will launch on the current page instead
     if (redirectEntryPoints.has(this.lastEntryPoint)) {

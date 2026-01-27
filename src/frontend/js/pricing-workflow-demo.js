@@ -80,6 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
     );
   };
 
+  const isOnProfessionalsRoute = () => {
+    const path = window.location.pathname;
+    return (
+      path.startsWith('/professionals') ||
+      path.startsWith('/en/professionals')
+    );
+  };
+
   const getInvestorsIndexUrl = () =>
     document.documentElement.lang === 'en' ? '/en/investors' : '/investors';
 
@@ -107,7 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!entryPoint || !redirectEntryPoints.has(entryPoint)) {
       return false;
     }
-    return !isOnInvestorsRoute();
+    // Never redirect if already on investors or professionals route
+    if (isOnInvestorsRoute() || isOnProfessionalsRoute()) {
+      return false;
+    }
+    return true;
   };
 
   const maybeRedirectAfterDemoClose = () => {
