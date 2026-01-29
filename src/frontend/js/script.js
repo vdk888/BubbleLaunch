@@ -302,6 +302,62 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Newsletter form handling
+  const newsletterToggle = document.getElementById("newsletter-toggle");
+  const newsletterForm = document.getElementById("newsletter-form");
+
+  if (newsletterToggle && newsletterForm) {
+    newsletterToggle.addEventListener("click", function () {
+      newsletterForm.classList.toggle("hidden");
+      const isExpanded = !newsletterForm.classList.contains("hidden");
+      newsletterToggle.setAttribute("aria-expanded", isExpanded);
+      if (isExpanded) {
+        newsletterForm.querySelector("input[type='email']").focus();
+      }
+    });
+
+    newsletterForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const emailInput = document.getElementById("newsletter-email");
+      const professionInput = document.getElementById("newsletter-profession");
+
+      const formData = {
+        email: emailInput.value,
+        profession: professionInput.value,
+      };
+
+      fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then(async (response) => {
+          const data = await response.json();
+          if (!response.ok) {
+            throw new Error(data.error || "Something went wrong");
+          }
+          return data;
+        })
+        .then((data) => {
+          const profileMessages = {
+            Tech: "Vous recevrez notre newsletter Tech avec les dernières innovations en IA et fintech.",
+            Finance: "Vous recevrez notre newsletter Finance avec analyses de marchés et stratégies.",
+            Balanced: "Vous recevrez notre newsletter équilibrée combinant tech et finance."
+          };
+          alert(data.message + "\n\n" + (profileMessages[data.profile] || ""));
+          newsletterForm.reset();
+          newsletterForm.classList.add("hidden");
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert(error.message);
+        });
+    });
+  }
+
   // Chat interface functionality
   const chatSection = document.querySelector(".chat-section");
 

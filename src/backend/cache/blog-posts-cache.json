@@ -1,5 +1,50 @@
 [
   {
+    "id": "67089a44-6f57-4880-9533-0221cdc290eb",
+    "title": {
+      "fr": "Comprendre les Placements : Actions & Obligations",
+      "en": "Comprendre les Placements : Actions & Obligations"
+    },
+    "slug": "comprendre-les-placements-actions-obligations",
+    "summary": {
+      "fr": "",
+      "en": ""
+    },
+    "publishedDate": "2026-01-28",
+    "featuredImage": "https://substackcdn.com/image/fetch/$s_!XbNZ!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1b0d226a-8e32-41ee-af77-3667e11e4f94_1024x608.png",
+    "url": "https://open.substack.com/pub/bubbleinvest/p/investir-cest-comme-planter-des-graines?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "urlEn": "https://open.substack.com/pub/bubbleinvest/p/investir-cest-comme-planter-des-graines?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "Financial Education",
+      "Investment Strategy"
+    ]
+  },
+  {
+    "id": "2b6cfc52-0644-811b-aac1-c599cbf7c044",
+    "title": {
+      "fr": "Bubble : \"le Costco de l'investissement personnel\"",
+      "en": "Bubble : \"the Costco of personal investment\""
+    },
+    "slug": "bubble-le-costco-de-l-investissement-personnel",
+    "summary": {
+      "fr": "Le manifeste « Costco de l’investissement » de Bubble : des frais fixes, zéro % sur encours, et les outils d’aujourd’hui pensés pour s’enrichir avec vous, pas sur votre dos.",
+      "en": "Bubble’s Costco manifesto: flat fees, no AUM tax, and today’s tools built to get richer with you, not off you."
+    },
+    "publishedDate": "2026-01-28",
+    "featuredImage": "https://im.runware.ai/image/ws/3/ii/5c40ed13-ad0e-4edd-ad54-18141f1e66a2.png",
+    "url": "/blog/bubble-le-costco-de-l-investissement-personnel",
+    "urlEn": "/en/blog/bubble-le-costco-de-l-investissement-personnel",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "Portfolio Management",
+      "FinTech",
+      "Value Investing"
+    ]
+  },
+  {
     "id": "29bcfc52-0644-817e-bedc-c7de75ad04df",
     "title": {
       "fr": "Yomoni vs Nalo vs Bubble : Analyse Comparative Complète 2025",

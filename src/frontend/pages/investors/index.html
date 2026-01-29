@@ -658,6 +658,45 @@
                 M'inscrire
               </button>
             </form>
+
+            <!-- Newsletter Subscription -->
+            <div id="newsletter" class="newsletter-divider">
+              <span data-translate="newsletter.or">ou</span>
+            </div>
+            <div class="newsletter-section">
+              <h4 data-translate="newsletter.title">S'abonner à notre newsletter</h4>
+              <p class="newsletter-subtitle" data-translate="newsletter.subtitle">Recevez nos analyses et insights personnalisés</p>
+              <button type="button" class="newsletter-toggle-btn" id="newsletter-toggle">
+                <svg class="newsletter-icon" width="18" height="18" viewBox="-5 -10 110 110" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="m10.102 20.551c1.5938-1.1641 3.5273-1.8008 5.5234-1.8008h68.75c1.9961 0 3.9297 0.63672 5.5234 1.8008l-38.074 27.41c-1.0898 0.78125-2.5586 0.78125-3.6484 0zm83.328 5.1523c0.21094 0.78516 0.32031 1.5977 0.32031 2.4219v43.75c0 2.4883-0.98828 4.8711-2.7461 6.6289-1.7578 1.7578-4.1406 2.7461-6.6289 2.7461h-68.75c-2.4883 0-4.8711-0.98828-6.6289-2.7461-1.7578-1.7578-2.7461-4.1406-2.7461-6.6289v-43.75c0-0.82422 0.10938-1.6367 0.32031-2.4219l37.953 27.328c3.2695 2.3555 7.6836 2.3555 10.953 0z" fill-rule="evenodd"/>
+                </svg>
+                <span data-translate="newsletter.button">Newsletter</span>
+              </button>
+              <form id="newsletter-form" class="newsletter-form hidden">
+                <div class="form-group">
+                  <label for="newsletter-email" data-translate="newsletter.email">Email</label>
+                  <input type="email" id="newsletter-email" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="newsletter-profession" data-translate="newsletter.profession">Votre profession</label>
+                  <select id="newsletter-profession" name="profession" required>
+                    <option value="" data-translate="newsletter.profession.placeholder">Sélectionnez votre profession</option>
+                    <option value="risk_manager" data-translate="newsletter.profession.risk_manager">Risk Manager</option>
+                    <option value="portfolio_manager" data-translate="newsletter.profession.portfolio_manager">Portfolio Manager</option>
+                    <option value="equity_research_analyst" data-translate="newsletter.profession.equity_research_analyst">Analyste Equity Research</option>
+                    <option value="other_investment_professional" data-translate="newsletter.profession.other_investment_professional">Autre professionnel de l'investissement</option>
+                    <option value="non_professional_investor" data-translate="newsletter.profession.non_professional_investor">Investisseur non professionnel</option>
+                    <option value="tech_professional" data-translate="newsletter.profession.tech_professional">Professionnel Tech</option>
+                    <option value="data_scientist" data-translate="newsletter.profession.data_scientist">Data Scientist</option>
+                    <option value="software_engineer" data-translate="newsletter.profession.software_engineer">Développeur / Ingénieur</option>
+                    <option value="other" data-translate="newsletter.profession.other">Autre</option>
+                  </select>
+                </div>
+                <button type="submit" class="cta-button secondary-btn" data-translate="newsletter.subscribe">
+                  S'abonner
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

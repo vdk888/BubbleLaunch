@@ -2921,6 +2921,75 @@ const translations = {
     en: "Sign Me Up",
     fr: "M'inscrire"
   },
+  // Newsletter translations
+  "newsletter.or": {
+    en: "or",
+    fr: "ou"
+  },
+  "newsletter.title": {
+    en: "Subscribe to our newsletter",
+    fr: "S'abonner à notre newsletter"
+  },
+  "newsletter.subtitle": {
+    en: "Receive personalized analyses and insights",
+    fr: "Recevez nos analyses et insights personnalisés"
+  },
+  "newsletter.button": {
+    en: "Newsletter",
+    fr: "Newsletter"
+  },
+  "newsletter.email": {
+    en: "Email",
+    fr: "Email"
+  },
+  "newsletter.profession": {
+    en: "Your profession",
+    fr: "Votre profession"
+  },
+  "newsletter.profession.placeholder": {
+    en: "Select your profession",
+    fr: "Sélectionnez votre profession"
+  },
+  "newsletter.profession.risk_manager": {
+    en: "Risk Manager",
+    fr: "Risk Manager"
+  },
+  "newsletter.profession.portfolio_manager": {
+    en: "Portfolio Manager",
+    fr: "Portfolio Manager"
+  },
+  "newsletter.profession.equity_research_analyst": {
+    en: "Equity Research Analyst",
+    fr: "Analyste Equity Research"
+  },
+  "newsletter.profession.other_investment_professional": {
+    en: "Other Investment Professional",
+    fr: "Autre professionnel de l'investissement"
+  },
+  "newsletter.profession.non_professional_investor": {
+    en: "Non-Professional Investor",
+    fr: "Investisseur non professionnel"
+  },
+  "newsletter.profession.tech_professional": {
+    en: "Tech Professional",
+    fr: "Professionnel Tech"
+  },
+  "newsletter.profession.data_scientist": {
+    en: "Data Scientist",
+    fr: "Data Scientist"
+  },
+  "newsletter.profession.software_engineer": {
+    en: "Software Engineer",
+    fr: "Développeur / Ingénieur"
+  },
+  "newsletter.profession.other": {
+    en: "Other",
+    fr: "Autre"
+  },
+  "newsletter.subscribe": {
+    en: "Subscribe",
+    fr: "S'abonner"
+  },
   "investors.joinus.form.disclaimer": {
     en: "This information helps us personalize your Bubble experience. It's never used to provide investment advice.",
     fr: "Ces informations nous aident à personnaliser votre expérience Bubble. Elles ne servent jamais à formuler un conseil en investissement."
