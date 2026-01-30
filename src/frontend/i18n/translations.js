@@ -1143,6 +1143,10 @@ const translations = {
     en: "Contact",
     fr: "Contact"
   },
+  "footer.nav.newsletter": {
+    en: "Newsletter",
+    fr: "Newsletter"
+  },
   "footer.nav.email": {
     en: "Email",
     fr: "Email"
