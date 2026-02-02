@@ -2917,13 +2917,204 @@
     if (chartEl) chartEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  function initializeSimulator() {
-    // Listen for Chat events
-    if (window.StrategyEventBus) {
-      window.StrategyEventBus.on('backtest:complete', (data) => {
-        handleChatBacktest(data);
+  // ═══════════════════════════════════════════════════════════════════════════
+  // CHAT ↔ SIMULATOR INTEGRATION (StrategyEventBus Handlers)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /**
+   * Handle allocation change from chatbot
+   * Creates a custom "Chat Allocation" entry with the specified allocation
+   * @param {Object} data - Allocation data from chat tool
+   */
+  function handleChatAllocationChange(data) {
+    console.log('[Portfolio Simulator] Received allocation:changed event', data);
+    
+    if (!data.allocation) {
+      console.warn('[Portfolio Simulator] No allocation data provided');
+      return;
+    }
+
+    const { stocks, bonds, gold } = data.allocation;
+    
+    // Map chat allocation (stocks/bonds/gold) to strategy weights
+    // The closest equivalent is creating a custom mix that approximates this allocation
+    // We'll use sixtyForty and simpleRP as base strategies and adjust
+    
+    // For now, provide visual feedback by highlighting the closest strategy
+    let closestStrategy = 'equalWeight';
+    
+    if (stocks >= 80) {
+      closestStrategy = 'momentum'; // Most aggressive
+    } else if (stocks >= 60) {
+      closestStrategy = 'sixtyForty'; // Classic balanced
+    } else if (stocks >= 40) {
+      closestStrategy = 'simpleRP'; // Risk parity
+    } else {
+      closestStrategy = 'optimizedRP'; // More conservative
+    }
+
+    // Update the custom strategy panel with this allocation info
+    const allocationDisplay = document.querySelector('.chat-allocation-display');
+    if (!allocationDisplay) {
+      // Create allocation display if it doesn't exist
+      const customPanel = document.getElementById('customStrategyContainer');
+      if (customPanel) {
+        const displayEl = document.createElement('div');
+        displayEl.className = 'chat-allocation-display';
+        displayEl.style.cssText = `
+          margin-bottom: 16px;
+          padding: 12px;
+          background: linear-gradient(135deg, rgba(102, 102, 255, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+          border-radius: 10px;
+          border: 1px solid rgba(102, 102, 255, 0.2);
+        `;
+        displayEl.innerHTML = `
+          <div style="font-weight: 600; margin-bottom: 8px; color: #4f46e5; font-size: 14px;">
+            💬 ${getCurrentLanguage() === 'fr' ? 'Allocation du Chat' : 'Chat Allocation'}
+          </div>
+          <div class="allocation-values" style="display: flex; gap: 16px; font-size: 13px;">
+            <span>📈 ${getCurrentLanguage() === 'fr' ? 'Actions' : 'Stocks'}: <strong>${stocks}%</strong></span>
+            <span>📊 ${getCurrentLanguage() === 'fr' ? 'Obligations' : 'Bonds'}: <strong>${bonds}%</strong></span>
+            <span>🥇 ${getCurrentLanguage() === 'fr' ? 'Or' : 'Gold'}: <strong>${gold}%</strong></span>
+          </div>
+          <div style="margin-top: 8px; font-size: 12px; color: #6b7280;">
+            ${getCurrentLanguage() === 'fr' 
+              ? `Stratégie similaire : <strong>${STRATEGY_CONFIG[closestStrategy]?.label?.fr || closestStrategy}</strong>`
+              : `Similar strategy: <strong>${STRATEGY_CONFIG[closestStrategy]?.label?.en || closestStrategy}</strong>`
+            }
+          </div>
+        `;
+        customPanel.insertBefore(displayEl, customPanel.firstChild);
+      }
+    } else {
+      // Update existing display
+      const valuesEl = allocationDisplay.querySelector('.allocation-values');
+      if (valuesEl) {
+        valuesEl.innerHTML = `
+          <span>📈 ${getCurrentLanguage() === 'fr' ? 'Actions' : 'Stocks'}: <strong>${stocks}%</strong></span>
+          <span>📊 ${getCurrentLanguage() === 'fr' ? 'Obligations' : 'Bonds'}: <strong>${bonds}%</strong></span>
+          <span>🥇 ${getCurrentLanguage() === 'fr' ? 'Or' : 'Gold'}: <strong>${gold}%</strong></span>
+        `;
+      }
+    }
+
+    // Switch to the closest strategy
+    if (STRATEGY_CONFIG[closestStrategy]) {
+      handleStrategyChange(closestStrategy);
+      
+      // Visual feedback
+      const pill = document.querySelector(`.strategy-pill[data-strategy="${closestStrategy}"]`);
+      if (pill) {
+        pill.classList.add('chat-highlighted');
+        setTimeout(() => pill.classList.remove('chat-highlighted'), 2000);
+      }
+    }
+
+    // Scroll to chart for visibility
+    const chartEl = document.getElementById('portfolioChart');
+    if (chartEl) {
+      chartEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Track event
+    trackSimulatorEvent('chat_allocation_applied', {
+      stocks,
+      bonds,
+      gold,
+      closest_strategy: closestStrategy
+    });
+  }
+
+  /**
+   * Handle strategy application from chatbot
+   * Maps strategy names to simulator strategies and activates them
+   * @param {Object} data - Strategy data from chat tool
+   */
+  function handleChatStrategyApplied(data) {
+    console.log('[Portfolio Simulator] Received strategy:applied event', data);
+
+    if (!data.strategy_name && !data.allocation) {
+      console.warn('[Portfolio Simulator] No strategy or allocation provided');
+      return;
+    }
+
+    // Map chat strategy names to simulator strategy keys
+    const strategyMapping = {
+      'conservative': 'optimizedRP',
+      'balanced': 'simpleRP',
+      'growth': 'momentum',
+      'aggressive': 'momentum',
+      '60_40': 'sixtyForty',
+      'risk_parity': 'optimizedRP',
+      'all_weather': 'simpleRP'
+    };
+
+    const simulatorStrategy = strategyMapping[data.strategy_name] || 'equalWeight';
+
+    if (STRATEGY_CONFIG[simulatorStrategy]) {
+      // Apply the strategy
+      handleStrategyChange(simulatorStrategy);
+
+      // Show allocation display with the strategy details
+      if (data.allocation) {
+        handleChatAllocationChange({
+          allocation: data.allocation,
+          strategy_name: data.strategy_name
+        });
+      }
+
+      // Visual feedback
+      const pill = document.querySelector(`.strategy-pill[data-strategy="${simulatorStrategy}"]`);
+      if (pill) {
+        pill.classList.add('chat-highlighted');
+        setTimeout(() => pill.classList.remove('chat-highlighted'), 2000);
+      }
+
+      // Scroll to chart
+      const chartEl = document.getElementById('portfolioChart');
+      if (chartEl) {
+        chartEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      // Track event
+      trackSimulatorEvent('chat_strategy_applied', {
+        chat_strategy: data.strategy_name,
+        simulator_strategy: simulatorStrategy
       });
     }
+  }
+
+  /**
+   * Initialize chat integration event listeners
+   */
+  function initializeChatIntegration() {
+    if (!window.StrategyEventBus) {
+      console.log('[Portfolio Simulator] StrategyEventBus not available, skipping chat integration');
+      return;
+    }
+
+    console.log('[Portfolio Simulator] Initializing chat integration');
+
+    // Listen for backtest results from chat
+    window.StrategyEventBus.on('backtest:complete', handleChatBacktest);
+
+    // Listen for allocation changes from chat (set_simulator_allocation tool)
+    window.StrategyEventBus.on('allocation:changed', handleChatAllocationChange);
+
+    // Listen for strategy application from chat (apply_recommended_strategy tool)
+    window.StrategyEventBus.on('strategy:applied', handleChatStrategyApplied);
+
+    // Emit simulator ready event
+    window.StrategyEventBus.emit('simulator:ready', {
+      strategies: Object.keys(STRATEGY_CONFIG),
+      currentPeriod,
+      prominentStrategy
+    });
+  }
+
+  function initializeSimulator() {
+    // Initialize chat ↔ simulator integration (StrategyEventBus)
+    initializeChatIntegration();
 
     loadCustomStrategyState();
     applyQueryParams();

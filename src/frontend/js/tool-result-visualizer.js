@@ -7,6 +7,360 @@
 (function() {
   'use strict';
 
+  // ═══════════════════════════════════════════════════════════════════════════
+  // INJECT STYLES FOR CHAT ↔ SIMULATOR INTEGRATION
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  const styleId = 'tool-result-visualizer-styles';
+  if (!document.getElementById(styleId)) {
+    const style = document.createElement('style');
+    style.id = styleId;
+    style.textContent = `
+      /* Chat-highlighted animation for strategy pills */
+      .strategy-pill.chat-highlighted {
+        animation: chat-highlight-pulse 0.6s ease-in-out 3;
+        box-shadow: 0 0 20px rgba(102, 102, 255, 0.5);
+      }
+
+      @keyframes chat-highlight-pulse {
+        0%, 100% {
+          transform: scale(1);
+          box-shadow: 0 0 10px rgba(102, 102, 255, 0.3);
+        }
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 0 25px rgba(102, 102, 255, 0.6);
+        }
+      }
+
+      /* Chat allocation display styling */
+      .chat-allocation-display {
+        animation: slide-in-fade 0.3s ease-out;
+      }
+
+      @keyframes slide-in-fade {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Tool result card styling (fallback) */
+      .tool-result {
+        margin-top: 12px;
+        padding: 16px;
+        background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(241, 245, 249, 0.95) 100%);
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Backtest chart styling */
+      .tool-result-chart .chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      .tool-result-chart .chart-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        color: #1f2937;
+      }
+
+      .tool-result-chart .chart-period {
+        font-size: 12px;
+        color: #6b7280;
+        background: #f3f4f6;
+        padding: 4px 8px;
+        border-radius: 6px;
+      }
+
+      .tool-result-chart .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .tool-result-chart .metric {
+        text-align: center;
+        padding: 8px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 8px;
+      }
+
+      .tool-result-chart .metric-value {
+        display: block;
+        font-size: 16px;
+        font-weight: 600;
+        color: #1f2937;
+      }
+
+      .tool-result-chart .metric-value.positive { color: #10B981; }
+      .tool-result-chart .metric-value.negative { color: #EF4444; }
+
+      .tool-result-chart .metric-label {
+        display: block;
+        font-size: 11px;
+        color: #6b7280;
+        margin-top: 2px;
+      }
+
+      .tool-result-chart .chart-wrapper {
+        width: 100%;
+        height: 160px;
+      }
+
+      /* Profile card styling */
+      .tool-result-profile .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .tool-result-profile .profile-emoji {
+        font-size: 24px;
+      }
+
+      .tool-result-profile .profile-name {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1f2937;
+      }
+
+      .tool-result-profile .profile-badge {
+        background: #10B981;
+        color: white;
+        font-size: 12px;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      .tool-result-profile .risk-gauge {
+        margin-bottom: 16px;
+      }
+
+      .tool-result-profile .gauge-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: #6b7280;
+        margin-bottom: 4px;
+      }
+
+      .tool-result-profile .gauge-bar {
+        height: 8px;
+        background: linear-gradient(to right, #10B981, #FBBF24, #EF4444);
+        border-radius: 4px;
+        position: relative;
+      }
+
+      .tool-result-profile .gauge-fill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+      }
+
+      .tool-result-profile .gauge-marker {
+        position: absolute;
+        top: -4px;
+        transform: translateX(-50%);
+        width: 16px;
+        height: 16px;
+        background: white;
+        border: 2px solid #4f46e5;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .tool-result-profile .gauge-value {
+        font-size: 8px;
+        font-weight: bold;
+        color: #4f46e5;
+      }
+
+      .tool-result-profile .gauge-confidence {
+        text-align: right;
+        font-size: 11px;
+        color: #6b7280;
+        margin-top: 4px;
+      }
+
+      .tool-result-profile .profile-traits {
+        margin-bottom: 12px;
+      }
+
+      .tool-result-profile .traits-label {
+        font-size: 11px;
+        color: #6b7280;
+        margin-bottom: 6px;
+      }
+
+      .tool-result-profile .traits-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+
+      .tool-result-profile .trait-tag {
+        font-size: 11px;
+        padding: 2px 8px;
+        background: rgba(102, 102, 255, 0.1);
+        color: #4f46e5;
+        border-radius: 12px;
+      }
+
+      .tool-result-profile .profile-info-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .tool-result-profile .profile-info-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+      }
+
+      .tool-result-profile .info-icon { font-size: 14px; }
+      .tool-result-profile .info-label { color: #6b7280; }
+      .tool-result-profile .info-value { font-weight: 500; color: #1f2937; }
+
+      /* Comparison table styling */
+      .tool-result-comparison .comparison-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        font-weight: 600;
+        color: #1f2937;
+      }
+
+      .tool-result-comparison .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+      }
+
+      .tool-result-comparison .comparison-table th {
+        text-align: left;
+        padding: 8px;
+        background: #f8fafc;
+        color: #6b7280;
+        font-weight: 500;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .tool-result-comparison .comparison-table td {
+        padding: 8px;
+        border-bottom: 1px solid #f3f4f6;
+      }
+
+      .tool-result-comparison .winner-row {
+        background: rgba(102, 102, 255, 0.05);
+      }
+
+      .tool-result-comparison .winner-badge {
+        margin-right: 4px;
+      }
+
+      .tool-result-comparison .comparison-recommendation {
+        margin-top: 12px;
+        padding: 10px;
+        background: rgba(252, 211, 77, 0.1);
+        border-radius: 8px;
+        font-size: 12px;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      /* Trade explanation styling */
+      .tool-result-trade .trade-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .tool-result-trade .trade-bot-emoji { font-size: 24px; }
+      .tool-result-trade .trade-bot-name { font-weight: 600; }
+      .tool-result-trade .trade-date { color: #6b7280; font-size: 12px; margin-left: auto; }
+
+      .tool-result-trade .trade-stats {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 12px;
+      }
+
+      .tool-result-trade .trade-stat {
+        text-align: center;
+      }
+
+      .tool-result-trade .stat-label {
+        display: block;
+        font-size: 11px;
+        color: #6b7280;
+      }
+
+      .tool-result-trade .stat-value {
+        display: block;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .tool-result-trade .stat-value.positive { color: #10B981; }
+      .tool-result-trade .stat-value.negative { color: #EF4444; }
+
+      .tool-result-trade .trade-event {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px;
+        background: rgba(59, 130, 246, 0.1);
+        border-radius: 8px;
+        margin-bottom: 12px;
+        font-size: 12px;
+      }
+
+      .tool-result-trade .trade-dialogue {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px;
+        background: #f8fafc;
+        border-radius: 12px;
+        border-left: 3px solid #4f46e5;
+        margin-bottom: 12px;
+        font-style: italic;
+      }
+
+      .tool-result-trade .trade-explanation {
+        font-size: 13px;
+        color: #4b5563;
+        line-height: 1.5;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   /**
    * Get current language from document or localStorage
    * @returns {string} Language code ('fr' or 'en')
@@ -570,6 +924,7 @@
 
   /**
    * Handle a tool result and render the appropriate visualization
+   * Also emits events to StrategyEventBus for UI components that need to sync
    * @param {Object} toolResult - Tool result from SSE payload
    * @param {HTMLElement} anchorEl - Element to anchor the visualization to
    */
@@ -577,8 +932,9 @@
     if (!toolResult || !toolResult.result?.success) return;
 
     const name = toolResult.name;
-    const data = toolResult.result.data;
+    const data = toolResult.result.data || toolResult.result || {};
 
+    // Render visualization based on tool type
     switch (name) {
       case 'backtest_strategy':
         renderBacktestChart(data, anchorEl);
@@ -592,9 +948,184 @@
       case 'explain_bot_trade':
         renderTradeExplanation(data, anchorEl);
         break;
+      case 'set_simulator_allocation':
+        // Render allocation confirmation card
+        renderAllocationCard(data, anchorEl);
+        break;
+      case 'apply_recommended_strategy':
+        // Render strategy application card
+        renderStrategyCard(data, anchorEl);
+        break;
+      case 'update_profile_setting':
+        // Render profile update confirmation
+        renderProfileUpdateCard(data, anchorEl);
+        break;
       default:
-        console.log('Unknown tool result:', name);
+        console.log('[ToolResultVisualizer] Unknown tool result:', name);
     }
+
+    // Emit event to StrategyEventBus if the tool result contains an event
+    // (This is a backup in case chat-side-panel didn't emit it)
+    if (data.event && window.StrategyEventBus && !window.StrategyEventBus._lastEmittedToolEvent?.includes(name)) {
+      console.log(`[ToolResultVisualizer] Emitting event: ${data.event}`);
+      window.StrategyEventBus.emit(data.event, {
+        toolName: name,
+        ...data
+      });
+    }
+  }
+
+  /**
+   * Render a card confirming allocation was set
+   * @param {Object} data - Allocation data
+   * @param {HTMLElement} anchorEl - Anchor element
+   */
+  function renderAllocationCard(data, anchorEl) {
+    if (!data || !anchorEl) return;
+
+    const wrapper = anchorEl.closest('.chat-side-panel-message');
+    if (!wrapper) return;
+
+    const lang = getLang();
+    const container = createResultContainer('tool-result-allocation');
+
+    const allocation = data.allocation || {};
+    
+    container.innerHTML = `
+      <div class="allocation-header" style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+        <span style="font-size: 20px;">📊</span>
+        <span style="font-weight: 600; color: #1f2937;">${lang === 'fr' ? 'Allocation définie' : 'Allocation Set'}</span>
+        <span style="margin-left: auto; font-size: 12px; color: #10B981;">✓</span>
+      </div>
+      <div class="allocation-values" style="display: flex; gap: 16px; margin-bottom: 12px;">
+        <div style="flex: 1; text-align: center; padding: 12px; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+          <div style="font-size: 20px; font-weight: 600; color: #10B981;">${allocation.stocks || 0}%</div>
+          <div style="font-size: 11px; color: #6b7280;">📈 ${lang === 'fr' ? 'Actions' : 'Stocks'}</div>
+        </div>
+        <div style="flex: 1; text-align: center; padding: 12px; background: rgba(59, 130, 246, 0.1); border-radius: 8px;">
+          <div style="font-size: 20px; font-weight: 600; color: #3b82f6;">${allocation.bonds || 0}%</div>
+          <div style="font-size: 11px; color: #6b7280;">📊 ${lang === 'fr' ? 'Obligations' : 'Bonds'}</div>
+        </div>
+        <div style="flex: 1; text-align: center; padding: 12px; background: rgba(251, 191, 36, 0.1); border-radius: 8px;">
+          <div style="font-size: 20px; font-weight: 600; color: #f59e0b;">${allocation.gold || 0}%</div>
+          <div style="font-size: 11px; color: #6b7280;">🥇 ${lang === 'fr' ? 'Or' : 'Gold'}</div>
+        </div>
+      </div>
+      ${data.riskProfile ? `
+        <div style="font-size: 12px; color: #6b7280; text-align: center;">
+          ${lang === 'fr' ? 'Profil de risque' : 'Risk profile'}: <strong>${data.riskProfile}</strong>
+        </div>
+      ` : ''}
+    `;
+
+    wrapper.appendChild(container);
+  }
+
+  /**
+   * Render a card confirming strategy was applied
+   * @param {Object} data - Strategy data
+   * @param {HTMLElement} anchorEl - Anchor element
+   */
+  function renderStrategyCard(data, anchorEl) {
+    if (!data || !anchorEl) return;
+
+    const wrapper = anchorEl.closest('.chat-side-panel-message');
+    if (!wrapper) return;
+
+    const lang = getLang();
+    const container = createResultContainer('tool-result-strategy');
+
+    const strategyEmojis = {
+      conservative: '🛡️',
+      balanced: '⚖️',
+      growth: '📈',
+      aggressive: '🚀',
+      '60_40': '⚖️',
+      risk_parity: '🦊',
+      all_weather: '☀️'
+    };
+
+    const strategyLabels = {
+      conservative: { fr: 'Conservateur', en: 'Conservative' },
+      balanced: { fr: 'Équilibré', en: 'Balanced' },
+      growth: { fr: 'Croissance', en: 'Growth' },
+      aggressive: { fr: 'Agressif', en: 'Aggressive' },
+      '60_40': { fr: '60/40 Classique', en: 'Classic 60/40' },
+      risk_parity: { fr: 'Risk Parity', en: 'Risk Parity' },
+      all_weather: { fr: 'All Weather', en: 'All Weather' }
+    };
+
+    const emoji = strategyEmojis[data.strategy_name] || '📊';
+    const label = strategyLabels[data.strategy_name]?.[lang] || data.strategy_name;
+    const allocation = data.allocation || {};
+
+    container.innerHTML = `
+      <div class="strategy-header" style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+        <span style="font-size: 24px;">${emoji}</span>
+        <div>
+          <div style="font-weight: 600; color: #1f2937; font-size: 16px;">${label}</div>
+          <div style="font-size: 11px; color: #6b7280;">${data.description || ''}</div>
+        </div>
+        <span style="margin-left: auto; font-size: 12px; color: #10B981;">✓ ${lang === 'fr' ? 'Appliqué' : 'Applied'}</span>
+      </div>
+      <div class="strategy-allocation" style="display: flex; gap: 8px; margin-bottom: 12px;">
+        <div style="flex: 1; text-align: center; padding: 8px; background: #f8fafc; border-radius: 6px;">
+          <div style="font-weight: 600;">${allocation.stocks || 0}%</div>
+          <div style="font-size: 10px; color: #6b7280;">${lang === 'fr' ? 'Actions' : 'Stocks'}</div>
+        </div>
+        <div style="flex: 1; text-align: center; padding: 8px; background: #f8fafc; border-radius: 6px;">
+          <div style="font-weight: 600;">${allocation.bonds || 0}%</div>
+          <div style="font-size: 10px; color: #6b7280;">${lang === 'fr' ? 'Obligations' : 'Bonds'}</div>
+        </div>
+        <div style="flex: 1; text-align: center; padding: 8px; background: #f8fafc; border-radius: 6px;">
+          <div style="font-weight: 600;">${allocation.gold || 0}%</div>
+          <div style="font-size: 10px; color: #6b7280;">${lang === 'fr' ? 'Or' : 'Gold'}</div>
+        </div>
+      </div>
+    `;
+
+    wrapper.appendChild(container);
+  }
+
+  /**
+   * Render a card confirming profile was updated
+   * @param {Object} data - Profile update data
+   * @param {HTMLElement} anchorEl - Anchor element
+   */
+  function renderProfileUpdateCard(data, anchorEl) {
+    if (!data || !anchorEl) return;
+
+    const wrapper = anchorEl.closest('.chat-side-panel-message');
+    if (!wrapper) return;
+
+    const lang = getLang();
+    const container = createResultContainer('tool-result-profile-update');
+
+    const update = data.update || {};
+    const settingLabels = {
+      riskScore: { fr: 'Score de risque', en: 'Risk Score' },
+      investmentHorizon: { fr: 'Horizon d\'investissement', en: 'Investment Horizon' },
+      investmentGoal: { fr: 'Objectif d\'investissement', en: 'Investment Goal' },
+      knowledgeLevel: { fr: 'Niveau de connaissance', en: 'Knowledge Level' }
+    };
+
+    const settingName = Object.keys(update)[0];
+    const settingValue = update[settingName];
+    const label = settingLabels[settingName]?.[lang] || settingName;
+
+    container.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 24px;">✅</span>
+        <div>
+          <div style="font-weight: 600; color: #1f2937;">${lang === 'fr' ? 'Profil mis à jour' : 'Profile Updated'}</div>
+          <div style="font-size: 13px; color: #6b7280;">
+            ${label}: <strong>${settingValue}</strong>
+          </div>
+        </div>
+      </div>
+    `;
+
+    wrapper.appendChild(container);
   }
 
   // Export to global namespace
@@ -603,6 +1134,9 @@
     renderProfileCard,
     renderComparisonTable,
     renderTradeExplanation,
+    renderAllocationCard,
+    renderStrategyCard,
+    renderProfileUpdateCard,
     handleToolResult
   };
 

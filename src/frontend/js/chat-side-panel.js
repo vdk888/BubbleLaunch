@@ -1165,11 +1165,44 @@
 
   /**
    * Render tool result using ToolResultVisualizer or fallback
+   * Also emits events to StrategyEventBus for UI synchronization
    * @param {Object} toolResult - Tool result from SSE
    * @param {HTMLElement} anchorEl - Anchor element for visualization
    */
   function renderToolResult(toolResult, anchorEl) {
     if (!toolResult || !anchorEl) return;
+
+    const result = toolResult.result;
+    const resultData = result?.data || result || {};
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // EMIT EVENTS TO STRATEGYEVENTBUS FOR UI SYNCHRONIZATION
+    // ═══════════════════════════════════════════════════════════════════════
+    
+    // Check if tool result contains an event to emit (WRITE tools return these)
+    if (resultData.event && window.StrategyEventBus) {
+      const eventName = resultData.event;
+      console.log(`[chat-side-panel] Emitting event: ${eventName}`, resultData);
+      
+      // Emit the event with full result data for UI components to handle
+      window.StrategyEventBus.emit(eventName, {
+        toolName: toolResult.name,
+        ...resultData
+      });
+
+      // Also update BubbleAgentMemory if it's a profile update
+      if (eventName === 'profile:updated' && resultData.update) {
+        const Memory = getMemory();
+        if (Memory) {
+          const update = resultData.update;
+          if (update.riskScore !== undefined) Memory.updateRiskScore(update.riskScore, 2);
+          if (update.investmentHorizon) Memory.setHorizon(update.investmentHorizon);
+          if (update.investmentGoal) Memory.setGoal(update.investmentGoal);
+          if (update.knowledgeLevel) Memory.setKnowledgeLevel(update.knowledgeLevel);
+          console.log('[chat-side-panel] Updated BubbleAgentMemory with profile changes');
+        }
+      }
+    }
 
     // Use ToolResultVisualizer if available
     if (window.ToolResultVisualizer) {
@@ -1198,11 +1231,11 @@
     name.textContent = toolResult.name || 'Resultat outil';
     card.appendChild(name);
 
-    const result = toolResult.result || {};
+    const fallbackResult = toolResult.result || {};
 
     // Metrics list
-    if (result.data?.metrics) {
-      const m = result.data.metrics;
+    if (fallbackResult.data?.metrics) {
+      const m = fallbackResult.data.metrics;
       const list = document.createElement('div');
       list.style.display = 'flex';
       list.style.flexWrap = 'wrap';
@@ -1226,7 +1259,7 @@
     }
 
     // Chart (sparkline) if data present
-    const series = result.data?.chartData;
+    const series = fallbackResult.data?.chartData;
     if (Array.isArray(series) && series.length > 1) {
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svg.setAttribute('viewBox', '0 0 100 40');
