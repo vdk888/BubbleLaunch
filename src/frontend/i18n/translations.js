@@ -1160,8 +1160,8 @@ const translations = {
     fr: "@behindthefinancebubble"
   },
   "footer.social.twitter": {
-    en: "@behindbubble",
-    fr: "@behindbubble"
+    en: "@BubbleInvest",
+    fr: "@BubbleInvest"
   },
   "footer.social.tiktok": {
     en: "@behind.the.bubble",
