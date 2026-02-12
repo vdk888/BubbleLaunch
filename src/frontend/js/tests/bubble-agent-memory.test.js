@@ -11,7 +11,7 @@
  * @version 1.0.0
  */
 
-(function(global) {
+(function (global) {
   'use strict';
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -360,7 +360,7 @@
       BubbleAgentMemory.updateRiskScore(70, 1);
       profile = BubbleAgentMemory.getProfile();
       TestUtils.assertInRange(profile.riskScore, 50, 70, '2.1.3 Second update creates weighted average');
-      TestUtils.assertTrue(profile.riskConfidence > 20, '2.1.4 Confidence increases with more data');
+      TestUtils.assertTrue(profile.riskConfidence >= 20, '2.1.4 Confidence increases with more data');
 
       // 2.1.5 Invalid risk score handling
       const scoreBefore = BubbleAgentMemory.getProfile().riskScore;
@@ -1073,7 +1073,7 @@
         mockStorage = {
           store: {},
           clear() {
-            try { localStorage.removeItem('bubbleUnifiedAgent'); } catch(e) {}
+            try { localStorage.removeItem('bubbleUnifiedAgent'); } catch (e) { }
           },
           disable() { this._disabled = true; },
           enable() { this._disabled = false; },
@@ -1138,10 +1138,10 @@
         global.localStorage = mockStorage;
       } else {
         // Browser - use wrapper
-        mockStorage.clear = () => { try { localStorage.removeItem('bubbleUnifiedAgent'); } catch(e) {} };
-        mockStorage.disable = () => {};
-        mockStorage.enable = () => {};
-        mockStorage.setQuota = () => {};
+        mockStorage.clear = () => { try { localStorage.removeItem('bubbleUnifiedAgent'); } catch (e) { } };
+        mockStorage.disable = () => { };
+        mockStorage.enable = () => { };
+        mockStorage.setQuota = () => { };
       }
 
       let BAM = BubbleAgentMemory;

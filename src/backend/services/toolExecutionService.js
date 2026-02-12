@@ -397,6 +397,224 @@ const TOOLS = {
         recommendation: 'Fox offers the best risk-adjusted returns (Sharpe ratio) for most investors.'
       };
     }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // WRITE TOOLS - Modify playground/simulator state
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  set_simulator_allocation: {
+    name: 'set_simulator_allocation',
+    description: `
+      Set the playground/simulator allocation percentages. Use when user says "set my allocation to 60/40"
+      or "I want 70% stocks" or "allocate 50% to bonds". The frontend will update the simulator sliders
+      to reflect the new allocation. Stocks/bonds/gold must sum to 100%.
+    `.trim(),
+    input_schema: {
+      type: 'object',
+      properties: {
+        stocks: {
+          type: 'number',
+          minimum: 0,
+          maximum: 100,
+          description: 'Percentage allocation to stocks (SPY/equities)'
+        },
+        bonds: {
+          type: 'number',
+          minimum: 0,
+          maximum: 100,
+          description: 'Percentage allocation to bonds (IEF/fixed income)'
+        },
+        gold: {
+          type: 'number',
+          minimum: 0,
+          maximum: 100,
+          description: 'Percentage allocation to gold (GLD/commodities)'
+        }
+      },
+      required: ['stocks', 'bonds'],
+      additionalProperties: false
+    },
+    input_examples: [
+      { stocks: 60, bonds: 40, gold: 0 },
+      { stocks: 70, bonds: 20, gold: 10 },
+      { stocks: 50, bonds: 50 }
+    ],
+    execute: async ({ stocks, bonds, gold = 0 }) => {
+      // Validate allocation sums to 100%
+      const total = stocks + bonds + gold;
+      if (Math.abs(total - 100) > 0.01) {
+        return {
+          type: 'VALIDATION_ERROR',
+          error: `Allocation must sum to 100%. Current total: ${total.toFixed(1)}%`,
+          hint: 'Adjust the percentages so they add up to 100%'
+        };
+      }
+
+      // Validate individual values
+      if (stocks < 0 || stocks > 100) {
+        return { type: 'VALIDATION_ERROR', error: 'Stocks must be between 0 and 100%' };
+      }
+      if (bonds < 0 || bonds > 100) {
+        return { type: 'VALIDATION_ERROR', error: 'Bonds must be between 0 and 100%' };
+      }
+      if (gold < 0 || gold > 100) {
+        return { type: 'VALIDATION_ERROR', error: 'Gold must be between 0 and 100%' };
+      }
+
+      const allocation = {
+        stocks: Math.round(stocks * 10) / 10,
+        bonds: Math.round(bonds * 10) / 10,
+        gold: Math.round(gold * 10) / 10
+      };
+
+      // Determine risk profile from allocation
+      let riskProfile = 'balanced';
+      if (stocks <= 30) riskProfile = 'conservative';
+      else if (stocks <= 50) riskProfile = 'moderate';
+      else if (stocks <= 70) riskProfile = 'balanced';
+      else riskProfile = 'aggressive';
+
+      return {
+        allocation,
+        riskProfile,
+        message: `Allocation set to ${stocks}% stocks / ${bonds}% bonds / ${gold}% gold`,
+        event: 'allocation:changed' // Frontend will emit this to StrategyEventBus
+      };
+    }
+  },
+
+  apply_recommended_strategy: {
+    name: 'apply_recommended_strategy',
+    description: `
+      Apply a pre-built strategy to the simulator based on user profile or selection.
+      Use when user says "apply the conservative strategy" or "use risk parity" or "set up a 60/40 portfolio".
+      Maps strategy names to specific allocations.
+    `.trim(),
+    input_schema: {
+      type: 'object',
+      properties: {
+        strategy_name: {
+          type: 'string',
+          enum: ['conservative', 'balanced', 'growth', 'aggressive', '60_40', 'risk_parity', 'all_weather'],
+          description: 'Name of the pre-built strategy to apply'
+        }
+      },
+      required: ['strategy_name'],
+      additionalProperties: false
+    },
+    input_examples: [
+      { strategy_name: 'conservative' },
+      { strategy_name: '60_40' },
+      { strategy_name: 'risk_parity' }
+    ],
+    execute: async ({ strategy_name }) => {
+      // Strategy allocation mappings
+      const strategyAllocations = {
+        conservative: { stocks: 20, bonds: 70, gold: 10, description: 'Low risk, capital preservation focus' },
+        balanced: { stocks: 50, bonds: 40, gold: 10, description: 'Moderate risk-return balance' },
+        growth: { stocks: 70, bonds: 20, gold: 10, description: 'Higher returns with more volatility' },
+        aggressive: { stocks: 90, bonds: 5, gold: 5, description: 'Maximum growth, highest volatility' },
+        '60_40': { stocks: 60, bonds: 40, gold: 0, description: 'Classic balanced portfolio' },
+        risk_parity: { stocks: 30, bonds: 55, gold: 15, description: 'Equal risk contribution across assets' },
+        all_weather: { stocks: 30, bonds: 40, gold: 15, description: 'Ray Dalio inspired all-weather approach' }
+      };
+
+      const strategy = strategyAllocations[strategy_name];
+      if (!strategy) {
+        return {
+          type: 'STRATEGY_NOT_FOUND',
+          error: `Unknown strategy: ${strategy_name}`,
+          hint: `Available strategies: ${Object.keys(strategyAllocations).join(', ')}`
+        };
+      }
+
+      return {
+        strategy_name,
+        allocation: {
+          stocks: strategy.stocks,
+          bonds: strategy.bonds,
+          gold: strategy.gold
+        },
+        description: strategy.description,
+        message: `Applied ${strategy_name} strategy: ${strategy.stocks}% stocks / ${strategy.bonds}% bonds / ${strategy.gold}% gold`,
+        event: 'strategy:applied' // Frontend will emit this to StrategyEventBus
+      };
+    }
+  },
+
+  update_profile_setting: {
+    name: 'update_profile_setting',
+    description: `
+      Update a specific profile setting such as risk score, investment horizon, goal, or knowledge level.
+      Use when user says "change my risk to 70" or "set my goal to retirement" or "I'm a beginner investor".
+      The frontend will update BubbleAgentMemory and refresh the profile display.
+    `.trim(),
+    input_schema: {
+      type: 'object',
+      properties: {
+        setting: {
+          type: 'string',
+          enum: ['riskScore', 'investmentHorizon', 'investmentGoal', 'knowledgeLevel'],
+          description: 'Which profile setting to update'
+        },
+        value: {
+          description: 'New value for the setting (type depends on setting)'
+        }
+      },
+      required: ['setting', 'value'],
+      additionalProperties: false
+    },
+    input_examples: [
+      { setting: 'riskScore', value: 65 },
+      { setting: 'investmentHorizon', value: 'long' },
+      { setting: 'investmentGoal', value: 'retirement' },
+      { setting: 'knowledgeLevel', value: 'intermediate' }
+    ],
+    execute: async ({ setting, value }) => {
+      // Validate based on setting type
+      const validations = {
+        riskScore: {
+          validate: (v) => typeof v === 'number' && v >= 0 && v <= 100,
+          error: 'Risk score must be a number between 0 and 100'
+        },
+        investmentHorizon: {
+          validate: (v) => ['short', 'medium', 'long', 'very_long'].includes(v),
+          error: 'Investment horizon must be: short, medium, long, or very_long'
+        },
+        investmentGoal: {
+          validate: (v) => ['retirement', 'house', 'growth', 'learn', 'income', 'preservation'].includes(v),
+          error: 'Investment goal must be: retirement, house, growth, learn, income, or preservation'
+        },
+        knowledgeLevel: {
+          validate: (v) => ['beginner', 'intermediate', 'advanced'].includes(v),
+          error: 'Knowledge level must be: beginner, intermediate, or advanced'
+        }
+      };
+
+      const validation = validations[setting];
+      if (!validation) {
+        return {
+          type: 'INVALID_SETTING',
+          error: `Unknown setting: ${setting}`,
+          hint: `Valid settings: ${Object.keys(validations).join(', ')}`
+        };
+      }
+
+      if (!validation.validate(value)) {
+        return {
+          type: 'VALIDATION_ERROR',
+          error: validation.error,
+          hint: `Received value: ${JSON.stringify(value)}`
+        };
+      }
+
+      return {
+        update: { [setting]: value },
+        message: `Updated ${setting} to ${value}`,
+        event: 'profile:updated' // Frontend will emit this to StrategyEventBus
+      };
+    }
   }
 };
 
@@ -444,17 +662,33 @@ function getToolDefinitions(toolNames = null) {
 function getToolsForPageContext(pageContext) {
   switch (pageContext) {
     case 'playground':
-      return getToolDefinitions(['get_profile_visualization', 'recommend_learning_path']);
+      return getToolDefinitions([
+        'get_profile_visualization',
+        'recommend_learning_path',
+        'update_profile_setting',
+        'set_simulator_allocation',
+        'apply_recommended_strategy'
+      ]);
     case 'arena':
     case 'education-arena':
     case 'education/arena':
     case 'education_arena':
-      return getToolDefinitions(['explain_bot_trade', 'compare_strategies']);
+      return getToolDefinitions([
+        'explain_bot_trade',
+        'compare_strategies',
+        'set_simulator_allocation',
+        'apply_recommended_strategy'
+      ]);
     case 'simulator':
     case 'education-simulator':
     case 'education/simulator':
     case 'education_simulator':
-      return getToolDefinitions(['backtest_strategy', 'compare_strategies']);
+      return getToolDefinitions([
+        'backtest_strategy',
+        'compare_strategies',
+        'set_simulator_allocation',
+        'apply_recommended_strategy'
+      ]);
     default:
       return [];
   }
