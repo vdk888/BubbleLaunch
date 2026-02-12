@@ -2310,6 +2310,24 @@ const translations = {
     fr: "Contactez-nous"
   },
 
+  // Professionals - Calendly
+  "professionals.cta.bookCall": {
+    en: "Book a Strategy Call",
+    fr: "Planifier un appel stratégique"
+  },
+  "professionals.cta.bookDemo": {
+    en: "Book a Personalized Demo",
+    fr: "Planifier une démo personnalisée"
+  },
+  "professionals.cta.preferCall": {
+    en: "Prefer a call? Book here",
+    fr: "Vous préférez un appel ? Planifiez-le ici"
+  },
+  "professionals.cta.calendlyUrl": {
+    en: "https://calendly.com/bubbleinvest-ai?lid=k790tqpde31c&utm_medium=email&utm_source=braze&utm_campaign=2024Q4-NUR-TRIAL-ONB-Core_Admins&utm_content=user_url_text",
+    fr: "https://calendly.com/bubbleinvest-ai?lid=k790tqpde31c&utm_medium=email&utm_source=braze&utm_campaign=2024Q4-NUR-TRIAL-ONB-Core_Admins&utm_content=user_url_text"
+  },
+
   // Professionals - waitlist CTA
   "professionals.waitlist.title": {
     en: "Ready to explore enterprise access?",

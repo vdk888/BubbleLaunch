@@ -1,441 +1,476 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Démo Professionnelle · Bubble Businesses</title>
-    <meta
-      name="description"
-      content="Essayez nos outils de portfolio management et automation. Voir la démo en action pour professionals."
-    />
-    <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
-    <link rel="stylesheet" href="/assets/styles/styles.css" />
-    <link rel="canonical" href="https://bubbleinvest.org/professionals#enterprise-waitlist" />
-    <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/professionals/demo" />
-    <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/professionals/demo" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Démo Professionnelle · Bubble Businesses</title>
+  <meta name="description"
+    content="Essayez nos outils de portfolio management et automation. Voir la démo en action pour professionals." />
+  <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
+  <link rel="stylesheet" href="/assets/styles/styles.css" />
+  <link rel="canonical" href="https://bubbleinvest.org/professionals#enterprise-waitlist" />
+  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/professionals/demo" />
+  <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/professionals/demo" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  
-  // Consent mode for EEA users (GDPR)
-  gtag('consent', 'default', {
-    'analytics_storage': 'denied',
-    'ad_storage': 'denied'
-  });
-  
-  gtag('config', 'G-T0MQEL0ZG0', {
-    'anonymize_ip': true
-  });
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-T0MQEL0ZG0', {
-    'cookie_flags': 'SameSite=None;Secure',
-    'anonymize_ip': true
-  });
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    // Consent mode for EEA users (GDPR)
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied'
+    });
+
+    gtag('config', 'G-T0MQEL0ZG0', {
+      'anonymize_ip': true
+    });
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-T0MQEL0ZG0', {
+      'cookie_flags': 'SameSite=None;Secure',
+      'anonymize_ip': true
+    });
+  </script>
 </head>
-  <body class="professionals-demo-page">
-    <!-- Navigation Header -->
-    <header>
-      <div class="container">
-        <div class="brand">
-          <a href="/" class="logo-link">
-            <div class="logo" style="display: flex; align-items: center; gap: 0.18em">
-              <span style="display: flex; align-items: center">
-                <svg width="36" height="36" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
-                  <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
-                  <circle cx="59" cy="21" r="6" fill="#000"/>
-                </svg>
-              </span>
-              <span>Bubble.</span>
+
+<body class="professionals-demo-page">
+  <!-- Navigation Header -->
+  <header>
+    <div class="container">
+      <div class="brand">
+        <a href="/" class="logo-link">
+          <div class="logo" style="display: flex; align-items: center; gap: 0.18em">
+            <span style="display: flex; align-items: center">
+              <svg width="36" height="36" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"
+                style="display: inline-block; vertical-align: middle">
+                <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round"
+                  stroke-dasharray="145 29" stroke-dashoffset="10" />
+                <circle cx="59" cy="21" r="6" fill="#000" />
+              </svg>
+            </span>
+            <span>Bubble.</span>
+          </div>
+        </a>
+        <div class="tagline" data-translate="hero.tagline.professional">L'agent d'investissement transparent.</div>
+      </div>
+      <div class="header-right">
+        <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <nav class="desktop-nav professional-nav">
+          <a href="/professionals" data-translate="professionals.nav.vision">Vision</a>
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" data-translate="professionals.nav.solutions">Solutions</button>
+            <div class="nav-dropdown-menu">
+              <a href="/professionals/solutions-companies"
+                data-translate="professionals.nav.solutions.companies">Entreprises</a>
+              <a href="/professionals/solutions-wealth-managers"
+                data-translate="professionals.nav.solutions.wealth">CGPs & Family Offices</a>
             </div>
-          </a>
-          <div class="tagline" data-translate="hero.tagline.professional">L'agent d'investissement transparent.</div>
-        </div>
-        <div class="header-right">
-          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-          </button>
-          <nav class="desktop-nav professional-nav">
-            <a href="/professionals" data-translate="professionals.nav.vision">Vision</a>
-            <div class="nav-dropdown">
-              <button class="nav-dropdown-toggle" data-translate="professionals.nav.solutions">Solutions</button>
-              <div class="nav-dropdown-menu">
-                <a href="/professionals/solutions-companies" data-translate="professionals.nav.solutions.companies">Entreprises</a>
-                <a href="/professionals/solutions-wealth-managers" data-translate="professionals.nav.solutions.wealth">CGPs & Family Offices</a>
-              </div>
-            </div>
-            <a href="/blog" data-translate="professionals.nav.blog">Blog</a>
-            <a href="/professionals#enterprise-waitlist" class="nav-cta" data-translate="professionals.nav.cta">Contactez-nous</a>
-            <div class="language-switcher">
-              <button id="en-switch">EN</button>
-              <span>|</span>
-              <button id="fr-switch" class="active">FR</button>
-            </div>
-          </nav>
-          <div class="mobile-language-switcher">
-            <button id="en-switch-mobile">EN</button>
+          </div>
+          <a href="/blog" data-translate="professionals.nav.blog">Blog</a>
+          <a href="/professionals#enterprise-waitlist" class="nav-cta"
+            data-translate="professionals.nav.cta">Contactez-nous</a>
+          <div class="language-switcher">
+            <button id="en-switch">EN</button>
             <span>|</span>
-            <button id="fr-switch-mobile" class="active">FR</button>
+            <button id="fr-switch" class="active">FR</button>
           </div>
-        </div>
-        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
-          <nav class="mobile-nav">
-            <a href="/professionals" data-translate="professionals.nav.vision">Vision</a>
-            <div class="mobile-nav-dropdown">
-              <button class="mobile-nav-dropdown-toggle" data-translate="professionals.nav.solutions">Solutions</button>
-              <div class="mobile-nav-dropdown-menu">
-                <a href="/professionals/solutions-companies" data-translate="professionals.nav.solutions.companies">Entreprises</a>
-                <a href="/professionals/solutions-wealth-managers" data-translate="professionals.nav.solutions.wealth">CGPs & Family Offices</a>
-              </div>
-            </div>
-            <a href="/blog" data-translate="professionals.nav.blog">Blog</a>
-            <a href="/professionals#enterprise-waitlist" data-translate="professionals.nav.cta">Contactez-nous</a>
-          </nav>
+        </nav>
+        <div class="mobile-language-switcher">
+          <button id="en-switch-mobile">EN</button>
+          <span>|</span>
+          <button id="fr-switch-mobile" class="active">FR</button>
         </div>
       </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero fade-in">
-      <div class="container">
-        <h1 data-translate="professionals.demo.title">Explorez Nos Capacités</h1>
-        <p class="hero-subtitle" data-translate="professionals.demo.subtitle">
-          Testez le portfolio simulator et découvrez comment nos solutions transforment vos opérations.
-        </p>
+      <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+        <nav class="mobile-nav">
+          <a href="/professionals" data-translate="professionals.nav.vision">Vision</a>
+          <div class="mobile-nav-dropdown">
+            <button class="mobile-nav-dropdown-toggle" data-translate="professionals.nav.solutions">Solutions</button>
+            <div class="mobile-nav-dropdown-menu">
+              <a href="/professionals/solutions-companies"
+                data-translate="professionals.nav.solutions.companies">Entreprises</a>
+              <a href="/professionals/solutions-wealth-managers"
+                data-translate="professionals.nav.solutions.wealth">CGPs & Family Offices</a>
+            </div>
+          </div>
+          <a href="/blog" data-translate="professionals.nav.blog">Blog</a>
+          <a href="/professionals#enterprise-waitlist" data-translate="professionals.nav.cta">Contactez-nous</a>
+        </nav>
       </div>
-    </section>
+    </div>
+  </header>
 
-    <!-- Prompt Suggestions -->
-    <section class="demo-prompts fade-in">
-      <div class="container">
-        <h2 data-translate="professionals.demo.prompts.title">Plongez dans un flux réel</h2>
-        <p class="section-subtitle" data-translate="professionals.demo.prompts.subtitle">
-          Utilisez ces prompts pour explorer portefeuilles modèles, briefs réglementaires et automatisation.
-        </p>
-        <div class="prompt-buttons">
-          <button type="button" class="prompt-button chat-suggestion-btn" data-prompt-key="professionals.demo.prompts.portfolio.prompt" data-translate="professionals.demo.prompts.portfolio.label">
-            Portefeuille modèle · 45 ans risque modéré
-          </button>
-          <button type="button" class="prompt-button chat-suggestion-btn" data-prompt-key="professionals.demo.prompts.esg.prompt" data-translate="professionals.demo.prompts.esg.label">
-            Brief réglementaire pour CFO
-          </button>
-          <button type="button" class="prompt-button chat-suggestion-btn" data-prompt-key="professionals.demo.prompts.automation.prompt" data-translate="professionals.demo.prompts.automation.label">
-            Plan d'automatisation · onboarding 500 comptes
-          </button>
-        </div>
-      </div>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero fade-in">
+    <div class="container">
+      <h1 data-translate="professionals.demo.title">Explorez Nos Capacités</h1>
+      <p class="hero-subtitle" data-translate="professionals.demo.subtitle">
+        Testez le portfolio simulator et découvrez comment nos solutions transforment vos opérations.
+      </p>
+    </div>
+  </section>
 
-    <!-- Demo Tools Section -->
-    <section class="platform-section fade-in">
-      <div class="container">
-        <h2 data-translate="professionals.demo.tools.title">Nos Outils de Démo</h2>
-        <p class="section-subtitle" data-translate="professionals.demo.tools.subtitle">
-          Essayez dès maintenant nos technologies de pointe.
-        </p>
-
-        <div class="demo-tiles">
-          <a href="/investors/playground/simulator" class="demo-tile">
-            <div class="demo-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                <polyline points="17 6 23 6 23 12"></polyline>
-              </svg>
-            </div>
-            <h3 data-translate="professionals.demo.portfolio.title">Portfolio Simulator</h3>
-            <p data-translate="professionals.demo.portfolio.description">
-              Backtestez des stratégies sur 20 ans de données. Comparez les allocations, mesurez la performance.
-            </p>
-            <span class="demo-link" data-translate="professionals.demo.portfolio.cta">Essayer →</span>
-          </a>
-
-          <div class="demo-tile coming-soon">
-            <div class="demo-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-              </svg>
-            </div>
-            <h3 data-translate="professionals.demo.automation.title">Automation Builder</h3>
-            <p data-translate="professionals.demo.automation.description">
-              Construisez vos workflows d'automation avec notre no-code builder. Disponible bientôt.
-            </p>
-            <span class="demo-badge" data-translate="professionals.demo.coming">Bientôt</span>
-          </div>
-
-          <div class="demo-tile coming-soon">
-            <div class="demo-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="1"></circle>
-                <path d="M12 1v6m0 6v6"></path>
-                <path d="M4.22 4.22l4.24 4.24m2.12 2.12l4.24 4.24"></path>
-                <path d="M1 12h6m6 0h6"></path>
-                <path d="M4.22 19.78l4.24-4.24m2.12-2.12l4.24-4.24"></path>
-              </svg>
-            </div>
-            <h3 data-translate="professionals.demo.api.title">API Documentation</h3>
-            <p data-translate="professionals.demo.api.description">
-              Consultez notre API reference complète pour intégrations personnalisées. Disponible bientôt.
-            </p>
-            <span class="demo-badge" data-translate="professionals.demo.coming">Bientôt</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features-section fade-in">
-      <div class="container">
-        <h2 data-translate="professionals.demo.features.title">Ce Que Vous Explorerez</h2>
-        <div class="features-list">
-          <div class="feature-item">
-            <div class="feature-icon">✓</div>
-            <div class="feature-text">
-              <h4 data-translate="professionals.demo.features.backtesting">Backtesting Avancé</h4>
-              <p data-translate="professionals.demo.features.backtesting.desc">20 ans de données historiques, multiples stratégies, métriques de risque complètes.</p>
-            </div>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">✓</div>
-            <div class="feature-text">
-              <h4 data-translate="professionals.demo.features.customization">Personnalisation</h4>
-              <p data-translate="professionals.demo.features.customization.desc">Créez vos propres stratégies, ajustez les paramètres, testez différents scénarios.</p>
-            </div>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">✓</div>
-            <div class="feature-text">
-              <h4 data-translate="professionals.demo.features.analytics">Analytics Détaillées</h4>
-              <p data-translate="professionals.demo.features.analytics.desc">Sharpe ratio, maximum drawdown, performance attribution, stress tests.</p>
-            </div>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">✓</div>
-            <div class="feature-text">
-              <h4 data-translate="professionals.demo.features.export">Export de Données</h4>
-              <p data-translate="professionals.demo.features.export.desc">Téléchargez les résultats en CSV, PNG ou PDF pour votre analyse.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section fade-in">
-      <div class="container">
-        <h2 data-translate="professionals.demo.cta.title">Prêt à Découvrir Plus ?</h2>
-        <p data-translate="professionals.demo.cta.subtitle">
-          Planifiez une démo personnalisée avec nos experts.
-        </p>
-        <div class="cta-buttons">
-          <a href="/professionals#enterprise-waitlist" class="cta-button primary-btn" data-translate="professionals.demo.cta.contact">Planifier une Démo</a>
-          <a href="/professionals" class="cta-button secondary-btn" data-translate="professionals.demo.cta.back">Retour</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Floating Chat Input -->
-    <div id="floating-chat-input" class="floating-chat-input hidden">
-      <div class="floating-input-container">
-        <input
-          type="text"
-          class="floating-input-field"
-          placeholder="Ask me anything..."
-          data-translate-placeholder="floating_input.placeholder"
-          aria-label="Ask a question"
-        />
-        <button class="floating-input-submit" aria-label="Send message">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
+  <!-- Prompt Suggestions -->
+  <section class="demo-prompts fade-in">
+    <div class="container">
+      <h2 data-translate="professionals.demo.prompts.title">Plongez dans un flux réel</h2>
+      <p class="section-subtitle" data-translate="professionals.demo.prompts.subtitle">
+        Utilisez ces prompts pour explorer portefeuilles modèles, briefs réglementaires et automatisation.
+      </p>
+      <div class="prompt-buttons">
+        <button type="button" class="prompt-button chat-suggestion-btn"
+          data-prompt-key="professionals.demo.prompts.portfolio.prompt"
+          data-translate="professionals.demo.prompts.portfolio.label">
+          Portefeuille modèle · 45 ans risque modéré
+        </button>
+        <button type="button" class="prompt-button chat-suggestion-btn"
+          data-prompt-key="professionals.demo.prompts.esg.prompt" data-translate="professionals.demo.prompts.esg.label">
+          Brief réglementaire pour CFO
+        </button>
+        <button type="button" class="prompt-button chat-suggestion-btn"
+          data-prompt-key="professionals.demo.prompts.automation.prompt"
+          data-translate="professionals.demo.prompts.automation.label">
+          Plan d'automatisation · onboarding 500 comptes
         </button>
       </div>
     </div>
+  </section>
 
-    <!-- Chat Side Panel -->
-    <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
-      <div class="chat-side-panel-header">
-        <div class="chat-side-panel-header-info">
-          <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
-          <div class="chat-side-panel-titles">
-            <span class="chat-side-panel-title">Bubble Assistant</span>
+  <!-- Demo Tools Section -->
+  <section class="platform-section fade-in">
+    <div class="container">
+      <h2 data-translate="professionals.demo.tools.title">Nos Outils de Démo</h2>
+      <p class="section-subtitle" data-translate="professionals.demo.tools.subtitle">
+        Essayez dès maintenant nos technologies de pointe.
+      </p>
+
+      <div class="demo-tiles">
+        <a href="/investors/playground/simulator" class="demo-tile">
+          <div class="demo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
           </div>
+          <h3 data-translate="professionals.demo.portfolio.title">Portfolio Simulator</h3>
+          <p data-translate="professionals.demo.portfolio.description">
+            Backtestez des stratégies sur 20 ans de données. Comparez les allocations, mesurez la performance.
+          </p>
+          <span class="demo-link" data-translate="professionals.demo.portfolio.cta">Essayer →</span>
+        </a>
+
+        <div class="demo-tile coming-soon">
+          <div class="demo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <h3 data-translate="professionals.demo.automation.title">Automation Builder</h3>
+          <p data-translate="professionals.demo.automation.description">
+            Construisez vos workflows d'automation avec notre no-code builder. Disponible bientôt.
+          </p>
+          <span class="demo-badge" data-translate="professionals.demo.coming">Bientôt</span>
         </div>
-        <div class="chat-side-panel-actions">
-          <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
-          <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
+
+        <div class="demo-tile coming-soon">
+          <div class="demo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="1"></circle>
+              <path d="M12 1v6m0 6v6"></path>
+              <path d="M4.22 4.22l4.24 4.24m2.12 2.12l4.24 4.24"></path>
+              <path d="M1 12h6m6 0h6"></path>
+              <path d="M4.22 19.78l4.24-4.24m2.12-2.12l4.24-4.24"></path>
+            </svg>
+          </div>
+          <h3 data-translate="professionals.demo.api.title">API Documentation</h3>
+          <p data-translate="professionals.demo.api.description">
+            Consultez notre API reference complète pour intégrations personnalisées. Disponible bientôt.
+          </p>
+          <span class="demo-badge" data-translate="professionals.demo.coming">Bientôt</span>
         </div>
       </div>
-      <div class="chat-side-panel-messages" role="log" aria-live="polite">
-        <div class="chat-side-panel-message bot">
-          <div class="message-content">
-            Salut ! Je suis Bubble - ici on démocratise l'investissement. Qu'est-ce qui t'amène ici ?
-          </div>
-        </div>
-      </div>
-      <form class="chat-side-panel-input-container" novalidate>
-        <input
-          type="text"
-          class="chat-side-panel-input"
-          placeholder="Posez vos questions..."
-          data-translate-placeholder="floating_input.placeholder"
-          aria-label="Type your message"
-          autocomplete="off"
-        />
-        <button class="chat-side-panel-send" aria-label="Send message" type="submit">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M12 21V4" stroke-linecap="round" />
-          </svg>
-        </button>
-      </form>
     </div>
+  </section>
 
-    <footer>
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-left">
-            <div class="footer-logo" style="display: flex; align-items: center; gap: 0.18em">
-              <span style="display: flex; align-items: center">
-                <svg width="30" height="30" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
-                  <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10" />
-                  <circle cx="59" cy="21" r="6" fill="#000" />
+  <!-- Features Section -->
+  <section class="features-section fade-in">
+    <div class="container">
+      <h2 data-translate="professionals.demo.features.title">Ce Que Vous Explorerez</h2>
+      <div class="features-list">
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <div class="feature-text">
+            <h4 data-translate="professionals.demo.features.backtesting">Backtesting Avancé</h4>
+            <p data-translate="professionals.demo.features.backtesting.desc">20 ans de données historiques, multiples
+              stratégies, métriques de risque complètes.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <div class="feature-text">
+            <h4 data-translate="professionals.demo.features.customization">Personnalisation</h4>
+            <p data-translate="professionals.demo.features.customization.desc">Créez vos propres stratégies, ajustez les
+              paramètres, testez différents scénarios.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <div class="feature-text">
+            <h4 data-translate="professionals.demo.features.analytics">Analytics Détaillées</h4>
+            <p data-translate="professionals.demo.features.analytics.desc">Sharpe ratio, maximum drawdown, performance
+              attribution, stress tests.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <div class="feature-text">
+            <h4 data-translate="professionals.demo.features.export">Export de Données</h4>
+            <p data-translate="professionals.demo.features.export.desc">Téléchargez les résultats en CSV, PNG ou PDF
+              pour votre analyse.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section fade-in">
+    <div class="container">
+      <h2 data-translate="professionals.demo.cta.title">Prêt à Découvrir Plus ?</h2>
+      <p data-translate="professionals.demo.cta.subtitle">
+        Planifiez une démo personnalisée avec nos experts.
+      </p>
+      <div class="cta-buttons">
+        <a href="https://calendly.com/bubbleinvest-ai?lid=k790tqpde31c&utm_medium=email&utm_source=braze&utm_campaign=2024Q4-NUR-TRIAL-ONB-Core_Admins&utm_content=user_url_text"
+          target="_blank" rel="noopener noreferrer" class="cta-button primary-btn"
+          data-translate="professionals.cta.bookDemo" data-translate-href="professionals.cta.calendlyUrl">
+          Planifier une Démo
+        </a>
+        <a href="/professionals" class="cta-button secondary-btn"
+          data-translate="professionals.demo.cta.back">Retour</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Chat Input -->
+  <div id="floating-chat-input" class="floating-chat-input hidden">
+    <div class="floating-input-container">
+      <input type="text" class="floating-input-field" placeholder="Ask me anything..."
+        data-translate-placeholder="floating_input.placeholder" aria-label="Ask a question" />
+      <button class="floating-input-submit" aria-label="Send message">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Chat Side Panel -->
+  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+    <div class="chat-side-panel-header">
+      <div class="chat-side-panel-header-info">
+        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+        <div class="chat-side-panel-titles">
+          <span class="chat-side-panel-title">Bubble Assistant</span>
+        </div>
+      </div>
+      <div class="chat-side-panel-actions">
+        <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
+        <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
+      </div>
+    </div>
+    <div class="chat-side-panel-messages" role="log" aria-live="polite">
+      <div class="chat-side-panel-message bot">
+        <div class="message-content">
+          Salut ! Je suis Bubble - ici on démocratise l'investissement. Qu'est-ce qui t'amène ici ?
+        </div>
+      </div>
+    </div>
+    <form class="chat-side-panel-input-container" novalidate>
+      <input type="text" class="chat-side-panel-input" placeholder="Posez vos questions..."
+        data-translate-placeholder="floating_input.placeholder" aria-label="Type your message" autocomplete="off" />
+      <button class="chat-side-panel-send" aria-label="Send message" type="submit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M12 21V4" stroke-linecap="round" />
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <div class="footer-logo" style="display: flex; align-items: center; gap: 0.18em">
+            <span style="display: flex; align-items: center">
+              <svg width="30" height="30" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"
+                style="display: inline-block; vertical-align: middle">
+                <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round"
+                  stroke-dasharray="145 29" stroke-dashoffset="10" />
+                <circle cx="59" cy="21" r="6" fill="#000" />
+              </svg>
+            </span>
+            <span>Bubble.</span>
+          </div>
+          <div class="footer-tagline" data-translate="footer.tagline">
+            L'ère de l'IA change tout. Changeons avec elle.
+          </div>
+          <div class="footer-copyright" data-translate="footer.copyright">
+            © 2025 Bubble Invest SAS. Transparent by design.
+          </div>
+        </div>
+
+        <nav class="footer-nav">
+          <div class="footer-column">
+            <h4 data-translate="footer.nav.investors">Investisseurs</h4>
+            <ul>
+              <li><a href="/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
+              <li><a href="/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
+              <li><a href="/investors#faq" data-translate="footer.nav.investors.faq">FAQ</a></li>
+              <li><a href="/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Accès
+                  Anticipé</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 data-translate="footer.nav.professionals">Professionnels</h4>
+            <ul>
+              <li><a href="/professionals/solutions-companies"
+                  data-translate="footer.nav.professionals.solutions">Solutions</a></li>
+              <li><a href="/professionals/solutions-wealth-managers"
+                  data-translate="footer.nav.professionals.demo">Démo</a></li>
+              <li><a href="/professionals#faq" data-translate="footer.nav.professionals.faq">FAQ</a></li>
+              <li><a href="/professionals#enterprise-waitlist"
+                  data-translate="footer.nav.professionals.contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 data-translate="footer.nav.resources">Ressources</h4>
+            <ul>
+              <li><a href="/blog" data-translate="footer.nav.blog">Blog</a></li>
+              <li><a href="/investors/playground" data-translate="footer.nav.resources.education">Playground</a></li>
+              <li><a href="/investors" class="js-retail-demo-trigger" data-entry-point="footer_resources_demo"
+                  data-translate="footer.nav.resources.demo">Démo</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 data-translate="footer.nav.legal">Légal</h4>
+            <ul>
+              <li><a href="/mentions-legales" data-translate="footer.nav.legal_notice">Mentions Légales</a></li>
+              <li><a href="/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
+              <li><a href="#cookies" id="tarteaucitronRoot" data-translate="footer.nav.cookies">Gérer les Cookies</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 data-translate="footer.nav.contact">Contact</h4>
+            <ul>
+              <li><a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></li>
+              <li><a href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105"
+                  target="_blank" rel="noopener noreferrer" data-translate="footer.nav.newsletter">Newsletter</a></li>
+            </ul>
+            <div class="social-media-links">
+              <a href="https://substack.com/@bubbleinvest?utm_campaign=profile&utm_medium=profile-page" target="_blank"
+                rel="noopener noreferrer" class="social-link" aria-label="Substack" data-handle="Bubble Invest">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                  stroke="none">
+                  <path d="M22.5 6H1.5V9H22.5V6ZM1.5 10.5V24L12 18L22.5 24V10.5H1.5ZM22.5 0H1.5V3H22.5V0Z" />
                 </svg>
-              </span>
-              <span>Bubble.</span>
-            </div>
-            <div class="footer-tagline" data-translate="footer.tagline">
-              L'ère de l'IA change tout. Changeons avec elle.
-            </div>
-            <div class="footer-copyright" data-translate="footer.copyright">
-              © 2025 Bubble Invest SAS. Transparent by design.
+                <span class="social-handle" data-translate="footer.social.substack">Bubble Invest</span>
+              </a>
+              <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" rel="noopener noreferrer"
+                class="social-link" aria-label="LinkedIn" data-handle="Bubble Invest AI">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.linkedin">Bubble Invest AI</span>
+              </a>
+              <a href="https://www.instagram.com/behindthefinancebubble/" target="_blank" rel="noopener noreferrer"
+                class="social-link" aria-label="Instagram" data-handle="@behindthefinancebubble">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.instagram">@behindthefinancebubble</span>
+              </a>
+              <a href="https://www.tiktok.com/@behind.the.bubble" target="_blank" rel="noopener noreferrer"
+                class="social-link" aria-label="TikTok" data-handle="@behind.the.bubble">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.tiktok">@behind.the.bubble</span>
+              </a>
+              <a href="https://www.youtube.com/@behindthefinancebubble" target="_blank" rel="noopener noreferrer"
+                class="social-link" aria-label="YouTube" data-handle="@behindthefinancebubble">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.youtube">@behindthefinancebubble</span>
+              </a>
+
+              <a href="https://twitter.com/BubbleInvest" target="_blank" rel="noopener noreferrer" class="social-link"
+                aria-label="Twitter" data-handle="@BubbleInvest">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4l16 16M4 20L20 4" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.twitter">@BubbleInvest</span>
+              </a>
             </div>
           </div>
-
-          <nav class="footer-nav">
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.investors">Investisseurs</h4>
-              <ul>
-                <li><a href="/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
-                <li><a href="/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
-                <li><a href="/investors#faq" data-translate="footer.nav.investors.faq">FAQ</a></li>
-                <li><a href="/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Accès Anticipé</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.professionals">Professionnels</h4>
-              <ul>
-                <li><a href="/professionals/solutions-companies" data-translate="footer.nav.professionals.solutions">Solutions</a></li>
-                <li><a href="/professionals/solutions-wealth-managers" data-translate="footer.nav.professionals.demo">Démo</a></li>
-                <li><a href="/professionals#faq" data-translate="footer.nav.professionals.faq">FAQ</a></li>
-                <li><a href="/professionals#enterprise-waitlist" data-translate="footer.nav.professionals.contact">Contact</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.resources">Ressources</h4>
-              <ul>
-                <li><a href="/blog" data-translate="footer.nav.blog">Blog</a></li>
-                <li><a href="/investors/playground" data-translate="footer.nav.resources.education">Playground</a></li>
-                <li><a href="/investors" class="js-retail-demo-trigger" data-entry-point="footer_resources_demo" data-translate="footer.nav.resources.demo">Démo</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.legal">Légal</h4>
-              <ul>
-                <li><a href="/mentions-legales" data-translate="footer.nav.legal_notice">Mentions Légales</a></li>
-                <li><a href="/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
-                <li><a href="#cookies" id="tarteaucitronRoot" data-translate="footer.nav.cookies">Gérer les Cookies</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.contact">Contact</h4>
-              <ul>
-                <li><a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></li>
-                <li><a href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105" target="_blank" rel="noopener noreferrer" data-translate="footer.nav.newsletter">Newsletter</a></li>
-              </ul>
-              <div class="social-media-links">
-                <a href="https://substack.com/@bubbleinvest?utm_campaign=profile&utm_medium=profile-page" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Substack" data-handle="Bubble Invest">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                    <path d="M22.5 6H1.5V9H22.5V6ZM1.5 10.5V24L12 18L22.5 24V10.5H1.5ZM22.5 0H1.5V3H22.5V0Z" />
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.substack">Bubble Invest</span>
-                </a>
-                <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn" data-handle="Bubble Invest AI">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                    <rect x="2" y="9" width="4" height="12"/>
-                    <circle cx="4" cy="4" r="2"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.linkedin">Bubble Invest AI</span>
-                </a>
-                <a href="https://www.instagram.com/behindthefinancebubble/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram" data-handle="@behindthefinancebubble">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.instagram">@behindthefinancebubble</span>
-                </a>
-                <a href="https://www.tiktok.com/@behind.the.bubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok" data-handle="@behind.the.bubble">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.tiktok">@behind.the.bubble</span>
-                </a>
-                <a href="https://www.youtube.com/@behindthefinancebubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube" data-handle="@behindthefinancebubble">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
-                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.youtube">@behindthefinancebubble</span>
-                </a>
-              
-                <a href="https://twitter.com/BubbleInvest" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter" data-handle="@BubbleInvest">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4l16 16M4 20L20 4"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.twitter">@BubbleInvest</span>
-                </a></div>
-            </div>
-          </nav>
-        </div>
+        </nav>
       </div>
-    </footer>
+    </div>
+  </footer>
 
-    <!-- Scripts -->
-    <script src="/i18n/translations.js"></script>
-    <script src="/js/script.js"></script>
-    <script src="/js/chatbot-logic.js"></script>
-    <script src="/js/chatbot-animations.js"></script>
-    <script src="/js/chat-side-panel.js"></script>
-    <script src="/js/floating-chat-input.js"></script>
-    <script src="/js/animations.js"></script>
-    <script src="/js/professional-demo-analytics.js"></script>
+  <!-- Scripts -->
+  <script src="/i18n/translations.js"></script>
+  <script src="/js/script.js"></script>
+  <script src="/js/chatbot-logic.js"></script>
+  <script src="/js/chatbot-animations.js"></script>
+  <script src="/js/chat-side-panel.js"></script>
+  <script src="/js/floating-chat-input.js"></script>
+  <script src="/js/animations.js"></script>
+  <script src="/js/professional-demo-analytics.js"></script>
 
-<script src="../js/seo/ga4-events.js"></script>
+  <script src="../js/seo/ga4-events.js"></script>
 
   <!-- Cookie Consent (Tarteaucitron) - MUST load before other scripts -->
   <link rel="stylesheet" href="/assets/styles/cookie-banner.css">
-    <script src="/js/seo/cookie-banner.js"></script>
+  <script src="/js/seo/cookie-banner.js"></script>
 </body>
+
 </html>
