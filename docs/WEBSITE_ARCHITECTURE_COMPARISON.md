@@ -48,12 +48,18 @@
 │                         NOUVELLE ARCHITECTURE                           │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
-│  🏠 ACCUEIL (Marketing unifié)                                         │
+│  🏠 ACCUEIL (Marketing unifié B2C/B2B)                                  │
 │  ├── /index.html              ← 🔄 RÉUTILISÉ (structure conservée)     │
-│  │                              + Nouveau copy                         │
+│  │                              + Nouveau copy B2C (CSP+ tech/finance) │
+│  │                              + Teaser B2B en bas de page             │
 │  │                              + Sections Selfware & Différenciation  │
-│  └── /demo (ou /playground)   ← 🔄 RÉUTILISÉ (ex-playground.html)      │
+│  │                                                                      │
+│  ├── /tarifs (ou /pricing)    ← 🔄 RÉUTILISÉ (ex-/investors/pricing)   │
+│  │                              Simplifié : 3 tiers B2C + B2B sur devis │
+│  │                                                                      │
+│  └── /demo (ou /playground)   ← 🔄 RÉUTILISÉ (ex-/investors/playground)│
 │                                 Repositionné comme "Démo" secondaire   │
+│                                 Accès direct à l'interface unifiée     │
 │                                                                         │
 │  💼 SOLUTIONS B2B (Priorisé)                                            │
 │  └── /solutions (ou /professionals) ← 🔄 FUSION 3 pages → 1            │
@@ -121,7 +127,22 @@
 
 ---
 
-### 3. PAGE B2B — `/solutions`
+### 3. PAGE TARIFS B2C — `/tarifs` ou `/pricing`
+
+| Aspect | Ancien | Nouveau | Action |
+|--------|--------|---------|--------|
+| **Source** | `/investors/pricing.html` | `/tarifs.html` (ou `/pricing.html`) | 🔄 Déplacer à la racine |
+| **Position** | Dans section Investors | Menu Produit → Tarifs | 📍 Repositionner |
+| **Contenu** | 3-4 tiers B2C | Simplifié : Découverte/Investisseur/Pro + B2B sur devis | 📝 Réécrire |
+| **Réutilisation** | Table/toggle existant | Même structure | ✅ 80% conservé |
+
+**Pages à modifier :**
+- `/src/frontend/pages/investors/pricing.html` → déplacer ou recréer à la racine
+- `/src/frontend/pages/en/investors/pricing.html` → version EN
+
+---
+
+### 4. PAGE B2B — `/solutions`
 
 | Aspect | Ancien | Nouveau | Action |
 |--------|--------|---------|--------|
@@ -137,7 +158,7 @@
 
 ---
 
-### 4. PAGE SIMULATEUR — `/portfolio-simulator`
+### 5. PAGE SIMULATEUR — `/portfolio-simulator`
 
 | Aspect | Ancien | Nouveau | Action |
 |--------|--------|---------|--------|
@@ -152,7 +173,7 @@
 
 ---
 
-### 5. PAGE MISSION — `/mission` ⭐ NOUVELLE
+### 6. PAGE MISSION — `/mission` ⭐ NOUVELLE
 
 | Aspect | Ancien | Nouveau | Action |
 |--------|--------|---------|--------|
@@ -166,13 +187,55 @@
 
 ---
 
-### 6. BLOG — `/blog`
+### 7. BLOG — `/blog`
 
 | Aspect | Ancien | Nouveau | Action |
 |--------|--------|---------|--------|
 | **Structure** | Liste d'articles | Identique | ✅ Aucun changement |
 | **Contenu** | Général | "Build in Public" focus | 📝 Métadonnées seulement |
 | **Réutilisation** | 100% | — | ✅ Inchangé |
+
+---
+
+## 📋 Récapitulatif : Pages B2C (Particuliers)
+
+### B2C dans l'Ancienne Architecture
+```
+/investors/
+├── /index.html          ← Solution B2C (longue, détaillée)
+├── /pricing.html        ← Tarifs B2C
+├── /education.html      ← Centre éducatif
+└── /playground/         ← Découverte profil
+```
+
+**Problèmes :**
+- Section Investors séparée = confusion
+- Education et Playground trop visibles = positionnement débutant
+- Parcours dispersé sur 4 pages
+
+### B2C dans la Nouvelle Architecture
+```
+/
+├── /index.html          ← 🔄 Homepage unifiée (B2C principal + teaser B2B)
+├── /tarifs              ← 🔄 Tarifs B2C simplifiés (3 tiers)
+├── /demo                ← 🔄 Ex-Playground, repositionné
+└── /portfolio-simulator ← 🔄 Déplacé dans Ressources
+```
+
+**Avantages :**
+- Homepage unique = message cohérent
+- Parcours B2C simplifié : Homepage → Tarifs → Démo → Waitlist
+- Moins de friction, plus de focus sur l'investisseur averti
+
+### Mapping B2C Détaillé
+
+| Page Ancienne | Page Nouvelle | Changement |
+|---------------|---------------|------------|
+| `/investors/index.html` | `/index.html` (sections) | Fusionné dans homepage |
+| `/investors/pricing.html` | `/tarifs.html` | Déplacé à racine, simplifié |
+| `/investors/playground/` | `/demo` ou `/playground` | Renommé, repositionné |
+| `/investors/education.html` | Supprimée / Intégrée blog | Contenu dans blog |
+| `/portfolio-simulator.html` | `/ressources/simulateur` | Menu secondaire |
 
 ---
 
