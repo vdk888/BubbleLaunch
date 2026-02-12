@@ -20,7 +20,7 @@
 - **Landing Page** - Hero section, vision statements, product overview
 - **Portfolio Simulator** - Educational demo with 9 strategies, charts, metrics (not the real product)
 - **Blog** - Articles on investment strategies, AI, quantitative finance
-- **Businesses Page** - B2B consulting services (€3k-€30k AI automation projects)
+- **Businesses Page** - B2B consulting services (AI automation projects on quote)
 - **Waitlist** - Email capture for early adopters
 - **AI Chatbot** - Educational chatbot answering questions about Bubble's philosophy and products
 

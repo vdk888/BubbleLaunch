@@ -7681,9 +7681,9 @@ footer .container {
 
 .dual-path-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  max-width: 1000px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -7827,7 +7827,7 @@ html[lang="fr"] .superpower-panel h2 {
 }
 
 .card-title {
-  font-size: 1.5rem;
+  font-size: 1.35rem; /* Slightly smaller to fit 3 cols */
   font-weight: 700;
   margin-bottom: 1rem;
   color: #000;
@@ -7835,7 +7835,7 @@ html[lang="fr"] .superpower-panel h2 {
 }
 
 .card-description {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #555;
   line-height: 1.6;
   margin-bottom: 2rem;
@@ -7983,6 +7983,10 @@ html[lang="fr"] .superpower-panel h2 {
   animation: slideUpFade 0.6s ease-out 0.2s both;
 }
 
+.dual-path-selector .dual-path-card:nth-child(3) {
+  animation: slideUpFade 0.6s ease-out 0.3s both;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .dual-path-selector {
@@ -8009,6 +8013,7 @@ html[lang="fr"] .superpower-panel h2 {
     padding: 2rem 1.5rem;
     border-radius: 20px;
   }
+
 
   .card-icon {
     width: 56px;

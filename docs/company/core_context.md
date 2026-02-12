@@ -10,7 +10,7 @@ Bubble Invest democratizes intelligent investing through AI empowerment. We beli
 
 ## What We Offer
 - **Bubble Portfolio**: Conversational AI agent for portfolio management (screening → backtesting → allocation → execution)
-- **Bubble Businesses**: B2B consulting for SMEs and wealth managers (€3k-€30k projects for AI workflow automation)
+- **Bubble Businesses**: B2B consulting for SMEs and wealth managers (projects on quote for AI workflow automation)
 
 ## Key Differentiators vs Traditional Robo-Advisors
 - **AI empowerment, not asset management**: Users make decisions, AI provides insights (not custody model)

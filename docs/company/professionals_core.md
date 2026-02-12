@@ -10,15 +10,15 @@ Bubble Businesses delivers pragmatic AI workflow automation for SMEs and wealth 
 - Client Intelligence: Automated portfolio analysis and insights for wealth managers
 
 ## Our Approach
-- Transparent Budgets: Fixed-price sprints (€3k-€30k), no hidden costs
+- Transparent Budgets: Budgets fixes sur devis, pas de coûts cachés
 - Fast Delivery: 2-4 months typical project timeline
 - Real AI Tools: Claude Code, Codex, Gemini API integrations (not generic low-code)
 - Regulatory-Aware: GDPR, KYC compliance built-in for wealth managers
 
 ## Pricing Tiers
-- Diagnostic (€3k-€5k): 2-week assessment, opportunity mapping, ROI calculator
-- Targeted Automation (€8k-€12k): Single workflow (e.g., client reporting), 1 month delivery
-- Full Project (€20k-€30k): Multi-workflow system (e.g., portfolio management suite), 3-4 months
+- Diagnostic (sur devis): 2-week assessment, opportunity mapping, ROI calculator
+- Targeted Automation (sur devis): Single workflow (e.g., client reporting), 1 month delivery
+- Full Project (sur devis): Multi-workflow system (e.g., portfolio management suite), 3-4 months
 
 ## Ideal Clients
 - CGPs managing 50-500 client portfolios (need client intelligence automation)

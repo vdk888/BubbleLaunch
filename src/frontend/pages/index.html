@@ -1,800 +1,821 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO Meta Tags -->
-    <title>Bubble - Agent IA Conversationnel | Gestion Portefeuille Automatisée | L'investissement pour tous</title>
-    <meta name="description" content="Bubble : l'agent IA conversationnel qui construit votre portefeuille pour vous. Screening, backtesting, exécution automatisée—directement dans ChatGPT ou notre app. 0-10€/mois au lieu de 2% de frais sur encours.">
-    <meta name="keywords" content="agent IA investissement, ChatGPT portfolio, gestion automatisée, screening actions, backtesting stratégies, frais fixes investissement, alternative robo-advisor, portfolio quantitatif, ETF automatisé">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://bubbleinvest.org/">
-    <meta property="og:title" content="Bubble - Agent IA pour Gestion Portefeuille Automatisée">
-    <meta property="og:description" content="L'agent IA conversationnel qui construit votre portefeuille pour vous. Screening, backtesting, exécution automatisée. 0-10€/mois au lieu de 2% de frais sur encours.">
-    <meta property="og:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:locale:alternate" content="en_US">
+  <!-- SEO Meta Tags -->
+  <title>Bubble - Agent IA Conversationnel | Gestion Portefeuille Automatisée | L'investissement pour tous</title>
+  <meta name="description"
+    content="Bubble : l'agent IA conversationnel qui construit votre portefeuille pour vous. Screening, backtesting, exécution automatisée—directement dans ChatGPT ou notre app. 0-10€/mois au lieu de 2% de frais sur encours.">
+  <meta name="keywords"
+    content="agent IA investissement, ChatGPT portfolio, gestion automatisée, screening actions, backtesting stratégies, frais fixes investissement, alternative robo-advisor, portfolio quantitatif, ETF automatisé">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://bubbleinvest.org/">
-    <meta name="twitter:title" content="Bubble - Agent IA pour Gestion Portefeuille Automatisée">
-    <meta name="twitter:description" content="L'agent IA conversationnel qui construit votre portefeuille pour vous. Screening, backtesting, exécution automatisée. 0-10€/mois au lieu de 2% de frais sur encours.">
-    <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bubbleinvest.org/">
+  <meta property="og:title" content="Bubble - Agent IA pour Gestion Portefeuille Automatisée">
+  <meta property="og:description"
+    content="L'agent IA conversationnel qui construit votre portefeuille pour vous. Screening, backtesting, exécution automatisée. 0-10€/mois au lieu de 2% de frais sur encours.">
+  <meta property="og:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://bubbleinvest.org/">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://bubbleinvest.org/">
+  <meta name="twitter:title" content="Bubble - Agent IA pour Gestion Portefeuille Automatisée">
+  <meta name="twitter:description"
+    content="L'agent IA conversationnel qui construit votre portefeuille pour vous. Screening, backtesting, exécution automatisée. 0-10€/mois au lieu de 2% de frais sur encours.">
+  <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg">
 
-    <!-- Robots -->
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://bubbleinvest.org/">
 
-    <!-- Language Alternates (Bilingual Support) -->
-    <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/">
-    <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/">
-    <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/">
+  <!-- Robots -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="assets/images/bubble-favicon.svg" />
+  <!-- Language Alternates (Bilingual Support) -->
+  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/">
+  <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/">
+  <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/">
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="assets/styles/styles.css" />
-    <link rel="stylesheet" href="assets/styles/knowledge-overlay.css" />
-    <link rel="stylesheet" href="assets/styles/pricing-workflow-demo.css" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/bubble-favicon.svg" />
 
-    <!-- Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/styles/styles.css" />
+  <link rel="stylesheet" href="assets/styles/knowledge-overlay.css" />
+  <link rel="stylesheet" href="assets/styles/pricing-workflow-demo.css" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  
-  // Consent mode for EEA users (GDPR)
-  gtag('consent', 'default', {
-    'analytics_storage': 'denied',
-    'ad_storage': 'denied'
-  });
-  
-  gtag('config', 'G-T0MQEL0ZG0', {
-    'anonymize_ip': true
-  });
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-T0MQEL0ZG0', {
-    'cookie_flags': 'SameSite=None;Secure',
-    'anonymize_ip': true
-  });
-</script>
-</head>
-  <body>
-    <!-- Workflow Demo Overlay -->
-    <div id="workflow-demo-overlay" class="workflow-demo-overlay hidden">
-      <!-- Close Button (Always Visible) -->
-      <button class="workflow-demo-close" id="workflow-demo-close" aria-label="Close demo">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 6L6 18M6 6L18 18" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </button>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      <!-- Scrollable Chat Container -->
-      <div class="workflow-demo-chat-container">
-        <div class="workflow-demo-chat-header">
-          <div class="workflow-demo-header-row">
-            <div class="workflow-demo-header-info">
-              <img src="/assets/images/bubble-favicon.svg" class="workflow-demo-icon" alt="Bubble" width="28" height="28" />
-              <div class="workflow-demo-titles">
-                <span class="workflow-demo-title">Bubble AI Agent</span>
-                <span class="workflow-demo-subtitle">Interactive Demo</span>
-              </div>
+    // Consent mode for EEA users (GDPR)
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied'
+    });
+
+    gtag('config', 'G-T0MQEL0ZG0', {
+      'anonymize_ip': true
+    });
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-T0MQEL0ZG0', {
+      'cookie_flags': 'SameSite=None;Secure',
+      'anonymize_ip': true
+    });
+  </script>
+</head>
+
+<body>
+  <!-- Workflow Demo Overlay -->
+  <div id="workflow-demo-overlay" class="workflow-demo-overlay hidden">
+    <!-- Close Button (Always Visible) -->
+    <button class="workflow-demo-close" id="workflow-demo-close" aria-label="Close demo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6L18 18" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
+    <!-- Scrollable Chat Container -->
+    <div class="workflow-demo-chat-container">
+      <div class="workflow-demo-chat-header">
+        <div class="workflow-demo-header-row">
+          <div class="workflow-demo-header-info">
+            <img src="/assets/images/bubble-favicon.svg" class="workflow-demo-icon" alt="Bubble" width="28"
+              height="28" />
+            <div class="workflow-demo-titles">
+              <span class="workflow-demo-title">Bubble AI Agent</span>
+              <span class="workflow-demo-subtitle">Interactive Demo</span>
             </div>
-            <div class="workflow-demo-header-actions">
-              <div class="workflow-demo-controls" role="group" aria-label="Demo controls">
-                <button class="workflow-demo-control-btn workflow-demo-speed-toggle" id="demo-speed-toggle" type="button" aria-label="Playback speed">1x</button>
-                <button class="workflow-demo-control-btn workflow-demo-pause-toggle" id="demo-pause-toggle" type="button" aria-label="Pause">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <line x1="9" y1="6" x2="9" y2="18"></line>
-                    <line x1="15" y1="6" x2="15" y2="18"></line>
-                  </svg>
-                </button>
-                <button class="workflow-demo-control-btn workflow-demo-skip-toggle" id="demo-skip-toggle" data-demo-action="skip" type="button" aria-label="Skip">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M5 12h10"></path>
-                    <path d="M13 6l6 6-6 6"></path>
-                  </svg>
-                </button>
-              </div>
-              <button class="workflow-demo-lang-toggle" id="demo-lang-toggle" type="button" aria-label="Switch language">
-                <span class="lang-current">FR</span>
+          </div>
+          <div class="workflow-demo-header-actions">
+            <div class="workflow-demo-controls" role="group" aria-label="Demo controls">
+              <button class="workflow-demo-control-btn workflow-demo-speed-toggle" id="demo-speed-toggle" type="button"
+                aria-label="Playback speed">1x</button>
+              <button class="workflow-demo-control-btn workflow-demo-pause-toggle" id="demo-pause-toggle" type="button"
+                aria-label="Pause">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  aria-hidden="true">
+                  <line x1="9" y1="6" x2="9" y2="18"></line>
+                  <line x1="15" y1="6" x2="15" y2="18"></line>
+                </svg>
+              </button>
+              <button class="workflow-demo-control-btn workflow-demo-skip-toggle" id="demo-skip-toggle"
+                data-demo-action="skip" type="button" aria-label="Skip">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  aria-hidden="true">
+                  <path d="M5 12h10"></path>
+                  <path d="M13 6l6 6-6 6"></path>
+                </svg>
               </button>
             </div>
-
-
-
-          </div>
-          <div class="workflow-demo-progress">
-            <span id="workflow-demo-progress-label" class="workflow-demo-progress-label">0%</span>
-            <div id="workflow-demo-progress-track" class="workflow-demo-progress-track">
-              <div id="workflow-demo-progress-fill" class="workflow-demo-progress-fill" style="width: 0%;"></div>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- Scrollable Messages Area -->
-        <div class="workflow-demo-messages" id="workflow-demo-messages" role="log" aria-live="polite">
-          <!-- Messages will be dynamically inserted here -->
-        </div>
-
-        <!-- Input Field -->
-        <div class="workflow-demo-input-container">
-          <textarea class="workflow-demo-input-field" placeholder="" readonly></textarea>
-          <button class="workflow-demo-send-button" aria-label="Send">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M12 21V4" stroke-linecap="round" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Knowledge Question Overlay -->
-    <div id="knowledge-overlay" class="knowledge-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="knowledge-title">
-      <div class="knowledge-overlay-card">
-        <button class="knowledge-close-button" type="button" aria-label="Fermer la question">✕</button>
-        <h2 id="knowledge-title" class="knowledge-title" data-translate="knowledgeOverlay.question">
-          Quel est votre niveau d'expérience en investissement?
-        </h2>
-        <p class="knowledge-subtitle" data-translate="knowledgeOverlay.subtitle">
-          Choisissez l'expérience qui vous convient.
-        </p>
-
-        <div class="knowledge-options">
-          <button class="knowledge-option beginner-option" data-level="beginner" role="button" aria-pressed="false">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 3v18M3 12h18" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <div class="option-content">
-              <span class="option-title" data-translate="knowledgeOverlay.beginner">Débutant</span>
-              <span class="option-description" data-translate="knowledgeOverlay.beginnerDesc">Je suis nouveau</span>
-            </div>
-          </button>
-
-          <button class="knowledge-option intermediate-option active" data-level="intermediate" role="button" aria-pressed="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-              <polyline points="17 6 23 6 23 12"></polyline>
-            </svg>
-            <div class="option-content">
-              <span class="option-title" data-translate="knowledgeOverlay.intermediate">Intermédiaire</span>
-              <span class="option-description" data-translate="knowledgeOverlay.intermediateDesc">J'ai de l'expérience</span>
-            </div>
-          </button>
-
-          <button class="knowledge-option expert-option" data-level="expert" role="button" aria-pressed="false">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <div class="option-content">
-              <span class="option-title" data-translate="knowledgeOverlay.expert">Expert</span>
-              <span class="option-description" data-translate="knowledgeOverlay.expertDesc">Je maîtrise déjà</span>
-            </div>
-          </button>
-        </div>
-
-        <div class="knowledge-fallback">
-          <button class="knowledge-fallback-link" data-translate="knowledgeOverlay.fallback">
-            Pas sûr ? Montrez-moi un exemple
-          </button>
-        </div>
-      </div>
-    </div>
-    <header>
-      <div class="container">
-        <div class="brand">
-          <a href="/" class="logo-link">
-            <div
-              class="logo"
-              style="display: flex; align-items: center; gap: 0.18em"
-            >
-              <span style="display: flex; align-items: center"
-                ><svg
-                  width="36"
-                  height="36"
-                  viewBox="0 0 72 72"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style="display: inline-block; vertical-align: middle"
-                >
-                  <circle
-                    cx="36"
-                    cy="41"
-                    r="26"
-                    stroke="#000"
-                    stroke-width="6"
-                    stroke-linecap="round"
-                    stroke-dasharray="145 29"
-                    stroke-dashoffset="10"
-                  />
-                  <circle cx="59" cy="21" r="6" fill="#000" /></svg></span
-              ><span>Bubble.</span>
-            </div>
-          </a>
-          <div class="tagline" data-translate="hero.tagline">
-            L'agent d'investissement transparent.
-          </div>
-        </div>
-        <div class="header-right">
-          <!-- Hamburger Menu Button (Mobile Only) -->
-          <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-          </button>
-          
-          <!-- Desktop Navigation -->
-          <nav class="desktop-nav">
-            <a href="/investors" data-translate="nav.investors">Investisseurs</a>
-            <a href="/professionals" data-translate="nav.professionals">Professionnels</a>
-            <a href="/blog" data-translate="nav.blog">Blog</a>
-            <a href="/investors#investor-waitlist" data-translate="nav.join">Nous rejoindre</a>
-            <div class="language-switcher">
-              <button id="en-switch">EN</button>
-              <span>|</span>
-              <button id="fr-switch" class="active">FR</button>
-            </div>
-          </nav>
-
-          <!-- Mobile Language Switcher -->
-          <div class="mobile-language-switcher">
-            <button id="en-switch-mobile">EN</button>
-            <span>|</span>
-            <button id="fr-switch-mobile" class="active">FR</button>
-          </div>
-        </div>
-
-        <!-- Mobile Navigation Overlay -->
-        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
-          <nav class="mobile-nav">
-            <a href="/investors" data-translate="nav.investors">Investisseurs</a>
-            <a href="/professionals" data-translate="nav.professionals">Professionnels</a>
-            <a href="/blog" data-translate="nav.blog">Blog</a>
-            <a href="/investors#investor-waitlist" data-translate="nav.join">Nous rejoindre</a>
-          </nav>
-        </div>
-      </div>
-    </header>
-
-    <section class="hero fade-in">
-      <div class="container">
-        <h1 class="hero-title">
-          <img
-            src="assets/images/bubble-logo-single.svg"
-            alt="Bubble - Agent d'investissement IA transparent avec insights intelligents et allocation automatisée"
-            class="hero-logo"
-          />
-          <span data-translate="hero.title">Bubble.</span>
-        </h1>
-        <p class="hero-tagline" data-translate="hero.tagline">
-          L'agent d'investissement transparent.
-        </p>
-        <p class="hero-subtitle" data-translate="hero.subtitle">
-          Dans un monde où l'IA transforme l'accès à l'expertise financière,
-          nous créons l'outil d'investissement intelligent que nous voulions
-          pour nous-mêmes : transparent, automatique, et accessible.
-        </p>
-
-        <!-- Hero Chat Input -->
-        <form class="hero-chat-form" id="hero-chat-form">
-          <textarea
-            class="hero-chat-input"
-            rows="2"
-            placeholder="Qu'est-ce que tu aimerais savoir sur Bubble ?"
-            data-translate-placeholder="chat.placeholder"
-            aria-label="Posez votre question"
-            autocomplete="off"
-          ></textarea>
-          <button type="submit" class="hero-chat-submit" aria-label="Envoyer">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M12 21V4" stroke-linecap="round" />
-            </svg>
-          </button>
-        </form>
-
-        <div class="hero-actions">
-          <button
-            type="button"
-            class="cta-button hero-demo-cta js-retail-demo-trigger"
-            data-entry-point="hero_demo_cta"
-            data-translate="hero.demo.cta"
-          >
-            Voir la démo
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Dual-Path Selector Section -->
-    <section class="dual-path-selector fade-in">
-      <div class="container">
-        <div class="dual-path-cards">
-          <!-- Retail Investors Card -->
-          <div class="dual-path-card retail-card">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                <polyline points="17 6 23 6 23 12"></polyline>
-              </svg>
-            </div>
-            <h3 class="card-title" data-translate="dualPath.retail.mainTitle">Outil d'Investissement Intelligent</h3>
-            <p class="card-description" data-translate="dualPath.retail.description">Décisions transparentes, automatisation intelligente, frais justes.</p>
-            <ul class="card-features">
-              <li data-translate="dualPath.retail.feature1">Agent IA conversationnel</li>
-              <li data-translate="dualPath.retail.feature2">Screening, backtesting, exécution</li>
-              <li data-translate="dualPath.retail.feature3">0-10€/mois au lieu de 2% de frais</li>
-            </ul>
-            <button class="cta-button retail-demo-btn" data-entry-point="homepage_dual_path" data-translate="dualPath.retail.cta">Commencer</button>
-          </div>
-
-          <!-- Professional Card -->
-          <div class="dual-path-card professional-card">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="7" height="7"></rect>
-                <rect x="14" y="3" width="7" height="7"></rect>
-                <rect x="14" y="14" width="7" height="7"></rect>
-                <rect x="3" y="14" width="7" height="7"></rect>
-              </svg>
-            </div>
-            <h3 class="card-title" data-translate="dualPath.professional.mainTitle">Solutions pour Entreprises</h3>
-            <p class="card-description" data-translate="dualPath.professional.description">Automatisation IA pour le secteur financier. API, intégration, compliance.</p>
-            <ul class="card-features">
-              <li data-translate="dualPath.professional.feature1">Agents IA personnalisés</li>
-              <li data-translate="dualPath.professional.feature2">Intégration API simple</li>
-              <li data-translate="dualPath.professional.feature3">€3k-€30k par projet</li>
-            </ul>
-            <a href="/professionals" class="cta-button professional-btn gray-btn" data-translate="dualPath.professional.cta">Découvrir</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="superpower-highlight fade-in">
-      <div class="container">
-        <div class="superpower-panel">
-          <h2>Les super-pouvoirs des hedge funds, maintenant dans votre poche</h2>
-          <div class="hero-cta-group" style="margin-top: 1.5rem;">
-            <button
-              type="button"
-              class="cta-button primary-btn js-retail-demo-trigger"
-              data-entry-point="superpower_demo"
-              data-translate="hero.demo.cta"
-            >
-              Voir la démo
+            <button class="workflow-demo-lang-toggle" id="demo-lang-toggle" type="button" aria-label="Switch language">
+              <span class="lang-current">FR</span>
             </button>
-            <a
-              href="/investors/playground"
-              class="cta-button playground-btn"
-              data-translate="hero.cta.playground"
-            >
-              Explorer le Playground
-            </a>
+          </div>
+
+
+
+        </div>
+        <div class="workflow-demo-progress">
+          <span id="workflow-demo-progress-label" class="workflow-demo-progress-label">0%</span>
+          <div id="workflow-demo-progress-track" class="workflow-demo-progress-track">
+            <div id="workflow-demo-progress-fill" class="workflow-demo-progress-fill" style="width: 0%;"></div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Blog Preview Section -->
-    <section id="blog-preview" class="blog-preview fade-in">
-      <div class="container">
-        <div class="section-header">
-          <h2 data-translate="blogPreview.title">Dans les Coulisses</h2>
-          <p class="section-subtitle" data-translate="blogPreview.subtitle">
-            Explorez nos analyses sur l'IA, l'investissement et la finance quantitative
-          </p>
-        </div>
 
-        <div class="blog-tiles-grid" id="blog-preview-grid">
-          <!-- Will be populated by JavaScript -->
-          <div class="blog-preview-loading">
-            <div class="loading-animation">
-              <div class="loading-bubble"></div>
-              <div class="loading-bubble"></div>
-              <div class="loading-bubble"></div>
-            </div>
-            <p data-translate="blogPreview.loading">Chargement des articles...</p>
+      <!-- Scrollable Messages Area -->
+      <div class="workflow-demo-messages" id="workflow-demo-messages" role="log" aria-live="polite">
+        <!-- Messages will be dynamically inserted here -->
+      </div>
+
+      <!-- Input Field -->
+      <div class="workflow-demo-input-container">
+        <textarea class="workflow-demo-input-field" placeholder="" readonly></textarea>
+        <button class="workflow-demo-send-button" aria-label="Send">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21V4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Knowledge Question Overlay -->
+  <div id="knowledge-overlay" class="knowledge-overlay hidden" role="dialog" aria-modal="true"
+    aria-labelledby="knowledge-title">
+    <div class="knowledge-overlay-card">
+      <button class="knowledge-close-button" type="button" aria-label="Fermer la question">✕</button>
+      <h2 id="knowledge-title" class="knowledge-title" data-translate="knowledgeOverlay.question">
+        Quel est votre niveau d'expérience en investissement?
+      </h2>
+      <p class="knowledge-subtitle" data-translate="knowledgeOverlay.subtitle">
+        Choisissez l'expérience qui vous convient.
+      </p>
+
+      <div class="knowledge-options">
+        <button class="knowledge-option beginner-option" data-level="beginner" role="button" aria-pressed="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 3v18M3 12h18" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <div class="option-content">
+            <span class="option-title" data-translate="knowledgeOverlay.beginner">Débutant</span>
+            <span class="option-description" data-translate="knowledgeOverlay.beginnerDesc">Je suis nouveau</span>
           </div>
-        </div>
+        </button>
 
-        <div class="blog-cta">
-          <a href="/blog" class="cta-link" data-translate="blogPreview.viewAll">
-            Voir tous les articles →
-          </a>
+        <button class="knowledge-option intermediate-option active" data-level="intermediate" role="button"
+          aria-pressed="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+            <polyline points="17 6 23 6 23 12"></polyline>
+          </svg>
+          <div class="option-content">
+            <span class="option-title" data-translate="knowledgeOverlay.intermediate">Intermédiaire</span>
+            <span class="option-description" data-translate="knowledgeOverlay.intermediateDesc">J'ai de
+              l'expérience</span>
+          </div>
+        </button>
+
+        <button class="knowledge-option expert-option" data-level="expert" role="button" aria-pressed="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <div class="option-content">
+            <span class="option-title" data-translate="knowledgeOverlay.expert">Expert</span>
+            <span class="option-description" data-translate="knowledgeOverlay.expertDesc">Je maîtrise déjà</span>
+          </div>
+        </button>
+      </div>
+
+      <div class="knowledge-fallback">
+        <button class="knowledge-fallback-link" data-translate="knowledgeOverlay.fallback">
+          Pas sûr ? Montrez-moi un exemple
+        </button>
+      </div>
+    </div>
+  </div>
+  <header>
+    <div class="container">
+      <div class="brand">
+        <a href="/" class="logo-link">
+          <div class="logo" style="display: flex; align-items: center; gap: 0.18em">
+            <span style="display: flex; align-items: center"><svg width="36" height="36" viewBox="0 0 72 72" fill="none"
+                xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
+                <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round"
+                  stroke-dasharray="145 29" stroke-dashoffset="10" />
+                <circle cx="59" cy="21" r="6" fill="#000" />
+              </svg></span><span>Bubble.</span>
+          </div>
+        </a>
+        <div class="tagline" data-translate="hero.tagline">
+          L'agent d'investissement transparent.
         </div>
       </div>
-    </section>
+      <div class="header-right">
+        <!-- Hamburger Menu Button (Mobile Only) -->
+        <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
 
-    <!-- Approach Section -->
-    <section id="approach" class="approach fade-in">
-      <div class="container">
-        <h2 data-translate="approach.title">Notre Approche</h2>
-        <div class="approach-grid">
-          <div class="approach-item">
-            <div class="approach-number"><span>1</span></div>
-            <div class="approach-content">
-              <h3 data-translate="approach.automate.title">Automatiser</h3>
-              <p data-translate="approach.automate.description">
-                Nous reproduisons le travail quotidien d'un gérant de portefeuille—suivi des marchés, mises à jour des données et recalculs d'allocations—via des algorithmes simples et transparents qui montrent comment l'IA remplace désormais cette exécution manuelle.
-              </p>
-            </div>
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+          <a href="/investors" data-translate="nav.investors">Investisseurs</a>
+          <a href="/professionals" data-translate="nav.professionals">Professionnels</a>
+          <a href="/blog" data-translate="nav.blog">Blog</a>
+          <a href="/investors#investor-waitlist" data-translate="nav.join">Nous rejoindre</a>
+          <div class="language-switcher">
+            <button id="en-switch">EN</button>
+            <span>|</span>
+            <button id="fr-switch" class="active">FR</button>
           </div>
-          <div class="approach-item">
-            <div class="approach-number"><span>2</span></div>
-            <div class="approach-content">
-              <h3 data-translate="approach.clarify.title">Clarifier</h3>
-              <p data-translate="approach.clarify.description">
-                Toutes nos stratégies sont visibles et explicables. Nos frais
-                sont fixes et prévisibles. Pas de zones d'ombre.
-              </p>
-            </div>
-          </div>
-          <div class="approach-item">
-            <div class="approach-number"><span>3</span></div>
-            <div class="approach-content">
-              <h3 data-translate="approach.share.title">Partager</h3>
-              <p data-translate="approach.share.description">
-                Parce que l'IA rend désormais l'expertise accessible à tous,
-                nous saisissons cette fenêtre historique  pour construire un modèle où ce
-                gain d'efficacité vous redonne ce qui était
-                historiquement capté par des intermédiaires coûteux.
-              </p>
-            </div>
-          </div>
-          <div class="approach-item">
-            <div class="approach-number"><span>4</span></div>
-            <div class="approach-content">
-              <h3 data-translate="approach.educate.title">Éduquer</h3>
-              <p data-translate="approach.educate.description">
-                Notre IA explique les concepts financiers simplement et vous
-                aide à comprendre la performance de votre portefeuille en temps
-                réel.
-              </p>
-            </div>
-          </div>
-        </div>
+        </nav>
 
-        <div class="philosophy-box">
-          <p data-translate="approach.philosophy">
-            Notre objectif n'est pas de prétendre battre le marché, mais
-            d'optimiser votre portefeuille selon vos objectifs, avec
-            transparence et à moindre coût.
-          </p>
+        <!-- Mobile Language Switcher -->
+        <div class="mobile-language-switcher">
+          <button id="en-switch-mobile">EN</button>
+          <span>|</span>
+          <button id="fr-switch-mobile" class="active">FR</button>
         </div>
       </div>
-    </section>
 
-    <!-- Waitlist CTA Section -->
-    <section id="waitlist" class="waitlist-cta fade-in">
-      <div class="container">
-        <div class="waitlist-grid">
-          <div class="waitlist-copy">
-            <h2 data-translate="waitlist.title">Construisons l'Avenir Ensemble</h2>
-            <p class="waitlist-subtitle" data-translate="waitlist.subtitle">
-              Nous partageons avec vous cet agent IA que nous utilisons pour nos propres portefeuilles. Si vous n'êtes pas satisfaits de vos services financiers traditionnels et voulez saisir cette opportunité historique - rejoignez nos early adopters.
-            </p>
-            <p class="waitlist-free-text" data-translate="waitlist.free">
-              Rejoindre notre liste d'attente est entièrement gratuit et sans engagement. Nous cherchons simplement à rencontrer des personnes qui partagent notre vision de l'investissement pour tous.
-            </p>
-          </div>
-          <div class="waitlist-form-wrapper">
-            <div class="form-container">
-              <h3 data-translate="investors.joinus.form.title">Accès Anticipé</h3>
-              <form id="waitlist-form">
-                <div class="form-group">
-                  <label for="name" data-translate="investors.joinus.form.name">Nom complet</label>
-                  <input type="text" id="name" name="name" required />
-                </div>
-
-                <div class="form-group">
-                  <label for="email" data-translate="investors.joinus.form.email">Adresse email</label>
-                  <input type="email" id="email" name="email" required />
-                </div>
-
-                <div class="form-group">
-                  <label for="profile" data-translate="investors.joinus.form.profile">Qui êtes-vous ?</label>
-                  <select id="profile" name="profile" required>
-                    <option value="" data-translate="investors.joinus.form.profile.placeholder">Sélectionnez votre profil</option>
-                    <option value="investor_beginner" data-translate="investors.joinus.form.profile.investor_beginner">Investisseur débutant</option>
-                    <option value="investor_experienced" data-translate="investors.joinus.form.profile.investor_experienced">Investisseur expérimenté</option>
-                    <option value="tech_professional" data-translate="investors.joinus.form.profile.tech_professional">Professionnel tech</option>
-                    <option value="finance_professional" data-translate="investors.joinus.form.profile.finance_professional">Professionnel finance</option>
-                    <option value="entrepreneur" data-translate="investors.joinus.form.profile.entrepreneur">Entrepreneur</option>
-                    <option value="student" data-translate="investors.joinus.form.profile.student">Étudiant</option>
-                    <option value="other" data-translate="investors.joinus.form.profile.other">Autre</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label for="comments" data-translate="investors.joinus.form.comments">Messages supplémentaires (optionnel)</label>
-                  <textarea id="comments" name="comments" rows="4"></textarea>
-                </div>
-
-                <button type="submit" class="cta-button primary-btn" data-translate="investors.joinus.form.button">
-                  M'inscrire
-                </button>
-              </form>
-
-              <!-- Newsletter Subscription -->
-              <div id="newsletter" class="newsletter-divider">
-                <span data-translate="newsletter.or">ou</span>
-              </div>
-              <div class="newsletter-section">
-                <h4 data-translate="newsletter.title">S'abonner à notre newsletter</h4>
-                <p class="newsletter-subtitle" data-translate="newsletter.subtitle">Recevez nos analyses et insights personnalisés</p>
-                <button type="button" class="newsletter-toggle-btn" id="newsletter-toggle">
-                  <svg class="newsletter-icon" width="18" height="18" viewBox="-5 -10 110 110" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="m10.102 20.551c1.5938-1.1641 3.5273-1.8008 5.5234-1.8008h68.75c1.9961 0 3.9297 0.63672 5.5234 1.8008l-38.074 27.41c-1.0898 0.78125-2.5586 0.78125-3.6484 0zm83.328 5.1523c0.21094 0.78516 0.32031 1.5977 0.32031 2.4219v43.75c0 2.4883-0.98828 4.8711-2.7461 6.6289-1.7578 1.7578-4.1406 2.7461-6.6289 2.7461h-68.75c-2.4883 0-4.8711-0.98828-6.6289-2.7461-1.7578-1.7578-2.7461-4.1406-2.7461-6.6289v-43.75c0-0.82422 0.10938-1.6367 0.32031-2.4219l37.953 27.328c3.2695 2.3555 7.6836 2.3555 10.953 0z" fill-rule="evenodd"/>
-                  </svg>
-                  <span data-translate="newsletter.button">Newsletter</span>
-                </button>
-                <form id="newsletter-form" class="newsletter-form hidden">
-                  <div class="form-group">
-                    <label for="newsletter-email" data-translate="newsletter.email">Email</label>
-                    <input type="email" id="newsletter-email" name="email" required />
-                  </div>
-                  <div class="form-group">
-                    <label for="newsletter-profession" data-translate="newsletter.profession">Votre profession</label>
-                    <select id="newsletter-profession" name="profession" required>
-                      <option value="" data-translate="newsletter.profession.placeholder">Sélectionnez votre profession</option>
-                      <option value="risk_manager" data-translate="newsletter.profession.risk_manager">Risk Manager</option>
-                      <option value="portfolio_manager" data-translate="newsletter.profession.portfolio_manager">Portfolio Manager</option>
-                      <option value="equity_research_analyst" data-translate="newsletter.profession.equity_research_analyst">Analyste Equity Research</option>
-                      <option value="other_investment_professional" data-translate="newsletter.profession.other_investment_professional">Autre professionnel de l'investissement</option>
-                      <option value="non_professional_investor" data-translate="newsletter.profession.non_professional_investor">Investisseur non professionnel</option>
-                      <option value="tech_professional" data-translate="newsletter.profession.tech_professional">Professionnel Tech</option>
-                      <option value="data_scientist" data-translate="newsletter.profession.data_scientist">Data Scientist</option>
-                      <option value="software_engineer" data-translate="newsletter.profession.software_engineer">Développeur / Ingénieur</option>
-                      <option value="other" data-translate="newsletter.profession.other">Autre</option>
-                    </select>
-                  </div>
-                  <button type="submit" class="cta-button secondary-btn" data-translate="newsletter.subscribe">
-                    S'abonner
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- Mobile Navigation Overlay -->
+      <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+        <nav class="mobile-nav">
+          <a href="/investors" data-translate="nav.investors">Investisseurs</a>
+          <a href="/professionals" data-translate="nav.professionals">Professionnels</a>
+          <a href="/blog" data-translate="nav.blog">Blog</a>
+          <a href="/investors#investor-waitlist" data-translate="nav.join">Nous rejoindre</a>
+        </nav>
       </div>
-    </section>
+    </div>
+  </header>
 
-    <footer>
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-left">
-            <div
-              class="footer-logo"
-              style="display: flex; align-items: center; gap: 0.18em"
-            >
-              <span style="display: flex; align-items: center"
-                ><svg
-                  width="30"
-                  height="30"
-                  viewBox="0 0 72 72"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style="display: inline-block; vertical-align: middle"
-                >
-                  <circle
-                    cx="36"
-                    cy="41"
-                    r="26"
-                    stroke="#000"
-                    stroke-width="6"
-                    stroke-linecap="round"
-                    stroke-dasharray="145 29"
-                    stroke-dashoffset="10"
-                  />
-                  <circle cx="59" cy="21" r="6" fill="#000" /></svg></span
-              ><span>Bubble.</span>
-            </div>
-            <div class="footer-tagline" data-translate="footer.tagline">
-              L'ère de l'IA change tout. Changeons avec elle.
-            </div>
-            <div class="footer-copyright" data-translate="footer.copyright">
-              © 2025 Bubble Invest SAS. Transparent by design.
-            </div>
-          </div>
+  <section class="hero fade-in">
+    <div class="container">
+      <h1 class="hero-title">
+        <img src="assets/images/bubble-logo-single.svg" alt="Bubble - Agent d'investissement IA transparent"
+          class="hero-logo" />
+        <span data-translate="hero.title">Bubble.</span>
+      </h1>
+      <p class="hero-tagline" data-translate="hero.tagline">
+        Investissement IA : Transparent by design.
+      </p>
+      <p class="hero-subtitle" data-translate="hero.subtitle">
+        Pionniers de l'implémentation IA en France. On construit l'outil qu'on voulait pour nous-mêmes : transparent,
+        automatique, et sans bullshit.
+      </p>
 
-          <nav class="footer-nav">
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.investors">Investisseurs</h4>
-              <ul>
-                <li><a href="/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
-                <li><a href="/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
-                <li><a href="/investors#faq" data-translate="footer.nav.investors.faq">FAQ</a></li>
-                <li><a href="/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Accès Anticipé</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.professionals">Professionnels</h4>
-              <ul>
-                <li><a href="/professionals/solutions-companies" data-translate="footer.nav.professionals.solutions">Solutions</a></li>
-                <li><a href="/professionals/solutions-wealth-managers" data-translate="footer.nav.professionals.demo">Gestionnaires de patrimoine</a></li>
-                <li><a href="/professionals#faq" data-translate="footer.nav.professionals.faq">FAQ</a></li>
-                <li><a href="/professionals#contact-form" data-translate="footer.nav.professionals.contact">Contact</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.resources">Ressources</h4>
-              <ul>
-                <li><a href="/blog" data-translate="footer.nav.blog">Blog</a></li>
-                <li><a href="/investors/playground" data-translate="footer.nav.resources.education">Playground</a></li>
-                <li><a href="/investors" class="js-retail-demo-trigger" data-entry-point="footer_resources_demo" data-translate="footer.nav.resources.demo">Démo</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.legal">Légal</h4>
-              <ul>
-                <li><a href="/mentions-legales" data-translate="footer.nav.legal_notice">Mentions Légales</a></li>
-                <li><a href="/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
-                <li><a href="#cookies" id="tarteaucitronRoot" data-translate="footer.nav.cookies">Gérer les Cookies</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.contact">Contact</h4>
-              <ul>
-                <li><a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></li>
-                <li><a href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105" target="_blank" rel="noopener noreferrer" data-translate="footer.nav.newsletter">Newsletter</a></li>
-              </ul>
-              <div class="social-media-links">
-                <a href="https://substack.com/@bubbleinvest?utm_campaign=profile&utm_medium=profile-page" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Substack" data-handle="Bubble Invest">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                    <path d="M22.5 6H1.5V9H22.5V6ZM1.5 10.5V24L12 18L22.5 24V10.5H1.5ZM22.5 0H1.5V3H22.5V0Z" />
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.substack">Bubble Invest</span>
-                </a>
-                <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn" data-handle="Bubble Invest AI">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                    <rect x="2" y="9" width="4" height="12"/>
-                    <circle cx="4" cy="4" r="2"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.linkedin">Bubble Invest AI</span>
-                </a>
-                <a href="https://www.instagram.com/behindthefinancebubble/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram" data-handle="@behindthefinancebubble">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.instagram">@behindthefinancebubble</span>
-                </a>
-                <a href="https://www.tiktok.com/@behind.the.bubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok" data-handle="@behind.the.bubble">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.tiktok">@behind.the.bubble</span>
-                </a>
-                <a href="https://www.youtube.com/@behindthefinancebubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube" data-handle="@behindthefinancebubble">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
-                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.youtube">@behindthefinancebubble</span>
-                </a>
-              
-                <a href="https://twitter.com/BubbleInvest" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter" data-handle="@BubbleInvest">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4l16 16M4 20L20 4"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.twitter">@BubbleInvest</span>
-                </a></div>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Cookie Consent (Modern Custom Banner) - MUST load before other scripts -->
-    <link rel="stylesheet" href="assets/styles/cookie-banner.css">
-    <script src="js/seo/cookie-banner.js"></script>
-
-    <!-- SEO Structured Data -->
-    <script src="js/seo/structured-data.js"></script>
-
-    <!-- Application Scripts -->
-    <script src="i18n/translations.js"></script>
-    <script src="js/chatbot-logic.js"></script>
-    <script src="js/chatbot-animations.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/portfolio-preview.js"></script>
-    <script src="js/blog-preview.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/charts.js"></script>
-    <script src="js/dual-path-selector.js"></script>
-    <script src="js/knowledge-overlay.js"></script>
-    <script src="js/hero-chat-animation.js"></script>
-
-    <!-- Unified Chat Side Panel -->
-    <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
-      <div class="chat-side-panel-header">
-        <div class="chat-side-panel-header-info">
-          <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
-          <div class="chat-side-panel-titles">
-            <span class="chat-side-panel-title">Assistant Bubble</span>
-          </div>
-        </div>
-        <div class="chat-side-panel-actions">
-          <button class="chat-side-panel-minimize" aria-label="Réduire le chat" type="button">-</button>
-          <button class="chat-side-panel-close" aria-label="Fermer le chat" type="button">✕</button>
-        </div>
-      </div>
-      <div class="chat-side-panel-messages" role="log" aria-live="polite">
-        <div class="chat-side-panel-message bot">
-          <div class="message-content">
-            Salut ! Je suis Bubble - ici on démocratise l'investissement. Qu'est-ce qui t'amène ici ?
-          </div>
-        </div>
-      </div>
-      <form class="chat-side-panel-input-container" novalidate>
-        <input
-          type="text"
-          class="chat-side-panel-input"
-          placeholder="Posez vos questions..."
-          data-translate-placeholder="floating_input.placeholder"
-          aria-label="Saisissez votre message"
-          autocomplete="off"
-        />
-        <button class="chat-side-panel-send" aria-label="Envoyer le message" type="submit">
+      <!-- Hero Chat Input -->
+      <form class="hero-chat-form" id="hero-chat-form">
+        <textarea class="hero-chat-input" rows="2" placeholder="Qu'est-ce que tu aimerais savoir sur Bubble ?"
+          data-translate-placeholder="chat.placeholder" aria-label="Posez votre question" autocomplete="off"></textarea>
+        <button type="submit" class="hero-chat-submit" aria-label="Envoyer">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M12 21V4" stroke-linecap="round" />
           </svg>
         </button>
       </form>
-    </div>
 
-    <!-- Floating Glassmorphism Chat Input -->
-    <div id="floating-chat-input" class="floating-chat-input hidden">
-      <div class="floating-input-container">
-        <input
-          type="text"
-          class="floating-input-field"
-          placeholder="Ask me anything..."
-          data-translate-placeholder="floating_input.placeholder"
-          aria-label="Ask a question"
-        />
-        <button class="floating-input-submit" aria-label="Send message">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
+      <div class="hero-actions">
+        <button type="button" class="cta-button hero-demo-cta js-retail-demo-trigger" data-entry-point="hero_demo_cta"
+          data-translate="hero.demo.cta">
+          Voir la démo
         </button>
       </div>
     </div>
+  </section>
 
-    <script src="js/bubble-agent-memory.js"></script>
-    <script src="js/chat-side-panel.js"></script>
-    <script src="js/floating-chat-input.js"></script>
-    <script src="js/pricing-workflow-demo.js"></script>
-  
-<script src="/js/seo/ga4-events.js"></script>
+  <!-- Tri-Path Selector Section (Retaining class name dual-path-selector for compatibility but structure is 3 cols) -->
+  <section class="dual-path-selector fade-in">
+    <div class="container">
+      <div class="dual-path-cards">
+        <!-- 1. Plateforme (Retail) -->
+        <div class="dual-path-card retail-card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+          <h3 class="card-title" data-translate="dualPath.retail.mainTitle">Plateforme d'Investissement</h3>
+          <p class="card-description" data-translate="dualPath.retail.description">L'agent IA qu'on utilise pour nos
+            propres portefeuilles.</p>
+          <ul class="card-features">
+            <li data-translate="dualPath.retail.feature1">Pilotage Automatique</li>
+            <li data-translate="dualPath.retail.feature2">Stratégies Transparentes</li>
+            <li data-translate="dualPath.retail.feature3">Frais Fixes (0-10€)</li>
+          </ul>
+          <button class="cta-button retail-demo-btn js-retail-demo-trigger" data-entry-point="homepage_tri_path"
+            data-translate="dualPath.retail.cta">Tester la démo</button>
+        </div>
+
+        <!-- 2. Solutions Entreprises (Professionals) -->
+        <div class="dual-path-card professional-card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </div>
+          <h3 class="card-title" data-translate="dualPath.professional.mainTitle">Solutions Entreprises</h3>
+          <p class="card-description" data-translate="dualPath.professional.description">Automatisez vos processus avec
+            nos Agents IA sur-mesure.</p>
+          <ul class="card-features">
+            <li data-translate="dualPath.professional.feature1">Agents Customisés</li>
+            <li data-translate="dualPath.professional.feature2">Intégration API</li>
+            <li data-translate="dualPath.professional.feature3">Consulting IA</li>
+          </ul>
+          <a href="/professionals" class="cta-button professional-btn gray-btn"
+            data-translate="dualPath.professional.cta">En savoir plus</a>
+        </div>
+
+        <!-- 3. Build in Public (New Pillar) -->
+        <div class="dual-path-card public-card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </div>
+          <h3 class="card-title" data-translate="dualPath.public.mainTitle">Build in Public</h3>
+          <p class="card-description" data-translate="dualPath.public.description">Nos doutes, nos victoires, nos
+            chiffres. Zéro cachette.</p>
+          <ul class="card-features">
+            <li data-translate="dualPath.public.feature1">Culture "No BS"</li>
+            <li data-translate="dualPath.public.feature2">Open Metrics</li>
+            <li data-translate="dualPath.public.feature3">Marketing = Éducation</li>
+          </ul>
+          <a href="/blog" class="cta-button gray-btn" data-translate="dualPath.public.cta">Voir les coulisses</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="superpower-highlight fade-in">
+    <div class="container">
+      <div class="superpower-panel">
+        <h2>Les super-pouvoirs des hedge funds, maintenant dans votre poche</h2>
+        <div class="hero-cta-group" style="margin-top: 1.5rem;">
+          <button type="button" class="cta-button primary-btn js-retail-demo-trigger" data-entry-point="superpower_demo"
+            data-translate="hero.demo.cta">
+            Voir la démo
+          </button>
+          <a href="/investors/playground" class="cta-button playground-btn" data-translate="hero.cta.playground">
+            Explorer le Playground
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Preview Section -->
+  <section id="blog-preview" class="blog-preview fade-in">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-translate="blogPreview.title">Dans les Coulisses</h2>
+        <p class="section-subtitle" data-translate="blogPreview.subtitle">
+          Explorez nos analyses sur l'IA, l'investissement et la finance quantitative
+        </p>
+      </div>
+
+      <div class="blog-tiles-grid" id="blog-preview-grid">
+        <!-- Will be populated by JavaScript -->
+        <div class="blog-preview-loading">
+          <div class="loading-animation">
+            <div class="loading-bubble"></div>
+            <div class="loading-bubble"></div>
+            <div class="loading-bubble"></div>
+          </div>
+          <p data-translate="blogPreview.loading">Chargement des articles...</p>
+        </div>
+      </div>
+
+      <div class="blog-cta">
+        <a href="/blog" class="cta-link" data-translate="blogPreview.viewAll">
+          Voir tous les articles →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach Section -->
+  <section id="approach" class="approach fade-in">
+    <div class="container">
+      <h2 data-translate="approach.title">Notre Approche</h2>
+      <div class="approach-grid">
+        <div class="approach-item">
+          <div class="approach-number"><span>1</span></div>
+          <div class="approach-content">
+            <h3 data-translate="approach.automate.title">Automatiser</h3>
+            <p data-translate="approach.automate.description">
+              Nous reproduisons le travail quotidien d'un gérant de portefeuille—suivi des marchés, mises à jour des
+              données et recalculs d'allocations—via des algorithmes simples et transparents qui montrent comment l'IA
+              remplace désormais cette exécution manuelle.
+            </p>
+          </div>
+        </div>
+        <div class="approach-item">
+          <div class="approach-number"><span>2</span></div>
+          <div class="approach-content">
+            <h3 data-translate="approach.clarify.title">Clarifier</h3>
+            <p data-translate="approach.clarify.description">
+              Toutes nos stratégies sont visibles et explicables. Nos frais
+              sont fixes et prévisibles. Pas de zones d'ombre.
+            </p>
+          </div>
+        </div>
+        <div class="approach-item">
+          <div class="approach-number"><span>3</span></div>
+          <div class="approach-content">
+            <h3 data-translate="approach.share.title">Partager</h3>
+            <p data-translate="approach.share.description">
+              Parce que l'IA rend désormais l'expertise accessible à tous,
+              nous saisissons cette fenêtre historique pour construire un modèle où ce
+              gain d'efficacité vous redonne ce qui était
+              historiquement capté par des intermédiaires coûteux.
+            </p>
+          </div>
+        </div>
+        <div class="approach-item">
+          <div class="approach-number"><span>4</span></div>
+          <div class="approach-content">
+            <h3 data-translate="approach.educate.title">Éduquer</h3>
+            <p data-translate="approach.educate.description">
+              Notre IA explique les concepts financiers simplement et vous
+              aide à comprendre la performance de votre portefeuille en temps
+              réel.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="philosophy-box">
+        <p data-translate="approach.philosophy">
+          Notre objectif n'est pas de prétendre battre le marché, mais
+          d'optimiser votre portefeuille selon vos objectifs, avec
+          transparence et à moindre coût.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Waitlist CTA Section -->
+  <section id="waitlist" class="waitlist-cta fade-in">
+    <div class="container">
+      <div class="waitlist-grid">
+        <div class="waitlist-copy">
+          <h2 data-translate="waitlist.title">Construisons l'Avenir Ensemble</h2>
+          <p class="waitlist-subtitle" data-translate="waitlist.subtitle">
+            Nous partageons avec vous cet agent IA que nous utilisons pour nos propres portefeuilles. Si vous n'êtes pas
+            satisfaits de vos services financiers traditionnels et voulez saisir cette opportunité historique -
+            rejoignez nos early adopters.
+          </p>
+          <p class="waitlist-free-text" data-translate="waitlist.free">
+            Rejoindre notre liste d'attente est entièrement gratuit et sans engagement. Nous cherchons simplement à
+            rencontrer des personnes qui partagent notre vision de l'investissement pour tous.
+          </p>
+        </div>
+        <div class="waitlist-form-wrapper">
+          <div class="form-container">
+            <h3 data-translate="investors.joinus.form.title">Accès Anticipé</h3>
+            <form id="waitlist-form">
+              <div class="form-group">
+                <label for="name" data-translate="investors.joinus.form.name">Nom complet</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+
+              <div class="form-group">
+                <label for="email" data-translate="investors.joinus.form.email">Adresse email</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+
+              <div class="form-group">
+                <label for="profile" data-translate="investors.joinus.form.profile">Qui êtes-vous ?</label>
+                <select id="profile" name="profile" required>
+                  <option value="" data-translate="investors.joinus.form.profile.placeholder">Sélectionnez votre profil
+                  </option>
+                  <option value="investor_beginner" data-translate="investors.joinus.form.profile.investor_beginner">
+                    Investisseur débutant</option>
+                  <option value="investor_experienced"
+                    data-translate="investors.joinus.form.profile.investor_experienced">Investisseur expérimenté
+                  </option>
+                  <option value="tech_professional" data-translate="investors.joinus.form.profile.tech_professional">
+                    Professionnel tech</option>
+                  <option value="finance_professional"
+                    data-translate="investors.joinus.form.profile.finance_professional">Professionnel finance</option>
+                  <option value="entrepreneur" data-translate="investors.joinus.form.profile.entrepreneur">Entrepreneur
+                  </option>
+                  <option value="student" data-translate="investors.joinus.form.profile.student">Étudiant</option>
+                  <option value="other" data-translate="investors.joinus.form.profile.other">Autre</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="comments" data-translate="investors.joinus.form.comments">Messages supplémentaires
+                  (optionnel)</label>
+                <textarea id="comments" name="comments" rows="4"></textarea>
+              </div>
+
+              <button type="submit" class="cta-button primary-btn" data-translate="investors.joinus.form.button">
+                M'inscrire
+              </button>
+            </form>
+
+            <!-- Newsletter Subscription -->
+            <div id="newsletter" class="newsletter-divider">
+              <span data-translate="newsletter.or">ou</span>
+            </div>
+            <div class="newsletter-section">
+              <h4 data-translate="newsletter.title">S'abonner à notre newsletter</h4>
+              <p class="newsletter-subtitle" data-translate="newsletter.subtitle">Recevez nos analyses et insights
+                personnalisés</p>
+              <button type="button" class="newsletter-toggle-btn" id="newsletter-toggle">
+                <svg class="newsletter-icon" width="18" height="18" viewBox="-5 -10 110 110" fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="m10.102 20.551c1.5938-1.1641 3.5273-1.8008 5.5234-1.8008h68.75c1.9961 0 3.9297 0.63672 5.5234 1.8008l-38.074 27.41c-1.0898 0.78125-2.5586 0.78125-3.6484 0zm83.328 5.1523c0.21094 0.78516 0.32031 1.5977 0.32031 2.4219v43.75c0 2.4883-0.98828 4.8711-2.7461 6.6289-1.7578 1.7578-4.1406 2.7461-6.6289 2.7461h-68.75c-2.4883 0-4.8711-0.98828-6.6289-2.7461-1.7578-1.7578-2.7461-4.1406-2.7461-6.6289v-43.75c0-0.82422 0.10938-1.6367 0.32031-2.4219l37.953 27.328c3.2695 2.3555 7.6836 2.3555 10.953 0z"
+                    fill-rule="evenodd" />
+                </svg>
+                <span data-translate="newsletter.button">Newsletter</span>
+              </button>
+              <form id="newsletter-form" class="newsletter-form hidden">
+                <div class="form-group">
+                  <label for="newsletter-email" data-translate="newsletter.email">Email</label>
+                  <input type="email" id="newsletter-email" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="newsletter-profession" data-translate="newsletter.profession">Votre profession</label>
+                  <select id="newsletter-profession" name="profession" required>
+                    <option value="" data-translate="newsletter.profession.placeholder">Sélectionnez votre profession
+                    </option>
+                    <option value="risk_manager" data-translate="newsletter.profession.risk_manager">Risk Manager
+                    </option>
+                    <option value="portfolio_manager" data-translate="newsletter.profession.portfolio_manager">Portfolio
+                      Manager</option>
+                    <option value="equity_research_analyst"
+                      data-translate="newsletter.profession.equity_research_analyst">Analyste Equity Research</option>
+                    <option value="other_investment_professional"
+                      data-translate="newsletter.profession.other_investment_professional">Autre professionnel de
+                      l'investissement</option>
+                    <option value="non_professional_investor"
+                      data-translate="newsletter.profession.non_professional_investor">Investisseur non professionnel
+                    </option>
+                    <option value="tech_professional" data-translate="newsletter.profession.tech_professional">
+                      Professionnel Tech</option>
+                    <option value="data_scientist" data-translate="newsletter.profession.data_scientist">Data Scientist
+                    </option>
+                    <option value="software_engineer" data-translate="newsletter.profession.software_engineer">
+                      Développeur / Ingénieur</option>
+                    <option value="other" data-translate="newsletter.profession.other">Autre</option>
+                  </select>
+                </div>
+                <button type="submit" class="cta-button secondary-btn" data-translate="newsletter.subscribe">
+                  S'abonner
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <div class="footer-logo" style="display: flex; align-items: center; gap: 0.18em">
+            <span style="display: flex; align-items: center"><svg width="30" height="30" viewBox="0 0 72 72" fill="none"
+                xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
+                <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round"
+                  stroke-dasharray="145 29" stroke-dashoffset="10" />
+                <circle cx="59" cy="21" r="6" fill="#000" />
+              </svg></span><span>Bubble.</span>
+          </div>
+          <div class="footer-tagline" data-translate="footer.tagline">
+            L'ère de l'IA change tout. Changeons avec elle.
+          </div>
+          <div class="footer-copyright" data-translate="footer.copyright">
+            © 2025 Bubble Invest SAS. Transparent by design.
+          </div>
+        </div>
+
+        <nav class="footer-nav">
+          <div class="footer-column">
+            <h4 data-translate="footer.nav.investors">Investisseurs</h4>
+            <ul>
+              <li><a href="/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
+              <li><a href="/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
+              <li><a href="/investors#faq" data-translate="footer.nav.investors.faq">FAQ</a></li>
+              <li><a href="/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Accès
+                  Anticipé</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 data-translate="footer.nav.professionals">Professionnels</h4>
+            <ul>
+              <li><a href="/professionals/solutions-companies"
+                  data-translate="footer.nav.professionals.solutions">Solutions</a></li>
+              <li><a href="/professionals/solutions-wealth-managers"
+                  data-translate="footer.nav.professionals.demo">Gestionnaires de patrimoine</a></li>
+              <li><a href="/professionals#faq" data-translate="footer.nav.professionals.faq">FAQ</a></li>
+              <li><a href="/professionals#contact-form" data-translate="footer.nav.professionals.contact">Contact</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 data-translate="footer.nav.resources">Ressources</h4>
+            <ul>
+              <li><a href="/blog" data-translate="footer.nav.blog">Blog</a></li>
+              <li><a href="/investors/playground" data-translate="footer.nav.resources.education">Playground</a></li>
+              <li><a href="/investors" class="js-retail-demo-trigger" data-entry-point="footer_resources_demo"
+                  data-translate="footer.nav.resources.demo">Démo</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 data-translate="footer.nav.legal">Légal</h4>
+            <ul>
+              <li><a href="/mentions-legales" data-translate="footer.nav.legal_notice">Mentions Légales</a></li>
+              <li><a href="/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
+              <li><a href="#cookies" id="tarteaucitronRoot" data-translate="footer.nav.cookies">Gérer les Cookies</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4 data-translate="footer.nav.contact">Contact</h4>
+            <ul>
+              <li><a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></li>
+              <li><a href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105"
+                  target="_blank" rel="noopener noreferrer" data-translate="footer.nav.newsletter">Newsletter</a></li>
+            </ul>
+            <div class="social-media-links">
+              <a href="https://substack.com/@bubbleinvest?utm_campaign=profile&utm_medium=profile-page" target="_blank"
+                rel="noopener noreferrer" class="social-link" aria-label="Substack" data-handle="Bubble Invest">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                  stroke="none">
+                  <path d="M22.5 6H1.5V9H22.5V6ZM1.5 10.5V24L12 18L22.5 24V10.5H1.5ZM22.5 0H1.5V3H22.5V0Z" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.substack">Bubble Invest</span>
+              </a>
+              <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" rel="noopener noreferrer"
+                class="social-link" aria-label="LinkedIn" data-handle="Bubble Invest AI">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.linkedin">Bubble Invest AI</span>
+              </a>
+              <a href="https://www.instagram.com/behindthefinancebubble/" target="_blank" rel="noopener noreferrer"
+                class="social-link" aria-label="Instagram" data-handle="@behindthefinancebubble">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.instagram">@behindthefinancebubble</span>
+              </a>
+              <a href="https://www.tiktok.com/@behind.the.bubble" target="_blank" rel="noopener noreferrer"
+                class="social-link" aria-label="TikTok" data-handle="@behind.the.bubble">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.tiktok">@behind.the.bubble</span>
+              </a>
+              <a href="https://www.youtube.com/@behindthefinancebubble" target="_blank" rel="noopener noreferrer"
+                class="social-link" aria-label="YouTube" data-handle="@behindthefinancebubble">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.youtube">@behindthefinancebubble</span>
+              </a>
+
+              <a href="https://twitter.com/BubbleInvest" target="_blank" rel="noopener noreferrer" class="social-link"
+                aria-label="Twitter" data-handle="@BubbleInvest">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4l16 16M4 20L20 4" />
+                </svg>
+                <span class="social-handle" data-translate="footer.social.twitter">@BubbleInvest</span>
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie Consent (Modern Custom Banner) - MUST load before other scripts -->
+  <link rel="stylesheet" href="assets/styles/cookie-banner.css">
+  <script src="js/seo/cookie-banner.js"></script>
+
+  <!-- SEO Structured Data -->
+  <script src="js/seo/structured-data.js"></script>
+
+  <!-- Application Scripts -->
+  <script src="i18n/translations.js"></script>
+  <script src="js/chatbot-logic.js"></script>
+  <script src="js/chatbot-animations.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/portfolio-preview.js"></script>
+  <script src="js/blog-preview.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/dual-path-selector.js"></script>
+  <script src="js/knowledge-overlay.js"></script>
+  <script src="js/hero-chat-animation.js"></script>
+
+  <!-- Unified Chat Side Panel -->
+  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+    <div class="chat-side-panel-header">
+      <div class="chat-side-panel-header-info">
+        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+        <div class="chat-side-panel-titles">
+          <span class="chat-side-panel-title">Assistant Bubble</span>
+        </div>
+      </div>
+      <div class="chat-side-panel-actions">
+        <button class="chat-side-panel-minimize" aria-label="Réduire le chat" type="button">-</button>
+        <button class="chat-side-panel-close" aria-label="Fermer le chat" type="button">✕</button>
+      </div>
+    </div>
+    <div class="chat-side-panel-messages" role="log" aria-live="polite">
+      <div class="chat-side-panel-message bot">
+        <div class="message-content">
+          Salut ! Je suis Bubble - ici on démocratise l'investissement. Qu'est-ce qui t'amène ici ?
+        </div>
+      </div>
+    </div>
+    <form class="chat-side-panel-input-container" novalidate>
+      <input type="text" class="chat-side-panel-input" placeholder="Posez vos questions..."
+        data-translate-placeholder="floating_input.placeholder" aria-label="Saisissez votre message"
+        autocomplete="off" />
+      <button class="chat-side-panel-send" aria-label="Envoyer le message" type="submit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M12 21V4" stroke-linecap="round" />
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <!-- Floating Glassmorphism Chat Input -->
+  <div id="floating-chat-input" class="floating-chat-input hidden">
+    <div class="floating-input-container">
+      <input type="text" class="floating-input-field" placeholder="Ask me anything..."
+        data-translate-placeholder="floating_input.placeholder" aria-label="Ask a question" />
+      <button class="floating-input-submit" aria-label="Send message">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M12 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="js/bubble-agent-memory.js"></script>
+  <script src="js/chat-side-panel.js"></script>
+  <script src="js/floating-chat-input.js"></script>
+  <script src="js/pricing-workflow-demo.js"></script>
+
+  <script src="/js/seo/ga4-events.js"></script>
 </body>
+
 </html>
