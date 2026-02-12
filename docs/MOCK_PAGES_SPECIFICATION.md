@@ -13,6 +13,7 @@
 | **Démo sur le site** | Chatbot simple (session uniquement, pas de persistence) + animations enregistrées |
 | **Objectif site** | Convaincre de s'inscrire à la LISTE D'ATTENTE pour accéder à app.bubbleinvest.org |
 | **Animations** | Les features "Arena" et "Builder" sur le site sont des enregistrements/animations, pas du live |
+| **Bilinguisme** | Toutes les modifications doivent être faites simultanément sur **FR** (`/`) et **EN** (`/en/`) |
 
 ---
 
