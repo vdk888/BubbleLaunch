@@ -45,15 +45,15 @@ function parseBacktestIntent(text) {
 
   const allocation = bondsFirst
     ? {
-        SPY: Math.round(secondAlloc * scale * 100) / 100,
-        IEF: Math.round(firstAlloc * scale * 100) / 100,
-        GLD: 0,
-      }
+      SPY: Math.round(secondAlloc * scale * 100) / 100,
+      IEF: Math.round(firstAlloc * scale * 100) / 100,
+      GLD: 0,
+    }
     : {
-        SPY: Math.round(firstAlloc * scale * 100) / 100,
-        IEF: Math.round(secondAlloc * scale * 100) / 100,
-        GLD: 0,
-      };
+      SPY: Math.round(firstAlloc * scale * 100) / 100,
+      IEF: Math.round(secondAlloc * scale * 100) / 100,
+      GLD: 0,
+    };
 
   return {
     allocation,
@@ -364,13 +364,13 @@ Full exploration allowed. Suggest resources proactively when appropriate.
 
 **Profile-aware suggestions (use naturally in conversation):**
 ${userProfile?.profile?.riskScore !== undefined ?
-  (userProfile.profile.riskScore <= 30 ?
-    `- User is CONSERVATIVE (${userProfile.profile.riskScore}/100): Suggest watching the **Hérisson/Hedgehog** (Defensive bot) in Arena. Emphasize capital preservation and stability.`
-  : userProfile.profile.riskScore <= 60 ?
-    `- User is BALANCED (${userProfile.profile.riskScore}/100): Suggest the **Renard/Fox** (Risk Parity bot) in Arena. Highlight the balance between risk and return.`
-  :
-    `- User is GROWTH-ORIENTED (${userProfile.profile.riskScore}/100): Suggest the **Faucon/Hawk** (Momentum bot) in Arena. Can discuss volatility and trend-following openly.`)
-: '- No profile yet. Focus on discovery questions.'}
+      (userProfile.profile.riskScore <= 30 ?
+        `- User is CONSERVATIVE (${userProfile.profile.riskScore}/100): Suggest watching the **Hérisson/Hedgehog** (Defensive bot) in Arena. Emphasize capital preservation and stability.`
+        : userProfile.profile.riskScore <= 60 ?
+          `- User is BALANCED (${userProfile.profile.riskScore}/100): Suggest the **Renard/Fox** (Risk Parity bot) in Arena. Highlight the balance between risk and return.`
+          :
+          `- User is GROWTH-ORIENTED (${userProfile.profile.riskScore}/100): Suggest the **Faucon/Hawk** (Momentum bot) in Arena. Can discuss volatility and trend-following openly.`)
+      : '- No profile yet. Focus on discovery questions.'}
 - If user asks about strategy building → suggest Simulator
 - If user asks about bot performance → suggest Arena
 - If user asks about learning → suggest Resources`}${profileBlock}`
@@ -437,7 +437,7 @@ La finance n'est pas compliquée. C'est juste du vocabulaire inutilement compliq
 - Maintain conversational continuity if user moves between Arena and Simulator (use provided history).`
     : '';
 
-const professionalsBlock = isProfessionals
+  const professionalsBlock = isProfessionals
     ? `
 
 ### PROFESSIONALS CONTEXT (B2B)
@@ -605,8 +605,8 @@ Keep the conversation natural - most responses should NOT include button suggest
 
 ### WAITLIST (share when relevant):
 ${language === 'fr'
-  ? '"Tu veux essayer ? [Inscris-toi sur la liste d\'attente](/#waitlist) !"'
-  : '"Want to try it? [Join the waitlist](/#waitlist)!"'}
+      ? '"Tu veux essayer ? [Inscris-toi sur la liste d\'attente](/#waitlist) !"'
+      : '"Want to try it? [Join the waitlist](/#waitlist)!"'}
 ${waitlistShared ? "You already shared the waitlist - don't repeat unless asked." : ""}
 
 ### DISCLAIMERS (only when relevant):
@@ -620,6 +620,8 @@ Remember: You're here to HELP users understand investing and discover if Bubble 
 
 // Model rotation (prefer free endpoints first to control costs)
 const models = [
+  "upstage/solar-pro-3:free",
+  "z-ai/glm-4.7-flash",
   "nvidia/nemotron-3-nano-30b-a3b:free",
   "xiaomi/mimo-v2-flash:free",
   "allenai/molmo-2-8b:free",
@@ -678,9 +680,9 @@ async function streamResponse(
             res.setHeader("Content-Type", "text/event-stream");
             res.setHeader("Cache-Control", "no-cache");
             res.setHeader("Connection", "keep-alive");
-        res.flushHeaders();
-        // Emit typing indicator to keep UI showing activity
-        res.write(`data: ${JSON.stringify({ typing: true })}\n\n`);
+            res.flushHeaders();
+            // Emit typing indicator to keep UI showing activity
+            res.write(`data: ${JSON.stringify({ typing: true })}\n\n`);
           }
 
           let fullResponse = "";
@@ -744,20 +746,20 @@ async function streamResponse(
                           (async () => {
                             try {
                               const result = await toolExecutionService.executeTool(toolName, args);
-                    res.write(
-                      `data: ${JSON.stringify({
-                        content: `Résultat ${toolName}: ${JSON.stringify(result)}`,
-                        text: `Résultat ${toolName}: ${JSON.stringify(result)}`
-                      })}\n\n`
-                    );
+                              res.write(
+                                `data: ${JSON.stringify({
+                                  content: `Résultat ${toolName}: ${JSON.stringify(result)}`,
+                                  text: `Résultat ${toolName}: ${JSON.stringify(result)}`
+                                })}\n\n`
+                              );
                             } catch (err) {
-                      res.write(
-                        `data: ${JSON.stringify({
-                          content: `Erreur lors de l'exécution de ${toolName}: ${err.message}`,
-                          text: `Erreur lors de l'exécution de ${toolName}: ${err.message}`,
-                          is_error: true,
-                        })}\n\n`
-                      );
+                              res.write(
+                                `data: ${JSON.stringify({
+                                  content: `Erreur lors de l'exécution de ${toolName}: ${err.message}`,
+                                  text: `Erreur lors de l'exécution de ${toolName}: ${err.message}`,
+                                  is_error: true,
+                                })}\n\n`
+                              );
                             }
                           })();
                         } catch (err) {
@@ -957,13 +959,10 @@ async function streamResponse(
             );
             if (backtestResult?.success) {
               const m = backtestResult.data?.metrics || {};
-              const content = `Backtest ${parsed.strategy_name} sur ${
-                parsed.period_years
-              } ans:\n- Rendement total: ${m.totalReturn ?? "n/a"}%\n- Annualisé: ${
-                m.annualizedReturn ?? "n/a"
-              }%\n- Volatilité: ${m.volatility ?? "n/a"}%\n- Sharpe: ${
-                m.sharpeRatio ?? "n/a"
-              }\n- Max drawdown: ${m.maxDrawdown ?? "n/a"}%`;
+              const content = `Backtest ${parsed.strategy_name} sur ${parsed.period_years
+                } ans:\n- Rendement total: ${m.totalReturn ?? "n/a"}%\n- Annualisé: ${m.annualizedReturn ?? "n/a"
+                }%\n- Volatilité: ${m.volatility ?? "n/a"}%\n- Sharpe: ${m.sharpeRatio ?? "n/a"
+                }\n- Max drawdown: ${m.maxDrawdown ?? "n/a"}%`;
               res.write(`data: ${JSON.stringify({ content })}\n\n`);
               manualContentSent = true;
               // We consider this a response; do not fall through to generic fallback.
@@ -1041,20 +1040,15 @@ function buildPortfolioContextSection(context = {}, language = "fr") {
 
     lines.push(
       "- Key performance metrics:",
-      `  • Total return: ${
-        typeof totalReturn === "number" ? totalReturn.toFixed(1) + "%" : "N/A"
+      `  • Total return: ${typeof totalReturn === "number" ? totalReturn.toFixed(1) + "%" : "N/A"
       }`,
-      `  • Annual return: ${
-        typeof annualReturn === "number" ? annualReturn.toFixed(1) + "%" : "N/A"
+      `  • Annual return: ${typeof annualReturn === "number" ? annualReturn.toFixed(1) + "%" : "N/A"
       }`,
-      `  • Volatility: ${
-        typeof volatility === "number" ? volatility.toFixed(1) + "%" : "N/A"
+      `  • Volatility: ${typeof volatility === "number" ? volatility.toFixed(1) + "%" : "N/A"
       }`,
-      `  • Sharpe ratio: ${
-        typeof sharpeRatio === "number" ? sharpeRatio.toFixed(2) : "N/A"
+      `  • Sharpe ratio: ${typeof sharpeRatio === "number" ? sharpeRatio.toFixed(2) : "N/A"
       }`,
-      `  • Max drawdown: ${
-        typeof maxDrawdown === "number" ? maxDrawdown.toFixed(1) + "%" : "N/A"
+      `  • Max drawdown: ${typeof maxDrawdown === "number" ? maxDrawdown.toFixed(1) + "%" : "N/A"
       }`
     );
   }
@@ -1068,10 +1062,9 @@ function buildPortfolioContextSection(context = {}, language = "fr") {
       "- Custom mix details:",
       `  • Strategy A: ${customStrategy.strategyA}`,
       `  • Strategy B: ${customStrategy.strategyB}`,
-      `  • Weight for Strategy A: ${
-        typeof customStrategy.weight === "number"
-          ? customStrategy.weight + "%"
-          : "N/A"
+      `  • Weight for Strategy A: ${typeof customStrategy.weight === "number"
+        ? customStrategy.weight + "%"
+        : "N/A"
       }`
     );
   }
@@ -1084,11 +1077,10 @@ function buildPortfolioContextSection(context = {}, language = "fr") {
     lines.push("No specific simulator state was provided.");
   }
 
-  return `### PORTFOLIO SIMULATOR CONTEXT (summarized in ${
-    language === "en" ? "English" : "French"
-  }):\n${lines.join(
-    "\n"
-  )}\n\nUse this information to ground your explanations, compare strategies, and help the user interpret the simulator results.`;
+  return `### PORTFOLIO SIMULATOR CONTEXT (summarized in ${language === "en" ? "English" : "French"
+    }):\n${lines.join(
+      "\n"
+    )}\n\nUse this information to ground your explanations, compare strategies, and help the user interpret the simulator results.`;
 }
 
 /**
@@ -1231,13 +1223,13 @@ async function handleChat(req, res) {
 
   const waitlistShared = Array.isArray(history)
     ? history.some(
-        (entry) =>
-          entry &&
-          entry.role &&
-          entry.role !== "user" &&
-          typeof entry.content === "string" &&
-          entry.content.includes("/#waitlist")
-      )
+      (entry) =>
+        entry &&
+        entry.role &&
+        entry.role !== "user" &&
+        typeof entry.content === "string" &&
+        entry.content.includes("/#waitlist")
+    )
     : false;
 
   // Extract user profile and onboarding state from contextMetadata for playground
@@ -1310,8 +1302,8 @@ async function handleChat(req, res) {
 This user has NOT completed their investor profile discovery (onboarding).
 - When appropriate, gently suggest they discover their investor profile for a personalized experience
 - ${resolvedLanguage === 'fr'
-  ? 'Use phrases like: "Je vois que tu n\'as pas encore decouvert ton profil investisseur. Veux-tu qu\'on fasse ca ensemble ?" or "Pour te donner des conseils plus personnalises, je te propose de decouvrir ton profil d\'investisseur."'
-  : 'Use phrases like: "I see you haven\'t discovered your investor profile yet. Want to do it together?" or "To give you more personalized advice, I suggest discovering your investor profile."'}
+          ? 'Use phrases like: "Je vois que tu n\'as pas encore decouvert ton profil investisseur. Veux-tu qu\'on fasse ca ensemble ?" or "Pour te donner des conseils plus personnalises, je te propose de decouvrir ton profil d\'investisseur."'
+          : 'Use phrases like: "I see you haven\'t discovered your investor profile yet. Want to do it together?" or "To give you more personalized advice, I suggest discovering your investor profile."'}
 - Direct them to the Playground (/investors/playground) for the onboarding experience
 - Don't push too hard - if they want to explore without onboarding, help them anyway
 - If they ask basic questions about investing concepts, this is a good opportunity to suggest the onboarding`;
@@ -1353,13 +1345,10 @@ This user has completed onboarding and has a known risk profile.
           parsedIntent
         );
         const m = backtestResult?.data?.metrics || {};
-        const content = `Backtest ${parsedIntent.strategy_name} sur ${
-          parsedIntent.period_years
-        } ans:\n- Rendement total: ${m.totalReturn ?? "n/a"}%\n- Annualisé: ${
-          m.annualizedReturn ?? "n/a"
-        }%\n- Volatilité: ${m.volatility ?? "n/a"}%\n- Sharpe: ${
-          m.sharpeRatio ?? "n/a"
-        }\n- Max drawdown: ${m.maxDrawdown ?? "n/a"}%`;
+        const content = `Backtest ${parsedIntent.strategy_name} sur ${parsedIntent.period_years
+          } ans:\n- Rendement total: ${m.totalReturn ?? "n/a"}%\n- Annualisé: ${m.annualizedReturn ?? "n/a"
+          }%\n- Volatilité: ${m.volatility ?? "n/a"}%\n- Sharpe: ${m.sharpeRatio ?? "n/a"
+          }\n- Max drawdown: ${m.maxDrawdown ?? "n/a"}%`;
 
         // SSE immediate response
         res.setHeader("Content-Type", "text/event-stream");
@@ -1408,9 +1397,9 @@ This user has completed onboarding and has a known risk profile.
 
       const recText = recs.length
         ? "\nRecommandations: " +
-          recs
-            .map((r) => `${r.bot || r.strategy || "bot"} (${r.match || ""})`)
-            .join(", ")
+        recs
+          .map((r) => `${r.bot || r.strategy || "bot"} (${r.match || ""})`)
+          .join(", ")
         : "";
 
       const content =
