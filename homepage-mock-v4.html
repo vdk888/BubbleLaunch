@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bubble — L'agent qui gère votre portefeuille pour vous</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* === BASE === */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --primary: #111111;
+      --secondary: #666666;
+      --muted: #999999;
+      --border: rgba(0,0,0,0.1);
+      --bg-white: #FFFFFF;
+      --bg-subtle: #F8F8F8;
+      --purple: #93acf0;
+      --purple-light: rgba(147, 172, 240, 0.15);
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-white);
+      color: var(--primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* === ANIMATIONS === */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    .fade-in-delay-1 { animation-delay: 0.1s; }
+    .fade-in-delay-2 { animation-delay: 0.2s; }
+    .fade-in-delay-3 { animation-delay: 0.3s; }
+    
+    /* === HEADER (Minimal - Mock 2 Style) === */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+    }
+    
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .logo:hover { color: var(--purple); }
+    
+    .logo svg { width: 28px; height: 28px; }
+    
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    
+    nav a {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--purple);
+      transition: width 0.3s;
+    }
+    
+    nav a:hover {
+      color: var(--primary);
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+    }
+    
+    .lang-switch button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 0.25rem 0.5rem;
+      transition: color 0.3s;
+    }
+    
+    .lang-switch button.active,
+    .lang-switch button:hover {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    /* === HERO === */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 0 4rem;
+      background: var(--bg-white);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 150%;
+      background: radial-gradient(circle, var(--purple-light) 0%, transparent 70%);
+      opacity: 0.5;
+      animation: pulse 4s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+    
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-logo {
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero-logo svg {
+      width: 64px;
+      height: 64px;
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    
+    .hero-tagline {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero-description {
+      font-size: 1.1rem;
+      color: var(--secondary);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+    
+    /* Chat Input */
+    .chat-input-wrapper {
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+    }
+    
+    .chat-input {
+      width: 100%;
+      padding: 1rem 3rem 1rem 1.5rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: var(--bg-white);
+      transition: all 0.3s;
+      outline: none;
+    }
+    
+    .chat-input:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 4px var(--purple-light);
+    }
+    
+    .chat-submit {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: var(--primary);
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    .chat-submit:hover {
+      background: var(--purple);
+      transform: translateY(-50%) scale(1.05);
+    }
+    
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--purple);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(147, 172, 240, 0.4);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--secondary);
+      border: 1px solid var(--border);
+    }
+    
+    .btn-secondary:hover {
+      border-color: var(--purple);
+      color: var(--purple);
+    }
+    
+    /* === DUAL PATH === */
+    .dual-path {
+      padding: 6rem 0;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .section-header h2 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+    
+    .path-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .path-cards { grid-template-columns: 1fr; }
+    }
+    
+    .path-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .path-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: transparent;
+      transition: background 0.3s;
+    }
+    
+    .path-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      border-color: var(--purple);
+    }
+    
+    .path-card:hover::before {
+      background: var(--purple);
+    }
+    
+    .path-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      margin-bottom: 1.25rem;
+    }
+    
+    .path-badge.focus {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .path-badge.share {
+      background: var(--bg-subtle);
+      color: var(--secondary);
+      border: 1px solid var(--border);
+    }
+    
+    .path-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--bg-subtle);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s;
+    }
+    
+    .path-card:hover .path-icon {
+      background: var(--purple-light);
+      transform: scale(1.1);
+    }
+    
+    .path-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--primary);
+      transition: stroke 0.3s;
+    }
+    
+    .path-card:hover .path-icon svg {
+      stroke: var(--purple);
+    }
+    
+    .path-card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    
+    .path-card p {
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+    
+    .path-features {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+    
+    .path-features li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--secondary);
+      font-size: 0.95rem;
+    }
+    
+    .path-features li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--purple);
+      font-weight: 600;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s;
+    }
+    
+    .path-card:hover .path-features li::before {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    /* === SELFWARE === */
+    .selfware {
+      padding: 6rem 0;
+      background: var(--bg-white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .selfware-content {
+      text-align: center;
+    }
+    
+    .selfware h2 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    
+    .selfware-subtitle {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 3rem;
+    }
+    
+    .selfware-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 992px) {
+      .selfware-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    
+    @media (max-width: 576px) {
+      .selfware-grid { grid-template-columns: 1fr; }
+    }
+    
+    .selfware-item {
+      text-align: left;
+      padding: 1.5rem;
+      border-left: 2px solid var(--border);
+      transition: all 0.3s;
+    }
+    
+    .selfware-item:hover {
+      border-left-color: var(--purple);
+      background: var(--bg-subtle);
+    }
+    
+    .selfware-number {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--purple);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.1em;
+    }
+    
+    .selfware-item h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .selfware-item p {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      line-height: 1.6;
+    }
+    
+    /* === SUPERHERO === */
+    .superhero {
+      padding: 5rem 0;
+      text-align: center;
+      background: var(--bg-white);
+    }
+    
+    .superhero h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    
+    /* === BLOG PREVIEW === */
+    .blog-preview {
+      padding: 6rem 0;
+      background: var(--bg-white);
+      border-top: 1px solid var(--border);
+    }
+    
+    .blog-preview .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .blog-preview .section-header h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+    
+    .blog-preview .section-header p {
+      color: var(--secondary);
+      font-size: 1.1rem;
+    }
+    
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+    
+    .blog-card {
+      background: var(--bg-white);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    
+    .blog-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--purple);
+      box-shadow: 0 20px 40px rgba(147, 172, 240, 0.2);
+    }
+    
+    .blog-card-image {
+      height: 180px;
+      width: 100%;
+      transition: transform 0.3s;
+    }
+    
+    .blog-card:hover .blog-card-image {
+      transform: scale(1.05);
+    }
+    
+    .blog-card-content {
+      padding: 1.5rem;
+    }
+    
+    .blog-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--purple);
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+    
+    .blog-card h4 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+    
+    .blog-card p {
+      font-size: 0.95rem;
+      color: var(--secondary);
+      line-height: 1.6;
+    }
+    
+    .blog-cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+    
+    /* === WAITLIST === */
+    .waitlist {
+      padding: 5rem 0;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    
+    .waitlist h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .waitlist > .container > p {
+      color: var(--secondary);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    
+    .waitlist-form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0.75rem;
+    }
+    
+    .waitlist-form input {
+      flex: 1;
+      padding: 0.875rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.3s;
+    }
+    
+    .waitlist-form input:focus {
+      outline: none;
+      border-color: var(--purple);
+    }
+    
+    /* === FOOTER (Enriched) === */
+    footer {
+      padding: 4rem 0 2rem;
+      background: var(--bg-white);
+      border-top: 1px solid var(--border);
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    
+    .footer-brand p {
+      color: var(--secondary);
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      max-width: 300px;
+    }
+    
+    .footer-links h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-links a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: var(--purple);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .social-links a {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--bg-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary);
+      transition: all 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: var(--purple);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .footer-bottom p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    
+    .footer-why-bubble {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+    
+    .footer-why-bubble a {
+      color: var(--purple);
+      text-decoration: none;
+    }
+    
+    .footer-why-bubble a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a href="/" class="logo">
+          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+            <circle cx="59" cy="21" r="6" fill="currentColor"/>
+          </svg>
+          Bubble.
+        </a>
+        <nav>
+          <a href="/about">À propos</a>
+          <a href="/professionals">Professionnels</a>
+          <a href="/investors">Investisseurs</a>
+          <a href="/blog">Blog</a>
+          <div class="lang-switch">
+            <button class="active">FR</button>
+            <span>/</span>
+            <button>EN</button>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <div class="hero-logo">
+          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="41" r="26" stroke="#111" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+            <circle cx="59" cy="21" r="6" fill="#111"/>
+          </svg>
+        </div>
+        <h1>Bubble.</h1>
+        <p class="hero-tagline">L'agent qui gère votre portefeuille pour vous.</p>
+        <p class="hero-description">
+          On construit l'outil qu'on voulait pour nous : un agent qui automatise vos investissements, avec transparence.
+        </p>
+        
+        <div class="chat-input-wrapper">
+          <input type="text" class="chat-input" placeholder="Discutez avec l'agent Bubble...">
+          <button class="chat-submit">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 21V4" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="hero-cta">
+          <button class="btn btn-primary">Voir la démo</button>
+          <a href="/about" class="btn btn-secondary">En savoir plus</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DUAL PATH -->
+  <section class="dual-path">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Deux façons d'utiliser Bubble</h2>
+      </div>
+      
+      <div class="path-cards">
+        <!-- B2B - PRIMARY -->
+        <div class="path-card fade-in fade-in-delay-1">
+          <span class="path-badge focus">Focus Actuel</span>
+          <div class="path-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"/>
+              <rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/>
+              <rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          </div>
+          <h3>Implémentation de Systèmes Agentiques</h3>
+          <p>CGP, sociétés de gestion, entreprises. On déploie des agents sur VOS systèmes — vos clients restent chez vous.</p>
+          <ul class="path-features">
+            <li>Appel initial gratuit — diagnostic rapide</li>
+            <li>Agents et automatisations sur mesure</li>
+            <li>Déploiement, formations & accompagnement</li>
+          </ul>
+          <a href="#calendly" class="btn btn-primary">Réserver un appel gratuit</a>
+        </div>
+        
+        <!-- B2C - SECONDARY -->
+        <div class="path-card fade-in fade-in-delay-2">
+          <span class="path-badge share">Selfware</span>
+          <div class="path-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+              <polyline points="17 6 23 6 23 12"/>
+            </svg>
+          </div>
+          <h3>Bubble Portfolio</h3>
+          <p>L'agent d'investissement qu'on a construit pour nous. Il incarne nos valeurs, il fonctionne, il est compatible avec notre API.</p>
+          <ul class="path-features">
+            <li>Selfware — Vos actifs restent chez votre broker</li>
+            <li>Stratégies transparentes & backtestées</li>
+            <li>Accès à l'API Bubble Portfolio</li>
+          </ul>
+          <a href="/investors" class="btn btn-secondary">Explorer</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELFWARE -->
+  <section class="selfware fade-in">
+    <div class="container">
+      <div class="selfware-content">
+        <h2>Modèle Selfware</h2>
+        <p class="selfware-subtitle">Vous gardez le contrôle. Nous fournissons l'intelligence.</p>
+        
+        <div class="selfware-grid">
+          <div class="selfware-item">
+            <div class="selfware-number">01</div>
+            <h4>Vos Actifs</h4>
+            <p>Restent chez votre broker (Alpaca, Interactive Brokers...). On ne les touche jamais.</p>
+          </div>
+          <div class="selfware-item">
+            <div class="selfware-number">02</div>
+            <h4>Vos Données</h4>
+            <p>Restent chez vous. Pas de lock-in, vous pouvez partir quand vous voulez.</p>
+          </div>
+          <div class="selfware-item">
+            <div class="selfware-number">03</div>
+            <h4>Vos Règles</h4>
+            <p>Transparentes et auditable. Vous voyez exactement comment les décisions sont prises.</p>
+          </div>
+          <div class="selfware-item">
+            <div class="selfware-number">04</div>
+            <h4>Votre Contrôle</h4>
+            <p>Total. L'agent suggère, vous validez. Ou laissez-le tourner en autopilote.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section class="superhero fade-in">
+    <div class="container">
+      <h2>Le pont vers la nouvelle économie</h2>
+      <p style="color: var(--secondary); max-width: 700px; margin: 1rem auto 0; line-height: 1.8;">
+        L'économie évolue vers des verticaux intégrés où les agents communiquent entre eux. 
+        Nous sommes les early movers sur cette approche agent-first — dès la conception.
+      </p>
+      <div class="hero-cta" style="margin-top: 2rem;">
+        <button class="btn btn-primary">Découvrir notre vision</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEHIND THE BUBBLE (Blog Preview) -->
+  <section class="blog-preview">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Behind the Bubble</h2>
+        <p>Nos articles, analyses et apprentissages — publiés en temps réel</p>
+      </div>
+      
+      <div class="blog-grid">
+        <a href="/blog" class="blog-card fade-in fade-in-delay-1">
+          <div class="blog-card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+          <div class="blog-card-content">
+            <span class="blog-tag">Investissement</span>
+            <h4>Quand Morningstar valide notre vision</h4>
+            <p>La référence mondiale de l'analyse financière confirme ce qu'on construit depuis le début.</p>
+          </div>
+        </a>
+        <a href="/blog" class="blog-card fade-in fade-in-delay-2">
+          <div class="blog-card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+          <div class="blog-card-content">
+            <span class="blog-tag">Automatisation</span>
+            <h4>Vibe Working Your Portfolio</h4>
+            <p>La fin de Excel en investissement. Comment nous automatisons ce qui prenait des jours.</p>
+          </div>
+        </a>
+        <a href="/blog" class="blog-card fade-in fade-in-delay-3">
+          <div class="blog-card-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+          <div class="blog-card-content">
+            <span class="blog-tag">Éducation</span>
+            <h4>L'Art du Jardinier</h4>
+            <p>Comment équilibrer votre portefeuille ? Guide d'allocation pour investisseurs actifs.</p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="blog-cta fade-in">
+        <a href="/blog" class="btn btn-secondary">Voir tous les articles →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAITLIST -->
+  <section class="waitlist">
+    <div class="container">
+      <h2 class="fade-in">Construisons l'Avenir Ensemble</h2>
+      <p class="fade-in fade-in-delay-1">
+        Nous partageons avec vous l'outil d'automatisation que nous utilisons pour nos propres investissements. Si vous n'êtes pas satisfaits de vos services financiers traditionnels — rejoignez nos early adopters.
+      </p>
+      
+      <form class="waitlist-form fade-in fade-in-delay-2">
+        <input type="email" placeholder="Votre email">
+        <button type="submit" class="btn btn-primary">Rejoindre la liste d'attente</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo" style="font-size: 1.5rem;">
+            <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: 32px;">
+              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
+              <circle cx="59" cy="21" r="6" fill="currentColor"/>
+            </svg>
+            Bubble.
+          </a>
+          <p>Transparent by design.</p>
+          <div class="social-links">
+            <a href="#" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter/X">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" aria-label="Newsletter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Produit</h4>
+          <ul>
+            <li><a href="/professionals">Professionnels</a></li>
+            <li><a href="/investors">Investisseurs</a></li>
+            <li><a href="/pricing">Tarifs</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Ressources</h4>
+          <ul>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/about">À propos</a></li>
+            <li><a href="/about#mission">Notre mission</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Légal</h4>
+          <ul>
+            <li><a href="/privacy">Confidentialité</a></li>
+            <li><a href="/mentions-legales">Mentions légales</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2026 Bubble Invest — Transparent by design.</p>
+        <p class="footer-why-bubble">
+          <a href="/about#why-bubble">Pourquoi "Bubble" ?</a> — Éclater la bulle de la finance opaque.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

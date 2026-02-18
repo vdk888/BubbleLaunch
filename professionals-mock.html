@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professionnels — Bubble Invest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #111111;
+      --secondary: #666666;
+      --muted: #999999;
+      --border: rgba(0, 0, 0, 0.1);
+      --bg-white: #FFFFFF;
+      --bg-subtle: #F8F8F8;
+      --purple: #93acf0;
+      --purple-light: rgba(147, 172, 240, 0.15);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-white);
+      color: var(--primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    .fade-in-delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .fade-in-delay-2 {
+      animation-delay: 0.2s;
+    }
+
+    .fade-in-delay-3 {
+      animation-delay: 0.3s;
+    }
+
+    /* === HEADER === */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .logo:hover {
+      color: var(--purple);
+    }
+
+    .logo svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--purple);
+      transition: width 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .lang-switch button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 0.25rem 0.5rem;
+      transition: color 0.3s;
+    }
+
+    .lang-switch button.active,
+    .lang-switch button:hover {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* === HERO === */
+    .hero {
+      padding: 10rem 0 6rem;
+      text-align: center;
+      background: var(--bg-white);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--secondary);
+      max-width: 650px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--purple);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(147, 172, 240, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--secondary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--purple);
+      color: var(--purple);
+    }
+
+    /* === SERVICES === */
+    .services {
+      padding: 5rem 0;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header h3 {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 992px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .service-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      transition: all 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--purple);
+      box-shadow: 0 20px 40px rgba(147, 172, 240, 0.15);
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--bg-subtle);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .service-card:hover .service-icon {
+      background: var(--purple-light);
+    }
+
+    .service-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--primary);
+      transition: stroke 0.3s;
+    }
+
+    .service-card:hover .service-icon svg {
+      stroke: var(--purple);
+    }
+
+    .service-card h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card>p {
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .service-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-features li {
+      padding: 0.4rem 0;
+      padding-left: 1.25rem;
+      position: relative;
+      color: var(--secondary);
+      font-size: 0.9rem;
+    }
+
+    .service-features li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--purple);
+      font-weight: 600;
+    }
+
+    /* === HOW WE WORK === */
+    .how-we-work {
+      padding: 6rem 0;
+      background: var(--bg-white);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 992px) {
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .process-step {
+      position: relative;
+      padding: 1.5rem;
+      border-left: 2px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    .process-step:hover {
+      border-left-color: var(--purple);
+      background: var(--bg-subtle);
+    }
+
+    .process-number {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--purple);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.1em;
+    }
+
+    .process-step h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .process-step p {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      line-height: 1.6;
+    }
+
+    .process-note {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: var(--bg-subtle);
+      border-radius: 12px;
+      text-align: center;
+      border-left: 4px solid var(--purple);
+    }
+
+    .process-note p {
+      color: var(--secondary);
+      font-size: 0.95rem;
+    }
+
+    /* === EXAMPLES === */
+    .examples {
+      padding: 5rem 0;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+    }
+
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .examples-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .example-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+
+    .example-card:hover {
+      border-color: var(--purple);
+      transform: translateY(-4px);
+    }
+
+    .example-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--purple);
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+
+    .example-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .example-card p {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      line-height: 1.6;
+    }
+
+    /* === WHY BUBBLE === */
+    .why-bubble {
+      padding: 5rem 0;
+      background: var(--bg-white);
+    }
+
+    .why-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .why-content p {
+      font-size: 1.1rem;
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .differentiation {
+      margin-top: 3rem;
+      padding: 2rem;
+      background: var(--bg-subtle);
+      border-radius: 16px;
+    }
+
+    .differentiation h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .differentiation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .differentiation-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .differentiation-item h5 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .differentiation-item p {
+      font-size: 0.85rem;
+      color: var(--secondary);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* === SOCIAL PROOF === */
+    .social-proof {
+      padding: 5rem 0;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .testimonial-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+
+    .testimonial-card:hover {
+      border-color: var(--purple);
+    }
+
+    .stars {
+      display: flex;
+      gap: 0.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .stars svg {
+      width: 18px;
+      height: 18px;
+      fill: #fbbf24;
+      color: #fbbf24;
+    }
+
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: var(--secondary);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      background: var(--bg-subtle);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .testimonial-info h5 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .testimonial-info p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* === FAQ === */
+    .faq {
+      padding: 5rem 0;
+      background: var(--bg-white);
+    }
+
+    .faq-list {
+      max-width: 800px;
+      margin: 2rem auto 0;
+    }
+
+    details {
+      background: var(--bg-subtle);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    details:hover {
+      border-color: var(--purple);
+    }
+
+    summary {
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      font-weight: 500;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: '+';
+      font-size: 1.25rem;
+      color: var(--purple);
+      font-weight: 300;
+    }
+
+    details[open] summary::after {
+      content: '−';
+    }
+
+    details p {
+      padding: 0 1.5rem 1.5rem;
+      color: var(--secondary);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    details p strong {
+      color: var(--primary);
+    }
+
+    /* === FINAL CTA === */
+    .final-cta {
+      padding: 6rem 0;
+      background: var(--bg-subtle);
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .final-cta h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .final-cta>p {
+      color: var(--secondary);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      font-size: 1.1rem;
+    }
+
+    .final-cta .btn {
+      font-size: 1.1rem;
+      padding: 1rem 2rem;
+    }
+
+    /* === FOOTER === */
+    footer {
+      padding: 3rem 0;
+      background: var(--bg-white);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .footer-logo {
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--purple);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a href="/" class="logo">
+          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-width="6" stroke-linecap="round"
+              stroke-dasharray="145 29" stroke-dashoffset="10" />
+            <circle cx="59" cy="21" r="6" fill="currentColor" />
+          </svg>
+          Bubble.
+        </a>
+        <nav>
+          <a href="/about">À propos</a>
+          <a href="/professionals">Professionnels</a>
+          <a href="/investors">Investisseurs</a>
+          <a href="/blog">Blog</a>
+          <div class="lang-switch">
+            <button class="active">FR</button>
+            <span>/</span>
+            <button>EN</button>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <p class="fade-in" style="font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--purple); margin-bottom: 1rem;">Mieux qu'un conseil, des solutions.</p>
+      <h1 class="fade-in fade-in-delay-1">Implémentation de<br>Systèmes Agentiques</h1>
+      <p class="hero-subtitle fade-in fade-in-delay-2">
+        Anciens consultants Big Four et gestionnaires de fonds. Nous déployons des agents sur vos systèmes — soyez parmi
+        les premiers en France.
+      </p>
+      <div class="hero-cta fade-in fade-in-delay-2">
+        <a href="#calendly" class="btn btn-primary">Réserver un appel gratuit</a>
+        <a href="#services" class="btn btn-secondary">Découvrir nos services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Nos Services</h2>
+        <h3>Trois façons de collaborer</h3>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+              <path d="M6 12v5c3 3 9 3 12 0v-5" />
+            </svg>
+          </div>
+          <h4>Formation IA</h4>
+          <p>Maîtrisez les outils IA : LLMs, Notion, workflows d'automatisation.</p>
+          <ul class="service-features">
+            <li>Sessions sur site ou distanciel</li>
+            <li>Support dédié continu</li>
+            <li>Adapté à votre niveau</li>
+          </ul>
+        </div>
+
+        <div class="service-card fade-in fade-in-delay-1">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+          </div>
+          <h4>Solutions sur Mesure</h4>
+          <p>Applications, automatisations et intégrations sur vos outils existants. Pas de changement d'infrastructure.</p>
+          <ul class="service-features">
+            <li>Développement & intégrations API</li>
+            <li>Automatisation de workflows existants</li>
+            <li>Devis fixes, ROI mesurable</li>
+          </ul>
+        </div>
+
+        <div class="service-card fade-in fade-in-delay-2">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+            </svg>
+          </div>
+          <h4>Bubble Portfolio Pro</h4>
+          <p>Plateforme d'investissement pour Wealth Managers et family offices.</p>
+          <ul class="service-features">
+            <li>Exécution automatisée</li>
+            <li>Stratégies transparentes</li>
+            <li>En marque blanche</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE WORK -->
+  <section class="how-we-work">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Notre Méthodologie</h2>
+        <h3>Comment nous travaillons</h3>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-step fade-in">
+          <div class="process-number">01</div>
+          <h4>Diagnostic</h4>
+          <p>Entretien gratuit pour identifier vos quick wins. Mapping des processus. Estimation transparente.</p>
+        </div>
+
+        <div class="process-step fade-in fade-in-delay-1">
+          <div class="process-number">02</div>
+          <h4>Formation</h4>
+          <p>Montée en compétence sur les outils IA. Prompts efficaces. Prise en main adaptée.</p>
+        </div>
+
+        <div class="process-step fade-in fade-in-delay-2">
+          <div class="process-number">03</div>
+          <h4>Sprint</h4>
+          <p>Prototypage rapide en 2-4 semaines. Livrables progressifs. Validation à chaque étape.</p>
+        </div>
+
+        <div class="process-step fade-in fade-in-delay-3">
+          <div class="process-number">04</div>
+          <h4>Suivi</h4>
+          <p>Déploiement et documentation. Passation pour votre autonomie. Upgrades continus.</p>
+        </div>
+      </div>
+
+      <div class="process-note fade-in">
+        <p><strong>Principe fondamental :</strong> Validation humaine d'abord. Approche incrémentale. Systèmes
+          apprenants avec mémoire et feedback. Rien ne part sans votre validation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLES -->
+  <section class="examples">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Exemples Concrets</h2>
+        <h3>Ce que nous avons déployé</h3>
+      </div>
+
+      <div class="examples-grid">
+        <div class="example-card fade-in">
+          <span class="example-tag">Fintech</span>
+          <h4>Agent de Réconciliation Multi-Banques</h4>
+          <p>Automatisation complète de la réconciliation des flux pour un fonds d'investissement. Intégration API bancaires. Réduction de 80% du temps.</p>
+        </div>
+
+        <div class="example-card fade-in fade-in-delay-1">
+          <span class="example-tag">CGP</span>
+          <h4>Workflow de Prise de Décision</h4>
+          <p>Agent qui analyse les opportunités d'investissement, génère des fiches synthèses et alimente le CRM pour validation finale du conseiller.</p>
+        </div>
+
+        <div class="example-card fade-in fade-in-delay-2">
+          <span class="example-tag">Architecture</span>
+          <h4>Génération de Propositions Commerciales</h4>
+          <p>Agent IA qui transforme les briefs clients en propositions détaillées. Intégration Notion + Google Workspace + calculs de coûts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY BUBBLE -->
+  <section class="why-bubble">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Notre Différence</h2>
+        <h3>Pourquoi travailler avec nous</h3>
+      </div>
+
+      <div class="why-content fade-in">
+        <p>Après des années dans des cabinets de conseil et la gestion d'actifs, nous avons observé de nombreux travers
+          : missions à 6 chiffres qui ne débouchent sur rien, consultants qui disparaissent après leur rapport,
+          promesses rarement tenues.</p>
+
+        <p>Chez Bubble Invest, nous avons choisi de faire autrement : miser sur l'honnêteté et l'envie d'aider vraiment
+          — même si cela signifie parfois dire non à un projet.</p>
+
+        <div class="differentiation fade-in fade-in-delay-1">
+          <h4>Triple expertise rare</h4>
+          <div class="differentiation-grid">
+            <div class="differentiation-item">
+              <h5>Finance</h5>
+              <p>Expertise native des enjeux réglementaires, risques, workflows métier</p>
+            </div>
+            <div class="differentiation-item">
+              <h5>Tech</h5>
+              <p>Certifications AWS, stack à jour, architectures cloud-native</p>
+            </div>
+            <div class="differentiation-item">
+              <h5>IA</h5>
+              <p>Maîtrise opérationnelle des derniers modèles, veille continue</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="social-proof">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Ils nous font confiance</h2>
+        <h3>Ce que disent nos premiers clients</h3>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-in">
+          <div class="stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testimonial-text">"En 3 semaines, Bubble a automatisé ce qui nous prenait 2 jours par semaine. La réconciliation bancaire se fait maintenant en quelques minutes."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">FD</div>
+            <div class="testimonial-info">
+              <h5>Fond d'Investissement Paris</h5>
+              <p>Directeur des Opérations</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in fade-in-delay-1">
+          <div class="stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testimonial-text">"Ils comprennent nos contraintes métier sans qu'on ait à tout expliquer. Le prototypage rapide nous a permis de valider avant d'investir."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">CG</div>
+            <div class="testimonial-info">
+              <h5>Cabinet de Gestion Privée</h5>
+              <p>CGP indépendant</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in fade-in-delay-2">
+          <div class="stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testimonial-text">"La formation de l'équipe était concrète et immédiatement applicable. Pas de théorie, que de la pratique sur nos cas réels."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AL</div>
+            <div class="testimonial-info">
+              <h5>Agence d'Architecture</h5>
+              <p>Directrice Générale</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Questions Fréquentes</h2>
+        <h3>Ce que vous vous demandez</h3>
+      </div>
+
+      <div class="faq-list fade-in">
+        <details>
+          <summary>Quel est le délai moyen pour un projet ?</summary>
+          <p>Nos projets sont conçus pour être <strong>rapides et concrets</strong> :<br><br>
+            • <strong>Diagnostic</strong> : 1-2 semaines (gratuit)<br>
+            • <strong>Automation simple</strong> : 1-2 mois<br>
+            • <strong>Projet complet</strong> : 2-4 mois<br><br>
+            Nous privilégions les livrables progressifs : vous voyez les résultats toutes les 2-3 semaines.</p>
+        </details>
+
+        <details>
+          <summary>Comment se déroule un projet type ?</summary>
+          <p><strong>Phase 1 : Diagnostic</strong> — Compréhension de vos processus, identification des quick wins,
+            estimation transparente.<br><br>
+            <strong>Phase 2 : Développement itératif</strong> — Démos régulières, ajustements en temps réel.<br><br>
+            <strong>Phase 3 : Livraison & Formation</strong> — Documentation complète, formation de vos équipes,
+            passation pour autonomie.
+          </p>
+        </details>
+
+        <details>
+          <summary>Quelle est votre différence avec un cabinet de conseil ?</summary>
+          <p><strong>Nous sommes opérationnels, pas des stratèges PowerPoint.</strong><br><br>
+            • Pas de diagnostic à rallonge : on livre dès le premier mois<br>
+            • Pas d'armée de consultants : équipe réduite, ultra-compétente<br>
+            • Pas de budgets cachés : tarif fixe annoncé dès le départ<br>
+            • Pas de vente forcée : si votre projet n'a pas de sens, on vous le dit</p>
+        </details>
+
+        <details>
+          <summary>Quels outils utilisez-vous ?</summary>
+          <p>Nous adaptons la stack à <strong>votre besoin</strong> :<br><br>
+            • <strong>Automations</strong> : Code builders IA avec intégrations API<br>
+            • <strong>Custom code</strong> : Python, Node.js, React<br>
+            • <strong>AI agents</strong> : Claude, ChatGPT, Gemini<br>
+            • <strong>Intégrations</strong> : Notion, Gmail, Sheets, Calendar, Slack<br><br>
+            Solutions pérennes et maintenables, pas de technologies hype sans valeur ajoutée.</p>
+        </details>
+
+        <details>
+          <summary>Proposez-vous une maintenance après livraison ?</summary>
+          <p><strong>Oui, avec transparence.</strong> Nous proposons soit une maintenance incluse, soit des services
+            étendus selon vos besoins. Le montant est fixé au départ.</p>
+        </details>
+
+        <details>
+          <summary>Travaillez-vous uniquement avec des entreprises fintech ?</summary>
+          <p><strong>Notre spécialité : la finance.</strong> Mais nous travaillons avec :<br><br>
+            • Sociétés de gestion, family offices, CGP<br>
+            • PME avec besoins financiers (réconciliation, budget tracking)<br><br>
+            Si votre projet touche à la finance, l'analyse de données ou l'automatisation, nous pouvons vous aider.</p>
+        </details>
+
+        <details>
+          <summary>Qu'est-ce que Bubble Portfolio White-Label ?</summary>
+          <p><strong>Plateforme d'investissement IA en marque blanche</strong> pour Wealth Managers et family
+            offices.<br><br>
+            Au lieu de construire une plateforme complexe, vous offrez à vos clients screening automatisé, backtesting
+            et allocation d'actifs via IA — sous votre marque.<br><br>
+            Tarification sur devis selon nombre de clients, AUM, niveau de customization.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta" id="calendly">
+    <div class="container">
+      <h2 class="fade-in">Parlons de votre projet</h2>
+      <p class="fade-in fade-in-delay-1">Premier appel gratuit — diagnostic de 30 minutes, sans engagement.</p>
+      <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
+        class="btn btn-primary fade-in fade-in-delay-2">
+        Réserver un créneau Calendly
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          style="margin-left: 0.5rem;">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <a href="/" class="footer-logo">Bubble.</a>
+          <span class="footer-tagline">Transparent by design.</span>
+        </div>
+        <div class="footer-links">
+          <a href="/professionals">Professionnels</a>
+          <a href="/investors">Investisseurs</a>
+          <a href="/blog">Blog</a>
+          <a href="/privacy">Confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

@@ -213,6 +213,33 @@ if (process.env.NODE_ENV !== "production") {
       path.join(frPagesDir, "workflow-visualization-mock.html")
     );
   });
+
+  /**
+   * Homepage mock v4 - Refined with current site structure (dev only)
+   */
+  router.get("/homepage-mock-v4", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "../../../homepage-mock-v4.html")
+    );
+  });
+
+  /**
+   * About page mock - Mission, values, story (dev only)
+   */
+  router.get("/about-mock", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "../../../about-mock.html")
+    );
+  });
+
+  /**
+   * Professionals page mock - B2B services (dev only)
+   */
+  router.get("/professionals-mock", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "../../../professionals-mock.html")
+    );
+  });
 }
 
 /**
