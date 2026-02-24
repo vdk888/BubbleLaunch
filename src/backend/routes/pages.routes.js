@@ -215,7 +215,11 @@ if (process.env.NODE_ENV !== "production") {
   });
 
   /**
-   * Homepage mock v4 - Refined with current site structure (dev only)
+   * ==================== FRENCH MOCK PAGES ====================
+   */
+
+  /**
+   * Homepage mock v4 - FR (dev only)
    */
   router.get("/homepage-mock-v4", (req, res) => {
     res.sendFile(
@@ -224,20 +228,87 @@ if (process.env.NODE_ENV !== "production") {
   });
 
   /**
-   * About page mock - Mission, values, story (dev only)
+   * About page mock - FR (dev only)
    */
-  router.get("/about-mock", (req, res) => {
+  router.get("/a-propos-mock", (req, res) => {
     res.sendFile(
-      path.join(__dirname, "../../../about-mock.html")
+      path.join(__dirname, "../../../a-propos-mock.html")
     );
   });
 
   /**
-   * Professionals page mock - B2B services (dev only)
+   * Professionals page mock - FR (dev only)
    */
-  router.get("/professionals-mock", (req, res) => {
+  router.get("/professionnels-mock", (req, res) => {
     res.sendFile(
-      path.join(__dirname, "../../../professionals-mock.html")
+      path.join(__dirname, "../../../professionnels-mock.html")
+    );
+  });
+
+  /**
+   * Individuals page mock (was Investors) - FR (dev only)
+   */
+  router.get("/particuliers-mock", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "../../../particuliers-mock.html")
+    );
+  });
+
+  /**
+   * Blog page mock - FR (dev only)
+   */
+  router.get("/blog-mock", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "../../../blog-mock.html")
+    );
+  });
+
+  /**
+   * ==================== ENGLISH MOCK PAGES ====================
+   */
+
+  /**
+   * Homepage mock v4 - EN (dev only)
+   */
+  router.get("/homepage-mock-v4-en", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "../../../homepage-mock-v4-en.html")
+    );
+  });
+
+  /**
+   * About page mock - EN (dev only)
+   */
+  router.get("/about-mock-en", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "../../../about-mock-en.html")
+    );
+  });
+
+  /**
+   * Professionals page mock - EN (dev only)
+   */
+  router.get("/professionals-mock-en", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "../../../professionals-mock-en.html")
+    );
+  });
+
+  /**
+   * Individuals page mock (was Investors) - EN (dev only)
+   */
+  router.get("/individuals-mock-en", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "../../../individuals-mock-en.html")
+    );
+  });
+
+  /**
+   * Blog page mock - EN (dev only)
+   */
+  router.get("/blog-mock-en", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "../../../blog-mock-en.html")
     );
   });
 }

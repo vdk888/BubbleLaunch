@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>À Propos — Philosophie, Histoire &amp; Valeurs | Bubble</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    /* === BASE (Same as homepage mock) === */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --primary: #111111;
+      --secondary: #666666;
+      --muted: #999999;
+      --border: rgba(0, 0, 0, 0.08);
+      --bg-white: #FFFFFF;
+      --bg-subtle: #F8F8F8;
+      --purple: #93acf0;
+      --purple-light: rgba(147, 172, 240, 0.15);
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-white);
+      color: var(--primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* === HEADER === */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+    }
+    
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .logo:hover { color: var(--purple); }
+    .logo svg { width: 28px; height: 28px; }
+    
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    
+    nav a {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--purple);
+      transition: width 0.3s;
+    }
+    
+    nav a:hover { color: var(--primary); }
+    nav a:hover::after { width: 100%; }
+    
+    nav a.active { color: var(--primary); }
+    nav a.active::after { width: 100%; }
+    
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+    }
+    
+    .lang-switch button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 0.25rem 0.5rem;
+      transition: color 0.3s;
+    }
+    
+    .lang-switch button.active,
+    .lang-switch button:hover {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    /* === HERO === */
+    .hero {
+      padding: 10rem 0 5rem;
+      text-align: center;
+      background: var(--bg-subtle);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* === CONTENT SECTIONS === */
+    .section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .section:last-of-type {
+      border-bottom: none;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .section-header h2 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    
+    .section-header h3 {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+    
+    /* === MANIFESTO === */
+    .manifesto-quote {
+      font-size: 1.75rem;
+      font-weight: 500;
+      line-height: 1.5;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem;
+      background: var(--bg-subtle);
+      border-radius: 16px;
+      border-left: 4px solid var(--purple);
+    }
+    
+    .manifesto-attribution {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    
+    /* === VALUES GRID === */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    
+    @media (max-width: 768px) {
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    
+    @media (max-width: 480px) {
+      .values-grid { grid-template-columns: 1fr; }
+    }
+    
+    .value-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    
+    .value-card:hover {
+      border-color: var(--purple);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(147, 172, 240, 0.15);
+    }
+    
+    .value-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--bg-subtle);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      transition: all 0.3s;
+      color: var(--primary);
+    }
+    
+    .value-icon svg {
+      stroke: var(--primary);
+      transition: stroke 0.3s;
+    }
+    
+    .value-card:hover .value-icon {
+      background: var(--purple-light);
+      transform: scale(1.1);
+    }
+    
+    .value-card:hover .value-icon svg {
+      stroke: var(--purple);
+    }
+    
+    .value-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .value-card p {
+      font-size: 0.85rem;
+      color: var(--secondary);
+      line-height: 1.6;
+    }
+    
+    /* === STORY === */
+    .story-content {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .story-content p {
+      font-size: 1.1rem;
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+    
+    .story-content p.lead {
+      font-size: 1.25rem;
+      color: var(--primary);
+      font-weight: 500;
+    }
+    
+    .story-content h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem;
+      color: var(--primary);
+    }
+    
+    .story-content ul {
+      margin-left: 1.5rem;
+      color: var(--secondary);
+    }
+    
+    .story-content li {
+      margin-bottom: 0.75rem;
+      line-height: 1.7;
+    }
+    
+    /* === TEAM === */
+    .team-intro {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      font-size: 1.1rem;
+      color: var(--secondary);
+    }
+    
+    .team-grid {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+    }
+    
+    @media (max-width: 768px) {
+      .team-grid { flex-direction: column; align-items: center; gap: 2rem; }
+    }
+    
+    .team-member {
+      text-align: center;
+    }
+    
+    .team-avatar {
+      width: 120px;
+      height: 120px;
+      background: var(--bg-subtle);
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      border: 3px solid var(--border);
+      transition: all 0.3s;
+    }
+    
+    .team-member:hover .team-avatar {
+      border-color: var(--purple);
+      transform: scale(1.05);
+    }
+    
+    .team-member h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    
+    .team-member p {
+      font-size: 0.9rem;
+      color: var(--secondary);
+    }
+    
+    .team-initials {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+    
+    /* === WHY BUBBLE === */
+    .why-bubble-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .why-bubble-grid { grid-template-columns: 1fr; }
+    }
+    
+    .why-item {
+      padding: 2rem;
+      background: var(--bg-subtle);
+      border-radius: 12px;
+      transition: all 0.3s;
+    }
+    
+    .why-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    
+    .why-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .why-item h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    
+    .why-item p {
+      color: var(--secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* === FLOATING CHAT INPUT === */
+    .floating-chat-input {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .floating-chat-input.hidden {
+      opacity: 0;
+      transform: translateX(-50%) translateY(20px);
+      pointer-events: none;
+    }
+
+    .floating-input-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 0.75rem 1rem 0.75rem 1.5rem;
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      min-width: 400px;
+      max-width: 600px;
+    }
+
+    .floating-input-field {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--primary);
+      font-size: 0.95rem;
+      font-family: 'Inter', system-ui, sans-serif;
+      padding: 0.5rem 0;
+    }
+
+    .floating-input-field::placeholder {
+      color: var(--muted);
+    }
+
+    .floating-input-field:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .floating-input-submit {
+      background: var(--primary);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .floating-input-submit:hover {
+      background: var(--purple);
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(147, 172, 240, 0.4);
+    }
+
+    .floating-input-submit:active {
+      transform: scale(0.95);
+    }
+
+    .floating-input-submit svg {
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .floating-chat-input {
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem;
+        transform: none;
+      }
+
+      .floating-chat-input.hidden {
+        transform: translateY(20px);
+      }
+
+      .floating-input-container {
+        min-width: unset;
+        width: 100%;
+        padding: 0.75rem 0.75rem 0.75rem 1rem;
+        gap: 0.5rem;
+      }
+
+      .floating-input-field {
+        font-size: 1rem;
+      }
+
+      .floating-input-submit {
+        width: 44px;
+        height: 44px;
+        min-height: 44px;
+        min-width: 44px;
+      }
+
+      .floating-input-submit:hover {
+        transform: none;
+      }
+
+      .floating-input-submit:active {
+        transform: scale(0.95);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .floating-chat-input {
+        bottom: 0.75rem;
+        left: 0.5rem;
+        right: 0.5rem;
+      }
+
+      .floating-input-container {
+        padding: 0.5rem 0.5rem 0.5rem 1rem;
+        gap: 0.4rem;
+      }
+
+      .floating-input-field {
+        font-size: 1rem;
+      }
+
+      .floating-input-submit {
+        width: 44px;
+        height: 44px;
+        min-height: 44px;
+        min-width: 44px;
+      }
+    }
+    
+    /* === FOOTER === */
+    footer {
+      padding: 4rem 0 2rem;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+    }
+    
+    footer p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    
+    footer a {
+      color: var(--purple);
+      text-decoration: none;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    
+    .footer-brand p {
+      color: var(--secondary);
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      max-width: 300px;
+    }
+    
+    .footer-links h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-links a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: var(--purple);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .social-links a {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--bg-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary);
+      transition: all 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: var(--purple);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .footer-bottom p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    
+    .footer-why-bubble {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+    
+    .footer-why-bubble a {
+      color: var(--purple);
+      text-decoration: none;
+    }
+    
+    .footer-why-bubble a:hover {
+      text-decoration: underline;
+    }
+    
+    /* === ANIMATIONS === */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    .fade-in-delay-1 { animation-delay: 0.1s; }
+    .fade-in-delay-2 { animation-delay: 0.2s; }
+    .fade-in-delay-3 { animation-delay: 0.3s; }
+  
+    /* --- Fix CTA button visibility on dark backgrounds --- */
+    .b2b-section .btn-primary,
+    .final-cta .btn-primary,
+    .will-to-empower .btn-primary,
+    .waitlist-section .btn-primary {
+      background: white;
+      color: var(--primary);
+      border: 1px solid white;
+    }
+    
+    .b2b-section .btn-primary:hover,
+    .final-cta .btn-primary:hover,
+    .will-to-empower .btn-primary:hover,
+    .waitlist-section .btn-primary:hover {
+      background: var(--purple);
+      color: white;
+      border-color: var(--purple);
+      transform: translateY(-2px);
+    }
+    
+    .b2b-section .btn-secondary,
+    .final-cta .btn-secondary,
+    .will-to-empower .btn-secondary,
+    .waitlist-section .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    
+    .b2b-section .btn-secondary:hover,
+    .final-cta .btn-secondary:hover,
+    .will-to-empower .btn-secondary:hover,
+    .waitlist-section .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-color: white;
+    }
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header>
+<div class="container" style="max-width: 1200px;">
+<div class="header-inner">
+<a class="logo" href="/">
+<svg fill="none" viewbox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+<circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle>
+<circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+</svg>
+          Bubble.
+        </a>
+<nav>
+<a class="active" href="/a-propos-mock">À Propos</a>
+<a href="/professionnels-mock">Professionnels</a>
+<a href="/particuliers-mock">Particuliers</a>
+<a href="/blog-mock">Blog</a>
+<div class="lang-switch">
+<button class="active" onclick="">FR</button>
+<span>/</span>
+<button class="" onclick="window.location.href='/about-mock-en'">EN</button>
+</div>
+</nav>
+</div>
+</div>
+</header>
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<h1>À propos de Bubble</h1>
+<p>On build in public. Voici qui nous sommes, ce qu'on croit et pourquoi on le fait.</p>
+</div>
+</section>
+<!-- PHILOSOPHY -->
+<section class="section">
+<div class="container">
+<div class="section-header">
+<h2>Notre philosophie</h2>
+<h3>Automatiser pour mieux s'occuper des autres</h3>
+</div>
+<div class="story-content">
+<p class="lead">L'IA peut produire du contenu, du code et de l'analyse pour un coût marginal proche de zéro. Ce qui devient rare, ce n'est plus la compétence technique. C'est autre chose :</p>
+<p class="lead" style="font-style: italic; border-left: 3px solid var(--purple); padding-left: 1.5rem; margin: 2rem 0;">Le choix conscient d'un être humain de consacrer son temps — son temps irréversible, perdu pour toujours — à un autre être humain.</p>
+<h4>L'histoire des vœux</h4>
+<p>Un dirigeant a utilisé l'IA pour envoyer ses vœux personnalisés à ses 600 employés. Des messages adaptés à chacun, à ses performances, à son parcours. Les employés étaient touchés.</p>
+<p>Puis le patron a révélé sa méthode. La déception fut immense.</p>
+<p>Pas parce que les mots avaient changé. Mais parce qu'ils ont découvert que derrière l'apparence de l'attention, il n'y avait aucun temps consacré. Aucun choix. Aucun sacrifice de quelque chose d'irréversible.</p>
+<h4>Le temps irréversible</h4>
+<p>Quand quelqu'un vous écrit un message, même court, la valeur ne réside pas dans sa formulation. Elle réside dans le fait que cette personne a pris un bout de sa vie, un fragment de temps qu'elle ne récupérera jamais, et a choisi de le dépenser pour vous plutôt qu'ailleurs.</p>
+<p>Elle a interrompu ce qu'elle faisait. Elle a pensé à vous. Ce temps est consommé, irréversible, perdu pour tout le reste.</p>
+<p style="font-style: italic; color: var(--primary);">C'est cela que vous recevez. Pas des mots. Du temps. Le temps de vie d'une personne qui va mourir.</p>
+<h4>Ce que l'IA ne peut pas faire</h4>
+<p>L'IA peut simuler l'attention. Produire des phrases qui ressemblent à du soin. Mais il lui manque l'essentiel : la liberté de faire autrement.</p>
+<p>Elle ne peut pas choisir de ne pas vous répondre. Elle ne sacrifie rien. Son temps ne coûte rien.</p>
+<p>Et c'est précisément cette impossibilité — cette absence de choix — qui vide son attention de tout ce qui la rendrait précieuse.</p>
+<h4>Pourquoi on automatise</h4>
+<p>Si tout ce qui est automatisable est automatisé, alors il reste plus de temps pour ce qui ne l'est pas :</p>
+<p>Automatiser n'est pas une fin en soi. C'est un moyen de libérer du temps pour ce qui compte vraiment.</p>
+<h4>Pourquoi on automatise</h4>
+<p>Ce qu'on fait chez Bubble : on automatise le répétitif pour que vous puissiez consacrer votre temps irréversible à ce qui a de la valeur — vos clients, votre équipe, vos proches.</p>
+<ul>
+<li>Le regard d'un conseiller qui comprend vraiment la situation de son client</li>
+<li>La créativité d'une équipe qui réfléchit ensemble</li>
+<li>L'empathie d'un manager qui prend le temps d'écouter</li>
+<li>La présence d'un parent, d'un ami, d'un proche</li>
+</ul>
+<p>
+          Automatiser n'est pas une fin en soi. C'est un moyen de libérer du temps pour ce qui compte vraiment.
+        </p>
+<p>
+          Ce qu'on fait chez Bubble : on automatise le répétitif pour que vous puissiez consacrer votre temps irréversible à ce qui a de la valeur — vos clients, votre équipe, vos proches.
+        </p>
+</div>
+<blockquote class="manifesto-quote fade-in" style="margin-top: 4rem;">"L'IA peut produire pour un coût marginal proche de zéro. Ce qu'elle ne peut pas produire, c'est le choix d'un être libre de consacrer son temps à un autre.<br/><br/>C'est ça qu'on vous redonne : du temps. Pour vous. Pour les vôtres."</blockquote>
+<p class="manifesto-attribution">— J &amp; J, fondateurs</p>
+</div>
+</section>
+<!-- VALUES -->
+<section class="section" style="background: var(--bg-subtle);">
+<div class="container">
+<div class="section-header">
+<h2>Nos valeurs</h2>
+<h3>On build in public</h3>
+</div>
+<div class="values-grid">
+<a class="value-card fade-in" href="/blog?tag=education">
+<div class="value-icon">
+<svg fill="none" height="28" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="28">
+<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+</svg>
+</div>
+<h4>Éduquer</h4>
+<p>Démystifier la finance et l'IA. Partager ce que l'industrie garde opaque.</p>
+</a>
+<a class="value-card fade-in fade-in-delay-1" href="/blog?tag=automation">
+<div class="value-icon">
+<svg fill="none" height="28" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="28">
+<rect height="18" rx="2" ry="2" width="18" x="3" y="3"></rect>
+<line x1="3" x2="21" y1="9" y2="9"></line>
+<line x1="9" x2="9" y1="21" y2="9"></line>
+</svg>
+</div>
+<h4>Automatiser</h4>
+<p>Montrer comment on construit. Ce qu'on utilise pour nous, on vous l'explique.</p>
+</a>
+<a class="value-card fade-in fade-in-delay-2" href="/blog?tag=transparency">
+<div class="value-icon">
+<svg fill="none" height="28" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="28">
+<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+<circle cx="12" cy="12" r="3"></circle>
+</svg>
+</div>
+<h4>Transparence</h4>
+<p>Nos chiffres, nos erreurs, nos décisions — tout est visible.</p>
+</a>
+<a class="value-card fade-in fade-in-delay-3" href="/blog?tag=values">
+<div class="value-icon">
+<svg fill="none" height="28" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="28">
+<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+</svg>
+</div>
+<h4>Bienveillance</h4>
+<p>Élever chaque personne qui nous fait confiance. Créer plus de valeur qu'on n'en capture.</p>
+</a>
+</div>
+</div>
+</section>
+<!-- OUR STORY -->
+<section class="section">
+<div class="container">
+<div class="section-header">
+<h2>Notre histoire</h2>
+<h3>Pourquoi on a créé Bubble</h3>
+</div>
+<div class="story-content">
+<p class="lead">On a passé 6 ans en gestion de fonds et dans de grandes banques. À travailler au quotidien dans ce qu'on appelle la "haute finance".</p>
+<p>Et on s'est rendu compte de deux choses :</p>
+<p>1/ Les investisseurs particuliers paient trop cher pour un service opaque. Des frais qui ne reflètent pas la valeur réelle créée.</p>
+<p>2/ Les méthodes de travail dans le secteur sont archaïques. À l'ère de l'automatisation, la plupart des gérants utilisent encore Excel de manière primitive.</p>
+<p>On a quitté nos postes confortables pour construire l'outil qu'on voulait pour nous-mêmes.</p>
+<h4>Un outil qui :</h4>
+<ul>
+<li>Automatise l'investissement actif, sans nous déposséder de nos actifs</li>
+<li>Explique chaque décision, sans jargon inutile</li>
+<li>Coûte un abonnement fixe, pas un pourcentage de notre patrimoine</li>
+</ul>
+<p>Et on a décidé de le construire en public. Parce qu'on croit que la confiance se gagne par la transparence.</p>
+</div>
+</div>
+</section>
+<!-- TEAM -->
+<section class="section" style="background: var(--bg-subtle);">
+<div class="container">
+<div class="section-header">
+<h2>L'équipe</h2>
+<h3>Qui nous sommes</h3>
+</div>
+<p class="team-intro">J &amp; J — Deux profils complémentaires. L'un de l'investissement, l'autre de l'audit et du conseil. Un optimiste, une pragmatique.</p>
+<div class="team-grid">
+<div class="team-member fade-in">
+<div class="team-avatar" style="font-size: 1.5rem; font-weight: 600; color: var(--primary);">J</div>
+<h4>Joris</h4>
+<p>Co-fondateur</p>
+<p class="team-initials">6 ans en gestion de fonds et banque d'investissement</p>
+</div>
+<div class="team-member fade-in fade-in-delay-1">
+<div class="team-avatar" style="font-size: 1.5rem; font-weight: 600; color: var(--primary);">J</div>
+<h4>Jade</h4>
+<p>Co-fondatrice</p>
+<p class="team-initials">6 ans en audit et conseil (Big Four)</p>
+</div>
+</div>
+<p style="text-align: center; margin-top: 3rem; color: var(--secondary); font-size: 0.95rem; max-width: 500px; margin-left: auto; margin-right: auto;">On ne cherche pas à devenir des icônes. On veut rester dans l'ombre du produit. Parce que Bubble, ce n'est pas notre histoire — c'est la vôtre.</p>
+</div>
+</section>
+<!-- WHAT WE DO -->
+<section class="section">
+<div class="container">
+<div class="section-header">
+<h2>Ce qu'on fait</h2>
+<h3>Aujourd'hui et demain</h3>
+</div>
+<div class="story-content">
+<p class="lead">On développe deux activités complémentaires autour d'une même expertise : l'automatisation par les agents.</p>
+<h4>1. Implémentation de systèmes multi-agents (B2B)</h4>
+<p>Pour les professionnels de la finance — CGP, sociétés de gestion, Directions Financières. On déploie les dernières solutions d'automatisation dès leur sortie. Diagnostics, agents sur mesure, projets complets.</p>
+<h4>2. L'Agent d'Investissement (B2C)</h4>
+<p>L'outil qu'on utilise pour nos propres portefeuilles. On vous partage comment configurer votre agent : screening, backtesting, exécution automatisée. C'est du "partage" — on ne prétend pas avoir la vérité absolue, on vous donne accès à ce qui marche pour nous.</p>
+<p>Notre positionnement est clair : <strong>Le B2B d'abord</strong> (pour la viabilité de l'entreprise), <strong>Le B2C en partage</strong> (pour l'impact et la communauté).</p>
+</div>
+</div>
+</section>
+<!-- WILL TO EMPOWER -->
+<section class="section" style="background: var(--bg-subtle);">
+<div class="container">
+<div class="section-header">
+<h2>Notre volonté d'émanciper</h2>
+<h3>Là où l'industrie du conseil vit de votre dépendance, nous vivons de votre émancipation</h3>
+</div>
+<div class="story-content">
+<p class="lead">Notre mission n'est pas de vous rendre dépendants — c'est de vous élever.</p>
+<p>Là où l'industrie du conseil classique construit des "boîtes noires" cryptiques pour vous facturer de la maintenance au mois, nous choisissons l'open source et le transfert de compétences.</p>
+<p>On ne fait pas que construire des agents pour vous. On vous montre comment ils sont construits, pour que vous puissiez le faire vous-mêmes ensuite. On documente nos réussites, nos échecs, nos méthodes.</p>
+<p>Au cœur de Bubble, il y a une conviction : <strong>la transparence crée plus de valeur que la rétention d'information</strong>. On mesure notre succès non pas à quel point vous avez besoin de nous, mais à la vitesse à laquelle vous devenez autonomes.</p>
+</div>
+</div>
+</section>
+<!-- WHY BUBBLE -->
+<section class="section" id="why-bubble">
+<div class="container">
+<div class="section-header">
+<h2>Le nom</h2>
+<h3>Pourquoi "Bubble" ?</h3>
+</div>
+<div class="why-bubble-grid">
+<div class="why-item fade-in">
+<div class="why-icon" style="font-size: 1.5rem; font-weight: 600;">1</div>
+<h4>La bulle de la finance</h4>
+<p>On éclate (pop) la bulle de la finance opaque. Pas de jargon, pas de frais cachés, pas de complexité artificielle.</p>
+</div>
+<div class="why-item fade-in fade-in-delay-1">
+<div class="why-icon" style="font-size: 1.5rem; font-weight: 600;">2</div>
+<h4>Investir</h4>
+<p>Notre cœur de métier historique. Mais aussi une métaphore : investir dans les bulles technologiques (comme l'IA), investir en soi.</p>
+</div>
+<div class="why-item fade-in fade-in-delay-2">
+<div class="why-icon" style="font-size: 1.5rem; font-weight: 600;">3</div>
+<h4>Le double sens</h4>
+<p>Investir dans les bulles = saisir les opportunités. Investir en soi = se former, devenir autonome.</p>
+</div>
+</div>
+<p style="text-align: center; margin-top: 3rem; font-size: 1.1rem; color: var(--secondary);">
+<em>"Let's pop the finance bubble!"</em>
+</p>
+</div>
+</section>
+<!-- BUILD IN PUBLIC -->
+<section class="section" style="background: var(--bg-subtle);">
+<div class="container">
+<div class="section-header">
+<h2>Build in Public</h2>
+<h3>Suivez notre parcours</h3>
+</div>
+<div class="story-content" style="text-align: center;">
+<p class="lead">On partage nos doutes, nos victoires, nos erreurs. Parce que la confiance se gagne par la transparence.</p>
+<div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;">
+<a href="/blog-mock" style="color: var(--purple); text-decoration: none; font-weight: 500;">Blog →</a>
+<a href="https://bit.ly/3Z9Cncr" style="color: var(--purple); text-decoration: none; font-weight: 500;">Newsletter →</a>
+<a href="#" style="color: var(--purple); text-decoration: none; font-weight: 500;">YouTube →</a>
+<a href="https://www.linkedin.com/company/bubble-invest" style="color: var(--purple); text-decoration: none; font-weight: 500;">LinkedIn →</a>
+</div>
+</div>
+</div>
+</section>
+<!-- FLOATING CHAT INPUT -->
+<!-- Appears when user scrolls past hero, fixed at bottom center -->
+<div class="floating-chat-input hidden" data-always-visible="false" data-page-context="about" data-trigger-selector=".hero" id="floating-chat-input">
+<div class="floating-input-container">
+<input aria-label="Ask your question" class="floating-input-field" placeholder="A question?" type="text"/>
+<button aria-label="Send" class="floating-input-submit">
+<svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="M5 10L12 3L19 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M12 21V4" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- FOOTER -->
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<a class="logo" href="/" style="font-size: 1.5rem;">
+<svg fill="none" style="width: 32px; height: 32px;" viewbox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+<circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle>
+<circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+</svg>
+            Bubble.
+          </a>
+<p>L'ère de l'IA a tout changé. Changez avec elle.</p>
+<div class="social-links">
+<a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest" target="_blank" title="LinkedIn">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+</a>
+<a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank" title="Instagram @behindthebubble.ai">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+<a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank" title="Substack @bubbleinvest">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"></path></svg>
+</a>
+<a aria-label="GitHub Jade" href="https://github.com/jade.hng" target="_blank" title="GitHub Jade">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+</a>
+<a aria-label="GitHub Joris" href="https://github.com/vdk888" target="_blank" title="GitHub Joris">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+</a>
+</div>
+</div>
+<div class="footer-links">
+<h4>Implémentation</h4>
+<ul>
+<li><a href="/particuliers-mock">Particuliers</a></li>
+<li><a href="/professionnels-mock">Professionnels</a></li>
+
+</ul>
+</div>
+<div class="footer-links">
+<h4>Ressources</h4>
+<ul>
+<li><a href="/blog-mock">Blog</a></li>
+<li><a href="https://bit.ly/3Z9Cncr">Newsletter</a></li>
+<li><a href="/particuliers-mock">Agents &amp; Tutos</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h4>Entreprise</h4>
+<ul>
+<li><a href="/a-propos-mock">À Propos</a></li>
+<li><a href="/a-propos-mock">Build in Public</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2026 Bubble Invest — Contenu gratuit · Expertise sur mesure · Build in Public</p>
+
+</div>
+</div>
+</footer>
+<!-- Floating Chat Input Animation -->
+<script>
+    (function() {
+      'use strict';
+      
+      const floatingInput = document.getElementById('floating-chat-input');
+      if (!floatingInput) return;
+      
+      // Show floating input when hero scrolls out of view
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        const handleScroll = () => {
+          const rect = hero.getBoundingClientRect();
+          // Show when hero bottom is above viewport top
+          if (rect.bottom < 0) {
+            floatingInput.classList.remove('hidden');
+          } else {
+            floatingInput.classList.add('hidden');
+          }
+        };
+        
+        // Initial check
+        handleScroll();
+        
+        // Throttled scroll listener
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              handleScroll();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        });
+      }
+      
+      // Handle submit
+      const inputField = floatingInput.querySelector('.floating-input-field');
+      const submitButton = floatingInput.querySelector('.floating-input-submit');
+      
+      function handleSubmit() {
+        const message = inputField.value.trim();
+        if (!message) return;
+        
+        // TODO: Connect to chat-side-panel when implemented
+        console.log('[FloatingInput] Message:', message);
+        
+        // For now, scroll to contact as fallback
+        window.location.href = 'mailto:contact@bubbleinvest.org';
+        
+        inputField.value = '';
+        inputField.blur();
+      }
+      
+      submitButton.addEventListener('click', handleSubmit);
+      inputField.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handleSubmit();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

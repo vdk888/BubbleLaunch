@@ -1,0 +1,485 @@
+
+--- homepage-mock-v4.html ---
+Agents & Tutos
+Agents en vitrine
+Appears when user scrolls past hero, fixed at bottom center
+Apprenez en observant ce qu'on a construit
+Autonomie garantie — À la fin, vous n'avez plus besoin de nous
+BLOG PREVIEW
+Blog
+Bubble — L'IA implémentée. Vous gardez l'avance.
+Bubble.
+Build in Public
+CGP, sociétés de gestion, PME. On déploie des agents sur vos systèmes.
+Cas d'usage
+Ce qu'on apprend, ce qu'on pense, ce qu'on partage — gratuitement
+Choisissez votre parcours
+Co-construction — On build avec vous, pas pour vous
+Comment on automatise la veille réglementaire avec OpenClaw
+DUAL PATH SECTION
+Deux Approches
+Discuter de votre projet
+Early adopters — Toujours une longueur d'avance
+En savoir plus
+Entreprise
+Essai philosophique
+Explorer notre agent
+FLOATING CHAT INPUT
+FOOTER
+HEADER
+HERO SECTION
+Implémentation
+Implémentez l'IA dans votre métier — avec les tout derniers outils
+Individuals Path
+L'IA implémentée. Vous gardez l'avance.
+L'IA va-t-elle remplacer les CGP ? Réflexion sur la valeur du conseil
+L'ère de l'IA a tout changé. Changez avec elle.
+Les solutions qu'on utilise sont sorties il y a quelques semaines — on est parmi les premiers en France à les maîtriser.
+Newsletter
+Newsletter — Ce qu'on découvre chaque semaine
+Notre agent d'investissement est un proof of concept public.
+Notre agent en action : 18 mois de gestion réelle
+Notre méthode
+On construit des agents IA pour nous — et on vous montre comment faire pareil. Vitrine d'expertise gratuite pour particuliers. Implémentation sur mesure pour professionnels.
+On partage comment il marche (OpenClaw, code, méthodes) pour que vous puissiez reproduire — pour vos investissements ou vos propres projets.
+PLACEHOLDER: Floating Chat Input Animation
+POC 100% transparent — Stack, limites, apprentissages
+Particuliers
+Professionals Path
+Professionnels
+Ressources
+Ressources gratuites — Configs, tutos, veille
+SCRIPTS TO LOAD FOR CHATBOT FUNCTIONALITY: <script src="/js/chatbot-animations.js"></script> <script src="/js/bubble-agent-memory.js"></script> <script src="/js/chat-side-panel.js"></script> <script src="/js/floating-chat-input.js"></script>
+SELFTWARE SECTION
+TRUST INDICATORS
+Voir la démo
+WAITLIST SECTION
+html
+© 2026 Bubble Invest — Contenu gratuit · Expertise sur mesure · Build in Public
+À Propos
+
+--- particuliers-mock.html ---
+"Enfin du contenu IA sans la hype et le bullshit. Ils nous montrent et nous expliquent tout et ça change tout."
+"Grâce à leurs explications sur OpenClaw, j'ai pu construire mon propre agent de veille en 2 semaines. Pas besoin d'équipe tech."
+"J'ai commencé par la newsletter, puis j'ai reproduit leur agent d'investissement, et maintenant je travaille avec eux sur un projet pour ma boîte."
+# Framework — Extract
+# Full documentation on our blog
+# Level 1: Thematic allocation
+# Level 2: Intra-pocket allocation
+(): signals = [VIX(), YieldCurve(), CreditSpreads(), Momentum(), MarketBreadth()] composite = weighted_average(signals) if composite > 60: return BULL if composite < 40: return BEAR return CAUTION
+(portfolio):
++2.1%
++2.3%
++8.4%
+-4.2%
+100% transparent — notre stack technique
+1️⃣ Backtest systématique
+2 positions
+2️⃣ Risk parity 2 niveaux
+3️⃣ Régime de marché
+4.2%
+4️⃣ Position sizing strict
+5 principes non-négociables
+5️⃣ Validation humaine
+AGENT DASHBOARD DEMO
+API & Data
+Agents & Tutos
+Agents de tri email, synthèse de documents, recherche d'informations — tout ce qui vous prend du temps.
+Alerts
+All our articles
+All trades are in your broker history.
+Analysis — January 12 Rebalancing:
+Analyze the last rebalancing
+Articles will be loaded dynamically by blog-preview.js
+Au-delà de l'investissement
+Automatiser la surveillance des évolutions règlementaires (AMF, lois fiscales) avec alertes personnalisées.
+Avg Position
+B2B SECTION
+BLOG & CONTENT HUB
+Blog
+Blog Preview Script
+Bubble Agent Online
+Bubble.
+Build in Public
+Ce qu'on a appris en construisant — et comment appliquer ça à vos projets
+Ce que disent ceux qui nous lisent
+Cette méthode marche pour vos propres projets
+Code avec IA
+Comment c'est construit
+Config OpenClaw de base
+Connexion broker, bases vectorielles pour la mémoire, stockage sécurisé. On explique chaque choix technique et pourquoi on a privilégié telle ou telle solution.
+Créer des templates intelligents qui remplissent automatiquement vos comptes-rendus clients à partir de vos données.
+Current Allocations:
+Current Positions
+Discuter de votre projet
+Dynamic Blog Preview Grid
+Entreprise
+Exécution des ordres (achat/vente) applicable uniquement pour les comptes titre (pas pour PEA ou assurance vie). On montre ici tout ce qui marche et tout ce qui ne marche pas encore — pour que vous ayez une vision réaliste de ce qu'on peut faire.
+FLOATING CHAT INPUT
+FOOTER
+Floating Chat Input Script
+GENERALISATION
+Génération de rapports
+HEADER
+HERO
+Ils suivent notre travail
+Implémentation
+Implémentez cette approche dans votre business
+Jade's GitHub
+Joris' GitHub
+L'ère de l'IA a tout changé. Changez avec elle.
+La liste des prompts que nous utilisons pour analyser nos positions.
+La liste sélectionnée des outils qu'on teste chaque semaine en interne.
+Largest
+Last update: 2 min ago
+Les limites (qu'on cache pas)
+Loading articles...
+METHODOLOGY
+Max Drawdown
+Morning Brief — January 15
+NVDA 8.5%
+Newsletter
+Next Actions
+Notre Agent d'Investissement — Un POC Open
+Notre configuration de test initiale pour bien démarrer avec le framework.
+Notre méthode
+Notre template pour organiser la veille technologique hebdomadaire.
+On a construit un agent IA pour nous avec OpenClaw et du code. On partage comment ça marche — stack technique, prompts, limites — pour que vous puissiez reproduire, pour vos investissements ou vos projets.
+On accompagne les professionnels (CGP, PME, sociétés de gestion) dans l'implémentation concrète d'agents IA sur mesure — avec la même approche transparente et la promesse d'autonomie.
+On documente tout : ce qui marche, ce qui casse, comment on répare.
+On ne code pas seuls — on utilise plusieurs modèles d'IA comme Claude, Gemini, Kimi etc comme co-pilotes. On partage nos prompts, nos workflows de développement, comment on passe d'une idée à un agent fonctionnel.
+OpenClaw & APIs
+Orchestration des agents via APIs. On vous montre comment configurer vos propres serveurs et connecter différents outils entre eux.
+Outils validés
+PLAYGROUND
+PLAYGROUND / STACK REVEAL
+Particuliers
+Particuliers — Découvrez notre Agent d'Investissement | Bubble
+Pas de boîte noire. Des règles claires, appliquées avec discipline :
+Performance
+Portfolio:
+Productivité personnelle
+Professionnels
+Prompts pour analyse de portefeuille
+REGIME_DETECTION
+RISK_PARITY_2L
+Recevoir les nouveaux agents par mail
+Recevoir nos analyses (2×/semaine)
+Ressources
+Ressources gratuites
+Send
+Subscribe to newsletter
+Template Notion pour veille IA
+To Rebalance
+Total Positions
+Twice a week · 3 profiles: Tech · Finance · Balanced · Unsubscribe anytime
+Téléchargez, reproduisez, adaptez
+Veille réglementaire
+Voir nos solutions B2B
+Voir nos tutos
+Vous avez vu comment on construit nos agents. Vous voulez faire pareil pour votre entreprise, vos clients, vos processus ?
+Vous voulez aller plus loin ?
+Vous voulez implémenter ça ?
+What are my current allocations?
+YTD 2025
+You
+for theme in themes: tickers = get_tickers(theme) cov_matrix = calculate_erc(tickers) weights = 1 / diag(cov_matrix) normalize(weights) combine_levels(theme_weights, intra_weights)
+html
+themes = [AI, Intl_EM, Value, REITs, Crypto, Commodities, Uranium, Gold, SmallCap, Healthcare]
+this week
+vs S&P 500
+© 2026 Bubble Invest — Contenu gratuit · Expertise sur mesure · Build in Public
+À Propos
+— 1-10% max, jamais plus de 30 positions
+— 5 signaux composites (VIX, yield curve, credit...)
+— Alexandre K., Entrepreneur
+— Aucune décision sans validation historique
+— L'agent propose, nous validons (et on vous explique pourquoi)
+— Marie L., CGP
+— Thomas D., Consultant indépendant
+— Thématique + intra-pocket
+• 2 positions to rebalance before 10am
+• Bought: VEA (+2%) — opportunity on international
+• NVDA: Volatility alert (+15% overnight)
+• Result: +0.8% vs S&P 500 since rebalancing
+• Sold: AAPL (-2%) — reached take-profit at +18%
+✨ Crypto: 8%
+🇺🇸 US Tech: 28% (target 25%) ⚠️
+🌍 International: 18% (target 20%) ↓
+🏥 Healthcare: 12%
+🏭 Value: 22% (target 20%)
+💵 Cash: 5%
+🛡️ Gold: 7%
+
+--- professionnels-mock.html ---
+"I was afraid of creating dependency. On the contrary — the documentation is so clear that my team took over without any problem after 2 months."
+"We started with a free diagnostic. 6 weeks later, our reporting agent was running. And most importantly: I understand what it does, I can evolve it myself."
+"What convinced me: they're honest about what doesn't work. When a tool wasn't suitable, they told me. No dream sellers."
+30 minutes to identify what's worth automating — free, no commitment
+A first functional agent: 4-8 weeks of co-construction.
+A mid-sized architecture firm managed 15-20 projects simultaneously. Regulatory watch (urban planning, safety, environment) was done manually and caused compliance delays.
+A multi-mandate manager struggled to follow news on 80+ positions while providing personalized reporting to each client.
+AWS certifications, up-to-date stack, cloud-native architectures
+After years in consulting firms and asset management, we've observed many issues: six-figure engagements that lead nowhere, consultants who disappear after their report, promises rarely kept.
+Agents & Tutos
+An equity research team received 200+ newsletters and reports daily. Manual synthesis for credit notes and market updates took 2-3 days per week.
+Analyse de données complexes
+Architect
+Asset Manager
+At Bubble Invest, we chose to do things differently: betting on honesty and the real desire to help — even if it means sometimes saying no to a project.
+Automatisation Back-Office
+Autonomy
+Autonomy (go-live day) — Delivery + complete documentation. You can maintain and evolve without depending on us.
+Autonomy from day one
+Better than advice — solutions.
+Blog
+Book a call
+Bubble.
+Build in Public
+But agents, workflows, selfware adapted to your needs.
+CHAT INPUT (Future Implementation)
+Co-construction
+Co-construction (4-8 weeks) — 1-2h/week sessions where we build together on your priority processes. You see every decision, we explain every choice. You gain skills in real-time on the latest tools.
+Co-construction with your teams
+Concrete Examples
+Context:
+Continuous support after go-live
+Continuous upgrade
+Continuous upgrade (optional) — New tools released? We keep you informed.
+Credit Notes & Market Research Writing Agent
+Devenez la PME la plus rapide de votre secteur
+Diagnostic of your processes and quick wins
+Discovery
+Discovery (2h) — We understand your challenges and identify what's worth automating
+Discuter de votre projet
+Documentation and knowledge transfer
+Domaines d'intervention
+EXAMPLES
+Entrepreneur
+Entreprise
+Equity Research
+Ex: "Automate my monthly reporting" or "Watch my investment sectors"
+FAQ
+FINAL CTA
+FLOATING CHAT INPUT
+FOOTER
+Finance
+First contact
+Génération de rapports personnalisés, pré-qualification, workflows administratifs répétitifs.
+HEADER
+HERO
+HOW WE WORK
+How long does it take?
+How we work
+Implémentation
+Independent Wealth Advisor
+Integration with your existing systems
+L'IA n'est pas une hype, c'est un avantage concurrentiel asymétrique. On implémente les agents d'aujourd'hui dans vos processus pour que vous gardiez l'avance.
+L'ère de l'IA a tout changé. Changez avec elle.
+Learning by doing — no theoretical training
+Let's discuss your project
+Live sessions on your real projects
+Marc T.
+Modern stack (OpenClaw, MCP) — not old tools
+Native expertise in regulatory issues, risks, business workflows
+Newsletter
+Normative surveillance agent
+Not 6 months of theoretical study. We build from the first session. You see results every week.
+Not tools hyped 2 years ago (like n8n or Make).
+OpenClaw, market APIs, LLM for synthesis, vector database for contextual memory per client
+Operational mastery of latest models, continuous watch
+Our Difference
+Our Methodology
+Où l'IA a un impact immédiat
+PLACEHOLDER: Floating Chat Input Animation
+Particuliers
+Pierre D.
+Portfolio Monitoring & News Intelligence Platform
+Professionnels
+Professionnels — Implémentation IA | Bubble
+Questions fréquentes
+RAG on internal corpus, LLM with fine-tuning on writing style, multi-source workflow
+Rare triple expertise
+Real-time explanations of choices
+Regulatory Watch Agent for Architects
+Ressources
+Result:
+Roadmap for priority automations
+SERVICES
+SME Director (45 employees)
+SOCIAL PROOF
+Smart scraping, LLM classification, geographic filtering, email/Slack alerts
+Solution:
+Sophie L.
+Surveillance concurrentielle, veille réglementaire, analyse de marché. L'agent lit, synthétise et vous alerte.
+Synthesis and writing agent
+Tech
+Tech:
+That's the goal!
+They Trust Us
+Traitement de gros volumes (documents juridiques, bilans financiers, historiques). L'agent extrait la donnée clé.
+Two interconnected agents
+Veille & Recherche
+Voir des cas d'usage
+WHY BUBBLE
+We come from the business (Deloitte, UBS), not pure dev. We speak your language and we train your teams as we build. No technical prerequisite required.
+We document everything — code, prompts, processes. From day one, you can take over. We succeed when you no longer need us.
+We don't have a tech team internally. Does it still work?
+What if we want to stop working with you?
+What our first clients say
+What we have deployed
+Why work with us
+Yes — that's exactly why we exist.
+Your questions, our answers
+Your team gains skills on latest tools
+html
+© 2026 Bubble Invest — Contenu gratuit · Expertise sur mesure · Build in Public
+À Propos
+• 0 compliance delays since deployment
+• 3h saved every morning on watch
+• 70% reduction in note writing time
+• Automatic reading of sources (newsletters, reports, filings) by theme and sector
+• Better coverage: nothing slips through anymore
+• Contextualized alerts: "Your project X in zone Y is affected by new standard Z"
+• Daily scan of regulatory updates (building codes, decrees, circulars) by project type and location
+• Improved opportunity/risk detection (+40% coverage)
+• Instant client reporting (instead of 2 days)
+• Key point extraction: figures, guidance, narrative changes
+• Metrics agent — Calculates in real-time: sharpe, vol, drawdown, correlation, custom ESG scoring
+• Monthly synthesis per project of relevant updates
+• News watch agent — Scans 50+ sources every morning, identifies relevant news by position, generates a personalized brief per portfolio
+• Peace of mind: nothing slips through the cracks
+• Portfolio position watch: alert if a held security is mentioned negatively
+• Structured note draft generation (summary, pros/cons, impacts)
+• Team focuses on qualitative analysis and decisions, not information gathering
+• Watch time divided by 5
+
+--- a-propos-mock.html ---
+"L'IA peut produire pour un coût marginal proche de zéro. Ce qu'elle ne peut pas produire, c'est le choix d'un être libre de consacrer son temps à un autre.
+"Let's pop the finance bubble!"
+(pour l'impact et la communauté).
+(pour la viabilité de l'entreprise),
+. On mesure notre succès non pas à quel point vous avez besoin de nous, mais à la vitesse à laquelle vous devenez autonomes.
+1. Implémentation de systèmes multi-agents (B2B)
+1/ Les investisseurs particuliers paient trop cher pour un service opaque. Des frais qui ne reflètent pas la valeur réelle créée.
+2. L'Agent d'Investissement (B2C)
+2/ Les méthodes de travail dans le secteur sont archaïques. À l'ère de l'automatisation, la plupart des gérants utilisent encore Excel de manière primitive.
+6 ans en audit et conseil (Big Four)
+6 ans en gestion de fonds et banque d'investissement
+Agents & Tutos
+Appears when user scrolls past hero, fixed at bottom center
+Au cœur de Bubble, il y a une conviction :
+Aujourd'hui et demain
+Automating is not an end in itself. It's a means to free up time for what really matters.
+Automatise l'investissement actif, sans nous déposséder de nos actifs
+Automatiser
+Automatiser n'est pas une fin en soi. C'est un moyen de libérer du temps pour ce qui compte vraiment.
+Automatiser pour mieux s'occuper des autres
+BUILD IN PUBLIC
+Bienveillance
+Blog
+Blog →
+Bubble.
+Build in Public
+C'est cela que vous recevez. Pas des mots. Du temps. Le temps de vie d'une personne qui va mourir.
+C'est ça qu'on vous redonne : du temps. Pour vous. Pour les vôtres."
+Ce qu'on fait
+Ce qu'on fait chez Bubble : on automatise le répétitif pour que vous puissiez consacrer votre temps irréversible à ce qui a de la valeur — vos clients, votre équipe, vos proches.
+Ce que l'IA ne peut pas faire
+Co-fondateur
+Co-fondatrice
+Coûte un abonnement fixe, pas un pourcentage de notre patrimoine
+Démystifier la finance et l'IA. Partager ce que l'industrie garde opaque.
+Elle a interrompu ce qu'elle faisait. Elle a pensé à vous. Ce temps est consommé, irréversible, perdu pour tout le reste.
+Elle ne peut pas choisir de ne pas vous répondre. Elle ne sacrifie rien. Son temps ne coûte rien.
+Entreprise
+Et c'est précisément cette impossibilité — cette absence de choix — qui vide son attention de tout ce qui la rendrait précieuse.
+Et on a décidé de le construire en public. Parce qu'on croit que la confiance se gagne par la transparence.
+Et on s'est rendu compte de deux choses :
+Explique chaque décision, sans jargon inutile
+FLOATING CHAT INPUT
+FOOTER
+Floating Chat Input Animation
+HEADER
+HERO
+Implémentation
+Investir
+Investir dans les bulles = saisir les opportunités. Investir en soi = se former, devenir autonome.
+J & J — Deux profils complémentaires. L'un de l'investissement, l'autre de l'audit et du conseil. Un optimiste, une pragmatique.
+Jade
+Joris
+L'IA peut produire du contenu, du code et de l'analyse pour un coût marginal proche de zéro. Ce qui devient rare, ce n'est plus la compétence technique. C'est autre chose :
+L'IA peut simuler l'attention. Produire des phrases qui ressemblent à du soin. Mais il lui manque l'essentiel : la liberté de faire autrement.
+L'empathie d'un manager qui prend le temps d'écouter
+L'histoire des vœux
+L'outil qu'on utilise pour nos propres portefeuilles. On vous partage comment configurer votre agent : screening, backtesting, exécution automatisée. C'est du "partage" — on ne prétend pas avoir la vérité absolue, on vous donne accès à ce qui marche pour nous.
+L'ère de l'IA a tout changé. Changez avec elle.
+L'équipe
+La bulle de la finance
+La créativité d'une équipe qui réfléchit ensemble
+La présence d'un parent, d'un ami, d'un proche
+Le B2B d'abord
+Le B2C en partage
+Le choix conscient d'un être humain de consacrer son temps — son temps irréversible, perdu pour toujours — à un autre être humain.
+Le double sens
+Le nom
+Le regard d'un conseiller qui comprend vraiment la situation de son client
+Le temps irréversible
+LinkedIn →
+Là où l'industrie du conseil classique construit des "boîtes noires" cryptiques pour vous facturer de la maintenance au mois, nous choisissons l'open source et le transfert de compétences.
+Là où l'industrie du conseil vit de votre dépendance, nous vivons de votre émancipation
+Montrer comment on construit. Ce qu'on utilise pour nous, on vous l'explique.
+Newsletter
+Newsletter →
+Nos chiffres, nos erreurs, nos décisions — tout est visible.
+Nos valeurs
+Notre cœur de métier historique. Mais aussi une métaphore : investir dans les bulles technologiques (comme l'IA), investir en soi.
+Notre histoire
+Notre mission n'est pas de vous rendre dépendants — c'est de vous élever.
+Notre philosophie
+Notre positionnement est clair :
+Notre volonté d'émanciper
+OUR STORY
+On a passé 6 ans en gestion de fonds et dans de grandes banques. À travailler au quotidien dans ce qu'on appelle la "haute finance".
+On a quitté nos postes confortables pour construire l'outil qu'on voulait pour nous-mêmes.
+On build in public
+On build in public. Voici qui nous sommes, ce qu'on croit et pourquoi on le fait.
+On développe deux activités complémentaires autour d'une même expertise : l'automatisation par les agents.
+On ne cherche pas à devenir des icônes. On veut rester dans l'ombre du produit. Parce que Bubble, ce n'est pas notre histoire — c'est la vôtre.
+On ne fait pas que construire des agents pour vous. On vous montre comment ils sont construits, pour que vous puissiez le faire vous-mêmes ensuite. On documente nos réussites, nos échecs, nos méthodes.
+On partage nos doutes, nos victoires, nos erreurs. Parce que la confiance se gagne par la transparence.
+On éclate (pop) la bulle de la finance opaque. Pas de jargon, pas de frais cachés, pas de complexité artificielle.
+PHILOSOPHY
+Particuliers
+Pas parce que les mots avaient changé. Mais parce qu'ils ont découvert que derrière l'apparence de l'attention, il n'y avait aucun temps consacré. Aucun choix. Aucun sacrifice de quelque chose d'irréversible.
+Pour les professionnels de la finance — CGP, sociétés de gestion, Directions Financières. On déploie les dernières solutions d'automatisation dès leur sortie. Diagnostics, agents sur mesure, projets complets.
+Pourquoi "Bubble" ?
+Pourquoi on a créé Bubble
+Pourquoi on automatise
+Professionnels
+Puis le patron a révélé sa méthode. La déception fut immense.
+Quand quelqu'un vous écrit un message, même court, la valeur ne réside pas dans sa formulation. Elle réside dans le fait que cette personne a pris un bout de sa vie, un fragment de temps qu'elle ne récupérera jamais, et a choisi de le dépenser pour vous plutôt qu'ailleurs.
+Qui nous sommes
+Ressources
+Si tout ce qui est automatisable est automatisé, alors il reste plus de temps pour ce qui ne l'est pas :
+Suivez notre parcours
+TEAM
+Transparence
+Un dirigeant a utilisé l'IA pour envoyer ses vœux personnalisés à ses 600 employés. Des messages adaptés à chacun, à ses performances, à son parcours. Les employés étaient touchés.
+Un outil qui :
+VALUES
+WHAT WE DO
+WHY BUBBLE
+WILL TO EMPOWER
+What we do at Bubble: we automate the repetitive so you can dedicate your irreversible time to what has value — your clients, your team, your loved ones.
+Why We Automate
+YouTube →
+html
+la transparence crée plus de valeur que la rétention d'information
+© 2026 Bubble Invest — Contenu gratuit · Expertise sur mesure · Build in Public
+À Propos
+À Propos — Philosophie, Histoire & Valeurs | Bubble
+À propos de Bubble
+Éduquer
+Élever chaque personne qui nous fait confiance. Créer plus de valeur qu'on n'en capture.
+— J & J, fondateurs

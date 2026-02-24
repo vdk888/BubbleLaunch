@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Professionals — Implement AI in Your Business | Bubble</title>
+<meta content="Systematic early adopters. We deploy AI agents on your systems — be among the first in France." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      --primary: #111111;
+      --secondary: #444444;
+      --muted: #888888;
+      --bg-white: #FFFFFF;
+      --bg-subtle: #F8F8F8;
+      --border: rgba(0,0,0,0.08);
+      --purple: #93acf0;
+      --purple-light: rgba(147, 172, 240, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-white);
+      color: var(--primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .logo svg { width: 28px; height: 28px; }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    nav a {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--purple);
+      transition: width 0.3s;
+    }
+
+    nav a:hover, nav a.active { color: var(--primary); }
+    nav a:hover::after, nav a.active::after { width: 100%; }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .lang-switch button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 0.25rem 0.5rem;
+      transition: color 0.3s;
+    }
+
+    .lang-switch button.active { color: var(--primary); font-weight: 600; }
+
+    /* HERO */
+    .hero {
+      padding: 10rem 0 5rem;
+      background: linear-gradient(180deg, var(--bg-subtle) 0%, var(--bg-white) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--secondary);
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-chat {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      max-width: 600px;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    }
+
+    .hero-chat-container {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-chat-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    .hero-chat-input:focus { outline: none; border-color: var(--purple); }
+
+    .hero-chat-submit {
+      width: 44px;
+      height: 44px;
+      background: var(--primary);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .hero-chat-submit:hover { background: var(--purple); }
+
+    .hero-chat-hint {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover { background: #333; transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover { background: var(--bg-subtle); }
+
+    /* SERVICES */
+    .services {
+      padding: 5rem 0;
+      background: var(--bg-white);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--purple);
+      box-shadow: 0 10px 30px rgba(147, 172, 240, 0.15);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--purple-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .service-card h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card>p {
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .service-features {
+      list-style: none;
+    }
+
+    .service-features li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--secondary);
+    }
+
+    .service-features li:last-child { border-bottom: none; }
+
+    /* HOW WE WORK */
+    .how-we-work {
+      padding: 5rem 0;
+      background: var(--bg-subtle);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .process-step {
+      text-align: center;
+    }
+
+    .process-number {
+      width: 64px;
+      height: 64px;
+      background: var(--bg-white);
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 auto 1rem;
+      transition: all 0.3s;
+    }
+
+    .process-step:hover .process-number {
+      border-color: var(--purple);
+      background: var(--purple-light);
+    }
+
+    .process-step h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .process-step p {
+      font-size: 0.9rem;
+      color: var(--secondary);
+    }
+
+    .process-note {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: var(--bg-white);
+      border-radius: 12px;
+      border-left: 4px solid var(--purple);
+    }
+
+    /* EXAMPLES */
+    .examples {
+      padding: 5rem 0;
+      background: var(--bg-white);
+    }
+
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .example-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+
+    .example-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .example-tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: var(--purple-light);
+      color: var(--purple);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    .example-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .example-card p {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      line-height: 1.7;
+    }
+
+    /* WHY BUBBLE */
+    .why-bubble {
+      padding: 5rem 0;
+      background: var(--bg-subtle);
+    }
+
+    .why-content>p {
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--secondary);
+    }
+
+    .differentiation {
+      background: var(--bg-white);
+      border-radius: 16px;
+      padding: 3rem;
+      border: 1px solid var(--border);
+    }
+
+    .differentiation h4 {
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+
+    .differentiation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .differentiation-item {
+      text-align: center;
+    }
+
+    .differentiation-item h5 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .differentiation-item p {
+      font-size: 0.9rem;
+      color: var(--secondary);
+    }
+
+    /* SOCIAL PROOF */
+    .social-proof {
+      padding: 5rem 0;
+      background: var(--bg-white);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .testimonial-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .stars {
+      display: flex;
+      gap: 0.25rem;
+      margin-bottom: 1rem;
+      color: #fbbf24;
+    }
+
+    .stars svg { width: 16px; height: 16px; }
+
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      background: var(--purple);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .testimonial-info h5 {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .testimonial-info p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 5rem 0;
+      background: var(--bg-subtle);
+    }
+
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-list details {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .faq-list summary {
+      padding: 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-list summary::-webkit-details-marker { display: none; }
+
+    .faq-list summary::after {
+      content: '+';
+      font-size: 1.5rem;
+      color: var(--muted);
+      transition: transform 0.3s;
+    }
+
+    .faq-list details[open] summary::after {
+      content: '−';
+      color: var(--purple);
+    }
+
+    .faq-list details p {
+      padding: 0 1.5rem 1.5rem;
+      color: var(--secondary);
+      line-height: 1.7;
+    }
+
+    /* FINAL CTA */
+    .final-cta {
+      padding: 6rem 0;
+      background: var(--primary);
+      color: white;
+      text-align: center;
+    }
+
+    .final-cta-label {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--purple);
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+
+    .final-cta h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .final-cta>p {
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    /* FLOATING CHAT INPUT */
+    .floating-chat-input {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .floating-chat-input.hidden {
+      opacity: 0;
+      transform: translateX(-50%) translateY(20px);
+      pointer-events: none;
+    }
+
+    .floating-input-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 0.75rem 1rem 0.75rem 1.5rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      min-width: 400px;
+      max-width: 600px;
+    }
+
+    .floating-input-field {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--primary);
+      font-size: 0.95rem;
+      font-family: 'Inter', system-ui, sans-serif;
+      padding: 0.5rem 0;
+    }
+
+    .floating-input-field::placeholder { color: var(--muted); }
+
+    .floating-input-submit {
+      background: var(--primary);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .floating-input-submit:hover {
+      background: var(--purple);
+      transform: scale(1.05);
+    }
+
+    .floating-input-submit svg { color: white; }
+
+    /* FOOTER */
+    footer {
+      padding: 4rem 0 2rem;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand p {
+      color: var(--secondary);
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      max-width: 300px;
+    }
+
+    .footer-links h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .footer-links ul { list-style: none; }
+    .footer-links li { margin-bottom: 0.5rem; }
+
+    .footer-links a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--purple); }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--bg-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary);
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--purple);
+      color: white;
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bottom p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .footer-why-bubble {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .footer-why-bubble a {
+      color: var(--purple);
+      text-decoration: none;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    .fade-in-delay-1 { animation-delay: 0.1s; }
+    .fade-in-delay-2 { animation-delay: 0.2s; }
+    .fade-in-delay-3 { animation-delay: 0.3s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .services-grid, .examples-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .differentiation-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .services-grid, .examples-grid, .testimonials-grid, .process-grid, .footer-grid { grid-template-columns: 1fr; }
+      nav { display: none; }
+      .floating-chat-input { bottom: 1rem; left: 1rem; right: 1rem; transform: none; }
+      .floating-chat-input.hidden { transform: translateY(20px); }
+      .floating-input-container { min-width: unset; width: 100%; }
+    }
+  
+    /* --- Fix CTA button visibility on dark backgrounds --- */
+    .b2b-section .btn-primary,
+    .final-cta .btn-primary,
+    .will-to-empower .btn-primary,
+    .waitlist-section .btn-primary {
+      background: white;
+      color: var(--primary);
+      border: 1px solid white;
+    }
+    
+    .b2b-section .btn-primary:hover,
+    .final-cta .btn-primary:hover,
+    .will-to-empower .btn-primary:hover,
+    .waitlist-section .btn-primary:hover {
+      background: var(--purple);
+      color: white;
+      border-color: var(--purple);
+      transform: translateY(-2px);
+    }
+    
+    .b2b-section .btn-secondary,
+    .final-cta .btn-secondary,
+    .will-to-empower .btn-secondary,
+    .waitlist-section .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    
+    .b2b-section .btn-secondary:hover,
+    .final-cta .btn-secondary:hover,
+    .will-to-empower .btn-secondary:hover,
+    .waitlist-section .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-color: white;
+    }
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header>
+<div class="container">
+<div class="header-inner">
+<a class="logo" href="/">
+<svg fill="none" viewbox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+<circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle>
+<circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+</svg>
+          Bubble.
+        </a>
+<nav>
+<a href="/about-mock-en">About</a>
+<a class="active" href="/professionals-mock-en">Professionals</a>
+<a href="/individuals-mock-en">Individuals</a>
+<a href="/blog-mock-en">Blog</a>
+<div class="lang-switch">
+<button onclick="window.location.href='/professionnels-mock'">FR</button>
+<span>/</span>
+<button class="active">EN</button>
+</div>
+</nav>
+</div>
+</div>
+</header>
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<p class="fade-in" style="font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--purple); margin-bottom: 1rem;">Better than advice — solutions.</p>
+<h1 class="fade-in fade-in-delay-1"><span class_="highlight">Implement AI</span> in your business</h1>
+<p class="hero-subtitle fade-in fade-in-delay-2">The solutions we deploy were released just weeks ago. We're among the first in France to master them — our unique edge to keep you ahead.</p>
+<!-- CHAT INPUT (Future Implementation) -->
+<div class="hero-chat fade-in fade-in-delay-3">
+<div class="hero-chat-container">
+<input aria-label="Describe your project" class="hero-chat-input" placeholder="Describe your project..." type="text"/>
+<button aria-label="Send" class="hero-chat-submit">
+<svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="M5 12h14M12 5l7 7-7 7"></path>
+</svg>
+</button>
+</div>
+<p class="hero-chat-hint">Ex: "Automate my monthly reporting" or "Watch my investment sectors"</p>
+</div>
+<div class="hero-cta fade-in fade-in-delay-3">
+<a class="btn btn-primary" href="#calendly">Book a free call</a>
+<a class="btn btn-secondary" href="#services">Discover our services</a>
+</div>
+</div>
+</section>
+<!-- SERVICES -->
+<section class="services" id="services">
+<div class="container">
+<div class="section-header fade-in">
+<h2>Our Services</h2>
+<h3>Three ways to collaborate</h3>
+</div>
+<div class="services-grid">
+<div class="service-card fade-in">
+<div class="service-icon">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+<path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+</svg>
+</div>
+<h4>Consulting &amp; Implementation</h4>
+<p>We don't make long PowerPoints. We deliver and build directly with you.</p>
+<ul class="service-features">
+<li>Diagnostic of your processes and quick wins</li>
+<li>Roadmap for priority automations</li>
+<li>Co-construction with your teams</li>
+<li>Learning by doing — no theoretical training</li>
+</ul>
+</div>
+<div class="service-card fade-in fade-in-delay-1">
+<div class="service-icon">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<polyline points="16 18 22 12 16 6"></polyline>
+<polyline points="8 6 2 12 8 18"></polyline>
+</svg>
+</div>
+<h4>Custom Development</h4>
+<p>AI agents built specifically for your business.</p>
+<ul class="service-features">
+<li>Modern stack (OpenClaw, MCP) — not old tools</li>
+<li>Integration with your existing systems</li>
+<li>Documentation and knowledge transfer</li>
+<li>Autonomy from day one</li>
+</ul>
+</div>
+<div class="service-card fade-in fade-in-delay-2">
+<div class="service-icon">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="14" rx="2" ry="2" width="20" x="2" y="7"></rect>
+<path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+</svg>
+</div>
+<h4>Training through Construction</h4>
+<p>No lectures. We train by building together.</p>
+<ul class="service-features">
+<li>Live sessions on your real projects</li>
+<li>Real-time explanations of choices</li>
+<li>Your team gains skills on latest tools</li>
+<li>Continuous support after go-live</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- HOW WE WORK -->
+<section class="how-we-work">
+<div class="container">
+<div class="section-header fade-in">
+<h2>Our Method: Co-construction</h2>
+<h3>We build with you, not for you</h3>
+</div>
+<div class="process-grid">
+<div class="process-step fade-in">
+<div class="process-number">01</div>
+<h4>Discovery</h4>
+<p>Discovery (2h) — We understand your challenges and identify what's worth automating</p>
+</div>
+<div class="process-step fade-in fade-in-delay-1">
+<div class="process-number">02</div>
+<h4>Co-construction</h4>
+<p>Co-construction (4-8 weeks) — 1-2h/week sessions where we build together on your priority processes. You see every decision, we explain every choice. You gain skills in real-time on the latest tools.</p>
+</div>
+<div class="process-step fade-in fade-in-delay-2">
+<div class="process-number">03</div>
+<h4>Autonomy</h4>
+<p>Autonomy (go-live day) — Delivery + complete documentation. You can maintain and evolve without depending on us.</p>
+</div>
+<div class="process-step fade-in fade-in-delay-3">
+<div class="process-number">04</div>
+<h4>Continuous upgrade</h4>
+<p>Continuous upgrade (optional) — New tools released? We keep you informed.</p>
+</div>
+</div>
+<div class="process-note fade-in">
+<p><strong>Not tools hyped 2 years ago (like n8n or Make).</strong> But agents, workflows, selfware adapted to your needs.</p>
+</div>
+</div>
+</section>
+<!-- EXAMPLES -->
+<section class="examples">
+<div class="container">
+<div class="section-header fade-in">
+<h2>Concrete Examples</h2>
+<h3>What we have deployed</h3>
+</div>
+<div class="examples-grid">
+<div class="example-card fade-in">
+<span class="example-tag">Asset Manager</span>
+<h4>Portfolio Monitoring &amp; News Intelligence Platform</h4>
+<p><strong>Context:</strong> A multi-mandate manager struggled to follow news on 80+ positions while providing personalized reporting to each client.<br/><br/>
+<strong>Solution:</strong> Two interconnected agents<br/>
+          • News watch agent — Scans 50+ sources every morning, identifies relevant news by position, generates a personalized brief per portfolio<br/>
+          • Metrics agent — Calculates in real-time: sharpe, vol, drawdown, correlation, custom ESG scoring<br/><br/>
+<strong>Result:</strong><br/>
+          • 3h saved every morning on watch<br/>
+          • Instant client reporting (instead of 2 days)<br/>
+          • Improved opportunity/risk detection (+40% coverage)<br/><br/>
+<strong>Tech:</strong> OpenClaw, market APIs, LLM for synthesis, vector database for contextual memory per client</p>
+</div>
+<div class="example-card fade-in fade-in-delay-1">
+<span class="example-tag">Architect</span>
+<h4>Regulatory Watch Agent for Architects</h4>
+<p><strong>Context:</strong> A mid-sized architecture firm managed 15-20 projects simultaneously. Regulatory watch (urban planning, safety, environment) was done manually and caused compliance delays.<br/><br/>
+<strong>Solution:</strong> Normative surveillance agent<br/>
+          • Daily scan of regulatory updates (building codes, decrees, circulars) by project type and location<br/>
+          • Contextualized alerts: "Your project X in zone Y is affected by new standard Z"<br/>
+          • Monthly synthesis per project of relevant updates<br/><br/>
+<strong>Result:</strong><br/>
+          • 0 compliance delays since deployment<br/>
+          • Watch time divided by 5<br/>
+          • Peace of mind: nothing slips through the cracks<br/><br/>
+<strong>Tech:</strong> Smart scraping, LLM classification, geographic filtering, email/Slack alerts</p>
+</div>
+<div class="example-card fade-in fade-in-delay-2">
+<span class="example-tag">Equity Research</span>
+<h4>Credit Notes &amp; Market Research Writing Agent</h4>
+<p><strong>Context:</strong> An equity research team received 200+ newsletters and reports daily. Manual synthesis for credit notes and market updates took 2-3 days per week.<br/><br/>
+<strong>Solution:</strong> Synthesis and writing agent<br/>
+          • Automatic reading of sources (newsletters, reports, filings) by theme and sector<br/>
+          • Key point extraction: figures, guidance, narrative changes<br/>
+          • Structured note draft generation (summary, pros/cons, impacts)<br/>
+          • Portfolio position watch: alert if a held security is mentioned negatively<br/><br/>
+<strong>Result:</strong><br/>
+          • 70% reduction in note writing time<br/>
+          • Better coverage: nothing slips through anymore<br/>
+          • Team focuses on qualitative analysis and decisions, not information gathering<br/><br/>
+<strong>Tech:</strong> RAG on internal corpus, LLM with fine-tuning on writing style, multi-source workflow</p>
+</div>
+</div>
+</div>
+</section>
+<!-- WHY BUBBLE -->
+<section class="why-bubble">
+<div class="container">
+<div class="section-header fade-in">
+<h2>Our Difference</h2>
+<h3>Why work with us</h3>
+</div>
+<div class="why-content fade-in">
+<p>After years in consulting firms and asset management, we've observed many issues: six-figure engagements that lead nowhere, consultants who disappear after their report, promises rarely kept.</p>
+<p>At Bubble Invest, we chose to do things differently: betting on honesty and the real desire to help — even if it means sometimes saying no to a project.</p>
+<div class="differentiation fade-in fade-in-delay-1">
+<h4>Rare triple expertise</h4>
+<div class="differentiation-grid">
+<div class="differentiation-item">
+<h5>Finance</h5>
+<p>Native expertise in regulatory issues, risks, business workflows</p>
+</div>
+<div class="differentiation-item">
+<h5>Tech</h5>
+<p>AWS certifications, up-to-date stack, cloud-native architectures</p>
+</div>
+<div class="differentiation-item">
+<h5>AI</h5>
+<p>Operational mastery of latest models, continuous watch</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SOCIAL PROOF -->
+<section class="social-proof">
+<div class="container">
+<div class="section-header fade-in">
+<h2>They Trust Us</h2>
+<h3>What our first clients say</h3>
+</div>
+<div class="testimonials-grid">
+<div class="testimonial-card fade-in">
+<div class="stars">
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</div>
+<p class="testimonial-text">"We started with a free diagnostic. 6 weeks later, our reporting agent was running. And most importantly: I understand what it does, I can evolve it alone."</p>
+<div class="testimonial-author">
+<div class="testimonial-avatar">MT</div>
+<div class="testimonial-info">
+<h5>Marc T.</h5>
+<p>Independent Wealth Advisor</p>
+</div>
+</div>
+</div>
+<div class="testimonial-card fade-in fade-in-delay-1">
+<div class="stars">
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</div>
+<p class="testimonial-text">"I was afraid of creating dependency. Instead — the documentation is so clear that my team took over without issue after 2 months."</p>
+<div class="testimonial-author">
+<div class="testimonial-avatar">SL</div>
+<div class="testimonial-info">
+<h5>Sophie L.</h5>
+<p>SME Director (45 employees)</p>
+</div>
+</div>
+</div>
+<div class="testimonial-card fade-in fade-in-delay-2">
+<div class="stars">
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</div>
+<p class="testimonial-text">"What convinced me: they're honest about what doesn't work. When a tool wasn't suitable, they told me. No dream sellers."</p>
+<div class="testimonial-author">
+<div class="testimonial-avatar">PD</div>
+<div class="testimonial-info">
+<h5>Pierre D.</h5>
+<p>Entrepreneur</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ -->
+<section class="faq" id="faq">
+<div class="container">
+<div class="section-header fade-in">
+<h2>FAQ</h2>
+<h3>Your questions, our answers</h3>
+</div>
+<div class="faq-list fade-in">
+<details>
+<summary>We don't have a tech team internally. Does it still work?</summary>
+<p><strong>Yes — that's exactly why we exist.</strong> We come from the business (Deloitte, UBS), not pure dev. We speak your language and we train your teams as we build. No technical prerequisite required.</p>
+</details>
+<details>
+<summary>How long does it take?</summary>
+<p><strong>A first functional agent: 4-8 weeks of co-construction.</strong><br/><br/>
+            Not 6 months of theoretical study. We build from the first session. You see results every week.</p>
+</details>
+<details>
+<summary>What if we want to stop working with you?</summary>
+<p><strong>That's the goal!</strong> We document everything — code, prompts, processes. From day one, you can take over. We succeed when you no longer need us.</p>
+</details>
+</div>
+</div>
+</section>
+<!-- FINAL CTA -->
+<section class="final-cta" id="calendly">
+<div class="container">
+<div class="final-cta-content fade-in">
+<span class="final-cta-label">First contact</span>
+<h2>Let's discuss your project</h2>
+<p>30 minutes to identify what's worth automating — free, no commitment</p>
+<a class="btn btn-primary" href="https://calendly.com/bubbleinvest-ai" rel="noopener noreferrer" target="_blank">
+          Book a call
+          <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="M5 12h14M12 5l7 7-7 7"></path>
+</svg>
+</a>
+</div>
+</div>
+</section>
+<!-- FLOATING CHAT INPUT -->
+<div class="floating-chat-input hidden" data-always-visible="false" data-page-context="professionals" data-trigger-selector=".hero" id="floating-chat-input">
+<div class="floating-input-container">
+<input aria-label="Ask your question" class="floating-input-field" placeholder="A question about your project?" type="text"/>
+<button aria-label="Send" class="floating-input-submit">
+<svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="M5 10L12 3L19 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M12 21V4" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- FOOTER -->
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<a class="logo" href="/" style="font-size: 1.5rem;">
+<svg fill="none" style="width: 32px; height: 32px;" viewbox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+<circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle>
+<circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+</svg>
+            Bubble.
+          </a>
+<p>The AI era has changed everything. Let's change with it.</p>
+<div class="social-links">
+<a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest" target="_blank" title="LinkedIn">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+</a>
+<a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank" title="Instagram @behindthebubble.ai">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+<a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank" title="Substack @bubbleinvest">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"></path></svg>
+</a>
+<a aria-label="GitHub Jade" href="https://github.com/jade.hng" target="_blank" title="GitHub Jade">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+</a>
+<a aria-label="GitHub Joris" href="https://github.com/vdk888" target="_blank" title="GitHub Joris">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+</a>
+</div>
+</div>
+<div class="footer-links">
+<h4>Product</h4>
+<ul>
+<li><a href="/individuals-mock-en">Individuals</a></li>
+<li><a href="/professionals-mock-en">Professionals</a></li>
+<li><a href="/pricing">Pricing</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h4>Resources</h4>
+<ul>
+<li><a href="/blog-mock-en">Blog</a></li>
+<li><a href="/about-mock-en">About</a></li>
+<li><a href="/about-mock-en#mission">Our Mission</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h4>Legal</h4>
+<ul>
+<li><a href="/privacy">Privacy</a></li>
+<li><a href="/legal-notice">Legal Notice</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2026 Bubble Invest — Transparent by design.</p>
+<p class="footer-why-bubble">
+<a href="/about-mock-en#why-bubble">Why "Bubble"?</a> — Popping the bubble of opaque finance.
+        </p>
+</div>
+</div>
+</footer>
+<!-- PLACEHOLDER: Floating Chat Input Animation -->
+<script>
+    (function() {
+      'use strict';
+      
+      const floatingInput = document.getElementById('floating-chat-input');
+      if (!floatingInput) return;
+      
+      // Show floating input when hero scrolls out of view
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        const handleScroll = () => {
+          const rect = hero.getBoundingClientRect();
+          // Show when hero bottom is above viewport top
+          if (rect.bottom < 0) {
+            floatingInput.classList.remove('hidden');
+          } else {
+            floatingInput.classList.add('hidden');
+          }
+        };
+        
+        // Initial check
+        handleScroll();
+        
+        // Throttled scroll listener
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              handleScroll();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        });
+      }
+      
+      // Handle submit
+      const inputField = floatingInput.querySelector('.floating-input-field');
+      const submitButton = floatingInput.querySelector('.floating-input-submit');
+      
+      function handleSubmit() {
+        const message = inputField.value.trim();
+        if (!message) return;
+        
+        // TODO: Connect to chat-side-panel when implemented
+        console.log('[FloatingInput] Message:', message);
+        
+        // For now, just open the Calendly CTA as fallback
+        window.open('https://calendly.com/bubbleinvest-ai', '_blank');
+        
+        inputField.value = '';
+        inputField.blur();
+      }
+      
+      submitButton.addEventListener('click', handleSubmit);
+      inputField.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handleSubmit();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
