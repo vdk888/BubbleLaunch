@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 
 <html lang="fr">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Bubble — L'IA implémentée. Vous gardez l'avance.</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Bubble — Percez la bulle. Investissez dans l'essentiel.</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     :root {
       --primary: #111111;
@@ -155,8 +161,15 @@
     }
 
     @keyframes float {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-30px, -30px) rotate(5deg); }
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      50% {
+        transform: translate(-30px, -30px) rotate(5deg);
+      }
     }
 
     .hero-content {
@@ -173,6 +186,7 @@
       margin-bottom: 1.5rem;
       background: linear-gradient(135deg, var(--primary) 0%, #555 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
@@ -201,13 +215,13 @@
     .hero-logo {
       margin-bottom: 1.5rem;
     }
-    
+
     .hero-logo svg {
       width: 64px;
       height: 64px;
       animation: float 3s ease-in-out infinite;
     }
-    
+
     .hero-tagline {
       font-size: 1.5rem;
       font-weight: 500;
@@ -220,7 +234,7 @@
       margin: 0 auto 1.5rem;
       position: relative;
     }
-    
+
     .chat-input {
       width: 100%;
       padding: 1rem 3rem 1rem 1.5rem;
@@ -230,12 +244,12 @@
       font-family: inherit;
       transition: border-color 0.3s;
     }
-    
+
     .chat-input:focus {
       outline: none;
       border-color: var(--purple);
     }
-    
+
     .chat-submit {
       position: absolute;
       right: 0.75rem;
@@ -248,7 +262,7 @@
       color: var(--secondary);
       transition: color 0.3s;
     }
-    
+
     .chat-submit:hover {
       color: var(--primary);
     }
@@ -382,8 +396,16 @@
     }
 
     @keyframes typing {
-      0%, 60%, 100% { transform: translateY(0); }
-      30% { transform: translateY(-10px); }
+
+      0%,
+      60%,
+      100% {
+        transform: translateY(0);
+      }
+
+      30% {
+        transform: translateY(-10px);
+      }
     }
 
     /* === DUAL PATH === */
@@ -1105,282 +1127,446 @@
         gap: 1rem;
       }
     }
-  
+
     /* --- Fix CTA button visibility on dark backgrounds --- */
     .b2b-section .btn-primary,
     .final-cta .btn-primary,
     .will-to-empower .btn-primary,
-    .waitlist-section .btn-primary {
+    .waitlist .btn-primary {
       background: white;
       color: var(--primary);
       border: 1px solid white;
     }
-    
+
     .b2b-section .btn-primary:hover,
     .final-cta .btn-primary:hover,
     .will-to-empower .btn-primary:hover,
-    .waitlist-section .btn-primary:hover {
+    .waitlist .btn-primary:hover {
       background: var(--purple);
       color: white;
       border-color: var(--purple);
       transform: translateY(-2px);
     }
-    
+
     .b2b-section .btn-secondary,
     .final-cta .btn-secondary,
     .will-to-empower .btn-secondary,
-    .waitlist-section .btn-secondary {
+    .waitlist .btn-secondary {
       background: transparent;
       color: white;
       border: 1px solid rgba(255, 255, 255, 0.4);
     }
-    
+
     .b2b-section .btn-secondary:hover,
     .final-cta .btn-secondary:hover,
     .will-to-empower .btn-secondary:hover,
-    .waitlist-section .btn-secondary:hover {
+    .waitlist .btn-secondary:hover {
       background: rgba(255, 255, 255, 0.1);
       color: white;
       border-color: white;
     }
-</style>
+  </style>
 </head>
+
 <body>
-<!-- HEADER -->
-<header>
-<div class="container">
-<div class="header-inner">
-<a class="logo" href="/">
-<svg fill="none" viewbox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-<circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle>
-<circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-</svg>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a class="logo" href="/">
+          <svg fill="none" viewbox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
+              stroke-linecap="round" stroke-width="6"></circle>
+            <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+          </svg>
           Bubble.
         </a>
-<nav>
-<a href="/a-propos-mock">À Propos</a>
-<a href="/professionnels-mock">Professionnels</a>
-<a href="/particuliers-mock">Particuliers</a>
-<a href="/blog-mock">Blog</a>
-<div class="lang-switch">
-<button class="active" onclick="">FR</button>
-<span>/</span>
-<button class="" onclick="window.location.href='/homepage-mock-v4-en'">EN</button>
-</div>
-</nav>
-</div>
-</div>
-</header>
-<!-- HERO SECTION -->
-<section class="hero">
-<div class="container">
-<div class="hero-content fade-in">
-<div class="hero-logo">
-<svg fill="none" viewbox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-<circle cx="36" cy="41" r="26" stroke="#111" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle>
-<circle cx="59" cy="21" fill="#111" r="6"></circle>
-</svg>
-</div>
-<h1>Bubble.</h1>
-<p class="hero-tagline">L'IA implémentée. Vous gardez l'avance.</p>
-<p class="hero-description">On construit des agents IA pour nous — et on vous montre comment faire pareil. Vitrine d'expertise gratuite pour particuliers. Implémentation sur mesure pour professionnels.</p>
-<div class="chat-input-wrapper">
-<input class="chat-input" placeholder="Par exemple : &quot;Comment fonctionne votre agent d'investissement ?&quot;" type="text"/>
-<button class="chat-submit">
-<svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20">
-<path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round"></path>
-<path d="M12 21V4" stroke-linecap="round"></path>
-</svg>
-</button>
-</div>
-<div class="hero-cta">
-<button class="btn btn-primary">Voir la démo</button>
-<a class="btn btn-secondary" href="/a-propos-mock">En savoir plus</a>
-</div>
-</div>
-</div>
-</section>
-<!-- DUAL PATH SECTION -->
-<section class="dual-path">
-<div class="container">
-<div class="section-header">
-<h2>Deux Approches</h2>
-<h3>Choisissez votre parcours</h3>
-</div>
-<div class="path-grid">
-<!-- Individuals Path -->
-<div class="path-card" onclick="location.href='/particuliers-mock'">
-<div class="path-icon">
-<svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32">
-<path d="M12 2v20M2 12h20"></path>
-</svg>
-</div>
-<h3>Particuliers</h3>
-<p>Apprenez en observant ce qu'on a construit</p>
-<ul class="path-features">
-<li>Notre agent d'investissement est un proof of concept public.</li>
-<li>On partage comment il marche (OpenClaw, code, méthodes) pour que vous puissiez reproduire — pour vos investissements ou vos propres projets.</li>
-<li>POC 100% transparent — Stack, limites, apprentissages</li>
-<li>Ressources gratuites — Configs, tutos, veille</li><li>Newsletter — Ce qu'on découvre chaque semaine</li>
-</ul>
-<a class="path-cta" href="/particuliers-mock">Explorer notre agent <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16">
-<path d="M5 12h14M12 5l7 7-7 7"></path>
-</svg></a>
-</div>
-<!-- Professionals Path -->
-<div class="path-card" onclick="location.href='/professionnels-mock'">
-<div class="path-icon">
-<svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32">
-<rect height="14" rx="2" ry="2" width="20" x="2" y="3"></rect>
-<line x1="8" x2="16" y1="21" y2="21"></line>
-<line x1="12" x2="12" y1="17" y2="21"></line>
-</svg>
-</div>
-<h3>Professionnels</h3>
-<p>Implémentez l'IA dans votre métier — avec les tout derniers outils</p>
-<ul class="path-features">
-<li>CGP, sociétés de gestion, PME. On déploie des agents sur vos systèmes.</li>
-<li>Les solutions qu'on utilise sont sorties il y a quelques semaines — on est parmi les premiers en France à les maîtriser.</li>
-<li>Early adopters — Toujours une longueur d'avance</li>
-<li>Co-construction — On build avec vous, pas pour vous</li><li>Autonomie garantie — À la fin, vous n'avez plus besoin de nous</li>
-</ul>
-<a class="path-cta" href="/professionnels-mock">Discuter de votre projet <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16">
-<path d="M5 12h14M12 5l7 7-7 7"></path>
-</svg></a>
-</div>
-</div>
-</div>
-</section>
-<!-- SELFTWARE SECTION -->
+        <nav>
+          <a href="/a-propos-mock">À Propos</a>
+          <a href="/professionnels-mock">Professionnels</a>
+          <a href="/particuliers-mock">Particuliers</a>
+          <a href="/blog-mock">Blog</a>
+          <div class="lang-switch">
+            <button class="active" onclick="">FR</button>
+            <span>/</span>
+            <button class="" onclick="window.location.href='/homepage-mock-v4-en'">EN</button>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <div class="hero-logo">
+          <svg fill="none" viewbox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="41" r="26" stroke="#111" stroke-dasharray="145 29" stroke-dashoffset="10"
+              stroke-linecap="round" stroke-width="6"></circle>
+            <circle cx="59" cy="21" fill="#111" r="6"></circle>
+          </svg>
+        </div>
+        <h1>Bubble.</h1>
+        <p class="hero-tagline">Percez la bulle. Investissez dans l'essentiel.</p>
+        <p class="hero-description">On construit des agents IA pour nous — et on vous montre comment faire pareil.
+          Vitrine d'expertise gratuite pour particuliers. Implémentation sur mesure pour professionnels.</p>
+        <div class="chat-input-wrapper">
+          <input class="chat-input"
+            placeholder="Par exemple : &quot;Comment fonctionne votre agent d'investissement ?&quot;" type="text" />
+          <button class="chat-submit">
+            <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20">
+              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M12 21V4" stroke-linecap="round"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="hero-cta">
+          <button class="btn btn-primary">Voir la démo</button>
+          <a class="btn btn-secondary" href="/a-propos-mock">En savoir plus</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- DUAL PATH SECTION -->
+  <section class="dual-path">
+    <div class="container">
+      <div class="section-header">
+        <h2>Deux Approches</h2>
+        <h3>Choisissez votre parcours</h3>
+      </div>
+      <div class="path-grid">
+        <!-- Individuals Path -->
+        <div class="path-card" onclick="location.href='/particuliers-mock'">
+          <div class="path-icon">
+            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewbox="0 0 24 24" width="32">
+              <path d="M12 2v20M2 12h20"></path>
+            </svg>
+          </div>
+          <h3>Particuliers</h3>
+          <p>Apprenez en observant ce qu'on a construit</p>
+          <ul class="path-features">
+            <li>Notre agent d'investissement est un proof of concept public.</li>
+            <li>On partage comment il marche (OpenClaw, code, méthodes) pour que vous puissiez reproduire — pour vos
+              investissements ou vos propres projets.</li>
+            <li>POC 100% transparent — Stack, limites, apprentissages</li>
+            <li>Ressources gratuites — Configs, tutos, veille</li>
+            <li>Newsletter — Ce qu'on découvre chaque semaine</li>
+          </ul>
+          <a class="path-cta" href="/particuliers-mock">Explorer notre agent <svg fill="none" height="16"
+              stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg></a>
+        </div>
+        <!-- Professionals Path -->
+        <div class="path-card" onclick="location.href='/professionnels-mock'">
+          <div class="path-icon">
+            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewbox="0 0 24 24" width="32">
+              <rect height="14" rx="2" ry="2" width="20" x="2" y="3"></rect>
+              <line x1="8" x2="16" y1="21" y2="21"></line>
+              <line x1="12" x2="12" y1="17" y2="21"></line>
+            </svg>
+          </div>
+          <h3>Professionnels</h3>
+          <p>Implémentez l'IA dans votre métier — avec les tout derniers outils</p>
+          <ul class="path-features">
+            <li>CGP, sociétés de gestion, PME. On déploie des agents sur vos systèmes.</li>
+            <li>Les solutions qu'on utilise sont sorties il y a quelques semaines — on est parmi les premiers en France
+              à les maîtriser.</li>
+            <li>Early adopters — Toujours une longueur d'avance</li>
+            <li>Co-construction — On build avec vous, pas pour vous</li>
+            <li>Autonomie garantie — À la fin, vous n'avez plus besoin de nous</li>
+          </ul>
+          <a class="path-cta" href="/professionnels-mock">Discuter de votre projet <svg fill="none" height="16"
+              stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- SELFTWARE SECTION -->
+  <section class="selfware">
+    <div class="container">
+      <div class="selfware-grid">
+        <div class="selfware-content">
+          <h2>Modèle Selfware</h2>
+          <p>Nous utilisons les outils que nous construisons. Nous testons nos agents sur nos propres processus et
+            investissements. Notre succès dépend de leur performance.</p>
+          <div class="selfware-features">
+            <div class="feature-item">
+              <div class="feature-number">1</div>
+              <div class="feature-text">
+                <h4>Nous l'utilisons nous-mêmes</h4>
+                <p>Nos propres opérations et portefeuilles sont gérés par les agents que nous concevons</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-number">2</div>
+              <div class="feature-text">
+                <h4>Transparence totale</h4>
+                <p>Notre méthodologie, notre code, nos résultats — partagés publiquement</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-number">3</div>
+              <div class="feature-text">
+                <h4>Intérêts alignés</h4>
+                <p>Nous gagnons quand nos outils fonctionnent vraiment</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="selfware-visual">
+          <div class="flow-diagram">
+            <div class="flow-item">
+              <strong>Vos Données & Processus</strong>
+              <span style="color: var(--muted);">→ Informations, contraintes, objectifs</span>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-item agent">
+              <strong>Agent Sur Mesure</strong>
+              <span style="color: var(--muted);">→ Analyse &amp; Décisions</span>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-item">
+              <strong>Votre Validation</strong>
+              <span style="color: var(--muted);">→ Vous gardez le contrôle final</span>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-item">
+              <strong>Exécution</strong>
+              <span style="color: var(--muted);">→ Automatisée sur vos propres systèmes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- TRUST INDICATORS -->
+  <!-- TRUST INDICATORS -->
+  <section class="trust">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item">
+          <h4>2</h4>
+          <p>Co-fondateurs<br />Investissement &amp; Tech</p>
+        </div>
+        <div class="trust-item">
+          <h4>12+</h4>
+          <p>Années combinées<br />Finance &amp; Tech</p>
+        </div>
+        <div class="trust-item">
+          <h4>100%</h4>
+          <p>Transparent<br />Algorithmes</p>
+        </div>
+        <div class="trust-item">
+          <h4>0%</h4>
+          <p>Frais cachés<br />Sur devis uniquement</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- BLOG PREVIEW -->
-<section class="blog-preview">
-<div class="container">
-<div class="section-header">
-<h2>Build in Public</h2>
-<h3>Ce qu'on apprend, ce qu'on pense, ce qu'on partage — gratuitement</h3>
-</div>
-<div class="blog-grid">
-<div class="blog-card" onclick="location.href='/blog-mock'">
-<div class="blog-image"><svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32"><line x1="18" x2="18" y1="20" y2="10"></line><line x1="12" x2="12" y1="20" y2="4"></line><line x1="6" x2="6" y1="20" y2="14"></line></svg></div>
-<div class="blog-content">
-<div class="blog-tag">Agents en vitrine</div>
-<h4>Notre agent en action : 18 mois de gestion réelle</h4>
-<p></p>
-</div>
-</div>
-<div class="blog-card" onclick="location.href='/blog-mock'">
-<div class="blog-image"><svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32"><rect height="10" rx="2" width="18" x="3" y="11"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" x2="8" y1="16" y2="16"></line><line x1="16" x2="16" y1="16" y2="16"></line></svg></div>
-<div class="blog-content">
-<div class="blog-tag">Cas d'usage</div>
-<h4>Comment on automatise la veille réglementaire avec OpenClaw</h4>
-<p></p>
-</div>
-</div>
-<div class="blog-card" onclick="location.href='/blog-mock'">
-<div class="blog-image"><svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
-<div class="blog-content">
-<div class="blog-tag">Essai philosophique</div>
-<h4>L'IA va-t-elle remplacer les CGP ? Réflexion sur la valeur du conseil</h4>
-<p></p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- WAITLIST SECTION -->
+  <!-- BLOG PREVIEW -->
+  <section class="blog-preview">
+    <div class="container">
+      <div class="section-header">
+        <h2>Build in Public</h2>
+        <h3>Ce qu'on apprend, ce qu'on pense, ce qu'on partage — gratuitement</h3>
+      </div>
+      <div class="blog-grid">
+        <div class="blog-card" onclick="location.href='/blog-mock'">
+          <div class="blog-image"><svg fill="none" height="32" stroke="currentColor" stroke-linecap="round"
+              stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32">
+              <line x1="18" x2="18" y1="20" y2="10"></line>
+              <line x1="12" x2="12" y1="20" y2="4"></line>
+              <line x1="6" x2="6" y1="20" y2="14"></line>
+            </svg></div>
+          <div class="blog-content">
+            <div class="blog-tag">Agents en vitrine</div>
+            <h4>Notre agent en action : 18 mois de gestion réelle</h4>
+            <p></p>
+          </div>
+        </div>
+        <div class="blog-card" onclick="location.href='/blog-mock'">
+          <div class="blog-image"><svg fill="none" height="32" stroke="currentColor" stroke-linecap="round"
+              stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32">
+              <rect height="10" rx="2" width="18" x="3" y="11"></rect>
+              <circle cx="12" cy="5" r="2"></circle>
+              <path d="M12 7v4"></path>
+              <line x1="8" x2="8" y1="16" y2="16"></line>
+              <line x1="16" x2="16" y1="16" y2="16"></line>
+            </svg></div>
+          <div class="blog-content">
+            <div class="blog-tag">Cas d'usage</div>
+            <h4>Comment on automatise la veille réglementaire avec OpenClaw</h4>
+            <p></p>
+          </div>
+        </div>
+        <div class="blog-card" onclick="location.href='/blog-mock'">
+          <div class="blog-image"><svg fill="none" height="32" stroke="currentColor" stroke-linecap="round"
+              stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg></div>
+          <div class="blog-content">
+            <div class="blog-tag">Essai philosophique</div>
+            <h4>L'IA va-t-elle remplacer les CGP ? Réflexion sur la valeur du conseil</h4>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CONTACT / NEWSLETTER SECTION -->
+  <section class="waitlist" id="contact">
+    <div class="container">
+      <h2>Contactez-nous</h2>
+      <p>Abonnez-vous à notre newsletter ou lisez nos derniers articles sur Substack.</p>
+      <div class="hero-cta" style="justify-content: center; margin-top: 2rem;">
+        <a href="https://bit.ly/3Z9Cncr" class="btn btn-primary" target="_blank" rel="noopener noreferrer">S'abonner à
+          la Newsletter</a>
+        <a href="https://bubbleinvest.substack.com" class="btn btn-secondary" target="_blank"
+          rel="noopener noreferrer">Lire notre Substack</a>
+      </div>
 
-<!-- FLOATING CHAT INPUT -->
-<!-- Appears when user scrolls past hero, fixed at bottom center -->
-<div class="floating-chat-input hidden" data-always-visible="false" data-page-context="homepage" data-trigger-selector=".hero" id="floating-chat-input">
-<div class="floating-input-container">
-<input aria-label="Ask your question" class="floating-input-field" placeholder="A question?" type="text">
-<button aria-label="Send" class="floating-input-submit">
-<svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20">
-<path d="M5 10L12 3L19 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M12 21V4" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
-</svg>
-</button>
-</input></div>
-</div>
-<!-- FOOTER -->
-<footer>
-<div class="container">
-<div class="footer-grid">
-<div class="footer-brand">
-<a class="logo" href="/" style="font-size: 1.5rem;">
-<svg fill="none" style="width: 32px; height: 32px;" viewbox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-<circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle>
-<circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-</svg>
+      <div style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1);">
+        <h3>Vous êtes un professionnel ?</h3>
+        <p style="margin-top: 0.5rem; color: var(--muted);">Notre offre principale est B2B. Discutons de vos besoins
+          d'implémentation sur mesure.</p>
+        <div class="hero-cta" style="justify-content: center; margin-top: 2rem;">
+          <a href="https://calendly.com/bubbleinvest-ai" class="btn btn-primary" target="_blank"
+            rel="noopener noreferrer">
+            Prendre RDV
+            <svg fill="none" height="20" stroke="currentColor" stroke-width="2"
+              style="margin-left: 0.5rem; vertical-align: middle;" viewbox="0 0 24 24" width="20">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FLOATING CHAT INPUT -->
+  <!-- Appears when user scrolls past hero, fixed at bottom center -->
+  <div class="floating-chat-input hidden" data-always-visible="false" data-page-context="homepage"
+    data-trigger-selector=".hero" id="floating-chat-input">
+    <div class="floating-input-container">
+      <input aria-label="Ask your question" class="floating-input-field" placeholder="A question?" type="text">
+      <button aria-label="Send" class="floating-input-submit">
+        <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20">
+          <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2"></path>
+          <path d="M12 21V4" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+        </svg>
+      </button>
+      </input>
+    </div>
+  </div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="font-size: 1.5rem;">
+            <svg fill="none" style="width: 32px; height: 32px;" viewbox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
+                stroke-linecap="round" stroke-width="6"></circle>
+              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+            </svg>
             Bubble.
           </a>
-<p>L'ère de l'IA a tout changé. Changez avec elle.</p>
-<div class="social-links">
-<a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest" target="_blank" title="LinkedIn">
-<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
-<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
-</svg>
-</a>
-<a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank" title="Instagram @behindthebubble.ai">
-<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
-<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
-</svg>
-</a>
-<a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank" title="Substack @bubbleinvest">
-<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
-<path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"></path>
-</svg>
-</a>
-<a aria-label="GitHub Jade" href="https://github.com/jade.hng" target="_blank" title="GitHub Jade">
-<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
-</a>
-<a aria-label="GitHub Joris" href="https://github.com/vdk888" target="_blank" title="GitHub Joris">
-<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
-</a>
-</div>
-</div>
-<div class="footer-links">
-<h4>Implémentation</h4>
-<ul>
-<li><a href="/particuliers-mock">Particuliers</a></li>
-<li><a href="/professionnels-mock">Professionnels</a></li>
-
-</ul>
-</div>
-<div class="footer-links">
-<h4>Ressources</h4>
-<ul>
-<li><a href="/blog-mock">Blog</a></li>
-<li><a href="/about-mock-en">Newsletter</a></li>
-<li><a href="/about-mock-en#mission">Agents &amp; Tutos</a></li>
-</ul>
-</div>
-<div class="footer-links">
-<h4>Entreprise</h4>
-<ul>
-<li><a href="/a-propos-mock">À Propos</a></li>
-<li><a href="/legal-notice">Build in Public</a></li>
-<li><a href="/a-propos-mock">Notre méthode</a></li></ul>
-</div>
-</div>
-<div class="footer-bottom">
-<p>© 2026 Bubble Invest — Contenu gratuit · Expertise sur mesure · Build in Public</p>
-
-</div>
-</div>
-</footer>
-<!-- 
+          <p>L'ère de l'IA a tout changé. Changez avec elle.</p>
+          <div class="social-links">
+            <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest" target="_blank"
+              title="LinkedIn">
+              <svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank"
+              title="Instagram @behindthebubble.ai">
+              <svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank"
+              title="Substack @bubbleinvest">
+              <svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+                <path
+                  d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="GitHub Jade" href="https://github.com/jade.hng" target="_blank" title="GitHub Jade">
+              <svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="GitHub Joris" href="https://github.com/vdk888" target="_blank" title="GitHub Joris">
+              <svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="X" href="https://x.com/bubbleinvest" target="_blank" title="X @bubbleinvest">
+              <svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Produit</h4>
+          <ul>
+            <li><a href="/particuliers-mock">Particuliers</a></li>
+            <li><a href="/professionnels-mock">Professionnels</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Ressources</h4>
+          <ul>
+            <li><a href="/blog-mock">Blog</a></li>
+            <li><a href="/a-propos-mock">À Propos</a></li>
+            <li><a href="https://bubbleinvest.substack.com" target="_blank">Newsletter</a></li>
+            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank">Nous contacter</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Légal</h4>
+          <ul>
+            <li><a href="/mentions-legales">Mentions légales</a></li>
+            <li><a href="/cookies">Cookies</a></li>
+            <li><a href="/confidentialite">Confidentialité</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Bubble Invest — Contenu gratuit · Expertise sur mesure · Build in Public</p>
+      </div>
+    </div>
+  </footer>
+  <!-- 
     SCRIPTS TO LOAD FOR CHATBOT FUNCTIONALITY:
     <script src="/js/chatbot-animations.js"></script>
     <script src="/js/bubble-agent-memory.js"></script>
     <script src="/js/chat-side-panel.js"></script>
     <script src="/js/floating-chat-input.js"></script>
   -->
-<!-- PLACEHOLDER: Floating Chat Input Animation -->
-<script>
+  <!-- PLACEHOLDER: Floating Chat Input Animation -->
+  <script>
     (function () {
       'use strict';
 
@@ -1444,4 +1630,5 @@
     })();
   </script>
 </body>
+
 </html>

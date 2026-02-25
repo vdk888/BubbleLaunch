@@ -1,73 +1,5 @@
 [
   {
-    "id": "72420867-b697-4aea-a489-8a4129892d76",
-    "title": {
-      "fr": "Investissement & IA : Comment Ça Marche Concrètement?",
-      "en": "AI & Investing: How Does It Really Work?"
-    },
-    "slug": "investissement-ia-comment-a-marche-concr-tement",
-    "summary": {
-      "fr": "La plupart des “investissements IA” ne sont que des règles ou du marketing. Cet article explique comment Bubble utilise un moteur quantitatif transparent en 11 étapes et un copilote IA en chat pour gérer votre portefeuille comme un pro—sans vous retirer le contrôle.",
-      "en": "Most “AI investing” is just rules or hype. This article explains how Bubble uses a transparent, 11‑step quantitative engine and a chat‑first AI copilot to manage your portfolio like a pro—without taking control away from you."
-    },
-    "publishedDate": "2026-03-04",
-    "featuredImage": "https://im.runware.ai/image/ws/3/ii/b205a94e-c833-4916-b90d-86de561dcc51.png",
-    "url": "/blog/investissement-ia-comment-a-marche-concr-tement",
-    "urlEn": "/en/blog/investissement-ia-comment-a-marche-concr-tement",
-    "status": "Published",
-    "isPinned": false,
-    "tags": [
-      "AI & Finance",
-      "Financial Education"
-    ]
-  },
-  {
-    "id": "2a2cfc52-0644-81b6-975e-cd4c1d97fe7a",
-    "title": {
-      "fr": "Bubble vs Signaux de trading et de copy‑trading: Pourquoi Nous ne Vendrons jamais d’Alertes Magiques",
-      "en": "Bubble vs Trading Signals: Why We Don’t Sell Magic Alerts"
-    },
-    "slug": "bubble-vs-signaux-de-trading-et-de-copy-trading-pourquoi-nous-ne-vendrons-jamais-d-alertes-magiques",
-    "summary": {
-      "fr": "Signaux de trading, copy‑trading et portefeuilles “IA de superstars” vendent des alertes magiques ; Bubble fait l’inverse : un copilote quantitatif en chat pour construire un vrai portefeuille, pas pour courir après le prochain pump.",
-      "en": "Trading signals, copy‑trading and AI “celebrity portfolios” sell magic alerts; Bubble is the opposite: a chat‑first quant copilot that helps you build a serious portfolio, not chase the next hype pump."
-    },
-    "publishedDate": "2026-02-25",
-    "featuredImage": "https://im.runware.ai/image/ws/3/ii/d5cfd60b-30e1-4adf-8508-b0ff243c0996.png",
-    "url": "/blog/bubble-vs-signaux-de-trading-et-de-copy-trading-pourquoi-nous-ne-vendrons-jamais-d-alertes-magiques",
-    "urlEn": "/en/blog/bubble-vs-signaux-de-trading-et-de-copy-trading-pourquoi-nous-ne-vendrons-jamais-d-alertes-magiques",
-    "status": "Published",
-    "isPinned": false,
-    "tags": [
-      "Market Analysis",
-      "Behavioral Finance",
-      "Portfolio Management"
-    ]
-  },
-  {
-    "id": "7afc7b2f-cab1-425a-bc19-7881b39fa8e3",
-    "title": {
-      "fr": "Les Fondamentaux de l'Investissement : Le Guide Complet",
-      "en": "Les Fondamentaux de l'Investissement : Le Guide Complet"
-    },
-    "slug": "les-fondamentaux-de-l-investissement-le-guide-complet",
-    "summary": {
-      "fr": "Article de synthèse présentant la série complète « Les Fondamentaux de l'Investissement » — 8 guides progressifs pour apprendre à investir, de la découverte des placements à la gestion avancée de portefeuille.",
-      "en": ""
-    },
-    "publishedDate": "2026-02-24",
-    "featuredImage": "https://im.runware.ai/image/os/w02d10/ws/3/ii/88a78721-787c-43a7-a12f-47e88493f23b.png",
-    "url": "/blog/les-fondamentaux-de-l-investissement-le-guide-complet",
-    "urlEn": "/blog/les-fondamentaux-de-l-investissement-le-guide-complet",
-    "status": "Published",
-    "isPinned": true,
-    "tags": [
-      "Financial Education",
-      "Investment Strategy",
-      "Portfolio Management"
-    ]
-  },
-  {
     "id": "311cfc52-0644-8100-ac25-cfe7d753e424",
     "title": {
       "fr": "Ce que tu m'offres quand tu m'offres ton temps ",
@@ -83,8 +15,31 @@
     "url": "/blog/ce-que-tu-m-offres-quand-tu-m-offres-ton-temps",
     "urlEn": "/blog/ce-que-tu-m-offres-quand-tu-m-offres-ton-temps",
     "status": "Published",
-    "isPinned": false,
+    "isPinned": true,
     "tags": []
+  },
+  {
+    "id": "7afc7b2f-cab1-425a-bc19-7881b39fa8e3",
+    "title": {
+      "fr": "Les Fondamentaux de l'Investissement : Le Guide Complet",
+      "en": "Les Fondamentaux de l'Investissement : Le Guide Complet"
+    },
+    "slug": "les-fondamentaux-de-l-investissement-le-guide-complet",
+    "summary": {
+      "fr": "Article de synthèse présentant la série complète « Les Fondamentaux de l'Investissement » — 8 guides progressifs pour apprendre à investir, de la découverte des placements à la gestion avancée de portefeuille.",
+      "en": ""
+    },
+    "publishedDate": "2026-02-23",
+    "featuredImage": "https://im.runware.ai/image/os/w02d10/ws/3/ii/88a78721-787c-43a7-a12f-47e88493f23b.png",
+    "url": "/blog/les-fondamentaux-de-l-investissement-le-guide-complet",
+    "urlEn": "/blog/les-fondamentaux-de-l-investissement-le-guide-complet",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "Financial Education",
+      "Investment Strategy",
+      "Portfolio Management"
+    ]
   },
   {
     "id": "30acfc52-0644-81a3-9eb4-d232040bced7",
@@ -104,29 +59,6 @@
     "status": "Published",
     "isPinned": false,
     "tags": []
-  },
-  {
-    "id": "30acfc52-0644-81c9-b62e-c3a5e15d3ce7",
-    "title": {
-      "fr": "Pourquoi les Vues IA Valent Plus que les Vues Humaines",
-      "en": "Pourquoi les Vues IA Valent Plus que les Vues Humaines"
-    },
-    "slug": "pourquoi-les-vues-ia-valent-plus-que-les-vues-humaines",
-    "summary": {
-      "fr": "",
-      "en": ""
-    },
-    "publishedDate": "2026-02-17",
-    "featuredImage": "https://substackcdn.com/image/fetch/$s_!6v6t!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4bb737e1-d1b3-4d1d-b746-35085b60ecbd_1024x1024.png",
-    "url": "https://bubbleinvest.substack.com/p/pourquoi-les-vues-ia-valent-plus",
-    "urlEn": "https://bubbleinvest.substack.com/p/pourquoi-les-vues-ia-valent-plus",
-    "status": "Published",
-    "isPinned": true,
-    "tags": [
-      "IA",
-      "Contenu",
-      "Stratégie"
-    ]
   },
   {
     "id": "7e1c46d4-689d-457e-8733-d59e99927bc4",
@@ -400,6 +332,28 @@
       "Financial Education",
       "Market Analysis",
       "Behavioral Finance"
+    ]
+  },
+  {
+    "id": "72420867-b697-4aea-a489-8a4129892d76",
+    "title": {
+      "fr": "Investissement & IA : Comment Ça Marche Concrètement?",
+      "en": "AI & Investing: How Does It Really Work?"
+    },
+    "slug": "investissement-ia-comment-a-marche-concr-tement",
+    "summary": {
+      "fr": "La plupart des “investissements IA” ne sont que des règles ou du marketing. Cet article explique comment Bubble utilise un moteur quantitatif transparent en 11 étapes et un copilote IA en chat pour gérer votre portefeuille comme un pro—sans vous retirer le contrôle.",
+      "en": "Most “AI investing” is just rules or hype. This article explains how Bubble uses a transparent, 11‑step quantitative engine and a chat‑first AI copilot to manage your portfolio like a pro—without taking control away from you."
+    },
+    "publishedDate": "2025-12-29",
+    "featuredImage": "https://im.runware.ai/image/os/w02d10/ws/3/ii/06eec8ca-4f1f-438c-a3ed-48c0ce4dcd0c.png",
+    "url": "/blog/investissement-ia-comment-a-marche-concr-tement",
+    "urlEn": "/en/blog/investissement-ia-comment-a-marche-concr-tement",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "AI & Finance",
+      "Financial Education"
     ]
   },
   {

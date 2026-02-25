@@ -1,22 +1,25 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Individuals — Discover Our Investment Agent | Bubble</title>
-<meta content="See how we use an AI agent to manage our own investments. Full transparency: code, methodology, results." name="description"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
-<style>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Individuals — Our AI Investment Agent | Bubble</title>
+  <meta content="Our AI agent manages our portfolio. We share everything — strategy, code, results, mistakes."
+    name="description" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
+    rel="stylesheet" />
+  <style>
     :root {
       --primary: #111111;
       --secondary: #444444;
       --muted: #888888;
       --bg-white: #FFFFFF;
       --bg-subtle: #F8F8F8;
-      --border: rgba(0,0,0,0.08);
+      --border: rgba(0, 0, 0, 0.08);
       --purple: #93acf0;
       --purple-light: rgba(147, 172, 240, 0.15);
       --success: #22c55e;
@@ -50,7 +53,7 @@
       left: 0;
       right: 0;
       z-index: 100;
-      background: rgba(255,255,255,0.95);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
@@ -72,7 +75,10 @@
       text-decoration: none;
     }
 
-    .logo svg { width: 28px; height: 28px; }
+    .logo svg {
+      width: 28px;
+      height: 28px;
+    }
 
     nav {
       display: flex;
@@ -100,8 +106,15 @@
       transition: width 0.3s;
     }
 
-    nav a:hover, nav a.active { color: var(--primary); }
-    nav a:hover::after, nav a.active::after { width: 100%; }
+    nav a:hover,
+    nav a.active {
+      color: var(--primary);
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
 
     .lang-switch {
       display: flex;
@@ -120,7 +133,10 @@
       transition: color 0.3s;
     }
 
-    .lang-switch button.active { color: var(--primary); font-weight: 600; }
+    .lang-switch button.active {
+      color: var(--primary);
+      font-weight: 600;
+    }
 
     /* HERO */
     .hero {
@@ -140,12 +156,6 @@
       font-size: 1.25rem;
       color: var(--secondary);
       max-width: 600px;
-      margin-bottom: 2rem;
-    }
-
-    .hero-description {
-      color: var(--muted);
-      max-width: 500px;
       margin-bottom: 2rem;
     }
 
@@ -176,7 +186,7 @@
     }
 
     .btn-primary:hover {
-      background: #333;
+      background: var(--purple);
       transform: translateY(-2px);
     }
 
@@ -190,177 +200,7 @@
       background: var(--bg-subtle);
     }
 
-    /* AGENT DASHBOARD */
-    .agent-dashboard {
-      padding: 4rem 0;
-      background: var(--bg-white);
-    }
-
-    .dashboard-container {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .dashboard-header {
-      padding: 1.5rem;
-      background: var(--bg-white);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .agent-status {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-      color: var(--success);
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--success);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      min-height: 400px;
-    }
-
-    .chat-panel {
-      padding: 1.5rem;
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .chat-messages {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .message {
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-    }
-
-    .message.user {
-      flex-direction: row-reverse;
-    }
-
-    .message-avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--purple);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 600;
-      font-size: 0.85rem;
-    }
-
-    .message.user .message-avatar {
-      background: var(--primary);
-    }
-
-    .message-content {
-      background: var(--bg-white);
-      padding: 1rem;
-      border-radius: 12px;
-      max-width: 80%;
-      font-size: 0.95rem;
-      border: 1px solid var(--border);
-    }
-
-    .message.user .message-content {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
-    .chat-input {
-      display: flex;
-      gap: 0.75rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .chat-input input {
-      flex: 1;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-family: inherit;
-    }
-
-    .chat-input input:focus {
-      outline: none;
-      border-color: var(--purple);
-    }
-
-    .sidebar-panel {
-      padding: 1.5rem;
-      background: var(--bg-white);
-    }
-
-    .sidebar-section {
-      margin-bottom: 2rem;
-    }
-
-    .sidebar-section h4 {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .metric-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .metric-item:last-child { border-bottom: none; }
-
-    .metric-label { font-size: 0.9rem; color: var(--secondary); }
-
-    .metric-value {
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .metric-value.positive { color: var(--success); }
-    .metric-value.negative { color: #ef4444; }
-
-    /* PLAYGROUND */
-    .playground {
-      padding: 5rem 0;
-      background: var(--bg-subtle);
-    }
-
+    /* SECTIONS */
     .section-header {
       text-align: center;
       margin-bottom: 3rem;
@@ -381,28 +221,33 @@
       letter-spacing: -0.02em;
     }
 
-    .playground-grid {
+    /* AGENT CARDS */
+    .agent-section {
+      padding: 5rem 0;
+      background: var(--bg-subtle);
+    }
+
+    .cards-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
     }
 
-    .playground-card {
+    .card {
       background: var(--bg-white);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 2rem;
-      cursor: pointer;
       transition: all 0.3s;
     }
 
-    .playground-card:hover {
+    .card:hover {
       transform: translateY(-4px);
       border-color: var(--purple);
       box-shadow: 0 10px 30px rgba(147, 172, 240, 0.15);
     }
 
-    .playground-icon {
+    .card-icon {
       width: 48px;
       height: 48px;
       background: var(--purple-light);
@@ -413,94 +258,106 @@
       margin-bottom: 1rem;
     }
 
-    .playground-card h4 {
+    .card h4 {
       font-size: 1.1rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
     }
 
-    .playground-card p {
+    .card p {
       font-size: 0.9rem;
       color: var(--secondary);
     }
 
-    /* CONFIGURATION */
-    .configuration {
+    /* FOLLOW SECTION */
+    .follow-section {
       padding: 5rem 0;
       background: var(--bg-white);
     }
 
-    .config-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
     }
 
-    .config-content h4 {
-      font-size: 1.25rem;
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
       font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid var(--border);
+    }
+
+    .social-btn:hover {
+      background: var(--purple);
+      color: white;
+      border-color: var(--purple);
+      transform: translateY(-2px);
+    }
+
+    .social-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .newsletter-line {
+      text-align: center;
+      margin-bottom: 0.75rem;
+      color: var(--secondary);
+    }
+
+    .newsletter-cta {
+      text-align: center;
       margin-bottom: 1rem;
     }
 
-    .config-content>p {
-      color: var(--secondary);
-      margin-bottom: 1.5rem;
-    }
-
-    .config-features {
-      list-style: none;
-    }
-
-    .config-features li {
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: baseline;
-      gap: 0.75rem;
-    }
-
-    .config-features li strong {
-      font-weight: 600;
-      color: var(--primary);
-    }
-
-    .config-code {
-      background: #1a1a2e;
-      border-radius: 12px;
-      padding: 1.5rem;
-      font-family: 'JetBrains Mono', monospace;
+    .newsletter-small {
+      text-align: center;
       font-size: 0.85rem;
-      overflow-x: auto;
+      color: var(--muted);
     }
 
-    .config-code pre {
-      margin: 0;
-      line-height: 1.6;
-    }
-
-    .config-code .keyword { color: #93acf0; }
-    .config-code .comment { color: #6a6a8a; }
-    .config-code .string { color: #a8d5a2; }
-
-    /* B2B SECTION */
-    .b2b-section {
+    /* CTA SECTION */
+    .cta-section {
       padding: 5rem 0;
       background: var(--primary);
       color: white;
       text-align: center;
     }
 
-    .b2b-section h2 {
+    .cta-section h2 {
       font-size: 2rem;
       font-weight: 700;
       margin-bottom: 1rem;
     }
 
-    .b2b-section p {
-      color: rgba(255,255,255,0.7);
+    .cta-section p {
+      color: rgba(255, 255, 255, 0.7);
       max-width: 600px;
       margin: 0 auto 2rem;
+    }
+
+    .cta-section .btn-primary {
+      background: white;
+      color: var(--primary);
+      border: 1px solid white;
+    }
+
+    .cta-section .btn-primary:hover {
+      background: var(--purple);
+      color: white;
+      border-color: var(--purple);
+      transform: translateY(-2px);
     }
 
     /* FOOTER */
@@ -533,8 +390,13 @@
       color: var(--primary);
     }
 
-    .footer-links ul { list-style: none; }
-    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
 
     .footer-links a {
       color: var(--secondary);
@@ -543,7 +405,9 @@
       transition: color 0.3s;
     }
 
-    .footer-links a:hover { color: var(--purple); }
+    .footer-links a:hover {
+      color: var(--purple);
+    }
 
     .social-links {
       display: flex;
@@ -571,25 +435,12 @@
     .footer-bottom {
       padding-top: 2rem;
       border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      text-align: center;
     }
 
     .footer-bottom p {
       font-size: 0.85rem;
       color: var(--muted);
-    }
-
-    .footer-why-bubble {
-      font-size: 0.85rem;
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    .footer-why-bubble a {
-      color: var(--purple);
-      text-decoration: none;
     }
 
     /* FLOATING CHAT INPUT */
@@ -636,7 +487,9 @@
       padding: 0.5rem 0;
     }
 
-    .floating-input-field::placeholder { color: var(--muted); }
+    .floating-input-field::placeholder {
+      color: var(--muted);
+    }
 
     .floating-input-submit {
       background: var(--primary);
@@ -657,12 +510,21 @@
       transform: scale(1.05);
     }
 
-    .floating-input-submit svg { color: white; }
+    .floating-input-submit svg {
+      color: white;
+    }
 
     /* ANIMATIONS */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .fade-in {
@@ -670,572 +532,333 @@
       animation: fadeIn 0.8s ease-out forwards;
     }
 
-    .fade-in-delay-1 { animation-delay: 0.1s; }
-    .fade-in-delay-2 { animation-delay: 0.2s; }
-    .fade-in-delay-3 { animation-delay: 0.3s; }
+    .fade-in-delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .fade-in-delay-2 {
+      animation-delay: 0.2s;
+    }
+
+    .fade-in-delay-3 {
+      animation-delay: 0.3s;
+    }
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2rem; }
-      .hero-subtitle { font-size: 1.1rem; }
-      .dashboard-grid { grid-template-columns: 1fr; }
-      .chat-panel { border-right: none; border-bottom: 1px solid var(--border); }
-      .playground-grid { grid-template-columns: 1fr; }
-      .config-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      nav { display: none; }
-      .floating-chat-input { bottom: 1rem; left: 1rem; right: 1rem; transform: none; }
-      .floating-chat-input.hidden { transform: translateY(20px); }
-      .floating-input-container { min-width: unset; width: 100%; }
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .floating-chat-input {
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem;
+        transform: none;
+      }
+
+      .floating-chat-input.hidden {
+        transform: translateY(20px);
+      }
+
+      .floating-input-container {
+        min-width: unset;
+        width: 100%;
+      }
     }
-  
-    /* --- Fix CTA button visibility on dark backgrounds --- */
-    .b2b-section .btn-primary,
-    .final-cta .btn-primary,
-    .will-to-empower .btn-primary,
-    .waitlist-section .btn-primary {
-      background: white;
-      color: var(--primary);
-      border: 1px solid white;
-    }
-    
-    .b2b-section .btn-primary:hover,
-    .final-cta .btn-primary:hover,
-    .will-to-empower .btn-primary:hover,
-    .waitlist-section .btn-primary:hover {
-      background: var(--purple);
-      color: white;
-      border-color: var(--purple);
-      transform: translateY(-2px);
-    }
-    
-    .b2b-section .btn-secondary,
-    .final-cta .btn-secondary,
-    .will-to-empower .btn-secondary,
-    .waitlist-section .btn-secondary {
-      background: transparent;
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-    }
-    
-    .b2b-section .btn-secondary:hover,
-    .final-cta .btn-secondary:hover,
-    .will-to-empower .btn-secondary:hover,
-    .waitlist-section .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      border-color: white;
-    }
-</style>
+  </style>
 </head>
+
 <body>
-<!-- HEADER -->
-<header>
-<div class="container">
-<div class="header-inner">
-<a class="logo" href="/">
-<svg fill="none" viewbox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-<circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle>
-<circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-</svg>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a class="logo" href="/">
+          <svg fill="none" viewbox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
+              stroke-linecap="round" stroke-width="6"></circle>
+            <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+          </svg>
           Bubble.
         </a>
-<nav>
-<a href="/about-mock-en">About</a>
-<a href="/professionals-mock-en">Professionals</a>
-<a class="active" href="/individuals-mock-en">Individuals</a>
-<a href="/blog-mock-en">Blog</a>
-<div class="lang-switch">
-<button onclick="window.location.href='/particuliers-mock'">FR</button>
-<span>/</span>
-<button class="active">EN</button>
-</div>
-</nav>
-</div>
-</div>
-</header>
-<!-- HERO -->
-<section class="hero">
-<div class="container">
-<h1 class="fade-in">Our Investment Agent — An Open POC</h1>
-<p class="hero-subtitle fade-in fade-in-delay-1">We built an AI agent for ourselves using OpenClaw and code. We share how it works — technical stack, prompts, limits — so you can reproduce it, for your investments or your projects.</p>
-<p class="hero-description fade-in fade-in-delay-2">
-        This page is not a product pitch. It's a behind-the-scenes look. See how we built it, understand the choices, and draw inspiration for your own projects.
-      </p>
-<div class="hero-cta fade-in fade-in-delay-3">
-<a class="btn btn-primary" href="#demo">See the demo</a>
-<a class="btn btn-secondary" href="#methodology">Our methodology</a>
-</div>
-</div>
-</section>
-<!-- AGENT DASHBOARD DEMO -->
-<section class="agent-dashboard" id="demo">
-<div class="container">
-<div class="dashboard-container">
-<div class="dashboard-header">
-<div class="agent-status">
-<div class="status-dot"></div>
-<span>Bubble Agent Online</span>
-</div>
-<span style="color: var(--muted); font-size: 0.85rem;">Last update: 2 min ago</span>
-</div>
-<div class="dashboard-grid">
-<div class="chat-panel">
-<div class="chat-messages">
-<div class="message">
-<div class="message-avatar">B</div>
-<div class="message-content">
-<strong>Morning Brief — January 15</strong><br/>
-                  Portfolio: <span style="color: var(--success);">+2.3%</span> cette semaine<br/>
-                  • NVDA: Volatility alert (+15% overnight)<br/>
-                  • 2 positions to rebalance before 10am
-                </div>
-</div>
-<div class="message user">
-<div class="message-avatar">You</div>
-<div class="message-content">
-                  What are my current allocations?
-                </div>
-</div>
-<div class="message">
-<div class="message-avatar">B</div>
-<div class="message-content">
-<strong>Current Allocations:</strong><br/>
-                  🇺🇸 US Tech: 28% (target 25%) ⚠️<br/>
-                  🏭 Value: 22% (target 20%)<br/>
-                  🌍 International: 18% (target 20%) ↓<br/>
-                  🏥 Healthcare: 12%<br/>
-                  ✨ Crypto: 8%<br/>
-                  🛡️ Gold: 7%<br/>
-                  💵 Cash: 5%
-                </div>
-</div>
-<div class="message user">
-<div class="message-avatar">You</div>
-<div class="message-content">
-                  Analyze the last rebalancing
-                </div>
-</div>
-<div class="message">
-<div class="message-avatar">B</div>
-<div class="message-content">
-<strong>Analysis — January 12 Rebalancing:</strong><br/>
-                  • Sold: AAPL (-2%) — reached take-profit at +18%<br/>
-                  • Bought: VEA (+2%) — opportunity on international<br/>
-                  • Result: +0.8% vs S&amp;P 500 since rebalancing<br/>
-<br/>
-<em>All trades are in your broker history.</em>
-</div>
-</div>
-</div>
-<div class="chat-input">
-<input placeholder="Ask the agent..." type="text"/>
-<button class="btn btn-primary">Send</button>
-</div>
-</div>
-<div class="sidebar-panel">
-<div class="sidebar-section">
-<h4>Performance</h4>
-<div class="metric-item">
-<span class="metric-label">YTD 2025</span>
-<span class="metric-value positive">+8.4%</span>
-</div>
-<div class="metric-item">
-<span class="metric-label">vs S&amp;P 500</span>
-<span class="metric-value positive">+2.1%</span>
-</div>
-<div class="metric-item">
-<span class="metric-label">Max Drawdown</span>
-<span class="metric-value negative">-4.2%</span>
-</div>
-</div>
-<div class="sidebar-section">
-<h4>Current Positions</h4>
-<div class="metric-item">
-<span class="metric-label">Total Positions</span>
-<span class="metric-value">18</span>
-</div>
-<div class="metric-item">
-<span class="metric-label">Avg Position</span>
-<span class="metric-value">4.2%</span>
-</div>
-<div class="metric-item">
-<span class="metric-label">Largest</span>
-<span class="metric-value">NVDA 8.5%</span>
-</div>
-</div>
-<div class="sidebar-section">
-<h4>Next Actions</h4>
-<div class="metric-item">
-<span class="metric-label">To Rebalance</span>
-<span class="metric-value" style="color: var(--warning);">2 positions</span>
-</div>
-<div class="metric-item">
-<span class="metric-label">Alerts</span>
-<span class="metric-value">0</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- PLAYGROUND / STACK REVEAL -->
-<section class="playground" id="playground">
-<div class="container">
-<div class="section-header">
-<h2>Our agent in action</h2>
-<h3>18 months of real management — here's what it sees every morning, and how it's built</h3>
-</div>
-<div class="playground-grid">
-<div class="playground-card">
-<div class="playground-icon">
-<svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32">
-<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-</svg>
-</div>
-<h4>OpenClaw &amp; MCP</h4>
-<p>Agent orchestration via Model Context Protocol. We show you how to configure your own MCP servers and connect different tools together.</p>
-</div>
-<div class="playground-card">
-<div class="playground-icon">
-<svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32">
-<polyline points="16 18 22 12 16 6"></polyline>
-<polyline points="8 6 2 12 8 18"></polyline>
-</svg>
-</div>
-<h4>Code with AI</h4>
-<p>We don't code alone — we use Claude, Kimi, Cursor as co-pilots. We share our prompts, our development workflows, how we go from an idea to a working agent.</p>
-</div>
-<div class="playground-card">
-<div class="playground-icon">
-<svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32">
-<ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-<path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-<path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-</svg>
-</div>
-<h4>API &amp; Data</h4>
-<p>Broker connection, vector databases for memory, secure storage. We explain every technical choice and why we favored this or that solution.</p>
-</div>
-<div class="playground-card">
-<div class="playground-icon">
-<svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32">
-<circle cx="11" cy="11" r="8"></circle>
-<path d="m21 21-4.35-4.35"></path>
-</svg>
-</div>
-<h4>The limits (we don't hide)</h4>
-<p>API latency, unexpected costs, edge cases that get stuck. We also show what doesn't work yet — so you have a realistic view of what's possible.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- METHODOLOGY -->
-<section class="configuration" id="methodology">
-<div class="container">
-<div class="section-header">
-<h2>Our Method</h2>
-<h3>What we learned building — and how to apply it to your projects</h3>
-</div>
-<div class="config-grid">
-<div class="config-content">
-<h4>5 non-negotiable principles</h4>
-<p>No black box. Clear rules, applied with discipline by the agent:</p>
-<ul class="config-features">
-<li><strong>Systematic Backtesting</strong> — No position without 10-20 year validation</li>
-<li><strong>Strict Position Sizing</strong> — 1-10% max, never more than 30 positions</li>
-<li><strong>Risk Parity 2 Levels</strong> — Thematic balance + intra-pocket balance</li>
-<li><strong>Regime Detection</strong> — 5 composite signals (VIX, yield, credit...)</li>
-<li><strong>Human Validation</strong> — The agent proposes, we decide</li>
-</ul>
-<div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-<a class="btn btn-secondary" href="https://github.com/jorisdupraz" style="font-size: 0.85rem;" target="_blank">
-<svg fill="currentColor" height="16" style="margin-right: 0.5rem;" viewbox="0 0 24 24" width="16">
-<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
-</svg>
-              Joris' GitHub
-            </a>
-<a class="btn btn-secondary" href="https://github.com/jadethi-viet-lanhoang" style="font-size: 0.85rem;" target="_blank">
-<svg fill="currentColor" height="16" style="margin-right: 0.5rem;" viewbox="0 0 24 24" width="16">
-<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
-</svg>
-              Jade's GitHub
-            </a>
-</div>
-</div>
-<div class="config-code">
-<pre><span class="comment"># Framework — Extract</span>
+        <nav>
+          <a href="/about-mock-en">About</a>
+          <a href="/professionals-mock-en">Professionals</a>
+          <a class="active" href="/individuals-mock-en">Individuals</a>
+          <a href="/blog-mock-en">Blog</a>
+          <div class="lang-switch">
+            <button onclick="window.location.href='/particuliers-mock'">FR</button>
+            <span>/</span>
+            <button class="active">EN</button>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-<span class="keyword">RISK_PARITY_2L</span>(portfolio):
-  <span class="comment"># Level 1: Thematic allocation</span>
-  themes = [AI, Intl_EM, Value, REITs, 
-            Crypto, Commodities, Uranium, 
-            Gold, SmallCap, Healthcare]
-  
-  <span class="comment"># Level 2: Intra-pocket allocation</span>
-  for theme in themes:
-    tickers = get_tickers(theme)
-    cov_matrix = calculate_erc(tickers)
-    weights = 1 / diag(cov_matrix)
-    normalize(weights)
-  
-  combine_levels(theme_weights, intra_weights)
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="fade-in">Our AI agent manages our portfolio.</h1>
+      <p class="hero-subtitle fade-in fade-in-delay-1">We share everything — strategy, code, results, mistakes. Follow
+        our journey or let us build yours.</p>
+      <div class="hero-cta fade-in fade-in-delay-2">
+        <a class="btn btn-primary" href="#follow">Follow our journey</a>
+        <a class="btn btn-secondary" href="https://calendly.com/bubbleinvest-ai" target="_blank">Want this for
+          you?</a>
+      </div>
+    </div>
+  </section>
 
-<span class="keyword">REGIME_DETECTION</span>():
-  signals = [VIX(), YieldCurve(), 
-             CreditSpreads(), Momentum(), 
-             MarketBreadth()]
-  
-  composite = weighted_average(signals)
-  
-  if composite &gt; 60: return BULL
-  if composite &lt; 40: return BEAR
-  return CAUTION
+  <!-- WHAT THE AGENT DOES -->
+  <section class="agent-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>What the agent does</h2>
+        <h3>An investment copilot, not a black box</h3>
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">
+            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewbox="0 0 24 24" width="24">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+          </div>
+          <h4>Connected to Alpaca</h4>
+          <p>Our agent is wired to our broker account. It places real trades, in real time.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewbox="0 0 24 24" width="24">
+              <path d="M3 3v18h18"></path>
+              <path d="M18 17V9"></path>
+              <path d="M13 17V5"></path>
+              <path d="M8 17v-3"></path>
+            </svg>
+          </div>
+          <h4>Systematic strategy</h4>
+          <p>Risk parity, market regime detection, automatic rebalancing. No gut feeling, just rules.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewbox="0 0 24 24" width="24">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </div>
+          <h4>100% transparent</h4>
+          <p>Every decision is documented. We publish what works, what breaks, and how we fix it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<span class="comment"># Full documentation on our blog</span></pre>
-</div>
-</div>
-</div>
-</section>
-<!-- GENERALISATION -->
-<section class="playground" id="generalisation" style="background: var(--bg-white);">
-<div class="container">
-<div class="section-header">
-<h2>This method works for your own projects</h2>
-<h3>Beyond investing</h3>
-</div>
-<div class="playground-grid">
-<div class="playground-card">
-<div class="playground-icon" style="font-size: 2rem;">📈</div>
-<h4>Regulatory Watch</h4>
-<p>Automate monitoring of regulatory developments (SEC, tax laws) with personalized alerts.</p>
-</div>
-<div class="playground-card">
-<div class="playground-icon" style="font-size: 2rem;">📄</div>
-<h4>Report Generation</h4>
-<p>Create smart templates that automatically fill your client reports from your data.</p>
-</div>
-<div class="playground-card">
-<div class="playground-icon" style="font-size: 2rem;">⚡</div>
-<h4>Personal Productivity</h4>
-<p>Email triage agents, document synthesis, information research — everything that takes your time.</p>
-</div>
-</div>
-<div style="text-align: center; margin-top: 3rem;">
-<a class="btn btn-secondary" href="/blog-mock-en" style="margin-right: 1rem;">See our tutorials</a>
-<a class="btn btn-primary" href="https://bit.ly/3Z9Cncr" target="_blank">
-<svg fill="none" height="18" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;" viewbox="0 0 24 24" width="18">
-<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-<polyline points="22,6 12,13 2,6"></polyline>
-</svg>
-          Get new agents by email
+  <!-- FOLLOW OUR JOURNEY -->
+  <section class="follow-section" id="follow">
+    <div class="container">
+      <div class="section-header">
+        <h2>Follow our work</h2>
+        <h3>We document everything, twice a week</h3>
+      </div>
+      <div class="social-buttons">
+        <a class="social-btn" href="https://www.linkedin.com/company/bubble-invest" target="_blank">
+          <svg fill="currentColor" viewbox="0 0 24 24">
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z">
+            </path>
+          </svg>
+          LinkedIn
         </a>
-</div>
-</div>
-</section>
-<!-- BLOG & CONTENT HUB -->
-<section class="playground" id="blog" style="background: var(--bg-subtle); padding: 5rem 0;">
-<div class="container">
-<div class="section-header">
-<h2>Build in Public</h2>
-<h3>We document everything: what works, what breaks, how we fix it. No perfect finished product — an honest work in progress.</h3>
-</div>
-<!-- Dynamic Blog Preview Grid -->
-<div class="blog-grid" style="margin-top: 2rem;">
-<div class="blog-card" onclick="location.href='/blog-mock'">
-<div class="blog-image">
-<svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
-</div>
-<div class="blog-content">
-<div class="blog-tag">Performance</div>
-<h4>How we reduced our agent's latency by 40%</h4>
-<p></p>
-</div>
-</div>
-
-<div class="blog-card" onclick="location.href='/blog-mock'">
-<div class="blog-image">
-<svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>
-</div>
-<div class="blog-content">
-<div class="blog-tag">Learnings</div>
-<h4>What didn't work: our failures with reasoning prompts</h4>
-<p></p>
-</div>
-</div>
-
-<div class="blog-card" onclick="location.href='/blog-mock'">
-<div class="blog-image">
-<svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32"><rect height="10" rx="2" width="18" x="3" y="11"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path></svg>
-</div>
-<div class="blog-content">
-<div class="blog-tag">Technical Stack</div>
-<h4>Why we migrated from OpenAI to Anthropic (and the lessons learned)</h4>
-<p></p>
-</div>
-</div>
-</div>
-<div style="text-align: center; margin-top: 3rem;">
-<a class="btn btn-secondary" href="/blog-mock-en" style="margin-right: 1rem;">
-          All our articles
+        <a class="social-btn" href="https://instagram.com/behindthebubble.ai" target="_blank">
+          <svg fill="currentColor" viewbox="0 0 24 24">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+            </path>
+          </svg>
+          Instagram
         </a>
-<a class="btn btn-primary" href="https://bit.ly/3Z9Cncr" target="_blank">
-<svg fill="none" height="18" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;" viewbox="0 0 24 24" width="18">
-<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-<polyline points="22,6 12,13 2,6"></polyline>
-</svg>
+        <a class="social-btn" href="https://bubbleinvest.substack.com" target="_blank">
+          <svg fill="currentColor" viewbox="0 0 24 24">
+            <path
+              d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z">
+            </path>
+          </svg>
+          Substack
+        </a>
+        <a class="social-btn" href="https://github.com/vdk888" target="_blank">
+          <svg fill="currentColor" viewbox="0 0 24 24">
+            <path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+            </path>
+          </svg>
+          GitHub
+        </a>
+        <a class="social-btn" href="https://x.com/bubbleinvest" target="_blank">
+          <svg fill="currentColor" viewbox="0 0 24 24">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+            </path>
+          </svg>
+          X
+        </a>
+      </div>
+      <p class="newsletter-line">Or get our insights delivered:</p>
+      <div class="newsletter-cta">
+        <a class="btn btn-primary" href="https://bit.ly/3Z9Cncr" target="_blank">
+          <svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
           Subscribe to newsletter
         </a>
-</div>
-<p style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--muted);">
-        Twice a week · 3 profiles: Tech · Finance · Balanced · Unsubscribe anytime
-      </p>
-</div>
-</section>
-<!-- PLAYGROUND -->
-<section class="playground" id="playground-tools">
-<div class="container">
-<div class="section-header">
-<h2>Explore Our Tools</h2>
-<h3>Test concepts, discover your profile, compare strategies</h3>
-</div>
-<div class="playground-grid">
-<div class="playground-card" onclick="location.href='/investors/education/arena'">
-<div class="playground-icon">
-<svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32">
-<path d="M3 3v18h18"></path>
-<path d="M18 17V9"></path>
-<path d="M13 17V5"></path>
-<path d="M8 17v-3"></path>
-</svg>
-</div>
-<h4>The Arena</h4>
-<p>4 strategies face off over 20 years of crises and bubbles. Visualize how each reacts to market regimes.</p>
-</div>
-<div class="playground-card" onclick="location.href='/investors/education/simulator'">
-<div class="playground-icon">
-<svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32">
-<circle cx="12" cy="12" r="10"></circle>
-<path d="M12 6v6l4 2"></path>
-</svg>
-</div>
-<h4>The Simulator</h4>
-<p>Test your allocations over 20 years. Compare to S&amp;P 500. Adjust leverage. See what survives crises.</p>
-</div>
-<div class="playground-card" onclick="location.href='/investors/playground'">
-<div class="playground-icon">
-<svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32">
-<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-<circle cx="12" cy="7" r="4"></circle>
-</svg>
-</div>
-<h4>Discover Your Profile</h4>
-<p>Interactive chat to understand your risk tolerance. Not a questionnaire — a conversation.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- B2B SECTION -->
-<section class="b2b-section" id="b2b">
-<div class="container">
-<div class="section-header">
-<h2>Want to go further?</h2>
-<h3>Implement this approach in your business</h3>
-</div>
-<p style="max-width: 600px; margin: 1rem auto 2rem; color: rgba(255,255,255,0.7);">
-        You've seen how we build our agents. Want to do the same for your business, your clients, your processes?<br/><br/>
-        We work with professionals (wealth advisors, SMEs, asset managers) on concrete implementation of custom AI agents — with the same transparent approach and promise of autonomy.
-      </p>
-<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-<a class="btn btn-primary" href="/professionals-mock-en">Discuss your project</a>
-<a class="btn btn-secondary" href="/professionals-mock-en">See our B2B solutions</a>
-</div>
-</div>
-</section>
-<!-- FLOATING CHAT INPUT -->
-<div class="floating-chat-input hidden" data-page-context="investors" id="floating-chat-input">
-<div class="floating-input-container">
-<input aria-label="Ask your question" class="floating-input-field" placeholder="A question about the agent?" type="text"/>
-<button aria-label="Send" class="floating-input-submit">
-<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18">
-<path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round"></path>
-<path d="M12 21V4" stroke-linecap="round"></path>
-</svg>
-</button>
-</div>
-</div>
-<!-- FOOTER -->
-<footer>
-<div class="container">
-<div class="footer-grid">
-<div class="footer-brand">
-<a class="logo" href="/" style="font-size: 1.5rem;">
-<svg fill="none" style="width: 32px; height: 32px;" viewbox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-<circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle>
-<circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-</svg>
+      </div>
+      <p class="newsletter-small">Twice a week · Personalized content · Unsubscribe anytime</p>
+    </div>
+  </section>
+
+  <!-- WANT THIS? -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Want this for yourself?</h2>
+      <p>We help individuals and businesses implement custom AI agents — investment, workflows, automation. Same
+        approach, same transparency.</p>
+      <a class="btn btn-primary" href="https://calendly.com/bubbleinvest-ai" target="_blank">Book a call</a>
+    </div>
+  </section>
+
+  <!-- FLOATING CHAT INPUT -->
+  <div class="floating-chat-input hidden" data-page-context="investors" id="floating-chat-input">
+    <div class="floating-input-container">
+      <input aria-label="Ask your question" class="floating-input-field" placeholder="A question about the agent?"
+        type="text" />
+      <button aria-label="Send" class="floating-input-submit">
+        <svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18">
+          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M12 21V4" stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="font-size: 1.5rem;">
+            <svg fill="none" style="width: 32px; height: 32px;" viewbox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
+                stroke-linecap="round" stroke-width="6"></circle>
+              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+            </svg>
             Bubble.
           </a>
-<p>The AI era has changed everything. Let's change with it.</p>
-<div class="social-links">
-<a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest" target="_blank" title="LinkedIn">
-<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
-</a>
-<a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank" title="Instagram @behindthebubble.ai">
-<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
-</a>
-<a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank" title="Substack @bubbleinvest">
-<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"></path></svg>
-</a>
-<a aria-label="GitHub Jade" href="https://github.com/jade.hng" target="_blank" title="GitHub Jade">
-<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
-</a>
-<a aria-label="GitHub Joris" href="https://github.com/vdk888" target="_blank" title="GitHub Joris">
-<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
-</a>
-</div>
-</div>
-<div class="footer-links">
-<h4>Product</h4>
-<ul>
-<li><a href="#demo">Performance</a></li>
-<li><a href="#methodology">Method</a></li>
-<li><a href="#playground">Playground</a></li>
-<li><a href="/professionals-mock-en">Professionals</a></li>
-</ul>
-</div>
-<div class="footer-links">
-<h4>Content</h4>
-<ul>
-<li><a href="/blog-mock-en">Blog</a></li>
-<li><a href="https://bit.ly/3Z9Cncr" target="_blank">Newsletter</a></li>
-<li><a href="/about-mock-en">About</a></li>
-<li><a href="/about-mock-en#mission">Our Mission</a></li>
-</ul>
-</div>
-<div class="footer-links">
-<h4>Legal</h4>
-<ul>
-<li><a href="/privacy">Privacy</a></li>
-<li><a href="/legal-notice">Legal Notice</a></li>
-</ul>
-</div>
-</div>
-<div class="footer-bottom">
-<p>© 2026 Bubble Invest — Transparent by design.</p>
-<p class="footer-why-bubble">
-<a href="/about-mock-en#why-bubble">Why "Bubble"?</a>
-</p>
-</div>
-</div>
-</footer>
-<!-- Floating Chat Input Script -->
-<script>
-    (function() {
+          <p>The AI era has changed everything. Let's change with it.</p>
+          <div class="social-links">
+            <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest" target="_blank"
+              title="LinkedIn">
+              <svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank"
+              title="Instagram @behindthebubble.ai">
+              <svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank"
+              title="Substack @bubbleinvest">
+              <svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+                <path
+                  d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="GitHub Jade" href="https://github.com/jade.hng" target="_blank" title="GitHub Jade">
+              <svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="GitHub Joris" href="https://github.com/vdk888" target="_blank" title="GitHub Joris">
+              <svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="X" href="https://x.com/bubbleinvest" target="_blank" title="X @bubbleinvest">
+              <svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="/individuals-mock-en">Individuals</a></li>
+            <li><a href="/professionals-mock-en">Professionals</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="/blog-mock-en">Blog</a></li>
+            <li><a href="/about-mock-en">About</a></li>
+            <li><a href="https://bubbleinvest.substack.com" target="_blank">Newsletter</a></li>
+            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank">Contact us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/en/legal-notice">Legal Notice</a></li>
+            <li><a href="/en/cookies">Cookies</a></li>
+            <li><a href="/en/privacy">Privacy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Bubble Invest — Transparent by design.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Chat Input Script -->
+  <script>
+    (function () {
       const floatingInput = document.getElementById('floating-chat-input');
       if (!floatingInput) return;
-      
+
       const hero = document.querySelector('.hero');
       if (hero) {
         const handleScroll = () => {
@@ -1246,9 +869,9 @@
             floatingInput.classList.add('hidden');
           }
         };
-        
+
         handleScroll();
-        
+
         let ticking = false;
         window.addEventListener('scroll', () => {
           if (!ticking) {
@@ -1260,10 +883,10 @@
           }
         });
       }
-      
+
       const inputField = floatingInput.querySelector('.floating-input-field');
       const submitButton = floatingInput.querySelector('.floating-input-submit');
-      
+
       function handleSubmit() {
         const message = inputField.value.trim();
         if (!message) return;
@@ -1271,7 +894,7 @@
         inputField.value = '';
         inputField.blur();
       }
-      
+
       submitButton.addEventListener('click', handleSubmit);
       inputField.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
@@ -1281,7 +904,6 @@
       });
     })();
   </script>
-<!-- Blog Preview Script -->
-
 </body>
+
 </html>
