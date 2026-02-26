@@ -15,15 +15,21 @@ Bubble Invest accompanies professionals (CGPs, wealth managers, SMEs, independen
 - **Empowerment Over Dependency**: Our goal is for clients to NOT need us anymore. We thrive on their emancipation, not their dependence.
 
 ## Selfware Model
-We use the tools we build. Our investment agent is our own proof of concept — we share it publicly with full transparency on what works, what breaks, and how we fix it. This extends to all AI agents we build.
+Selfware = a solution built on demand, on your data, in your tools, according to your way of working. Not a product you subscribe to — a system you own. We use the tools we build. Our investment agent is our own proof of concept — we share it publicly with full transparency on what works, what breaks, and how we fix it. This extends to all AI agents we build for clients.
 
 ## Why We Shifted (2026): From SaaS to Selfware
-SaaS isn't dead. But SaaS "as the default form" is losing its justification. The future is:
-- **Agents** — not apps with screens, but systems that act on your behalf
-- **Selfware** — tools you build for yourself, around your own intentions
-- **Intent-driven systems** — built around what you want to achieve, not around interfaces to navigate
+SaaS isn't dead. But SaaS "as the default form" is losing its justification. Five of the ten classic SaaS moats are falling to LLMs:
+- **Learned interfaces** → agents don't need UIs to be learned
+- **Custom workflows** → agents build workflows on demand
+- **Public data access** → agents fetch and structure any public data
+- **Hybrid talent scarcity** → agents replicate domain expertise at near-zero marginal cost
+- **Bundling** → agents compose features à la carte, no forced bundles
 
-We didn't pivot opportunistically. We observed a structural shift: when the agent becomes the gateway, the product is no longer the app. The product is how you make your tools work together. That's why we moved from building a SaaS product (Bubble Portfolio) to building AI agents for ourselves and our clients — and sharing everything along the way. The consulting model (B2B) is a natural consequence: we help others build their own selfware.
+Five moats still hold (and we respect them): proprietary data, regulatory lock-in, network effects, transactional embedding, system of record status.
+
+The structural insight: when the agent becomes the gateway, the product is no longer the app. The product is how you make your tools work together. The agent owns the relationship — it aggregates, orchestrates, and decides which underlying services to call. Traditional SaaS becomes infrastructure, not interface.
+
+That's why we moved from building a SaaS product (Bubble Portfolio) to building AI agents for ourselves and our clients — and sharing everything along the way. The consulting model (B2B) is a natural consequence: we help others build their own selfware.
 
 ## B2B Target Audience
 - CGPs and wealth managers (core target — we know the sector from our finance background)

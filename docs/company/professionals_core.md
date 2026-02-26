@@ -39,6 +39,9 @@ Bubble Businesses delivers pragmatic AI agent implementation for professionals. 
 - **We share everything**: Our POC agent, our learnings, our doubts — build in public philosophy
 - **If a free tool does the job, we tell you**: No upselling, no artificial dependency
 
+## Concrete Example: Marie, Independent Architect
+Marie runs a small architecture firm. Her quoting process (chiffrage) was manual, repetitive, and error-prone. In a 4-week co-construction sprint, we built her a Notion-based system with interconnected databases (materials, rates, project history) and an AI agent that regenerates quote documents from structured data. She now produces quotes 3× faster, with fewer errors, and she maintains the system herself. That's selfware — built for her, on her tools, according to her way of working.
+
 ## Key Messages
 - "You don't need more slides about AI. You need someone who implements it concretely in your business."
 - "We don't sell PowerPoint. We implement directly."

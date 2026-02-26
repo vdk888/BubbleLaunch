@@ -14,5 +14,8 @@ In a world where AI automates everything measurable, the non-measurable becomes 
 ### Our Philosophical Edge
 Most AI consultants only talk about tools. We think about implications — the impact of AI on the human condition, work, value, attention. This depth of thinking is what sets us apart.
 
+### The Agent Owns the Relationship
+In the emerging economy, the agent — not the app — becomes the primary interface. It aggregates services, orchestrates workflows, and acts on the user's behalf. Traditional software becomes infrastructure behind the agent. This is why we build agents, not apps: the value is in the orchestration layer, not the screen.
+
 ### Benevolence as Strategy
 Our fundamental difference: where the consulting industry thrives on your dependence, we thrive on your emancipation. In a world where authentic human attention becomes the rarest resource, we choose to give it — not simulate it.
