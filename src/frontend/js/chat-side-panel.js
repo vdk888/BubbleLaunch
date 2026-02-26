@@ -110,62 +110,6 @@
   // Attempt to load BubbleAgentMemory dynamically (non-blocking)
   loadBubbleAgentMemory().catch(() => {});
 
-  /**
-   * Dynamically load StrategyEventBus if not already loaded
-   */
-  function loadStrategyEventBus() {
-    if (typeof window.StrategyEventBus !== 'undefined') {
-      return Promise.resolve();
-    }
-
-    const pathsToTry = [
-      '/js/strategy-event-bus.js',
-    ];
-
-    // Try to compute relative path based on current script location
-    try {
-      const currentScript = document.currentScript || document.querySelector('script[src*="chat-side-panel"]');
-      if (currentScript && currentScript.src) {
-        const scriptUrl = new URL(currentScript.src);
-        const basePath = scriptUrl.pathname.substring(0, scriptUrl.pathname.lastIndexOf('/'));
-        pathsToTry.push(`${basePath}/strategy-event-bus.js`);
-      }
-    } catch (e) {
-      // Ignore URL parsing errors
-    }
-    
-    pathsToTry.push('./strategy-event-bus.js');
-
-    function tryLoadScript(path) {
-      return new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = path;
-        script.async = true;
-        script.onload = () => {
-          console.log(`[chat-side-panel] StrategyEventBus loaded from ${path}`);
-          resolve();
-        };
-        script.onerror = () => {
-          script.remove();
-          reject(new Error(`Failed to load from ${path}`));
-        };
-        document.head.appendChild(script);
-      });
-    }
-
-    function tryNextPath(index) {
-      if (index >= pathsToTry.length) {
-        console.warn('[chat-side-panel] Failed to load StrategyEventBus from all paths');
-        return Promise.resolve();
-      }
-      return tryLoadScript(pathsToTry[index]).catch(() => tryNextPath(index + 1));
-    }
-
-    return tryNextPath(0);
-  }
-
-  // Attempt to load StrategyEventBus dynamically (non-blocking)
-  loadStrategyEventBus().catch(() => {});
 
   /**
    * Get BubbleAgentMemory if available (graceful degradation)
@@ -176,9 +120,9 @@
   }
 
   /**
-   * Build user context for LLM from BubbleAgentMemory
+   * Build visitor context for LLM from BubbleAgentMemory
    * Token-efficient format for inclusion in system context
-   * @returns {string} Formatted user context or empty string
+   * @returns {string} Formatted visitor context or empty string
    */
   function buildUserProfileContext() {
     const Memory = getMemory();
@@ -189,22 +133,25 @@
 
     const parts = [];
 
-    // Profile information
+    // Visitor type information
     if (ctx.profile) {
-      if (ctx.profile.riskScore !== null) {
-        parts.push(`Risk Profile: ${ctx.profile.riskScore}/100 (confidence: ${ctx.profile.riskConfidence}%)`);
+      if (ctx.profile.visitorType) {
+        parts.push(`Visitor type: ${ctx.profile.visitorType}`);
       }
-      if (ctx.profile.traits && ctx.profile.traits.length > 0) {
-        parts.push(`Traits: ${ctx.profile.traits.join(', ')}`);
+      if (ctx.profile.painPoint) {
+        parts.push(`Pain point: ${ctx.profile.painPoint}`);
       }
-      if (ctx.profile.goal) {
-        parts.push(`Investment Goal: ${ctx.profile.goal}`);
+      if (ctx.profile.aiMaturity) {
+        parts.push(`AI maturity: ${ctx.profile.aiMaturity}`);
       }
-      if (ctx.profile.horizon) {
-        parts.push(`Time Horizon: ${ctx.profile.horizon}`);
+      if (ctx.profile.companyType) {
+        parts.push(`Company: ${ctx.profile.companyType}`);
       }
-      if (ctx.profile.level) {
-        parts.push(`Knowledge Level: ${ctx.profile.level}`);
+      if (ctx.profile.industry) {
+        parts.push(`Industry: ${ctx.profile.industry}`);
+      }
+      if (ctx.profile.interests && ctx.profile.interests.length > 0) {
+        parts.push(`Interests: ${ctx.profile.interests.join(', ')}`);
       }
     }
 
@@ -213,21 +160,10 @@
       if (ctx.journey.isReturningUser) {
         parts.push(`Returning user (visit #${ctx.journey.totalVisits})`);
       }
-      if (ctx.journey.onboardingCompleted) {
-        parts.push('Onboarding completed');
-      } else if (ctx.journey.onboardingProgress > 0) {
-        parts.push(`Onboarding: ${ctx.journey.onboardingProgress}% complete`);
-      }
-      if (ctx.journey.strategiesTestedCount > 0) {
-        parts.push(`Tested ${ctx.journey.strategiesTestedCount} strategies`);
-      }
     }
 
     // Memory insights
     if (ctx.memory) {
-      if (ctx.memory.keyInsights && ctx.memory.keyInsights.length > 0) {
-        parts.push(`Key insights: ${ctx.memory.keyInsights.slice(-3).join('; ')}`);
-      }
       if (ctx.memory.topicsDiscussed && ctx.memory.topicsDiscussed.length > 0) {
         parts.push(`Topics discussed: ${ctx.memory.topicsDiscussed.slice(-5).join(', ')}`);
       }
@@ -235,7 +171,7 @@
 
     if (parts.length === 0) return '';
 
-    return `[User Profile Context: ${parts.join(' | ')}]`;
+    return `[Visitor Context: ${parts.join(' | ')}]`;
   }
 
   /**
@@ -252,13 +188,13 @@
 
     // Try to extract topic from the conversation
     const topicKeywords = {
-      'risk': ['risk', 'risque', 'volatility', 'volatilité'],
-      'portfolio': ['portfolio', 'portefeuille', 'allocation'],
-      'strategy': ['strategy', 'stratégie', 'momentum', 'risk parity'],
-      'pricing': ['price', 'prix', 'cost', 'coût', 'fee', 'frais'],
-      'simulation': ['simulate', 'simuler', 'backtest', 'test'],
-      'education': ['learn', 'apprendre', 'explain', 'expliquer', 'understand', 'comprendre'],
-      'waitlist': ['waitlist', 'liste d\'attente', 'join', 'rejoindre', 'subscribe', 's\'inscrire']
+      'ai_agents': ['agent', 'ai agent', 'automatisation', 'automation', 'workflow', 'copilot'],
+      'consulting': ['consulting', 'accompagnement', 'diagnostic', 'sprint', 'project', 'projet'],
+      'pricing': ['price', 'prix', 'cost', 'coût', 'fee', 'frais', 'budget', 'tarif'],
+      'poc': ['poc', 'proof of concept', 'investment agent', 'simulator', 'simulateur', 'portfolio'],
+      'content': ['blog', 'newsletter', 'youtube', 'tutorial', 'tutoriel', 'article'],
+      'philosophy': ['selfware', 'philosophy', 'philosophie', 'build in public', 'transparency'],
+      'booking': ['book', 'réserver', 'call', 'appel', 'calendly', 'rendez-vous', 'meeting']
     };
 
     const lowerMessage = userMessage.toLowerCase();
@@ -364,51 +300,6 @@
     }
   }
 
-  // ═══════════════════════════════════════════════════════════════════════════
-  // ONBOARDING STATUS CHECK
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  /**
-   * Check if onboarding is completed using BubbleAgentMemory
-   * @returns {boolean} True if onboarding is complete
-   */
-  function isOnboardingComplete() {
-    const Memory = getMemory();
-    if (!Memory) return false;
-
-    try {
-      const journey = Memory.getJourney();
-      return journey && journey.onboardingCompleted;
-    } catch (e) {
-      console.warn('[chat-side-panel] Error checking onboarding status:', e);
-      return false;
-    }
-  }
-
-  /**
-   * Get onboarding progress percentage
-   * @returns {number} Progress percentage (0-100)
-   */
-  function getOnboardingProgress() {
-    const Memory = getMemory();
-    if (!Memory) return 0;
-
-    try {
-      const journey = Memory.getJourney();
-      return journey ? journey.onboardingProgress || 0 : 0;
-    } catch (e) {
-      return 0;
-    }
-  }
-
-  /**
-   * Get playground URL based on current language
-   * @returns {string} Playground URL
-   */
-  function getPlaygroundUrl() {
-    const lang = getLanguage();
-    return lang.startsWith('fr') ? '/investors/playground' : '/en/investors/playground';
-  }
 
   const state = {
     isOpen: false,
@@ -433,14 +324,11 @@
   }
 
   function loadPersistedConversation() {
-    // Playground resources: force fresh start, avoid old history and duplicate greetings
+    // Playground resources: force fresh start
     if (pageContext === 'playground_resources') {
       state.conversation = [];
       messagesContainer.innerHTML = '';
       initialMessagesHTML = '';
-      if (!isOnboardingComplete()) {
-        addOnboardingPrompt();
-      }
       return;
     }
 
@@ -450,52 +338,6 @@
       if (unifiedHistory.length > 0) {
         state.conversation = unifiedHistory;
         console.log('[chat-side-panel] Loaded unified history with', unifiedHistory.length, 'messages');
-      }
-    }
-
-    // First try to load from BubbleAgentMemory for cross-page context
-    const Memory = getMemory();
-    if (Memory) {
-      try {
-        const memoryData = Memory.getMemory();
-        const journey = Memory.getJourney();
-
-        // If we have key insights or conversation summary, show context-aware greeting
-        if (memoryData && (memoryData.keyInsights.length > 0 || memoryData.lastConversationSummary)) {
-          const lang = getLanguage();
-          const isReturning = journey && journey.totalVisits > 1;
-
-          // For returning users on ANY investor page, show personalized context
-          if (isReturning && isOnboardingComplete() && isInvestorPage()) {
-            const profile = Memory?.getProfile?.();
-            const profileName = profile && Memory?.getProfileName?.(profile.riskScore);
-
-            let contextGreeting = '';
-            if (pageContext === 'education_arena') {
-              contextGreeting = lang.startsWith('fr')
-                ? `Content de te revoir dans l'Arena ! ${profileName ? `En tant qu'investisseur ${profileName.toLowerCase()}, ` : ''}je peux t'aider à comprendre comment les différents bots réagissent aux événements de marché.`
-                : `Welcome back to the Arena! ${profileName ? `As a ${profileName.toLowerCase()} investor, ` : ''}I can help you understand how different bots react to market events.`;
-            } else if (pageContext === 'education_simulator') {
-              contextGreeting = lang.startsWith('fr')
-                ? `Content de te revoir dans le Strategy Builder ! ${profileName ? `Avec ton profil ${profileName.toLowerCase()}, ` : ''}on peut créer des stratégies adaptées à tes objectifs.`
-                : `Welcome back to the Strategy Builder! ${profileName ? `With your ${profileName.toLowerCase()} profile, ` : ''}we can create strategies suited to your goals.`;
-            } else if (isInvestorPage()) {
-              // Generic welcome for other investor pages
-              contextGreeting = lang.startsWith('fr')
-                ? `Content de te revoir ! ${profileName ? `En tant qu'investisseur ${profileName.toLowerCase()}, ` : ''}je suis là pour t'aider.`
-                : `Welcome back! ${profileName ? `As a ${profileName.toLowerCase()} investor, ` : ''}I'm here to help.`;
-            }
-
-            if (contextGreeting && !messagesContainer.querySelector('.context-greeting')) {
-              const greetingWrapper = document.createElement('div');
-              greetingWrapper.className = 'chat-side-panel-message bot context-greeting';
-              greetingWrapper.innerHTML = `<div class="message-content"><p>${contextGreeting}</p></div>`;
-              messagesContainer.appendChild(greetingWrapper);
-            }
-          }
-        }
-      } catch (e) {
-        console.warn('[chat-side-panel] Error loading from BubbleAgentMemory:', e);
       }
     }
 
@@ -525,18 +367,6 @@
         // ignore
       }
     }
-
-    // If no user messages yet and onboarding not complete on investor pages,
-    // replace the static greeting with a single onboarding prompt to avoid duplicates.
-    if (
-      isInvestorPage() &&
-      !isOnboardingComplete() &&
-      !messagesContainer.querySelector('.chat-side-panel-message.user') &&
-      !messagesContainer.querySelector('.onboarding-prompt')
-    ) {
-      messagesContainer.innerHTML = '';
-      addOnboardingPrompt();
-    }
   }
 
   function persistConversation() {
@@ -555,154 +385,72 @@
     }
   }
 
-  /**
-   * Show proactive onboarding invitation for users who haven't completed onboarding
-   * Works on ALL investor pages, not just education
-   */
-  function showProactiveOnboardingInvitation() {
-    const Memory = getMemory();
-    if (!Memory) return false;
 
-    // Skip if already onboarded
-    if (isOnboardingComplete()) return false;
-
-    // Skip if onboarding prompt already shown
-    if (messagesContainer.querySelector('.proactive-onboarding-prompt')) return false;
-
-    const lang = getLanguage();
-    const playgroundUrl = getPlaygroundUrl();
-    const progress = getOnboardingProgress();
-
-    // Create the proactive invitation message (as per issue requirements)
-    let invitationText = lang.startsWith('fr')
-      ? "Je vois que tu n'as pas encore decouvert ton profil investisseur. Veux-tu qu'on fasse ca ensemble ?"
-      : "I see you haven't discovered your investor profile yet. Want to do it together?";
-
-    // If they started but didn't finish, acknowledge progress
-    if (progress > 0 && progress < 100) {
-      invitationText = lang.startsWith('fr')
-        ? `Tu as deja commence ton onboarding (${progress}% fait) ! On continue ?`
-        : `You already started your onboarding (${progress}% done)! Shall we continue?`;
-    }
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'chat-side-panel-message bot proactive-onboarding-prompt';
-    wrapper.innerHTML = `
-      <div class="message-content">
-        <p>${invitationText}</p>
-        <div class="proactive-onboarding-buttons" style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
-          <a href="${playgroundUrl}" class="onboarding-start-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: linear-gradient(135deg, #6666ff 0%, #764ba2 100%); color: white; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 13px;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <polygon points="10,8 16,12 10,16" fill="currentColor"/>
-            </svg>
-            ${progress > 0 ? (lang.startsWith('fr') ? 'Continuer' : 'Continue') : (lang.startsWith('fr') ? 'Oui, allons-y !' : 'Yes, let\'s go!')}
-          </a>
-          <button class="skip-proactive-onboarding-btn" style="padding: 8px 14px; background: transparent; border: 1px solid #e5e7eb; color: #6b7280; border-radius: 8px; font-size: 13px; cursor: pointer;">
-            ${lang.startsWith('fr') ? 'Plus tard' : 'Maybe later'}
-          </button>
-        </div>
-      </div>
-    `;
-
-    messagesContainer.appendChild(wrapper);
-
-    // Handle skip button click
-    const skipBtn = wrapper.querySelector('.skip-proactive-onboarding-btn');
-    if (skipBtn) {
-      skipBtn.addEventListener('click', () => {
-        // Hide the buttons but keep the message
-        const buttonsDiv = wrapper.querySelector('.proactive-onboarding-buttons');
-        if (buttonsDiv) {
-          buttonsDiv.style.display = 'none';
-        }
-        // Add a friendly follow-up
-        const followUp = document.createElement('p');
-        followUp.style.marginTop = '8px';
-        followUp.style.fontSize = '13px';
-        followUp.style.color = '#6b7280';
-        followUp.textContent = lang.startsWith('fr')
-          ? "Pas de souci ! Je reste disponible si tu as des questions."
-          : "No problem! I'm here if you have questions.";
-        wrapper.querySelector('.message-content').appendChild(followUp);
-      });
-    }
-
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    return true;
-  }
-
-  function addEducationSuggestions() {
-    if (!isEducationContext) return;
+  function addContextSuggestions() {
     // If suggestions already present, skip
     if (messagesContainer.querySelector('.chat-suggestion-btn')) return;
 
-    // Check onboarding status - hide suggestions if not complete
-    if (!isOnboardingComplete()) {
-      addOnboardingPrompt();
-      return;
-    }
-
     const lang = getLanguage();
-    const base = lang.startsWith('fr')
-      ? {
-          intro: 'Comment puis-je t\'aider ?',
-          general: [
-            'Je débute, par où commencer ?',
-            'J\'ai un peu d\'épargne, que faire ?',
-            'C\'est quoi un ETF en fait ?',
-            'Comment savoir si je prends trop de risque ?',
-          ],
-          arena: [
-            'Explique-moi ce trade',
-            'Compare ces deux bots',
-            'Montre-moi la crise de 2008',
-            'C\'est quoi la différence momentum vs défensif ?',
-          ],
-          simulator: [
-            'Aide-moi à créer une stratégie prudente',
-            'Comment rendre ma stratégie moins risquée ?',
-            'C\'est quoi le momentum en fait ?',
-            'Compare ma stratégie au S&P 500',
-          ],
-          waitlist: "Je veux essayer la version complète !",
-        }
-      : {
-          intro: 'How can I help you?',
-          general: [
-            'I\'m new, where do I start?',
-            'I have some savings, what should I do?',
-            'What\'s an ETF actually?',
-            'How do I know if I\'m taking too much risk?',
-          ],
-          arena: [
-            'Explain this trade to me',
-            'Compare these two bots',
-            'Show me the 2008 crisis',
-            'What\'s the difference between momentum and defensive?',
-          ],
-          simulator: [
-            'Help me create a conservative strategy',
-            'How do I make my strategy less risky?',
-            'What\'s momentum actually?',
-            'Compare my strategy to the S&P 500',
-          ],
-          waitlist: 'I want to try the full version!',
-        };
 
-    const rows = [];
-    if (pageContext === 'education_arena') {
-      rows.push(...base.arena);
-    } else if (pageContext === 'education_simulator') {
-      rows.push(...base.simulator);
-    } else {
-      // On main page and other pages, show friendly general suggestions
-      rows.push(...base.general);
-    }
-    // Only add waitlist on non-playground pages
-    if (!pageContext.includes('playground') && !pageContext.includes('education')) {
-      rows.push(base.waitlist);
-    }
+    const suggestions = {
+      fr: {
+        index: [
+          'Que fait Bubble Invest ?',
+          'Quels services proposez-vous ?',
+          'Comment fonctionne le consulting IA ?',
+          'Montrez-moi votre POC investissement',
+        ],
+        professionals: [
+          'Comment automatiser mes processus ?',
+          'Combien coûte un projet ?',
+          'Quels outils IA utilisez-vous ?',
+          'Je veux réserver un diagnostic',
+        ],
+        individuals: [
+          'Comment fonctionne votre agent d\'investissement ?',
+          'Montrez-moi le simulateur',
+          'Quels contenus recommandez-vous ?',
+          'C\'est quoi le selfware ?',
+        ],
+        blog: [
+          'Quels articles recommandez-vous ?',
+          'Je veux en savoir plus sur l\'IA',
+        ],
+      },
+      en: {
+        index: [
+          'What does Bubble Invest do?',
+          'What services do you offer?',
+          'How does AI consulting work?',
+          'Show me your investment POC',
+        ],
+        professionals: [
+          'How can you automate my processes?',
+          'How much does a project cost?',
+          'What AI tools do you use?',
+          'I want to book a diagnostic',
+        ],
+        individuals: [
+          'How does your investment agent work?',
+          'Show me the simulator',
+          'What content do you recommend?',
+          'What is selfware?',
+        ],
+        blog: [
+          'What articles do you recommend?',
+          'I want to learn more about AI',
+        ],
+      }
+    };
+
+    const langKey = lang.startsWith('fr') ? 'fr' : 'en';
+    // Map page context to suggestion key
+    let contextKey = 'index';
+    if (pageContext.includes('professionals') || pageContext.includes('business')) contextKey = 'professionals';
+    else if (pageContext.includes('individuals') || pageContext.includes('investors')) contextKey = 'individuals';
+    else if (pageContext.includes('blog')) contextKey = 'blog';
+
+    const rows = suggestions[langKey][contextKey] || suggestions[langKey].index;
 
     rows.forEach((label) => {
       const btn = document.createElement('button');
@@ -720,140 +468,10 @@
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
 
-  /**
-   * Add onboarding prompt when user hasn't completed onboarding
-   * Shows a context-aware message encouraging onboarding completion
-   */
-  function addOnboardingPrompt() {
-    const lang = getLanguage();
-    const playgroundUrl = getPlaygroundUrl();
-    const progress = getOnboardingProgress();
 
-    // Create context-aware welcome message
-    let welcomeText = '';
-    let ctaText = '';
-
-    if (pageContext === 'education_arena') {
-      welcomeText = lang.startsWith('fr')
-        ? 'Bienvenue dans l\'Arena ! Avant d\'explorer les stratégies des bots, un rapide onboarding va personnaliser ton expérience et rendre les concepts comme le Sharpe ratio et le drawdown beaucoup plus clairs.'
-        : 'Welcome to the Arena! Before exploring the bot strategies, a quick onboarding will personalize your experience and make concepts like Sharpe ratio and drawdown much clearer.';
-      ctaText = lang.startsWith('fr') ? 'Commencer l\'onboarding' : 'Start Onboarding';
-    } else if (pageContext === 'education_simulator') {
-      welcomeText = lang.startsWith('fr')
-        ? 'Bienvenue dans le Strategy Builder ! Avant de créer des stratégies, un rapide onboarding va t\'aider à comprendre des concepts clés comme la volatilité et l\'allocation d\'actifs.'
-        : 'Welcome to the Strategy Builder! Before creating strategies, a quick onboarding will help you understand key concepts like volatility and asset allocation.';
-      ctaText = lang.startsWith('fr') ? 'Commencer l\'onboarding' : 'Start Onboarding';
-    } else {
-      welcomeText = lang.startsWith('fr')
-        ? 'Bienvenue ! Pour personnaliser ton expérience, commence par un rapide onboarding qui va t\'aider à découvrir ton profil d\'investisseur.'
-        : 'Welcome! To personalize your experience, start with a quick onboarding that will help you discover your investor profile.';
-      ctaText = lang.startsWith('fr') ? 'Découvrir mon profil' : 'Discover My Profile';
-    }
-
-    // Add progress info if started but not complete
-    if (progress > 0 && progress < 100) {
-      const progressText = lang.startsWith('fr')
-        ? ` Tu as déjà ${progress}% de fait !`
-        : ` You're already ${progress}% through!`;
-      welcomeText += progressText;
-      ctaText = lang.startsWith('fr') ? 'Continuer l\'onboarding' : 'Continue Onboarding';
-    }
-
-    // Create welcome message
-    const welcomeWrapper = document.createElement('div');
-    welcomeWrapper.className = 'chat-side-panel-message bot onboarding-prompt';
-    welcomeWrapper.innerHTML = `
-      <div class="message-content">
-        <p>${welcomeText}</p>
-        <div class="onboarding-cta-container" style="margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
-          <a href="${playgroundUrl}" class="onboarding-cta-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 16px; background: linear-gradient(135deg, #6666ff 0%, #764ba2 100%); color: white; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 14px; transition: transform 0.2s, box-shadow 0.2s;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <polygon points="10,8 16,12 10,16" fill="currentColor"/>
-            </svg>
-            ${ctaText}
-          </a>
-          <button class="skip-onboarding-btn" style="background: none; border: none; color: #6b7280; font-size: 13px; cursor: pointer; padding: 6px;">
-            ${lang.startsWith('fr') ? 'Explorer sans onboarding' : 'Explore without onboarding'}
-          </button>
-        </div>
-      </div>
-    `;
-
-    messagesContainer.appendChild(welcomeWrapper);
-
-    // Handle skip button click
-    const skipBtn = welcomeWrapper.querySelector('.skip-onboarding-btn');
-    if (skipBtn) {
-      skipBtn.addEventListener('click', () => {
-        welcomeWrapper.remove();
-        // Show regular suggestions after skip
-        showSuggestionsAfterSkip();
-      });
-    }
-
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  }
-
-  /**
-   * Show limited suggestions after user skips onboarding
-   */
-  function showSuggestionsAfterSkip() {
-    const lang = getLanguage();
-
-    // Show a simplified help message
-    const helpMsg = lang.startsWith('fr')
-      ? 'Pas de souci ! Je suis là pour t\'aider. Tu peux me poser des questions sur les stratégies d\'investissement, ou utiliser les suggestions ci-dessous.'
-      : 'No problem! I\'m here to help. You can ask me questions about investment strategies, or use the suggestions below.';
-
-    const helpWrapper = document.createElement('div');
-    helpWrapper.className = 'chat-side-panel-message bot';
-    helpWrapper.innerHTML = `<div class="message-content"><p>${helpMsg}</p></div>`;
-    messagesContainer.appendChild(helpWrapper);
-
-    // Show basic suggestions (limited set for non-onboarded users)
-    const basicSuggestions = lang.startsWith('fr')
-      ? [
-          { text: 'Qu\'est-ce que le ratio de Sharpe ?', prompt: 'Explique-moi le ratio de Sharpe' },
-          { text: 'Comment fonctionne l\'Arena ?', prompt: 'Comment fonctionne l\'Arena et les bots ?' },
-          { text: 'Commencer l\'onboarding', prompt: '__START_ONBOARDING__' }
-        ]
-      : [
-          { text: 'What is the Sharpe ratio?', prompt: 'Explain the Sharpe ratio to me' },
-          { text: 'How does the Arena work?', prompt: 'How does the Arena and the bots work?' },
-          { text: 'Start onboarding', prompt: '__START_ONBOARDING__' }
-        ];
-
-    basicSuggestions.forEach((suggestion) => {
-      const btn = document.createElement('button');
-      btn.className = 'chat-suggestion-btn';
-      btn.textContent = suggestion.text;
-      btn.dataset.prompt = suggestion.prompt;
-
-      // Special handling for onboarding button
-      if (suggestion.prompt === '__START_ONBOARDING__') {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          window.location.href = getPlaygroundUrl();
-        });
-      }
-
-      const wrapper = document.createElement('div');
-      wrapper.className = 'chat-side-panel-message bot';
-      const content = document.createElement('div');
-      content.className = 'message-content';
-      content.appendChild(btn);
-      wrapper.appendChild(content);
-      messagesContainer.appendChild(wrapper);
-    });
-
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  }
-
-  // Load and seed suggestions for education contexts
+  // Load persisted conversation and seed context-aware suggestions
   loadPersistedConversation();
-  addEducationSuggestions();
+  addContextSuggestions();
 
   function emit(eventName, detail = {}) {
     window.dispatchEvent(new CustomEvent(eventName, { detail }));
@@ -1021,7 +639,6 @@
 
   function getPageContext() {
     const path = window.location.pathname;
-    if (path.includes('pricing')) return 'pricing';
     if (path.includes('portfolio-simulator')) return 'simulator';
     if (path.includes('/playground/resources')) return 'playground_resources';
     if (path.includes('/education/arena')) return 'education_arena';
@@ -1030,36 +647,46 @@
     if (path.includes('professionals/solutions-companies')) return 'professionals_companies';
     if (path.includes('professionals/solutions-wealth-managers')) return 'professionals_wealth';
     if (path.includes('professionals')) return 'professionals';
-    if (path.includes('businesses')) return 'businesses';
+    if (path.includes('businesses')) return 'professionals';
+    if (path.includes('investors')) return 'individuals';
+    if (path.includes('about')) return 'about';
+    if (path.includes('blog')) return 'blog';
+    if (path.includes('pricing')) return 'individuals';
     return 'index';
   }
 
 
   function buildContextMetadata(context) {
-    if (context === 'professionals_companies') {
+    if (context === 'professionals_companies' || context === 'professionals') {
       return [
-        'Visitor is reviewing the SME/CGPs consulting page.',
-        'Highlight custom AI workflow sprints using Claude Code / Codex / Gemini, revenue recognition automation, monthly reporting copilots, client intelligence digests, and custom dashboards.',
-        'Emphasize transparent €15k-30k projects delivered in 2-4 months and the /api/business-contact form for follow-up.',
-        'Clarify that Bubble provides AI empowerment and automation, not financial advice.'
+        'Visitor is browsing B2B consulting pages.',
+        'Focus on co-construction approach, custom AI agent sprints, diagnostic calls.',
+        'Highlight ex-Deloitte & UBS background for finance clients.',
+        'Use qualify_professional_need tool when pain points emerge, then guide to book_consultation.'
       ].join(' ');
     }
     if (context === 'professionals_wealth') {
       return [
-        'Visitor is on the white-label Bubble Portfolio page for Wealth Managers/family offices.',
-        'Focus on multi-client dashboards, personalized AI agents per client, advanced reporting, broker APIs (IBKR, Alpaca, Saxo), 20+ years of historical data, and the quant strategy library.',
-        'Mention demo CTA (#pro-demo) and contact CTA pointing to /professionals#enterprise-waitlist.',
-        'Reinforce that Bubble Portfolio is an automated trading copilot, not financial advice.'
+        'Visitor is a wealth manager or CGP exploring AI automation.',
+        'Emphasize regulatory expertise (UCITS, KYC, AMF), client intelligence agents, reporting copilots.',
+        'Guide toward diagnostic call via book_consultation tool.'
       ].join(' ');
     }
-    if (context === 'education') {
-      return 'Visitor is on the education hub (Arena + Simulator). Keep tone educational, concise, not investment advice.';
+    if (context === 'individuals') {
+      return [
+        'Visitor is an individual exploring Bubble content.',
+        'Share educational content, POC showcase, and blog resources.',
+        'Use get_poc_showcase and recommend_content tools. Bridge interest to B2B when relevant.'
+      ].join(' ');
     }
-    if (context === 'education_arena') {
-      return 'Visitor is in the AI Trading Arena education page. Explain bot actions, strategies, risk/return using current frame. Not investment advice.';
+    if (context === 'blog') {
+      return 'Visitor is reading the blog. Use recommend_content to suggest related articles and channels.';
     }
-    if (context === 'education_simulator') {
-      return 'Visitor is in the Strategy Simulator education page. Guide plain language to strategy mixes; keep explanations simple. Not investment advice.';
+    if (context === 'education' || context === 'education_arena' || context === 'education_simulator') {
+      return 'Visitor is exploring educational content (Arena / Simulator). Keep tone educational and concise.';
+    }
+    if (context === 'simulator') {
+      return 'Visitor is using the portfolio simulator. Explain strategies in simple terms. This is an educational showcase, not investment advice.';
     }
     return '';
   }
@@ -1165,44 +792,11 @@
 
   /**
    * Render tool result using ToolResultVisualizer or fallback
-   * Also emits events to StrategyEventBus for UI synchronization
    * @param {Object} toolResult - Tool result from SSE
    * @param {HTMLElement} anchorEl - Anchor element for visualization
    */
   function renderToolResult(toolResult, anchorEl) {
     if (!toolResult || !anchorEl) return;
-
-    const result = toolResult.result;
-    const resultData = result?.data || result || {};
-
-    // ═══════════════════════════════════════════════════════════════════════
-    // EMIT EVENTS TO STRATEGYEVENTBUS FOR UI SYNCHRONIZATION
-    // ═══════════════════════════════════════════════════════════════════════
-    
-    // Check if tool result contains an event to emit (WRITE tools return these)
-    if (resultData.event && window.StrategyEventBus) {
-      const eventName = resultData.event;
-      console.log(`[chat-side-panel] Emitting event: ${eventName}`, resultData);
-      
-      // Emit the event with full result data for UI components to handle
-      window.StrategyEventBus.emit(eventName, {
-        toolName: toolResult.name,
-        ...resultData
-      });
-
-      // Also update BubbleAgentMemory if it's a profile update
-      if (eventName === 'profile:updated' && resultData.update) {
-        const Memory = getMemory();
-        if (Memory) {
-          const update = resultData.update;
-          if (update.riskScore !== undefined) Memory.updateRiskScore(update.riskScore, 2);
-          if (update.investmentHorizon) Memory.setHorizon(update.investmentHorizon);
-          if (update.investmentGoal) Memory.setGoal(update.investmentGoal);
-          if (update.knowledgeLevel) Memory.setKnowledgeLevel(update.knowledgeLevel);
-          console.log('[chat-side-panel] Updated BubbleAgentMemory with profile changes');
-        }
-      }
-    }
 
     // Use ToolResultVisualizer if available
     if (window.ToolResultVisualizer) {
@@ -1211,12 +805,11 @@
       return;
     }
 
-    // Fallback to basic rendering
+    // Fallback to basic text rendering
     const wrapper = anchorEl.closest('.chat-side-panel-message');
     if (!wrapper) return;
 
     const card = document.createElement('div');
-    card.className = 'tool-result-card';
     card.style.marginTop = '8px';
     card.style.padding = '12px';
     card.style.border = '1px solid #e3e7ef';
@@ -1224,161 +817,17 @@
     card.style.background = '#f8fafc';
     card.style.width = '100%';
     card.style.boxSizing = 'border-box';
+    card.style.fontSize = '13px';
+    card.style.color = '#334155';
 
-    const name = document.createElement('div');
-    name.style.fontWeight = '600';
-    name.style.marginBottom = '6px';
-    name.textContent = toolResult.name || 'Resultat outil';
-    card.appendChild(name);
+    const toolName = toolResult.name || 'tool';
+    const data = toolResult.result?.data || toolResult.result || {};
 
-    const fallbackResult = toolResult.result || {};
-
-    // Metrics list
-    if (fallbackResult.data?.metrics) {
-      const m = fallbackResult.data.metrics;
-      const list = document.createElement('div');
-      list.style.display = 'flex';
-      list.style.flexWrap = 'wrap';
-      list.style.gap = '6px 12px';
-      list.style.fontSize = '13px';
-      list.style.color = '#334155';
-      const entries = [
-        ['Rendement total', m.totalReturn, '%'],
-        ['Annualise', m.annualizedReturn, '%'],
-        ['Volatilite', m.volatility, '%'],
-        ['Sharpe', m.sharpeRatio, ''],
-        ['Max DD', m.maxDrawdown, '%'],
-      ];
-      entries.forEach(([label, val, suffix]) => {
-        if (val === undefined || val === null || Number.isNaN(val)) return;
-        const item = document.createElement('div');
-        item.textContent = `${label}: ${val}${suffix}`;
-        list.appendChild(item);
-      });
-      card.appendChild(list);
-    }
-
-    // Chart (sparkline) if data present
-    const series = fallbackResult.data?.chartData;
-    if (Array.isArray(series) && series.length > 1) {
-      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      svg.setAttribute('viewBox', '0 0 100 40');
-      svg.setAttribute('preserveAspectRatio', 'none');
-      svg.style.width = '100%';
-      svg.style.height = '120px';
-      svg.style.marginTop = '10px';
-
-      const values = series.map((p) => p.value).filter((v) => typeof v === 'number');
-      const min = Math.min(...values);
-      const max = Math.max(...values);
-      const span = max - min || 1;
-      const pts = series.map((p, i) => {
-        const x = (i / (series.length - 1)) * 100;
-        const y = 40 - ((p.value - min) / span) * 40;
-        return `${x.toFixed(2)},${y.toFixed(2)}`;
-      });
-
-      const polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
-      polyline.setAttribute('fill', 'none');
-      polyline.setAttribute('stroke', '#4f46e5');
-      polyline.setAttribute('stroke-width', '1.5');
-      polyline.setAttribute('points', pts.join(' '));
-
-      const baseline = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      baseline.setAttribute('x1', '0');
-      baseline.setAttribute('x2', '100');
-      baseline.setAttribute('y1', '40');
-      baseline.setAttribute('y2', '40');
-      baseline.setAttribute('stroke', '#e5e7eb');
-      baseline.setAttribute('stroke-width', '0.5');
-
-      svg.appendChild(baseline);
-      svg.appendChild(polyline);
-      card.appendChild(svg);
-    }
+    // Simple fallback: show tool name and key info
+    card.textContent = data.message || data.description || `[${toolName}]`;
 
     wrapper.appendChild(card);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  }
-
-  // Track if we've shown the onboarding suggestion for this session
-  let hasShownOnboardingInterrupt = false;
-
-  /**
-   * Check if message suggests user needs onboarding
-   * @param {string} message - User's message
-   * @returns {boolean} True if message suggests basic question
-   */
-  function detectBasicQuestion(message) {
-    const basicPatterns = [
-      // English patterns
-      /what is (a |the )?(leverage|levier)/i,
-      /what('s| is) (a |the )?(benchmark|volatility|risk parity|etf|sharpe ratio|drawdown|cagr|rebalancing|allocation|portfolio)/i,
-      /how does (this|it) work/i,
-      /explain (me |to me )?(what|how|the)/i,
-      /i don't understand/i,
-      /i('m| am) (lost|confused|new)/i,
-      /can you explain/i,
-      /help me understand/i,
-      // French patterns
-      /c'est quoi (le |la |un |une )?(levier|volatilit[eé]|etf|benchmark|sharpe|drawdown)/i,
-      /expliqu(e|ez)(-moi)? /i,
-      /qu'est[- ]ce que/i,
-      /je (ne |)comprends pas/i,
-      /aidez-moi [aà] comprendre/i,
-      /je suis perdu/i,
-      /comment [cç]a (marche|fonctionne)/i
-    ];
-    return basicPatterns.some(regex => regex.test(message));
-  }
-
-  /**
-   * Show onboarding suggestion when user asks basic questions
-   */
-  function showOnboardingInterrupt(userMessage) {
-    const lang = getLanguage();
-    const playgroundUrl = getPlaygroundUrl();
-
-    const suggestionText = lang.startsWith('fr')
-      ? "Il semble que tu découvres ces concepts ! Avant de continuer, un rapide onboarding va rendre tout beaucoup plus clair. Veux-tu que je te guide ?"
-      : "It looks like you're new to these concepts! Before we continue, a quick onboarding will make everything much clearer. Want me to guide you?";
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'chat-side-panel-message bot onboarding-interrupt';
-    wrapper.innerHTML = `
-      <div class="message-content">
-        <p>${suggestionText}</p>
-        <div class="onboarding-interrupt-buttons" style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
-          <a href="${playgroundUrl}" class="onboarding-start-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: linear-gradient(135deg, #6666ff 0%, #764ba2 100%); color: white; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 13px;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <polygon points="10,8 16,12 10,16" fill="currentColor"/>
-            </svg>
-            ${lang.startsWith('fr') ? 'Commencer l\'onboarding' : 'Start Onboarding'}
-          </a>
-          <button class="onboarding-answer-btn" data-pending-message="${escapeHtml(userMessage)}" style="padding: 8px 14px; background: transparent; border: 1px solid #e5e7eb; color: #6b7280; border-radius: 8px; font-size: 13px; cursor: pointer;">
-            ${lang.startsWith('fr') ? 'Réponds à ma question' : 'Answer my question'}
-          </button>
-        </div>
-      </div>
-    `;
-
-    messagesContainer.appendChild(wrapper);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-    // Handle "Answer my question" button
-    const answerBtn = wrapper.querySelector('.onboarding-answer-btn');
-    if (answerBtn) {
-      answerBtn.addEventListener('click', () => {
-        const pendingMsg = answerBtn.dataset.pendingMessage;
-        wrapper.remove();
-        // Proceed with the original question, skipping onboarding check
-        // Note: skipUserBubble=true because user message was already displayed in sendMessage()
-        sendMessageDirect(pendingMsg, pendingMsg, { skipUserBubble: true });
-      });
-    }
-
-    hasShownOnboardingInterrupt = true;
   }
 
   async function sendMessage(displayMessage, promptOverride) {
@@ -1389,38 +838,23 @@
       return;
     }
 
-    // Check if user hasn't completed onboarding and is asking a basic question
-    // Only show interrupt once per session on education pages
-    if (isEducationContext && !isOnboardingComplete() && !hasShownOnboardingInterrupt) {
-      if (detectBasicQuestion(prompt)) {
-        // Show user message first
-        createMessageElement('user', display);
-        // Then show onboarding suggestion
-        showOnboardingInterrupt(prompt);
-        return;
-      }
-    }
-
-    // Proceed with normal message sending
     return sendMessageDirect(displayMessage, promptOverride);
   }
 
   /**
-   * Send message directly without onboarding checks
-   * Used after user confirms they want to skip onboarding
+   * Send message to the chatbot API
    * @param {string} displayMessage - The message to display
    * @param {string} promptOverride - The prompt to send to the API
-   * @param {Object} options - Optional configuration
-   * @param {boolean} options.skipUserBubble - If true, skip creating the user message bubble (already displayed)
    */
-  async function sendMessageDirect(displayMessage, promptOverride, options = {}) {
+  async function sendMessageDirect(displayMessage, promptOverride) {
     const display = (displayMessage || '').trim();
     const prompt = (promptOverride || display).trim();
-    const { skipUserBubble = false } = options;
 
     if (!prompt || state.isProcessing) {
       return;
     }
+
+    const skipUserBubble = false;
 
     state.isProcessing = true;
     input.disabled = true;
@@ -1454,18 +888,10 @@
       if (metadata) {
         payload.contextMetadata = metadata;
       }
-      // Add user profile context from BubbleAgentMemory (if available)
+      // Add visitor context from BubbleAgentMemory (if available)
       const userProfileContext = buildUserProfileContext();
       if (userProfileContext) {
         payload.userProfileContext = userProfileContext;
-      }
-      // Add full user profile for tool execution (get_profile_visualization)
-      const Memory = getMemory();
-      if (Memory) {
-        const profile = Memory.getProfile();
-        if (profile) {
-          payload.userProfile = profile;
-        }
       }
       const response = await fetch('/api/chat', {
         method: 'POST',
@@ -1600,15 +1026,6 @@
       document.body.classList.add('chat-side-panel-open');
       document.body.classList.remove('chat-collapsed');
       emit('chatSidePanel:opened');
-
-      // For ALL investor pages, show proactive onboarding invitation if not completed
-      // This ensures consistent onboarding experience across the entire investor section
-      if (isInvestorPage() && !isEducationContext) {
-        // Wait for BubbleAgentMemory to be loaded (it's async)
-        setTimeout(() => {
-          showProactiveOnboardingInvitation();
-        }, 100);
-      }
 
       // Ensure scroll position at bottom for existing messages
       messagesContainer.scrollTop = messagesContainer.scrollHeight;

@@ -1,10 +1,12 @@
 /**
  * Tool Execution Service
- * Wraps existing BubbleLaunch services as tools for chatbot interaction
+ * Provides callable tools for the chatbot aligned to Bubble's business model:
+ *   - B2B: qualify professional needs, book consultation
+ *   - B2C: showcase POC, recommend content
+ *
+ * v2.0 — Redesigned for new business direction (consulting + content)
  */
 
-const fs = require('fs/promises');
-const path = require('path');
 let Ajv;
 try {
   Ajv = require('ajv');
@@ -12,611 +14,464 @@ try {
   Ajv = null;
   console.warn('AJV not installed; tool input validation will be skipped.');
 }
-const arenaTimelineService = require('./arenaTimelineService');
-const strategyBuilderService = require('./strategyBuilderService');
-const portfolioService = require('./portfolioService');
 
 const ajv = Ajv ? new Ajv({ allErrors: true, strict: true }) : null;
 
+// ═══════════════════════════════════════════════════════════════════════════
+// TOOL DEFINITIONS
+// ═══════════════════════════════════════════════════════════════════════════
+
 const TOOLS = {
-  get_profile_visualization: {
-    name: 'get_profile_visualization',
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // B2B TOOLS (Professionals)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  qualify_professional_need: {
+    name: 'qualify_professional_need',
     description: `
-      Retrieve the current investor profile including risk score (0-100), confidence, goals, horizon, knowledge level,
-      and detected personality traits. Use this when the user asks to "see my profile", "what's my risk score", or wants
-      a recap of their onboarding. If include_recommendations is true, also return strategy/bot suggestions (e.g., Fox/Hedgehog/Hawk)
-      mapped to the risk score. Always call this tool instead of guessing the user's profile from memory.
+      Structured intake tool for qualifying a professional prospect's needs.
+      Use when the user mentions their business, a pain point, or asks about
+      Bubble's B2B services. Returns a qualification summary and recommended
+      next step (diagnostic call, specific service, or content to share).
+      Call this to structure the conversation and guide toward booking a call.
     `.trim(),
     input_schema: {
       type: 'object',
       properties: {
-        include_recommendations: {
-          type: 'boolean',
-          description: 'If true, also return strategy/bot recommendations based on the current risk profile'
+        company_type: {
+          type: 'string',
+          enum: ['wealth_manager', 'cgp', 'sme', 'startup', 'independent', 'asset_manager', 'other'],
+          description: 'Type of company or professional'
+        },
+        industry: {
+          type: 'string',
+          enum: ['finance', 'tech', 'consulting', 'real_estate', 'healthcare', 'other'],
+          description: 'Industry sector'
+        },
+        pain_point: {
+          type: 'string',
+          enum: ['too_many_tools', 'no_internal_skills', 'fear_of_falling_behind', 'generic_solutions', 'need_trusted_guide', 'manual_processes', 'reporting', 'client_management'],
+          description: 'Primary pain point or challenge'
+        },
+        ai_maturity: {
+          type: 'string',
+          enum: ['unaware', 'curious', 'experimenting', 'deploying'],
+          description: 'Current level of AI adoption'
+        },
+        urgency: {
+          type: 'string',
+          enum: ['exploring', 'planning', 'ready_now'],
+          description: 'How urgently they need a solution'
+        },
+        team_size: {
+          type: 'string',
+          enum: ['solo', 'small', 'medium', 'large'],
+          description: 'Size of their team'
+        }
+      },
+      required: ['company_type', 'pain_point'],
+      additionalProperties: false
+    },
+    input_examples: [
+      { company_type: 'cgp', pain_point: 'manual_processes', ai_maturity: 'curious', urgency: 'planning' },
+      { company_type: 'sme', pain_point: 'too_many_tools', urgency: 'ready_now' }
+    ],
+    execute: async ({ company_type, industry = null, pain_point, ai_maturity = 'curious', urgency = 'exploring', team_size = null }) => {
+      // Map pain points to recommended services
+      const serviceRecommendations = {
+        too_many_tools: {
+          service: 'AI Tool Audit & Consolidation',
+          scope: 'diagnostic',
+          description: 'We audit your current tool stack and recommend which AI agents can replace or consolidate multiple tools'
+        },
+        no_internal_skills: {
+          service: 'Co-Construction Sprint',
+          scope: 'targeted_automation',
+          description: 'We build your first AI agent together in joint sessions — you learn by doing, not by watching slides'
+        },
+        fear_of_falling_behind: {
+          service: 'Early Adoption Program',
+          scope: 'diagnostic',
+          description: 'We deploy the latest AI tools in your workflow within weeks — keeping you ahead of competition'
+        },
+        generic_solutions: {
+          service: 'Custom AI Agent Development',
+          scope: 'full_project',
+          description: 'We build AI agents tailored to YOUR business processes — not generic ChatGPT wrappers'
+        },
+        need_trusted_guide: {
+          service: 'Strategic AI Diagnostic',
+          scope: 'diagnostic',
+          description: 'A 2-week diagnostic to map your automation opportunities and build a concrete action plan'
+        },
+        manual_processes: {
+          service: 'Workflow Automation Sprint',
+          scope: 'targeted_automation',
+          description: 'We automate your most time-consuming manual processes with custom AI agents'
+        },
+        reporting: {
+          service: 'AI Reporting Copilot',
+          scope: 'targeted_automation',
+          description: 'We build a natural language reporting assistant that generates reports from your data'
+        },
+        client_management: {
+          service: 'Client Intelligence Agent',
+          scope: 'targeted_automation',
+          description: 'We build an AI agent that monitors, summarizes, and acts on client information'
+        }
+      };
+
+      const recommendation = serviceRecommendations[pain_point] || serviceRecommendations.need_trusted_guide;
+
+      // Determine next step based on urgency and AI maturity
+      let nextStep;
+      if (urgency === 'ready_now') {
+        nextStep = {
+          action: 'book_diagnostic',
+          message: 'Book a free diagnostic call to get started immediately',
+          calendlyUrl: 'https://calendly.com/bubble-invest/diagnostic'
+        };
+      } else if (urgency === 'planning' || ai_maturity === 'experimenting' || ai_maturity === 'deploying') {
+        nextStep = {
+          action: 'book_discovery',
+          message: 'Schedule a discovery call to discuss your specific needs',
+          calendlyUrl: 'https://calendly.com/bubble-invest/discovery'
+        };
+      } else {
+        nextStep = {
+          action: 'share_content',
+          message: 'Explore our case studies and blog to see how we work, then book a call when ready',
+          contentLinks: ['/professionals', '/blog']
+        };
+      }
+
+      // Finance-specific qualifier
+      const isFinanceClient = ['wealth_manager', 'cgp', 'asset_manager'].includes(company_type) || industry === 'finance';
+
+      return {
+        qualification: {
+          company_type,
+          industry,
+          pain_point,
+          ai_maturity,
+          urgency,
+          team_size,
+          isFinanceClient
+        },
+        recommendation,
+        nextStep,
+        differentiators: isFinanceClient
+          ? [
+            'Ex-Deloitte & UBS — we understand your regulatory constraints natively',
+            'UCITS, KYC, AMF compliance built into our approach',
+            'We speak your language — no translation needed'
+          ]
+          : [
+            'We build WITH you, not FOR you — co-construction in joint sessions',
+            'Systematic early adopters — latest AI tools deployed weeks after release',
+            'Guaranteed autonomy — at the end, you don\'t need us anymore'
+          ],
+        event: 'prospect:qualified'
+      };
+    }
+  },
+
+  book_consultation: {
+    name: 'book_consultation',
+    description: `
+      Generate a consultation booking link with pre-filled context from the conversation.
+      Use when the user is ready to book a call, asks "how do I get started", or expresses
+      interest in working with Bubble. Returns a Calendly link and a summary of what was discussed.
+    `.trim(),
+    input_schema: {
+      type: 'object',
+      properties: {
+        consultation_type: {
+          type: 'string',
+          enum: ['diagnostic', 'discovery', 'general'],
+          description: 'Type of consultation to book'
+        },
+        context_summary: {
+          type: 'string',
+          description: 'Brief summary of what was discussed to pre-fill the booking'
+        },
+        company_type: {
+          type: 'string',
+          description: 'Type of company (if known from conversation)'
+        },
+        pain_point: {
+          type: 'string',
+          description: 'Main pain point discussed (if identified)'
+        }
+      },
+      required: ['consultation_type'],
+      additionalProperties: false
+    },
+    input_examples: [
+      { consultation_type: 'diagnostic', context_summary: 'CGP looking to automate client reporting', company_type: 'cgp', pain_point: 'reporting' },
+      { consultation_type: 'discovery', context_summary: 'SME interested in AI workflow automation' }
+    ],
+    execute: async ({ consultation_type, context_summary = '', company_type = '', pain_point = '' }) => {
+      const consultationTypes = {
+        diagnostic: {
+          label: 'Free Diagnostic Call',
+          duration: '30 min',
+          description: 'We map your automation opportunities and build an action plan',
+          url: 'https://calendly.com/bubble-invest/diagnostic'
+        },
+        discovery: {
+          label: 'Discovery Call',
+          duration: '20 min',
+          description: 'Discuss your specific needs and see if we\'re a good fit',
+          url: 'https://calendly.com/bubble-invest/discovery'
+        },
+        general: {
+          label: 'General Conversation',
+          duration: '15 min',
+          description: 'Ask us anything about our approach and services',
+          url: 'https://calendly.com/bubble-invest/chat'
+        }
+      };
+
+      const consultation = consultationTypes[consultation_type] || consultationTypes.general;
+
+      // Build UTM parameters for tracking
+      const params = new URLSearchParams();
+      if (company_type) params.set('a1', company_type);
+      if (pain_point) params.set('a2', pain_point);
+      if (context_summary) params.set('a3', context_summary.substring(0, 100));
+
+      const trackingUrl = params.toString()
+        ? `${consultation.url}?${params.toString()}`
+        : consultation.url;
+
+      return {
+        consultation,
+        bookingUrl: trackingUrl,
+        contextSummary: context_summary,
+        message: `Ready to book: ${consultation.label} (${consultation.duration})`,
+        event: 'consultation:booked'
+      };
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // B2C TOOLS (Individuals / Content)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  get_poc_showcase: {
+    name: 'get_poc_showcase',
+    description: `
+      Return information about Bubble's public proof of concept (investment agent).
+      Use when someone asks about our investment agent, our POC, what we've built,
+      or how our own portfolio is managed. Returns current status, approach description,
+      and links to explore further.
+    `.trim(),
+    input_schema: {
+      type: 'object',
+      properties: {
+        detail_level: {
+          type: 'string',
+          enum: ['brief', 'detailed'],
+          description: 'How much detail to include'
+        },
+        language: {
+          type: 'string',
+          enum: ['fr', 'en'],
+          description: 'Response language'
         }
       },
       required: [],
       additionalProperties: false
     },
     input_examples: [
-      { include_recommendations: false },
-      { include_recommendations: true }
+      { detail_level: 'brief', language: 'fr' },
+      { detail_level: 'detailed' }
     ],
-    execute: async ({ include_recommendations = false, profile: injectedProfile = null }) => {
-      // Check if we have a real profile from BubbleAgentMemory
-      const userProfile = injectedProfile;
+    execute: async ({ detail_level = 'brief', language = 'fr' }) => {
+      const showcase = {
+        name: language === 'fr' ? "Agent d'investissement Bubble" : 'Bubble Investment Agent',
+        status: language === 'fr' ? 'En production sur nos propres portefeuilles' : 'Live on our own portfolios',
+        description: language === 'fr'
+          ? "Notre agent IA gère nos propres portefeuilles avec des stratégies quantitatives (risk parity, momentum, allocation dynamique). On partage tout : le code, les résultats, les erreurs."
+          : "Our AI agent manages our own portfolios with quantitative strategies (risk parity, momentum, dynamic allocation). We share everything: code, results, mistakes.",
+        approach: {
+          strategies: ['Risk Parity', 'Momentum', 'Equal Weight', 'Regime-Aware'],
+          brokers: ['Interactive Brokers', 'Alpaca', 'Saxo Bank'],
+          dataHistory: '20+ years of ETF data',
+          etfs: ['SPY', 'IEF', 'GLD', 'EFA', 'EEM', 'VNQ']
+        },
+        links: {
+          simulator: '/portfolio-simulator',
+          blog: '/blog',
+          github: 'https://github.com/bubbleinvest',
+          newsletter: 'https://bubbleinvest.substack.com'
+        },
+        keyPoint: language === 'fr'
+          ? "Ce n'est PAS un produit à vendre. C'est notre preuve de concept publique — le selfware en action."
+          : "This is NOT a product for sale. It's our public proof of concept — selfware in action."
+      };
 
-      // Return structured error if profile is missing or incomplete
-      if (!userProfile || userProfile.riskScore === null || userProfile.riskScore === undefined) {
-        return {
-          type: "PROFILE_INCOMPLETE",
-          message: "Profile not yet discovered",
-          hint: "Continue chatting to build your investment profile",
-          visualizationUrl: "/investors/playground"
+      if (detail_level === 'detailed') {
+        showcase.technicalDetails = {
+          stack: 'Node.js, Express, Chart.js, Yahoo Finance API, OpenRouter',
+          aiModels: 'Free models via OpenRouter (cost: $0/month)',
+          architecture: 'Modular strategy engine with pluggable data sources and broker integrations',
+          transparency: language === 'fr'
+            ? "Tout est public : stratégies, backtests, résultats réels, code source. On partage aussi nos erreurs et nos doutes."
+            : "Everything is public: strategies, backtests, real results, source code. We also share our mistakes and doubts."
         };
       }
 
-      // Use real data from BubbleAgentMemory
-      const profile = {
-        riskScore: userProfile.riskScore,
-        riskConfidence: userProfile.riskConfidence || 0,
-        traits: userProfile.traits || [],
-        goal: userProfile.investmentGoal || userProfile.goal || null,
-        horizon: userProfile.investmentHorizon || userProfile.horizon || null,
-        level: userProfile.knowledgeLevel || userProfile.level || null
-      };
-
-      // Calculate suggested allocation based on risk score
-      const riskScore = Math.min(Math.max(profile.riskScore, 0), 100);
-      const allocation = {
-        stocks: riskScore,
-        bonds: Math.max(100 - riskScore - 5, 0),
-        gold: 5
-      };
-
-      // Generate personalized bot recommendations based on risk score
-      let recommendations = [];
-      if (include_recommendations) {
-        if (riskScore <= 30) {
-          // Conservative: 0-30
-          recommendations = [
-            { bot: 'Hedgehog', strategy: 'Defensive', match: 'best', description: 'Prioritizes capital preservation and stability' },
-            { bot: 'Fox', strategy: 'Risk Parity', match: 'good', description: 'Balanced approach with risk management' }
-          ];
-        } else if (riskScore <= 70) {
-          // Balanced: 30-70
-          recommendations = [
-            { bot: 'Fox', strategy: 'Risk Parity', match: 'best', description: 'Optimal balance between risk and return' },
-            { bot: 'Hedgehog', strategy: 'Defensive', match: 'good', description: 'For more conservative allocation' },
-            { bot: 'Hawk', strategy: 'Momentum', match: 'moderate', description: 'For growth-oriented portion' }
-          ];
-        } else {
-          // Aggressive: 70-100
-          recommendations = [
-            { bot: 'Hawk', strategy: 'Momentum', match: 'best', description: 'Captures market trends for maximum growth' },
-            { bot: 'Fox', strategy: 'Risk Parity', match: 'good', description: 'For a more balanced core' }
-          ];
-        }
-      }
-
-      return {
-        profile,
-        allocation,
-        recommendations,
-        visualizationUrl: '/investors/playground#profile'
-      };
+      return showcase;
     }
   },
 
-  recommend_learning_path: {
-    name: 'recommend_learning_path',
+  recommend_content: {
+    name: 'recommend_content',
     description: `
-      Recommend a personalized learning sequence (guides/resources) based on the investor's profile (risk tolerance, knowledge level,
-      goals, learning style). Call when the user asks "what should I learn next" or needs a curated path.
+      Suggest relevant content (blog posts, newsletter, social channels, resources)
+      based on the user's interests. Use when an individual asks what to read,
+      wants to learn more, or when bridging from a topic to Bubble's content.
     `.trim(),
     input_schema: {
       type: 'object',
       properties: {
-        focus_area: {
+        interest: {
           type: 'string',
-          enum: ['fundamentals', 'strategies', 'risk_management', 'tools'],
-          description: 'Primary learning focus area'
+          enum: ['investment_agent', 'ai_agents', 'tutorials', 'philosophy', 'build_in_public', 'business_cases', 'all'],
+          description: 'What the user is interested in'
         },
-        max_resources: {
-          type: 'integer',
-          description: 'Maximum number of resources to recommend (default: 5, max: 10)'
-        }
-      },
-      required: [],
-      additionalProperties: false
-    },
-    input_examples: [
-      { focus_area: 'fundamentals', max_resources: 3 },
-      { focus_area: 'strategies' }
-    ],
-    execute: async ({ focus_area = 'fundamentals', max_resources = 5 }) => {
-      const allResources = [
-        { id: 'guide-00', title: 'Comprendre les Placements', level: 'beginner', topic: 'fundamentals' },
-        { id: 'guide-01', title: 'Placement Sécurisé', level: 'beginner', topic: 'risk_management' },
-        { id: 'guide-02', title: 'Investir dans les ETF', level: 'beginner', topic: 'fundamentals' },
-        { id: 'guide-03', title: 'Composer Ta Stratégie', level: 'intermediate', topic: 'strategies' },
-        { id: 'guide-04', title: 'Stock-Picking', level: 'advanced', topic: 'strategies' },
-        { id: 'guide-05', title: 'Stratégies et Facteurs', level: 'advanced', topic: 'strategies' },
-        { id: 'guide-06', title: 'Allocation Dynamique', level: 'advanced', topic: 'tools' }
-      ];
-
-      const filtered = focus_area
-        ? allResources.filter(r => r.topic === focus_area)
-        : allResources;
-
-      return {
-        resources: filtered.slice(0, max_resources),
-        nextSteps: [
-          'Start with the recommended guides in order',
-          'Test strategies in the Arena to see them in action',
-          'Build your custom mix in the Simulator'
-        ]
-      };
-    }
-  },
-
-  explain_bot_trade: {
-    name: 'explain_bot_trade',
-    description: `
-      Explain why a specific AI bot (Hedgehog, Fox, Hawk, Bear) made a trade at a given timeline frame.
-      Use when the user asks "why did Hawk buy here?" or wants educational context on a trade.
-      Returns date, PnL, event info, and a dialogue snippet if available.
-    `.trim(),
-    input_schema: {
-      type: 'object',
-      properties: {
-        bot_name: {
+        format_preference: {
           type: 'string',
-          enum: ['Hedgehog', 'Fox', 'Hawk', 'Bear'],
-          description: 'The AI bot mascot to explain'
+          enum: ['blog', 'video', 'newsletter', 'social', 'code'],
+          description: 'Preferred content format'
         },
-        frame_index: {
-          type: 'integer',
-          description: 'Index of the frame in arena timeline (0-239 for 20 years monthly)'
-        },
-        level: {
+        language: {
           type: 'string',
-          enum: ['beginner', 'intermediate', 'advanced'],
-          description: 'Explanation depth level'
+          enum: ['fr', 'en'],
+          description: 'Content language preference'
         }
       },
-      required: ['bot_name', 'frame_index'],
+      required: ['interest'],
       additionalProperties: false
     },
     input_examples: [
-      { bot_name: 'Hawk', frame_index: 120, level: 'beginner' },
-      { bot_name: 'Fox', frame_index: 42 }
+      { interest: 'ai_agents', format_preference: 'blog', language: 'fr' },
+      { interest: 'philosophy' },
+      { interest: 'tutorials', format_preference: 'video' }
     ],
-    execute: async ({ bot_name, frame_index, level = 'intermediate' }) => {
-      const timeline = await arenaTimelineService.getTimeline('fr');
-      const frame = timeline.frames[frame_index];
-      if (!frame) {
-        return { error: 'Frame not found' };
-      }
-
-      const botIdMap = { Hedgehog: 'equi', Fox: 'pari', Hawk: 'momo', Bear: 'sage' };
-      const botId = botIdMap[bot_name];
-      const botData = frame.bots[botId];
-      const event = frame.event;
-
-      let dialogue = null;
-      if (event) {
-        dialogue = arenaTimelineService.getBotDialogue(botId, event.type, 'fr');
-      }
-
-      return {
-        bot: bot_name,
-        date: frame.date,
-        value: botData?.value,
-        pnl: botData?.pnl,
-        event,
-        dialogue,
-        explanation: `At this point, ${bot_name} ${botData?.pnl > 0 ? 'gained' : 'lost'} ${Math.abs(botData?.pnl || 0).toFixed(2)}%. ${dialogue?.text || ''}`,
-        level,
-      };
-    }
-  },
-
-  backtest_strategy: {
-    name: 'backtest_strategy',
-    description: `
-      Execute a backtest for a user-defined portfolio allocation (e.g., SPY/IEF/GLD) over 1-20 years.
-      Use when the user requests a test like "60% actions / 40% obligations sur 20 ans" or "backtest this mix".
-      Returns performance metrics and a chart URL to visualize the equity curve.
-    `.trim(),
-    input_schema: {
-      type: 'object',
-      properties: {
-        strategy_name: {
-          type: 'string',
-          description: 'Name of the strategy or custom mix'
+    execute: async ({ interest, format_preference = null, language = 'fr' }) => {
+      // Content recommendations by interest area
+      const contentMap = {
+        investment_agent: {
+          description: language === 'fr'
+            ? "Notre agent d'investissement — POC public avec code, résultats, et transparence totale"
+            : 'Our investment agent — public POC with code, results, and full transparency',
+          channels: [
+            { type: 'page', label: 'Portfolio Simulator', url: '/portfolio-simulator', format: 'interactive' },
+            { type: 'page', label: 'Investment Agent Showcase', url: '/investors', format: 'page' },
+            { type: 'social', label: 'GitHub', url: 'https://github.com/bubbleinvest', format: 'code' },
+            { type: 'newsletter', label: 'Substack', url: 'https://bubbleinvest.substack.com', format: 'newsletter' }
+          ]
         },
-        allocation: {
-          type: 'object',
-          properties: {
-            SPY: { type: 'number', description: '% allocation to stocks (S&P 500)' },
-            IEF: { type: 'number', description: '% allocation to bonds (7-10Y Treasury)' },
-            GLD: { type: 'number', description: '% allocation to gold' }
-          },
-          description: 'Allocation percentages (must sum to 100)'
+        ai_agents: {
+          description: language === 'fr'
+            ? "Comment construire et déployer des agents IA — tutoriels, configurations, retours d'expérience"
+            : 'How to build and deploy AI agents — tutorials, configs, experience sharing',
+          channels: [
+            { type: 'blog', label: 'Blog', url: '/blog', format: 'blog' },
+            { type: 'social', label: 'LinkedIn', url: 'https://linkedin.com/company/bubbleinvest', format: 'social' },
+            { type: 'social', label: 'YouTube', url: 'https://youtube.com/@bubbleinvest', format: 'video' },
+            { type: 'social', label: 'GitHub', url: 'https://github.com/bubbleinvest', format: 'code' }
+          ]
         },
-        leverage: {
-          type: 'number',
-          description: 'Leverage multiplier (1.0 = unleveraged, 2.0 = 2x leverage)'
+        tutorials: {
+          description: language === 'fr'
+            ? "Tutoriels pratiques pour installer et configurer des agents IA"
+            : 'Practical tutorials to install and configure AI agents',
+          channels: [
+            { type: 'social', label: 'YouTube', url: 'https://youtube.com/@bubbleinvest', format: 'video' },
+            { type: 'blog', label: 'Blog', url: '/blog', format: 'blog' },
+            { type: 'social', label: 'GitHub', url: 'https://github.com/bubbleinvest', format: 'code' }
+          ]
         },
-        period_years: {
-          type: 'integer',
-          enum: [1, 3, 5, 10, 20],
-          description: 'Historical period to backtest'
-        }
-      },
-      required: ['strategy_name', 'allocation'],
-      additionalProperties: false
-    },
-    input_examples: [
-      {
-        strategy_name: '60/40',
-        allocation: { SPY: 60, IEF: 40, GLD: 0 },
-        leverage: 1.0,
-        period_years: 20
-      }
-    ],
-    execute: async ({ strategy_name, allocation, leverage = 1.0, period_years = 20 }) => {
-      const total = Object.values(allocation || {}).reduce((sum, val) => sum + val, 0);
-      if (Math.abs(total - 100) > 0.01) {
-        return { error: 'Allocation must sum to 100%' };
-      }
-
-      // Load cached price data for the requested period
-      const cachePath = path.join(__dirname, '../cache/portfolio-preview-periods.json');
-      let cache;
-      try {
-        const raw = await fs.readFile(cachePath, 'utf-8');
-        cache = JSON.parse(raw);
-      } catch (err) {
-        console.error('backtest_strategy: failed to read cache', err);
-        return { error: 'Historical cache unavailable. Please try again later.' };
-      }
-
-      const periodKey = String(period_years);
-      const period = cache?.periods?.[periodKey];
-      if (!period || !Array.isArray(period.data) || period.data.length === 0) {
-        return { error: `No cached data for period ${period_years} ans.` };
-      }
-
-      const weights = {
-        SPY: allocation.SPY || 0,
-        IEF: allocation.IEF || 0,
-        GLD: allocation.GLD || 0,
-      };
-
-      // Build custom equity curve
-      const portfolioSeries = period.data.map((point, idx) => {
-        const value =
-          (point.SPY || 0) * (weights.SPY / 100) +
-          (point.IEF || 0) * (weights.IEF / 100) +
-          (point.GLD || 0) * (weights.GLD / 100);
-        return { date: point.date, value };
-      });
-
-      const metrics = portfolioService.calculateMetrics(portfolioSeries);
-
-      // Format metrics as percentages
-      const formatted = {
-        totalReturn: +(metrics.totalReturn * 100).toFixed(1),
-        annualizedReturn: +(metrics.annualReturn * 100).toFixed(1),
-        volatility: +(metrics.volatility * 100).toFixed(1),
-        sharpeRatio: +metrics.sharpeRatio.toFixed(2),
-        maxDrawdown: +(metrics.maxDrawdown * 100).toFixed(1),
-        calmarRatio:
-          metrics.maxDrawdown !== 0
-            ? +((metrics.totalReturn / Math.abs(metrics.maxDrawdown))).toFixed(2)
-            : 0,
-      };
-
-      return {
-        strategy_name,
-        allocation,
-        metrics: formatted,
-        chartUrl: null,
-        chartData: portfolioSeries,
-        period: {
-          years: period_years,
-          startDate: portfolioSeries[0]?.date,
-          endDate: portfolioSeries[portfolioSeries.length - 1]?.date,
+        philosophy: {
+          description: language === 'fr'
+            ? "Réflexions sur l'impact de l'IA sur le travail, la valeur, l'attention humaine"
+            : "Reflections on AI's impact on work, value, and human attention",
+          channels: [
+            { type: 'blog', label: 'Blog', url: '/blog', format: 'blog' },
+            { type: 'newsletter', label: 'Substack', url: 'https://bubbleinvest.substack.com', format: 'newsletter' },
+            { type: 'social', label: 'LinkedIn', url: 'https://linkedin.com/company/bubbleinvest', format: 'social' }
+          ]
         },
-      };
-    }
-  },
-
-  compare_strategies: {
-    name: 'compare_strategies',
-    description: `
-      Compare 2-3 AI bot strategies (Hedgehog, Fox, Hawk, Bear) side-by-side with key metrics and a recommendation.
-      Use when the user asks to "compare Hedgehog vs Fox" or similar. Returns metrics and a suggested winner.
-    `.trim(),
-    input_schema: {
-      type: 'object',
-      properties: {
-        strategies: {
-          type: 'array',
-          items: {
-            type: 'string',
-            enum: ['Hedgehog', 'Fox', 'Hawk', 'Bear']
-          },
-          description: '2-3 bot strategies to compare'
+        build_in_public: {
+          description: language === 'fr'
+            ? "Notre aventure semaine par semaine : ce qu'on teste, déploie, apprend"
+            : 'Our journey week by week: what we test, deploy, learn',
+          channels: [
+            { type: 'social', label: 'LinkedIn', url: 'https://linkedin.com/company/bubbleinvest', format: 'social' },
+            { type: 'social', label: 'Instagram', url: 'https://instagram.com/behindthebubble.ai', format: 'social' },
+            { type: 'social', label: 'X/Twitter', url: 'https://x.com/bubbleinvest', format: 'social' },
+            { type: 'newsletter', label: 'Substack', url: 'https://bubbleinvest.substack.com', format: 'newsletter' }
+          ]
         },
-        metrics: {
-          type: 'array',
-          items: {
-            type: 'string',
-            enum: ['return', 'volatility', 'sharpe', 'drawdown', 'calmar']
-          },
-          description: 'Which metrics to emphasize'
-        }
-      },
-      required: ['strategies'],
-      additionalProperties: false
-    },
-    input_examples: [
-      { strategies: ['Hedgehog', 'Fox'], metrics: ['sharpe', 'drawdown'] },
-      { strategies: ['Hawk', 'Fox', 'Bear'] }
-    ],
-    execute: async ({ strategies, metrics = ['return', 'sharpe', 'drawdown'] }) => {
-      if (!Array.isArray(strategies) || strategies.length < 2 || strategies.length > 3) {
-        return { error: 'Must compare 2-3 strategies' };
-      }
-
-      const strategyData = {
-        Hedgehog: { return: 4.2, volatility: 8.1, sharpe: 0.52, drawdown: -15.3, calmar: 0.27 },
-        Fox: { return: 6.8, volatility: 10.2, sharpe: 0.67, drawdown: -18.7, calmar: 0.36 },
-        Hawk: { return: 9.3, volatility: 15.6, sharpe: 0.60, drawdown: -28.4, calmar: 0.32 },
-        Bear: { return: 5.5, volatility: 9.3, sharpe: 0.59, drawdown: -16.2, calmar: 0.34 }
-      };
-
-      const comparison = strategies.map((s) => ({
-        strategy: s,
-        metrics: strategyData[s] || {}
-      }));
-
-      const winner = strategies.reduce((best, current) => {
-        const bestSharpe = strategyData[best]?.sharpe || -Infinity;
-        const currentSharpe = strategyData[current]?.sharpe || -Infinity;
-        return currentSharpe > bestSharpe ? current : best;
-      }, strategies[0]);
-
-      return {
-        comparison,
-        metrics,
-        winner,
-        recommendation: 'Fox offers the best risk-adjusted returns (Sharpe ratio) for most investors.'
-      };
-    }
-  },
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // WRITE TOOLS - Modify playground/simulator state
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  set_simulator_allocation: {
-    name: 'set_simulator_allocation',
-    description: `
-      Set the playground/simulator allocation percentages. Use when user says "set my allocation to 60/40"
-      or "I want 70% stocks" or "allocate 50% to bonds". The frontend will update the simulator sliders
-      to reflect the new allocation. Stocks/bonds/gold must sum to 100%.
-    `.trim(),
-    input_schema: {
-      type: 'object',
-      properties: {
-        stocks: {
-          type: 'number',
-          minimum: 0,
-          maximum: 100,
-          description: 'Percentage allocation to stocks (SPY/equities)'
+        business_cases: {
+          description: language === 'fr'
+            ? "Comment on a automatisé X pour un CGP, un architecte, une PME"
+            : 'How we automated X for a CGP, an architect, an SME',
+          channels: [
+            { type: 'blog', label: 'Blog', url: '/blog', format: 'blog' },
+            { type: 'page', label: 'Professionals', url: '/professionals', format: 'page' },
+            { type: 'social', label: 'LinkedIn', url: 'https://linkedin.com/company/bubbleinvest', format: 'social' }
+          ]
         },
-        bonds: {
-          type: 'number',
-          minimum: 0,
-          maximum: 100,
-          description: 'Percentage allocation to bonds (IEF/fixed income)'
-        },
-        gold: {
-          type: 'number',
-          minimum: 0,
-          maximum: 100,
-          description: 'Percentage allocation to gold (GLD/commodities)'
-        }
-      },
-      required: ['stocks', 'bonds'],
-      additionalProperties: false
-    },
-    input_examples: [
-      { stocks: 60, bonds: 40, gold: 0 },
-      { stocks: 70, bonds: 20, gold: 10 },
-      { stocks: 50, bonds: 50 }
-    ],
-    execute: async ({ stocks, bonds, gold = 0 }) => {
-      // Validate allocation sums to 100%
-      const total = stocks + bonds + gold;
-      if (Math.abs(total - 100) > 0.01) {
-        return {
-          type: 'VALIDATION_ERROR',
-          error: `Allocation must sum to 100%. Current total: ${total.toFixed(1)}%`,
-          hint: 'Adjust the percentages so they add up to 100%'
-        };
-      }
-
-      // Validate individual values
-      if (stocks < 0 || stocks > 100) {
-        return { type: 'VALIDATION_ERROR', error: 'Stocks must be between 0 and 100%' };
-      }
-      if (bonds < 0 || bonds > 100) {
-        return { type: 'VALIDATION_ERROR', error: 'Bonds must be between 0 and 100%' };
-      }
-      if (gold < 0 || gold > 100) {
-        return { type: 'VALIDATION_ERROR', error: 'Gold must be between 0 and 100%' };
-      }
-
-      const allocation = {
-        stocks: Math.round(stocks * 10) / 10,
-        bonds: Math.round(bonds * 10) / 10,
-        gold: Math.round(gold * 10) / 10
-      };
-
-      // Determine risk profile from allocation
-      let riskProfile = 'balanced';
-      if (stocks <= 30) riskProfile = 'conservative';
-      else if (stocks <= 50) riskProfile = 'moderate';
-      else if (stocks <= 70) riskProfile = 'balanced';
-      else riskProfile = 'aggressive';
-
-      return {
-        allocation,
-        riskProfile,
-        message: `Allocation set to ${stocks}% stocks / ${bonds}% bonds / ${gold}% gold`,
-        event: 'allocation:changed' // Frontend will emit this to StrategyEventBus
-      };
-    }
-  },
-
-  apply_recommended_strategy: {
-    name: 'apply_recommended_strategy',
-    description: `
-      Apply a pre-built strategy to the simulator based on user profile or selection.
-      Use when user says "apply the conservative strategy" or "use risk parity" or "set up a 60/40 portfolio".
-      Maps strategy names to specific allocations.
-    `.trim(),
-    input_schema: {
-      type: 'object',
-      properties: {
-        strategy_name: {
-          type: 'string',
-          enum: ['conservative', 'balanced', 'growth', 'aggressive', '60_40', 'risk_parity', 'all_weather'],
-          description: 'Name of the pre-built strategy to apply'
-        }
-      },
-      required: ['strategy_name'],
-      additionalProperties: false
-    },
-    input_examples: [
-      { strategy_name: 'conservative' },
-      { strategy_name: '60_40' },
-      { strategy_name: 'risk_parity' }
-    ],
-    execute: async ({ strategy_name }) => {
-      // Strategy allocation mappings
-      const strategyAllocations = {
-        conservative: { stocks: 20, bonds: 70, gold: 10, description: 'Low risk, capital preservation focus' },
-        balanced: { stocks: 50, bonds: 40, gold: 10, description: 'Moderate risk-return balance' },
-        growth: { stocks: 70, bonds: 20, gold: 10, description: 'Higher returns with more volatility' },
-        aggressive: { stocks: 90, bonds: 5, gold: 5, description: 'Maximum growth, highest volatility' },
-        '60_40': { stocks: 60, bonds: 40, gold: 0, description: 'Classic balanced portfolio' },
-        risk_parity: { stocks: 30, bonds: 55, gold: 15, description: 'Equal risk contribution across assets' },
-        all_weather: { stocks: 30, bonds: 40, gold: 15, description: 'Ray Dalio inspired all-weather approach' }
-      };
-
-      const strategy = strategyAllocations[strategy_name];
-      if (!strategy) {
-        return {
-          type: 'STRATEGY_NOT_FOUND',
-          error: `Unknown strategy: ${strategy_name}`,
-          hint: `Available strategies: ${Object.keys(strategyAllocations).join(', ')}`
-        };
-      }
-
-      return {
-        strategy_name,
-        allocation: {
-          stocks: strategy.stocks,
-          bonds: strategy.bonds,
-          gold: strategy.gold
-        },
-        description: strategy.description,
-        message: `Applied ${strategy_name} strategy: ${strategy.stocks}% stocks / ${strategy.bonds}% bonds / ${strategy.gold}% gold`,
-        event: 'strategy:applied' // Frontend will emit this to StrategyEventBus
-      };
-    }
-  },
-
-  update_profile_setting: {
-    name: 'update_profile_setting',
-    description: `
-      Update a specific profile setting such as risk score, investment horizon, goal, or knowledge level.
-      Use when user says "change my risk to 70" or "set my goal to retirement" or "I'm a beginner investor".
-      The frontend will update BubbleAgentMemory and refresh the profile display.
-    `.trim(),
-    input_schema: {
-      type: 'object',
-      properties: {
-        setting: {
-          type: 'string',
-          enum: ['riskScore', 'investmentHorizon', 'investmentGoal', 'knowledgeLevel'],
-          description: 'Which profile setting to update'
-        },
-        value: {
-          description: 'New value for the setting (type depends on setting)'
-        }
-      },
-      required: ['setting', 'value'],
-      additionalProperties: false
-    },
-    input_examples: [
-      { setting: 'riskScore', value: 65 },
-      { setting: 'investmentHorizon', value: 'long' },
-      { setting: 'investmentGoal', value: 'retirement' },
-      { setting: 'knowledgeLevel', value: 'intermediate' }
-    ],
-    execute: async ({ setting, value }) => {
-      // Validate based on setting type
-      const validations = {
-        riskScore: {
-          validate: (v) => typeof v === 'number' && v >= 0 && v <= 100,
-          error: 'Risk score must be a number between 0 and 100'
-        },
-        investmentHorizon: {
-          validate: (v) => ['short', 'medium', 'long', 'very_long'].includes(v),
-          error: 'Investment horizon must be: short, medium, long, or very_long'
-        },
-        investmentGoal: {
-          validate: (v) => ['retirement', 'house', 'growth', 'learn', 'income', 'preservation'].includes(v),
-          error: 'Investment goal must be: retirement, house, growth, learn, income, or preservation'
-        },
-        knowledgeLevel: {
-          validate: (v) => ['beginner', 'intermediate', 'advanced'].includes(v),
-          error: 'Knowledge level must be: beginner, intermediate, or advanced'
+        all: {
+          description: language === 'fr'
+            ? "Tous nos contenus : blog, newsletter, réseaux sociaux, code"
+            : 'All our content: blog, newsletter, social media, code',
+          channels: [
+            { type: 'blog', label: 'Blog', url: '/blog', format: 'blog' },
+            { type: 'newsletter', label: 'Substack', url: 'https://bubbleinvest.substack.com', format: 'newsletter' },
+            { type: 'social', label: 'LinkedIn', url: 'https://linkedin.com/company/bubbleinvest', format: 'social' },
+            { type: 'social', label: 'YouTube', url: 'https://youtube.com/@bubbleinvest', format: 'video' },
+            { type: 'social', label: 'Instagram', url: 'https://instagram.com/behindthebubble.ai', format: 'social' },
+            { type: 'social', label: 'GitHub', url: 'https://github.com/bubbleinvest', format: 'code' },
+            { type: 'social', label: 'X/Twitter', url: 'https://x.com/bubbleinvest', format: 'social' }
+          ]
         }
       };
 
-      const validation = validations[setting];
-      if (!validation) {
-        return {
-          type: 'INVALID_SETTING',
-          error: `Unknown setting: ${setting}`,
-          hint: `Valid settings: ${Object.keys(validations).join(', ')}`
-        };
-      }
+      const content = contentMap[interest] || contentMap.all;
 
-      if (!validation.validate(value)) {
-        return {
-          type: 'VALIDATION_ERROR',
-          error: validation.error,
-          hint: `Received value: ${JSON.stringify(value)}`
-        };
+      // Filter by format preference if specified
+      let channels = content.channels;
+      if (format_preference) {
+        const formatFiltered = channels.filter(c => c.format === format_preference);
+        if (formatFiltered.length > 0) {
+          channels = formatFiltered;
+        }
+        // If no match, keep all channels (don't return empty)
       }
 
       return {
-        update: { [setting]: value },
-        message: `Updated ${setting} to ${value}`,
-        event: 'profile:updated' // Frontend will emit this to StrategyEventBus
+        interest,
+        description: content.description,
+        channels,
+        cta: language === 'fr'
+          ? "Tu veux la même chose pour ton business ? Réserve un appel !"
+          : "Want this for your business? Book a call!",
+        ctaUrl: 'https://calendly.com/bubble-invest/discovery'
       };
     }
   }
 };
+
+// ═══════════════════════════════════════════════════════════════════════════
+// EXECUTION ENGINE
+// ═══════════════════════════════════════════════════════════════════════════
 
 async function executeTool(toolName, input) {
   const tool = TOOLS[toolName];
@@ -659,39 +514,50 @@ function getToolDefinitions(toolNames = null) {
   }));
 }
 
+/**
+ * Return tool definitions appropriate for the page context.
+ * Tools are now aligned to the business model:
+ *   - Professionals pages → qualification + booking tools
+ *   - Individuals pages → POC showcase + content recommendation
+ *   - Index/About → all tools available (discovery phase)
+ */
 function getToolsForPageContext(pageContext) {
-  switch (pageContext) {
-    case 'playground':
-      return getToolDefinitions([
-        'get_profile_visualization',
-        'recommend_learning_path',
-        'update_profile_setting',
-        'set_simulator_allocation',
-        'apply_recommended_strategy'
-      ]);
-    case 'arena':
-    case 'education-arena':
-    case 'education/arena':
-    case 'education_arena':
-      return getToolDefinitions([
-        'explain_bot_trade',
-        'compare_strategies',
-        'set_simulator_allocation',
-        'apply_recommended_strategy'
-      ]);
-    case 'simulator':
-    case 'education-simulator':
-    case 'education/simulator':
-    case 'education_simulator':
-      return getToolDefinitions([
-        'backtest_strategy',
-        'compare_strategies',
-        'set_simulator_allocation',
-        'apply_recommended_strategy'
-      ]);
-    default:
-      return [];
+  const ctx = (pageContext || '').toLowerCase();
+
+  if (ctx.includes('professionals') || ctx.includes('business')) {
+    return getToolDefinitions([
+      'qualify_professional_need',
+      'book_consultation'
+    ]);
   }
+
+  if (ctx.includes('individuals') || ctx.includes('investors')) {
+    return getToolDefinitions([
+      'get_poc_showcase',
+      'recommend_content',
+      'book_consultation'
+    ]);
+  }
+
+  if (ctx.includes('blog')) {
+    return getToolDefinitions([
+      'recommend_content'
+    ]);
+  }
+
+  // Index, about, or unknown context → all tools available
+  // This lets the chatbot discover visitor type and use appropriate tools
+  if (ctx === 'index' || ctx === 'about' || ctx === '') {
+    return getToolDefinitions([
+      'qualify_professional_need',
+      'get_poc_showcase',
+      'recommend_content',
+      'book_consultation'
+    ]);
+  }
+
+  // Default: provide all tools
+  return getToolDefinitions();
 }
 
 module.exports = {

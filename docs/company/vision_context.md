@@ -1,12 +1,18 @@
 # Vision & Philosophy (Condensed)
 
-We believe finance must become honest, transparent, and widely accessible. Large Language Models already outperform traditional advisors on speed and breadth of knowledge, so the value now lies in empowering individuals with AI rather than selling scarcity.
+AI and robotics are already transforming the economy — employment, wealth, relationship to work. We don't claim to have all the answers or the best product, but we want to be a bridge between yesterday's economy and tomorrow's.
 
-### Redistribution Through Efficiency
-Removing legacy intermediaries and opaque fees returns capital to investors. That reclaimed capital can then flow to projects and products people actually believe in, creating a healthier allocation of resources.
+### 10-Year Vision
+In 10 years, we will have accompanied thousands of professionals (CGPs, independents, SMEs, asset managers) in their transition to the new economy through custom AI agent implementation — while freely sharing our learnings with the broadest audience.
 
-### Ethical Foundation
-Our ethics are structural, not cosmetic: drastically lower costs, radical transparency on decisions, and user control. The goal is a fairer system where investors keep more of the value their capital generates.
+### Ultimate Impact
+A collective of early adopters who understood the economic implications of automation, who got ahead, and who share what they learn along the way.
 
 ### The Coming Shift
-AI makes intelligence abundant. As Sam Altman notes, when ideas and energy become cheap, the old financial stack breaks. We see two futures: a concentrated, dystopian status quo or an equitable system where knowledge and tools are open. Bubble Invest exists to build the latter by giving every investor AI-grade capabilities.
+In a world where AI automates everything measurable, the non-measurable becomes the only thing that truly matters: the quality of a relationship, the depth of accompaniment, the care taken to understand a profession before touching it.
+
+### Our Philosophical Edge
+Most AI consultants only talk about tools. We think about implications — the impact of AI on the human condition, work, value, attention. This depth of thinking is what sets us apart.
+
+### Benevolence as Strategy
+Our fundamental difference: where the consulting industry thrives on your dependence, we thrive on your emancipation. In a world where authentic human attention becomes the rarest resource, we choose to give it — not simulate it.

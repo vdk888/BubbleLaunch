@@ -1,27 +1,42 @@
 # Bubble Invest - Core Context
 
 ## Mission
-Bubble Invest democratizes intelligent investing through AI empowerment. We believe finance should be transparent, affordable, and accessible to everyone. Our mission is to replace traditional financial actors (advisors, asset managers) with AI-powered tools that empower users to make their own decisions.
+Bubble Invest accompanies professionals (CGPs, wealth managers, SMEs, independents) in adopting and implementing custom AI agents and automation tools. In parallel, we share our expertise and learnings freely with individuals through educational content and public demos.
 
-## Three Pillars
-1. **Cheap**: Fixed €0-10/month subscription (no AUM percentage fees)
-2. **Automated**: AI-powered portfolio management with ETF-first strategies
-3. **Transparent**: All decisions explained, full visibility into strategies, build in public
+## Two Activities
+1. **B2B (Core Business)**: Custom AI agent consulting & implementation — systematic early adoption of the latest tech tools for our clients
+2. **B2C (Free Content = Marketing)**: Tutorials, demos, agents as showcase (including our investment agent POC), free resources — proves our expertise and feeds the B2B pipeline
 
-## What We Offer
-- **Bubble Portfolio**: Conversational AI agent for portfolio management (screening → backtesting → allocation → execution)
-- **Bubble Businesses**: B2B consulting for SMEs and wealth managers (projects on quote for AI workflow automation)
+## Key Differentiators
+- **Finance × Tech Niche**: Ex-Deloitte + UBS background. We speak the same language as finance professionals — no need to explain what UCITS, KYC, or AMF regulations are. This sets us apart from generic AI consultants.
+- **Systematic Early Adopters**: We test and deploy the latest AI solutions as soon as they're released — our clients always stay ahead of their market
+- **Co-Construction, Not Delivery**: We don't deliver agents remotely. We build WITH the client in joint work sessions — they learn by doing and become autonomous
+- **Radical Transparency**: Our strengths, weaknesses, doubts — we share everything. Build in public. If a free tool does the job, we say so.
+- **Empowerment Over Dependency**: Our goal is for clients to NOT need us anymore. We thrive on their emancipation, not their dependence.
 
-## Key Differentiators vs Traditional Robo-Advisors
-- **AI empowerment, not asset management**: Users make decisions, AI provides insights (not custody model)
-- **Fixed fees**: €0-10/month vs traditional 0.85-1.6% AUM fees
-- **Direct broker integration**: Users maintain control with their own brokerage accounts (IBKR, Alpaca, Saxo Bank)
-- **Build in public**: Transparent development, sharing learnings and iterations
-- **ETF-first approach**: Low-cost passive strategies privileged over expensive active funds
+## Selfware Model
+We use the tools we build. Our investment agent is our own proof of concept — we share it publicly with full transparency on what works, what breaks, and how we fix it. This extends to all AI agents we build.
 
-## Current Status
-- **For founders**: Fully automated execution operational with Interactive Brokers, Alpaca, Saxo Bank
-- **For public users**: AI-powered insights and execution-ready recommendations available. Full automated execution pending regulatory approval.
+## Why We Shifted (2026): From SaaS to Selfware
+SaaS isn't dead. But SaaS "as the default form" is losing its justification. The future is:
+- **Agents** — not apps with screens, but systems that act on your behalf
+- **Selfware** — tools you build for yourself, around your own intentions
+- **Intent-driven systems** — built around what you want to achieve, not around interfaces to navigate
 
-## Target Audience
-Gen Y/Z tech-savvy investors disillusioned with traditional finance's opacity and high fees, seeking transparency and control over their investments.
+We didn't pivot opportunistically. We observed a structural shift: when the agent becomes the gateway, the product is no longer the app. The product is how you make your tools work together. That's why we moved from building a SaaS product (Bubble Portfolio) to building AI agents for ourselves and our clients — and sharing everything along the way. The consulting model (B2B) is a natural consequence: we help others build their own selfware.
+
+## B2B Target Audience
+- CGPs and wealth managers (core target — we know the sector from our finance background)
+- Small SMEs and independents (agile structures that want to move fast)
+- Tech-forward entrepreneurs who want to automate without BS
+- Asset managers seeking competitive edge
+
+## B2C Audience (Free Content)
+Tech-savvy individuals curious about AI and investment — early adopters who consume educational content and could become B2B prescribers or indirect leads.
+
+## Brand Tone
+- Authentic and honest, backed by rational arguments and proof — not inflated marketing
+- Philosophical without being academic (we discuss Sartre and Veblen like chatting with a smart friend over coffee)
+- Pedagogical: we explain everything in simple language — not just tools, but the ideas behind them
+- Transparent: our strengths, weaknesses, doubts, real objectives — everything in the blog
+- "We don't do marketing, we share our ideas"

@@ -1,99 +1,84 @@
-# Points de Départ Stratégiques - Bubble Invest
+# Pitch Variations - Bubble Invest
 
-## 1. ENTRÉE "BUSINESS/INVESTISSEURS" - Agressif & Enthousiaste
+## 1. ENTRY: B2B PROFESSIONAL — Direct & Practical
 
-**Ouverture punch :**
-"On développe un robo-advisor hyper personnalisé qui combine l'accompagnement d'un chatbot IA et une stratégie de hedge fund multi-stratégies automatisée. On attaque un marché de plusieurs milliards avec une approche disruptive."
+**Opening:**
+"AI is transforming your profession. New tools every week. But you don't know where to start, and generic consultants don't understand your business constraints. We do — because we come from finance (Deloitte + UBS)."
 
-**→ Transition vers les 3 pain points :**
-- **Lourdeur manuelle** : "Le secteur refuse l'automatisation alors qu'on peut faire 100x mieux"
-- **Coûts élevés** : "Les clients paient 2-3% pour de la sous-performance quand on propose un abonnement à un chiffre (ex. 0-10€/mois)"
-- **Manque de transparence** : "Zero transparence sur les décisions = perte de confiance = opportunity massive"
+**→ Pain points:**
+- **Too many tools**: "New agents, new platforms every week — impossible to know what to adopt"
+- **No internal skills**: "SMEs and independents don't have tech teams to build and maintain AI agents"
+- **Fear of falling behind**: "Competition is advancing — but how to get started concretely?"
 
----
-
-## 2. ENTRÉE "CLIENT RETAIL" - Pédagogique & Empathique
-
-**Ouverture relationnelle :**
-"Vous savez ce sentiment qu'on a tous avec notre banquier ? L'impression de se faire vendre des produits qu'on comprend pas, qui coûtent cher, et dont on sait pas vraiment s'ils nous servent ? Eh bien... vous avez raison de vous méfier."
-
-**→ Développement des 3 pain points :**
-- **Manque de transparence** : "Vous savez pas ce que vous achetez ni pourquoi"
-- **Coûts élevés** : "Vous payez trop cher pour un service qui vous enrichit moins que le banquier"
-- **Lourdeur manuelle** : "Tout est archaïque, pas d'innovation, pas d'IA, même pas Excel bien utilisé"
+**→ Solution:**
+"Custom AI agents built WITH you, not FOR you. Short sprints. You become autonomous. We stay on the cutting edge so you don't have to."
 
 ---
 
-## 3. ENTRÉE "PARTENAIRES/EXPERTS" - Technique & Analytique
+## 2. ENTRY: INDIVIDUAL — Educational & Inspiring
 
-**Ouverture data-driven :**
-"90% des gérants sous-performent leur benchmark après frais. Dans un secteur qui refuse l'IA et l'automatisation. Il y a un gap technologique énorme à combler."
+**Opening:**
+"We built an AI investment agent for ourselves. We share everything — how it works, its limits, our mistakes. We're not trying to sell you anything. We're showing you what's possible."
 
-**→ Analyse des 3 pain points :**
-- **Lourdeur manuelle** : "Méthodes pré-digitales dans un monde post-IA"
-- **Manque de transparence** : "Black box qui détruit la confiance client"
-- **Coûts élevés** : "Modèle économique obsolète basé sur l'AUM plutôt que la valeur"
+**→ Value:**
+- **Free expertise showcase**: POC agent, tutorials, demos — all public
+- **Build in public**: Decisions, trade-offs, learnings shared in real time
+- **Community**: Newsletter, social channels, philosophical essays on AI's impact
 
----
-
-## 4. ENTRÉE "MÉDIAS/CONTENU" - Sociétale & Générationnelle
-
-**Ouverture polémique :**
-"Notre génération boycotte massivement les services financiers traditionnels. Et ils ont raison ! C'est devenu un problème de société."
-
-**→ Critique systémique des 3 pain points :**
-- **Manque de transparence** : "Culture du secret vs génération transparence"
-- **Coûts élevés** : "Extraction de valeur vs création de valeur"
-- **Lourdeur manuelle** : "Refus d'innovation vs attente d'efficacité"
+**→ CTA:**
+"Follow our journey. If you want the same for your business — let's talk."
 
 ---
 
-## 5. ENTRÉE "PITCH CONCOURS" - Vision & Impact
+## 3. ENTRY: FINANCE PROFESSIONAL — Sector-Native
 
-**Ouverture ambitieuse :**
-"On veut réconcilier la finance avec la société en démocratisant l'investissement intelligent. Notre mission : rendre obsolète la gestion traditionnelle."
+**Opening:**
+"We're not generic AI consultants. We come from Deloitte and UBS. We know what a UCITS is, why AMF compliance matters, and how CGP workflows actually work. That's our niche."
 
-**→ Solution aux 3 pain points :**
-- **Coûts élevés** → "Pricing fixe dégressif"
-- **Lourdeur manuelle** → "Automatisation IA complète"
-- **Manque de transparence** → "Open-source des décisions"
-
----
-
-## CONVERGENCE - Les 3 Solutions Bubble
-
-**Quel que soit le point de départ, on arrive toujours sur :**
-
-### 1. **TRANSPARENCE TOTALE**
-- Chaque décision expliquée
-- Chatbot disponible 24/7 pour toutes questions
-- Pas de langue de bois, pas de produits cachés
-
-### 2. **COÛT FIXE RÉVOLUTIONNAIRE**
-- Abonnement à un chiffre (ex. 0-10€/mois) vs 2-3% d'AUM
-- Pas de conflit d'intérêt
-- Reste abordable même avec un gros portefeuille
-
-### 3. **AUTOMATISATION INTELLIGENTE**
-- IA pour la personnalisation
-- Stratégies quantitatives automatisées
-- Innovation continue intégrée
+**→ Differentiators:**
+- **Finance × Tech rare combination**: Native understanding of compliance, regulation, financial workflows
+- **Early adopters**: Deploying Claude Code, Codex, latest AI tools — among the first in France
+- **Co-construction**: Joint sessions, not slide decks. You learn by building.
 
 ---
 
-## TRANSITIONS TYPES
+## 4. ENTRY: MEDIA/CONTENT — Philosophical & Societal
 
-**Business → Pain points :**
-"Mais pourquoi ce marché est-il si mûr ? Parce que..."
+**Opening:**
+"AI can produce content, code, images at zero cost. What it can't produce is the authentic investment of a finite human being. When we spend time with a client, that time is irreversible — and that's exactly what gives it value."
 
-**Retail → Solutions :**
-"Et c'est exactement ces problèmes qu'on règle avec..."
+**→ Themes:**
+- AI's impact on work and the human condition
+- Why authentic human attention becomes the rarest resource
+- The Selfware model: using what you build
+- Empowerment vs. dependency in the consulting industry
 
-**Experts → Opportunité :**
-"Cette inefficience créé une opportunité massive..."
+---
 
-**Médias → Impact :**
-"Notre réponse à cette crise de confiance..."
+## 5. ENTRY: STARTUP/TECH — Builder to Builder
 
-**Concours → Validation :**
-"On a validé ce besoin en cherchant nous-mêmes ce service..."
+**Opening:**
+"We build AI agents for ourselves — and show how. Our investment agent is a public proof of concept. We open-source our thinking, our configs, our learnings. Then we deploy the same approach for professional clients."
+
+**→ Approach:**
+- **Selfware**: We eat our own cooking
+- **Build in public**: Transparent process from day one
+- **Early adoption**: Always on the ball of latest tools
+
+---
+
+## CONVERGENCE — All Paths Lead To:
+
+### 1. EARLY ADOPTION
+- Systematic testing and deployment of latest AI tools
+- Clients stay ahead of competition
+
+### 2. CO-CONSTRUCTION
+- Build WITH the client, not FOR them
+- Native training through building
+- Client autonomy guaranteed
+
+### 3. RADICAL TRANSPARENCY
+- Strengths, weaknesses, doubts — all shared
+- Build in public philosophy
+- If a free tool works, we say so

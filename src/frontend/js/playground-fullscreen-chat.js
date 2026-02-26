@@ -737,9 +737,7 @@ const PlaygroundFullscreenChat = (function() {
     // Build context metadata from Memory
     const memoryProfile = Memory ? Memory.getProfile() : null;
     const memoryJourney = Memory ? Memory.getJourney() : null;
-    // keyInsights is in Memory.getMemory(), not in the profile object
     const memoryData = Memory ? Memory.getMemory() : null;
-    const isOnboarding = session.stage === STAGES.onboarding_active;
 
     try {
       const response = await fetch('/api/chat', {
@@ -751,8 +749,6 @@ const PlaygroundFullscreenChat = (function() {
           pageContext: 'playground',
           history: session.conversation.slice(-10),
           contextMetadata: {
-            isOnboarding,
-            onboardingStage: isOnboarding ? 'conversational' : 'free_chat',
             profile: memoryProfile ? {
               riskScore: memoryProfile.riskScore,
               riskConfidence: memoryProfile.riskConfidence,
@@ -760,7 +756,6 @@ const PlaygroundFullscreenChat = (function() {
               goal: memoryProfile.goal,
               horizon: memoryProfile.horizon,
               level: memoryProfile.level,
-              // Fix BUG 9: keyInsights is in Memory.getMemory(), not memoryProfile
               keyInsights: memoryData?.keyInsights?.slice(-5).map(i => i.insight) || []
             } : {
               riskScore: session.riskScore || 50,
@@ -826,7 +821,7 @@ const PlaygroundFullscreenChat = (function() {
       }
 
       // Check if onboarding should complete (confidence threshold met)
-      if (isOnboarding && isOnboardingComplete()) {
+      if (session.stage === STAGES.onboarding_active && isOnboardingComplete()) {
         // Set transition flag BEFORE starting the reveal process
         // This allows recovery if user navigates away during the 800ms timeout
         localStorage.setItem(ONBOARDING_TRANSITION_KEY, 'true');
@@ -1146,8 +1141,6 @@ const PlaygroundFullscreenChat = (function() {
           pageContext: 'playground',
           history: [],
           contextMetadata: {
-            isOnboarding: true,
-            onboardingStage: 'conversational',
             profile: { riskScore: 50, riskConfidence: 0, traits: [] },
             isFirstMessage: true
           }

@@ -1,0 +1,298 @@
+/**
+ * À Propos 2026 — Page-Specific Styles
+ * Loaded only on: /a-propos and /en/about
+ */
+
+/* === CSS VARIABLE OVERRIDES === */
+:root {
+  --container-max: 900px;
+}
+
+/* === HERO === */
+.hero {
+  padding: 10rem 0 5rem;
+  text-align: center;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  color: var(--secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* === CONTENT SECTIONS === */
+.section {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.section-header h3 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* === MANIFESTO === */
+.manifesto-quote {
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem;
+  background: var(--bg-subtle);
+  border-radius: 16px;
+  border-left: 4px solid var(--purple);
+}
+
+.manifesto-attribution {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* === VALUES GRID === */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.value-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.value-card:hover {
+  border-color: var(--purple);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(147, 172, 240, 0.15);
+}
+
+.value-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--bg-subtle);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  transition: all 0.3s;
+  color: var(--primary);
+}
+
+.value-icon svg {
+  stroke: var(--primary);
+  transition: stroke 0.3s;
+}
+
+.value-card:hover .value-icon {
+  background: var(--purple-light);
+  transform: scale(1.1);
+}
+
+.value-card:hover .value-icon svg {
+  stroke: var(--purple);
+}
+
+.value-card h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.value-card p {
+  font-size: 0.85rem;
+  color: var(--secondary);
+  line-height: 1.6;
+}
+
+/* === STORY === */
+.story-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.story-content p {
+  font-size: 1.1rem;
+  color: var(--secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.story-content p.lead {
+  font-size: 1.25rem;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.story-content h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  color: var(--primary);
+}
+
+.story-content ul {
+  margin-left: 1.5rem;
+  color: var(--secondary);
+}
+
+.story-content li {
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+}
+
+/* === TEAM === */
+.team-intro {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  font-size: 1.1rem;
+  color: var(--secondary);
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.team-member {
+  text-align: center;
+}
+
+.team-avatar {
+  width: 120px;
+  height: 120px;
+  background: var(--bg-subtle);
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  border: 3px solid var(--border);
+  transition: all 0.3s;
+}
+
+.team-member:hover .team-avatar {
+  border-color: var(--purple);
+  transform: scale(1.05);
+}
+
+.team-member h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.team-member p {
+  font-size: 0.9rem;
+  color: var(--secondary);
+}
+
+.team-initials {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* === WHY BUBBLE === */
+.why-bubble-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+
+.why-item {
+  padding: 2rem;
+  background: var(--bg-subtle);
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.why-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.why-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.why-item h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.why-item p {
+  color: var(--secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .why-bubble-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+}

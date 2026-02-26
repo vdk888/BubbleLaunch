@@ -1,0 +1,215 @@
+/**
+ * Particuliers 2026 — Page-Specific Styles
+ * Loaded only on: /particuliers and /en/individuals
+ */
+
+/* === CSS VARIABLE OVERRIDES === */
+:root {
+  --secondary: #444444;
+  --muted: #888888;
+  --container-max: 1100px;
+  --container-padding: 1.5rem;
+  --nav-gap: 2rem;
+}
+
+/* === HERO === */
+.hero {
+  padding: 10rem 0 5rem;
+  background: linear-gradient(180deg, var(--bg-subtle) 0%, var(--bg-white) 100%);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--secondary);
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* === SECTIONS === */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.section-header h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* === AGENT CARDS === */
+.agent-section {
+  padding: 5rem 0;
+  background: var(--bg-subtle);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--purple);
+  box-shadow: 0 10px 30px rgba(147, 172, 240, 0.15);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--purple-light);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.card h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: var(--secondary);
+}
+
+/* === FOLLOW SECTION === */
+.follow-section {
+  padding: 5rem 0;
+  background: var(--bg-white);
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--border);
+}
+
+.social-btn:hover {
+  background: var(--purple);
+  color: white;
+  border-color: var(--purple);
+  transform: translateY(-2px);
+}
+
+.social-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.newsletter-line {
+  text-align: center;
+  margin-bottom: 0.75rem;
+  color: var(--secondary);
+}
+
+.newsletter-cta {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.newsletter-small {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* === CTA SECTION === */
+.cta-section {
+  padding: 5rem 0;
+  background: var(--primary);
+  color: white;
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.cta-section .btn-primary {
+  background: white;
+  color: var(--primary);
+  border: 1px solid white;
+}
+
+.cta-section .btn-primary:hover {
+  background: var(--purple);
+  color: white;
+  border-color: var(--purple);
+  transform: translateY(-2px);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
