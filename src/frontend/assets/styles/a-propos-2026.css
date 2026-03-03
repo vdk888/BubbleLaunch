@@ -63,6 +63,7 @@
 .manifesto-quote {
   font-size: 1.75rem;
   font-weight: 500;
+  font-style: italic;
   line-height: 1.5;
   text-align: center;
   max-width: 800px;
@@ -276,23 +277,159 @@
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
-  .values-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .hero {
+    padding: 7rem 0 3rem;
   }
 
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  /* Sections: tighter padding */
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .section-header h3 {
+    font-size: 1.6rem;
+  }
+
+  /* Manifesto: compact */
+  .manifesto-quote {
+    font-size: 1.25rem;
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+  }
+
+  /* Values → horizontal scroll carousel */
+  .values-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    scrollbar-width: none;
+  }
+
+  .values-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .value-card {
+    flex: 0 0 70%;
+    scroll-snap-align: start;
+    padding: 1.5rem;
+  }
+
+  .value-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.75rem;
+  }
+
+  .value-card h4 {
+    font-size: 1rem;
+  }
+
+  .value-card p {
+    font-size: 0.8rem;
+  }
+
+  /* Story: compact */
+  .story-content p {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .story-content p.lead {
+    font-size: 1.1rem;
+  }
+
+  /* Team: compact */
   .team-grid {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
   }
 
+  .team-avatar {
+    width: 100px;
+    height: 100px;
+    font-size: 2.5rem;
+  }
+
+  .team-member h4 {
+    font-size: 1.1rem;
+  }
+
+  /* Why Bubble → horizontal scroll carousel */
   .why-bubble-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    scrollbar-width: none;
+  }
+
+  .why-bubble-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .why-item {
+    flex: 0 0 75%;
+    scroll-snap-align: start;
+    padding: 1.5rem;
+  }
+
+  .why-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .why-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .why-item p {
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
-  .values-grid {
-    grid-template-columns: 1fr;
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .manifesto-quote {
+    font-size: 1.1rem;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .value-card {
+    flex: 0 0 80%;
+    padding: 1.25rem;
+  }
+
+  .why-item {
+    flex: 0 0 80%;
+    padding: 1.25rem;
+  }
+
+  .team-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
   }
 }

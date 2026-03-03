@@ -95,7 +95,7 @@
           <a class="active" href="/en/individuals">Individuals</a>
           <a href="/en/blog">Blog</a>
           <div class="lang-switch">
-            <button onclick="window.location.href='/particuliers'">FR</button>
+            <button data-href="/particuliers">FR</button>
             <span>/</span>
             <button class="active">EN</button>
           </div>
@@ -129,7 +129,7 @@
       <a href="/en/blog">Blog</a>
     </div>
     <div class="mobile-nav-lang">
-      <button onclick="window.location.href='/particuliers'">FR</button>
+      <button data-href="/particuliers">FR</button>
       <span>/</span>
       <button class="active">EN</button>
     </div>
@@ -411,6 +411,7 @@
 
   <!-- Scripts -->
   <script src="/js/seo/cookie-banner.js"></script>
+  <script src="/js/lang-toggle.js"></script>
   <script src="/i18n/translations.js"></script>
   <script src="/js/bubble-agent-memory.js"></script>
   <script src="/js/chatbot-animations.js"></script>

@@ -62,36 +62,34 @@ async function renderBlogPage(res, templatePath, lang = "fr") {
   }
 }
 
-/**
- * Serve index.html for the root
- */
+// ============================================
+// FRENCH PAGES (2026)
+// ============================================
+
 router.get("/", (req, res) => {
-  console.log("Root route hit, serving index.html");
-  const filePath = path.join(frPagesDir, "index.html");
-  console.log("File path:", filePath);
-  res.sendFile(filePath);
+  res.sendFile(path.join(frPagesDir, "index.html"));
 });
 
-/**
- * Serve index.html for /home (alternative homepage URL for SEO)
- */
 router.get("/home", (req, res) => {
-  console.log("Home route hit, serving index.html");
-  const filePath = path.join(frPagesDir, "index.html");
-  res.sendFile(filePath);
+  res.sendFile(path.join(frPagesDir, "index.html"));
 });
 
-/**
- * Blog index page with server-side rendering for SEO
- */
-router.get("/blog", async (req, res) => {
-  const blogIndexPath = path.join(frPagesDir, "blog.html");
-  await renderBlogPage(res, blogIndexPath, "fr");
+router.get("/particuliers", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "particuliers.html"));
 });
 
-/**
- * Individual blog post page - Server-side rendering for SEO
- */
+router.get("/professionnels", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "professionnels.html"));
+});
+
+router.get("/a-propos", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "a-propos.html"));
+});
+
+router.get("/blog", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "blog.html"));
+});
+
 router.get("/blog/:slug", async (req, res) => {
   try {
     const { slug } = req.params;
@@ -111,7 +109,6 @@ router.get("/blog/:slug", async (req, res) => {
     const publishedDate = post.publishedDate ? new Date(post.publishedDate).toISOString() : "";
     const content = post.content?.fr || post.content || "";
 
-    // Replace dynamic meta tags with actual content for SEO
     html = html.replace(
       'id="post-title">Article - Blog Bubble<',
       `id="post-title">${title} | Blog Bubble<`
@@ -160,7 +157,6 @@ router.get("/blog/:slug", async (req, res) => {
       );
     }
 
-    // Add SEO content in noscript for search engines
     const seoContent = `
       <!-- SEO: Server-rendered blog post content for search engines -->
       <noscript>
@@ -186,183 +182,38 @@ router.get("/blog/:slug", async (req, res) => {
   }
 });
 
-/**
- * Clear cache management page (dev only)
- */
-if (process.env.NODE_ENV !== "production") {
-  router.get("/clear-cache", (req, res) => {
-    res.sendFile(
-      path.join(frPagesDir, "clear-cache.html")
-    );
-  });
-
-  /**
-   * Design mock page for graphic charter validation (dev only)
-   */
-  router.get("/design-mock", (req, res) => {
-    res.sendFile(
-      path.join(frPagesDir, "design-mock.html")
-    );
-  });
-
-  /**
-   * Workflow visualization mock page for animation validation (dev only)
-   */
-  router.get("/workflow-visualization-mock", (req, res) => {
-    res.sendFile(
-      path.join(frPagesDir, "workflow-visualization-mock.html")
-    );
-  });
-
-  /**
-   * ==================== FRENCH MOCK PAGES ====================
-   */
-
-  /**
-   * Homepage mock v4 - FR (dev only)
-   */
-  router.get("/homepage-mock-v4", (req, res) => {
-    res.sendFile(
-      path.join(__dirname, "../../../homepage-mock-v4.html")
-    );
-  });
-
-  /**
-   * About page mock - FR (dev only)
-   */
-  router.get("/a-propos-mock", (req, res) => {
-    res.sendFile(
-      path.join(__dirname, "../../../a-propos-mock.html")
-    );
-  });
-
-  /**
-   * Professionals page mock - FR (dev only)
-   */
-  router.get("/professionnels-mock", (req, res) => {
-    res.sendFile(
-      path.join(__dirname, "../../../professionnels-mock.html")
-    );
-  });
-
-  /**
-   * Individuals page mock (was Investors) - FR (dev only)
-   */
-  router.get("/particuliers-mock", (req, res) => {
-    res.sendFile(
-      path.join(__dirname, "../../../particuliers-mock.html")
-    );
-  });
-
-  /**
-   * Blog page mock - FR (dev only)
-   */
-  router.get("/blog-mock", (req, res) => {
-    res.sendFile(
-      path.join(__dirname, "../../../blog-mock.html")
-    );
-  });
-
-  /**
-   * ==================== ENGLISH MOCK PAGES ====================
-   */
-
-  /**
-   * Homepage mock v4 - EN (dev only)
-   */
-  router.get("/homepage-mock-v4-en", (req, res) => {
-    res.sendFile(
-      path.join(__dirname, "../../../homepage-mock-v4-en.html")
-    );
-  });
-
-  /**
-   * About page mock - EN (dev only)
-   */
-  router.get("/about-mock-en", (req, res) => {
-    res.sendFile(
-      path.join(__dirname, "../../../about-mock-en.html")
-    );
-  });
-
-  /**
-   * Professionals page mock - EN (dev only)
-   */
-  router.get("/professionals-mock-en", (req, res) => {
-    res.sendFile(
-      path.join(__dirname, "../../../professionals-mock-en.html")
-    );
-  });
-
-  /**
-   * Individuals page mock (was Investors) - EN (dev only)
-   */
-  router.get("/individuals-mock-en", (req, res) => {
-    res.sendFile(
-      path.join(__dirname, "../../../individuals-mock-en.html")
-    );
-  });
-
-  /**
-   * Blog page mock - EN (dev only)
-   */
-  router.get("/blog-mock-en", (req, res) => {
-    res.sendFile(
-      path.join(__dirname, "../../../blog-mock-en.html")
-    );
-  });
-}
-
-/**
- * Portfolio simulator page - Redirect to playground simulator
- * Legacy route maintained for backwards compatibility and SEO
- */
-router.get("/portfolio-simulator", (req, res) => {
-  res.redirect(301, "/investors/playground/simulator");
-});
-
-router.get(["/pricing", "/pricing.html"], (req, res) => {
-  res.sendFile(path.join(frPagesDir, "pricing.html"));
-});
-
-/**
- * Privacy Policy page (SEO + GDPR compliance)
- */
 router.get("/privacy", (req, res) => {
-  res.sendFile(
-    path.join(frPagesDir, "privacy.html")
-  );
+  res.sendFile(path.join(frPagesDir, "privacy.html"));
 });
 
-/**
- * Mentions Légales page (French legal notice - required by law)
- */
 router.get("/mentions-legales", (req, res) => {
-  res.sendFile(
-    path.join(frPagesDir, "mentions-legales.html")
-  );
+  res.sendFile(path.join(frPagesDir, "mentions-legales.html"));
 });
 
+// ============================================
+// ENGLISH PAGES (2026)
+// ============================================
 
-/**
- * English homepage
- */
 router.get(["/en", "/en/"], (req, res) => {
-  const filePath = path.join(enPagesDir, "index.html");
-  res.sendFile(filePath);
+  res.sendFile(path.join(enPagesDir, "index.html"));
 });
 
-/**
- * English blog listing with SSR
- */
-router.get("/en/blog", async (req, res) => {
-  const blogIndexPath = path.join(enPagesDir, "blog.html");
-  await renderBlogPage(res, blogIndexPath, "en");
+router.get("/en/individuals", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "individuals.html"));
 });
 
-/**
- * English individual blog post - Server-side rendering for SEO
- */
+router.get("/en/professionals", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "professionals.html"));
+});
+
+router.get("/en/about", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "about.html"));
+});
+
+router.get("/en/blog", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "blog.html"));
+});
+
 router.get("/en/blog/:slug", async (req, res) => {
   try {
     const { slug } = req.params;
@@ -370,7 +221,7 @@ router.get("/en/blog/:slug", async (req, res) => {
     const post = await getPostBySlug(slug);
 
     if (!post) {
-      return res.status(404).sendFile(path.join(enPagesDir, "404.html"));
+      return res.status(404).sendFile(path.join(frPagesDir, "404.html"));
     }
 
     const blogPostPath = path.join(enPagesDir, "blog-post.html");
@@ -382,18 +233,17 @@ router.get("/en/blog/:slug", async (req, res) => {
     const publishedDate = post.publishedDate ? new Date(post.publishedDate).toISOString() : "";
     const content = post.content?.en || post.content?.fr || post.content || "";
 
-    // Replace dynamic meta tags with actual content for SEO
     html = html.replace(
-      'id="post-title">Article - Blog Bubble<',
-      `id="post-title">${title} | Blog Bubble<`
+      'id="post-title">Article - Bubble Blog<',
+      `id="post-title">${title} | Bubble Blog<`
     );
     html = html.replace(
-      'id="post-description" content="Discover this article',
+      'id="post-description" content="Read this article',
       `id="post-description" content="${summary}`
     );
     html = html.replace(
-      'id="og-title" content="Article - Blog Bubble"',
-      `id="og-title" content="${title} | Blog Bubble"`
+      'id="og-title" content="Article - Bubble Blog"',
+      `id="og-title" content="${title} | Bubble Blog"`
     );
     html = html.replace(
       'id="og-description" content="Discover this article',
@@ -421,7 +271,7 @@ router.get("/en/blog/:slug", async (req, res) => {
     );
     html = html.replace(
       'id="hreflang-default" hreflang="x-default" href="https://bubbleinvest.org/blog/"',
-      `id="hreflang-default" hreflang="x-default" href="https://bubbleinvest.org/en/blog/${slug}"`
+      `id="hreflang-default" hreflang="x-default" href="https://bubbleinvest.org/blog/${slug}"`
     );
 
     if (publishedDate) {
@@ -431,7 +281,6 @@ router.get("/en/blog/:slug", async (req, res) => {
       );
     }
 
-    // Add SEO content in noscript for search engines
     const seoContent = `
       <!-- SEO: Server-rendered blog post content for search engines -->
       <noscript>
@@ -457,17 +306,6 @@ router.get("/en/blog/:slug", async (req, res) => {
   }
 });
 
-/**
- * English Portfolio simulator page - Redirect to playground simulator
- */
-router.get("/en/portfolio-simulator", (req, res) => {
-  res.redirect(301, "/en/investors/playground/simulator");
-});
-
-router.get(["/en/pricing", "/en/pricing.html"], (req, res) => {
-  res.sendFile(path.join(enPagesDir, "pricing.html"));
-});
-
 router.get("/en/privacy", (req, res) => {
   res.sendFile(path.join(enPagesDir, "privacy.html"));
 });
@@ -476,182 +314,45 @@ router.get("/en/legal-notice", (req, res) => {
   res.sendFile(path.join(enPagesDir, "legal-notice.html"));
 });
 
+// ============================================
+// 301 REDIRECTS FROM LEGACY URLs
+// ============================================
 
-/**
- * ============================================
- * INVESTOR PAGES (French)
- * ============================================
- */
-router.get("/investors", (req, res) => {
-  res.sendFile(path.join(frPagesDir, "investors/index.html"));
-});
+// Legacy investor pages → new particuliers
+router.get("/investors", (req, res) => res.redirect(301, "/particuliers"));
+router.get("/investors/solution", (req, res) => res.redirect(301, "/particuliers"));
+router.get("/investors/pricing", (req, res) => res.redirect(301, "/particuliers"));
+router.get("/investors/playground", (req, res) => res.redirect(301, "/particuliers"));
+router.get("/investors/playground/*", (req, res) => res.redirect(301, "/particuliers"));
+router.get("/investors/education", (req, res) => res.redirect(301, "/particuliers"));
+router.get("/investors/education/*", (req, res) => res.redirect(301, "/particuliers"));
+router.get("/investors/portfolio-simulator", (req, res) => res.redirect(301, "/particuliers"));
 
-router.get("/investors/solution", (req, res) => {
-  res.sendFile(path.join(frPagesDir, "investors/solution.html"));
-});
+// Legacy professional pages → new professionnels
+router.get("/professionals", (req, res) => res.redirect(301, "/professionnels"));
+router.get("/professionals/*", (req, res) => res.redirect(301, "/professionnels"));
 
-router.get("/investors/pricing", (req, res) => {
-  res.sendFile(path.join(frPagesDir, "investors/pricing.html"));
-});
+// Legacy EN investor pages → new individuals
+router.get("/en/investors", (req, res) => res.redirect(301, "/en/individuals"));
+router.get("/en/investors/*", (req, res) => res.redirect(301, "/en/individuals"));
 
-/**
- * Investors Portfolio simulator - Redirect to playground simulator
- */
-router.get("/investors/portfolio-simulator", (req, res) => {
-  res.redirect(301, "/investors/playground/simulator");
-});
+// Legacy EN professional pages → new professionals page
+router.get("/en/professionals/*", (req, res) => res.redirect(301, "/en/professionals"));
 
-/**
- * Bubble Playground Hub and Sub-pages (French)
- * Primary chatbot-first experience for investor education
- */
-router.get("/investors/playground", (req, res) => {
-  res.set("X-Robots-Tag", "noindex, nofollow");
-  res.sendFile(path.join(frPagesDir, "investors/playground.html"));
-});
+// Legacy portfolio simulator & pricing
+router.get("/portfolio-simulator", (req, res) => res.redirect(301, "/particuliers"));
+router.get("/en/portfolio-simulator", (req, res) => res.redirect(301, "/en/individuals"));
+router.get(["/pricing", "/pricing.html"], (req, res) => res.redirect(301, "/particuliers"));
+router.get(["/en/pricing", "/en/pricing.html"], (req, res) => res.redirect(301, "/en/individuals"));
 
-router.get("/investors/playground/resources", (req, res) => {
-  res.set("X-Robots-Tag", "noindex, nofollow");
-  res.sendFile(path.join(frPagesDir, "investors/playground/resources.html"));
-});
+// ============================================
+// DEV-ONLY ROUTES
+// ============================================
 
-router.get("/investors/playground/arena", (req, res) => {
-  res.set("X-Robots-Tag", "noindex, nofollow");
-  res.sendFile(path.join(frPagesDir, "investors/education/arena.html"));
-});
-
-router.get("/investors/playground/simulator", (req, res) => {
-  res.set("X-Robots-Tag", "noindex, nofollow");
-  res.sendFile(path.join(frPagesDir, "investors/education/simulator.html"));
-});
-
-/**
- * Legacy Education Routes - Redirect to Playground (French)
- */
-router.get("/investors/education", (req, res) => {
-  res.redirect(301, "/investors/playground");
-});
-
-router.get("/investors/education/arena", (req, res) => {
-  res.redirect(301, "/investors/playground/arena");
-});
-
-router.get("/investors/education/simulator", (req, res) => {
-  res.redirect(301, "/investors/playground/simulator");
-});
-
-
-/**
- * ============================================
- * INVESTOR PAGES (English)
- * ============================================
- */
-router.get("/en/investors", (req, res) => {
-  res.sendFile(path.join(enPagesDir, "investors/index.html"));
-});
-
-router.get("/en/investors/solution", (req, res) => {
-  res.sendFile(path.join(enPagesDir, "investors/solution.html"));
-});
-
-router.get("/en/investors/pricing", (req, res) => {
-  res.sendFile(path.join(enPagesDir, "investors/pricing.html"));
-});
-
-/**
- * English Investors Portfolio simulator - Redirect to playground simulator
- */
-router.get("/en/investors/portfolio-simulator", (req, res) => {
-  res.redirect(301, "/en/investors/playground/simulator");
-});
-
-/**
- * Bubble Playground Hub and Sub-pages (English)
- * Primary chatbot-first experience for investor education
- */
-router.get("/en/investors/playground", (req, res) => {
-  res.set("X-Robots-Tag", "noindex, nofollow");
-  res.sendFile(path.join(enPagesDir, "investors/playground.html"));
-});
-
-router.get("/en/investors/playground/resources", (req, res) => {
-  res.set("X-Robots-Tag", "noindex, nofollow");
-  res.sendFile(path.join(enPagesDir, "investors/playground/resources.html"));
-});
-
-router.get("/en/investors/playground/arena", (req, res) => {
-  res.set("X-Robots-Tag", "noindex, nofollow");
-  res.sendFile(path.join(enPagesDir, "investors/education/arena.html"));
-});
-
-router.get("/en/investors/playground/simulator", (req, res) => {
-  res.set("X-Robots-Tag", "noindex, nofollow");
-  res.sendFile(path.join(enPagesDir, "investors/education/simulator.html"));
-});
-
-/**
- * Legacy Education Routes - Redirect to Playground (English)
- */
-router.get("/en/investors/education", (req, res) => {
-  res.redirect(301, "/en/investors/playground");
-});
-
-router.get("/en/investors/education/arena", (req, res) => {
-  res.redirect(301, "/en/investors/playground/arena");
-});
-
-router.get("/en/investors/education/simulator", (req, res) => {
-  res.redirect(301, "/en/investors/playground/simulator");
-});
-
-/**
- * ============================================
- * PROFESSIONAL PAGES (French)
- * ============================================
- */
-router.get("/professionals", (req, res) => {
-  res.sendFile(path.join(frPagesDir, "professionals/index.html"));
-});
-
-router.get("/professionals/solutions-companies", (req, res) => {
-  res.sendFile(path.join(frPagesDir, "professionals/solutions-companies.html"));
-});
-
-router.get("/professionals/solutions-wealth-managers", (req, res) => {
-  res.sendFile(path.join(frPagesDir, "professionals/solutions-wealth-managers.html"));
-});
-
-router.get("/professionals/demo", (req, res) => {
-  res.sendFile(path.join(frPagesDir, "professionals/demo.html"));
-});
-
-router.get("/professionals/portfolio-simulator", (req, res) => {
-  res.sendFile(path.join(frPagesDir, "professionals/portfolio-simulator.html"));
-});
-
-/**
- * ============================================
- * PROFESSIONAL PAGES (English)
- * ============================================
- */
-router.get("/en/professionals", (req, res) => {
-  res.sendFile(path.join(enPagesDir, "professionals/index.html"));
-});
-
-router.get("/en/professionals/solutions-companies", (req, res) => {
-  res.sendFile(path.join(enPagesDir, "professionals/solutions-companies.html"));
-});
-
-router.get("/en/professionals/solutions-wealth-managers", (req, res) => {
-  res.sendFile(path.join(enPagesDir, "professionals/solutions-wealth-managers.html"));
-});
-
-router.get("/en/professionals/demo", (req, res) => {
-  res.sendFile(path.join(enPagesDir, "professionals/demo.html"));
-});
-
-router.get("/en/professionals/portfolio-simulator", (req, res) => {
-  res.sendFile(path.join(enPagesDir, "professionals/portfolio-simulator.html"));
-});
+if (process.env.NODE_ENV !== "production") {
+  router.get("/clear-cache", (req, res) => {
+    res.sendFile(path.join(frPagesDir, "clear-cache.html"));
+  });
+}
 
 module.exports = router;

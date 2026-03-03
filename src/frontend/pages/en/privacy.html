@@ -22,84 +22,74 @@
   <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="/assets/styles/styles.css">
+  <link rel="stylesheet" href="/assets/styles/core-2026.css" />
+  <link rel="stylesheet" href="/assets/styles/cookie-banner.css" />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     .privacy-container {
       max-width: 800px;
       margin: 0 auto;
-      padding: 60px 20px;
+      padding: 120px 20px 60px;
     }
-
     .privacy-header {
       text-align: center;
       margin-bottom: 3rem;
     }
-
     .privacy-header h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
       color: #333;
     }
-
     .privacy-header p {
       font-size: 1rem;
       color: #666;
     }
-
     .privacy-content {
       line-height: 1.8;
     }
-
     .privacy-content h2 {
       font-size: 1.75rem;
       margin-top: 2.5rem;
       margin-bottom: 1rem;
       color: #333;
     }
-
     .privacy-content h3 {
       font-size: 1.25rem;
       margin-top: 1.5rem;
       margin-bottom: 0.75rem;
       color: #444;
     }
-
     .privacy-content p {
       margin-bottom: 1rem;
       color: #555;
     }
-
     .privacy-content ul {
       margin-left: 1.5rem;
       margin-bottom: 1rem;
     }
-
     .privacy-content li {
       margin-bottom: 0.5rem;
       color: #555;
     }
-
     .privacy-content strong {
       color: #333;
       font-weight: 600;
     }
-
     .back-link {
       display: inline-block;
       margin-bottom: 2rem;
-      color: #6666ff;
+      color: var(--purple, #93acf0);
       text-decoration: none;
       font-weight: 500;
     }
-
     .back-link:hover {
       text-decoration: underline;
     }
-
     .last-updated {
       text-align: center;
       margin-top: 3rem;
@@ -109,36 +99,62 @@
       font-size: 0.9rem;
     }
   </style>
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  
-  // Consent mode for EEA users (GDPR)
-  gtag('consent', 'default', {
-    'analytics_storage': 'denied',
-    'ad_storage': 'denied'
-  });
-  
-  gtag('config', 'G-T0MQEL0ZG0', {
-    'anonymize_ip': true
-  });
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-T0MQEL0ZG0', {
-    'cookie_flags': 'SameSite=None;Secure',
-    'anonymize_ip': true
-  });
-</script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied' });
+    gtag('config', 'G-T0MQEL0ZG0', { 'anonymize_ip': true, 'cookie_flags': 'SameSite=None;Secure' });
+  </script>
 </head>
 <body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a class="logo" href="/en/">
+          <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle>
+            <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+          </svg>
+          Bubble.
+        </a>
+        <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
+          <span></span><span></span><span></span>
+        </button>
+        <nav>
+          <a href="/en/about">About</a>
+          <a href="/en/professionals">Professionals</a>
+          <a href="/en/individuals">Individuals</a>
+          <a href="/en/blog">Blog</a>
+          <div class="lang-switch">
+            <button data-href="/privacy">FR</button>
+            <span>/</span>
+            <button class="active">EN</button>
+          </div>
+        </nav>
+        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+          <div class="mobile-nav-content">
+            <a href="/en/about">About</a>
+            <a href="/en/professionals">Professionals</a>
+            <a href="/en/individuals">Individuals</a>
+            <a href="/en/blog">Blog</a>
+            <div class="lang-switch">
+              <button data-href="/privacy">FR</button>
+              <span>/</span>
+              <button class="active">EN</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
   <div class="privacy-container">
-    <a href="/en/" class="back-link">← Back to homepage</a>
+    <a href="/en/" class="back-link">&larr; Back to homepage</a>
 
     <div class="privacy-header">
       <h1>Privacy Policy</h1>
@@ -149,11 +165,11 @@
       <h2>1. Data We Collect</h2>
       <p>We collect the following information when you use this site:</p>
       <ul>
-        <li><strong>Waitlist details</strong> – your name and email address (required)</li>
-        <li><strong>Profile information</strong> – investor profile or context (optional)</li>
-        <li><strong>Messages</strong> – any comments or questions you share with us (optional)</li>
-        <li><strong>Session cookies</strong> – used for the chatbot and to cap requests (10 messages per session)</li>
-        <li><strong>Usage insights</strong> – aggregated page views and queries via Google Search Console (no personal identifiers)</li>
+        <li><strong>Contact details</strong> &ndash; your name and email address (newsletter form or B2B inquiries)</li>
+        <li><strong>Professional information</strong> &ndash; company, role, automation needs (for B2B prospects only)</li>
+        <li><strong>Messages</strong> &ndash; any comments or questions you share with us (optional)</li>
+        <li><strong>Session cookies</strong> &ndash; used for the educational chatbot and to cap requests (10 messages per session)</li>
+        <li><strong>Usage insights</strong> &ndash; aggregated page views and queries via Google Search Console (anonymized)</li>
       </ul>
 
       <h2>2. Legal Basis (GDPR Article 6)</h2>
@@ -166,36 +182,37 @@
       <h2>3. How We Use Your Data</h2>
       <p>Your information helps us to:</p>
       <ul>
-        <li>Notify you about Bubble’s launch and roadmap</li>
-        <li>Share educational content or product updates if you opt in</li>
-        <li>Understand how the site is used so we can improve it</li>
+        <li>Send you free educational content (tutorials, demos, build-in-public) if you opt in</li>
+        <li>Respond to your B2B consulting inquiries (for professionals only)</li>
+        <li>Understand how the site is used so we can improve our content</li>
         <li>Comply with legal and regulatory obligations</li>
       </ul>
 
       <h3>3.1 Service Providers</h3>
       <p>Trusted third parties help us run the service:</p>
       <ul>
-        <li><strong>Notion</strong> – secure storage for waitlist submissions (servers located in the EU/US with GDPR safeguards)</li>
-        <li><strong>Google Search Console</strong> – anonymised traffic analytics (no personal data stored)</li>
+        <li><strong>Notion</strong> &ndash; secure storage for contacts and B2B inquiries (servers located in the EU/US with GDPR safeguards)</li>
+        <li><strong>Google Search Console</strong> &ndash; anonymised traffic analytics (no personal data stored)</li>
       </ul>
 
       <h2>4. Retention Periods</h2>
       <p>We keep data only as long as necessary:</p>
       <ul>
-        <li><strong>Waitlist entries</strong> – up to 3 years or until you ask us to delete them</li>
-        <li><strong>Session cookies</strong> – cleared automatically when you close your browser</li>
-        <li><strong>Anonymised usage logs</strong> – 26 months (GDPR default)</li>
+        <li><strong>Newsletter contacts</strong> &ndash; up to 3 years or until you unsubscribe</li>
+        <li><strong>B2B prospects</strong> &ndash; duration of business relationship + 3 years</li>
+        <li><strong>Session cookies</strong> &ndash; cleared automatically when you close your browser</li>
+        <li><strong>Anonymised usage logs</strong> &ndash; 26 months (GDPR default)</li>
       </ul>
 
       <h2>5. Your GDPR Rights</h2>
       <p>You can exercise the following rights at any time:</p>
       <ul>
-        <li><strong>Access</strong> – receive a copy of the personal data we hold about you</li>
-        <li><strong>Rectification</strong> – correct data that is inaccurate or incomplete</li>
-        <li><strong>Erasure</strong> – request deletion of your personal data</li>
-        <li><strong>Portability</strong> – obtain your data in a structured, machine-readable format</li>
-        <li><strong>Objection</strong> – object to specific processing activities</li>
-        <li><strong>Restriction</strong> – ask us to limit processing in certain circumstances</li>
+        <li><strong>Access</strong> &ndash; receive a copy of the personal data we hold about you</li>
+        <li><strong>Rectification</strong> &ndash; correct data that is inaccurate or incomplete</li>
+        <li><strong>Erasure</strong> &ndash; request deletion of your personal data</li>
+        <li><strong>Portability</strong> &ndash; obtain your data in a structured, machine-readable format</li>
+        <li><strong>Objection</strong> &ndash; object to specific processing activities</li>
+        <li><strong>Restriction</strong> &ndash; ask us to limit processing in certain circumstances</li>
       </ul>
 
       <p><strong>To exercise any right, contact us at:</strong> <a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></p>
@@ -205,8 +222,8 @@
 
       <h3>6.1 Essential cookies (no consent required)</h3>
       <ul>
-        <li><strong>Chat session</strong> – caps conversations to 10 messages per session for safety</li>
-        <li><strong>Language preference</strong> – stores your FR/EN choice so you see the right version</li>
+        <li><strong>Chat session</strong> &ndash; caps conversations to 10 messages per session for safety</li>
+        <li><strong>Language preference</strong> &ndash; stores your FR/EN choice so you see the right version</li>
       </ul>
 
       <h3>6.2 Analytics cookies (consent required)</h3>
@@ -217,17 +234,17 @@
       <p>You can update your cookie choices at any time via:</p>
       <ul>
         <li>The consent banner displayed on first visit</li>
-        <li>The “Cookies” badge in the bottom-right corner</li>
+        <li>The "Cookies" badge in the bottom-right corner</li>
         <li>Your browser settings (manual deletion of stored cookies)</li>
       </ul>
 
       <h2>7. Data Security</h2>
       <p>We apply technical and organisational measures to safeguard your data:</p>
       <ul>
-        <li><strong>HTTPS encryption</strong> – all traffic between you and Bubble is encrypted</li>
-        <li><strong>Restricted access</strong> – only authorised Bubble team members can view personal data</li>
-        <li><strong>Secure hosting</strong> – data stored on GDPR-compliant infrastructure (Notion)</li>
-        <li><strong>Strong authentication</strong> – enforced password policies and multi-factor access</li>
+        <li><strong>HTTPS encryption</strong> &ndash; all traffic between you and Bubble is encrypted</li>
+        <li><strong>Restricted access</strong> &ndash; only authorised Bubble team members can view personal data</li>
+        <li><strong>Secure hosting</strong> &ndash; data stored on GDPR-compliant infrastructure (Notion)</li>
+        <li><strong>Strong authentication</strong> &ndash; enforced password policies and multi-factor access</li>
       </ul>
 
       <h2>8. International Transfers</h2>
@@ -236,142 +253,102 @@
       <h2>9. Policy Updates</h2>
       <p>We may update this policy to reflect product or regulatory changes. If updates are material, we will notify you by email (if subscribed) or via an on-site banner.</p>
 
-      <h2>10. Contact & Complaints</h2>
+      <h2>10. Contact &amp; Complaints</h2>
       <p><strong>Data controller:</strong><br>
       Bubble Invest<br>
       Email: <a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></p>
 
       <p><strong>Supervisory authority:</strong><br>
-      If you believe your rights are not respected, you can lodge a complaint with the CNIL (Commission Nationale de l’Informatique et des Libertés):<br>
+      If you believe your rights are not respected, you can lodge a complaint with the CNIL (Commission Nationale de l'Informatique et des Libertés):<br>
       <a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a></p>
 
-      <h2>11. Children’s Data</h2>
+      <h2>11. Children's Data</h2>
       <p>Bubble is designed for adults. We do not knowingly collect personal data from individuals under 18. If you are a parent or guardian and believe your child has shared personal data with us, please contact us so we can delete it.</p>
 
       <div class="last-updated">
-        <p><strong>Last updated:</strong> 10 October 2025</p>
-        <p>Version 1.0 – Initial policy</p>
+        <p><strong>Last updated:</strong> March 2, 2026</p>
+        <p>Version 2.0 &ndash; Updated business model (free content + B2B consulting)</p>
       </div>
     </div>
   </div>
 
-
+  <!-- FOOTER -->
   <footer>
     <div class="container">
-      <div class="footer-content">
-        <div class="footer-left">
-          <div class="footer-logo" style="display: flex; align-items: center; gap: 0.18em">
-            <span style="display: flex; align-items: center">
-              <svg width="30" height="30" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
-                <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
-                <circle cx="59" cy="21" r="6" fill="#000"/>
-              </svg>
-            </span>
-            <span>Bubble.</span>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/en/" style="font-size: 1.5rem;">
+            <svg fill="none" style="width: 32px; height: 32px;" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle>
+              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+            </svg>
+            Bubble.
+          </a>
+          <p>The AI era has changed everything. Change with it.</p>
+          <div class="social-links">
+            <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest" target="_blank"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a>
+            <a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+            <a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"></path></svg></a>
+            <a aria-label="X" href="https://x.com/bubbleinvest" target="_blank"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
           </div>
-          <div class="footer-tagline" data-translate="footer.tagline">The AI era changes everything. Let's change with it.</div>
-          <div class="footer-copyright" data-translate="footer.copyright">© 2025 Bubble Invest SAS. Transparent by design.</div>
         </div>
-
-        <nav class="footer-nav">
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.investors">Investisseurs</h4>
-              <ul>
-                <li><a href="/en/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
-                <li><a href="/en/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
-                <li><a href="/en/investors#faq" data-translate="footer.nav.investors.faq">FAQ</a></li>
-                <li><a href="/en/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Accès Anticipé</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.professionals">Professionnels</h4>
-              <ul>
-                <li><a href="/en/professionals/solutions-companies" data-translate="footer.nav.professionals.solutions">Solutions</a></li>
-                <li><a href="/en/professionals/solutions-wealth-managers" data-translate="footer.nav.professionals.demo">Démo</a></li>
-                <li><a href="/en/professionals#faq" data-translate="footer.nav.professionals.faq">FAQ</a></li>
-                <li><a href="/en/professionals#contact-form" data-translate="footer.nav.professionals.contact">Contact</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.resources">Ressources</h4>
-              <ul>
-                <li><a href="/en/blog" data-translate="footer.nav.blog">Blog</a></li>
-                <li><a href="/en/investors/playground" data-translate="footer.nav.resources.education">Playground</a></li>
-                <li><a href="/en/investors" class="js-retail-demo-trigger" data-entry-point="footer_resources_demo" data-translate="footer.nav.resources.demo">Démo</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.legal">Légal</h4>
-              <ul>
-                <li><a href="/en/legal-notice" data-translate="footer.nav.legal_notice">Mentions Légales</a></li>
-                <li><a href="/en/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
-                <li><a href="#cookies" id="tarteaucitronRoot" data-translate="footer.nav.cookies">Gérer les Cookies</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-column">
-              <h4 data-translate="footer.nav.contact">Contact</h4>
-              <ul>
-                <li><a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></li>
-                <li><a href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105" target="_blank" rel="noopener noreferrer" data-translate="footer.nav.newsletter">Newsletter</a></li>
-              </ul>
-              <div class="social-media-links">
-                <a href="https://substack.com/@bubbleinvest?utm_campaign=profile&utm_medium=profile-page" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Substack" data-handle="Bubble Invest">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                    <path d="M22.5 6H1.5V9H22.5V6ZM1.5 10.5V24L12 18L22.5 24V10.5H1.5ZM22.5 0H1.5V3H22.5V0Z" />
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.substack">Bubble Invest</span>
-                </a>
-                <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn" data-handle="Bubble Invest AI">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                    <rect x="2" y="9" width="4" height="12"/>
-                    <circle cx="4" cy="4" r="2"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.linkedin">Bubble Invest AI</span>
-                </a>
-                <a href="https://www.instagram.com/behindthefinancebubble/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram" data-handle="@behindthefinancebubble">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.instagram">@behindthefinancebubble</span>
-                </a>
-                <a href="https://www.tiktok.com/@behind.the.bubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok" data-handle="@behind.the.bubble">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.tiktok">@behind.the.bubble</span>
-                </a>
-                <a href="https://www.youtube.com/@behindthefinancebubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube" data-handle="@behindthefinancebubble">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
-                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.youtube">@behindthefinancebubble</span>
-                </a>
-              
-                <a href="https://twitter.com/BubbleInvest" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter" data-handle="@BubbleInvest">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4l16 16M4 20L20 4"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.twitter">@BubbleInvest</span>
-                </a></div>
-            </div>
-          </nav>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="/en/individuals">Individuals</a></li>
+            <li><a href="/en/professionals">Professionals</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="/en/blog">Blog</a></li>
+            <li><a href="/en/about">About</a></li>
+            <li><a href="https://bubbleinvest.substack.com" target="_blank">Newsletter</a></li>
+            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/en/legal-notice">Legal Notice</a></li>
+            <li><a href="/en/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Bubble Invest &mdash; Transparent by design.</p>
       </div>
     </div>
   </footer>
 
+  <!-- Scripts -->
+  <script src="/js/seo/cookie-banner.js"></script>
+  <script src="/js/lang-toggle.js"></script>
+  <script src="/js/seo/ga4-events.js"></script>
 
-  <!-- Cookie Consent (Modern Custom Banner) - MUST load CSS before script -->
-  <link rel="stylesheet" href="/assets/styles/cookie-banner.css">
-    <script src="/js/seo/cookie-banner.js"></script>
-
-<script src="/js/seo/ga4-events.js"></script>
+  <!-- Mobile hamburger menu toggle -->
+  <script>
+    (function () {
+      'use strict';
+      const toggle = document.getElementById('hamburger-toggle');
+      const overlay = document.getElementById('mobile-nav-overlay');
+      if (!toggle || !overlay) return;
+      toggle.addEventListener('click', function () {
+        const isOpen = overlay.classList.toggle('open');
+        toggle.classList.toggle('open', isOpen);
+        toggle.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+      overlay.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          overlay.classList.remove('open');
+          toggle.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

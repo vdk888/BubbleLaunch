@@ -8,96 +8,106 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is the **marketing website** for **Bubble Invest**, a fintech startup. This codebase is NOT the main product—it's the public-facing website that presents Bubble Invest's services and product vision.
 
-- **This Codebase (BubbleLaunch)**: Landing page, blog, portfolio simulator demo, B2B consulting page, and waitlist
-- **Main Product (Bubble Portfolio)**: Separate GitHub repository containing the AI-agent-driven portfolio management platform 
+- **This Codebase (BubbleLaunch)**: Content platform with blog, tutorials, portfolio simulator demo, B2B consulting page, and newsletter subscription (https://bit.ly/3Z9Cncr)
+- **Investment Agent**: Personal proof of concept shared openly for educational purposes, NOT a commercial product 
 
 ---
 
 ### Bubble Invest Company Overview
 
-**Bubble Invest** is a fintech startup providing an **AI-powered quantitative platform** that delivers **AI-powered insights** on how to invest according to users' own decisions and profiles. **Bubble's mission: AI empowerment to replace traditional financial actors**, not traditional asset management.
+**Bubble Invest** operates a dual-activity business model combining free educational content (B2C) with AI automation consulting (B2B).
 
-**Services**:
-1. **Bubble Portfolio** (Primary Product) – Automated trading copilot with chat-native workflows, strategy backtesting, and broker execution.
-2. **Bubble Businesses** (B2B Consulting) – Custom AI workflow delivery for SMEs and independent Wealth Managers using Claude Code, Codex, Gemini, and direct API integrations.
+**Business Model**:
+1. **B2C - Free Content, Education & Expertise Showcase** – Our consumer-facing activity is entirely free and serves as our marketing. We share our investment agent proof of concept openly, along with tutorials, demos, and resources on AI agents (Claude Code, Open Claw, etc.). The B2C feeds the B2B by proving our expertise.
+2. **B2B - Custom AI Automation Consulting** – We help professionals (wealth advisors, asset managers, SMEs) deploy cutting-edge AI agents and automation. Our unique edge: systematic early adoption—we master tools weeks after release, well ahead of the market.
 
 ### Bubble Invest's Core Approach
 
 **What Makes Bubble Different:**
 
-#### **Bubble Portfolio (Main Product)**
-- **Composer-like Automation**: Conversational agent guides users through screening → backtests → allocations → execution with their own brokers.
-- **AI Empowerment**: Users design strategies; Bubble never takes custody or gives financial advice.
-- **Transparent + Fixed Pricing**: Cost-plus model (≈€0-10/month) instead of AUM fees.
-- **Extensible Architecture**: Swappable data sources, brokers, strategy modules, and AI copilots.
-- **Multi-Tier Distribution**:
-  - Retail investors access automated trading copilots.
-  - Wealth advisors (CGP/family offices) manage multiple clients through white-label Bubble Portfolio.
-  - Asset managers tap the screening/backtesting stack.
-- **Regulatory Ready & User Controlled**: KYC/GDPR-friendly design with full auditability and broker-side custody.
+#### **B2C Activity - Free Content as Marketing**
+- **Investment Agent Proof of Concept**: We built an automated investment agent for our own use. We share it open-source, transparently showing what it does well, its limits, and how it's built. This is NOT a paid product—it's our showcase.
+- **Educational Content**: Tutorials, demos, build-in-public resources on AI agents (Claude Code, Open Claw, etc.), extending beyond just investment to general AI automation.
+- **Blog & Resources**: Free knowledge sharing on automation, AI agents, and technology trends.
+- **No Forced Monetization**: We don't artificially monetize content that's becoming commoditized. Our value lies in context, curation, and honesty.
+- **Newsletter**: Free educational content via Substack (https://bubbleinvest.substack.com) and Bitly subscription (https://bit.ly/3Z9Cncr)
 
-#### **Bubble Businesses (B2B Consulting Service)**
-- **Ex-Big Four & UBS Team** delivering pragmatic automation projects for SMEs/Wealth Managers.
-- **Scope**: Custom AI workflow sprints, revenue recognition automation, reporting copilots, reconciliation dashboards, client-intelligence digests.
-- **Tooling**: Claude Code/Codex/Gemini code builders wired into clients' APIs (not generic low-code).
-- **Pricing & Timing**: Diagnostic (€3k-€5k), targeted automations (€8k-€12k), full projects (€20k-€30k) delivered in 2-4 months with transparent budgets.
+#### **B2B Activity - AI Automation Consulting**
+- **Target Clients**: Wealth advisors (CGP), asset management firms, small/medium SMEs, tech-forward independents
+- **Services**: AI agent deployment (Claude Code, Open Claw, etc.), workflow automation, technology monitoring, training on latest AI tools
+- **Unique Edge**: Systematic early adopters—we master tools released weeks ago, placing clients well ahead of competitors
+- **Approach**: Continuous support, rolling upgrades, always at the cutting edge of AI innovations
+- **Pricing & Scope**: Custom projects ranging from diagnostics to full automation deployments, with transparent budgets and agile delivery
 
 ---
 
 ### Current Status
 
-**Bubble Portfolio**: Under development(separate GitHub repository). Founders' own portfolios use current beta automation with IBKR/Alpaca/Saxo. User-side automation planned post-regulatory approval.
+**Investment Agent**: Personal proof of concept used by founders, shared publicly for educational purposes. NOT a commercial product—serves as demonstration of AI automation capabilities.
 
-**BubbleLaunch Website** (this codebase): Marketing presence with educational simulator and waitlist for beta access.
+**BubbleLaunch Website** (this codebase): Content platform showcasing expertise through free resources, tutorials, blog, and newsletter (https://bit.ly/3Z9Cncr). Acts as marketing funnel for B2B consulting services.
 
 ## BubbleLaunch Website (This Codebase)
 
-**Current Web Application:**
-The current codebase is a multilingual landing page with integrated AI chatbot, blog system, and an expanded portfolio simulator (9 strategies + custom mix, leverage toggle, exports), built with vanilla JavaScript and Node.js/Express. This serves as the public-facing website presenting Bubble Invest and its services.
+**Current Web Application (2026 Refresh):**
+The codebase is a bilingual (FR/EN) marketing website with integrated AI chatbot, blog system, and Knowledge Garden, built with vanilla JavaScript and Node.js/Express. Refreshed in 2026 with new design system (Inter font, glassmorphism, `--purple: #93acf0` accent).
 
-**Key Pages & Features**:
-- **Landing Page** (`index.html`) - Presents Bubble Portfolio product vision and value proposition
-- **Portfolio Simulator** (`portfolio-simulator.html`) - Educational demo of 9 backtested strategies for investors to explore investment concepts
-- **Blog** (`blog.html`, `/blog/*`) - SEO-driven content educating about investment strategies, AI, portfolio management, democratization
-- **Investors Section** (`/investors/`) - Dedicated landing pages for retail investors with solution overview and pricing
-- **Professionals Section** (`/professionals/`) - B2B pages for wealth managers and companies: custom AI workflows and agents (€3k-€30k projects)
-- **AI Chatbot** - Educational chatbot answering questions about investment, Bubble's approach, and product capabilities
-- **Localized Pages** (`/en/`) - Full English locale mirror of main pages
+**Active Pages (2026)**:
+
+| FR Route | EN Route | File (FR) | File (EN) |
+|----------|----------|-----------|-----------|
+| `/` | `/en/` | `pages/index.html` | `pages/en/index.html` |
+| `/particuliers` | `/en/individuals` | `pages/particuliers.html` | `pages/en/individuals.html` |
+| `/professionnels` | `/en/professionals` | `pages/professionnels.html` | `pages/en/professionals.html` |
+| `/a-propos` | `/en/about` | `pages/a-propos.html` | `pages/en/about.html` |
+| `/blog` | `/en/blog` | `pages/blog.html` | `pages/en/blog.html` |
+| `/blog/:slug` | `/en/blog/:slug` | `pages/blog-post.html` | `pages/en/blog-post.html` |
+| `/mentions-legales` | `/en/legal-notice` | `pages/mentions-legales.html` | `pages/en/legal-notice.html` |
+| `/privacy` | `/en/privacy` | `pages/privacy.html` | `pages/en/privacy.html` |
+
+**Key Features**:
+- **AI Chatbot** - Educational chatbot on every page via floating input + slide-in panel
+- **Blog + Knowledge Garden** - SEO-driven content with Notion CMS + reference library
+- **Bilingual** - Full FR/EN with language toggle in header, `data-translate` attributes, `translations.js`
+- **Cookie Banner** - GDPR/CNIL compliant, bilingual, GA4 consent mode
+- **Mobile Hamburger Menu** - Responsive nav for ≤768px viewports
+
+**Archived Pages** (in `pages/archive/2024-2025/`):
+- `investors/` — legacy retail investor section (replaced by `/particuliers`)
+- `professionals/` — legacy B2B section (replaced by `/professionnels`)
+- `portfolio-simulator.html` — legacy simulator (feature removed from 2026 refresh)
+- `pricing.html` — legacy pricing page (integrated into new pages)
+- `design-mock.html`, `workflow-visualization-mock.html` — old design mocks
+- `archive/mock-files/` — 10 standalone mock HTML files used during 2026 design phase
 
 ---
 
-## Bubble Portfolio Product (Separate Repository)
+## Investment Agent (Proof of Concept - NOT a Commercial Product)
 
-**Status**: Main AI-agent platform currently in development (maybe with external supplier)
+**Status**: Personal tool used by founders, shared openly for educational purposes
 
-The **Bubble Portfolio** is the actual product—a separate GitHub repository containing the AI-agent-driven portfolio management platform. This is what the BubbleLaunch website promotes.
+The **Investment Agent** is a proof of concept we built for our own portfolio automation. We share it transparently as part of our B2C content strategy—showing what works, what doesn't, and how it's built. **This is NOT a commercial product.**
 
-### Product Characteristics (Under Development):
-- **AI Agent Interface**: Conversational chatbot-driven experience (ChatGPT native app as primary distribution)
-- **End-to-End Workflow**: Stock screening → Backtesting strategies → Portfolio allocation → Automated execution
-- **Extensible Architecture**: Pluggable data sources, strategies, broker integrations
-- **Multi-Broker Support**: IBKR, Alpaca, Saxo Bank with intelligent routing
-- **Three User Tiers**:
-  - **Retail**: Full automated execution with API-enabled brokers
-  - **CGPs (Wealth Advisors)**: Admin interface managing multiple client accounts
-  - **Asset Managers**: Screening and backtesting tools for fund management
-- **Cost-Plus Pricing**: Transparent unit economics (€0-10/month retail) vs. traditional AUM fees
-- **Regulatory Ready**: KYC, GDPR, AMF compliance built-in from Day 1
+### Agent Characteristics (Shared Openly):
+- **Personal Use**: Currently automated for founders' own portfolios with IBKR/Alpaca/Saxo brokers
+- **Open Sharing**: Build-in-public approach—we transparently share the architecture, strategies, successes, and failures
+- **Educational Purpose**: Demonstrates AI agent capabilities for investment automation, not a financial product or advice service
+- **No Custody**: Users (if they replicate) maintain control with their own brokerage accounts—we NEVER take custody
+- **No Financial Advice**: This is a personal tool shared for education, NOT personalized investment recommendations
 
-### How BubbleLaunch Relates to Bubble Portfolio:
-1. **Landing Page**: Showcases product vision with educational portfolio simulator
-2. **Simulator**: Simplified preview of Bubble Portfolio's backtesting engine (9 strategies, 20 years of data)
-3. **Blog Content**: Educates users about investment concepts (risk parity, momentum, asset allocation)
-4. **Waitlist**: Captures early adopter interest for product beta (managed in product repository)
-5. **Businesses Page**: Represents complementary B2B consulting services
+### How BubbleLaunch Showcases the Agent:
+1. **Content Platform**: Blog posts, tutorials, and demos explaining how the agent works
+2. **Portfolio Simulator**: Educational tool showing backtesting concepts (9 strategies, 20 years of data)
+3. **Transparent Sharing**: "Build in public" philosophy—we share learnings, iterations, and even failures
+4. **B2B Proof Point**: Demonstrates our AI automation expertise to attract consulting clients
+5. **Newsletter**: Regular updates on agent improvements and AI automation insights (https://bit.ly/3Z9Cncr)
 
-**Key Differentiators from Traditional Robo-Advisors:**
-1. **AI empowerment, not asset management**: Provides insights for user decisions, not portfolio control
-2. **User-driven investment focus**: Adapts to user preferences (privileges ETF strategies for low fees)
-3. **Fixed fees**: €0-10/month depending on tier vs. 0.85-1.6% AUM percentage fees
-4. **Build in public**: Transparent development, sharing learnings and iterations
-5. **Direct broker integration**: Users maintain control with their own brokerage accounts (Interactive Brokers, Alpaca, Saxo Bank) - NO custody model
-6. **Automation status**: Currently automated for founders' portfolios; user automation planned for full product launch (SaaS platform, not financial advisory service)
+**Key Points:**
+1. **Free Content, Not a Product**: The agent is shared for free as proof of expertise—B2C is marketing, not revenue
+2. **No Regulatory Constraints**: We're not offering financial advice, asset management, or a financial product—just sharing our personal tool
+3. **Focus on B2B**: The real business is helping professionals (CGPs, asset managers, SMEs) deploy AI automation in their own workflows
+4. **Early Adopter Edge**: We stay ahead by mastering cutting-edge tools (Claude Code, Open Claw, etc.) weeks after release
+5. **Build Trust Through Transparency**: Honest sharing of what works (and what doesn't) builds credibility for B2B consulting
 
 ## Commands
 
@@ -106,11 +116,17 @@ The **Bubble Portfolio** is the actual product—a separate GitHub repository co
 - `node src/backend/server.js` - Direct server start
 
 ### Testing
-- **Manual Testing Endpoints**:
-  - `/` - Main landing page
-  - `/portfolio-simulator` - Interactive portfolio simulator
-  - `/blog` - Blog listing
-  - `/test-image-generation` - OpenAI image generation test
+- **Manual Testing Endpoints (2026)**:
+  - `/` - Homepage (FR)
+  - `/en/` - Homepage (EN)
+  - `/particuliers` - Individuals landing (FR)
+  - `/en/individuals` - Individuals landing (EN)
+  - `/professionnels` - Professionals landing (FR)
+  - `/en/professionals` - Professionals landing (EN)
+  - `/a-propos` - About (FR)
+  - `/en/about` - About (EN)
+  - `/blog` - Blog listing (FR)
+  - `/en/blog` - Blog listing (EN)
   - `/clear-cache` - Clear blog image cache
   - `/api/blog/test-image-service-connection` - Test OpenAI image service connectivity
 - No automated test framework configured (manual testing only)
@@ -153,28 +169,32 @@ The **Bubble Portfolio** is the actual product—a separate GitHub repository co
   - **`strategyBuilderService.js`** - Heuristic intent detection for strategy simulation and custom allocation suggestions
 
 ### Frontend Structure (`src/frontend/`)
-- **`pages/`** - HTML pages (index.html, blog.html, blog-post.html, portfolio-simulator.html, clear-cache.html, test-image-generation.html)
+- **`pages/`** - HTML pages (2026 refresh):
+  - FR: `index.html`, `particuliers.html`, `professionnels.html`, `a-propos.html`, `blog.html`, `blog-post.html`
+  - EN: `en/index.html`, `en/individuals.html`, `en/professionals.html`, `en/about.html`, `en/blog.html`, `en/blog-post.html`
+  - Legal: `mentions-legales.html`, `privacy.html`, `en/legal-notice.html`, `en/privacy.html`
+  - Utility: `404.html`, `clear-cache.html`
+  - Archive: `archive/2024-2025/` (legacy pages), `archive/mock-files/` (design mocks)
 - **`js/`** - Modular JavaScript components:
-  - `script.js` - Main application logic with bilingual support
-  - `chatbot-logic.js` - AI chatbot implementation
-  - `chatbot-animations.js` - Message animations and typing indicators
-  - `blog.js` - Blog listing functionality
+  - `chat-side-panel.js` - Slide-in chat panel with SSE streaming
+  - `floating-chat-input.js` - Glassmorphism floating chat input (triggers side panel)
+  - `bubble-agent-memory.js` - **Unified Agent Memory System** (localStorage-based persistent memory)
+  - `blog-2026.js` - Blog listing with API integration + Knowledge Garden references
   - `blog-post.js` - Individual blog post rendering
-  - `references.js` - Knowledge Garden references display with enriched metadata
-  - `portfolio-simulator.js` - Interactive portfolio comparison tool (9 strategies + custom mix, leverage toggle)
-  - `portfolio-preview.js` - Landing page portfolio chart preview
-  - `charts.js` - Shared chart utilities and configurations
+  - `chatbot-animations.js` - Message animations and typing indicators
   - `animations.js` - UI animations and effects
-  - `floating-bubble.js` - Interactive bubble elements
-  - `floating-chat-input.js` - Glassmorphism floating chat input
-  - `mini-chat.js` - Embedded chat widget
-  - `bubble-agent-memory.js` - **Unified Agent Memory System** (localStorage-based persistent memory for user profiles, journey tracking, and conversation context)
+  - `seo/cookie-banner.js` - GDPR/CNIL cookie consent banner
 - **`i18n/translations.js`** - Internationalization (French/English)
 - **`assets/`** - Static resources (styles, images)
-  - `styles/styles.css` - Main stylesheet (3,769 lines)
-  - `styles/blog.css` - Blog-specific styles
-  - `styles/blog-post.css` - Blog post styles
-  - `styles/references.css` - Knowledge Garden styles
+  - `styles/core-2026.css` - Shared styles: CSS variables, header, footer, buttons, chat panel, mobile hamburger
+  - `styles/homepage-2026.css` - Homepage-specific styles
+  - `styles/particuliers-2026.css` - Particuliers/Individuals page styles
+  - `styles/professionnels-2026.css` - Professionnels/Professionals page styles
+  - `styles/a-propos-2026.css` - À Propos/About page styles
+  - `styles/blog-2026.css` - Blog listing + Knowledge Garden styles
+  - `styles/cookie-banner.css` - Cookie banner styles
+  - `styles/styles.css` - Legacy stylesheet (kept for blog-post pages, to be migrated)
+  - `styles/blog.css`, `styles/blog-post.css` - Legacy blog styles
 
 ### Key Integrations
 - **Notion API** - Content management for waitlist, blog posts, and Knowledge Garden
@@ -305,18 +325,15 @@ The application features an intelligent reference enrichment system for the Know
 - **Focused Prompts:** Only generates essential metadata and legal links
 - **Intelligent Caching:** Prevents redundant API calls for already enriched references
 
-### Bubble Playground (Education Module)
-**Status**: ✅ **Production-ready** - Unified Agent Architecture implemented
+### Bubble Playground (Education Module) — ARCHIVED
+**Status**: 📦 **Archived** (2026 refresh) — Pages moved to `pages/archive/2024-2025/investors/`
 
-**Mission**: Transform financial education into a fun, engaging, and accessible experience.
+**Note**: The Playground, Arena, Simulator, and Resources pages were part of the `/investors/` section which has been replaced by `/particuliers` in the 2026 refresh. The BubbleAgentMemory system and chat-side-panel remain active across the new site.
 
-**Documentation**: See [docs/BUBBLE_PLAYGROUND_PROJECT.md](docs/BUBBLE_PLAYGROUND_PROJECT.md) for detailed project tracking.
+**Documentation**: See [docs/BUBBLE_PLAYGROUND_PROJECT.md](docs/BUBBLE_PLAYGROUND_PROJECT.md) for historical reference.
 
-**Pages**:
-- **Playground Chat** (`/investors/playground`) - Full-screen conversational onboarding with profile discovery
-- **AI Trading Arena** (`/investors/education/arena`) - Watch 4 AI bots compete on 20 years of data
-- **Strategy Simulator** (`/investors/education/simulator`) - Chat-driven portfolio builder
-- **Resources Hub** (`/investors/playground/resources`) - Educational videos and materials
+**Archived Pages** (were under `/investors/`):
+- Playground Chat, AI Trading Arena, Strategy Simulator, Resources Hub
 
 **Bot Mascots** (Animal-themed for memorability):
 | Animal (FR) | Animal (EN) | Strategy | Color | Profile Match |
@@ -414,10 +431,12 @@ The system detects backtest intent patterns (e.g., "test 60/40", "try equal weig
 
 ---
 
-### Portfolio Simulator (Legacy)
-**Status**: ✅ **Production-ready** (v1.2) - Fully integrated and deployed
+### Portfolio Simulator — ARCHIVED
+**Status**: 📦 **Archived** (2026 refresh) — Page moved to `pages/archive/2024-2025/portfolio-simulator.html`
 
-The application includes a **lightweight, interactive portfolio simulator** integrated into the main Bubble project:
+The portfolio simulator was a standalone page at `/portfolio-simulator`. It has been archived as part of the 2026 refresh. The simulator functionality may be reintroduced in a future iteration.
+
+Previously included a **lightweight, interactive portfolio simulator** integrated into the main Bubble project:
 
 **Architecture:**
 - **Simplified from anim-main**: Reduced from 9 strategies (4000+ lines) to 3 core strategies (~1096 lines total)

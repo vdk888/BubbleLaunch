@@ -7,7 +7,7 @@ const blogService = require('../services/blogService');
  * Route: GET /sitemap.xml
  *
  * Dynamically generates sitemap including:
- * - Static pages (homepage, portfolio simulator, blog)
+ * - Static pages (2026 refresh)
  * - All published blog posts from Notion
  */
 router.get('/sitemap.xml', async (req, res) => {
@@ -48,7 +48,7 @@ router.get('/sitemap.xml', async (req, res) => {
       return entries;
     };
 
-    // Static pages with priority and changefreq
+    // Static pages — 2026 refresh
     const staticPages = [
       {
         fr: '/',
@@ -58,15 +58,22 @@ router.get('/sitemap.xml', async (req, res) => {
         lastmod: today
       },
       {
-        fr: '/portfolio-simulator',
-        en: '/en/portfolio-simulator',
+        fr: '/particuliers',
+        en: '/en/individuals',
         priority: '0.9',
         changefreq: 'monthly',
         lastmod: today
       },
       {
-        fr: '/investors/portfolio-simulator',
-        en: '/en/investors/portfolio-simulator',
+        fr: '/professionnels',
+        en: '/en/professionals',
+        priority: '0.9',
+        changefreq: 'monthly',
+        lastmod: today
+      },
+      {
+        fr: '/a-propos',
+        en: '/en/about',
         priority: '0.8',
         changefreq: 'monthly',
         lastmod: today
@@ -79,79 +86,16 @@ router.get('/sitemap.xml', async (req, res) => {
         lastmod: today
       },
       {
-        fr: '/pricing',
-        en: '/en/pricing',
-        priority: '0.8',
-        changefreq: 'monthly',
-        lastmod: today
-      },
-      {
-        fr: '/investors',
-        en: '/en/investors',
-        priority: '0.7',
-        changefreq: 'monthly',
-        lastmod: today
-      },
-      {
-        fr: '/investors/solution',
-        en: '/en/investors/solution',
-        priority: '0.7',
-        changefreq: 'monthly',
-        lastmod: today
-      },
-      {
-        fr: '/investors/pricing',
-        en: '/en/investors/pricing',
-        priority: '0.8',
-        changefreq: 'monthly',
-        lastmod: today
-      },
-      {
-        fr: '/professionals',
-        en: '/en/professionals',
-        priority: '0.7',
-        changefreq: 'monthly',
-        lastmod: today
-      },
-      {
-        fr: '/professionals/solutions-companies',
-        en: '/en/professionals/solutions-companies',
-        priority: '0.7',
-        changefreq: 'monthly',
-        lastmod: today
-      },
-      {
-        fr: '/professionals/solutions-wealth-managers',
-        en: '/en/professionals/solutions-wealth-managers',
-        priority: '0.7',
-        changefreq: 'monthly',
-        lastmod: today
-      },
-      {
-        fr: '/professionals/demo',
-        en: '/en/professionals/demo',
-        priority: '0.6',
-        changefreq: 'yearly',
-        lastmod: today
-      },
-      {
-        fr: '/professionals/portfolio-simulator',
-        en: '/en/professionals/portfolio-simulator',
-        priority: '0.7',
-        changefreq: 'monthly',
-        lastmod: today
-      },
-      {
         fr: '/privacy',
         en: '/en/privacy',
-        priority: '0.4',
+        priority: '0.3',
         changefreq: 'yearly',
         lastmod: today
       },
       {
         fr: '/mentions-legales',
         en: '/en/legal-notice',
-        priority: '0.4',
+        priority: '0.3',
         changefreq: 'yearly',
         lastmod: today
       },
@@ -177,13 +121,10 @@ router.get('/sitemap.xml', async (req, res) => {
       });
     } catch (error) {
       console.warn('Could not fetch blog posts for sitemap:', error.message);
-      // Continue without blog posts if service fails
     }
 
-    // Combine all pages
     const allPages = [...staticEntries, ...blogPages];
 
-    // Generate XML
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">

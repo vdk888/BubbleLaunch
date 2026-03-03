@@ -556,6 +556,15 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding: 7rem 0 3rem;
+  }
+
+  /* Featured post: stack vertically */
+  .featured {
+    padding: 3rem 0;
+  }
+
   .featured-card {
     grid-template-columns: 1fr;
   }
@@ -568,15 +577,129 @@
     padding: 1.5rem;
   }
 
+  .featured-content h2 {
+    font-size: 1.35rem;
+  }
+
+  .featured-content p {
+    font-size: 0.9rem;
+  }
+
+  /* Blog section: tighter padding */
+  .blog-section {
+    padding: 3rem 0 4rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.3rem;
+  }
+
+  /* Blog cards → horizontal scroll carousel */
   .blog-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    scrollbar-width: none;
+  }
+
+  .blog-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .blog-card {
+    flex: 0 0 80%;
+    scroll-snap-align: start;
+  }
+
+  .blog-card-content {
+    padding: 1rem 1.25rem;
+  }
+
+  .blog-card h3 {
+    font-size: 1rem;
+  }
+
+  .blog-card p {
+    font-size: 0.85rem;
+  }
+
+  /* References: compact */
+  .references-section {
+    padding: 3.5rem 0;
+  }
+
+  .references-header {
+    margin-bottom: 2rem;
+  }
+
+  .references-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .category-content {
+    padding: 1rem;
   }
 
   .references-inner-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .reference-card {
     padding: 1rem;
+  }
+
+  .reference-title {
+    font-size: 0.95rem;
+  }
+
+  .reference-summary {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .category-header {
+    padding: 1rem 1.25rem;
+  }
+
+  .category-title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-card {
+    flex: 0 0 85%;
+  }
+
+  .featured-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .blog-card-content {
+    padding: 0.875rem 1rem;
+  }
+
+  .blog-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .reference-card {
+    padding: 0.875rem;
+  }
+
+  .references-header h2 {
+    font-size: 1.25rem;
   }
 }

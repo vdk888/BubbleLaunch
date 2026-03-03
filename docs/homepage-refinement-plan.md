@@ -168,7 +168,7 @@ These already align well! Minor tweaks:
 Add new small section between Approach and Waitlist, or as a footer element:
 
 ```
-💭 Pourquoi "Bubble" ?
+💭 Pourquoi "Bubble Invest" ?
 
 🫧 **Bubble** = Transparence (on éclate la bulle de la finance opaque)
 💰 **Invest** = Investissement (notre cœur de métier historique)

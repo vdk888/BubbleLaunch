@@ -201,6 +201,10 @@
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
+  .hero {
+    padding: 7rem 0 3rem;
+  }
+
   .hero h1 {
     font-size: 2rem;
   }
@@ -209,7 +213,79 @@
     font-size: 1.1rem;
   }
 
+  /* Sections: tighter padding */
+  .agent-section,
+  .follow-section,
+  .cta-section {
+    padding: 3rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  /* Agent cards → horizontal scroll carousel */
   .cards-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    scrollbar-width: none;
+  }
+
+  .cards-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    flex: 0 0 80%;
+    scroll-snap-align: start;
+    padding: 1.5rem;
+  }
+
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+  }
+
+  .card h4 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+  }
+
+  /* Social buttons */
+  .social-buttons {
+    gap: 0.75rem;
+  }
+
+  .social-btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .card {
+    flex: 0 0 85%;
+    padding: 1.25rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.4rem;
   }
 }

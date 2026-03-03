@@ -19,101 +19,89 @@
   <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/mentions-legales">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="../assets/images/bubble-favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="../assets/styles/styles.css">
+  <link rel="stylesheet" href="/assets/styles/core-2026.css" />
+  <link rel="stylesheet" href="/assets/styles/cookie-banner.css" />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     .legal-container {
       max-width: 800px;
       margin: 0 auto;
-      padding: 60px 20px;
+      padding: 120px 20px 60px;
     }
-
     .legal-header {
       text-align: center;
       margin-bottom: 3rem;
     }
-
     .legal-header h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
       color: #333;
     }
-
     .legal-header p {
       font-size: 1rem;
       color: #666;
     }
-
     .legal-content {
       line-height: 1.8;
     }
-
     .legal-content h2 {
       font-size: 1.75rem;
       margin-top: 2.5rem;
       margin-bottom: 1rem;
       color: #333;
-      border-bottom: 2px solid #6666ff;
+      border-bottom: 2px solid var(--purple, #93acf0);
       padding-bottom: 0.5rem;
     }
-
     .legal-content h3 {
       font-size: 1.25rem;
       margin-top: 1.5rem;
       margin-bottom: 0.75rem;
       color: #444;
     }
-
     .legal-content p {
       margin-bottom: 1rem;
       color: #555;
     }
-
     .legal-content ul {
       margin-left: 1.5rem;
       margin-bottom: 1rem;
     }
-
     .legal-content li {
       margin-bottom: 0.5rem;
       color: #555;
     }
-
     .legal-content strong {
       color: #333;
       font-weight: 600;
     }
-
     .legal-box {
       background: #f8f9fa;
-      border-left: 4px solid #6666ff;
+      border-left: 4px solid var(--purple, #93acf0);
       padding: 1.5rem;
       margin: 2rem 0;
       border-radius: 8px;
     }
-
     .legal-box p {
       margin: 0.5rem 0;
     }
-
     .back-link {
       display: inline-block;
       margin-bottom: 2rem;
-      color: #6666ff;
+      color: var(--purple, #93acf0);
       text-decoration: none;
       font-weight: 500;
     }
-
     .back-link:hover {
       text-decoration: underline;
     }
-
     .last-updated {
       text-align: center;
       margin-top: 3rem;
@@ -122,7 +110,6 @@
       color: #999;
       font-size: 0.9rem;
     }
-
     .disclaimer-notice {
       background: #fff3cd;
       border-left: 4px solid #ffc107;
@@ -130,42 +117,67 @@
       margin: 1.5rem 0;
       border-radius: 8px;
     }
-
     .disclaimer-notice p {
       margin: 0;
       color: #856404;
     }
   </style>
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  
-  // Consent mode for EEA users (GDPR)
-  gtag('consent', 'default', {
-    'analytics_storage': 'denied',
-    'ad_storage': 'denied'
-  });
-  
-  gtag('config', 'G-T0MQEL0ZG0', {
-    'anonymize_ip': true
-  });
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-T0MQEL0ZG0', {
-    'cookie_flags': 'SameSite=None;Secure',
-    'anonymize_ip': true
-  });
-</script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied' });
+    gtag('config', 'G-T0MQEL0ZG0', { 'anonymize_ip': true, 'cookie_flags': 'SameSite=None;Secure' });
+  </script>
 </head>
 <body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a class="logo" href="/">
+          <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle>
+            <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+          </svg>
+          Bubble.
+        </a>
+        <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
+          <span></span><span></span><span></span>
+        </button>
+        <nav>
+          <a href="/a-propos">À Propos</a>
+          <a href="/professionnels">Professionnels</a>
+          <a href="/particuliers">Particuliers</a>
+          <a href="/blog">Blog</a>
+          <div class="lang-switch">
+            <button class="active">FR</button>
+            <span>/</span>
+            <button data-href="/en/legal-notice">EN</button>
+          </div>
+        </nav>
+        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+          <div class="mobile-nav-content">
+            <a href="/a-propos">À Propos</a>
+            <a href="/professionnels">Professionnels</a>
+            <a href="/particuliers">Particuliers</a>
+            <a href="/blog">Blog</a>
+            <div class="lang-switch">
+              <button class="active">FR</button>
+              <span>/</span>
+              <button data-href="/en/legal-notice">EN</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
   <div class="legal-container">
-    <a href="/" class="back-link">← Retour à l'accueil</a>
+    <a href="/" class="back-link">&larr; Retour à l'accueil</a>
 
     <div class="legal-header">
       <h1>Mentions Légales</h1>
@@ -203,67 +215,72 @@
 
       <h2>4. Propriété intellectuelle</h2>
       <p>L'ensemble du contenu de ce site (textes, images, graphismes, logo, icônes, vidéos, logiciels, etc.) est la propriété exclusive de <strong>Bubble Invest</strong>, sauf mention contraire.</p>
-
       <p>Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de Bubble Invest.</p>
-
       <p>Toute exploitation non autorisée du site ou de l'un quelconque des éléments qu'il contient sera considérée comme constitutive d'une contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et suivants du Code de Propriété Intellectuelle.</p>
 
-      <h2>5. Nature de l'Activité - Plateforme SaaS d'Aide à la Décision</h2>
+      <h2>5. Nature de l'Activité - Contenu Gratuit & Conseil en Automatisation IA</h2>
+      <p><strong>Bubble Invest</strong> exerce deux activités distinctes : la création de contenu éducatif gratuit (B2C) et le conseil en automatisation par IA pour les professionnels (B2B).</p>
 
-      <p><strong>Bubble Invest</strong> est une plateforme SaaS (Software as a Service) fournissant des outils d'aide à la décision d'investissement basés sur l'intelligence artificielle.</p>
-
-      <h3>5.1 Services Fournis</h3>
-      <p>Bubble propose:</p>
+      <h3>5.1 Activité B2C - Contenu Gratuit, Éducation & Vitrine d'Expertise</h3>
+      <p>Notre activité grand public est <strong>entièrement gratuite</strong> et constitue notre vitrine d'expertise :</p>
       <ul>
-        <li>Des <strong>insights et analyses</strong> générés par IA sur les marchés financiers</li>
-        <li>Des <strong>outils éducatifs</strong> pour améliorer la littératie financière</li>
-        <li>Un <strong>simulateur de portefeuille</strong> pour tester des stratégies d'investissement</li>
-        <li>Du <strong>contenu informatif</strong> (blog, articles, recherches)</li>
+        <li><strong>Agent d'investissement en proof of concept</strong> : Nous avons construit un agent d'investissement automatisé pour notre propre usage. Nous le partageons en open source, en toute transparence (ce qu'il fait bien, ses limites, comment il est construit)</li>
+        <li><strong>Contenu éducatif</strong> : Tutoriels, démos, ressources, build in public sur les agents IA (Claude Code, Open Claw, etc.)</li>
+        <li><strong>Blog et articles</strong> : Partage de connaissances sur l'automatisation et l'intelligence artificielle</li>
+        <li><strong>Simulateurs et outils pédagogiques</strong> : Pour apprendre et expérimenter avec les agents IA</li>
+      </ul>
+      <p><strong>Le B2C est notre marketing, pas notre produit.</strong> Nous ne cherchons pas à monétiser artificiellement du contenu qui se commoditise. Notre valeur ajoutée réside dans le contexte, la curation et l'honnêteté.</p>
+
+      <h3>5.2 Activité B2B - Conseil & Automatisation IA sur Mesure</h3>
+      <p>Nous accompagnons les professionnels dans le déploiement d'agents IA et d'automatisations :</p>
+      <ul>
+        <li><strong>Clients cibles</strong> : Sociétés de gestion, CGP (Conseillers en Gestion de Patrimoine), PME, indépendants tech-forward</li>
+        <li><strong>Services B2B</strong> : Déploiement d'agents IA (Claude Code, Open Claw, etc.), automatisation des workflows, veille technologique, formation aux derniers outils</li>
+        <li><strong>Notre edge unique</strong> : Early adopters systématiques — nous maîtrisons les outils sortis il y a quelques semaines, bien avant la majorité du marché</li>
+        <li><strong>Approche</strong> : Accompagnement continu, upgrades au fil de l'eau, toujours à la pointe des dernières innovations IA</li>
       </ul>
 
-      <h3>5.2 Ce que Bubble N'est PAS</h3>
+      <h3>5.3 Ce que Bubble N'est PAS</h3>
       <div class="disclaimer-notice">
-        <p><strong>⚠️ Important : Bubble n'est PAS un conseiller financier</strong></p>
+        <p><strong>&#9888;&#65039; Important : Bubble n'est PAS un conseiller financier ni un produit d'investissement</strong></p>
       </div>
       <p>Bubble <strong>n'est PAS</strong>:</p>
       <ul>
         <li>Un conseiller en investissements financiers (CIF)</li>
         <li>Un gestionnaire d'actifs ou de portefeuille</li>
-        <li>Un intermédiaire financier régulé par l'ORIAS</li>
+        <li>Un intermédiaire financier régulé par l'ORIAS ou l'AMF</li>
         <li>Un service de conseil en investissement personnalisé</li>
+        <li>Un produit SaaS payant pour les particuliers</li>
       </ul>
 
-      <h3>5.3 Responsabilité de l'Utilisateur</h3>
-      <p><strong>Les utilisateurs sont seuls responsables de leurs décisions d'investissement.</strong> Bubble fournit des outils et des insights, mais:</p>
+      <h3>5.4 Responsabilité de l'Utilisateur</h3>
+      <p><strong>Les utilisateurs du contenu gratuit sont seuls responsables de leurs décisions.</strong> Bubble partage des outils et des ressources éducatives en toute transparence, mais :</p>
       <ul>
-        <li>Ne gère <strong>PAS</strong> les actifs des utilisateurs</li>
-        <li>Ne fournit <strong>PAS</strong> de recommandations d'investissement personnalisées</li>
-        <li>Ne garantit <strong>PAS</strong> les performances futures</li>
-        <li>N'exécute <strong>PAS</strong> d'ordres pour le compte des utilisateurs (sauf pour les portefeuilles des fondateurs à des fins de test)</li>
+        <li>Ne gère <strong>JAMAIS</strong> les actifs des utilisateurs</li>
+        <li>Ne fournit <strong>AUCUN</strong> conseil en investissement personnalisé</li>
+        <li>Ne garantit <strong>AUCUNE</strong> performance future</li>
+        <li>Partage un proof of concept personnel, pas un produit financier régulé</li>
       </ul>
-      <p><strong>Avertissement :</strong> Les performances passées ne préjugent pas des performances futures. Tout investissement comporte des risques de perte en capital.</p>
+      <p><strong>Avertissement :</strong> Les performances passées ne préjugent pas des performances futures. Tout investissement comporte des risques de perte en capital. Notre agent d'investissement est un outil personnel partagé à titre éducatif, pas une recommandation.</p>
 
-      <h3>5.4 Cadre Réglementaire Applicable</h3>
-      <p>En tant que plateforme SaaS fournissant des outils d'aide à la décision, Bubble est soumise à:</p>
+      <h3>5.5 Cadre Réglementaire Applicable</h3>
+      <p>En tant qu'éditeur de contenu gratuit et conseil en technologie, Bubble est soumise à :</p>
       <ul>
         <li><strong>RGPD</strong> (Protection des données personnelles)</li>
         <li><strong>LCEN</strong> (Loi pour la Confiance dans l'Économie Numérique)</li>
         <li><strong>Code de la consommation</strong> (Protection des consommateurs)</li>
         <li><strong>Droit d'auteur</strong> (Propriété intellectuelle)</li>
       </ul>
-      <p>Bubble <strong>n'est PAS soumise</strong> aux régulations applicables aux conseillers en investissements financiers (CIF), gestionnaires d'actifs, ou autres intermédiaires financiers régulés.</p>
+      <p>Bubble <strong>n'est PAS soumise</strong> aux régulations financières (AMF, ORIAS) car nous ne fournissons ni conseil en investissement, ni gestion d'actifs, ni produit financier.</p>
 
       <h2>6. Données personnelles</h2>
       <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données personnelles.</p>
-
       <p>Pour plus d'informations sur la gestion de vos données, consultez notre <a href="/privacy">Politique de Confidentialité</a>.</p>
-
       <p><strong>Responsable du traitement des données :</strong> Bubble Invest</p>
       <p><strong>Contact :</strong> <a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></p>
 
       <h2>7. Cookies</h2>
       <p>Ce site utilise des cookies pour améliorer l'expérience utilisateur. Vous pouvez gérer vos préférences de cookies via le bandeau de consentement qui apparaît lors de votre première visite.</p>
-
       <p>Pour plus d'informations, consultez notre <a href="/privacy#cookies">Politique de Cookies</a>.</p>
 
       <h2>8. Liens hypertextes</h2>
@@ -271,12 +288,10 @@
 
       <h2>9. Limitation de responsabilité</h2>
       <p><strong>Bubble Invest</strong> s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site, mais ne peut en garantir l'exactitude, la complétude ou l'actualité.</p>
-
       <p>L'utilisation des informations et contenus disponibles sur ce site se fait sous l'entière responsabilité de l'utilisateur. <strong>Bubble Invest</strong> ne pourra être tenu responsable des dommages directs ou indirects résultant de l'utilisation de ce site.</p>
 
       <h2>10. Droit applicable et juridiction compétente</h2>
       <p>Les présentes mentions légales sont régies par le droit français.</p>
-
       <p>En cas de litige, et à défaut de résolution amiable, les tribunaux français seront seuls compétents. Le tribunal compétent sera celui du ressort du siège social de <strong>Bubble Invest</strong> (Paris).</p>
 
       <h2>11. Crédits</h2>
@@ -296,129 +311,89 @@
       </ul>
 
       <div class="last-updated">
-        <p><strong>Dernière mise à jour :</strong> 26 octobre 2025</p>
-        <p>Version 1.0 - Mentions légales initiales</p>
+        <p><strong>Dernière mise à jour :</strong> 2 mars 2026</p>
+        <p>Version 2.0 - Mise à jour du modèle d'activité (contenu gratuit + conseil B2B)</p>
       </div>
     </div>
   </div>
 
-
+  <!-- FOOTER -->
   <footer>
     <div class="container">
-      <div class="footer-content">
-        <div class="footer-left">
-          <div class="footer-logo" style="display: flex; align-items: center; gap: 0.18em">
-            <span style="display: flex; align-items: center">
-              <svg width="30" height="30" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle">
-                <circle cx="36" cy="41" r="26" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-dasharray="145 29" stroke-dashoffset="10"/>
-                <circle cx="59" cy="21" r="6" fill="#000"/>
-              </svg>
-            </span>
-            <span>Bubble.</span>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="font-size: 1.5rem;">
+            <svg fill="none" style="width: 32px; height: 32px;" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle>
+              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+            </svg>
+            Bubble.
+          </a>
+          <p>L'ère de l'IA a tout changé. Changez avec elle.</p>
+          <div class="social-links">
+            <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest" target="_blank"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a>
+            <a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+            <a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"></path></svg></a>
+            <a aria-label="X" href="https://x.com/bubbleinvest" target="_blank"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
           </div>
-          <div class="footer-tagline" data-translate="footer.tagline">L'ère de l'IA change tout. Changeons avec elle.</div>
-          <div class="footer-copyright" data-translate="footer.copyright">© 2025 Bubble Invest SAS. Transparent by design.</div>
         </div>
-
-        <nav class="footer-nav">
-          <div class="footer-column">
-            <h4 data-translate="footer.nav.investors">Investisseurs</h4>
-            <ul>
-              <li><a href="/investors" data-translate="footer.nav.investors.solution">Solution</a></li>
-              <li><a href="/investors/pricing" data-translate="footer.nav.investors.pricing">Tarification</a></li>
-              <li><a href="/investors#faq" data-translate="footer.nav.investors.faq">FAQ</a></li>
-              <li><a href="/investors#investor-waitlist" data-translate="footer.nav.investors.joinWaitlist">Accès Anticipé</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h4 data-translate="footer.nav.professionals">Professionnels</h4>
-            <ul>
-              <li><a href="/professionals/solutions-companies" data-translate="footer.nav.professionals.solutions">Solutions</a></li>
-              <li><a href="/professionals/solutions-wealth-managers" data-translate="footer.nav.professionals.demo">Démo</a></li>
-              <li><a href="/professionals#faq" data-translate="footer.nav.professionals.faq">FAQ</a></li>
-              <li><a href="/professionals#contact-form" data-translate="footer.nav.professionals.contact">Contact</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h4 data-translate="footer.nav.resources">Ressources</h4>
-            <ul>
-              <li><a href="/blog" data-translate="footer.nav.blog">Blog</a></li>
-              <li><a href="/investors/playground" data-translate="footer.nav.resources.education">Playground</a></li>
-              <li><a href="/investors" class="js-retail-demo-trigger" data-entry-point="footer_resources_demo" data-translate="footer.nav.resources.demo">Démo</a></li>
-              </ul>
-          </div>
-
-          <div class="footer-column">
-            <h4 data-translate="footer.nav.legal">Légal</h4>
-            <ul>
-              <li><a href="/mentions-legales" data-translate="footer.nav.legal_notice">Mentions Légales</a></li>
-              <li><a href="/privacy" data-translate="footer.nav.privacy">Politique de Confidentialité</a></li>
-              <li><a href="#cookies" id="tarteaucitronRoot" data-translate="footer.nav.cookies">Gérer les Cookies</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h4 data-translate="footer.nav.contact">Contact</h4>
-            <ul>
-              <li><a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></li>
-              <li><a href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105" target="_blank" rel="noopener noreferrer" data-translate="footer.nav.newsletter">Newsletter</a></li>
-            </ul>
-            <div class="social-media-links">
-                <a href="https://substack.com/@bubbleinvest?utm_campaign=profile&utm_medium=profile-page" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Substack" data-handle="Bubble Invest">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                    <path d="M22.5 6H1.5V9H22.5V6ZM1.5 10.5V24L12 18L22.5 24V10.5H1.5ZM22.5 0H1.5V3H22.5V0Z" />
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.substack">Bubble Invest</span>
-                </a>
-              <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn" data-handle="Bubble Invest AI">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                  <rect x="2" y="9" width="4" height="12"/>
-                  <circle cx="4" cy="4" r="2"/>
-                </svg>
-                <span class="social-handle" data-translate="footer.social.linkedin">Bubble Invest AI</span>
-              </a>
-              <a href="https://www.instagram.com/behindthefinancebubble/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram" data-handle="@behindthefinancebubble">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                </svg>
-                <span class="social-handle" data-translate="footer.social.instagram">@behindthefinancebubble</span>
-              </a>
-              <a href="https://www.tiktok.com/@behind.the.bubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok" data-handle="@behind.the.bubble">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
-                </svg>
-                <span class="social-handle" data-translate="footer.social.tiktok">@behind.the.bubble</span>
-              </a>
-              <a href="https://www.youtube.com/@behindthefinancebubble" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube" data-handle="@behindthefinancebubble">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
-                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
-                </svg>
-                <span class="social-handle" data-translate="footer.social.youtube">@behindthefinancebubble</span>
-              </a>
-            
-                <a href="https://twitter.com/BubbleInvest" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter" data-handle="@BubbleInvest">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4l16 16M4 20L20 4"/>
-                  </svg>
-                  <span class="social-handle" data-translate="footer.social.twitter">@BubbleInvest</span>
-                </a></div>
-          </div>
-        </nav>
+        <div class="footer-links">
+          <h4>Produit</h4>
+          <ul>
+            <li><a href="/particuliers">Particuliers</a></li>
+            <li><a href="/professionnels">Professionnels</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Ressources</h4>
+          <ul>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/a-propos">À Propos</a></li>
+            <li><a href="https://bubbleinvest.substack.com" target="_blank">Newsletter</a></li>
+            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank">Nous contacter</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Légal</h4>
+          <ul>
+            <li><a href="/mentions-legales">Mentions légales</a></li>
+            <li><a href="/privacy">Confidentialité</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Bubble Invest &mdash; Transparent by design.</p>
       </div>
     </div>
   </footer>
 
-
-  <!-- Cookie Consent (Modern Custom Banner) - MUST load CSS before script -->
-  <link rel="stylesheet" href="/assets/styles/cookie-banner.css">
+  <!-- Scripts -->
   <script src="/js/seo/cookie-banner.js"></script>
+  <script src="/js/lang-toggle.js"></script>
+  <script src="/js/seo/ga4-events.js"></script>
 
-<script src="/js/seo/ga4-events.js"></script>
+  <!-- Mobile hamburger menu toggle -->
+  <script>
+    (function () {
+      'use strict';
+      const toggle = document.getElementById('hamburger-toggle');
+      const overlay = document.getElementById('mobile-nav-overlay');
+      if (!toggle || !overlay) return;
+      toggle.addEventListener('click', function () {
+        const isOpen = overlay.classList.toggle('open');
+        toggle.classList.toggle('open', isOpen);
+        toggle.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+      overlay.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          overlay.classList.remove('open');
+          toggle.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

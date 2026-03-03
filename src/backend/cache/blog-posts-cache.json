@@ -1,5 +1,28 @@
 [
   {
+    "id": "2a2cfc52-0644-81b6-975e-cd4c1d97fe7a",
+    "title": {
+      "fr": "Bubble vs Signaux de trading et de copy‑trading: Pourquoi Nous ne Vendrons jamais d’Alertes Magiques",
+      "en": "Bubble vs Trading Signals: Why We Don’t Sell Magic Alerts"
+    },
+    "slug": "bubble-vs-signaux-de-trading-et-de-copy-trading-pourquoi-nous-ne-vendrons-jamais-d-alertes-magiques",
+    "summary": {
+      "fr": "Signaux de trading, copy‑trading et portefeuilles “IA de superstars” vendent des alertes magiques ; Bubble fait l’inverse : un copilote quantitatif en chat pour construire un vrai portefeuille, pas pour courir après le prochain pump.",
+      "en": "Trading signals, copy‑trading and AI “celebrity portfolios” sell magic alerts; Bubble is the opposite: a chat‑first quant copilot that helps you build a serious portfolio, not chase the next hype pump."
+    },
+    "publishedDate": "2026-02-25",
+    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/c378f8cc-2855-4d64-885b-fdfb726f03e5.png",
+    "url": "/blog/bubble-vs-signaux-de-trading-et-de-copy-trading-pourquoi-nous-ne-vendrons-jamais-d-alertes-magiques",
+    "urlEn": "/en/blog/bubble-vs-signaux-de-trading-et-de-copy-trading-pourquoi-nous-ne-vendrons-jamais-d-alertes-magiques",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "Market Analysis",
+      "Behavioral Finance",
+      "Portfolio Management"
+    ]
+  },
+  {
     "id": "311cfc52-0644-8100-ac25-cfe7d753e424",
     "title": {
       "fr": "Ce que tu m'offres quand tu m'offres ton temps ",
@@ -39,6 +62,50 @@
       "Financial Education",
       "Investment Strategy",
       "Portfolio Management"
+    ]
+  },
+  {
+    "id": "30bcfc52-0644-81e7-926b-d0dae5469076",
+    "title": {
+      "fr": "Ce que l'IA ne peut pas te voler ",
+      "en": "Ce que l'IA ne peut pas te voler "
+    },
+    "slug": "ce-que-l-ia-ne-peut-pas-te-voler",
+    "summary": {
+      "fr": "",
+      "en": ""
+    },
+    "publishedDate": "2026-02-18",
+    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/2/ii/acf00e02-4247-435b-b956-bae88ea5980c.png",
+    "url": "/blog/ce-que-l-ia-ne-peut-pas-te-voler",
+    "urlEn": "/blog/ce-que-l-ia-ne-peut-pas-te-voler",
+    "status": "Published",
+    "isPinned": false,
+    "tags": []
+  },
+  {
+    "id": "30005a7d-0cae-43b8-a970-bc4d29d75c41",
+    "title": {
+      "fr": "Déléguer, suivre ou copiloter : comprendre Yomoni, Nalo, Finary et Bubble en 2026",
+      "en": "Delegate, Track, or Copilot: Making Sense of Yomoni, Nalo, Finary and Bubble in 2026"
+    },
+    "slug": "d-l-guer-suivre-ou-copiloter-comprendre-yomoni-nalo-finary-et-bubble-en-2026",
+    "summary": {
+      "fr": "Comparez Yomoni, Nalo et Finary à un nouveau modèle : Bubble comme copilote quantitatif en chat qui vous laisse déléguer l’exécution, garder le contrôle et remplacer les frais en % par un simple forfait.",
+      "en": "Compare Yomoni, Nalo and Finary to a new model: Bubble as a chat‑first quantitative copilot that lets you delegate execution, stay in control, and swap % fees for a simple flat subscription."
+    },
+    "publishedDate": "2026-02-18",
+    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/f2ee3d25-7b24-4ca9-a2a9-452d4c0205eb.png",
+    "url": "/blog/d-l-guer-suivre-ou-copiloter-comprendre-yomoni-nalo-finary-et-bubble-en-2026",
+    "urlEn": "/en/blog/d-l-guer-suivre-ou-copiloter-comprendre-yomoni-nalo-finary-et-bubble-en-2026",
+    "status": "Published",
+    "isPinned": false,
+    "tags": [
+      "Finance",
+      "AI & Finance",
+      "FinTech",
+      "comparatif robo advisor",
+      "frais investissement"
     ]
   },
   {
@@ -322,7 +389,7 @@
       "en": "Traditional asset management sells expertise but mostly delivers high fees. Learn why most active funds lag simple index trackers and how systematic, low-cost investing lets you take back control."
     },
     "publishedDate": "2026-01-14",
-    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/a02e18fa-387b-4dcc-a529-16f1ed7037d7.png",
+    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/ef590b1d-16c8-47cb-933f-0d0d8a06df0f.png",
     "url": "/blog/l-asset-management-la-plus-grande-arnaque-marketing-de-l-histoire-financi-re",
     "urlEn": "/en/blog/l-asset-management-la-plus-grande-arnaque-marketing-de-l-histoire-financi-re",
     "status": "Published",
@@ -346,7 +413,7 @@
       "en": "Most “AI investing” is just rules or hype. This article explains how Bubble uses a transparent, 11‑step quantitative engine and a chat‑first AI copilot to manage your portfolio like a pro—without taking control away from you."
     },
     "publishedDate": "2025-12-29",
-    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/c99f53e2-3716-4441-ae36-df7da7fb0205.png",
+    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/f5a7d582-6b7f-415a-8bab-601aefbd1483.png",
     "url": "/blog/investissement-ia-comment-a-marche-concr-tement",
     "urlEn": "/en/blog/investissement-ia-comment-a-marche-concr-tement",
     "status": "Published",
@@ -391,7 +458,7 @@
       "en": "Practical guide to the 5 classic mistakes value investors make—chasing “cheap” stocks, ignoring quality and capital allocation, over-trusting narratives, and underestimating time horizon—and how to avoid them using Buffett and Graham’s principles."
     },
     "publishedDate": "2025-12-17",
-    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/3135562f-1fa1-4b3e-bcfe-300d76ce737c.png",
+    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/e9a4043d-1921-42d5-99f3-9d3f5570be05.png",
     "url": "/blog/les-5-erreurs-communes-en-investissement-value",
     "urlEn": "/en/blog/les-5-erreurs-communes-en-investissement-value",
     "status": "Published",
@@ -414,7 +481,7 @@
       "en": "How AI is quietly rewiring markets and portfolio management: 6 concrete trends and a real-world example with Bubble Portfolio, the next-generation portfolio co-pilot."
     },
     "publishedDate": "2025-12-10",
-    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/345732a2-7f45-48bb-941c-471c7753aa5b.png",
+    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/fd78c85d-3c05-405b-84fb-dfde09593c5a.png",
     "url": "/blog/ia-et-finance-6-tendances-qui-red-finissent-l-investissement",
     "urlEn": "/en/blog/ia-et-finance-6-tendances-qui-red-finissent-l-investissement",
     "status": "Published",
@@ -437,7 +504,7 @@
       "en": "Concept note for a deep dive on why much of modern finance is a statistical scam, using large language models, information theory, and chaos to show that most “alpha” and expert prediction is indistinguishable from noise."
     },
     "publishedDate": "2025-12-03",
-    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/589d1640-6373-45da-9d9e-df232bbafab7.png",
+    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/2b3bc6f5-cfd0-4135-827f-36ccd3c76dd9.png",
     "url": "/blog/la-preuve-scientifique-de-l-arnaque",
     "urlEn": "/en/blog/la-preuve-scientifique-de-l-arnaque",
     "status": "Published",
@@ -460,7 +527,7 @@
       "en": "A tiny moral shift with massive consequences: the real crime is not ignorance, but knowingly exploiting those who do not know. This piece shows how information asymmetry has shaped power throughout history, why AI is finally breaking that pattern, and why both experts and non‑experts now face a clear choice: keep playing the old extraction game, or use these new tools to make exploitation obsolete."
     },
     "publishedDate": "2025-11-25",
-    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/2619ed21-e6b4-4083-868e-9ddfd8436e82.png",
+    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/5da15453-1f62-4775-b44f-b9b47ac5d74e.png",
     "url": "/blog/le-crime-de-ceux-qui-savaient",
     "urlEn": "/en/blog/le-crime-de-ceux-qui-savaient",
     "status": "Published",
@@ -508,7 +575,7 @@
       "en": "A manifesto against the global prediction industry—from consultants to fund managers—arguing for statistical humility, transparent models, and paying only for measurable transformation."
     },
     "publishedDate": "2025-09-23",
-    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/d29c5a07-bf5b-4df5-99cf-d6c253f36d3c.png",
+    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/652ee20f-4af5-4920-aaa9-7a6f40f435e1.png",
     "url": "/blog/le-complexe-industriel-de-la-pr-diction-comment-l-industrie-du-conseil-organise-la-plus-grande-arnaque-de-l-histoire-moderne",
     "urlEn": "/en/blog/le-complexe-industriel-de-la-pr-diction-comment-l-industrie-du-conseil-organise-la-plus-grande-arnaque-de-l-histoire-moderne",
     "status": "Published",

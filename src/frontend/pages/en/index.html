@@ -112,7 +112,7 @@
           <a href="/en/individuals">Individuals</a>
           <a href="/en/blog">Blog</a>
           <div class="lang-switch">
-            <button onclick="window.location.href='/'">FR</button>
+            <button data-href="/">FR</button>
             <span>/</span>
             <button class="active">EN</button>
           </div>
@@ -126,7 +126,7 @@
             <a href="/en/individuals">Individuals</a>
             <a href="/en/blog">Blog</a>
             <div class="lang-switch">
-              <button onclick="window.location.href='/'">FR</button>
+              <button data-href="/">FR</button>
               <span>/</span>
               <button class="active">EN</button>
             </div>
@@ -535,6 +535,7 @@
 
   <!-- Scripts -->
   <script src="/js/seo/cookie-banner.js"></script>
+  <script src="/js/lang-toggle.js"></script>
   <script src="/i18n/translations.js"></script>
   <script src="/js/bubble-agent-memory.js"></script>
   <script src="/js/chatbot-animations.js"></script>
@@ -542,6 +543,39 @@
   <script src="/js/floating-chat-input.js"></script>
   <script src="/js/animations.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
+
+  <!-- Hero chat input → opens chat side panel -->
+  <script>
+    (function () {
+      'use strict';
+      var heroInput = document.querySelector('.hero .chat-input');
+      var heroSubmit = document.querySelector('.hero .chat-submit');
+      var demoBtn = document.querySelector('.hero .btn-primary');
+      if (heroInput && heroSubmit) {
+        function submitHeroChat() {
+          var msg = heroInput.value.trim();
+          if (!msg) return;
+          if (window.chatSidePanel && typeof window.chatSidePanel.open === 'function') {
+            window.chatSidePanel.open(msg);
+            heroInput.value = '';
+            heroInput.blur();
+          }
+        }
+        heroSubmit.addEventListener('click', submitHeroChat);
+        heroInput.addEventListener('keypress', function (e) {
+          if (e.key === 'Enter') { e.preventDefault(); submitHeroChat(); }
+        });
+      }
+      if (demoBtn) {
+        demoBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          if (window.chatSidePanel && typeof window.chatSidePanel.open === 'function') {
+            window.chatSidePanel.open();
+          }
+        });
+      }
+    })();
+  </script>
 
   <!-- Mobile hamburger menu toggle -->
   <script>

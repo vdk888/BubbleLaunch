@@ -526,6 +526,11 @@
   letter-spacing: 0.05em;
   color: var(--purple);
   margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.blog-card:hover .blog-tag {
+  color: var(--primary);
 }
 
 .blog-card h4 {
@@ -621,6 +626,11 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding: 7rem 0 3rem;
+  }
+
   .hero h1 {
     font-size: 2.5rem;
   }
@@ -633,13 +643,136 @@
     flex-direction: column;
   }
 
+  .hero-logo svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Sections: tighter padding */
+  .dual-path,
+  .selfware,
+  .blog-preview,
+  .trust {
+    padding: 3.5rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .section-header h3 {
+    font-size: 1.75rem;
+  }
+
   .selfware-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
+  .selfware-content h2 {
+    font-size: 1.75rem;
+  }
+
+  .selfware-content > p {
+    font-size: 1rem;
+  }
+
+  /* Path cards: compact on mobile */
+  .path-card {
+    padding: 1.5rem;
+  }
+
+  .path-card h3 {
+    font-size: 1.35rem;
+  }
+
+  .path-card p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .path-features {
+    margin-bottom: 1.5rem;
+  }
+
+  .path-features li {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .path-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+
+  /* Trust grid → horizontal scroll carousel */
+  .trust-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    scrollbar-width: none;
+  }
+
+  .trust-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .trust-item {
+    flex: 0 0 45%;
+    scroll-snap-align: start;
+    background: var(--bg-subtle);
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+  }
+
+  .trust-item h4 {
+    font-size: 2rem;
+  }
+
+  .trust-item p {
+    font-size: 0.85rem;
+  }
+
+  /* Blog preview → horizontal scroll carousel */
   .blog-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    scrollbar-width: none;
+  }
+
+  .blog-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .blog-card {
+    flex: 0 0 80%;
+    scroll-snap-align: start;
+  }
+
+  .blog-image {
+    height: 120px;
+  }
+
+  .blog-content {
+    padding: 1rem;
+  }
+
+  .blog-card h4 {
+    font-size: 1rem;
+  }
+
+  /* Waitlist */
+  .waitlist {
+    padding: 3.5rem 0;
   }
 
   .waitlist h2 {
@@ -648,5 +781,64 @@
 
   .waitlist-form {
     flex-direction: column;
+  }
+
+  /* Flow diagram */
+  .selfware-visual {
+    padding: 1.5rem;
+  }
+
+  .flow-item {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 6rem 0 2rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.15rem;
+  }
+
+  .hero p.hero-description {
+    font-size: 1rem;
+  }
+
+  .section-header h3 {
+    font-size: 1.4rem;
+  }
+
+  .path-card {
+    padding: 1.25rem;
+  }
+
+  /* Trust: narrower items in carousel */
+  .trust-item {
+    flex: 0 0 55%;
+    padding: 1.25rem 0.75rem;
+  }
+
+  .trust-item h4 {
+    font-size: 1.75rem;
+  }
+
+  /* Blog: near full-width cards */
+  .blog-card {
+    flex: 0 0 85%;
+  }
+
+  .waitlist h2 {
+    font-size: 1.6rem;
+  }
+
+  .selfware-content h2 {
+    font-size: 1.5rem;
   }
 }
