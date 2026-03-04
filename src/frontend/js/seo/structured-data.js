@@ -30,12 +30,8 @@ const LOCALES = {
 function createFinancialServiceSchema(lang = "fr") {
   const locale = LOCALES[lang] || LOCALES.fr;
   const descriptions = {
-    fr: "Plateforme d’aide à la décision pilotée par IA avec un tarif transparent de 0 à 10 €/mois. Analyses automatisées, stratégies ETF priorisées et outils qui laissent l’utilisateur maître de ses décisions—une alternative aux intermédiaires traditionnels.",
-    en: "AI-powered decision-support platform from France with transparent €0–10/month pricing. Automated analytics, ETF-first strategies, and tooling that keeps investors in control—an alternative to percentage-fee intermediaries.",
-  };
-  const offerDescriptions = {
-    fr: "Abonnement mensuel (0 à 10€/mois) donnant accès à notre agent IA et à nos infrastructures.",
-    en: "Monthly plans (€0–10) providing access to our AI agent and infrastructure.",
+    fr: "Contenu gratuit sur l'investissement et l'IA (blog, tutoriels, ressources open-source) + consulting IA sur mesure pour professionnels (CGP, gestion d'actifs, PME). Expertise finance & tech, build in public.",
+    en: "Free content on AI and investing (blog, tutorials, open-source resources) + custom AI consulting for professionals (wealth advisors, asset managers, SMEs). Finance & tech expertise, building in public.",
   };
 
   return {
@@ -43,12 +39,11 @@ function createFinancialServiceSchema(lang = "fr") {
     "@type": "FinancialService",
     "@id": `${SITE_URL}#financial-service`,
     "name": "Bubble Invest",
-    "alternateName": lang === "en" ? "Bubble AI Investment Platform" : "Bubble Invest",
+    "alternateName": lang === "en" ? "Bubble — AI & Finance Content + Consulting" : "Bubble — Contenu IA & Finance + Consulting",
     "description": descriptions[lang] || descriptions.fr,
     "url": SITE_URL,
     "logo": ASSET_LOGO,
     "image": ASSET_LOGO,
-    "priceRange": "€0-10/mois",
     "inLanguage": [locale.locale],
     "address": {
       "@type": "PostalAddress",
@@ -60,21 +55,14 @@ function createFinancialServiceSchema(lang = "fr") {
       // "https://linkedin.com/company/bubble-invest",
       // "https://twitter.com/bubbleinvest"
     ],
-    "offers": {
-      "@type": "Offer",
-      "price": "8.00",
-      "priceCurrency": "EUR",
-      "priceValidUntil": "2025-12-31",
-      "description": offerDescriptions[lang] || offerDescriptions.fr,
-    },
   };
 }
 
 // Organization Schema - Company information
 function createOrganizationSchema(lang = "fr") {
   const descriptions = {
-    fr: "Révolutionner l'investissement grâce à l'intelligence artificielle et la transparence.",
-    en: "Reinventing investing with a discreet, transparent AI platform built in France.",
+    fr: "Contenu gratuit IA & finance (blog, tutoriels, open-source) + consulting IA sur mesure pour professionnels. Build in public depuis 2024.",
+    en: "Free AI & finance content (blog, tutorials, open-source) + custom AI consulting for professionals. Building in public since 2024.",
   };
 
   return {
@@ -101,46 +89,46 @@ function createFaqSchema(lang = "fr") {
   const faqContent = {
     fr: [
       {
-        question: "Quelle est la différence entre Bubble et les robo-advisors traditionnels ?",
+        question: "Qu'est-ce que Bubble propose gratuitement ?",
         answer:
-          "Bubble utilise un abonnement mensuel transparent (0 à 10€/mois) plutôt qu'un pourcentage de vos actifs (1,6 % par an en moyenne chez Yomoni ou Nalo). L'IA gère nos comptes, vous fournit les mêmes allocations expliquées et vous restez décisionnaire.",
+          "Bubble partage gratuitement du contenu éducatif sur l'investissement et l'IA : blog, tutoriels, guides sur les agents IA (Claude Code, Open Claw), code open-source, et une newsletter hebdomadaire. Tout est partagé en build in public.",
       },
       {
-        question: "Comment l'IA gère-t-elle mon portefeuille ?",
+        question: "Comment fonctionne le consulting IA de Bubble ?",
         answer:
-          "Notre agent IA analyse en continu les marchés, optimise l'allocation via des stratégies quantitatives transparentes (Risk Parity, égal pondération optimisée) et rééquilibre automatiquement selon vos objectifs. Toutes les stratégies sont backtestées sur 20 ans de données.",
+          "Nous accompagnons les professionnels (CGP, gestionnaires d'actifs, PME) dans le déploiement d'agents IA et l'automatisation de workflows. Notre avantage : systematic early adopters — nous maîtrisons les outils IA des semaines avant le marché.",
       },
       {
-        question: "Pourquoi des frais fixes sont-ils avantageux ?",
+        question: "Qu'est-ce que l'agent d'investissement Bubble ?",
         answer:
-          "À 200 000€ investis, des frais annuels de 2 % coûtent 308 000€ sur 30 ans. Avec Bubble (exemple à 8€/mois dans notre fourchette 0-10€), le coût tombe à ~2 880€ sur la même période. Vous conservez votre capital pour vos projets plutôt que de payer des intermédiaires.",
+          "C'est un proof of concept personnel que nous partageons ouvertement pour montrer notre expertise. Il automatise notre propre portefeuille — nous partageons l'architecture, les résultats et les limites en toute transparence. Ce n'est PAS un produit commercial.",
       },
       {
-        question: "Comment Bubble assure la transparence de ses stratégies ?",
+        question: "À qui s'adresse le consulting IA de Bubble ?",
         answer:
-          "Chaque stratégie est documentée et testée sur 20 ans de données. Le simulateur permet de comparer trois approches et de comprendre le comportement du portefeuille selon les conditions de marché.",
+          "Aux conseillers en gestion de patrimoine (CGP), sociétés de gestion d'actifs, PME et indépendants tech-forward qui veulent déployer des agents IA et automatiser leurs processus métier.",
       },
     ],
     en: [
       {
-        question: "How is Bubble different from traditional robo-advisors?",
+        question: "What does Bubble offer for free?",
         answer:
-          "Bubble charges transparent €0–10/month plans instead of 1.6% of assets under management. Our full-stack AI agent delivers decision support, automated monitoring for Bubble’s own accounts today, and transparent quantitative strategies—without the usual opacity.",
+          "Bubble freely shares educational content on investing and AI: blog, tutorials, AI agent guides (Claude Code, Open Claw), open-source code, and a weekly newsletter. Everything is shared in a build-in-public approach.",
       },
       {
-        question: "How does the AI manage my portfolio?",
+        question: "How does Bubble's AI consulting work?",
         answer:
-          "Bubble's agent continuously analyses markets, optimises allocation via transparent quantitative strategies (risk parity, optimised equal weight), and rebalances automatically. Every strategy is backtested on 20 years of data.",
+          "We help professionals (wealth advisors, asset managers, SMEs) deploy AI agents and automate workflows. Our edge: systematic early adopters — we master AI tools weeks before the market.",
       },
       {
-        question: "Why are fixed fees more efficient?",
+        question: "What is the Bubble investment agent?",
         answer:
-          "Investing €200k with 2% yearly fees costs €308k over 30 years. Bubble's €8/month illustrative plan (within our €0–10 range) costs about €2,880 over the same period, keeping capital on your side for projects and compounding.",
+          "It's a personal proof of concept we share openly to demonstrate our expertise. It automates our own portfolio — we share the architecture, results, and limitations transparently. It is NOT a commercial product.",
       },
       {
-        question: "How transparent are Bubble's strategies?",
+        question: "Who is Bubble's AI consulting for?",
         answer:
-          "All strategies are documented, backtested, and accessible in the portfolio simulator so you can compare three approaches and understand performance in different market regimes.",
+          "Wealth advisors, asset management firms, SMEs, and tech-forward independents who want to deploy AI agents and automate their business processes.",
       },
     ],
   };
@@ -162,48 +150,20 @@ function createFaqSchema(lang = "fr") {
   };
 }
 
-// Software Application Schema - For portfolio simulator page
-function createPortfolioSimulatorSchema(lang = "fr") {
+// WebSite Schema - For enhanced search appearance
+function createWebSiteSchema(lang = "fr") {
   const descriptions = {
-    fr: "Simulateur interactif comparant 3 stratégies quantitatives d'investissement sur 20 ans de données historiques : allocation égale, Risk Parity simple et Risk Parity optimisé. Analyse avec 6 métriques de performance.",
-    en: "Interactive AI portfolio simulator comparing three quantitative strategies on 20 years of historical ETF data. Includes six performance metrics and bilingual interface.",
-  };
-
-  const featureLists = {
-    fr: [
-      "Comparaison de 3 stratégies quantitatives",
-      "20 ans de données historiques réelles (SPY, IEF, GLD)",
-      "6 métriques de performance (rendement, volatilité, Sharpe ratio, drawdown)",
-      "Sélection de période (1Y, 3Y, 5Y, 10Y, 20Y)",
-      "Interface bilingue (français/anglais)",
-    ],
-    en: [
-      "Compare three quantitative strategies side by side",
-      "20 years of historical ETF data (SPY, IEF, GLD)",
-      "Six performance metrics (return, volatility, Sharpe ratio, drawdown)",
-      "Flexible time horizons (1Y, 3Y, 5Y, 10Y, 20Y)",
-      "Bilingual interface (French/English)",
-    ],
+    fr: "Blog, tutoriels et ressources gratuites sur l'IA et la finance. Consulting IA sur mesure pour professionnels.",
+    en: "Blog, tutorials, and free resources on AI and finance. Custom AI consulting for professionals.",
   };
 
   return {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": lang === "en" ? "Bubble AI Portfolio Simulator" : "Simulateur de Portefeuille Bubble",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Web",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "EUR",
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "127",
-    },
+    "@type": "WebSite",
+    "name": "Bubble",
+    "alternateName": "Bubble Invest",
+    "url": SITE_URL,
     "description": descriptions[lang] || descriptions.fr,
-    "featureList": featureLists[lang] || featureLists.fr,
     "inLanguage": [LOCALES[lang]?.locale || LOCALES.fr.locale],
   };
 }
@@ -306,17 +266,12 @@ function initializeStructuredData() {
   }
 
   if (path === '/' || path === '/index.html') {
-    // Homepage: Financial Service + Organization + FAQ
+    // Homepage: Financial Service + Organization + FAQ + WebSite
     injectStructuredData([
       createFinancialServiceSchema(lang),
       createOrganizationSchema(lang),
-      createFaqSchema(lang)
-    ]);
-  } else if (path === '/portfolio-simulator' || path.includes('/portfolio-simulator')) {
-    // Portfolio Simulator page: Software Application + Organization
-    injectStructuredData([
-      createPortfolioSimulatorSchema(lang),
-      createOrganizationSchema(lang)
+      createFaqSchema(lang),
+      createWebSiteSchema(lang)
     ]);
   } else if (path === '/blog' || path === '/blog.html') {
     // Blog listing page: Organization only
@@ -343,6 +298,6 @@ if (typeof module !== 'undefined' && module.exports) {
     createFinancialServiceSchema,
     createOrganizationSchema,
     createFaqSchema,
-    createPortfolioSimulatorSchema
+    createWebSiteSchema
   };
 }

@@ -4,11 +4,20 @@
 # Allow all search engines to crawl public pages
 User-agent: *
 Allow: /
-Allow: /home
-Allow: /portfolio-simulator
+Allow: /particuliers
+Allow: /en/individuals
+Allow: /professionnels
+Allow: /en/professionals
+Allow: /a-propos
+Allow: /en/about
 Allow: /blog
 Allow: /blog/*
+Allow: /github
+Allow: /en/github
 Allow: /privacy
+Allow: /en/privacy
+Allow: /mentions-legales
+Allow: /en/legal-notice
 Allow: /404
 
 # Block API endpoints (no SEO value)
@@ -22,6 +31,9 @@ Disallow: /test-image-generation
 # Block private/test pages
 Disallow: /private/
 Disallow: /test/
+
+# Block archived pages (legacy content)
+Disallow: /archive/
 
 # Sitemap location
 Sitemap: https://bubbleinvest.org/sitemap.xml
