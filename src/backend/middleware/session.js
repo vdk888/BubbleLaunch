@@ -1,5 +1,7 @@
 const session = require("express-session");
 const SQLiteStore = require("connect-sqlite3")(session);
+const path = require("path");
+const fs = require("fs");
 
 // Validate SESSION_SECRET at startup - fail fast if missing
 if (!process.env.SESSION_SECRET) {
@@ -10,13 +12,21 @@ if (!process.env.SESSION_SECRET) {
 
 const isProduction = process.env.NODE_ENV === "production";
 
+// Determine session directory - use /tmp in production (container), local ./sessions in development
+const sessionDir = isProduction ? "/tmp/bubble-sessions" : path.join(__dirname, "../../sessions");
+
+// Ensure session directory exists
+if (!fs.existsSync(sessionDir)) {
+  fs.mkdirSync(sessionDir, { recursive: true });
+}
+
 /**
  * Session middleware configuration
  * Security hardened: SQLite store (survives restarts), no fallback secret, secure cookies in production
  */
 const sessionMiddleware = session({
   store: new SQLiteStore({
-    dir: "./sessions",
+    dir: sessionDir,
     db: "sessions.db",
     concurrentDB: true, // Enable concurrent access
   }),
