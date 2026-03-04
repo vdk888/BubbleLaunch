@@ -249,6 +249,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+  margin-top: 3rem;
 }
 
 .path-card {
@@ -354,6 +355,30 @@
 .path-card:hover .path-cta {
   gap: 1rem;
   color: var(--purple);
+}
+
+/* === QUOTE INTERLUDE === */
+.quote-interlude {
+  padding: 4rem 0;
+  text-align: center;
+  background: var(--bg-white);
+}
+
+.interlude-link {
+  text-decoration: none;
+  color: var(--primary);
+  transition: color 0.3s;
+}
+
+.interlude-link:hover {
+  color: var(--purple);
+}
+
+.interlude-text {
+  font-size: 1.75rem;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.01em;
 }
 
 /* === SELFWARE SECTION === */
@@ -499,20 +524,33 @@
   overflow: hidden;
   transition: all 0.3s;
   cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .blog-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  color: inherit;
 }
 
 .blog-image {
-  height: 160px;
+  height: 180px;
   background: var(--purple-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
+  overflow: hidden;
+}
+
+.blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.blog-card:hover .blog-image img {
+  transform: scale(1.05);
 }
 
 .blog-content {
@@ -677,6 +715,15 @@
     font-size: 1rem;
   }
 
+  /* Quote interlude: tighter on mobile */
+  .quote-interlude {
+    padding: 2.5rem 0;
+  }
+
+  .interlude-text {
+    font-size: 1.4rem;
+  }
+
   /* Path cards: compact on mobile */
   .path-card {
     padding: 1.5rem;
@@ -817,6 +864,10 @@
 
   .path-card {
     padding: 1.25rem;
+  }
+
+  .interlude-text {
+    font-size: 1.25rem;
   }
 
   /* Trust: narrower items in carousel */

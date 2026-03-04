@@ -67,7 +67,12 @@
           </svg>
           Bubble.
         </a>
-        <nav class="desktop-nav">
+        <!-- Mobile hamburger toggle -->
+        <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav>
           <a href="/a-propos" class="active">À Propos</a>
           <a href="/professionnels">Professionnels</a>
           <a href="/particuliers">Particuliers</a>
@@ -78,38 +83,18 @@
             <button data-href="/en/about">EN</button>
           </div>
         </nav>
-        <button class="hamburger" id="hamburger-toggle" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
+
       </div>
     </div>
   </header>
 
-  <!-- Mobile Navigation Overlay -->
-  <div class="mobile-nav-overlay" id="mobile-nav">
-    <div class="mobile-nav-header">
-      <a class="logo" href="/">
-        <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-            stroke-linecap="round" stroke-width="6"></circle>
-          <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-        </svg>
-        Bubble.
-      </a>
-      <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Fermer">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-    </div>
-    <div class="mobile-nav-links">
+  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block) -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-content">
       <a href="/a-propos" class="active">À Propos</a>
       <a href="/professionnels">Professionnels</a>
       <a href="/particuliers">Particuliers</a>
       <a href="/blog">Blog</a>
-    </div>
-    <div class="mobile-nav-footer">
       <div class="lang-switch">
         <button class="active">FR</button>
         <span>/</span>
@@ -122,18 +107,21 @@
   <section class="hero">
     <div class="container">
       <h1>À propos de Bubble</h1>
-      <p style="font-size: 1.3rem; font-weight: 500; max-width: 800px; margin: 0 auto;">On a quitté la finance traditionnelle pour construire ce qui n'existait pas : une expertise d'IA accessible, transparente et qui vous émancipe.</p>
-      <p style="margin-top: 1rem; color: var(--secondary);">On build in public. Voici qui nous sommes, ce qu'on croit et pourquoi on le fait.</p>
+      <p style="font-size: 1.3rem; font-weight: 500; max-width: 800px; margin: 0 auto;">On a choisi. Le confort n'y est pour rien, le calcul non plus. C'est un refus : celui de l'opacité, de la dépendance organisée, du temps humain gaspillé sur ce qu'une machine fait mieux.</p>
+      <p style="margin-top: 1rem; color: var(--secondary);">On build in public. Voici ce que nous sommes, ce que nous
+        croyons, et pourquoi nous avons choisi de l'être.</p>
     </div>
   </section>
 
   <!-- ÉMANCIPATION -->
   <section class="empowerment" style="padding: 5rem 0;">
     <div class="container">
-      <div style="text-align: center; max-width: 700px; margin: 0 auto; padding: 3rem; background: var(--bg-subtle); border-radius: 16px; border-left: 4px solid var(--purple);">
-        <p style="font-size: 1.4rem; font-weight: 500; font-style: italic; color: var(--primary); line-height: 1.6; margin: 0;">
-          "Là où l'industrie du conseil vit de votre dépendance, <br />
-          nous vivons de votre émancipation."
+      <div
+        style="text-align: center; max-width: 700px; margin: 0 auto; padding: 3rem; background: var(--bg-subtle); border-radius: 16px; border-left: 4px solid var(--purple);">
+        <p
+          style="font-size: 1.4rem; font-weight: 500; font-style: italic; color: var(--primary); line-height: 1.6; margin: 0;">
+          "L'industrie du conseil a besoin que vous restiez assis. <br />
+          Nous, on n'existe que si vous vous levez."
         </p>
       </div>
     </div>
@@ -144,83 +132,71 @@
     <div class="container">
       <div class="section-header">
         <h2>Notre vision</h2>
-        <h3>Accompagner la transition vers la nouvelle économie</h3>
+        <h3>Ce que tu m'offres quand tu m'offres ton temps</h3>
       </div>
       <div class="story-content">
-        <p class="lead">L'IA et la robotique transforment déjà l'économie : les emplois, la richesse, le rapport au
-          travail. On ne prétend pas avoir toutes les réponses ni le meilleur produit, mais on veut être un pont entre
-          l'économie d'hier et celle de demain.</p>
+        <p class="lead">L'IA et la robotique transforment déjà l'économie. Les emplois, la richesse, le rapport au travail : tout vacille. Nous ne prétendons pas détenir les réponses. Mais nous savons une chose : entre l'économie d'hier et celle de demain, il faut des passeurs. Nous avons choisi d'en être.</p>
         <p class="lead"
           style="font-style: italic; border-left: 3px solid var(--purple); padding-left: 1.5rem; margin: 2rem 0;">
-          On transfère une capacité, pas un produit. Chaque professionnel qu'on accompagne repart plus autonome qu'avant, et chaque contenu qu'on publie rend l'écosystème un peu plus lisible.</p>
+          Nous ne livrons pas un produit. Nous transférons une capacité. Chaque professionnel qu'on accompagne repart plus libre qu'avant. Chaque contenu qu'on publie rend le monde un peu plus lisible.</p>
         <h4>L'histoire des vœux</h4>
         <p>
-          Un dirigeant a utilisé l'IA pour envoyer ses vœux personnalisés à ses 600 employés. Des messages adaptés à
-          chacun, à ses performances, à son parcours. Les employés étaient touchés.
+          Un dirigeant a utilisé l'IA pour envoyer ses vœux personnalisés à ses 600 employés. Des messages ajustés à chacun, à ses performances, son parcours, ses ambitions. Les employés étaient touchés.
         </p>
         <p>
-          Puis le patron a révélé sa méthode. La déception fut immense.
+          Puis il a révélé sa méthode. Et la déception fut immense.
         </p>
         <p>
-          Les mots n'avaient pas changé. Ce qui manquait, c'était le temps. Derrière l'apparence de
-          l'attention, personne n'avait rien sacrifié. Aucun choix. Aucun fragment de vie irréversible.
+          Les mots n'avaient pas changé. Pas une virgule. Ce qui avait disparu, c'était autre chose. Quelque chose qu'on ne voit pas dans le texte, mais qu'on sent dans l'acte : le temps. Personne n'avait rien sacrifié. Aucun choix n'avait été fait. Aucun fragment de vie irréversible n'avait été consommé.
         </p>
         <h4>Le temps irréversible</h4>
         <p>
-          Quand quelqu'un vous écrit un message, même court, la valeur ne réside pas dans sa formulation. Elle réside
-          dans le fait que cette personne a pris un bout de sa vie, un fragment de temps qu'elle ne récupérera jamais,
-          et a choisi de le dépenser pour vous plutôt qu'ailleurs.
+          Quand quelqu'un vous écrit un message, même court, même maladroit, la valeur ne réside pas dans la formulation. Elle réside dans le fait que cette personne a prélevé un morceau de sa vie, un fragment de temps qu'elle ne récupérera jamais, et qu'elle a choisi de le dépenser pour vous. Pour vous, et personne d'autre.
         </p>
         <p>
-          Elle a interrompu ce qu'elle faisait. Elle a pensé à vous. Ce temps est consommé, irréversible, perdu pour
-          tout le reste.
+          Elle a interrompu ce qu'elle faisait. Elle a pensé à vous. Ce temps est consommé, irréversible, perdu pour tout le reste. Il ne reviendra pas.
         </p>
         <p style="font-style: italic; color: var(--primary);">
-          C'est cela que vous recevez. Du temps de vie. Celui d'une personne qui va mourir et qui a choisi de le dépenser pour vous.
+          C'est cela que vous recevez. Du temps de vie. Le temps d'un être qui va mourir et qui a choisi, librement, de le dépenser pour vous.
         </p>
         <h4>Ce que l'IA ne peut pas faire</h4>
         <p>
-          L'IA peut simuler l'attention. Produire des phrases qui ressemblent à du soin. Mais il lui manque l'essentiel
-          : la liberté de faire autrement.
+          L'IA peut simuler l'attention. Elle produit des phrases qui ressemblent à du soin, de l'empathie, de la considération. Mais il lui manque l'essentiel : la liberté de faire autrement.
         </p>
         <p>
-          Elle ne peut pas choisir de ne pas vous répondre. Elle ne sacrifie rien. Son temps ne coûte rien.
+          Elle ne peut pas choisir de ne pas vous répondre. Elle ne sacrifie rien. Son temps ne lui coûte rien. Elle n'a pas d'autre chose à faire. Elle n'a pas de vie à perdre.
         </p>
         <p>
-          Et c'est précisément cette impossibilité, cette absence de choix, qui vide son attention de tout ce qui la
-          rendrait précieuse.
+          Et c'est précisément cette absence de liberté, cette impossibilité du refus, qui vide son attention de tout ce qui la rendrait précieuse. Un être qui ne peut pas dire non ne dit jamais vraiment oui.
         </p>
         <h4>Notre conviction</h4>
         <p>
-          Dans un monde où l'IA produit tout à un coût marginal proche de zéro, ce qui a de la valeur, c'est le regard
-          de l'autre.
+          Dans un monde où l'IA produit tout à un coût marginal proche de zéro, ce qui a de la valeur, c'est le regard de l'autre. Le vrai regard. Celui d'un être conscient, libre, qui aurait pu faire autre chose, et qui choisit de tourner son attention vers vous.
         </p>
         <p>
-          Le regard d'un être conscient, libre, qui aurait pu faire autre chose et qui choisit de tourner son attention vers vous. De vous voir comme quelqu'un plutôt que comme quelque chose.
+          De vous voir comme quelqu'un, et non comme quelque chose.
         </p>
         <h4>Pourquoi on automatise</h4>
         <p>
-          Si tout ce qui est automatisable est automatisé, alors il reste plus de temps pour ce qui ne l'est pas :
+          Si tout ce qui est automatisable est automatisé, alors il reste du temps. Du vrai temps. Pour ce qui ne l'est pas :
         </p>
         <ul>
-          <li>Le regard d'un conseiller qui comprend vraiment la situation de son client</li>
-          <li>La créativité d'une équipe qui réfléchit ensemble</li>
-          <li>L'empathie d'un manager qui prend le temps d'écouter</li>
-          <li>La présence d'un parent, d'un ami, d'un proche</li>
+          <li>Le regard d'un conseiller qui comprend vraiment votre situation, au-delà du profil et du segment</li>
+          <li>La créativité d'une équipe qui pense ensemble, qui doute ensemble</li>
+          <li>L'empathie d'un manager qui prend le temps d'écouter, et qui, ce faisant, sacrifie le sien</li>
+          <li>La présence d'un parent, d'un ami, d'un proche ; une présence qu'aucun algorithme ne remplacera</li>
         </ul>
         <p>
-          Automatiser n'est pas une fin en soi. C'est un moyen de libérer du temps pour ce qui compte vraiment.
+          Automatiser n'est pas une fin. C'est un acte de libération. On retire ce qui peut être retiré pour révéler ce qui ne peut pas l'être.
         </p>
         <p>
-          Ce qu'on fait chez Bubble : on automatise le répétitif pour que vous puissiez consacrer votre temps
-          irréversible à ce qui a de la valeur : vos clients, votre équipe, vos proches.
+          Ce qu'on fait chez Bubble : on automatise le mécanique pour que vous puissiez consacrer votre temps irréversible, le seul que vous ayez, à ce qui a véritablement de la valeur. Vos clients. Votre équipe. Vos proches. Vous-même.
         </p>
       </div>
       <blockquote class="manifesto-quote fade-in" style="margin-top: 4rem;">
-        "L'IA peut produire pour un coût marginal proche de zéro. Ce qu'elle ne peut pas produire, c'est le choix d'un
-        être libre de consacrer son temps à un autre.
+        "L'IA produit à coût marginal zéro. Ce qu'elle ne produira jamais, c'est le choix d'un être libre de consacrer un fragment de sa vie à un autre.
         <br /><br />
-        C'est ça qu'on vous redonne : du temps. Pour vous. Pour les vôtres."
+        C'est ça qu'on vous redonne. Du temps. Le vôtre. Pour les vôtres."
       </blockquote>
       <p class="manifesto-attribution">— J &amp; J, fondateurs</p>
     </div>
@@ -236,7 +212,8 @@
       <div class="values-grid">
         <a class="value-card fade-in" href="/blog?tag=education">
           <div class="value-icon">
-            <svg fill="none" height="28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" width="28">
+            <svg fill="none" height="28" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" viewBox="0 0 24 24" width="28">
               <path d="M9 18h6"></path>
               <path d="M10 22h4"></path>
               <path d="M12 2a7 7 0 0 1 4 12.7V17H8v-2.3A7 7 0 0 1 12 2z"></path>
@@ -247,9 +224,12 @@
         </a>
         <a class="value-card fade-in fade-in-delay-1" href="/blog?tag=automation">
           <div class="value-icon">
-            <svg fill="none" height="28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" width="28">
+            <svg fill="none" height="28" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" viewBox="0 0 24 24" width="28">
               <circle cx="12" cy="12" r="3"></circle>
-              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z">
+              </path>
             </svg>
           </div>
           <h4>Automatiser</h4>
@@ -288,31 +268,36 @@
         <h3>Le moment où tout a basculé</h3>
       </div>
       <div class="story-content">
-        <p class="lead">2018. On est assis dans nos bureaux climatisés. L'un gère des centaines de millions en banque d'investissement. L'autre audite les processus financiers pour des multinationales.</p>
+        <p class="lead">2018. On est assis dans nos bureaux climatisés. L'un gère des centaines de millions en banque
+          d'investissement. L'autre audite les processus financiers pour des multinationales.</p>
 
-        <p>On devrait être satisfaits. Salaires à six chiffres. Prestige social. Trajectoire toute tracée.</p>
+        <p>On devrait être satisfaits. Salaires à six chiffres. Prestige social. Trajectoire toute tracée. Tout est là.</p>
 
-        <p>Mais quelque chose cloche.</p>
+        <p>Et pourtant, quelque chose résiste. Un malaise qu'on ne sait pas encore nommer.</p>
 
         <p style="border-left: 3px solid var(--purple); padding-left: 1.5rem; font-style: italic; margin: 2rem 0;">
-          <strong>Première prise de conscience :</strong> Les investisseurs particuliers se font plumer. 1,5% de frais de gestion sur un portefeuille de 500k€, ça fait 7 500€ par an. Pour un service opaque. Pour des décisions qu'un algorithme pourrait prendre en millisecondes.
+          <strong>Première prise de conscience :</strong> Les investisseurs particuliers se font plumer. 1,5% de frais
+          de gestion sur un portefeuille de 500k€, ça fait 7 500€ par an. Pour un service opaque. Pour des décisions
+          qu'un algorithme pourrait prendre en millisecondes.
         </p>
 
         <p style="border-left: 3px solid var(--purple); padding-left: 1.5rem; font-style: italic; margin: 2rem 0;">
-          <strong>Deuxième prise de conscience :</strong> L'industrie est archaïque. On parle "d'innovation financière", mais la plupart des gérants utilisent encore Excel comme en 1995. L'automatisation ? Elle existe, mais elle est réservée aux hedge funds qui gèrent des milliards.
+          <strong>Deuxième prise de conscience :</strong> L'industrie est archaïque. On parle "d'innovation financière",
+          mais la plupart des gérants utilisent encore Excel comme en 1995. L'automatisation ? Elle existe, mais elle
+          est réservée aux hedge funds qui gèrent des milliards.
         </p>
 
-        <p>Alors on a fait un choix radical.</p>
+        <p>Alors on a fait un choix. Le seul qui comptait : partir.</p>
 
-        <p>On a quitté nos postes. D'abord pour construire un agent d'investissement, l'outil qu'on voulait pour nous-mêmes. C'était notre premier projet, notre preuve de concept.</p>
+        <p>On a quitté nos postes. D'abord pour construire un agent d'investissement, l'outil qu'on voulait pour nous-mêmes. Notre premier projet. Notre preuve de concept.</p>
 
-        <p>Mais en construisant, on a découvert quelque chose de plus grand : <strong>notre vraie valeur n'était pas l'outil. C'était notre capacité à maîtriser les technologies d'IA dès leur sortie</strong>, et à les rendre accessibles aux autres.</p>
+        <p>Mais en construisant, on a découvert autre chose. Quelque chose de plus vaste : <strong>notre vraie valeur n'était pas l'outil. C'était notre capacité à maîtriser les technologies d'IA dès leur sortie</strong>, et à les rendre accessibles à ceux qui n'ont pas le temps de le faire.</p>
 
-        <p>Aujourd'hui, l'agent d'investissement est un projet parmi d'autres. On partage librement tout ce qu'on apprend : IA, automatisation, philosophie d'investissement, valeurs, regard sur l'économie de demain.</p>
+        <p>Aujourd'hui, l'agent d'investissement est un projet parmi d'autres. On partage librement tout ce qu'on apprend : IA, automatisation, philosophie, regard sur l'économie qui vient.</p>
 
-        <p>Et voilà le twist : <strong>on a décidé de tout partager gratuitement</strong>.</p>
+        <p>Et voilà le retournement : <strong>on a décidé de tout donner</strong>.</p>
 
-        <p>Pourquoi ? Parce que dans l'ère de l'IA, retenir l'information c'est comme essayer de vendre de l'eau à quelqu'un qui a un robinet. La transparence crée plus de valeur que la rétention.</p>
+        <p>Pourquoi ? Parce que dans l'ère de l'IA, retenir l'information c'est comme vendre de l'eau à quelqu'un qui a un robinet. La rétention est une illusion. La transparence crée.</p>
       </div>
     </div>
   </section>
@@ -324,20 +309,27 @@
         <h2>L'équipe</h2>
         <h3>Qui nous sommes</h3>
       </div>
-      <p class="team-intro">J &amp; J, deux profils complémentaires. L'un de l'investissement, l'autre de l'audit et du
-        conseil. Un optimiste, une pragmatique.</p>
+      <p class="team-intro">J &amp; J, deux profils complémentaires. L'un vient de l'investissement, l'autre de l'audit et du conseil. Deux regards différents sur le même problème.</p>
       <div class="team-grid">
         <div class="team-member fade-in">
-          <a href="https://www.linkedin.com/in/joris-dupraz-1ba35959/" target="_blank" rel="noopener noreferrer" style="display: inline-block; transition: transform 0.3s ease, opacity 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='0.85';" onmouseout="this.style.transform='scale(1)'; this.style.opacity='1';">
-            <img src="/assets/images/team/joris.jpg" alt="Joris" class="team-avatar" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; cursor: pointer;">
+          <a href="https://www.linkedin.com/in/joris-dupraz-1ba35959/" target="_blank" rel="noopener noreferrer"
+            style="display: inline-block; transition: transform 0.3s ease, opacity 0.3s ease;"
+            onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='0.85';"
+            onmouseout="this.style.transform='scale(1)'; this.style.opacity='1';">
+            <img src="/assets/images/team/joris.jpg" alt="Joris" class="team-avatar"
+              style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; cursor: pointer;">
           </a>
           <h4>Joris</h4>
           <p>Co-fondateur</p>
           <p class="team-initials">6 ans en gestion de fonds et banque d'investissement</p>
         </div>
         <div class="team-member fade-in fade-in-delay-1">
-          <a href="https://www.linkedin.com/in/jade-hoang-146955105/" target="_blank" rel="noopener noreferrer" style="display: inline-block; transition: transform 0.3s ease, opacity 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='0.85';" onmouseout="this.style.transform='scale(1)'; this.style.opacity='1';">
-            <img src="/assets/images/team/jade.jpg" alt="Jade" class="team-avatar" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; cursor: pointer;">
+          <a href="https://www.linkedin.com/in/jade-hoang-146955105/" target="_blank" rel="noopener noreferrer"
+            style="display: inline-block; transition: transform 0.3s ease, opacity 0.3s ease;"
+            onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='0.85';"
+            onmouseout="this.style.transform='scale(1)'; this.style.opacity='1';">
+            <img src="/assets/images/team/jade.jpg" alt="Jade" class="team-avatar"
+              style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; cursor: pointer;">
           </a>
           <h4>Jade</h4>
           <p>Co-fondatrice</p>
@@ -346,7 +338,7 @@
       </div>
       <p
         style="text-align: center; margin-top: 3rem; color: var(--secondary); font-size: 0.95rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-        Deux personnes qui ont choisi de quitter le confort pour construire ce qui n'existait pas. Bubble n'est pas notre histoire ; c'est un outil au service de la vôtre.</p>
+        Deux personnes qui ont choisi l'inconfort. Bubble n'est pas notre histoire ; c'est un outil au service de la vôtre.</p>
     </div>
   </section>
 
@@ -360,11 +352,16 @@
       <div class="story-content">
         <p class="lead">Deux activités. Une conviction : l'expertise se prouve en la partageant.</p>
         <h4>1. Consulting en automatisation IA (B2B)</h4>
-        <p>On accompagne les professionnels (CGP, sociétés de gestion, PME, indépendants) dans leur transition vers l'IA. Diagnostic, déploiement d'agents sur mesure, formation, suivi continu. Notre avantage : on maîtrise chaque outil dès sa sortie, des semaines avant le marché.</p>
+        <p>On accompagne les professionnels (CGP, sociétés de gestion, PME, indépendants) dans leur transition vers
+          l'IA. Diagnostic, déploiement d'agents sur mesure, formation, suivi continu. Notre avantage : on maîtrise
+          chaque outil dès sa sortie, des semaines avant le marché.</p>
         <h4>2. Contenu libre et gratuit (B2C)</h4>
-        <p>On partage tout ce qu'on apprend. Pas seulement notre agent d'investissement, c'est un projet parmi d'autres. On publie sur l'IA et son impact, la philosophie d'investissement, nos valeurs, nos méthodes, nos réflexions sur l'économie de demain. Tutoriels, analyses, retours d'expérience : tout est accessible, sans paywall.</p>
+        <p>On partage tout ce qu'on apprend. Pas seulement notre agent d'investissement, c'est un projet parmi d'autres.
+          On publie sur l'IA et son impact, la philosophie d'investissement, nos valeurs, nos méthodes, nos réflexions
+          sur l'économie de demain. Tutoriels, analyses, retours d'expérience : tout est accessible, sans paywall.</p>
         <p>Notre positionnement : <strong>Le B2B pour la viabilité</strong>,
-          <strong>le B2C pour l'impact</strong>. Le contenu gratuit prouve notre expertise. L'expertise finance le contenu.
+          <strong>le B2C pour l'impact</strong>. Le contenu gratuit prouve notre expertise. L'expertise finance le
+          contenu.
         </p>
       </div>
     </div>
@@ -378,36 +375,38 @@
         <h3>Le logiciel est mort. L'expertise est vivante.</h3>
       </div>
       <div class="story-content">
-        <p class="lead">L'IA a changé les règles. Aujourd'hui, n'importe qui peut construire un outil complexe en quelques jours. Le logiciel n'est plus une barrière. Ce qui a de la valeur, c'est ce qu'aucune IA ne génère seule.</p>
+        <p class="lead">L'IA a changé les règles du jeu. Aujourd'hui, n'importe qui peut construire un outil complexe en quelques jours. Le logiciel n'est plus une barrière. Ce n'est plus un avantage. Ce qui a de la valeur, c'est ce qu'aucune IA ne génère seule, et qu'elle ne générera peut-être jamais.</p>
 
         <h4>Ce qui compte désormais</h4>
 
         <ul>
-          <li><strong>L'expertise</strong> : savoir quoi construire, comment l'architecturer, comment le sécuriser</li>
-          <li><strong>Le temps</strong> : les professionnels occupés n'ont pas deux semaines à consacrer à chaque nouvel outil</li>
-          <li><strong>Le regard</strong> : comprendre le métier, le contexte, les enjeux réels d'un client</li>
+          <li><strong>L'expertise</strong> : savoir quoi construire, pourquoi le construire, et pour qui</li>
+          <li><strong>Le temps</strong> : les professionnels n'ont pas deux semaines à consacrer à chaque outil qui sort ; ils ont des clients à servir, des décisions à prendre</li>
+          <li><strong>Le regard</strong> : comprendre le métier, le contexte, les enjeux véritables, ceux du terrain</li>
         </ul>
 
-        <p>Le code ? L'IA le génère. La différence se fait sur la réflexion, l'expérience et l'accompagnement humain.</p>
+        <p>Le code ? L'IA le génère. La différence se joue ailleurs : dans la pensée, l'expérience, et la présence humaine.</p>
 
         <h4>Le modèle Selfware</h4>
 
-        <p>On a fait un choix radical :</p>
+        <p>On a fait un choix :</p>
 
-        <p style="border-left: 3px solid var(--purple); padding-left: 1.5rem; font-style: italic; font-size: 1.1rem; margin: 2rem 0;">
-          <strong>Tout notre contenu est gratuit</strong> : nos outils, nos méthodes, nos analyses, nos réflexions sur l'IA, l'investissement, la philosophie, l'économie de demain. On ne monétise pas l'information, on la partage.
+        <p
+          style="border-left: 3px solid var(--purple); padding-left: 1.5rem; font-style: italic; font-size: 1.1rem; margin: 2rem 0;">
+          <strong>Tout notre contenu est gratuit.</strong> Nos outils, nos méthodes, nos analyses, nos réflexions sur l'IA, l'investissement, la philosophie, l'économie qui vient. On ne monétise pas l'information. On la libère.
           <br /><br />
-          <strong>Notre consulting est sur mesure</strong> : on accompagne les professionnels dans la construction de LEURS propres solutions. Adaptées à leur métier. Avec notre expertise. Et on les forme pour qu'ils deviennent autonomes.
+          <strong>Notre consulting est sur mesure.</strong> On accompagne les professionnels dans la construction de LEURS propres solutions. Adaptées à leur métier. Avec notre expertise. Et on les forme pour qu'ils n'aient plus besoin de nous.
         </p>
 
         <h4>Ce que ça change pour vous</h4>
 
-        <p>Si vous êtes <strong>un particulier</strong> : vous avez accès à tout. Nos contenus, nos méthodes, nos réflexions. On ne cherche pas à vous enfermer. On veut vous élever.</p>
+        <p>Si vous êtes <strong>un particulier</strong> : vous avez accès à tout. Nos contenus, nos méthodes, nos doutes, nos conclusions. On ne cherche pas à vous retenir. On veut vous rendre capable.</p>
 
-        <p>Si vous êtes <strong>un professionnel</strong> : on ne vous vend pas une boîte noire. On construit AVEC vous, et on vous transfère les compétences.</p>
+        <p>Si vous êtes <strong>un professionnel</strong> : on ne vous vend pas une boîte noire. On construit AVEC vous. Et on vous transfère les compétences pour que vous puissiez continuer sans nous.</p>
 
-        <blockquote style="margin-top: 3rem; font-size: 1.2rem; font-style: italic; color: var(--primary); text-align: center;">
-          "Ce qui a de la valeur n'est plus le logiciel. C'est l'expertise pour le construire, le temps pour l'implémenter, et la sagesse pour savoir quoi construire."
+        <blockquote
+          style="margin-top: 3rem; font-size: 1.2rem; font-style: italic; color: var(--primary); text-align: center;">
+          "Ce qui a de la valeur n'est plus le logiciel. C'est l'expertise pour le construire, le temps pour l'implémenter, et le jugement pour savoir quand ne pas le construire."
         </blockquote>
         <p class="manifesto-attribution">— J &amp; J, fondateurs</p>
       </div>
@@ -419,13 +418,13 @@
     <div class="container">
       <div class="section-header">
         <h2>Notre volonté d'émanciper</h2>
-        <h3>On mesure notre succès à la vitesse à laquelle vous devenez autonomes</h3>
+        <h3>On mesure notre succès à la vitesse à laquelle vous n'avez plus besoin de nous</h3>
       </div>
       <div class="story-content">
-        <p class="lead">On veut vous élever, pas vous rendre dépendants.</p>
-        <p>Là où l'industrie du conseil classique construit des "boîtes noires" pour vous facturer de la maintenance au mois, nous choisissons la transparence et le transfert de compétences.</p>
-        <p>On ne se contente pas de livrer des solutions. On vous montre comment elles fonctionnent. On documente tout : nos réussites, nos échecs, nos méthodes. Et on vous forme pour que vous n'ayez plus besoin de nous.</p>
-        <p>Au cœur de Bubble, il y a une conviction : <strong>la transparence crée plus de valeur que la rétention d'information</strong>. Notre contenu est gratuit. Notre expertise est au service de votre autonomie.</p>
+        <p class="lead">On ne cherche pas à vous fidéliser. On cherche à vous libérer.</p>
+        <p>L'industrie du conseil classique construit des boîtes noires. Elle facture la maintenance. Elle entretient la dépendance comme d'autres entretiennent un jardin, parce que c'est ce qui rapporte. Nous faisons l'inverse.</p>
+        <p>On ne se contente pas de livrer des solutions. On les ouvre. On vous montre les rouages, les choix, les compromis. On documente nos réussites comme nos échecs. Et on vous forme, vraiment, pour que vous puissiez continuer seuls.</p>
+        <p>Au cœur de Bubble, il y a une conviction simple : <strong>la transparence crée plus de valeur que la rétention</strong>. L'information veut être libre. Notre expertise est au service de votre autonomie, non de notre chiffre d'affaires.</p>
       </div>
     </div>
   </section>
@@ -470,8 +469,7 @@
         <h3>Suivez notre parcours</h3>
       </div>
       <div class="story-content" style="text-align: center;">
-        <p class="lead">On partage nos doutes, nos victoires, nos erreurs. Parce que la confiance se gagne par la
-          transparence.</p>
+        <p class="lead">On partage nos doutes, nos victoires, nos erreurs. Parce que la confiance ne se décrète pas. Elle se prouve, acte après acte.</p>
         <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;">
           <a href="/blog" style="color: var(--purple); text-decoration: none; font-weight: 500;">Blog →</a>
           <a href="https://bit.ly/3Z9Cncr" target="_blank"
@@ -486,52 +484,41 @@
   </section>
 
   <!-- Chat Side Panel -->
-  <div id="chat-side-panel" class="chat-side-panel">
-    <div class="chat-side-header">
-      <div class="chat-side-title">
-        <svg width="20" height="20" viewBox="0 0 72 72" fill="none">
-          <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-            stroke-linecap="round" stroke-width="6" />
-          <circle cx="59" cy="21" fill="currentColor" r="6" />
-        </svg>
-        <span>Bubble</span>
+  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+    <div class="chat-side-panel-header">
+      <div class="chat-side-panel-header-info">
+        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+        <div class="chat-side-panel-titles">
+          <span class="chat-side-panel-title">Assistant Bubble</span>
+        </div>
       </div>
-      <div class="chat-side-actions">
-        <button class="chat-minimize-btn" id="chat-minimize-btn" aria-label="Minimiser">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="5" y1="12" x2="19" y2="12" />
-          </svg>
-        </button>
-        <button class="chat-close-btn" id="chat-close-btn" aria-label="Fermer">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
+      <div class="chat-side-panel-actions">
+        <button class="chat-side-panel-minimize" aria-label="Réduire le chat" type="button">-</button>
+        <button class="chat-side-panel-close" aria-label="Fermer le chat" type="button">✕</button>
       </div>
     </div>
-    <div class="chat-side-messages" id="chat-side-messages">
-      <div class="chat-message assistant">
-        <div class="message-content">Bienvenue ! Je suis l'agent Bubble. Des questions sur notre philosophie, notre
-          équipe ou notre parcours ?</div>
-      </div>
+    <div class="chat-side-panel-messages" role="log" aria-live="polite">
     </div>
-    <form class="chat-side-input" id="chat-side-form">
-      <input type="text" id="chat-side-input-field" placeholder="Posez votre question..." autocomplete="off">
-      <button type="submit" aria-label="Envoyer">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 10L12 3L19 10" />
-          <path d="M12 21V4" />
+    <form class="chat-side-panel-input-container" novalidate>
+      <input type="text" class="chat-side-panel-input" placeholder="Posez vos questions..."
+        data-translate-placeholder="floating_input.placeholder" aria-label="Saisissez votre message"
+        autocomplete="off" />
+      <button class="chat-side-panel-send" aria-label="Envoyer le message" type="submit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M12 21V4" stroke-linecap="round" />
         </svg>
       </button>
     </form>
   </div>
 
   <!-- FLOATING CHAT INPUT -->
-  <div class="floating-chat-input hidden" data-always-visible="false" data-page-context="about"
+  <div class="floating-chat-input hidden" data-always-visible="true" data-page-context="about"
     data-trigger-selector=".hero" id="floating-chat-input">
     <div class="floating-input-container">
-      <input aria-label="Posez votre question" class="floating-input-field" placeholder="Une question ?" type="text" />
+      <input aria-label="Posez votre question" class="floating-input-field"
+        placeholder="Pose-moi n'importe quelle question..." type="text"
+        data-translate-placeholder="floating_input.placeholder" />
       <button aria-label="Envoyer" class="floating-input-submit">
         <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
           <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -581,14 +568,7 @@
                 </path>
               </svg>
             </a>
-            <a aria-label="GitHub Jade" href="https://github.com/jade.hng" target="_blank" title="GitHub Jade">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="GitHub Joris" href="https://github.com/vdk888" target="_blank" title="GitHub Joris">
+            <a aria-label="GitHub" href="/github" title="GitHub">
               <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
                 <path
                   d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
@@ -644,16 +624,35 @@
   <script src="/js/floating-chat-input.js"></script>
   <script src="/js/animations.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
+  <!-- Mobile hamburger menu toggle -->
   <script>
-    // Mobile menu toggle
-    const hamburger = document.getElementById('hamburger-toggle');
-    const mobileNav = document.getElementById('mobile-nav');
-    const mobileNavClose = document.getElementById('mobile-nav-close');
-    if (hamburger && mobileNav) {
-      hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
-      mobileNavClose.addEventListener('click', () => mobileNav.classList.remove('open'));
-      mobileNav.addEventListener('click', (e) => { if (e.target === mobileNav) mobileNav.classList.remove('open'); });
-    }
+    (function () {
+      'use strict';
+      const toggle = document.getElementById('hamburger-toggle');
+      const overlay = document.getElementById('mobile-nav-overlay');
+      if (!toggle || !overlay) return;
+      function closeMenu() {
+        overlay.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+      toggle.addEventListener('click', function () {
+        const isOpen = overlay.classList.toggle('open');
+        toggle.classList.toggle('open', isOpen);
+        toggle.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+      overlay.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
+      });
+    })();
   </script>
 </body>
 

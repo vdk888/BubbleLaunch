@@ -65,7 +65,12 @@
           </svg>
           Bubble.
         </a>
-        <nav class="desktop-nav">
+        <!-- Mobile hamburger toggle -->
+        <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav>
           <a href="/en/about" class="active">About</a>
           <a href="/en/professionals">Professionals</a>
           <a href="/en/individuals">Individuals</a>
@@ -76,37 +81,18 @@
             <button class="active">EN</button>
           </div>
         </nav>
-        <button class="hamburger" id="hamburger-toggle" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
+
       </div>
     </div>
   </header>
-  <!-- Mobile Navigation Overlay -->
-  <div class="mobile-nav-overlay" id="mobile-nav">
-    <div class="mobile-nav-header">
-      <a class="logo" href="/en/">
-        <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-            stroke-linecap="round" stroke-width="6"></circle>
-          <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-        </svg>
-        Bubble.
-      </a>
-      <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-    </div>
-    <div class="mobile-nav-links">
+
+  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block) -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-content">
       <a href="/en/about" class="active">About</a>
       <a href="/en/professionals">Professionals</a>
       <a href="/en/individuals">Individuals</a>
       <a href="/en/blog">Blog</a>
-    </div>
-    <div class="mobile-nav-footer">
       <div class="lang-switch">
         <button data-href="/a-propos">FR</button>
         <span>/</span>
@@ -119,8 +105,8 @@
   <section class="hero">
     <div class="container">
       <h1>About Bubble</h1>
-      <p style="font-size: 1.3rem; font-weight: 500; max-width: 800px; margin: 0 auto;">We left traditional finance to build what didn't exist: AI expertise that's accessible, transparent, and empowering.</p>
-      <p style="margin-top: 1rem; color: var(--secondary);">We build in public. Here's who we are, what we believe, and why we do it.</p>
+      <p style="font-size: 1.3rem; font-weight: 500; max-width: 800px; margin: 0 auto;">We made a choice. Comfort had nothing to do with it, nor calculation. It was a refusal: of opacity, of organized dependency, of human time wasted on what a machine does better.</p>
+      <p style="margin-top: 1rem; color: var(--secondary);">We build in public. Here's what we are, what we believe, and why we chose to be it.</p>
     </div>
   </section>
 
@@ -129,8 +115,8 @@
     <div class="container">
       <div style="text-align: center; max-width: 700px; margin: 0 auto; padding: 3rem; background: var(--bg-subtle); border-radius: 16px; border-left: 4px solid var(--purple);">
         <p style="font-size: 1.4rem; font-weight: 500; font-style: italic; color: var(--primary); line-height: 1.6; margin: 0;">
-          "Where the consulting industry thrives on your dependency, <br />
-          we thrive on your emancipation."
+          "The consulting industry needs you to stay seated. <br />
+          We only exist if you stand up."
         </p>
       </div>
     </div>
@@ -141,81 +127,71 @@
     <div class="container">
       <div class="section-header">
         <h2>Our Vision</h2>
-        <h3>Guiding the shift to the new economy</h3>
+        <h3>What you give me when you give me your time</h3>
       </div>
       <div class="story-content">
-        <p class="lead">AI and robotics are already transforming the economy: jobs, wealth, relationship to work. We
-          don't claim to have all the answers or the best product, but we want to be a bridge between yesterday's
-          economy and tomorrow's.</p>
+        <p class="lead">AI and robotics are already transforming the economy. Jobs, wealth, the relationship to work: everything is shifting. We don't claim to have the answers. But we know one thing: between yesterday's economy and tomorrow's, there need to be people willing to bridge the gap. We chose to be among them.</p>
         <p class="lead"
           style="font-style: italic; border-left: 3px solid var(--purple); padding-left: 1.5rem; margin: 2rem 0;">
-          We transfer a capability, not a product. Every professional we work with leaves more autonomous than before, and every piece of content we publish makes the ecosystem a little more legible.</p>
+          We don't deliver a product. We transfer a capability. Every professional we work with leaves freer than before. Every piece of content we publish makes the world a little more legible.</p>
         <h4>The Story of the Wishes</h4>
         <p>
-          A CEO used AI to send personalized New Year wishes to his 600 employees. Messages tailored to each person,
-          their performance, their journey. The employees were touched.
+          A CEO used AI to send personalized New Year wishes to his 600 employees. Messages tailored to each person, to their performance, their journey, their ambitions. The employees were touched.
         </p>
         <p>
-          Then the boss revealed his method. The disappointment was immense.
+          Then he revealed his method. And the disappointment was immense.
         </p>
         <p>
-          The words hadn't changed. What was missing was the time. Behind the appearance of attention, nobody had sacrificed anything. No choice. No fragment of irreversible life.
+          The words hadn't changed. Not a comma. What had vanished was something else. Something you can't see in the text but feel in the act: the time. Nobody had sacrificed anything. No choice had been made. No fragment of irreversible life had been consumed.
         </p>
         <h4>Irreversible Time</h4>
         <p>
-          When someone writes you a message, even a short one, the value doesn't lie in its formulation. It lies in the
-          fact that this person took a piece of their life, a fragment of time they'll never get back, and chose to
-          spend it on you rather than elsewhere.
+          When someone writes you a message, even a short one, even a clumsy one, the value doesn't lie in the phrasing. It lies in the fact that this person took a piece of their life, a fragment of time they will never recover, and chose to spend it on you. On you, and nobody else.
         </p>
         <p>
-          They interrupted what they were doing. They thought of you. That time is consumed, irreversible, lost to
-          everything else.
+          They interrupted what they were doing. They thought of you. That time is consumed, irreversible, lost to everything else. It will not come back.
         </p>
         <p style="font-style: italic; color: var(--primary);">
-          That's what you receive. Life time. From a person who will die and chose to spend it on you.
+          That's what you receive. Life time. The time of a being who will die and who chose, freely, to spend it on you.
         </p>
         <h4>What AI Cannot Do</h4>
         <p>
-          AI can simulate attention. Produce sentences that look like care. But it's missing the essential: the freedom
-          to do otherwise.
+          AI can simulate attention. It produces sentences that resemble care, empathy, consideration. But it lacks the essential: the freedom to do otherwise.
         </p>
         <p>
-          It cannot choose not to respond to you. It sacrifices nothing. Its time costs nothing.
+          It cannot choose not to respond to you. It sacrifices nothing. Its time costs it nothing. It has nothing else to do. It has no life to lose.
         </p>
         <p>
-          And it's precisely this impossibility, this absence of choice, that empties its attention of everything that
-          would make it precious.
+          And it is precisely this absence of freedom, this impossibility of refusal, that empties its attention of everything that would make it precious. A being that cannot say no never truly says yes.
         </p>
         <h4>Our Conviction</h4>
         <p>
-          In a world where AI produces everything at near-zero marginal cost, what has value is the gaze of the other.
+          In a world where AI produces everything at near-zero marginal cost, what has value is the gaze of the other. The real gaze. That of a conscious, free being who could have done something else, and who chooses to turn their attention toward you.
         </p>
         <p>
-          The gaze of a conscious, free being who could have done something else and chooses to turn their attention toward you. To see you as someone rather than as something.
+          To see you as someone, and not as something.
         </p>
         <h4>Why We Automate</h4>
         <p>
-          If everything that can be automated is automated, then there's more time left for what cannot be:
+          If everything automatable is automated, then there's time left. Real time. For what cannot be:
         </p>
         <ul>
-          <li>The gaze of an advisor who truly understands their client's situation</li>
-          <li>The creativity of a team thinking together</li>
-          <li>The empathy of a manager who takes the time to listen</li>
-          <li>The presence of a parent, a friend, a loved one</li>
+          <li>The gaze of an advisor who truly understands your situation, beyond the profile and the segment</li>
+          <li>The creativity of a team that thinks together, that doubts together</li>
+          <li>The empathy of a manager who takes the time to listen, and who, in doing so, sacrifices their own</li>
+          <li>The presence of a parent, a friend, a loved one; a presence no algorithm will ever replace</li>
         </ul>
         <p>
-          Automating is not an end in itself. It's a means to free up time for what really matters.
+          Automating is not an end. It's an act of liberation. We remove what can be removed to reveal what cannot.
         </p>
         <p>
-          What we do at Bubble: we automate the repetitive so you can dedicate your irreversible time to what has value:
-          your clients, your team, your loved ones.
+          What we do at Bubble: we automate the mechanical so you can dedicate your irreversible time, the only kind you have, to what truly has value. Your clients. Your team. Your loved ones. Yourself.
         </p>
       </div>
       <blockquote class="manifesto-quote fade-in" style="margin-top: 4rem;">
-        "AI can produce at near-zero marginal cost. What it cannot produce is the choice of a free being to dedicate
-        their time to another.
+        "AI produces at zero marginal cost. What it will never produce is the choice of a free being to dedicate a fragment of their life to another.
         <br /><br />
-        That's what we give you back: time. For you. For yours."
+        That's what we give you back. Time. Yours. For yours."
       </blockquote>
       <p class="manifesto-attribution">— J &amp; J, founders</p>
     </div>
@@ -238,7 +214,7 @@
             </svg>
           </div>
           <h4>Educate</h4>
-          <p>Demystify finance and share what the industry keeps opaque</p>
+          <p>Demystify finance and AI. Share what the industry keeps opaque.</p>
         </a>
         <a class="value-card fade-in fade-in-delay-1" href="/en/blog?tag=automation">
           <div class="value-icon">
@@ -248,7 +224,7 @@
             </svg>
           </div>
           <h4>Automate</h4>
-          <p>Show how we build our tools and agents</p>
+          <p>Show how we build. What we use for ourselves, we explain to you.</p>
         </a>
         <a class="value-card fade-in fade-in-delay-2" href="/en/blog?tag=transparency">
           <div class="value-icon">
@@ -269,7 +245,7 @@
             </svg>
           </div>
           <h4>Kindness</h4>
-          <p>Elevate every person who trusts us</p>
+          <p>Elevate every person who trusts us. Create more value than we capture.</p>
         </a>
       </div>
     </div>
@@ -285,9 +261,9 @@
       <div class="story-content">
         <p class="lead">2018. We're sitting in our air-conditioned offices. One managing hundreds of millions at an investment bank. The other auditing financial processes for multinationals.</p>
 
-        <p>We should be satisfied. Six-figure salaries. Social prestige. Clear career trajectory.</p>
+        <p>We should be satisfied. Six-figure salaries. Social prestige. Clear career trajectory. Everything is there.</p>
 
-        <p>But something's off.</p>
+        <p>And yet, something resists. A discomfort we can't yet name.</p>
 
         <p style="border-left: 3px solid var(--purple); padding-left: 1.5rem; font-style: italic; margin: 2rem 0;">
           <strong>First realization:</strong> Individual investors are getting fleeced. 1.5% management fees on a €500k portfolio means €7,500 per year. For an opaque service. For decisions an algorithm could make in milliseconds.
@@ -297,17 +273,17 @@
           <strong>Second realization:</strong> The industry is archaic. We talk about "financial innovation," but most managers still use Excel like it's 1995. Automation? It exists, but it's reserved for hedge funds managing billions.
         </p>
 
-        <p>So we made a radical choice.</p>
+        <p>So we made a choice. The only one that mattered: to leave.</p>
 
-        <p>We left our jobs. First, to build an investment agent, the tool we wanted for ourselves. It was our first project, our proof of concept.</p>
+        <p>We left our jobs. First, to build an investment agent, the tool we wanted for ourselves. Our first project. Our proof of concept.</p>
 
-        <p>But as we built, we discovered something bigger: <strong>our real value wasn't the tool. It was our ability to master AI technologies as soon as they're released</strong>, and to make them accessible to others.</p>
+        <p>But as we built, we discovered something else. Something larger: <strong>our real value wasn't the tool. It was our ability to master AI technologies as soon as they're released</strong>, and to make them accessible to those who don't have the time to do it themselves.</p>
 
-        <p>Today, the investment agent is one project among many. We freely share everything we learn: AI, automation, investment philosophy, values, and our perspective on tomorrow's economy.</p>
+        <p>Today, the investment agent is one project among many. We freely share everything we learn: AI, automation, philosophy, our perspective on the economy to come.</p>
 
-        <p>And here's the twist: <strong>we decided to share everything for free</strong>.</p>
+        <p>And here's the reversal: <strong>we decided to give everything away</strong>.</p>
 
-        <p>Why? Because in the AI era, withholding information is like trying to sell water to someone with a tap. Transparency creates more value than retention.</p>
+        <p>Why? Because in the AI era, withholding information is like selling water to someone with a tap. Retention is an illusion. Transparency creates.</p>
       </div>
     </div>
   </section>
@@ -320,8 +296,7 @@
         <h3>Who we are</h3>
       </div>
       <p class="team-intro">
-        J &amp; J, two complementary profiles. One from investment, the other from audit and consulting. An optimist, a
-        pragmatist.
+        J &amp; J, two complementary profiles. One from investment, the other from audit and consulting. Two different gazes on the same problem.
       </p>
       <div class="team-grid">
         <div class="team-member fade-in">
@@ -343,7 +318,7 @@
       </div>
       <p
         style="text-align: center; margin-top: 3rem; color: var(--secondary); font-size: 0.95rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-        Two people who chose to leave comfort to build what didn't exist. Bubble isn't our story; it's a tool in service of yours.
+        Two people who chose discomfort. Bubble isn't our story; it's a tool in service of yours.
       </p>
     </div>
   </section>
@@ -376,36 +351,36 @@
         <h3>Software is dead. Expertise is alive.</h3>
       </div>
       <div class="story-content">
-        <p class="lead">AI changed the rules. Today, anyone can build a complex tool in a few days. Software is no longer a barrier. What has value is what no AI generates alone.</p>
+        <p class="lead">AI changed the rules of the game. Today, anyone can build a complex tool in a few days. Software is no longer a barrier. It's no longer an advantage. What has value is what no AI generates alone, and perhaps never will.</p>
 
         <h4>What Matters Now</h4>
 
         <ul>
-          <li><strong>Expertise</strong> : knowing what to build, how to architect it, how to secure it</li>
-          <li><strong>Time</strong> : busy professionals don't have two weeks to dedicate to every new tool</li>
-          <li><strong>The human gaze</strong> : understanding the business, the context, the real stakes of a client</li>
+          <li><strong>Expertise</strong>: knowing what to build, why to build it, and for whom</li>
+          <li><strong>Time</strong>: professionals don't have two weeks to dedicate to every new tool; they have clients to serve, decisions to make</li>
+          <li><strong>The human gaze</strong>: understanding the business, the context, the real stakes, the ones from the field</li>
         </ul>
 
-        <p>The code? AI generates it. The difference is in the thinking, the experience, and the human guidance.</p>
+        <p>The code? AI generates it. The difference lies elsewhere: in the thinking, the experience, and the human presence.</p>
 
         <h4>The Selfware Model</h4>
 
-        <p>We made a radical choice:</p>
+        <p>We made a choice:</p>
 
         <p style="border-left: 3px solid var(--purple); padding-left: 1.5rem; font-style: italic; font-size: 1.1rem; margin: 2rem 0;">
-          <strong>All our content is free</strong>: our tools, our methods, our analyses, our thoughts on AI, investing, philosophy, tomorrow's economy. We don't monetize information, we share it.
+          <strong>All our content is free.</strong> Our tools, our methods, our analyses, our thoughts on AI, investing, philosophy, the economy to come. We don't monetize information. We liberate it.
           <br /><br />
-          <strong>Our consulting is custom</strong>: we help professionals build THEIR own solutions. Adapted to their business. With our expertise. And we train them to become autonomous.
+          <strong>Our consulting is custom.</strong> We help professionals build THEIR own solutions. Adapted to their business. With our expertise. And we train them so they no longer need us.
         </p>
 
         <h4>What This Means for You</h4>
 
-        <p>If you're <strong>an individual</strong>: you get access to everything. Our content, our methods, our thinking. We're not trying to lock you in. We want to elevate you.</p>
+        <p>If you're <strong>an individual</strong>: you get access to everything. Our content, our methods, our doubts, our conclusions. We're not trying to retain you. We want to make you capable.</p>
 
-        <p>If you're <strong>a professional</strong>: we don't sell you a black box. We build WITH you, and we transfer the skills.</p>
+        <p>If you're <strong>a professional</strong>: we don't sell you a black box. We build WITH you. And we transfer the skills so you can continue without us.</p>
 
         <blockquote style="margin-top: 3rem; font-size: 1.2rem; font-style: italic; color: var(--primary); text-align: center;">
-          "What has value is no longer the software. It's the expertise to build it, the time to implement it, and the wisdom to know what to build."
+          "What has value is no longer the software. It's the expertise to build it, the time to implement it, and the judgment to know when not to build it."
         </blockquote>
         <p class="manifesto-attribution">— J &amp; J, founders</p>
       </div>
@@ -417,13 +392,13 @@
     <div class="container">
       <div class="section-header">
         <h2>Our Drive to Empower</h2>
-        <h3>We measure our success by how fast you become autonomous</h3>
+        <h3>We measure our success by how fast you no longer need us</h3>
       </div>
       <div class="story-content">
-        <p class="lead">We want to elevate you, not keep you dependent.</p>
-        <p>Where the consulting industry builds black boxes to charge you monthly maintenance, we choose transparency and skills transfer.</p>
-        <p>We don't just deliver solutions. We show you how they work. We document everything: our successes, our failures, our methods. And we train you so you no longer need us.</p>
-        <p>At the heart of Bubble is a conviction: <strong>transparency creates more value than information retention</strong>. Our content is free. Our expertise is in service of your autonomy.</p>
+        <p class="lead">We don't want to retain you. We want to free you.</p>
+        <p>The traditional consulting industry builds black boxes. It charges for maintenance. It cultivates dependency the way others tend a garden, because that's what pays. We do the opposite.</p>
+        <p>We don't just deliver solutions. We open them up. We show you the gears, the choices, the trade-offs. We document our successes and our failures alike. And we train you, truly, so you can continue on your own.</p>
+        <p>At the heart of Bubble is a simple conviction: <strong>transparency creates more value than retention</strong>. Information wants to be free. Our expertise serves your autonomy, not our revenue.</p>
       </div>
     </div>
   </section>
@@ -468,7 +443,7 @@
       </div>
       <div class="story-content" style="text-align: center;">
         <p class="lead">
-          We share our doubts, our victories, our mistakes. Because trust is earned through transparency.
+          We share our doubts, our victories, our mistakes. Because trust is not declared. It is proven, act by act.
         </p>
         <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;">
           <a href="/en/blog" style="color: var(--purple); text-decoration: none; font-weight: 500;">Blog →</a>
@@ -484,52 +459,39 @@
   </section>
 
   <!-- Chat Side Panel -->
-  <div id="chat-side-panel" class="chat-side-panel">
-    <div class="chat-side-header">
-      <div class="chat-side-title">
-        <svg width="20" height="20" viewBox="0 0 72 72" fill="none">
-          <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-            stroke-linecap="round" stroke-width="6" />
-          <circle cx="59" cy="21" fill="currentColor" r="6" />
-        </svg>
-        <span>Bubble</span>
-      </div>
-      <div class="chat-side-actions">
-        <button class="chat-minimize-btn" id="chat-minimize-btn" aria-label="Minimize">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="5" y1="12" x2="19" y2="12" />
-          </svg>
-        </button>
-        <button class="chat-close-btn" id="chat-close-btn" aria-label="Close">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
-      </div>
-    </div>
-    <div class="chat-side-messages" id="chat-side-messages">
-      <div class="chat-message assistant">
-        <div class="message-content">Welcome! I'm the Bubble agent. Questions about our philosophy, team, or journey?
+  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+    <div class="chat-side-panel-header">
+      <div class="chat-side-panel-header-info">
+        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+        <div class="chat-side-panel-titles">
+          <span class="chat-side-panel-title">Bubble Assistant</span>
         </div>
       </div>
+      <div class="chat-side-panel-actions">
+        <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
+        <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
+      </div>
     </div>
-    <form class="chat-side-input" id="chat-side-form">
-      <input type="text" id="chat-side-input-field" placeholder="Ask your question..." autocomplete="off">
-      <button type="submit" aria-label="Send">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 10L12 3L19 10" />
-          <path d="M12 21V4" />
+    <div class="chat-side-panel-messages" role="log" aria-live="polite">
+    </div>
+    <form class="chat-side-panel-input-container" novalidate>
+      <input type="text" class="chat-side-panel-input" placeholder="Ask your questions..."
+        data-translate-placeholder="floating_input.placeholder" aria-label="Type your message" autocomplete="off" />
+      <button class="chat-side-panel-send" aria-label="Send message" type="submit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M12 21V4" stroke-linecap="round" />
         </svg>
       </button>
     </form>
   </div>
 
   <!-- FLOATING CHAT INPUT -->
-  <div class="floating-chat-input hidden" data-always-visible="false" data-page-context="about"
+  <div class="floating-chat-input hidden" data-always-visible="true" data-page-context="about"
     data-trigger-selector=".hero" id="floating-chat-input">
     <div class="floating-input-container">
-      <input aria-label="Ask your question" class="floating-input-field" placeholder="A question?" type="text" />
+      <input aria-label="Ask your question" class="floating-input-field" placeholder="Ask me anything..."
+        type="text" data-translate-placeholder="floating_input.placeholder" />
       <button aria-label="Send" class="floating-input-submit">
         <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
           <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -579,14 +541,7 @@
                 </path>
               </svg>
             </a>
-            <a aria-label="GitHub Jade" href="https://github.com/jade.hng" target="_blank" title="GitHub Jade">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="GitHub Joris" href="https://github.com/vdk888" target="_blank" title="GitHub Joris">
+            <a aria-label="GitHub" href="/en/github" title="GitHub">
               <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
                 <path
                   d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
@@ -642,16 +597,35 @@
   <script src="/js/floating-chat-input.js"></script>
   <script src="/js/animations.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
+  <!-- Mobile hamburger menu toggle -->
   <script>
-    // Mobile menu toggle
-    const hamburger = document.getElementById('hamburger-toggle');
-    const mobileNav = document.getElementById('mobile-nav');
-    const mobileNavClose = document.getElementById('mobile-nav-close');
-    if (hamburger && mobileNav) {
-      hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
-      mobileNavClose.addEventListener('click', () => mobileNav.classList.remove('open'));
-      mobileNav.addEventListener('click', (e) => { if (e.target === mobileNav) mobileNav.classList.remove('open'); });
-    }
+    (function () {
+      'use strict';
+      const toggle = document.getElementById('hamburger-toggle');
+      const overlay = document.getElementById('mobile-nav-overlay');
+      if (!toggle || !overlay) return;
+      function closeMenu() {
+        overlay.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+      toggle.addEventListener('click', function () {
+        const isOpen = overlay.classList.toggle('open');
+        toggle.classList.toggle('open', isOpen);
+        toggle.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+      overlay.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
+      });
+    })();
   </script>
 </body>
 

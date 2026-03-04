@@ -6,7 +6,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
   <!-- SEO Meta Tags -->
-  <title>Bubble — Percez la bulle. Investissez dans l'essentiel.</title>
+  <title>Bubble: Percez la bulle. Investissez dans l'essentiel.</title>
   <meta name="description"
     content="Bubble : agents IA pour investisseurs et professionnels. Vitrine d'expertise gratuite pour particuliers, implémentation sur mesure pour entreprises. Transparent by design." />
   <meta name="keywords"
@@ -16,7 +16,7 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bubbleinvest.org/" />
-  <meta property="og:title" content="Bubble — Percez la bulle. Investissez dans l'essentiel." />
+  <meta property="og:title" content="Bubble: Percez la bulle. Investissez dans l'essentiel." />
   <meta property="og:description"
     content="Agents IA pour investisseurs et professionnels. Vitrine d'expertise gratuite pour particuliers, implémentation sur mesure pour entreprises." />
   <meta property="og:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
@@ -26,7 +26,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://bubbleinvest.org/" />
-  <meta name="twitter:title" content="Bubble — Percez la bulle. Investissez dans l'essentiel." />
+  <meta name="twitter:title" content="Bubble: Percez la bulle. Investissez dans l'essentiel." />
   <meta name="twitter:description"
     content="Agents IA pour investisseurs et professionnels. Vitrine d'expertise gratuite, implémentation sur mesure." />
   <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
@@ -118,23 +118,24 @@
           </div>
         </nav>
 
-        <!-- Mobile nav overlay -->
-        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
-          <div class="mobile-nav-content">
-            <a href="/a-propos">À Propos</a>
-            <a href="/professionnels">Professionnels</a>
-            <a href="/particuliers">Particuliers</a>
-            <a href="/blog">Blog</a>
-            <div class="lang-switch">
-              <button class="active">FR</button>
-              <span>/</span>
-              <button data-href="/en/">EN</button>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </header>
+
+  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block) -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-content">
+      <a href="/a-propos">À Propos</a>
+      <a href="/professionnels">Professionnels</a>
+      <a href="/particuliers">Particuliers</a>
+      <a href="/blog">Blog</a>
+      <div class="lang-switch">
+        <button class="active">FR</button>
+        <span>/</span>
+        <button data-href="/en/">EN</button>
+      </div>
+    </div>
+  </div>
 
   <!-- HERO SECTION -->
   <section class="hero">
@@ -149,34 +150,9 @@
         </div>
         <h1>Bubble.</h1>
         <p class="hero-tagline">Percez la bulle. Investissez dans l'essentiel.</p>
-        <p class="hero-description">On construit des agents IA pour nous — et on vous montre comment faire pareil.
+        <p class="hero-description">On construit des agents IA pour nous, et on vous montre comment faire pareil.
           Vitrine d'expertise gratuite pour particuliers. Implémentation sur mesure pour professionnels.</p>
-        <div class="chat-input-wrapper">
-          <input class="chat-input"
-            placeholder="Par exemple : &quot;Comment fonctionne votre agent d'investissement ?&quot;" type="text" />
-          <button class="chat-submit">
-            <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
-              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M12 21V4" stroke-linecap="round"></path>
-            </svg>
-          </button>
-        </div>
-        <div class="hero-cta">
-          <button class="btn btn-primary">Voir la démo</button>
-          <a class="btn btn-secondary" href="/a-propos">En savoir plus</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DUAL PATH SECTION -->
-  <section class="dual-path">
-    <div class="container">
-      <div class="section-header">
-        <h2>Deux Approches</h2>
-        <h3>Choisissez votre parcours</h3>
-      </div>
-      <div class="path-grid">
+        <div class="path-grid">
         <!-- Individuals Path -->
         <div class="path-card" onclick="location.href='/particuliers'">
           <div class="path-icon">
@@ -186,16 +162,13 @@
             </svg>
           </div>
           <h3>Particuliers</h3>
-          <p>Apprenez en observant ce qu'on a construit</p>
+          <p>Contenu gratuit, transparent, sans filtre.</p>
           <ul class="path-features">
-            <li>Notre agent d'investissement est un proof of concept public.</li>
-            <li>On partage comment il marche (OpenClaw, code, méthodes) pour que vous puissiez reproduire — pour vos
-              investissements ou vos propres projets.</li>
-            <li>POC 100% transparent — Stack, limites, apprentissages</li>
-            <li>Ressources gratuites — Configs, tutos, veille</li>
-            <li>Newsletter — Ce qu'on découvre chaque semaine</li>
+            <li>On partage tout: notre agent IA, notre code, nos apprentissages.</li>
+            <li>Tutos, ressources, veille techno: tout est en accès libre.</li>
+            <li>Suivez-nous sur nos réseaux pour ne rien rater.</li>
           </ul>
-          <a class="path-cta" href="/particuliers">Explorer notre agent <svg fill="none" height="16"
+          <a class="path-cta" href="/particuliers">Explorer notre contenu <svg fill="none" height="16"
               stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
               <path d="M5 12h14M12 5l7 7-7 7"></path>
             </svg></a>
@@ -211,21 +184,28 @@
             </svg>
           </div>
           <h3>Professionnels</h3>
-          <p>Implémentez l'IA dans votre métier — avec les tout derniers outils</p>
+          <p>On implémente l'IA dans votre métier.</p>
           <ul class="path-features">
-            <li>CGP, sociétés de gestion, PME. On déploie des agents sur vos systèmes.</li>
-            <li>Les solutions qu'on utilise sont sorties il y a quelques semaines — on est parmi les premiers en France
-              à les maîtriser.</li>
-            <li>Early adopters — Toujours une longueur d'avance</li>
-            <li>Co-construction — On build avec vous, pas pour vous</li>
-            <li>Autonomie garantie — À la fin, vous n'avez plus besoin de nous</li>
+            <li>Agents IA, automatisation, workflows: on s'occupe de tout.</li>
+            <li>On maîtrise les outils les plus récents, des semaines avant le marché.</li>
+            <li>CGP, gestion d'actifs, PME: parlons de votre projet.</li>
           </ul>
           <a class="path-cta" href="/professionnels">Discuter de votre projet <svg fill="none" height="16"
               stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
               <path d="M5 12h14M12 5l7 7-7 7"></path>
             </svg></a>
         </div>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- QUOTE INTERLUDE -->
+  <section class="quote-interlude">
+    <div class="container">
+      <a href="/a-propos" class="interlude-link">
+        <p class="interlude-text">Et si ce n'était pas qu'une bulle ?</p>
+      </a>
     </div>
   </section>
 
@@ -317,48 +297,39 @@
     <div class="container">
       <div class="section-header">
         <h2>Build in Public</h2>
-        <h3>Ce qu'on apprend, ce qu'on pense, ce qu'on partage — gratuitement</h3>
+        <h3>Ce qu'on apprend, ce qu'on pense, ce qu'on partage, gratuitement</h3>
       </div>
       <div class="blog-grid">
-        <div class="blog-card" onclick="location.href='/blog'">
-          <div class="blog-image"><svg fill="none" height="32" stroke="currentColor" stroke-linecap="round"
-              stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="32">
-              <line x1="18" x2="18" y1="20" y2="10"></line>
-              <line x1="12" x2="12" y1="20" y2="4"></line>
-              <line x1="6" x2="6" y1="20" y2="14"></line>
-            </svg></div>
-          <div class="blog-content">
-            <div class="blog-tag">Agents en vitrine</div>
-            <h4>Notre agent en action : 18 mois de gestion réelle</h4>
-            <p></p>
+        <a class="blog-card" href="https://bubbleinvest.substack.com/p/pourquoi-le-saas-na-plus-de-sens" target="_blank" rel="noopener noreferrer">
+          <div class="blog-image">
+            <img src="https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8cc564ff-6c8e-4b3a-a70b-b3e3a7e48c30_1024x608.png" alt="Pourquoi le SaaS n'a plus de sens en 2026" loading="lazy">
           </div>
-        </div>
-        <div class="blog-card" onclick="location.href='/blog'">
-          <div class="blog-image"><svg fill="none" height="32" stroke="currentColor" stroke-linecap="round"
-              stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="32">
-              <rect height="10" rx="2" width="18" x="3" y="11"></rect>
-              <circle cx="12" cy="5" r="2"></circle>
-              <path d="M12 7v4"></path>
-              <line x1="8" x2="8" y1="16" y2="16"></line>
-              <line x1="16" x2="16" y1="16" y2="16"></line>
-            </svg></div>
           <div class="blog-content">
-            <div class="blog-tag">Cas d'usage</div>
-            <h4>Comment on automatise la veille réglementaire avec OpenClaw</h4>
-            <p></p>
+            <div class="blog-tag">Modèle</div>
+            <h4>Pourquoi le SaaS n'a plus de sens en 2026</h4>
+            <p>Ce qu'on a compris en renonçant à construire une app, et le modèle qu'on a trouvé de l'autre côté</p>
           </div>
-        </div>
-        <div class="blog-card" onclick="location.href='/blog'">
-          <div class="blog-image"><svg fill="none" height="32" stroke="currentColor" stroke-linecap="round"
-              stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="32">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg></div>
+        </a>
+        <a class="blog-card" href="https://bubbleinvest.substack.com/p/le-futur-ou-va-t-on-et-comment-se" target="_blank" rel="noopener noreferrer">
+          <div class="blog-image">
+            <img src="https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feb80c01e-ee01-448d-87f9-420a7ad1b9c0_1024x608.png" alt="Le Futur : Où va-t-on ? Et comment se préparer ?" loading="lazy">
+          </div>
+          <div class="blog-content">
+            <div class="blog-tag">IA &amp; Futur</div>
+            <h4>Le Futur : Où va-t-on ? Et comment se préparer ?</h4>
+            <p>De ChatGPT (2022) à Computer Use (2025) en 3 ans. Qu'est-ce qui nous attend dans les 3 prochaines années ?</p>
+          </div>
+        </a>
+        <a class="blog-card" href="https://bubbleinvest.substack.com/p/ce-que-tu-moffres-quand-tu-moffres" target="_blank" rel="noopener noreferrer">
+          <div class="blog-image">
+            <img src="https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24acd9eb-31a2-47d9-9a64-3560a0149165_1408x768.png" alt="Ce que tu m'offres quand tu m'offres ton temps" loading="lazy">
+          </div>
           <div class="blog-content">
             <div class="blog-tag">Essai philosophique</div>
-            <h4>L'IA va-t-elle remplacer les CGP ? Réflexion sur la valeur du conseil</h4>
-            <p></p>
+            <h4>Ce que tu m'offres quand tu m'offres ton temps</h4>
+            <p>Dans un monde où l'IA produit tout, l'attention humaine devient la seule chose qui ne se délègue pas.</p>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -432,14 +403,7 @@
                 </path>
               </svg>
             </a>
-            <a aria-label="GitHub Jade" href="https://github.com/jade.hng" target="_blank" title="GitHub Jade">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="GitHub Joris" href="https://github.com/vdk888" target="_blank" title="GitHub Joris">
+            <a aria-label="GitHub" href="/github" title="GitHub">
               <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
                 <path
                   d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
@@ -480,7 +444,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Bubble Invest — Transparent by design.</p>
+        <p>© 2026 Bubble Invest. Transparent by design.</p>
       </div>
     </div>
   </footer>
@@ -501,11 +465,6 @@
       </div>
     </div>
     <div class="chat-side-panel-messages" role="log" aria-live="polite">
-      <div class="chat-side-panel-message bot">
-        <div class="message-content">
-          Salut ! Je suis Bubble - ici on démocratise l'investissement. Qu'est-ce qui t'amène ici ?
-        </div>
-      </div>
     </div>
     <form class="chat-side-panel-input-container" novalidate>
       <input type="text" class="chat-side-panel-input" placeholder="Posez vos questions..."
@@ -521,11 +480,11 @@
   </div>
 
   <!-- Floating Glassmorphism Chat Input -->
-  <div class="floating-chat-input hidden" data-always-visible="false" data-page-context="homepage"
+  <div class="floating-chat-input hidden" data-always-visible="true" data-page-context="homepage"
     data-trigger-selector=".hero" id="floating-chat-input">
     <div class="floating-input-container">
       <input aria-label="Posez votre question" class="floating-input-field"
-        placeholder="Une question ?" type="text"
+        placeholder="Pose-moi n'importe quelle question..." type="text"
         data-translate-placeholder="floating_input.placeholder" />
       <button aria-label="Envoyer" class="floating-input-submit">
         <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
@@ -547,39 +506,6 @@
   <script src="/js/animations.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
 
-  <!-- Hero chat input → opens chat side panel -->
-  <script>
-    (function () {
-      'use strict';
-      var heroInput = document.querySelector('.hero .chat-input');
-      var heroSubmit = document.querySelector('.hero .chat-submit');
-      var demoBtn = document.querySelector('.hero .btn-primary');
-      if (heroInput && heroSubmit) {
-        function submitHeroChat() {
-          var msg = heroInput.value.trim();
-          if (!msg) return;
-          if (window.chatSidePanel && typeof window.chatSidePanel.open === 'function') {
-            window.chatSidePanel.open(msg);
-            heroInput.value = '';
-            heroInput.blur();
-          }
-        }
-        heroSubmit.addEventListener('click', submitHeroChat);
-        heroInput.addEventListener('keypress', function (e) {
-          if (e.key === 'Enter') { e.preventDefault(); submitHeroChat(); }
-        });
-      }
-      // "Voir la démo" button opens chat with a default message
-      if (demoBtn) {
-        demoBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          if (window.chatSidePanel && typeof window.chatSidePanel.open === 'function') {
-            window.chatSidePanel.open();
-          }
-        });
-      }
-    })();
-  </script>
 
   <!-- Mobile hamburger menu toggle -->
   <script>
@@ -588,6 +514,12 @@
       const toggle = document.getElementById('hamburger-toggle');
       const overlay = document.getElementById('mobile-nav-overlay');
       if (!toggle || !overlay) return;
+      function closeMenu() {
+        overlay.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
       toggle.addEventListener('click', function () {
         const isOpen = overlay.classList.toggle('open');
         toggle.classList.toggle('open', isOpen);
@@ -595,12 +527,13 @@
         document.body.style.overflow = isOpen ? 'hidden' : '';
       });
       overlay.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', function () {
-          overlay.classList.remove('open');
-          toggle.classList.remove('open');
-          toggle.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = '';
-        });
+        link.addEventListener('click', closeMenu);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
       });
     })();
   </script>

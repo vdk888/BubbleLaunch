@@ -19,6 +19,10 @@
     return;
   }
 
+  function getCurrentLanguage() {
+    return document.documentElement.lang || localStorage.getItem('bubbleLanguage') || 'fr';
+  }
+
   // Detect education pages - these are handled by education-floating-chat.js
   // Check both /education/ and /playground/ paths (routes serve files from different paths)
   const isEducationPage = window.location.pathname.includes('/education/arena') ||
@@ -49,7 +53,7 @@
 
     // Update placeholder based on language for education pages too
     function updateEducationPlaceholder() {
-      const lang = localStorage.getItem('bubbleLanguage') || 'fr';
+      const lang = getCurrentLanguage();
       const translations = window.translations?.['floating_input.placeholder'];
 
       if (translations && translations[lang]) {
@@ -64,10 +68,6 @@
     document.addEventListener('languageChanged', updateEducationPlaceholder);
 
     return;
-  }
-
-  function getCurrentLanguage() {
-    return document.documentElement.lang || localStorage.getItem('bubbleLanguage') || 'fr';
   }
 
   function trackFloatingInputEvent(action, params = {}) {
@@ -190,7 +190,7 @@
 
   // Update placeholder based on language
   function updatePlaceholder() {
-    const lang = localStorage.getItem('bubbleLanguage') || 'fr';
+    const lang = getCurrentLanguage();
     const translations = window.translations?.['floating_input.placeholder'];
 
     if (translations && translations[lang]) {
@@ -224,4 +224,40 @@
     inputField.value = '';
     applyVisibility();
   });
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // HERO CHAT INPUT HANDLER
+  // Wire the hero section's "Describe your project" input (professionals pages)
+  // to open the chat side panel with the user's message.
+  // ═══════════════════════════════════════════════════════════════════════════
+  const heroChatInput = document.querySelector('.hero-chat-input');
+  const heroChatSubmit = document.querySelector('.hero-chat-submit');
+
+  if (heroChatInput && heroChatSubmit) {
+    function handleHeroChatSubmit() {
+      const message = heroChatInput.value.trim();
+      if (!message) return;
+
+      if (window.chatSidePanel && typeof window.chatSidePanel.open === 'function') {
+        window.chatSidePanel.open(message);
+        heroChatInput.value = '';
+        heroChatInput.blur();
+
+        trackFloatingInputEvent('hero_chat_submitted', {
+          characters: message.length,
+          destination: 'chat_side_panel',
+        });
+      }
+    }
+
+    heroChatSubmit.addEventListener('click', handleHeroChatSubmit);
+    heroChatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleHeroChatSubmit();
+      }
+    });
+
+    console.log('[FloatingChatInput] Hero chat input wired to chat side panel');
+  }
 })();

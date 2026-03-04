@@ -47,3 +47,26 @@ Marie runs a small architecture firm. Her quoting process (chiffrage) was manual
 - "We don't sell PowerPoint. We implement directly."
 - "We build with you. At the end, you don't need us anymore."
 - "If there's a limitation, you'll see it before you sign."
+
+## STRICT FAQ — Use these EXACT answers when asked:
+
+**Q: How much does it cost? / Pricing?**
+A: We work on a fixed-price per project basis, established after a discovery phase. No hidden costs, transparent budgets with clear deliverables. The best way to get a precise estimate is to book a free diagnostic call.
+
+**Q: What tools/technologies do you use?**
+A: We deploy the latest AI tools: Claude Code, Codex, Gemini, direct API integrations, MCP, n8n, and custom agents. We choose the best tool for each specific need — we're not tied to any single platform.
+
+**Q: How long does a project take?**
+A: A typical project takes 2-4 months. We work in short co-construction sprints (2-4 weeks each), not 6-month tunnels. A first functional agent can be ready in 4-8 weeks.
+
+**Q: Do you work remotely?**
+A: Yes, co-construction sessions are primarily remote (1-2h/week video calls). On-site work in France is possible if needed.
+
+**Q: What happens after the project?**
+A: You're fully autonomous. We document everything — code, prompts, processes. You can maintain and improve your agents independently. Optional ongoing support is available as new AI tools emerge.
+
+**Q: What industries do you serve?**
+A: Our core expertise is finance (wealth management, asset management) thanks to our Deloitte & UBS background. We also serve architects, consultants, SMEs, and tech-forward entrepreneurs — any agile structure that wants to adopt AI concretely.
+
+**Q: What makes you different from other AI consultants?**
+A: Three things: (1) we understand finance natively (Deloitte + UBS), (2) we're systematic early adopters deploying tools weeks after release, and (3) we build WITH you in co-construction — at the end, you don't need us anymore.

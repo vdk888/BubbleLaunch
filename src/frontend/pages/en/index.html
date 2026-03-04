@@ -6,7 +6,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
   <!-- SEO Meta Tags -->
-  <title>Bubble — Pop the bubble. Invest in what matters.</title>
+  <title>Bubble: Pop the bubble. Invest in what matters.</title>
   <meta name="description"
     content="Bubble: AI agents for investors and professionals. Free expertise showcase for individuals, custom implementation for businesses. Transparent by design." />
   <meta name="keywords"
@@ -16,7 +16,7 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bubbleinvest.org/en/" />
-  <meta property="og:title" content="Bubble — Pop the bubble. Invest in what matters." />
+  <meta property="og:title" content="Bubble: Pop the bubble. Invest in what matters." />
   <meta property="og:description"
     content="AI agents for investors and professionals. Free expertise showcase for individuals, custom implementation for businesses." />
   <meta property="og:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
@@ -26,7 +26,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://bubbleinvest.org/en/" />
-  <meta name="twitter:title" content="Bubble — Pop the bubble. Invest in what matters." />
+  <meta name="twitter:title" content="Bubble: Pop the bubble. Invest in what matters." />
   <meta name="twitter:description"
     content="AI agents for investors and professionals. Free expertise showcase, custom implementation." />
   <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
@@ -118,23 +118,24 @@
           </div>
         </nav>
 
-        <!-- Mobile nav overlay -->
-        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
-          <div class="mobile-nav-content">
-            <a href="/en/about">About</a>
-            <a href="/en/professionals">Professionals</a>
-            <a href="/en/individuals">Individuals</a>
-            <a href="/en/blog">Blog</a>
-            <div class="lang-switch">
-              <button data-href="/">FR</button>
-              <span>/</span>
-              <button class="active">EN</button>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </header>
+
+  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block) -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-content">
+      <a href="/en/about">About</a>
+      <a href="/en/professionals">Professionals</a>
+      <a href="/en/individuals">Individuals</a>
+      <a href="/en/blog">Blog</a>
+      <div class="lang-switch">
+        <button data-href="/">FR</button>
+        <span>/</span>
+        <button class="active">EN</button>
+      </div>
+    </div>
+  </div>
 
   <!-- HERO SECTION -->
   <section class="hero">
@@ -149,33 +150,9 @@
         </div>
         <h1>Bubble.</h1>
         <p class="hero-tagline">Pop the bubble. Invest in what matters.</p>
-        <p class="hero-description">We build AI agents for ourselves — and show you how to do the same. Free expertise
+        <p class="hero-description">We build AI agents for ourselves, and show you how to do the same. Free expertise
           showcase for individuals. Custom implementation for professionals.</p>
-        <div class="chat-input-wrapper">
-          <input class="chat-input" placeholder="Chat with Bubble agent..." type="text" />
-          <button class="chat-submit">
-            <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
-              <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M12 21V4" stroke-linecap="round"></path>
-            </svg>
-          </button>
-        </div>
-        <div class="hero-cta">
-          <button class="btn btn-primary">See the demo</button>
-          <a class="btn btn-secondary" href="/en/about">Learn more</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DUAL PATH SECTION -->
-  <section class="dual-path">
-    <div class="container">
-      <div class="section-header">
-        <h2>Two Paths</h2>
-        <h3>Choose what fits you</h3>
-      </div>
-      <div class="path-grid">
+        <div class="path-grid">
         <!-- Individuals Path -->
         <div class="path-card" onclick="location.href='/en/individuals'">
           <div class="path-icon">
@@ -185,15 +162,13 @@
             </svg>
           </div>
           <h3>Individuals</h3>
-          <p>Learn by watching what we've built</p>
+          <p>Free content, transparent, no fluff.</p>
           <ul class="path-features">
-            <li>Our investment agent is a public proof of concept. We share how it works (OpenClaw, code, prompts) so
-              you can reproduce it — for your investments or your own projects.</li>
-            <li>100% transparent POC — Stack, limits, learnings</li>
-            <li>Free resources — Configs, tutorials, watch</li>
-            <li>Newsletter — What we discover each week</li>
+            <li>We share everything: our AI agent, our code, our learnings.</li>
+            <li>Tutorials, resources, tech watch: all free, all open.</li>
+            <li>Follow us on social media to stay in the loop.</li>
           </ul>
-          <a class="path-cta" href="/en/individuals">Explore our agent <svg fill="none" height="16"
+          <a class="path-cta" href="/en/individuals">Explore our content <svg fill="none" height="16"
               stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
               <path d="M5 12h14M12 5l7 7-7 7"></path>
             </svg></a>
@@ -209,20 +184,28 @@
             </svg>
           </div>
           <h3>Professionals</h3>
-          <p>Master AI for your business — with the latest tools</p>
+          <p>We implement AI in your business.</p>
           <ul class="path-features">
-            <li>Wealth managers, asset managers, SMBs. We deploy agents on your systems. The solutions we use were
-              released weeks ago — we're among the first in France to master them.</li>
-            <li>Early adopters — Always one step ahead</li>
-            <li>Co-construction — We build with you, not for you</li>
-            <li>Guaranteed autonomy — In the end, you don't need us</li>
+            <li>AI agents, automation, workflows: we handle everything.</li>
+            <li>We master the latest tools, weeks before the market.</li>
+            <li>Wealth managers, asset managers, SMBs: let's talk about your project.</li>
           </ul>
           <a class="path-cta" href="/en/professionals">Discuss your project <svg fill="none" height="16"
               stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
               <path d="M5 12h14M12 5l7 7-7 7"></path>
             </svg></a>
         </div>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- QUOTE INTERLUDE -->
+  <section class="quote-interlude">
+    <div class="container">
+      <a href="/en/about" class="interlude-link">
+        <p class="interlude-text">What if it's not just a bubble?</p>
+      </a>
     </div>
   </section>
 
@@ -317,45 +300,36 @@
         <h3>Follow our journey</h3>
       </div>
       <div class="blog-grid">
-        <div class="blog-card" onclick="location.href='/en/blog'">
-          <div class="blog-image"><svg fill="none" height="32" stroke="currentColor" stroke-linecap="round"
-              stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="32">
-              <line x1="18" x2="18" y1="20" y2="10"></line>
-              <line x1="12" x2="12" y1="20" y2="4"></line>
-              <line x1="6" x2="6" y1="20" y2="14"></line>
-            </svg></div>
-          <div class="blog-content">
-            <div class="blog-tag">Strategy</div>
-            <h4>Our Risk Parity Methodology</h4>
-            <p>How we balance our allocations across themes and assets</p>
+        <a class="blog-card" href="https://bubbleinvest.substack.com/p/pourquoi-le-saas-na-plus-de-sens" target="_blank" rel="noopener noreferrer">
+          <div class="blog-image">
+            <img src="https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8cc564ff-6c8e-4b3a-a70b-b3e3a7e48c30_1024x608.png" alt="Why SaaS No Longer Makes Sense in 2026" loading="lazy">
           </div>
-        </div>
-        <div class="blog-card" onclick="location.href='/en/blog'">
-          <div class="blog-image"><svg fill="none" height="32" stroke="currentColor" stroke-linecap="round"
-              stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="32">
-              <rect height="10" rx="2" width="18" x="3" y="11"></rect>
-              <circle cx="12" cy="5" r="2"></circle>
-              <path d="M12 7v4"></path>
-              <line x1="8" x2="8" y1="16" y2="16"></line>
-              <line x1="16" x2="16" y1="16" y2="16"></line>
-            </svg></div>
           <div class="blog-content">
-            <div class="blog-tag">Tech</div>
-            <h4>Building with AI: Our Stack</h4>
-            <p>Claude, Cursor, MCP — how we code with agents</p>
+            <div class="blog-tag">Model</div>
+            <h4>Why SaaS No Longer Makes Sense in 2026</h4>
+            <p>What we understood by giving up on building an app, and the model we found on the other side</p>
           </div>
-        </div>
-        <div class="blog-card" onclick="location.href='/en/blog'">
-          <div class="blog-image"><svg fill="none" height="32" stroke="currentColor" stroke-linecap="round"
-              stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="32">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg></div>
+        </a>
+        <a class="blog-card" href="https://bubbleinvest.substack.com/p/le-futur-ou-va-t-on-et-comment-se" target="_blank" rel="noopener noreferrer">
+          <div class="blog-image">
+            <img src="https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feb80c01e-ee01-448d-87f9-420a7ad1b9c0_1024x608.png" alt="The Future: Where Are We Headed?" loading="lazy">
+          </div>
           <div class="blog-content">
-            <div class="blog-tag">Automation</div>
-            <h4>From Idea to Agent in 48h</h4>
-            <p>Our workflow for rapid prototyping</p>
+            <div class="blog-tag">AI &amp; Future</div>
+            <h4>The Future: Where Are We Headed? And How to Prepare?</h4>
+            <p>From ChatGPT (2022) to Computer Use (2025) in 3 years. What awaits us in the next 3 years?</p>
           </div>
-        </div>
+        </a>
+        <a class="blog-card" href="https://bubbleinvest.substack.com/p/ce-que-tu-moffres-quand-tu-moffres" target="_blank" rel="noopener noreferrer">
+          <div class="blog-image">
+            <img src="https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24acd9eb-31a2-47d9-9a64-3560a0149165_1408x768.png" alt="What You Give Me When You Give Me Your Time" loading="lazy">
+          </div>
+          <div class="blog-content">
+            <div class="blog-tag">Philosophy</div>
+            <h4>What You Give Me When You Give Me Your Time</h4>
+            <p>In a world where AI produces everything, human attention becomes the only thing that can't be delegated.</p>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -429,14 +403,7 @@
                 </path>
               </svg>
             </a>
-            <a aria-label="GitHub Jade" href="https://github.com/jade.hng" target="_blank" title="GitHub Jade">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="GitHub Joris" href="https://github.com/vdk888" target="_blank" title="GitHub Joris">
+            <a aria-label="GitHub" href="/en/github" title="GitHub">
               <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
                 <path
                   d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
@@ -477,7 +444,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Bubble Invest — Transparent by design.</p>
+        <p>© 2026 Bubble Invest. Transparent by design.</p>
       </div>
     </div>
   </footer>
@@ -498,11 +465,6 @@
       </div>
     </div>
     <div class="chat-side-panel-messages" role="log" aria-live="polite">
-      <div class="chat-side-panel-message bot">
-        <div class="message-content">
-          Hi! I'm Bubble — here we democratize investing. What brings you here?
-        </div>
-      </div>
     </div>
     <form class="chat-side-panel-input-container" novalidate>
       <input type="text" class="chat-side-panel-input" placeholder="Ask your questions..."
@@ -518,11 +480,11 @@
   </div>
 
   <!-- Floating Glassmorphism Chat Input -->
-  <div class="floating-chat-input hidden" data-always-visible="false" data-page-context="homepage"
+  <div class="floating-chat-input hidden" data-always-visible="true" data-page-context="homepage"
     data-trigger-selector=".hero" id="floating-chat-input">
     <div class="floating-input-container">
       <input aria-label="Ask your question" class="floating-input-field"
-        placeholder="A question?" type="text"
+        placeholder="Ask me anything..." type="text"
         data-translate-placeholder="floating_input.placeholder" />
       <button aria-label="Send" class="floating-input-submit">
         <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
@@ -544,38 +506,6 @@
   <script src="/js/animations.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
 
-  <!-- Hero chat input → opens chat side panel -->
-  <script>
-    (function () {
-      'use strict';
-      var heroInput = document.querySelector('.hero .chat-input');
-      var heroSubmit = document.querySelector('.hero .chat-submit');
-      var demoBtn = document.querySelector('.hero .btn-primary');
-      if (heroInput && heroSubmit) {
-        function submitHeroChat() {
-          var msg = heroInput.value.trim();
-          if (!msg) return;
-          if (window.chatSidePanel && typeof window.chatSidePanel.open === 'function') {
-            window.chatSidePanel.open(msg);
-            heroInput.value = '';
-            heroInput.blur();
-          }
-        }
-        heroSubmit.addEventListener('click', submitHeroChat);
-        heroInput.addEventListener('keypress', function (e) {
-          if (e.key === 'Enter') { e.preventDefault(); submitHeroChat(); }
-        });
-      }
-      if (demoBtn) {
-        demoBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          if (window.chatSidePanel && typeof window.chatSidePanel.open === 'function') {
-            window.chatSidePanel.open();
-          }
-        });
-      }
-    })();
-  </script>
 
   <!-- Mobile hamburger menu toggle -->
   <script>
@@ -584,6 +514,12 @@
       const toggle = document.getElementById('hamburger-toggle');
       const overlay = document.getElementById('mobile-nav-overlay');
       if (!toggle || !overlay) return;
+      function closeMenu() {
+        overlay.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
       toggle.addEventListener('click', function () {
         const isOpen = overlay.classList.toggle('open');
         toggle.classList.toggle('open', isOpen);
@@ -591,12 +527,13 @@
         document.body.style.overflow = isOpen ? 'hidden' : '';
       });
       overlay.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', function () {
-          overlay.classList.remove('open');
-          toggle.classList.remove('open');
-          toggle.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = '';
-        });
+        link.addEventListener('click', closeMenu);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
       });
     })();
   </script>

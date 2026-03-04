@@ -190,6 +190,10 @@ router.get("/mentions-legales", (req, res) => {
   res.sendFile(path.join(frPagesDir, "mentions-legales.html"));
 });
 
+router.get("/github", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "github.html"));
+});
+
 // ============================================
 // ENGLISH PAGES (2026)
 // ============================================
@@ -312,6 +316,10 @@ router.get("/en/privacy", (req, res) => {
 
 router.get("/en/legal-notice", (req, res) => {
   res.sendFile(path.join(enPagesDir, "legal-notice.html"));
+});
+
+router.get("/en/github", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "github.html"));
 });
 
 // ============================================

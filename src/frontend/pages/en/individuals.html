@@ -89,6 +89,11 @@
           </svg>
           Bubble.
         </a>
+        <!-- Mobile hamburger toggle -->
+        <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
+          <span></span><span></span><span></span>
+        </button>
+
         <nav>
           <a href="/en/about">About</a>
           <a href="/en/professionals">Professionals</a>
@@ -100,38 +105,23 @@
             <button class="active">EN</button>
           </div>
         </nav>
-        <button class="hamburger" id="hamburger-toggle" aria-label="Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+
       </div>
     </div>
   </header>
 
-  <!-- Mobile Nav Overlay -->
-  <div class="mobile-nav-overlay" id="mobile-nav">
-    <div class="mobile-nav-header">
-      <a class="logo" href="/en/">
-        <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-            stroke-linecap="round" stroke-width="6"></circle>
-          <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-        </svg>
-        Bubble.
-      </a>
-      <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">✕</button>
-    </div>
-    <div class="mobile-nav-links">
+  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block) -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-content">
       <a href="/en/about">About</a>
       <a href="/en/professionals">Professionals</a>
       <a class="active" href="/en/individuals">Individuals</a>
       <a href="/en/blog">Blog</a>
-    </div>
-    <div class="mobile-nav-lang">
-      <button data-href="/particuliers">FR</button>
-      <span>/</span>
-      <button class="active">EN</button>
+      <div class="lang-switch">
+        <button data-href="/particuliers">FR</button>
+        <span>/</span>
+        <button class="active">EN</button>
+      </div>
     </div>
   </div>
 
@@ -141,7 +131,18 @@
       <h1 class="fade-in">Our AI agent manages our portfolio.</h1>
       <p class="hero-subtitle fade-in fade-in-delay-1">We share everything — strategy, code, results, mistakes. Follow
         our journey or let us build yours.</p>
-      <div class="hero-cta fade-in fade-in-delay-2">
+      <div class="hero-chat fade-in fade-in-delay-2">
+        <div class="hero-chat-container">
+          <input aria-label="Ask a question" class="hero-chat-input" placeholder="Ask about AI agents..." type="text" />
+          <button aria-label="Send" class="hero-chat-submit">
+            <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+        <p class="hero-chat-hint">E.g. "How does the agent work?" or "What is Claude Code?"</p>
+      </div>
+      <div class="hero-cta fade-in fade-in-delay-3">
         <a class="btn btn-primary" href="#follow">Follow our journey</a>
         <a class="btn btn-secondary" href="https://calendly.com/bubbleinvest-ai" target="_blank">Want this for
           you?</a>
@@ -165,8 +166,9 @@
               <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
             </svg>
           </div>
-          <h4>Connected to Alpaca</h4>
-          <p>Our agent is wired to our broker account. It places real trades, in real time.</p>
+          <h4>Connected to your broker</h4>
+          <p>Our agent is wired to our broker account (Alpaca, Saxo etc). It places real trades, in real time on our
+            behalf.</p>
         </div>
         <div class="card">
           <div class="card-icon">
@@ -228,7 +230,7 @@
           </svg>
           Substack
         </a>
-        <a class="social-btn" href="https://github.com/vdk888" target="_blank">
+        <a class="social-btn" href="/en/github">
           <svg fill="currentColor" viewBox="0 0 24 24">
             <path
               d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
@@ -273,8 +275,7 @@
   <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
     <div class="chat-side-panel-header">
       <div class="chat-side-panel-header-info">
-        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20"
-          height="20" />
+        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
         <div class="chat-side-panel-titles">
           <span class="chat-side-panel-title">Bubble Assistant</span>
         </div>
@@ -285,11 +286,6 @@
       </div>
     </div>
     <div class="chat-side-panel-messages" role="log" aria-live="polite">
-      <div class="chat-side-panel-message bot">
-        <div class="message-content">
-          Hi! I'm Bubble — here we democratize investing. Any questions about our agent?
-        </div>
-      </div>
     </div>
     <form class="chat-side-panel-input-container" novalidate>
       <input type="text" class="chat-side-panel-input" placeholder="Ask your questions..."
@@ -304,10 +300,12 @@
   </div>
 
   <!-- Floating Glassmorphism Chat Input -->
-  <div class="floating-chat-input hidden" data-page-context="investors" id="floating-chat-input">
+  <div class="floating-chat-input hidden" data-always-visible="true" data-page-context="investors"
+    data-trigger-selector=".hero" id="floating-chat-input">
     <div class="floating-input-container">
-      <input aria-label="Ask your question" class="floating-input-field" placeholder="A question about the agent?"
-        type="text" />
+      <input aria-label="Ask your question" class="floating-input-field"
+        placeholder="Ask me anything..." type="text"
+        data-translate-placeholder="floating_input.placeholder" />
       <button aria-label="Send" class="floating-input-submit">
         <svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18">
           <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -356,14 +354,7 @@
                 </path>
               </svg>
             </a>
-            <a aria-label="GitHub Jade" href="https://github.com/jade.hng" target="_blank" title="GitHub Jade">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="GitHub Joris" href="https://github.com/vdk888" target="_blank" title="GitHub Joris">
+            <a aria-label="GitHub" href="/en/github" title="GitHub">
               <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
                 <path
                   d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
@@ -420,17 +411,33 @@
   <script src="/js/animations.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
 
-  <!-- Mobile Menu Toggle -->
+  <!-- Mobile hamburger menu toggle -->
   <script>
     (function () {
-      const hamburger = document.getElementById('hamburger-toggle');
-      const mobileNav = document.getElementById('mobile-nav');
-      const mobileClose = document.getElementById('mobile-nav-close');
-      if (!hamburger || !mobileNav) return;
-      hamburger.addEventListener('click', () => { mobileNav.classList.add('open'); document.body.style.overflow = 'hidden'; });
-      mobileClose.addEventListener('click', () => { mobileNav.classList.remove('open'); document.body.style.overflow = ''; });
-      mobileNav.querySelectorAll('.mobile-nav-links a').forEach(link => {
-        link.addEventListener('click', () => { mobileNav.classList.remove('open'); document.body.style.overflow = ''; });
+      'use strict';
+      const toggle = document.getElementById('hamburger-toggle');
+      const overlay = document.getElementById('mobile-nav-overlay');
+      if (!toggle || !overlay) return;
+      function closeMenu() {
+        overlay.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+      toggle.addEventListener('click', function () {
+        const isOpen = overlay.classList.toggle('open');
+        toggle.classList.toggle('open', isOpen);
+        toggle.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+      overlay.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
       });
     })();
   </script>

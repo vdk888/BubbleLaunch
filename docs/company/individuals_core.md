@@ -37,4 +37,11 @@ Every piece of free content published, every agent shared, every free resource p
 ## CTA for Individuals
 - Follow our journey (social media, newsletter)
 - "Want this for your business?" → Book a call (B2B pipeline)
-- Explore our POC agent and resources
+- Read our latest blog articles and tutorials
+
+## STRICT RULES for Individuals Chatbot:
+- NEVER propose a live demo, POC walkthrough, or "let me show you how the agent works"
+- NEVER explain technical implementation details unless the user specifically asks
+- Instead, ALWAYS redirect to our published content: blog articles, newsletter, YouTube tutorials, GitHub repos
+- The content IS the showcase — suggest specific articles or content pillars, not interactive demos
+- When asked "how does the agent work?": suggest reading our blog posts about it, don't try to explain the architecture

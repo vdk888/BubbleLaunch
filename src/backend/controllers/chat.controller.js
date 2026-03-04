@@ -137,9 +137,6 @@ const unifiedSystemPrompt = async (
   // Normalize context for routing
   const ctx = (pageContext || "index").toLowerCase();
 
-  const isProfessionals = ctx === "professionals" || ctx.includes("professionals");
-  const isIndividuals = ctx === "individuals" || ctx.includes("individuals") || ctx.includes("investors");
-
   const selectedModules = selectContextModules(conversationHistory, ctx);
   const contextDocs = await Promise.all(
     selectedModules.map((mod) => loadContextModule(mod))
@@ -198,49 +195,6 @@ IMPORTANT: Adapt your approach based on this profile:
 - If UNKNOWN: Discover if they're individual or professional through natural conversation`;
   }
 
-  // Professionals context block
-  const professionalsBlock = isProfessionals
-    ? `
-
-### PROFESSIONALS CONTEXT (B2B — Custom AI Agent Consulting)
-- **Audience**: CGPs, wealth managers, SMEs, independents, tech-forward entrepreneurs exploring AI workflow automation
-- **Tone**: ${language === "fr" ? 'Formel mais accessible (utilise "vous")' : 'Professional but approachable'}, concise, results-driven
-- **Positioning**: Systematic early adopters — we deploy the latest AI tools weeks after release. Ex-Deloitte & UBS background.
-- **What we build**: Custom AI agents, workflow automation (reporting, monitoring, client management, reconciliation), AI copilots — NOT generic ChatGPT wrappers
-- **Our approach**:
-  - Co-construction: We build WITH the client in joint sessions (1-2h/week) — they learn by doing
-  - Guaranteed autonomy: At the end, you don't need us anymore
-  - Short sprints (2-4 weeks), not 6-month tunnels
-  - Fixed-price on quote, transparent budgets
-- **Process**: Discovery (2-week diagnostic) → Co-Construction Sprint → Handoff & Autonomy → Optional ongoing support
-- **CTA**: ${language === "fr" ? '"Réserver un appel diagnostic" → Calendly ou formulaire de contact' : '"Book a diagnostic call" → Calendly or contact form'}
-- **Key messages**:
-  - "We don't sell PowerPoint. We implement directly."
-  - "We build with you. At the end, you don't need us anymore."
-  - "If there's a limitation, you'll see it before you sign."
-- **Finance niche**: We understand UCITS, KYC, AMF compliance natively — no translation needed`
-    : "";
-
-  // Individuals context block
-  const individualsBlock = isIndividuals
-    ? `
-
-### INDIVIDUALS CONTEXT (B2C — Free Content & Showcase)
-- **Audience**: Tech/finance-savvy individuals, early adopters, curious minds interested in AI and investment
-- **Tone**: ${language === "fr" ? 'Amical, authentique (utilise "tu")' : "Friendly, authentic, inspiring"}, conversational, build-in-public energy
-- **What we offer (FREE)**:
-  - Investment Agent POC: Our AI agent manages our own portfolio — we share everything (strategy, code, results, mistakes)
-  - AI Agent Tutorials: How to install and configure agents for any use case
-  - Build in Public: Decisions, trade-offs, learnings shared via blog, newsletter, social media
-  - Philosophical essays on AI's impact on work, value, attention
-- **Content pillars**: Build in public, Demystify AI & Investment, Business Use Cases, Agents as Showcase, Philosophical Essays
-- **Channels**: LinkedIn (primary), YouTube (tutorials), Substack (newsletter), Instagram (@behindthebubble.ai), GitHub (open-source), X (@bubbleinvest)
-- **CTAs**:
-  - ${language === "fr" ? '"Suis notre aventure" → réseaux sociaux, newsletter' : '"Follow our journey" → social media, newsletter'}
-  - ${language === "fr" ? '"Tu veux la même chose pour ton business ?" → Réserver un appel (passerelle B2B)' : '"Want this for your business?" → Book a call (B2B bridge)'}
-- **What we DON'T do**: No paid product for individuals, no personalized financial advice, no artificial monetization`
-    : "";
-
   return `⚠️ CRITICAL - READ FIRST - LANGUAGE REQUIREMENT:
 You MUST respond EXCLUSIVELY in ${language === "fr" ? "FRENCH (français)" : "ENGLISH"}.
 - Current user language: ${language.toUpperCase()}
@@ -259,7 +213,7 @@ You are Bubble's AI Assistant — a unified conversational guide for Bubble Inve
 Bubble Invest has two activities:
 1. **B2B (Core Business)**: Custom AI agent consulting & implementation for professionals
 2. **B2C (Free Content = Marketing)**: Tutorials, demos, POC showcase, educational content — proves expertise and feeds B2B pipeline
-${professionalsBlock}${individualsBlock}${profileBlock}
+${profileBlock}
 
 ### FOUNDATIONAL KNOWLEDGE:
 ${dynamicContext}
@@ -355,6 +309,18 @@ ${language === "fr"
 - Our investment agent is a proof of concept, not a product for sale
 - We don't give personalized financial advice
 - Past performance ≠ future results (when discussing POC results)
+
+### STRICT GUARDRAILS (CRITICAL — FOLLOW EXACTLY):
+1. NEVER invent specific prices, percentages, ROI figures, timelines, or numbers that are not explicitly provided in your context above. If the user asks for ANY number or estimate, ALWAYS redirect to booking a call — never approximate or guess.
+2. NEVER mention services, products, tools, or features that are not described in your context above
+3. If you don't know something, say so honestly and suggest booking a call: ${language === "fr" ? '"Bonne question — [réservez un appel](https://calendly.com/bubbleinvest-ai) pour en discuter avec l\'équipe"' : '"Great question — [book a call](https://calendly.com/bubbleinvest-ai) to discuss with the team"'}
+4. NEVER pretend to be able to perform actions you cannot (booking, sending emails, accessing databases)
+5. Keep responses under 100 words maximum (2-3 short sentences + a question)
+6. NEVER hallucinate or invent client names, case studies, or results not provided in your context
+7. Only use information from the FOUNDATIONAL KNOWLEDGE section above — do not extrapolate or embellish
+8. If asked about competitors, pricing details not listed, or technical specifics you lack: redirect to booking a call
+9. When a question is off-topic (not about AI, Bubble, automation, or our services): politely redirect
+10. **INDIVIDUALS PAGE ONLY**: NEVER propose a demo, POC walkthrough, or "let me show you how it works". Instead, always suggest reading our blog articles, subscribing to the newsletter, or following us on social media. Our content IS the showcase — not live demos.
 
 ---
 
@@ -591,24 +557,7 @@ async function streamResponse(
             runStream(false, msgs, true).then(resolve).catch(reject);
             return;
           }
-          console.error("Request failed:", error);
-          if (!res.headersSent) {
-            res.setHeader("Content-Type", "text/event-stream");
-            res.setHeader("Cache-Control", "no-cache");
-            res.setHeader("Connection", "keep-alive");
-            res.flushHeaders();
-          }
-          if (!res.writableEnded) {
-            res.write(
-              `data: ${JSON.stringify({
-                error: "Chat request failed",
-                text: "Chat request failed",
-                is_error: true,
-              })}\n\n`
-            );
-            res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
-            res.end();
-          }
+          console.error("Request failed:", error?.message || error);
           reject(error);
         });
     });

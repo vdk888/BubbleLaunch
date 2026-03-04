@@ -134,22 +134,25 @@
             <button data-href="/en/">EN</button>
           </div>
         </nav>
-        <div class="mobile-nav-overlay" id="mobile-nav-overlay">
-          <div class="mobile-nav-content">
-            <a href="/a-propos">À Propos</a>
-            <a href="/professionnels">Professionnels</a>
-            <a href="/particuliers">Particuliers</a>
-            <a href="/blog">Blog</a>
-            <div class="lang-switch">
-              <button class="active">FR</button>
-              <span>/</span>
-              <button data-href="/en/">EN</button>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   </header>
+
+  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block) -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-content">
+      <a href="/a-propos">À Propos</a>
+      <a href="/professionnels">Professionnels</a>
+      <a href="/particuliers">Particuliers</a>
+      <a href="/blog">Blog</a>
+      <div class="lang-switch">
+        <button class="active">FR</button>
+        <span>/</span>
+        <button data-href="/en/">EN</button>
+      </div>
+    </div>
+  </div>
 
   <div class="error-container">
     <svg class="error-bubble-logo" width="100" height="100" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -233,6 +236,12 @@
       const toggle = document.getElementById('hamburger-toggle');
       const overlay = document.getElementById('mobile-nav-overlay');
       if (!toggle || !overlay) return;
+      function closeMenu() {
+        overlay.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
       toggle.addEventListener('click', function () {
         const isOpen = overlay.classList.toggle('open');
         toggle.classList.toggle('open', isOpen);
@@ -240,12 +249,13 @@
         document.body.style.overflow = isOpen ? 'hidden' : '';
       });
       overlay.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', function () {
-          overlay.classList.remove('open');
-          toggle.classList.remove('open');
-          toggle.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = '';
-        });
+        link.addEventListener('click', closeMenu);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
       });
     })();
   </script>

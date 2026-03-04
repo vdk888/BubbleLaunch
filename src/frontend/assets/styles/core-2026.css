@@ -1031,10 +1031,10 @@ body.chat-side-panel-open::before {
 }
 
 /* ===========================
-   10. RESPONSIVE — MOBILE (≤768px)
+   10. RESPONSIVE — NAV COLLAPSE (≤900px)
    =========================== */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   /* Header: hide desktop nav, show hamburger */
   nav {
     display: none;
@@ -1045,6 +1045,13 @@ body.chat-side-panel-open::before {
   .hamburger {
     display: flex;
   }
+}
+
+/* ===========================
+   10b. RESPONSIVE — MOBILE (≤768px)
+   =========================== */
+
+@media (max-width: 768px) {
 
   /* Footer: stack columns */
   .footer-grid {
