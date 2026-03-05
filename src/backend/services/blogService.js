@@ -279,9 +279,9 @@ async function extractPageContentAsHtml(pageId) {
 async function getPublishedPosts() {
     if (isBlogConfigured) {
         try {
-            const response = await notion.databases.query({ 
-                database_id: blogDatabaseId, 
-                filter: { property: "Status", select: { equals: "Published" } },
+            const response = await notion.databases.query({
+                database_id: blogDatabaseId,
+                filter: { property: "Status", status: { equals: "Published" } },
                 sorts: [{ property: "Publication Date", direction: "descending" }]
             });
             const posts = [];
@@ -371,19 +371,26 @@ async function getPostBySlug(slug) {
         if (isBlogConfigured) {
             console.log(`[BlogService] Fetching full content for post: ${slug} (id: ${post.id})`);
             const page = await notion.pages.retrieve({ page_id: post.id });
-            const content = extractContentFromProperties(page.properties);
-            console.log(`[BlogService] Content from properties - FR: ${content.fr ? content.fr.length : 0} chars, EN: ${content.en ? content.en.length : 0} chars`);
 
-            let frContent = content.fr;
+            // Step 1: Try page body FIRST for FR content
+            let frContent = await extractPageContentAsHtml(post.id);
+            console.log(`[BlogService] FR content from page body: ${frContent ? frContent.length : 0} chars`);
+
+            // Step 2: If page body empty, fallback to Content FR property
             if (!frContent) {
-                console.log(`[BlogService] No FR content in properties, extracting from page blocks...`);
-                frContent = await extractPageContentAsHtml(post.id);
-                console.log(`[BlogService] Extracted FR content: ${frContent ? frContent.length : 0} chars`);
+                console.log(`[BlogService] Page body empty, checking Content FR property...`);
+                const propertyContent = extractContentFromProperties(page.properties);
+                frContent = propertyContent.fr;
+                console.log(`[BlogService] FR content from property: ${frContent ? frContent.length : 0} chars`);
             }
 
-            const enContent = content.en || frContent;
+            // Step 3: For EN, try Content EN property first, then fallback to FR content
+            const propertyContent = extractContentFromProperties(page.properties);
+            const enContent = propertyContent.en || frContent;
+            console.log(`[BlogService] EN content: ${enContent ? enContent.length : 0} chars (from ${propertyContent.en ? 'property' : 'FR fallback'})`);
+
             post.content = { fr: frContent, en: enContent };
-            console.log(`[BlogService] Final content set - FR: ${post.content.fr.length} chars, EN: ${post.content.en.length} chars`);
+            console.log(`[BlogService] Final content set - FR: ${post.content.fr ? post.content.fr.length : 0} chars, EN: ${post.content.en ? post.content.en.length : 0} chars`);
         } else if (!post.content) {
             post.content = { fr: "", en: "" };
         }

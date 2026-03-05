@@ -1,25 +1,68 @@
 [
   {
-    "id": "2a2cfc52-0644-81b6-975e-cd4c1d97fe7a",
+    "id": "80e9f189-f862-40b2-a0b1-a343e5a39ffb",
     "title": {
-      "fr": "Bubble vs Signaux de trading et de copy‑trading: Pourquoi Nous ne Vendrons jamais d’Alertes Magiques",
-      "en": "Bubble vs Trading Signals: Why We Don’t Sell Magic Alerts"
+      "fr": "Pourquoi le SaaS n'a plus de sens en 2026 — et ce qu'on construit à la place",
+      "en": "Pourquoi le SaaS n'a plus de sens en 2026 — et ce qu'on construit à la place"
     },
-    "slug": "bubble-vs-signaux-de-trading-et-de-copy-trading-pourquoi-nous-ne-vendrons-jamais-d-alertes-magiques",
+    "slug": "pourquoi-le-saas-n-a-plus-de-sens-en-2026-et-ce-qu-on-construit-la-place",
     "summary": {
-      "fr": "Signaux de trading, copy‑trading et portefeuilles “IA de superstars” vendent des alertes magiques ; Bubble fait l’inverse : un copilote quantitatif en chat pour construire un vrai portefeuille, pas pour courir après le prochain pump.",
-      "en": "Trading signals, copy‑trading and AI “celebrity portfolios” sell magic alerts; Bubble is the opposite: a chat‑first quant copilot that helps you build a serious portfolio, not chase the next hype pump."
+      "fr": "",
+      "en": ""
     },
-    "publishedDate": "2026-02-25",
-    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/c378f8cc-2855-4d64-885b-fdfb726f03e5.png",
-    "url": "/blog/bubble-vs-signaux-de-trading-et-de-copy-trading-pourquoi-nous-ne-vendrons-jamais-d-alertes-magiques",
-    "urlEn": "/en/blog/bubble-vs-signaux-de-trading-et-de-copy-trading-pourquoi-nous-ne-vendrons-jamais-d-alertes-magiques",
-    "status": "Published",
+    "publishedDate": "2026-03-01",
+    "featuredImage": "https://substackcdn.com/image/fetch/$s_!r_vh!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8cc564ff-6c8e-4b3a-a70b-b3e3a7e48c30_1024x608.png",
+    "url": "https://bubbleinvest.substack.com/p/pourquoi-le-saas-na-plus-de-sens",
+    "urlEn": "https://bubbleinvest.substack.com/p/pourquoi-le-saas-na-plus-de-sens",
+    "status": null,
     "isPinned": false,
     "tags": [
-      "Market Analysis",
-      "Behavioral Finance",
-      "Portfolio Management"
+      "Economics"
+    ]
+  },
+  {
+    "id": "632ca793-1f12-41c5-93ab-b32620862684",
+    "title": {
+      "fr": "Ghost GDP — quand la croissance n'a plus besoin de consommateurs",
+      "en": "Ghost GDP — quand la croissance n'a plus besoin de consommateurs"
+    },
+    "slug": "ghost-gdp-quand-la-croissance-n-a-plus-besoin-de-consommateurs",
+    "summary": {
+      "fr": "",
+      "en": ""
+    },
+    "publishedDate": "2026-02-28",
+    "featuredImage": "https://substackcdn.com/image/fetch/$s_!u-js!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4c162e24-f2b6-4e1b-b97c-0a3813c8d7f9_1200x627.jpeg",
+    "url": "https://bubbleinvest.substack.com/p/ghost-gdp-quand-la-croissance-na",
+    "urlEn": "https://bubbleinvest.substack.com/p/ghost-gdp-quand-la-croissance-na",
+    "status": null,
+    "isPinned": false,
+    "tags": [
+      "Economics",
+      "Market Analysis"
+    ]
+  },
+  {
+    "id": "186b37c7-9fa2-40bd-b70f-6ca420d00e8a",
+    "title": {
+      "fr": "Apple et la guerre des gateways : pourquoi le \"retardataire\" de l'IA pourrait sortir par le haut",
+      "en": "Apple et la guerre des gateways : pourquoi le \"retardataire\" de l'IA pourrait sortir par le haut"
+    },
+    "slug": "apple-et-la-guerre-des-gateways-pourquoi-le-retardataire-de-l-ia-pourrait-sortir-par-le-haut",
+    "summary": {
+      "fr": "",
+      "en": ""
+    },
+    "publishedDate": "2026-02-27",
+    "featuredImage": "https://substackcdn.com/image/fetch/$s_!jTIY!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6eaf016c-173e-44d1-9866-f7787fd36acb_1408x768.png",
+    "url": "https://bubbleinvest.substack.com/p/apple-et-la-guerre-des-gateways-pourquoi",
+    "urlEn": "https://bubbleinvest.substack.com/p/apple-et-la-guerre-des-gateways-pourquoi",
+    "status": null,
+    "isPinned": false,
+    "tags": [
+      "AI & Finance",
+      "Economics",
+      "FinTech"
     ]
   },
   {
@@ -35,17 +78,41 @@
     },
     "publishedDate": "2026-02-24",
     "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/1cf59bbc-21ac-4c36-8f7b-b8e6a97d9322.png",
-    "url": "/blog/ce-que-tu-m-offres-quand-tu-m-offres-ton-temps",
-    "urlEn": "/blog/ce-que-tu-m-offres-quand-tu-m-offres-ton-temps",
-    "status": "Published",
-    "isPinned": true,
-    "tags": []
+    "url": "https://open.substack.com/pub/bubbleinvest/p/ce-que-tu-moffres-quand-tu-moffres?utm_campaign=post-expanded-share&utm_medium=post%20viewer",
+    "urlEn": "https://open.substack.com/pub/bubbleinvest/p/ce-que-tu-moffres-quand-tu-moffres?utm_campaign=post-expanded-share&utm_medium=post%20viewer",
+    "status": null,
+    "isPinned": false,
+    "tags": [
+      "Financial Education"
+    ]
+  },
+  {
+    "id": "921a9ffc-f4ed-40fa-ab7e-7f1477010911",
+    "title": {
+      "fr": "IA : Le Futur - Où Va-t-on ?",
+      "en": "IA : Le Futur - Où Va-t-on ?"
+    },
+    "slug": "ia-le-futur-o-va-t-on",
+    "summary": {
+      "fr": "",
+      "en": ""
+    },
+    "publishedDate": "2026-02-23",
+    "featuredImage": "https://substackcdn.com/image/fetch/$s_!Ri5m!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feb80c01e-ee01-448d-87f9-420a7ad1b9c0_1024x608.png",
+    "url": "https://open.substack.com/pub/bubbleinvest/p/le-futur-ou-va-t-on-et-comment-se?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "urlEn": "https://open.substack.com/pub/bubbleinvest/p/le-futur-ou-va-t-on-et-comment-se?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "status": null,
+    "isPinned": false,
+    "tags": [
+      "AI & Finance",
+      "Financial Education"
+    ]
   },
   {
     "id": "7afc7b2f-cab1-425a-bc19-7881b39fa8e3",
     "title": {
       "fr": "Les Fondamentaux de l'Investissement : Le Guide Complet",
-      "en": "Les Fondamentaux de l'Investissement : Le Guide Complet"
+      "en": "The Fundamentals of Investment: The Complete Guide"
     },
     "slug": "les-fondamentaux-de-l-investissement-le-guide-complet",
     "summary": {
@@ -55,57 +122,58 @@
     "publishedDate": "2026-02-23",
     "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/63a2d7c5-76b7-4338-a2a2-c28fda5abd0b.png",
     "url": "/blog/les-fondamentaux-de-l-investissement-le-guide-complet",
-    "urlEn": "/blog/les-fondamentaux-de-l-investissement-le-guide-complet",
-    "status": "Published",
+    "urlEn": "/en/blog/les-fondamentaux-de-l-investissement-le-guide-complet",
+    "status": null,
     "isPinned": false,
     "tags": [
       "Financial Education",
-      "Investment Strategy",
-      "Portfolio Management"
+      "Portfolio Management",
+      "Investment Strategy"
     ]
   },
   {
-    "id": "30bcfc52-0644-81e7-926b-d0dae5469076",
+    "id": "129d1fdc-4abd-4975-99fa-c1d4cdeb44aa",
     "title": {
-      "fr": "Ce que l'IA ne peut pas te voler ",
-      "en": "Ce que l'IA ne peut pas te voler "
+      "fr": "IA : Computer Use - L'IA Prend ENFIN le Contrôle",
+      "en": "IA : Computer Use - L'IA Prend ENFIN le Contrôle"
     },
-    "slug": "ce-que-l-ia-ne-peut-pas-te-voler",
+    "slug": "ia-computer-use-l-ia-prend-enfin-le-contr-le",
     "summary": {
       "fr": "",
       "en": ""
     },
-    "publishedDate": "2026-02-18",
-    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/2/ii/acf00e02-4247-435b-b956-bae88ea5980c.png",
-    "url": "/blog/ce-que-l-ia-ne-peut-pas-te-voler",
-    "urlEn": "/blog/ce-que-l-ia-ne-peut-pas-te-voler",
-    "status": "Published",
-    "isPinned": false,
-    "tags": []
-  },
-  {
-    "id": "30005a7d-0cae-43b8-a970-bc4d29d75c41",
-    "title": {
-      "fr": "Déléguer, suivre ou copiloter : comprendre Yomoni, Nalo, Finary et Bubble en 2026",
-      "en": "Delegate, Track, or Copilot: Making Sense of Yomoni, Nalo, Finary and Bubble in 2026"
-    },
-    "slug": "d-l-guer-suivre-ou-copiloter-comprendre-yomoni-nalo-finary-et-bubble-en-2026",
-    "summary": {
-      "fr": "Comparez Yomoni, Nalo et Finary à un nouveau modèle : Bubble comme copilote quantitatif en chat qui vous laisse déléguer l’exécution, garder le contrôle et remplacer les frais en % par un simple forfait.",
-      "en": "Compare Yomoni, Nalo and Finary to a new model: Bubble as a chat‑first quantitative copilot that lets you delegate execution, stay in control, and swap % fees for a simple flat subscription."
-    },
-    "publishedDate": "2026-02-18",
-    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/f2ee3d25-7b24-4ca9-a2a9-452d4c0205eb.png",
-    "url": "/blog/d-l-guer-suivre-ou-copiloter-comprendre-yomoni-nalo-finary-et-bubble-en-2026",
-    "urlEn": "/en/blog/d-l-guer-suivre-ou-copiloter-comprendre-yomoni-nalo-finary-et-bubble-en-2026",
-    "status": "Published",
+    "publishedDate": "2026-02-21",
+    "featuredImage": "https://substackcdn.com/image/fetch/$s_!iXSG!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fefab47b9-70a0-4439-83c0-dddf3eb90db4_1024x608.png",
+    "url": "https://open.substack.com/pub/bubbleinvest/p/2025-quand-lia-a-pris-litteralement?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "urlEn": "https://open.substack.com/pub/bubbleinvest/p/2025-quand-lia-a-pris-litteralement?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "status": null,
     "isPinned": false,
     "tags": [
-      "Finance",
+      "IA",
       "AI & Finance",
-      "FinTech",
-      "comparatif robo advisor",
-      "frais investissement"
+      "Automatisation"
+    ]
+  },
+  {
+    "id": "e9f1eabe-8a8a-470f-81f7-ee3d9234d859",
+    "title": {
+      "fr": "IA : Notion, Votre OS Personnel",
+      "en": "IA : Notion, Votre OS Personnel"
+    },
+    "slug": "ia-notion-votre-os-personnel",
+    "summary": {
+      "fr": "",
+      "en": ""
+    },
+    "publishedDate": "2026-02-19",
+    "featuredImage": "https://substackcdn.com/image/fetch/$s_!H6Ew!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fee1faead-9f4b-4ba6-9671-eb16729bea6e_1024x608.png",
+    "url": "https://open.substack.com/pub/bubbleinvest/p/focus-sur-notion-ia-loutil-qui-booste?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "urlEn": "https://open.substack.com/pub/bubbleinvest/p/focus-sur-notion-ia-loutil-qui-booste?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "status": null,
+    "isPinned": false,
+    "tags": [
+      "AI & Finance",
+      "FinTech"
     ]
   },
   {
@@ -123,9 +191,13 @@
     "featuredImage": "https://substackcdn.com/image/fetch/$s_!6v6t!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4bb737e1-d1b3-4d1d-b746-35085b60ecbd_1024x1024.png",
     "url": "https://bubbleinvest.substack.com/p/pourquoi-les-vues-ia-valent-plus",
     "urlEn": "https://bubbleinvest.substack.com/p/pourquoi-les-vues-ia-valent-plus",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
-    "tags": []
+    "tags": [
+      "AI & Finance",
+      "FinTech",
+      "Behavioral Finance"
+    ]
   },
   {
     "id": "7e1c46d4-689d-457e-8733-d59e99927bc4",
@@ -142,11 +214,12 @@
     "featuredImage": "https://substackcdn.com/image/fetch/$s_!QJUG!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F87872abb-625a-4edb-a4c3-f9a09fd4423c_1024x608.png",
     "url": "https://open.substack.com/pub/bubbleinvest/p/quand-i-robot-nest-plus-tres-loin?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
     "urlEn": "https://open.substack.com/pub/bubbleinvest/p/quand-i-robot-nest-plus-tres-loin?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
-      "IA",
-      "AI & Finance"
+      "AI & Finance",
+      "FinTech",
+      "Financial Education"
     ]
   },
   {
@@ -164,12 +237,12 @@
     "featuredImage": "https://substackcdn.com/image/fetch/$s_!qpJ9!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd2e136db-7c1c-4ded-99a4-1e2aac3c2b9a_1200x627.jpeg",
     "url": "https://bubbleinvest.substack.com/p/lechelle-de-labstraction-pourquoi",
     "urlEn": "https://bubbleinvest.substack.com/p/lechelle-de-labstraction-pourquoi",
-    "status": "Published",
+    "status": null,
     "isPinned": true,
     "tags": [
       "AI & Finance",
-      "IA Agentique",
-      "No-Code"
+      "FinTech",
+      "Economics"
     ]
   },
   {
@@ -187,11 +260,12 @@
     "featuredImage": "https://substackcdn.com/image/fetch/$s_!Nif1!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd098f7d9-5b59-415b-8cea-b14ee999dd8e_1024x608.png",
     "url": "https://open.substack.com/pub/bubbleinvest/p/ia-lexplosion-des-capacites-2023?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
     "urlEn": "https://open.substack.com/pub/bubbleinvest/p/ia-lexplosion-des-capacites-2023?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
-      "IA",
-      "AI & Finance"
+      "AI & Finance",
+      "FinTech",
+      "Financial Education"
     ]
   },
   {
@@ -209,11 +283,11 @@
     "featuredImage": "https://substackcdn.com/image/fetch/$s_!_LHx!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8c530f94-2977-428e-8304-f47a18264a18_1024x608.png",
     "url": "https://open.substack.com/pub/bubbleinvest/p/retour-sur-le-moment-chatgpt-quand?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
     "urlEn": "https://open.substack.com/pub/bubbleinvest/p/retour-sur-le-moment-chatgpt-quand?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
-      "IA",
-      "AI & Finance"
+      "AI & Finance",
+      "FinTech"
     ]
   },
   {
@@ -231,10 +305,10 @@
     "featuredImage": "https://substackcdn.com/image/fetch/$s_!shIH!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fee880c1d-2f09-4de3-92be-dc88e84fdb35_1200x627.jpeg",
     "url": "https://bubbleinvest.substack.com/p/quand-morningstar-valide-notre-vision",
     "urlEn": "https://bubbleinvest.substack.com/p/quand-morningstar-valide-notre-vision",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
-      "Investment Strategy",
+      "Value Investing",
       "Portfolio Management",
       "Market Analysis"
     ]
@@ -254,10 +328,9 @@
     "featuredImage": "https://substackcdn.com/image/fetch/$s_!sS5M!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8a40135f-425b-4ea9-9cc4-81d407408a28_1024x608.png",
     "url": "https://open.substack.com/pub/bubbleinvest/p/de-terminator-a-chatgpt-retour-sur?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
     "urlEn": "https://open.substack.com/pub/bubbleinvest/p/de-terminator-a-chatgpt-retour-sur?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
-      "IA",
       "AI & Finance"
     ]
   },
@@ -276,13 +349,12 @@
     "featuredImage": "https://substackcdn.com/image/fetch/$s_!shIH!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fee880c1d-2f09-4de3-92be-dc88e84fdb35_1200x627.jpeg",
     "url": "https://bubbleinvest.substack.com/p/quand-morningstar-valide-notre-vision",
     "urlEn": "https://bubbleinvest.substack.com/p/quand-morningstar-valide-notre-vision",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
       "AI & Finance",
       "FinTech",
-      "Market Analysis",
-      "Financial Education"
+      "Investment Strategy"
     ]
   },
   {
@@ -300,7 +372,7 @@
     "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/fd3ac108-b772-4da0-bc8a-661191f87b5e.png",
     "url": "/blog/risk-parity-enfin-une-explication-claire-et-guide-pratique",
     "urlEn": "/en/blog/risk-parity-enfin-une-explication-claire-et-guide-pratique",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
       "Portfolio Management",
@@ -323,12 +395,171 @@
     "featuredImage": "https://substackcdn.com/image/fetch/$s_!9E25!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5b396614-e809-4c65-8c0e-7ec3f1d3b54a_1024x608.png",
     "url": "https://bubbleinvest.substack.com/p/vibe-working-your-portfolio-la-fin?r=78b2yb",
     "urlEn": "https://bubbleinvest.substack.com/p/vibe-working-your-portfolio-la-fin?r=78b2yb",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
-      "FinTech",
       "AI & Finance",
+      "FinTech",
+      "Portfolio Management"
+    ]
+  },
+  {
+    "id": "aa738b18-42dc-4d10-94e0-6e6e199e1476",
+    "title": {
+      "fr": "L'Art du Jardinier : Équilibrer Votre Écosystème",
+      "en": "L'Art du Jardinier : Équilibrer Votre Écosystème"
+    },
+    "slug": "l-art-du-jardinier-quilibrer-votre-cosyst-me",
+    "summary": {
+      "fr": "",
+      "en": ""
+    },
+    "publishedDate": "2026-02-09",
+    "featuredImage": "https://substackcdn.com/image/fetch/$s_!H4Lo!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2284d85f-64ea-4851-ae07-40dfd51a8979_1024x608.png",
+    "url": "https://open.substack.com/pub/bubbleinvest/p/lart-du-jardinier-comment-equilibrer?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "urlEn": "https://open.substack.com/pub/bubbleinvest/p/lart-du-jardinier-comment-equilibrer?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "status": null,
+    "isPinned": false,
+    "tags": [
+      "Financial Education",
+      "Portfolio Management",
       "Investment Strategy"
+    ]
+  },
+  {
+    "id": "f327a536-4fc2-4cb5-90e4-f9a7904b7db9",
+    "title": {
+      "fr": "Les Saisons du Jardin : Quand Planter, Quand Récolter ?",
+      "en": "Les Saisons du Jardin : Quand Planter, Quand Récolter ?"
+    },
+    "slug": "les-saisons-du-jardin-quand-planter-quand-r-colter",
+    "summary": {
+      "fr": "",
+      "en": ""
+    },
+    "publishedDate": "2026-02-07",
+    "featuredImage": "https://substackcdn.com/image/fetch/$s_!Synt!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0df3de39-b4ad-4e95-b850-dbe4ae2d7340_1024x608.png",
+    "url": "https://open.substack.com/pub/bubbleinvest/p/les-saisons-de-linvestissement-quand?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "urlEn": "https://open.substack.com/pub/bubbleinvest/p/les-saisons-de-linvestissement-quand?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "status": null,
+    "isPinned": false,
+    "tags": [
+      "Financial Education",
+      "Investment Strategy",
+      "Portfolio Management"
+    ]
+  },
+  {
+    "id": "09510209-e601-4628-b50b-9d2cfc2f7d08",
+    "title": {
+      "fr": "Devenir Botaniste : Apprendre à Reconnaître les Bonnes Plantes",
+      "en": "Devenir Botaniste : Apprendre à Reconnaître les Bonnes Plantes"
+    },
+    "slug": "devenir-botaniste-apprendre-reconna-tre-les-bonnes-plantes",
+    "summary": {
+      "fr": "",
+      "en": ""
+    },
+    "publishedDate": "2026-02-05",
+    "featuredImage": "https://substackcdn.com/image/fetch/$s_!B1N6!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feec54944-c0ef-4f86-9602-bd2c41b26784_1024x608.png",
+    "url": "https://open.substack.com/pub/bubbleinvest/p/devenir-botaniste-apprendre-a-reconnaitre?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "urlEn": "https://open.substack.com/pub/bubbleinvest/p/devenir-botaniste-apprendre-a-reconnaitre?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "status": null,
+    "isPinned": false,
+    "tags": [
+      "Financial Education",
+      "Investment Strategy"
+    ]
+  },
+  {
+    "id": "7e5b8ca5-ff69-4ea7-b4e8-345ee361f05c",
+    "title": {
+      "fr": "Composer Votre Jardin : Quelle Place Pour Chaque Plante ?",
+      "en": "Composer Votre Jardin : Quelle Place Pour Chaque Plante ?"
+    },
+    "slug": "composer-votre-jardin-quelle-place-pour-chaque-plante",
+    "summary": {
+      "fr": "",
+      "en": ""
+    },
+    "publishedDate": "2026-02-03",
+    "featuredImage": "https://substackcdn.com/image/fetch/$s_!OjhF!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3eef634b-86e7-4de2-a161-a3a7c3b7bd17_1024x608.png",
+    "url": "https://open.substack.com/pub/bubbleinvest/p/composer-votre-jardin-comment-repartir?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "urlEn": "https://open.substack.com/pub/bubbleinvest/p/composer-votre-jardin-comment-repartir?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "status": null,
+    "isPinned": false,
+    "tags": [
+      "Portfolio Management",
+      "Financial Education"
+    ]
+  },
+  {
+    "id": "355d762c-37a7-448a-820e-e745d80e255a",
+    "title": {
+      "fr": "Planter Vos Premières Graines : Investir dans les ETF",
+      "en": "Planter Vos Premières Graines : Investir dans les ETF"
+    },
+    "slug": "planter-vos-premi-res-graines-investir-dans-les-etf",
+    "summary": {
+      "fr": "",
+      "en": ""
+    },
+    "publishedDate": "2026-02-01",
+    "featuredImage": "https://substackcdn.com/image/fetch/$s_!NHLA!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F34dc6bad-0616-4bbc-83a2-1a2db65427b4_1024x608.png",
+    "url": "https://open.substack.com/pub/bubbleinvest/p/planter-vos-premieres-graines-investir?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "urlEn": "https://open.substack.com/pub/bubbleinvest/p/planter-vos-premieres-graines-investir?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "status": null,
+    "isPinned": false,
+    "tags": [
+      "Investment Strategy",
+      "Financial Education",
+      "Portfolio Management"
+    ]
+  },
+  {
+    "id": "dc4deb74-587e-44ba-8096-bc8f75fa287a",
+    "title": {
+      "fr": "Le tout Premier Placement Sécurisé",
+      "en": "Le tout Premier Placement Sécurisé"
+    },
+    "slug": "le-tout-premier-placement-s-curis",
+    "summary": {
+      "fr": "",
+      "en": ""
+    },
+    "publishedDate": "2026-01-30",
+    "featuredImage": "https://substackcdn.com/image/fetch/$s_!hopa!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7b61b689-7036-4a02-959d-8febbf424f80_1024x608.png",
+    "url": "https://open.substack.com/pub/bubbleinvest/p/votre-tout-premier-placement-comment?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "urlEn": "https://open.substack.com/pub/bubbleinvest/p/votre-tout-premier-placement-comment?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "status": null,
+    "isPinned": false,
+    "tags": [
+      "Financial Education",
+      "Investment Strategy",
+      "Portfolio Management"
+    ]
+  },
+  {
+    "id": "67089a44-6f57-4880-9533-0221cdc290eb",
+    "title": {
+      "fr": "Comprendre les Placements : Actions & Obligations",
+      "en": "Comprendre les Placements : Actions & Obligations"
+    },
+    "slug": "comprendre-les-placements-actions-obligations",
+    "summary": {
+      "fr": "",
+      "en": ""
+    },
+    "publishedDate": "2026-01-28",
+    "featuredImage": "https://substackcdn.com/image/fetch/$s_!XbNZ!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1b0d226a-8e32-41ee-af77-3667e11e4f94_1024x608.png",
+    "url": "https://open.substack.com/pub/bubbleinvest/p/investir-cest-comme-planter-des-graines?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "urlEn": "https://open.substack.com/pub/bubbleinvest/p/investir-cest-comme-planter-des-graines?r=78b2yb&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    "status": null,
+    "isPinned": false,
+    "tags": [
+      "Financial Education",
+      "Investment Strategy",
+      "Portfolio Management"
     ]
   },
   {
@@ -346,11 +577,12 @@
     "featuredImage": "https://substackcdn.com/image/fetch/w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4588465a-7e31-426a-82f3-697d15a2d70f_1019x651.jpeg",
     "url": "https://open.substack.com/pub/bubbleinvest/p/behind-the-bubble?r=78b2yb&utm_campaign=post&utm_medium=web",
     "urlEn": "https://open.substack.com/pub/bubbleinvest/p/behind-the-bubble?r=78b2yb&utm_campaign=post&utm_medium=web",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
       "Financial Education",
-      "AI & Finance"
+      "Investment Strategy",
+      "Market Analysis"
     ]
   },
   {
@@ -368,12 +600,11 @@
     "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/8696b7fc-14af-4d45-8f40-481ecb837774.png",
     "url": "/blog/course-l-ia-en-entreprise-pourquoi-bubble-construit-depuis-2023-une-ai-entreprise",
     "urlEn": "/en/blog/course-l-ia-en-entreprise-pourquoi-bubble-construit-depuis-2023-une-ai-entreprise",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
       "AI & Finance",
       "FinTech",
-      "IA",
       "Automatisation"
     ]
   },
@@ -392,34 +623,11 @@
     "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/ef590b1d-16c8-47cb-933f-0d0d8a06df0f.png",
     "url": "/blog/l-asset-management-la-plus-grande-arnaque-marketing-de-l-histoire-financi-re",
     "urlEn": "/en/blog/l-asset-management-la-plus-grande-arnaque-marketing-de-l-histoire-financi-re",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
-      "Investment Strategy",
-      "Financial Education",
-      "Market Analysis",
-      "Behavioral Finance"
-    ]
-  },
-  {
-    "id": "72420867-b697-4aea-a489-8a4129892d76",
-    "title": {
-      "fr": "Investissement & IA : Comment Ça Marche Concrètement?",
-      "en": "AI & Investing: How Does It Really Work?"
-    },
-    "slug": "investissement-ia-comment-a-marche-concr-tement",
-    "summary": {
-      "fr": "La plupart des “investissements IA” ne sont que des règles ou du marketing. Cet article explique comment Bubble utilise un moteur quantitatif transparent en 11 étapes et un copilote IA en chat pour gérer votre portefeuille comme un pro—sans vous retirer le contrôle.",
-      "en": "Most “AI investing” is just rules or hype. This article explains how Bubble uses a transparent, 11‑step quantitative engine and a chat‑first AI copilot to manage your portfolio like a pro—without taking control away from you."
-    },
-    "publishedDate": "2025-12-29",
-    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/f5a7d582-6b7f-415a-8bab-601aefbd1483.png",
-    "url": "/blog/investissement-ia-comment-a-marche-concr-tement",
-    "urlEn": "/en/blog/investissement-ia-comment-a-marche-concr-tement",
-    "status": "Published",
-    "isPinned": false,
-    "tags": [
-      "AI & Finance",
+      "Portfolio Management",
+      "Risk Management",
       "Financial Education"
     ]
   },
@@ -438,12 +646,12 @@
     "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/4e77f8e0-e8db-4549-b587-76e8bb50c060.png",
     "url": "/blog/la-monnaie-comme-signal-de-confiance-anatomie-d-un-syst-me-corrompu",
     "urlEn": "/en/blog/la-monnaie-comme-signal-de-confiance-anatomie-d-un-syst-me-corrompu",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
-      "Behavioral Finance",
       "Economics",
-      "Financial Education"
+      "Behavioral Finance",
+      "Market Analysis"
     ]
   },
   {
@@ -461,12 +669,12 @@
     "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/e9a4043d-1921-42d5-99f3-9d3f5570be05.png",
     "url": "/blog/les-5-erreurs-communes-en-investissement-value",
     "urlEn": "/en/blog/les-5-erreurs-communes-en-investissement-value",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
       "Value Investing",
-      "Investment Strategy",
-      "Financial Education"
+      "Portfolio Management",
+      "Risk Management"
     ]
   },
   {
@@ -484,12 +692,12 @@
     "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/fd78c85d-3c05-405b-84fb-dfde09593c5a.png",
     "url": "/blog/ia-et-finance-6-tendances-qui-red-finissent-l-investissement",
     "urlEn": "/en/blog/ia-et-finance-6-tendances-qui-red-finissent-l-investissement",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
       "AI & Finance",
       "FinTech",
-      "Market Analysis"
+      "Portfolio Management"
     ]
   },
   {
@@ -507,7 +715,7 @@
     "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/2b3bc6f5-cfd0-4135-827f-36ccd3c76dd9.png",
     "url": "/blog/la-preuve-scientifique-de-l-arnaque",
     "urlEn": "/en/blog/la-preuve-scientifique-de-l-arnaque",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
       "Behavioral Finance",
@@ -530,37 +738,12 @@
     "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/5da15453-1f62-4775-b44f-b9b47ac5d74e.png",
     "url": "/blog/le-crime-de-ceux-qui-savaient",
     "urlEn": "/en/blog/le-crime-de-ceux-qui-savaient",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
-      "Behavioral Finance",
-      "Financial Education"
-    ]
-  },
-  {
-    "id": "293cfc52-0644-8142-bc02-fbadda702ab8",
-    "title": {
-      "fr": "Conseil en IA : pourquoi nous avons quitté les Big Four et une grande banque privée pour faire différemment",
-      "en": "AI Consulting: Why We Left the Big Four and Big Banks to Do Things Differently"
-    },
-    "slug": "conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment",
-    "summary": {
-      "fr": "Des slides des Big Four aux petits projets IA ciblés : comment Bubble veut remplacer le conseil gonflé aux honoraires par une automatisation rapide et mesurable pour les équipes finance.",
-      "en": "From Big Four slideware to small, focused AI projects: how Bubble wants to replace bloated consulting with fast, measurable automation for finance teams."
-    },
-    "publishedDate": "2025-10-21",
-    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/37d23a51-cac3-40cb-ad8e-32e9e4d3eaa1.png",
-    "url": "/blog/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment",
-    "urlEn": "/en/blog/conseil-en-ia-pourquoi-nous-avons-quitt-les-big-four-et-une-grande-banque-priv-e-pour-faire-diff-remment",
-    "status": "Published",
-    "isPinned": false,
-    "tags": [
-      "IA",
-      "Conseil",
-      "Finance",
-      "No-Code",
-      "Automatisation",
-      "Big Four"
+      "Financial Education",
+      "Economics",
+      "Behavioral Finance"
     ]
   },
   {
@@ -578,14 +761,12 @@
     "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/652ee20f-4af5-4920-aaa9-7a6f40f435e1.png",
     "url": "/blog/le-complexe-industriel-de-la-pr-diction-comment-l-industrie-du-conseil-organise-la-plus-grande-arnaque-de-l-histoire-moderne",
     "urlEn": "/en/blog/le-complexe-industriel-de-la-pr-diction-comment-l-industrie-du-conseil-organise-la-plus-grande-arnaque-de-l-histoire-moderne",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
-      "Investment Strategy",
-      "Financial Education",
-      "Market Analysis",
       "Behavioral Finance",
-      "Economics"
+      "Economics",
+      "Financial Education"
     ]
   },
   {
@@ -603,36 +784,11 @@
     "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/f8b1df5a-4f92-408a-ab1b-41c8669384d4.png",
     "url": "/blog/dix-ans-d-checs-une-le-on-pourquoi-automatiser-son-portefeuille",
     "urlEn": "/en/blog/dix-ans-d-checs-une-le-on-pourquoi-automatiser-son-portefeuille",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
-      "Investment Strategy",
       "Portfolio Management",
-      "Behavioral Finance",
-      "Financial Education"
-    ]
-  },
-  {
-    "id": "23dcfc52-0644-8117-abb3-efa7abd925e3",
-    "title": {
-      "fr": "Bubble : une expérience radicale mêlant décence, transparence et finance pilotée par l’IA",
-      "en": "Building Bubble : A Radical Experiment in Decency, Transparency, and AI-Driven Finance"
-    },
-    "slug": "bubble-une-exp-rience-radicale-m-lant-d-cence-transparence-et-finance-pilot-e-par-l-ia",
-    "summary": {
-      "fr": "Manifeste fondateur de Bubble : un récit personnel sur la création d'une plateforme d'investissement basée sur la transparence, l'IA et des tarifs équitables. Explore les défis de construire une entreprise décente dans la finance traditionnelle.",
-      "en": "Founding Manifesto of Bubble : A Personal Story on Creating an Investment Platform Rooted in Transparency, AI, and Fair Pricing.\nIt explores the challenges of building a decent company within the traditional finance industry."
-    },
-    "publishedDate": "2025-07-27",
-    "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/6d9a0155-ea15-4cd9-bd69-b516975ac8b1.png",
-    "url": "/blog/bubble-une-exp-rience-radicale-m-lant-d-cence-transparence-et-finance-pilot-e-par-l-ia",
-    "urlEn": "/en/blog/bubble-une-exp-rience-radicale-m-lant-d-cence-transparence-et-finance-pilot-e-par-l-ia",
-    "status": "Published",
-    "isPinned": false,
-    "tags": [
-      "Investment Strategy",
-      "FinTech",
-      "AI & Finance",
+      "Risk Management",
       "Financial Education"
     ]
   },
@@ -651,12 +807,12 @@
     "featuredImage": "https://im.runware.ai/image/os/w01d10/ws/3/ii/966dcffc-1e39-479b-b0b4-283baa5478e2.png",
     "url": "/blog/l-automatisation-totale-vers-l-effondrement-cr-ateur-du-capitalisme",
     "urlEn": "/en/blog/l-automatisation-totale-vers-l-effondrement-cr-ateur-du-capitalisme",
-    "status": "Published",
+    "status": null,
     "isPinned": false,
     "tags": [
-      "Economics",
       "AI & Finance",
-      "FinTech"
+      "Economics",
+      "Behavioral Finance"
     ]
   }
 ]

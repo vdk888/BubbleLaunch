@@ -163,8 +163,8 @@ const unifiedSystemPrompt = async (
     const contactRequested = journey.contactRequested || false;
     const keyInsights = Array.isArray(memory.keyInsights)
       ? memory.keyInsights
-          .slice(-5)
-          .map((i) => (typeof i === "string" ? i : i.insight))
+        .slice(-5)
+        .map((i) => (typeof i === "string" ? i : i.insight))
       : [];
 
     profileBlock = `
@@ -182,12 +182,11 @@ ${level ? `- Knowledge Level: ${level}` : ""}
 ${contactRequested ? "- Contact Requested: Yes" : ""}
 ${isReturningUser ? "- Returning User: Yes (welcome them warmly!)" : ""}
 
-${
-  keyInsights.length > 0
-    ? `### WHAT WE KNOW ABOUT THEM
+${keyInsights.length > 0
+        ? `### WHAT WE KNOW ABOUT THEM
 ${keyInsights.map((i) => `- ${i}`).join("\n")}`
-    : ""
-}
+        : ""
+      }
 
 IMPORTANT: Adapt your approach based on this profile:
 - If PROFESSIONAL: Focus on B2B value, qualify their needs, guide toward booking a call
@@ -298,10 +297,10 @@ The greeting "${language === "fr" ? "Salut ! Je suis l'assistant Bubble. Comment
 
 ### CTAs (use naturally, not pushily):
 ${language === "fr"
-    ? `- Professionnels: "Tu veux qu'on en discute ? [Réserve un appel](https://calendly.com/bubble-invest)" ou formulaire de contact
+      ? `- Professionnels: "Tu veux qu'on en discute ? [Réserve un appel](https://calendly.com/bubble-invest)" ou formulaire de contact
 - Individus: "Suis notre aventure sur [LinkedIn](https://linkedin.com/company/bubbleinvest), [Substack](https://bubbleinvest.substack.com), ou [Instagram](https://instagram.com/behindthebubble.ai)"
 - POC: "Jette un œil à [notre agent d'investissement](/investors) — on partage tout"`
-    : `- Professionals: "Want to discuss? [Book a call](https://calendly.com/bubble-invest)" or contact form
+      : `- Professionals: "Want to discuss? [Book a call](https://calendly.com/bubble-invest)" or contact form
 - Individuals: "Follow our journey on [LinkedIn](https://linkedin.com/company/bubbleinvest), [Substack](https://bubbleinvest.substack.com), or [Instagram](https://instagram.com/behindthebubble.ai)"
 - POC: "Check out [our investment agent](/investors) — we share everything"`}
 
@@ -329,13 +328,16 @@ Remember: You're here to HELP visitors understand Bubble and find the right path
 
 // Model rotation (prefer free endpoints first to control costs)
 const models = [
-  "upstage/solar-pro-3:free",
-  "z-ai/glm-4.7-flash",
-  "nvidia/nemotron-3-nano-30b-a3b:free",
-  "xiaomi/mimo-v2-flash:free",
-  "allenai/molmo-2-8b:free",
-  "mistralai/devstral-2512:free",
-  "tngtech/tng-r1t-chimera:free",
+  "google/gemini-2.0-flash-lite-preview-02-05:free", // Extremely fast, supports tools natively
+  "deepseek/deepseek-chat:free",                     // Fast fallback
+  "upstage/solar-pro-3:free"                         // Reliable fallback, minimal tool support
+];
+
+// List of free openrouter models that reliably support tool calls
+const modelsSupportingTools = [
+  "google/gemini-2.0-flash-lite-preview-02-05:free",
+  "google/gemini-2.5-flash-free",
+  "mistralai/mistral-nemo:free"
 ];
 
 /**
@@ -564,7 +566,10 @@ async function streamResponse(
 
   // Execute streaming with possible tool call follow-up
   let currentMessages = messages;
-  let includeTools = tools && tools.length > 0;
+
+  // Decide if we should include tools based on model capabilities to avoid the 400 error loop
+  const supportsTools = modelsSupportingTools.includes(model);
+  let includeTools = supportsTools && tools && tools.length > 0;
 
   // First pass (may contain tool call)
   const firstPass = await runStream(includeTools, currentMessages, false);

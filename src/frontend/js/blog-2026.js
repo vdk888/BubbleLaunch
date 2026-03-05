@@ -70,6 +70,16 @@
     return url && (url.includes('substack.com') || url.includes('.substack.'));
   }
 
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString(LANG === 'en' ? 'en-US' : 'fr-FR', {
@@ -85,8 +95,21 @@
   }
 
   function getSummary(post) {
-    if (LANG === 'en') return post.summary?.en || post.summary?.fr || post.summary || '';
-    return post.summary?.fr || post.summary || '';
+    var summary;
+
+    // Extract summary for current language with fallback to other language
+    if (LANG === 'en') {
+      summary = post.summary?.en || post.summary?.fr;
+    } else {
+      summary = post.summary?.fr || post.summary?.en;
+    }
+
+    // Defensive: ensure we return a string, never an object
+    if (!summary || typeof summary === 'object') {
+      return '';
+    }
+
+    return String(summary);
   }
 
   // Pagination state
@@ -113,7 +136,7 @@
       var category = Array.isArray(post.tags) && post.tags.length > 0 ? post.tags[0] : '';
       var isExternal = isSubstackUrl(url);
 
-      return '<article class="blog-card" onclick="window.open(\'' + url + '\', \'' + (isExternal ? '_blank' : '_self') + '\')">' +
+      return '<article class="blog-card" data-url="' + escapeHtml(url) + '" data-target="' + (isExternal ? '_blank' : '_self') + '">' +
         '<div class="blog-card-image">' +
           (image ? '<img src="' + image + '" alt="' + title + '" loading="lazy">' : '') +
           (category ? '<span class="blog-card-category">' + category + '</span>' : '') +
@@ -175,9 +198,10 @@
       var fpExternal = isSubstackUrl(fpUrl);
 
       featuredSection.innerHTML =
-        '<article class="featured-card" onclick="window.open(\'' + fpUrl + '\', \'' + (fpExternal ? '_blank' : '_self') + '\')">' +
+        '<article class="featured-card" data-url="' + escapeHtml(fpUrl) + '" data-target="' + (fpExternal ? '_blank' : '_self') + '">' +
           '<div class="featured-image">' +
             (fpImage ? '<img src="' + fpImage + '" alt="' + fpTitle + '" loading="lazy">' : '') +
+            (fpExternal ? '<span class="substack-badge">' + SUBSTACK_ICON + '</span>' : '') +
           '</div>' +
           '<div class="featured-content">' +
             '<span class="featured-tag">' + fpCategory + (fpExternal ? ' — Substack' : '') + '</span>' +
@@ -336,6 +360,23 @@
       referencesGrid.innerHTML = '<p style="text-align: center; color: var(--muted);">' + S.loadRefsError + '</p>';
     }
   }
+
+  // Event delegation for blog card clicks
+  document.addEventListener('click', function(e) {
+    var card = e.target.closest('.blog-card, .featured-card');
+    if (!card) return;
+
+    var url = card.getAttribute('data-url');
+    var target = card.getAttribute('data-target') || '_self';
+
+    // Safety check for missing/invalid URLs
+    if (!url || url === 'null' || url === 'undefined') {
+      console.warn('Blog card missing URL:', card);
+      return;
+    }
+
+    window.open(url, target);
+  });
 
   // Init
   if (document.readyState === 'loading') {
