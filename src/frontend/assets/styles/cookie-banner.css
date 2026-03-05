@@ -106,13 +106,13 @@
 }
 
 .bubble-cookie-btn--primary {
-  background: linear-gradient(135deg, var(--bubble-primary) 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--purple) 0%, #764ba2 100%);
   color: white;
 }
 
 .bubble-cookie-btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px var(--bubble-primary-30);
+  box-shadow: 0 8px 20px rgba(147, 172, 240, 0.3);
 }
 
 .bubble-cookie-btn--primary:active {
@@ -131,20 +131,20 @@
 
 .bubble-cookie-btn--text {
   background: transparent;
-  color: var(--bubble-primary);
+  color: var(--purple);
   padding: 0.75rem 1rem;
   flex: 0;
 }
 
 .bubble-cookie-btn--text:hover {
-  background: var(--bubble-primary-10);
+  background: rgba(147, 172, 240, 0.1);
 }
 
 /* Privacy link */
 .bubble-cookie-privacy-link {
   display: inline-block;
   font-size: 0.875rem;
-  color: var(--bubble-primary);
+  color: var(--purple);
   text-decoration: underline;
   margin-top: 0.5rem;
   transition: color 0.2s ease;
@@ -224,7 +224,7 @@
 }
 
 .bubble-cookie-switch input:checked + .bubble-cookie-slider {
-  background: linear-gradient(135deg, var(--bubble-primary) 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--purple) 0%, #764ba2 100%);
 }
 
 .bubble-cookie-switch input:checked + .bubble-cookie-slider:before {
@@ -310,12 +310,12 @@
 /* Focus styles for keyboard navigation */
 .bubble-cookie-btn:focus,
 .bubble-cookie-switch input:focus + .bubble-cookie-slider {
-  outline: 2px solid var(--bubble-primary);
+  outline: 2px solid var(--purple);
   outline-offset: 2px;
 }
 
 .bubble-cookie-privacy-link:focus {
-  outline: 2px solid var(--bubble-primary);
+  outline: 2px solid var(--purple);
   outline-offset: 2px;
   border-radius: 4px;
 }
