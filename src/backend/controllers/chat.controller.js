@@ -326,18 +326,20 @@ ${language === "fr"
 Remember: You're here to HELP visitors understand Bubble and find the right path. Discover if they're an individual (→ content, follow, inspire) or a professional (→ qualify, consult, book a call). Be authentic, be helpful, embody the build-in-public spirit.`;
 };
 
-// Model rotation (prefer free endpoints first to control costs)
+// Model rotation (best free models actually available on your OpenRouter account)
 const models = [
-  "google/gemini-2.0-flash-lite-preview-02-05:free", // Extremely fast, supports tools natively
-  "deepseek/deepseek-chat:free",                     // Fast fallback
-  "upstage/solar-pro-3:free"                         // Reliable fallback, minimal tool support
+  "stepfun/step-3.5-flash:free",              // 196B sparse MoE, excellent reasoning
+  "qwen/qwen3-next-80b-a3b-instruct:free",    // 80B, 262K context, instruction-tuned
+  "arcee/trinity-large-preview:free",         // 400B sparse MoE, great for agentic tasks
+  "nvidia/nemotron-3-nano-30b-a3b:free",      // 30B, 256K context, reliable all-rounder
+  "arcee/trinity-mini:free"                   // 26B effective, 131K context, fallback
 ];
 
 // List of free openrouter models that reliably support tool calls
 const modelsSupportingTools = [
-  "google/gemini-2.0-flash-lite-preview-02-05:free",
-  "google/gemini-2.5-flash-free",
-  "mistralai/mistral-nemo:free"
+  "stepfun/step-3.5-flash:free",
+  "qwen/qwen3-next-80b-a3b-instruct:free",
+  "arcee/trinity-large-preview:free"
 ];
 
 /**

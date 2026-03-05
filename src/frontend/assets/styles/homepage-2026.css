@@ -667,6 +667,11 @@
   .hero {
     min-height: auto;
     padding: 7rem 0 3rem;
+    background: var(--bg-white);
+  }
+
+  .hero::before {
+    display: none;
   }
 
   .hero h1 {
