@@ -1506,8 +1506,8 @@ const translations = {
     fr: "<strong>€15k-€30k</strong> pour un projet complet<br/>vs €150k-€300k chez les Big Four"
   },
   "businesses.why.pricing.model": {
-    en: "Fixed price from diagnostic. No budget drift, no infinitely billable 'sprints'.",
-    fr: "Prix fixe dès le diagnostic. Pas de dérive budgétaire, pas de \"sprint\" facturable à l'infini."
+    en: "Fixed price from diagnostic. Zero tech markup. We build with you exactly what you need.",
+    fr: "Prix fixe dès le diagnostic. Zéro marge sur la tech. On construit avec vous ce dont vous avez besoin."
   },
   "businesses.why.stack.title": {
     en: "🛠️ Pragmatic Stack",
