@@ -42,6 +42,9 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
 
+  <!-- LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="https://bubbleinvest.org/llms.txt" title="LLM context" />
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/assets/styles/core-2026.css" />
   <link rel="stylesheet" href="/assets/styles/homepage-2026.css" />
@@ -68,7 +71,7 @@
     });
   </script>
 
-  <!-- JSON-LD Structured Data -->
+  <!-- JSON-LD Structured Data: Organization -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -76,18 +79,117 @@
     "name": "Bubble Invest",
     "url": "https://bubbleinvest.org",
     "logo": "https://bubbleinvest.org/assets/images/bubble-logo-single.svg",
-    "description": "Pioneers in AI agent implementation. Custom consulting and training for professionals (wealth advisors, asset managers, SMEs). Expert deployment of cutting-edge agentic AI frameworks.",
+    "description": "Pioneers in AI agent implementation. We install AI agents directly on your machine. Operational in 3 sessions. Consulting for wealth advisors, asset managers, SMEs.",
+    "foundingDate": "2024",
+    "areaServed": ["FR", "BE", "CH"],
+    "knowsAbout": ["AI Agents", "Claude Code", "OpenClaw", "LLM Implementation", "Workflow Automation"],
     "sameAs": [
       "https://www.linkedin.com/company/bubble-invest",
       "https://instagram.com/behindthebubble.ai",
       "https://bubbleinvest.substack.com",
       "https://x.com/bubbleinvest"
+    ],
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Quick Start Pack — AI Agent Installation",
+          "description": "3 sessions, 3 weeks. On-site diagnosis, installation and full autonomy. Operational AI agents on your machine with Claude Code or OpenClaw.",
+          "provider": { "@type": "Organization", "name": "Bubble Invest" }
+        },
+        "price": "2000",
+        "priceCurrency": "EUR"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Free Educational Content",
+          "description": "Open-source AI agent, tutorials, tech watch, build-in-public blog"
+        },
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
     ]
+  }
+  </script>
+  <!-- JSON-LD Structured Data: WebSite (for AI discovery + sitelinks) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Bubble Invest",
+    "url": "https://bubbleinvest.org",
+    "inLanguage": ["fr", "en"],
+    "description": "AI agent implementation for professionals. Free educational content and B2B consulting.",
+    "potentialAction": {
+      "@type": "ReadAction",
+      "target": "https://bubbleinvest.org/en/blog"
+    }
   }
   </script>
 </head>
 
 <body>
+  <!-- PATH GATEWAY MODAL (Triggered by CTA buttons) -->
+  <div class="path-gateway gateway-hidden" id="path-gateway" role="dialog" aria-modal="true" aria-label="Choose your path">
+    <div class="gateway-bg-layer" aria-hidden="true">
+      <div class="gateway-orb gateway-orb--left"></div>
+      <div class="gateway-orb gateway-orb--right"></div>
+      <div class="gateway-grid-lines" aria-hidden="true"></div>
+    </div>
+    <div class="gateway-inner">
+      <button class="gateway-close" id="gateway-close" aria-label="Close">
+        <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24">
+          <path d="M18 6L6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+      <div class="gateway-brand">
+        <img src="/assets/images/bubble-logo-single.svg" alt="Bubble" class="gateway-logo" />
+      </div>
+      <p class="gateway-prompt">You are...</p>
+      <div class="gateway-cards">
+        <button class="gateway-card" data-href="/en/individuals">
+          <div class="gateway-card-icon">
+            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="32">
+              <path d="M12 2v20M2 12h20"></path>
+            </svg>
+          </div>
+          <h2>Individuals</h2>
+          <p>Free content, open source, no fluff.</p>
+          <ul class="gateway-features">
+            <li>Code &amp; Strategies</li>
+            <li>Open Source</li>
+            <li>Instant Access</li>
+          </ul>
+          <span class="gateway-card-cta">Explore <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg></span>
+        </button>
+        <button class="gateway-card" data-href="/en/professionals">
+          <div class="gateway-card-icon">
+            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="32">
+              <rect height="14" rx="2" ry="2" width="20" x="2" y="3"></rect>
+              <line x1="8" x2="16" y1="21" y2="21"></line>
+              <line x1="12" x2="12" y1="17" y2="21"></line>
+            </svg>
+          </div>
+          <h2>Professionals</h2>
+          <p>We implement AI in your business.</p>
+          <ul class="gateway-features">
+            <li>Operational agents in 3 sessions</li>
+            <li>Wealth advisors, asset managers, SMBs</li>
+            <li>Results from the first week</li>
+          </ul>
+          <span class="gateway-card-cta">Discover <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- HEADER -->
   <header>
     <div class="container">
@@ -137,8 +239,9 @@
     </div>
   </div>
 
+  <main>
   <!-- HERO SECTION -->
-  <section class="hero">
+  <section class="hero" aria-label="Introduction">
     <div class="container">
       <div class="hero-content fade-in">
         <div class="hero-logo">
@@ -150,51 +253,66 @@
         </div>
         <h1>Bubble.</h1>
         <p class="hero-tagline">Pop the bubble. Invest in what matters.</p>
-        <p class="hero-description">We build AI agents for ourselves, and show you how to do the same. We give knowledge
-          away. We earn by helping you scale.</p>
-        <div class="path-grid">
-        <!-- Individuals Path -->
-        <div class="path-card" onclick="location.href='/en/individuals'">
-          <div class="path-icon">
-            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" viewBox="0 0 24 24" width="32">
+        <p class="hero-description">Open-source AI agents. Building the future together. Sharing freely.</p>
+        <div class="value-pills">
+          <span class="value-pill"><svg fill="none" height="16" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" width="16">
+              <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"></path>
+            </svg> Code & Strategies</span>
+          <span class="value-pill"><svg fill="none" height="16" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" width="16">
               <path d="M12 2v20M2 12h20"></path>
-            </svg>
+            </svg> Open Source</span>
+          <span class="value-pill"><svg fill="none" height="16" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" width="16">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg> Results Included</span>
+        </div>
+        <a href="#contact" class="btn btn-primary hero-main-cta" data-gateway-trigger>Discover Our Approach <svg fill="none" height="16"
+            stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM SECTION -->
+  <section class="the-problem" aria-label="The problem we solve">
+    <div class="container">
+      <div class="problem-content fade-in">
+        <h2>The Problem</h2>
+
+        <div class="problem-list">
+          <div class="problem-item" data-reveal-image="/assets/images/problem-chatgpt-opt.jpg">
+            <div class="problem-text">
+              <h3>You tested ChatGPT… but you're losing more time than you're saving</h3>
+              <p>Generic tools without context. No integration with your workflow. No ownership.</p>
+            </div>
+            <div class="problem-image" aria-hidden="true"></div>
           </div>
-          <h3>Individuals</h3>
-          <p>Free content, transparent, no fluff.</p>
-          <ul class="path-features">
-            <li>We share everything: our AI agent, our code, our learnings.</li>
-            <li>Tutorials, resources, tech watch: all free, all open.</li>
-            <li>Follow us on social media to stay in the loop.</li>
-          </ul>
-          <a class="path-cta" href="/en/individuals">Explore our content <svg fill="none" height="16"
+          <div class="problem-item" data-reveal-image="/assets/images/problem-training-opt.jpg">
+            <div class="problem-text">
+              <h3>AI "training"? Just slides and theory. Zero implementation.</h3>
+              <p>Consultants talk about AI potential. You leave with slides, not tools.</p>
+            </div>
+            <div class="problem-image" aria-hidden="true"></div>
+          </div>
+          <div class="problem-item" data-reveal-image="/assets/images/problem-consulting-opt.jpg">
+            <div class="problem-text">
+              <h3>Traditional consulting? 3–6 months. €30K+. And you still might not implement it.</h3>
+              <p>Long projects, expensive, and by the time they're done, the tools have evolved.</p>
+            </div>
+            <div class="problem-image" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="problem-cta-section">
+          <p class="problem-closing"><strong>You just want to save time. Now.</strong></p>
+          <a href="/en/professionals" class="btn btn-primary" data-gateway-trigger>See Our Alternative <svg fill="none" height="16"
               stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
               <path d="M5 12h14M12 5l7 7-7 7"></path>
             </svg></a>
-        </div>
-        <!-- Professionals Path -->
-        <div class="path-card" onclick="location.href='/en/professionals'">
-          <div class="path-icon">
-            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" viewBox="0 0 24 24" width="32">
-              <rect height="14" rx="2" ry="2" width="20" x="2" y="3"></rect>
-              <line x1="8" x2="16" y1="21" y2="21"></line>
-              <line x1="12" x2="12" y1="17" y2="21"></line>
-            </svg>
-          </div>
-          <h3>Professionals</h3>
-          <p>We implement AI in your business.</p>
-          <ul class="path-features">
-            <li>AI agents, automation, workflows: we handle everything.</li>
-            <li>We master the latest tools, weeks before the market.</li>
-            <li>Wealth managers, asset managers, SMBs: let's talk about your project.</li>
-          </ul>
-          <a class="path-cta" href="/en/professionals">Discuss your project <svg fill="none" height="16"
-              stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg></a>
-        </div>
         </div>
       </div>
     </div>
@@ -204,63 +322,57 @@
   <section class="quote-interlude">
     <div class="container">
       <a href="/en/about" class="interlude-link">
-        <p class="interlude-text">What if it's not just a bubble?</p>
+        <p class="interlude-text">What if AI is not just a bubble?</p>
       </a>
     </div>
   </section>
 
-  <!-- SELFWARE SECTION -->
-  <section class="selfware">
+  <!-- OUR APPROACH SECTION -->
+  <section class="selfware" aria-label="Our approach">
     <div class="container">
       <div class="selfware-grid">
         <div class="selfware-content">
-          <h2>Selfware Model</h2>
-          <p>We use the tools we build. We test our agents on our own processes and investments. Our success depends on
-            their performance.</p>
+          <h2>Our approach</h2>
+          <p>We don't sell consulting. We install tools we use ourselves.</p>
           <div class="selfware-features">
             <div class="feature-item">
               <div class="feature-number">1</div>
               <div class="feature-text">
-                <h4>We use it ourselves</h4>
-                <p>Our own operations and portfolios are managed by the agents we design</p>
+                <h4>Our agents run on our own operations.</h4>
+                <p>No PowerPoints. We build the same tools for us as we do for you.</p>
               </div>
             </div>
             <div class="feature-item">
               <div class="feature-number">2</div>
               <div class="feature-text">
-                <h4>Full transparency</h4>
-                <p>Our methodology, our code, our results — shared publicly</p>
+                <h4>Everything is shared: code, method, results.</h4>
+                <p>Blog, GitHub, newsletter — we document everything publicly.</p>
               </div>
             </div>
             <div class="feature-item">
               <div class="feature-number">3</div>
               <div class="feature-text">
-                <h4>Aligned interests</h4>
-                <p>We win when our tools actually work</p>
+                <h4>3 sessions, you're autonomous.</h4>
+                <p>We don't create dependency. The goal: you don't need us anymore.</p>
               </div>
             </div>
           </div>
         </div>
         <div class="selfware-visual">
-          <div class="flow-diagram">
-            <div class="flow-item">
-              <strong>Your Data & Processes</strong>
-              <span style="color: var(--muted);">→ Information, constraints, goals</span>
+          <div class="comparison-table">
+            <div class="comparison-col comparison-them">
+              <h4>The others</h4>
+              <div class="comparison-row">6-month project</div>
+              <div class="comparison-row">Slides + theory</div>
+              <div class="comparison-row">€30K+ budget</div>
+              <div class="comparison-row">Ongoing dependency</div>
             </div>
-            <div class="flow-arrow">↓</div>
-            <div class="flow-item agent">
-              <strong>Custom Agent</strong>
-              <span style="color: var(--muted);">→ Analysis &amp; Decisions</span>
-            </div>
-            <div class="flow-arrow">↓</div>
-            <div class="flow-item">
-              <strong>Your Validation</strong>
-              <span style="color: var(--muted);">→ You keep final control</span>
-            </div>
-            <div class="flow-arrow">↓</div>
-            <div class="flow-item">
-              <strong>Execution</strong>
-              <span style="color: var(--muted);">→ Automated on your own systems</span>
+            <div class="comparison-col comparison-us">
+              <h4>Bubble</h4>
+              <div class="comparison-row">3 sessions, 3 weeks</div>
+              <div class="comparison-row">Installed on your machine</div>
+              <div class="comparison-row">€2,000 all-in</div>
+              <div class="comparison-row">Full autonomy</div>
             </div>
           </div>
         </div>
@@ -269,7 +381,7 @@
   </section>
 
   <!-- TRUST INDICATORS -->
-  <section class="trust">
+  <section class="trust" aria-label="Trust indicators">
     <div class="container">
       <div class="trust-grid">
         <div class="trust-item">
@@ -293,16 +405,19 @@
   </section>
 
   <!-- BLOG PREVIEW -->
-  <section class="blog-preview">
+  <section class="blog-preview" aria-label="Recent articles">
     <div class="container">
       <div class="section-header">
         <h2>Build in Public</h2>
         <h3>Follow our journey</h3>
       </div>
       <div class="blog-grid">
-        <a class="blog-card" href="https://bubbleinvest.substack.com/p/pourquoi-le-saas-na-plus-de-sens" target="_blank" rel="noopener noreferrer">
+        <a class="blog-card" href="https://bubbleinvest.substack.com/p/pourquoi-le-saas-na-plus-de-sens" target="_blank"
+          rel="noopener noreferrer">
           <div class="blog-image">
-            <img src="https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8cc564ff-6c8e-4b3a-a70b-b3e3a7e48c30_1024x608.png" alt="Why SaaS No Longer Makes Sense in 2026" loading="lazy">
+            <img
+              src="https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8cc564ff-6c8e-4b3a-a70b-b3e3a7e48c30_1024x608.png"
+              alt="Why SaaS No Longer Makes Sense in 2026" loading="lazy">
           </div>
           <div class="blog-content">
             <div class="blog-tag">Model</div>
@@ -310,9 +425,12 @@
             <p>What we understood by giving up on building an app, and the model we found on the other side</p>
           </div>
         </a>
-        <a class="blog-card" href="https://bubbleinvest.substack.com/p/le-futur-ou-va-t-on-et-comment-se" target="_blank" rel="noopener noreferrer">
+        <a class="blog-card" href="https://bubbleinvest.substack.com/p/le-futur-ou-va-t-on-et-comment-se"
+          target="_blank" rel="noopener noreferrer">
           <div class="blog-image">
-            <img src="https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feb80c01e-ee01-448d-87f9-420a7ad1b9c0_1024x608.png" alt="The Future: Where Are We Headed?" loading="lazy">
+            <img
+              src="https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feb80c01e-ee01-448d-87f9-420a7ad1b9c0_1024x608.png"
+              alt="The Future: Where Are We Headed?" loading="lazy">
           </div>
           <div class="blog-content">
             <div class="blog-tag">AI &amp; Future</div>
@@ -320,14 +438,18 @@
             <p>From ChatGPT (2022) to Computer Use (2025) in 3 years. What awaits us in the next 3 years?</p>
           </div>
         </a>
-        <a class="blog-card" href="https://bubbleinvest.substack.com/p/ce-que-tu-moffres-quand-tu-moffres" target="_blank" rel="noopener noreferrer">
+        <a class="blog-card" href="https://bubbleinvest.substack.com/p/ce-que-tu-moffres-quand-tu-moffres"
+          target="_blank" rel="noopener noreferrer">
           <div class="blog-image">
-            <img src="https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24acd9eb-31a2-47d9-9a64-3560a0149165_1408x768.png" alt="What You Give Me When You Give Me Your Time" loading="lazy">
+            <img
+              src="https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24acd9eb-31a2-47d9-9a64-3560a0149165_1408x768.png"
+              alt="What You Give Me When You Give Me Your Time" loading="lazy">
           </div>
           <div class="blog-content">
             <div class="blog-tag">Philosophy</div>
             <h4>What You Give Me When You Give Me Your Time</h4>
-            <p>In a world where AI produces everything, human attention becomes the only thing that can't be delegated.</p>
+            <p>In a world where AI produces everything, human attention becomes the only thing that can't be delegated.
+            </p>
           </div>
         </a>
       </div>
@@ -335,25 +457,24 @@
   </section>
 
   <!-- CONTACT / NEWSLETTER SECTION -->
-  <section class="waitlist" id="contact">
+  <section class="waitlist" id="contact" aria-label="Contact and newsletter">
     <div class="container">
-      <h2>Contact Us</h2>
-      <p>Subscribe to our newsletter or read our latest articles on Substack.</p>
+      <h2>Stay Updated</h2>
+      <p>Follow our journey. Learn as we build.</p>
       <div class="hero-cta" style="justify-content: center; margin-top: 2rem;">
-        <a href="https://bit.ly/3Z9Cncr" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Subscribe to
-          Newsletter</a>
-        <a href="https://bubbleinvest.substack.com" class="btn btn-secondary" target="_blank"
-          rel="noopener noreferrer">Read our Substack</a>
+        <a href="https://bit.ly/3Z9Cncr" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Join
+          Newsletter <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg></a>
       </div>
 
       <div style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1);">
         <h3>Are you a professional?</h3>
-        <p style="margin-top: 0.5rem; color: var(--muted);">Our core offering is B2B. Let's discuss your custom
-          implementation needs.</p>
+        <p style="margin-top: 0.5rem; color: rgba(255,255,255,0.7);">Let's discuss your custom AI implementation.</p>
         <div class="hero-cta" style="justify-content: center; margin-top: 2rem;">
           <a href="https://calendly.com/bubbleinvest-ai" class="btn btn-primary" target="_blank"
             rel="noopener noreferrer">
-            Book a call
+            Book a Call
             <svg fill="none" height="20" stroke="currentColor" stroke-width="2"
               style="margin-left: 0.5rem; vertical-align: middle;" viewBox="0 0 24 24" width="20">
               <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -363,6 +484,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer>
@@ -453,8 +576,7 @@
   <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
     <div class="chat-side-panel-header">
       <div class="chat-side-panel-header-info">
-        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20"
-          height="20" />
+        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
         <div class="chat-side-panel-titles">
           <span class="chat-side-panel-title">Bubble Assistant</span>
         </div>
@@ -468,8 +590,7 @@
     </div>
     <form class="chat-side-panel-input-container" novalidate>
       <input type="text" class="chat-side-panel-input" placeholder="Ask your questions..."
-        data-translate-placeholder="floating_input.placeholder" aria-label="Type your message"
-        autocomplete="off" />
+        data-translate-placeholder="floating_input.placeholder" aria-label="Type your message" autocomplete="off" />
       <button class="chat-side-panel-send" aria-label="Send message" type="submit">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
@@ -483,8 +604,7 @@
   <div class="floating-chat-input hidden" data-always-visible="true" data-page-context="homepage"
     data-trigger-selector=".hero" id="floating-chat-input">
     <div class="floating-input-container">
-      <input aria-label="Ask your question" class="floating-input-field"
-        placeholder="Ask me anything..." type="text"
+      <input aria-label="Ask your question" class="floating-input-field" placeholder="Ask me anything..." type="text"
         data-translate-placeholder="floating_input.placeholder" />
       <button aria-label="Send" class="floating-input-submit">
         <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
@@ -504,7 +624,57 @@
   <script src="/js/chat-side-panel.js"></script>
   <script src="/js/floating-chat-input.js"></script>
   <script src="/js/animations.js"></script>
+  <script src="/js/gateway.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
+
+  <!-- Problem tile image reveal on long hover -->
+  <script>
+    (function () {
+      'use strict';
+      var items = document.querySelectorAll('.problem-item[data-reveal-image]');
+      items.forEach(function (item) {
+        var timer = null;
+        var imageDiv = item.querySelector('.problem-image');
+        var src = item.getAttribute('data-reveal-image');
+
+        // Preload image and set as background
+        if (imageDiv && src) {
+          imageDiv.style.backgroundImage = 'url(' + src + ')';
+          var preload = new Image();
+          preload.src = src;
+        }
+
+        item.addEventListener('mouseenter', function () {
+          timer = setTimeout(function () {
+            item.classList.add('image-revealed');
+          }, 1000);
+        });
+
+        item.addEventListener('mouseleave', function () {
+          if (timer) { clearTimeout(timer); timer = null; }
+          item.classList.remove('image-revealed');
+        });
+
+        // Touch support: long press 1s
+        var touchTimer = null;
+        item.addEventListener('touchstart', function (e) {
+          touchTimer = setTimeout(function () {
+            item.classList.add('image-revealed');
+          }, 1000);
+        }, { passive: true });
+
+        item.addEventListener('touchend', function () {
+          if (touchTimer) { clearTimeout(touchTimer); touchTimer = null; }
+          item.classList.remove('image-revealed');
+        });
+
+        item.addEventListener('touchcancel', function () {
+          if (touchTimer) { clearTimeout(touchTimer); touchTimer = null; }
+          item.classList.remove('image-revealed');
+        });
+      });
+    })();
+  </script>
 
 
   <!-- Mobile hamburger menu toggle -->

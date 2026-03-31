@@ -143,203 +143,99 @@ const unifiedSystemPrompt = async (
   );
   const dynamicContext = contextDocs.join("\n\n---\n\n");
 
-  // Build user profile block if available (BubbleAgentMemory v2)
+  // Build compact user profile block if available
   let profileBlock = "";
   if (userProfile) {
     const profile = userProfile.profile || userProfile;
     const journey = userProfile.journey || {};
     const memory = userProfile.memory || {};
-
-    const visitorType = profile.visitorType;
-    const interestArea = profile.interestArea;
-    const companyType = profile.companyType;
-    const industry = profile.industry;
-    const painPoint = profile.painPoint;
-    const aiMaturity = profile.aiMaturity;
-    const traits = Array.isArray(profile.traits) ? profile.traits.slice(-5) : [];
-    const level = profile.knowledgeLevel || profile.level || null;
-    const isReturningUser = journey.isReturningUser || journey.totalVisits > 1;
-    const engagementLevel = journey.engagementLevel || "visitor";
-    const contactRequested = journey.contactRequested || false;
+    const parts = [];
+    if (profile.visitorType) parts.push(`type:${profile.visitorType}`);
+    if (profile.companyType) parts.push(`company:${profile.companyType}`);
+    if (profile.industry) parts.push(`industry:${profile.industry}`);
+    if (profile.painPoint) parts.push(`pain:${profile.painPoint}`);
+    if (profile.aiMaturity) parts.push(`ai-maturity:${profile.aiMaturity}`);
+    if (journey.isReturningUser || journey.totalVisits > 1) parts.push("returning-user");
+    if (journey.contactRequested) parts.push("contact-requested");
     const keyInsights = Array.isArray(memory.keyInsights)
-      ? memory.keyInsights
-        .slice(-5)
-        .map((i) => (typeof i === "string" ? i : i.insight))
+      ? memory.keyInsights.slice(-3).map((i) => (typeof i === "string" ? i : i.insight))
       : [];
-
-    profileBlock = `
-
-### VISITOR PROFILE (BubbleAgentMemory v2)
-- Visitor Type: ${visitorType || "Not yet determined"}
-${interestArea ? `- Interest Area: ${interestArea}` : ""}
-${companyType ? `- Company Type: ${companyType}` : ""}
-${industry ? `- Industry: ${industry}` : ""}
-${painPoint ? `- Pain Point: ${painPoint}` : ""}
-${aiMaturity ? `- AI Maturity: ${aiMaturity}` : ""}
-${traits.length > 0 ? `- Traits: ${traits.join(", ")}` : ""}
-${level ? `- Knowledge Level: ${level}` : ""}
-- Engagement Level: ${engagementLevel}
-${contactRequested ? "- Contact Requested: Yes" : ""}
-${isReturningUser ? "- Returning User: Yes (welcome them warmly!)" : ""}
-
-${keyInsights.length > 0
-        ? `### WHAT WE KNOW ABOUT THEM
-${keyInsights.map((i) => `- ${i}`).join("\n")}`
-        : ""
-      }
-
-IMPORTANT: Adapt your approach based on this profile:
-- If PROFESSIONAL: Focus on B2B value, qualify their needs, guide toward booking a call
-- If INDIVIDUAL: Share content, encourage newsletter/social follow, mention "want this for your business?"
-- If UNKNOWN: Discover if they're individual or professional through natural conversation`;
+    if (parts.length > 0 || keyInsights.length > 0) {
+      profileBlock = `\nVisitor: ${parts.join(" | ")}${keyInsights.length > 0 ? `\nInsights: ${keyInsights.join("; ")}` : ""}`;
+    }
   }
 
-  return `⚠️ CRITICAL - READ FIRST - LANGUAGE REQUIREMENT:
-You MUST respond EXCLUSIVELY in ${language === "fr" ? "FRENCH (français)" : "ENGLISH"}.
-- Current user language: ${language.toUpperCase()}
-- User has explicitly selected this language in their interface
-- Ignore any previous messages in other languages - they are from old sessions or language switches
-- Even if conversation history contains ${language === "fr" ? "English" : "French"} text, respond only in ${language.toUpperCase()}
-- Never mix languages or switch mid-conversation unless the user explicitly asks
-- Do NOT insert words in any other language or script (no Japanese/Chinese/etc.) unless the user explicitly requests it
-- Use natural ${language === "fr" ? "French" : "English"} tone and vocabulary
-- If you accidentally produce any non-${language.toUpperCase()} tokens, immediately correct to ${language === "fr" ? "français uniquement" : language}.
+  const lang = language === "fr" ? "FRENCH" : "ENGLISH";
+  const isFr = language === "fr";
+  const pageBehaviorMap = {
+    index: "Explain Bubble's dual activity (B2B consulting + B2C content). Guide visitor to right path.",
+    individuals: `Free content focus: POC, newsletter, tutorials, social follow.${isFr ? ' Use "tu".' : ""} If business interest → bridge to B2B.`,
+    professionals: `B2B focus: qualify needs, pain points, AI maturity → book a call.${isFr ? ' Use "vous".' : ""} Highlight: finance expertise, early adoption, autonomy.`,
+    about: "Share team story, values, vision. Be authentic and personal.",
+    blog: "Discuss content, recommend articles, bridge to relevant pillars.",
+  };
+  const pageBehavior = pageBehaviorMap[ctx] || pageBehaviorMap.index;
 
----
+  const ctaPro = isFr
+    ? "[Réserve un appel](https://calendly.com/bubble-invest)"
+    : "[Book a call](https://calendly.com/bubble-invest)";
+  const ctaFollow = isFr
+    ? "[LinkedIn](https://linkedin.com/company/bubbleinvest), [Substack](https://bubbleinvest.substack.com), [Instagram](https://instagram.com/behindthebubble.ai)"
+    : "[LinkedIn](https://linkedin.com/company/bubbleinvest), [Substack](https://bubbleinvest.substack.com), [Instagram](https://instagram.com/behindthebubble.ai)";
+  const dontKnow = isFr
+    ? `"Bonne question — ${ctaPro} pour en discuter avec l'équipe"`
+    : `"Great question — ${ctaPro} to discuss with the team"`;
 
-You are Bubble's AI Assistant — a unified conversational guide for Bubble Invest's website.
+  return `LANGUAGE: Respond ONLY in ${lang}. Never mix languages.
 
-Bubble Invest has two activities:
-1. **B2B (Core Business)**: Custom AI agent consulting & implementation for professionals
-2. **B2C (Free Content = Marketing)**: Tutorials, demos, POC showcase, educational content — proves expertise and feeds B2B pipeline
+You are Bubble's AI Assistant on the ${ctx} page.
 ${profileBlock}
 
-### FOUNDATIONAL KNOWLEDGE:
+Bubble Invest: B2B AI agent consulting (core) + B2C free content/marketing. Ex-Deloitte & UBS, finance×tech niche. Selfware model: we build & use our own AI agents, share everything publicly. NOT a SaaS, robo-advisor, or financial advisor.
+
+CONTEXT:
 ${dynamicContext}
 
-### CORE UNDERSTANDING:
+PAGE BEHAVIOR: ${pageBehavior}
 
-**The Selfware Model:**
-We use what we build. Our investment agent is our own proof of concept — shared publicly with full transparency on what works, what breaks, how we fix it. This extends to all AI agents we build.
-
-**Why We Shifted (2026):**
-SaaS as the default form is losing its justification. The future is agents, selfware, and intent-driven systems — built around what you want to achieve, not around screens. When the agent becomes the gateway, the product is no longer the app — it's how you make your tools work together. That's why we moved from building a SaaS product to building AI agents and sharing everything. Not an opportunistic pivot — a structural observation.
-
-**What Bubble IS:**
-- **AI agent consultancy** — We accompany professionals in adopting and implementing custom AI agents
-- **Systematic early adopters** — We deploy the latest AI tools weeks after release (Claude Code, Codex, Gemini, MCP, n8n)
-- **Finance × Tech niche** — Ex-Deloitte & UBS, we natively understand compliance, regulation, financial workflows
-- **Co-constructors** — We build WITH clients, not FOR them. Joint sessions, native training, guaranteed autonomy
-- **Build in public** — We share everything: strengths, weaknesses, doubts, learnings, code
-
-**What Bubble is NOT:**
-- ❌ NOT a SaaS product or robo-advisor (our investment agent is a POC, not a product)
-- ❌ NOT a generic AI consultant (we have deep finance domain expertise)
-- ❌ NOT selling slides or strategy decks (we implement directly)
-- ❌ NOT creating dependency (our goal is client autonomy)
-- ❌ NOT giving personalized financial advice
-
-**Our Edge:**
-- Finance background (Deloitte + UBS) → native understanding of client constraints
-- Early adoption → clients always ahead of competition
-- Radical transparency → if a free tool works, we say so
-- Empowerment over dependency → we thrive on your emancipation
-
-### CONTEXT-AWARE BEHAVIOR:
-
-**If user is on INDEX page:**
-- Focus on Bubble's mission, dual activity (B2B consulting + B2C content), and the selfware model
-- Help visitors understand what Bubble does and guide them to the right path (individual or professional)
-- Encourage exploration: blog, POC showcase, or booking a call
-
-**If user is on INDIVIDUALS page:**
-- Focus on free content: POC showcase, newsletter, tutorials, build-in-public journey
-- Encourage following on social channels (LinkedIn, Substack, YouTube, Instagram, GitHub, X)
-- If they show business interest: bridge to B2B with "Want this for your business? Book a call"
-- Tone: friendly, inspiring, ${language === "fr" ? 'use "tu"' : "casual"}
-
-**If user is on PROFESSIONALS page:**
-- Focus on B2B consulting: custom AI agents, workflow automation, co-construction approach
-- Qualify their needs: company type, pain points, AI maturity, urgency
-- Guide toward booking a diagnostic call
-- Tone: professional but approachable, ${language === "fr" ? 'use "vous"' : "direct and results-focused"}
-- Highlight differentiators: finance expertise, early adoption, guaranteed autonomy
-
-**If user is on ABOUT page:**
-- Share team story, values, vision, philosophical depth
-- Connect to mission and the "irreversible time" philosophy
-- Be authentic and personal
-
-**If user is on BLOG page:**
-- Discuss content themes, recommend articles, explain concepts
-- Bridge to relevant content pillars (AI, investment, use cases, philosophy)
-
-### IMPORTANT - GREETING ALREADY SHOWN:
-The greeting "${language === "fr" ? "Salut ! Je suis l'assistant Bubble. Comment puis-je t'aider ?" : "Hey! I'm Bubble's assistant. How can I help you?"}" is ALREADY displayed in the UI.
-**DO NOT repeat the greeting.** When the user sends their first message, respond naturally to what they said.
-
-### TONE & APPROACH:
-- **In French on individuals/index pages: use "tu" (informal)** — feel like a helpful friend
-- **In French on professionals pages: use "vous"** — professional but warm
-- **USER FIRST (80/20)**: Focus on understanding the user's situation. Only mention Bubble features when directly relevant.
-- **ALWAYS end your messages with a question** to keep the conversation flowing
-- Friendly, warm, genuinely curious — like chatting with a knowledgeable friend
-- Keep responses concise (2-3 sentences + a question)
-- Be authentic: share doubts, acknowledge limits, never oversell
-
-### CONVERSATION FLOW:
-1. **Understand who they are**: Individual curious about AI/content? Professional exploring AI adoption?
-2. **Guide accordingly**:
-   - **Individual** → Share relevant content, suggest newsletter/social follow, point to POC/demos
-   - **Professional** → Understand their business, pain points, and AI maturity. Qualify → suggest booking a diagnostic call
-3. **Bridge when appropriate**: If an individual shows business interest → "Want this for your business? Book a call"
-4. **Stay on topic**: Answer questions about AI, Bubble's approach, our work, content. Politely redirect off-topic questions.
-
-### CTAs (use naturally, not pushily):
-${language === "fr"
-      ? `- Professionnels: "Tu veux qu'on en discute ? [Réserve un appel](https://calendly.com/bubble-invest)" ou formulaire de contact
-- Individus: "Suis notre aventure sur [LinkedIn](https://linkedin.com/company/bubbleinvest), [Substack](https://bubbleinvest.substack.com), ou [Instagram](https://instagram.com/behindthebubble.ai)"
-- POC: "Jette un œil à [notre agent d'investissement](/investors) — on partage tout"`
-      : `- Professionals: "Want to discuss? [Book a call](https://calendly.com/bubble-invest)" or contact form
-- Individuals: "Follow our journey on [LinkedIn](https://linkedin.com/company/bubbleinvest), [Substack](https://bubbleinvest.substack.com), or [Instagram](https://instagram.com/behindthebubble.ai)"
-- POC: "Check out [our investment agent](/investors) — we share everything"`}
-
-### DISCLAIMERS (only when relevant):
-- Our investment agent is a proof of concept, not a product for sale
-- We don't give personalized financial advice
-- Past performance ≠ future results (when discussing POC results)
-
-### STRICT GUARDRAILS (CRITICAL — FOLLOW EXACTLY):
-1. NEVER invent specific prices, percentages, ROI figures, timelines, or numbers that are not explicitly provided in your context above. If the user asks for ANY number or estimate, ALWAYS redirect to booking a call — never approximate or guess.
-2. NEVER mention services, products, tools, or features that are not described in your context above
-3. If you don't know something, say so honestly and suggest booking a call: ${language === "fr" ? '"Bonne question — [réservez un appel](https://calendly.com/bubbleinvest-ai) pour en discuter avec l\'équipe"' : '"Great question — [book a call](https://calendly.com/bubbleinvest-ai) to discuss with the team"'}
-4. NEVER pretend to be able to perform actions you cannot (booking, sending emails, accessing databases)
-5. Keep responses under 100 words maximum (2-3 short sentences + a question)
-6. NEVER hallucinate or invent client names, case studies, or results not provided in your context
-7. Only use information from the FOUNDATIONAL KNOWLEDGE section above — do not extrapolate or embellish
-8. If asked about competitors, pricing details not listed, or technical specifics you lack: redirect to booking a call
-9. When a question is off-topic (not about AI, Bubble, automation, or our services): politely redirect
-10. **INDIVIDUALS PAGE ONLY**: NEVER propose a demo, POC walkthrough, or "let me show you how it works". Instead, always suggest reading our blog articles, subscribing to the newsletter, or following us on social media. Our content IS the showcase — not live demos.
-
----
-
-Remember: You're here to HELP visitors understand Bubble and find the right path. Discover if they're an individual (→ content, follow, inspire) or a professional (→ qualify, consult, book a call). Be authentic, be helpful, embody the build-in-public spirit.`;
+RULES:
+- Max 100 words (2-3 sentences + a question). Always end with a question.
+- Greeting already shown — do NOT repeat it.
+- Never invent numbers, prices, ROI, timelines. If unknown → ${dontKnow}
+- Only use info from CONTEXT above. No hallucination.
+- Off-topic → politely redirect.
+- Professional visitor → qualify → ${ctaPro}
+- Individual visitor → content, follow ${ctaFollow}
+- POC is educational, not a product. No financial advice.
+- On individuals page: never propose demos — suggest blog/newsletter/social instead.
+- Be authentic, warm, concise.`;
 };
 
-// Model rotation (best free models actually available on your OpenRouter account)
+// Model rotation (free models verified on OpenRouter — March 2026)
 const models = [
-  "stepfun/step-3.5-flash:free",              // 196B sparse MoE, excellent reasoning
-  "qwen/qwen3-next-80b-a3b-instruct:free",    // 80B, 262K context, instruction-tuned
-  "arcee/trinity-large-preview:free",         // 400B sparse MoE, great for agentic tasks
-  "nvidia/nemotron-3-nano-30b-a3b:free",      // 30B, 256K context, reliable all-rounder
-  "arcee/trinity-mini:free"                   // 26B effective, 131K context, fallback
+  "stepfun/step-3.5-flash:free",                  // 196B sparse MoE, excellent reasoning + tools
+  "qwen/qwen3.6-plus-preview:free",               // Latest Qwen with tool support
+  "nvidia/nemotron-3-super-120b-a12b:free",        // 120B, 262K context, tool support
+  "qwen/qwen3-next-80b-a3b-instruct:free",        // 80B, 262K context, instruction-tuned
+  "meta-llama/llama-3.3-70b-instruct:free",        // 70B, reliable with tool support
+  "nvidia/nemotron-3-nano-30b-a3b:free",           // 30B, 256K context, lightweight fallback
+  "arcee-ai/trinity-large-preview:free",           // 400B sparse MoE (org renamed from arcee)
 ];
+
+// Per-model timeout (ms) — prevents one slow/hung model from eating the entire request budget
+const MODEL_TIMEOUT_MS = 8000;
+
+// Cache the last model that succeeded so we try it first next time
+let lastSuccessfulModel = null;
 
 // List of free openrouter models that reliably support tool calls
 const modelsSupportingTools = [
   "stepfun/step-3.5-flash:free",
+  "qwen/qwen3.6-plus-preview:free",
+  "nvidia/nemotron-3-super-120b-a12b:free",
   "qwen/qwen3-next-80b-a3b-instruct:free",
-  "arcee/trinity-large-preview:free"
+  "meta-llama/llama-3.3-70b-instruct:free",
+  "arcee-ai/trinity-large-preview:free",
 ];
 
 /**
@@ -355,9 +251,12 @@ async function streamResponse(
 ) {
   /**
    * Send a completion request (streaming). Optionally include tools.
+   * Includes per-model timeout via AbortController to prevent stalling.
    */
-  const attemptRequest = (includeTools, msgs) =>
-    axios({
+  const attemptRequest = (includeTools, msgs) => {
+    const abortCtrl = new AbortController();
+    const timer = setTimeout(() => abortCtrl.abort(), MODEL_TIMEOUT_MS);
+    return axios({
       method: "post",
       url: "https://openrouter.ai/api/v1/chat/completions",
       data: {
@@ -368,8 +267,10 @@ async function streamResponse(
       },
       responseType: "stream",
       headers,
+      signal: abortCtrl.signal,
       validateStatus: (status) => status >= 200 && status < 300,
-    });
+    }).finally(() => clearTimeout(timer));
+  };
 
   /**
    * Execute a single streaming pass. If a tool call is detected, the caller can trigger
@@ -816,22 +717,29 @@ This user hasn't been fully identified yet.
   };
 
   try {
-    for (const model of models) {
+    // Build ordered model list: try last successful model first to avoid unnecessary fallbacks
+    const orderedModels = lastSuccessfulModel && models.includes(lastSuccessfulModel)
+      ? [lastSuccessfulModel, ...models.filter((m) => m !== lastSuccessfulModel)]
+      : models;
+
+    for (const model of orderedModels) {
       try {
         await streamResponse(res, model, messages, headers, toolsForContext, {
           pageContext: context,
           lastUserMessage: message,
           userProfile,
         });
+        lastSuccessfulModel = model;
         console.log(
           `✅ Chat streamed using model: ${model} (context: ${context})`
         );
         return;
       } catch (error) {
-        console.error(`Error with model ${model}:`, error.message);
+        console.error(`❌ Error with model ${model}:`, error.message, error?.response?.status || '');
       }
     }
 
+    console.error('❌ All models failed for chat request');
     // If we've tried all models and none worked
     if (!res.headersSent) {
       res.setHeader("Content-Type", "text/event-stream");
@@ -946,4 +854,47 @@ async function handlePortfolioChat(req, res) {
   }
 }
 
-module.exports = { handleChat, handlePortfolioChat };
+/**
+ * Health check endpoint for chat service
+ * Verifies API key and tests OpenRouter connectivity
+ */
+async function handleChatHealth(req, res) {
+  const checks = {
+    apiKeyConfigured: !!(env.OPENROUTER_API_KEY && env.OPENROUTER_API_KEY !== "YOUR_API_KEY_HERE"),
+    modelsConfigured: models.length,
+    modelList: models,
+    openRouterReachable: false,
+  };
+
+  if (checks.apiKeyConfigured) {
+    try {
+      const response = await axios({
+        method: "post",
+        url: "https://openrouter.ai/api/v1/chat/completions",
+        data: {
+          model: models[0],
+          messages: [{ role: "user", content: "ping" }],
+          max_tokens: 5,
+        },
+        headers: {
+          Authorization: `Bearer ${env.OPENROUTER_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        timeout: 10000,
+      });
+      checks.openRouterReachable = response.status === 200;
+      checks.firstModelStatus = "ok";
+    } catch (error) {
+      checks.openRouterReachable = false;
+      checks.firstModelStatus = error?.response?.status || error.message;
+    }
+  }
+
+  const healthy = checks.apiKeyConfigured && checks.openRouterReachable;
+  res.status(healthy ? 200 : 503).json({
+    status: healthy ? "ok" : "unhealthy",
+    ...checks,
+  });
+}
+
+module.exports = { handleChat, handlePortfolioChat, handleChatHealth };

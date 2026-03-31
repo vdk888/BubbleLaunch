@@ -1,0 +1,130 @@
+# Bubble Invest — Full Company & Services Description
+
+> Bubble Invest is a dual-activity company based in France: free B2C educational content on AI agents and investment automation, plus B2B AI automation consulting for finance professionals and SMEs. Founded by ex-Deloitte and UBS professionals.
+
+## Company Overview
+
+Bubble Invest operates two complementary activities:
+
+### B2C — Free Content & Education (Marketing)
+Our consumer-facing activity is entirely free. We share our investment agent proof of concept openly, along with tutorials, demos, and resources on AI agents (Claude Code, OpenClaw, etc.). We publish a free newsletter on Substack and maintain a bilingual blog (French/English) covering AI automation, investment technology, and agent architectures. The B2C activity proves our expertise and feeds our B2B pipeline.
+
+### B2B — Custom AI Automation Consulting (Revenue)
+We help professionals deploy cutting-edge AI agents and automation. Our unique edge: systematic early adoption — we master tools weeks after release, well ahead of the market.
+
+## Detailed Service Offerings
+
+### Quick Start Pack — 2,000 EUR HT
+Our flagship offering. Three sessions over approximately three weeks:
+
+**Session 1 — Diagnostic & Preparation (1-2h, video call)**
+We understand your workflow and identify 2-3 quick wins with high ROI. We prepare agents upstream before coming on-site.
+
+**Session 2 — Installation & Hands-on (2-3h, on-site)**
+We install Claude Code or OpenClaw on your machine. Live demo on your real documents. You leave operational.
+
+**Session 3 — Follow-up & Adjustments (1-2h, video call, 1-2 weeks later)**
+Feedback on real usage, agent adjustments, advanced tips. Final documentation for 100% autonomy.
+
+**What You Leave With:**
+- Claude Code or OpenClaw installed and functional
+- 2-3 operational agents adapted to your profession
+- Custom documentation "Agents for [your profession]" with your concrete use cases
+- Simple roadmap: 3 actions for tomorrow
+- Best practices checklist
+
+### Complementary Services
+- Follow-up / Debug Sessions: 150 EUR HT/h
+- Monthly Maintenance: 500 EUR HT/month (ongoing support, agent updates, new tool integration)
+- Custom Complex Agent Development: on quote (multi-agent SaaS, API integrations, etc.)
+
+## Target Clients
+
+### Finance Professionals
+- **Wealth Advisors (CGP)**: Automated reporting, client communication, regulatory watch
+- **Asset Management Firms**: Market intelligence, research automation, risk monitoring
+- **Financial Analysts**: Source scanning, draft generation, data extraction
+
+### Small & Medium Enterprises (SMEs)
+- **Tech SMEs**: Business development automation, prospecting, CRM integration
+- **Digital Agencies**: Social media orchestration, content generation, client deliverables
+- **Consulting Firms**: Knowledge management, proposal automation, competitive intelligence
+
+### Regulated Professions
+- **Architects**: Regulatory watch by project and location, compliance monitoring
+- **Legal Firms**: Document analysis, contract review assistance, case research
+- **Accountants**: Report automation, data extraction, client communication
+
+## Concrete Use Cases Deployed
+
+### 1. Market Intelligence & Automated Reporting
+**Client**: Asset management firm
+**Solution**: 2 interconnected agents scanning 50+ sources and calculating metrics in real time
+**Results**: 3 hours saved every morning, instant reporting, +40% risk detection
+
+### 2. Regulatory Watch
+**Client**: Architecture firm
+**Solution**: Agent scanning regulatory updates by project and location, contextual alerts
+**Results**: Zero compliance delays, watch effort divided by 5, total coverage
+
+### 3. Research & Automated Drafting
+**Client**: Financial analysis team
+**Solution**: Agent reading 200+ sources/day, extracting key points, generating structured draft notes
+**Results**: -70% drafting time, 100% source coverage, focus shifted to qualitative analysis
+
+### 4. Social Media Multi-Agent Team
+**Client**: Digital agency
+**Solution**: 5 orchestrated sub-agents covering LinkedIn, Instagram, TikTok, X, and Substack
+**Results**: 5 platforms automated, content creation time divided by 4, real-time trend detection
+
+### 5. Business Development Automation
+**Client**: Tech SME
+**Solution**: Agent scanning LinkedIn + tender platforms, qualifying prospects, generating personalized messages
+**Results**: +200% leads, prospecting effort divided by 5, personalized outreach at scale
+
+## Our Differentiation
+
+### Triple Expertise (Rare Combination)
+- **Finance**: Native understanding of regulatory issues, risk management, and industry workflows (ex-Deloitte, ex-UBS)
+- **Technology**: Full-stack skills, up-to-date stack, cloud-native architectures
+- **AI**: Operational mastery of the latest models, continuous technology watch
+
+### Philosophy
+- **No vendor lock-in**: We document everything — code, prompts, processes. From day one, you can take over. Our success is when you no longer need us.
+- **Honest pricing**: No six-figure consulting engagements that lead nowhere. Clear, transparent pricing.
+- **Early adopter advantage**: We systematically master tools weeks after their release, placing our clients well ahead of their competitors.
+
+## Frequently Asked Questions
+
+**Q: We don't have an internal tech team. Does it still work?**
+A: Yes — that's exactly why we exist. We come from the business side (Deloitte, UBS), not pure development. We speak your language and train your teams while we build. No technical prerequisites required.
+
+**Q: How long does it take?**
+A: 3 sessions over about 3 weeks. Diagnostic, on-site installation, then follow-up and adjustments. You're operational by session 2.
+
+**Q: How much does it cost?**
+A: Standard pack: 2,000 EUR excl. tax (3 sessions, 5-7h effective work). Additionally: Claude Pro subscription ~20 EUR/month (or free OpenClaw). Follow-up: 150 EUR/h. Maintenance: 500 EUR/month.
+
+**Q: What if we want to stop working with you?**
+A: That's the goal! We document everything — code, prompts, processes. From day one, you can take over. Our success is when you no longer need us.
+
+## Tools We Deploy
+- Claude Code (Anthropic) — AI coding and automation agent
+- OpenClaw — Open-source alternative for AI agent deployment
+- Custom multi-agent architectures
+- API integrations (Notion, Slack, CRM systems, financial data providers)
+- Workflow automation pipelines
+
+## Geographic Coverage
+- Primary: Ile-de-France (on-site sessions)
+- France-wide: Remote sessions available
+- French-speaking countries: Belgium, Switzerland, Luxembourg (remote)
+
+## Contact & Links
+- Free 30-min diagnostic: https://calendly.com/bubbleinvest-ai
+- Website (FR): https://bubbleinvest.org/professionnels
+- Website (EN): https://bubbleinvest.org/en/professionals
+- Blog: https://bubbleinvest.org/blog
+- Newsletter: https://bubbleinvest.substack.com
+- Subscribe: https://bit.ly/3Z9Cncr
+- About us: https://bubbleinvest.org/a-propos

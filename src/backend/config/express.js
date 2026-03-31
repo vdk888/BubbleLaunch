@@ -57,6 +57,14 @@ function configureExpress(app) {
   // Body parser
   app.use(express.json());
 
+  // Debug: log API requests before session middleware to diagnose chat issues
+  app.use((req, res, next) => {
+    if (req.path.startsWith('/api/')) {
+      console.log(`[DEBUG] ${req.method} ${req.path}`);
+    }
+    next();
+  });
+
   // Session middleware
   app.use(sessionMiddleware);
 
@@ -72,6 +80,17 @@ function configureExpress(app) {
   // Serve robots.txt from root (SEO)
   app.get('/robots.txt', (req, res) => {
     res.sendFile(path.join(__dirname, '../../frontend/robots.txt'));
+  });
+
+  // Serve llms.txt and llms-full.txt from root (LLM discoverability)
+  app.get('/llms.txt', (req, res) => {
+    res.type('text/plain');
+    res.sendFile(path.join(__dirname, '../../frontend/llms.txt'));
+  });
+
+  app.get('/llms-full.txt', (req, res) => {
+    res.type('text/plain');
+    res.sendFile(path.join(__dirname, '../../frontend/llms-full.txt'));
   });
 
   // Serve static files (CSS, JS, images) but not index.html

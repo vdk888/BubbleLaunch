@@ -562,10 +562,10 @@
     if (path.includes('/education')) return 'education';
     if (path.includes('professionals/solutions-companies')) return 'professionals_companies';
     if (path.includes('professionals/solutions-wealth-managers')) return 'professionals_wealth';
-    if (path.includes('professionals')) return 'professionals';
+    if (path.includes('professionnels') || path.includes('professionals')) return 'professionals';
     if (path.includes('businesses')) return 'professionals';
-    if (path.includes('investors')) return 'individuals';
-    if (path.includes('about')) return 'about';
+    if (path.includes('particuliers') || path.includes('individuals') || path.includes('investors')) return 'individuals';
+    if (path.includes('a-propos') || path.includes('about')) return 'about';
     if (path.includes('blog')) return 'blog';
     if (path.includes('pricing')) return 'individuals';
     return 'index';
@@ -791,13 +791,17 @@
     state.conversation.push({ role: 'user', content: prompt });
     persistConversation();
 
+    let timeoutId = null;
     try {
       state.abortController = new AbortController();
+      timeoutId = setTimeout(() => {
+        if (state.abortController) state.abortController.abort();
+      }, 45000);
       const payload = {
         message: prompt,
         language: getLanguage(),
         pageContext,
-        history: state.conversation.slice(-10),
+        history: state.conversation.slice(-5),
       };
       // Add page-specific context
       const metadata = buildContextMetadata(pageContext);
@@ -809,6 +813,7 @@
       if (userProfileContext) {
         payload.userProfileContext = userProfileContext;
       }
+      console.log('[chat-side-panel] Sending to /api/chat:', { message: prompt.substring(0, 50), pageContext });
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
@@ -903,13 +908,22 @@
       trackConversationInMemory(prompt, collected);
     } catch (error) {
       console.error('chat-side-panel.js: sendMessage failed', error);
-      const errorText = error.name === 'AbortError' ? '' : (error.message || 'Une erreur est survenue.');
+      let errorText;
+      if (error.name === 'AbortError') {
+        const lang = getLanguage();
+        errorText = lang.startsWith('fr')
+          ? 'Le serveur met trop de temps à répondre. Réessayez.'
+          : 'Server took too long to respond. Please try again.';
+      } else {
+        errorText = error.message || 'Une erreur est survenue.';
+      }
       botMessageContent.textContent = errorText;
       if (errorText) {
         state.conversation.push({ role: 'assistant', content: errorText });
         persistConversation();
       }
     } finally {
+      if (timeoutId) clearTimeout(timeoutId);
       state.isProcessing = false;
       input.disabled = false;
       sendButton.disabled = false;

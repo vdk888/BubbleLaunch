@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homepage Redesign Mock — Before / After</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #111111;
+      --secondary: #666666;
+      --muted: #999999;
+      --border: rgba(0, 0, 0, 0.08);
+      --bg-white: #FFFFFF;
+      --bg-subtle: #F8F8F8;
+      --purple: #93acf0;
+      --purple-light: rgba(147, 172, 240, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      background: #f0f0f0;
+    }
+
+    /* === MOCK NAVIGATION === */
+    .mock-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(17, 17, 17, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 0.75rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mock-nav a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .mock-nav a:hover, .mock-nav a.active {
+      color: white;
+      background: rgba(147, 172, 240, 0.2);
+    }
+    .mock-nav .mock-label {
+      color: var(--purple);
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* === SPLIT COMPARISON === */
+    .comparison-section {
+      padding: 5rem 2rem 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .comparison-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-top: 2rem;
+    }
+    .comparison-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+    .comparison-header p {
+      color: var(--secondary);
+      font-size: 1.1rem;
+    }
+    .comparison-header .badge {
+      display: inline-block;
+      background: var(--purple-light);
+      color: var(--purple);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    @media (max-width: 900px) {
+      .split { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--bg-white);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+    .panel-label {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .panel-label.before {
+      background: #fef2f2;
+      color: #dc2626;
+      border-bottom: 2px solid #fecaca;
+    }
+    .panel-label.after {
+      background: #f0fdf4;
+      color: #16a34a;
+      border-bottom: 2px solid #bbf7d0;
+    }
+    .panel-content {
+      padding: 2rem;
+    }
+
+    /* === SECTION DIVIDERS === */
+    .section-divider {
+      text-align: center;
+      padding: 3rem 0 1rem;
+      position: relative;
+    }
+    .section-divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--border);
+    }
+    .section-divider h2 {
+      display: inline-block;
+      background: #f0f0f0;
+      padding: 0 2rem;
+      position: relative;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    .section-divider .impact {
+      display: inline-block;
+      background: var(--purple-light);
+      color: var(--purple);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* === MOCK COMPONENTS === */
+
+    /* Hero mock */
+    .mock-hero {
+      background: var(--bg-subtle);
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+    }
+    .mock-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -20%;
+      width: 80%; height: 200%;
+      background: radial-gradient(circle, var(--purple-light) 0%, transparent 70%);
+    }
+    .mock-hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .mock-hero .logo-mark {
+      width: 48px; height: 48px;
+      margin-bottom: 1rem;
+    }
+    .mock-hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, var(--primary) 0%, #555 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .mock-hero .tagline {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--secondary);
+      margin-bottom: 0.75rem;
+    }
+    .mock-hero .description {
+      font-size: 1rem;
+      color: var(--secondary);
+      max-width: 500px;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .mock-hero .description.verbose {
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Value pills */
+    .value-pills {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .value-pill {
+      background: var(--purple-light);
+      border: 1px solid rgba(147, 172, 240, 0.3);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .value-pill .icon {
+      font-size: 0.9rem;
+    }
+
+    /* Hero CTA */
+    .hero-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      background: var(--primary);
+      color: white;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: all 0.3s;
+    }
+    .hero-cta-btn:hover {
+      background: #333;
+      transform: translateY(-2px);
+    }
+
+    /* Path cards */
+    .mock-path-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 600px) {
+      .mock-path-grid { grid-template-columns: 1fr; }
+    }
+    .mock-path-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .mock-path-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--purple);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .mock-path-card:hover::before {
+      transform: scaleX(1);
+    }
+    .mock-path-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    .mock-path-icon {
+      width: 44px; height: 44px;
+      background: var(--purple-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    .mock-path-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .mock-path-card > p {
+      color: var(--secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .mock-path-card ul {
+      list-style: none;
+      margin-bottom: 1.25rem;
+    }
+    .mock-path-card ul li {
+      color: var(--secondary);
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+    .mock-path-card ul li::before {
+      content: '\2192';
+      position: absolute;
+      left: 0;
+      color: var(--purple);
+      font-weight: 600;
+    }
+
+    /* Card highlights (NEW - after version) */
+    .card-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+    .card-highlight {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--primary);
+    }
+    .card-highlight .hl-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--purple-light);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .mock-path-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .mock-path-card:hover .mock-path-cta {
+      color: var(--purple);
+      gap: 0.75rem;
+    }
+
+    /* Selfware mock */
+    .mock-selfware {
+      padding: 2rem;
+    }
+    .mock-selfware h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .mock-selfware > p {
+      color: var(--secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+    .mock-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .mock-feature {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .mock-feature-num {
+      width: 28px; height: 28px;
+      background: var(--purple);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+    .mock-feature h4 {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+    .mock-feature p {
+      color: var(--secondary);
+      font-size: 0.85rem;
+    }
+
+    /* Flow diagram */
+    .mock-flow {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .flow-step {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+    .flow-step.agent-step {
+      background: var(--purple-light);
+      border-color: var(--purple);
+    }
+    .flow-step strong {
+      font-size: 0.85rem;
+    }
+    .flow-step .helper {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    .flow-arrow {
+      text-align: center;
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin: 0.25rem 0;
+    }
+
+    /* CTA section mock */
+    .mock-cta-section {
+      background: var(--primary);
+      color: white;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      border-radius: 0 0 16px 16px;
+    }
+    .mock-cta-section h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .mock-cta-section p {
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+    .mock-cta-buttons {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .mock-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .mock-btn-primary {
+      background: white;
+      color: var(--primary);
+    }
+    .mock-btn-secondary {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+    .mock-btn-secondary.removed {
+      opacity: 0.3;
+      text-decoration: line-through;
+    }
+
+    .mock-b2b-divider {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .mock-b2b-divider h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+    .mock-b2b-divider p {
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Word count badge */
+    .word-count {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+    .word-count.high {
+      background: #fef2f2;
+      color: #dc2626;
+    }
+    .word-count.low {
+      background: #f0fdf4;
+      color: #16a34a;
+    }
+
+    /* Strikethrough for removed text */
+    .removed-text {
+      text-decoration: line-through;
+      opacity: 0.4;
+    }
+
+    /* Annotation callout */
+    .annotation {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      font-size: 0.8rem;
+      color: #92400e;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .annotation .ann-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* Chatbot fix section */
+    .chatbot-fix {
+      background: var(--bg-white);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border);
+    }
+    .chatbot-fix h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .code-block {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      border-radius: 8px;
+      padding: 1.25rem;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin: 0.75rem 0;
+    }
+    .code-block .comment { color: #6c7086; }
+    .code-block .keyword { color: #cba6f7; }
+    .code-block .string { color: #a6e3a1; }
+    .code-block .function { color: #89b4fa; }
+    .code-block .removed-line {
+      background: rgba(220, 38, 38, 0.15);
+      display: block;
+      margin: 0 -1.25rem;
+      padding: 0 1.25rem;
+    }
+    .code-block .added-line {
+      background: rgba(22, 163, 74, 0.15);
+      display: block;
+      margin: 0 -1.25rem;
+      padding: 0 1.25rem;
+    }
+
+    .fix-badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .fix-badge.critical { background: #fef2f2; color: #dc2626; }
+    .fix-badge.enhancement { background: #eff6ff; color: #2563eb; }
+
+    /* Floating chat mock */
+    .mock-floating-chat {
+      position: relative;
+      height: 80px;
+      background: var(--bg-subtle);
+      border-radius: 12px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 1rem;
+    }
+    .mock-floating-input {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 0.6rem 0.75rem 0.6rem 1.25rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      min-width: 300px;
+    }
+    .mock-floating-input.broken {
+      opacity: 0.2;
+      border: 2px dashed #dc2626;
+    }
+    .mock-floating-input input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 0.85rem;
+      background: transparent;
+      color: var(--muted);
+    }
+    .mock-floating-btn {
+      width: 32px; height: 32px;
+      background: var(--primary);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    /* Geo section */
+    .geo-section {
+      background: var(--bg-white);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border);
+    }
+    .geo-section h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    .geo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .geo-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .geo-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .geo-card p {
+      color: var(--secondary);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    /* Scrollspy-style TOC */
+    .toc {
+      position: fixed;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    @media (max-width: 1200px) {
+      .toc { display: none; }
+    }
+    .toc a {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: all 0.3s;
+      display: block;
+    }
+    .toc a:hover {
+      background: var(--purple);
+      transform: scale(1.5);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOCK NAV -->
+  <nav class="mock-nav">
+    <span class="mock-label">Mock Preview</span>
+    <a href="#hero">Hero</a>
+    <a href="#path-cards">Path Cards</a>
+    <a href="#selfware">Selfware</a>
+    <a href="#cta">CTA Section</a>
+    <a href="#chatbot">Chatbot Fix</a>
+    <a href="#geo">GEO (AI SEO)</a>
+  </nav>
+
+  <!-- TOC dots -->
+  <div class="toc">
+    <a href="#hero" title="Hero"></a>
+    <a href="#path-cards" title="Path Cards"></a>
+    <a href="#selfware" title="Selfware"></a>
+    <a href="#cta" title="CTA"></a>
+    <a href="#chatbot" title="Chatbot"></a>
+    <a href="#geo" title="GEO"></a>
+  </div>
+
+  <div class="comparison-section">
+
+    <!-- HEADER -->
+    <div class="comparison-header">
+      <div class="badge">UX Audit — March 2026</div>
+      <h1>Homepage Redesign Plan</h1>
+      <p>Before / After comparison with annotated changes. Less words, more design impact.</p>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 1: HERO -->
+    <!-- ========================================= -->
+    <div class="section-divider" id="hero">
+      <h2>Hero Section <span class="impact">-52% words</span></h2>
+    </div>
+
+    <div class="split">
+      <!-- BEFORE -->
+      <div class="panel">
+        <div class="panel-label before">Before — Current</div>
+        <div class="mock-hero">
+          <div class="mock-hero-content">
+            <svg class="logo-mark" fill="none" viewBox="0 0 72 72"><circle cx="36" cy="41" r="26" stroke="#111" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle><circle cx="59" cy="21" fill="#111" r="6"></circle></svg>
+            <h1>Bubble.</h1>
+            <p class="tagline">Percez la bulle. Investissez dans l'essentiel.</p>
+            <p class="description verbose">On construit des agents IA pour nous, et on vous montre comment faire pareil. Nous partageons gratuitement. Nous gagnons quand vous reussissez. <span class="word-count high">27 words</span></p>
+            <div class="annotation">
+              <span class="ann-icon">&#9888;</span>
+              <div>
+                <strong>Issue:</strong> No primary CTA above the fold. Description explains the model but is too verbose for a hero. Reader scans, doesn't read.
+              </div>
+            </div>
+            <!-- Path cards preview -->
+            <div class="mock-path-grid">
+              <div class="mock-path-card">
+                <div class="mock-path-icon">+</div>
+                <h3>Particuliers</h3>
+                <p>Contenu gratuit, transparent, sans filtre.</p>
+                <ul>
+                  <li>On partage tout: notre agent IA, notre code, nos apprentissages.</li>
+                  <li>Tutos, ressources, veille techno: tout est en acces libre.</li>
+                  <li>Suivez-nous sur nos reseaux pour ne rien rater.</li>
+                </ul>
+                <span class="word-count high">32 words in bullets</span>
+                <br><br>
+                <a class="mock-path-cta" href="#">Explorer notre contenu &rarr;</a>
+              </div>
+              <div class="mock-path-card">
+                <div class="mock-path-icon">&#9633;</div>
+                <h3>Professionnels</h3>
+                <p>On implemente l'IA dans votre metier.</p>
+                <ul>
+                  <li>Agents, MCP ou simples automatisations...</li>
+                  <li>On maitrise les outils les plus recents, des semaines avant le marche.</li>
+                  <li>CGP, gestion d'actifs, PME: parlons de votre projet.</li>
+                </ul>
+                <span class="word-count high">35 words in bullets</span>
+                <br><br>
+                <a class="mock-path-cta" href="#">Discuter de votre projet &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AFTER -->
+      <div class="panel">
+        <div class="panel-label after">After — Proposed</div>
+        <div class="mock-hero">
+          <div class="mock-hero-content">
+            <svg class="logo-mark" fill="none" viewBox="0 0 72 72"><circle cx="36" cy="41" r="26" stroke="#111" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle><circle cx="59" cy="21" fill="#111" r="6"></circle></svg>
+            <h1>Bubble.</h1>
+            <p class="tagline">Percez la bulle. Investissez dans l'essentiel.</p>
+
+            <!-- NEW: Value pills instead of verbose description -->
+            <div class="value-pills">
+              <div class="value-pill"><span class="icon">&#128187;</span> Agents IA open source</div>
+              <div class="value-pill"><span class="icon">&#128064;</span> Build in public</div>
+              <div class="value-pill"><span class="icon">&#128200;</span> Profitable growth</div>
+            </div>
+            <span class="word-count low">13 words &mdash; visual pills</span>
+
+            <!-- NEW: Primary CTA -->
+            <a href="#contact" class="hero-cta-btn">Decouvrir notre approche &rarr;</a>
+
+            <div class="annotation">
+              <span class="ann-icon">&#10024;</span>
+              <div>
+                <strong>Changes:</strong> Description replaced with 3 visual pills (scannable in 2s). Primary CTA added before path cards. Word count: 27 &rarr; 13 (-52%).
+              </div>
+            </div>
+
+            <!-- Path cards with highlights instead of bullets -->
+            <div class="mock-path-grid">
+              <div class="mock-path-card">
+                <div class="mock-path-icon">+</div>
+                <h3>Particuliers</h3>
+                <p>Contenu gratuit, transparent, sans filtre.</p>
+                <div class="card-highlights">
+                  <div class="card-highlight">
+                    <span class="hl-icon">&#128187;</span>
+                    <span>Code & Strategies</span>
+                  </div>
+                  <div class="card-highlight">
+                    <span class="hl-icon">&#128275;</span>
+                    <span>Open Source</span>
+                  </div>
+                </div>
+                <span class="word-count low">4 words in highlights</span>
+                <br><br>
+                <a class="mock-path-cta" href="#">Explorer notre contenu &rarr;</a>
+              </div>
+              <div class="mock-path-card">
+                <div class="mock-path-icon">&#9633;</div>
+                <h3>Professionnels</h3>
+                <p>On implemente l'IA dans votre metier.</p>
+                <div class="card-highlights">
+                  <div class="card-highlight">
+                    <span class="hl-icon">&#128736;</span>
+                    <span>3 sessions. Agents operationnels.</span>
+                  </div>
+                  <div class="card-highlight">
+                    <span class="hl-icon">&#9201;</span>
+                    <span>Resultats des la semaine 1.</span>
+                  </div>
+                </div>
+                <span class="word-count low">9 words &mdash; aligned with Notion offering</span>
+                <br><br>
+                <a class="mock-path-cta" href="#">Discuter de votre projet &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 2: SELFWARE -->
+    <!-- ========================================= -->
+    <div class="section-divider" id="selfware">
+      <h2>Selfware Section <span class="impact">-52% words</span></h2>
+    </div>
+
+    <div class="split">
+      <!-- BEFORE -->
+      <div class="panel">
+        <div class="panel-label before">Before — Current</div>
+        <div class="mock-selfware">
+          <h2>Modele Selfware</h2>
+          <p>Nous utilisons les outils que nous construisons. Nous testons nos agents sur nos propres processus et investissements. Notre succes depend de leur performance.</p>
+          <div class="mock-features">
+            <div class="mock-feature">
+              <div class="mock-feature-num">1</div>
+              <div>
+                <h4>Nous l'utilisons nous-memes</h4>
+                <p>Nos propres operations et portefeuilles sont geres par les agents que nous concevons <span class="word-count high">13 words</span></p>
+              </div>
+            </div>
+            <div class="mock-feature">
+              <div class="mock-feature-num">2</div>
+              <div>
+                <h4>Transparence totale</h4>
+                <p>Notre methodologie, notre code, nos resultats &mdash; partages publiquement <span class="word-count high">11 words</span></p>
+              </div>
+            </div>
+            <div class="mock-feature">
+              <div class="mock-feature-num">3</div>
+              <div>
+                <h4>Interets alignes</h4>
+                <p>Nous gagnons quand nos outils fonctionnent vraiment <span class="word-count high">7 words</span></p>
+              </div>
+            </div>
+          </div>
+          <!-- Flow diagram -->
+          <div class="mock-flow">
+            <div class="flow-step">
+              <strong>Vos Donnees & Processus</strong>
+              <span class="helper">&rarr; Informations, contraintes, objectifs</span>
+            </div>
+            <div class="flow-arrow">&darr;</div>
+            <div class="flow-step agent-step">
+              <strong>Agent Sur Mesure</strong>
+              <span class="helper">&rarr; Analyse & Decisions</span>
+            </div>
+            <div class="flow-arrow">&darr;</div>
+            <div class="flow-step">
+              <strong>Votre Validation</strong>
+              <span class="helper">&rarr; Vous gardez le controle final</span>
+            </div>
+            <div class="flow-arrow">&darr;</div>
+            <div class="flow-step">
+              <strong>Execution</strong>
+              <span class="helper">&rarr; Automatisee sur vos propres systemes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AFTER -->
+      <div class="panel">
+        <div class="panel-label after">After — Proposed</div>
+        <div class="mock-selfware">
+          <h2>Modele Selfware</h2>
+          <p>Nous utilisons les outils que nous construisons. Nous testons nos agents sur nos propres processus et investissements. Notre succes depend de leur performance.</p>
+          <div class="mock-features">
+            <div class="mock-feature">
+              <div class="mock-feature-num">1</div>
+              <div>
+                <h4>Nous l'utilisons nous-memes</h4>
+                <p>Le dogfooding construit la confiance <span class="word-count low">4 words</span></p>
+              </div>
+            </div>
+            <div class="mock-feature">
+              <div class="mock-feature-num">2</div>
+              <div>
+                <h4>Transparence totale</h4>
+                <p>Code. Methodologie. Resultats. <span class="word-count low">3 words</span></p>
+              </div>
+            </div>
+            <div class="mock-feature">
+              <div class="mock-feature-num">3</div>
+              <div>
+                <h4>Interets alignes</h4>
+                <p>On gagne quand vous reussissez <span class="word-count low">5 words</span></p>
+              </div>
+            </div>
+          </div>
+          <!-- Flow diagram: simplified -->
+          <div class="mock-flow">
+            <div class="flow-step">
+              <strong>Vos Donnees & Processus</strong>
+            </div>
+            <div class="flow-arrow">&darr;</div>
+            <div class="flow-step agent-step">
+              <strong>Agent Sur Mesure</strong>
+            </div>
+            <div class="flow-arrow">&darr;</div>
+            <div class="flow-step">
+              <strong>Votre Validation</strong>
+            </div>
+            <div class="flow-arrow">&darr;</div>
+            <div class="flow-step">
+              <strong>Execution</strong>
+            </div>
+          </div>
+          <div class="annotation">
+            <span class="ann-icon">&#10024;</span>
+            <div>
+              <strong>Changes:</strong> Feature descriptions: 31 &rarr; 12 words (-61%). Flow diagram: removed helper text, cleaner visual. "Agent Sur Mesure" box keeps purple accent as focus point.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 3: CTA / NEWSLETTER -->
+    <!-- ========================================= -->
+    <div class="section-divider" id="cta">
+      <h2>CTA Section <span class="impact">4 &rarr; 2 CTAs</span></h2>
+    </div>
+
+    <div class="split">
+      <!-- BEFORE -->
+      <div class="panel">
+        <div class="panel-label before">Before — Current (4 CTAs)</div>
+        <div class="mock-cta-section">
+          <h2>Contactez-nous</h2>
+          <p>Abonnez-vous a notre newsletter ou lisez nos derniers articles sur Substack.</p>
+          <div class="mock-cta-buttons">
+            <a class="mock-btn mock-btn-primary" href="#">S'abonner a la Newsletter</a>
+            <a class="mock-btn mock-btn-secondary" href="#">Lire notre Substack</a>
+          </div>
+          <div class="mock-b2b-divider">
+            <h3>Vous etes un professionnel ?</h3>
+            <p>Notre offre principale est B2B. Discutons de vos besoins d'implementation sur mesure.</p>
+            <div class="mock-cta-buttons">
+              <a class="mock-btn mock-btn-primary" href="#">Prendre RDV &rarr;</a>
+            </div>
+          </div>
+        </div>
+        <div class="annotation" style="margin: 1rem;">
+          <span class="ann-icon">&#9888;</span>
+          <div>
+            <strong>Issues:</strong> 4 CTAs create decision paralysis. "Lire notre Substack" is redundant with "S'abonner". Newsletter section tries to serve both B2C AND B2B simultaneously.
+          </div>
+        </div>
+      </div>
+
+      <!-- AFTER -->
+      <div class="panel">
+        <div class="panel-label after">After — Proposed (2 CTAs)</div>
+        <div class="mock-cta-section">
+          <h2>Restez informe</h2>
+          <p>Suivez notre parcours. Apprenez pendant qu'on construit.</p>
+          <div class="mock-cta-buttons">
+            <a class="mock-btn mock-btn-primary" href="#">S'abonner a la Newsletter &rarr;</a>
+            <a class="mock-btn mock-btn-secondary removed">Lire notre Substack</a>
+          </div>
+          <div class="mock-b2b-divider">
+            <h3>Vous etes un professionnel ?</h3>
+            <p>Discutons de votre implementation IA sur mesure.</p>
+            <div class="mock-cta-buttons">
+              <a class="mock-btn mock-btn-primary" href="#">Prendre RDV &rarr;</a>
+            </div>
+          </div>
+        </div>
+        <div class="annotation" style="margin: 1rem;">
+          <span class="ann-icon">&#10024;</span>
+          <div>
+            <strong>Changes:</strong> Removed "Lire Substack" (redundant). Heading simplified: "Contactez-nous" &rarr; "Restez informe". B2B copy tightened. Word count: 80 &rarr; 30 words (-63%).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 4: CHATBOT FIX -->
+    <!-- ========================================= -->
+    <div class="section-divider" id="chatbot">
+      <h2>Chatbot Fix <span class="impact">Critical Bug</span></h2>
+    </div>
+
+    <div class="chatbot-fix">
+      <h3><span class="fix-badge critical">Critical</span> Floating Chat Input Hidden After First Use</h3>
+      <p style="color: var(--secondary); margin-bottom: 1.5rem;">The floating chat input disappears permanently after the user sends their first message, due to session storage logic overriding the <code>data-always-visible="true"</code> attribute.</p>
+
+      <div class="split" style="margin-bottom: 0;">
+        <div>
+          <strong style="font-size: 0.85rem; color: #dc2626;">Before: Input hidden after first use</strong>
+          <div class="mock-floating-chat" style="margin-top: 0.5rem;">
+            <div class="mock-floating-input broken">
+              <input placeholder="Pose-moi n'importe quelle question..." disabled />
+              <div class="mock-floating-btn" style="opacity: 0.3;">&#8593;</div>
+            </div>
+          </div>
+          <p style="font-size: 0.75rem; color: #dc2626; text-align: center; margin-top: 0.5rem;">sessionStorage: floatingChatUsed = '1' &rarr; hidden forever</p>
+        </div>
+        <div>
+          <strong style="font-size: 0.85rem; color: #16a34a;">After: Always visible on key pages</strong>
+          <div class="mock-floating-chat" style="margin-top: 0.5rem;">
+            <div class="mock-floating-input">
+              <input placeholder="Pose-moi n'importe quelle question..." disabled />
+              <div class="mock-floating-btn">&#8593;</div>
+            </div>
+          </div>
+          <p style="font-size: 0.75rem; color: #16a34a; text-align: center; margin-top: 0.5rem;">always-visible mode: skip session storage checks entirely</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <strong>Fix in <code>floating-chat-input.js</code> (lines 102-106):</strong>
+        <div class="code-block">
+<span class="comment">// BEFORE (broken):</span>
+<span class="removed-line"><span class="keyword">if</span> (alwaysVisible) {</span>
+<span class="removed-line">  baseVisible = <span class="keyword">true</span>;</span>
+<span class="removed-line">  alreadyUsed = <span class="keyword">false</span>;</span>
+<span class="removed-line">  <span class="function">applyVisibility</span>();</span>
+<span class="removed-line">}</span>
+
+<span class="comment">// AFTER (fixed):</span>
+<span class="added-line"><span class="keyword">if</span> (alwaysVisible) {</span>
+<span class="added-line">  floatingInput.classList.<span class="function">remove</span>(<span class="string">'hidden'</span>);</span>
+<span class="added-line">  baseVisible = <span class="keyword">true</span>;</span>
+<span class="added-line">  <span class="comment">// Skip session storage — always visible means always visible</span></span>
+<span class="added-line">  <span class="keyword">return</span>; <span class="comment">// Don't enter scroll-trigger logic</span></span>
+<span class="added-line">}</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 1rem;">
+        <strong><span class="fix-badge enhancement">Enhancement</span> Error handling on submit:</strong>
+        <div class="code-block">
+<span class="comment">// Add try-catch around chat panel open</span>
+<span class="added-line"><span class="keyword">try</span> {</span>
+<span class="added-line">  window.chatSidePanel.<span class="function">open</span>(message);</span>
+<span class="added-line">} <span class="keyword">catch</span> (e) {</span>
+<span class="added-line">  console.<span class="function">error</span>(<span class="string">'[FloatingChat] Error:'</span>, e);</span>
+<span class="added-line">  <span class="comment">// Show toast notification to user</span></span>
+<span class="added-line">}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SECTION 5: GEO / UX IMPROVEMENTS -->
+    <!-- ========================================= -->
+    <div class="section-divider" id="geo">
+      <h2>GEO — Generative Engine Optimization <span class="impact">Score: 5.5 &rarr; 8/10</span></h2>
+    </div>
+
+    <div class="geo-section">
+      <h3>Current GEO Audit: What AI Chatbots Can (and Can't) Find</h3>
+      <p style="color: var(--secondary); margin-bottom: 1.5rem;">When someone asks ChatGPT, Perplexity, or Claude about AI consulting in France, can they cite Bubble Invest? Here's what's missing.</p>
+
+      <!-- Score table -->
+      <div style="overflow-x: auto; margin-bottom: 2rem;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--border);">
+              <th style="text-align: left; padding: 0.75rem; font-weight: 600;">Schema Type</th>
+              <th style="text-align: center; padding: 0.75rem; font-weight: 600;">Current</th>
+              <th style="text-align: center; padding: 0.75rem; font-weight: 600;">Target</th>
+              <th style="text-align: left; padding: 0.75rem; font-weight: 600;">Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 0.75rem;">Organization JSON-LD</td>
+              <td style="text-align: center; padding: 0.75rem;"><span style="color: #16a34a; font-weight: 600;">8/10</span></td>
+              <td style="text-align: center; padding: 0.75rem;">9/10</td>
+              <td style="padding: 0.75rem; color: var(--secondary);">Add makesOffer array</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 0.75rem;">Service + Offer Schema</td>
+              <td style="text-align: center; padding: 0.75rem;"><span style="color: #dc2626; font-weight: 600;">2/10</span></td>
+              <td style="text-align: center; padding: 0.75rem;">8/10</td>
+              <td style="padding: 0.75rem; color: var(--secondary);">AI can't cite pricing or service model</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 0.75rem;">Article Schema (Blog)</td>
+              <td style="text-align: center; padding: 0.75rem;"><span style="color: #dc2626; font-weight: 600;">3/10</span></td>
+              <td style="text-align: center; padding: 0.75rem;">8/10</td>
+              <td style="padding: 0.75rem; color: var(--secondary);">Blog posts invisible to AI crawlers</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 0.75rem;">Pricing Schema</td>
+              <td style="text-align: center; padding: 0.75rem;"><span style="color: #dc2626; font-weight: 600;">1/10</span></td>
+              <td style="text-align: center; padding: 0.75rem;">7/10</td>
+              <td style="padding: 0.75rem; color: var(--secondary);">No structured pricing data at all</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 0.75rem;">FAQPage Schema</td>
+              <td style="text-align: center; padding: 0.75rem;"><span style="color: #f59e0b; font-weight: 600;">4/10</span></td>
+              <td style="text-align: center; padding: 0.75rem;">9/10</td>
+              <td style="padding: 0.75rem; color: var(--secondary);">FAQ text exists but no schema</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.75rem;">Person + Credentials</td>
+              <td style="text-align: center; padding: 0.75rem;"><span style="color: #dc2626; font-weight: 600;">2/10</span></td>
+              <td style="text-align: center; padding: 0.75rem;">7/10</td>
+              <td style="padding: 0.75rem; color: var(--secondary);">AI can't verify founder expertise</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="geo-grid">
+        <div class="geo-card">
+          <h4>&#128736; Service + Offer Schema</h4>
+          <p><strong>Priority 1.</strong> Add <code>Service</code> JSON-LD to <code>/professionnels</code> with Quick Start Pack details: &euro;2,000, 3 sessions, 3 weeks. Without this, AI can't answer "How much does Bubble Invest cost?"</p>
+        </div>
+        <div class="geo-card">
+          <h4>&#10067; FAQPage Schema</h4>
+          <p><strong>Priority 2.</strong> Wrap existing FAQ section in <code>FAQPage</code> schema. FAQ text already exists in the HTML — just needs JSON-LD wrapper. Enables AI to surface Q&A directly in responses.</p>
+        </div>
+        <div class="geo-card">
+          <h4>&#128196; Article Schema (Blog)</h4>
+          <p><strong>Priority 3.</strong> Add <code>Article</code> JSON-LD to blog posts. Currently only OG tags exist (client-side). Need server-side injection for AI crawlers that don't execute JavaScript.</p>
+        </div>
+        <div class="geo-card">
+          <h4>&#128100; Person + Credentials</h4>
+          <p><strong>Priority 4.</strong> Add <code>Person</code> schemas for founders on About page. Include <code>hasCredential</code> for AWS certifications, <code>worksFor</code>, and <code>knowsAbout</code> for expertise domains.</p>
+        </div>
+        <div class="geo-card">
+          <h4>&#127968; OfferCatalog on Homepage</h4>
+          <p><strong>Priority 5.</strong> Extend existing <code>Organization</code> schema with <code>makesOffer</code> array listing both B2C (free content) and B2B (Quick Start Pack) services. Makes homepage the canonical source.</p>
+        </div>
+        <div class="geo-card">
+          <h4>&#129302; AI Crawler Directives</h4>
+          <p><strong>Priority 6.</strong> Update <code>robots.txt</code> to explicitly allow GPTBot, ClaudeBot, PerplexityBot. Currently no AI-specific rules. Welcome crawlers, don't block them by default.</p>
+        </div>
+        <div class="geo-card">
+          <h4>&#128172; Cite-able Content Blocks</h4>
+          <p><strong>Priority 7.</strong> Add clear factual statements in parseable format: "Quick Start Pack: &euro;2,000, 3 sessions, operational agents in 3 weeks" — AI models extract and cite these verbatim.</p>
+        </div>
+        <div class="geo-card">
+          <h4>&#128202; Notion &harr; Website Alignment</h4>
+          <p><strong>Context.</strong> The Notion page has richer service details (use cases, comparison table, principles) than the website. Syncing this content to <code>/professionnels</code> strengthens both SEO and GEO simultaneously.</p>
+        </div>
+      </div>
+
+      <div class="annotation" style="margin-top: 1.5rem;">
+        <span class="ann-icon">&#128161;</span>
+        <div>
+          <strong>Why GEO matters:</strong> When a CGP asks ChatGPT "best AI consulting for wealth advisors in France", Bubble Invest should appear. Currently, AI models have no structured data to cite your services, pricing, or credentials. These schema additions make you machine-readable and AI-citable.
+        </div>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div style="text-align: center; padding: 3rem 0; color: var(--secondary);">
+      <p style="font-size: 0.85rem;">Mock created for BubbleLaunch UX Audit &mdash; March 2026</p>
+      <p style="font-size: 0.75rem; margin-top: 0.5rem;">Files: index.html, en/index.html, homepage-2026.css, floating-chat-input.js, chat-side-panel.js</p>
+    </div>
+
+  </div>
+</body>
+</html>

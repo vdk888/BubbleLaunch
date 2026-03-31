@@ -60,7 +60,13 @@
       "Bash(git push:*)",
       "WebFetch(domain:www.notion.so)",
       "WebFetch(domain:bubbleinvest.substack.com)",
-      "WebFetch(domain:open.substack.com)"
+      "WebFetch(domain:open.substack.com)",
+      "mcp__playwright",
+      "Bash(test:*)",
+      "WebFetch(domain:openrouter.ai)",
+      "Bash(wc -c \"/Users/jadethi-viet-lanhoang/Documents/Documents - MacBook Air \\(2\\)/GitHub/BubbleLaunch/docs/company/\"*.md)",
+      "Bash(ls -la \"/Users/jadethi-viet-lanhoang/Documents/Documents - MacBook Air \\(2\\)/GitHub/BubbleLaunch/src/frontend/assets/images/problem-\"*)",
+      "Bash(sips -g pixelWidth -g pixelHeight \"/Users/jadethi-viet-lanhoang/Documents/Documents - MacBook Air \\(2\\)/GitHub/BubbleLaunch/src/frontend/assets/images/problem-chatgpt.png\")"
     ],
     "deny": [],
     "ask": []

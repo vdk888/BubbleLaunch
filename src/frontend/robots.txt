@@ -38,10 +38,34 @@ Disallow: /archive/
 # Sitemap location
 Sitemap: https://bubbleinvest.org/sitemap.xml
 
+# LLM context files (Generative Engine Optimization)
+# See https://llmstxt.org for the emerging standard
+LLMs-Txt: https://bubbleinvest.org/llms.txt
+
 # Crawl-delay for polite bots (1 second between requests)
 Crawl-delay: 1
 
-# Specific rules for aggressive crawlers
+# AI Crawlers — Welcome (GEO: Generative Engine Optimization)
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# Specific rules for aggressive SEO crawlers
 User-agent: AhrefsBot
 Crawl-delay: 10
 

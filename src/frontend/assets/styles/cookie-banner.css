@@ -3,7 +3,7 @@
  * Responsive, accessible, and elegant
  */
 
-/* Banner container */
+/* Banner container — z-index below floating chat (z-index: 1000000) so chat remains usable */
 .bubble-cookie-banner {
   position: fixed;
   top: 0;

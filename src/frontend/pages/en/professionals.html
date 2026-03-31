@@ -42,6 +42,9 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
 
+  <!-- LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="https://bubbleinvest.org/llms.txt" title="LLM context" />
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/assets/styles/core-2026.css" />
   <link rel="stylesheet" href="/assets/styles/professionnels-2026.css" />
@@ -69,6 +72,105 @@
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bubbleinvest.org/en/" },
       { "@type": "ListItem", "position": 2, "name": "Professionals", "item": "https://bubbleinvest.org/en/professionals" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Quick Start Pack — AI Agent Installation",
+    "description": "3 sessions, 3 weeks. Diagnosis, installation and autonomy. Operational AI agents on your machine.",
+    "provider": { "@type": "Organization", "name": "Bubble Invest", "url": "https://bubbleinvest.org" },
+    "areaServed": ["FR", "BE", "CH"],
+    "serviceType": "AI Agent Implementation",
+    "offers": {
+      "@type": "Offer",
+      "price": "2000",
+      "priceCurrency": "EUR",
+      "description": "3 sessions (5-7h), upstream preparation, installation + configuration, documentation included"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Bubble Invest Services",
+      "itemListElement": [
+        { "@type": "Offer", "name": "Quick Start Pack", "price": "2000", "priceCurrency": "EUR" },
+        { "@type": "Offer", "name": "Follow-up/debug session", "price": "150", "priceCurrency": "EUR", "unitText": "per hour" },
+        { "@type": "Offer", "name": "Monthly maintenance", "price": "500", "priceCurrency": "EUR", "unitText": "per month" }
+      ]
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Bubble Invest",
+    "description": "AI consulting: deploy AI agents (Claude Code, OpenClaw) for wealth advisors, asset managers, and SMEs in France. Quick Start Pack from 2,000 EUR, operational in 3 weeks.",
+    "url": "https://bubbleinvest.org",
+    "logo": "https://bubbleinvest.org/assets/images/bubble-logo-single.svg",
+    "image": "https://bubbleinvest.org/assets/images/bubble-logo-single.svg",
+    "priceRange": "€€",
+    "currenciesAccepted": "EUR",
+    "paymentAccepted": "Bank transfer, Credit card",
+    "areaServed": [
+      { "@type": "Country", "name": "France" },
+      { "@type": "Country", "name": "Belgium" },
+      { "@type": "Country", "name": "Switzerland" }
+    ],
+    "serviceType": ["AI Agent Deployment", "AI Automation Consulting", "Claude Code Installation", "Workflow Automation"],
+    "knowsAbout": ["Artificial Intelligence", "AI Agents", "Claude Code", "OpenClaw", "Automation", "Finance", "Asset Management", "Wealth Advisory"],
+    "knowsLanguage": ["fr", "en"],
+    "foundingDate": "2024",
+    "sameAs": [
+      "https://bubbleinvest.substack.com",
+      "https://calendly.com/bubbleinvest-ai"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "url": "https://calendly.com/bubbleinvest-ai",
+      "availableLanguage": ["French", "English"]
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "We're not developers — does it still work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We're better than that. We come from the business (Deloitte, UBS) AND we master the technical tools through our training. This dual expertise makes the difference: we understand your business challenges and workflow before installing anything complex. No technical prerequisites on your side."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "3 sessions over approximately 3 weeks. Diagnostic, on-site installation, then follow-up and adjustments. You're operational from session 2."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does it cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard pack: €2,000 excl. VAT (3 sessions, 5-7h of effective work). On top: Claude Pro subscription ~€20/mo (or OpenClaw free). Follow-up: €150/h. Maintenance: €500/mo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if we want to stop working with you?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "That's the goal! We document everything — code, prompts, processes. From day one, you can take over. We succeed when you no longer need us."
+        }
+      }
     ]
   }
   </script>
@@ -130,24 +232,12 @@
         style="font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--purple); margin-bottom: 1rem;">
         Better than advice — solutions.</p>
       <h1 class="fade-in fade-in-delay-1">Implement AI in your business</h1>
-      <p class="hero-subtitle fade-in fade-in-delay-2">The solutions we deploy were released just weeks ago. We're among
-        the first in France to master them : our unique edge to keep you ahead.</p>
-      <!-- CHAT INPUT -->
-      <div class="hero-chat fade-in fade-in-delay-3">
-        <div class="hero-chat-container">
-          <input aria-label="Describe your project" class="hero-chat-input" placeholder="Describe your project..."
-            type="text" />
-          <button aria-label="Send" class="hero-chat-submit">
-            <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </button>
-        </div>
-        <p class="hero-chat-hint">Ex: "Automate my monthly reporting" or "Watch my investment sectors"</p>
-      </div>
+      <p class="hero-subtitle fade-in fade-in-delay-2">No endless training. We install AI agents directly on your
+        machine. Operational in 3 sessions.</p>
       <div class="hero-cta fade-in fade-in-delay-3">
-        <a class="btn btn-primary" href="#calendly">Book a free call</a>
-        <a class="btn btn-secondary" href="#services">Discover our services</a>
+        <a class="btn btn-primary" href="https://calendly.com/bubbleinvest-ai" target="_blank"
+          rel="noopener noreferrer">Get my free diagnostic (30min)</a>
+        <a class="btn btn-secondary" href="#examples">See use cases</a>
       </div>
     </div>
   </section>
@@ -157,7 +247,7 @@
     <div class="container">
       <div class="section-header fade-in">
         <h2>Our Services</h2>
-        <h3>Two paths to AI autonomy</h3>
+        <h3>Direct installation. Complete autonomy.</h3>
       </div>
       <div class="services-grid" style="grid-template-columns: repeat(2, 1fr);">
         <div class="service-card fade-in">
@@ -167,15 +257,28 @@
               <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
             </svg>
           </div>
-          <h4>Co-Construction Sprints (Build &amp; Learn)</h4>
-          <p>We build your custom automation solutions (agents, workflows, integrations) with your team in 2 to 6 weeks.
-            We provide hands-on training sessions focused on relevant AI tools and the systems we build, ensuring your
-            team gains practical context and complete mastery.</p>
-          <ul class="service-features">
-            <li>Working MVP in weeks, not months</li>
-            <li>Weekly live building &amp; training sessions (1-2h)</li>
-            <li>Contextualized AI learning &amp; complete documentation</li>
-          </ul>
+          <h4>Quick Start Pack — €2,000 excl. VAT</h4>
+          <p>3 sessions. Direct installation. Complete autonomy.<br />
+            We install Claude Code or OpenClaw on your machine with pre-packaged agents adapted to your profession. You
+            leave operational.</p>
+          <div class="card-highlights">
+            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
+                viewBox="0 0 24 24" width="18">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg><span>Diagnostic + 2-3 quick wins identified</span></div>
+            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
+                viewBox="0 0 24 24" width="18">
+                <rect height="14" rx="2" width="20" x="2" y="3"></rect>
+                <line x1="8" x2="16" y1="21" y2="21"></line>
+                <line x1="12" x2="12" y1="17" y2="21"></line>
+              </svg><span>On-site installation, on your real documents</span></div>
+            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
+                viewBox="0 0 24 24" width="18">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg><span>Reference doc + roadmap included</span></div>
+          </div>
         </div>
         <div class="service-card fade-in fade-in-delay-1">
           <div class="service-icon">
@@ -184,14 +287,24 @@
               <polyline points="8 6 2 12 8 18"></polyline>
             </svg>
           </div>
-          <h4>Custom SaaS Solutions (Selfware)</h4>
-          <p>We design and code standalone AI applications ("Selfware") perfectly fitted to your workflows. Complete
-            ownership of a complex system without the dependencies of a standard SaaS subscription.</p>
-          <ul class="service-features">
-            <li>Custom AI agents and software built from scratch</li>
-            <li>Best-in-class tools chosen for your needs (Claude, Antigravity, Frontier)</li>
-            <li>Strict data security &amp; Human-in-the-loop</li>
-          </ul>
+          <h4>Add-ons</h4>
+          <p>Need more? We adapt to your pace.</p>
+          <div class="card-highlights">
+            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
+                viewBox="0 0 24 24" width="18">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg><span>Follow-up / debug: €150 excl. VAT/h</span></div>
+            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
+                viewBox="0 0 24 24" width="18">
+                <path d="M12 2v20M2 12h20"></path>
+              </svg><span>Monthly maintenance: €500 excl. VAT/mo</span></div>
+            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
+                viewBox="0 0 24 24" width="18">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg><span>Complex custom app or agent: on quote</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -201,84 +314,185 @@
   <section class="how-we-work">
     <div class="container">
       <div class="section-header fade-in">
-        <h2>Our Method: Co-construction</h2>
-        <h3>We build with you, not for you</h3>
+        <h2>3 Sessions</h2>
+        <h3>Diagnostic → Installation → Autonomy</h3>
       </div>
       <div class="process-grid">
         <div class="process-step fade-in">
           <div class="process-number">01</div>
-          <h4>Discovery</h4>
-          <p>We understand your challenges and identify what's worth automating vs what should stay manual. We won't
-            sell you AI at all costs.</p>
+          <h4>Diagnostic &amp; Preparation</h4>
+          <p class="process-duration">1-2h, video call</p>
+          <p>We understand your workflow and identify 2-3 high-ROI quick wins. We prepare the agents upstream.</p>
         </div>
         <div class="process-step fade-in fade-in-delay-1">
           <div class="process-number">02</div>
-          <h4>Co-construction</h4>
-          <p>1-2h/week sessions where we build together. You see every decision, we explain every technical choice.
-            You gain skills in real-time.</p>
+          <h4>Installation &amp; Hands-on</h4>
+          <p class="process-duration">2-3h, on-site</p>
+          <p>Installation of Claude Code or OpenClaw on your machine. Live demo on your real documents. You leave
+            operational.</p>
         </div>
         <div class="process-step fade-in fade-in-delay-2">
           <div class="process-number">03</div>
-          <h4>Autonomy</h4>
-          <p>Delivery + complete documentation. You can maintain and evolve your agents without depending
-            on us.</p>
-        </div>
-        <div class="process-step fade-in fade-in-delay-3">
-          <div class="process-number">04</div>
-          <h4>Continuous upgrade</h4>
-          <p>Continuous improvement (optional) — New models or tools released? We help you integrate them.</p>
+          <h4>Follow-up &amp; Adjustments</h4>
+          <p class="process-duration">1-2h, video call, 1-2 weeks later</p>
+          <p>Feedback on real usage, agent adjustments, advanced tips. Final documentation for 100% autonomy.</p>
         </div>
       </div>
-      <div class="process-note fade-in">
-        <p><strong>Not tools hyped 2 years ago (like n8n or Make).</strong> But agents, workflows, selfware adapted to
-          your needs. We don't sell "AI for the sake of AI". If all you need is an MCP integration, we won't sell you an
-          agent.</p>
+      <!-- Outcome statement -->
+      <div class="outcome-statement fade-in">
+        <h3 class="outcome-headline">You save time. Now.</h3>
+        <div class="outcome-cards">
+          <div class="outcome-card fade-in">
+            <div class="outcome-icon">
+              <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <h4>Agents that run.</h4>
+            <p>Installed on your machine, operational by the end of the session.</p>
+          </div>
+          <div class="outcome-card fade-in fade-in-delay-1">
+            <div class="outcome-icon">
+              <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <h4>Full autonomy.</h4>
+            <p>Docs, roadmap, best practices: you won't need us anymore.</p>
+          </div>
+          <div class="outcome-card fade-in fade-in-delay-2">
+            <div class="outcome-icon">
+              <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"></path></svg>
+            </div>
+            <h4>Zero theoretical training.</h4>
+            <p>You learn by doing, on your real files.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- EXAMPLES -->
-  <section class="examples">
+  <section class="examples" id="examples">
     <div class="container">
       <div class="section-header fade-in">
         <h2>Concrete Examples</h2>
         <h3>What we have deployed</h3>
       </div>
-      <div class="examples-grid">
-        <div class="example-card fade-in">
-          <span class="example-tag">Asset Manager</span>
-          <h4>Watch &amp; Reporting Intelligence</h4>
-          <p>A multi-mandate manager struggled to follow the news on over 80 positions while delivering personalized
-            reporting to each client.<br /><br />
-            <strong>Solution:</strong> Two interconnected agents — the first scans 50+ sources every morning and
-            generates a brief per position, the second computes metrics in real time (sharpe, volatility, drawdown, ESG
-            scoring).<br /><br />
-            <strong>Result:</strong> 3 hours saved every morning &bull; Client reporting delivered instantly instead of
-            2 days &bull; +40% coverage on risk detection
-          </p>
+      <div class="examples-slider-wrapper fade-in">
+        <div class="examples-slider">
+          <!-- Card 1: Watch & Reporting -->
+          <div class="example-card slider-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" viewBox="0 0 24 24" width="24">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </div>
+              <span class="example-tag">Asset Manager • Custom SaaS</span>
+            </div>
+            <h4>Watch &amp; Reporting Intelligence</h4>
+            <p class="card-desc">2 interconnected agents scan 50+ sources and compute metrics in real time.</p>
+            <div class="card-metrics">
+              <span class="metric">3h saved/morning</span>
+              <span class="metric">Instant reporting</span>
+              <span class="metric">+40% risk detection</span>
+            </div>
+          </div>
+          <!-- Card 2: Regulatory Watch -->
+          <div class="example-card slider-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" viewBox="0 0 24 24" width="24">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <span class="example-tag">Architect • Quick Start Pack</span>
+            </div>
+            <h4>Regulatory Watch</h4>
+            <p class="card-desc">Scans regulatory updates by project and location, sends contextualized alerts.</p>
+            <div class="card-metrics">
+              <span class="metric">0 compliance delays</span>
+              <span class="metric">Watch time ÷5</span>
+              <span class="metric">Full coverage</span>
+            </div>
+          </div>
+          <!-- Card 3: Research & Writing -->
+          <div class="example-card slider-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" viewBox="0 0 24 24" width="24">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+              </div>
+              <span class="example-tag">Equity Research • Quick Start Pack</span>
+            </div>
+            <h4>Research &amp; Writing</h4>
+            <p class="card-desc">Reads 200+ sources/day, extracts key points, generates structured note drafts.</p>
+            <div class="card-metrics">
+              <span class="metric">−70% writing time</span>
+              <span class="metric">100% source coverage</span>
+              <span class="metric">Focus on analysis</span>
+            </div>
+          </div>
+          <!-- Card 4: Social Media Team -->
+          <div class="example-card slider-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" viewBox="0 0 24 24" width="24">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <span class="example-tag">Digital Agency • Custom SaaS</span>
+            </div>
+            <h4>Social Media Agent Team</h4>
+            <p class="card-desc">5 orchestrated sub-agents covering LinkedIn, Instagram, TikTok, X and Substack.</p>
+            <div class="card-metrics">
+              <span class="metric">5 platforms auto</span>
+              <span class="metric">Creation ÷4</span>
+              <span class="metric">Real-time trends</span>
+            </div>
+          </div>
+          <!-- Card 5: Business Development -->
+          <div class="example-card slider-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" viewBox="0 0 24 24" width="24">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
+              <span class="example-tag">Tech SME • Quick Start Pack</span>
+            </div>
+            <h4>Business Development</h4>
+            <p class="card-desc">Scans LinkedIn + public tenders, qualifies prospects and generates personalized
+              outreach.</p>
+            <div class="card-metrics">
+              <span class="metric">+200% leads</span>
+              <span class="metric">Prospecting ÷5</span>
+              <span class="metric">Personalized messages</span>
+            </div>
+          </div>
         </div>
-        <div class="example-card fade-in fade-in-delay-1">
-          <span class="example-tag">Architect</span>
-          <h4>Regulatory Watch Agent</h4>
-          <p>An architecture firm managed 15 to 20 projects in parallel. Regulatory watch (urban planning, safety,
-            environment) was done manually and caused compliance delays.<br /><br />
-            <strong>Solution:</strong> An agent that scans regulatory updates daily by project and location, sends
-            contextualized alerts, and produces a monthly synthesis per case.<br /><br />
-            <strong>Result:</strong> Zero compliance delays since deployment &bull; Watch time divided by 5 &bull;
-            Nothing slips through the cracks anymore
-          </p>
-        </div>
-        <div class="example-card fade-in fade-in-delay-2">
-          <span class="example-tag">Equity Research</span>
-          <h4>Notes &amp; Research Writing Agent</h4>
-          <p>A research team received over 200 newsletters and reports per day. Manual synthesis for credit notes took 2
-            to 3 days per week.<br /><br />
-            <strong>Solution:</strong> An agent that reads sources automatically by theme and sector, extracts key
-            points, and generates structured note drafts. It also alerts when a portfolio position is mentioned
-            negatively.<br /><br />
-            <strong>Result:</strong> &minus;70% on note writing time &bull; Complete source coverage &bull; The team
-            focuses on qualitative analysis rather than information gathering
-          </p>
+        <div class="slider-nav">
+          <button class="slider-btn slider-prev" aria-label="Previous">
+            <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
+              <path d="M15 18l-6-6 6-6"></path>
+            </svg>
+          </button>
+          <div class="slider-dots"></div>
+          <button class="slider-btn slider-next" aria-label="Next">
+            <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
+              <path d="M9 18l6-6-6-6"></path>
+            </svg>
+          </button>
         </div>
       </div>
     </div>
@@ -437,14 +651,21 @@
       </div>
       <div class="faq-list fade-in">
         <details>
-          <summary>We don't have a tech team internally. Does it still work?</summary>
-          <p><strong>Yes — that's exactly why we exist.</strong> We come from the business (Deloitte, UBS), not pure
-            dev. We speak your language and we train your teams as we build. No technical prerequisite required.</p>
+          <summary>We're not developers — does it still work?</summary>
+          <p><strong>We're better than that.</strong> We come from the business (Deloitte, UBS) AND we master the
+            technical tools through our training. This dual expertise makes the difference: we understand your business
+            challenges and workflow before installing anything complex. No technical prerequisites on your side.</p>
         </details>
         <details>
           <summary>How long does it take?</summary>
-          <p><strong>A first functional agent: 4-8 weeks of co-construction.</strong><br /><br />
-            Not 6 months of theoretical study. We build from the first session. You see results every week.</p>
+          <p><strong>3 sessions over approximately 3 weeks.</strong> Diagnostic, on-site installation, then follow-up
+            and adjustments. You're operational from session 2.</p>
+        </details>
+        <details>
+          <summary>How much does it cost?</summary>
+          <p><strong>Standard pack: €2,000 excl. VAT</strong> (3 sessions, 5-7h of effective work). On top: Claude Pro
+            subscription ~€20/mo (or OpenClaw free + variable API costs). Follow-up: €150 excl. VAT/h. Maintenance: €500
+            excl. VAT/mo.</p>
         </details>
         <details>
           <summary>What if we want to stop working with you?</summary>
@@ -464,7 +685,7 @@
         <p>30 minutes to identify what's worth automating — free, no commitment</p>
         <a class="btn btn-primary" href="https://calendly.com/bubbleinvest-ai" rel="noopener noreferrer"
           target="_blank">
-          Book a call
+          Get my free diagnostic (30min)
           <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
             <path d="M5 12h14M12 5l7 7-7 7"></path>
           </svg>
@@ -639,6 +860,90 @@
       window.addEventListener('resize', function () {
         if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
       });
+    })();
+  </script>
+
+  <!-- Examples slider -->
+  <script>
+    (function () {
+      'use strict';
+      var wrapper = document.querySelector('.examples-slider-wrapper');
+      if (!wrapper) return;
+      var slider = wrapper.querySelector('.examples-slider');
+      var cards = wrapper.querySelectorAll('.slider-card');
+      var prev = wrapper.querySelector('.slider-prev');
+      var next = wrapper.querySelector('.slider-next');
+      var dotsContainer = wrapper.querySelector('.slider-dots');
+      var current = 0;
+      var autoSlideInterval = null;
+      var resumeTimeout = null;
+
+      cards.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+        dot.addEventListener('click', function () { userGoTo(i); });
+        dotsContainer.appendChild(dot);
+      });
+
+      function scrollTo(index) {
+        current = Math.max(0, Math.min(index, cards.length - 1));
+        slider.classList.add('no-snap');
+        slider.scrollTo({ left: cards[current].offsetLeft, behavior: 'smooth' });
+        updateDots();
+        setTimeout(function () { slider.classList.remove('no-snap'); }, 600);
+      }
+
+      function updateDots() {
+        var dots = dotsContainer.querySelectorAll('.slider-dot');
+        dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+      }
+
+      // User-initiated navigation: pause auto-slide, resume after 10s
+      function userGoTo(index) {
+        stopAutoSlide();
+        scrollTo(index);
+        scheduleResume();
+      }
+
+      // Auto-advance: just scroll, don't pause
+      function autoAdvance() {
+        var nextIndex = (current + 1) % cards.length;
+        scrollTo(nextIndex);
+      }
+
+      function startAutoSlide() {
+        stopAutoSlide();
+        autoSlideInterval = setInterval(autoAdvance, 6000);
+      }
+
+      function stopAutoSlide() {
+        if (autoSlideInterval) { clearInterval(autoSlideInterval); autoSlideInterval = null; }
+        if (resumeTimeout) { clearTimeout(resumeTimeout); resumeTimeout = null; }
+      }
+
+      function scheduleResume() {
+        if (resumeTimeout) clearTimeout(resumeTimeout);
+        resumeTimeout = setTimeout(startAutoSlide, 10000);
+      }
+
+      prev.addEventListener('click', function () { userGoTo(current - 1); });
+      next.addEventListener('click', function () { userGoTo(current + 1); });
+
+      wrapper.addEventListener('mouseenter', function () { stopAutoSlide(); });
+      wrapper.addEventListener('mouseleave', function () { scheduleResume(); });
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var idx = Array.prototype.indexOf.call(cards, entry.target);
+            if (idx !== -1) { current = idx; updateDots(); }
+          }
+        });
+      }, { root: slider, threshold: 0.6 });
+      cards.forEach(function (card) { observer.observe(card); });
+
+      startAutoSlide();
     })();
   </script>
 </body>

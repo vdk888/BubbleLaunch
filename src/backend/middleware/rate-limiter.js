@@ -4,6 +4,11 @@
  * Education pages need longer sessions for testing, so raise the cap.
  */
 const chatRateLimiter = (req, res, next) => {
+  if (!req.session) {
+    console.warn('[rate-limiter] Session not available, skipping rate limit');
+    return next();
+  }
+
   if (!req.session.messageCount) {
     req.session.messageCount = 0;
   }

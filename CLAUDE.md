@@ -129,7 +129,8 @@ The **Investment Agent** is a proof of concept we built for our own portfolio au
   - `/en/blog` - Blog listing (EN)
   - `/clear-cache` - Clear blog image cache
   - `/api/blog/test-image-service-connection` - Test OpenAI image service connectivity
-- No automated test framework configured (manual testing only)
+- Playwright available as dev dependency (`@playwright/test`) for E2E testing
+- Primary testing remains manual
 
 ## Architecture & Key Components
 
@@ -142,13 +143,15 @@ The **Investment Agent** is a proof of concept we built for our own portfolio au
   - `express.js` - Express middleware setup
 - **`routes/`** - Route definitions (separated by feature)
   - `index.js` - Route aggregator
-  - `chat.routes.js`, `waitlist.routes.js`, `blog.routes.js`, `knowledge-garden.routes.js`, `portfolio.routes.js`, `business-contact.routes.js`, `sitemap.routes.js`
+  - `chat.routes.js`, `waitlist.routes.js`, `newsletter.routes.js`, `blog.routes.js`, `knowledge-garden.routes.js`, `portfolio.routes.js`, `arena.routes.js`, `business-contact.routes.js`, `sitemap.routes.js`, `pages.routes.js`
 - **`controllers/`** - Business logic layer
   - `chat.controller.js` - AI chatbot logic
   - `waitlist.controller.js` - Subscription handling
+  - `newsletter.controller.js` - Newsletter subscription handling
   - `blog.controller.js` - Blog and image management
   - `knowledge-garden.controller.js` - References management
   - `portfolio.controller.js` - Portfolio simulator APIs + cache orchestration
+  - `arena.controller.js` - AI Trading Arena logic
   - `business-contact.controller.js` - B2B lead capture
 - **`middleware/`** - Custom middleware
   - `session.js` - Session configuration
@@ -156,9 +159,9 @@ The **Investment Agent** is a proof of concept we built for our own portfolio au
   - `error-handler.js` - Centralized error handling
 - **`services/`** - External integrations and calculations
   - `blogService.js` - Notion CMS integration
+  - `blogStatusScheduler.js` - Hourly blog status sync
   - `imageService.js` - AI image generation
   - `knowledgeGardenService.js` - References with LLM enrichment
-  - `llmEnrichmentService.js` - AI metadata generation
   - `yahooFinanceService.js` - ETF historical data fetching
   - `portfolioService.js` - Portfolio calculation orchestrator (strategy wrappers + metrics)
   - `portfolioCacheService.js` - Snapshot generation & formatting
@@ -182,8 +185,14 @@ The **Investment Agent** is a proof of concept we built for our own portfolio au
   - `blog-2026.js` - Blog listing with API integration + Knowledge Garden references
   - `blog-post.js` - Individual blog post rendering
   - `chatbot-animations.js` - Message animations and typing indicators
+  - `chatbot-logic.js` - Chatbot core logic
   - `animations.js` - UI animations and effects
+  - `language-switcher.js` - Language toggle logic
+  - `knowledge-overlay.js` - Knowledge Garden overlay UI
+  - `tool-result-visualizer.js` - Tool result display for chatbot
   - `seo/cookie-banner.js` - GDPR/CNIL cookie consent banner
+  - `seo/ga4-events.js` - Google Analytics 4 event tracking
+  - `seo/structured-data.js` - JSON-LD structured data
 - **`i18n/translations.js`** - Internationalization (French/English)
 - **`assets/`** - Static resources (styles, images)
   - `styles/core-2026.css` - Shared styles: CSS variables, header, footer, buttons, chat panel, mobile hamburger
@@ -199,28 +208,33 @@ The **Investment Agent** is a proof of concept we built for our own portfolio au
 ### Key Integrations
 - **Notion API** - Content management for waitlist, blog posts, and Knowledge Garden
 - **OpenRouter API** - LLM provider with 100% free model rotation:
-  1. `nvidia/nemotron-3-nano-30b-a3b:free` (primary - 30B parameters)
-  2. `xiaomi/mimo-v2-flash:free` (fallback)
-  3. `allenai/molmo-2-8b:free` (fallback)
-  4. `mistralai/devstral-2512:free` (fallback)
-  5. `tngtech/tng-r1t-chimera:free` (final fallback)
-  - **Cost Model**: 100% free models ($0/month) providing 46% token reduction vs original architecture
+  1. `stepfun/step-3.5-flash:free` (primary - 196B sparse MoE)
+  2. `qwen/qwen3.6-plus-preview:free` (fallback)
+  3. `nvidia/nemotron-3-super-120b-a12b:free` (fallback - 120B)
+  4. `qwen/qwen3-next-80b-a3b-instruct:free` (fallback - 80B)
+  5. `meta-llama/llama-3.3-70b-instruct:free` (fallback - 70B)
+  6. `nvidia/nemotron-3-nano-30b-a3b:free` (fallback - 30B)
+  7. `arcee-ai/trinity-large-preview:free` (final fallback - 400B sparse MoE)
+  - **Cost Model**: 100% free models ($0/month)
   - **Model Selection**: Automatic fallback if primary model rejects tool calls or encounters rate limits
 - **OpenAI Images (gpt-image-1)** - Automated blog image generation with intelligent caching
 - **Yahoo Finance API** - ETF historical data for portfolio simulator
-- **Express Sessions** - Chat rate limiting (10 messages per session)
+- **Express Sessions** - Chat rate limiting (100 messages per session)
 
 ### Environment Configuration
 The application requires several environment variables in `.env`:
 - `NOTION_TOKEN` - Waitlist database access
 - `NOTION_DATABASE_ID_WAITLIST` - Waitlist storage
+- `NOTION_DATABASE_ID_BUSINESS` - Business contact database
+- `NOTION_DATABASE_ID_NEWSLETTER` - Newsletter subscriber database
 - `NOTION_BLOG_API_KEY` - Blog CMS (also used for Knowledge Garden)
 - `NOTION_BLOG_DATABASE_ID` - Blog database ID
+- `NOTION_KNOWLEDGE_GARDEN_DATABASE_ID` - Knowledge Garden database ID
 - `OPENROUTER_API_KEY` - AI chatbot functionality
 - `OPENAI_API_KEY` - Blog image generation (OpenAI Images API)
 - `SESSION_SECRET` - Session security
 
-**Note:** Knowledge Garden uses `NOTION_BLOG_API_KEY` (shared with blog). The Knowledge Garden database ID is hardcoded in `knowledgeGardenService.js` as `1ffcfc520644805b8bb9c9207fb2cb31`.
+**Note:** Knowledge Garden uses `NOTION_BLOG_API_KEY` (shared with blog). The Knowledge Garden database ID is configured via the `NOTION_KNOWLEDGE_GARDEN_DATABASE_ID` environment variable.
 
 ### Database Schema (Notion)
 **Waitlist Database:** Properties include Nom (title), Email, Profil (select), Commentaires (rich_text)
@@ -263,7 +277,7 @@ The application requires several environment variables in `.env`:
   - First pass: LLM response may include tool calls (get_profile_visualization, recommend_learning_path, explain_bot_trade, backtest_strategy, compare_strategies)
   - Tool Execution: Services invoked with automatic error handling and retry logic
   - Second Pass: LLM incorporates tool results into final response for user
-- **Model Fallback System**: Automatic rotation across 5 free models via OpenRouter with intelligent retry on tool rejection
+- **Model Fallback System**: Automatic rotation across 7 free models via OpenRouter with intelligent retry on tool rejection
 - **Unified System Prompt**: Adapts to page context (index, simulator, pricing, businesses) with dynamic context module loading
   - Context modules: core, technical, pitch, vision, detailed_mission, professionals
   - Keyword triggers for intelligent module selection (price|cost|broker → technical; ethics|future|philosophy → vision)
@@ -279,7 +293,7 @@ The application requires several environment variables in `.env`:
   - Tool result formatting for transparent user display
   - Graceful fallback to text-only if tools rejected
 - **Per-context Conversation History**: Persists in localStorage with BubbleAgentMemory integration
-- **Integrated Rate Limiting**: 10 messages per session for abuse prevention
+- **Integrated Rate Limiting**: 100 messages per session for abuse prevention
 - **BubbleAgentMemory Integration**: User profile context passed to LLM and tools for personalized responses
 
 ### Image Generation

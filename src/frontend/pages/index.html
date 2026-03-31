@@ -42,6 +42,9 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
 
+  <!-- LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="https://bubbleinvest.org/llms.txt" title="LLM context" />
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/assets/styles/core-2026.css" />
   <link rel="stylesheet" href="/assets/styles/homepage-2026.css" />
@@ -68,7 +71,7 @@
     });
   </script>
 
-  <!-- JSON-LD Structured Data -->
+  <!-- JSON-LD Structured Data: Organization -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -76,18 +79,117 @@
     "name": "Bubble Invest",
     "url": "https://bubbleinvest.org",
     "logo": "https://bubbleinvest.org/assets/images/bubble-logo-single.svg",
-    "description": "Pionniers de l'implémentation d'agents IA en France. Consulting et formation personnalisés pour les professionnels (CGP, gestion d'actifs, PME). Déploiement d'IA avancée sur mesure.",
+    "description": "Pionniers de l'implémentation d'agents IA en France. On installe des agents IA directement sur votre poste. Opérationnel en 3 sessions. Consulting pour CGP, gestion d'actifs, PME.",
+    "foundingDate": "2024",
+    "areaServed": ["FR", "BE", "CH"],
+    "knowsAbout": ["AI Agents", "Claude Code", "OpenClaw", "LLM Implementation", "Workflow Automation"],
     "sameAs": [
       "https://www.linkedin.com/company/bubble-invest",
       "https://instagram.com/behindthebubble.ai",
       "https://bubbleinvest.substack.com",
       "https://x.com/bubbleinvest"
+    ],
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Quick Start Pack — Installation d'Agents IA",
+          "description": "3 sessions, 3 semaines. Diagnostic, installation sur site et autonomie complète. Agents IA opérationnels sur votre machine avec Claude Code ou OpenClaw.",
+          "provider": { "@type": "Organization", "name": "Bubble Invest" }
+        },
+        "price": "2000",
+        "priceCurrency": "EUR"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Contenu éducatif gratuit",
+          "description": "Agent IA open source, tutoriels, veille technologique, blog build-in-public"
+        },
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
     ]
+  }
+  </script>
+  <!-- JSON-LD Structured Data: WebSite (for AI discovery + sitelinks) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Bubble Invest",
+    "url": "https://bubbleinvest.org",
+    "inLanguage": ["fr", "en"],
+    "description": "Implémentation d'agents IA pour professionnels. Contenu éducatif gratuit et consulting B2B.",
+    "potentialAction": {
+      "@type": "ReadAction",
+      "target": "https://bubbleinvest.org/blog"
+    }
   }
   </script>
 </head>
 
 <body>
+  <!-- PATH GATEWAY MODAL (Triggered by CTA buttons) -->
+  <div class="path-gateway gateway-hidden" id="path-gateway" role="dialog" aria-modal="true" aria-label="Choisissez votre parcours">
+    <div class="gateway-bg-layer" aria-hidden="true">
+      <div class="gateway-orb gateway-orb--left"></div>
+      <div class="gateway-orb gateway-orb--right"></div>
+      <div class="gateway-grid-lines" aria-hidden="true"></div>
+    </div>
+    <div class="gateway-inner">
+      <button class="gateway-close" id="gateway-close" aria-label="Fermer">
+        <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24">
+          <path d="M18 6L6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+      <div class="gateway-brand">
+        <img src="/assets/images/bubble-logo-single.svg" alt="Bubble" class="gateway-logo" />
+      </div>
+      <p class="gateway-prompt">Vous êtes...</p>
+      <div class="gateway-cards">
+        <button class="gateway-card" data-href="/particuliers">
+          <div class="gateway-card-icon">
+            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="32">
+              <path d="M12 2v20M2 12h20"></path>
+            </svg>
+          </div>
+          <h2>Particuliers</h2>
+          <p>Contenu gratuit, open source, sans filtre.</p>
+          <ul class="gateway-features">
+            <li>Code &amp; Stratégies</li>
+            <li>Open Source</li>
+            <li>Accès immédiat</li>
+          </ul>
+          <span class="gateway-card-cta">Explorer <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg></span>
+        </button>
+        <button class="gateway-card" data-href="/professionnels">
+          <div class="gateway-card-icon">
+            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="32">
+              <rect height="14" rx="2" ry="2" width="20" x="2" y="3"></rect>
+              <line x1="8" x2="16" y1="21" y2="21"></line>
+              <line x1="12" x2="12" y1="17" y2="21"></line>
+            </svg>
+          </div>
+          <h2>Professionnels</h2>
+          <p>On implémente l'IA dans votre métier.</p>
+          <ul class="gateway-features">
+            <li>Agents opérationnels en 3 sessions</li>
+            <li>CGP, gestion d'actifs, PME</li>
+            <li>Résultats dès la première semaine</li>
+          </ul>
+          <span class="gateway-card-cta">Découvrir <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- HEADER -->
   <header>
     <div class="container">
@@ -137,8 +239,9 @@
     </div>
   </div>
 
+  <main>
   <!-- HERO SECTION -->
-  <section class="hero">
+  <section class="hero" aria-label="Introduction">
     <div class="container">
       <div class="hero-content fade-in">
         <div class="hero-logo">
@@ -150,52 +253,66 @@
         </div>
         <h1>Bubble.</h1>
         <p class="hero-tagline">Percez la bulle. Investissez dans l'essentiel.</p>
-        <p class="hero-description">On construit des agents IA pour nous, et on vous montre comment faire pareil.
-          Nous partageons gratuitement. Nous gagnons quand vous réussissez.</p>
-        <div class="path-grid">
-          <!-- Individuals Path -->
-          <div class="path-card" onclick="location.href='/particuliers'">
-            <div class="path-icon">
-              <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" viewBox="0 0 24 24" width="32">
-                <path d="M12 2v20M2 12h20"></path>
-              </svg>
+        <p class="hero-description">Agents IA open source. Construire l'avenir ensemble. Partager gratuitement.</p>
+        <div class="value-pills">
+          <span class="value-pill"><svg fill="none" height="16" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" width="16">
+              <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"></path>
+            </svg> Code & Stratégies</span>
+          <span class="value-pill"><svg fill="none" height="16" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" width="16">
+              <path d="M12 2v20M2 12h20"></path>
+            </svg> Open Source</span>
+          <span class="value-pill"><svg fill="none" height="16" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" width="16">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg> Résultats inclus</span>
+        </div>
+        <a href="#contact" class="btn btn-primary hero-main-cta" data-gateway-trigger>Découvrir notre approche <svg fill="none" height="16"
+            stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM SECTION -->
+  <section class="the-problem" aria-label="Le problème que nous résolvons">
+    <div class="container">
+      <div class="problem-content fade-in">
+        <h2>Le problème</h2>
+
+        <div class="problem-list">
+          <div class="problem-item" data-reveal-image="/assets/images/problem-chatgpt-opt.jpg">
+            <div class="problem-text">
+              <h3>Vous avez testé ChatGPT… mais vous perdez plus de temps qu'autre chose</h3>
+              <p>Outils génériques sans contexte. Zéro intégration avec votre workflow. Aucune appropriation.</p>
             </div>
-            <h3>Particuliers</h3>
-            <p>Contenu gratuit, transparent, sans filtre.</p>
-            <ul class="path-features">
-              <li>On partage tout: notre agent IA, notre code, nos apprentissages.</li>
-              <li>Tutos, ressources, veille techno: tout est en accès libre.</li>
-              <li>Suivez-nous sur nos réseaux pour ne rien rater.</li>
-            </ul>
-            <a class="path-cta" href="/particuliers">Explorer notre contenu <svg fill="none" height="16"
-                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-              </svg></a>
+            <div class="problem-image" aria-hidden="true"></div>
           </div>
-          <!-- Professionals Path -->
-          <div class="path-card" onclick="location.href='/professionnels'">
-            <div class="path-icon">
-              <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" viewBox="0 0 24 24" width="32">
-                <rect height="14" rx="2" ry="2" width="20" x="2" y="3"></rect>
-                <line x1="8" x2="16" y1="21" y2="21"></line>
-                <line x1="12" x2="12" y1="17" y2="21"></line>
-              </svg>
+          <div class="problem-item" data-reveal-image="/assets/images/problem-training-opt.jpg">
+            <div class="problem-text">
+              <h3>Les formations IA ? Des slides, de la théorie, zéro implémentation</h3>
+              <p>Des consultants vous parlent du potentiel. Vous repartez avec des slides, pas des outils.</p>
             </div>
-            <h3>Professionnels</h3>
-            <p>On implémente l'IA dans votre métier.</p>
-            <ul class="path-features">
-              <li>Agents, MCP ou simples automatisations : on construit avec vous ce dont vous avez réellement besoin.
-              </li>
-              <li>On maîtrise les outils les plus récents, des semaines avant le marché.</li>
-              <li>CGP, gestion d'actifs, PME: parlons de votre projet.</li>
-            </ul>
-            <a class="path-cta" href="/professionnels">Discuter de votre projet <svg fill="none" height="16"
-                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-              </svg></a>
+            <div class="problem-image" aria-hidden="true"></div>
           </div>
+          <div class="problem-item" data-reveal-image="/assets/images/problem-consulting-opt.jpg">
+            <div class="problem-text">
+              <h3>Les cabinets de conseil ? 3-6 mois de projet. 30K€+. Et rien n'est implémenté.</h3>
+              <p>Projets longs, chers, et entre-temps les outils ont changé trois fois.</p>
+            </div>
+            <div class="problem-image" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="problem-cta-section">
+          <p class="problem-closing"><strong>Vous voulez juste gagner du temps. Maintenant.</strong></p>
+          <a href="/professionnels" class="btn btn-primary" data-gateway-trigger>Voir notre alternative <svg fill="none" height="16"
+              stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg></a>
         </div>
       </div>
     </div>
@@ -205,63 +322,57 @@
   <section class="quote-interlude">
     <div class="container">
       <a href="/a-propos" class="interlude-link">
-        <p class="interlude-text">Et si ce n'était pas qu'une bulle ?</p>
+        <p class="interlude-text">Et si l'IA, ce n'était pas qu'une bulle ?</p>
       </a>
     </div>
   </section>
 
-  <!-- SELFWARE SECTION -->
-  <section class="selfware">
+  <!-- OUR APPROACH SECTION -->
+  <section class="selfware" aria-label="Notre approche">
     <div class="container">
       <div class="selfware-grid">
         <div class="selfware-content">
-          <h2>Modèle Selfware</h2>
-          <p>Nous utilisons les outils que nous construisons. Nous testons nos agents sur nos propres processus et
-            investissements. Notre succès dépend de leur performance.</p>
+          <h2>Notre approche</h2>
+          <p>On ne vend pas de conseil. On installe des outils qu'on utilise nous-mêmes.</p>
           <div class="selfware-features">
             <div class="feature-item">
               <div class="feature-number">1</div>
               <div class="feature-text">
-                <h4>Nous l'utilisons nous-mêmes</h4>
-                <p>Nos propres opérations et portefeuilles sont gérés par les agents que nous concevons</p>
+                <h4>Nos agents tournent sur nos propres opérations.</h4>
+                <p>Pas de PowerPoint. On construit les mêmes outils pour nous que pour vous.</p>
               </div>
             </div>
             <div class="feature-item">
               <div class="feature-number">2</div>
               <div class="feature-text">
-                <h4>Transparence totale</h4>
-                <p>Notre méthodologie, notre code, nos résultats — partagés publiquement</p>
+                <h4>Tout est partagé : code, méthode, résultats.</h4>
+                <p>Blog, GitHub, newsletter — on documente tout publiquement.</p>
               </div>
             </div>
             <div class="feature-item">
               <div class="feature-number">3</div>
               <div class="feature-text">
-                <h4>Intérêts alignés</h4>
-                <p>Nous gagnons quand nos outils fonctionnent vraiment</p>
+                <h4>3 sessions, vous êtes autonome.</h4>
+                <p>On ne crée pas de dépendance. Le but : que vous n'ayez plus besoin de nous.</p>
               </div>
             </div>
           </div>
         </div>
         <div class="selfware-visual">
-          <div class="flow-diagram">
-            <div class="flow-item">
-              <strong>Vos Données & Processus</strong>
-              <span style="color: var(--muted);">→ Informations, contraintes, objectifs</span>
+          <div class="comparison-table">
+            <div class="comparison-col comparison-them">
+              <h4>Les autres</h4>
+              <div class="comparison-row">6 mois de projet</div>
+              <div class="comparison-row">Slides + théorie</div>
+              <div class="comparison-row">30K€+ budget</div>
+              <div class="comparison-row">Dépendance continue</div>
             </div>
-            <div class="flow-arrow">↓</div>
-            <div class="flow-item agent">
-              <strong>Agent Sur Mesure</strong>
-              <span style="color: var(--muted);">→ Analyse &amp; Décisions</span>
-            </div>
-            <div class="flow-arrow">↓</div>
-            <div class="flow-item">
-              <strong>Votre Validation</strong>
-              <span style="color: var(--muted);">→ Vous gardez le contrôle final</span>
-            </div>
-            <div class="flow-arrow">↓</div>
-            <div class="flow-item">
-              <strong>Exécution</strong>
-              <span style="color: var(--muted);">→ Automatisée sur vos propres systèmes</span>
+            <div class="comparison-col comparison-us">
+              <h4>Bubble</h4>
+              <div class="comparison-row">3 sessions, 3 semaines</div>
+              <div class="comparison-row">Installation sur votre poste</div>
+              <div class="comparison-row">2 000€ tout compris</div>
+              <div class="comparison-row">Autonomie complète</div>
             </div>
           </div>
         </div>
@@ -270,7 +381,7 @@
   </section>
 
   <!-- TRUST INDICATORS -->
-  <section class="trust">
+  <section class="trust" aria-label="Indicateurs de confiance">
     <div class="container">
       <div class="trust-grid">
         <div class="trust-item">
@@ -294,7 +405,7 @@
   </section>
 
   <!-- BLOG PREVIEW -->
-  <section class="blog-preview">
+  <section class="blog-preview" aria-label="Articles récents">
     <div class="container">
       <div class="section-header">
         <h2>Build in Public</h2>
@@ -346,21 +457,22 @@
   </section>
 
   <!-- CONTACT / NEWSLETTER SECTION -->
-  <section class="waitlist" id="contact">
+  <section class="waitlist" id="contact" aria-label="Contact et newsletter">
     <div class="container">
-      <h2>Contactez-nous</h2>
-      <p>Abonnez-vous à notre newsletter ou lisez nos derniers articles sur Substack.</p>
+      <h2>Restez informé</h2>
+      <p>Suivez notre parcours. Apprenez pendant qu'on construit.</p>
       <div class="hero-cta" style="justify-content: center; margin-top: 2rem;">
         <a href="https://bit.ly/3Z9Cncr" class="btn btn-primary" target="_blank" rel="noopener noreferrer">S'abonner à
-          la Newsletter</a>
-        <a href="https://bubbleinvest.substack.com" class="btn btn-secondary" target="_blank"
-          rel="noopener noreferrer">Lire notre Substack</a>
+          la Newsletter <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            width="16">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg></a>
       </div>
 
       <div style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1);">
         <h3>Vous êtes un professionnel ?</h3>
-        <p style="margin-top: 0.5rem; color: var(--muted);">Notre offre principale est B2B. Discutons de vos besoins
-          d'implémentation sur mesure.</p>
+        <p style="margin-top: 0.5rem; color: rgba(255,255,255,0.7);">Discutons de votre implémentation IA sur mesure.
+        </p>
         <div class="hero-cta" style="justify-content: center; margin-top: 2rem;">
           <a href="https://calendly.com/bubbleinvest-ai" class="btn btn-primary" target="_blank"
             rel="noopener noreferrer">
@@ -374,6 +486,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer>
@@ -514,7 +628,57 @@
   <script src="/js/chat-side-panel.js"></script>
   <script src="/js/floating-chat-input.js"></script>
   <script src="/js/animations.js"></script>
+  <script src="/js/gateway.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
+
+  <!-- Problem tile image reveal on long hover -->
+  <script>
+    (function () {
+      'use strict';
+      var items = document.querySelectorAll('.problem-item[data-reveal-image]');
+      items.forEach(function (item) {
+        var timer = null;
+        var imageDiv = item.querySelector('.problem-image');
+        var src = item.getAttribute('data-reveal-image');
+
+        // Preload image and set as background
+        if (imageDiv && src) {
+          imageDiv.style.backgroundImage = 'url(' + src + ')';
+          var preload = new Image();
+          preload.src = src;
+        }
+
+        item.addEventListener('mouseenter', function () {
+          timer = setTimeout(function () {
+            item.classList.add('image-revealed');
+          }, 1000);
+        });
+
+        item.addEventListener('mouseleave', function () {
+          if (timer) { clearTimeout(timer); timer = null; }
+          item.classList.remove('image-revealed');
+        });
+
+        // Touch support: long press 1s
+        var touchTimer = null;
+        item.addEventListener('touchstart', function (e) {
+          touchTimer = setTimeout(function () {
+            item.classList.add('image-revealed');
+          }, 1000);
+        }, { passive: true });
+
+        item.addEventListener('touchend', function () {
+          if (touchTimer) { clearTimeout(touchTimer); touchTimer = null; }
+          item.classList.remove('image-revealed');
+        });
+
+        item.addEventListener('touchcancel', function () {
+          if (touchTimer) { clearTimeout(touchTimer); touchTimer = null; }
+          item.classList.remove('image-revealed');
+        });
+      });
+    })();
+  </script>
 
 
   <!-- Mobile hamburger menu toggle -->

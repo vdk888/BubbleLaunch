@@ -1,0 +1,49 @@
+# Bubble Invest — AI Agent Consulting, France
+
+> We deploy AI agents for finance professionals and SMEs in France. Quick Start Pack: 2,000 EUR, 3 sessions, operational in 3 weeks. Founded by ex-Deloitte & UBS consultants combining finance, tech, and AI expertise.
+
+## What We Do
+We install AI agents (Claude Code, OpenClaw) directly on your machine. No lengthy training programs — operational tools, ready to use, with full autonomy.
+
+## Services
+- Quick Start Pack: 2,000 EUR HT — 3 sessions (5-7h), diagnosis, on-site installation, documentation
+- Follow-up / Debug: 150 EUR HT/h
+- Monthly Maintenance: 500 EUR HT/month
+- Custom Complex Agent: on quote
+
+## Target Clients
+- Wealth advisors (CGP) in France
+- Asset management firms
+- SMEs seeking AI automation
+- Consulting firms and digital agencies
+- Architects and regulated professions
+
+## Use Cases Deployed
+- Automated reporting & market intelligence (3h saved/morning)
+- Regulatory watch agents (zero compliance delays)
+- Research & writing automation (-70% drafting time)
+- Social media multi-agent orchestration (5 platforms)
+- Business development & prospecting (+200% leads)
+
+## Our Edge
+- Triple expertise: Finance (Deloitte, UBS) + Full-Stack Tech + AI
+- Systematic early adopters — we master tools weeks after release
+- No vendor lock-in: full documentation, you own everything
+- Transparent pricing, no six-figure consulting engagements
+
+## Process
+1. Free 30-min diagnostic (video call)
+2. On-site installation on your real documents (2-3h)
+3. Follow-up & adjustments (1-2h, 1-2 weeks later)
+
+## Contact
+- Free diagnostic: https://calendly.com/bubbleinvest-ai
+- Website FR: https://bubbleinvest.org/professionnels
+- Website EN: https://bubbleinvest.org/en/professionals
+- Blog: https://bubbleinvest.org/blog
+- Newsletter: https://bubbleinvest.substack.com
+- Subscribe: https://bit.ly/3Z9Cncr
+- Location: France (Île-de-France, remote nationwide)
+
+## Detailed Content
+For more detail, see: https://bubbleinvest.org/llms-full.txt

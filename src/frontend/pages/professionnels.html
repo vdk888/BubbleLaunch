@@ -42,6 +42,9 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
 
+  <!-- LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="https://bubbleinvest.org/llms.txt" title="LLM context" />
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/assets/styles/core-2026.css" />
   <link rel="stylesheet" href="/assets/styles/professionnels-2026.css" />
@@ -71,6 +74,105 @@
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://bubbleinvest.org/" },
       { "@type": "ListItem", "position": 2, "name": "Professionnels", "item": "https://bubbleinvest.org/professionnels" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Quick Start Pack — Installation d'Agents IA",
+    "description": "3 sessions, 3 semaines. Diagnostic, installation et autonomie. Agents IA opérationnels sur votre machine.",
+    "provider": { "@type": "Organization", "name": "Bubble Invest", "url": "https://bubbleinvest.org" },
+    "areaServed": ["FR", "BE", "CH"],
+    "serviceType": "AI Agent Implementation",
+    "offers": {
+      "@type": "Offer",
+      "price": "2000",
+      "priceCurrency": "EUR",
+      "description": "3 sessions (5-7h), préparation en amont, installation + configuration, documentation incluse"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Services Bubble Invest",
+      "itemListElement": [
+        { "@type": "Offer", "name": "Quick Start Pack", "price": "2000", "priceCurrency": "EUR" },
+        { "@type": "Offer", "name": "Session suivi/debug", "price": "150", "priceCurrency": "EUR", "unitText": "per hour" },
+        { "@type": "Offer", "name": "Maintenance mensuelle", "price": "500", "priceCurrency": "EUR", "unitText": "per month" }
+      ]
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Bubble Invest",
+    "description": "Consulting IA : déploiement d'agents IA (Claude Code, OpenClaw) pour CGP, gestion d'actifs et PME en France. Quick Start Pack dès 2 000 €, opérationnel en 3 semaines.",
+    "url": "https://bubbleinvest.org",
+    "logo": "https://bubbleinvest.org/assets/images/bubble-logo-single.svg",
+    "image": "https://bubbleinvest.org/assets/images/bubble-logo-single.svg",
+    "priceRange": "€€",
+    "currenciesAccepted": "EUR",
+    "paymentAccepted": "Virement bancaire, Carte bancaire",
+    "areaServed": [
+      { "@type": "Country", "name": "France" },
+      { "@type": "Country", "name": "Belgium" },
+      { "@type": "Country", "name": "Switzerland" }
+    ],
+    "serviceType": ["AI Agent Deployment", "AI Automation Consulting", "Claude Code Installation", "Workflow Automation"],
+    "knowsAbout": ["Intelligence Artificielle", "Agents IA", "Claude Code", "OpenClaw", "Automatisation", "Finance", "Gestion d'actifs", "CGP"],
+    "knowsLanguage": ["fr", "en"],
+    "foundingDate": "2024",
+    "sameAs": [
+      "https://bubbleinvest.substack.com",
+      "https://calendly.com/bubbleinvest-ai"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "url": "https://calendly.com/bubbleinvest-ai",
+      "availableLanguage": ["French", "English"]
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Nous ne sommes pas développeurs — ça marche quand même ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "On est mieux que ça. On vient du métier (Deloitte, UBS) ET on maîtrise les outils techniques suite à nos formations. C'est cette double compétence qui fait la différence : on comprend vos enjeux métiers, votre workflow avant d'installer quoi que ce soit de compliqué. Aucun prérequis technique de votre côté."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien de temps ça prend ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "3 sessions sur environ 3 semaines. Diagnostic, installation sur site, puis retour et ajustements. Vous êtes opérationnel dès la session 2."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien ça coûte ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pack standard : 2 000 € HT (3 sessions, 5-7h de travail effectif). En plus : abonnement Claude Pro ~20€/mois (ou OpenClaw gratuit). Suivi : 150 €/h. Maintenance : 500 €/mois."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Et si nous voulons arrêter de travailler avec vous ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "C'est l'objectif ! Nous documentons tout — code, prompts, processus. Dès le premier jour, vous pouvez prendre le relais. Notre succès, c'est quand vous n'avez plus besoin de nous."
+        }
+      }
     ]
   }
   </script>
@@ -132,25 +234,12 @@
         style="font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--purple); margin-bottom: 1rem;">
         Mieux que des conseils — des solutions.</p>
       <h1 class="fade-in fade-in-delay-1">Devenez le plus rapide de votre secteur</h1>
-      <p class="hero-subtitle fade-in fade-in-delay-2">L'IA n'est pas une hype, c'est un avantage concurrentiel
-        asymétrique. On implémente les agents d'aujourd'hui dans vos processus pour que vous gardiez l'avance.</p>
-      <!-- CHAT INPUT (Future Implementation) -->
-      <div class="hero-chat fade-in fade-in-delay-3">
-        <div class="hero-chat-container">
-          <input aria-label="Describe your project" class="hero-chat-input" placeholder="Describe your project..."
-            type="text" />
-          <button aria-label="Send" class="hero-chat-submit">
-            <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </button>
-        </div>
-        <p class="hero-chat-hint">Ex : "Automatiser mon reporting mensuel" ou "Surveiller mes secteurs d'investissement"
-        </p>
-      </div>
+      <p class="hero-subtitle fade-in fade-in-delay-2">Pas de formation à rallonge. On installe des agents IA
+        directement sur votre poste. Opérationnel en 3 sessions.</p>
       <div class="hero-cta fade-in fade-in-delay-3">
-        <a class="btn btn-primary" href="#calendly">Discuter de votre projet</a>
-        <a class="btn btn-secondary" href="#services">Voir des cas d'usage</a>
+        <a class="btn btn-primary" href="https://calendly.com/bubbleinvest-ai" target="_blank"
+          rel="noopener noreferrer">Mon diagnostic gratuit (30min)</a>
+        <a class="btn btn-secondary" href="#examples">Voir des cas d'usage</a>
       </div>
     </div>
   </section>
@@ -160,7 +249,7 @@
     <div class="container">
       <div class="section-header fade-in">
         <h2>Nos Services</h2>
-        <h3>Deux voies vers l'autonomie IA</h3>
+        <h3>Installation directe. Autonomie complète.</h3>
       </div>
       <div class="services-grid" style="grid-template-columns: repeat(2, 1fr);">
         <div class="service-card fade-in">
@@ -170,15 +259,28 @@
               <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
             </svg>
           </div>
-          <h4>Sprints de Co-Construction (Construire &amp; Apprendre)</h4>
-          <p>Nous construisons vos solutions d'automatisation sur mesure (agents, workflows, intégrations) avec votre
-            équipe en 2 à 6 semaines. Nous dispensons des sessions de formation pratiques axées sur les outils IA
-            pertinents et les systèmes construits, assurant une maîtrise totale par votre équipe.</p>
-          <ul class="service-features">
-            <li>MVP fonctionnel en quelques semaines</li>
-            <li>Sessions live de construction &amp; formation (1-2h/sem)</li>
-            <li>Apprentissage IA contextualisé &amp; documentation complète</li>
-          </ul>
+          <h4>Quick Start Pack — 2 000 € HT</h4>
+          <p>3 sessions. Installation directe. Autonomie complète.<br />
+            On installe Claude Code ou OpenClaw sur votre poste avec des agents pré-packagés adaptés à votre métier.
+            Vous repartez opérationnel.</p>
+          <div class="card-highlights">
+            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
+                viewBox="0 0 24 24" width="18">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg><span>Diagnostic + 2-3 quick wins identifiés</span></div>
+            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
+                viewBox="0 0 24 24" width="18">
+                <rect height="14" rx="2" width="20" x="2" y="3"></rect>
+                <line x1="8" x2="16" y1="21" y2="21"></line>
+                <line x1="12" x2="12" y1="17" y2="21"></line>
+              </svg><span>Installation sur site, sur vos vrais documents</span></div>
+            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
+                viewBox="0 0 24 24" width="18">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg><span>Doc de référence + roadmap incluse</span></div>
+          </div>
         </div>
         <div class="service-card fade-in fade-in-delay-1">
           <div class="service-icon">
@@ -187,14 +289,24 @@
               <polyline points="8 6 2 12 8 18"></polyline>
             </svg>
           </div>
-          <h4>Logiciels SaaS Sur Mesure (Selfware)</h4>
-          <p>Nous codons des applications IA autonomes ("Selfware") parfaitement adaptées à vos workflows. Propriété
-            totale d'un système complexe sans la dépendance d'un abonnement SaaS standard.</p>
-          <ul class="service-features">
-            <li>Agents IA et logiciels sur mesure conçus de zéro</li>
-            <li>Les meilleurs outils choisis pour vos besoins (Claude, Antigravity, Frontier)</li>
-            <li>Sécurité stricte &amp; validation humaine ("Human-in-the-loop")</li>
-          </ul>
+          <h4>Compléments à la carte</h4>
+          <p>Besoin de plus ? On s'adapte à votre rythme.</p>
+          <div class="card-highlights">
+            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
+                viewBox="0 0 24 24" width="18">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg><span>Suivi / debug : 150 € HT/h</span></div>
+            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
+                viewBox="0 0 24 24" width="18">
+                <path d="M12 2v20M2 12h20"></path>
+              </svg><span>Maintenance mensuelle : 500 € HT/mois</span></div>
+            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
+                viewBox="0 0 24 24" width="18">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg><span>Agent ou application sur-mesure complexe : sur devis</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -204,86 +316,188 @@
   <section class="how-we-work">
     <div class="container">
       <div class="section-header fade-in">
-        <h2>Notre Méthodologie</h2>
-        <h3>Comment nous travaillons</h3>
+        <h2>3 Sessions</h2>
+        <h3>Diagnostic → Installation → Autonomie</h3>
       </div>
       <div class="process-grid">
         <div class="process-step fade-in">
           <div class="process-number">01</div>
-          <h4>Découverte</h4>
-          <p>On comprend vos enjeux et on identifie ce qui vaut le coup d'automatiser vs ce qui reste manuel. On ne vous
-            vendra pas de l'IA à tout prix.</p>
+          <h4>Diagnostic &amp; Préparation</h4>
+          <p class="process-duration">1-2h, visio</p>
+          <p>On comprend votre workflow et identifie 2-3 quick wins à fort ROI. On prépare les agents en amont.</p>
         </div>
         <div class="process-step fade-in fade-in-delay-1">
           <div class="process-number">02</div>
-          <h4>Co-construction</h4>
-          <p>Sessions 1-2h/semaine où on build ensemble. Vous voyez chaque décision, on explique chaque choix technique.
-            Vous montez en compétence en temps réel.</p>
+          <h4>Installation &amp; Prise en main</h4>
+          <p class="process-duration">2-3h, sur site</p>
+          <p>Installation de Claude Code ou OpenClaw sur votre poste. Démo live sur vos vrais documents. Vous repartez
+            opérationnel.</p>
         </div>
         <div class="process-step fade-in fade-in-delay-2">
           <div class="process-number">03</div>
-          <h4>Autonomie</h4>
-          <p>Livraison + documentation complète. Vous pouvez maintenir et faire évoluer vos agents sans dépendre de
-            nous.</p>
-        </div>
-        <div class="process-step fade-in fade-in-delay-3">
-          <div class="process-number">04</div>
-          <h4>Amélioration continue</h4>
-          <p>Amélioration continue (optionnel) — De nouveaux modèles ou outils voient le jour ? Nous vous aidons à les
-            intégrer.</p>
+          <h4>Retour &amp; Ajustements</h4>
+          <p class="process-duration">1-2h, visio, 1-2 sem. après</p>
+          <p>Retour sur l'usage réel, ajustements des agents, tips avancés. Doc finale pour être 100% autonome.</p>
         </div>
       </div>
-      <div class="process-note fade-in">
-        <p><strong>Pas des outils hype d'il y a 2 ans (comme n8n ou Make).</strong> Des agents, des workflows, du
-          selfware adaptés à vos besoins. On ne vend pas "de l'IA pour faire de l'IA". S'il suffit d'une intégration
-          MCP, on ne vous vend pas un agent.</p>
+      <!-- Outcome statement -->
+      <div class="outcome-statement fade-in">
+        <h3 class="outcome-headline">Vous gagnez du temps. Maintenant.</h3>
+        <div class="outcome-cards">
+          <div class="outcome-card fade-in">
+            <div class="outcome-icon">
+              <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <h4>Des agents qui tournent.</h4>
+            <p>Installés sur votre poste, opérationnels dès la fin de la session.</p>
+          </div>
+          <div class="outcome-card fade-in fade-in-delay-1">
+            <div class="outcome-icon">
+              <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <h4>Une autonomie complète.</h4>
+            <p>Doc, roadmap, bonnes pratiques : vous n'aurez plus besoin de nous.</p>
+          </div>
+          <div class="outcome-card fade-in fade-in-delay-2">
+            <div class="outcome-icon">
+              <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"></path></svg>
+            </div>
+            <h4>Zéro formation théorique.</h4>
+            <p>Vous apprenez en faisant, sur vos vrais fichiers.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- EXAMPLES -->
-  <section class="examples">
+  <section class="examples" id="examples">
     <div class="container">
       <div class="section-header fade-in">
         <h2>Exemples concrets</h2>
         <h3>Ce que nous avons déployé</h3>
       </div>
-      <div class="examples-grid">
-        <div class="example-card fade-in">
-          <span class="example-tag">Gestion d'actifs</span>
-          <h4>Veille &amp; Reporting Intelligence</h4>
-          <p>Un gérant multi-mandats peinait à suivre l'actualité de plus de 80 positions tout en fournissant un
-            reporting personnalisé à chaque client.<br /><br />
-            <strong>Solution :</strong> Deux agents interconnectés: le premier scanne 50+ sources chaque matin et génère
-            un brief par position, le second calcule les métriques en temps réel (sharpe, volatilité, drawdown, scoring
-            ESG).<br /><br />
-            <strong>Résultat :</strong> 3h gagnées chaque matin • Reporting client instantané au lieu de 2 jours • +40%
-            de couverture sur la détection des risques
-          </p>
+      <div class="examples-slider-wrapper fade-in">
+        <div class="examples-slider">
+          <!-- Card 1: Veille & Reporting -->
+          <div class="example-card slider-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" viewBox="0 0 24 24" width="24">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </div>
+              <span class="example-tag">Gestion d'actifs • SaaS sur devis</span>
+            </div>
+            <h4>Veille &amp; Reporting Intelligence</h4>
+            <p class="card-desc">2 agents interconnectés scannent 50+ sources et calculent les métriques en temps réel.
+            </p>
+            <div class="card-metrics">
+              <span class="metric">3h gagnées/matin</span>
+              <span class="metric">Reporting instantané</span>
+              <span class="metric">+40% détection risques</span>
+            </div>
+          </div>
+          <!-- Card 2: Veille Réglementaire -->
+          <div class="example-card slider-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" viewBox="0 0 24 24" width="24">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <span class="example-tag">Architecte • Quick Start Pack</span>
+            </div>
+            <h4>Veille Réglementaire</h4>
+            <p class="card-desc">Scanne les mises à jour réglementaires par projet et localisation, alerte en contexte.
+            </p>
+            <div class="card-metrics">
+              <span class="metric">0 retard conformité</span>
+              <span class="metric">Veille ÷5</span>
+              <span class="metric">Couverture totale</span>
+            </div>
+          </div>
+          <!-- Card 3: Research & Rédaction -->
+          <div class="example-card slider-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" viewBox="0 0 24 24" width="24">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+              </div>
+              <span class="example-tag">Analyse Financière • Quick Start Pack</span>
+            </div>
+            <h4>Research &amp; Rédaction</h4>
+            <p class="card-desc">Lit 200+ sources/jour, extrait les points clés, génère des brouillons de notes
+              structurés.</p>
+            <div class="card-metrics">
+              <span class="metric">−70% temps rédaction</span>
+              <span class="metric">Sources 100% couvertes</span>
+              <span class="metric">Focus analyse qualitative</span>
+            </div>
+          </div>
+          <!-- Card 4: Social Media Team -->
+          <div class="example-card slider-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" viewBox="0 0 24 24" width="24">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <span class="example-tag">Agence digitale • SaaS sur devis</span>
+            </div>
+            <h4>Équipe Agents Social Media</h4>
+            <p class="card-desc">5 sous-agents orchestrés couvrant LinkedIn, Instagram, TikTok, X et Substack.</p>
+            <div class="card-metrics">
+              <span class="metric">5 plateformes auto</span>
+              <span class="metric">Création ÷4</span>
+              <span class="metric">Tendances temps réel</span>
+            </div>
+          </div>
+          <!-- Card 5: Business Development -->
+          <div class="example-card slider-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" viewBox="0 0 24 24" width="24">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
+              <span class="example-tag">PME Tech • Quick Start Pack</span>
+            </div>
+            <h4>Business Development</h4>
+            <p class="card-desc">Scanne LinkedIn + appels d'offres, qualifie les prospects et génère des messages
+              personnalisés.</p>
+            <div class="card-metrics">
+              <span class="metric">+200% leads</span>
+              <span class="metric">Prospection ÷5</span>
+              <span class="metric">Messages personnalisés</span>
+            </div>
+          </div>
         </div>
-        <div class="example-card fade-in fade-in-delay-1">
-          <span class="example-tag">Architecte</span>
-          <h4>Agent de Veille Réglementaire</h4>
-          <p>Un cabinet d'architecture gérait 15 à 20 projets en parallèle. La veille réglementaire (urbanisme,
-            sécurité, environnement) était faite à la main et causait des retards de conformité.<br /><br />
-            <strong>Solution :</strong> Un agent qui scanne quotidiennement les mises à jour réglementaires par projet
-            et localisation, envoie des alertes contextualisées et produit une synthèse mensuelle par
-            dossier.<br /><br />
-            <strong>Résultat :</strong> Zéro retard de conformité depuis le déploiement • Temps de veille divisé par 5 •
-            Plus rien ne passe inaperçu
-          </p>
-        </div>
-        <div class="example-card fade-in fade-in-delay-2">
-          <span class="example-tag">Analyse Financière</span>
-          <h4>Agent de Rédaction Notes &amp; Research</h4>
-          <p>Une équipe d'analyse recevait plus de 200 newsletters et rapports par jour. La synthèse manuelle pour les
-            notes de crédit prenait 2 à 3 jours par semaine.<br /><br />
-            <strong>Solution :</strong> Un agent qui lit automatiquement les sources par thème et secteur, extrait les
-            points clés et génère des brouillons de notes structurés. Il alerte aussi si une position du portefeuille
-            est mentionnée négativement.<br /><br />
-            <strong>Résultat :</strong> −70% sur le temps de rédaction • Couverture complète des sources • L'équipe se
-            concentre sur l'analyse qualitative plutôt que la collecte d'information
-          </p>
+        <div class="slider-nav">
+          <button class="slider-btn slider-prev" aria-label="Précédent">
+            <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
+              <path d="M15 18l-6-6 6-6"></path>
+            </svg>
+          </button>
+          <div class="slider-dots"></div>
+          <button class="slider-btn slider-next" aria-label="Suivant">
+            <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
+              <path d="M9 18l6-6-6-6"></path>
+            </svg>
+          </button>
         </div>
       </div>
     </div>
@@ -443,16 +657,22 @@
       </div>
       <div class="faq-list fade-in">
         <details>
-          <summary>Nous n'avons pas d'équipe tech en interne. Ça marche quand même ?</summary>
-          <p><strong>Oui — c'est exactement pour cela que nous existons.</strong> Nous venons du métier (Deloitte, UBS),
-            pas du pur développement. Nous parlons votre langage et formons vos équipes pendant que nous construisons.
-            Aucun prérequis technique requis.</p>
+          <summary>Nous ne sommes pas développeurs — ça marche quand même ?</summary>
+          <p><strong>On est mieux que ça.</strong> On vient du métier (Deloitte, UBS) ET on maîtrise les outils
+            techniques suite à nos formations. C'est cette double compétence qui fait la différence : on comprend vos
+            enjeux métiers, votre workflow avant d'installer quoi que ce soit de compliqué. Aucun prérequis technique de
+            votre côté.</p>
         </details>
         <details>
           <summary>Combien de temps ça prend ?</summary>
-          <p><strong>Un premier agent fonctionnel : 4-8 semaines en co-construction.</strong><br /><br />
-            Pas 6 mois d'étude théorique. Nous construisons dès la première session. Vous voyez des résultats chaque
-            semaine.</p>
+          <p><strong>3 sessions sur environ 3 semaines.</strong> Diagnostic, installation sur site, puis retour et
+            ajustements. Vous êtes opérationnel dès la session 2.</p>
+        </details>
+        <details>
+          <summary>Combien ça coûte ?</summary>
+          <p><strong>Pack standard : 2 000 € HT</strong> (3 sessions, 5-7h de travail effectif). En plus : abonnement
+            Claude Pro ~20 €/mois (ou OpenClaw gratuit + coûts API variables). Suivi : 150 € HT/h. Maintenance : 500 €
+            HT/mois.</p>
         </details>
         <details>
           <summary>Et si nous voulons arrêter de travailler avec vous ?</summary>
@@ -472,7 +692,7 @@
         <p>30 minutes pour identifier ce qui vaut le coup d'automatiser — gratuit, sans engagement</p>
         <a class="btn btn-primary" href="https://calendly.com/bubbleinvest-ai" rel="noopener noreferrer"
           target="_blank">
-          Book a call
+          Mon diagnostic gratuit (30min)
           <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
             <path d="M5 12h14M12 5l7 7-7 7"></path>
           </svg>
@@ -649,6 +869,90 @@
       window.addEventListener('resize', function () {
         if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
       });
+    })();
+  </script>
+
+  <!-- Examples slider -->
+  <script>
+    (function () {
+      'use strict';
+      var wrapper = document.querySelector('.examples-slider-wrapper');
+      if (!wrapper) return;
+      var slider = wrapper.querySelector('.examples-slider');
+      var cards = wrapper.querySelectorAll('.slider-card');
+      var prev = wrapper.querySelector('.slider-prev');
+      var next = wrapper.querySelector('.slider-next');
+      var dotsContainer = wrapper.querySelector('.slider-dots');
+      var current = 0;
+      var autoSlideInterval = null;
+      var resumeTimeout = null;
+
+      cards.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+        dot.addEventListener('click', function () { userGoTo(i); });
+        dotsContainer.appendChild(dot);
+      });
+
+      function scrollTo(index) {
+        current = Math.max(0, Math.min(index, cards.length - 1));
+        slider.classList.add('no-snap');
+        slider.scrollTo({ left: cards[current].offsetLeft, behavior: 'smooth' });
+        updateDots();
+        setTimeout(function () { slider.classList.remove('no-snap'); }, 600);
+      }
+
+      function updateDots() {
+        var dots = dotsContainer.querySelectorAll('.slider-dot');
+        dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+      }
+
+      // User-initiated navigation: pause auto-slide, resume after 10s
+      function userGoTo(index) {
+        stopAutoSlide();
+        scrollTo(index);
+        scheduleResume();
+      }
+
+      // Auto-advance: just scroll, don't pause
+      function autoAdvance() {
+        var nextIndex = (current + 1) % cards.length;
+        scrollTo(nextIndex);
+      }
+
+      function startAutoSlide() {
+        stopAutoSlide();
+        autoSlideInterval = setInterval(autoAdvance, 6000);
+      }
+
+      function stopAutoSlide() {
+        if (autoSlideInterval) { clearInterval(autoSlideInterval); autoSlideInterval = null; }
+        if (resumeTimeout) { clearTimeout(resumeTimeout); resumeTimeout = null; }
+      }
+
+      function scheduleResume() {
+        if (resumeTimeout) clearTimeout(resumeTimeout);
+        resumeTimeout = setTimeout(startAutoSlide, 10000);
+      }
+
+      prev.addEventListener('click', function () { userGoTo(current - 1); });
+      next.addEventListener('click', function () { userGoTo(current + 1); });
+
+      wrapper.addEventListener('mouseenter', function () { stopAutoSlide(); });
+      wrapper.addEventListener('mouseleave', function () { scheduleResume(); });
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var idx = Array.prototype.indexOf.call(cards, entry.target);
+            if (idx !== -1) { current = idx; updateDots(); }
+          }
+        });
+      }, { root: slider, threshold: 0.6 });
+      cards.forEach(function (card) { observer.observe(card); });
+
+      startAutoSlide();
     })();
   </script>
 </body>

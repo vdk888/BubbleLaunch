@@ -1,0 +1,269 @@
+- generic [active] [ref=e1]:
+  - text: → → → → → →
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "Bubble." [ref=e5] [cursor=pointer]:
+        - /url: /en/
+        - img [ref=e6]
+        - text: Bubble.
+      - navigation [ref=e9]:
+        - link "About" [ref=e10] [cursor=pointer]:
+          - /url: /en/about
+        - link "Professionals" [ref=e11] [cursor=pointer]:
+          - /url: /en/professionals
+        - link "Individuals" [ref=e12] [cursor=pointer]:
+          - /url: /en/individuals
+        - link "Blog" [ref=e13] [cursor=pointer]:
+          - /url: /en/blog
+        - generic [ref=e14]:
+          - button "FR" [ref=e15] [cursor=pointer]
+          - generic [ref=e16]: /
+          - button "EN" [ref=e17] [cursor=pointer]
+  - main [ref=e18]:
+    - region "Introduction" [ref=e19]:
+      - generic [ref=e21]:
+        - img [ref=e23]
+        - heading "Bubble." [level=1] [ref=e26]
+        - paragraph [ref=e27]: Pop the bubble. Invest in what matters.
+        - paragraph [ref=e28]: Open-source AI agents. Building the future together. Sharing freely.
+        - generic [ref=e29]:
+          - generic [ref=e30]:
+            - img [ref=e31]
+            - text: Code & Strategies
+          - generic [ref=e33]:
+            - img [ref=e34]
+            - text: Open Source
+          - generic [ref=e36]:
+            - img [ref=e37]
+            - text: Results Included
+        - link "Discover Our Approach" [ref=e40] [cursor=pointer]:
+          - /url: "#contact"
+          - text: Discover Our Approach
+          - img [ref=e41]
+        - generic [ref=e43]:
+          - generic [ref=e44] [cursor=pointer]:
+            - img [ref=e46]
+            - heading "Individuals" [level=3] [ref=e48]
+            - paragraph [ref=e49]: Free content, transparent, no fluff.
+            - generic [ref=e50]:
+              - generic [ref=e51]:
+                - img [ref=e52]
+                - generic [ref=e54]: Code & Strategies
+              - generic [ref=e55]:
+                - img [ref=e56]
+                - generic [ref=e58]: Open Source
+            - link "Explore our content" [ref=e59]:
+              - /url: /en/individuals
+              - text: Explore our content
+              - img [ref=e60]
+          - generic [ref=e62] [cursor=pointer]:
+            - img [ref=e64]
+            - heading "Professionals" [level=3] [ref=e66]
+            - paragraph [ref=e67]: We implement AI in your business.
+            - generic [ref=e68]:
+              - generic [ref=e69]:
+                - img [ref=e70]
+                - generic [ref=e72]: Operational agents in 3 sessions.
+              - generic [ref=e73]:
+                - img [ref=e74]
+                - generic [ref=e77]: Results from the first week.
+            - paragraph [ref=e78]: Wealth advisors, asset managers, SMBs
+            - link "Discuss your project" [ref=e79]:
+              - /url: /en/professionals
+              - text: Discuss your project
+              - img [ref=e80]
+    - region "The problem we solve" [ref=e82]:
+      - generic [ref=e84]:
+        - heading "The Problem" [level=2] [ref=e85]
+        - generic [ref=e86]:
+          - generic [ref=e87]:
+            - heading "You tested ChatGPT… but you're losing more time than you're saving" [level=3] [ref=e88]
+            - paragraph [ref=e89]: Generic tools without context. No integration with your workflow. No ownership.
+          - generic [ref=e90]:
+            - heading "AI \"training\"? Just slides and theory. Zero implementation." [level=3] [ref=e91]
+            - paragraph [ref=e92]: Consultants talk about AI potential. You leave with slides, not tools.
+          - generic [ref=e93]:
+            - heading "Traditional consulting? 3–6 months. €30K+. And you still might not implement it." [level=3] [ref=e94]
+            - paragraph [ref=e95]: Long projects, expensive, and by the time they're done, the tools have evolved.
+        - generic [ref=e96]:
+          - paragraph [ref=e97]:
+            - strong [ref=e98]: You just want to save time. Now.
+          - link "See Our Alternative" [ref=e99] [cursor=pointer]:
+            - /url: /en/professionals
+            - text: See Our Alternative
+            - img [ref=e100]
+    - link "What if AI is not just a bubble?" [ref=e104] [cursor=pointer]:
+      - /url: /en/about
+      - paragraph [ref=e105]: What if AI is not just a bubble?
+    - region "Our Selfware model" [ref=e106]:
+      - generic [ref=e108]:
+        - generic [ref=e109]:
+          - heading "Selfware Model" [level=2] [ref=e110]
+          - paragraph [ref=e111]: We use what we build. Our success depends on their performance.
+          - generic [ref=e112]:
+            - generic [ref=e113]:
+              - generic [ref=e114]: "1"
+              - generic [ref=e115]:
+                - heading "We use it ourselves" [level=4] [ref=e116]
+                - paragraph [ref=e117]: Our own operations run on our agents
+            - generic [ref=e118]:
+              - generic [ref=e119]: "2"
+              - generic [ref=e120]:
+                - heading "Full transparency" [level=4] [ref=e121]
+                - paragraph [ref=e122]: Code. Methodology. Results.
+            - generic [ref=e123]:
+              - generic [ref=e124]: "3"
+              - generic [ref=e125]:
+                - heading "Aligned interests" [level=4] [ref=e126]
+                - paragraph [ref=e127]: We profit when you succeed
+        - generic [ref=e129]:
+          - strong [ref=e131]: Your Data & Processes
+          - generic [ref=e132]: ↓
+          - strong [ref=e134]: Custom Agent
+          - generic [ref=e135]: ↓
+          - strong [ref=e137]: Validation
+          - generic [ref=e138]: ↓
+          - strong [ref=e140]: Operational
+    - region "Trust indicators" [ref=e141]:
+      - generic [ref=e143]:
+        - generic [ref=e144]:
+          - heading "2" [level=4] [ref=e145]
+          - paragraph [ref=e146]:
+            - text: Co-founders
+            - text: Investment & Tech
+        - generic [ref=e147]:
+          - heading "12+" [level=4] [ref=e148]
+          - paragraph [ref=e149]:
+            - text: Years combined
+            - text: Finance & Tech
+        - generic [ref=e150]:
+          - heading "100%" [level=4] [ref=e151]
+          - paragraph [ref=e152]:
+            - text: Transparent
+            - text: Algorithms
+        - generic [ref=e153]:
+          - heading "0%" [level=4] [ref=e154]
+          - paragraph [ref=e155]:
+            - text: Hidden fees
+            - text: On quote only
+    - region "Recent articles" [ref=e156]:
+      - generic [ref=e157]:
+        - generic [ref=e158]:
+          - heading "Build in Public" [level=2] [ref=e159]
+          - heading "Follow our journey" [level=3] [ref=e160]
+        - generic [ref=e161]:
+          - link "Why SaaS No Longer Makes Sense in 2026 Model Why SaaS No Longer Makes Sense in 2026 What we understood by giving up on building an app, and the model we found on the other side" [ref=e162] [cursor=pointer]:
+            - /url: https://bubbleinvest.substack.com/p/pourquoi-le-saas-na-plus-de-sens
+            - img "Why SaaS No Longer Makes Sense in 2026" [ref=e164]
+            - generic [ref=e165]:
+              - generic [ref=e166]: Model
+              - heading "Why SaaS No Longer Makes Sense in 2026" [level=4] [ref=e167]
+              - paragraph [ref=e168]: What we understood by giving up on building an app, and the model we found on the other side
+          - 'link "The Future: Where Are We Headed? AI & Future The Future: Where Are We Headed? And How to Prepare? From ChatGPT (2022) to Computer Use (2025) in 3 years. What awaits us in the next 3 years?" [ref=e169] [cursor=pointer]':
+            - /url: https://bubbleinvest.substack.com/p/le-futur-ou-va-t-on-et-comment-se
+            - 'img "The Future: Where Are We Headed?" [ref=e171]'
+            - generic [ref=e172]:
+              - generic [ref=e173]: AI & Future
+              - 'heading "The Future: Where Are We Headed? And How to Prepare?" [level=4] [ref=e174]'
+              - paragraph [ref=e175]: From ChatGPT (2022) to Computer Use (2025) in 3 years. What awaits us in the next 3 years?
+          - link "What You Give Me When You Give Me Your Time Philosophy What You Give Me When You Give Me Your Time In a world where AI produces everything, human attention becomes the only thing that can't be delegated." [ref=e176] [cursor=pointer]:
+            - /url: https://bubbleinvest.substack.com/p/ce-que-tu-moffres-quand-tu-moffres
+            - img "What You Give Me When You Give Me Your Time" [ref=e178]
+            - generic [ref=e179]:
+              - generic [ref=e180]: Philosophy
+              - heading "What You Give Me When You Give Me Your Time" [level=4] [ref=e181]
+              - paragraph [ref=e182]: In a world where AI produces everything, human attention becomes the only thing that can't be delegated.
+    - region "Contact and newsletter" [ref=e183]:
+      - generic [ref=e184]:
+        - heading "Stay Updated" [level=2] [ref=e185]
+        - paragraph [ref=e186]: Follow our journey. Learn as we build.
+        - link "Join Newsletter" [ref=e188] [cursor=pointer]:
+          - /url: https://bit.ly/3Z9Cncr
+          - text: Join Newsletter
+          - img [ref=e189]
+        - generic [ref=e191]:
+          - heading "Are you a professional?" [level=3] [ref=e192]
+          - paragraph [ref=e193]: Let's discuss your custom AI implementation.
+          - link "Book a Call" [ref=e195] [cursor=pointer]:
+            - /url: https://calendly.com/bubbleinvest-ai
+            - text: Book a Call
+            - img [ref=e196]
+  - contentinfo [ref=e198]:
+    - generic [ref=e199]:
+      - generic [ref=e200]:
+        - generic [ref=e201]:
+          - link "Bubble." [ref=e202] [cursor=pointer]:
+            - /url: /en/
+            - img [ref=e203]
+            - text: Bubble.
+          - paragraph [ref=e206]: The AI era has changed everything. Let's change with it.
+          - generic [ref=e207]:
+            - link "LinkedIn" [ref=e208] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/bubble-invest
+              - img [ref=e209]
+            - link "Instagram" [ref=e210] [cursor=pointer]:
+              - /url: https://instagram.com/behindthebubble.ai
+              - img [ref=e211]
+            - link "Substack" [ref=e212] [cursor=pointer]:
+              - /url: https://bubbleinvest.substack.com
+              - img [ref=e213]
+            - link "GitHub" [ref=e214] [cursor=pointer]:
+              - /url: /en/github
+              - img [ref=e215]
+            - link "X" [ref=e216] [cursor=pointer]:
+              - /url: https://x.com/bubbleinvest
+              - img [ref=e217]
+        - generic [ref=e218]:
+          - heading "Product" [level=4] [ref=e219]
+          - list [ref=e220]:
+            - listitem [ref=e221]:
+              - link "Individuals" [ref=e222] [cursor=pointer]:
+                - /url: /en/individuals
+            - listitem [ref=e223]:
+              - link "Professionals" [ref=e224] [cursor=pointer]:
+                - /url: /en/professionals
+        - generic [ref=e225]:
+          - heading "Resources" [level=4] [ref=e226]
+          - list [ref=e227]:
+            - listitem [ref=e228]:
+              - link "Blog" [ref=e229] [cursor=pointer]:
+                - /url: /en/blog
+            - listitem [ref=e230]:
+              - link "About" [ref=e231] [cursor=pointer]:
+                - /url: /en/about
+            - listitem [ref=e232]:
+              - link "Newsletter" [ref=e233] [cursor=pointer]:
+                - /url: https://bubbleinvest.substack.com
+            - listitem [ref=e234]:
+              - link "Contact us" [ref=e235] [cursor=pointer]:
+                - /url: https://calendly.com/bubbleinvest-ai
+        - generic [ref=e236]:
+          - heading "Legal" [level=4] [ref=e237]
+          - list [ref=e238]:
+            - listitem [ref=e239]:
+              - link "Legal Notice" [ref=e240] [cursor=pointer]:
+                - /url: /en/legal-notice
+            - listitem [ref=e241]:
+              - link "Privacy" [ref=e242] [cursor=pointer]:
+                - /url: /en/privacy
+      - paragraph [ref=e244]: © 2026 Bubble Invest. Transparent by design.
+  - generic:
+    - generic:
+      - generic:
+        - img
+        - generic:
+          - generic: Bubble Assistant
+      - generic:
+        - button: −
+        - button: ✕
+    - log
+    - generic:
+      - textbox:
+        - /placeholder: Ask your questions...
+      - button:
+        - img
+  - generic [ref=e246]:
+    - textbox "Ask your question" [ref=e247]:
+      - /placeholder: Ask me anything...
+    - button "Send" [ref=e248] [cursor=pointer]:
+      - img [ref=e249]

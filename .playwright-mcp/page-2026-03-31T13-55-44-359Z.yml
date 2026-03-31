@@ -1,0 +1,327 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "Bubble." [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img [ref=e6]
+        - text: Bubble.
+      - navigation [ref=e9]:
+        - link "À Propos" [ref=e10] [cursor=pointer]:
+          - /url: /a-propos
+        - link "Professionnels" [ref=e11] [cursor=pointer]:
+          - /url: /professionnels
+        - link "Particuliers" [ref=e12] [cursor=pointer]:
+          - /url: /particuliers
+        - link "Blog" [ref=e13] [cursor=pointer]:
+          - /url: /blog
+        - generic [ref=e14]:
+          - button "FR" [ref=e15] [cursor=pointer]
+          - generic [ref=e16]: /
+          - button "EN" [ref=e17] [cursor=pointer]
+  - generic [ref=e19]:
+    - paragraph [ref=e20]: Mieux que des conseils — des solutions.
+    - heading "Devenez le plus rapide de votre secteur" [level=1] [ref=e21]
+    - paragraph [ref=e22]: Pas de formation à rallonge. On installe des agents IA directement sur votre poste. Opérationnel en 3 sessions.
+    - generic [ref=e23]:
+      - link "Mon diagnostic gratuit (30min)" [ref=e24] [cursor=pointer]:
+        - /url: https://calendly.com/bubbleinvest-ai
+      - link "Voir des cas d'usage" [ref=e25] [cursor=pointer]:
+        - /url: "#examples"
+  - generic [ref=e27]:
+    - generic [ref=e28]:
+      - heading "Nos Services" [level=2] [ref=e29]
+      - heading "Installation directe. Autonomie complète." [level=3] [ref=e30]
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - img [ref=e34]
+        - heading "Quick Start Pack — 2 000 € HT" [level=4] [ref=e37]
+        - paragraph [ref=e38]:
+          - text: 3 sessions. Installation directe. Autonomie complète.
+          - text: On installe Claude Code ou OpenClaw sur votre poste avec des agents pré-packagés adaptés à votre métier. Vous repartez opérationnel.
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - img [ref=e41]
+            - generic [ref=e44]: Diagnostic + 2-3 quick wins identifiés
+          - generic [ref=e45]:
+            - img [ref=e46]
+            - generic [ref=e48]: Installation sur site, sur vos vrais documents
+          - generic [ref=e49]:
+            - img [ref=e50]
+            - generic [ref=e53]: Doc de référence + roadmap incluse
+      - generic [ref=e54]:
+        - img [ref=e56]
+        - heading "Compléments à la carte" [level=4] [ref=e59]
+        - paragraph [ref=e60]: Besoin de plus ? On s'adapte à votre rythme.
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - img [ref=e63]
+            - generic [ref=e66]: "Suivi / debug : 150 € HT/h"
+          - generic [ref=e67]:
+            - img [ref=e68]
+            - generic [ref=e70]: "Maintenance mensuelle : 500 € HT/mois"
+          - generic [ref=e71]:
+            - img [ref=e72]
+            - generic [ref=e75]: "Agent sur-mesure complexe : sur devis"
+  - generic [ref=e77]:
+    - generic [ref=e78]:
+      - heading "3 Sessions" [level=2] [ref=e79]
+      - heading "Diagnostic → Installation → Autonomie" [level=3] [ref=e80]
+    - generic [ref=e81]:
+      - generic [ref=e82]:
+        - generic [ref=e83]: "01"
+        - heading "Diagnostic & Préparation (1-2h, visio)" [level=4] [ref=e84]
+        - paragraph [ref=e85]: On comprend votre workflow et identifie 2-3 quick wins à fort ROI. On prépare les agents en amont.
+      - generic [ref=e86]:
+        - generic [ref=e87]: "02"
+        - heading "Installation & Prise en main (2-3h, sur site)" [level=4] [ref=e88]
+        - paragraph [ref=e89]: Installation de Claude Code ou OpenClaw sur votre poste. Démo live sur vos vrais documents. Vous repartez opérationnel.
+      - generic [ref=e90]:
+        - generic [ref=e91]: "03"
+        - heading "Retour & Ajustements (1-2h, visio, 1-2 sem. après)" [level=4] [ref=e92]
+        - paragraph [ref=e93]: Retour sur l'usage réel, ajustements des agents, tips avancés. Doc finale pour être 100% autonome.
+    - paragraph [ref=e95]:
+      - strong [ref=e96]: Pas de formation à rallonge.
+      - text: Des outils installés sur votre poste, prêts à l'emploi pour apprendre en faisant.
+    - generic [ref=e97]:
+      - heading "Ce que vous repartez avec" [level=4] [ref=e98]
+      - generic [ref=e99]:
+        - generic [ref=e100]:
+          - img [ref=e101]
+          - generic [ref=e104]: Claude Code ou OpenClaw installé et fonctionnel
+        - generic [ref=e105]:
+          - img [ref=e106]
+          - generic [ref=e109]: 2-3 agents opérationnels adaptés à votre métier
+        - generic [ref=e110]:
+          - img [ref=e111]
+          - generic [ref=e114]: Doc "Agents pour [votre métier]" avec vos cas concrets
+        - generic [ref=e115]:
+          - img [ref=e116]
+          - generic [ref=e119]: "Roadmap simple : 3 actions pour demain"
+        - generic [ref=e120]:
+          - img [ref=e121]
+          - generic [ref=e124]: Liste des bonnes pratiques
+  - generic [ref=e126]:
+    - generic [ref=e127]:
+      - heading "Exemples concrets" [level=2] [ref=e128]
+      - heading "Ce que nous avons déployé" [level=3] [ref=e129]
+    - generic [ref=e130]:
+      - generic [ref=e131]:
+        - generic [ref=e132]:
+          - generic [ref=e133]: Gestion d'actifs • Solution SaaS sur devis
+          - heading "Veille & Reporting Intelligence" [level=4] [ref=e134]
+          - paragraph [ref=e135]:
+            - text: Un gérant multi-mandats peinait à suivre l'actualité de plus de 80 positions tout en fournissant un reporting personnalisé à chaque client.
+            - strong [ref=e136]: "Solution :"
+            - text: "Deux agents interconnectés : le premier scanne 50+ sources chaque matin et génère un brief par position, le second calcule les métriques en temps réel (sharpe, volatilité, drawdown, scoring ESG)."
+            - strong [ref=e137]: "Résultat :"
+            - text: 3h gagnées chaque matin • Reporting client instantané au lieu de 2 jours • +40% de couverture sur la détection des risques
+        - generic [ref=e138]:
+          - generic [ref=e139]: Architecte • Quick Start Pack
+          - heading "Agent de Veille Réglementaire" [level=4] [ref=e140]
+          - paragraph [ref=e141]:
+            - text: Un cabinet d'architecture gérait 15 à 20 projets en parallèle. La veille réglementaire (urbanisme, sécurité, environnement) était faite à la main et causait des retards de conformité.
+            - strong [ref=e142]: "Solution :"
+            - text: Un agent qui scanne quotidiennement les mises à jour réglementaires par projet et localisation, envoie des alertes contextualisées et produit une synthèse mensuelle par dossier.
+            - strong [ref=e143]: "Résultat :"
+            - text: Zéro retard de conformité depuis le déploiement • Temps de veille divisé par 5 • Plus rien ne passe inaperçu
+        - generic [ref=e144]:
+          - generic [ref=e145]: Analyse Financière • Quick Start Pack
+          - heading "Agent de Rédaction Notes & Research" [level=4] [ref=e146]
+          - paragraph [ref=e147]:
+            - text: Une équipe d'analyse recevait plus de 200 newsletters et rapports par jour. La synthèse manuelle pour les notes de crédit prenait 2 à 3 jours par semaine.
+            - strong [ref=e148]: "Solution :"
+            - text: Un agent qui lit automatiquement les sources par thème et secteur, extrait les points clés et génère des brouillons de notes structurés. Il alerte aussi si une position du portefeuille est mentionnée négativement.
+            - strong [ref=e149]: "Résultat :"
+            - text: −70% sur le temps de rédaction • Couverture complète des sources • L'équipe se concentre sur l'analyse qualitative plutôt que la collecte d'information
+        - generic [ref=e150]:
+          - generic [ref=e151]: Agence digitale • Solution SaaS sur devis
+          - heading "Équipe d'Agents Social Media" [level=4] [ref=e152]
+          - paragraph [ref=e153]:
+            - text: Une agence gérait manuellement la présence de ses clients sur 5 réseaux sociaux. Création de contenu, veille tendances et publication prenaient 3 jours par semaine.
+            - strong [ref=e154]: "Solution :"
+            - text: "Une équipe de sous-agents orchestrés : un agent LinkedIn (articles + posts), un agent Instagram (visuels + reels), un agent TikTok (trends + scripts), un agent X/Twitter (threads + veille), et un agent Substack (newsletters). Un agent superviseur coordonne la ligne éditoriale et scanne les tendances."
+            - strong [ref=e155]: "Résultat :"
+            - text: Publication automatique sur 5 plateformes • Temps de création divisé par 4 • Couverture tendances en temps réel
+        - generic [ref=e156]:
+          - generic [ref=e157]: PME Tech • Quick Start Pack
+          - heading "Agent de Business Development" [level=4] [ref=e158]
+          - paragraph [ref=e159]:
+            - text: Une PME de 20 personnes passait 2 jours par semaine à chercher des prospects qualifiés manuellement sur LinkedIn, les annuaires sectoriels et les appels d'offres publics.
+            - strong [ref=e160]: "Solution :"
+            - text: Un agent qui scanne quotidiennement les sources de leads (LinkedIn Sales Navigator, appels d'offres, actualités sectorielles), qualifie les prospects selon des critères définis, et génère des messages de prospection personnalisés.
+            - strong [ref=e161]: "Résultat :"
+            - text: +200% de leads qualifiés par mois • Temps de prospection divisé par 5 • Messages personnalisés à l'échelle
+      - generic [ref=e162]:
+        - button "Précédent" [ref=e163] [cursor=pointer]:
+          - img [ref=e164]
+        - generic [ref=e166]:
+          - button "Slide 1" [ref=e167] [cursor=pointer]
+          - button "Slide 2" [ref=e168] [cursor=pointer]
+          - button "Slide 3" [ref=e169] [cursor=pointer]
+          - button "Slide 4" [ref=e170] [cursor=pointer]
+          - button "Slide 5" [ref=e171] [cursor=pointer]
+        - button "Suivant" [ref=e172] [cursor=pointer]:
+          - img [ref=e173]
+  - generic [ref=e176]:
+    - generic [ref=e177]:
+      - heading "Notre Différence" [level=2] [ref=e178]
+      - heading "Pourquoi travailler avec nous" [level=3] [ref=e179]
+    - generic [ref=e180]:
+      - paragraph [ref=e181]: "Après des années en cabinet de conseil et gestion d'actifs, nous avons observé de nombreux problèmes : des engagements à six chiffres qui ne mènent nulle part, des consultants qui disparaissent après leur rapport, des promesses rarement tenues."
+      - paragraph [ref=e182]: "Chez Bubble Invest, nous avons choisi de faire les choses différemment : parier sur l'honnêteté et la volonté d'aider — quitte à refuser un projet."
+      - generic [ref=e183]:
+        - heading "Triple expertise rare" [level=4] [ref=e184]
+        - generic [ref=e185]:
+          - generic [ref=e186]:
+            - heading "Finance" [level=5] [ref=e187]
+            - paragraph [ref=e188]: Expertise native des enjeux réglementaires, risques, workflows métiers
+          - generic [ref=e189]:
+            - heading "Tech" [level=5] [ref=e190]
+            - paragraph [ref=e191]: Compétences full stack, stack à jour, architectures cloud-native
+          - generic [ref=e192]:
+            - heading "AI" [level=5] [ref=e193]
+            - paragraph [ref=e194]: Maîtrise opérationnelle des derniers modèles, veille continue
+  - generic [ref=e196]:
+    - generic [ref=e197]:
+      - heading "Ils nous font confiance" [level=2] [ref=e198]
+      - heading "Ce que disent nos premiers clients" [level=3] [ref=e199]
+    - generic [ref=e200]:
+      - generic [ref=e201]:
+        - generic [ref=e202]:
+          - img [ref=e203]
+          - img [ref=e204]
+          - img [ref=e205]
+          - img [ref=e206]
+          - img [ref=e207]
+        - paragraph [ref=e208]: "\"Nous avons commencé par un diagnostic gratuit. 6 semaines plus tard, notre agent de reporting fonctionnait. Et surtout : je comprends ce qu'il fait, je peux le faire évoluer moi-même.\""
+        - generic [ref=e209]:
+          - generic [ref=e210]: MT
+          - generic [ref=e211]:
+            - heading "Marc T." [level=5] [ref=e212]
+            - paragraph [ref=e213]: CGP indépendant
+      - generic [ref=e214]:
+        - generic [ref=e215]:
+          - img [ref=e216]
+          - img [ref=e217]
+          - img [ref=e218]
+          - img [ref=e219]
+          - img [ref=e220]
+        - paragraph [ref=e221]: "\"J'avais peur de créer une dépendance. Au contraire, la documentation était si claire que mon équipe a pris le relais sans aucun problème après 2 mois.\""
+        - generic [ref=e222]:
+          - generic [ref=e223]: SL
+          - generic [ref=e224]:
+            - heading "Sophie L." [level=5] [ref=e225]
+            - paragraph [ref=e226]: Directrice PME
+      - generic [ref=e227]:
+        - generic [ref=e228]:
+          - img [ref=e229]
+          - img [ref=e230]
+          - img [ref=e231]
+          - img [ref=e232]
+          - img [ref=e233]
+        - paragraph [ref=e234]: "\"Ce qui m'a convaincu : ils sont honnêtes sur ce qui ne fonctionne pas. Quand un outil n'était pas adapté, ils me l'ont dit. Ce sont pas des vendeurs de rêves.\""
+        - generic [ref=e235]:
+          - generic [ref=e236]: PD
+          - generic [ref=e237]:
+            - heading "Pierre D." [level=5] [ref=e238]
+            - paragraph [ref=e239]: Entrepreneur
+  - generic [ref=e241]:
+    - generic [ref=e242]:
+      - heading "Questions fréquentes" [level=2] [ref=e243]
+      - heading "Vos questions, nos réponses" [level=3] [ref=e244]
+    - generic [ref=e245]:
+      - group [ref=e246]:
+        - generic "Nous n'avons pas d'équipe tech en interne. Ça marche quand même ? +" [ref=e247] [cursor=pointer]
+      - group [ref=e248]:
+        - generic "Combien de temps ça prend ? +" [ref=e249] [cursor=pointer]
+      - group [ref=e250]:
+        - generic "Combien ça coûte ? +" [ref=e251] [cursor=pointer]
+      - group [ref=e252]:
+        - generic "Et si nous voulons arrêter de travailler avec vous ? +" [ref=e253] [cursor=pointer]
+  - generic [ref=e256]:
+    - generic [ref=e257]: Premier contact
+    - heading "Discutons de votre projet" [level=2] [ref=e258]
+    - paragraph [ref=e259]: 30 minutes pour identifier ce qui vaut le coup d'automatiser — gratuit, sans engagement
+    - link "Mon diagnostic gratuit (30min)" [ref=e260] [cursor=pointer]:
+      - /url: https://calendly.com/bubbleinvest-ai
+      - text: Mon diagnostic gratuit (30min)
+      - img [ref=e261]
+  - generic:
+    - generic:
+      - generic:
+        - img
+        - generic:
+          - generic: Assistant Bubble
+      - generic:
+        - button: −
+        - button: ✕
+    - log
+    - generic:
+      - textbox:
+        - /placeholder: Posez vos questions...
+      - button:
+        - img
+  - generic [ref=e264]:
+    - textbox "Posez votre question" [ref=e265]:
+      - /placeholder: Pose-moi n'importe quelle question...
+    - button "Envoyer" [ref=e266] [cursor=pointer]:
+      - img [ref=e267]
+  - contentinfo [ref=e269]:
+    - generic [ref=e270]:
+      - generic [ref=e271]:
+        - generic [ref=e272]:
+          - link "Bubble." [ref=e273] [cursor=pointer]:
+            - /url: /
+            - img [ref=e274]
+            - text: Bubble.
+          - paragraph [ref=e277]: L'ère de l'IA a tout changé. Changez avec elle.
+          - generic [ref=e278]:
+            - link "LinkedIn" [ref=e279] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/bubble-invest
+              - img [ref=e280]
+            - link "Instagram" [ref=e281] [cursor=pointer]:
+              - /url: https://instagram.com/behindthebubble.ai
+              - img [ref=e282]
+            - link "Substack" [ref=e283] [cursor=pointer]:
+              - /url: https://bubbleinvest.substack.com
+              - img [ref=e284]
+            - link "GitHub" [ref=e285] [cursor=pointer]:
+              - /url: /github
+              - img [ref=e286]
+            - link "X" [ref=e287] [cursor=pointer]:
+              - /url: https://x.com/bubbleinvest
+              - img [ref=e288]
+        - generic [ref=e289]:
+          - heading "Produit" [level=4] [ref=e290]
+          - list [ref=e291]:
+            - listitem [ref=e292]:
+              - link "Particuliers" [ref=e293] [cursor=pointer]:
+                - /url: /particuliers
+            - listitem [ref=e294]:
+              - link "Professionnels" [ref=e295] [cursor=pointer]:
+                - /url: /professionnels
+        - generic [ref=e296]:
+          - heading "Ressources" [level=4] [ref=e297]
+          - list [ref=e298]:
+            - listitem [ref=e299]:
+              - link "Blog" [ref=e300] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e301]:
+              - link "À Propos" [ref=e302] [cursor=pointer]:
+                - /url: /a-propos
+            - listitem [ref=e303]:
+              - link "Newsletter" [ref=e304] [cursor=pointer]:
+                - /url: https://bubbleinvest.substack.com
+            - listitem [ref=e305]:
+              - link "Nous contacter" [ref=e306] [cursor=pointer]:
+                - /url: https://calendly.com/bubbleinvest-ai
+        - generic [ref=e307]:
+          - heading "Légal" [level=4] [ref=e308]
+          - list [ref=e309]:
+            - listitem [ref=e310]:
+              - link "Mentions légales" [ref=e311] [cursor=pointer]:
+                - /url: /mentions-legales
+            - listitem [ref=e312]:
+              - link "Confidentialité" [ref=e313] [cursor=pointer]:
+                - /url: /privacy
+      - paragraph [ref=e315]: © 2026 Bubble Invest — Transparent by design.
