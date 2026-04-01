@@ -26,7 +26,7 @@ This is the **marketing website** for **Bubble Invest**, a fintech startup. This
 **What Makes Bubble Different:**
 
 #### **B2C Activity - Free Content as Marketing**
-- **Investment Agent Proof of Concept**: We built an automated investment agent for our own use. We share it open-source, transparently showing what it does well, its limits, and how it's built. This is NOT a paid product—it's our showcase.
+- **Investment Agent Proof of Concept**: We built an automated investment agent for our own use. We document it publicly ("build in public") — sharing methods, results, insights, limits, and how it's built. The code itself is private. This is NOT a paid product—it's our showcase.
 - **Educational Content**: Tutorials, demos, build-in-public resources on AI agents (Claude Code, Open Claw, etc.), extending beyond just investment to general AI automation.
 - **Blog & Resources**: Free knowledge sharing on automation, AI agents, and technology trends.
 - **No Forced Monetization**: We don't artificially monetize content that's becoming commoditized. Our value lies in context, curation, and honesty.
