@@ -17,10 +17,10 @@ const router = express.Router();
  */
 
 const SHOP_TARGETS = {
-  articles: { base: "https://bubble-articles.netlify.app", path: "/" },
-  sentinel: { base: "https://bubble-sentinel.netlify.app", path: "/sentinel.html" },
-  invest: { base: "https://bubble-sentinel.netlify.app", path: "/invest.html" },
-  community: { base: "https://bubble-sentinel.netlify.app", path: "/community.html" },
+  articles: { base: "https://bubble-articles.netlify.app", path: "/", pathEn: "/" },
+  sentinel: { base: "https://bubble-sentinel.netlify.app", path: "/sentinel.html", pathEn: "/sentinel-en.html" },
+  invest: { base: "https://bubble-sentinel.netlify.app", path: "/invest.html", pathEn: "/invest-en.html" },
+  community: { base: "https://bubble-sentinel.netlify.app", path: "/community.html", pathEn: "/community-en.html" },
 };
 
 /**
@@ -152,7 +152,10 @@ function handleShopProxy(req, res) {
   }
 
   // Get the subpath after /shop/:site, or use the configured default path
-  const subPath = req.params[0] ? "/" + req.params[0] : config.path;
+  // Support ?lang=en for English version
+  const isEnglish = req.query.lang === "en";
+  const defaultPath = isEnglish && config.pathEn ? config.pathEn : config.path;
+  const subPath = req.params[0] ? "/" + req.params[0] : defaultPath;
   proxyToNetlify(config.base, subPath, req, res);
 }
 
