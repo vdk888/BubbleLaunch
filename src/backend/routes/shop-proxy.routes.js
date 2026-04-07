@@ -75,6 +75,14 @@ function proxyToNetlify(targetBase, subPath, req, res) {
         res.setHeader("Cache-Control", proxyRes.headers["cache-control"]);
       }
 
+      // For HTML pages from Netlify, override CSP to allow inline onclick handlers
+      if (contentType.includes("text/html")) {
+        res.setHeader(
+          "Content-Security-Policy",
+          "default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https:; img-src 'self' data: https: blob:; connect-src 'self' https:; frame-src 'self' https:; object-src 'none'"
+        );
+      }
+
       // For HTML, collect body and rewrite links
       if (contentType.includes("text/html")) {
         let body = "";
