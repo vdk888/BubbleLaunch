@@ -10,6 +10,7 @@ const portfolioRoutes = require("./portfolio.routes");
 const arenaRoutes = require("./arena.routes");
 const businessContactRoutes = require("./business-contact.routes");
 const pagesRoutes = require("./pages.routes");
+const shopProxyRoutes = require("./shop-proxy.routes");
 const sitemapRoutes = require("./sitemap.routes");
 
 /**
@@ -28,6 +29,11 @@ router.use("/api/knowledge-garden", knowledgeGardenRoutes);
 router.use("/api/portfolio", portfolioRoutes);
 router.use("/api/arena", arenaRoutes);
 router.use("/api/business-contact", businessContactRoutes);
+
+/**
+ * Shop Proxy Routes (Netlify → bubbleinvest.org/shop/*)
+ */
+router.use("/shop", shopProxyRoutes);
 
 /**
  * Page Routes (HTML serving)

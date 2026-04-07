@@ -181,6 +181,136 @@
   gap: 0.75rem;
 }
 
+/* === CARD AS LINK === */
+a.card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+a.card:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* === CARD BADGES === */
+.card-badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+}
+
+.card {
+  position: relative;
+}
+
+.badge-available {
+  background: rgba(39, 174, 96, 0.12);
+  color: #1e8449;
+}
+
+.badge-soon {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--muted);
+}
+
+/* === CARD PRICE === */
+.card-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 0.75rem;
+}
+
+.card-price span {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+/* === EXPANDABLE CARD === */
+.card-expandable {
+  cursor: default;
+}
+
+.card-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #667eea;
+  cursor: pointer;
+  transition: gap 0.3s ease;
+}
+
+.card-expand-btn:hover {
+  gap: 0.75rem;
+}
+
+.card-expand-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.card-expanded .card-expand-btn svg {
+  transform: rotate(180deg);
+}
+
+/* === CARD DETAILS (collapsible zone) === */
+.card-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  margin-top: 0;
+}
+
+.card-details[aria-hidden="false"] {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.card-details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.card-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.card-detail svg {
+  color: #667eea;
+  margin-bottom: 0.25rem;
+}
+
+.card-detail h5 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.card-detail p {
+  font-size: 0.85rem;
+  color: var(--secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
 /* === BLOG PREVIEW === */
 .blog-preview {
   padding: 5rem 0;
