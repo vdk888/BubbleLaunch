@@ -50,3 +50,4 @@ temp/
 # Session store (SQLite)
 sessions/
 *.db
+.env.dev
