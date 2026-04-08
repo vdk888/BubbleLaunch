@@ -1,47 +1,44 @@
-# Individuals — B2C Context (Free Content & Showcase)
+# Individuals — B2C Context (Agents, Shop & Free Content)
 
 ## Our Approach
-Our B2C activity is our marketing, not our product. We share our AI agent expertise freely — the investment agent is our public proof of concept, and we extend this to tutorials, demos, and educational content about AI agents in general.
+We build AI agents, use them ourselves, and share them. Our B2C activity includes both free content (blog, newsletter) and paid products (agents, research reports, premium articles).
 
-## What We Offer (Free)
-- **Investment Agent POC**: Our AI agent manages our own portfolio. We share everything — strategy, code, results, mistakes. It's our showcase, not a paid product.
-- **AI Agent Tutorials**: How to install and configure agents (OpenClaw, etc.) for any use case — productivity, monitoring, personal automation
-- **Build in Public**: Decisions, trade-offs, learnings shared in real time via blog, newsletter, and social media
-- **Demystification Content**: Separating signal from noise — showing what really works in AI, explaining what others keep secret
-- **Philosophical Essays**: Reflections on AI's impact on the human condition, work, value, attention
+## What We Offer
+
+### Shop (bubbleinvest.org/shop)
+- **Bubble Sentinel** (available, 29€/mo): Security audit agent for Claude Code — 5 modules, tampering detection, secret scanning
+- **Portfolio Manager** (coming soon): AI investment agent managing our portfolio for 1 year — risk parity, regime detection, auto-rebalancing
+- **Community Manager** (coming soon): Social media automation — LinkedIn, Instagram, X with human validation
+- **Research Reports** (7.99-12.99€): In-depth stock analysis with scoring, investable theses
+- **Premium Articles** (2.99-4.99€, coming soon): Exclusive deep-dive analysis
+
+### Free Content
+- **Blog**: AI, investing, economics, philosophy — everything we learn, shared publicly
+- **Newsletter**: Regular insights via Substack (free tier + paid early access at 8$/mo)
+- **Build in Public**: Decisions, results, mistakes — all documented without filter
+- **Philosophical Essays**: AI's impact on work, value, the human condition
 
 ## Content Pillars
 1. **Build in Public** — What we tested, deployed, learned this week
-2. **Demystify AI & Investment** — Separate signal from noise, show what really works
-3. **Business Use Cases** — How we automated X for a CGP, an architect, an SME
-4. **Agents as Showcase** — Public demos: problem → agent → result
-5. **Philosophical Essays** — Deep reflections on AI's impact on humanity, work, value, attention
+2. **Demystify AI & Investment** — Separate signal from noise
+3. **Agents as Products** — Each agent has its own page with features, pricing, FAQ, installation guide
+4. **Philosophical Essays** — Deep reflections on AI's impact
 
 ## Channels
 - **LinkedIn** (primary) — Professional content on applied AI
-- **YouTube** — Tutorials, demos, build-in-public content
-- **Substack Newsletter** — Weekly insights and discoveries
-- **Instagram** (@behindthebubble.ai) — Behind-the-scenes, visual content
-- **GitHub** — Open-source configs, code, agents
-- **X/Twitter** (@bubbleinvest) — AI news, quick takes, threads
+- **Substack Newsletter** — Regular insights and analysis
+- **Instagram** (@behindthebubble.ai) — Behind-the-scenes, carousels
+- **X/Twitter** (@bubbleinvest) — AI news, quick takes
+- **GitHub** — Open-source configs, agent ecosystem
 
 ## The B2C → B2B Funnel
-Every piece of free content published, every agent shared, every free resource proves our expertise and naturally attracts B2B prospects (SMEs, CGPs, independents) who want the same thing for their business.
-
-## What We DON'T Do (B2C)
-- We don't sell a product to individuals — no paid subscription, no SaaS
-- We don't give personalized financial advice
-- We don't artificially monetize free content
-- The only potential future monetization: a premium community (structured monitoring, agent configs, member support) — but that's a bonus, not the core model
+Free content proves expertise → agents in shop build credibility → research reports show depth → B2B prospects want the same for their business → book a call.
 
 ## CTA for Individuals
-- Follow our journey (social media, newsletter)
-- "Want this for your business?" → Book a call (B2B pipeline)
-- Read our latest blog articles and tutorials
+- Discover our agents → /particuliers#agents or /shop
+- Research reports → /shop/articles
+- Free newsletter → bit.ly/3Z9Cncr
+- "Want this for your business?" → Book a call (B2B)
 
-## STRICT RULES for Individuals Chatbot:
-- NEVER propose a live demo, POC walkthrough, or "let me show you how the agent works"
-- NEVER explain technical implementation details unless the user specifically asks
-- Instead, ALWAYS redirect to our published content: blog articles, newsletter, YouTube tutorials, GitHub repos
-- The content IS the showcase — suggest specific articles or content pillars, not interactive demos
-- When asked "how does the agent work?": suggest reading our blog posts about it, don't try to explain the architecture
+## Prerequisites for Agents
+All agents require Claude Code + GitHub account + Claude Pro subscription (~20€/mo). Installation in 2 commands, auto-updates.
