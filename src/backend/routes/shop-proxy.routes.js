@@ -21,6 +21,7 @@ const SHOP_TARGETS = {
   sentinel: { base: "https://bubble-sentinel.netlify.app", path: "/sentinel.html", pathEn: "/sentinel-en.html" },
   invest: { base: "https://bubble-sentinel.netlify.app", path: "/invest.html", pathEn: "/invest-en.html" },
   community: { base: "https://bubble-sentinel.netlify.app", path: "/community.html", pathEn: "/community-en.html" },
+  "local-tts": { base: "https://bubble-sentinel.netlify.app", path: "/local-tts.html", pathEn: "/local-tts.html" },
 };
 
 /**
@@ -122,6 +123,7 @@ function proxyToNetlify(targetBase, subPath, req, res) {
           body = body.replace(/href=["']\/sentinel\.html["']/g, 'href="/shop/sentinel"');
           body = body.replace(/href=["']\/invest\.html["']/g, 'href="/shop/invest"');
           body = body.replace(/href=["']\/community\.html["']/g, 'href="/shop/community"');
+          body = body.replace(/href=["']\/local-tts\.html["']/g, 'href="/shop/local-tts"');
 
           res.send(body);
         });
