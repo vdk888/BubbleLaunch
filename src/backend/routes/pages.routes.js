@@ -218,6 +218,9 @@ router.get("/en/blog", (req, res) => {
   res.sendFile(path.join(enPagesDir, "blog.html"));
 });
 
+// /en/shop → redirect to /shop (single bilingual shop landing for now)
+router.get("/en/shop", (req, res) => res.redirect(302, "/shop"));
+
 router.get("/en/blog/:slug", async (req, res) => {
   try {
     const { slug } = req.params;
