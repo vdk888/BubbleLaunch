@@ -23,6 +23,7 @@ const SHOP_TARGETS = {
   community: { base: "https://bubble-sentinel.netlify.app", path: "/community.html", pathEn: "/community-en.html" },
   "local-tts": { base: "https://bubble-sentinel.netlify.app", path: "/local-tts.html", pathEn: "/local-tts.html" },
   "boycott-filter": { base: "https://bubble-sentinel.netlify.app", path: "/boycott-filter.html", pathEn: "/boycott-filter.html" },
+  "music-dna": { base: "https://music-dna-app.netlify.app", path: "/", pathEn: "/" },
 };
 
 /**
@@ -142,9 +143,10 @@ function proxyToNetlify(targetBase, subPath, req, res) {
   });
 }
 
-// /shop → redirect to /shop/articles (default)
+// /shop → serve the global shop landing page (lists all agents, tools, articles)
 router.get("/", (req, res) => {
-  res.redirect(302, "/shop/articles");
+  const path = require("path");
+  res.sendFile(path.join(__dirname, "../../frontend/pages/shop.html"));
 });
 
 // /shop/:site → proxy root of that Netlify site
