@@ -126,5 +126,5 @@ A: That's the goal! We document everything — code, prompts, processes. From da
 - Website (EN): https://bubbleinvest.org/en/professionals
 - Blog: https://bubbleinvest.org/blog
 - Newsletter: https://bubbleinvest.substack.com
-- Subscribe: https://bit.ly/3Z9Cncr
+- Subscribe: https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105
 - About us: https://bubbleinvest.org/a-propos

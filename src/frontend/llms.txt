@@ -53,7 +53,7 @@ We install AI agents (Claude Code) directly on your machine. Quick Start Pack: 2
 - Shop: https://bubbleinvest.org/shop/articles
 - Agents: https://bubbleinvest.org/particuliers#agents
 - Blog: https://bubbleinvest.org/blog
-- Newsletter (free): https://bit.ly/3Z9Cncr
+- Newsletter (free): https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105
 - Substack: https://bubbleinvest.substack.com
 - Professional services: https://bubbleinvest.org/professionnels
 - Contact: https://calendly.com/bubbleinvest-ai
