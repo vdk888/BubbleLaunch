@@ -1696,27 +1696,11 @@
   margin-top: 2rem;
   margin-bottom: 2.5rem;
   flex-wrap: wrap;
-  align-items: stretch; /* equal-height buttons by default */
+  align-items: center;
 }
 
 .hero-cta-group .btn {
   white-space: nowrap;
-  /* Normalize button geometry across primary/secondary in the dual-CTA layout */
-  min-height: 56px;
-  padding-top: 0;
-  padding-bottom: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  line-height: 1;
-}
-
-/* Reset legacy margin-bottom on hero-main-cta when it sits inside the dual-CTA group.
-   Original .hero-main-cta CSS has margin-bottom: 3rem (set when CTA was standalone)
-   which broke vertical alignment in flex row layout. */
-.hero-cta-group .hero-main-cta {
-  margin-bottom: 0;
 }
 
 .hero-secondary-cta {
@@ -1768,21 +1752,6 @@
   flex-shrink: 0;
   color: var(--purple, #667eea);
   opacity: 0.85;
-}
-
-/* Anthropic wordmark next to "Certifications" — Sprint 1 (Jade msg 4858) */
-.trust-anthropic-logo {
-  height: 18px;
-  width: 128px; /* room for Inter "Anthropic" rendered text in viewBox 320×40 */
-  margin-left: 0.3rem;
-  vertical-align: middle;
-  display: inline-block;
-  flex-shrink: 0;
-  overflow: visible;
-}
-
-.trust-item-anthropic {
-  gap: 0.45rem;
 }
 
 /* Mobile responsive */
