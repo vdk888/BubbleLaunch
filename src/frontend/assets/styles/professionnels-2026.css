@@ -1191,3 +1191,54 @@
     font-size: 0.9rem;
   }
 }
+
+/* ====================================================
+   SPRINT 1 — Hero trust block (shared with homepage)
+   Added: 2026-05-12 (sprint-1-calendly-b2b)
+   ==================================================== */
+.hero-trust-block {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  max-width: 760px;
+}
+
+.hero-trust-block .trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.92rem;
+  color: var(--secondary, #555);
+  line-height: 1.35;
+}
+
+.hero-trust-block .trust-item strong {
+  color: var(--primary, #111);
+  font-weight: 600;
+}
+
+.hero-trust-block .trust-icon {
+  flex-shrink: 0;
+  color: var(--purple, #667eea);
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .hero-trust-block {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 1rem;
+  }
+  .hero-trust-block .trust-item {
+    font-size: 0.88rem;
+  }
+}
