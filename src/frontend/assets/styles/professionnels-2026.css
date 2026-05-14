@@ -1231,6 +1231,21 @@
   opacity: 0.85;
 }
 
+/* Anthropic wordmark next to "Certifications" — Sprint 1 */
+.hero-trust-block .trust-anthropic-logo {
+  height: 18px;
+  width: 128px;
+  margin-left: 0.3rem;
+  vertical-align: middle;
+  display: inline-block;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.hero-trust-block .trust-item-anthropic {
+  gap: 0.45rem;
+}
+
 @media (max-width: 768px) {
   .hero-trust-block {
     flex-direction: column;

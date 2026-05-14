@@ -96,9 +96,9 @@
       "@type": "OfferCatalog",
       "name": "Services Bubble Invest",
       "itemListElement": [
-        { "@type": "Offer", "name": "Quick Start Pack", "price": "2000", "priceCurrency": "EUR" },
-        { "@type": "Offer", "name": "Session suivi/debug", "price": "150", "priceCurrency": "EUR", "unitText": "per hour" },
-        { "@type": "Offer", "name": "Maintenance mensuelle", "price": "500", "priceCurrency": "EUR", "unitText": "per month" }
+        { "@type": "Offer", "name": "Quick Start Pack", "price": "2000", "priceCurrency": "EUR", "description": "3 sessions, agent générique installé chez vous" },
+        { "@type": "Offer", "name": "Session suivi & debug", "availability": "https://schema.org/InStock", "description": "Sur demande — devis personnalisé selon votre besoin" },
+        { "@type": "Offer", "name": "Forfait maintenance", "availability": "https://schema.org/InStock", "description": "Sur demande — devis personnalisé selon votre infrastructure" }
       ]
     }
   }
@@ -162,7 +162,7 @@
         "name": "Combien ça coûte ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Pack standard : 2 000 € HT (3 sessions, 5-7h de travail effectif). En plus : abonnement Claude Pro ~20€/mois (ou OpenClaw gratuit). Suivi : 150 €/h. Maintenance : 500 €/mois."
+          "text": "Pack standard : 2 000 € HT (3 sessions, 5-7h de travail effectif). En plus : abonnement Claude Pro ~20€/mois (ou OpenClaw gratuit). Sessions de suivi et forfaits maintenance : sur demande, devis personnalisé selon votre besoin."
         }
       },
       {
@@ -266,11 +266,15 @@
           </svg>
           <span><strong>12+ ans</strong> d'expérience cumulés</span>
         </div>
-        <div class="trust-item">
+        <div class="trust-item trust-item-anthropic">
           <svg class="trust-icon" fill="none" height="20" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" width="20">
             <path d="M20 6L9 17l-5-5"></path>
           </svg>
-          <span><strong>Certifications Anthropic</strong></span>
+          <span><strong>Certifications</strong></span>
+          <!-- Anthropic wordmark — Inter text-as-SVG (Sprint 1, clip-safe at small sizes) -->
+          <svg class="trust-anthropic-logo" viewBox="0 0 320 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anthropic" preserveAspectRatio="xMinYMid meet">
+            <text x="0" y="30" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" font-size="32" font-weight="700" fill="#1f1f1e" letter-spacing="-1">Anthropic</text>
+          </svg>
         </div>
       </div>
     </div>
@@ -328,11 +332,11 @@
                 viewBox="0 0 24 24" width="18">
                 <circle cx="12" cy="12" r="10"></circle>
                 <polyline points="12 6 12 12 16 14"></polyline>
-              </svg><span>Suivi / debug : 150 € HT/h</span></div>
+              </svg><span>Suivi &amp; debug : sur demande</span></div>
             <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
                 viewBox="0 0 24 24" width="18">
                 <path d="M12 2v20M2 12h20"></path>
-              </svg><span>Maintenance mensuelle : 500 € HT/mois</span></div>
+              </svg><span>Forfait maintenance : sur demande</span></div>
             <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
                 viewBox="0 0 24 24" width="18">
                 <polyline points="16 18 22 12 16 6"></polyline>
@@ -692,8 +696,8 @@
         <details>
           <summary>Combien ça coûte ?</summary>
           <p><strong>Pack standard : 2 000 € HT</strong> (3 sessions, 5-7h de travail effectif). En plus : abonnement
-            Claude Pro ~20 €/mois (ou OpenClaw gratuit + coûts API variables). Suivi : 150 € HT/h. Maintenance : 500 €
-            HT/mois.</p>
+            Claude Pro ~20 €/mois (ou OpenClaw gratuit + coûts API variables). Sessions de suivi et forfaits
+            maintenance : <strong>sur demande</strong>, devis personnalisé selon votre besoin.</p>
         </details>
         <details>
           <summary>Et si nous voulons arrêter de travailler avec vous ?</summary>
@@ -710,14 +714,18 @@
       <div class="final-cta-content fade-in">
         <span class="final-cta-label">Premier contact</span>
         <h2>Discutons de votre projet</h2>
-        <p>30 minutes pour identifier ce qui vaut le coup d'automatiser — gratuit, sans engagement</p>
+        <p>30 minutes pour identifier ce qui vaut le coup d'automatiser. Gratuit, sans engagement.</p>
         <a class="btn btn-primary" href="https://calendly.com/bubbleinvest-ai" rel="noopener noreferrer"
-          target="_blank">
-          Mon diagnostic gratuit (30min)
+           data-cta-track="pros_final_calendly_click">
+          Réserver un diagnostic gratuit (30 min)
           <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
             <path d="M5 12h14M12 5l7 7-7 7"></path>
           </svg>
         </a>
+        <!-- Calendly inline embed — Sprint 1 (Jade msg 4858) — keeps user on-site for booking -->
+        <div data-calendly-inline data-calendly-inline-source="pros_inline_embed"
+             style="min-width:320px; height:680px; margin: 2rem auto 0; max-width: 900px; background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06);"
+             aria-label="Calendrier de réservation Bubble"></div>
       </div>
     </div>
   </section>
@@ -862,6 +870,7 @@
   <script src="/js/floating-chat-input.js"></script>
   <script src="/js/animations.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
+  <script src="/js/calendly-integration.js" defer></script>
 
   <!-- Mobile hamburger menu toggle -->
   <script>

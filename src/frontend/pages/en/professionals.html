@@ -94,9 +94,9 @@
       "@type": "OfferCatalog",
       "name": "Bubble Invest Services",
       "itemListElement": [
-        { "@type": "Offer", "name": "Quick Start Pack", "price": "2000", "priceCurrency": "EUR" },
-        { "@type": "Offer", "name": "Follow-up/debug session", "price": "150", "priceCurrency": "EUR", "unitText": "per hour" },
-        { "@type": "Offer", "name": "Monthly maintenance", "price": "500", "priceCurrency": "EUR", "unitText": "per month" }
+        { "@type": "Offer", "name": "Quick Start Pack", "price": "2000", "priceCurrency": "EUR", "description": "3 sessions, generic agent installed at your office" },
+        { "@type": "Offer", "name": "Follow-up & debug session", "availability": "https://schema.org/InStock", "description": "On request — custom quote tailored to your need" },
+        { "@type": "Offer", "name": "Maintenance plan", "availability": "https://schema.org/InStock", "description": "On request — custom quote tailored to your infrastructure" }
       ]
     }
   }
@@ -160,7 +160,7 @@
         "name": "How much does it cost?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Standard pack: €2,000 excl. VAT (3 sessions, 5-7h of effective work). On top: Claude Pro subscription ~€20/mo (or OpenClaw free). Follow-up: €150/h. Maintenance: €500/mo."
+          "text": "Standard pack: €2,000 excl. VAT (3 sessions, 5-7h of effective work). On top: Claude Pro subscription ~€20/mo (or OpenClaw free). Follow-up sessions and maintenance plans: on request, custom quote tailored to your need."
         }
       },
       {
@@ -296,11 +296,11 @@
                 viewBox="0 0 24 24" width="18">
                 <circle cx="12" cy="12" r="10"></circle>
                 <polyline points="12 6 12 12 16 14"></polyline>
-              </svg><span>Follow-up / debug: €150 excl. VAT/h</span></div>
+              </svg><span>Follow-up &amp; debug: on request</span></div>
             <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
                 viewBox="0 0 24 24" width="18">
                 <path d="M12 2v20M2 12h20"></path>
-              </svg><span>Monthly maintenance: €500 excl. VAT/mo</span></div>
+              </svg><span>Maintenance plan: on request</span></div>
             <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
                 viewBox="0 0 24 24" width="18">
                 <polyline points="16 18 22 12 16 6"></polyline>
@@ -715,8 +715,8 @@
         <details>
           <summary>How much does it cost?</summary>
           <p><strong>Standard pack: €2,000 excl. VAT</strong> (3 sessions, 5-7h of effective work). On top: Claude Pro
-            subscription ~€20/mo (or OpenClaw free + variable API costs). Follow-up: €150 excl. VAT/h. Maintenance: €500
-            excl. VAT/mo.</p>
+            subscription ~€20/mo (or OpenClaw free + variable API costs). Follow-up sessions and maintenance plans:
+            <strong>on request</strong>, custom quote tailored to your need.</p>
         </details>
         <details>
           <summary>What if we want to stop working with you?</summary>

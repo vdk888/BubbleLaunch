@@ -266,7 +266,6 @@
               <circle cx="59" cy="21" fill="#111" r="6"></circle>
             </svg>
           </div>
-          <p class="hero-suptitle">Pour CGP, gérants, indépendants et petites structures</p>
           <h1>Bubble.</h1>
           <p class="hero-tagline">Percez la bulle. Investissez dans l'essentiel.</p>
           <p class="hero-description">On installe des agents IA dans votre cabinet. 3 sessions, 2 000€, opérationnel.</p>
@@ -314,11 +313,17 @@
               </svg>
               <span><strong>12+ ans d'expérience</strong> cumulés</span>
             </div>
-            <div class="trust-item">
+            <div class="trust-item trust-item-anthropic">
               <svg class="trust-icon" fill="none" height="20" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" width="20">
                 <path d="M20 6L9 17l-5-5"></path>
               </svg>
-              <span><strong>Certifications Anthropic</strong></span>
+              <span><strong>Certifications</strong></span>
+              <!-- Anthropic wordmark — rendered as text-as-SVG for crisp rendering at any size.
+                   Original Wikimedia path-based SVG had a clipping issue on the last "C" glyph
+                   at small sizes due to sub-pixel rasterization. Sprint 1 workaround. -->
+              <svg class="trust-anthropic-logo" viewBox="0 0 320 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anthropic" preserveAspectRatio="xMinYMid meet">
+                <text x="0" y="30" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" font-size="32" font-weight="700" fill="#1f1f1e" letter-spacing="-1">Anthropic</text>
+              </svg>
             </div>
           </div>
         </div>
@@ -521,18 +526,22 @@
 
         <div style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1);">
           <h3>Vous êtes un professionnel ?</h3>
-          <p style="margin-top: 0.5rem; color: rgba(255,255,255,0.7);">Discutons de votre implémentation IA sur mesure.
-          </p>
+          <p style="margin-top: 0.5rem; color: rgba(255,255,255,0.7);">Discutons de votre implémentation IA sur mesure.</p>
           <div class="hero-cta" style="justify-content: center; margin-top: 2rem;">
-            <a href="https://calendly.com/bubbleinvest-ai" class="btn btn-primary" target="_blank"
-              rel="noopener noreferrer">
-              Prendre RDV
+            <a href="https://calendly.com/bubbleinvest-ai" class="btn btn-primary"
+               rel="noopener noreferrer" data-cta-track="footer_calendly_click">
+              Réserver un diagnostic gratuit (30 min)
               <svg fill="none" height="20" stroke="currentColor" stroke-width="2"
                 style="margin-left: 0.5rem; vertical-align: middle;" viewBox="0 0 24 24" width="20">
                 <path d="M5 12h14M12 5l7 7-7 7"></path>
               </svg>
             </a>
           </div>
+          <p style="margin-top: 1.25rem; font-size: 0.85rem; color: rgba(255,255,255,0.45);">Ou réservez directement ci-dessous&nbsp;:</p>
+          <!-- Calendly inline embed — Sprint 1 (Jade msg 4858) — captures bookings without leaving the site -->
+          <div data-calendly-inline data-calendly-inline-source="home_inline_embed"
+               style="min-width:320px; height:680px; margin: 1.5rem auto 0; max-width: 900px; background: rgba(255,255,255,0.97); border-radius: 16px; overflow: hidden;"
+               aria-label="Calendrier de réservation Bubble"></div>
         </div>
       </div>
     </section>
@@ -696,6 +705,7 @@
   <script src="/js/animations.js"></script>
   <script src="/js/gateway.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
+  <script src="/js/calendly-integration.js" defer></script>
 
   <!-- Problem tile image reveal on long hover -->
   <script>
