@@ -1770,6 +1770,21 @@
   opacity: 0.85;
 }
 
+/* Anthropic wordmark next to "Certifications" — Sprint 1 (Jade msg 4858) */
+.trust-anthropic-logo {
+  height: 18px;
+  width: 128px; /* room for Inter "Anthropic" rendered text in viewBox 320×40 */
+  margin-left: 0.3rem;
+  vertical-align: middle;
+  display: inline-block;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.trust-item-anthropic {
+  gap: 0.45rem;
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   .hero-suptitle {

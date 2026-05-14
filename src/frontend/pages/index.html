@@ -270,7 +270,6 @@
               <circle cx="59" cy="21" fill="#111" r="6"></circle>
             </svg>
           </div>
-          <p class="hero-suptitle">Pour CGP, gérants, indépendants et petites structures</p>
           <h1>Bubble.</h1>
           <p class="hero-tagline">Percez la bulle. Investissez dans l'essentiel.</p>
           <p class="hero-description">On installe des agents IA dans votre cabinet. 3 sessions, 2 000€, opérationnel.</p>
@@ -318,11 +317,17 @@
               </svg>
               <span><strong>12+ ans d'expérience</strong> cumulés</span>
             </div>
-            <div class="trust-item">
+            <div class="trust-item trust-item-anthropic">
               <svg class="trust-icon" fill="none" height="20" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" width="20">
                 <path d="M20 6L9 17l-5-5"></path>
               </svg>
-              <span><strong>Certifications Anthropic</strong></span>
+              <span><strong>Certifications</strong></span>
+              <!-- Anthropic wordmark — rendered as text-as-SVG for crisp rendering at any size.
+                   Original Wikimedia path-based SVG had a clipping issue on the last "C" glyph
+                   at small sizes due to sub-pixel rasterization. Sprint 1 workaround. -->
+              <svg class="trust-anthropic-logo" viewBox="0 0 320 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anthropic" preserveAspectRatio="xMinYMid meet">
+                <text x="0" y="30" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" font-size="32" font-weight="700" fill="#1f1f1e" letter-spacing="-1">Anthropic</text>
+              </svg>
             </div>
           </div>
         </div>
@@ -483,48 +488,34 @@
          Deux cartes côte à côte, claires, avec CTA directs. -->
     <section class="newsletter-shop-spotlight" aria-label="Newsletter et shop" style="padding: 5rem 0; background: #fff;">
       <div class="container">
-        <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-          <h2 style="font-size: 2rem; font-weight: 700; letter-spacing: -0.02em;">Commencez gratuitement</h2>
-          <p style="color: #666; max-width: 600px; margin: 1rem auto 0; line-height: 1.6;">
-            Suivez notre construction et accédez à nos agents, sans rien acheter.
-          </p>
+        <h2>Restez informé</h2>
+        <p>Suivez notre parcours. Apprenez pendant qu'on construit.</p>
+        <div class="hero-cta" style="justify-content: center; margin-top: 2rem;">
+          <a href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105" class="btn btn-primary" target="_blank" rel="noopener noreferrer">S'abonner à
+            la Newsletter <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+              width="16">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg></a>
         </div>
-        <div class="spotlight-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
-          <!-- Newsletter card -->
-          <div class="spotlight-card" style="background: linear-gradient(135deg, #f5f0ff 0%, #fff 100%); border: 1px solid #e8e0ff; border-radius: 24px; padding: 2.5rem; display: flex; flex-direction: column;">
-            <div style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--purple, #93acf0); margin-bottom: 0.75rem;">Gratuit · Toutes les semaines</div>
-            <h3 style="font-size: 1.4rem; font-weight: 700; margin: 0 0 0.75rem;">📬 Newsletter</h3>
-            <p style="color: #555; line-height: 1.6; flex-grow: 1; margin-bottom: 1.5rem;">
-              Ce qu'on apprend en construisant des agents IA. Veille technique, essais philosophiques, analyses de marché. Une fois par semaine, sans bullshit.
-            </p>
-            <a href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105"
-               target="_blank" rel="noopener noreferrer"
-               class="btn btn-primary"
-               data-cta-track="home_newsletter_spotlight_click"
-               style="align-self: flex-start;">
-              S'abonner à la newsletter
-              <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
+
+        <div style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1);">
+          <h3>Vous êtes un professionnel ?</h3>
+          <p style="margin-top: 0.5rem; color: rgba(255,255,255,0.7);">Discutons de votre implémentation IA sur mesure.</p>
+          <div class="hero-cta" style="justify-content: center; margin-top: 2rem;">
+            <a href="https://calendly.com/bubbleinvest-ai" class="btn btn-primary"
+               rel="noopener noreferrer" data-cta-track="footer_calendly_click">
+              Réserver un diagnostic gratuit (30 min)
+              <svg fill="none" height="20" stroke="currentColor" stroke-width="2"
+                style="margin-left: 0.5rem; vertical-align: middle;" viewBox="0 0 24 24" width="20">
                 <path d="M5 12h14M12 5l7 7-7 7"></path>
               </svg>
             </a>
           </div>
-          <!-- Shop card -->
-          <div class="spotlight-card" style="background: linear-gradient(135deg, #fff5f0 0%, #fff 100%); border: 1px solid #ffe5d6; border-radius: 24px; padding: 2.5rem; display: flex; flex-direction: column;">
-            <div style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #cc785c; margin-bottom: 0.75rem;">Agents &amp; analyses</div>
-            <h3 style="font-size: 1.4rem; font-weight: 700; margin: 0 0 0.75rem;">🛍️ Shop</h3>
-            <p style="color: #555; line-height: 1.6; flex-grow: 1; margin-bottom: 1.5rem;">
-              Les agents IA qu'on utilise au quotidien : gérant de portefeuille, filtre boycott, TTS local. Analyses premium sur les valeurs qu'on suit.
-            </p>
-            <a href="/shop"
-               class="btn btn-secondary"
-               data-cta-track="home_shop_spotlight_click"
-               style="align-self: flex-start;">
-              Découvrir le shop
-              <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-              </svg>
-            </a>
-          </div>
+          <p style="margin-top: 1.25rem; font-size: 0.85rem; color: rgba(255,255,255,0.45);">Ou réservez directement ci-dessous&nbsp;:</p>
+          <!-- Calendly inline embed — Sprint 1 (Jade msg 4858) — captures bookings without leaving the site -->
+          <div data-calendly-inline data-calendly-inline-source="home_inline_embed"
+               style="min-width:320px; height:680px; margin: 1.5rem auto 0; max-width: 900px; background: rgba(255,255,255,0.97); border-radius: 16px; overflow: hidden;"
+               aria-label="Calendrier de réservation Bubble"></div>
         </div>
       </div>
     </section>
