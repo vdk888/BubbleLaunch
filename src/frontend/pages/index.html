@@ -6,7 +6,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
   <!-- SEO Meta Tags -->
-  <title>Bubble | Implémentation d'Agents IA en France — Consulting & Formation</title>
+  <title>Bubble | Implémentation d'Agents IA en France · Consulting & Formation</title>
   <meta name="description"
     content="On construit des agents IA et on partage tout : blog gratuit, agents disponibles, research reports. Consulting IA sur mesure pour professionnels (CGP, gestion d'actifs, PME). Build in public." />
   <meta name="keywords"
@@ -16,7 +16,7 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bubbleinvest.org/" />
-  <meta property="og:title" content="Bubble | Implémentation d'Agents IA en France — Consulting & Formation" />
+  <meta property="og:title" content="Bubble | Implémentation d'Agents IA en France · Consulting & Formation" />
   <meta property="og:description"
     content="Agents IA, analyses premium, blog gratuit. Consulting IA pour professionnels. Build in public." />
   <meta property="og:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
@@ -26,7 +26,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://bubbleinvest.org/" />
-  <meta name="twitter:title" content="Bubble | Implémentation d'Agents IA en France — Consulting & Formation" />
+  <meta name="twitter:title" content="Bubble | Implémentation d'Agents IA en France · Consulting & Formation" />
   <meta name="twitter:description"
     content="Pionniers de l'implémentation d'agents IA en France. Consulting et formation pour professionnels." />
   <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/bubble-logo-single.svg" />
@@ -94,12 +94,16 @@
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Quick Start Pack — Installation d'Agents IA",
+          "name": "Quick Start Pack · Installation d'Agents IA",
           "description": "3 sessions, 3 semaines. Diagnostic, installation sur site et autonomie complète. Agents IA opérationnels sur votre machine avec Claude Code ou OpenClaw.",
           "provider": { "@type": "Organization", "name": "Bubble Invest" }
         },
-        "price": "2000",
-        "priceCurrency": "EUR"
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "EUR",
+          "valueAddedTaxIncluded": false,
+          "description": "Sur devis"
+        }
       },
       {
         "@type": "Offer",
@@ -268,7 +272,7 @@
           </div>
           <h1>Bubble.</h1>
           <p class="hero-tagline">Percez la bulle. Investissez dans l'essentiel.</p>
-          <p class="hero-description">On installe des agents IA dans votre cabinet. 3 sessions, 2 000€, opérationnel.</p>
+          <p class="hero-description">3 sessions pour être opérationnels avec vos employés IA personnalisés. Installés et créés sur mesure pour vous.</p>
           <div class="value-pills">
             <span class="value-pill"><svg fill="none" height="16" stroke="currentColor" stroke-width="2"
                 viewBox="0 0 24 24" width="16">
@@ -298,13 +302,15 @@
             </a>
           </div>
 
-          <!-- Trust block — credibility signals just below the fold -->
+          <!-- Trust block — credibility signals just below the fold.
+               Sprint 2 (msg 4868) : signal juridique Jade — pas de logos employeurs visuels,
+               on garde le texte "ex-UBS & ex-Deloitte" + le logo Anthropic (certif active, usage normal OK). -->
           <div class="hero-trust-block fade-in" role="complementary" aria-label="Crédibilité">
             <div class="trust-item">
               <svg class="trust-icon" fill="none" height="20" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" width="20">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
               </svg>
-              <span><strong>Managers ex-UBS &amp; ex-Deloitte</strong></span>
+              <span><strong>Managers ex-UBS &amp; ex-KPMG/Deloitte</strong></span>
             </div>
             <div class="trust-item">
               <svg class="trust-icon" fill="none" height="20" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" width="20">
@@ -317,10 +323,8 @@
               <svg class="trust-icon" fill="none" height="20" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" width="20">
                 <path d="M20 6L9 17l-5-5"></path>
               </svg>
-              <span><strong>Certifications</strong></span>
-              <!-- Anthropic wordmark — rendered as text-as-SVG for crisp rendering at any size.
-                   Original Wikimedia path-based SVG had a clipping issue on the last "C" glyph
-                   at small sizes due to sub-pixel rasterization. Sprint 1 workaround. -->
+              <span><strong>Certifiés</strong></span>
+              <!-- Anthropic wordmark — rendered as text-as-SVG for crisp rendering at any size. -->
               <svg class="trust-anthropic-logo" viewBox="0 0 320 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anthropic" preserveAspectRatio="xMinYMid meet">
                 <text x="0" y="30" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" font-size="32" font-weight="700" fill="#1f1f1e" letter-spacing="-1">Anthropic</text>
               </svg>
@@ -330,31 +334,36 @@
       </div>
     </section>
 
-    <!-- THE PROBLEM SECTION -->
-    <section class="the-problem" aria-label="Le problème que nous résolvons">
+    <!-- PROBLEM + SOLUTION (FUSED SECTION) — Sprint 2 msg 4868
+         Fusion validée Jade : 1 seule section "problème → notre solution" au lieu de
+         "Le problème" + "Notre approche" séparés. Lecture plus rapide, narrative cohérente. -->
+    <section class="problem-solution" aria-label="Le problème et notre solution">
       <div class="container">
         <div class="problem-content fade-in">
-          <h2>Le problème</h2>
+          <h2>Le problème, et ce qu'on fait à la place</h2>
 
           <div class="problem-list">
             <div class="problem-item" data-reveal-image="/assets/images/problem-chatgpt-opt.jpg">
               <div class="problem-text">
-                <h3>Vous avez testé ChatGPT… mais vous perdez plus de temps qu'autre chose</h3>
-                <p>Outils génériques sans contexte. Zéro intégration avec votre workflow. Aucune appropriation.</p>
+                <h3>Vous utilisez ChatGPT, Claude ou Gemini mais vous en avez fait vite le tour ?</h3>
+                <p><strong>Le problème :</strong> outils génériques sans contexte, zéro intégration à votre workflow, aucune mémoire de vos échanges précédents, et coincés dans leur stack.</p>
+                <p class="problem-solution-line"><strong>→ Notre solution :</strong> des agents avec mémoire du contexte, formés sur vos processus, et compatibles avec votre stack technique. Installés directement sur votre poste.</p>
               </div>
               <div class="problem-image" aria-hidden="true"></div>
             </div>
             <div class="problem-item" data-reveal-image="/assets/images/problem-training-opt.jpg">
               <div class="problem-text">
-                <h3>Les formations IA ? Des slides, de la théorie, zéro implémentation</h3>
-                <p>Des consultants vous parlent du potentiel. Vous repartez avec des slides, pas des outils.</p>
+                <h3>Les formations IA = théorie sans implémentation</h3>
+                <p><strong>Le problème :</strong> des slides, des concepts, et vous repartez sans aucun outil opérationnel.</p>
+                <p class="problem-solution-line"><strong>→ Notre solution :</strong> 3 sessions, 3 semaines. On installe, on forme, vous êtes autonome. Pas de PowerPoint.</p>
               </div>
               <div class="problem-image" aria-hidden="true"></div>
             </div>
             <div class="problem-item" data-reveal-image="/assets/images/problem-consulting-opt.jpg">
               <div class="problem-text">
-                <h3>Les cabinets de conseil ? 3-6 mois de projet. 30K€+. Et rien n'est implémenté.</h3>
-                <p>Projets longs, chers, et entre-temps les outils ont changé trois fois.</p>
+                <h3>Le conseil IA : long, cher, et déjà dépassé à la livraison</h3>
+                <p><strong>Le problème :</strong> 30k€ minimum, des mois d'implémentation, et les outils ont changé deux fois entre temps.</p>
+                <p class="problem-solution-line"><strong>→ Notre solution :</strong> trois sessions, vous voyez les résultats dès la première. Devis transparent, pas de frais cachés.</p>
               </div>
               <div class="problem-image" aria-hidden="true"></div>
             </div>
@@ -362,98 +371,61 @@
 
           <div class="problem-cta-section">
             <p class="problem-closing"><strong>Vous voulez juste gagner du temps. Maintenant.</strong></p>
-            <a href="/professionnels" class="btn btn-primary" data-gateway-trigger>Comment ça marche <svg
-                fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
+            <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
+               class="btn btn-primary" data-cta-track="problem_solution_calendly_click">
+              Réserver un diagnostic gratuit (30 min)
+              <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
                 <path d="M5 12h14M12 5l7 7-7 7"></path>
-              </svg></a>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- QUOTE INTERLUDE -->
-    <section class="quote-interlude">
+    <!-- WHO WE ARE — Sprint 2 msg 4868
+         Bloc "Qui sommes nous" validé Jade (point 4). Importé de /a-propos.
+         Court, visuel, deux photos + CV courts. Renvoie vers /a-propos pour la version longue. -->
+    <section class="who-we-are" aria-label="Qui sommes nous" style="padding: 5rem 0; background: var(--bg-subtle, #fafafa);">
       <div class="container">
-        <a href="/a-propos" class="interlude-link">
-          <p class="interlude-text">Et si l'IA, ce n'était pas qu'une bulle ?</p>
-        </a>
-      </div>
-    </section>
-
-    <!-- OUR APPROACH SECTION -->
-    <section class="selfware" aria-label="Notre approche">
-      <div class="container">
-        <div class="selfware-grid">
-          <div class="selfware-content">
-            <h2>Notre approche</h2>
-            <p>On ne vend pas de conseil. On installe des outils qu'on utilise nous-mêmes.</p>
-            <div class="selfware-features">
-              <div class="feature-item">
-                <div class="feature-number">1</div>
-                <div class="feature-text">
-                  <h4>Nos agents tournent sur nos propres opérations.</h4>
-                  <p>Pas de PowerPoint. On construit les mêmes outils pour nous que pour vous.</p>
-                </div>
-              </div>
-              <div class="feature-item">
-                <div class="feature-number">2</div>
-                <div class="feature-text">
-                  <h4>Tout est partagé : code, méthode, résultats.</h4>
-                  <p>Blog, GitHub, newsletter — on documente tout publiquement.</p>
-                </div>
-              </div>
-              <div class="feature-item">
-                <div class="feature-number">3</div>
-                <div class="feature-text">
-                  <h4>3 sessions, vous êtes autonome.</h4>
-                  <p>On ne crée pas de dépendance. Le but : que vous n'ayez plus besoin de nous.</p>
-                </div>
-              </div>
-            </div>
+        <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+          <h2 style="font-size: 2rem; font-weight: 700; letter-spacing: -0.02em;">Qui sommes nous</h2>
+          <p style="color: #666; max-width: 600px; margin: 1rem auto 0; line-height: 1.6;">
+            Joris &amp; Jade, managers ex-UBS et ex-KPMG/Deloitte. Deux profils complémentaires, plus de 12 ans d'expérience cumulés en finance et opérations.
+          </p>
+        </div>
+        <div class="who-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; max-width: 800px; margin: 0 auto;">
+          <div class="who-member fade-in" style="text-align: center;">
+            <a href="https://www.linkedin.com/in/joris-dupraz-1ba35959/" target="_blank" rel="noopener noreferrer">
+              <img src="/assets/images/team/joris.jpg" alt="Joris Dupraz, co-fondateur Bubble"
+                   style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; transition: transform 0.3s ease;">
+            </a>
+            <h4 style="margin: 0; font-size: 1.1rem; font-weight: 600;">Joris Dupraz</h4>
+            <p style="margin: 0.25rem 0; color: #666; font-size: 0.9rem;">Co-fondateur · ex-UBS</p>
+            <p style="color: #999; font-size: 0.85rem; margin-top: 0.5rem;">6+ ans en gestion institutionnelle</p>
           </div>
-          <div class="selfware-visual">
-            <div class="comparison-table">
-              <div class="comparison-col comparison-them">
-                <h4>Les autres</h4>
-                <div class="comparison-row">6 mois de projet</div>
-                <div class="comparison-row">Slides + théorie</div>
-                <div class="comparison-row">30K€+ budget</div>
-                <div class="comparison-row">Dépendance continue</div>
-              </div>
-              <div class="comparison-col comparison-us">
-                <h4>Bubble</h4>
-                <div class="comparison-row">3 sessions, 3 semaines</div>
-                <div class="comparison-row">Installation sur votre poste</div>
-                <div class="comparison-row">2 000€ tout compris</div>
-                <div class="comparison-row">Autonomie complète</div>
-              </div>
-            </div>
+          <div class="who-member fade-in" style="text-align: center;">
+            <a href="https://www.linkedin.com/in/jade-hoang-146955105/" target="_blank" rel="noopener noreferrer">
+              <img src="/assets/images/team/jade.jpg" alt="Jade Hoang, co-fondatrice Bubble"
+                   style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; transition: transform 0.3s ease;">
+            </a>
+            <h4 style="margin: 0; font-size: 1.1rem; font-weight: 600;">Jade Hoang</h4>
+            <p style="margin: 0.25rem 0; color: #666; font-size: 0.9rem;">Co-fondatrice · ex-KPMG/Deloitte</p>
+            <p style="color: #999; font-size: 0.85rem; margin-top: 0.5rem;">6+ ans audit &amp; conseil (Big Four), certifications Anthropic</p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- TRUST INDICATORS -->
-    <section class="trust" aria-label="Indicateurs de confiance">
-      <div class="container">
-        <div class="trust-grid">
-          <div class="trust-item">
-            <h4>20+</h4>
-            <p>Agents en production<br />Sur nos propres opérations</p>
-          </div>
-          <div class="trust-item">
-            <h4>12+</h4>
-            <p>Années d'expérience combinées<br />Conseil, Audit &amp; Asset Management</p>
-          </div>
-          <div class="trust-item">
-            <h4>100%</h4>
-            <p>Transparent<br />Code, méthode, résultats</p>
-          </div>
-          <div class="trust-item">
-            <h4>0%</h4>
-            <p>Frais cachés<br />Sur devis uniquement</p>
-          </div>
+        <!-- Pitch différenciant — Sprint 2 msg 4900 (Jade)
+             On comprend le business de l'intérieur, ce que les profils dev tech seuls n'ont pas. -->
+        <div class="who-pitch" style="max-width: 720px; margin: 3rem auto 0; padding: 1.75rem 2rem; background: linear-gradient(135deg, rgba(147, 172, 240, 0.08) 0%, rgba(204, 120, 92, 0.06) 100%); border-left: 3px solid var(--purple, #93acf0); border-radius: 12px;">
+          <p style="margin: 0; font-size: 1.05rem; line-height: 1.65; color: #2a2a2a; font-weight: 500;">
+            Avant de coder des agents IA, on a vécu vos problèmes de l'intérieur : les contraintes réglementaires, les workflows métiers, la pression du chiffre, les processus qui résistent au changement. C'est ce qui manque aux profils tech purs : <strong>on ne vous installe pas un outil, on résout un problème qu'on a déjà eu.</strong>
+          </p>
         </div>
+        <p style="text-align: center; margin-top: 2.5rem;">
+          <a href="/a-propos" style="color: var(--purple, #93acf0); text-decoration: none; font-weight: 500; font-size: 0.95rem;">
+            En savoir plus sur notre histoire →
+          </a>
+        </p>
       </div>
     </section>
 
@@ -511,53 +483,68 @@
       </div>
     </section>
 
-    <!-- CONTACT / NEWSLETTER SECTION -->
-    <section class="waitlist" id="contact" aria-label="Contact et newsletter">
+    <!-- NEWSLETTER + SHOP SPOTLIGHT — Sprint 2 msg 4868 (point 5)
+         Mis en avant AVANT le bloc B2B/Calendly : Jade veut newsletter + shop "avant tout".
+         Deux cartes côte à côte, claires, avec CTA directs. -->
+    <section class="newsletter-shop-spotlight" aria-label="Newsletter et shop" style="padding: 5rem 0; background: #fff;">
       <div class="container">
-        <h2>Restez informé</h2>
-        <p>Suivez notre parcours. Apprenez pendant qu'on construit.</p>
-        <div class="hero-cta" style="justify-content: center; margin-top: 2rem;">
-          <a href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105" class="btn btn-primary" target="_blank" rel="noopener noreferrer">S'abonner à
-            la Newsletter <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-              width="16">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg></a>
+        <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+          <h2 style="font-size: 2rem; font-weight: 700; letter-spacing: -0.02em;">Commencez gratuitement</h2>
+          <p style="color: #666; max-width: 600px; margin: 1rem auto 0; line-height: 1.6;">
+            Suivez notre construction et accédez à nos agents, sans rien acheter.
+          </p>
         </div>
-
-        <div style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1);">
-          <h3>Vous êtes un professionnel ?</h3>
-          <p style="margin-top: 0.5rem; color: rgba(255,255,255,0.7);">Discutons de votre implémentation IA sur mesure.</p>
-          <div class="hero-cta" style="justify-content: center; margin-top: 2rem;">
-            <a href="https://calendly.com/bubbleinvest-ai" class="btn btn-primary"
-               rel="noopener noreferrer" data-cta-track="footer_calendly_click">
-              Réserver un diagnostic gratuit (30 min)
-              <svg fill="none" height="20" stroke="currentColor" stroke-width="2"
-                style="margin-left: 0.5rem; vertical-align: middle;" viewBox="0 0 24 24" width="20">
+        <div class="spotlight-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
+          <!-- Newsletter card -->
+          <div class="spotlight-card" style="background: linear-gradient(135deg, #f5f0ff 0%, #fff 100%); border: 1px solid #e8e0ff; border-radius: 24px; padding: 2.5rem; display: flex; flex-direction: column;">
+            <div style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--purple, #93acf0); margin-bottom: 0.75rem;">Gratuit · Toutes les semaines</div>
+            <h3 style="font-size: 1.4rem; font-weight: 700; margin: 0 0 0.75rem;">📬 Newsletter</h3>
+            <p style="color: #555; line-height: 1.6; flex-grow: 1; margin-bottom: 1.5rem;">
+              Ce qu'on apprend en construisant des agents IA. Veille technique, essais philosophiques, analyses de marché. Une fois par semaine, sans bullshit.
+            </p>
+            <a href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-primary"
+               data-cta-track="home_newsletter_spotlight_click"
+               style="align-self: flex-start;">
+              S'abonner à la newsletter
+              <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
                 <path d="M5 12h14M12 5l7 7-7 7"></path>
               </svg>
             </a>
           </div>
-          <p style="margin-top: 1.25rem; font-size: 0.85rem; color: rgba(255,255,255,0.45);">Ou réservez directement ci-dessous&nbsp;:</p>
-          <!-- Calendly inline embed — Sprint 1 (Jade msg 4858) — captures bookings without leaving the site -->
-          <div data-calendly-inline data-calendly-inline-source="home_inline_embed"
-               style="min-width:320px; height:680px; margin: 1.5rem auto 0; max-width: 900px; background: rgba(255,255,255,0.97); border-radius: 16px; overflow: hidden;"
-               aria-label="Calendrier de réservation Bubble"></div>
+          <!-- Shop card -->
+          <div class="spotlight-card" style="background: linear-gradient(135deg, #fff5f0 0%, #fff 100%); border: 1px solid #ffe5d6; border-radius: 24px; padding: 2.5rem; display: flex; flex-direction: column;">
+            <div style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #cc785c; margin-bottom: 0.75rem;">Agents &amp; analyses</div>
+            <h3 style="font-size: 1.4rem; font-weight: 700; margin: 0 0 0.75rem;">🛍️ Shop</h3>
+            <p style="color: #555; line-height: 1.6; flex-grow: 1; margin-bottom: 1.5rem;">
+              Les agents IA qu'on utilise au quotidien : gérant de portefeuille, filtre boycott, TTS local. Analyses premium sur les valeurs qu'on suit.
+            </p>
+            <a href="/shop"
+               class="btn btn-secondary"
+               data-cta-track="home_shop_spotlight_click"
+               style="align-self: flex-start;">
+              Découvrir le shop
+              <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- AGENTS B2C SECTION -->
-    <section class="agents-teaser" aria-label="Nos agents">
+    <!-- B2B CONTACT — Sprint 2 msg 4868 (point 5 : simplifier)
+         Section pro condensée : un seul CTA Calendly + l'embed inline pour ceux qui veulent réserver direct.
+         Avant : 2 boutons + 1 embed = redondant. Maintenant : 1 phrase, 1 embed. -->
+    <section class="waitlist" id="contact" aria-label="Contact professionnels">
       <div class="container">
-        <div class="agents-teaser-content fade-in" style="text-align: center; max-width: 700px; margin: 0 auto; padding: 5rem 0;">
-          <h2 style="font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: #888; margin-bottom: 0.5rem;">Nos agents, pour tous</h2>
-          <h3 style="font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem;">On construit des agents IA. Certains, on les partage.</h3>
-          <p style="color: #666; margin-bottom: 2rem; line-height: 1.7;">Gérant de portefeuille, agent de sécurité, community manager : les mêmes outils qu'on utilise au quotidien, disponibles pour vous. Analyses gratuites sur le blog, agents et research reports dans le shop.</p>
-          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-            <a href="/particuliers#agents" class="btn btn-primary">Découvrir nos agents <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
-            <a href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105" target="_blank" class="btn btn-secondary">Newsletter gratuite</a>
-          </div>
-        </div>
+        <h2>Vous êtes un professionnel ?</h2>
+        <p>Discutons de votre implémentation IA sur mesure. 30 minutes, gratuit, sans engagement.</p>
+        <!-- Calendly inline embed (Sprint 1) — capture les bookings sans quitter le site -->
+        <div data-calendly-inline data-calendly-inline-source="home_inline_embed"
+             style="min-width:320px; height:680px; margin: 2rem auto 0; max-width: 900px; background: rgba(255,255,255,0.97); border-radius: 16px; overflow: hidden;"
+             aria-label="Calendrier de réservation Bubble"></div>
       </div>
     </section>
 

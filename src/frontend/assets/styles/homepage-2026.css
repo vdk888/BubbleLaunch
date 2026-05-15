@@ -698,10 +698,24 @@
 }
 
 /* === THE PROBLEM SECTION === */
-.the-problem {
+/* Sprint 2 (msg 4868) — section renommée .problem-solution (fusion problème + solution).
+   On garde .the-problem comme alias pour compat éventuelle. */
+.the-problem,
+.problem-solution {
   padding: 5rem 0;
   background: linear-gradient(135deg, var(--primary) 0%, #1a1f35 100%);
   color: white;
+}
+
+/* Ligne "→ Notre solution :" — marquage visuel doux pour distinguer la solution du problème */
+.problem-solution-line {
+  margin-top: 0.75rem !important;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+.problem-solution-line strong {
+  color: var(--purple, #93acf0);
 }
 
 .problem-content {
@@ -798,7 +812,8 @@
   color: #fff;
 }
 
-.the-problem .btn-primary {
+.the-problem .btn-primary,
+.problem-solution .btn-primary {
   background: white;
   color: var(--primary);
   display: inline-flex;
@@ -806,7 +821,8 @@
   gap: 0.5rem;
 }
 
-.the-problem .btn-primary:hover {
+.the-problem .btn-primary:hover,
+.problem-solution .btn-primary:hover {
   background: var(--purple);
   color: white;
 }
@@ -1395,7 +1411,10 @@
   .selfware,
   .blog-preview,
   .trust,
-  .the-problem {
+  .the-problem,
+  .problem-solution,
+  .who-we-are,
+  .newsletter-shop-spotlight {
     padding: 3.5rem 0;
   }
 
