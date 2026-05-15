@@ -337,7 +337,10 @@ nav a.active::after {
   border: none;
   padding: 8px;
   cursor: pointer;
-  z-index: 101;
+  /* Sprint 3 Phase 5.1 (Jade msg 4965) — z-index 200 pour rester au-dessus de l'overlay (101)
+     et permettre la fermeture quand le menu est ouvert. */
+  z-index: 200;
+  position: relative;
 }
 
 .mobile-menu-toggle span,
@@ -367,6 +370,54 @@ nav a.active::after {
 .hamburger-toggle.open span:nth-child(3),
 .hamburger.open span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Sprint 3 Phase 5.1 (Jade msg 4965) — quand le menu est ouvert,
+   le hamburger devient une croix bien visible avec un fond cerclé */
+.hamburger-toggle.open,
+.mobile-menu-toggle.open,
+.hamburger.open {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === Bouton X de fermeture explicite dans l'overlay mobile (Sprint 3 Phase 5.1) ===
+   Injecté via ghibli-chrome.js. UX claire pour les utilisateurs qui ne voient pas
+   que le hamburger se transforme en X. */
+.mobile-nav-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 210;
+  padding: 0;
+  transition: background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.mobile-nav-close:hover,
+.mobile-nav-close:focus-visible {
+  background: rgba(0, 0, 0, 0.10);
+  outline: none;
+}
+.mobile-nav-close svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--primary);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
 }
 
 /* Mobile nav overlay */
@@ -1697,6 +1748,102 @@ body header {
     font-size: 0.7rem;
     text-align: center;
     width: 100%;
+  }
+}
+
+/* === Sprint 3 Phase 5.1 (Jade msg 4965) — Fix textes coupés / débordements mobile === */
+@media (max-width: 768px) {
+  /* CTA Calendly mobile : texte trop long. On force le wrap + taille réduite */
+  .mobile-nav-cta-calendly,
+  .nav-cta-calendly.mobile-nav-cta-calendly {
+    white-space: normal !important;
+    text-align: center;
+    font-size: 0.85rem !important;
+    padding: 0.75rem 1.25rem !important;
+    line-height: 1.3 !important;
+    max-width: 90vw;
+  }
+
+  /* CTA Calendly nav (desktop) caché sur mobile (déjà dans mobile-nav-overlay) */
+  nav .nav-cta-calendly:not(.mobile-nav-cta-calendly) {
+    display: none;
+  }
+
+  /* Hero CTA group : stack vertical sur mobile pour pas tronquer */
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .hero-cta-group .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Hero description : taille raisonnable */
+  .hero p.hero-description {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* H1 hero : reduce sur mobile */
+  .hero h1 {
+    font-size: clamp(2.5rem, 12vw, 4rem) !important;
+    word-break: break-word;
+  }
+
+  /* H2 titres des sections : reduce sur mobile */
+  .problem-content h2,
+  .who-we-are h2,
+  .newsletter-shop-spotlight h2,
+  .waitlist h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+    line-height: 1.2;
+  }
+
+  /* Hero trust block : stack vertical et réduire le texte */
+  .hero-trust-block {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
+  .hero-trust-block .trust-item {
+    font-size: 0.8rem !important;
+  }
+
+  /* Section "Qui sommes nous" intro : pas de padding latéral excessif */
+  .who-we-are .section-header p {
+    padding: 0 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Footer grid : 2 cols sur mobile au lieu de 4 */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.5rem;
+  }
+  .footer-brand {
+    grid-column: 1 / -1;     /* brand occupe toute la largeur */
+  }
+
+  /* Sections card-highlights (services Pack/Carte) : padding réduit */
+  .card-highlights {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Encore plus compact sur smartphone */
+  .hero h1 {
+    font-size: clamp(2rem, 11vw, 3rem) !important;
+  }
+  .hero p.hero-description {
+    font-size: 0.95rem;
+  }
+  /* Hero tagline en Klee One : reduce */
+  .hero-tagline {
+    font-size: 1.1rem !important;
   }
 }
 

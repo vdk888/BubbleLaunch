@@ -177,6 +177,44 @@
     });
   }
 
+  // === MOBILE NAV CLOSE BUTTON (Jade msg 4965) ============
+  // Ajoute un bouton X explicite dans l'overlay mobile pour la fermeture,
+  // en plus du hamburger qui se transforme en X (moins visible).
+  function injectMobileNavCloseButton() {
+    const overlay = document.getElementById('mobile-nav-overlay') ||
+                    document.querySelector('.mobile-nav-overlay') ||
+                    document.querySelector('.mobile-nav');
+    if (!overlay) return;
+    if (overlay.querySelector('.mobile-nav-close')) return;
+
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'mobile-nav-close';
+    closeBtn.setAttribute('type', 'button');
+    closeBtn.setAttribute('aria-label', 'Fermer le menu');
+    closeBtn.innerHTML = `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <line x1="6" y1="6" x2="18" y2="18"/>
+        <line x1="18" y1="6" x2="6" y2="18"/>
+      </svg>
+    `;
+
+    closeBtn.addEventListener('click', function () {
+      // Fermer en utilisant la même logique que le hamburger
+      const toggle = document.getElementById('hamburger-toggle') ||
+                     document.querySelector('.hamburger-toggle') ||
+                     document.querySelector('.mobile-menu-toggle');
+      overlay.classList.remove('open');
+      if (toggle) {
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+      document.body.style.overflow = '';
+      document.body.classList.remove('nav-open');
+    });
+
+    overlay.insertBefore(closeBtn, overlay.firstChild);
+  }
+
   // === BOOT ===============================================
   function boot() {
     try {
@@ -185,6 +223,7 @@
       injectHeroTag();
       injectHeroSprig();
       injectSectionNumbers();
+      injectMobileNavCloseButton();
     } catch (e) {
       // Silencieux — ne jamais casser la page si une erreur survient
       console.warn('[ghibli-chrome] Init error:', e);
