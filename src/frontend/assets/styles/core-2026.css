@@ -113,6 +113,12 @@ body {
   font-feature-settings: "ss01" 1, "cv11" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Sprint 3 Phase 5.2 (Jade msg 4969) — empêcher le scroll horizontal causé par
+     les éléments qui dépassent le viewport sur mobile (bubbles, sprig, etc.). */
+  overflow-x: hidden;
+}
+html {
+  overflow-x: hidden;
 }
 
 /* === Sprint 3 Phase 2.3 + Phase 3 — UNIFORMITÉ DU BEIGE + COULEURS GHIBLI ===
@@ -1841,9 +1847,79 @@ body header {
   .hero p.hero-description {
     font-size: 0.95rem;
   }
-  /* Hero tagline en Klee One : reduce */
+  /* Hero tagline en Klee One : reduce + word-wrap pour pas tronquer */
   .hero-tagline {
-    font-size: 1.1rem !important;
+    font-size: 1rem !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* === Sprint 3 Phase 5.2 (Jade msg 4969) — Fix marges/débordements mobile === */
+@media (max-width: 768px) {
+  /* Container : padding latéral suffisant pour respiration sur mobile */
+  :root {
+    --container-padding: 1rem;     /* 16px au lieu de 24px pour gagner de la place sur petits viewports */
+  }
+
+  /* Hero : padding-top suffisant pour pas que le tag "01 LABO" passe sous le strip+header
+     strip 36px + header ~64px mobile + 24px margin = 124px minimum */
+  .hero {
+    padding-top: 8rem !important;     /* 128px */
+  }
+
+  /* Tag "01 / Laboratoire" : décaler légèrement pour pas chevaucher header */
+  .ghibli-hero-tag {
+    margin-top: 0.5rem;
+  }
+
+  /* Who members : assurer padding et largeur safe (Jade flag photos coupées) */
+  .who-grid {
+    padding: 0 1rem !important;
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .who-member {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.5rem 1rem;
+    box-sizing: border-box;
+  }
+  .who-member img {
+    max-width: 120px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  /* Forcer toutes les cards à respecter le padding viewport (anti-débordement) */
+  .container > *,
+  section > .container,
+  section > * {
+    max-width: 100%;
+  }
+
+  /* Bubbles flottantes : bien contraintes au viewport (au cas où right négatif) */
+  .ghibli-bubbles {
+    overflow: hidden;
+  }
+}
+
+/* === Hero CTA fix : sur mobile les boutons doivent rester DANS le viewport === */
+@media (max-width: 768px) {
+  /* Hero CTA group / hero-cta : déjà mis en column plus haut, on assure la largeur */
+  .hero-cta-group,
+  .hero-cta {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+  .hero-cta-group .btn,
+  .hero-cta .btn {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: normal;     /* permet le wrap si bouton long */
   }
 }
 
