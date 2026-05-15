@@ -1,63 +1,100 @@
 # Bubble Invest — AI Agents, Research & Consulting
 
-> We build AI agents for investment, security, and content management. We share everything: free blog, newsletter, available agents, and premium research reports. We also deploy AI agents for finance professionals and SMEs in France.
+> AI implemented for finance professionals. No bullshit, no black box, no dependency. We build AI agents for our own operations and share everything publicly: blog, newsletter, agents available in our shop. We also deploy custom AI agents on-site for wealth advisors, asset managers, and SMEs in France.
+
+## Positioning (2026)
+
+**Tagline:** L'IA implémentée. Vous gardez l'avance. (AI implemented. You stay ahead.)
+
+**Core message:** You don't need more slides about AI. You need someone who actually implements it in your business.
+
+Four pillars that differentiate us from generic AI consultants:
+- **Niche Finance × Tech**: Native finance experience (ex-UBS, ex-KPMG/Deloitte) — we don't do AI for everyone, we do AI for finance and data-driven professionals.
+- **Early adoption**: We test and deploy the latest AI tools before anyone else in France. What ships this week is in production next week.
+- **Radical transparency**: We show everything. What works, what doesn't, how we work. Code, method, results: public.
+- **Co-construction training**: No theoretical training. We build alongside you, you learn by doing, you become autonomous.
 
 ## What We Do
 
-### For Everyone (B2C)
-We build AI agents and share them publicly. Our blog, newsletter, and tools are free. Premium research reports and agent subscriptions are available in our shop.
+### For Everyone (B2C — free + shop)
 
-- **AI Agents**: Portfolio Manager (coming soon), Security Agent (Sentinel, 29 EUR/mo), Community Manager (coming soon)
-- **Research Reports**: In-depth stock analysis with scoring, investable theses, risk assessment (7.99-12.99 EUR each)
-- **Free Content**: Blog, newsletter, Substack articles on AI, investing, and economics
-- **Build in Public**: Every decision documented — what works, what breaks, how we fix it
+We build AI agents for our own operations and share publicly. Free content is our marketing engine; the shop monetizes specialized expertise.
 
-### For Professionals (B2B)
-We install AI agents (Claude Code) directly on your machine. Quick Start Pack: 2,000 EUR, 3 sessions, operational in 3 weeks.
+**Free content:**
+- Blog (https://bubbleinvest.org/blog) — what we test, what we deploy, what we learn
+- Newsletter (https://bubbleinvest.org/#newsletter) — weekly insights, no ads
+- Substack (https://bubbleinvest.substack.com) — long-form essays on AI, finance, economics, philosophy
+- Build-in-public on LinkedIn, X, GitHub
 
-- Quick Start Pack: 2,000 EUR HT — 3 sessions (5-7h), diagnosis, installation, documentation
-- Follow-up / Debug: 150 EUR HT/h
-- Monthly Maintenance: 500 EUR HT/month
-- Custom Agent Development: on quote
+**Shop (https://bubbleinvest.org/shop):**
+- AI agents plug-and-play (subscription model)
+- Premium research reports (one-shot purchases, individual stock analyses)
+- Premium articles (one-shot, in-depth)
+- Skills library on Claude Skills marketplaces (free + premium)
 
-## Products & Pricing
+### For Professionals (B2B — consulting on-site)
 
-### AI Agents (Shop)
-- Bubble Sentinel (Security Agent): 29 EUR/month — Automated security audits for Claude Code. 5 modules, zero dependencies.
-- Portfolio Manager: Coming soon — Risk parity, regime detection, auto-rebalancing.
-- Community Manager: Coming soon — LinkedIn, Instagram, X automation with human validation.
+We install AI agents directly on your team's machines, configured for your business processes and integrated with your existing tech stack. You stay autonomous after we leave.
 
-### Research Reports
-- Individual stock analyses: 7.99-12.99 EUR each
-- Scoring, investable theses, risk assessment
-- Available at: https://bubbleinvest.org/shop/articles
+- 3 sessions, you're operational
+- Diagnostic + installation + co-construction + handover documentation
+- Pricing: on quote (custom proposal based on scope)
+- Full transparency on what's possible and what isn't before signing
 
-### Substack Newsletter
-- Free tier: Regular articles on AI, investing, economics
-- Paid tier: 8 USD/month — Early access to new articles
+Contact: https://calendly.com/bubbleinvest-ai (free 30-min diagnostic)
 
-## Target Audience
-- Individual investors interested in AI-driven portfolio management
-- Claude Code users needing security audits
-- Content creators seeking AI automation
-- Wealth advisors (CGP) in France
-- Asset management firms and SMEs
+## Founders
+
+- **Joris Dupraz** — Co-founder, ex-UBS (6+ years institutional asset management & investment banking)
+- **Jade Hoang** — Co-founder, ex-KPMG, ex-Deloitte (6+ years Big Four audit & consulting), Anthropic certified
+
+12+ years combined experience in finance and operations.
+
+## Target Audience (B2B)
+
+- Wealth advisors (CGP — Conseillers en Gestion de Patrimoine)
+- Asset management firms
+- Small and medium-sized businesses (PME)
+- Tech-forward independent professionals
+
+Geography: France first (Paris-based, remote nationwide), Belgium, Switzerland.
 
 ## Our Edge
-- Triple expertise: Finance (Deloitte, UBS) + Full-Stack Tech + AI
-- Systematic early adopters — we master tools weeks after release
-- 20+ AI agents running in production on our own operations
-- Transparent: every trade, every decision, every mistake is documented
+
+- Triple expertise: Finance (UBS + KPMG + Deloitte) + Tech full-stack + AI implementation
+- Systematic early adopters — we master tools released weeks ago, well ahead of the market
+- 20+ AI agents running in production on our own operations (portfolio management, security, content)
+- Transparent: every trade, every decision, every mistake is documented publicly
+
+## What Makes Us Different
+
+- We don't sell PowerPoint decks. We deploy code that runs.
+- If a free open-source tool does the job, we tell you.
+- We co-construct with you. After our intervention, you don't need us anymore.
+- If a tool has a limitation, you'll know it before signing.
+- We'd rather lose a lead than sell something that doesn't work.
+
+## Why "Bubble Invest"?
+
+- **Bubble = Transparency**: Like a bubble, you can see through. Code, method, results: public.
+- **Bubble = AI bubble + Financial bubble**: We invested early in the AI bubble (the one that changes everything) and help clients do the same without falling for the hype.
+- **Invest = Investment**: Our origin trade. We invest in AI in direct connection to our finance & investment background.
 
 ## Links
-- Shop: https://bubbleinvest.org/shop/articles
-- Agents: https://bubbleinvest.org/particuliers#agents
-- Blog: https://bubbleinvest.org/blog
-- Newsletter (free): https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105
-- Substack: https://bubbleinvest.substack.com
-- Professional services: https://bubbleinvest.org/professionnels
-- Contact: https://calendly.com/bubbleinvest-ai
-- Location: France (remote nationwide)
 
-## Detailed Content
-For more detail, see: https://bubbleinvest.org/llms-full.txt
+- Home: https://bubbleinvest.org/
+- About: https://bubbleinvest.org/a-propos
+- Professionals (B2B): https://bubbleinvest.org/professionnels
+- Individuals (B2C): https://bubbleinvest.org/particuliers
+- Shop: https://bubbleinvest.org/shop
+- Blog: https://bubbleinvest.org/blog
+- Newsletter: https://bubbleinvest.substack.com
+- LinkedIn: https://www.linkedin.com/company/bubble-invest-ai/
+- Instagram: https://instagram.com/behindthebubble.ai
+- X / Twitter: https://x.com/bubbleinvest
+- GitHub: https://bubbleinvest.org/github
+- Contact (book a call): https://calendly.com/bubbleinvest-ai
+
+## Location
+
+Bubble Invest is based in France (Paris area), serving clients nationwide and across French-speaking Europe (Belgium, Switzerland). All consulting is delivered in French or English.
