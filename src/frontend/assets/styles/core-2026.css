@@ -1652,16 +1652,18 @@ body header {
 .ghibli-bubble {
   position: absolute;
   border-radius: 50%;
-  /* Sprint 3 Phase 5.3 (Jade msg 4971) — bulles encore plus transparentes
-     pour ne pas gêner la lecture. Opacité interne réduite, bordure quasi-invisible. */
+  /* Sprint 3 Phase 5.4 (Jade msg 4975) — bulles plus visibles sur beige,
+     mais les sections nuit ont leur propre opacity réduite (override plus bas).
+     Compromis : opacity intermédiaire + couleur violet plus saturée pour qu'on
+     les voie sur le beige sans trop déranger. */
   background: radial-gradient(circle at 30% 30%,
-    rgba(255, 255, 255, 0.45),
-    rgba(102, 126, 234, 0.05) 60%,
+    rgba(255, 255, 255, 0.65),
+    rgba(102, 126, 234, 0.10) 55%,
     transparent 75%);
-  border: 1px solid rgba(102, 126, 234, 0.05);
+  border: 1px solid rgba(102, 126, 234, 0.10);
   opacity: 0;
   animation: ghibliFloat 22s var(--ease-ghibli, cubic-bezier(0.16, 1, 0.3, 1)) infinite;
-  filter: blur(1px);            /* plus de flou pour effet "philigrame" */
+  filter: blur(0.8px);
 }
 
 .ghibli-bubble-1 { width: 220px; height: 220px; left: -60px; top: 12%; animation-delay: 0s; }
@@ -1671,10 +1673,11 @@ body header {
 .ghibli-bubble-5 { width: 60px;  height: 60px;  right: 25%; top: 20%; animation-delay: -10s; animation-duration: 16s; }
 
 @keyframes ghibliFloat {
-  /* Sprint 3 Phase 5.3 (Jade msg 4971) — opacité max réduite pour pas gêner lecture */
+  /* Sprint 3 Phase 5.4 (Jade msg 4975) — opacité moyenne : visible sur beige,
+     les sections nuit ont leur propre filtre (visibility hidden au survol pour pas gêner). */
   0%, 100% { opacity: 0; transform: translateY(0) scale(0.95); }
-  10%, 90% { opacity: 0.25; }
-  50%      { opacity: 0.4; transform: translateY(-30px) scale(1.05); }
+  10%, 90% { opacity: 0.40; }
+  50%      { opacity: 0.55; transform: translateY(-30px) scale(1.05); }
 }
 
 /* Respect prefers-reduced-motion : pas d'animation */
