@@ -324,9 +324,15 @@
                 <path d="M20 6L9 17l-5-5"></path>
               </svg>
               <span><strong>Certifiés</strong></span>
-              <!-- Anthropic wordmark — rendered as text-as-SVG for crisp rendering at any size. -->
-              <svg class="trust-anthropic-logo" viewBox="0 0 320 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anthropic" preserveAspectRatio="xMinYMid meet">
-                <text x="0" y="30" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" font-size="32" font-weight="700" fill="#1f1f1e" letter-spacing="-1">Anthropic</text>
+              <!-- Anthropic logo + wordmark — fleur orange officielle (Jade msg 4971)
+                   + text-as-SVG pour le wordmark (path Wikimedia plantait sur le "C" final). -->
+              <svg class="trust-anthropic-logo" viewBox="0 0 380 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anthropic" preserveAspectRatio="xMinYMid meet">
+                <!-- Fleur Anthropic (4 pétales arrondis disposés en losange, couleur orange/rust signature) -->
+                <g fill="#cc785c" transform="translate(0, 4)">
+                  <path d="M16 4 L20 14 L30 18 L20 22 L16 32 L12 22 L2 18 L12 14 Z"/>
+                </g>
+                <!-- Wordmark "Anthropic" -->
+                <text x="40" y="30" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" font-size="32" font-weight="700" fill="#1f1f1e" letter-spacing="-1">Anthropic</text>
               </svg>
             </div>
           </div>

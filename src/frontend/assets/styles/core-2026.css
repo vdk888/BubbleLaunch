@@ -1652,14 +1652,16 @@ body header {
 .ghibli-bubble {
   position: absolute;
   border-radius: 50%;
+  /* Sprint 3 Phase 5.3 (Jade msg 4971) — bulles encore plus transparentes
+     pour ne pas gêner la lecture. Opacité interne réduite, bordure quasi-invisible. */
   background: radial-gradient(circle at 30% 30%,
-    rgba(255, 255, 255, 0.85),
-    rgba(102, 126, 234, 0.10) 60%,
+    rgba(255, 255, 255, 0.45),
+    rgba(102, 126, 234, 0.05) 60%,
     transparent 75%);
-  border: 1px solid rgba(102, 126, 234, 0.10);
+  border: 1px solid rgba(102, 126, 234, 0.05);
   opacity: 0;
   animation: ghibliFloat 22s var(--ease-ghibli, cubic-bezier(0.16, 1, 0.3, 1)) infinite;
-  filter: blur(0.5px);
+  filter: blur(1px);            /* plus de flou pour effet "philigrame" */
 }
 
 .ghibli-bubble-1 { width: 220px; height: 220px; left: -60px; top: 12%; animation-delay: 0s; }
@@ -1669,9 +1671,10 @@ body header {
 .ghibli-bubble-5 { width: 60px;  height: 60px;  right: 25%; top: 20%; animation-delay: -10s; animation-duration: 16s; }
 
 @keyframes ghibliFloat {
+  /* Sprint 3 Phase 5.3 (Jade msg 4971) — opacité max réduite pour pas gêner lecture */
   0%, 100% { opacity: 0; transform: translateY(0) scale(0.95); }
-  10%, 90% { opacity: 0.45; }
-  50%      { opacity: 0.7; transform: translateY(-30px) scale(1.05); }
+  10%, 90% { opacity: 0.25; }
+  50%      { opacity: 0.4; transform: translateY(-30px) scale(1.05); }
 }
 
 /* Respect prefers-reduced-motion : pas d'animation */
