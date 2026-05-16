@@ -1561,6 +1561,51 @@ nav a.nav-cta-calendly::after {
   }
 }
 
+/* === ACCESSIBILITY (a11y) — Sprint 3 Phase 7 ===
+   Skip-to-content link (WCAG 2.4.1 Bypass Blocks)
+   + improved focus-visible for keyboard navigation
+   ============================================================ */
+
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 8px;
+  z-index: 1000;
+  padding: 12px 20px;
+  background: var(--primary, #111111);
+  color: #ffffff;
+  font-family: var(--font-mono-ghibli, ui-monospace, monospace);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.2s ease;
+}
+.skip-to-content:focus,
+.skip-to-content:focus-visible {
+  top: 0;
+  outline: 3px solid var(--chart-primary, #667eea);
+  outline-offset: 2px;
+}
+
+/* Improved focus-visible for all interactive elements (keyboard users with Tab) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--chart-primary, #667eea);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Remove outline on mouse click (only show on Tab) */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
 /* ============================================================
    GHIBLI CHROME — Sprint 3 Phase 2
    Composants signature charte Ghibli V3 :

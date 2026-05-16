@@ -177,6 +177,29 @@
     });
   }
 
+  // === SKIP-TO-CONTENT LINK (a11y, WCAG 2.4.1) =============
+  // Lien "skip to main content" caché visuellement, visible au focus clavier
+  // (Tab depuis le top de la page). Permet aux utilisateurs lecteurs d'écran
+  // et clavier de sauter la navigation pour aller direct au contenu.
+  function injectSkipLink() {
+    if (document.querySelector('.skip-to-content')) return;
+
+    const lang = document.documentElement.lang || 'fr';
+    const labelMap = { fr: 'Aller au contenu', en: 'Skip to content' };
+
+    const skip = document.createElement('a');
+    skip.href = '#main-content';
+    skip.className = 'skip-to-content';
+    skip.textContent = labelMap[lang] || labelMap.fr;
+    document.body.insertBefore(skip, document.body.firstChild);
+
+    // S'assurer qu'un id="main-content" existe (sinon on ajoute sur le premier <main> ou <section>)
+    if (!document.getElementById('main-content')) {
+      const main = document.querySelector('main') || document.querySelector('section.hero') || document.querySelector('main, [role="main"]');
+      if (main) main.id = 'main-content';
+    }
+  }
+
   // === MOBILE NAV CLOSE BUTTON (Jade msg 4965) ============
   // Ajoute un bouton X explicite dans l'overlay mobile pour la fermeture,
   // en plus du hamburger qui se transforme en X (moins visible).
@@ -218,6 +241,7 @@
   // === BOOT ===============================================
   function boot() {
     try {
+      injectSkipLink();
       injectTopStrip();
       injectBubbles();
       injectHeroTag();
