@@ -1,6 +1,8 @@
 // Smooth scroll-triggered animations for 2026 pages
 document.addEventListener("DOMContentLoaded", () => {
   // Set up intersection observer for fade-in animations
+  // Sprint 1 (2026-05-12): lowered threshold to 0 + rootMargin negative on bottom only
+  // Reason: threshold 0.1 + ad-blockers/iframe contexts sometimes never reach 10% — invisible content
   const fadeInObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
@@ -11,8 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     },
     {
-      threshold: 0.1,
-      rootMargin: "0px 0px -40px 0px",
+      threshold: 0,
+      rootMargin: "0px 0px -10% 0px",
     },
   );
 
@@ -20,6 +22,21 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".fade-in").forEach((el) => {
     fadeInObserver.observe(el);
   });
+
+  // Safety net: after 1.5s, force-reveal anything still hidden (fallback for buggy observers)
+  // Sprint 1 (2026-05-12): added because /a-propos team photos were stuck invisible in some browsers
+  setTimeout(() => {
+    document.querySelectorAll(".fade-in:not(.fade-in-visible)").forEach((el) => {
+      el.classList.add("fade-in-visible");
+    });
+  }, 1500);
+
+  // Also handle prefers-reduced-motion: instant reveal
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.querySelectorAll(".fade-in").forEach((el) => {
+      el.classList.add("fade-in-visible");
+    });
+  }
 
   // Auto-observe section headers and content blocks for smooth reveal
   document.querySelectorAll(

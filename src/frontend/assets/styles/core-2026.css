@@ -1265,3 +1265,73 @@ button,
     transition: none;
   }
 }
+
+/* ====================================================
+   SPRINT 1 — CALENDLY CTA in nav header
+   Added: 2026-05-12 (sprint-1-calendly-b2b)
+   Goal: persistent Calendly access in sticky nav
+   ==================================================== */
+
+/* Desktop nav CTA button */
+.nav-cta-calendly {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.1rem;
+  background: linear-gradient(135deg, #333 0%, #444 100%);
+  color: #fff !important;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 0.5rem;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.nav-cta-calendly:hover {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav-cta-calendly span {
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+/* Underline animation should NOT apply to CTA button */
+nav a.nav-cta-calendly::after {
+  display: none;
+}
+
+/* Mobile nav CTA (in overlay) */
+.mobile-nav-cta-calendly {
+  display: block;
+  margin: 1.5rem auto 0;
+  padding: 0.9rem 1.5rem;
+  max-width: 280px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* Hide desktop nav-cta on mobile (mobile nav overlay has its own) */
+@media (max-width: 768px) {
+  nav .nav-cta-calendly {
+    display: none;
+  }
+}
+
+/* Tighten gap on smaller desktop screens to fit Calendly CTA */
+@media (max-width: 1100px) and (min-width: 769px) {
+  nav {
+    gap: 1.25rem;
+  }
+  .nav-cta-calendly {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.8rem;
+  }
+}
