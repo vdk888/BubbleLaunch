@@ -874,7 +874,10 @@
   }
 
   .process-grid {
-    grid-template-columns: repeat(2, 1fr);
+    /* Sprint 3 Phase 7 (Jade msg 4996) — 3 étapes restent en 3 cols sur tablette,
+       pas en 2 (sinon 1 card orpheline en bas, déséquilibré) */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
   }
 
   .differentiation-grid {
@@ -978,24 +981,22 @@
     padding: 0.4rem 0;
   }
 
-  /* Process steps → horizontal scroll carousel */
+  /* Sprint 3 Phase 7 (Jade msg 4996) — process steps en stack vertical sur mobile
+     (mieux que carousel horizontal qui force le scroll). 3 étapes claires, lisibles. */
   .process-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 1rem;
-    padding-bottom: 0.75rem;
-    scrollbar-width: none;
-  }
-
-  .process-grid::-webkit-scrollbar {
-    display: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    max-width: 100%;
+    padding: 0 1rem;
   }
 
   .process-step {
-    flex: 0 0 65%;
-    scroll-snap-align: start;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    background: var(--card-bg, #f0eee8);
+    border: 1px solid var(--card-border, rgba(0, 0, 0, 0.08));
+    border-radius: 12px;
   }
 
   .process-number {
