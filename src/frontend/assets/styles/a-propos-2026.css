@@ -82,10 +82,22 @@
 }
 
 /* === VALUES GRID === */
+/* Sprint 3 Phase 7 (Jade msg 4996) — adapté à 3 cards (Three Pillars).
+   Desktop : 3 colonnes égales | Mobile : carousel horizontal (override plus bas). */
 .values-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Tablette intermédiaire : 2 colonnes (la 3e passe en dessous) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 600px;
+  }
 }
 
 .value-card {
@@ -195,10 +207,33 @@
   display: flex;
   justify-content: center;
   gap: 4rem;
+  flex-wrap: wrap;       /* Sprint 3 Phase 5.4 — wrap sur mobile */
+  max-width: 100%;
 }
 
 .team-member {
   text-align: center;
+  /* Sprint 3 Phase 5.4 (Jade msg 4975) — vignettes débordaient à droite sur mobile.
+     box-sizing + max-width pour rester dans le viewport. */
+  box-sizing: border-box;
+  padding: 1.5rem 1rem;
+  border-radius: 16px;
+  flex: 0 1 280px;       /* largeur preferee 280px, peut shrink, pas de grow */
+  max-width: 100%;
+}
+
+/* Mobile : team-grid en stack vertical avec contraintes */
+@media (max-width: 768px) {
+  .team-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+  .team-member {
+    width: 100%;
+    max-width: 320px;
+  }
 }
 
 .team-avatar {
@@ -309,24 +344,18 @@
     border-radius: 12px;
   }
 
-  /* Values → horizontal scroll carousel */
+  /* Values → stack vertical sur mobile (mieux que carousel horizontal qui force le scroll)
+     Sprint 3 Phase 7 (Jade msg 4996) — 3 cards en colonne, claires et lisibles */
   .values-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 1rem;
-    padding-bottom: 0.75rem;
-    scrollbar-width: none;
-  }
-
-  .values-grid::-webkit-scrollbar {
-    display: none;
+    max-width: 100%;
+    padding: 0 1rem;
   }
 
   .value-card {
-    flex: 0 0 70%;
-    scroll-snap-align: start;
+    width: 100%;
     padding: 1.5rem;
   }
 

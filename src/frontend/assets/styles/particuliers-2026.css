@@ -508,10 +508,14 @@ a.card:hover {
 }
 
 /* === CTA SECTION === */
+/* Sprint 3 Phase 4 (Jade msg 4939) — nuit Ghibli au lieu de noir pur */
 .cta-section {
   padding: 5rem 0;
-  background: var(--primary);
-  color: white;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.20), transparent 55%),
+    radial-gradient(circle at 20% 80%, rgba(167, 232, 215, 0.08), transparent 50%),
+    linear-gradient(135deg, var(--night, #1a2440) 0%, var(--night-2, #25325a) 100%);
+  color: #f5f3ed;
   text-align: center;
 }
 

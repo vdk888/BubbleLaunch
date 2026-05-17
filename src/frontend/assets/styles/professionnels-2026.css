@@ -129,18 +129,21 @@
   gap: 1.5rem;
 }
 
+/* Sprint 3 Phase 4 (Jade msg 4948) — beige sur beige = pas assez de contraste.
+   Fond plus clair + bordure violet subtile + shadow soft pour ressortir sur le beige body. */
 .service-card {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  background: #fffaf0;     /* blanc cassé chaud, ressort sur beige body */
+  border: 1px solid rgba(102, 126, 234, 0.10);
+  border-radius: 16px;
   padding: 2rem;
   transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(180, 130, 60, 0.04);
 }
 
 .service-card:hover {
   transform: translateY(-4px);
   border-color: var(--purple);
-  box-shadow: 0 10px 30px rgba(147, 172, 240, 0.15);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
 }
 
 .service-icon {
@@ -263,12 +266,17 @@
 }
 
 /* === OUTCOME STATEMENT === */
+/* Sprint 3 Phase 4 (Jade msg 4939) — nuit Ghibli au lieu de noir pur, cohérent avec home */
 .outcome-statement {
   margin-top: 3.5rem;
   padding: 5rem 0;
   text-align: center;
-  background: linear-gradient(135deg, var(--primary) 0%, #1a1f35 100%);
+  background:
+    radial-gradient(circle at 20% 30%, rgba(102, 126, 234, 0.18), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(167, 232, 215, 0.10), transparent 55%),
+    linear-gradient(135deg, var(--night, #1a2440) 0%, var(--night-2, #25325a) 100%);
   border-radius: 24px;
+  color: #f5f3ed;
 }
 
 .outcome-headline {
@@ -442,19 +450,21 @@
   gap: 1.5rem;
 }
 
+/* Sprint 3 Phase 4 (Jade msg 4948) — beige sur beige fix */
 .example-card {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border);
+  background: #fffaf0;
+  border: 1px solid rgba(102, 126, 234, 0.10);
   border-radius: 16px;
   padding: 2rem;
   transition: all 0.3s;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 12px rgba(180, 130, 60, 0.04);
 }
 
 .example-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.12);
 }
 
 /* Card header: icon left, tag right */
@@ -794,10 +804,14 @@
 }
 
 /* === FINAL CTA === */
+/* Sprint 3 Phase 4 (Jade msg 4939) — nuit Ghibli au lieu de noir pur */
 .final-cta {
   padding: 6rem 0;
-  background: var(--primary);
-  color: white;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.20), transparent 55%),
+    radial-gradient(circle at 20% 80%, rgba(167, 232, 215, 0.08), transparent 50%),
+    linear-gradient(135deg, var(--night, #1a2440) 0%, var(--night-2, #25325a) 100%);
+  color: #f5f3ed;
   text-align: center;
 }
 
@@ -860,7 +874,10 @@
   }
 
   .process-grid {
-    grid-template-columns: repeat(2, 1fr);
+    /* Sprint 3 Phase 7 (Jade msg 4996) — 3 étapes restent en 3 cols sur tablette,
+       pas en 2 (sinon 1 card orpheline en bas, déséquilibré) */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
   }
 
   .differentiation-grid {
@@ -964,24 +981,22 @@
     padding: 0.4rem 0;
   }
 
-  /* Process steps → horizontal scroll carousel */
+  /* Sprint 3 Phase 7 (Jade msg 4996) — process steps en stack vertical sur mobile
+     (mieux que carousel horizontal qui force le scroll). 3 étapes claires, lisibles. */
   .process-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 1rem;
-    padding-bottom: 0.75rem;
-    scrollbar-width: none;
-  }
-
-  .process-grid::-webkit-scrollbar {
-    display: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    max-width: 100%;
+    padding: 0 1rem;
   }
 
   .process-step {
-    flex: 0 0 65%;
-    scroll-snap-align: start;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    background: var(--card-bg, #f0eee8);
+    border: 1px solid var(--card-border, rgba(0, 0, 0, 0.08));
+    border-radius: 12px;
   }
 
   .process-number {

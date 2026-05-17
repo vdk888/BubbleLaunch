@@ -1,6 +1,6 @@
 # Bubble Invest — Full Company & Services Description
 
-> Bubble Invest is a dual-activity company based in France: free B2C educational content on AI agents and investment automation, plus B2B AI automation consulting for finance professionals and SMEs. Founded by ex-Deloitte and UBS professionals.
+> Bubble Invest is a dual-activity company based in France: free B2C educational content on AI agents and investment automation, plus B2B AI automation consulting for finance professionals and SMEs. Founded by Joris Dupraz (ex-UBS) and Jade Hoang (ex-KPMG, ex-Deloitte).
 
 ## Company Overview
 
@@ -14,8 +14,8 @@ We help professionals deploy cutting-edge AI agents and automation. Our unique e
 
 ## Detailed Service Offerings
 
-### Quick Start Pack — 2,000 EUR HT
-Our flagship offering. Three sessions over approximately three weeks:
+### Quick Start Pack
+Our flagship offering, quoted bespoke per client. Three sessions over approximately three weeks:
 
 **Session 1 — Diagnostic & Preparation (1-2h, video call)**
 We understand your workflow and identify 2-3 quick wins with high ROI. We prepare agents upstream before coming on-site.
@@ -34,9 +34,10 @@ Feedback on real usage, agent adjustments, advanced tips. Final documentation fo
 - Best practices checklist
 
 ### Complementary Services
-- Follow-up / Debug Sessions: 150 EUR HT/h
-- Monthly Maintenance: 500 EUR HT/month (ongoing support, agent updates, new tool integration)
-- Custom Complex Agent Development: on quote (multi-agent SaaS, API integrations, etc.)
+All complementary services are quoted on request, tailored to the client's setup:
+- Follow-up / Debug Sessions
+- Monthly Maintenance (ongoing support, agent updates, new tool integration)
+- Custom Complex Agent Development (multi-agent SaaS, API integrations, etc.)
 
 ## Target Clients
 
@@ -85,7 +86,7 @@ Feedback on real usage, agent adjustments, advanced tips. Final documentation fo
 ## Our Differentiation
 
 ### Triple Expertise (Rare Combination)
-- **Finance**: Native understanding of regulatory issues, risk management, and industry workflows (ex-Deloitte, ex-UBS)
+- **Finance**: Native understanding of regulatory issues, risk management, and industry workflows (ex-UBS, ex-KPMG, ex-Deloitte)
 - **Technology**: Full-stack skills, up-to-date stack, cloud-native architectures
 - **AI**: Operational mastery of the latest models, continuous technology watch
 
@@ -97,13 +98,13 @@ Feedback on real usage, agent adjustments, advanced tips. Final documentation fo
 ## Frequently Asked Questions
 
 **Q: We don't have an internal tech team. Does it still work?**
-A: Yes — that's exactly why we exist. We come from the business side (Deloitte, UBS), not pure development. We speak your language and train your teams while we build. No technical prerequisites required.
+A: Yes — that's exactly why we exist. We come from the business side (UBS, KPMG, Deloitte), not pure development. We speak your language and train your teams while we build. No technical prerequisites required.
 
 **Q: How long does it take?**
 A: 3 sessions over about 3 weeks. Diagnostic, on-site installation, then follow-up and adjustments. You're operational by session 2.
 
 **Q: How much does it cost?**
-A: Standard pack: 2,000 EUR excl. tax (3 sessions, 5-7h effective work). Additionally: Claude Pro subscription ~20 EUR/month (or free OpenClaw). Follow-up: 150 EUR/h. Maintenance: 500 EUR/month.
+A: Quoted bespoke per client based on scope. Free 30-min diagnostic via Calendly to scope your project and provide a transparent quote. Additionally, plan for an AI provider subscription (Claude Pro ~20 EUR/month or free OpenClaw alternative).
 
 **Q: What if we want to stop working with you?**
 A: That's the goal! We document everything — code, prompts, processes. From day one, you can take over. Our success is when you no longer need us.

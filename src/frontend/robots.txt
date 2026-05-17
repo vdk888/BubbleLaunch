@@ -12,6 +12,10 @@ Allow: /a-propos
 Allow: /en/about
 Allow: /blog
 Allow: /blog/*
+Allow: /shop
+Allow: /shop/*
+Allow: /en/shop
+Allow: /en/shop/*
 Allow: /github
 Allow: /en/github
 Allow: /privacy

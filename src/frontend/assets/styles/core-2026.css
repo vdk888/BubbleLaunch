@@ -3,7 +3,21 @@
  * Loaded on ALL pages of the 2026 redesign.
  * Contains: reset, variables, typography, header, footer, buttons,
  *           floating chat input, chat side panel, animations, responsive.
+ *
+ * Sprint 3 — Phase 1 (charte Ghibli V3) :
+ * - Variables Ghibli ajoutées (additives, n'écrasent pas les existantes)
+ * - Polices Ghibli importées (IBM Plex Sans, Klee One, JetBrains Mono, Shippori Mincho)
+ * - Background body avec gradients radiaux Ghibli (lumière chaude + violet doux + menthe)
+ * - Application visuelle progressive en Phase 2-5.
  */
+
+/* ===========================
+   0. GOOGLE FONTS — Charte Ghibli V3 (Phase 1)
+   ===========================
+   Note: @import au début pour qu'il soit chargé avant le CSS.
+   En production, déplacer en <link rel="preconnect"> + <link rel="stylesheet"> dans le <head>
+   pour de meilleures performances. */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* ===========================
    1. RESET & CSS VARIABLES
@@ -20,6 +34,7 @@ html {
 }
 
 :root {
+  /* === Variables historiques (gardées pour compat backward) === */
   --primary: #111111;
   --secondary: #666666;
   --muted: #999999;
@@ -31,6 +46,53 @@ html {
   --container-max: 1200px;
   --container-padding: 2rem;
   --nav-gap: 2.5rem;
+
+  /* ============================================================
+     === Charte Ghibli V3 (Sprint 3 — Phase 1, fondations) ===
+     Source: ~/claude-workspaces/claudette/site-mocks/AUDIT_CHARTE_GHIBLI_V3.md
+     Variables additives, n'écrasent pas les historiques pour ne rien casser.
+     L'application visuelle se fait progressivement (Phases 2-5).
+     ============================================================ */
+
+  /* Accent violet signature charte (différent du --purple historique) */
+  --chart-primary: #667eea;
+  --chart-bg-light: rgba(102, 126, 234, 0.08);
+  --chart-border: rgba(102, 126, 234, 0.20);
+  --chart-hover: rgba(102, 126, 234, 0.12);
+  --chart-active: rgba(102, 126, 234, 0.30);
+
+  /* Touches Ghibli (parcimonieuses) */
+  --mint: #a7e8d7;             /* menthe poudrée — fioles, indicateurs live */
+  --mint-soft: rgba(167, 232, 215, 0.20);
+  --mint-warm: #d4f4e8;
+  --night: #1a2440;            /* bleu nuit Ghibli (PAS noir pur) — UNE seule section */
+  --night-2: #25325a;
+  --night-glow: #667eea;       /* violet rayonnant dans la nuit du labo */
+  --warm-light: #fff7e8;       /* lumière de lampe Ghibli */
+
+  /* Typographie Ghibli — IBM Plex Sans (body+display), Klee One (accent rare),
+     JetBrains Mono (code/chiffres), Shippori Mincho (kanji décoratif optionnel).
+     Inter banni dans la charte Ghibli (Anthropic Frontend Design Plugin guidelines).
+     Migration progressive : on garde Inter par défaut sur le body pour l'instant
+     (Phase 1 = juste import + variables). Application visuelle en Phase 2. */
+  --font-body-ghibli: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --font-display-ghibli: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-accent-ghibli: "Klee One", cursive;
+  --font-jp-ghibli: "Shippori Mincho", serif;
+  --font-mono-ghibli: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Easing standard charte Ghibli */
+  --ease-ghibli: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Shadows charte Ghibli */
+  --shadow-sm-ghibli: 0 4px 6px rgba(0,0,0,0.05);
+  --shadow-md-ghibli: 0 8px 24px rgba(0,0,0,0.04);
+  --shadow-lg-ghibli: 0 16px 32px rgba(0,0,0,0.08);
+  --shadow-glow-ghibli: 0 0 0 1px rgba(102,126,234,0.10), 0 18px 48px -16px rgba(102,126,234,0.25);
+
+  /* Rythme spacing charte Ghibli */
+  --pad-x-ghibli: clamp(20px, 5vw, 56px);
+  --pad-y-ghibli: clamp(72px, 11vw, 128px);
 }
 
 /* ===========================
@@ -38,12 +100,120 @@ html {
    =========================== */
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg-white);
+  /* Sprint 3 Phase 3 — Migration police body : IBM Plex Sans (charte Ghibli)
+     remplace Inter (banni Anthropic Frontend Design Plugin guidelines).
+     Fallback Inter conservé temporairement au cas où IBM Plex Sans n'aurait pas chargé. */
+  font-family: var(--font-body-ghibli, 'IBM Plex Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+  /* Background charte Ghibli V3 — beige SUBTIL et UNIFORME (Jade msg 4917) */
+  background-color: #fdf8ee;
+  background-image: none;
   color: var(--primary);
   line-height: 1.6;
+  letter-spacing: -0.005em;
+  font-feature-settings: "ss01" 1, "cv11" 1;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Sprint 3 Phase 5.2 (Jade msg 4969) — empêcher le scroll horizontal causé par
+     les éléments qui dépassent le viewport sur mobile (bubbles, sprig, etc.). */
+  overflow-x: hidden;
 }
+html {
+  overflow-x: hidden;
+}
+
+/* === Sprint 3 Phase 2.3 + Phase 3 — UNIFORMITÉ DU BEIGE + COULEURS GHIBLI ===
+   On override les variables historiques pour qu'elles prennent les valeurs Ghibli.
+   Avantage : zéro modification dans les autres fichiers CSS qui utilisent --purple, --bg-white. */
+:root {
+  /* Beige Ghibli uniforme (Jade msg 4917) */
+  --bg-white: #fdf8ee;
+  --bg-subtle: #faf2e1;
+
+  /* Card bg — gris/beige neutre, validé Jade option B (msg 4956)
+     Sobre, calme, contraste suffisant avec le beige body. */
+  --card-bg: #f0eee8;
+  --card-border: rgba(0, 0, 0, 0.08);
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  /* Violet Ghibli — --purple historique #93acf0 (lavande pâle)
+     migre vers --chart-primary Ghibli #667eea (violet bleuté plus saturé).
+     Cascade : cette déclaration est plus bas, écrase la précédente.
+     Phase 3 (Jade msg 4920) — appliquer "les couleurs". */
+  --purple: #667eea;
+  --purple-light: rgba(102, 126, 234, 0.15);
+}
+
+/* Sections internes qui avaient des fonds blancs explicites : transparentes */
+.newsletter-shop-spotlight {
+  background: transparent !important;
+}
+
+/* === Sprint 3 Phase 4 (Jade msg 4948 + 4956) — cards gris neutre sur beige body ===
+   Liste exhaustive des classes de cards/tiles utilisées sur les pages 2026 actives.
+   On exclut les éléments sur sections sombres (problem-solution, waitlist, etc.) via :not(). */
+.service-card,
+.example-card,
+.shop-card,
+.value-card,
+.blog-card,
+.team-member,
+.who-member,
+.spotlight-card,
+.feature-card,
+.testimonial-card,
+.agent-card,
+.profile-card,
+.knowledge-card,
+.reference-card,
+.founder-card,
+.feature-tile,
+.value-prop-card,
+.path-card,
+.dual-path-card,
+.featured-card,
+.pricing-card,
+.preview-card,
+.blog-tile,
+.insight-card,
+.insight-tile,
+.post-card,
+.article-card,
+.gateway-card,
+/* .outcome-card retirée : elle est sur fond sombre (nuit Ghibli), garde son style original */
+.bot-card,
+.platform-card,
+.foundation-card,
+.glass-card,
+.results-metric-card,
+.social-proof-tile,
+.automation-tile,
+.clarity-tile,
+.education-cta-card,
+.checkmark-premium-card,
+.video-card,
+.nav-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+}
+
+/* Hover state cohérent sur toutes les cards */
+.service-card:hover,
+.example-card:hover,
+.shop-card:hover,
+.value-card:hover,
+.blog-card:hover,
+.team-member:hover,
+.who-member:hover,
+.spotlight-card:hover,
+.feature-card:hover,
+.testimonial-card:hover,
+.founder-card:hover {
+  border-color: rgba(102, 126, 234, 0.25);
+}
+
+/* Sections "subtle" (qui-sommes-nous, autres bg-subtle) :
+   on laisse leur teinte par défaut (--bg-subtle) qui est maintenant beige aligné. */
 
 .container {
   max-width: var(--container-max);
@@ -173,7 +343,10 @@ nav a.active::after {
   border: none;
   padding: 8px;
   cursor: pointer;
-  z-index: 101;
+  /* Sprint 3 Phase 5.1 (Jade msg 4965) — z-index 200 pour rester au-dessus de l'overlay (101)
+     et permettre la fermeture quand le menu est ouvert. */
+  z-index: 200;
+  position: relative;
 }
 
 .mobile-menu-toggle span,
@@ -203,6 +376,54 @@ nav a.active::after {
 .hamburger-toggle.open span:nth-child(3),
 .hamburger.open span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Sprint 3 Phase 5.1 (Jade msg 4965) — quand le menu est ouvert,
+   le hamburger devient une croix bien visible avec un fond cerclé */
+.hamburger-toggle.open,
+.mobile-menu-toggle.open,
+.hamburger.open {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === Bouton X de fermeture explicite dans l'overlay mobile (Sprint 3 Phase 5.1) ===
+   Injecté via ghibli-chrome.js. UX claire pour les utilisateurs qui ne voient pas
+   que le hamburger se transforme en X. */
+.mobile-nav-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 210;
+  padding: 0;
+  transition: background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.mobile-nav-close:hover,
+.mobile-nav-close:focus-visible {
+  background: rgba(0, 0, 0, 0.10);
+  outline: none;
+}
+.mobile-nav-close svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--primary);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
 }
 
 /* Mobile nav overlay */
@@ -613,7 +834,11 @@ footer {
 }
 
 .footer-bottom p {
-  font-size: 0.85rem;
+  /* Sprint 3 Phase 3.2 — JetBrains Mono sur le copyright (signature technique Ghibli)
+     Cohérent avec le top strip "Labo ouvert" qui utilise déjà la mono. */
+  font-family: var(--font-mono-ghibli, ui-monospace, "SF Mono", Menlo, monospace);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
   color: var(--muted);
 }
 
@@ -1334,4 +1559,507 @@ nav a.nav-cta-calendly::after {
     padding: 0.5rem 0.9rem;
     font-size: 0.8rem;
   }
+}
+
+/* === ACCESSIBILITY (a11y) — Sprint 3 Phase 7 ===
+   Skip-to-content link (WCAG 2.4.1 Bypass Blocks)
+   + improved focus-visible for keyboard navigation
+   ============================================================ */
+
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 8px;
+  z-index: 1000;
+  padding: 12px 20px;
+  background: var(--primary, #111111);
+  color: #ffffff;
+  font-family: var(--font-mono-ghibli, ui-monospace, monospace);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.2s ease;
+}
+.skip-to-content:focus,
+.skip-to-content:focus-visible {
+  top: 0;
+  outline: 3px solid var(--chart-primary, #667eea);
+  outline-offset: 2px;
+}
+
+/* Improved focus-visible for all interactive elements (keyboard users with Tab) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--chart-primary, #667eea);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Remove outline on mouse click (only show on Tab) */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================================
+   GHIBLI CHROME — Sprint 3 Phase 2
+   Composants signature charte Ghibli V3 :
+   - Top strip "Labo ouvert" sticky avec heure live
+   - Floating bubbles SVG en background
+   Injection via JS (js/ghibli-chrome.js) pour ne pas toucher
+   les 17 fichiers HTML.
+   ============================================================ */
+
+/* === TOP STRIP — "Labo ouvert" === */
+.ghibli-strip {
+  position: fixed;       /* fixé en haut, au-dessus du header sticky existant */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;          /* au-dessus du header (z-index: 100) */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px clamp(20px, 5vw, 56px);
+  background: var(--primary, #111111);
+  color: #ffffff;
+  font-family: var(--font-mono-ghibli, ui-monospace, "SF Mono", Menlo, monospace);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  overflow: hidden;
+  /* Hauteur fixe (~28px) — on décale le header de cette valeur */
+  min-height: 28px;
+  box-sizing: border-box;
+}
+
+.ghibli-strip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mint, #a7e8d7);
+  box-shadow: 0 0 0 0 rgba(167, 232, 215, 0.5);
+  animation: ghibliPulse 2.4s var(--ease-ghibli, cubic-bezier(0.16, 1, 0.3, 1)) infinite;
+  flex-shrink: 0;
+}
+
+.ghibli-strip-text {
+  font-weight: 500;
+}
+.ghibli-strip-sep {
+  opacity: 0.4;
+}
+.ghibli-strip-meta {
+  opacity: 0.7;
+}
+
+@keyframes ghibliPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(167, 232, 215, 0.55); }
+  70%  { box-shadow: 0 0 0 8px rgba(167, 232, 215, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(167, 232, 215, 0); }
+}
+
+/* Décale le header existant pour laisser place au strip
+   Le strip fait ~36px en hauteur réelle (8px padding + ~14px content + 8px padding + 7px dot) */
+body header {
+  top: 36px !important;       /* override le top: 0 du header existant pour pas chevaucher le strip */
+}
+
+/* Sur mobile, le strip peut prendre 2 lignes — on adapte */
+@media (max-width: 480px) {
+  .ghibli-strip {
+    font-size: 10px;
+    gap: 6px;
+    padding: 6px 16px;
+  }
+  .ghibli-strip-meta:last-child {
+    display: none;     /* on cache "build in public" sur mobile pour gagner de l'espace */
+  }
+  .ghibli-strip-sep:last-of-type {
+    display: none;
+  }
+}
+
+/* === FLOATING BUBBLES — signature Ghibli en background === */
+.ghibli-bubbles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;            /* derrière le contenu (header/main ont z-index supérieur) */
+  overflow: hidden;
+}
+
+.ghibli-bubble {
+  position: absolute;
+  border-radius: 50%;
+  /* Sprint 3 Phase 5.4 (Jade msg 4975) — bulles plus visibles sur beige,
+     mais les sections nuit ont leur propre opacity réduite (override plus bas).
+     Compromis : opacity intermédiaire + couleur violet plus saturée pour qu'on
+     les voie sur le beige sans trop déranger. */
+  background: radial-gradient(circle at 30% 30%,
+    rgba(255, 255, 255, 0.65),
+    rgba(102, 126, 234, 0.10) 55%,
+    transparent 75%);
+  border: 1px solid rgba(102, 126, 234, 0.10);
+  opacity: 0;
+  animation: ghibliFloat 22s var(--ease-ghibli, cubic-bezier(0.16, 1, 0.3, 1)) infinite;
+  filter: blur(0.8px);
+}
+
+.ghibli-bubble-1 { width: 220px; height: 220px; left: -60px; top: 12%; animation-delay: 0s; }
+.ghibli-bubble-2 { width: 140px; height: 140px; right: 8%; top: 40%; animation-delay: -7s; animation-duration: 28s; }
+.ghibli-bubble-3 { width: 320px; height: 320px; left: 60%; top: 78%; animation-delay: -14s; animation-duration: 32s; }
+.ghibli-bubble-4 { width: 90px;  height: 90px;  left: 18%; top: 65%; animation-delay: -3s; animation-duration: 18s; }
+.ghibli-bubble-5 { width: 60px;  height: 60px;  right: 25%; top: 20%; animation-delay: -10s; animation-duration: 16s; }
+
+@keyframes ghibliFloat {
+  /* Sprint 3 Phase 5.4 (Jade msg 4975) — opacité moyenne : visible sur beige,
+     les sections nuit ont leur propre filtre (visibility hidden au survol pour pas gêner). */
+  0%, 100% { opacity: 0; transform: translateY(0) scale(0.95); }
+  10%, 90% { opacity: 0.40; }
+  50%      { opacity: 0.55; transform: translateY(-30px) scale(1.05); }
+}
+
+/* Respect prefers-reduced-motion : pas d'animation */
+@media (prefers-reduced-motion: reduce) {
+  .ghibli-bubbles {
+    display: none;
+  }
+  .ghibli-strip-dot {
+    animation: none;
+    box-shadow: 0 0 0 4px rgba(167, 232, 215, 0.20);
+  }
+  .ghibli-hero-sprig {
+    animation: none;
+  }
+}
+
+/* === Sprint 3 Phase 5 (Jade msg 4936) — Mobile responsive Ghibli === */
+@media (max-width: 768px) {
+  /* Bubbles : réduire les grosses qui prennent tout l'écran mobile */
+  .ghibli-bubble-1 { width: 140px; height: 140px; left: -40px; top: 8%; }
+  .ghibli-bubble-3 { width: 180px; height: 180px; left: 40%; top: 75%; }
+  .ghibli-bubble-2 { width: 90px; height: 90px; }
+  .ghibli-bubble-4 { width: 60px; height: 60px; }
+  .ghibli-bubble-5 { width: 40px; height: 40px; }
+
+  /* Hero tag : plus discret en mobile */
+  .ghibli-hero-tag {
+    font-size: 10px;
+    padding: 4px 10px;
+    margin-bottom: 1rem;
+  }
+
+  /* Section tags : plus discrets en mobile */
+  .ghibli-section-tag {
+    font-size: 9px;
+    padding: 4px 10px;
+    gap: 6px;
+    margin-bottom: 1rem;
+  }
+
+  /* Sprig SVG : réduire sur mobile (déjà clamp mais on force) */
+  .ghibli-hero-sprig {
+    width: clamp(40px, 12vw, 60px);
+    right: -10px;
+    opacity: 0.6;     /* plus discret pour pas envahir */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Encore plus compact sur smartphone */
+  .ghibli-hero-tag,
+  .ghibli-section-tag {
+    font-size: 9px;
+    letter-spacing: 0.06em;
+  }
+
+  /* Cacher les 2 plus grosses bubbles, garder les petites pour le sentiment Ghibli */
+  .ghibli-bubble-1,
+  .ghibli-bubble-3 {
+    display: none;
+  }
+}
+
+/* Mobile : Hero pitch ("on a vécu vos problèmes") + Who section padding réduits */
+@media (max-width: 768px) {
+  .who-pitch {
+    padding: 1.25rem 1.25rem !important;
+    margin: 2rem auto 0 !important;
+    font-size: 0.95rem;
+  }
+  .who-pitch p {
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
+  }
+}
+
+/* Mobile : footer-bottom (copyright en mono peut être trop long) */
+@media (max-width: 480px) {
+  .footer-bottom p {
+    font-size: 0.7rem;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+/* === Sprint 3 Phase 5.1 (Jade msg 4965) — Fix textes coupés / débordements mobile === */
+@media (max-width: 768px) {
+  /* CTA Calendly mobile : texte trop long. On force le wrap + taille réduite */
+  .mobile-nav-cta-calendly,
+  .nav-cta-calendly.mobile-nav-cta-calendly {
+    white-space: normal !important;
+    text-align: center;
+    font-size: 0.85rem !important;
+    padding: 0.75rem 1.25rem !important;
+    line-height: 1.3 !important;
+    max-width: 90vw;
+  }
+
+  /* CTA Calendly nav (desktop) caché sur mobile (déjà dans mobile-nav-overlay) */
+  nav .nav-cta-calendly:not(.mobile-nav-cta-calendly) {
+    display: none;
+  }
+
+  /* Hero CTA group : stack vertical sur mobile pour pas tronquer */
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .hero-cta-group .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Hero description : taille raisonnable */
+  .hero p.hero-description {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* H1 hero : reduce sur mobile */
+  .hero h1 {
+    font-size: clamp(2.5rem, 12vw, 4rem) !important;
+    word-break: break-word;
+  }
+
+  /* H2 titres des sections : reduce sur mobile */
+  .problem-content h2,
+  .who-we-are h2,
+  .newsletter-shop-spotlight h2,
+  .waitlist h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+    line-height: 1.2;
+  }
+
+  /* Hero trust block : stack vertical et réduire le texte */
+  .hero-trust-block {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
+  .hero-trust-block .trust-item {
+    font-size: 0.8rem !important;
+  }
+
+  /* Section "Qui sommes nous" intro : pas de padding latéral excessif */
+  .who-we-are .section-header p {
+    padding: 0 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Footer grid : 2 cols sur mobile au lieu de 4 */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.5rem;
+  }
+  .footer-brand {
+    grid-column: 1 / -1;     /* brand occupe toute la largeur */
+  }
+
+  /* Sections card-highlights (services Pack/Carte) : padding réduit */
+  .card-highlights {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Encore plus compact sur smartphone */
+  .hero h1 {
+    font-size: clamp(2rem, 11vw, 3rem) !important;
+  }
+  .hero p.hero-description {
+    font-size: 0.95rem;
+  }
+  /* Hero tagline en Klee One : reduce + word-wrap pour pas tronquer */
+  .hero-tagline {
+    font-size: 1rem !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* === Sprint 3 Phase 5.2 (Jade msg 4969) — Fix marges/débordements mobile === */
+@media (max-width: 768px) {
+  /* Container : padding latéral suffisant pour respiration sur mobile */
+  :root {
+    --container-padding: 1rem;     /* 16px au lieu de 24px pour gagner de la place sur petits viewports */
+  }
+
+  /* Hero : padding-top suffisant pour pas que le tag "01 LABO" passe sous le strip+header
+     strip 36px + header ~64px mobile + 24px margin = 124px minimum */
+  .hero {
+    padding-top: 8rem !important;     /* 128px */
+  }
+
+  /* Tag "01 / Laboratoire" : décaler légèrement pour pas chevaucher header */
+  .ghibli-hero-tag {
+    margin-top: 0.5rem;
+  }
+
+  /* Who members : assurer padding et largeur safe (Jade flag photos coupées) */
+  .who-grid {
+    padding: 0 1rem !important;
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .who-member {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.5rem 1rem;
+    box-sizing: border-box;
+  }
+  .who-member img {
+    max-width: 120px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  /* Forcer toutes les cards à respecter le padding viewport (anti-débordement) */
+  .container > *,
+  section > .container,
+  section > * {
+    max-width: 100%;
+  }
+
+  /* Bubbles flottantes : bien contraintes au viewport (au cas où right négatif) */
+  .ghibli-bubbles {
+    overflow: hidden;
+  }
+}
+
+/* === Hero CTA fix : sur mobile les boutons doivent rester DANS le viewport === */
+@media (max-width: 768px) {
+  /* Hero CTA group / hero-cta : déjà mis en column plus haut, on assure la largeur */
+  .hero-cta-group,
+  .hero-cta {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+  .hero-cta-group .btn,
+  .hero-cta .btn {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: normal;     /* permet le wrap si bouton long */
+  }
+}
+
+/* === GHIBLI HERO TAG — "01 / Laboratoire" === */
+.ghibli-hero-tag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border: 1px solid var(--chart-border, rgba(102, 126, 234, 0.20));
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-family: var(--font-mono-ghibli, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm-ghibli, 0 4px 6px rgba(0,0,0,0.05));
+}
+.ghibli-hero-tag-num {
+  color: var(--chart-primary, #667eea);
+  font-weight: 700;
+}
+.ghibli-hero-tag-label {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* === GHIBLI HERO SPRIG — brin végétal SVG === */
+.ghibli-hero-sprig {
+  position: absolute;
+  bottom: 0;
+  right: clamp(-30px, 2vw, 40px);
+  width: clamp(60px, 14vw, 100px);
+  height: auto;
+  color: rgba(102, 126, 234, 0.22);
+  pointer-events: none;
+  z-index: 1;
+  animation: ghibliSprigSway 7s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+@keyframes ghibliSprigSway {
+  0%, 100% { transform: rotate(-1.2deg); }
+  50%      { transform: rotate(1.2deg); }
+}
+@media (min-width: 880px) {
+  .ghibli-hero-sprig {
+    right: clamp(40px, 6vw, 120px);
+    width: clamp(90px, 8vw, 130px);
+  }
+}
+
+/* === GHIBLI SECTION TAGS — "02 / Le problème", "03 / L'équipe"... === */
+.ghibli-section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border: 1px solid var(--chart-border, rgba(102, 126, 234, 0.20));
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(6px);
+  font-family: var(--font-mono-ghibli, ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  margin-top: -1rem;     /* compense le padding-top de la section */
+}
+.ghibli-section-tag-num {
+  color: var(--chart-primary, #667eea);
+  font-weight: 700;
+}
+.ghibli-section-tag-label {
+  color: var(--secondary);
+  font-weight: 600;
+}
+
+/* Variante dark pour les sections "nuit" (problem-solution, waitlist) */
+.problem-solution .ghibli-section-tag,
+.waitlist .ghibli-section-tag {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(102, 126, 234, 0.35);
+}
+.problem-solution .ghibli-section-tag-label,
+.waitlist .ghibli-section-tag-label {
+  color: rgba(255, 255, 255, 0.85);
 }

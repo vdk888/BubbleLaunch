@@ -86,6 +86,13 @@ router.get('/sitemap.xml', async (req, res) => {
         lastmod: today
       },
       {
+        fr: '/shop',
+        en: '/en/shop',
+        priority: '0.9',
+        changefreq: 'weekly',
+        lastmod: today
+      },
+      {
         fr: '/privacy',
         en: '/en/privacy',
         priority: '0.3',
