@@ -22,9 +22,20 @@ function configureExpress(app) {
           "https://www.googletagmanager.com",
           "https://www.google-analytics.com",
           "https://cdn.jsdelivr.net", // Required for Chart.js
+          "https://assets.calendly.com", // Calendly widget script (Sprint 3 fix — Jade msg 5014)
         ],
-        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com", "https://r2cdn.perplexity.ai"],
+        styleSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://fonts.googleapis.com",
+          "https://assets.calendly.com", // Calendly widget stylesheet (Sprint 3 fix)
+        ],
+        fontSrc: [
+          "'self'",
+          "https://fonts.gstatic.com",
+          "https://r2cdn.perplexity.ai",
+          "https://frontend-cdn.perplexity.ai", // Perplexity browser extension assets (msg 5015)
+        ],
         imgSrc: ["'self'", "data:", "https:", "blob:"],
         connectSrc: [
           "'self'",
@@ -33,8 +44,16 @@ function configureExpress(app) {
           "https://api.notion.com",
           "https://openrouter.ai",
           "https://cdn.jsdelivr.net", // Allow Chart.js source maps
+          "https://calendly.com", // Calendly API calls (Sprint 3 fix)
+          "https://*.calendly.com", // Subdomains
         ],
-        frameSrc: ["'self'", "https://www.youtube.com", "https://youtube.com"],
+        frameSrc: [
+          "'self'",
+          "https://www.youtube.com",
+          "https://youtube.com",
+          "https://calendly.com", // Calendly inline embed iframe (Sprint 3 fix — Jade msg 5014)
+          "https://*.calendly.com",
+        ],
         objectSrc: ["'none'"],
         upgradeInsecureRequests: [],
       },
