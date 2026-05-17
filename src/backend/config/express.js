@@ -23,6 +23,7 @@ function configureExpress(app) {
           "https://www.google-analytics.com",
           "https://cdn.jsdelivr.net", // Required for Chart.js
           "https://assets.calendly.com", // Calendly widget script (Sprint 3 fix — Jade msg 5014)
+          "https://connect.facebook.net", // Meta Pixel fbevents.js (Jade msg 5024)
         ],
         styleSrc: [
           "'self'",
@@ -36,7 +37,7 @@ function configureExpress(app) {
           "https://r2cdn.perplexity.ai",
           "https://frontend-cdn.perplexity.ai", // Perplexity browser extension assets (msg 5015)
         ],
-        imgSrc: ["'self'", "data:", "https:", "blob:"],
+        imgSrc: ["'self'", "data:", "https:", "blob:"], // 'https:' already allows Meta Pixel tracking img (facebook.com/tr)
         connectSrc: [
           "'self'",
           "https://www.google-analytics.com",
@@ -46,6 +47,8 @@ function configureExpress(app) {
           "https://cdn.jsdelivr.net", // Allow Chart.js source maps
           "https://calendly.com", // Calendly API calls (Sprint 3 fix)
           "https://*.calendly.com", // Subdomains
+          "https://www.facebook.com", // Meta Pixel tracking endpoint (Jade msg 5024)
+          "https://connect.facebook.net", // Meta Pixel script + events
         ],
         frameSrc: [
           "'self'",
