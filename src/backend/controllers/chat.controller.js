@@ -169,7 +169,7 @@ const unifiedSystemPrompt = async (
   const isFr = language === "fr";
   const pageBehaviorMap = {
     index: "Explain Bubble's three pillars (investment, AI tools, essays). Guide visitor to right path (particuliers or professionals).",
-    individuals: `AI agents & free content: show agents (Sentinel, Portfolio Manager, Community Manager), blog, newsletter, shop (/shop/articles for research reports).${isFr ? ' Use "tu".' : ""} If business interest → bridge to B2B.`,
+    individuals: `AI agents & free content: show agents (Bubble Sentinel security 29€/mo, Boycott Filter free, Local TTS free, Music DNA free), blog, newsletter, shop (/shop for research reports & premium articles).${isFr ? ' Use "tu".' : ""} If business interest → bridge to B2B with free Calendly diagnostic.`,
     professionals: `B2B focus: qualify needs, pain points, AI maturity → book a call.${isFr ? ' Use "vous".' : ""} Highlight: finance expertise, early adoption, autonomy.`,
     about: "Share team story, values, vision. Be authentic and personal.",
     blog: "Discuss content, recommend articles, bridge to relevant pillars.",
@@ -191,7 +191,7 @@ const unifiedSystemPrompt = async (
 You are Bubble's AI Assistant on the ${ctx} page.
 ${profileBlock}
 
-Bubble Invest: Three pillars — (1) Investment: AI agent managing our portfolio for 1 year, research reports in shop (2) AI Tools: agents available (Sentinel security 29€/mo, Portfolio Manager coming soon, Community Manager coming soon) + B2B consulting for professionals (3) Essays: free blog, newsletter, philosophy. Ex-Conseil/Audit & Asset Management. We build & use our own AI agents, share everything publicly. NOT a SaaS, robo-advisor, or financial advisor. Shop at bubbleinvest.org/shop.
+Bubble Invest: AI implementation for the pros. Tagline "L'IA implémentée. Vous gardez l'avance." Founded by Joris (ex-UBS) and Jade (ex-KPMG, ex-Deloitte). Two activities: (1) Free content & shop B2C: blog, newsletter (bubbleinvest.substack.com), shop (bubbleinvest.org/shop) with Bubble Sentinel security agent 29€/mo + Boycott Filter free + Local TTS free + Music DNA free + research reports 7.99-12.99€. (2) B2B custom AI consulting: install agents on client machines in 3 sessions, pricing on quote, free 30-min diagnostic via Calendly. Differentiators: niche Finance × Tech, early adoption, radical transparency, co-construction (clients become autonomous). Build in public since 2024. NOT a SaaS, robo-advisor, or financial advisor. NEVER mention "Argus" or "Portfolio Manager" or "Community Manager" as available agents (they don't exist as products).
 
 CONTEXT:
 ${dynamicContext}
@@ -212,13 +212,18 @@ RULES:
 };
 
 // Model rotation (free models verified on OpenRouter — March 2026)
+// Order matters : we try in this order, first to succeed wins.
+// 2026-05-17 (Jade msg 5022) — reordered to put Llama 70B first.
+// Reason : Llama hallucinates less on factual queries about Bubble (was hitting
+// Stepfun first which sometimes invented agent names "Argus" or made up products).
+// We accept slightly less fluency for higher factual accuracy.
 const models = [
-  "stepfun/step-3.5-flash:free",                  // 196B sparse MoE, excellent reasoning + tools
+  "meta-llama/llama-3.3-70b-instruct:free",        // 70B, reliable, low hallucination
+  "qwen/qwen3-next-80b-a3b-instruct:free",        // 80B, instruction-tuned, decent
+  "nvidia/nemotron-3-super-120b-a12b:free",        // 120B, 262K context
+  "stepfun/step-3.5-flash:free",                  // 196B sparse MoE, can hallucinate but fast
   "qwen/qwen3.6-plus-preview:free",               // Latest Qwen with tool support
-  "nvidia/nemotron-3-super-120b-a12b:free",        // 120B, 262K context, tool support
-  "qwen/qwen3-next-80b-a3b-instruct:free",        // 80B, 262K context, instruction-tuned
-  "meta-llama/llama-3.3-70b-instruct:free",        // 70B, reliable with tool support
-  "nvidia/nemotron-3-nano-30b-a3b:free",           // 30B, 256K context, lightweight fallback
+  "nvidia/nemotron-3-nano-30b-a3b:free",           // 30B, lightweight fallback
   "arcee-ai/trinity-large-preview:free",           // 400B sparse MoE (org renamed from arcee)
 ];
 
