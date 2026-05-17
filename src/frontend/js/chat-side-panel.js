@@ -791,12 +791,32 @@
     state.conversation.push({ role: 'user', content: prompt });
     persistConversation();
 
+    // Show typing indicator immediately (Jade msg 5020 — UX while LLM cold-starts) :
+    // Le placeholder bot est vide jusqu'au premier chunk SSE. Avec OpenRouter free
+    // models, le 1er chunk peut tarder 10-30s. On affiche typing dots de suite pour
+    // rassurer l'utilisateur.
+    botMessageContent.innerHTML = '<div class="typing-indicator"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
+
     let timeoutId = null;
+    let slowMessageTimeoutId = null;
     try {
       state.abortController = new AbortController();
+      // Timeout client : 90s (Jade msg 5020 — passé de 45s à 90s pour laisser
+      // le temps aux modèles free OpenRouter de répondre, ils sont parfois lents)
       timeoutId = setTimeout(() => {
         if (state.abortController) state.abortController.abort();
-      }, 45000);
+      }, 90000);
+      // Au bout de 15s sans réponse, on ajoute un sous-message pour rassurer
+      slowMessageTimeoutId = setTimeout(() => {
+        const lang = getLanguage();
+        const slowMsg = lang.startsWith('fr')
+          ? '<div class="typing-indicator"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><div style="font-size:0.85em;opacity:0.7;margin-top:0.5rem;">Modèle gratuit en cours de chargement…</div>'
+          : '<div class="typing-indicator"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><div style="font-size:0.85em;opacity:0.7;margin-top:0.5rem;">Free model loading…</div>';
+        // Only swap if still showing initial typing (no content yet)
+        if (botMessageContent.querySelector('.typing-indicator') && !botMessageContent.textContent.replace(/[\s•]+/g, '').length) {
+          botMessageContent.innerHTML = slowMsg;
+        }
+      }, 15000);
       const payload = {
         message: prompt,
         language: getLanguage(),
@@ -924,6 +944,7 @@
       }
     } finally {
       if (timeoutId) clearTimeout(timeoutId);
+      if (slowMessageTimeoutId) clearTimeout(slowMessageTimeoutId);
       state.isProcessing = false;
       input.disabled = false;
       sendButton.disabled = false;
