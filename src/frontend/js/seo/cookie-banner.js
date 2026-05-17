@@ -32,7 +32,7 @@
   const translations = {
     fr: {
       title: 'Ce site utilise des cookies',
-      description: 'Nous utilisons des cookies essentiels (sécurité du chat, préférence de langue) et des cookies analytiques optionnels (Google Analytics) pour améliorer votre expérience.',
+      description: 'Nous utilisons des cookies essentiels (sécurité du chat, préférence de langue), des cookies analytiques (Google Analytics) et des cookies marketing (Meta Pixel) pour améliorer votre expérience.',
       acceptAll: 'Tout accepter',
       acceptEssential: 'Essentiel uniquement',
       customize: 'Personnaliser',
@@ -41,12 +41,14 @@
       essentialDesc: 'Nécessaires au fonctionnement du site (chat, langue). Toujours actifs.',
       analyticsTitle: 'Cookies analytiques',
       analyticsDesc: 'Google Analytics pour comprendre l\'utilisation du site et améliorer les performances.',
+      marketingTitle: 'Cookies marketing',
+      marketingDesc: 'Meta Pixel (Facebook/Instagram) pour mesurer l\'efficacité de nos campagnes publicitaires et adapter le contenu marketing.',
       privacyLink: 'Politique de confidentialité',
       manageConsent: 'Gérer les Cookies'
     },
     en: {
       title: 'This site uses cookies',
-      description: 'We use essential cookies (chat safety, language preference) and optional analytics cookies (Google Analytics) to improve your experience.',
+      description: 'We use essential cookies (chat safety, language preference), analytics cookies (Google Analytics) and marketing cookies (Meta Pixel) to improve your experience.',
       acceptAll: 'Accept all',
       acceptEssential: 'Essential only',
       customize: 'Customize',
@@ -55,6 +57,8 @@
       essentialDesc: 'Required for the site to function (chat, language). Always active.',
       analyticsTitle: 'Analytics cookies',
       analyticsDesc: 'Google Analytics to understand site usage and improve performance.',
+      marketingTitle: 'Marketing cookies',
+      marketingDesc: 'Meta Pixel (Facebook/Instagram) to measure ad campaign performance and personalize marketing content.',
       privacyLink: 'Privacy policy',
       manageConsent: 'Manage Cookies'
     }
@@ -84,25 +88,31 @@
   }
 
   // Google Analytics 4 Consent Mode
-  function updateGAConsent(analytics) {
+  // analytics → analytics_storage (GA measurement)
+  // marketing → ad_storage + ad_user_data + ad_personalization (Google Ads / personalized ads)
+  function updateGAConsent(analytics, marketing) {
     if (typeof gtag === 'function') {
       gtag('consent', 'update', {
         'analytics_storage': analytics ? 'granted' : 'denied',
-        'ad_storage': 'denied'
+        'ad_storage': marketing ? 'granted' : 'denied',
+        'ad_user_data': marketing ? 'granted' : 'denied',
+        'ad_personalization': marketing ? 'granted' : 'denied'
       });
-      console.log('[Cookie Consent] GA4 consent:', analytics ? 'granted' : 'denied');
+      console.log('[Cookie Consent] GA4 consent: analytics=' + (analytics ? 'granted' : 'denied') + ', ads=' + (marketing ? 'granted' : 'denied'));
     }
   }
 
   // Meta Pixel Consent Mode — grant/revoke + fire PageView once when granted
+  // Meta Pixel is a marketing tracker (Facebook/Instagram ads), not a pure analytics tool,
+  // so it is gated on the "marketing" consent category, NOT "analytics".
   // Reference: https://developers.facebook.com/docs/meta-pixel/implementation/gdpr/
   let _metaPixelPageViewFired = false;
-  function updateMetaPixelConsent(analytics) {
+  function updateMetaPixelConsent(marketing) {
     if (typeof fbq !== 'function') {
       console.log('[Cookie Consent] Meta Pixel not loaded yet, skipping');
       return;
     }
-    if (analytics) {
+    if (marketing) {
       fbq('consent', 'grant');
       // Fire PageView only once per page load to avoid double-counting
       if (!_metaPixelPageViewFired) {
@@ -119,20 +129,22 @@
   }
 
   // Save consent
-  function saveConsent(essential, analytics) {
+  function saveConsent(essential, analytics, marketing) {
     const consent = {
       essential: essential,
       analytics: analytics,
-      timestamp: new Date().toISOString()
+      marketing: marketing,
+      timestamp: new Date().toISOString(),
+      version: 2  // v2 = split analytics/marketing (was v1: analytics only)
     };
 
     // Save to cookie and localStorage
     setCookie(COOKIE_NAME, JSON.stringify(consent), COOKIE_DURATION);
     localStorage.setItem(COOKIE_NAME, JSON.stringify(consent));
 
-    // Update trackers
-    updateGAConsent(analytics);
-    updateMetaPixelConsent(analytics);
+    // Update trackers — GA gets analytics+ads flags, Meta Pixel gets marketing only
+    updateGAConsent(analytics, marketing);
+    updateMetaPixelConsent(marketing);
 
     // Close banner
     closeBanner();
@@ -240,6 +252,19 @@
             </div>
           </div>
 
+          <div class="bubble-cookie-option">
+            <div class="bubble-cookie-option-header">
+              <label class="bubble-cookie-switch">
+                <input type="checkbox" id="bubble-marketing-toggle">
+                <span class="bubble-cookie-slider"></span>
+              </label>
+              <div class="bubble-cookie-option-info">
+                <h4>${t.marketingTitle}</h4>
+                <p>${t.marketingDesc}</p>
+              </div>
+            </div>
+          </div>
+
           <div class="bubble-cookie-actions">
             <button id="bubble-save-custom" class="bubble-cookie-btn bubble-cookie-btn--primary">
               ${t.save}
@@ -254,18 +279,19 @@
 
     // Bind events
     document.getElementById('bubble-accept-all').addEventListener('click', () => {
-      saveConsent(true, true);
+      saveConsent(true, true, true);
     });
 
     document.getElementById('bubble-accept-essential').addEventListener('click', () => {
-      saveConsent(true, false);
+      saveConsent(true, false, false);
     });
 
     document.getElementById('bubble-customize').addEventListener('click', showCustomize);
 
     document.getElementById('bubble-save-custom').addEventListener('click', () => {
       const analytics = document.getElementById('bubble-analytics-toggle').checked;
-      saveConsent(true, analytics);
+      const marketing = document.getElementById('bubble-marketing-toggle').checked;
+      saveConsent(true, analytics, marketing);
     });
 
     // Show banner with animation
@@ -319,16 +345,21 @@
 
     if (consent) {
       // User has already made a choice - apply it
-      updateGAConsent(consent.analytics);
-      updateMetaPixelConsent(consent.analytics);
-      console.log('[Cookie Consent] Existing consent loaded:', consent);
+      // Backward compat: v1 cookies have no `marketing` field — treat marketing as denied
+      // (we don't re-consent retroactively for Meta Pixel; user must re-open the banner)
+      const marketing = (consent.version === 2) ? !!consent.marketing : false;
+      updateGAConsent(consent.analytics, marketing);
+      updateMetaPixelConsent(marketing);
+      console.log('[Cookie Consent] Existing consent loaded:', consent, '(marketing resolved to ' + marketing + ')');
     } else {
       // First visit - show banner
       // Set default deny for GA4 until user chooses
       if (typeof gtag === 'function') {
         gtag('consent', 'default', {
           'analytics_storage': 'denied',
-          'ad_storage': 'denied'
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied'
         });
       }
 

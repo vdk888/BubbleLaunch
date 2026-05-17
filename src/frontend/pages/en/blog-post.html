@@ -57,7 +57,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied' });
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
     gtag('config', 'G-T0MQEL0ZG0', { 'anonymize_ip': true, 'cookie_flags': 'SameSite=None;Secure' });
   </script>
 
@@ -71,9 +71,10 @@
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1553953629409728');
-  // Default: deny consent until cookie-banner.js grants it
+  // Default: deny consent BEFORE init so the SDK never runs with default granted state
+  // (queued calls are replayed in order when fbevents.js loads — revoke must come first)
   fbq('consent', 'revoke');
+  fbq('init', '1553953629409728');
   // PageView is fired by cookie-banner.js after user opts-in (or auto-fires if consent already granted)
   </script>
   <!-- noscript fallback intentionally removed: would fire PageView without consent -->
