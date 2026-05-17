@@ -238,9 +238,65 @@
     overlay.insertBefore(closeBtn, overlay.firstChild);
   }
 
+  // === META PIXEL (Jade msg 5024) ===========================
+  // ID: 1553953629409728
+  // Injecté ici pour ne pas toucher les 16 fichiers HTML individuellement.
+  // Trade-off : se charge après DOMContentLoaded au lieu du <head> (inline serait
+  // plus rapide). Acceptable pour notre cas car les conversions principales
+  // (Calendly book) arrivent bien après le 1er PageView.
+  function injectMetaPixel() {
+    if (window.fbq) return; // already loaded
+    const PIXEL_ID = '1553953629409728';
+    /* eslint-disable */
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    /* eslint-enable */
+    window.fbq('init', PIXEL_ID);
+    window.fbq('track', 'PageView');
+
+    // Noscript fallback (1x1 tracking pixel)
+    const ns = document.createElement('noscript');
+    ns.innerHTML = `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1" alt="" />`;
+    document.body.appendChild(ns);
+  }
+
+  // === CALENDLY → META PIXEL conversion tracking ============
+  // Listen for the existing Calendly events fired by js/calendly-integration.js
+  // and forward to Meta Pixel as Lead conversions.
+  function wireCalendlyMetaTracking() {
+    if (typeof window.dataLayer === 'undefined') return;
+
+    // calendly-integration.js pushes to GTM dataLayer. We tap into that.
+    const originalPush = window.dataLayer.push;
+    window.dataLayer.push = function(...args) {
+      try {
+        for (const arg of args) {
+          if (arg && typeof arg === 'object' && arg.event === 'calendly_event_scheduled') {
+            // CONVERSION 🎯 — push to Meta Pixel as Lead
+            if (window.fbq) {
+              window.fbq('track', 'Lead', {
+                content_name: 'Calendly booking',
+                content_category: 'B2B diagnostic',
+                source: arg.source || 'unknown'
+              });
+            }
+            // Also track Schedule for Meta (specific to bookings)
+            if (window.fbq) {
+              window.fbq('track', 'Schedule');
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('[meta-pixel] dataLayer hook error:', e);
+      }
+      return originalPush.apply(this, args);
+    };
+  }
+
   // === BOOT ===============================================
   function boot() {
     try {
+      injectMetaPixel();
+      wireCalendlyMetaTracking();
       injectSkipLink();
       injectTopStrip();
       injectBubbles();
