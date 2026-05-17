@@ -2063,3 +2063,30 @@ body header {
 .waitlist .ghibli-section-tag-label {
   color: rgba(255, 255, 255, 0.85);
 }
+
+/* === TYPING INDICATOR — Sprint 3 Phase 7 (Jade msg 5020) ===
+   Animated 3-dots for chatbot "Bubble is thinking..." state.
+   Imported from styles.css (legacy) — needed because the new 2026 pages
+   don't load styles.css so the indicator was invisible before. */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.5rem 0;
+  min-width: 60px;
+  gap: 6px;
+}
+.typing-indicator .dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--chart-primary, #667eea);
+  animation: typingBounce 1.4s infinite ease-in-out both;
+}
+.typing-indicator .dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-indicator .dot:nth-child(2) { animation-delay: -0.16s; }
+@keyframes typingBounce {
+  0%, 80%, 100% { transform: scale(0.4); opacity: 0.4; }
+  40%           { transform: scale(1); opacity: 1; }
+}
