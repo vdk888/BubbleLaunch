@@ -94,6 +94,30 @@
     }
   }
 
+  // Meta Pixel Consent Mode — grant/revoke + fire PageView once when granted
+  // Reference: https://developers.facebook.com/docs/meta-pixel/implementation/gdpr/
+  let _metaPixelPageViewFired = false;
+  function updateMetaPixelConsent(analytics) {
+    if (typeof fbq !== 'function') {
+      console.log('[Cookie Consent] Meta Pixel not loaded yet, skipping');
+      return;
+    }
+    if (analytics) {
+      fbq('consent', 'grant');
+      // Fire PageView only once per page load to avoid double-counting
+      if (!_metaPixelPageViewFired) {
+        fbq('track', 'PageView');
+        _metaPixelPageViewFired = true;
+        console.log('[Cookie Consent] Meta Pixel: consent granted + PageView fired');
+      } else {
+        console.log('[Cookie Consent] Meta Pixel: consent granted (PageView already fired)');
+      }
+    } else {
+      fbq('consent', 'revoke');
+      console.log('[Cookie Consent] Meta Pixel: consent revoked');
+    }
+  }
+
   // Save consent
   function saveConsent(essential, analytics) {
     const consent = {
@@ -106,8 +130,9 @@
     setCookie(COOKIE_NAME, JSON.stringify(consent), COOKIE_DURATION);
     localStorage.setItem(COOKIE_NAME, JSON.stringify(consent));
 
-    // Update GA4
+    // Update trackers
     updateGAConsent(analytics);
+    updateMetaPixelConsent(analytics);
 
     // Close banner
     closeBanner();
@@ -295,6 +320,7 @@
     if (consent) {
       // User has already made a choice - apply it
       updateGAConsent(consent.analytics);
+      updateMetaPixelConsent(consent.analytics);
       console.log('[Cookie Consent] Existing consent loaded:', consent);
     } else {
       // First visit - show banner

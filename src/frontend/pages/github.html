@@ -92,7 +92,7 @@
     }
   </style>
 
-  <!-- Meta Pixel Code (Jade msg 5024) -->
+  <!-- Meta Pixel Code (Jade msg 5024) — consent-gated per RGPD/CNIL (Codex P1) -->
   <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -103,11 +103,11 @@
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '1553953629409728');
-  fbq('track', 'PageView');
+  // Default: deny consent until cookie-banner.js grants it
+  fbq('consent', 'revoke');
+  // PageView is fired by cookie-banner.js after user opts-in (or auto-fires if consent already granted)
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1553953629409728&ev=PageView&noscript=1"
-  alt="" /></noscript>
+  <!-- noscript fallback intentionally removed: would fire PageView without consent -->
   <!-- End Meta Pixel Code -->
 </head>
 <body>
