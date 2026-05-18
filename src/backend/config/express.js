@@ -21,6 +21,8 @@ function configureExpress(app) {
           "'unsafe-inline'", // Required for inline scripts (GA4, etc.)
           "https://www.googletagmanager.com",
           "https://www.google-analytics.com",
+          "https://www.googleadservices.com", // Google Ads conversion linker (Phase 1 — Jade 2026-05-18)
+          "https://googleads.g.doubleclick.net", // Google Ads remarketing pixel
           "https://cdn.jsdelivr.net", // Required for Chart.js
           "https://assets.calendly.com", // Calendly widget script (Sprint 3 fix — Jade msg 5014)
           "https://connect.facebook.net", // Meta Pixel fbevents.js (Jade msg 5024)
@@ -37,7 +39,7 @@ function configureExpress(app) {
           "https://r2cdn.perplexity.ai",
           "https://frontend-cdn.perplexity.ai", // Perplexity browser extension assets (msg 5015)
         ],
-        imgSrc: ["'self'", "data:", "https:", "blob:"], // 'https:' already allows Meta Pixel tracking img (facebook.com/tr)
+        imgSrc: ["'self'", "data:", "https:", "blob:"], // 'https:' already allows Meta Pixel + Google Ads tracking pixels
         connectSrc: [
           "'self'",
           "https://www.google-analytics.com",
@@ -49,6 +51,8 @@ function configureExpress(app) {
           "https://*.calendly.com", // Subdomains
           "https://www.facebook.com", // Meta Pixel tracking endpoint (Jade msg 5024)
           "https://connect.facebook.net", // Meta Pixel script + events
+          "https://www.googleadservices.com", // Google Ads conversion endpoint (Phase 1 — Jade 2026-05-18)
+          "https://googleads.g.doubleclick.net", // Google Ads remarketing endpoint
         ],
         frameSrc: [
           "'self'",

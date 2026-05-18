@@ -37,6 +37,10 @@
     gtag('js', new Date());
     gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
     gtag('config', 'G-T0MQEL0ZG0');
+    // Google Ads conversion tag (Phase 1 marketing — Jade msg 5119-5163, 2026-05-18)
+    // The `gtag` function is shared with GA4 above; both stream through the same gtag.js script.
+    // Ad-related consent (ad_storage, ad_user_data, ad_personalization) is managed by cookie-banner.js.
+    gtag('config', 'AW-18054203382');
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -589,6 +593,8 @@
 
   <!-- Scripts -->
   <script src="/js/seo/cookie-banner.js"></script>
+  <!-- Unified conversion tracking (Pixel + CAPI dual tracking + Google Ads conversion) — Phase 1 marketing 2026-05-18 -->
+  <script src="/js/seo/conversions.js"></script>
   <script src="/js/ghibli-chrome.js" defer></script>
   <script src="/js/lang-toggle.js"></script>
   <script src="/i18n/translations.js"></script>

@@ -1,0 +1,14 @@
+# SOPS config for BubbleLaunch secrets
+# Encrypts secrets.sops.env with age public key
+# Decryption requires the age private key at ~/.config/sops/age/keys.txt
+#
+# Add a secret:
+#   ~/claude-workspaces/Rick_RnD/projects/bubble-vps-platform/scripts/operator-set-secret.sh \
+#       --project=~/claude-workspaces/Claudette/repos/BubbleLaunch \
+#       --key=YOUR_KEY_NAME
+#
+# Decrypt at runtime:
+#   SOPS_AGE_KEY_FILE=~/.config/sops/age/keys.txt sops --decrypt secrets.sops.env > .env.runtime
+creation_rules:
+  - path_regex: secrets\.sops\.env$
+    age: age1qal34hv5h99vvpq7kmghfz0mjh98eq9mj5dg5k43r8kwmumvnu5qt6w3hy

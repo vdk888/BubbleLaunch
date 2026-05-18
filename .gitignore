@@ -51,3 +51,6 @@ temp/
 sessions/
 *.db
 .env.dev
+
+# SOPS runtime decryption (ephemeral)
+.env.runtime

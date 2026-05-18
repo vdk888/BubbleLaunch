@@ -102,11 +102,14 @@
     }
   }
 
-  // Meta Pixel Consent Mode — grant/revoke + fire PageView once when granted
+  // Meta Pixel Consent Mode — grant/revoke + fire dual PageView (Pixel + CAPI) when granted
   // Meta Pixel is a marketing tracker (Facebook/Instagram ads), not a pure analytics tool,
   // so it is gated on the "marketing" consent category, NOT "analytics".
   // Reference: https://developers.facebook.com/docs/meta-pixel/implementation/gdpr/
-  let _metaPixelPageViewFired = false;
+  //
+  // Since 2026-05-18 (Phase 1 marketing campaigns): PageView is also forwarded to
+  // server-side CAPI (Conversions API) via window.BubbleTracking, with a shared event_id
+  // for dedup across browser + server within Meta's 48h window.
   function updateMetaPixelConsent(marketing) {
     if (typeof fbq !== 'function') {
       console.log('[Cookie Consent] Meta Pixel not loaded yet, skipping');
@@ -114,13 +117,16 @@
     }
     if (marketing) {
       fbq('consent', 'grant');
-      // Fire PageView only once per page load to avoid double-counting
-      if (!_metaPixelPageViewFired) {
-        fbq('track', 'PageView');
-        _metaPixelPageViewFired = true;
-        console.log('[Cookie Consent] Meta Pixel: consent granted + PageView fired');
+      // Dual-fire PageView (Pixel + CAPI) via BubbleTracking. Idempotent per page load.
+      if (typeof window.BubbleTracking !== 'undefined' && typeof window.BubbleTracking.trackPageView === 'function') {
+        const eventId = window.BubbleTracking.trackPageView();
+        if (eventId) {
+          console.log('[Cookie Consent] Meta Pixel: consent granted + dual PageView fired (event_id=' + eventId.slice(0, 8) + '…)');
+        }
       } else {
-        console.log('[Cookie Consent] Meta Pixel: consent granted (PageView already fired)');
+        // Fallback: if BubbleTracking not loaded, fire client-side Pixel only (no CAPI dedup)
+        fbq('track', 'PageView');
+        console.log('[Cookie Consent] Meta Pixel: consent granted + PageView fired (no CAPI — BubbleTracking not loaded)');
       }
     } else {
       fbq('consent', 'revoke');
