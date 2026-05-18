@@ -107,7 +107,14 @@
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
-    gtag('config', 'G-T0MQEL0ZG0', { 'anonymize_ip': true, 'cookie_flags': 'SameSite=None;Secure' });
+    gtag('config', 'G-T0MQEL0ZG0', {
+      'anonymize_ip': true,
+      'cookie_flags': 'SameSite=None;Secure'
+    });
+    // Google Ads conversion tag (Phase 1 marketing — Jade msg 5119-5163, 2026-05-18)
+    // The `gtag` function is shared with GA4 above; both stream through the same gtag.js script.
+    // Ad-related consent (ad_storage, ad_user_data, ad_personalization) is managed by cookie-banner.js.
+    gtag('config', 'AW-18054203382');
   </script>
 
   <!-- Meta Pixel Code (Jade msg 5024) — consent-gated per RGPD/CNIL (Codex P1) -->
@@ -291,9 +298,27 @@
       <h2>11. Données des mineurs</h2>
       <p>Notre service n'est pas destiné aux personnes de moins de 18 ans. Nous ne collectons pas sciemment de données personnelles de mineurs. Si vous êtes parent et que vous découvrez que votre enfant nous a fourni des informations personnelles, veuillez nous contacter.</p>
 
+      <h2 id="data-deletion">12. Suppression de vos données</h2>
+      <p>Vous pouvez demander la suppression de l'ensemble de vos données personnelles à tout moment :</p>
+      <ul>
+        <li><strong>Par email</strong> : envoyez votre demande à <a href="mailto:contact@bubbleinvest.org?subject=Suppression%20de%20mes%20donn%C3%A9es%20-%20RGPD">contact@bubbleinvest.org</a> avec l'objet "Suppression de mes données - RGPD".</li>
+        <li><strong>Informations à fournir</strong> : votre nom, votre email (celui utilisé pour interagir avec nos services), et le type de données dont vous souhaitez la suppression.</li>
+        <li><strong>Délai de traitement</strong> : nous traiterons votre demande dans un délai maximum de 30 jours, conformément à l'article 17 du RGPD.</li>
+        <li><strong>Confirmation</strong> : vous recevrez une confirmation par email une fois la suppression effective.</li>
+      </ul>
+      <p>Cette section satisfait également aux exigences de la plateforme Meta (Facebook/Instagram) pour l'accès à leurs API marketing : <a href="https://bubbleinvest.org/privacy#data-deletion" target="_blank" rel="noopener">https://bubbleinvest.org/privacy#data-deletion</a></p>
+
+      <h2>13. Outils de mesure publicitaire (Meta, Google Ads)</h2>
+      <p>Dans le cadre de nos campagnes publicitaires en ligne, nous utilisons des outils de mesure de performance qui ne sont activés <strong>qu'après votre consentement explicite</strong> via le bandeau de cookies (catégorie "Marketing") :</p>
+      <ul>
+        <li><strong>Meta Pixel + Conversions API (CAPI)</strong> : permet de mesurer l'efficacité de nos publicités Facebook et Instagram. Les données collectées (page vue, clic sur un CTA, prise de rendez-vous) sont transmises à Meta Platforms Ireland Ltd. Les données personnelles éventuellement transmises (email, téléphone) sont <strong>hashées en SHA-256 côté serveur</strong> avant envoi. Durée de conservation chez Meta : 13 mois maximum. Finalité : mesure et personnalisation publicitaire. Destinataire : Meta Platforms Ireland Ltd, 4 Grand Canal Square, Dublin 2, Irlande.</li>
+        <li><strong>Google Ads Conversion Tracking + Enhanced Conversions</strong> : permet de mesurer l'efficacité de nos publicités Google. Les données personnelles éventuellement transmises sont également hashées avant envoi. Durée de conservation : 13 mois. Finalité : mesure et optimisation publicitaire. Destinataire : Google Ireland Ltd, Gordon House, Barrow Street, Dublin 4, Irlande.</li>
+      </ul>
+      <p>Vous pouvez retirer votre consentement à tout moment via le lien <strong>"Gérer les cookies"</strong> en bas de chaque page.</p>
+
       <div class="last-updated">
-        <p><strong>Dernière mise à jour :</strong> 2 mars 2026</p>
-        <p>Version 2.0 - Mise à jour du modèle d'activité (contenu gratuit + conseil B2B)</p>
+        <p><strong>Dernière mise à jour :</strong> 18 mai 2026</p>
+        <p>Version 2.1 - Ajout sections 12 (Suppression données RGPD) et 13 (Outils de mesure publicitaire Meta + Google Ads). Version 2.0 - Mise à jour du modèle d'activité (contenu gratuit + conseil B2B).</p>
       </div>
     </div>
   </div>
@@ -351,6 +376,8 @@
 
   <!-- Scripts -->
   <script src="/js/seo/cookie-banner.js"></script>
+  <!-- Unified conversion tracking (Pixel + CAPI dual tracking + Google Ads conversion) — Phase 1 marketing 2026-05-18 -->
+  <script src="/js/seo/conversions.js"></script>
   <script src="/js/lang-toggle.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
 

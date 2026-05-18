@@ -107,7 +107,14 @@
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
-    gtag('config', 'G-T0MQEL0ZG0', { 'anonymize_ip': true, 'cookie_flags': 'SameSite=None;Secure' });
+    gtag('config', 'G-T0MQEL0ZG0', {
+      'anonymize_ip': true,
+      'cookie_flags': 'SameSite=None;Secure'
+    });
+    // Google Ads conversion tag (Phase 1 marketing — Jade msg 5119-5163, 2026-05-18)
+    // The `gtag` function is shared with GA4 above; both stream through the same gtag.js script.
+    // Ad-related consent (ad_storage, ad_user_data, ad_personalization) is managed by cookie-banner.js.
+    gtag('config', 'AW-18054203382');
   </script>
 
   <!-- Meta Pixel Code (Jade msg 5024) — consent-gated per RGPD/CNIL (Codex P1) -->
@@ -287,9 +294,27 @@
       <h2>11. Children's Data</h2>
       <p>Bubble is designed for adults. We do not knowingly collect personal data from individuals under 18. If you are a parent or guardian and believe your child has shared personal data with us, please contact us so we can delete it.</p>
 
+      <h2 id="data-deletion">12. Data Deletion</h2>
+      <p>You can request the deletion of all your personal data at any time:</p>
+      <ul>
+        <li><strong>By email</strong>: send your request to <a href="mailto:contact@bubbleinvest.org?subject=GDPR%20Data%20Deletion%20Request">contact@bubbleinvest.org</a> with the subject "GDPR Data Deletion Request".</li>
+        <li><strong>Information to provide</strong>: your name, your email (the one used to interact with our services), and the type of data you want deleted.</li>
+        <li><strong>Processing time</strong>: we will process your request within a maximum of 30 days, in accordance with Article 17 of the GDPR.</li>
+        <li><strong>Confirmation</strong>: you will receive an email confirmation once deletion is complete.</li>
+      </ul>
+      <p>This section also satisfies the Meta platform (Facebook/Instagram) requirements for marketing API access: <a href="https://bubbleinvest.org/privacy#data-deletion" target="_blank" rel="noopener">https://bubbleinvest.org/privacy#data-deletion</a></p>
+
+      <h2>13. Advertising Measurement Tools (Meta, Google Ads)</h2>
+      <p>As part of our online advertising campaigns, we use performance measurement tools that are only activated <strong>after your explicit consent</strong> via the cookie banner ("Marketing" category):</p>
+      <ul>
+        <li><strong>Meta Pixel + Conversions API (CAPI)</strong>: measures the effectiveness of our Facebook and Instagram ads. Data collected (page view, CTA click, appointment booking) is sent to Meta Platforms Ireland Ltd. Any personal data transmitted (email, phone) is <strong>hashed using SHA-256 server-side</strong> before sending. Meta retention: maximum 13 months. Purpose: advertising measurement and personalization. Recipient: Meta Platforms Ireland Ltd, 4 Grand Canal Square, Dublin 2, Ireland.</li>
+        <li><strong>Google Ads Conversion Tracking + Enhanced Conversions</strong>: measures the effectiveness of our Google ads. Any personal data transmitted is also hashed before sending. Retention: 13 months. Purpose: advertising measurement and optimization. Recipient: Google Ireland Ltd, Gordon House, Barrow Street, Dublin 4, Ireland.</li>
+      </ul>
+      <p>You can withdraw your consent at any time via the <strong>"Manage Cookies"</strong> link at the bottom of any page.</p>
+
       <div class="last-updated">
-        <p><strong>Last updated:</strong> March 2, 2026</p>
-        <p>Version 2.0 &ndash; Updated business model (free content + B2B consulting)</p>
+        <p><strong>Last updated:</strong> May 18, 2026</p>
+        <p>Version 2.1 &ndash; Added sections 12 (GDPR Data Deletion) and 13 (Meta + Google Ads Advertising Measurement Tools). Version 2.0 &ndash; Updated business model (free content + B2B consulting).</p>
       </div>
     </div>
   </div>
@@ -347,6 +372,8 @@
 
   <!-- Scripts -->
   <script src="/js/seo/cookie-banner.js"></script>
+  <!-- Unified conversion tracking (Pixel + CAPI dual tracking + Google Ads conversion) — Phase 1 marketing 2026-05-18 -->
+  <script src="/js/seo/conversions.js"></script>
   <script src="/js/lang-toggle.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
 
