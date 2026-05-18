@@ -106,11 +106,11 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied' });
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
     gtag('config', 'G-T0MQEL0ZG0', { 'anonymize_ip': true, 'cookie_flags': 'SameSite=None;Secure' });
   </script>
 
-  <!-- Meta Pixel Code (Jade msg 5024) -->
+  <!-- Meta Pixel Code (Jade msg 5024) — consent-gated per RGPD/CNIL (Codex P1) -->
   <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -120,12 +120,13 @@
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
+  // Default: deny consent BEFORE init so the SDK never runs with default granted state
+  // (queued calls are replayed in order when fbevents.js loads — revoke must come first)
+  fbq('consent', 'revoke');
   fbq('init', '1553953629409728');
-  fbq('track', 'PageView');
+  // PageView is fired by cookie-banner.js after user opts-in (or auto-fires if consent already granted)
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1553953629409728&ev=PageView&noscript=1"
-  alt="" /></noscript>
+  <!-- noscript fallback intentionally removed: would fire PageView without consent -->
   <!-- End Meta Pixel Code -->
 </head>
 <body>
