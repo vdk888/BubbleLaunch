@@ -95,6 +95,29 @@ Geography: France first (Paris-based, remote nationwide), Belgium, Switzerland.
 - GitHub: https://bubbleinvest.org/github
 - Contact (book a call): https://calendly.com/bubbleinvest-ai
 
+
+## Frequently Asked Questions
+
+These are the most strategic questions, optimized for conversion. Full FAQ (21 questions) on https://bubbleinvest.org/professionnels#faq
+
+**What is Bubble Invest exactly?**
+Bubble Invest designs and deploys custom AI agents for professionals. Our mission: automate your repetitive tasks, structure your data, and free up your time for what truly matters, your expertise and your clients.
+
+**How much does the Quick Start cost?**
+The Quick Start begins at €2,000 excl. VAT for a custom AI agent, including 3 working sessions. The initial quote is co-built with you based on your actual needs. For more complex setups (multi-agent systems, advanced integrations), we provide a tailored quote.
+
+**How is this different from a traditional consulting firm?**
+No endless slide decks, no six-figure quotes, no army of junior consultants. Bubble Invest goes beyond advice: we build and deploy a fully operational AI agent using your data and existing tools. The result: a turnkey solution that absorbs your workload from day one, without creating dependency.
+
+**What exactly does the Quick Start include?**
+The Quick Start includes 1 custom AI agent, designed specifically for your industry and processes. It covers: a needs assessment, building the agent (automations, routines, integrations with your tools), deployment, and training so you can use it independently, all within 3 sessions.
+
+**Who owns the code deployed at the client's?**
+*You own everything. The code, the agents, the configurations, it's all yours. We sell the setup, the guidance, and the training. After that, you're independent. That's the advantage over a SaaS subscription: no lock-in, no imposed recurring fees.*
+
+**What happens after the 3 sessions?**
+Support is included in the days following delivery to fix any initial bugs. Beyond that, we remain available for quick interventions on request. A follow-up & maintenance plan is also available for ongoing support, tailored to your needs.
+
 ## Location
 
 Bubble Invest is based in France (Paris area), serving clients nationwide and across French-speaking Europe (Belgium, Switzerland). All consulting is delivered in French or English.

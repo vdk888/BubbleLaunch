@@ -121,6 +121,84 @@ A: That's the goal! We document everything — code, prompts, processes. From da
 - France-wide: Remote sessions available
 - French-speaking countries: Belgium, Switzerland, Luxembourg (remote)
 
+
+## Frequently Asked Questions (Full)
+
+Source of truth: Notion FAQ page maintained by Jade (msg 5184). Sections below match the structure on /professionnels#faq.
+
+### Positioning & Approach
+
+**What is Bubble Invest exactly?**
+Bubble Invest designs and deploys custom AI agents for professionals. Our mission: automate your repetitive tasks, structure your data, and free up your time for what truly matters, your expertise and your clients.
+
+**How is this different from a traditional consulting firm?**
+No endless slide decks, no six-figure quotes, no army of junior consultants. Bubble Invest goes beyond advice: we build and deploy a fully operational AI agent using your data and existing tools. The result: a turnkey solution that absorbs your workload from day one, without creating dependency.
+
+**Why 3 sessions, not more or fewer?**
+Three sessions is the optimal format: enough to diagnose your needs, build your agent, and train you to use it independently. Our goal isn't to make you dependent, it's to make you operational. And if you need more, we're still available.
+
+**Why you, and not a freelance AI developer?**
+We combine a rare dual expertise: strategic consulting (finance, business processes) and AI engineering. We understand your workflows before we even start coding. Most importantly, we use our own agents every day (prospecting, content, analysis). What we sell you, we use ourselves. It's faster, more reliable, and cheaper than a freelance developer.
+
+### B2B Offer — Quick Start
+
+**How much does the Quick Start cost?**
+The Quick Start begins at €2,000 excl. VAT for a custom AI agent, including 3 working sessions. The initial quote is co-built with you based on your actual needs. For more complex setups (multi-agent systems, advanced integrations), we provide a tailored quote.
+
+**What exactly does the Quick Start include?**
+The Quick Start includes 1 custom AI agent, designed specifically for your industry and processes. It covers: a needs assessment, building the agent (automations, routines, integrations with your tools), deployment, and training so you can use it independently, all within 3 sessions.
+
+**What happens after the 3 sessions?**
+Support is included in the days following delivery to fix any initial bugs. Beyond that, we remain available for quick interventions on request. A follow-up & maintenance plan is also available for ongoing support, tailored to your needs.
+
+**Do you offer custom quotes beyond the Quick Start?**
+Absolutely. Beyond the Quick Start, we design fully custom solutions: multi-agent teams, selfware (personal AI tools), dedicated applications, or complex architectures. Every project receives a quote tailored to your scope.
+
+**What's the timeline to get started?**
+The first session is free with no commitment. After signing, the project kicks off within 1 to 2 weeks. Full delivery in 3 weeks: a turnkey agent, ready to run on your server or locally.
+
+### Post-Deployment Maintenance & Support
+
+**Do you offer a maintenance/support contract after the 3 sessions?**
+Yes. Once your agent is deployed and running, we offer maintenance contracts tailored to your needs, so your solution stays performant over time.
+
+**Maintenance pricing & availability?**
+Monthly retainer available on request for ongoing support. Ad hoc intervention: €500 excl. VAT/day. Guaranteed response time within 24 hours. We work remotely or on-site, based on your preference.
+
+**What if something breaks 6 months later?**
+We remain reachable after delivery. Our support agents are available to guide you, and our team responds quickly if an issue arises, even months later.
+
+### Tech & Industries
+
+**Which industries do you work with?**
+We work with small and mid-sized businesses, independent professionals, and regulated industries, with a core focus on wealth management and asset management. Why small firms? Because that's where AI has the biggest impact: fewer layers of hierarchy, fewer stacked software tools, and results you can see right away.
+
+**What level of security do you guarantee?**
+Your agents run either locally on your machine or on a secure private server. Data is processed through leading AI providers (Anthropic, OpenAI) with their standard security protocols. All conversations are archived locally, with the option for automatic backups.
+
+**Who owns the code deployed at the client's?**
+*You own everything. The code, the agents, the configurations, it's all yours. We sell the setup, the guidance, and the training. After that, you're independent. That's the advantage over a SaaS subscription: no lock-in, no imposed recurring fees.*
+
+**Which AI models do you use?**
+We primarily work with Claude (Anthropic), but remain flexible based on your preferences and constraints. Key point: the agents run on your own subscription (OpenAI, Claude, or other). You keep full control over your costs and your data.
+
+**Can the agents run without internet / 100% locally?**
+AI agents require an internet connection to run (access to language models). However, some simple automations and custom applications can run locally depending on your setup.
+
+### Practical Details
+
+**Cancellation and refund policy?**
+The first session is free with no commitment. You can choose not to continue after this first meeting, no fees, no obligation.
+
+**How does the signing process work?**
+Simple and transparent process: quote and contract signed electronically (Yousign). The project starts upon receipt of the deposit. Payment plans are available and agreed upon upfront.
+
+**Do you train the client's team?**
+Yes, training is an integral part of our service. We don't leave until your agent is fully understood by your team. Our agents are designed to be proactive: they immediately demonstrate their value. It's like onboarding a new team member, except they're already trained on your processes.
+
+**Do you work remotely or on-site?**
+Both. We work remotely or on-site depending on your preferences and the nature of the project. Based in the Paris area, we're available across France and fully capable of remote operations.
+
 ## Contact & Links
 - Free 30-min diagnostic: https://calendly.com/bubbleinvest-ai
 - Website (FR): https://bubbleinvest.org/professionnels

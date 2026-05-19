@@ -139,6 +139,63 @@
   }
   </script>
 
+  <!-- JSON-LD Structured Data: FAQPage (Jade msg 5184) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Bubble Invest exactly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bubble Invest designs and deploys custom AI agents for professionals. Our mission: automate your repetitive tasks, structure your data, and free up your time for what truly matters, your expertise and your clients."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does the Quick Start cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Quick Start begins at €2,000 excl. VAT for a custom AI agent, including 3 working sessions. The initial quote is co-built with you based on your actual needs. For more complex setups (multi-agent systems, advanced integrations), we provide a tailored quote."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is this different from a traditional consulting firm?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No endless slide decks, no six-figure quotes, no army of junior consultants. Bubble Invest goes beyond advice: we build and deploy a fully operational AI agent using your data and existing tools. The result: a turnkey solution that absorbs your workload from day one, without creating dependency."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What exactly does the Quick Start include?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Quick Start includes 1 custom AI agent, designed specifically for your industry and processes. It covers: a needs assessment, building the agent (automations, routines, integrations with your tools), deployment, and training so you can use it independently, all within 3 sessions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who owns the code deployed at the client's?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "*You own everything. The code, the agents, the configurations, it's all yours. We sell the setup, the guidance, and the training. After that, you're independent. That's the advantage over a SaaS subscription: no lock-in, no imposed recurring fees.*"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens after the 3 sessions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Support is included in the days following delivery to fix any initial bugs. Beyond that, we remain available for quick interventions on request. A follow-up & maintenance plan is also available for ongoing support, tailored to your needs."
+        }
+      }
+    ]
+  }
+  </script>
   <!-- Meta Pixel Code (Jade msg 5024) — consent-gated per RGPD/CNIL (Codex P1) -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -559,6 +616,51 @@
               </svg>
             </a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ — Subset of 6 strategic questions for conversion funnel.
+         Full FAQ on /en/professionals#faq. Source: Notion 363cfc52064481b5baa4c7aa0e777099 (Jade msg 5200) -->
+    <section class="faq-mini" id="faq" aria-label="FAQ">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2>FAQ</h2>
+          <h3>Before you book a diagnostic</h3>
+        </div>
+        <div class="faq-list fade-in">
+          <details>
+            <summary>What is Bubble Invest exactly?</summary>
+            <p>Bubble Invest designs and deploys custom AI agents for professionals. Our mission: automate your repetitive tasks, structure your data, and free up your time for what truly matters, your expertise and your clients.</p>
+          </details>
+          <details>
+            <summary>How much does the Quick Start cost?</summary>
+            <p>The Quick Start begins at €2,000 excl. VAT for a custom AI agent, including 3 working sessions. The initial quote is co-built with you based on your actual needs. For more complex setups (multi-agent systems, advanced integrations), we provide a tailored quote.</p>
+          </details>
+          <details>
+            <summary>How is this different from a traditional consulting firm?</summary>
+            <p>No endless slide decks, no six-figure quotes, no army of junior consultants. Bubble Invest goes beyond advice: we build and deploy a fully operational AI agent using your data and existing tools. The result: a turnkey solution that absorbs your workload from day one, without creating dependency.</p>
+          </details>
+          <details>
+            <summary>What exactly does the Quick Start include?</summary>
+            <p>The Quick Start includes 1 custom AI agent, designed specifically for your industry and processes. It covers: a needs assessment, building the agent (automations, routines, integrations with your tools), deployment, and training so you can use it independently, all within 3 sessions.</p>
+          </details>
+          <details>
+            <summary>Who owns the code deployed at the client's?</summary>
+            <p>*You own everything. The code, the agents, the configurations, it's all yours. We sell the setup, the guidance, and the training. After that, you're independent. That's the advantage over a SaaS subscription: no lock-in, no imposed recurring fees.*</p>
+          </details>
+          <details>
+            <summary>What happens after the 3 sessions?</summary>
+            <p>Support is included in the days following delivery to fix any initial bugs. Beyond that, we remain available for quick interventions on request. A follow-up &amp; maintenance plan is also available for ongoing support, tailored to your needs.</p>
+          </details>
+        </div>
+        <div class="faq-more fade-in">
+          <a href="/en/professionals#faq">
+            See all questions
+            <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
         </div>
       </div>
     </section>

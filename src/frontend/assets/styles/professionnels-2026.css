@@ -763,6 +763,21 @@
   margin: 0 auto;
 }
 
+/* Section subtitle inside FAQ list (5 thematic groups — Jade msg 5184) */
+.faq-list .faq-section-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  margin: 2.5rem 0 0.75rem;
+  padding-left: 0.25rem;
+}
+
+.faq-list .faq-section-title:first-child {
+  margin-top: 0;
+}
+
 .faq-list details {
   background: var(--bg-white);
   border: 1px solid var(--border);
