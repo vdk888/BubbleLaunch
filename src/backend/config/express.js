@@ -55,6 +55,7 @@ function configureExpress(app) {
           "https://www.googleadservices.com", // Google Ads conversion endpoint (Phase 1 — Jade 2026-05-18)
           "https://googleads.g.doubleclick.net", // Google Ads remarketing endpoint
           "https://www.google.com", // Google Ads 1p-conversion + ccm/collect + rmkt/collect (gtag fires from here, Phase 1 — Jade 2026-05-19)
+          "https://www.google.fr", // Google Ads 1p-conversion ccTLD-routed for FR users (Playwright Paris confirmed gtag uses .fr — Phase 1 Jade 2026-05-19)
           "https://pagead2.googlesyndication.com", // Google Ads conversion tracking (gtag/js loads remarketing collector from here, Phase 1 — Jade 2026-05-19)
         ],
         frameSrc: [
