@@ -23,6 +23,7 @@ function configureExpress(app) {
           "https://www.google-analytics.com",
           "https://www.googleadservices.com", // Google Ads conversion linker (Phase 1 — Jade 2026-05-18)
           "https://googleads.g.doubleclick.net", // Google Ads remarketing pixel
+          "https://pagead2.googlesyndication.com", // Google Ads gtag remarketing collector script (Phase 1 — Jade 2026-05-19)
           "https://cdn.jsdelivr.net", // Required for Chart.js
           "https://assets.calendly.com", // Calendly widget script (Sprint 3 fix — Jade msg 5014)
           "https://connect.facebook.net", // Meta Pixel fbevents.js (Jade msg 5024)
@@ -53,6 +54,8 @@ function configureExpress(app) {
           "https://connect.facebook.net", // Meta Pixel script + events
           "https://www.googleadservices.com", // Google Ads conversion endpoint (Phase 1 — Jade 2026-05-18)
           "https://googleads.g.doubleclick.net", // Google Ads remarketing endpoint
+          "https://www.google.com", // Google Ads 1p-conversion + ccm/collect + rmkt/collect (gtag fires from here, Phase 1 — Jade 2026-05-19)
+          "https://pagead2.googlesyndication.com", // Google Ads conversion tracking (gtag/js loads remarketing collector from here, Phase 1 — Jade 2026-05-19)
         ],
         frameSrc: [
           "'self'",
