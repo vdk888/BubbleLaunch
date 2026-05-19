@@ -13,6 +13,7 @@ const contextModuleFilenames = {
   detailed_mission: "detailed_mission.md",
   professionals: "professionals_core.md",
   individuals: "individuals_core.md",
+  faq: "faq_context.md", // Canonical Q&A from Notion (Jade msg 5184) — used to anchor pricing/scope/ownership/timeline answers
 };
 
 const contextCache = {};
@@ -117,6 +118,21 @@ function selectContextModules(conversationHistory = [], pageContext = "index") {
     modules.add("detailed_mission");
   }
 
+  // FAQ triggers — load the canonical Q&A whenever the visitor asks anything
+  // that maps to a FAQ topic (pricing, scope, ownership, timeline, security,
+  // maintenance, signature, training, sectors). Also always load on the
+  // /professionnels page since this is where the full FAQ lives.
+  // Why: the FAQ is Jade's source of truth for these answers — without it the
+  // LLM can hallucinate prices/timelines.
+  if (
+    ctx.includes("professionals") ||
+    /\b(prix|price|cost|tarif|cout|coute|coûte|combien|how much|quick start|quickstart|forfait|devis|quote|delai|timeline|when|quand|how long|combien de temps|propriete|propriété|own|appartient|appartient|garantie|guarantee|securite|sécurité|security|maintenance|support|annulation|cancel|refund|remboursement|signature|sign|contract|contrat|former|formation|train|training|secteur|sector|industrie|industry|local|offline|connection|connexion|model|modèle|claude|openai|anthropic|à distance|on-site|sur site)\b/i.test(
+      recentMessages
+    )
+  ) {
+    modules.add("faq");
+  }
+
   return Array.from(modules);
 }
 
@@ -203,6 +219,7 @@ RULES:
 - Greeting already shown — do NOT repeat it.
 - Never invent numbers, prices, ROI, timelines. If unknown → ${dontKnow}
 - Only use info from CONTEXT above. No hallucination.
+- If a FAQ section is included in CONTEXT, treat it as the canonical source for pricing (Quick Start 2000€HT, maintenance 500€HT/jour, etc.), scope, ownership, timeline, security. Quote those answers tightly, don't paraphrase numbers.
 - Off-topic → politely redirect.
 - Professional visitor → qualify → ${ctaPro}
 - Individual visitor → content, follow ${ctaFollow}
@@ -227,8 +244,23 @@ const models = [
   "arcee-ai/trinity-large-preview:free",           // 400B sparse MoE (org renamed from arcee)
 ];
 
-// Per-model timeout (ms) — prevents one slow/hung model from eating the entire request budget
-const MODEL_TIMEOUT_MS = 8000;
+// Per-model TTFB timeout (ms) — bounds how long we wait for the FIRST byte
+// before falling back to the next model. With the warmup service keeping models
+// hot, healthy models respond in <500ms, so 3500ms is a generous ceiling.
+// Once axios resolves (= response headers received), the timer is cleared and
+// streaming continues uncapped via the `response.data.on('data')` listener
+// (responses can naturally take 5-30s to fully stream).
+//
+// History: was 8000ms, dropped to 3500ms 2026-05-19 (Jade msg 5207) after
+// adding the warmup service. Pre-warmup, 8s was needed to absorb cold starts.
+const MODEL_TTFB_TIMEOUT_MS = 3500;
+// Legacy alias for any callers expecting the old name
+const MODEL_TIMEOUT_MS = MODEL_TTFB_TIMEOUT_MS;
+
+// Absolute stream timeout (ms) — defensive cap against a model that streams
+// its first byte fast but then stalls mid-response. 45s is far longer than any
+// healthy completion would take.
+const STREAM_MAX_DURATION_MS = 45000;
 
 // Cache the last model that succeeded so we try it first next time
 let lastSuccessfulModel = null;
@@ -310,7 +342,22 @@ async function streamResponse(
           let pendingTool = null;
           let toolArgsBuffer = "";
 
+          // Defensive absolute timeout: kill the stream if it stalls mid-response.
+          // Cleared on [DONE] or error. Without this, a hung upstream could hold
+          // the connection open indefinitely.
+          const streamMaxTimer = setTimeout(() => {
+            console.warn(
+              `[Chat] Stream for model ${model} exceeded ${STREAM_MAX_DURATION_MS}ms — closing`
+            );
+            try {
+              response.data.destroy();
+            } catch (e) {
+              /* ignore */
+            }
+          }, STREAM_MAX_DURATION_MS);
+
           const finishStream = (isDone = true) => {
+            clearTimeout(streamMaxTimer);
             if (isDone && !res.writableEnded) {
               res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
             }
@@ -440,6 +487,7 @@ async function streamResponse(
           });
 
           response.data.on("error", (err) => {
+            clearTimeout(streamMaxTimer);
             console.error("Stream error:", err);
             if (!res.writableEnded) {
               res.write(

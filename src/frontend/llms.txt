@@ -22,7 +22,7 @@ We build AI agents for our own operations and share publicly. Free content is ou
 
 **Free content:**
 - Blog (https://bubbleinvest.org/blog) — what we test, what we deploy, what we learn
-- Newsletter (https://bubbleinvest.org/#newsletter) — weekly insights, no ads
+- Newsletter (https://bubbleinvest.org/#newsletter) — twice-weekly insights, no ads
 - Substack (https://bubbleinvest.substack.com) — long-form essays on AI, finance, economics, philosophy
 - Build-in-public on LinkedIn, X, GitHub
 

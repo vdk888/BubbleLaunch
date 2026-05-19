@@ -6,6 +6,7 @@ const errorHandler = require("./middleware/error-handler");
 const imageService = require("./services/imageService");
 const cacheScheduler = require("./services/cacheScheduler");
 const blogStatusScheduler = require("./services/blogStatusScheduler");
+const openRouterWarmup = require("./services/openRouterWarmup");
 
 const app = express();
 const port = env.PORT;
@@ -33,17 +34,22 @@ app.listen(port, () => {
 
   // Initialize blog status sync (hourly Scheduled -> Published sweep)
   blogStatusScheduler.initialize();
+
+  // Initialize OpenRouter warmup (keeps free models hot to eliminate cold-start lag)
+  openRouterWarmup.initialize();
 });
 
 // Graceful shutdown to save cache
 process.on("SIGINT", () => {
   console.log("\n🛑 Shutting down gracefully...");
   imageService.savePersistentCache();
+  openRouterWarmup.shutdown();
   process.exit(0);
 });
 
 process.on("SIGTERM", () => {
   console.log("\n🛑 Shutting down gracefully...");
   imageService.savePersistentCache();
+  openRouterWarmup.shutdown();
   process.exit(0);
 });
