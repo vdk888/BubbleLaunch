@@ -1829,3 +1829,85 @@
     font-size: 0.88rem;
   }
 }
+
+/* === FAQ (mini-version for homepage) — Source: Notion 363cfc52 (Jade msg 5184) ===
+   Duplicated from professionnels-2026.css to avoid cross-page CSS coupling.
+   Light theme (white bg) to contrast with the dark final-CTA section that follows.
+*/
+.faq-mini {
+  padding: 5rem 0;
+  background: var(--bg-white, #fff);
+}
+
+.faq-mini .faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-mini details {
+  background: var(--bg-subtle, #fafafa);
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.08));
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.faq-mini details[open] {
+  border-color: var(--purple, #93acf0);
+}
+
+.faq-mini summary {
+  padding: 1.25rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.faq-mini summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-mini summary::after {
+  content: '+';
+  font-size: 1.4rem;
+  color: var(--muted, #666);
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+
+.faq-mini details[open] summary::after {
+  content: '\2212';
+  color: var(--purple, #93acf0);
+}
+
+.faq-mini details p {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--secondary, #333);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.faq-mini .faq-more {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.faq-mini .faq-more a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--purple, #93acf0);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: gap 0.2s ease;
+}
+
+.faq-mini .faq-more a:hover {
+  gap: 0.75rem;
+}
