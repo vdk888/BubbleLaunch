@@ -1911,3 +1911,202 @@
 .faq-mini .faq-more a:hover {
   gap: 0.75rem;
 }
+
+/* === LABS TEASER (homepage section) — Jade msg 5269 ===
+   Concise live snapshot before the FAQ. Links to /labs for the full dashboard.
+   Powered by /api/labs/stats.json (refreshed hourly).
+*/
+.labs-teaser {
+  padding: 5rem 0;
+  background: linear-gradient(180deg, var(--bg-white, #fff) 0%, var(--bg-subtle, #fafafa) 100%);
+}
+
+.labs-teaser-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.labs-teaser-header h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin: 0.5rem 0 0.5rem;
+}
+
+.labs-teaser-header p {
+  color: var(--secondary, #555);
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0;
+}
+
+.labs-teaser-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--purple, #93acf0);
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--purple, #93acf0);
+  border-radius: 999px;
+}
+
+.labs-teaser-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--purple, #93acf0);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: gap 0.2s ease;
+}
+
+.labs-teaser-cta:hover {
+  gap: 0.75rem;
+}
+
+.labs-teaser-counters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.labs-teaser-counter {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: var(--bg-subtle, #fafafa);
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.06));
+  border-radius: 14px;
+}
+
+.labs-teaser-num {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--primary, #1a2440);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+.labs-teaser-lbl {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--muted, #666);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.labs-teaser-lbl abbr {
+  cursor: help;
+  text-decoration: dotted underline;
+  text-decoration-color: var(--purple, #93acf0);
+  text-underline-offset: 3px;
+}
+
+.labs-teaser-feed {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 14px;
+  background: var(--bg-white, #fff);
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.06));
+  overflow: hidden;
+}
+
+.labs-teaser-feed .labs-feed-empty {
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--muted, #888);
+  font-style: italic;
+}
+
+.labs-teaser-feed .labs-feed-item {
+  display: grid;
+  grid-template-columns: 90px 80px 110px 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--border, rgba(0, 0, 0, 0.05));
+  font-size: 0.88rem;
+}
+
+.labs-teaser-feed .labs-feed-item:last-child {
+  border-bottom: none;
+}
+
+.labs-teaser-feed .labs-feed-time {
+  font-size: 0.74rem;
+  color: var(--muted, #888);
+  font-variant-numeric: tabular-nums;
+}
+
+.labs-teaser-feed .labs-feed-type {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.labs-teaser-feed .labs-feed-type-article {
+  background: rgba(147, 172, 240, 0.15);
+  color: var(--purple, #93acf0);
+}
+
+.labs-teaser-feed .labs-feed-type-commit {
+  background: rgba(167, 232, 215, 0.18);
+  color: #2a8067;
+}
+
+.labs-teaser-feed .labs-feed-type-skill {
+  background: rgba(245, 158, 11, 0.15);
+  color: #b45309;
+}
+
+.labs-teaser-feed .labs-feed-source {
+  font-size: 0.78rem;
+  color: var(--muted, #666);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.labs-teaser-feed .labs-feed-title {
+  color: var(--primary, #1a2440);
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.labs-teaser-feed .labs-feed-title:hover {
+  color: var(--purple, #93acf0);
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .labs-teaser-counters {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .labs-teaser-feed .labs-feed-item {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+    padding: 0.85rem 1rem;
+  }
+  .labs-teaser-feed .labs-feed-type,
+  .labs-teaser-feed .labs-feed-source {
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+}

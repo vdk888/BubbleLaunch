@@ -130,18 +130,23 @@
   }
 
   function renderFeed(feed) {
-    const list = document.querySelector('[data-labs-feed]');
-    if (!list) return;
+    const lists = document.querySelectorAll('[data-labs-feed]');
+    if (!lists.length) return;
     if (!feed || feed.length === 0) {
-      list.innerHTML = `<li class="labs-feed-empty">${
-        (document.documentElement.lang || 'fr').startsWith('en')
-          ? 'No recent public activity to show.'
-          : 'Aucune activité publique récente à afficher.'
-      }</li>`;
+      const emptyMsg = (document.documentElement.lang || 'fr').startsWith('en')
+        ? 'No recent public activity to show.'
+        : 'Aucune activité publique récente à afficher.';
+      lists.forEach((list) => {
+        list.innerHTML = `<li class="labs-feed-empty">${emptyMsg}</li>`;
+      });
       return;
     }
-    list.innerHTML = feed
-      .map((item) => {
+    // Each [data-labs-feed] element can declare data-feed-limit to cap entries
+    // (e.g. teaser on the home shows 3, full /labs page shows 5).
+    lists.forEach((list) => {
+      const limit = parseInt(list.getAttribute('data-feed-limit') || '5', 10);
+      list.innerHTML = feed.slice(0, limit)
+        .map((item) => {
         const when = escapeHtml(formatRelativeDate(item.when));
         const datetime = escapeHtml(item.when || '');
         const type = escapeHtml(item.type || '');
@@ -156,8 +161,9 @@
             <a class="labs-feed-title" href="${url}" target="_blank" rel="noopener noreferrer">${title}</a>
           </li>
         `;
-      })
-      .join('');
+        })
+        .join('');
+    });
   }
 
   // ──────────────────────────────────────────────────────────

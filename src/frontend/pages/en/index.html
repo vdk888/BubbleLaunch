@@ -620,6 +620,51 @@
       </div>
     </section>
 
+    <!-- LABS TEASER — concise live snapshot, link to /en/labs for full dashboard.
+         Powered by /api/labs/stats.json (refreshed hourly). Jade msg 5269 — "both home AND /labs". -->
+    <section class="labs-teaser" id="labs-teaser" aria-label="The Lab live">
+      <div class="container">
+        <div class="labs-teaser-header">
+          <div>
+            <span class="labs-teaser-tag">Open lab</span>
+            <h2>Live, in the lab</h2>
+            <p>What we consume, what's running, what we publish. Real numbers, refreshed automatically.</p>
+          </div>
+          <a class="labs-teaser-cta" href="/en/labs">
+            See the full lab
+            <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+
+        <div class="labs-teaser-counters" data-labs-counters>
+          <div class="labs-teaser-counter">
+            <div class="labs-teaser-num" data-counter-key="tokens_this_month" data-counter-format="number">—</div>
+            <div class="labs-teaser-lbl">
+              <abbr title="Total input and output tokens consumed this month by our AI agents. One token = about 4 characters.">AI tokens this month</abbr>
+            </div>
+          </div>
+          <div class="labs-teaser-counter">
+            <div class="labs-teaser-num" data-counter-key="routines_active" data-counter-format="integer">—</div>
+            <div class="labs-teaser-lbl">
+              <abbr title="A routine is an AI agent that runs automatically (cron jobs). Internal names not published.">active routines</abbr>
+            </div>
+          </div>
+          <div class="labs-teaser-counter">
+            <div class="labs-teaser-num" data-counter-key="agents_in_production" data-counter-format="integer">—</div>
+            <div class="labs-teaser-lbl">
+              <abbr title="Distinct AI agents running daily on our internal operations.">agents in production</abbr>
+            </div>
+          </div>
+        </div>
+
+        <ol class="labs-teaser-feed" data-labs-feed data-feed-limit="3">
+          <li class="labs-feed-empty">Loading…</li>
+        </ol>
+      </div>
+    </section>
+
     <!-- FAQ — Subset of 6 strategic questions for conversion funnel.
          Full FAQ on /en/professionals#faq. Source: Notion 363cfc52064481b5baa4c7aa0e777099 (Jade msg 5200) -->
     <section class="faq-mini" id="faq" aria-label="FAQ">
@@ -822,6 +867,8 @@
   <script src="/js/animations.js"></script>
   <script src="/js/gateway.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
+  <!-- Labs teaser hydration (consumes /api/labs/stats.json) -->
+  <script src="/js/labs.js" defer></script>
 
   <!-- Problem tile image reveal on long hover -->
   <script>
