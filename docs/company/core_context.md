@@ -20,7 +20,7 @@ You don't need more slides about AI. You need someone who actually implements it
 ### B2C — Free content & shop (marketing)
 Our consumer-facing activity is the marketing engine. Free content proves expertise, shop monetizes specialized work.
 - **Blog**: free articles on AI, finance, automation, philosophy (bubbleinvest.org/blog)
-- **Newsletter**: free, weekly, no bullshit (Substack: bubbleinvest.substack.com)
+- **Newsletter**: free, twice a week, no bullshit (Substack: bubbleinvest.substack.com)
 - **Shop (bubbleinvest.org/shop)**:
   - Bubble Sentinel — security agent for Claude Code, 29€/month subscription
   - Boycott Filter — Chrome extension, free, open source
