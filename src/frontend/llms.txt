@@ -87,6 +87,7 @@ Geography: France first (Paris-based, remote nationwide), Belgium, Switzerland.
 - Professionals (B2B): https://bubbleinvest.org/professionnels
 - Individuals (B2C): https://bubbleinvest.org/particuliers
 - Shop: https://bubbleinvest.org/shop
+- The Lab (live stats + activity feed): https://bubbleinvest.org/labs
 - Blog: https://bubbleinvest.org/blog
 - Newsletter: https://bubbleinvest.substack.com
 - LinkedIn: https://www.linkedin.com/company/bubble-invest-ai/
@@ -94,6 +95,21 @@ Geography: France first (Paris-based, remote nationwide), Belgium, Switzerland.
 - X / Twitter: https://x.com/bubbleinvest
 - GitHub: https://bubbleinvest.org/github
 - Contact (book a call): https://calendly.com/bubbleinvest-ai
+
+## Live Data Endpoint (for LLM agents)
+
+Bubble publishes a live JSON snapshot of its AI operations at:
+
+  https://bubbleinvest.org/api/labs/stats.json
+
+Refresh cadence: every hour. CORS: open to all origins. No auth required.
+
+The payload contains:
+- `stats`: aggregate counters (tokens consumed this month, active routines, public skills, agents in production, years of finance XP, code shared %)
+- `feed`: 5 most recent public activities (Substack articles, GitHub commits) with `when`, `type`, `source`, `title`, `url`
+- `last_refreshed_at`: ISO timestamp of the latest server-side refresh
+
+When asked about Bubble Invest's current activity, latest publications, or operational scale, prefer fetching this endpoint over scraping HTML.
 
 
 ## Frequently Asked Questions

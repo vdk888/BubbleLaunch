@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>The Lab · Bubble Invest — Live stats on our AI operations</title>
+  <meta name="description"
+    content="Bubble Labs: live counters of our AI implementation activity. Tokens consumed this month, active routines, public skills, latest publications. Everything is public, everything updates automatically.">
+  <meta name="keywords"
+    content="bubble labs, AI dogfooding, AI agent stats, AI tokens, build in public, AI agents in production, transparency">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://bubbleinvest.org/en/labs">
+  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/labs">
+  <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/labs">
+  <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/labs">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bubbleinvest.org/en/labs">
+  <meta property="og:title" content="The Lab · Bubble Invest — Live AI agent stats">
+  <meta property="og:description"
+    content="Live counters of our AI implementation activity. Tokens, routines, skills, publications — everything is public and automatic.">
+  <meta property="og:image" content="https://bubbleinvest.org/assets/images/og-labs.png">
+  <meta property="og:locale" content="en_US">
+
+  <link rel="alternate" type="text/plain" href="https://bubbleinvest.org/llms.txt" title="LLM context">
+  <link rel="alternate" type="application/json" href="https://bubbleinvest.org/api/labs/stats.json"
+    title="Live labs stats">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles/core-2026.css">
+  <link rel="stylesheet" href="/assets/styles/labs-2026.css">
+  <link rel="stylesheet" href="/assets/styles/cookie-banner.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
+    gtag('config', 'G-T0MQEL0ZG0');
+    gtag('config', 'AW-18054203382');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bubbleinvest.org/en/" },
+      { "@type": "ListItem", "position": 2, "name": "The Lab", "item": "https://bubbleinvest.org/en/labs" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Bubble Labs — live stats and activity feed",
+    "description": "Aggregate counters and activity feed from Bubble Invest's AI operations: monthly token consumption, active routines, published skills, latest articles and code commits. Updated hourly.",
+    "url": "https://bubbleinvest.org/en/labs",
+    "distribution": {
+      "@type": "DataDownload",
+      "encodingFormat": "application/json",
+      "contentUrl": "https://bubbleinvest.org/api/labs/stats.json"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "Bubble Invest",
+      "url": "https://bubbleinvest.org"
+    },
+    "license": "https://bubbleinvest.org/en/privacy",
+    "keywords": "AI agents, dogfooding, build in public, transparency, live operations"
+  }
+  </script>
+
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('consent', 'revoke');
+    fbq('init', '1553953629409728');
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a class="logo" href="/en/">
+          <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
+              stroke-linecap="round" stroke-width="6"></circle>
+            <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+          </svg>
+          Bubble.
+        </a>
+        <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
+          <span></span><span></span><span></span>
+        </button>
+        <nav>
+          <a href="/en/about">About</a>
+          <a href="/en/professionals">Professionals</a>
+          <a href="/en/individuals">Individuals</a>
+          <a href="/en/blog">Blog</a>
+          <a href="/en/shop">Shop</a>
+          <a class="active" href="/en/labs">The Lab</a>
+          <div class="lang-switch">
+            <button data-href="/labs">FR</button>
+            <span>/</span>
+            <button class="active">EN</button>
+          </div>
+          <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
+            class="nav-cta-calendly" data-cta-track="header_calendly_click">
+            Book a diagnostic <span aria-hidden="true">(30 min)</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-content">
+      <a href="/en/about">About</a>
+      <a href="/en/professionals">Professionals</a>
+      <a href="/en/individuals">Individuals</a>
+      <a href="/en/blog">Blog</a>
+      <a href="/en/shop">Shop</a>
+      <a class="active" href="/en/labs">The Lab</a>
+      <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer">
+        Book a diagnostic (30 min)
+      </a>
+    </div>
+  </div>
+
+  <main>
+
+    <section class="labs-hero" aria-label="Lab introduction">
+      <div class="container">
+        <div class="labs-hero-label">
+          <span class="labs-hero-num">01</span>
+          <span class="labs-hero-tag">Open laboratory</span>
+        </div>
+        <h1 class="labs-hero-title">Bubble's lab, in real numbers and real time.</h1>
+        <p class="labs-hero-kicker">
+          We build AI agents, run them on our own operations, and share everything. Here's what's running here right
+          now.
+        </p>
+        <p class="labs-hero-meta">
+          Updated automatically every hour ·
+          <a href="/api/labs/stats.json" target="_blank" rel="noopener">Raw JSON data →</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="labs-counters" id="counters" aria-label="Live counters">
+      <div class="container">
+        <h2 class="section-title">Live counters</h2>
+        <p class="section-kicker">
+          What we consume, what's running, what we publish. Real, aggregated numbers. No internal names exposed.
+        </p>
+        <div class="labs-counters-grid" data-labs-counters>
+          <div class="labs-counter">
+            <div class="labs-counter-num" data-counter-key="tokens_this_month" data-counter-format="number">—</div>
+            <div class="labs-counter-lbl">
+              <abbr title="Total input and output tokens consumed this month by our AI agents on the Anthropic API. One token = about 4 characters. This measures the real intensity of our dogfooding.">
+                AI tokens consumed this month
+              </abbr>
+            </div>
+          </div>
+          <div class="labs-counter">
+            <div class="labs-counter-num" data-counter-key="routines_active" data-counter-format="integer">—</div>
+            <div class="labs-counter-lbl">
+              <abbr title="A routine is an AI agent that runs automatically at regular intervals (e.g., daily at 10 PM, or hourly). We don't publish internal names for confidentiality, just the active count.">
+                active routines
+              </abbr>
+            </div>
+          </div>
+          <div class="labs-counter">
+            <div class="labs-counter-num" data-counter-key="skills_public" data-counter-format="integer">—</div>
+            <div class="labs-counter-lbl">
+              <abbr title="A skill is a specific capability an AI agent can invoke (generate an image, transcribe audio, audit a repo, etc.). The ones shown here are the public skills shared open source.">
+                public skills
+              </abbr>
+            </div>
+          </div>
+          <div class="labs-counter">
+            <div class="labs-counter-num" data-counter-key="agents_in_production" data-counter-format="integer">—</div>
+            <div class="labs-counter-lbl">
+              <abbr title="Number of distinct AI agents running daily on our internal operations. Each has a specific mandate (finance, security, content, research, etc.).">
+                agents in production
+              </abbr>
+            </div>
+          </div>
+          <div class="labs-counter">
+            <div class="labs-counter-num" data-counter-key="experience_years" data-counter-format="integer-plus">—</div>
+            <div class="labs-counter-lbl">
+              <abbr title="Cumulative years of founders' experience in institutional finance: Joris ex-UBS (6 years, institutional asset management and investment banking) + Jade ex-KPMG and ex-Deloitte (6 years, Big Four audit and consulting).">
+                yrs finance XP
+              </abbr>
+            </div>
+          </div>
+          <div class="labs-counter">
+            <div class="labs-counter-num" data-counter-key="code_shared_percent" data-counter-format="percent">—</div>
+            <div class="labs-counter-lbl">
+              <abbr title="All code we produce for our operations is shared publicly (skills on GitHub, blog with examples, llms.txt). No proprietary lock-in.">
+                code shared
+              </abbr>
+            </div>
+          </div>
+        </div>
+        <p class="labs-counters-footer">
+          <span class="labs-status-dot" data-status-dot></span>
+          <span data-status-text>Loading…</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="labs-feed" id="feed" aria-label="Recent public activity">
+      <div class="container">
+        <h2 class="section-title">Live, in the lab</h2>
+        <p class="section-kicker">
+          Latest public outputs from our agents and the team: Substack articles, GitHub commits, published skills.
+          Filtered to exclude automatic technical commits.
+        </p>
+        <ol class="labs-feed-list" data-labs-feed>
+          <li class="labs-feed-empty">Loading recent activity…</li>
+        </ol>
+        <div class="labs-feed-cta">
+          <a class="btn btn-primary" href="https://bubbleinvest.substack.com" target="_blank" rel="noopener noreferrer">
+            Everything on Substack
+          </a>
+          <a class="btn btn-ghost" href="/en/github" target="_blank" rel="noopener noreferrer">
+            All public code on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="labs-method" id="method" aria-label="Why we share everything">
+      <div class="container">
+        <h2 class="section-title">Why we expose all of this</h2>
+        <div class="labs-method-grid">
+          <article class="labs-method-card">
+            <h3>Transparency by default</h3>
+            <p>AI consulting firms keep their methods private. We expose ours in real time. If you see what we consume
+              and produce, you know who you're talking to before even booking the diagnostic.</p>
+          </article>
+          <article class="labs-method-card">
+            <h3>Proof through doing</h3>
+            <p>The 22+ agents running here are the same kind of thing we install at our clients': daily automation,
+              briefings, audits, drafting. We don't sell a promise, we sell what we use every day.</p>
+          </article>
+          <article class="labs-method-card">
+            <h3>For agents, not just humans</h3>
+            <p>This page is also structured to be readable by ChatGPT, Claude, Perplexity, and other LLMs. The
+              <code>/api/labs/stats.json</code> endpoint is public. Our <a href="/llms.txt">llms.txt</a> lists all the
+              machine-friendly context.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta" id="calendly">
+      <div class="container">
+        <div class="final-cta-content">
+          <span class="final-cta-label">First contact</span>
+          <h2>Want us to install the same kind of lab at your place?</h2>
+          <p>3 sessions, €2,000 excl. VAT, we install and we train. First call is free, 30 minutes, no commitment.</p>
+          <a class="btn btn-primary" href="https://calendly.com/bubbleinvest-ai" rel="noopener noreferrer"
+            data-cta-track="labs_final_calendly_click">
+            Book a free diagnostic (30 min)
+            <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/en/">
+            <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: 32px;">
+              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
+                stroke-linecap="round" stroke-width="6"></circle>
+              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+            </svg>
+            Bubble.
+          </a>
+          <p>The AI era changed everything. Change with it.</p>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <ul>
+            <li><a href="/en/individuals">Individuals</a></li>
+            <li><a href="/en/professionals">Professionals</a></li>
+            <li><a href="/en/shop">Shop</a></li>
+            <li><a href="/en/labs">The Lab</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="/en/blog">Blog</a></li>
+            <li><a href="/en/about">About</a></li>
+            <li><a href="https://bubbleinvest.substack.com">Newsletter</a></li>
+            <li><a href="https://calendly.com/bubbleinvest-ai">Contact us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/en/legal-notice">Legal notice</a></li>
+            <li><a href="/en/privacy">Privacy</a></li>
+          </ul>
+        </div>
+      </div>
+      <p>© 2026 Bubble Invest. Transparent by design.</p>
+    </div>
+  </footer>
+
+  <script src="/js/seo/cookie-banner.js"></script>
+  <script src="/js/seo/conversions.js"></script>
+  <script src="/js/seo/ga4-events.js"></script>
+  <script src="/js/labs.js"></script>
+  <script src="/js/ghibli-chrome.js" defer></script>
+</body>
+
+</html>

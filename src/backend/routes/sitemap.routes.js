@@ -93,6 +93,13 @@ router.get('/sitemap.xml', async (req, res) => {
         lastmod: today
       },
       {
+        fr: '/labs',
+        en: '/en/labs',
+        priority: '0.85',
+        changefreq: 'hourly', // live stats endpoint, updates frequently
+        lastmod: today
+      },
+      {
         fr: '/privacy',
         en: '/en/privacy',
         priority: '0.3',
