@@ -23,23 +23,37 @@
 const axios = require("axios");
 const env = require("../config/env");
 
-// Warmup interval — 4 min keeps models hot without flooding OpenRouter.
-// (Their cold-start window for free models appears to be ~5-10 min idle.)
-const WARMUP_INTERVAL_MS = 4 * 60 * 1000;
+// INCIDENT 2026-05-20 (Jade msg 5244, audit infra)
+// =====================================================
+// The original warmup pinged 7 models every 4 minutes = 105 req/hour.
+// Combined with user traffic, this exhausted the OpenRouter free-tier
+// rate limit (20 req/min, 200 req/day per account). Result: ALL chat
+// requests returned 429 across the entire fleet, the chatbot was down
+// for ~20 hours overnight (Jade only noticed during the audit today).
+//
+// Fix decision (Phase 1 free-tier reality):
+//   - Disable the recurring warmup entirely. Accept ~9s cold start on
+//     the first user message instead of having a broken chatbot.
+//   - Keep this file for future use if we ever migrate to paid tier
+//     where rate limits don't bite. For now, `initialize()` is a no-op.
+//
+// If we want a softer compromise later, we could ping just ONE model
+// every ~20 min (= 3 req/hour, ~72/day, well under the 200 ceiling).
+
+// Disabled — see incident note above
+const WARMUP_ENABLED = false;
+
+// Warmup interval — 20 min if/when re-enabled (was 4 min, caused 429)
+const WARMUP_INTERVAL_MS = 20 * 60 * 1000;
 
 // Per-ping timeout. Pings should be <2s when models are warm; >5s means cold.
 const PING_TIMEOUT_MS = 6000;
 
-// Models to keep warm (mirror of `models` in chat.controller.js).
-// Kept in sync manually — if you add a model to the chat rotation, add it here too.
+// Models to keep warm — if/when re-enabled, only one at a time to stay
+// under rate limit. Llama 70B is the primary model in the rotation.
+// (Removed 3 dead-404 models: stepfun, qwen3.6-plus-preview, arcee.)
 const MODELS_TO_WARMUP = [
   "meta-llama/llama-3.3-70b-instruct:free",
-  "qwen/qwen3-next-80b-a3b-instruct:free",
-  "nvidia/nemotron-3-super-120b-a12b:free",
-  "stepfun/step-3.5-flash:free",
-  "qwen/qwen3.6-plus-preview:free",
-  "nvidia/nemotron-3-nano-30b-a3b:free",
-  "arcee-ai/trinity-large-preview:free",
 ];
 
 let warmupTimer = null;
@@ -128,10 +142,16 @@ async function warmupAllModels() {
 
 /**
  * Initialize the warmup loop. Call once at server boot.
- * - Runs a warmup immediately (non-blocking — fire & forget)
- * - Schedules a recurring warmup every WARMUP_INTERVAL_MS
+ *
+ * Disabled by default since 2026-05-20 (incident: warmup caused 429 rate
+ * limit on OpenRouter free tier and took the chatbot down). To re-enable,
+ * flip WARMUP_ENABLED at the top of this file.
  */
 function initialize() {
+  if (!WARMUP_ENABLED) {
+    console.log("[OpenRouterWarmup] Disabled (free-tier rate-limit safeguard, see openRouterWarmup.js header)");
+    return;
+  }
   if (warmupTimer) {
     console.warn("[OpenRouterWarmup] Already initialized — skipping");
     return;
