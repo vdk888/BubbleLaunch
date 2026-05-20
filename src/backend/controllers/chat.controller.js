@@ -228,32 +228,35 @@ RULES:
 - Be authentic, warm, concise.`;
 };
 
-// Model rotation (free models verified on OpenRouter — March 2026)
+// Model rotation (free models verified on OpenRouter — May 2026 audit).
 // Order matters : we try in this order, first to succeed wins.
-// 2026-05-17 (Jade msg 5022) — reordered to put Llama 70B first.
-// Reason : Llama hallucinates less on factual queries about Bubble (was hitting
-// Stepfun first which sometimes invented agent names "Argus" or made up products).
-// We accept slightly less fluency for higher factual accuracy.
+// 2026-05-17 (Jade msg 5022) — reordered to put Llama 70B first for low hallucination.
+// 2026-05-20 (Jade msg 5244 audit) — removed 3 dead models that returned 404:
+//   * stepfun/step-3.5-flash:free        — model no longer on OpenRouter
+//   * qwen/qwen3.6-plus-preview:free     — preview ended
+//   * arcee-ai/trinity-large-preview:free — preview ended
+// Also flagged: warmup ping caused rate-limit 429 across the fleet — disabled
+// (see services/openRouterWarmup.js header for incident details).
 const models = [
-  "meta-llama/llama-3.3-70b-instruct:free",        // 70B, reliable, low hallucination
-  "qwen/qwen3-next-80b-a3b-instruct:free",        // 80B, instruction-tuned, decent
-  "nvidia/nemotron-3-super-120b-a12b:free",        // 120B, 262K context
-  "stepfun/step-3.5-flash:free",                  // 196B sparse MoE, can hallucinate but fast
-  "qwen/qwen3.6-plus-preview:free",               // Latest Qwen with tool support
-  "nvidia/nemotron-3-nano-30b-a3b:free",           // 30B, lightweight fallback
-  "arcee-ai/trinity-large-preview:free",           // 400B sparse MoE (org renamed from arcee)
+  "meta-llama/llama-3.3-70b-instruct:free",         // 70B, reliable, low hallucination (primary)
+  "qwen/qwen3-next-80b-a3b-instruct:free",          // 80B, instruction-tuned (fallback 1)
+  "nvidia/nemotron-3-super-120b-a12b:free",         // 120B, 262K context (fallback 2)
+  "nvidia/nemotron-3-nano-30b-a3b:free",            // 30B, lightweight (fallback 3, fastest)
 ];
 
 // Per-model TTFB timeout (ms) — bounds how long we wait for the FIRST byte
-// before falling back to the next model. With the warmup service keeping models
-// hot, healthy models respond in <500ms, so 3500ms is a generous ceiling.
+// before falling back to the next model.
 // Once axios resolves (= response headers received), the timer is cleared and
 // streaming continues uncapped via the `response.data.on('data')` listener
 // (responses can naturally take 5-30s to fully stream).
 //
-// History: was 8000ms, dropped to 3500ms 2026-05-19 (Jade msg 5207) after
-// adding the warmup service. Pre-warmup, 8s was needed to absorb cold starts.
-const MODEL_TTFB_TIMEOUT_MS = 3500;
+// History:
+//   - 8000ms originally — generous to absorb OpenRouter free-tier cold starts
+//   - 3500ms (2026-05-19, PR #15) — relied on warmup keeping models hot
+//   - 8000ms (2026-05-20, audit incident) — warmup disabled due to rate limit
+//     429s, so we need the full cold-start budget again. With warmup off, the
+//     first user message of a session typically waits 4-9s for first byte.
+const MODEL_TTFB_TIMEOUT_MS = 8000;
 // Legacy alias for any callers expecting the old name
 const MODEL_TIMEOUT_MS = MODEL_TTFB_TIMEOUT_MS;
 
@@ -266,13 +269,11 @@ const STREAM_MAX_DURATION_MS = 45000;
 let lastSuccessfulModel = null;
 
 // List of free openrouter models that reliably support tool calls
+// Cleaned 2026-05-20 — removed dead 404 models (stepfun, qwen3.6-plus, arcee).
 const modelsSupportingTools = [
-  "stepfun/step-3.5-flash:free",
-  "qwen/qwen3.6-plus-preview:free",
   "nvidia/nemotron-3-super-120b-a12b:free",
   "qwen/qwen3-next-80b-a3b-instruct:free",
   "meta-llama/llama-3.3-70b-instruct:free",
-  "arcee-ai/trinity-large-preview:free",
 ];
 
 /**
