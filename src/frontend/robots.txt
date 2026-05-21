@@ -18,13 +18,17 @@ Allow: /en/shop
 Allow: /en/shop/*
 Allow: /github
 Allow: /en/github
+Allow: /labs
+Allow: /en/labs
 Allow: /privacy
 Allow: /en/privacy
 Allow: /mentions-legales
 Allow: /en/legal-notice
 Allow: /404
 
-# Block API endpoints (no SEO value)
+# Block API endpoints (no SEO value), EXCEPT the public labs stats JSON
+# which we explicitly want LLM agents to discover and consume.
+Allow: /api/labs/stats.json
 Disallow: /api/
 Disallow: /api/*
 

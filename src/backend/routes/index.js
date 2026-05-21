@@ -13,6 +13,7 @@ const pagesRoutes = require("./pages.routes");
 const shopProxyRoutes = require("./shop-proxy.routes");
 const sitemapRoutes = require("./sitemap.routes");
 const trackingRoutes = require("./tracking.routes");
+const labsRoutes = require("./labs.routes");
 
 /**
  * SEO Routes
@@ -31,6 +32,7 @@ router.use("/api/portfolio", portfolioRoutes);
 router.use("/api/arena", arenaRoutes);
 router.use("/api/business-contact", businessContactRoutes);
 router.use("/api/tracking", trackingRoutes);
+router.use("/api", labsRoutes);
 
 /**
  * Shop Proxy Routes (Netlify → bubbleinvest.org/shop/*)

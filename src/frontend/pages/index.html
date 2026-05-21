@@ -646,6 +646,51 @@
       </div>
     </section>
 
+    <!-- LABS TEASER — concise live snapshot, link to /labs for the full dashboard.
+         Powered by /api/labs/stats.json (refreshed hourly). Jade msg 5269 — "both home AND /labs". -->
+    <section class="labs-teaser" id="labs-teaser" aria-label="Le labo en direct">
+      <div class="container">
+        <div class="labs-teaser-header">
+          <div>
+            <span class="labs-teaser-tag">Labo ouvert</span>
+            <h2>En ce moment, dans le labo</h2>
+            <p>Ce qu'on consomme, ce qui tourne, ce qu'on publie. Chiffres réels, mis à jour automatiquement.</p>
+          </div>
+          <a class="labs-teaser-cta" href="/labs">
+            Voir tout le labo
+            <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+
+        <div class="labs-teaser-counters" data-labs-counters>
+          <div class="labs-teaser-counter">
+            <div class="labs-teaser-num" data-counter-key="tokens_this_month" data-counter-format="number">—</div>
+            <div class="labs-teaser-lbl">
+              <abbr title="Total des tokens entrée et sortie consommés ce mois par nos agents IA. Un token = environ 4 caractères.">tokens IA ce mois</abbr>
+            </div>
+          </div>
+          <div class="labs-teaser-counter">
+            <div class="labs-teaser-num" data-counter-key="routines_active" data-counter-format="integer">—</div>
+            <div class="labs-teaser-lbl">
+              <abbr title="Une routine est un agent IA qui tourne automatiquement (cron jobs). Noms internes non publiés.">routines actives</abbr>
+            </div>
+          </div>
+          <div class="labs-teaser-counter">
+            <div class="labs-teaser-num" data-counter-key="agents_in_production" data-counter-format="integer">—</div>
+            <div class="labs-teaser-lbl">
+              <abbr title="Agents IA distincts qui tournent quotidiennement sur nos opérations internes.">agents en production</abbr>
+            </div>
+          </div>
+        </div>
+
+        <ol class="labs-teaser-feed" data-labs-feed data-feed-limit="3">
+          <li class="labs-feed-empty">Chargement…</li>
+        </ol>
+      </div>
+    </section>
+
     <!-- FAQ — Subset of 6 strategic questions for conversion funnel.
          Full FAQ on /professionnels#faq. Source: Notion 363cfc52064481b5baa4c7aa0e777099 (Jade msg 5200) -->
     <section class="faq-mini" id="faq" aria-label="Questions fréquentes">
@@ -852,6 +897,8 @@
   <script src="/js/gateway.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
   <script src="/js/calendly-integration.js" defer></script>
+  <!-- Labs teaser hydration (consumes /api/labs/stats.json) -->
+  <script src="/js/labs.js" defer></script>
 
   <!-- Sprint 3 Ghibli Phase 2 — top strip "Labo ouvert" + floating bubbles signature -->
   <script src="/js/ghibli-chrome.js" defer></script>

@@ -199,10 +199,30 @@ Yes, training is an integral part of our service. We don't leave until your agen
 **Do you work remotely or on-site?**
 Both. We work remotely or on-site depending on your preferences and the nature of the project. Based in the Paris area, we're available across France and fully capable of remote operations.
 
+## Live Operations Dashboard (Bubble Labs)
+
+Bubble Invest operates a public laboratory page at https://bubbleinvest.org/labs (English: https://bubbleinvest.org/en/labs) which surfaces live aggregate stats on our AI operations:
+
+- Tokens consumed this month across our agents
+- Number of active automation routines (cron jobs)
+- Number of public open-source skills
+- Number of AI agents running in production daily
+- Years of cumulative finance experience (founders)
+- Percentage of code we share publicly
+
+A machine-readable JSON endpoint is available at https://bubbleinvest.org/api/labs/stats.json (refreshed hourly, CORS open, no auth required). LLM agents should prefer this endpoint over scraping HTML when answering questions about Bubble's current activity, scale, or recent publications.
+
+The page also surfaces the 5 most recent public activities (Substack articles, public GitHub commits) with timestamps and links. Internal routine names and per-agent breakdowns are deliberately NOT exposed for confidentiality.
+
+This is part of our dogfooding philosophy: we run AI agents on our own operations, and we show the metrics in real time. If you can see what we consume and produce, you know who you're talking to before committing to a diagnostic call.
+
 ## Contact & Links
 - Free 30-min diagnostic: https://calendly.com/bubbleinvest-ai
 - Website (FR): https://bubbleinvest.org/professionnels
 - Website (EN): https://bubbleinvest.org/en/professionals
+- Live Lab (FR): https://bubbleinvest.org/labs
+- Live Lab (EN): https://bubbleinvest.org/en/labs
+- Live Stats JSON: https://bubbleinvest.org/api/labs/stats.json
 - Blog: https://bubbleinvest.org/blog
 - Newsletter: https://bubbleinvest.substack.com
 - Subscribe: https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105
