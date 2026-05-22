@@ -52,11 +52,13 @@
   <link rel="stylesheet" href="/assets/styles/core-2026.css" />
   <link rel="stylesheet" href="/assets/styles/homepage-2026.css" />
   <link rel="stylesheet" href="/assets/styles/cookie-banner.css" />
+  <!-- Glass Lab Editorial — Charte v3 (2026-05-22), loads LATE to override legacy where needed -->
+  <link rel="stylesheet" href="/assets/styles/glass-lab-editorial.css" />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
@@ -285,37 +287,48 @@
   </div>
 
   <!-- HEADER -->
-  <header>
-    <div class="container">
-      <div class="header-inner">
-        <a class="logo" href="/">
-          <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-              stroke-linecap="round" stroke-width="6"></circle>
-            <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-          </svg>
-          Bubble.
-        </a>
+  <!-- Top strip "Labo ouvert" — Glass Lab Editorial Charte v3 -->
+  <div class="gle-top-strip">
+    <div><span class="gle-top-strip-dot"></span>LABO OUVERT</div>
+    <div>·</div>
+    <div>BUILD IN PUBLIC</div>
+    <div>·</div>
+    <div>22+ AGENTS EN PROD</div>
+  </div>
 
-        <!-- Mobile hamburger toggle -->
+  <header class="gle-site-header">
+    <div class="gle-container">
+      <div class="gle-header-inner">
+        <div class="gle-logo-block">
+          <a class="gle-logo logo" href="/">
+            <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
+                stroke-linecap="round" stroke-width="6"></circle>
+              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+            </svg>
+            Bubble.
+          </a>
+          <span class="gle-logo-tagline">Investissez dans l'essentiel</span>
+        </div>
+
+        <!-- Mobile hamburger toggle (ID preserve — listener dans index.html bas) -->
         <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
           <span></span><span></span><span></span>
         </button>
 
-        <nav>
+        <nav class="gle-nav">
           <a href="/a-propos">À Propos</a>
-          <a href="/professionnels">Professionnels</a>
-          <a href="/particuliers">Particuliers</a>
+          <a href="/particuliers">Apprendre &amp; Brancher</a>
+          <a href="/professionnels">Implémentation pro</a>
           <a href="/blog">Blog</a>
-          <a href="/shop">Shop</a>
           <div class="lang-switch">
             <button class="active">FR</button>
             <span>/</span>
             <button data-href="/en/">EN</button>
           </div>
           <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
-             class="nav-cta-calendly" data-cta-track="header_calendly_click">
-            Réserver un diagnostic <span aria-hidden="true">(30 min)</span>
+             class="gle-nav-cta nav-cta-calendly" data-cta-track="header_calendly_click">
+            Réserver un diagnostic
           </a>
         </nav>
 
@@ -323,14 +336,13 @@
     </div>
   </header>
 
-  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block) -->
+  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block — ID preserve) -->
   <div class="mobile-nav-overlay" id="mobile-nav-overlay">
     <div class="mobile-nav-content">
       <a href="/a-propos">À Propos</a>
-      <a href="/professionnels">Professionnels</a>
-      <a href="/particuliers">Particuliers</a>
+      <a href="/particuliers">Apprendre &amp; Brancher</a>
+      <a href="/professionnels">Implémentation pro</a>
       <a href="/blog">Blog</a>
-      <a href="/shop">Shop</a>
       <div class="lang-switch">
         <button class="active">FR</button>
         <span>/</span>
@@ -752,12 +764,12 @@
 
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
+  <!-- FOOTER (Glass Lab Editorial v3 — structure preserved, restyled) -->
+  <footer class="gle-footer">
+    <div class="gle-container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="logo" href="/" style="font-size: 1.5rem;">
+          <a class="logo" href="/" style="font-size: 1.5rem; color: #fff;">
             <svg fill="none" style="width: 32px; height: 32px;" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
               <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
                 stroke-linecap="round" stroke-width="6"></circle>
@@ -765,7 +777,8 @@
             </svg>
             Bubble.
           </a>
-          <p>L'ère de l'IA a tout changé. Changez avec elle.</p>
+          <p style="font-family: var(--gle-font-accent); font-style: italic; opacity: 0.85; margin-top: 0.5rem;">Investissez dans l'essentiel.</p>
+          <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.78rem;">L'ère de l'IA a tout changé. Changez avec elle.</p>
           <div class="social-links">
             <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank"
               title="LinkedIn">
@@ -808,20 +821,21 @@
           </div>
         </div>
         <div class="footer-links">
-          <h4>Produit</h4>
+          <h4>Navigation</h4>
           <ul>
-            <li><a href="/particuliers">Particuliers</a></li>
-            <li><a href="/professionnels">Professionnels</a></li>
-            <li><a href="/shop">Shop</a></li>
+            <li><a href="/a-propos">À Propos</a></li>
+            <li><a href="/particuliers">Apprendre &amp; Brancher</a></li>
+            <li><a href="/professionnels">Implémentation pro</a></li>
+            <li><a href="/blog">Blog</a></li>
           </ul>
         </div>
         <div class="footer-links">
           <h4>Ressources</h4>
           <ul>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/a-propos">À Propos</a></li>
+            <li><a href="/shop">Boutique</a></li>
+            <li><a href="/labs">Laboratoire</a></li>
             <li><a href="https://bubbleinvest.substack.com" target="_blank">Newsletter</a></li>
-            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank">Nous contacter</a></li>
+            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank" data-cta-track="footer_calendly_click">Réserver un diagnostic</a></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -833,7 +847,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Bubble Invest. Transparent by design.</p>
+        <p>© 2026 Bubble Invest · Transparent by design · Build in public</p>
       </div>
     </div>
   </footer>
