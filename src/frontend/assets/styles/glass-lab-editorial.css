@@ -1,0 +1,1310 @@
+/* ==========================================================================
+   Glass Lab Editorial — Bubble Site Charte v3 (2026-05-22)
+   ==========================================================================
+
+   Charte 1 "Bubble Site" : glassmorphism + photos modernes + japonais sobre.
+   Distinct de la Charte 2 "Bubble Laboratoire" (Miranda only, newsletter / LinkedIn).
+
+   Validee par Jade le 2026-05-22 via mockup glass_lab_mockup v3.10.
+
+   Loaded as a LATE-stage stylesheet that overrides page-specific CSS where
+   needed, while preserving all existing structure, IDs, data-* attributes,
+   GA4 hooks, chatbot integration, Calendly inline embed, cookie banner.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design tokens — variables CSS
+   -------------------------------------------------------------------------- */
+:root {
+  /* Backgrounds harmonisés feng shui */
+  --gle-bg-warm: #fdf8ee;
+  --gle-bg-warm-soft: #faf2e1;
+  --gle-bg-warm-deep: #f5ecd6;
+  --gle-bg-cool: #f5f4ff;
+  --gle-bg-cool-soft: #ede9fe;
+
+  /* Couleurs typographie */
+  --gle-primary: #1a1a1a;
+  --gle-secondary: #444;
+  --gle-muted: #888;
+  --gle-border: rgba(0, 0, 0, 0.06);
+
+  /* Violet ONE SOURCE OF TRUTH */
+  --gle-violet: #667eea;
+  --gle-violet-deep: #5563d8;
+  --gle-violet-soft: #c7d2fe;
+  --gle-violet-bg: rgba(102, 126, 234, 0.08);
+  --gle-violet-bg-light: rgba(102, 126, 234, 0.04);
+  --gle-violet-glass: rgba(102, 126, 234, 0.18);
+
+  /* Accents */
+  --gle-mint: #A7E8D7;
+  --gle-mint-deep: #5fb89e;
+  --gle-peach: #FFE4D1;
+  --gle-night: #1a2440;
+  --gle-anthropic: #d97757;
+
+  /* Glass effect */
+  --gle-glass-blur: 20px;
+  --gle-glass-bg: rgba(255, 255, 255, 0.55);
+  --gle-glass-bg-soft: rgba(255, 255, 255, 0.35);
+  --gle-glass-border: rgba(255, 255, 255, 0.65);
+
+  /* Geometry */
+  --gle-radius-img: 24px;
+  --gle-radius-card: 28px;
+  --gle-container-max: 1280px;
+  --gle-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Typography */
+  --gle-font-display: "IBM Plex Sans", -apple-system, system-ui, sans-serif;
+  --gle-font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --gle-font-accent: "Klee One", cursive;
+  --gle-font-jp: "Shippori Mincho", serif;
+  --gle-font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* --------------------------------------------------------------------------
+   2. Body & base typography
+   -------------------------------------------------------------------------- */
+.gle-body {
+  font-family: var(--gle-font-body);
+  color: var(--gle-primary);
+  line-height: 1.6;
+  background: var(--gle-bg-warm);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --------------------------------------------------------------------------
+   3. Atmospheric backgrounds (section-level)
+   -------------------------------------------------------------------------- */
+.gle-bg-warm-atmospheric {
+  background:
+    radial-gradient(circle at 8% -5%, rgba(255, 240, 215, 0.6), transparent 38%),
+    radial-gradient(circle at 95% 4%, rgba(102, 126, 234, 0.05), transparent 42%),
+    radial-gradient(circle at 50% 96%, rgba(167, 232, 215, 0.08), transparent 55%),
+    var(--gle-bg-warm);
+}
+
+.gle-bg-cool-atmospheric {
+  background:
+    radial-gradient(circle at 12% -2%, rgba(199, 210, 254, 0.25), transparent 45%),
+    radial-gradient(circle at 88% 8%, rgba(255, 228, 209, 0.18), transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(102, 126, 234, 0.04), transparent 55%),
+    var(--gle-bg-cool);
+}
+
+/* --------------------------------------------------------------------------
+   4. Container utility
+   -------------------------------------------------------------------------- */
+.gle-container {
+  max-width: var(--gle-container-max);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 600px) {
+  .gle-container { padding: 0 1.25rem; }
+}
+
+/* --------------------------------------------------------------------------
+   5. Top strip "Labo ouvert"
+   -------------------------------------------------------------------------- */
+.gle-top-strip {
+  background: var(--gle-primary);
+  color: #f5f3ed;
+  padding: 0.55rem 1.5rem;
+  font-family: var(--gle-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.gle-top-strip-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gle-mint);
+  box-shadow: 0 0 10px var(--gle-mint);
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  animation: gle-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes gle-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* --------------------------------------------------------------------------
+   6. Sticky glass header
+   -------------------------------------------------------------------------- */
+.gle-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background: rgba(253, 248, 238, 0.78);
+  border-bottom: 1px solid var(--gle-border);
+}
+
+.gle-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 0;
+}
+
+.gle-logo-block {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.gle-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.18rem;
+  letter-spacing: -0.02em;
+  color: var(--gle-primary);
+  text-decoration: none;
+  font-family: var(--gle-font-display);
+}
+
+.gle-logo svg {
+  width: 28px;
+  height: 28px;
+}
+
+.gle-logo-tagline {
+  font-family: var(--gle-font-accent);
+  font-style: italic;
+  color: var(--gle-muted);
+  font-size: 0.92rem;
+  padding-left: 0.85rem;
+  border-left: 1px solid var(--gle-border);
+}
+
+.gle-nav { display: flex; gap: 2rem; align-items: center; }
+
+.gle-nav a {
+  color: var(--gle-primary);
+  text-decoration: none;
+  font-size: 0.94rem;
+  font-weight: 500;
+  font-family: var(--gle-font-body);
+  transition: color 0.2s;
+}
+
+.gle-nav a:hover { color: var(--gle-violet); }
+
+/* CTA header — violet 85% opacite, texte blanc */
+.gle-nav-cta {
+  background: rgba(102, 126, 234, 0.85);
+  color: #ffffff !important;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s var(--gle-ease);
+  border: 1px solid transparent;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.gle-nav-cta:hover {
+  background: var(--gle-violet);
+  color: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.30);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   7. Buttons
+   -------------------------------------------------------------------------- */
+.gle-btn-primary {
+  background: var(--gle-primary);
+  color: #f5f3ed;
+  padding: 0.95rem 1.8rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid transparent;
+  font-family: var(--gle-font-body);
+  cursor: pointer;
+}
+
+.gle-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  color: #f5f3ed;
+}
+
+.gle-btn-secondary {
+  background: var(--gle-mint);
+  color: var(--gle-primary);
+  padding: 0.95rem 1.8rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: var(--gle-font-body);
+  cursor: pointer;
+}
+
+.gle-btn-secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px rgba(95, 184, 158, 0.25);
+  color: var(--gle-primary);
+}
+
+.gle-btn-ghost {
+  background: transparent;
+  color: var(--gle-primary);
+  padding: 0.85rem 1.6rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s;
+  font-family: var(--gle-font-body);
+  cursor: pointer;
+}
+
+.gle-btn-ghost:hover {
+  border-color: var(--gle-violet);
+  color: var(--gle-violet);
+}
+
+/* --------------------------------------------------------------------------
+   8. Hero
+   -------------------------------------------------------------------------- */
+.gle-hero {
+  position: relative;
+  padding: 5.5rem 0 7rem;
+  overflow: hidden;
+}
+
+.gle-hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.gle-hero-tag {
+  display: inline-block;
+  font-family: var(--gle-font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gle-violet);
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--gle-violet-glass);
+  border-radius: 999px;
+  background: var(--gle-violet-bg-light);
+  margin-bottom: 1.5rem;
+  animation: gle-fadeUp 0.6s var(--gle-ease);
+}
+
+.gle-hero-title {
+  font-family: var(--gle-font-display);
+  font-size: clamp(2.3rem, 4.7vw, 3.7rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+  animation: gle-fadeUp 0.7s 0.1s var(--gle-ease) backwards;
+}
+
+.gle-hero-title em {
+  font-family: var(--gle-font-accent);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gle-violet);
+}
+
+.gle-hero-kicker {
+  font-size: 1.08rem;
+  color: var(--gle-secondary);
+  margin-bottom: 2rem;
+  max-width: 530px;
+  animation: gle-fadeUp 0.8s 0.2s var(--gle-ease) backwards;
+}
+
+.gle-hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: gle-fadeUp 0.9s 0.3s var(--gle-ease) backwards;
+}
+
+.gle-hero-orb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: gle-floatOrb 6s ease-in-out infinite, gle-fadeIn 1.2s 0.3s var(--gle-ease) backwards;
+}
+
+.gle-hero-orb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--gle-radius-img);
+  filter: drop-shadow(0 24px 60px rgba(102, 126, 234, 0.22));
+}
+
+@keyframes gle-floatOrb {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes gle-fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes gle-fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Kanji watermark decoratif */
+.gle-kanji-watermark {
+  position: absolute;
+  font-family: var(--gle-font-jp);
+  color: var(--gle-violet);
+  opacity: 0.04;
+  pointer-events: none;
+  user-select: none;
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.gle-kanji-hero-bg {
+  top: 25%;
+  left: -3%;
+  font-size: 28rem;
+}
+
+/* --------------------------------------------------------------------------
+   9. Section headers
+   -------------------------------------------------------------------------- */
+.gle-section {
+  padding: 5rem 0;
+  position: relative;
+}
+
+.gle-section-header {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.gle-section-num {
+  font-family: var(--gle-font-mono);
+  font-size: 0.74rem;
+  color: var(--gle-muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.gle-section-title {
+  font-family: var(--gle-font-display);
+  font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: var(--gle-primary);
+}
+
+.gle-section-kicker {
+  color: var(--gle-secondary);
+  font-size: 1.02rem;
+}
+
+/* --------------------------------------------------------------------------
+   10. Glass cards (generic)
+   -------------------------------------------------------------------------- */
+.gle-glass-card {
+  background: var(--gle-glass-bg);
+  backdrop-filter: blur(var(--gle-glass-blur));
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur));
+  border: 1px solid var(--gle-glass-border);
+  border-radius: var(--gle-radius-card);
+  transition: transform 0.4s var(--gle-ease), box-shadow 0.4s var(--gle-ease);
+}
+
+.gle-glass-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(102, 126, 234, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   11. Founders block (Construit par)
+   -------------------------------------------------------------------------- */
+.gle-cp-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.gle-cp-label {
+  font-family: var(--gle-font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gle-muted);
+  margin-bottom: 0.8rem;
+}
+
+.gle-cp-title {
+  font-family: var(--gle-font-display);
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--gle-primary);
+}
+
+.gle-cp-founders {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto 3rem;
+}
+
+.gle-cp-founder {
+  background: var(--gle-glass-bg);
+  backdrop-filter: blur(var(--gle-glass-blur));
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur));
+  border: 1px solid var(--gle-glass-border);
+  border-radius: var(--gle-radius-card);
+  padding: 1.75rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  transition: transform 0.3s var(--gle-ease), box-shadow 0.3s var(--gle-ease);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.gle-cp-founder:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 119, 181, 0.08);
+}
+
+.gle-cp-founder:hover .gle-cp-linkedin-watermark {
+  opacity: 0.85;
+}
+
+.gle-cp-linkedin-watermark {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  width: 18px;
+  height: 18px;
+  color: #0a66c2;
+  opacity: 0.55;
+  pointer-events: none;
+  transition: opacity 0.25s var(--gle-ease);
+}
+
+.gle-cp-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--gle-violet-soft), var(--gle-mint));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.gle-cp-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.gle-cp-info { position: relative; z-index: 1; }
+
+.gle-cp-info h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  font-family: var(--gle-font-display);
+  color: var(--gle-primary);
+}
+
+.gle-cp-role {
+  color: var(--gle-violet);
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.gle-cp-info p {
+  color: var(--gle-secondary);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
+/* Pills credentials */
+.gle-cp-pills {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  font-family: var(--gle-font-mono);
+  font-size: 0.78rem;
+  color: var(--gle-secondary);
+  margin-bottom: 2.5rem;
+}
+
+.gle-cp-pills span,
+.gle-cp-pills a {
+  padding: 0.5rem 1.1rem;
+  background: var(--gle-glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--gle-glass-border);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--gle-secondary);
+}
+
+.gle-pill-anthropic {
+  background: rgba(229, 116, 58, 0.08) !important;
+  border-color: rgba(229, 116, 58, 0.30) !important;
+  color: #b65a3f !important;
+  font-weight: 600;
+}
+
+.gle-logo-anthropic-svg {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Newsletter CTA pill — sobre noir */
+.gle-pill-newsletter-cta {
+  background: var(--gle-primary) !important;
+  color: #f5f3ed !important;
+  text-decoration: none !important;
+  border: 1px solid transparent !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s var(--gle-ease);
+}
+
+.gle-pill-newsletter-cta:hover {
+  transform: translateY(-2px);
+  background: #2a2a2a !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+/* --------------------------------------------------------------------------
+   12. Last-mile diagram (3 cards engine/bubble/target)
+   -------------------------------------------------------------------------- */
+.gle-last-mile-diagram {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  max-width: 1100px;
+  margin: 3rem auto 0;
+}
+
+.gle-lm-card {
+  padding: 2rem 1.5rem;
+  background: var(--gle-glass-bg);
+  backdrop-filter: blur(var(--gle-glass-blur));
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur));
+  border: 1px solid var(--gle-glass-border);
+  border-radius: var(--gle-radius-card);
+  text-align: center;
+  transition: transform 0.4s var(--gle-ease), box-shadow 0.4s var(--gle-ease);
+}
+
+.gle-lm-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(102, 126, 234, 0.08);
+}
+
+.gle-lm-card-icon {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 0.85rem;
+  color: var(--gle-violet);
+  opacity: 0.8;
+}
+
+.gle-lm-card-label {
+  font-family: var(--gle-font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gle-muted);
+  margin-bottom: 0.5rem;
+}
+
+.gle-lm-card-title {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
+  color: var(--gle-primary);
+}
+
+.gle-lm-card-detail {
+  font-size: 0.86rem;
+  color: var(--gle-secondary);
+}
+
+.gle-lm-card.gle-lm-center {
+  background: linear-gradient(135deg, var(--gle-violet-soft) 0%, rgba(199, 210, 254, 0.85) 100%);
+  border-color: rgba(102, 126, 234, 0.30);
+  box-shadow: 0 12px 36px rgba(102, 126, 234, 0.18);
+  transform: scale(1.04);
+}
+
+.gle-lm-card.gle-lm-center .gle-lm-card-label { color: var(--gle-violet); }
+.gle-lm-card.gle-lm-center .gle-lm-card-icon { color: var(--gle-primary); opacity: 0.85; }
+.gle-lm-card.gle-lm-center .gle-lm-card-detail { color: var(--gle-primary); opacity: 0.75; }
+
+/* Animations cards last-mile */
+.gle-lm-anim-engine .gle-lm-card-icon { animation: gle-enginePulse 3s ease-in-out infinite; }
+@keyframes gle-enginePulse {
+  0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 0 rgba(102, 126, 234, 0)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.45)); }
+}
+
+.gle-lm-anim-bubble {
+  animation: gle-bubbleBreath 4s ease-in-out infinite;
+  position: relative;
+}
+
+.gle-lm-anim-bubble::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: var(--gle-radius-card);
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.18), transparent 70%);
+  z-index: -1;
+  animation: gle-bubbleHalo 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes gle-bubbleBreath {
+  0%, 100% { transform: scale(1.04); }
+  50% { transform: scale(1.07); }
+}
+
+@keyframes gle-bubbleHalo {
+  0%, 100% { opacity: 0.4; transform: scale(0.95); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.gle-lm-anim-bubble .gle-lm-card-icon {
+  animation: gle-bubbleIconSpin 12s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes gle-bubbleIconSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.gle-lm-anim-target .gle-lm-card-icon {
+  animation: gle-targetPulse 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes gle-targetPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 6px rgba(95, 184, 158, 0.5)); }
+}
+
+/* Arrow with flowing particles */
+.gle-lm-arrow-flow {
+  color: var(--gle-violet);
+  display: flex;
+  align-items: center;
+  opacity: 0.85;
+}
+
+.gle-lm-arrow-path {
+  animation: gle-lineDash 1.5s linear infinite;
+}
+
+@keyframes gle-lineDash {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -20; }
+}
+
+.gle-lm-arrow-particle {
+  fill: var(--gle-violet);
+  opacity: 0;
+  animation: gle-particleMove 2s linear infinite;
+}
+
+.gle-lm-arrow-particle.gle-p1 { animation-delay: 0s; }
+.gle-lm-arrow-particle.gle-p2 { animation-delay: 0.6s; }
+.gle-lm-arrow-particle.gle-p3 { animation-delay: 1.2s; }
+
+.gle-lm-arrow-particle-mint { fill: var(--gle-mint-deep); }
+
+@keyframes gle-particleMove {
+  0% { transform: translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateX(66px); opacity: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   13. Valeurs grid (2 photos approche)
+   -------------------------------------------------------------------------- */
+.gle-valeurs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.gle-valeur-card {
+  background: var(--gle-glass-bg);
+  backdrop-filter: blur(var(--gle-glass-blur));
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur));
+  border: 1px solid var(--gle-glass-border);
+  border-radius: var(--gle-radius-card);
+  overflow: hidden;
+  transition: transform 0.4s var(--gle-ease), box-shadow 0.4s var(--gle-ease);
+}
+
+.gle-valeur-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(102, 126, 234, 0.08);
+}
+
+.gle-valeur-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+.gle-valeur-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--gle-ease);
+}
+
+.gle-valeur-card:hover .gle-valeur-img img { transform: scale(1.03); }
+
+.gle-valeur-content {
+  padding: 1.75rem 1.75rem 2rem;
+}
+
+.gle-valeur-content h3 {
+  font-family: var(--gle-font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+  color: var(--gle-primary);
+}
+
+.gle-valeur-content p {
+  color: var(--gle-secondary);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.gle-valeurs-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   14. Pricing offerings
+   -------------------------------------------------------------------------- */
+.gle-offerings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-top: 3rem;
+}
+
+.gle-offer-card {
+  padding: 0;
+  background: var(--gle-glass-bg);
+  backdrop-filter: blur(var(--gle-glass-blur));
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur));
+  border: 1px solid var(--gle-glass-border);
+  border-radius: var(--gle-radius-card);
+  position: relative;
+  transition: transform 0.3s var(--gle-ease), box-shadow 0.3s var(--gle-ease);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.gle-offer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(102, 126, 234, 0.12);
+}
+
+.gle-offer-card.gle-featured {
+  background: linear-gradient(135deg, var(--gle-violet-soft) 0%, rgba(199, 210, 254, 0.65) 100%);
+  border-color: rgba(102, 126, 234, 0.25);
+}
+
+.gle-offer-toptile {
+  background: rgba(0, 0, 0, 0.04);
+  padding: 0.55rem 1rem;
+  font-family: var(--gle-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gle-secondary);
+  text-align: center;
+  border-bottom: 1px solid var(--gle-border);
+}
+
+.gle-offer-card.gle-featured .gle-offer-toptile {
+  background: rgba(255, 255, 255, 0.4);
+  color: var(--gle-violet);
+}
+
+.gle-offer-body {
+  padding: 2rem 1.75rem 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.gle-offer-tag {
+  display: inline-block;
+  font-family: var(--gle-font-mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.3rem 0.75rem;
+  background: var(--gle-violet);
+  color: white;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+  align-self: flex-start;
+}
+
+.gle-offer-price {
+  font-family: var(--gle-font-display);
+  font-size: 2.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+  color: var(--gle-primary);
+}
+
+.gle-offer-price-suffix {
+  font-size: 0.92rem;
+  color: var(--gle-muted);
+  font-weight: 400;
+}
+
+.gle-offer-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  color: var(--gle-primary);
+}
+
+.gle-offer-desc {
+  color: var(--gle-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.gle-offer-features {
+  list-style: none;
+  margin-bottom: 1.5rem;
+  flex: 1;
+  padding: 0;
+}
+
+.gle-offer-features li {
+  font-size: 0.86rem;
+  color: var(--gle-secondary);
+  padding: 0.4rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.gle-offer-features li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--gle-violet);
+  font-weight: 600;
+}
+
+.gle-offer-cta {
+  display: block;
+  text-align: center;
+  padding: 0.85rem;
+  background: var(--gle-primary);
+  color: #f5f3ed;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: background 0.2s;
+}
+
+.gle-offer-cta:hover {
+  background: var(--gle-violet);
+  color: #f5f3ed;
+}
+
+.gle-offer-cta-featured {
+  background: #3a3a3f !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  font-weight: 700;
+  padding: 1rem;
+  font-size: 0.92rem;
+  transition: all 0.25s var(--gle-ease);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.gle-offer-cta-featured:hover {
+  background: linear-gradient(135deg, var(--gle-violet) 0%, var(--gle-violet-deep) 100%) !important;
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.38);
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
+/* --------------------------------------------------------------------------
+   15. Pourquoi nous (section 04)
+   -------------------------------------------------------------------------- */
+.gle-pourquoi {
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.gle-pourquoi-kanji-watermark {
+  position: absolute;
+  font-family: var(--gle-font-jp);
+  color: var(--gle-violet);
+  opacity: 0.05;
+  font-size: 38rem;
+  line-height: 0.85;
+  font-weight: 400;
+  pointer-events: none;
+  user-select: none;
+  right: -4%;
+  top: 10%;
+  z-index: 0;
+}
+
+.gle-pourquoi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-top: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.gle-pourquoi-img {
+  width: 100%;
+  border-radius: var(--gle-radius-img);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.10);
+  transition: transform 0.5s var(--gle-ease);
+}
+
+.gle-pourquoi-img:hover { transform: scale(1.01); }
+
+.gle-pourquoi-content h2 {
+  font-family: var(--gle-font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+  color: var(--gle-primary);
+}
+
+.gle-pourquoi-list {
+  list-style: none;
+  margin: 1.5rem 0;
+  padding: 0;
+}
+
+.gle-pourquoi-list li {
+  padding: 0.7rem 0;
+  padding-left: 2rem;
+  position: relative;
+  color: var(--gle-secondary);
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+}
+
+.gle-pourquoi-list li:last-child { border-bottom: none; }
+
+.gle-pourquoi-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.1rem;
+  width: 16px;
+  height: 1px;
+  background: var(--gle-violet);
+}
+
+.gle-pourquoi-list li strong {
+  color: var(--gle-primary);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.gle-pourquoi-quote {
+  font-family: var(--gle-font-accent);
+  font-style: italic;
+  color: var(--gle-violet);
+  font-size: 1.1rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--gle-violet);
+  margin: 1.5rem 0 2rem;
+}
+
+/* Big lab CTA */
+.gle-pourquoi-lab-cta-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.gle-pourquoi-lab-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2.5rem;
+  background: linear-gradient(135deg, var(--gle-violet) 0%, var(--gle-violet-deep) 100%);
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.30);
+  transition: all 0.3s var(--gle-ease);
+}
+
+.gle-pourquoi-lab-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px rgba(102, 126, 234, 0.42);
+  color: #fff;
+}
+
+.gle-pourquoi-lab-cta-icon {
+  width: 22px;
+  height: 22px;
+  animation: gle-floatY 2s ease-in-out infinite;
+}
+
+@keyframes gle-floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.gle-pourquoi-lab-cta-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gle-mint);
+  box-shadow: 0 0 12px var(--gle-mint);
+  animation: gle-pulse 2s ease-in-out infinite;
+  margin-right: 0.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   16. Stack technique (table-like)
+   -------------------------------------------------------------------------- */
+.gle-cp-stack {
+  max-width: 860px;
+  margin: 0 auto 2.5rem;
+  padding: 1.75rem 2rem;
+  background: var(--gle-glass-bg-soft);
+  backdrop-filter: blur(var(--gle-glass-blur));
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur));
+  border: 1px solid var(--gle-glass-border);
+  border-radius: var(--gle-radius-card);
+  position: relative;
+  z-index: 1;
+}
+
+.gle-cp-stack-label {
+  font-family: var(--gle-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gle-muted);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.gle-cp-stack-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.gle-cp-stack-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1.25rem;
+  align-items: baseline;
+  padding: 0.45rem 0;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.06);
+  font-size: 0.86rem;
+}
+
+.gle-cp-stack-row:last-child { border-bottom: none; }
+
+.gle-cp-stack-cat {
+  font-family: var(--gle-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gle-violet);
+  font-weight: 600;
+}
+
+.gle-cp-stack-items {
+  color: var(--gle-secondary);
+  line-height: 1.55;
+}
+
+@media (max-width: 700px) {
+  .gle-cp-stack-row { grid-template-columns: 1fr; gap: 0.25rem; }
+}
+
+/* --------------------------------------------------------------------------
+   17. Legacy story (callout)
+   -------------------------------------------------------------------------- */
+.gle-cp-legacy {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.75rem 2rem;
+  background: var(--gle-glass-bg-soft);
+  backdrop-filter: blur(var(--gle-glass-blur));
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur));
+  border: 1px solid var(--gle-glass-border);
+  border-radius: var(--gle-radius-card);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.gle-cp-legacy-quote {
+  font-family: var(--gle-font-accent);
+  font-style: italic;
+  color: var(--gle-violet);
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.gle-cp-legacy p {
+  color: var(--gle-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.gle-cp-legacy-ctas {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0.5rem 0 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   18. Footer
+   -------------------------------------------------------------------------- */
+.gle-footer {
+  background: var(--gle-night);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 4rem 0 2rem;
+  font-family: var(--gle-font-mono);
+  font-size: 0.82rem;
+}
+
+/* --------------------------------------------------------------------------
+   19. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .gle-hero-grid,
+  .gle-pourquoi-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .gle-last-mile-diagram { grid-template-columns: 1fr; }
+  .gle-lm-arrow-flow { transform: rotate(90deg); margin: 0 auto; }
+
+  .gle-offerings-grid { grid-template-columns: 1fr; }
+  .gle-cp-founders { grid-template-columns: 1fr; }
+  .gle-valeurs-grid { grid-template-columns: 1fr; }
+
+  .gle-nav a:not(.gle-nav-cta) { display: none; }
+  .gle-logo-tagline { display: none; }
+  .gle-kanji-hero-bg { font-size: 14rem; }
+}
+
+@media (max-width: 600px) {
+  .gle-hero { padding: 3rem 0 4rem; }
+  .gle-section { padding: 3rem 0; }
+  .gle-cp-stack { padding: 1.5rem 1.25rem; }
+  .gle-pourquoi-kanji-watermark { font-size: 22rem; }
+}
