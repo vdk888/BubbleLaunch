@@ -1308,3 +1308,194 @@
   .gle-cp-stack { padding: 1.5rem 1.25rem; }
   .gle-pourquoi-kanji-watermark { font-size: 22rem; }
 }
+
+/* --------------------------------------------------------------------------
+   20. LEGACY SECTIONS OVERLAY — reskin legacy classes to Glass Lab Editorial
+   --------------------------------------------------------------------------
+   Strategy: keep legacy markup (sections .problem-solution, .who-we-are,
+   .blog-preview, .newsletter-shop-spotlight, .labs-teaser, .faq-mini,
+   .waitlist) but override backgrounds, typography, glass cards.
+   This preserves all functional hooks (chatbot, Calendly inline embed,
+   newsletter form, blog cards, etc.) while restyling visually.
+   -------------------------------------------------------------------------- */
+
+/* Problem-solution section */
+section.problem-solution {
+  background: var(--gle-bg-cool) !important;
+  background:
+    radial-gradient(circle at 12% -2%, rgba(199, 210, 254, 0.25), transparent 45%),
+    radial-gradient(circle at 88% 8%, rgba(255, 228, 209, 0.18), transparent 40%),
+    var(--gle-bg-cool) !important;
+  padding: 5rem 0 !important;
+  color: var(--gle-primary);
+}
+
+section.problem-solution h2 {
+  font-family: var(--gle-font-display) !important;
+  color: var(--gle-primary) !important;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+section.problem-solution .problem-item {
+  background: var(--gle-glass-bg) !important;
+  backdrop-filter: blur(var(--gle-glass-blur)) !important;
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur)) !important;
+  border: 1px solid var(--gle-glass-border) !important;
+  border-radius: var(--gle-radius-card) !important;
+  color: var(--gle-primary) !important;
+}
+
+section.problem-solution .problem-text,
+section.problem-solution .problem-item p,
+section.problem-solution .problem-item span {
+  color: var(--gle-secondary) !important;
+}
+
+/* Who-we-are section (founders) */
+section.who-we-are {
+  background: var(--gle-bg-warm) !important;
+  background:
+    radial-gradient(circle at 8% -5%, rgba(255, 240, 215, 0.6), transparent 38%),
+    radial-gradient(circle at 95% 4%, rgba(102, 126, 234, 0.05), transparent 42%),
+    var(--gle-bg-warm) !important;
+  padding: 5rem 0 !important;
+}
+
+section.who-we-are h2,
+section.who-we-are h3,
+section.who-we-are h4 {
+  font-family: var(--gle-font-display);
+  color: var(--gle-primary);
+  letter-spacing: -0.01em;
+}
+
+section.who-we-are .who-member {
+  border-radius: var(--gle-radius-card);
+  transition: transform 0.3s var(--gle-ease);
+}
+
+section.who-we-are .who-member:hover {
+  transform: translateY(-3px);
+}
+
+/* Blog preview section */
+section.blog-preview {
+  background: var(--gle-bg-cool) !important;
+  background:
+    radial-gradient(circle at 12% -2%, rgba(199, 210, 254, 0.20), transparent 45%),
+    var(--gle-bg-cool) !important;
+  padding: 5rem 0 !important;
+}
+
+section.blog-preview h2 {
+  font-family: var(--gle-font-display);
+  color: var(--gle-primary);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+section.blog-preview .blog-card,
+section.blog-preview .article-card {
+  background: var(--gle-glass-bg) !important;
+  backdrop-filter: blur(var(--gle-glass-blur));
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur));
+  border: 1px solid var(--gle-glass-border);
+  border-radius: var(--gle-radius-card) !important;
+}
+
+/* Newsletter + Shop spotlight */
+section.newsletter-shop-spotlight {
+  background: var(--gle-bg-warm) !important;
+  padding: 5rem 0 !important;
+}
+
+section.newsletter-shop-spotlight h2,
+section.newsletter-shop-spotlight h3 {
+  font-family: var(--gle-font-display);
+  color: var(--gle-primary);
+}
+
+/* Labs teaser */
+section.labs-teaser {
+  background: var(--gle-bg-cool) !important;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(199, 210, 254, 0.20), transparent 50%),
+    var(--gle-bg-cool) !important;
+  padding: 5rem 0 !important;
+}
+
+section.labs-teaser h2,
+section.labs-teaser h3 {
+  font-family: var(--gle-font-display);
+  color: var(--gle-primary);
+}
+
+/* FAQ mini */
+section.faq-mini {
+  background: var(--gle-bg-warm) !important;
+  padding: 4rem 0 !important;
+}
+
+section.faq-mini h2,
+section.faq-mini h3 {
+  font-family: var(--gle-font-display);
+  color: var(--gle-primary);
+}
+
+section.faq-mini details {
+  background: var(--gle-glass-bg);
+  backdrop-filter: blur(var(--gle-glass-blur));
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur));
+  border: 1px solid var(--gle-glass-border);
+  border-radius: 18px;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0;
+  transition: background 0.2s var(--gle-ease);
+}
+
+section.faq-mini details[open] {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+section.faq-mini summary {
+  font-family: var(--gle-font-body);
+  font-weight: 600;
+  color: var(--gle-primary);
+  padding: 0.8rem 1.25rem;
+}
+
+/* Waitlist (Calendly inline section) */
+section.waitlist {
+  background: var(--gle-bg-warm-deep) !important;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(102, 126, 234, 0.04), transparent 55%),
+    var(--gle-bg-warm-deep) !important;
+  padding: 5rem 0 !important;
+}
+
+section.waitlist h2,
+section.waitlist h3 {
+  font-family: var(--gle-font-display);
+  color: var(--gle-primary);
+  letter-spacing: -0.02em;
+}
+
+section.waitlist p {
+  color: var(--gle-secondary);
+}
+
+/* Buttons legacy upgrade */
+.btn-primary {
+  font-family: var(--gle-font-body);
+}
+
+.btn-secondary {
+  font-family: var(--gle-font-body);
+}
+
+/* All headers across body use IBM Plex Sans display */
+main h2 {
+  font-family: var(--gle-font-display);
+  letter-spacing: -0.02em;
+}
