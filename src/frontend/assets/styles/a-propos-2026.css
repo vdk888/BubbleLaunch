@@ -1,464 +1,137 @@
 /**
- * À Propos 2026 — Page-Specific Styles
+ * À Propos 2026 — Page-Specific Styles (Glass Lab Editorial port, 2026-06-01)
  * Loaded only on: /a-propos and /en/about
+ *
+ * Shell chrome (header, footer, hero, sections, founder cards `.gle-cp-*`,
+ * backgrounds `.gle-bg-*`, kanji watermark) is provided by glass-lab-editorial.css.
+ * This file only styles the page-specific `ap-*` components ported from the
+ * locked mock (pages/a-propos.html), with mock CSS vars remapped to `--gle-*`.
  */
 
-/* === CSS VARIABLE OVERRIDES === */
-:root {
-  --container-max: 900px;
-}
-
-/* === HERO === */
-.hero {
-  padding: 10rem 0 5rem;
+/* === HERO (centered variant) === */
+.ap-hero-center {
+  max-width: 780px;
+  margin: 0 auto;
   text-align: center;
-  background: var(--bg-subtle);
-  border-bottom: 1px solid var(--border);
 }
 
-.hero h1 {
-  font-size: 3rem;
+.ap-hero-title {
+  font-size: clamp(2.1rem, 4.2vw, 3.3rem);
+}
+
+.ap-hero-kicker {
+  max-width: 600px;
+  margin: 1.5rem auto 0;
+}
+
+/* === 02 — TROIS PILIERS === */
+.ap-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-top: 3rem;
+}
+
+.ap-pillar {
+  padding: 2rem 1.5rem;
+  background: var(--gle-glass-bg);
+  backdrop-filter: blur(var(--gle-glass-blur));
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur));
+  border: 1px solid var(--gle-glass-border);
+  border-radius: 24px;
+  text-align: center;
+}
+
+.ap-pillar-icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 1rem;
+  color: var(--gle-violet);
+}
+
+.ap-pillar h3 {
+  font-family: var(--gle-font-display);
+  font-size: 1.15rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
-}
-
-.hero p {
-  font-size: 1.25rem;
-  color: var(--secondary);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* === CONTENT SECTIONS === */
-.section {
-  padding: 5rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.section:last-of-type {
-  border-bottom: none;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.section-header h2 {
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--muted);
   margin-bottom: 0.5rem;
+  color: var(--gle-primary);
 }
 
-.section-header h3 {
-  font-size: 2rem;
-  font-weight: 600;
+.ap-pillar p {
+  color: var(--gle-secondary);
+  font-size: 0.92rem;
+  line-height: 1.55;
 }
 
-/* === MANIFESTO === */
-.manifesto-quote {
-  font-size: 1.75rem;
-  font-weight: 500;
+/* === TEXT BLOCKS (01 Vision, 03 Nom) === */
+.ap-text-block {
+  max-width: 760px;
+  margin: 2rem auto 0;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--gle-secondary);
+}
+
+.ap-text-block p { margin-bottom: 1.25rem; }
+
+.ap-text-block em {
+  font-family: var(--gle-font-accent);
   font-style: italic;
-  line-height: 1.5;
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 3rem;
-  background: var(--bg-subtle);
-  border-radius: 16px;
-  border-left: 4px solid var(--purple);
+  color: var(--gle-violet);
 }
 
-.manifesto-attribution {
-  text-align: center;
-  margin-top: 1.5rem;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-/* === VALUES GRID === */
-/* Sprint 3 Phase 7 (Jade msg 4996) — adapté à 3 cards (Three Pillars).
-   Desktop : 3 colonnes égales | Mobile : carousel horizontal (override plus bas). */
-.values-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-/* Tablette intermédiaire : 2 colonnes (la 3e passe en dessous) */
-@media (max-width: 1024px) and (min-width: 769px) {
-  .values-grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 600px;
-  }
-}
-
-.value-card {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+/* === 06 — BUILD IN PUBLIC callout === */
+.ap-build-public {
+  max-width: 760px;
+  margin: 2rem auto 0;
   padding: 2rem;
-  text-align: center;
-  transition: all 0.3s;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.value-card:hover {
-  border-color: var(--purple);
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(147, 172, 240, 0.15);
-}
-
-.value-icon {
-  width: 56px;
-  height: 56px;
-  background: var(--bg-subtle);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1rem;
-  transition: all 0.3s;
-  color: var(--primary);
-}
-
-.value-icon svg {
-  stroke: var(--primary);
-  transition: stroke 0.3s;
-}
-
-.value-card:hover .value-icon {
-  background: var(--purple-light);
-  transform: scale(1.1);
-}
-
-.value-card:hover .value-icon svg {
-  stroke: var(--purple);
-}
-
-.value-card h4 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.value-card p {
-  font-size: 0.85rem;
-  color: var(--secondary);
-  line-height: 1.6;
-}
-
-/* === STORY === */
-.story-content {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.story-content p {
-  font-size: 1.1rem;
-  color: var(--secondary);
-  margin-bottom: 1.5rem;
-  line-height: 1.8;
-}
-
-.story-content p.lead {
-  font-size: 1.25rem;
-  color: var(--primary);
-  font-weight: 500;
-}
-
-.story-content h4 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 2rem 0 1rem;
-  color: var(--primary);
-}
-
-.story-content ul {
-  margin-left: 1.5rem;
-  color: var(--secondary);
-}
-
-.story-content li {
-  margin-bottom: 0.75rem;
-  line-height: 1.7;
-}
-
-/* === TEAM === */
-.team-intro {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto 3rem;
-  font-size: 1.1rem;
-  color: var(--secondary);
-}
-
-.team-grid {
-  display: flex;
-  justify-content: center;
-  gap: 4rem;
-  flex-wrap: wrap;       /* Sprint 3 Phase 5.4 — wrap sur mobile */
-  max-width: 100%;
-}
-
-.team-member {
-  text-align: center;
-  /* Sprint 3 Phase 5.4 (Jade msg 4975) — vignettes débordaient à droite sur mobile.
-     box-sizing + max-width pour rester dans le viewport. */
-  box-sizing: border-box;
-  padding: 1.5rem 1rem;
-  border-radius: 16px;
-  flex: 0 1 280px;       /* largeur preferee 280px, peut shrink, pas de grow */
-  max-width: 100%;
-}
-
-/* Mobile : team-grid en stack vertical avec contraintes */
-@media (max-width: 768px) {
-  .team-grid {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 0 1rem;
-  }
-  .team-member {
-    width: 100%;
-    max-width: 320px;
-  }
-}
-
-.team-avatar {
-  width: 120px;
-  height: 120px;
-  background: var(--bg-subtle);
-  border-radius: 50%;
-  margin: 0 auto 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  border: 3px solid var(--border);
-  transition: all 0.3s;
-}
-
-.team-member:hover .team-avatar {
-  border-color: var(--purple);
-  transform: scale(1.05);
-}
-
-.team-member h4 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.team-member p {
-  font-size: 0.9rem;
-  color: var(--secondary);
-}
-
-.team-initials {
-  font-size: 0.75rem;
-  color: var(--muted);
-  margin-top: 0.5rem;
-  font-weight: 500;
-}
-
-/* === WHY BUBBLE === */
-.why-bubble-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  background: var(--gle-glass-bg-soft);
+  backdrop-filter: blur(var(--gle-glass-blur));
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur));
+  border: 1px solid var(--gle-glass-border);
+  border-radius: 24px;
   text-align: center;
 }
 
-.why-item {
-  padding: 2rem;
-  background: var(--bg-subtle);
-  border-radius: 12px;
-  transition: all 0.3s;
-}
-
-.why-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-.why-icon {
-  font-size: 3rem;
+.ap-build-public h3 {
+  font-family: var(--gle-font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
   margin-bottom: 1rem;
+  color: var(--gle-primary);
 }
 
-.why-item h4 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-}
-
-.why-item p {
-  color: var(--secondary);
+.ap-build-public p {
+  color: var(--gle-secondary);
   font-size: 0.95rem;
-  line-height: 1.7;
 }
 
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-  .hero {
-    padding: 7rem 0 3rem;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .hero p {
-    font-size: 1.1rem;
-  }
-
-  /* Sections: tighter padding */
-  .section {
-    padding: 3.5rem 0;
-  }
-
-  .section-header {
-    margin-bottom: 2rem;
-  }
-
-  .section-header h3 {
-    font-size: 1.6rem;
-  }
-
-  /* Manifesto: compact */
-  .manifesto-quote {
-    font-size: 1.25rem;
-    padding: 2rem 1.5rem;
-    border-radius: 12px;
-  }
-
-  /* Values → stack vertical sur mobile (mieux que carousel horizontal qui force le scroll)
-     Sprint 3 Phase 7 (Jade msg 4996) — 3 cards en colonne, claires et lisibles */
-  .values-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    max-width: 100%;
-    padding: 0 1rem;
-  }
-
-  .value-card {
-    width: 100%;
-    padding: 1.5rem;
-  }
-
-  .value-icon {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 0.75rem;
-  }
-
-  .value-card h4 {
-    font-size: 1rem;
-  }
-
-  .value-card p {
-    font-size: 0.8rem;
-  }
-
-  /* Story: compact */
-  .story-content p {
-    font-size: 1rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .story-content p.lead {
-    font-size: 1.1rem;
-  }
-
-  /* Team: compact */
-  .team-grid {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .team-avatar {
-    width: 100px;
-    height: 100px;
-    font-size: 2.5rem;
-  }
-
-  .team-member h4 {
-    font-size: 1.1rem;
-  }
-
-  /* Why Bubble → horizontal scroll carousel */
-  .why-bubble-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 1rem;
-    padding-bottom: 0.75rem;
-    scrollbar-width: none;
-  }
-
-  .why-bubble-grid::-webkit-scrollbar {
-    display: none;
-  }
-
-  .why-item {
-    flex: 0 0 75%;
-    scroll-snap-align: start;
-    padding: 1.5rem;
-  }
-
-  .why-icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .why-item h4 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .why-item p {
-    font-size: 0.9rem;
-  }
+.ap-social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
-@media (max-width: 480px) {
-  .hero h1 {
-    font-size: 1.75rem;
-  }
+.ap-social-icons a {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 50%;
+  color: var(--gle-primary);
+  transition: all 0.25s ease;
+}
 
-  .manifesto-quote {
-    font-size: 1.1rem;
-    padding: 1.5rem 1.25rem;
-  }
+.ap-social-icons a:hover {
+  background: var(--gle-violet);
+  color: white;
+  transform: translateY(-2px);
+}
 
-  .value-card {
-    flex: 0 0 80%;
-    padding: 1.25rem;
-  }
-
-  .why-item {
-    flex: 0 0 80%;
-    padding: 1.25rem;
-  }
-
-  .team-avatar {
-    width: 80px;
-    height: 80px;
-    font-size: 2rem;
-  }
+/* === RESPONSIVE (preserved from mock @media) === */
+@media (max-width: 900px) {
+  .ap-pillars { grid-template-columns: 1fr; }
 }

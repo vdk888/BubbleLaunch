@@ -6,32 +6,32 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
   <!-- SEO Meta Tags -->
-  <title>Consulting IA | Automatisation pour CGP, Gestion d'Actifs & PME · Bubble</title>
+  <title>Bubble · Implémentation pro</title>
   <meta name="description"
-    content="L'IA implémentée pour les pros : agents IA installés sur site, formés sur vos processus. Pour CGP, asset managers, PME. Early adoption, transparence radicale." />
+    content="L'IA implémentée pour les pros : agents IA installés sur site ou en local, formés sur vos process. Pour CGP, asset managers, PME. Quick Start dès 2 000 €, diagnostic gratuit, code 100 % à vous." />
   <meta name="keywords"
-    content="consulting IA finance, automatisation CGP, agents IA entreprise, consulting gestion actifs, IA wealth advisors, automatisation PME, Claude Code consulting" />
+    content="implémentation IA, agents IA entreprise, automatisation CGP, consulting IA finance, agents IA gestion d'actifs, Claude Code installation, automatisation PME, Quick Start agent IA" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bubbleinvest.org/professionnels" />
-  <meta property="og:title" content="Consulting IA | Automatisation pour CGP, Gestion d'Actifs & PME · Bubble" />
+  <meta property="og:title" content="Bubble · Implémentation pro" />
   <meta property="og:description"
-    content="Consulting IA sur mesure : agents IA, automatisation, workflows. Pour CGP, gestion d'actifs, PME." />
+    content="Agents IA installés sur vos process. Diagnostic gratuit, Quick Start dès 2 000 €, code 100 % à vous. Pour CGP, asset managers, PME." />
   <meta property="og:image" content="https://bubbleinvest.org/assets/images/og-professionnels.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Bubble Invest — Recrutez des agents IA pour votre équipe." />
+  <meta property="og:image:alt" content="Bubble Invest — Implémentez les employés IA qui vous manquent." />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:locale:alternate" content="en_US" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://bubbleinvest.org/professionnels" />
-  <meta name="twitter:title" content="Consulting IA | Automatisation pour CGP, Gestion d'Actifs & PME · Bubble" />
+  <meta name="twitter:title" content="Bubble · Implémentation pro" />
   <meta name="twitter:description"
-    content="Consulting IA sur mesure : agents IA, automatisation, workflows. Pour CGP, gestion d'actifs, PME." />
+    content="Agents IA installés sur vos process. Diagnostic gratuit, Quick Start dès 2 000 €, code 100 % à vous." />
   <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/og-professionnels.png" />
 
   <!-- Canonical URL -->
@@ -52,71 +52,55 @@
   <link rel="stylesheet" href="/assets/styles/core-2026.css" />
   <link rel="stylesheet" href="/assets/styles/professionnels-2026.css" />
   <link rel="stylesheet" href="/assets/styles/cookie-banner.css" />
+  <!-- Glass Lab Editorial — Charte v3 (2026-05-22), loads LATE to override legacy where needed -->
+  <link rel="stylesheet" href="/assets/styles/glass-lab-editorial.css" />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet" />
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Google Analytics (with GDPR consent mode) -->
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
-    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
     gtag('js', new Date());
-    gtag('config', 'G-T0MQEL0ZG0');
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
+    });
+    gtag('config', 'G-T0MQEL0ZG0', {
+      'anonymize_ip': true,
+      'cookie_flags': 'SameSite=None;Secure'
+    });
     // Google Ads conversion tag (Phase 1 marketing — Jade msg 5119-5163, 2026-05-18)
     // The `gtag` function is shared with GA4 above; both stream through the same gtag.js script.
     // Ad-related consent (ad_storage, ad_user_data, ad_personalization) is managed by cookie-banner.js.
     gtag('config', 'AW-18054203382');
   </script>
 
-  <!-- JSON-LD Structured Data -->
+  <!-- JSON-LD Structured Data: BreadcrumbList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://bubbleinvest.org/" },
-      { "@type": "ListItem", "position": 2, "name": "Professionnels", "item": "https://bubbleinvest.org/professionnels" }
+      { "@type": "ListItem", "position": 2, "name": "Implémentation pro", "item": "https://bubbleinvest.org/professionnels" }
     ]
   }
   </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Quick Start Pack · Installation d'Agents IA",
-    "description": "3 sessions, 3 semaines. Diagnostic, installation et autonomie. Agents IA opérationnels sur votre machine.",
-    "provider": { "@type": "Organization", "name": "Bubble Invest", "url": "https://bubbleinvest.org" },
-    "areaServed": ["FR", "BE", "CH"],
-    "serviceType": "AI Agent Implementation",
-    "offers": {
-      "@type": "Offer",
-      "price": "2000",
-      "priceCurrency": "EUR",
-      "description": "3 sessions (5-7h), préparation en amont, installation + configuration, documentation incluse"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Services Bubble Invest",
-      "itemListElement": [
-        { "@type": "Offer", "name": "Quick Start Pack", "price": "2000", "priceCurrency": "EUR", "description": "3 sessions, agent générique installé chez vous" },
-        { "@type": "Offer", "name": "Session suivi & debug", "availability": "https://schema.org/InStock", "description": "Sur demande, devis personnalisé selon votre besoin" },
-        { "@type": "Offer", "name": "Forfait maintenance", "availability": "https://schema.org/InStock", "description": "Sur demande, devis personnalisé selon votre infrastructure" }
-      ]
-    }
-  }
-  </script>
+  <!-- JSON-LD Structured Data: ProfessionalService -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Bubble Invest",
-    "description": "Consulting IA : déploiement d'agents IA (Claude Code, OpenClaw) pour CGP, gestion d'actifs et PME en France. Quick Start Pack dès 2 000 €, opérationnel en 3 semaines.",
-    "url": "https://bubbleinvest.org",
+    "description": "Implémentation d'agents IA sur mesure pour CGP, gestion d'actifs et PME en France. Diagnostic gratuit, Quick Start dès 2 000 €, opérationnel en 3 semaines, code 100 % à vous.",
+    "url": "https://bubbleinvest.org/professionnels",
     "logo": "https://bubbleinvest.org/assets/images/bubble-logo-single.svg",
     "image": "https://bubbleinvest.org/assets/images/bubble-logo-single.svg",
     "priceRange": "€€",
@@ -143,6 +127,7 @@
     }
   }
   </script>
+  <!-- JSON-LD Structured Data: FAQPage (GEO / answer-engine lever — 20 Q&A from locked mock) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -153,23 +138,15 @@
         "name": "Qu'est-ce que Bubble Invest exactement ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Bubble Invest conçoit et installe des agents IA sur mesure pour les professionnels. Notre mission : automatiser vos tâches répétitives, structurer vos données et libérer votre temps pour ce qui compte vraiment, votre expertise et vos clients."
+          "text": "Bubble Invest conçoit et installe des agents IA sur mesure pour les professionnels. Notre mission : automatiser vos tâches répétitives, structurer vos données et libérer votre temps pour ce qui compte — votre expertise et vos clients."
         }
       },
       {
         "@type": "Question",
-        "name": "Quelle est la différence avec un cabinet de conseil classique ?",
+        "name": "En quoi êtes-vous différents d'un cabinet de conseil classique ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Pas de slides à rallonge, pas de devis à six chiffres, pas d'armée de consultants juniors. Bubble Invest va plus loin que le conseil : nous construisons et installons directement un agent IA opérationnel à partir de vos données et de vos outils existants. Résultat : une solution clé en main qui absorbe votre charge de travail dès le premier jour, sans vous rendre dépendants."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Pourquoi 3 sessions et pas plus / pas moins ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Trois sessions, c'est le format optimal : assez pour diagnostiquer vos besoins, construire votre agent et vous former à l'utiliser en autonomie. Notre objectif n'est pas de vous rendre dépendants, c'est de vous rendre opérationnels. Et si vous avez besoin de plus, nous restons disponibles."
+          "text": "Pas de slides à rallonge, pas de devis à six chiffres, pas d'armée de consultants juniors. On va plus loin que le conseil : on construit et on installe directement un agent IA opérationnel à partir de vos données et de vos outils. Une solution clé en main qui absorbe votre charge de travail dès le premier jour, sans vous rendre dépendants."
         }
       },
       {
@@ -177,15 +154,23 @@
         "name": "Pourquoi vous, et pas un freelance dev IA ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nous combinons une double expertise rare : conseil stratégique (finance, process métier) et ingénierie IA. Nous comprenons vos workflows avant même de coder. Et surtout, nous utilisons nos propres agents au quotidien (prospection, contenu, analyse). Ce que nous vous vendons, nous l'utilisons nous-mêmes. C'est plus rapide, plus fiable, et moins cher qu'un développeur freelance."
+          "text": "On combine une double expertise rare : conseil stratégique (finance, process métier) et ingénierie IA. On comprend vos workflows avant même de coder. Et surtout, on utilise nos propres agents au quotidien — ce qu'on vous vend, on l'utilise nous-mêmes. Plus rapide, plus fiable et moins cher qu'un développeur freelance."
         }
       },
       {
         "@type": "Question",
-        "name": "Combien coûte le Quick Start exactement ?",
+        "name": "Pourquoi 3 sessions, ni plus ni moins ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Le Quick Start démarre à 2 000 € HT pour un agent IA sur mesure, incluant 3 sessions de travail. Le premier devis est co-construit avec vous selon vos besoins réels. Pour des architectures plus complexes (multi-agents, intégrations avancées), nous établissons un devis personnalisé."
+          "text": "Trois sessions, c'est le format optimal : assez pour diagnostiquer vos besoins, construire votre agent et vous former à l'utiliser en autonomie. L'objectif n'est pas de vous rendre dépendants, c'est de vous rendre opérationnels. Et si vous avez besoin de plus, on reste disponibles."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien coûte le Quick Start ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le Quick Start démarre à 2 000 € HT pour un agent IA sur mesure, 3 sessions de travail incluses. Le premier devis est co-construit avec vous selon vos besoins réels. Pour des architectures plus complexes (multi-agents, intégrations avancées), on établit un devis personnalisé."
         }
       },
       {
@@ -193,7 +178,7 @@
         "name": "Que comprend précisément le Quick Start ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Le Quick Start comprend 1 agent IA sur mesure, conçu spécifiquement pour votre métier et vos process. Il inclut : un diagnostic de vos besoins, la construction de l'agent (automatisations, routines, intégrations à vos outils), son installation, et votre formation pour l'utiliser en autonomie, le tout en 3 sessions."
+          "text": "Un agent IA sur mesure, conçu pour votre métier et vos process. Il inclut : un diagnostic de vos besoins, la construction de l'agent (automatisations, routines, intégrations à vos outils), son installation, et un accompagnement pratique pour le prendre en main en autonomie — le tout en 3 sessions."
         }
       },
       {
@@ -201,7 +186,7 @@
         "name": "Que se passe-t-il après les 3 sessions ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Un support est inclus dans les jours suivant la livraison pour corriger tout bug initial. Au-delà, nous restons disponibles pour des interventions rapides sur devis. Un forfait suivi & maintenance est également proposé pour un accompagnement sur la durée, selon vos besoins."
+          "text": "Un support est inclus dans les jours suivant la livraison pour corriger tout bug initial. Au-delà, on reste disponibles pour des interventions rapides sur devis, et un forfait suivi & maintenance est proposé pour un accompagnement sur la durée, selon vos besoins."
         }
       },
       {
@@ -209,7 +194,7 @@
         "name": "Faites-vous des devis sur mesure au-delà du Quick Start ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Absolument. Au-delà du Quick Start, nous concevons des solutions sur mesure : équipes multi-agents, selfware (outils IA personnels), applications dédiées, ou architectures complexes. Chaque projet fait l'objet d'un devis adapté à votre périmètre."
+          "text": "Absolument. Au-delà du Quick Start, on conçoit des solutions sur mesure : équipes multi-agents, selfware (outils IA personnels), applications dédiées ou architectures complexes. Chaque projet fait l'objet d'un devis adapté à votre périmètre."
         }
       },
       {
@@ -217,31 +202,23 @@
         "name": "Quel est le délai pour démarrer ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "La première session est gratuite et sans engagement. Après signature, le projet démarre sous 1 à 2 semaines. Livraison complète en 3 semaines : un agent clé en main, prêt à l'emploi sur votre serveur ou en local."
+          "text": "La première session est gratuite et sans engagement. Après signature, le projet démarre sous 1 à 2 semaines, pour une livraison complète en 3 semaines : un agent clé en main, prêt à l'emploi sur votre serveur ou en local."
         }
       },
       {
         "@type": "Question",
-        "name": "Proposez-vous un contrat de maintenance / support après les 3 sessions ?",
+        "name": "Proposez-vous un contrat de maintenance / support ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Oui. Une fois votre agent déployé et opérationnel, nous proposons des contrats de maintenance adaptés à vos besoins, pour que votre solution reste performante dans la durée."
+          "text": "Oui. Une fois l'agent déployé, on propose des contrats de maintenance adaptés à vos besoins : forfait mensuel sur devis pour un suivi régulier, ou intervention ponctuelle à 500 € HT/jour, avec un délai de réponse garanti sous 24h — à distance ou sur site."
         }
       },
       {
         "@type": "Question",
-        "name": "Pricing maintenance & disponibilité ?",
+        "name": "Et si quelque chose casse 6 mois après ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Forfait mensuel sur devis pour un suivi régulier. Intervention ponctuelle : 500 € HT/jour. Délai de réponse garanti sous 24h. Les interventions se font à distance ou sur site, selon vos préférences."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Que se passe-t-il si quelque chose casse 6 mois après ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nous restons joignables après la livraison. Nos agents de support sont disponibles pour vous orienter, et notre équipe intervient rapidement si un problème survient, même des mois plus tard."
+          "text": "On reste joignables après la livraison. Nos agents de support sont disponibles pour vous orienter, et notre équipe intervient rapidement si un problème survient, même des mois plus tard."
         }
       },
       {
@@ -249,7 +226,7 @@
         "name": "Sur quels secteurs intervenez-vous ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nous accompagnons les petites et moyennes structures, indépendants et professions réglementées, avec un cœur de métier en gestion de patrimoine et asset management. Pourquoi les petites structures ? Parce que c'est là que l'IA a le plus d'impact : moins de couches hiérarchiques, moins de logiciels empilés, et des résultats visibles immédiatement."
+          "text": "On accompagne les petites et moyennes structures, indépendants et professions réglementées, avec un cœur de métier en gestion de patrimoine et asset management. Pourquoi les petites structures ? C'est là que l'IA a le plus d'impact : moins de couches hiérarchiques, moins de logiciels empilés, des résultats visibles immédiatement."
         }
       },
       {
@@ -262,10 +239,10 @@
       },
       {
         "@type": "Question",
-        "name": "À qui appartient le code installé chez le client ?",
+        "name": "À qui appartient le code installé chez vous ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Tout vous appartient. Le code, les agents, les configurations, c'est votre propriété. Nous vendons l'installation, l'accompagnement et la formation. Ensuite, vous êtes autonomes. C'est tout l'avantage par rapport à un abonnement SaaS : pas de dépendance, pas de frais récurrents imposés."
+          "text": "Tout vous appartient : le code, les agents, les configurations. On vend l'installation, l'accompagnement et la prise en main — ensuite, vous êtes autonomes. C'est tout l'avantage par rapport à un abonnement SaaS : pas de dépendance, pas de frais récurrents imposés."
         }
       },
       {
@@ -273,23 +250,23 @@
         "name": "Quels modèles d'IA utilisez-vous ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nous travaillons principalement avec Claude (Anthropic), mais restons flexibles selon vos préférences et contraintes. Point important : les agents fonctionnent avec votre propre abonnement (OpenAI, Claude, ou autre). Vous gardez le contrôle total sur vos coûts et vos données."
+          "text": "Principalement Claude (Anthropic), tout en restant flexibles selon vos préférences. Point important : les agents fonctionnent avec votre propre abonnement (OpenAI, Claude ou autre). Vous gardez le contrôle total sur vos coûts et vos données."
         }
       },
       {
         "@type": "Question",
-        "name": "Les agents peuvent-ils tourner sans connexion internet / 100% local ?",
+        "name": "Les agents peuvent-ils tourner sans connexion internet ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Les agents IA nécessitent une connexion internet pour fonctionner (accès aux modèles de langage). En revanche, certaines automatisations simples et applications personnalisées peuvent tourner en local selon votre configuration."
+          "text": "Les agents IA nécessitent une connexion internet pour accéder aux modèles de langage. En revanche, certaines automatisations simples et applications personnalisées peuvent tourner en local selon votre configuration."
         }
       },
       {
         "@type": "Question",
-        "name": "Politique d'annulation et remboursement ?",
+        "name": "Politique d'annulation et de remboursement ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "La première session est gratuite et sans engagement. Vous pouvez décider de ne pas poursuivre après cette première rencontre, aucun frais, aucune obligation."
+          "text": "La première session est gratuite et sans engagement. Vous pouvez décider de ne pas poursuivre après cette première rencontre — aucun frais, aucune obligation."
         }
       },
       {
@@ -302,10 +279,10 @@
       },
       {
         "@type": "Question",
-        "name": "Formez-vous les équipes du client ?",
+        "name": "Accompagnez-vous nos équipes ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Oui, la formation fait partie intégrante de notre prestation. Nous ne repartons pas tant que votre agent n'est pas parfaitement compris par votre équipe. Nos agents sont conçus pour être proactifs : ils vous montrent immédiatement leur valeur ajoutée. C'est comme accueillir un nouveau collaborateur, sauf qu'il est déjà formé à vos process."
+          "text": "Oui, et c'est du concret : pas de slides ni de conférences théoriques, mais des sessions pratiques où l'on apprend en faisant, directement sur votre agent. On ne repart pas tant que votre équipe ne le maîtrise pas — c'est comme accueillir un nouveau collaborateur, déjà opérationnel sur vos process."
         }
       },
       {
@@ -313,7 +290,7 @@
         "name": "Travaillez-vous à distance ou sur site ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Les deux. Nous intervenons à distance ou sur site selon vos préférences et la nature du projet. Basés en région parisienne, nous sommes disponibles partout en France et capables d'opérer à distance."
+          "text": "Les deux, selon vos préférences et la nature du projet. Basés en région parisienne, on est disponibles partout en France et capables d'opérer entièrement à distance."
         }
       }
     ]
@@ -342,36 +319,48 @@
 
 <body>
   <!-- HEADER -->
-  <header>
-    <div class="container">
-      <div class="header-inner">
-        <a class="logo" href="/">
-          <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-              stroke-linecap="round" stroke-width="6"></circle>
-            <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-          </svg>
-          Bubble.
-        </a>
-        <!-- Mobile hamburger toggle -->
+  <!-- Top strip "Labo ouvert" — Glass Lab Editorial Charte v3 -->
+  <div class="gle-top-strip">
+    <div><span class="gle-top-strip-dot"></span>LABO OUVERT</div>
+    <div>·</div>
+    <div>BUILD IN PUBLIC</div>
+    <div>·</div>
+    <div>22+ AGENTS EN PROD</div>
+  </div>
+
+  <header class="gle-site-header">
+    <div class="gle-container">
+      <div class="gle-header-inner">
+        <div class="gle-logo-block">
+          <a class="gle-logo logo" href="/">
+            <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
+                stroke-linecap="round" stroke-width="6"></circle>
+              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+            </svg>
+            Bubble.
+          </a>
+          <span class="gle-logo-tagline">Investissez dans l'essentiel</span>
+        </div>
+
+        <!-- Mobile hamburger toggle (ID preserve — listener au bas de page) -->
         <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
           <span></span><span></span><span></span>
         </button>
 
-        <nav>
+        <nav class="gle-nav">
           <a href="/a-propos">À Propos</a>
-          <a class="active" href="/professionnels">Professionnels</a>
-          <a href="/particuliers">Particuliers</a>
+          <a href="/particuliers">Apprendre &amp; Brancher</a>
+          <a href="/professionnels" class="active" aria-current="page">Implémentation pro</a>
           <a href="/blog">Blog</a>
-          <a href="/shop">Shop</a>
           <div class="lang-switch">
             <button class="active">FR</button>
             <span>/</span>
             <button data-href="/en/professionals">EN</button>
           </div>
           <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
-             class="nav-cta-calendly" data-cta-track="header_calendly_click">
-            Réserver un diagnostic <span aria-hidden="true">(30 min)</span>
+             class="gle-nav-cta nav-cta-calendly" data-cta-track="header_calendly_click">
+            Réserver un diagnostic
           </a>
         </nav>
 
@@ -379,14 +368,13 @@
     </div>
   </header>
 
-  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block) -->
+  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block — ID preserve) -->
   <div class="mobile-nav-overlay" id="mobile-nav-overlay">
     <div class="mobile-nav-content">
       <a href="/a-propos">À Propos</a>
-      <a class="active" href="/professionnels">Professionnels</a>
-      <a href="/particuliers">Particuliers</a>
+      <a href="/particuliers">Apprendre &amp; Brancher</a>
+      <a href="/professionnels" class="active" aria-current="page">Implémentation pro</a>
       <a href="/blog">Blog</a>
-      <a href="/shop">Shop</a>
       <div class="lang-switch">
         <button class="active">FR</button>
         <span>/</span>
@@ -399,623 +387,363 @@
     </div>
   </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <p class="fade-in"
-        style="font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--purple); margin-bottom: 1rem;">
-        Mieux que du consulting&nbsp;: des employés sur mesure.</p>
-      <h1 class="fade-in fade-in-delay-1">Recrutez des agents IA pour votre équipe</h1>
-      <p class="hero-subtitle fade-in fade-in-delay-2">On installe vos nouveaux employés virtuels directement sur votre poste et on gère leur onboarding. Opérationnel en 3 sessions.</p>
-      <div class="hero-cta fade-in fade-in-delay-3">
-        <a class="btn btn-primary" href="https://calendly.com/bubbleinvest-ai" target="_blank"
-          rel="noopener noreferrer" data-cta-track="pros_hero_calendly_click">Réserver un diagnostic gratuit (30 min)</a>
-        <a class="btn btn-secondary" href="#examples" data-cta-track="pros_hero_examples_click">Voir des cas d'usage</a>
-      </div>
-
-      <!-- Trust block — Sprint 1 2026-05-12 -->
-      <div class="hero-trust-block fade-in fade-in-delay-3" role="complementary" aria-label="Crédibilité" style="margin-top: 2rem;">
-        <div class="trust-item">
-          <svg class="trust-icon" fill="none" height="20" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" width="20">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-          </svg>
-          <span><strong>Managers ex-UBS &amp; ex-KPMG/Deloitte</strong></span>
-        </div>
-        <div class="trust-item">
-          <svg class="trust-icon" fill="none" height="20" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" width="20">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
-          <span><strong>12+ ans</strong> d'expérience cumulés</span>
-        </div>
-        <div class="trust-item trust-item-anthropic">
-          <svg class="trust-icon" fill="none" height="20" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" width="20">
-            <path d="M20 6L9 17l-5-5"></path>
-          </svg>
-          <span><strong>Certifications</strong></span>
-          <!-- Anthropic wordmark — Inter text-as-SVG (Sprint 1, clip-safe at small sizes) -->
-          <svg class="trust-anthropic-logo" viewBox="0 0 320 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anthropic" preserveAspectRatio="xMinYMid meet">
-            <text x="0" y="30" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" font-size="32" font-weight="700" fill="#1f1f1e" letter-spacing="-1">Anthropic</text>
-          </svg>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="services" id="services">
-    <div class="container">
-      <div class="section-header fade-in">
-        <h2>Nos Services</h2>
-        <h3>Installation directe. Autonomie complète.</h3>
-      </div>
-      <div class="services-grid" style="grid-template-columns: repeat(2, 1fr);">
-        <div class="service-card fade-in">
-          <div class="service-icon">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-            </svg>
-          </div>
-          <h4>Quick Start Pack · 2 000 € HT</h4>
-          <p>3 sessions. Installation directe. Autonomie complète.<br />
-            On installe Claude Code ou OpenClaw sur votre poste avec des agents pré-packagés adaptés à votre métier.
-            Vous repartez opérationnel.</p>
-          <div class="card-highlights">
-            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
-                viewBox="0 0 24 24" width="18">
-                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-              </svg><span>Diagnostic + 2-3 quick wins identifiés</span></div>
-            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
-                viewBox="0 0 24 24" width="18">
-                <rect height="14" rx="2" width="20" x="2" y="3"></rect>
-                <line x1="8" x2="16" y1="21" y2="21"></line>
-                <line x1="12" x2="12" y1="17" y2="21"></line>
-              </svg><span>Installation sur site, sur vos vrais documents</span></div>
-            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
-                viewBox="0 0 24 24" width="18">
-                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-              </svg><span>Doc de référence + roadmap incluse</span></div>
-          </div>
-        </div>
-        <div class="service-card fade-in fade-in-delay-1">
-          <div class="service-icon">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <polyline points="16 18 22 12 16 6"></polyline>
-              <polyline points="8 6 2 12 8 18"></polyline>
-            </svg>
-          </div>
-          <h4>Compléments à la carte</h4>
-          <p>Besoin de plus ? On s'adapte à votre rythme.</p>
-          <div class="card-highlights">
-            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
-                viewBox="0 0 24 24" width="18">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg><span>Suivi &amp; debug : sur demande</span></div>
-            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
-                viewBox="0 0 24 24" width="18">
-                <path d="M12 2v20M2 12h20"></path>
-              </svg><span>Forfait maintenance : sur demande</span></div>
-            <div class="highlight"><svg fill="none" height="18" stroke="var(--purple)" stroke-width="2"
-                viewBox="0 0 24 24" width="18">
-                <polyline points="16 18 22 12 16 6"></polyline>
-                <polyline points="8 6 2 12 8 18"></polyline>
-              </svg><span>Agent ou application sur-mesure complexe : sur devis</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW WE WORK -->
-  <section class="how-we-work">
-    <div class="container">
-      <div class="section-header fade-in">
-        <h2>3 Sessions</h2>
-        <h3>Diagnostic → Installation → Autonomie</h3>
-      </div>
-      <div class="process-grid">
-        <div class="process-step fade-in">
-          <div class="process-number">01</div>
-          <h4>Diagnostic &amp; Préparation</h4>
-          <p class="process-duration">1-2h, visio</p>
-          <p>On comprend votre workflow et identifie 2-3 quick wins à fort ROI. On prépare les agents en amont.</p>
-        </div>
-        <div class="process-step fade-in fade-in-delay-1">
-          <div class="process-number">02</div>
-          <h4>Installation &amp; Prise en main</h4>
-          <p class="process-duration">2-3h, sur site</p>
-          <p>Installation de Claude Code ou OpenClaw sur votre poste. Démo live sur vos vrais documents. Vous repartez
-            opérationnel.</p>
-        </div>
-        <div class="process-step fade-in fade-in-delay-2">
-          <div class="process-number">03</div>
-          <h4>Retour &amp; Ajustements</h4>
-          <p class="process-duration">1-2h, visio, 1-2 sem. après</p>
-          <p>Retour sur l'usage réel, ajustements des agents, tips avancés. Doc finale pour être 100% autonome.</p>
-        </div>
-      </div>
-      <!-- Outcome statement -->
-      <div class="outcome-statement fade-in">
-        <h3 class="outcome-headline">Vous gagnez du temps. Maintenant.</h3>
-        <div class="outcome-cards">
-          <div class="outcome-card fade-in">
-            <div class="outcome-icon">
-              <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-            </div>
-            <h4>Des agents qui tournent.</h4>
-            <p>Installés sur votre poste, opérationnels dès la fin de la session.</p>
-          </div>
-          <div class="outcome-card fade-in fade-in-delay-1">
-            <div class="outcome-icon">
-              <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-            </div>
-            <h4>Une autonomie complète.</h4>
-            <p>Doc, roadmap, bonnes pratiques : vous n'aurez plus besoin de nous.</p>
-          </div>
-          <div class="outcome-card fade-in fade-in-delay-2">
-            <div class="outcome-icon">
-              <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"></path></svg>
-            </div>
-            <h4>Zéro formation théorique.</h4>
-            <p>Vous apprenez en faisant, sur vos vrais fichiers.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXAMPLES -->
-  <section class="examples" id="examples">
-    <div class="container">
-      <div class="section-header fade-in">
-        <h2>Exemples concrets</h2>
-        <h3>Ce que nous avons déployé</h3>
-      </div>
-      <div class="examples-slider-wrapper fade-in">
-        <div class="examples-slider">
-          <!-- Card 1: Veille & Reporting -->
-          <div class="example-card slider-card">
-            <div class="card-header">
-              <div class="card-icon">
-                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="2" viewBox="0 0 24 24" width="24">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                </svg>
-              </div>
-              <span class="example-tag">Gestion d'actifs • SaaS sur devis</span>
-            </div>
-            <h4>Veille &amp; Reporting Intelligence</h4>
-            <p class="card-desc">2 agents interconnectés scannent 50+ sources et calculent les métriques en temps réel.
+  <main>
+    <!-- HERO -->
+    <section class="hero gle-hero gle-bg-warm-atmospheric" aria-label="Introduction">
+      <span class="gle-kanji-watermark gle-kanji-hero-bg" aria-hidden="true">業</span>
+      <div class="gle-container">
+        <div class="gle-hero-grid">
+          <div class="hero-content fade-in">
+            <span class="gle-hero-tag" data-translate="professionnels.hero.tag">CGP · Indépendants · Petites structures</span>
+            <h1 class="gle-hero-title">
+              <span data-translate="professionnels.hero.title_1">Anthropic, Google et OpenAI ont créé le moteur.</span><br>
+              <em data-translate="professionnels.hero.title_2">Nous, on vous aide à faire le dernier mètre.</em>
+            </h1>
+            <p class="gle-hero-kicker" data-translate="professionnels.hero.kicker">
+              Notre force : on comprend votre métier et on maîtrise la stack technique. Nous installons les employés IA qui vous manquent pour faire la différence.
             </p>
-            <div class="card-metrics">
-              <span class="metric">3h gagnées/matin</span>
-              <span class="metric">Reporting instantané</span>
-              <span class="metric">+40% détection risques</span>
+            <div class="gle-hero-ctas hero-cta-group">
+              <a class="gle-btn-primary btn btn-primary" href="#calendly" data-cta-track="pros_hero_calendly_click">
+                <span data-translate="professionnels.hero.cta_primary">Réserver un diagnostic gratuit</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <a class="gle-btn-secondary btn btn-secondary" href="#offre" data-translate="professionnels.hero.cta_secondary">Voir l'offre</a>
             </div>
           </div>
-          <!-- Card 2: Veille Réglementaire -->
-          <div class="example-card slider-card">
-            <div class="card-header">
-              <div class="card-icon">
-                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="2" viewBox="0 0 24 24" width="24">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                </svg>
-              </div>
-              <span class="example-tag">Architecte • Quick Start Pack</span>
-            </div>
-            <h4>Veille Réglementaire</h4>
-            <p class="card-desc">Scanne les mises à jour réglementaires par projet et localisation, alerte en contexte.
-            </p>
-            <div class="card-metrics">
-              <span class="metric">0 retard conformité</span>
-              <span class="metric">Veille ÷5</span>
-              <span class="metric">Couverture totale</span>
-            </div>
-          </div>
-          <!-- Card 3: Research & Rédaction -->
-          <div class="example-card slider-card">
-            <div class="card-header">
-              <div class="card-icon">
-                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="2" viewBox="0 0 24 24" width="24">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <line x1="16" y1="13" x2="8" y2="13"></line>
-                  <line x1="16" y1="17" x2="8" y2="17"></line>
-                </svg>
-              </div>
-              <span class="example-tag">Analyse Financière • Quick Start Pack</span>
-            </div>
-            <h4>Research &amp; Rédaction</h4>
-            <p class="card-desc">Lit 200+ sources/jour, extrait les points clés, génère des brouillons de notes
-              structurés.</p>
-            <div class="card-metrics">
-              <span class="metric">−70% temps rédaction</span>
-              <span class="metric">Sources 100% couvertes</span>
-              <span class="metric">Focus analyse qualitative</span>
-            </div>
-          </div>
-          <!-- Card 4: Social Media Team -->
-          <div class="example-card slider-card">
-            <div class="card-header">
-              <div class="card-icon">
-                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="2" viewBox="0 0 24 24" width="24">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
-              </div>
-              <span class="example-tag">Agence digitale • SaaS sur devis</span>
-            </div>
-            <h4>Équipe Agents Social Media</h4>
-            <p class="card-desc">5 sous-agents orchestrés couvrant LinkedIn, Instagram, TikTok, X et Substack.</p>
-            <div class="card-metrics">
-              <span class="metric">5 plateformes auto</span>
-              <span class="metric">Création ÷4</span>
-              <span class="metric">Tendances temps réel</span>
-            </div>
-          </div>
-          <!-- Card 5: Business Development -->
-          <div class="example-card slider-card">
-            <div class="card-header">
-              <div class="card-icon">
-                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="2" viewBox="0 0 24 24" width="24">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-              </div>
-              <span class="example-tag">PME Tech • Quick Start Pack</span>
-            </div>
-            <h4>Business Development</h4>
-            <p class="card-desc">Scanne LinkedIn + appels d'offres, qualifie les prospects et génère des messages
-              personnalisés.</p>
-            <div class="card-metrics">
-              <span class="metric">+200% leads</span>
-              <span class="metric">Prospection ÷5</span>
-              <span class="metric">Messages personnalisés</span>
-            </div>
-          </div>
-          <!-- Card 6: Hugo Surtitles — Delivered Project -->
-          <div class="example-card slider-card">
-            <div class="card-header">
-              <div class="card-icon">
-                <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="2" viewBox="0 0 24 24" width="24">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                  <path d="M2 17l10 5 10-5"></path>
-                  <path d="M2 12l10 5 10-5"></path>
-                </svg>
-              </div>
-              <span class="example-tag">Spectacle vivant • Projet livr&eacute;</span>
-            </div>
-            <h4>Surtitrage IA en direct</h4>
-            <p class="card-desc">Traduction fran&ccedil;ais &rarr; anglais en temps r&eacute;el pour un one-man show au Th&eacute;&acirc;tre de l'Essa&iuml;on (Paris). Reconnaissance vocale locale + affichage synchronis&eacute;.</p>
-            <div class="card-metrics">
-              <span class="metric">&lt; 2s de d&eacute;lai</span>
-              <span class="metric">0 erreur critique</span>
-              <span class="metric">100% hors-ligne</span>
-            </div>
+          <div class="gle-hero-orb">
+            <img src="/assets/images/glass-lab/robot_in_nature.png" alt="Un agent IA dans son environnement" loading="eager" />
           </div>
         </div>
-        <div class="slider-nav">
-          <button class="slider-btn slider-prev" aria-label="Précédent">
-            <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
-              <path d="M15 18l-6-6 6-6"></path>
-            </svg>
-          </button>
-          <div class="slider-dots"></div>
-          <button class="slider-btn slider-next" aria-label="Suivant">
-            <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
-              <path d="M9 18l6-6-6-6"></path>
-            </svg>
-          </button>
+      </div>
+    </section>
+
+    <!-- CALENDLY (inline, sous le hero) — campagne centrepiece -->
+    <section id="calendly" class="gle-section gle-bg-cool-atmospheric" aria-label="Réserver un diagnostic gratuit">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">Réservez en 30 secondes</div>
+          <h2 class="gle-section-title" data-translate="professionnels.calendly.title">Réservez votre diagnostic gratuit.</h2>
+          <p class="gle-section-kicker" data-translate="professionnels.calendly.kicker">
+            30 minutes, en visio, sans engagement. On regarde vos process actuels et on identifie où un agent IA vous fait gagner du temps — concrètement.
+          </p>
+        </div>
+        <div class="ip-calendly">
+          <p class="ip-calendly-trust" data-translate="professionnels.calendly.trust">
+            Animé par les fondateurs — <strong>Joris</strong> (ex-UBS, 6 ans gestion institutionnelle) &amp; <strong>Jade</strong> (ex-Deloitte) · 22+ agents en prod
+          </p>
+          <!-- Embed Calendly inline réel — auto-rendu par assets.calendly.com/external/widget.js
+               qui détecte tout .calendly-inline-widget[data-url]. Le data-url porte les params
+               de la campagne (hide_gdpr_banner, primary_color). -->
+          <div class="calendly-inline-widget"
+               data-url="https://calendly.com/bubbleinvest-ai?hide_gdpr_banner=1&amp;primary_color=667eea"
+               data-cta-track="pros_inline_embed"
+               style="min-width:320px;height:680px;"></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- WHY BUBBLE -->
-  <section class="why-bubble">
-    <div class="container">
-      <div class="section-header fade-in">
-        <h2>Notre Différence</h2>
-        <h3>Pourquoi travailler avec nous</h3>
+    <!-- 01 PROCESSUS -->
+    <section class="gle-section gle-bg-warm-atmospheric" aria-label="Notre processus">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">01 / Notre processus</div>
+          <h2 class="gle-section-title" data-translate="professionnels.process.title">3 sessions. Vous êtes opérationnels.</h2>
+          <p class="gle-section-kicker" data-translate="professionnels.process.kicker">
+            Diagnostic, installation, accompagnement. Pas de tunnel à 6 mois. Pas de chantier brouillon. Trois rendez-vous structurés, et vous repartez autonomes.
+          </p>
+        </div>
+        <div class="ip-process">
+          <div class="ip-process-step">
+            <div class="ip-process-num">1</div>
+            <h3 data-translate="professionnels.process.step1_title">Diagnostic</h3>
+            <p data-translate="professionnels.process.step1_desc">On comprend votre métier, vos process, votre stack actuelle. On identifie où l'IA apporte le plus de valeur, vite.</p>
+            <div class="ip-step-detail">2h · gratuit · Calendly</div>
+          </div>
+          <div class="ip-process-step">
+            <div class="ip-process-num">2</div>
+            <h3 data-translate="professionnels.process.step2_title">Installation</h3>
+            <p data-translate="professionnels.process.step2_desc">On installe l'agent sur votre serveur ou en local sur vos machines. Vous voyez le code, vous validez chaque skill.</p>
+            <div class="ip-step-detail">1-2 semaines · présentiel ou visio</div>
+          </div>
+          <div class="ip-process-step">
+            <div class="ip-process-num">3</div>
+            <h3 data-translate="professionnels.process.step3_title">Accompagnement</h3>
+            <p data-translate="professionnels.process.step3_desc">On vous accompagne, vous et votre équipe, pour utiliser l'agent et le faire évoluer. Vous repartez autonomes.</p>
+            <div class="ip-step-detail">1 semaine · support de démarrage inclus</div>
+          </div>
+        </div>
       </div>
-      <div class="why-content fade-in">
-        <p>Après des années en cabinet de conseil et gestion d'actifs, nous avons observé de nombreux problèmes : des
-          engagements à six chiffres qui ne mènent nulle part, des consultants qui disparaissent après leur rapport, des
-          promesses rarement tenues.</p>
-        <p>Chez Bubble Invest, nous avons choisi de faire les choses différemment : parier sur l'honnêteté et la volonté
-          d'aider, quitte à refuser un projet.</p>
+    </section>
 
-        <!-- FOUNDERS -->
-        <div class="founders-strip fade-in">
-          <a class="founder-card" href="https://www.linkedin.com/in/joris-dupraz-1ba35959/" target="_blank" rel="noopener noreferrer">
-            <img src="/assets/images/team/joris.jpg" alt="Joris" class="founder-photo" />
-            <div class="founder-info">
-              <h4>Joris</h4>
-              <p class="founder-title">Co-fondateur</p>
-              <p class="founder-bg"><strong>UBS</strong> · 6 ans en gestion de fonds & banque d'investissement</p>
+    <!-- 02 OFFRE -->
+    <section id="offre" class="gle-section gle-bg-cool-atmospheric" aria-label="L'offre">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">02 / L'offre</div>
+          <h2 class="gle-section-title" data-translate="professionnels.offer.title">Un format clair pour démarrer.<br>Du sur-mesure pour aller plus loin.</h2>
+          <p class="gle-section-kicker" data-translate="professionnels.offer.kicker">Pas de tunnel à 6 mois ni de facture à 30k€. Un forfait fixe, puis du sur-mesure si vous en avez besoin.</p>
+        </div>
+        <div class="ip-offers-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 760px; margin: 3rem auto 0;">
+
+          <!-- Quick Start (featured) -->
+          <div class="ip-offer-card ip-offer-card--featured">
+            <span class="ip-offer-badge ip-offer-badge--violet" data-translate="professionnels.offer.quickstart_badge">Le plus populaire</span>
+            <h3 class="ip-offer-title" data-translate="professionnels.offer.quickstart_title">Agentic Quick Start</h3>
+            <div class="ip-offer-price">dès 2 000 €<span class="ip-offer-price-suffix"> HT</span></div>
+            <p class="ip-offer-subtitle" data-translate="professionnels.offer.quickstart_subtitle">3 sessions · un agent installé · 2-3 semaines</p>
+            <p class="ip-offer-desc" data-translate="professionnels.offer.quickstart_desc">On installe un agent IA avec 1 ou 2 compétences précises, sur vos vrais documents et workflows.</p>
+            <ul class="ip-offer-features">
+              <li data-translate="professionnels.offer.quickstart_feat1">Diagnostic, installation, accompagnement</li>
+              <li data-translate="professionnels.offer.quickstart_feat2">Sur votre serveur ou en local sur vos machines</li>
+              <li data-translate="professionnels.offer.quickstart_feat3">Code 100 % à vous à la fin — aucun lock-in</li>
+              <li data-translate="professionnels.offer.quickstart_feat4">Support inclus juste après la livraison</li>
+            </ul>
+            <a class="gle-btn-primary btn btn-primary" href="#calendly" data-cta-track="pros_offer_quickstart_calendly_click">
+              <span data-translate="professionnels.offer.quickstart_cta">Réserver un diagnostic gratuit</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Sur-mesure -->
+          <div class="ip-offer-card">
+            <span class="ip-offer-badge ip-offer-badge--peach" data-translate="professionnels.offer.custom_badge">Projets complexes</span>
+            <h3 class="ip-offer-title" data-translate="professionnels.offer.custom_title">Sur-mesure</h3>
+            <div class="ip-offer-price" style="font-size: 1.7rem;" data-translate="professionnels.offer.custom_price">Sur devis</div>
+            <p class="ip-offer-subtitle" data-translate="professionnels.offer.custom_subtitle">Devis adapté après le diagnostic</p>
+            <p class="ip-offer-desc" data-translate="professionnels.offer.custom_desc">Pour des intégrations plus poussées : multi-départements, agents métier spécialisés, infrastructure dédiée.</p>
+            <ul class="ip-offer-features">
+              <li data-translate="professionnels.offer.custom_feat1">Périmètre défini ensemble au diagnostic</li>
+              <li data-translate="professionnels.offer.custom_feat2">Forfait suivi &amp; maintenance (sur devis)</li>
+              <li data-translate="professionnels.offer.custom_feat3">Mêmes principes : votre code, votre infra</li>
+            </ul>
+            <a class="ip-btn-ghost" href="#calendly" data-cta-track="pros_offer_custom_calendly_click" data-translate="professionnels.offer.custom_cta">Demander un devis →</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 EXEMPLES DE MISSIONS -->
+    <section class="gle-section gle-bg-warm-atmospheric" aria-label="Exemples de missions">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">03 / Exemples de missions</div>
+          <h2 class="gle-section-title" data-translate="professionnels.examples.title">Le dernier mile entre l'IA et votre métier.</h2>
+        </div>
+        <div class="ip-tiles">
+
+          <!-- Tile 1 — CGP -->
+          <div class="ip-tile">
+            <img class="ip-tile-photo"
+                 src="/assets/images/glass-lab/missions/mission-1.jpg"
+                 alt="Gestion de patrimoine — documents client"
+                 loading="lazy">
+            <div class="ip-tile-body">
+              <div class="ip-tile-meta">CGP · Gestion de Patrimoine</div>
+              <h3 data-translate="professionnels.examples.tile1_title">Note de synthèse client</h3>
+              <p data-translate="professionnels.examples.tile1_desc">L'agent récupère les dossiers KYC, les performances de portefeuille et les actualités fiscales. Note prête avant chaque rendez-vous.</p>
+              <div class="ip-tile-outcome" data-translate="professionnels.examples.tile1_outcome">4h gagnées par RDV · note en 30 secondes</div>
             </div>
-            <svg class="founder-linkedin" fill="currentColor" viewBox="0 0 24 24" width="18" height="18">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </a>
-          <a class="founder-card" href="https://www.linkedin.com/in/jade-hoang-146955105/" target="_blank" rel="noopener noreferrer">
-            <img src="/assets/images/team/jade.jpg" alt="Jade" class="founder-photo" />
-            <div class="founder-info">
-              <h4>Jade</h4>
-              <p class="founder-title">Co-fondatrice</p>
-              <p class="founder-bg"><strong>KPMG/Deloitte</strong> · 6 ans en audit & conseil (Big Four)</p>
+          </div>
+
+          <!-- Tile 2 — Asset Manager -->
+          <div class="ip-tile">
+            <img class="ip-tile-photo"
+                 src="/assets/images/glass-lab/missions/mission-2.jpg"
+                 alt="Conformité réglementaire — documents AMF"
+                 loading="lazy">
+            <div class="ip-tile-body">
+              <div class="ip-tile-meta">Asset Manager · Conformité</div>
+              <h3 data-translate="professionnels.examples.tile2_title">Veille réglementaire AMF</h3>
+              <p data-translate="professionnels.examples.tile2_desc">Chaque matin l'agent croise les publications AMF, les changements de doctrine et les sanctions. Résumé ciblé sur vos dossiers en cours.</p>
+              <div class="ip-tile-outcome" data-translate="professionnels.examples.tile2_outcome">veille passive · alertes ciblées</div>
             </div>
-            <svg class="founder-linkedin" fill="currentColor" viewBox="0 0 24 24" width="18" height="18">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
+          </div>
+
+          <!-- Tile 3 — PME -->
+          <div class="ip-tile">
+            <img class="ip-tile-photo"
+                 src="/assets/images/glass-lab/missions/mission-3.jpg"
+                 alt="Onboarding client — première réunion"
+                 loading="lazy">
+            <div class="ip-tile-body">
+              <div class="ip-tile-meta">PME · Relation Client</div>
+              <h3 data-translate="professionnels.examples.tile3_title">Onboarding client</h3>
+              <p data-translate="professionnels.examples.tile3_desc">L'agent prend en charge le premier email, l'envoi des contrats, la collecte des documents. Le client suit l'avancée sur un dashboard en temps réel.</p>
+              <div class="ip-tile-outcome" data-translate="professionnels.examples.tile3_outcome">2 jours d'admin → 2h de validation</div>
+            </div>
+          </div>
+
+          <!-- Tile 4 — Gérant de portefeuille -->
+          <div class="ip-tile">
+            <img class="ip-tile-photo"
+                 src="/assets/images/glass-lab/missions/mission-4.jpg"
+                 alt="Briefing marché — graphiques financiers"
+                 loading="lazy">
+            <div class="ip-tile-body">
+              <div class="ip-tile-meta">Gérant de Portefeuille · Finance</div>
+              <h3 data-translate="professionnels.examples.tile4_title">Briefing marché matinal</h3>
+              <p data-translate="professionnels.examples.tile4_desc">À 7h30, l'agent agrège les flux Bloomberg, les publications macro et les mouvements overnight. Brief structuré dans votre inbox avant le premier café.</p>
+              <div class="ip-tile-outcome" data-translate="professionnels.examples.tile4_outcome">45 min de lecture → 5 min de scan</div>
+            </div>
+          </div>
+
+          <!-- Tile 5 — Indépendant -->
+          <div class="ip-tile">
+            <img class="ip-tile-photo"
+                 src="/assets/images/glass-lab/missions/mission-5.jpg"
+                 alt="Community manager — réseaux sociaux"
+                 loading="lazy">
+            <div class="ip-tile-body">
+              <div class="ip-tile-meta">Indépendant · Présence Digitale</div>
+              <h3 data-translate="professionnels.examples.tile5_title">Community Manager multi-plateforme</h3>
+              <p data-translate="professionnels.examples.tile5_desc">L'agent recycle chaque article en threads LinkedIn, posts Instagram et newsletters. Une idée, sept formats, zéro répétition.</p>
+              <div class="ip-tile-outcome" data-translate="professionnels.examples.tile5_outcome">1 contenu → 7 formats · 3h/semaine économisées</div>
+            </div>
+          </div>
+
+          <!-- Tile 6 — SaaS -->
+          <div class="ip-tile">
+            <img class="ip-tile-photo"
+                 src="/assets/images/glass-lab/missions/mission-6.jpg"
+                 alt="Audit de sécurité — infrastructure serveur"
+                 loading="lazy">
+            <div class="ip-tile-body">
+              <div class="ip-tile-meta">SaaS · Infrastructure</div>
+              <h3 data-translate="professionnels.examples.tile6_title">Audit de sécurité hebdomadaire</h3>
+              <p data-translate="professionnels.examples.tile6_desc">Chaque lundi l'agent scanne les CVE récentes, croise avec vos dépendances et génère un rapport de priorités classé par risque réel.</p>
+              <div class="ip-tile-outcome" data-translate="professionnels.examples.tile6_outcome">rapport livré en 4 min · zero backlog ignoré</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 FAQ -->
+    <section id="faq" class="gle-section gle-bg-warm-atmospheric" aria-label="Questions fréquentes">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">04 / Questions fréquentes</div>
+          <h2 class="gle-section-title" data-translate="professionnels.faq.title">Tout ce qu'un pro nous demande.</h2>
+          <p class="gle-section-kicker" data-translate="professionnels.faq.kicker">Approche, offre, prix, sécurité, propriété du code — les réponses directes, sans détour.</p>
+        </div>
+        <div class="ip-faq">
+          <details class="ip-faq-item">
+            <summary>Qu'est-ce que Bubble Invest exactement ?</summary>
+            <div class="ip-faq-a">Bubble Invest conçoit et installe des agents IA sur mesure pour les professionnels. Notre mission : automatiser vos tâches répétitives, structurer vos données et libérer votre temps pour ce qui compte — votre expertise et vos clients.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>En quoi êtes-vous différents d'un cabinet de conseil classique ?</summary>
+            <div class="ip-faq-a">Pas de slides à rallonge, pas de devis à six chiffres, pas d'armée de consultants juniors. On va plus loin que le conseil : on construit et on installe directement un agent IA opérationnel à partir de vos données et de vos outils. Une solution clé en main qui absorbe votre charge de travail dès le premier jour, <strong>sans vous rendre dépendants</strong>.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Pourquoi vous, et pas un freelance dev IA ?</summary>
+            <div class="ip-faq-a">On combine une double expertise rare : conseil stratégique (finance, process métier) et ingénierie IA. On comprend vos workflows avant même de coder. Et surtout, on utilise nos propres agents au quotidien — ce qu'on vous vend, on l'utilise nous-mêmes. Plus rapide, plus fiable et moins cher qu'un développeur freelance.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Pourquoi 3 sessions, ni plus ni moins ?</summary>
+            <div class="ip-faq-a">Trois sessions, c'est le format optimal : assez pour diagnostiquer vos besoins, construire votre agent et vous former à l'utiliser en autonomie. L'objectif n'est pas de vous rendre dépendants, c'est de vous rendre opérationnels. Et si vous avez besoin de plus, on reste disponibles.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Combien coûte le Quick Start ?</summary>
+            <div class="ip-faq-a">Le Quick Start <strong>démarre à 2 000 € HT</strong> pour un agent IA sur mesure, 3 sessions de travail incluses. Le premier devis est co-construit avec vous selon vos besoins réels. Pour des architectures plus complexes (multi-agents, intégrations avancées), on établit un devis personnalisé.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Que comprend précisément le Quick Start ?</summary>
+            <div class="ip-faq-a">Un agent IA sur mesure, conçu pour votre métier et vos process. Il inclut : un diagnostic de vos besoins, la construction de l'agent (automatisations, routines, intégrations à vos outils), son installation, et un accompagnement pratique pour le prendre en main en autonomie — le tout en 3 sessions.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Que se passe-t-il après les 3 sessions ?</summary>
+            <div class="ip-faq-a">Un support est inclus dans les jours suivant la livraison pour corriger tout bug initial. Au-delà, on reste disponibles pour des interventions rapides sur devis, et un forfait suivi & maintenance est proposé pour un accompagnement sur la durée, selon vos besoins.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Faites-vous des devis sur mesure au-delà du Quick Start ?</summary>
+            <div class="ip-faq-a">Absolument. Au-delà du Quick Start, on conçoit des solutions sur mesure : équipes multi-agents, selfware (outils IA personnels), applications dédiées ou architectures complexes. Chaque projet fait l'objet d'un devis adapté à votre périmètre.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Quel est le délai pour démarrer ?</summary>
+            <div class="ip-faq-a">La première session est gratuite et sans engagement. Après signature, le projet démarre sous 1 à 2 semaines, pour une livraison complète en 3 semaines : un agent clé en main, prêt à l'emploi sur votre serveur ou en local.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Proposez-vous un contrat de maintenance / support ?</summary>
+            <div class="ip-faq-a">Oui. Une fois l'agent déployé, on propose des contrats de maintenance adaptés à vos besoins : forfait mensuel sur devis pour un suivi régulier, ou intervention ponctuelle à <strong>500 € HT/jour</strong>, avec un délai de réponse garanti sous 24h — à distance ou sur site.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Et si quelque chose casse 6 mois après ?</summary>
+            <div class="ip-faq-a">On reste joignables après la livraison. Nos agents de support sont disponibles pour vous orienter, et notre équipe intervient rapidement si un problème survient, même des mois plus tard.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Sur quels secteurs intervenez-vous ?</summary>
+            <div class="ip-faq-a">On accompagne les petites et moyennes structures, indépendants et professions réglementées, avec un cœur de métier en <strong>gestion de patrimoine et asset management</strong>. Pourquoi les petites structures ? C'est là que l'IA a le plus d'impact : moins de couches hiérarchiques, moins de logiciels empilés, des résultats visibles immédiatement.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Quel niveau de sécurité garantissez-vous ?</summary>
+            <div class="ip-faq-a">Vos agents tournent au choix en local sur votre machine ou sur un serveur privé sécurisé. Les données sont traitées via des fournisseurs d'IA de premier plan (Anthropic, OpenAI) avec leurs protocoles de sécurité standards. Toutes les conversations sont archivées localement, avec possibilité de sauvegardes automatiques.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>À qui appartient le code installé chez vous ?</summary>
+            <div class="ip-faq-a">Tout vous appartient : le code, les agents, les configurations. On vend l'installation, l'accompagnement et la prise en main — ensuite, vous êtes autonomes. C'est tout l'avantage par rapport à un abonnement SaaS : pas de dépendance, pas de frais récurrents imposés.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Quels modèles d'IA utilisez-vous ?</summary>
+            <div class="ip-faq-a">Principalement Claude (Anthropic), tout en restant flexibles selon vos préférences. Point important : les agents fonctionnent avec <strong>votre propre abonnement</strong> (OpenAI, Claude ou autre). Vous gardez le contrôle total sur vos coûts et vos données.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Les agents peuvent-ils tourner sans connexion internet ?</summary>
+            <div class="ip-faq-a">Les agents IA nécessitent une connexion internet pour accéder aux modèles de langage. En revanche, certaines automatisations simples et applications personnalisées peuvent tourner en local selon votre configuration.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Politique d'annulation et de remboursement ?</summary>
+            <div class="ip-faq-a">La première session est gratuite et sans engagement. Vous pouvez décider de ne pas poursuivre après cette première rencontre — aucun frais, aucune obligation.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Comment se passe la signature ?</summary>
+            <div class="ip-faq-a">Processus simple et transparent : devis et contrat signés électroniquement (Yousign). Le projet démarre dès réception de l'acompte. Des facilités de paiement sont disponibles et définies ensemble en amont.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Accompagnez-vous nos équipes ?</summary>
+            <div class="ip-faq-a">Oui, et c'est du concret : pas de slides ni de conférences théoriques, mais des sessions pratiques où l'on apprend en faisant, directement sur votre agent. On ne repart pas tant que votre équipe ne le maîtrise pas — c'est comme accueillir un nouveau collaborateur, déjà opérationnel sur vos process.</div>
+          </details>
+          <details class="ip-faq-item">
+            <summary>Travaillez-vous à distance ou sur site ?</summary>
+            <div class="ip-faq-a">Les deux, selon vos préférences et la nature du projet. Basés en région parisienne, on est disponibles partout en France et capables d'opérer entièrement à distance.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINALE -->
+    <section class="gle-section gle-bg-cool-atmospheric" aria-label="Appel à l'action">
+      <div class="gle-container">
+        <div class="ip-final-cta">
+          <h2 class="gle-section-title" data-translate="professionnels.finalcta.title">Prêt à installer votre premier agent ?</h2>
+          <p class="gle-section-kicker" style="margin-bottom: 2rem;" data-translate="professionnels.finalcta.kicker">Un diagnostic gratuit de 30 minutes suffit pour savoir si c'est fait pour vous.</p>
+          <a class="gle-btn-primary btn btn-primary" href="#calendly" data-cta-track="pros_final_calendly_click">
+            <span data-translate="professionnels.finalcta.cta">Réserver mon diagnostic gratuit</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
+      </div>
+    </section>
 
-        <div class="differentiation fade-in fade-in-delay-1">
-          <h4>Triple expertise rare</h4>
-          <div class="differentiation-grid">
-            <div class="differentiation-item">
-              <h5>Finance</h5>
-              <p>Expertise native des enjeux réglementaires, risques, workflows métiers</p>
-            </div>
-            <div class="differentiation-item">
-              <h5>Tech</h5>
-              <p>Compétences full stack, stack à jour, architectures cloud-native</p>
-            </div>
-            <div class="differentiation-item">
-              <h5>AI</h5>
-              <p>Maîtrise opérationnelle des derniers modèles, veille continue</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </main>
 
-  <!-- OUR APPROACH IN ACTION -->
-  <section class="social-proof">
-    <div class="container">
-      <div class="section-header fade-in">
-        <h2>Notre approche en action</h2>
-        <h3>Ce que nos agents font, chaque jour, sur nos propres opérations</h3>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card fade-in">
-          <div class="testimonial-author" style="margin-bottom: 1rem;">
-            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #667eea, #4c5ec7);">
-              <svg fill="none" height="18" stroke="white" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
-            </div>
-            <div class="testimonial-info">
-              <h5>Gérant de portefeuille</h5>
-              <p>5 étapes automatisées · briefing quotidien · capital réel</p>
-            </div>
-          </div>
-          <p class="testimonial-text">Chaque matin à 8h, notre agent analyse le régime de marché, vérifie les expositions du portefeuille, compare avec les benchmarks, et propose des ajustements. Il détecte les dérives, surveille la volatilité, et génère un briefing quotidien avec des ordres validés par une thèse d'investissement. Le même pipeline tourne sur notre propre capital, chaque jour depuis 1 an.</p>
-        </div>
-        <div class="testimonial-card fade-in fade-in-delay-1">
-          <div class="testimonial-author" style="margin-bottom: 1rem;">
-            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #667eea, #4c5ec7);">
-              <svg fill="none" height="18" stroke="white" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-            </div>
-            <div class="testimonial-info">
-              <h5>Community manager</h5>
-              <p>6j/7 · 3 plateformes · calendrier éditorial</p>
-            </div>
-          </div>
-          <p class="testimonial-text">Chaque jour, notre agent choisit le type de contenu adapté au calendrier éditorial (promo agents le lundi, teaser investissement le mardi, relai d'article le mercredi...), le rédige, et le publie sur LinkedIn et X. Un post par jour, 6 jours sur 7, sur 3 plateformes, sans intervention humaine sauf validation.</p>
-        </div>
-        <div class="testimonial-card fade-in fade-in-delay-2">
-          <div class="testimonial-author" style="margin-bottom: 1rem;">
-            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #667eea, #4c5ec7);">
-              <svg fill="none" height="18" stroke="white" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            </div>
-            <div class="testimonial-info">
-              <h5>Agent de sécurité</h5>
-              <p>5 modules · 17 patterns de secrets · 3 audits/semaine</p>
-            </div>
-          </div>
-          <p class="testimonial-text">3 fois par semaine, notre agent vérifie l'intégrité de tous les fichiers d'identité des agents (aucune modification non autorisée), scanne les secrets exposés dans le code, détecte les failles de sécurité connues dans les dépendances, et surveille les processus suspects sur la machine. Rapport complet à chaque exécution, même quand tout est vert.</p>
-        </div>
-      </div>
-      <div style="text-align: center; margin-top: 2.5rem;">
-        <p style="color: #666; margin-bottom: 1rem;">Vous décidez, les agents exécutent. Vos données restent sur votre machine.</p>
-        <a class="btn btn-primary" href="https://calendly.com/bubbleinvest-ai" target="_blank">Réserver un diagnostic gratuit <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ — Source: Notion page 363cfc52064481b5baa4c7aa0e777099 (msg 5200) -->
-  <section class="faq" id="faq">
-    <div class="container">
-      <div class="section-header fade-in">
-        <h2>Questions fréquentes</h2>
-        <h3>Vos questions, nos réponses</h3>
-      </div>
-      <div class="faq-list fade-in">
-        <h4 class="faq-section-title">Positionnement &amp; approche</h4>
-        <details>
-          <summary>Qu'est-ce que Bubble Invest exactement ?</summary>
-          <p>Bubble Invest conçoit et installe des agents IA sur mesure pour les professionnels. Notre mission : automatiser vos tâches répétitives, structurer vos données et libérer votre temps pour ce qui compte vraiment, votre expertise et vos clients.</p>
-        </details>
-        <details>
-          <summary>Quelle est la différence avec un cabinet de conseil classique ?</summary>
-          <p>Pas de slides à rallonge, pas de devis à six chiffres, pas d'armée de consultants juniors. Bubble Invest va plus loin que le conseil : nous construisons et installons directement un agent IA opérationnel à partir de vos données et de vos outils existants. Résultat : une solution clé en main qui absorbe votre charge de travail dès le premier jour, sans vous rendre dépendants.</p>
-        </details>
-        <details>
-          <summary>Pourquoi 3 sessions et pas plus / pas moins ?</summary>
-          <p>Trois sessions, c'est le format optimal : assez pour diagnostiquer vos besoins, construire votre agent et vous former à l'utiliser en autonomie. Notre objectif n'est pas de vous rendre dépendants, c'est de vous rendre opérationnels. Et si vous avez besoin de plus, nous restons disponibles.</p>
-        </details>
-        <details>
-          <summary>Pourquoi vous, et pas un freelance dev IA ?</summary>
-          <p>Nous combinons une double expertise rare : conseil stratégique (finance, process métier) et ingénierie IA. Nous comprenons vos workflows avant même de coder. Et surtout, nous utilisons nos propres agents au quotidien (prospection, contenu, analyse). Ce que nous vous vendons, nous l'utilisons nous-mêmes. C'est plus rapide, plus fiable, et moins cher qu'un développeur freelance.</p>
-        </details>
-        <h4 class="faq-section-title">Offre B2B — Quick Start</h4>
-        <details>
-          <summary>Combien coûte le Quick Start exactement ?</summary>
-          <p>Le Quick Start démarre à 2 000 € HT pour un agent IA sur mesure, incluant 3 sessions de travail. Le premier devis est co-construit avec vous selon vos besoins réels. Pour des architectures plus complexes (multi-agents, intégrations avancées), nous établissons un devis personnalisé.</p>
-        </details>
-        <details>
-          <summary>Que comprend précisément le Quick Start ?</summary>
-          <p>Le Quick Start comprend 1 agent IA sur mesure, conçu spécifiquement pour votre métier et vos process. Il inclut : un diagnostic de vos besoins, la construction de l'agent (automatisations, routines, intégrations à vos outils), son installation, et votre formation pour l'utiliser en autonomie, le tout en 3 sessions.</p>
-        </details>
-        <details>
-          <summary>Que se passe-t-il après les 3 sessions ?</summary>
-          <p>Un support est inclus dans les jours suivant la livraison pour corriger tout bug initial. Au-delà, nous restons disponibles pour des interventions rapides sur devis. Un forfait suivi &amp; maintenance est également proposé pour un accompagnement sur la durée, selon vos besoins.</p>
-        </details>
-        <details>
-          <summary>Faites-vous des devis sur mesure au-delà du Quick Start ?</summary>
-          <p>Absolument. Au-delà du Quick Start, nous concevons des solutions sur mesure : équipes multi-agents, selfware (outils IA personnels), applications dédiées, ou architectures complexes. Chaque projet fait l'objet d'un devis adapté à votre périmètre.</p>
-        </details>
-        <details>
-          <summary>Quel est le délai pour démarrer ?</summary>
-          <p>La première session est gratuite et sans engagement. Après signature, le projet démarre sous 1 à 2 semaines. Livraison complète en 3 semaines : un agent clé en main, prêt à l'emploi sur votre serveur ou en local.</p>
-        </details>
-        <h4 class="faq-section-title">Maintenance &amp; support post-déploiement</h4>
-        <details>
-          <summary>Proposez-vous un contrat de maintenance / support après les 3 sessions ?</summary>
-          <p>Oui. Une fois votre agent déployé et opérationnel, nous proposons des contrats de maintenance adaptés à vos besoins, pour que votre solution reste performante dans la durée.</p>
-        </details>
-        <details>
-          <summary>Pricing maintenance &amp; disponibilité ?</summary>
-          <p>Forfait mensuel sur devis pour un suivi régulier. Intervention ponctuelle : 500 € HT/jour. Délai de réponse garanti sous 24h. Les interventions se font à distance ou sur site, selon vos préférences.</p>
-        </details>
-        <details>
-          <summary>Que se passe-t-il si quelque chose casse 6 mois après ?</summary>
-          <p>Nous restons joignables après la livraison. Nos agents de support sont disponibles pour vous orienter, et notre équipe intervient rapidement si un problème survient, même des mois plus tard.</p>
-        </details>
-        <h4 class="faq-section-title">Tech &amp; secteurs d'intervention</h4>
-        <details>
-          <summary>Sur quels secteurs intervenez-vous ?</summary>
-          <p>Nous accompagnons les petites et moyennes structures, indépendants et professions réglementées, avec un cœur de métier en gestion de patrimoine et asset management. Pourquoi les petites structures ? Parce que c'est là que l'IA a le plus d'impact : moins de couches hiérarchiques, moins de logiciels empilés, et des résultats visibles immédiatement.</p>
-        </details>
-        <details>
-          <summary>Quel niveau de sécurité garantissez-vous ?</summary>
-          <p>Vos agents tournent au choix en local sur votre machine ou sur un serveur privé sécurisé. Les données sont traitées via des fournisseurs d'IA de premier plan (Anthropic, OpenAI) avec leurs protocoles de sécurité standards. Toutes les conversations sont archivées localement, avec possibilité de sauvegardes automatiques.</p>
-        </details>
-        <details>
-          <summary>À qui appartient le code installé chez le client ?</summary>
-          <p>Tout vous appartient. Le code, les agents, les configurations, c'est votre propriété. Nous vendons l'installation, l'accompagnement et la formation. Ensuite, vous êtes autonomes. C'est tout l'avantage par rapport à un abonnement SaaS : pas de dépendance, pas de frais récurrents imposés.</p>
-        </details>
-        <details>
-          <summary>Quels modèles d'IA utilisez-vous ?</summary>
-          <p>Nous travaillons principalement avec Claude (Anthropic), mais restons flexibles selon vos préférences et contraintes. Point important : les agents fonctionnent avec votre propre abonnement (OpenAI, Claude, ou autre). Vous gardez le contrôle total sur vos coûts et vos données.</p>
-        </details>
-        <details>
-          <summary>Les agents peuvent-ils tourner sans connexion internet / 100% local ?</summary>
-          <p>Les agents IA nécessitent une connexion internet pour fonctionner (accès aux modèles de langage). En revanche, certaines automatisations simples et applications personnalisées peuvent tourner en local selon votre configuration.</p>
-        </details>
-        <h4 class="faq-section-title">Modalités pratiques</h4>
-        <details>
-          <summary>Politique d'annulation et remboursement ?</summary>
-          <p>La première session est gratuite et sans engagement. Vous pouvez décider de ne pas poursuivre après cette première rencontre, aucun frais, aucune obligation.</p>
-        </details>
-        <details>
-          <summary>Comment se passe la signature ?</summary>
-          <p>Processus simple et transparent : devis et contrat signés électroniquement (Yousign). Le projet démarre dès réception de l'acompte. Des facilités de paiement sont disponibles et définies ensemble en amont.</p>
-        </details>
-        <details>
-          <summary>Formez-vous les équipes du client ?</summary>
-          <p>Oui, la formation fait partie intégrante de notre prestation. Nous ne repartons pas tant que votre agent n'est pas parfaitement compris par votre équipe. Nos agents sont conçus pour être proactifs : ils vous montrent immédiatement leur valeur ajoutée. C'est comme accueillir un nouveau collaborateur, sauf qu'il est déjà formé à vos process.</p>
-        </details>
-        <details>
-          <summary>Travaillez-vous à distance ou sur site ?</summary>
-          <p>Les deux. Nous intervenons à distance ou sur site selon vos préférences et la nature du projet. Basés en région parisienne, nous sommes disponibles partout en France et capables d'opérer à distance.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="final-cta" id="calendly">
-    <div class="container">
-      <div class="final-cta-content fade-in">
-        <span class="final-cta-label">Premier contact</span>
-        <h2>Discutons de votre projet</h2>
-        <p>30 minutes pour identifier ce qui vaut le coup d'automatiser. Gratuit, sans engagement.</p>
-        <a class="btn btn-primary" href="https://calendly.com/bubbleinvest-ai" rel="noopener noreferrer"
-           data-cta-track="pros_final_calendly_click">
-          Réserver un diagnostic gratuit (30 min)
-          <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
-        </a>
-        <!-- Calendly inline embed — Sprint 1 (Jade msg 4858) — keeps user on-site for booking -->
-        <div data-calendly-inline data-calendly-inline-source="pros_inline_embed"
-             style="min-width:320px; height:680px; margin: 2rem auto 0; max-width: 900px; background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06);"
-             aria-label="Calendrier de réservation Bubble"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CHAT SIDE PANEL -->
-  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
-    <div class="chat-side-panel-header">
-      <div class="chat-side-panel-header-info">
-        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
-        <div class="chat-side-panel-titles">
-          <span class="chat-side-panel-title">Assistant Bubble</span>
-        </div>
-      </div>
-      <div class="chat-side-panel-actions">
-        <button class="chat-side-panel-minimize" aria-label="Réduire le chat" type="button">-</button>
-        <button class="chat-side-panel-close" aria-label="Fermer le chat" type="button">&#10005;</button>
-      </div>
-    </div>
-    <div class="chat-side-panel-messages" role="log" aria-live="polite">
-    </div>
-    <form class="chat-side-panel-input-container" novalidate>
-      <input type="text" class="chat-side-panel-input" placeholder="Posez vos questions..."
-        data-translate-placeholder="floating_input.placeholder" aria-label="Saisissez votre message"
-        autocomplete="off" />
-      <button class="chat-side-panel-send" aria-label="Envoyer le message" type="submit">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M12 21V4" stroke-linecap="round" />
-        </svg>
-      </button>
-    </form>
-  </div>
-
-  <!-- FLOATING CHAT INPUT -->
-  <div class="floating-chat-input hidden" data-page-context="professionals" id="floating-chat-input">
-    <div class="floating-input-container">
-      <input aria-label="Posez votre question" class="floating-input-field"
-        placeholder="Pose-moi n'importe quelle question..." type="text"
-        data-translate-placeholder="floating_input.placeholder" />
-      <button aria-label="Envoyer" class="floating-input-submit">
-        <svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18">
-          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round"></path>
-          <path d="M12 21V4" stroke-linecap="round"></path>
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
+  <!-- FOOTER (Glass Lab Editorial v3 — structure preserved, restyled) -->
+  <footer class="gle-footer">
+    <div class="gle-container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="logo" href="/">
-            <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: 32px;">
+          <a class="logo" href="/" style="font-size: 1.5rem; color: #fff;">
+            <svg fill="none" style="width: 32px; height: 32px;" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
               <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
                 stroke-linecap="round" stroke-width="6"></circle>
               <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
             </svg>
             Bubble.
           </a>
-          <p>L'ère de l'IA a tout changé. Changez avec elle.</p>
+          <p style="font-family: var(--gle-font-accent); font-style: italic; opacity: 0.85; margin-top: 0.5rem;">Investissez dans l'essentiel.</p>
+          <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.78rem;">L'ère de l'IA a tout changé. Changez avec elle.</p>
           <div class="social-links">
             <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank"
               title="LinkedIn">
@@ -1058,20 +786,21 @@
           </div>
         </div>
         <div class="footer-links">
-          <h4>Produit</h4>
+          <h4>Navigation</h4>
           <ul>
-            <li><a href="/particuliers">Particuliers</a></li>
-            <li><a href="/professionnels">Professionnels</a></li>
-            <li><a href="/shop">Shop</a></li>
+            <li><a href="/a-propos">À Propos</a></li>
+            <li><a href="/particuliers">Apprendre &amp; Brancher</a></li>
+            <li><a href="/professionnels">Implémentation pro</a></li>
+            <li><a href="/blog">Blog</a></li>
           </ul>
         </div>
         <div class="footer-links">
           <h4>Ressources</h4>
           <ul>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/a-propos">À Propos</a></li>
+            <li><a href="/shop">Boutique</a></li>
+            <li><a href="/labs">Laboratoire</a></li>
             <li><a href="https://bubbleinvest.substack.com" target="_blank">Newsletter</a></li>
-            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank">Nous contacter</a></li>
+            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank" data-cta-track="footer_calendly_click">Réserver un diagnostic</a></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -1083,16 +812,60 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Bubble Invest · Transparent by design.</p>
+        <p>© 2026 Bubble Invest · Transparent by design · Build in public</p>
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
+  <!-- Chat Side Panel (slide-in chatbot) -->
+  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+    <div class="chat-side-panel-header">
+      <div class="chat-side-panel-header-info">
+        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+        <div class="chat-side-panel-titles">
+          <span class="chat-side-panel-title">Assistant Bubble</span>
+        </div>
+      </div>
+      <div class="chat-side-panel-actions">
+        <button class="chat-side-panel-minimize" aria-label="Réduire le chat" type="button">-</button>
+        <button class="chat-side-panel-close" aria-label="Fermer le chat" type="button">✕</button>
+      </div>
+    </div>
+    <div class="chat-side-panel-messages" role="log" aria-live="polite">
+    </div>
+    <form class="chat-side-panel-input-container" novalidate>
+      <input type="text" class="chat-side-panel-input" placeholder="Posez vos questions..."
+        data-translate-placeholder="floating_input.placeholder" aria-label="Saisissez votre message"
+        autocomplete="off" />
+      <button class="chat-side-panel-send" aria-label="Envoyer le message" type="submit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M12 21V4" stroke-linecap="round" />
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <!-- Floating Glassmorphism Chat Input -->
+  <div class="floating-chat-input hidden" data-always-visible="false" data-page-context="professionals"
+    data-trigger-selector=".hero" id="floating-chat-input">
+    <div class="floating-input-container">
+      <input aria-label="Posez votre question" class="floating-input-field"
+        placeholder="Pose-moi n'importe quelle question..." type="text"
+        data-translate-placeholder="floating_input.placeholder" />
+      <button aria-label="Envoyer" class="floating-input-submit">
+        <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
+          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          <path d="M12 21V4" stroke-linecap="round" stroke-width="2"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script src="/js/seo/cookie-banner.js"></script>
   <!-- Unified conversion tracking (Pixel + CAPI dual tracking + Google Ads conversion) — Phase 1 marketing 2026-05-18 -->
   <script src="/js/seo/conversions.js"></script>
-  <script src="/js/ghibli-chrome.js" defer></script>
   <script src="/js/lang-toggle.js"></script>
   <script src="/i18n/translations.js"></script>
   <script src="/js/bubble-agent-memory.js"></script>
@@ -1101,7 +874,15 @@
   <script src="/js/floating-chat-input.js"></script>
   <script src="/js/animations.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
+
+  <!-- Sprint 3 Ghibli Phase 2 — top strip "Labo ouvert" + floating bubbles signature -->
+  <script src="/js/ghibli-chrome.js" defer></script>
+
+  <!-- Calendly — repo integration: popup on calendly.com anchors + booking event tracking.
+       The inline embed under the hero is auto-rendered by Calendly's own widget.js below,
+       which scans for .calendly-inline-widget[data-url] (preserves the campaign data-url params). -->
   <script src="/js/calendly-integration.js" defer></script>
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
   <!-- Mobile hamburger menu toggle -->
   <script>
@@ -1131,90 +912,6 @@
       window.addEventListener('resize', function () {
         if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
       });
-    })();
-  </script>
-
-  <!-- Examples slider -->
-  <script>
-    (function () {
-      'use strict';
-      var wrapper = document.querySelector('.examples-slider-wrapper');
-      if (!wrapper) return;
-      var slider = wrapper.querySelector('.examples-slider');
-      var cards = wrapper.querySelectorAll('.slider-card');
-      var prev = wrapper.querySelector('.slider-prev');
-      var next = wrapper.querySelector('.slider-next');
-      var dotsContainer = wrapper.querySelector('.slider-dots');
-      var current = 0;
-      var autoSlideInterval = null;
-      var resumeTimeout = null;
-
-      cards.forEach(function (_, i) {
-        var dot = document.createElement('button');
-        dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
-        dot.addEventListener('click', function () { userGoTo(i); });
-        dotsContainer.appendChild(dot);
-      });
-
-      function scrollTo(index) {
-        current = Math.max(0, Math.min(index, cards.length - 1));
-        slider.classList.add('no-snap');
-        slider.scrollTo({ left: cards[current].offsetLeft, behavior: 'smooth' });
-        updateDots();
-        setTimeout(function () { slider.classList.remove('no-snap'); }, 600);
-      }
-
-      function updateDots() {
-        var dots = dotsContainer.querySelectorAll('.slider-dot');
-        dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
-      }
-
-      // User-initiated navigation: pause auto-slide, resume after 10s
-      function userGoTo(index) {
-        stopAutoSlide();
-        scrollTo(index);
-        scheduleResume();
-      }
-
-      // Auto-advance: just scroll, don't pause
-      function autoAdvance() {
-        var nextIndex = (current + 1) % cards.length;
-        scrollTo(nextIndex);
-      }
-
-      function startAutoSlide() {
-        stopAutoSlide();
-        autoSlideInterval = setInterval(autoAdvance, 6000);
-      }
-
-      function stopAutoSlide() {
-        if (autoSlideInterval) { clearInterval(autoSlideInterval); autoSlideInterval = null; }
-        if (resumeTimeout) { clearTimeout(resumeTimeout); resumeTimeout = null; }
-      }
-
-      function scheduleResume() {
-        if (resumeTimeout) clearTimeout(resumeTimeout);
-        resumeTimeout = setTimeout(startAutoSlide, 10000);
-      }
-
-      prev.addEventListener('click', function () { userGoTo(current - 1); });
-      next.addEventListener('click', function () { userGoTo(current + 1); });
-
-      wrapper.addEventListener('mouseenter', function () { stopAutoSlide(); });
-      wrapper.addEventListener('mouseleave', function () { scheduleResume(); });
-
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            var idx = Array.prototype.indexOf.call(cards, entry.target);
-            if (idx !== -1) { current = idx; updateDots(); }
-          }
-        });
-      }, { root: slider, threshold: 0.6 });
-      cards.forEach(function (card) { observer.observe(card); });
-
-      startAutoSlide();
     })();
   </script>
 </body>

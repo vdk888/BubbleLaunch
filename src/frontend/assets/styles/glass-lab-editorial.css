@@ -1280,6 +1280,9 @@
   font-size: 0.82rem;
 }
 
+/* Footer column titles — white for contrast on the dark footer (Jade 2026-06-01) */
+.gle-footer .footer-links h4 { color: #fff; }
+
 /* --------------------------------------------------------------------------
    19. Responsive
    -------------------------------------------------------------------------- */

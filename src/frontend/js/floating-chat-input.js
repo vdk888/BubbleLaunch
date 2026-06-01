@@ -37,10 +37,8 @@
   const customTriggerSelector = dataset.triggerSelector;
   let alwaysVisible = dataset.alwaysVisible === 'true';
 
-  // Force always-visible for professionals pages to avoid missing trigger warnings
-  if (pageContext.startsWith('professionals')) {
-    alwaysVisible = true;
-  }
+  // (Jade 2026-06-01) floating input appears only AFTER first scroll on all pages —
+  // no forced always-visible; rely on the scroll trigger below.
 
   // Skip event handling on education pages - delegated to education-floating-chat.js
   // BUT still set up language change listener for placeholder updates
@@ -109,6 +107,7 @@
     const triggerElement = customTriggerSelector
       ? document.querySelector(customTriggerSelector)
       : document.querySelector('.hero-chat-form') ||
+        document.querySelector('.gle-hero') ||
         document.querySelector('.hero') ||
         document.querySelector('.hero-section');
 
