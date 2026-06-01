@@ -2,53 +2,87 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About | Free AI & Finance Content + Consulting · Bubble</title>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <!-- SEO Meta Tags -->
+  <title>Bubble · About</title>
   <meta name="description"
-    content="Bubble: free content (blog, tutorials, resources) on investing and AI + custom AI consulting for professionals. Building in public since 2024.">
+    content="Bubble Invest: Joris &amp; Jade, ex-UBS and ex-KPMG/Deloitte. We install AI into your work with rigor, transparency and concrete results. Build in public, 22+ agents in production." />
   <meta name="keywords"
-    content="Bubble Invest, about, AI consulting, free finance content, build in public, AI agents, investment expertise, early adopters AI">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <link rel="canonical" href="https://bubbleinvest.org/en/about">
-  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/a-propos">
-  <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/about">
-  <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/a-propos">
-  <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://bubbleinvest.org/en/about">
-  <meta property="og:title" content="About | Free AI & Finance Content + Consulting · Bubble">
-  <meta property="og:description" content="Joris &amp; Jade, ex-UBS and ex-KPMG/Deloitte. We implement AI for the pros. Build in public since 2024.">
-  <meta property="og:image" content="https://bubbleinvest.org/assets/images/og-en-about.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Bubble Invest — Joris &amp; Jade, ex-UBS and ex-KPMG/Deloitte">
-  <meta property="og:locale" content="en_US">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="About | Free AI & Finance Content + Consulting · Bubble">
+    content="Bubble Invest, about, Joris Dupraz, Jade Hoang, AI consulting, AI agents, build in public, AI early adopters, AI implementation finance" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bubbleinvest.org/en/about" />
+  <meta property="og:title" content="Bubble · About" />
+  <meta property="og:description"
+    content="Joris &amp; Jade, ex-UBS and ex-KPMG/Deloitte. We install AI into your work with rigor, transparency and concrete results. Build in public." />
+  <meta property="og:image" content="https://bubbleinvest.org/assets/images/og-a-propos.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Bubble Invest — Joris &amp; Jade, ex-UBS and ex-KPMG/Deloitte" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://bubbleinvest.org/en/about" />
+  <meta name="twitter:title" content="Bubble · About" />
   <meta name="twitter:description"
-    content="Joris &amp; Jade, ex-UBS and ex-KPMG/Deloitte. We implement AI for the pros. Build in public since 2024.">
-  <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/og-en-about.png">
-  <!-- GA4 -->
+    content="Joris &amp; Jade, ex-UBS and ex-KPMG/Deloitte. We install AI into your work. Build in public." />
+  <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/og-a-propos.png" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://bubbleinvest.org/en/about" />
+
+  <!-- Language Alternates -->
+  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/a-propos" />
+  <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/about" />
+  <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/a-propos" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
+
+  <!-- LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="https://bubbleinvest.org/llms.txt" title="LLM context" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/assets/styles/core-2026.css" />
+  <link rel="stylesheet" href="/assets/styles/a-propos-2026.css" />
+  <link rel="stylesheet" href="/assets/styles/cookie-banner.css" />
+  <!-- Glass Lab Editorial — Charte v3 (2026-05-22), loads LATE to override legacy where needed -->
+  <link rel="stylesheet" href="/assets/styles/glass-lab-editorial.css" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
-    gtag('config', 'G-T0MQEL0ZG0');
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
+    });
+    gtag('config', 'G-T0MQEL0ZG0', {
+      'anonymize_ip': true,
+      'cookie_flags': 'SameSite=None;Secure'
+    });
     // Google Ads conversion tag (Phase 1 marketing — Jade msg 5119-5163, 2026-05-18)
     // The `gtag` function is shared with GA4 above; both stream through the same gtag.js script.
     // Ad-related consent (ad_storage, ad_user_data, ad_personalization) is managed by cookie-banner.js.
     gtag('config', 'AW-18054203382');
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/styles/core-2026.css">
-  <link rel="stylesheet" href="/assets/styles/a-propos-2026.css">
-  <link rel="stylesheet" href="/assets/styles/cookie-banner.css">
-  <!-- JSON-LD : BreadcrumbList -->
+
+  <!-- JSON-LD Structured Data: BreadcrumbList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -59,52 +93,46 @@
     ]
   }
   </script>
-
-  <!-- JSON-LD : Person — Joris Dupraz -->
+  <!-- JSON-LD Structured Data: AboutPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Joris Dupraz",
-    "givenName": "Joris",
-    "familyName": "Dupraz",
-    "jobTitle": "Co-founder of Bubble Invest",
-    "description": "Manager ex-UBS, 6+ years in institutional asset management and investment banking. Co-founder of Bubble Invest, AI agent implementation firm for finance professionals.",
-    "image": "https://bubbleinvest.org/assets/images/team/joris.jpg",
+    "@type": "AboutPage",
+    "name": "About",
     "url": "https://bubbleinvest.org/en/about",
-    "sameAs": ["https://www.linkedin.com/in/joris-dupraz-1ba35959/"],
-    "worksFor": { "@type": "Organization", "name": "Bubble Invest", "url": "https://bubbleinvest.org" },
-    "alumniOf": [{ "@type": "Organization", "name": "UBS" }],
-    "knowsAbout": ["Artificial Intelligence", "AI Agents", "Claude Code", "Asset Management", "Investment Banking", "AI Implementation in Finance"],
-    "nationality": { "@type": "Country", "name": "France" }
-  }
-  </script>
-
-  <!-- JSON-LD : Person — Jade Hoang -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Jade Hoang",
-    "givenName": "Jade",
-    "familyName": "Hoang",
-    "jobTitle": "Co-founder of Bubble Invest",
-    "description": "Manager ex-KPMG and ex-Deloitte, 6+ years in audit and consulting (Big Four). Anthropic certified. Co-founder of Bubble Invest, AI agent implementation firm for finance professionals.",
-    "image": "https://bubbleinvest.org/assets/images/team/jade.jpg",
-    "url": "https://bubbleinvest.org/en/about",
-    "sameAs": ["https://www.linkedin.com/in/jade-hoang-146955105/"],
-    "worksFor": { "@type": "Organization", "name": "Bubble Invest", "url": "https://bubbleinvest.org" },
-    "alumniOf": [
-      { "@type": "Organization", "name": "KPMG" },
-      { "@type": "Organization", "name": "Deloitte" }
-    ],
-    "knowsAbout": ["Artificial Intelligence", "AI Agents", "Claude Code", "Audit", "Consulting", "Big Four", "AI Implementation in Enterprise"],
-    "hasCredential": {
-      "@type": "EducationalOccupationalCredential",
-      "credentialCategory": "certification",
-      "name": "Anthropic certifications"
-    },
-    "nationality": { "@type": "Country", "name": "France" }
+    "inLanguage": "en",
+    "description": "Who is Bubble Invest: two backgrounds, twelve years in finance, one conviction. We install AI into your work with rigor, transparency and concrete results.",
+    "isPartOf": { "@type": "WebSite", "name": "Bubble Invest", "url": "https://bubbleinvest.org" },
+    "about": {
+      "@type": "Organization",
+      "name": "Bubble Invest",
+      "url": "https://bubbleinvest.org",
+      "sameAs": [
+        "https://www.linkedin.com/company/bubble-invest-ai/",
+        "https://bubbleinvest.substack.com",
+        "https://instagram.com/behindthebubble.ai",
+        "https://github.com/vdk888"
+      ],
+      "founder": [
+        {
+          "@type": "Person",
+          "name": "Joris Dupraz",
+          "jobTitle": "Co-founder of Bubble Invest",
+          "sameAs": ["https://www.linkedin.com/in/joris-dupraz-1ba35959/"],
+          "alumniOf": { "@type": "Organization", "name": "UBS" }
+        },
+        {
+          "@type": "Person",
+          "name": "Jade Hoang",
+          "jobTitle": "Co-founder of Bubble Invest",
+          "sameAs": ["https://www.linkedin.com/in/jade-hoang-146955105/"],
+          "alumniOf": [
+            { "@type": "Organization", "name": "KPMG" },
+            { "@type": "Organization", "name": "Deloitte" }
+          ]
+        }
+      ]
+    }
   }
   </script>
 
@@ -130,387 +158,271 @@
 
 <body data-page-context="about">
   <!-- HEADER -->
-  <header>
-    <div class="container" style="max-width: 1200px;">
-      <div class="header-inner">
-        <a class="logo" href="/en/">
-          <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-              stroke-linecap="round" stroke-width="6"></circle>
-            <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-          </svg>
-          Bubble.
-        </a>
-        <!-- Mobile hamburger toggle -->
+  <!-- Top strip "Open lab" — Glass Lab Editorial Charte v3 -->
+  <div class="gle-top-strip">
+    <div><span class="gle-top-strip-dot"></span>OPEN LAB</div>
+    <div>·</div>
+    <div>BUILD IN PUBLIC</div>
+    <div>·</div>
+    <div>22+ AGENTS IN PROD</div>
+  </div>
+
+  <header class="gle-site-header">
+    <div class="gle-container">
+      <div class="gle-header-inner">
+        <div class="gle-logo-block">
+          <a class="gle-logo logo" href="/en/">
+            <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
+                stroke-linecap="round" stroke-width="6"></circle>
+              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+            </svg>
+            Bubble.
+          </a>
+          <span class="gle-logo-tagline">Invest in what matters</span>
+        </div>
+
+        <!-- Mobile hamburger toggle (ID preserve — listener au bas de page) -->
         <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
           <span></span><span></span><span></span>
         </button>
 
-        <nav>
-          <a href="/en/about" class="active">About</a>
-          <a href="/en/professionals">Professionals</a>
-          <a href="/en/individuals">Individuals</a>
+        <nav class="gle-nav">
+          <a href="/en/about" class="active" aria-current="page">About</a>
+          <a href="/en/individuals">Learn &amp; Plug</a>
+          <a href="/en/professionals">Pro implementation</a>
           <a href="/en/blog">Blog</a>
-          <a href="/en/shop">Shop</a>
           <div class="lang-switch">
             <button data-href="/a-propos">FR</button>
             <span>/</span>
             <button class="active">EN</button>
           </div>
+          <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
+             class="gle-nav-cta nav-cta-calendly" data-cta-track="header_calendly_click">
+            Book a diagnostic
+          </a>
         </nav>
 
       </div>
     </div>
   </header>
 
-  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block) -->
+  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block — ID preserve) -->
   <div class="mobile-nav-overlay" id="mobile-nav-overlay">
     <div class="mobile-nav-content">
-      <a href="/en/about" class="active">About</a>
-      <a href="/en/professionals">Professionals</a>
-      <a href="/en/individuals">Individuals</a>
+      <a href="/en/about" class="active" aria-current="page">About</a>
+      <a href="/en/individuals">Learn &amp; Plug</a>
+      <a href="/en/professionals">Pro implementation</a>
       <a href="/en/blog">Blog</a>
-          <a href="/en/shop">Shop</a>
       <div class="lang-switch">
         <button data-href="/a-propos">FR</button>
         <span>/</span>
         <button class="active">EN</button>
       </div>
+      <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
+         class="nav-cta-calendly mobile-nav-cta-calendly" data-cta-track="mobile_header_calendly_click">
+        Book a free diagnostic (30 min)
+      </a>
     </div>
   </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <h1>About Bubble</h1>
-      <p style="font-size: 1.3rem; font-weight: 500; max-width: 800px; margin: 0 auto;">We made a choice. Comfort had nothing to do with it, nor calculation. It was a refusal: of opacity, of organized dependency, of human time wasted on what a machine does better.</p>
-      <p style="margin-top: 1rem; color: var(--secondary);">We build in public. Here's what we are, what we believe, and why we chose to be it.</p>
-    </div>
-  </section>
-
-  <!-- EMPOWERMENT -->
-  <section class="empowerment" style="padding: 5rem 0;">
-    <div class="container">
-      <div style="text-align: center; max-width: 700px; margin: 0 auto; padding: 3rem; background: var(--bg-subtle); border-radius: 16px; border-left: 4px solid var(--purple);">
-        <p style="font-size: 1.4rem; font-weight: 500; font-style: italic; color: var(--primary); line-height: 1.6; margin: 0;">
-          "The consulting industry needs you to stay seated. <br />
-          We only exist if you stand up."
-        </p>
+  <main>
+    <!-- HERO -->
+    <section class="hero gle-hero gle-bg-warm-atmospheric" aria-label="Who we are">
+      <span class="gle-kanji-watermark gle-kanji-hero-bg" aria-hidden="true">心</span>
+      <div class="gle-container">
+        <div class="ap-hero-center fade-in">
+          <span class="gle-hero-tag" data-translate="apropos.hero.tag">Who we are</span>
+          <h1 class="gle-hero-title ap-hero-title">
+            <span data-translate="apropos.hero.title_1">Two backgrounds, twelve years in finance,</span><br>
+            <em data-translate="apropos.hero.title_2">one single conviction.</em>
+          </h1>
+          <p class="gle-hero-kicker ap-hero-kicker" data-translate="apropos.hero.kicker">
+            AI is going to transform every profession. We put it to work for you with rigor, transparency and concrete results.
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- VISION -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Our Vision</h2>
-        <h3>What you give me when you give me your time</h3>
+    <!-- 01 — VISION -->
+    <section class="gle-section gle-bg-warm-atmospheric" aria-label="Our vision">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">01 / Our vision</div>
+          <h2 class="gle-section-title" data-translate="apropos.vision.title">Care &amp; empowerment.</h2>
+        </div>
+        <div class="ap-text-block">
+          <p data-translate="apropos.vision.p1">
+            AI is not magic that replaces humans. It's a powerful tool that amplifies what you already know how to do. Our role is to be <em>the integration layer</em> between the intelligence engines (Anthropic, Google, OpenAI) and your real-world work.
+          </p>
+          <p data-translate="apropos.vision.p2">
+            We believe in AI <em>at the service of people</em>, not above them. AI that is transparent, that we document, that we share, that we install with you. You keep the key, the code, and the control.
+          </p>
+        </div>
       </div>
-      <div class="story-content">
-        <p class="lead">AI and robotics are already transforming the economy. Jobs, wealth, the relationship to work: everything is shifting. We don't claim to have the answers. But we know one thing: between yesterday's economy and tomorrow's, there need to be people willing to bridge the gap. We chose to be among them.</p>
-        <p class="lead"
-          style="font-style: italic; border-left: 3px solid var(--purple); padding-left: 1.5rem; margin: 2rem 0;">
-          We don't deliver a product. We transfer a capability. Every professional we work with leaves freer than before. Every piece of content we publish makes the world a little more legible.</p>
-        <h4>The Story of the Wishes</h4>
-        <p>
-          A CEO used AI to send personalized New Year wishes to his 600 employees. Messages tailored to each person, to their performance, their journey, their ambitions. The employees were touched.
-        </p>
-        <p>
-          Then he revealed his method. And the disappointment was immense.
-        </p>
-        <p>
-          The words hadn't changed. Not a comma. What had vanished was something else. Something you can't see in the text but feel in the act: the time. Nobody had sacrificed anything. No choice had been made. No fragment of irreversible life had been consumed.
-        </p>
-        <h4>Irreversible Time</h4>
-        <p>
-          When someone writes you a message, even a short one, even a clumsy one, the value doesn't lie in the phrasing. It lies in the fact that this person took a piece of their life, a fragment of time they will never recover, and chose to spend it on you. On you, and nobody else.
-        </p>
-        <p>
-          They interrupted what they were doing. They thought of you. That time is consumed, irreversible, lost to everything else. It will not come back.
-        </p>
-        <p style="font-style: italic; color: var(--primary);">
-          That's what you receive. Life time. The time of a being who will die and who chose, freely, to spend it on you.
-        </p>
-        <h4>What AI Cannot Do</h4>
-        <p>
-          AI can simulate attention. It produces sentences that resemble care, empathy, consideration. But it lacks the essential: the freedom to do otherwise.
-        </p>
-        <p>
-          It cannot choose not to respond to you. It sacrifices nothing. Its time costs it nothing. It has nothing else to do. It has no life to lose.
-        </p>
-        <p>
-          And it is precisely this absence of freedom, this impossibility of refusal, that empties its attention of everything that would make it precious. A being that cannot say no never truly says yes.
-        </p>
-        <h4>Our Conviction</h4>
-        <p>
-          In a world where AI produces everything at near-zero marginal cost, what has value is the gaze of the other. The real gaze. That of a conscious, free being who could have done something else, and who chooses to turn their attention toward you.
-        </p>
-        <p>
-          To see you as someone, and not as something.
-        </p>
-        <h4>Why We Automate</h4>
-        <p>
-          If everything automatable is automated, then there's time left. Real time. For what cannot be:
-        </p>
-        <ul>
-          <li>The gaze of an advisor who truly understands your situation, beyond the profile and the segment</li>
-          <li>The creativity of a team that thinks together, that doubts together</li>
-          <li>The empathy of a manager who takes the time to listen, and who, in doing so, sacrifices their own</li>
-          <li>The presence of a parent, a friend, a loved one; a presence no algorithm will ever replace</li>
-        </ul>
-        <p>
-          Automating is not an end. It's an act of liberation. We remove what can be removed to reveal what cannot.
-        </p>
-        <p>
-          What we do at Bubble: we automate the mechanical so you can dedicate your irreversible time, the only kind you have, to what truly has value. Your clients. Your team. Your loved ones. Yourself.
-        </p>
-      </div>
-      <blockquote class="manifesto-quote fade-in" style="margin-top: 4rem;">
-        "AI produces at zero marginal cost. What it will never produce is the choice of a free being to dedicate a fragment of their life to another.
-        <br /><br />
-        That's what we give you back. Time. Yours. For yours."
-      </blockquote>
-      <p class="manifesto-attribution">J &amp; J, founders</p>
-    </div>
-  </section>
+    </section>
 
-  <!-- Sprint 3 Phase 7 (Jade option A msg 4993) — Removed 6 legacy sections to mirror FR.
-       Legacy content can be migrated to dedicated blog posts if value. -->
-
-  <!-- THREE PILLARS — Mirror FR -->
-  <section class="section" style="background: var(--bg-subtle);">
-    <div class="container">
-      <div class="section-header">
-        <h2>What we do</h2>
-        <h3>Three pillars</h3>
-      </div>
-      <div class="values-grid">
-        <a class="value-card fade-in" href="/en/individuals#agents">
-          <div class="value-icon">
-            <svg fill="none" height="28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" width="28">
-              <path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path>
+    <!-- 02 — THREE PILLARS -->
+    <section class="gle-section gle-bg-cool-atmospheric" aria-label="What we do">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">02 / What we do</div>
+          <h2 class="gle-section-title" data-translate="apropos.pillars.title">Three pillars, one mission.</h2>
+        </div>
+        <div class="ap-pillars">
+          <div class="ap-pillar">
+            <svg class="ap-pillar-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M24 6 L42 18 L24 30 L6 18 Z"/>
+              <path d="M6 30 L24 42 L42 30"/>
             </svg>
+            <h3 data-translate="apropos.pillars.learn.title">Learn</h3>
+            <p data-translate="apropos.pillars.learn.desc">Our Substack newsletter, our blog, our analysis pieces. We share what we learn while building every single day.</p>
           </div>
-          <h4>Investing</h4>
-          <p>We've built an agent that manages our portfolio automatically for over a year. We share results, mistakes, and research reports in our shop.</p>
-        </a>
-        <a class="value-card fade-in fade-in-delay-1" href="/en/professionals">
-          <div class="value-icon">
-            <svg fill="none" height="28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" width="28">
-              <circle cx="12" cy="12" r="3"></circle>
-              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          <div class="ap-pillar">
+            <svg class="ap-pillar-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="10" y="14" width="28" height="22" rx="2"/>
+              <path d="M16 22 L18 24 L22 20 M16 30 L18 32 L22 28"/>
+              <circle cx="34" cy="22" r="1.5" fill="currentColor"/>
+              <circle cx="34" cy="30" r="1.5" fill="currentColor"/>
             </svg>
+            <h3 data-translate="apropos.pillars.connect.title">Plug</h3>
+            <p data-translate="apropos.pillars.connect.desc">Our store of ready-to-plug agents and open-source skills. You install them in just a few minutes.</p>
           </div>
-          <h4>AI Tools</h4>
-          <p>Agents available in our shop (security, investing, community manager) + B2B consulting to install AI in your business in 3 sessions.</p>
-        </a>
-        <a class="value-card fade-in fade-in-delay-2" href="/en/blog">
-          <div class="value-icon">
-            <svg fill="none" height="28" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="28">
-              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
+          <div class="ap-pillar">
+            <svg class="ap-pillar-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M24 8 L40 16 L40 32 L24 40 L8 32 L8 16 Z"/>
+              <circle cx="24" cy="24" r="6"/>
             </svg>
-          </div>
-          <h4>Essays &amp; reflections</h4>
-          <p>Blog, newsletter, philosophical articles on the impact of AI on the economy, work, and the human condition. Everything is free, everything is public.</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY BUBBLE INVEST? — Sprint 3 mirror FR -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Where the name comes from</h2>
-        <h3>Why "Bubble Invest"?</h3>
-      </div>
-      <div class="story-content" style="max-width: 720px; margin: 0 auto;">
-        <ul class="why-name-list" style="list-style: none; padding: 0; display: grid; gap: 1.25rem;">
-          <li style="padding: 1.25rem 1.5rem; background: var(--card-bg, #f0eee8); border-left: 3px solid var(--purple); border-radius: 8px;">
-            <strong>Bubble = Transparency.</strong> Like a bubble, you can see through. Code, method, results: public.
-          </li>
-          <li style="padding: 1.25rem 1.5rem; background: var(--card-bg, #f0eee8); border-left: 3px solid var(--purple); border-radius: 8px;">
-            <strong>Bubble = AI bubble + Financial bubble.</strong> We invested early in the AI bubble (the one that changes everything) and help our clients do the same without falling for the hype.
-          </li>
-          <li style="padding: 1.25rem 1.5rem; background: var(--card-bg, #f0eee8); border-left: 3px solid var(--purple); border-radius: 8px;">
-            <strong>Invest = Investment.</strong> Our origin trade. We invest in AI in direct connection to our finance &amp; investment background.
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- OUR POSITIONING — Sprint 3 (Notion brief synthesis) -->
-  <section class="section" style="background: var(--bg-subtle);">
-    <div class="container">
-      <div class="section-header">
-        <h2>Our positioning</h2>
-        <h3>AI implemented. You stay ahead.</h3>
-      </div>
-      <div class="story-content" style="max-width: 760px; margin: 0 auto;">
-        <p class="lead" style="text-align: center; margin-bottom: 2.5rem;">
-          You don't need more slides about AI. You need someone who actually implements it in your business.
-        </p>
-        <div class="positioning-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-          <div style="padding: 1.5rem; background: var(--card-bg, #f0eee8); border-radius: 12px;">
-            <h4 style="margin: 0 0 0.5rem; font-size: 1.05rem; display: inline-flex; align-items: center; gap: 0.6rem;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/>
-                <circle cx="12" cy="12" r="6"/>
-                <circle cx="12" cy="12" r="2"/>
-              </svg>
-              Niche Finance × Tech
-            </h4>
-            <p style="margin: 0; font-size: 0.95rem; color: var(--secondary);">We don't do AI for everyone. Our native finance experience (ex-UBS, ex-KPMG/Deloitte) sets us apart from generic AI consultants.</p>
-          </div>
-          <div style="padding: 1.5rem; background: var(--card-bg, #f0eee8); border-radius: 12px;">
-            <h4 style="margin: 0 0 0.5rem; font-size: 1.05rem; display: inline-flex; align-items: center; gap: 0.6rem;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-              </svg>
-              Early adoption
-            </h4>
-            <p style="margin: 0; font-size: 0.95rem; color: var(--secondary);">We test and deploy the latest AI tools before anyone else in France. What ships this week is in production next week.</p>
-          </div>
-          <div style="padding: 1.5rem; background: var(--card-bg, #f0eee8); border-radius: 12px;">
-            <h4 style="margin: 0 0 0.5rem; font-size: 1.05rem; display: inline-flex; align-items: center; gap: 0.6rem;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-              </svg>
-              Radical transparency
-            </h4>
-            <p style="margin: 0; font-size: 0.95rem; color: var(--secondary);">We show everything. What works, what doesn't, how we work. Code, method, results: public.</p>
-          </div>
-          <div style="padding: 1.5rem; background: var(--card-bg, #f0eee8); border-radius: 12px;">
-            <h4 style="margin: 0 0 0.5rem; font-size: 1.05rem; display: inline-flex; align-items: center; gap: 0.6rem;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
-                <path d="M12 22s-8-6-8-12.5C4 5 7 3 9 3c1.5 0 2.5 1 3 2.5C12.5 4 13.5 3 15 3c2 0 5 2 5 6.5C20 16 12 22 12 22z" fill="none"/>
-                <path d="M9 12l2 2 4-4"/>
-              </svg>
-              Co-construction training
-            </h4>
-            <p style="margin: 0; font-size: 0.95rem; color: var(--secondary);">No theoretical training. We build alongside you, you learn by doing, you become autonomous.</p>
+            <h3 data-translate="apropos.pillars.install.title">Install</h3>
+            <p data-translate="apropos.pillars.install.desc">For professionals, we install AI into your work in 3 weeks max. Diagnostic, installation, support. The code is 100% yours.</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-
-  <!-- TEAM -->
-  <section class="section" style="background: var(--bg-subtle);">
-    <div class="container">
-      <div class="section-header">
-        <h2>The Team</h2>
-        <h3>Who we are</h3>
+    <!-- 03 — WHERE THE NAME COMES FROM -->
+    <section class="gle-section gle-bg-warm-atmospheric" aria-label="Where the name comes from">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">03 / Where the name comes from</div>
+          <h2 class="gle-section-title" data-translate="apropos.name.title">Why "Bubble Invest"?</h2>
+        </div>
+        <div class="ap-text-block">
+          <p data-translate="apropos.name.p1">
+            In the beginning, we built an investment agent for our own personal portfolio. The bubble is about investing, but above all it's the idea of a <em>small enclosed world</em> where you take care of what truly matters.
+          </p>
+          <p data-translate="apropos.name.p2">
+            Today Bubble goes well beyond investing. We install AI agents across every profession. But we keep the spirit: <em>invest in what matters</em>, not in overload. Small gestures, big effects.
+          </p>
+        </div>
       </div>
-      <p class="team-intro">
-        J &amp; J, two complementary profiles. One from investment, the other from audit and consulting. Two different gazes on the same problem.
-      </p>
-      <div class="team-grid">
-        <div class="team-member fade-in">
-          <a href="https://www.linkedin.com/in/joris-dupraz-1ba35959/" target="_blank" rel="noopener noreferrer" style="display: inline-block; transition: transform 0.3s ease, opacity 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='0.85';" onmouseout="this.style.transform='scale(1)'; this.style.opacity='1';">
-            <img src="/assets/images/team/joris.jpg" alt="Joris" class="team-avatar" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; cursor: pointer;">
+    </section>
+
+    <!-- 04 — POSITIONING -->
+    <section class="gle-section gle-bg-cool-atmospheric" aria-label="Our positioning">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">04 / Our positioning</div>
+          <h2 class="gle-section-title" data-translate="apropos.positioning.title">The last mile between the engine and you.</h2>
+          <p class="gle-section-kicker" data-translate="apropos.positioning.kicker">
+            Anthropic, Google, OpenAI build the intelligence engine. We build the missing layer between the engine and your real-world work. That's our one and only job.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — TEAM -->
+    <section class="gle-section gle-bg-warm-atmospheric" aria-label="The team">
+      <div class="gle-container">
+        <div class="gle-cp-header">
+          <div class="gle-cp-label">05 / The team</div>
+          <h2 class="gle-cp-title" data-translate="apropos.team.title">Built by two complementary backgrounds.</h2>
+        </div>
+
+        <div class="gle-cp-founders">
+          <a class="gle-cp-founder" href="https://www.linkedin.com/in/joris-dupraz-1ba35959/" target="_blank" rel="noopener noreferrer">
+            <div class="gle-cp-avatar">
+              <img src="/assets/images/team/joris.jpg" alt="Joris Dupraz, co-founder of Bubble Invest" loading="lazy" />
+            </div>
+            <div class="gle-cp-info">
+              <h3>Joris Dupraz</h3>
+              <div class="gle-cp-role" data-translate="apropos.team.joris.role">Co-founder · Investment &amp; backend</div>
+              <p data-translate="apropos.team.joris.bio">Six years in institutional asset management and investment banking at UBS Wealth Management. Backend skills (Python, SQL, VBA).</p>
+            </div>
+            <svg class="gle-cp-linkedin-watermark" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
           </a>
-          <h4>Joris</h4>
-          <p>Co-founder</p>
-          <p class="team-initials">6 years in fund management and investment banking</p>
-        </div>
-        <div class="team-member fade-in fade-in-delay-1">
-          <a href="https://www.linkedin.com/in/jade-hoang-146955105/" target="_blank" rel="noopener noreferrer" style="display: inline-block; transition: transform 0.3s ease, opacity 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='0.85';" onmouseout="this.style.transform='scale(1)'; this.style.opacity='1';">
-            <img src="/assets/images/team/jade.jpg" alt="Jade" class="team-avatar" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; cursor: pointer;">
+          <a class="gle-cp-founder" href="https://www.linkedin.com/in/jade-hoang-146955105/" target="_blank" rel="noopener noreferrer">
+            <div class="gle-cp-avatar">
+              <img src="/assets/images/team/jade.jpg" alt="Jade Hoang, co-founder of Bubble Invest" loading="lazy" />
+            </div>
+            <div class="gle-cp-info">
+              <h3>Jade Hoang</h3>
+              <div class="gle-cp-role" data-translate="apropos.team.jade.role">Co-founder · Process &amp; frontend</div>
+              <p data-translate="apropos.team.jade.bio">Six years of Big Four audit and advisory at KPMG then Deloitte. Specialist in business process automation, team enablement, and frontend design.</p>
+            </div>
+            <svg class="gle-cp-linkedin-watermark" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
           </a>
-          <h4>Jade</h4>
-          <p>Co-founder</p>
-          <p class="team-initials">6 years in audit and consulting (Big Four)</p>
+        </div>
+
+        <div class="gle-cp-pills" style="margin-top: 2rem;">
+          <span class="gle-pill-anthropic">
+            <svg class="gle-logo-anthropic-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Anthropic">
+              <path d="M 18 88 L 50 14 L 82 88 L 70 88 L 50 38 L 30 88 Z" fill="#d97757"/>
+              <rect x="44" y="12" width="6" height="80" fill="#d97757" transform="rotate(20 50 50)"/>
+            </svg>
+            <span data-translate="apropos.team.pill.anthropic">Anthropic Certified</span>
+          </span>
+          <span data-translate="apropos.team.pill.agents">22+ agents in production</span>
+          <span data-translate="apropos.team.pill.watch">Continuous AI &amp; tech monitoring on the latest advances</span>
         </div>
       </div>
-      <p
-        style="text-align: center; margin-top: 3rem; color: var(--secondary); font-size: 0.95rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-        Two people who chose discomfort. Bubble isn't our story; it's a tool in service of yours.
-      </p>
-    </div>
-  </section>
+    </section>
 
-  <!-- BUILD IN PUBLIC -->
-  <section class="section" style="background: var(--bg-subtle);">
-    <div class="container">
-      <div class="section-header">
-        <h2>Build in Public</h2>
-        <h3>Follow our journey</h3>
-      </div>
-      <div class="story-content" style="text-align: center;">
-        <p class="lead">
-          We share our doubts, our victories, our mistakes. Because trust is not declared. It is proven, act by act.
-        </p>
-        <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;">
-          <a href="/en/blog" style="color: var(--purple); text-decoration: none; font-weight: 500;">Blog →</a>
-          <a href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105" target="_blank"
-            style="color: var(--purple); text-decoration: none; font-weight: 500;">Newsletter →</a>
-          <a href="https://bubbleinvest.substack.com" target="_blank"
-            style="color: var(--purple); text-decoration: none; font-weight: 500;">Substack →</a>
-          <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank"
-            style="color: var(--purple); text-decoration: none; font-weight: 500;">LinkedIn →</a>
+    <!-- 06 — BUILD IN PUBLIC -->
+    <section class="gle-section gle-bg-cool-atmospheric" aria-label="Build in Public">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">06 / Build in Public</div>
+          <h2 class="gle-section-title" data-translate="apropos.public.title">We document everything.</h2>
+          <p class="gle-section-kicker" data-translate="apropos.public.kicker">
+            Code, decisions, mistakes: everything is public. No black magic. Follow our journey on social media and in the live lab.
+          </p>
+        </div>
+        <div class="ap-build-public">
+          <h3 data-translate="apropos.public.follow_title">Follow us</h3>
+          <p data-translate="apropos.public.follow_desc">
+            Newsletter, GitHub code, LinkedIn posts, Instagram videos. We share everything in public, week after week.
+          </p>
+          <div class="ap-social-icons">
+            <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://instagram.com/behindthebubble.ai" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram @behindthebubble.ai">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://bubbleinvest.substack.com" target="_blank" rel="noopener noreferrer" aria-label="Substack" title="Substack @bubbleinvest">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+            </a>
+            <a href="https://github.com/vdk888" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Chat Side Panel -->
-  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
-    <div class="chat-side-panel-header">
-      <div class="chat-side-panel-header-info">
-        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
-        <div class="chat-side-panel-titles">
-          <span class="chat-side-panel-title">Bubble Assistant</span>
-        </div>
-      </div>
-      <div class="chat-side-panel-actions">
-        <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
-        <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
-      </div>
-    </div>
-    <div class="chat-side-panel-messages" role="log" aria-live="polite">
-    </div>
-    <form class="chat-side-panel-input-container" novalidate>
-      <input type="text" class="chat-side-panel-input" placeholder="Ask your questions..."
-        data-translate-placeholder="floating_input.placeholder" aria-label="Type your message" autocomplete="off" />
-      <button class="chat-side-panel-send" aria-label="Send message" type="submit">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M12 21V4" stroke-linecap="round" />
-        </svg>
-      </button>
-    </form>
-  </div>
+  </main>
 
-  <!-- FLOATING CHAT INPUT -->
-  <div class="floating-chat-input hidden" data-always-visible="true" data-page-context="about"
-    data-trigger-selector=".hero" id="floating-chat-input">
-    <div class="floating-input-container">
-      <input aria-label="Ask your question" class="floating-input-field" placeholder="Ask me anything..."
-        type="text" data-translate-placeholder="floating_input.placeholder" />
-      <button aria-label="Send" class="floating-input-submit">
-        <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
-          <path d="M5 10L12 3L19 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2"></path>
-          <path d="M12 21V4" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container" style="max-width: 1200px;">
+  <!-- FOOTER (Glass Lab Editorial v3 — structure preserved, restyled) -->
+  <footer class="gle-footer">
+    <div class="gle-container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="logo" href="/en/" style="font-size: 1.5rem;">
+          <a class="logo" href="/en/" style="font-size: 1.5rem; color: #fff;">
             <svg fill="none" style="width: 32px; height: 32px;" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
               <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
                 stroke-linecap="round" stroke-width="6"></circle>
@@ -518,7 +430,8 @@
             </svg>
             Bubble.
           </a>
-          <p>The AI era has changed everything. Let's change with it.</p>
+          <p style="font-family: var(--gle-font-accent); font-style: italic; opacity: 0.85; margin-top: 0.5rem;">Invest in what matters.</p>
+          <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.78rem;">The AI era changed everything. Change with it.</p>
           <div class="social-links">
             <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank"
               title="LinkedIn">
@@ -561,20 +474,21 @@
           </div>
         </div>
         <div class="footer-links">
-          <h4>Product</h4>
+          <h4>Navigation</h4>
           <ul>
-            <li><a href="/en/individuals">Individuals</a></li>
-            <li><a href="/en/professionals">Professionals</a></li>
-            <li><a href="/shop">Shop</a></li>
+            <li><a href="/en/about">About</a></li>
+            <li><a href="/en/individuals">Learn &amp; Plug</a></li>
+            <li><a href="/en/professionals">Pro implementation</a></li>
+            <li><a href="/en/blog">Blog</a></li>
           </ul>
         </div>
         <div class="footer-links">
           <h4>Resources</h4>
           <ul>
-            <li><a href="/en/blog">Blog</a></li>
-            <li><a href="/en/about">About</a></li>
+            <li><a href="/en/shop">Shop</a></li>
+            <li><a href="/en/labs">Lab</a></li>
             <li><a href="https://bubbleinvest.substack.com" target="_blank">Newsletter</a></li>
-            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank">Contact us</a></li>
+            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank" data-cta-track="footer_calendly_click">Book a diagnostic</a></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -586,16 +500,60 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Bubble Invest · Transparent by design.</p>
+        <p>© 2026 Bubble Invest · Transparent by design · Build in public</p>
       </div>
     </div>
   </footer>
+
+  <!-- Chat Side Panel (slide-in chatbot) -->
+  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+    <div class="chat-side-panel-header">
+      <div class="chat-side-panel-header-info">
+        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+        <div class="chat-side-panel-titles">
+          <span class="chat-side-panel-title">Bubble Assistant</span>
+        </div>
+      </div>
+      <div class="chat-side-panel-actions">
+        <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
+        <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
+      </div>
+    </div>
+    <div class="chat-side-panel-messages" role="log" aria-live="polite">
+    </div>
+    <form class="chat-side-panel-input-container" novalidate>
+      <input type="text" class="chat-side-panel-input" placeholder="Ask your questions..."
+        data-translate-placeholder="floating_input.placeholder" aria-label="Type your message"
+        autocomplete="off" />
+      <button class="chat-side-panel-send" aria-label="Send message" type="submit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M12 21V4" stroke-linecap="round" />
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <!-- Floating Glassmorphism Chat Input -->
+  <div class="floating-chat-input hidden" data-always-visible="false" data-page-context="about"
+    data-trigger-selector=".hero" id="floating-chat-input">
+    <div class="floating-input-container">
+      <input aria-label="Ask your question" class="floating-input-field"
+        placeholder="Ask me anything..." type="text"
+        data-translate-placeholder="floating_input.placeholder" />
+      <button aria-label="Send" class="floating-input-submit">
+        <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
+          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          <path d="M12 21V4" stroke-linecap="round" stroke-width="2"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="/js/seo/cookie-banner.js"></script>
   <!-- Unified conversion tracking (Pixel + CAPI dual tracking + Google Ads conversion) — Phase 1 marketing 2026-05-18 -->
   <script src="/js/seo/conversions.js"></script>
-  <script src="/js/ghibli-chrome.js" defer></script>
   <script src="/js/lang-toggle.js"></script>
   <script src="/i18n/translations.js"></script>
   <script src="/js/bubble-agent-memory.js"></script>
@@ -604,6 +562,10 @@
   <script src="/js/floating-chat-input.js"></script>
   <script src="/js/animations.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
+
+  <!-- Sprint 3 Ghibli Phase 2 — top strip "Labo ouvert" + floating bubbles signature -->
+  <script src="/js/ghibli-chrome.js" defer></script>
+
   <!-- Mobile hamburger menu toggle -->
   <script>
     (function () {
