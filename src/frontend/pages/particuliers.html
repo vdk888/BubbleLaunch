@@ -6,32 +6,32 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
   <!-- SEO Meta Tags -->
-  <title>Particuliers | Agents IA, Analyses & Ressources Gratuites · Bubble</title>
+  <title>Bubble · Apprendre &amp; Brancher</title>
   <meta name="description"
-    content="On construit des agents IA pour gérer nos investissements et on partage tout : analyses, outils, résultats. Blog gratuit, agents disponibles, articles premium." />
+    content="Apprenez l'IA sans être tech, et branchez des agents prêts à l'emploi. Newsletter gratuite, accompagnement 1h, agents et skills open source à installer en quelques minutes." />
   <meta name="keywords"
-    content="agents IA investissement, blog finance gratuit, agent sécurité Claude Code, gestion portefeuille IA, articles premium finance, build in public" />
+    content="apprendre IA, brancher agents IA, skills open source Claude Code, formation IA particuliers, newsletter IA gratuite, bubble-skills, agents prêts à brancher" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bubbleinvest.org/particuliers" />
-  <meta property="og:title" content="Particuliers | Agents IA, Analyses & Ressources · Bubble" />
+  <meta property="og:title" content="Bubble · Apprendre &amp; Brancher" />
   <meta property="og:description"
-    content="On construit des agents IA et on partage tout : analyses, outils, résultats. Sans filtre." />
+    content="Apprenez l'IA, branchez des agents. Newsletter gratuite, accompagnement 1h, agents et skills open source." />
   <meta property="og:image" content="https://bubbleinvest.org/assets/images/og-particuliers.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Bubble Invest — Nos agents IA, gratuits et publics." />
+  <meta property="og:image:alt" content="Bubble Invest — Apprendre l'IA, brancher des agents." />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:locale:alternate" content="en_US" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://bubbleinvest.org/particuliers" />
-  <meta name="twitter:title" content="Particuliers | Agents IA, Analyses & Ressources · Bubble" />
+  <meta name="twitter:title" content="Bubble · Apprendre &amp; Brancher" />
   <meta name="twitter:description"
-    content="On construit des agents IA et on partage tout : analyses, outils, résultats. Sans filtre." />
+    content="Apprenez l'IA, branchez des agents. Newsletter gratuite, accompagnement 1h, agents et skills open source." />
   <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/og-particuliers.png" />
 
   <!-- Canonical URL -->
@@ -45,40 +45,64 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
 
+  <!-- LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="https://bubbleinvest.org/llms.txt" title="LLM context" />
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/assets/styles/core-2026.css" />
   <link rel="stylesheet" href="/assets/styles/particuliers-2026.css" />
   <link rel="stylesheet" href="/assets/styles/cookie-banner.css" />
+  <!-- Glass Lab Editorial — Charte v3 (2026-05-22), loads LATE to override legacy where needed -->
+  <link rel="stylesheet" href="/assets/styles/glass-lab-editorial.css" />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet" />
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Google Analytics (with GDPR consent mode) -->
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
-    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
     gtag('js', new Date());
-    gtag('config', 'G-T0MQEL0ZG0');
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
+    });
+    gtag('config', 'G-T0MQEL0ZG0', {
+      'anonymize_ip': true,
+      'cookie_flags': 'SameSite=None;Secure'
+    });
     // Google Ads conversion tag (Phase 1 marketing — Jade msg 5119-5163, 2026-05-18)
     // The `gtag` function is shared with GA4 above; both stream through the same gtag.js script.
     // Ad-related consent (ad_storage, ad_user_data, ad_personalization) is managed by cookie-banner.js.
     gtag('config', 'AW-18054203382');
   </script>
 
-  <!-- JSON-LD Structured Data -->
+  <!-- JSON-LD Structured Data: BreadcrumbList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://bubbleinvest.org/" },
-      { "@type": "ListItem", "position": 2, "name": "Particuliers", "item": "https://bubbleinvest.org/particuliers" }
+      { "@type": "ListItem", "position": 2, "name": "Apprendre & Brancher", "item": "https://bubbleinvest.org/particuliers" }
     ]
+  }
+  </script>
+  <!-- JSON-LD Structured Data: WebPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Apprendre & Brancher",
+    "url": "https://bubbleinvest.org/particuliers",
+    "inLanguage": "fr",
+    "description": "Apprenez l'IA et branchez des agents prêts à l'emploi : newsletter gratuite, accompagnement 1h, agents et skills open source à installer en quelques minutes.",
+    "isPartOf": { "@type": "WebSite", "name": "Bubble Invest", "url": "https://bubbleinvest.org" }
   }
   </script>
 
@@ -104,287 +128,663 @@
 
 <body>
   <!-- HEADER -->
-  <header>
-    <div class="container">
-      <div class="header-inner">
-        <a class="logo" href="/">
-          <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-              stroke-linecap="round" stroke-width="6"></circle>
-            <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-          </svg>
-          Bubble.
-        </a>
-        <!-- Mobile hamburger toggle -->
+  <!-- Top strip "Labo ouvert" — Glass Lab Editorial Charte v3 -->
+  <div class="gle-top-strip">
+    <div><span class="gle-top-strip-dot"></span>LABO OUVERT</div>
+    <div>·</div>
+    <div>BUILD IN PUBLIC</div>
+    <div>·</div>
+    <div>22+ AGENTS EN PROD</div>
+  </div>
+
+  <header class="gle-site-header">
+    <div class="gle-container">
+      <div class="gle-header-inner">
+        <div class="gle-logo-block">
+          <a class="gle-logo logo" href="/">
+            <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
+                stroke-linecap="round" stroke-width="6"></circle>
+              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+            </svg>
+            Bubble.
+          </a>
+          <span class="gle-logo-tagline">Investissez dans l'essentiel</span>
+        </div>
+
+        <!-- Mobile hamburger toggle (ID preserve — listener au bas de page) -->
         <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
           <span></span><span></span><span></span>
         </button>
 
-        <nav>
+        <nav class="gle-nav">
           <a href="/a-propos">À Propos</a>
-          <a href="/professionnels">Professionnels</a>
-          <a class="active" href="/particuliers">Particuliers</a>
+          <a href="/particuliers" class="active" aria-current="page">Apprendre &amp; Brancher</a>
+          <a href="/professionnels">Implémentation pro</a>
           <a href="/blog">Blog</a>
-          <a href="/shop">Shop</a>
           <div class="lang-switch">
             <button class="active">FR</button>
             <span>/</span>
             <button data-href="/en/individuals">EN</button>
           </div>
+          <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
+             class="gle-nav-cta nav-cta-calendly" data-cta-track="header_calendly_click">
+            Réserver un diagnostic
+          </a>
         </nav>
 
       </div>
     </div>
   </header>
 
-  <!-- Mobile nav overlay -->
+  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block — ID preserve) -->
   <div class="mobile-nav-overlay" id="mobile-nav-overlay">
     <div class="mobile-nav-content">
       <a href="/a-propos">À Propos</a>
-      <a href="/professionnels">Professionnels</a>
-      <a class="active" href="/particuliers">Particuliers</a>
+      <a href="/particuliers" class="active" aria-current="page">Apprendre &amp; Brancher</a>
+      <a href="/professionnels">Implémentation pro</a>
       <a href="/blog">Blog</a>
-      <a href="/shop">Shop</a>
       <div class="lang-switch">
         <button class="active">FR</button>
         <span>/</span>
         <button data-href="/en/individuals">EN</button>
       </div>
+      <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
+         class="nav-cta-calendly mobile-nav-cta-calendly" data-cta-track="mobile_header_calendly_click">
+        Réserver un diagnostic gratuit (30 min)
+      </a>
     </div>
   </div>
 
-  <!-- ============================
-       1. HERO
-       ============================ -->
-  <section class="hero">
-    <div class="container">
-      <h1 class="fade-in">On construit des agents IA. Et on partage tout.</h1>
-      <p class="hero-subtitle fade-in fade-in-delay-1">Nos investissements, nos outils, nos erreurs : tout est documenté. Analyses gratuites sur le blog, agents disponibles, articles premium pour aller plus loin.</p>
-      <div class="hero-chat fade-in fade-in-delay-2">
-        <div class="hero-chat-container">
-          <input aria-label="Posez votre question" class="hero-chat-input"
-            placeholder="Une question sur nos agents ou nos analyses ?" type="text" />
-          <button aria-label="Envoyer" class="hero-chat-submit">
-            <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </button>
+  <main>
+    <!-- HERO -->
+    <section class="hero gle-hero gle-bg-warm-atmospheric" aria-label="Introduction">
+      <span class="gle-kanji-watermark gle-kanji-hero-bg" aria-hidden="true">学</span>
+      <div class="gle-container">
+        <div class="gle-hero-grid">
+          <div class="hero-content fade-in">
+            <span class="gle-hero-tag" data-translate="particuliers.hero.tag">Particuliers · Indépendants · Curieux</span>
+            <h1 class="gle-hero-title">
+              <span data-translate="particuliers.hero.title_1">Apprendre l'IA.</span><br>
+              <em data-translate="particuliers.hero.title_2">Brancher des agents.</em>
+            </h1>
+            <p class="gle-hero-kicker" data-translate="particuliers.hero.kicker">
+              Pas besoin d'être tech pour comprendre les agents IA et les utiliser au quotidien. On vous donne les bonnes bases, et des outils prêts à brancher.
+            </p>
+            <div class="gle-hero-ctas hero-cta-group">
+              <a class="gle-btn-primary btn btn-primary" href="#accompagnement" data-cta-track="particuliers_accompagnement_click">
+                <span data-translate="particuliers.hero.cta_primary">Accompagnement personnalisé · 1h</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <a class="gle-btn-secondary btn btn-secondary" href="#brancher" data-translate="particuliers.hero.cta_secondary">Voir agents &amp; skills</a>
+            </div>
+          </div>
+          <div class="gle-hero-orb">
+            <img src="/assets/images/glass-lab/workspace_editorial.png" alt="Apprendre et brancher l'IA sur son workspace" loading="eager" />
+          </div>
         </div>
-        <p class="hero-chat-hint">Ex : "Comment fonctionne l'agent ?" ou "C'est quoi la risk parity ?"</p>
       </div>
-      <div class="hero-cta fade-in fade-in-delay-3">
-        <a class="btn btn-primary" href="#agents">Découvrir nos agents</a>
-        <a class="btn btn-secondary" href="#behind-the-bubble">Lire nos analyses</a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================
-       2. NOS AGENTS IA
-       ============================ -->
-  <section class="agent-section" id="agents">
-    <div class="container">
-      <div class="section-header fade-in">
-        <h2>Nos agents IA</h2>
-        <h3>Nos agents, votre équipe. Ajoutez-les à votre Claude Code en 2 commandes.</h3>
-      </div>
-      <div class="cards-grid fade-in">
-
-        <!-- === AGENTS PAYANTS (EN HAUT) === -->
-
-        <!-- AGENT DE SÉCURITÉ -->
-        <a class="card" href="/shop/sentinel">
-          <div class="card-icon">
-            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" viewBox="0 0 24 24" width="24">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+    <!-- 3 VOIES -->
+    <section class="gle-section gle-bg-warm-atmospheric" aria-label="Trois façons d'avancer">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">01 / Trois façons d'avancer</div>
+          <h2 class="gle-section-title" data-translate="particuliers.paths.title">Choisissez votre tempo.</h2>
+          <p class="gle-section-kicker" data-translate="particuliers.paths.kicker">
+            Du premier pas (gratuit) à l'agent installé sur votre machine, on a une voie qui correspond à votre temps et votre niveau.
+          </p>
+        </div>
+        <div class="ab-paths">
+          <a class="ab-path-card" href="#newsletter">
+            <svg class="ab-path-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 8 L24 24 L45 8 M3 8 L3 40 L45 40 L45 8"/>
             </svg>
-          </div>
-          <div class="card-badge badge-available">Disponible</div>
-          <h4>Agent de sécurité</h4>
-          <p>Audit de sécurité automatisé pour vos agents Claude Code. Détection de tampering, scan de secrets, vérification de CVE. 5 modules, zéro dépendance externe.</p>
-          <div class="card-price">29&euro;<span>/mois</span></div>
-          <span class="card-link">Découvrir <svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></span>
-        </a>
-
-        <!-- GÉRANT DE PORTEFEUILLE -->
-        <a class="card" href="/shop/invest">
-          <div class="card-icon">
-            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" viewBox="0 0 24 24" width="24">
-              <path d="M3 3v18h18"></path>
-              <path d="M18 17V9"></path>
-              <path d="M13 17V5"></path>
-              <path d="M8 17v-3"></path>
+            <div class="ab-path-num">Voie 1 · Gratuit</div>
+            <div class="ab-path-title">Lire</div>
+            <p class="ab-path-kicker">Newsletter Substack 2x/semaine, blog, articles d'analyse. On partage ce qu'on apprend en construisant.</p>
+            <div class="ab-path-meta">→ Substack &amp; Blog</div>
+          </a>
+          <a class="ab-path-card" href="#accompagnement">
+            <svg class="ab-path-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M24 6 L42 18 L24 30 L6 18 Z M14 22 L14 36 Q24 42 34 36 L34 22"/>
             </svg>
-          </div>
-          <div class="card-badge badge-soon">À venir</div>
-          <h4>Gérant de portefeuille</h4>
-          <p>Notre agent gère un portefeuille d'investissement en automatique depuis 1 an. Il rééquilibre vos positions en fonction du marché, sans émotion, sans oubli. Le même que celui qui pilote notre propre argent.</p>
-          <span class="card-link">Découvrir <svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></span>
-        </a>
-
-        <!-- COMMUNITY MANAGER -->
-        <a class="card" href="/shop/community">
-          <div class="card-icon">
-            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" viewBox="0 0 24 24" width="24">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            <div class="ab-path-num">Voie 2 · 159 € HT</div>
+            <div class="ab-path-title">Comprendre</div>
+            <p class="ab-path-kicker">Une session 1h en visio (ou présentiel Paris) sur le sujet IA qui vous intéresse. Plan d'action écrit envoyé après.</p>
+            <div class="ab-path-meta">→ Accompagnement 1h</div>
+          </a>
+          <a class="ab-path-card" href="#brancher">
+            <svg class="ab-path-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 14 L42 14 L40 38 L8 38 Z M15 14 L15 8 Q15 6 17 6 L31 6 Q33 6 33 8 L33 14"/>
             </svg>
-          </div>
-          <div class="card-badge badge-soon">À venir</div>
-          <h4>Community manager</h4>
-          <p>Il rédige vos posts LinkedIn, crée vos carrousels Instagram, et surveille votre secteur. Rien ne part sans votre accord. Le même agent qui gère nos propres réseaux depuis 6 mois.</p>
-          <span class="card-link">Découvrir <svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></span>
-        </a>
-
+            <div class="ab-path-num">Voie 3 · Free &amp; payant</div>
+            <div class="ab-path-title">Brancher</div>
+            <p class="ab-path-kicker">Notre catalogue d'agents prêts-à-brancher et de skills open source. Pour ceux qui sont déjà à l'aise avec Claude, ChatGPT ou Gemini (abonnement payant nécessaire).</p>
+            <div class="ab-path-meta">→ Brancher</div>
+          </a>
+        </div>
       </div>
+    </section>
 
-      <!-- CTA vers shop complet -->
-      <div class="section-cta fade-in" style="text-align: center; margin-top: 3rem;">
-        <a class="btn btn-primary" href="/shop">
-          Voir tous nos agents & outils gratuits
-          <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
-        </a>
+    <!-- ACCOMPAGNEMENT 1H DETAIL -->
+    <section id="accompagnement" class="gle-section gle-bg-cool-atmospheric" aria-label="Comprendre">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">02 / Comprendre</div>
+          <h2 class="gle-section-title" data-translate="particuliers.accompagnement.title">Une heure pour bien démarrer.</h2>
+          <p class="gle-section-kicker" data-translate="particuliers.accompagnement.kicker">
+            On part de votre vrai cas d'usage, on déroule les bases utiles, et vous repartez avec un plan d'action écrit. Pour tous niveaux.
+          </p>
+        </div>
+
+        <div class="ab-formation-detail">
+          <div class="ab-formation-content">
+            <h3 class="ab-formation-title">Session personnalisée 1h</h3>
+            <p style="color: var(--gle-secondary); font-size: 0.95rem; margin-bottom: 0.4rem;">
+              <strong style="color: var(--gle-violet);">Tous niveaux</strong>, du débutant complet à l'utilisateur avancé.
+            </p>
+            <p style="color: var(--gle-secondary); font-size: 0.95rem; margin-bottom: 1rem;">
+              Thèmes au choix (on s'adapte à vos besoins) :
+            </p>
+            <ul class="ab-formation-themes">
+              <li>LLM vs Agent : la distinction qui change tout</li>
+              <li>Skills &amp; workspaces : fiche de poste pour vos agents</li>
+              <li>Tâches planifiées (cron) : automatiser sans coder</li>
+              <li>Sub-agents : déléguer à des spécialistes</li>
+              <li>MCP &amp; connexions : brancher Google Drive, CRM, APIs</li>
+              <li>Sécurité &amp; confidentialité : données sensibles, local-first</li>
+            </ul>
+            <p style="color: var(--gle-muted); font-size: 0.85rem; font-style: italic; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed rgba(0,0,0,0.08);">
+              Besoin d'un parcours plus complet ? Nous proposons aussi des cours plus longs adaptés à votre niveau et vos objectifs. Demandez-nous lors du diagnostic.
+            </p>
+          </div>
+          <div class="ab-formation-price-block">
+            <div class="ab-formation-price-amount">159 €<span class="ab-formation-price-suffix">HT</span></div>
+            <p class="ab-formation-price-desc">1h en visio ou présentiel à Paris<br>Plan d'action écrit envoyé après</p>
+            <a class="gle-btn-primary btn btn-primary" href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer" style="width: 100%; justify-content: center;" data-cta-track="particuliers_session_calendly_click">
+              Réserver une session
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRANCHER — agents + skills unifiés -->
+    <section id="brancher" class="gle-section gle-bg-warm-atmospheric" aria-label="Brancher nos agents et skills">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">03 / Brancher</div>
+          <h2 class="gle-section-title" data-translate="particuliers.brancher.title">Branchez nos agents. Branchez nos skills.</h2>
+          <p class="gle-section-kicker" data-translate="particuliers.brancher.kicker">
+            Tout ce qu'on a construit pour nous et qu'on vous met entre les mains : des agents prêts à l'emploi (à l'abonnement) et des skills open source (gratuits). Vous installez en quelques minutes, vous gardez le contrôle.
+          </p>
+        </div>
+
+        <!-- Bloc A — Agents -->
+        <div class="ab-subhead" style="margin-top: 2.5rem;">
+          <h3 class="ab-block-title">Nos agents prêts-à-brancher</h3>
+          <p class="ab-block-kicker">Un agent live aujourd'hui, deux autres en préparation. À l'abonnement, installés en quelques minutes — vous gardez le contrôle.</p>
+        </div>
+        <div class="ab-catalog">
+          <!-- Card 1: Bubble Sentinel — disponible -->
+          <div class="ab-catalog-card">
+            <div class="ab-catalog-photo-header" style="background-image: url('/assets/images/glass-lab/agent_sentinel.png');"></div>
+            <span class="ab-catalog-status available">Disponible</span>
+            <div class="ab-catalog-body">
+              <span class="ab-catalog-badge">Sécurité</span>
+              <h3 class="ab-catalog-title">Bubble Sentinel</h3>
+              <p class="ab-catalog-desc">Surveille en continu votre infrastructure (serveurs, sites, API, certificats). Alerte sur Telegram quand quelque chose dérape.</p>
+              <div class="ab-catalog-price">19 €<span class="ab-catalog-price-suffix"> /mois</span></div>
+              <a class="ab-catalog-cta" href="https://github.com/vdk888/bubble-sentinel" target="_blank" rel="noopener noreferrer">
+                En savoir plus →
+              </a>
+            </div>
+          </div>
+          <!-- Card 2: Gerant portefeuille — bientot -->
+          <div class="ab-catalog-card">
+            <div class="ab-catalog-photo-header" style="background-image: url('/assets/images/glass-lab/agent_portfolio.png');"></div>
+            <span class="ab-catalog-status">Bientôt</span>
+            <div class="ab-catalog-body">
+              <span class="ab-catalog-badge">Investissement</span>
+              <h3 class="ab-catalog-title">Gérant de portefeuille</h3>
+              <p class="ab-catalog-desc">Notre agent d'investissement personnel, branché à votre courtier. Stratégies risk-parity et momentum, sur 17+ ans de données.</p>
+              <div class="ab-catalog-price-tba">En préparation</div>
+              <a class="ab-catalog-cta" href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff" target="_blank" rel="noopener noreferrer" style="background: rgba(0,0,0,0.06); color: var(--gle-primary);">
+                Rejoindre la waitlist →
+              </a>
+            </div>
+          </div>
+          <!-- Card 3: Community Manager — bientot -->
+          <div class="ab-catalog-card">
+            <div class="ab-catalog-photo-header" style="background-image: url('/assets/images/glass-lab/agent_cm.png');"></div>
+            <span class="ab-catalog-status">Bientôt</span>
+            <div class="ab-catalog-body">
+              <span class="ab-catalog-badge">Marketing</span>
+              <h3 class="ab-catalog-title">Community Manager</h3>
+              <p class="ab-catalog-desc">Génère vos posts LinkedIn, Twitter, Instagram, depuis vos notes. Valide en 1 clic ou laisse l'agent publier tout seul.</p>
+              <div class="ab-catalog-price-tba">En préparation</div>
+              <a class="ab-catalog-cta" href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff" target="_blank" rel="noopener noreferrer" style="background: rgba(0,0,0,0.06); color: var(--gle-primary);">
+                Rejoindre la waitlist →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloc B — Skills open source -->
+        <div class="ab-subhead" style="margin-top: 4rem;">
+          <h3 class="ab-block-title">Nos skills open source <span style="color: var(--gle-mint-deep);">(gratuits)</span></h3>
+          <p class="ab-block-kicker">Les petits outils qu'on a construits pour Claude Code et qu'on partage librement. Code public sur GitHub, aucun engagement.</p>
+        </div>
+        <div class="ab-skills-install">
+          <span class="ab-skills-install-label">Installez toute la collection en une ligne, dans Claude Code :</span>
+          <code class="ab-skills-install-cmd">/plugin marketplace add vdk888/bubble-skills</code>
+        </div>
+        <p style="text-align: center; color: var(--gle-muted); font-family: var(--gle-font-mono); font-size: 0.78rem; letter-spacing: 0.05em; margin: 1.5rem 0 2rem;">
+          Survolez une tuile pour découvrir le lien GitHub
+        </p>
+        <div class="ab-skills-grid">
+          <div class="ab-skill-card">
+            <div class="ab-skill-card-inner">
+              <div class="ab-skill-card-face ab-skill-card-front">
+                <span class="ab-catalog-badge gratuit">Gratuit · MIT</span>
+                <h4>Socratic Spec</h4>
+                <p>Transforme une idée floue en spec précise et buildable, via un entretien socratique — avant d'écrire la moindre ligne de code.</p>
+              </div>
+              <div class="ab-skill-card-face ab-skill-card-back">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <h4>Socratic Spec</h4>
+                <a class="ab-skill-card-github-cta" href="https://github.com/vdk888/bubble-skills/tree/main/socratic-spec" target="_blank" rel="noopener noreferrer">
+                  Voir sur GitHub →
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="ab-skill-card">
+            <div class="ab-skill-card-inner">
+              <div class="ab-skill-card-face ab-skill-card-front">
+                <span class="ab-catalog-badge gratuit">Gratuit · MIT</span>
+                <h4>Suno Extract</h4>
+                <p>Récupère le MP3 de n'importe quelle chanson Suno via l'API publique. Aucune clé requise.</p>
+              </div>
+              <div class="ab-skill-card-face ab-skill-card-back">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <h4>Suno Extract</h4>
+                <a class="ab-skill-card-github-cta" href="https://github.com/vdk888/bubble-skills/tree/main/suno-extract" target="_blank" rel="noopener noreferrer">
+                  Voir sur GitHub →
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="ab-skill-card">
+            <div class="ab-skill-card-inner">
+              <div class="ab-skill-card-face ab-skill-card-front">
+                <span class="ab-catalog-badge gratuit">Gratuit · MIT</span>
+                <h4>Telegram Reporter</h4>
+                <p>Envoie des messages Telegram depuis n'importe quel script ou cron, en curl. Token bot lu depuis un fichier.</p>
+              </div>
+              <div class="ab-skill-card-face ab-skill-card-back">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <h4>Telegram Reporter</h4>
+                <a class="ab-skill-card-github-cta" href="https://github.com/vdk888/bubble-skills/tree/main/telegram-reporter" target="_blank" rel="noopener noreferrer">
+                  Voir sur GitHub →
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="ab-skill-card">
+            <div class="ab-skill-card-inner">
+              <div class="ab-skill-card-face ab-skill-card-front">
+                <span class="ab-catalog-badge gratuit">Gratuit · MIT</span>
+                <h4>Scheduled Tasks</h4>
+                <p>Guide pas-à-pas pour créer et débuguer des tâches planifiées Claude Desktop (routines locales).</p>
+              </div>
+              <div class="ab-skill-card-face ab-skill-card-back">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <h4>Scheduled Tasks</h4>
+                <a class="ab-skill-card-github-cta" href="https://github.com/vdk888/bubble-skills/tree/main/scheduled-task-creation" target="_blank" rel="noopener noreferrer">
+                  Voir sur GitHub →
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="ab-skill-card">
+            <div class="ab-skill-card-inner">
+              <div class="ab-skill-card-face ab-skill-card-front">
+                <span class="ab-catalog-badge gratuit">Gratuit · MIT</span>
+                <h4>Notion Linker</h4>
+                <p>Relie automatiquement le contenu publié (articles, posts) aux lignes projet d'une base Notion.</p>
+              </div>
+              <div class="ab-skill-card-face ab-skill-card-back">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <h4>Notion Linker</h4>
+                <a class="ab-skill-card-github-cta" href="https://github.com/vdk888/bubble-skills/tree/main/notion-linker" target="_blank" rel="noopener noreferrer">
+                  Voir sur GitHub →
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="ab-skill-card">
+            <div class="ab-skill-card-inner">
+              <div class="ab-skill-card-face ab-skill-card-front">
+                <span class="ab-catalog-badge gratuit">Gratuit · MIT</span>
+                <h4>Generate Image</h4>
+                <p>Génère des images en local avec FLUX.2 Klein (mflux) sur Apple Silicon. Gratuit, hors-ligne, aucune API.</p>
+              </div>
+              <div class="ab-skill-card-face ab-skill-card-back">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <h4>Generate Image</h4>
+                <a class="ab-skill-card-github-cta" href="https://github.com/vdk888/bubble-skills/tree/main/generate-image" target="_blank" rel="noopener noreferrer">
+                  Voir sur GitHub →
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="ab-skill-card">
+            <div class="ab-skill-card-inner">
+              <div class="ab-skill-card-face ab-skill-card-front">
+                <span class="ab-catalog-badge gratuit">Gratuit · MIT</span>
+                <h4>Notion Reader</h4>
+                <p>Interroge une base ou une page Notion depuis n'importe quel script. Token en config, IDs via variables d'env.</p>
+              </div>
+              <div class="ab-skill-card-face ab-skill-card-back">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <h4>Notion Reader</h4>
+                <a class="ab-skill-card-github-cta" href="https://github.com/vdk888/bubble-skills/tree/main/notion-reader" target="_blank" rel="noopener noreferrer">
+                  Voir sur GitHub →
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="ab-skill-card">
+            <div class="ab-skill-card-inner">
+              <div class="ab-skill-card-face ab-skill-card-front">
+                <span class="ab-catalog-badge gratuit">Gratuit · MIT</span>
+                <h4>Local TTS</h4>
+                <p>Synthèse vocale locale (VoxCPM2, 30 langues, clonage de voix). Gratuit, hors-ligne, Apple Silicon.</p>
+              </div>
+              <div class="ab-skill-card-face ab-skill-card-back">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <h4>Local TTS</h4>
+                <a class="ab-skill-card-github-cta" href="https://github.com/vdk888/local-tts" target="_blank" rel="noopener noreferrer">
+                  Voir sur GitHub →
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="ab-skill-card">
+            <div class="ab-skill-card-inner">
+              <div class="ab-skill-card-face ab-skill-card-front">
+                <span class="ab-catalog-badge gratuit">Gratuit · MIT</span>
+                <h4>Boycott Filter</h4>
+                <p>Dites à votre agent quelles marques éviter ; une extension Chrome vous alerte sur leurs pages avec vos propres raisons.</p>
+              </div>
+              <div class="ab-skill-card-face ab-skill-card-back">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <h4>Boycott Filter</h4>
+                <a class="ab-skill-card-github-cta" href="https://github.com/vdk888/boycott-filter" target="_blank" rel="noopener noreferrer">
+                  Voir sur GitHub →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 2.5rem;">
+          <a class="gle-btn-ghost btn" href="https://github.com/vdk888/bubble-skills" target="_blank" rel="noopener noreferrer" style="font-size: 0.92rem;">
+            Voir la marketplace bubble-skills sur GitHub →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LE LABO EN DIRECT -->
+    <section id="labo" class="gle-section gle-bg-cool-atmospheric" aria-label="Le labo en direct">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">04 / En direct</div>
+          <h2 class="gle-section-title" data-translate="particuliers.labo.title">Le labo, en direct.</h2>
+          <p class="gle-section-kicker" data-translate="particuliers.labo.kicker">
+            On ne vend pas une promesse, on montre ce qui tourne. Voici notre laboratoire d'agents en temps réel — les mêmes agents et skills que ci-dessus, au travail tous les matins.
+          </p>
+        </div>
+        <div class="ab-lab">
+          <div class="ab-lab-topbar">
+            <span class="ab-lab-live"><span class="ab-lab-dot"></span> Live · build in public</span>
+            <span class="ab-lab-clock" id="ab-lab-clock">--:--:-- · Paris</span>
+          </div>
+
+          <!-- Compteurs -->
+          <div class="ab-lab-stats">
+            <div class="ab-lab-stat"><div class="ab-lab-num" data-target="22" data-fmt="int" data-suffix="+">0</div><div class="ab-lab-label">agents en prod</div></div>
+            <div class="ab-lab-stat"><div class="ab-lab-num" data-target="14" data-fmt="int">0</div><div class="ab-lab-label">routines actives</div></div>
+            <div class="ab-lab-stat"><div class="ab-lab-num" data-target="1280000000" data-fmt="tokens" data-ledger="tokens_this_month">0</div><div class="ab-lab-label">tokens ce mois</div></div>
+            <div class="ab-lab-stat"><div class="ab-lab-num" data-target="36600000000" data-fmt="tokens" data-ledger="tokens_this_year">0</div><div class="ab-lab-label">tokens cette année</div></div>
+          </div>
+
+          <!-- Notre équipe d'agents (membres IA) -->
+          <div class="ab-lab-team-head">
+            <div class="ab-lab-panel-title">Notre équipe · 100% IA</div>
+            <p>Des collègues à part entière. Chacun son poste, en service pour Bubble tous les jours.</p>
+          </div>
+          <div class="ab-lab-team">
+            <div class="ab-lab-member">
+              <div class="ab-lab-avatar" style="background:#667eea;"><svg class="ab-lab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.8L18.5 9.5l-4.9 1.7L12 16l-1.6-4.8L5.5 9.5l4.9-1.7z"/><path d="M18.6 15.4l.6 1.9 1.9.6-1.9.6-.6 1.9-.6-1.9-1.9-.6 1.9-.6z"/></svg><span class="st"></span></div>
+              <div class="ab-lab-member-name">Claudette</div>
+              <div class="ab-lab-member-role">Assistante</div>
+            </div>
+            <div class="ab-lab-member">
+              <div class="ab-lab-avatar" style="background:#4f46e5;"><svg class="ab-lab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.4"/><circle cx="12" cy="4.2" r="1.4"/><circle cx="12" cy="19.8" r="1.4"/><circle cx="4.2" cy="12" r="1.4"/><circle cx="19.8" cy="12" r="1.4"/><path d="M12 9.6V5.6M12 14.4v4M9.6 12h-4M14.4 12h4"/></svg><span class="st"></span></div>
+              <div class="ab-lab-member-name">Tony</div>
+              <div class="ab-lab-member-role">Coordination</div>
+            </div>
+            <div class="ab-lab-member">
+              <div class="ab-lab-avatar" style="background:#1a9d78;"><svg class="ab-lab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5v14h16"/><path d="M7.5 14.5l3.5-3.5 3 3 5-6"/></svg><span class="st"></span></div>
+              <div class="ab-lab-member-name">Ben</div>
+              <div class="ab-lab-member-role">Investissement</div>
+            </div>
+            <div class="ab-lab-member">
+              <div class="ab-lab-avatar" style="background:#e5743a;"><svg class="ab-lab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19l1-4L16 5l3 3L9 18z"/><path d="M14 7l3 3"/></svg><span class="st"></span></div>
+              <div class="ab-lab-member-name">Miranda</div>
+              <div class="ab-lab-member-role">Contenu</div>
+            </div>
+            <div class="ab-lab-member">
+              <div class="ab-lab-avatar" style="background:#c2557f;"><svg class="ab-lab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg><span class="st"></span></div>
+              <div class="ab-lab-member-name">Eliot</div>
+              <div class="ab-lab-member-role">Sécurité</div>
+            </div>
+            <div class="ab-lab-member">
+              <div class="ab-lab-avatar" style="background:#6b7aa8;"><svg class="ab-lab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"/><path d="M10 3v6l-5 8.5A1.5 1.5 0 0 0 6.3 20h11.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3"/><path d="M7.6 14h8.8"/></svg><span class="st idle"></span></div>
+              <div class="ab-lab-member-name">Rick</div>
+              <div class="ab-lab-member-role">R&amp;D</div>
+            </div>
+          </div>
+
+          <!-- Flux + routines (panneau labo) -->
+          <div class="ab-lab-grid">
+            <div class="ab-lab-feed">
+              <div class="ab-lab-panel-title">Flux d'activité · live <span class="ab-lab-cursor">▋</span></div>
+              <ul class="ab-lab-log" id="ab-lab-log">
+                <li><span class="t">10:58</span> <span class="ag">Eliot</span> a audité l'infra — <span class="ok">RAS</span></li>
+                <li><span class="t">10:46</span> <span class="ag">Claudette</span> a mis à jour une page du site</li>
+                <li><span class="t">10:31</span> <span class="ag">Rick</span> a compilé le wiki d'équipe</li>
+                <li><span class="t">09:30</span> <span class="ag">Eliot</span> a scanné un repo — <span class="ok">0 secret</span></li>
+                <li><span class="t">09:02</span> <span class="ag">Ben</span> a rééquilibré un portefeuille</li>
+                <li><span class="t">08:40</span> <span class="ag">Miranda</span> a rédigé un post LinkedIn</li>
+                <li><span class="t">08:15</span> <span class="ag">Tony</span> a publié le brief quotidien</li>
+              </ul>
+            </div>
+            <div class="ab-lab-routines">
+              <div class="ab-lab-panel-title">Routines actives</div>
+              <div class="ab-lab-routine"><span class="rd"></span> Audit sécurité quotidien <span class="rt">09:00</span></div>
+              <div class="ab-lab-routine"><span class="rd"></span> Compilation du wiki <span class="rt">22:00</span></div>
+              <div class="ab-lab-routine"><span class="rd"></span> Watchdog Telegram <span class="rt">/5 min</span></div>
+              <div class="ab-lab-routine"><span class="rd"></span> Sauvegarde chiffrée <span class="rt">/1 h</span></div>
+              <div class="ab-lab-routine"><span class="rd idle"></span> Synthèse hebdo <span class="rt">dim.</span></div>
+              <div class="ab-lab-routine"><span class="rd idle"></span> Pipeline contenu <span class="rt">idle</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER + ARTICLES -->
+    <section id="newsletter" class="gle-section gle-bg-warm-atmospheric" aria-label="Behind the Bubble — newsletter et articles">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">05 / Lire</div>
+          <h2 class="gle-section-title" data-translate="particuliers.newsletter.title">Behind the Bubble.</h2>
+          <p class="gle-section-kicker" data-translate="particuliers.newsletter.kicker">
+            Deux formats pour suivre nos analyses : la newsletter Notion (100% gratuite, 2x/semaine) ou Substack (mix gratuit + articles payants à l'unité).
+          </p>
+        </div>
+
+        <!-- 2 cards distinctes -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; max-width: 920px; margin: 3rem auto 0;">
+
+          <!-- Card Newsletter Notion -->
+          <div class="ab-newsletter-callout" style="margin: 0; padding: 2rem 1.75rem; text-align: left;">
+            <span class="ab-catalog-badge gratuit" style="display: inline-block; padding: 0.3rem 0.75rem; background: rgba(167, 232, 215, 0.4); color: var(--gle-mint-deep); border-radius: 999px; font-family: var(--gle-font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; margin-bottom: 1rem;">100% gratuit</span>
+            <h3 class="ab-newsletter-title" style="font-size: 1.4rem; text-align: left;">Newsletter bi-hebdo</h3>
+            <p style="color: var(--gle-secondary); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem;">
+              Deux fois par semaine, un récap des actualités IA &amp; investissement qui méritent votre attention. Court, dense, sans bla-bla. Inscription en 1 clic.
+            </p>
+            <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; font-size: 0.86rem; color: var(--gle-secondary);">
+              <li style="padding: 0.35rem 0; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--gle-mint-deep);">✓</span> 100% gratuit, pas de paywall</li>
+              <li style="padding: 0.35rem 0; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--gle-mint-deep);">✓</span> 2 envois par semaine</li>
+              <li style="padding: 0.35rem 0; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--gle-mint-deep);">✓</span> Désinscription en 1 clic</li>
+            </ul>
+            <a class="ab-newsletter-cta" href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff" target="_blank" rel="noopener noreferrer" style="background: var(--gle-mint-deep); color: white;" data-cta-track="particuliers_newsletter_notion_click">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 6 L12 13 L20 6"/>
+                <rect x="3" y="5" width="18" height="14" rx="2"/>
+              </svg>
+              S'inscrire à la newsletter
+            </a>
+          </div>
+
+          <!-- Card Substack -->
+          <div class="ab-newsletter-callout" style="margin: 0; padding: 2rem 1.75rem; text-align: left; background: linear-gradient(135deg, var(--gle-violet-soft) 0%, rgba(199, 210, 254, 0.55) 100%); border-color: rgba(102, 126, 234, 0.25);">
+            <span style="display: inline-block; padding: 0.3rem 0.75rem; background: var(--gle-violet); color: white; border-radius: 999px; font-family: var(--gle-font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; margin-bottom: 1rem;">Gratuit + payant</span>
+            <h3 class="ab-newsletter-title" style="font-size: 1.4rem; text-align: left;">Substack</h3>
+            <p style="color: var(--gle-secondary); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem;">
+              Plateforme éditoriale dédiée. Vous avez accès au feed gratuit + la possibilité d'acheter nos articles d'analyse à l'unité, ou de prendre l'abonnement pour tout débloquer.
+            </p>
+            <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; font-size: 0.86rem; color: var(--gle-secondary);">
+              <li style="padding: 0.35rem 0; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--gle-violet); font-weight: 700;">→</span> Notes &amp; essais courts : <strong>gratuit</strong></li>
+              <li style="padding: 0.35rem 0; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--gle-violet); font-weight: 700;">→</span> Articles complets : <strong>2,99 €</strong> à l'unité</li>
+              <li style="padding: 0.35rem 0; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--gle-violet); font-weight: 700;">→</span> Investment cases : <strong>4,99 €</strong> à l'unité</li>
+              <li style="padding: 0.35rem 0; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--gle-violet); font-weight: 700;">→</span> Abonnement : <strong>6 €/mois</strong> tout illimité</li>
+            </ul>
+            <a class="ab-newsletter-cta" href="https://bubbleinvest.substack.com" target="_blank" rel="noopener noreferrer" style="background: var(--gle-primary); color: #f5f3ed;" data-cta-track="particuliers_substack_click">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
+              </svg>
+              Découvrir sur Substack
+            </a>
+          </div>
+
+        </div>
+
+        <p style="text-align: center; max-width: 700px; margin: 2rem auto 0; color: var(--gle-muted); font-size: 0.88rem; font-style: italic;">
+          Pas obligé de choisir : beaucoup de nos lecteurs sont inscrits aux deux. La newsletter Notion pour le récap, Substack pour creuser les sujets qui les intéressent.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER (Glass Lab Editorial v3 — structure preserved, restyled) -->
+  <footer class="gle-footer">
+    <div class="gle-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" style="font-size: 1.5rem; color: #fff;">
+            <svg fill="none" style="width: 32px; height: 32px;" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
+                stroke-linecap="round" stroke-width="6"></circle>
+              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+            </svg>
+            Bubble.
+          </a>
+          <p style="font-family: var(--gle-font-accent); font-style: italic; opacity: 0.85; margin-top: 0.5rem;">Investissez dans l'essentiel.</p>
+          <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.78rem;">L'ère de l'IA a tout changé. Changez avec elle.</p>
+          <div class="social-links">
+            <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank"
+              title="LinkedIn">
+              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank"
+              title="Instagram @behindthebubble.ai">
+              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank"
+              title="Substack @bubbleinvest">
+              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                <path
+                  d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="GitHub" href="/github" title="GitHub">
+              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="X" href="https://x.com/bubbleinvest" target="_blank" title="X @bubbleinvest">
+              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/a-propos">À Propos</a></li>
+            <li><a href="/particuliers">Apprendre &amp; Brancher</a></li>
+            <li><a href="/professionnels">Implémentation pro</a></li>
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Ressources</h4>
+          <ul>
+            <li><a href="/shop">Boutique</a></li>
+            <li><a href="/labs">Laboratoire</a></li>
+            <li><a href="https://bubbleinvest.substack.com" target="_blank">Newsletter</a></li>
+            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank" data-cta-track="footer_calendly_click">Réserver un diagnostic</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Légal</h4>
+          <ul>
+            <li><a href="/mentions-legales">Mentions légales</a></li>
+            <li><a href="/privacy">Confidentialité</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Bubble Invest · Transparent by design · Build in public</p>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <!-- ============================
-       3. BEHIND THE BUBBLE (Blog preview)
-       ============================ -->
-  <section class="blog-preview" id="behind-the-bubble" aria-label="Behind the Bubble">
-    <div class="container">
-      <div class="section-header fade-in">
-        <h2>Behind the Bubble</h2>
-        <h3>Nos analyses d'investissement, nos vues sur l'IA et l'économie</h3>
-      </div>
-      <div class="blog-grid fade-in">
-        <a class="blog-card" href="https://bubbleinvest.substack.com/p/vibe-working-your-portfolio-la-fin" target="_blank">
-          <div class="blog-image">
-            <img src="https://substack-post-media.s3.amazonaws.com/public/images/5b396614-e809-4c65-8c0e-7ec3f1d3b54a_1024x608.png" alt="Vibe Working Your Portfolio" loading="lazy" />
-          </div>
-          <div class="blog-content">
-            <p class="blog-tag">Investissement & IA</p>
-            <h4>Vibe Working Your Portfolio</h4>
-            <p>Vous connaissez le Vibe Coding ? Découvrez le Vibe Working : la même logique, mais pour gérer votre portefeuille.</p>
-          </div>
-        </a>
-        <a class="blog-card" href="https://bubbleinvest.substack.com/p/pourquoi-ton-100-msci-world-te-coute" target="_blank">
-          <div class="blog-image">
-            <img src="https://substack-post-media.s3.amazonaws.com/public/images/200587c1-2670-42b1-a0ef-56c438b29618_1408x768.png" alt="Pourquoi ton 100% MSCI World te coûte de la performance" loading="lazy" />
-          </div>
-          <div class="blog-content">
-            <p class="blog-tag">Fondamentaux</p>
-            <h4>Pourquoi ton 100% MSCI World te coûte de la performance</h4>
-            <p>Le confort paresseux qui grignote tes rendements. Tu ne possèdes pas un portefeuille diversifié.</p>
-          </div>
-        </a>
-        <a class="blog-card" href="https://bubbleinvest.substack.com/p/quand-morningstar-valide-notre-vision" target="_blank">
-          <div class="blog-image">
-            <img src="https://substack-post-media.s3.amazonaws.com/public/images/ee880c1d-2f09-4de3-92be-dc88e84fdb35_1200x627.jpeg" alt="Quand Morningstar valide notre vision" loading="lazy" />
-          </div>
-          <div class="blog-content">
-            <p class="blog-tag">Validation</p>
-            <h4>Quand Morningstar valide notre vision</h4>
-            <p>Morningstar confirme : le futur hybride de l'investissement combine chatbot IA + robo-advisor. Exactement ce qu'on construit.</p>
-          </div>
-        </a>
-      </div>
-      <div class="blog-cta fade-in" style="text-align: center; margin-top: 2.5rem;">
-        <a class="btn btn-primary" href="/blog">Lire le blog <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
-        <a class="btn btn-secondary" href="/shop/articles" style="margin-left: 1rem;">Voir nos articles & analyses <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================
-       4. SOUTENEZ NOTRE TRAVAIL
-       ============================ -->
-  <section class="follow-section" id="follow">
-    <div class="container">
-      <div class="section-header">
-        <h2>Soutenez notre travail</h2>
-        <h3>Nos réseaux, notre newsletter, et nos outils</h3>
-      </div>
-      <div class="social-buttons">
-        <a class="social-btn" href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank">
-          <svg fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z">
-            </path>
-          </svg>
-          LinkedIn
-        </a>
-        <a class="social-btn" href="https://instagram.com/behindthebubble.ai" target="_blank">
-          <svg fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
-            </path>
-          </svg>
-          Instagram
-        </a>
-        <a class="social-btn" href="https://bubbleinvest.substack.com/subscribe" target="_blank">
-          <svg fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z">
-            </path>
-          </svg>
-          Substack
-        </a>
-        <a class="social-btn" href="/github">
-          <svg fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
-            </path>
-          </svg>
-          GitHub
-        </a>
-        <a class="social-btn" href="https://x.com/bubbleinvest" target="_blank">
-          <svg fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
-            </path>
-          </svg>
-          X
-        </a>
-      </div>
-      <p class="newsletter-line">Analyses premium, research reports, et newsletter gratuite</p>
-      <div class="newsletter-cta">
-        <a class="btn btn-primary" href="/shop/articles">
-          <svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18">
-            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-          </svg>
-          Découvrir nos analyses d'investissements premium
-        </a>
-      </div>
-      <div class="newsletter-cta" style="margin-top: 1rem;">
-        <a class="btn btn-secondary" href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff?pvs=105" target="_blank">
-          <svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-            <polyline points="22,6 12,13 2,6"></polyline>
-          </svg>
-          S'inscrire à notre newsletter IA x Finance gratuite
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================
-       5. CTA OFFRE PRO
-       ============================ -->
-  <section class="cta-section">
-    <div class="container">
-      <h2>Vous êtes un professionnel ?</h2>
-      <p>Découvrez comment nos agents IA peuvent transformer vos opérations. Audit, conseil, déploiement sur mesure.</p>
-      <div class="cta-buttons">
-        <a class="btn btn-primary" href="/professionnels">Découvrir l'offre pro <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Chat Side Panel -->
+  <!-- Chat Side Panel (slide-in chatbot) -->
   <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
     <div class="chat-side-panel-header">
       <div class="chat-side-panel-header-info">
@@ -421,82 +821,18 @@
         placeholder="Pose-moi n'importe quelle question..." type="text"
         data-translate-placeholder="floating_input.placeholder" />
       <button aria-label="Envoyer" class="floating-input-submit">
-        <svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18">
-          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round"></path>
-          <path d="M12 21V4" stroke-linecap="round"></path>
+        <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
+          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          <path d="M12 21V4" stroke-linecap="round" stroke-width="2"></path>
         </svg>
       </button>
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="logo" href="/" style="font-size: 1.5rem;">
-            <svg fill="none" style="width: 32px; height: 32px;" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-                stroke-linecap="round" stroke-width="6"></circle>
-              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-            </svg>
-            Bubble.
-          </a>
-          <p>L'ère de l'IA a tout changé. Changez avec elle.</p>
-          <div class="social-links">
-            <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" title="LinkedIn">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
-            </a>
-            <a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank" title="Instagram @behindthebubble.ai">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
-            </a>
-            <a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank" title="Substack @bubbleinvest">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"></path></svg>
-            </a>
-            <a aria-label="GitHub" href="/github" title="GitHub">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
-            </a>
-            <a aria-label="X" href="https://x.com/bubbleinvest" target="_blank" title="X @bubbleinvest">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
-            </a>
-          </div>
-        </div>
-        <div class="footer-links">
-          <h4>Produit</h4>
-          <ul>
-            <li><a href="/particuliers">Particuliers</a></li>
-            <li><a href="/professionnels">Professionnels</a></li>
-            <li><a href="/shop">Shop</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Ressources</h4>
-          <ul>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/a-propos">À Propos</a></li>
-            <li><a href="https://bubbleinvest.substack.com" target="_blank">Newsletter</a></li>
-            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank">Nous contacter</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Légal</h4>
-          <ul>
-            <li><a href="/mentions-legales">Mentions légales</a></li>
-            <li><a href="/privacy">Confidentialité</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Bubble Invest · Transparent by design.</p>
-      </div>
-    </div>
-  </footer>
-
   <!-- Scripts -->
   <script src="/js/seo/cookie-banner.js"></script>
   <!-- Unified conversion tracking (Pixel + CAPI dual tracking + Google Ads conversion) — Phase 1 marketing 2026-05-18 -->
   <script src="/js/seo/conversions.js"></script>
-  <script src="/js/ghibli-chrome.js" defer></script>
   <script src="/js/lang-toggle.js"></script>
   <script src="/i18n/translations.js"></script>
   <script src="/js/bubble-agent-memory.js"></script>
@@ -506,32 +842,128 @@
   <script src="/js/animations.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
 
-  <!-- Agent card expand/collapse -->
+  <!-- Sprint 3 Ghibli Phase 2 — top strip "Labo ouvert" + floating bubbles signature -->
+  <script src="/js/ghibli-chrome.js" defer></script>
+
+  <!-- Le labo en direct — live clock, count-up counters, activity feed.
+       Token counters read from the SAME-ORIGIN endpoint /api/labs/stats.json
+       (headline.this_month_total / headline.this_year_total). Falls back to
+       data-target on any error. -->
   <script>
-    (function () {
-      'use strict';
-      document.querySelectorAll('.card-expand-btn').forEach(function (btn) {
-        btn.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          var targetId = btn.getAttribute('aria-controls');
-          var details = document.getElementById(targetId);
-          var card = btn.closest('.card-expandable');
-          if (!details) return;
+  (function () {
+    // 1. Live Paris clock
+    var clock = document.getElementById('ab-lab-clock');
+    function tick() {
+      if (!clock) return;
+      var t = new Date().toLocaleTimeString('fr-FR', {
+        timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit', second: '2-digit'
+      });
+      clock.textContent = t + ' · Paris';
+    }
+    tick(); setInterval(tick, 1000);
 
-          var isExpanded = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', !isExpanded);
-          details.setAttribute('aria-hidden', isExpanded);
-          card.classList.toggle('card-expanded', !isExpanded);
-
-          if (!isExpanded) {
-            details.style.maxHeight = details.scrollHeight + 'px';
+    // 2. Counters — count up when in view. Token counters pull the REAL figures
+    //    from the same-origin Bubble Labs stats (fallback = data-target).
+    var STATS_URL = '/api/labs/stats.json';
+    function unitOf(n) {
+      if (n >= 1e9) return { d: 1e9, dec: n >= 1e10 ? 1 : 2, lbl: 'Md' };
+      if (n >= 1e6) return { d: 1e6, dec: 0, lbl: 'M' };
+      return { d: 1, dec: 0, lbl: '' };
+    }
+    function animate(el) {
+      var target = parseFloat(el.getAttribute('data-target')) || 0;
+      var fmt = el.getAttribute('data-fmt');
+      var suffix = el.getAttribute('data-suffix') || '';
+      var u = fmt === 'tokens' ? unitOf(target) : null;
+      var dur = 1300, t0 = null;
+      function render(v) {
+        if (fmt === 'tokens') {
+          if (u.lbl) {
+            el.innerHTML = (v / u.d).toFixed(u.dec).replace('.', ',') +
+              '<span class="ab-lab-unit"> ' + u.lbl + '</span>';
           } else {
-            details.style.maxHeight = '0';
+            el.innerHTML = Math.round(v).toLocaleString('fr-FR');
+          }
+        } else {
+          el.innerHTML = Math.round(v) +
+            (suffix ? '<span class="ab-lab-unit">' + suffix + '</span>' : '');
+        }
+      }
+      function step(ts) {
+        if (!t0) t0 = ts;
+        var p = Math.min((ts - t0) / dur, 1);
+        render(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var nums = Array.prototype.slice.call(document.querySelectorAll('.ab-lab-num[data-target]'));
+    var observed = false;
+    function observe() {
+      if (observed) return;
+      observed = true;
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.4 });
+        nums.forEach(function (n) { io.observe(n); });
+      } else {
+        nums.forEach(animate);
+      }
+    }
+    // Fill token counters from the same-origin stats; fall back to data-target on any error.
+    // The endpoint shape is { stats: { tokens_this_month, ... } }. We also look in a
+    // `headline` object as a secondary source in case the payload shape evolves.
+    // (tokens_this_year has no real source today, so that counter keeps its data-target.)
+    fetch(STATS_URL, { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var s = (d && d.stats) || {};
+        var h = (d && d.headline) || {};
+        nums.forEach(function (el) {
+          var key = el.getAttribute('data-ledger');
+          if (!key) return;
+          var v = (typeof s[key] === 'number') ? s[key] : (typeof h[key] === 'number' ? h[key] : null);
+          if (v !== null && v > 0) {
+            el.setAttribute('data-target', v);
           }
         });
+      })
+      .catch(function () {})
+      .then(observe);
+    setTimeout(observe, 2500); // backstop if the fetch hangs
+
+    // 3. Activity feed — prepend a fresh (anonymised) line every ~9s
+    var log = document.getElementById('ab-lab-log');
+    var pool = [
+      ['Eliot', 'a vérifié les certificats — <span class="ok">OK</span>'],
+      ['Claudette', 'a répondu à une demande sur Telegram'],
+      ['Rick', 'a synchronisé le cache du wiki'],
+      ['Ben', 'a calculé une allocation risk-parity'],
+      ['Miranda', 'a programmé un post pour demain'],
+      ['Tony', 'a agrégé les KPIs du jour'],
+      ['Eliot', 'a scanné les secrets — <span class="ok">0 fuite</span>'],
+      ['Claudette', 'a mis à jour une page du site']
+    ];
+    var pi = 0;
+    function addLine() {
+      if (!log) return;
+      var hh = new Date().toLocaleTimeString('fr-FR', {
+        timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit'
       });
-    })();
+      var item = pool[pi % pool.length]; pi++;
+      var li = document.createElement('li');
+      li.innerHTML = '<span class="t">' + hh + '</span> <span class="ag">' + item[0] + '</span> ' + item[1];
+      li.style.opacity = 0;
+      log.insertBefore(li, log.firstChild);
+      requestAnimationFrame(function () { li.style.transition = 'opacity .6s'; li.style.opacity = 1; });
+      var items = log.querySelectorAll('li');
+      if (items.length > 8) log.removeChild(items[items.length - 1]);
+    }
+    setInterval(addLine, 9000);
+  })();
   </script>
 
   <!-- Mobile hamburger menu toggle -->
