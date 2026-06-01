@@ -345,6 +345,18 @@
   color: var(--gle-violet);
 }
 
+/* Override legacy homepage-2026 .hero h1 gradient text-fill that hijacks the new
+   hero (the section keeps .hero for the chat-scroll trigger). Higher specificity
+   resets the h1 to solid and forces the em to render violet (Jade 2026-06-01). */
+.gle-hero .gle-hero-title {
+  background: none;
+  -webkit-text-fill-color: var(--gle-primary);
+}
+.gle-hero .gle-hero-title em {
+  color: var(--gle-violet);
+  -webkit-text-fill-color: var(--gle-violet);
+}
+
 .gle-hero-kicker {
   font-size: 1.08rem;
   color: var(--gle-secondary);
