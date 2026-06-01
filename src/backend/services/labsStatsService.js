@@ -31,10 +31,12 @@ const env = require("../config/env");
 // Configuration
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Anthropic Admin API for token usage. Optional — gracefully falls back if
-// ADMIN key not provided (counter shows "—" instead of breaking).
-// Get one at: https://console.anthropic.com/settings/admin-keys
-const ANTHROPIC_ADMIN_API_KEY = process.env.ANTHROPIC_ADMIN_API_KEY || "";
+// Token usage is sourced from the daily Bubble Labs ledger: real per-message
+// token counts summed from all agent transcripts, published by a VPS cron to a
+// non-deployed `data` branch. No admin key, no secret — just a public JSON we
+// fetch. Falls back gracefully to the static aggregate if unreachable.
+const LEDGER_URL =
+  "https://raw.githubusercontent.com/vdk888/BubbleLaunch/data/labs/labs-token-ledger.json";
 
 // Whitelist of public routine identifiers we're comfortable surfacing as a count.
 // Keep this list curated — it's the public "shape" of our automation footprint.
@@ -75,53 +77,34 @@ let cronTask = null;
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Fetch monthly token usage from Anthropic's organization usage report.
- * Returns null on any error or missing config (caller handles fallback).
+ * Fetch token usage from the Bubble Labs ledger (public raw JSON).
+ * Returns { tokens: this-month, allTime, reason }. Null tokens on any error,
+ * so the caller falls back to the static aggregate.
  *
- * Anthropic Admin API docs: https://docs.anthropic.com/en/api/admin-api/usage
+ * Ledger schema: bubble-labs-token-ledger/v1 — see headline.{this_month_total,
+ * all_time_total}. Produced daily by tools/labs-token-ledger on the VPS.
  */
-async function fetchAnthropicTokenUsage() {
-  if (!ANTHROPIC_ADMIN_API_KEY) {
-    return { tokens: null, reason: "ADMIN_KEY_NOT_CONFIGURED" };
-  }
+async function fetchLedgerTokenUsage() {
   try {
-    // Start of current month (UTC)
-    const now = new Date();
-    const monthStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
-    const startingAt = monthStart.toISOString();
-
-    const r = await axios.get(
-      "https://api.anthropic.com/v1/organizations/usage_report/messages",
-      {
-        params: {
-          starting_at: startingAt,
-          bucket_width: "1d", // we'll sum the days
-        },
-        headers: {
-          "x-api-key": ANTHROPIC_ADMIN_API_KEY,
-          "anthropic-version": "2023-06-01",
-        },
-        timeout: 10000,
-      }
-    );
-
-    const data = r.data?.data || [];
-    let totalTokens = 0;
-    for (const bucket of data) {
-      for (const item of bucket.results || []) {
-        totalTokens +=
-          (item.uncached_input_tokens || 0) +
-          (item.cache_creation_input_tokens || 0) +
-          (item.cache_read_input_tokens || 0) +
-          (item.output_tokens || 0);
-      }
+    const r = await axios.get(LEDGER_URL, {
+      timeout: 10000,
+      headers: { "User-Agent": "BubbleLabsStats/1.0" },
+      // hourly cache-bust for GitHub's raw CDN (~5 min TTL); ledger updates daily
+      params: { t: Math.floor(Date.now() / 3600000) },
+    });
+    const h = r.data?.headline || {};
+    const month = Number.isFinite(h.this_month_total) ? h.this_month_total : null;
+    const allTime = Number.isFinite(h.all_time_total) ? h.all_time_total : null;
+    if (month === null && allTime === null) {
+      return { tokens: null, allTime: null, reason: "ledger_empty" };
     }
-    return { tokens: totalTokens, reason: "ok" };
+    return { tokens: month, allTime, reason: "ok" };
   } catch (err) {
     return {
       tokens: null,
+      allTime: null,
       reason: err?.response?.status
-        ? `anthropic_${err.response.status}`
+        ? `ledger_${err.response.status}`
         : err?.code || err?.message || "unknown_error",
     };
   }
@@ -218,18 +201,20 @@ async function refreshSnapshot() {
   const errors = [];
 
   const [tokensResult, substackItems, githubItems] = await Promise.allSettled([
-    fetchAnthropicTokenUsage(),
+    fetchLedgerTokenUsage(),
     fetchSubstackLatest(5),
     fetchGitHubCommitsLatest(5),
   ]);
 
   let tokens = null;
+  let tokensAllTime = null;
   let tokensReason = "unknown";
   if (tokensResult.status === "fulfilled") {
     tokens = formatTokens(tokensResult.value.tokens);
+    tokensAllTime = formatTokens(tokensResult.value.allTime);
     tokensReason = tokensResult.value.reason;
   } else {
-    errors.push({ source: "anthropic_tokens", error: String(tokensResult.reason) });
+    errors.push({ source: "ledger_tokens", error: String(tokensResult.reason) });
   }
 
   const substack = substackItems.status === "fulfilled" ? substackItems.value : [];
@@ -256,6 +241,7 @@ async function refreshSnapshot() {
     stats: {
       ...STATIC_FALLBACK,
       tokens_this_month: tokens,
+      tokens_all_time: tokensAllTime,
       tokens_status: tokensReason,
       last_updated: new Date().toISOString(),
     },
