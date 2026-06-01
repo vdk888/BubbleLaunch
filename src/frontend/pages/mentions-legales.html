@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
   <!-- SEO Meta Tags -->
-  <title>Mentions Légales | Bubble</title>
+  <title>Bubble · Mentions légales</title>
   <meta name="description" content="Mentions légales de Bubble Invest : informations légales sur la société, coordonnées, hébergement et conditions d'utilisation du site.">
   <meta name="keywords" content="mentions légales, conditions d'utilisation, hébergement, responsabilité, droits d'auteur">
   <meta name="robots" content="index, follow">
@@ -19,107 +20,106 @@
   <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/mentions-legales">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/assets/styles/core-2026.css" />
   <link rel="stylesheet" href="/assets/styles/cookie-banner.css" />
+  <!-- Glass Lab Editorial — Charte v3 (2026-05-22), loads LATE to override legacy where needed -->
+  <link rel="stylesheet" href="/assets/styles/glass-lab-editorial.css" />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
+  <!-- Readable prose container for legal pages (Glass Lab Editorial) -->
   <style>
-    .legal-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 120px 20px 60px;
+    .gle-legal-section {
+      padding: 9rem 0 5rem;
     }
-    .legal-header {
+    .gle-legal-prose {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .gle-legal-back {
+      display: inline-block;
+      margin-bottom: 2rem;
+      color: var(--gle-violet);
+      text-decoration: none;
+      font-family: var(--gle-font-mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+    .gle-legal-back:hover { text-decoration: underline; }
+    .gle-legal-header {
       text-align: center;
       margin-bottom: 3rem;
     }
-    .legal-header h1 {
-      font-size: 2.5rem;
+    .gle-legal-header h1 {
+      font-size: 2.4rem;
+      line-height: 1.15;
       margin-bottom: 1rem;
-      color: #333;
+      color: var(--gle-primary);
     }
-    .legal-header p {
+    .gle-legal-header > p {
       font-size: 1rem;
-      color: #666;
+      color: var(--gle-muted);
     }
-    .legal-content {
-      line-height: 1.8;
-    }
-    .legal-content h2 {
-      font-size: 1.75rem;
-      margin-top: 2.5rem;
+    .gle-legal-prose h2 {
+      font-size: 1.6rem;
+      margin-top: 2.6rem;
       margin-bottom: 1rem;
-      color: #333;
-      border-bottom: 2px solid var(--purple, #93acf0);
+      color: var(--gle-primary);
+      border-bottom: 2px solid var(--gle-violet);
       padding-bottom: 0.5rem;
     }
-    .legal-content h3 {
-      font-size: 1.25rem;
-      margin-top: 1.5rem;
+    .gle-legal-prose h3 {
+      font-size: 1.2rem;
+      margin-top: 1.6rem;
       margin-bottom: 0.75rem;
-      color: #444;
+      color: var(--gle-primary);
     }
-    .legal-content p {
+    .gle-legal-prose p {
       margin-bottom: 1rem;
-      color: #555;
+      line-height: 1.8;
+      color: var(--gle-secondary);
     }
-    .legal-content ul {
+    .gle-legal-prose ul {
       margin-left: 1.5rem;
       margin-bottom: 1rem;
     }
-    .legal-content li {
+    .gle-legal-prose li {
       margin-bottom: 0.5rem;
-      color: #555;
+      line-height: 1.8;
+      color: var(--gle-secondary);
     }
-    .legal-content strong {
-      color: #333;
-      font-weight: 600;
-    }
+    .gle-legal-prose strong { color: var(--gle-primary); font-weight: 600; }
+    .gle-legal-prose a { color: var(--gle-violet); }
     .legal-box {
-      background: #f8f9fa;
-      border-left: 4px solid var(--purple, #93acf0);
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-left: 4px solid var(--gle-violet);
       padding: 1.5rem;
       margin: 2rem 0;
-      border-radius: 8px;
+      border-radius: 14px;
     }
-    .legal-box p {
-      margin: 0.5rem 0;
+    .legal-box p { margin: 0.5rem 0; }
+    .disclaimer-notice {
+      background: rgba(255, 243, 205, 0.6);
+      border-left: 4px solid #ffc107;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-radius: 14px;
     }
-    .back-link {
-      display: inline-block;
-      margin-bottom: 2rem;
-      color: var(--purple, #93acf0);
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .back-link:hover {
-      text-decoration: underline;
-    }
+    .disclaimer-notice p { margin: 0; color: #856404; }
     .last-updated {
       text-align: center;
       margin-top: 3rem;
       padding-top: 2rem;
-      border-top: 1px solid #eee;
-      color: #999;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      color: var(--gle-muted);
       font-size: 0.9rem;
-    }
-    .disclaimer-notice {
-      background: #fff3cd;
-      border-left: 4px solid #ffc107;
-      padding: 1rem;
-      margin: 1.5rem 0;
-      border-radius: 8px;
-    }
-    .disclaimer-notice p {
-      margin: 0;
-      color: #856404;
     }
   </style>
 
@@ -159,228 +159,296 @@
   <!-- noscript fallback intentionally removed: would fire PageView without consent -->
   <!-- End Meta Pixel Code -->
 </head>
+
 <body>
   <!-- HEADER -->
-  <header>
-    <div class="container">
-      <div class="header-inner">
-        <a class="logo" href="/">
-          <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle>
-            <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-          </svg>
-          Bubble.
-        </a>
+  <!-- Top strip "Labo ouvert" — Glass Lab Editorial Charte v3 -->
+  <div class="gle-top-strip">
+    <div><span class="gle-top-strip-dot"></span>LABO OUVERT</div>
+    <div>·</div>
+    <div>BUILD IN PUBLIC</div>
+    <div>·</div>
+    <div>22+ AGENTS EN PROD</div>
+  </div>
+
+  <header class="gle-site-header">
+    <div class="gle-container">
+      <div class="gle-header-inner">
+        <div class="gle-logo-block">
+          <a class="gle-logo logo" href="/">
+            <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
+                stroke-linecap="round" stroke-width="6"></circle>
+              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+            </svg>
+            Bubble.
+          </a>
+          <span class="gle-logo-tagline">Investissez dans l'essentiel</span>
+        </div>
+
+        <!-- Mobile hamburger toggle (ID preserve — listener au bas de page) -->
         <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
           <span></span><span></span><span></span>
         </button>
-        <nav>
+
+        <nav class="gle-nav">
           <a href="/a-propos">À Propos</a>
-          <a href="/professionnels">Professionnels</a>
-          <a href="/particuliers">Particuliers</a>
+          <a href="/particuliers">Apprendre &amp; Brancher</a>
+          <a href="/professionnels">Implémentation pro</a>
           <a href="/blog">Blog</a>
           <div class="lang-switch">
             <button class="active">FR</button>
             <span>/</span>
             <button data-href="/en/legal-notice">EN</button>
           </div>
+          <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
+             class="gle-nav-cta nav-cta-calendly" data-cta-track="header_calendly_click">
+            Réserver un diagnostic
+          </a>
         </nav>
 
       </div>
     </div>
   </header>
 
-  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block) -->
+  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block — ID preserve) -->
   <div class="mobile-nav-overlay" id="mobile-nav-overlay">
     <div class="mobile-nav-content">
       <a href="/a-propos">À Propos</a>
-      <a href="/professionnels">Professionnels</a>
-      <a href="/particuliers">Particuliers</a>
+      <a href="/particuliers">Apprendre &amp; Brancher</a>
+      <a href="/professionnels">Implémentation pro</a>
       <a href="/blog">Blog</a>
       <div class="lang-switch">
         <button class="active">FR</button>
         <span>/</span>
         <button data-href="/en/legal-notice">EN</button>
       </div>
+      <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
+         class="nav-cta-calendly mobile-nav-cta-calendly" data-cta-track="mobile_header_calendly_click">
+        Réserver un diagnostic gratuit (30 min)
+      </a>
     </div>
   </div>
 
-  <div class="legal-container">
-    <a href="/" class="back-link">&larr; Retour à l'accueil</a>
+  <main>
+    <section class="gle-legal-section gle-bg-warm-atmospheric">
+      <div class="gle-container">
+        <div class="gle-legal-prose">
+          <a href="/" class="gle-legal-back">&larr; Retour à l'accueil</a>
 
-    <div class="legal-header">
-      <h1>Mentions Légales</h1>
-      <p>Informations légales conformément à la LCEN (Loi pour la Confiance dans l'Économie Numérique)</p>
-    </div>
+          <div class="gle-legal-header">
+            <h1>Mentions Légales</h1>
+            <p>Informations légales conformément à la LCEN (Loi pour la Confiance dans l'Économie Numérique)</p>
+          </div>
 
-    <div class="legal-content">
-      <h2>1. Éditeur du site</h2>
-      <div class="legal-box">
-        <p><strong>Dénomination sociale :</strong> Bubble Invest</p>
-        <p><strong>Forme juridique :</strong> Société par Actions Simplifiée (SAS)</p>
-        <p><strong>Capital social :</strong> 1 000,00 €</p>
-        <p><strong>Siège social :</strong> 60 rue François 1er, 75008 Paris, France</p>
-        <p><strong>SIREN :</strong> 991 745 951</p>
-        <p><strong>SIRET :</strong> 991 745 951 00012</p>
-        <p><strong>RCS :</strong> Paris 991 745 951</p>
-        <p><strong>Date d'immatriculation :</strong> 20 octobre 2025</p>
-        <p><strong>Code APE :</strong> 62.02A - Conseil en technologie de l'information</p>
-        <p><strong>N° de TVA intracommunautaire :</strong> FR41991745951</p>
+          <div class="legal-content">
+            <h2>1. Éditeur du site</h2>
+            <div class="legal-box">
+              <p><strong>Dénomination sociale :</strong> Bubble Invest</p>
+              <p><strong>Forme juridique :</strong> Société par Actions Simplifiée (SAS)</p>
+              <p><strong>Capital social :</strong> 1 000,00 €</p>
+              <p><strong>Siège social :</strong> 60 rue François 1er, 75008 Paris, France</p>
+              <p><strong>SIREN :</strong> 991 745 951</p>
+              <p><strong>SIRET :</strong> 991 745 951 00012</p>
+              <p><strong>RCS :</strong> Paris 991 745 951</p>
+              <p><strong>Date d'immatriculation :</strong> 20 octobre 2025</p>
+              <p><strong>Code APE :</strong> 62.02A - Conseil en technologie de l'information</p>
+              <p><strong>N° de TVA intracommunautaire :</strong> FR41991745951</p>
+            </div>
+
+            <h2>2. Direction de la publication</h2>
+            <div class="legal-box">
+              <p><strong>Président :</strong> Joris Dupraz</p>
+              <p><strong>Directrice Générale :</strong> Jade Hoang</p>
+              <p><strong>Email de contact :</strong> <a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></p>
+            </div>
+
+            <h2>3. Hébergement du site</h2>
+            <div class="legal-box">
+              <p><strong>Hébergeur :</strong> DigitalOcean, LLC</p>
+              <p><strong>Adresse :</strong> 101 Avenue of the Americas, 10th Floor, New York, NY 10013, United States</p>
+              <p><strong>Site web :</strong> <a href="https://www.digitalocean.com" target="_blank" rel="noopener">www.digitalocean.com</a></p>
+            </div>
+
+            <h2>4. Propriété intellectuelle</h2>
+            <p>L'ensemble du contenu de ce site (textes, images, graphismes, logo, icônes, vidéos, logiciels, etc.) est la propriété exclusive de <strong>Bubble Invest</strong>, sauf mention contraire.</p>
+            <p>Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de Bubble Invest.</p>
+            <p>Toute exploitation non autorisée du site ou de l'un quelconque des éléments qu'il contient sera considérée comme constitutive d'une contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et suivants du Code de Propriété Intellectuelle.</p>
+
+            <h2>5. Nature de l'Activité - Contenu Gratuit & Conseil en Automatisation IA</h2>
+            <p><strong>Bubble Invest</strong> exerce deux activités distinctes : la création de contenu éducatif gratuit (B2C) et le conseil en automatisation par IA pour les professionnels (B2B).</p>
+
+            <h3>5.1 Activité B2C - Contenu Gratuit, Éducation & Vitrine d'Expertise</h3>
+            <p>Notre activité grand public est <strong>entièrement gratuite</strong> et constitue notre vitrine d'expertise :</p>
+            <ul>
+              <li><strong>Agent d'investissement en proof of concept</strong> : Nous avons construit un agent d'investissement automatisé pour notre propre usage. Nous le documentons publiquement, en toute transparence (ce qu'il fait bien, ses limites, comment il est construit)</li>
+              <li><strong>Contenu éducatif</strong> : Tutoriels, démos, ressources, build in public sur les agents IA (Claude Code, Open Claw, etc.)</li>
+              <li><strong>Blog et articles</strong> : Partage de connaissances sur l'automatisation et l'intelligence artificielle</li>
+              <li><strong>Simulateurs et outils pédagogiques</strong> : Pour apprendre et expérimenter avec les agents IA</li>
+            </ul>
+            <p><strong>Le B2C est notre marketing, pas notre produit.</strong> Nous ne cherchons pas à monétiser artificiellement du contenu qui se commoditise. Notre valeur ajoutée réside dans le contexte, la curation et l'honnêteté.</p>
+
+            <h3>5.2 Activité B2B - Conseil & Automatisation IA sur Mesure</h3>
+            <p>Nous accompagnons les professionnels dans le déploiement d'agents IA et d'automatisations :</p>
+            <ul>
+              <li><strong>Clients cibles</strong> : Sociétés de gestion, CGP (Conseillers en Gestion de Patrimoine), PME, indépendants tech-forward</li>
+              <li><strong>Services B2B</strong> : Déploiement d'agents IA (Claude Code, Open Claw, etc.), automatisation des workflows, veille technologique, formation aux derniers outils</li>
+              <li><strong>Notre edge unique</strong> : Early adopters systématiques. Nous maîtrisons les outils sortis il y a quelques semaines, bien avant la majorité du marché</li>
+              <li><strong>Approche</strong> : Accompagnement continu, upgrades au fil de l'eau, toujours à la pointe des dernières innovations IA</li>
+            </ul>
+
+            <h3>5.3 Ce que Bubble N'est PAS</h3>
+            <div class="disclaimer-notice">
+              <p><strong>&#9888;&#65039; Important : Bubble n'est PAS un conseiller financier ni un produit d'investissement</strong></p>
+            </div>
+            <p>Bubble <strong>n'est PAS</strong>:</p>
+            <ul>
+              <li>Un conseiller en investissements financiers (CIF)</li>
+              <li>Un gestionnaire d'actifs ou de portefeuille</li>
+              <li>Un intermédiaire financier régulé par l'ORIAS ou l'AMF</li>
+              <li>Un service de conseil en investissement personnalisé</li>
+              <li>Un produit SaaS payant pour les particuliers</li>
+            </ul>
+
+            <h3>5.4 Responsabilité de l'Utilisateur</h3>
+            <p><strong>Les utilisateurs du contenu gratuit sont seuls responsables de leurs décisions.</strong> Bubble partage des outils et des ressources éducatives en toute transparence, mais :</p>
+            <ul>
+              <li>Ne gère <strong>JAMAIS</strong> les actifs des utilisateurs</li>
+              <li>Ne fournit <strong>AUCUN</strong> conseil en investissement personnalisé</li>
+              <li>Ne garantit <strong>AUCUNE</strong> performance future</li>
+              <li>Partage un proof of concept personnel, pas un produit financier régulé</li>
+            </ul>
+            <p><strong>Avertissement :</strong> Les performances passées ne préjugent pas des performances futures. Tout investissement comporte des risques de perte en capital. Notre agent d'investissement est un outil personnel partagé à titre éducatif, pas une recommandation.</p>
+
+            <h3>5.5 Cadre Réglementaire Applicable</h3>
+            <p>En tant qu'éditeur de contenu gratuit et conseil en technologie, Bubble est soumise à :</p>
+            <ul>
+              <li><strong>RGPD</strong> (Protection des données personnelles)</li>
+              <li><strong>LCEN</strong> (Loi pour la Confiance dans l'Économie Numérique)</li>
+              <li><strong>Code de la consommation</strong> (Protection des consommateurs)</li>
+              <li><strong>Droit d'auteur</strong> (Propriété intellectuelle)</li>
+            </ul>
+            <p>Bubble <strong>n'est PAS soumise</strong> aux régulations financières (AMF, ORIAS) car nous ne fournissons ni conseil en investissement, ni gestion d'actifs, ni produit financier.</p>
+
+            <h2>6. Données personnelles</h2>
+            <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données personnelles.</p>
+            <p>Pour plus d'informations sur la gestion de vos données, consultez notre <a href="/privacy">Politique de Confidentialité</a>.</p>
+            <p><strong>Responsable du traitement des données :</strong> Bubble Invest</p>
+            <p><strong>Contact :</strong> <a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></p>
+
+            <h2>7. Cookies</h2>
+            <p>Ce site utilise des cookies pour améliorer l'expérience utilisateur. Vous pouvez gérer vos préférences de cookies via le bandeau de consentement qui apparaît lors de votre première visite.</p>
+            <p>Pour plus d'informations, consultez notre <a href="/privacy#cookies">Politique de Cookies</a>.</p>
+
+            <h2>8. Liens hypertextes</h2>
+            <p>Le site peut contenir des liens vers d'autres sites web. <strong>Bubble Invest</strong> n'exerce aucun contrôle sur ces sites externes et décline toute responsabilité quant à leur contenu.</p>
+
+            <h2>9. Limitation de responsabilité</h2>
+            <p><strong>Bubble Invest</strong> s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site, mais ne peut en garantir l'exactitude, la complétude ou l'actualité.</p>
+            <p>L'utilisation des informations et contenus disponibles sur ce site se fait sous l'entière responsabilité de l'utilisateur. <strong>Bubble Invest</strong> ne pourra être tenu responsable des dommages directs ou indirects résultant de l'utilisation de ce site.</p>
+
+            <h2>10. Droit applicable et juridiction compétente</h2>
+            <p>Les présentes mentions légales sont régies par le droit français.</p>
+            <p>En cas de litige, et à défaut de résolution amiable, les tribunaux français seront seuls compétents. Le tribunal compétent sera celui du ressort du siège social de <strong>Bubble Invest</strong> (Paris).</p>
+
+            <h2>11. Crédits</h2>
+            <h3>11.1 Conception et développement</h3>
+            <p>Site web conçu et développé par l'équipe <strong>Bubble Invest</strong>.</p>
+
+            <h3>11.2 Icônes et illustrations</h3>
+            <ul>
+              <li>Icônes : Noun Project (licences appropriées)</li>
+              <li>Graphiques : Chart.js (licence MIT)</li>
+              <li>Logo Bubble : Création originale Bubble Invest</li>
+            </ul>
+
+            <h3>11.3 Polices de caractères</h3>
+            <ul>
+              <li>Police principale : Inter (Google Fonts - Licence Open Font)</li>
+            </ul>
+
+            <div class="last-updated">
+              <p><strong>Dernière mise à jour :</strong> 2 mars 2026</p>
+              <p>Version 2.0 - Mise à jour du modèle d'activité (contenu gratuit + conseil B2B)</p>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+  </main>
 
-      <h2>2. Direction de la publication</h2>
-      <div class="legal-box">
-        <p><strong>Président :</strong> Joris Dupraz</p>
-        <p><strong>Directrice Générale :</strong> Jade Hoang</p>
-        <p><strong>Email de contact :</strong> <a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></p>
-      </div>
-
-      <h2>3. Hébergement du site</h2>
-      <div class="legal-box">
-        <p><strong>Hébergeur :</strong> DigitalOcean, LLC</p>
-        <p><strong>Adresse :</strong> 101 Avenue of the Americas, 10th Floor, New York, NY 10013, United States</p>
-        <p><strong>Site web :</strong> <a href="https://www.digitalocean.com" target="_blank" rel="noopener">www.digitalocean.com</a></p>
-      </div>
-
-      <h2>4. Propriété intellectuelle</h2>
-      <p>L'ensemble du contenu de ce site (textes, images, graphismes, logo, icônes, vidéos, logiciels, etc.) est la propriété exclusive de <strong>Bubble Invest</strong>, sauf mention contraire.</p>
-      <p>Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de Bubble Invest.</p>
-      <p>Toute exploitation non autorisée du site ou de l'un quelconque des éléments qu'il contient sera considérée comme constitutive d'une contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et suivants du Code de Propriété Intellectuelle.</p>
-
-      <h2>5. Nature de l'Activité - Contenu Gratuit & Conseil en Automatisation IA</h2>
-      <p><strong>Bubble Invest</strong> exerce deux activités distinctes : la création de contenu éducatif gratuit (B2C) et le conseil en automatisation par IA pour les professionnels (B2B).</p>
-
-      <h3>5.1 Activité B2C - Contenu Gratuit, Éducation & Vitrine d'Expertise</h3>
-      <p>Notre activité grand public est <strong>entièrement gratuite</strong> et constitue notre vitrine d'expertise :</p>
-      <ul>
-        <li><strong>Agent d'investissement en proof of concept</strong> : Nous avons construit un agent d'investissement automatisé pour notre propre usage. Nous le documentons publiquement, en toute transparence (ce qu'il fait bien, ses limites, comment il est construit)</li>
-        <li><strong>Contenu éducatif</strong> : Tutoriels, démos, ressources, build in public sur les agents IA (Claude Code, Open Claw, etc.)</li>
-        <li><strong>Blog et articles</strong> : Partage de connaissances sur l'automatisation et l'intelligence artificielle</li>
-        <li><strong>Simulateurs et outils pédagogiques</strong> : Pour apprendre et expérimenter avec les agents IA</li>
-      </ul>
-      <p><strong>Le B2C est notre marketing, pas notre produit.</strong> Nous ne cherchons pas à monétiser artificiellement du contenu qui se commoditise. Notre valeur ajoutée réside dans le contexte, la curation et l'honnêteté.</p>
-
-      <h3>5.2 Activité B2B - Conseil & Automatisation IA sur Mesure</h3>
-      <p>Nous accompagnons les professionnels dans le déploiement d'agents IA et d'automatisations :</p>
-      <ul>
-        <li><strong>Clients cibles</strong> : Sociétés de gestion, CGP (Conseillers en Gestion de Patrimoine), PME, indépendants tech-forward</li>
-        <li><strong>Services B2B</strong> : Déploiement d'agents IA (Claude Code, Open Claw, etc.), automatisation des workflows, veille technologique, formation aux derniers outils</li>
-        <li><strong>Notre edge unique</strong> : Early adopters systématiques. Nous maîtrisons les outils sortis il y a quelques semaines, bien avant la majorité du marché</li>
-        <li><strong>Approche</strong> : Accompagnement continu, upgrades au fil de l'eau, toujours à la pointe des dernières innovations IA</li>
-      </ul>
-
-      <h3>5.3 Ce que Bubble N'est PAS</h3>
-      <div class="disclaimer-notice">
-        <p><strong>&#9888;&#65039; Important : Bubble n'est PAS un conseiller financier ni un produit d'investissement</strong></p>
-      </div>
-      <p>Bubble <strong>n'est PAS</strong>:</p>
-      <ul>
-        <li>Un conseiller en investissements financiers (CIF)</li>
-        <li>Un gestionnaire d'actifs ou de portefeuille</li>
-        <li>Un intermédiaire financier régulé par l'ORIAS ou l'AMF</li>
-        <li>Un service de conseil en investissement personnalisé</li>
-        <li>Un produit SaaS payant pour les particuliers</li>
-      </ul>
-
-      <h3>5.4 Responsabilité de l'Utilisateur</h3>
-      <p><strong>Les utilisateurs du contenu gratuit sont seuls responsables de leurs décisions.</strong> Bubble partage des outils et des ressources éducatives en toute transparence, mais :</p>
-      <ul>
-        <li>Ne gère <strong>JAMAIS</strong> les actifs des utilisateurs</li>
-        <li>Ne fournit <strong>AUCUN</strong> conseil en investissement personnalisé</li>
-        <li>Ne garantit <strong>AUCUNE</strong> performance future</li>
-        <li>Partage un proof of concept personnel, pas un produit financier régulé</li>
-      </ul>
-      <p><strong>Avertissement :</strong> Les performances passées ne préjugent pas des performances futures. Tout investissement comporte des risques de perte en capital. Notre agent d'investissement est un outil personnel partagé à titre éducatif, pas une recommandation.</p>
-
-      <h3>5.5 Cadre Réglementaire Applicable</h3>
-      <p>En tant qu'éditeur de contenu gratuit et conseil en technologie, Bubble est soumise à :</p>
-      <ul>
-        <li><strong>RGPD</strong> (Protection des données personnelles)</li>
-        <li><strong>LCEN</strong> (Loi pour la Confiance dans l'Économie Numérique)</li>
-        <li><strong>Code de la consommation</strong> (Protection des consommateurs)</li>
-        <li><strong>Droit d'auteur</strong> (Propriété intellectuelle)</li>
-      </ul>
-      <p>Bubble <strong>n'est PAS soumise</strong> aux régulations financières (AMF, ORIAS) car nous ne fournissons ni conseil en investissement, ni gestion d'actifs, ni produit financier.</p>
-
-      <h2>6. Données personnelles</h2>
-      <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données personnelles.</p>
-      <p>Pour plus d'informations sur la gestion de vos données, consultez notre <a href="/privacy">Politique de Confidentialité</a>.</p>
-      <p><strong>Responsable du traitement des données :</strong> Bubble Invest</p>
-      <p><strong>Contact :</strong> <a href="mailto:contact@bubbleinvest.org">contact@bubbleinvest.org</a></p>
-
-      <h2>7. Cookies</h2>
-      <p>Ce site utilise des cookies pour améliorer l'expérience utilisateur. Vous pouvez gérer vos préférences de cookies via le bandeau de consentement qui apparaît lors de votre première visite.</p>
-      <p>Pour plus d'informations, consultez notre <a href="/privacy#cookies">Politique de Cookies</a>.</p>
-
-      <h2>8. Liens hypertextes</h2>
-      <p>Le site peut contenir des liens vers d'autres sites web. <strong>Bubble Invest</strong> n'exerce aucun contrôle sur ces sites externes et décline toute responsabilité quant à leur contenu.</p>
-
-      <h2>9. Limitation de responsabilité</h2>
-      <p><strong>Bubble Invest</strong> s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site, mais ne peut en garantir l'exactitude, la complétude ou l'actualité.</p>
-      <p>L'utilisation des informations et contenus disponibles sur ce site se fait sous l'entière responsabilité de l'utilisateur. <strong>Bubble Invest</strong> ne pourra être tenu responsable des dommages directs ou indirects résultant de l'utilisation de ce site.</p>
-
-      <h2>10. Droit applicable et juridiction compétente</h2>
-      <p>Les présentes mentions légales sont régies par le droit français.</p>
-      <p>En cas de litige, et à défaut de résolution amiable, les tribunaux français seront seuls compétents. Le tribunal compétent sera celui du ressort du siège social de <strong>Bubble Invest</strong> (Paris).</p>
-
-      <h2>11. Crédits</h2>
-      <h3>11.1 Conception et développement</h3>
-      <p>Site web conçu et développé par l'équipe <strong>Bubble Invest</strong>.</p>
-
-      <h3>11.2 Icônes et illustrations</h3>
-      <ul>
-        <li>Icônes : Noun Project (licences appropriées)</li>
-        <li>Graphiques : Chart.js (licence MIT)</li>
-        <li>Logo Bubble : Création originale Bubble Invest</li>
-      </ul>
-
-      <h3>11.3 Polices de caractères</h3>
-      <ul>
-        <li>Police principale : Inter (Google Fonts - Licence Open Font)</li>
-      </ul>
-
-      <div class="last-updated">
-        <p><strong>Dernière mise à jour :</strong> 2 mars 2026</p>
-        <p>Version 2.0 - Mise à jour du modèle d'activité (contenu gratuit + conseil B2B)</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
+  <!-- FOOTER (Glass Lab Editorial v3 — structure preserved, restyled) -->
+  <footer class="gle-footer">
+    <div class="gle-container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="logo" href="/" style="font-size: 1.5rem;">
+          <a class="logo" href="/" style="font-size: 1.5rem; color: #fff;">
             <svg fill="none" style="width: 32px; height: 32px;" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"></circle>
+              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
+                stroke-linecap="round" stroke-width="6"></circle>
               <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
             </svg>
             Bubble.
           </a>
-          <p>L'ère de l'IA a tout changé. Changez avec elle.</p>
+          <p style="font-family: var(--gle-font-accent); font-style: italic; opacity: 0.85; margin-top: 0.5rem;">Investissez dans l'essentiel.</p>
+          <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.78rem;">L'ère de l'IA a tout changé. Changez avec elle.</p>
           <div class="social-links">
-            <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a>
-            <a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
-            <a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"></path></svg></a>
-            <a aria-label="X" href="https://x.com/bubbleinvest" target="_blank"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+            <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank"
+              title="LinkedIn">
+              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank"
+              title="Instagram @behindthebubble.ai">
+              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank"
+              title="Substack @bubbleinvest">
+              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                <path
+                  d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="GitHub" href="/github" title="GitHub">
+              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="X" href="https://x.com/bubbleinvest" target="_blank" title="X @bubbleinvest">
+              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                </path>
+              </svg>
+            </a>
           </div>
         </div>
         <div class="footer-links">
-          <h4>Produit</h4>
+          <h4>Navigation</h4>
           <ul>
-            <li><a href="/particuliers">Particuliers</a></li>
-            <li><a href="/professionnels">Professionnels</a></li>
-            <li><a href="/shop">Shop</a></li>
+            <li><a href="/a-propos">À Propos</a></li>
+            <li><a href="/particuliers">Apprendre &amp; Brancher</a></li>
+            <li><a href="/professionnels">Implémentation pro</a></li>
+            <li><a href="/blog">Blog</a></li>
           </ul>
         </div>
         <div class="footer-links">
           <h4>Ressources</h4>
           <ul>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/a-propos">À Propos</a></li>
+            <li><a href="/shop">Boutique</a></li>
+            <li><a href="/labs">Laboratoire</a></li>
             <li><a href="https://bubbleinvest.substack.com" target="_blank">Newsletter</a></li>
-            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank">Nous contacter</a></li>
+            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank" data-cta-track="footer_calendly_click">Réserver un diagnostic</a></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -392,17 +460,71 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Bubble Invest &mdash; Transparent by design.</p>
+        <p>© 2026 Bubble Invest · Transparent by design · Build in public</p>
       </div>
     </div>
   </footer>
+
+  <!-- Chat Side Panel (slide-in chatbot) -->
+  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+    <div class="chat-side-panel-header">
+      <div class="chat-side-panel-header-info">
+        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+        <div class="chat-side-panel-titles">
+          <span class="chat-side-panel-title">Assistant Bubble</span>
+        </div>
+      </div>
+      <div class="chat-side-panel-actions">
+        <button class="chat-side-panel-minimize" aria-label="Réduire le chat" type="button">-</button>
+        <button class="chat-side-panel-close" aria-label="Fermer le chat" type="button">✕</button>
+      </div>
+    </div>
+    <div class="chat-side-panel-messages" role="log" aria-live="polite">
+    </div>
+    <form class="chat-side-panel-input-container" novalidate>
+      <input type="text" class="chat-side-panel-input" placeholder="Posez vos questions..."
+        data-translate-placeholder="floating_input.placeholder" aria-label="Saisissez votre message"
+        autocomplete="off" />
+      <button class="chat-side-panel-send" aria-label="Envoyer le message" type="submit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M12 21V4" stroke-linecap="round" />
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <!-- Floating Glassmorphism Chat Input -->
+  <div class="floating-chat-input hidden" data-always-visible="false" data-page-context="investors"
+    data-trigger-selector="main" id="floating-chat-input">
+    <div class="floating-input-container">
+      <input aria-label="Posez votre question" class="floating-input-field"
+        placeholder="Pose-moi n'importe quelle question..." type="text"
+        data-translate-placeholder="floating_input.placeholder" />
+      <button aria-label="Envoyer" class="floating-input-submit">
+        <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
+          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          <path d="M12 21V4" stroke-linecap="round" stroke-width="2"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="/js/seo/cookie-banner.js"></script>
   <!-- Unified conversion tracking (Pixel + CAPI dual tracking + Google Ads conversion) — Phase 1 marketing 2026-05-18 -->
   <script src="/js/seo/conversions.js"></script>
   <script src="/js/lang-toggle.js"></script>
+  <script src="/i18n/translations.js"></script>
+  <script src="/js/bubble-agent-memory.js"></script>
+  <script src="/js/chatbot-animations.js"></script>
+  <script src="/js/chat-side-panel.js"></script>
+  <script src="/js/floating-chat-input.js"></script>
+  <script src="/js/animations.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
+
+  <!-- Sprint 3 Ghibli Phase 2 — top strip "Labo ouvert" + floating bubbles signature -->
+  <script src="/js/ghibli-chrome.js" defer></script>
 
   <!-- Mobile hamburger menu toggle -->
   <script>
@@ -435,4 +557,5 @@
     })();
   </script>
 </body>
+
 </html>
