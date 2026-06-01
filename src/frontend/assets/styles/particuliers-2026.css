@@ -697,3 +697,18 @@
   .ab-lab-feed { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
   .ab-lab-team { grid-template-columns: repeat(3, 1fr); }
 }
+
+
+/* ── Waitlist modal ───────────────────────────────── */
+.gle-waitlist-overlay{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;background:rgba(20,27,48,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:1.5rem;}
+.gle-waitlist-overlay.open{display:flex;}
+.gle-waitlist-modal{position:relative;width:100%;max-width:440px;background:var(--gle-glass-bg);backdrop-filter:blur(var(--gle-glass-blur));-webkit-backdrop-filter:blur(var(--gle-glass-blur));border:1px solid var(--gle-glass-border);border-radius:var(--gle-radius-card);padding:2.25rem 2rem;box-shadow:0 24px 60px rgba(0,0,0,.25);}
+.gle-waitlist-close{position:absolute;top:.9rem;right:1.1rem;background:none;border:none;font-size:1.4rem;line-height:1;color:var(--gle-muted);cursor:pointer;}
+.gle-waitlist-title{font-family:var(--gle-font-display);font-size:1.4rem;font-weight:700;color:var(--gle-primary);margin-bottom:.5rem;}
+.gle-waitlist-sub{color:var(--gle-secondary);font-size:.92rem;line-height:1.5;margin-bottom:1.25rem;}
+.gle-waitlist-sub strong{color:var(--gle-violet);}
+.gle-waitlist-form{display:flex;gap:.6rem;flex-wrap:wrap;}
+.gle-waitlist-input{flex:1;min-width:180px;padding:.8rem 1rem;border:1px solid var(--gle-glass-border);border-radius:999px;background:rgba(255,255,255,.65);font-size:.95rem;font-family:inherit;}
+.gle-waitlist-submit{white-space:nowrap;}
+.gle-waitlist-note{font-size:.78rem;color:var(--gle-muted);margin-top:.75rem;}
+.gle-waitlist-success{color:var(--gle-mint-deep);font-weight:600;margin-top:1rem;}

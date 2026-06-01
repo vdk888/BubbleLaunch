@@ -353,9 +353,9 @@
               <h3 class="ab-catalog-title">Gérant de portefeuille</h3>
               <p class="ab-catalog-desc">Notre agent d'investissement personnel, branché à votre courtier. Stratégies risk-parity et momentum, sur 17+ ans de données.</p>
               <div class="ab-catalog-price-tba">En préparation</div>
-              <a class="ab-catalog-cta" href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff" target="_blank" rel="noopener noreferrer" style="background: rgba(0,0,0,0.06); color: var(--gle-primary);">
+              <button class="ab-catalog-cta" type="button" data-waitlist-agent="Gérant de portefeuille" style="background: rgba(0,0,0,0.06); color: var(--gle-primary); border:none; cursor:pointer; font:inherit;">
                 Rejoindre la waitlist →
-              </a>
+              </button>
             </div>
           </div>
           <!-- Card 3: Community Manager — bientot -->
@@ -367,9 +367,9 @@
               <h3 class="ab-catalog-title">Community Manager</h3>
               <p class="ab-catalog-desc">Génère vos posts LinkedIn, Twitter, Instagram, depuis vos notes. Valide en 1 clic ou laisse l'agent publier tout seul.</p>
               <div class="ab-catalog-price-tba">En préparation</div>
-              <a class="ab-catalog-cta" href="https://jungle-chive-5ab.notion.site/257cfc5206448093bbc5eea3281dbfff" target="_blank" rel="noopener noreferrer" style="background: rgba(0,0,0,0.06); color: var(--gle-primary);">
+              <button class="ab-catalog-cta" type="button" data-waitlist-agent="Community Manager" style="background: rgba(0,0,0,0.06); color: var(--gle-primary); border:none; cursor:pointer; font:inherit;">
                 Rejoindre la waitlist →
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -995,6 +995,39 @@
         if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
       });
     })();
+  </script>
+
+  <!-- Waitlist modal (Portfolio / Community Manager agents — en préparation) -->
+  <div class="gle-waitlist-overlay" id="waitlist-overlay" aria-hidden="true">
+    <div class="gle-waitlist-modal" role="dialog" aria-modal="true" aria-labelledby="waitlist-title">
+      <button class="gle-waitlist-close" type="button" aria-label="Fermer">&times;</button>
+      <h3 class="gle-waitlist-title" id="waitlist-title">Rejoindre la liste d'attente</h3>
+      <p class="gle-waitlist-sub">Agent <strong id="waitlist-agent">—</strong> · en préparation. Laissez votre email, on vous prévient au lancement.</p>
+      <form class="gle-waitlist-form" id="waitlist-form" novalidate>
+        <input type="email" class="gle-waitlist-input" id="waitlist-email" placeholder="votre@email.com" required aria-label="Votre email" />
+        <button type="submit" class="gle-btn-primary gle-waitlist-submit">M'inscrire</button>
+      </form>
+      <p class="gle-waitlist-note">Pas de spam. Désinscription en 1 clic.</p>
+      <p class="gle-waitlist-success" id="waitlist-success" hidden>✓ Merci ! On vous prévient dès que l'agent est prêt.</p>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var ov=document.getElementById('waitlist-overlay'); if(!ov) return;
+    var agentEl=document.getElementById('waitlist-agent'), form=document.getElementById('waitlist-form'),
+        email=document.getElementById('waitlist-email'), ok=document.getElementById('waitlist-success'), agent='';
+    function open(a){agent=a;agentEl.textContent=a;ok.hidden=true;form.style.display='';email.value='';ov.classList.add('open');ov.setAttribute('aria-hidden','false');setTimeout(function(){email.focus();},50);}
+    function close(){ov.classList.remove('open');ov.setAttribute('aria-hidden','true');}
+    document.querySelectorAll('[data-waitlist-agent]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();open(b.getAttribute('data-waitlist-agent'));});});
+    ov.addEventListener('click',function(e){if(e.target===ov)close();});
+    ov.querySelector('.gle-waitlist-close').addEventListener('click',close);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('open'))close();});
+    form.addEventListener('submit',function(e){e.preventDefault();var v=email.value.trim();if(!v||v.indexOf('@')<1){email.focus();return;}
+      var btn=form.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='…';
+      fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:"Liste d'attente — "+agent,email:v,profile:'curious',comments:'Waitlist agent: '+agent})})
+        .then(function(){}).catch(function(){}).then(function(){form.style.display='none';ok.hidden=false;btn.disabled=false;btn.textContent="M'inscrire";});
+    });
+  })();
   </script>
 </body>
 
