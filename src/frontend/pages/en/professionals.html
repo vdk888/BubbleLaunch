@@ -135,6 +135,14 @@
     "mainEntity": [
       {
         "@type": "Question",
+        "name": "What happens to my data? Is it protected?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Data protection is at the core of how we build. Your agents run either locally on your machine or on a secure private server, and we provide an anonymisation and encryption layer that strips or masks sensitive data (client names, account numbers, identifiers) before it ever reaches an AI provider like Anthropic. You stay in full control: confidential data never leaves your environment in clear text."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "What exactly is Bubble Invest?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -516,6 +524,7 @@
               <li data-translate="professionnels.offer.custom_feat1">Scope defined together at the diagnostic</li>
               <li data-translate="professionnels.offer.custom_feat2">Follow-up &amp; maintenance package (on request)</li>
               <li data-translate="professionnels.offer.custom_feat3">Same principles: your code, your infra</li>
+              <li>Anonymisation &amp; encryption layer for sensitive data before AI processing (GDPR-compliant)</li>
             </ul>
             <a class="ip-btn-ghost" href="#calendly" data-cta-track="pros_offer_custom_calendly_click" data-translate="professionnels.offer.custom_cta">Request a quote →</a>
           </div>
@@ -617,6 +626,21 @@
             </div>
           </div>
 
+          <!-- Tile 7 — GDPR anonymisation -->
+          <div class="ip-tile">
+            <img class="ip-tile-photo"
+                 src="/assets/images/glass-lab/missions/mission-1.jpg"
+                 alt="GDPR anonymisation before AI processing"
+                 loading="lazy">
+            <div class="ip-tile-body">
+              <div class="ip-tile-meta">Compliance · GDPR</div>
+              <h3>Anonymisation before AI processing</h3>
+              <p>A pipeline automatically detects and masks sensitive data (names, IBANs, identifiers) before anything is sent to an LLM. You get the full power of AI without ever exposing personal data.</p>
+              <div class="ip-tile-outcome">Personal data never exposed · GDPR-compliant</div>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </section>
@@ -630,6 +654,10 @@
           <p class="gle-section-kicker" data-translate="professionnels.faq.kicker">Approach, offer, pricing, security, code ownership — the direct answers, no detours.</p>
         </div>
         <div class="ip-faq">
+          <details class="ip-faq-item">
+            <summary>What happens to my data? Is it protected?</summary>
+            <div class="ip-faq-a">Data protection is at the core of how we build. Your agents run either locally on your machine or on a secure private server, and we provide an anonymisation and encryption layer that strips or masks sensitive data (client names, account numbers, identifiers) <strong>before</strong> it ever reaches an AI provider like Anthropic. You stay in full control: confidential data never leaves your environment in clear text.</div>
+          </details>
           <details class="ip-faq-item">
             <summary>What exactly is Bubble Invest?</summary>
             <div class="ip-faq-a">Bubble Invest designs and installs custom AI agents for professionals. Our mission: automate your repetitive tasks, structure your data and free up your time for what matters — your expertise and your clients.</div>

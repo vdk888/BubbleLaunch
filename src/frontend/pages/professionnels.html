@@ -135,6 +135,14 @@
     "mainEntity": [
       {
         "@type": "Question",
+        "name": "Que deviennent mes données ? Sont-elles protégées ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La protection de vos données est au cœur de notre approche. Vos agents tournent au choix en local sur votre machine ou sur un serveur privé sécurisé, et nous proposons une couche d'anonymisation et de chiffrement qui retire ou masque les données sensibles (noms de clients, numéros de compte, identifiants) avant qu'elles n'atteignent un fournisseur d'IA comme Anthropic. Vous gardez le contrôle total : ce qui est confidentiel ne quitte jamais votre environnement en clair."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Qu'est-ce que Bubble Invest exactement ?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -516,6 +524,7 @@
               <li data-translate="professionnels.offer.custom_feat1">Périmètre défini ensemble au diagnostic</li>
               <li data-translate="professionnels.offer.custom_feat2">Forfait suivi &amp; maintenance (sur devis)</li>
               <li data-translate="professionnels.offer.custom_feat3">Mêmes principes : votre code, votre infra</li>
+              <li>Couche d'anonymisation &amp; chiffrement des données sensibles avant traitement IA (conformité RGPD)</li>
             </ul>
             <a class="ip-btn-ghost" href="#calendly" data-cta-track="pros_offer_custom_calendly_click" data-translate="professionnels.offer.custom_cta">Demander un devis →</a>
           </div>
@@ -617,6 +626,21 @@
             </div>
           </div>
 
+          <!-- Tile 7 — GDPR anonymisation -->
+          <div class="ip-tile">
+            <img class="ip-tile-photo"
+                 src="/assets/images/glass-lab/missions/mission-1.jpg"
+                 alt="Anonymisation RGPD avant traitement IA"
+                 loading="lazy">
+            <div class="ip-tile-body">
+              <div class="ip-tile-meta">Conformité · RGPD</div>
+              <h3>Anonymisation avant traitement IA</h3>
+              <p>Un pipeline détecte et masque automatiquement les données sensibles (noms, IBAN, identifiants) avant tout envoi à un LLM. Vous exploitez toute la puissance de l'IA sans jamais exposer de donnée nominative.</p>
+              <div class="ip-tile-outcome">Donnée nominative jamais exposée · conformité RGPD</div>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </section>
@@ -630,6 +654,10 @@
           <p class="gle-section-kicker" data-translate="professionnels.faq.kicker">Approche, offre, prix, sécurité, propriété du code — les réponses directes, sans détour.</p>
         </div>
         <div class="ip-faq">
+          <details class="ip-faq-item">
+            <summary>Que deviennent mes données ? Sont-elles protégées ?</summary>
+            <div class="ip-faq-a">La protection de vos données est au cœur de notre approche. Vos agents tournent au choix en local sur votre machine ou sur un serveur privé sécurisé, et nous proposons une couche d'anonymisation et de chiffrement qui retire ou masque les données sensibles (noms de clients, numéros de compte, identifiants) <strong>avant</strong> qu'elles n'atteignent un fournisseur d'IA comme Anthropic. Vous gardez le contrôle total : ce qui est confidentiel ne quitte jamais votre environnement en clair.</div>
+          </details>
           <details class="ip-faq-item">
             <summary>Qu'est-ce que Bubble Invest exactement ?</summary>
             <div class="ip-faq-a">Bubble Invest conçoit et installe des agents IA sur mesure pour les professionnels. Notre mission : automatiser vos tâches répétitives, structurer vos données et libérer votre temps pour ce qui compte — votre expertise et vos clients.</div>
