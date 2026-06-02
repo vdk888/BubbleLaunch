@@ -439,3 +439,11 @@
     transform: none;
   }
 }
+
+/* ── Mobile phone fixes (≤600px) — 2026-06-02 CSS-only mobile pass ── */
+@media (max-width: 600px) {
+  /* The offers grid carries an inline grid-template-columns: repeat(2,1fr) in
+     the HTML; override it here (HTML untouched per scope) so the two pricing
+     cards stack to a single readable column on phones. */
+  .ip-offers-grid { grid-template-columns: 1fr !important; }
+}
