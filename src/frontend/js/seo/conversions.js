@@ -42,6 +42,7 @@
     googleAdsConversionId: 'AW-18054203382',
     googleAdsConversionLabel: '4Ti9CMLcqq8cEPaP9aBD',
     googleAdsConversionValueEUR: 200,
+    ga4MeasurementId: 'G-T0MQEL0ZG0',
     capiEndpoint: '/api/tracking/capi/event',
   };
 
@@ -158,6 +159,31 @@
         console.warn('[Tracking] CAPI failed:', eventName, result);
       }
     });
+
+    // 3. GA4 (Google Analytics 4) — give the analytics funnel visibility of the
+    //    lead/booking steps (visite → lead → RDV). Meta + Google Ads already get
+    //    these via the calls above; GA4 was previously blind to them.
+    //    Routed with send_to the GA4 stream so the Google Ads tag (AW-…) isn't
+    //    spammed with non-conversion events. PageView is skipped — the GA4 config
+    //    tag already emits page_view, so re-emitting would double-count.
+    if (typeof global.gtag === 'function') {
+      const GA4_EVENT_NAME = { Lead: 'generate_lead', Schedule: 'book_meeting', Contact: 'contact' };
+      const ga4Name = GA4_EVENT_NAME[eventName];
+      if (ga4Name && CONFIG.ga4MeasurementId) {
+        try {
+          global.gtag('event', ga4Name, {
+            send_to: CONFIG.ga4MeasurementId,
+            currency: (opts.customData && opts.customData.currency) || 'EUR',
+            value: (opts.customData && opts.customData.value) || undefined,
+            // Reuse the Meta event_id so a lead can be cross-referenced across tools.
+            event_id: eventId,
+          });
+          console.log('[Tracking] GA4:', ga4Name, '✓');
+        } catch (err) {
+          console.warn('[Tracking] gtag GA4 event error:', err.message);
+        }
+      }
+    }
 
     return eventId;
   }
