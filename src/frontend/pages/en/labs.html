@@ -36,6 +36,8 @@
   <link rel="stylesheet" href="/assets/styles/core-2026.css">
   <link rel="stylesheet" href="/assets/styles/labs-2026.css">
   <link rel="stylesheet" href="/assets/styles/cookie-banner.css">
+  <!-- Glass Lab Editorial — Charte v3 (2026-05-22), loads LATE to override legacy where needed -->
+  <link rel="stylesheet" href="/assets/styles/glass-lab-editorial.css">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
   <script>
@@ -93,60 +95,77 @@
   </script>
 </head>
 
-<body>
-  <header>
-    <div class="container">
-      <div class="header-inner">
-        <a class="logo" href="/en/">
-          <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-              stroke-linecap="round" stroke-width="6"></circle>
-            <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-          </svg>
-          Bubble.
-        </a>
+<body class="gle-body">
+  <!-- HEADER -->
+  <!-- Top strip "Lab open" — Glass Lab Editorial Charte v3 -->
+  <div class="gle-top-strip">
+    <div><span class="gle-top-strip-dot"></span>LAB OPEN</div>
+    <div>·</div>
+    <div>BUILD IN PUBLIC</div>
+    <div>·</div>
+    <div>22+ AGENTS IN PROD</div>
+  </div>
+
+  <header class="gle-site-header">
+    <div class="gle-container">
+      <div class="gle-header-inner">
+        <div class="gle-logo-block">
+          <a class="gle-logo logo" href="/en/">
+            <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
+                stroke-linecap="round" stroke-width="6"></circle>
+              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
+            </svg>
+            Bubble.
+          </a>
+          <span class="gle-logo-tagline">Invest in what matters</span>
+        </div>
+
+        <!-- Mobile hamburger toggle (ID preserve — listener au bas de page) -->
         <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
           <span></span><span></span><span></span>
         </button>
-        <nav>
+
+        <nav class="gle-nav">
           <a href="/en/about">About</a>
-          <a href="/en/professionals">Professionals</a>
-          <a href="/en/individuals">Individuals</a>
+          <a href="/en/individuals">Learn &amp; Plug In</a>
+          <a href="/en/professionals">Pro implementation</a>
           <a href="/en/blog">Blog</a>
-          <a href="/en/shop">Shop</a>
-          <a class="active" href="/en/labs">The Lab</a>
+          <a class="active" aria-current="page" href="/en/labs">The Lab</a>
           <div class="lang-switch">
             <button data-href="/labs">FR</button>
             <span>/</span>
             <button class="active">EN</button>
           </div>
           <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
-            class="nav-cta-calendly" data-cta-track="header_calendly_click">
-            Book a diagnostic <span aria-hidden="true">(30 min)</span>
+            class="gle-nav-cta nav-cta-calendly" data-cta-track="header_calendly_click">
+            Book a diagnostic
           </a>
         </nav>
       </div>
     </div>
   </header>
 
+  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block — ID preserve) -->
   <div class="mobile-nav-overlay" id="mobile-nav-overlay">
     <div class="mobile-nav-content">
       <a href="/en/about">About</a>
-      <a href="/en/professionals">Professionals</a>
-      <a href="/en/individuals">Individuals</a>
+      <a href="/en/individuals">Learn &amp; Plug In</a>
+      <a href="/en/professionals">Pro implementation</a>
       <a href="/en/blog">Blog</a>
-      <a href="/en/shop">Shop</a>
-      <a class="active" href="/en/labs">The Lab</a>
-      <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer">
-        Book a diagnostic (30 min)
+      <a class="active" aria-current="page" href="/en/labs">The Lab</a>
+      <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
+         class="nav-cta-calendly mobile-nav-cta-calendly" data-cta-track="mobile_header_calendly_click">
+        Book a free diagnostic (30 min)
       </a>
     </div>
   </div>
 
   <main>
 
-    <section class="labs-hero" aria-label="Lab introduction">
-      <div class="container">
+    <section class="labs-hero gle-hero gle-bg-warm-atmospheric" aria-label="Lab introduction">
+      <span class="gle-kanji-watermark gle-kanji-hero-bg" aria-hidden="true">研</span>
+      <div class="container gle-container">
         <div class="labs-hero-label">
           <span class="labs-hero-num">01</span>
           <span class="labs-hero-tag">Open laboratory</span>
@@ -163,8 +182,8 @@
       </div>
     </section>
 
-    <section class="labs-counters" id="counters" aria-label="Live counters">
-      <div class="container">
+    <section class="labs-counters gle-section gle-bg-cool-atmospheric" id="counters" aria-label="Live counters">
+      <div class="container gle-container">
         <h2 class="section-title">Live counters</h2>
         <p class="section-kicker">
           What we consume, what's running, what we publish. Real, aggregated numbers. No internal names exposed.
@@ -226,8 +245,8 @@
       </div>
     </section>
 
-    <section class="labs-feed" id="feed" aria-label="Recent public activity">
-      <div class="container">
+    <section class="labs-feed gle-section gle-bg-warm-atmospheric" id="feed" aria-label="Recent public activity">
+      <div class="container gle-container">
         <h2 class="section-title">Live, in the lab</h2>
         <p class="section-kicker">
           Latest public outputs from our agents and the team: Substack articles, GitHub commits, published skills.
@@ -247,8 +266,8 @@
       </div>
     </section>
 
-    <section class="labs-method" id="method" aria-label="Why we share everything">
-      <div class="container">
+    <section class="labs-method gle-section gle-bg-cool-atmospheric" id="method" aria-label="Why we share everything">
+      <div class="container gle-container">
         <h2 class="section-title">Why we expose all of this</h2>
         <div class="labs-method-grid">
           <article class="labs-method-card">
@@ -271,13 +290,13 @@
       </div>
     </section>
 
-    <section class="final-cta" id="calendly">
-      <div class="container">
+    <section class="final-cta gle-section gle-bg-warm-atmospheric" id="calendly">
+      <div class="container gle-container">
         <div class="final-cta-content">
           <span class="final-cta-label">First contact</span>
           <h2>Want us to install the same kind of lab at your place?</h2>
           <p>3 sessions, €2,000 excl. VAT, we install and we train. First call is free, 30 minutes, no commitment.</p>
-          <a class="btn btn-primary" href="https://calendly.com/bubbleinvest-ai" rel="noopener noreferrer"
+          <a class="gle-btn-primary btn btn-primary" href="https://calendly.com/bubbleinvest-ai" rel="noopener noreferrer"
             data-cta-track="labs_final_calendly_click">
             Book a free diagnostic (30 min)
             <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
@@ -290,39 +309,48 @@
 
   </main>
 
-  <footer>
-    <div class="container">
+  <!-- FOOTER -->
+  <footer class="gle-footer">
+    <div class="gle-container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="logo" href="/en/">
-            <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: 32px;">
+          <a class="logo" href="/en/" style="font-size: 1.5rem; color: #fff;">
+            <svg fill="none" style="width: 32px; height: 32px;" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
               <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
                 stroke-linecap="round" stroke-width="6"></circle>
               <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
             </svg>
             Bubble.
           </a>
-          <p>The AI era changed everything. Change with it.</p>
+          <p style="font-family: var(--gle-font-accent); font-style: italic; opacity: 0.85; margin-top: 0.5rem;">Invest in what matters.</p>
+          <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.78rem;">The AI era changed everything. Change with it.</p>
+          <div class="social-links">
+            <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" title="LinkedIn"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a>
+            <a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank" title="Instagram @behindthebubble.ai"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+            <a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank" title="Substack @bubbleinvest"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"></path></svg></a>
+            <a aria-label="GitHub" href="/en/github" title="GitHub"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg></a>
+            <a aria-label="X" href="https://x.com/bubbleinvlabs" target="_blank" title="X @bubbleinvlabs"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+          </div>
         </div>
-        <div>
-          <h4>Product</h4>
+        <div class="footer-links">
+          <h4>Navigation</h4>
           <ul>
-            <li><a href="/en/individuals">Individuals</a></li>
-            <li><a href="/en/professionals">Professionals</a></li>
-            <li><a href="/en/shop">Shop</a></li>
-            <li><a href="/en/labs">The Lab</a></li>
+            <li><a href="/en/about">About</a></li>
+            <li><a href="/en/individuals">Learn &amp; Plug In</a></li>
+            <li><a href="/en/professionals">Pro implementation</a></li>
+            <li><a href="/en/blog">Blog</a></li>
           </ul>
         </div>
-        <div>
+        <div class="footer-links">
           <h4>Resources</h4>
           <ul>
-            <li><a href="/en/blog">Blog</a></li>
-            <li><a href="/en/about">About</a></li>
-            <li><a href="https://bubbleinvest.substack.com">Newsletter</a></li>
-            <li><a href="https://calendly.com/bubbleinvest-ai">Contact us</a></li>
+            <li><a href="/en/shop">Shop</a></li>
+            <li><a href="/en/labs">The Lab</a></li>
+            <li><a href="https://bubbleinvest.substack.com" target="_blank">Newsletter</a></li>
+            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank" data-cta-track="footer_calendly_click">Contact us</a></li>
           </ul>
         </div>
-        <div>
+        <div class="footer-links">
           <h4>Legal</h4>
           <ul>
             <li><a href="/en/legal-notice">Legal notice</a></li>
@@ -330,15 +358,108 @@
           </ul>
         </div>
       </div>
-      <p>© 2026 Bubble Invest. Transparent by design.</p>
+      <div class="footer-bottom">
+        <p>© 2026 Bubble Invest · Transparent by design · Build in public</p>
+      </div>
     </div>
   </footer>
 
+  <!-- Chat Side Panel (slide-in chatbot) -->
+  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
+    <div class="chat-side-panel-header">
+      <div class="chat-side-panel-header-info">
+        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
+        <div class="chat-side-panel-titles">
+          <span class="chat-side-panel-title">Bubble Assistant</span>
+        </div>
+      </div>
+      <div class="chat-side-panel-actions">
+        <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
+        <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
+      </div>
+    </div>
+    <div class="chat-side-panel-messages" role="log" aria-live="polite">
+    </div>
+    <form class="chat-side-panel-input-container" novalidate>
+      <input type="text" class="chat-side-panel-input" placeholder="Ask your questions..."
+        data-translate-placeholder="floating_input.placeholder" aria-label="Type your message"
+        autocomplete="off" />
+      <button class="chat-side-panel-send" aria-label="Send message" type="submit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M12 21V4" stroke-linecap="round" />
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <!-- Floating Glassmorphism Chat Input -->
+  <div class="floating-chat-input hidden" data-always-visible="false" data-page-context="labs"
+    data-trigger-selector=".labs-hero" id="floating-chat-input">
+    <div class="floating-input-container">
+      <input aria-label="Ask your question" class="floating-input-field"
+        placeholder="Ask me anything..." type="text"
+        data-translate-placeholder="floating_input.placeholder" />
+      <button aria-label="Send" class="floating-input-submit">
+        <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
+          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          <path d="M12 21V4" stroke-linecap="round" stroke-width="2"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script src="/js/seo/cookie-banner.js"></script>
   <script src="/js/seo/conversions.js"></script>
+  <script src="/js/lang-toggle.js"></script>
+  <script src="/i18n/translations.js"></script>
+  <script src="/js/bubble-agent-memory.js"></script>
+  <script src="/js/chatbot-animations.js"></script>
+  <script src="/js/chat-side-panel.js"></script>
+  <script src="/js/floating-chat-input.js"></script>
+  <script src="/js/animations.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
+  <!-- Live labs dashboard renderer (fills data-labs-* counters + feed from /api/labs/stats.json) -->
   <script src="/js/labs.js"></script>
+
+  <!-- Sprint 3 Ghibli Phase 2 — top strip "Lab open" + floating bubbles signature -->
   <script src="/js/ghibli-chrome.js" defer></script>
+
+  <!-- Calendly — repo integration: popup on calendly.com anchors + booking event tracking. -->
+  <script src="/js/calendly-integration.js" defer></script>
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <!-- Mobile hamburger menu toggle -->
+  <script>
+    (function () {
+      'use strict';
+      const toggle = document.getElementById('hamburger-toggle');
+      const overlay = document.getElementById('mobile-nav-overlay');
+      if (!toggle || !overlay) return;
+      function closeMenu() {
+        overlay.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+      toggle.addEventListener('click', function () {
+        const isOpen = overlay.classList.toggle('open');
+        toggle.classList.toggle('open', isOpen);
+        toggle.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+      overlay.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
+      });
+    })();
+  </script>
 </body>
 
 </html>
