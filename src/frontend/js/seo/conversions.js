@@ -329,15 +329,21 @@
   // ─── Auto-wire Calendly CTA clicks ────────────────────────────────────────
 
   /**
-   * Listen for clicks on any `<a data-cta-track="*calendly*">` anchor and fire
+   * Listen for clicks on any Calendly booking anchor and fire
    * Lead (Pixel + CAPI dual tracking) + Google Ads conversion before redirect.
+   *
+   * Match on the href (any link to the booking URL) so EVERY Calendly CTA is
+   * tracked regardless of its data-cta-track name — some booking buttons are
+   * named e.g. `pricing_accompagnement_click` / `pricing_quickstart_click`
+   * (no "calendly" substring) and were previously missed. The data-cta-track
+   * selector is kept as a fallback for any anchor that points elsewhere.
    *
    * Existing markup pattern in BubbleLaunch (no DOM changes needed):
    *   <a href="https://calendly.com/bubbleinvest-ai" target="_blank"
    *      data-cta-track="header_calendly_click">Réserver un diagnostic</a>
    */
   function autoWireCalendlyCtas() {
-    document.querySelectorAll('a[data-cta-track*="calendly"]').forEach((link) => {
+    document.querySelectorAll('a[href*="calendly.com/bubbleinvest-ai"], a[data-cta-track*="calendly"]').forEach((link) => {
       if (link.dataset.bubbleTrackingBound) return;
       link.dataset.bubbleTrackingBound = '1';
 
