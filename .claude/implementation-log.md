@@ -32,5 +32,18 @@
   article-content, post-tags, loading-state, error-state, blog-post) + classes (.error-state h2/p,
   .back-to-blog-btn). Keep blog-post.css (styles .post-content body). Only restyle chrome.
 
+## Port approach that worked (additive)
+- Legacy *-2026.css dashboard/grid pages (labs, shop): keep that CSS, add
+  glass-lab-editorial.css LAST, ADD gle classes alongside existing ones
+  (e.g. class="shop-section gle-section gle-bg-cool-atmospheric", class="container gle-container").
+  Do NOT strip legacy classes — labs.js / shop filter / data-attrs depend on them.
+- blog-post: new blog-post-2026.css for chrome; kept blog-post.css for JS-injected .post-content.
+  Wrapped #blog-post in <section class="gle-article-section"><div class="gle-article-container">.
+- github FR+EN: de-nested mobile-nav-overlay out of <header> (was nested inside); kept inline
+  <style>, remapped colors to --gle-* tokens. Added missing GA4 gtag.js loader on shop FR+EN.
+
 ## Recent Changes
-- (in progress) porting blog-post, labs, shop, github (FR+EN) to gle- charte
+- 2026-06-02: ported blog-post (FR+EN) → gle, new blog-post-2026.css. All 28 dynamic ids kept.
+- 2026-06-02: ported labs (FR+EN) → gle additive. data-labs-* live hooks kept.
+- 2026-06-02: ported shop (FR+EN) → gle additive. shop filter data-attrs + product links kept.
+- 2026-06-02: ported github (FR+EN) → gle. jade.hng/vdk888 kept; added GA4 loader.
