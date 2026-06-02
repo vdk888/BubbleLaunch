@@ -1,0 +1,243 @@
+/* =====================================================================
+   blog-post-2026.css — Individual blog post (/blog/:slug) — Glass Lab
+   Editorial port. Wraps the DYNAMIC article (filled by js/blog-post.js)
+   into the gle- editorial shell. Mapped to the --gle-* design tokens
+   from glass-lab-editorial.css.
+
+   IMPORTANT: This file restyles only the CHROME around the article
+   (section frame, breadcrumb, header, meta, tags, states, back button).
+   The article BODY typography (.post-content) is still owned by the
+   legacy blog-post.css — do NOT duplicate/override it aggressively here,
+   so the JS-injected HTML keeps rendering correctly.
+   ===================================================================== */
+
+/* ---------- Article shell / editorial frame ---------- */
+.gle-article-section {
+  padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(3rem, 8vw, 6rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.gle-article-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Breadcrumb ---------- */
+.blog-post-main .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--gle-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gle-muted);
+  margin-bottom: 2rem;
+}
+
+.blog-post-main .breadcrumb a {
+  color: var(--gle-violet);
+  text-decoration: none;
+  transition: color 0.2s var(--gle-ease);
+}
+
+.blog-post-main .breadcrumb a:hover {
+  color: var(--gle-violet-deep);
+}
+
+.blog-post-main .breadcrumb span {
+  color: var(--gle-muted);
+}
+
+/* ---------- Article header ---------- */
+.blog-post-main .post-header {
+  margin-bottom: 2.5rem;
+}
+
+.blog-post-main .post-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-family: var(--gle-font-mono);
+  font-size: 0.78rem;
+  color: var(--gle-muted);
+  margin-bottom: 1.25rem;
+}
+
+.blog-post-main .post-meta .post-reading-time::before {
+  content: "· ";
+  color: var(--gle-violet);
+}
+
+.blog-post-main .post-title {
+  font-family: var(--gle-font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--gle-primary);
+  margin: 0 0 1.25rem;
+}
+
+.blog-post-main .post-summary {
+  font-family: var(--gle-font-accent);
+  font-style: italic;
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  line-height: 1.5;
+  color: var(--gle-secondary);
+  margin: 0;
+}
+
+/* ---------- Disclaimer ---------- */
+.blog-post-main .blog-disclaimer {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--gle-muted);
+  background: var(--gle-violet-bg-light);
+  border-left: 3px solid var(--gle-violet-soft);
+  border-radius: 0 12px 12px 0;
+  padding: 0.85rem 1.1rem;
+  margin: 1.75rem 0;
+}
+
+/* ---------- Featured image ---------- */
+.blog-post-main .post-featured-image {
+  margin: 2rem 0 2.5rem;
+}
+
+.blog-post-main .post-featured-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--gle-radius-img);
+  display: block;
+}
+
+/* ---------- Footer / tags / back button ---------- */
+.blog-post-main .post-footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--gle-border);
+}
+
+.blog-post-main .post-footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.blog-post-main .post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.blog-post-main .post-tags .tag {
+  font-family: var(--gle-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--gle-violet-deep);
+  background: var(--gle-violet-bg);
+  border: 1px solid var(--gle-violet-glass);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+}
+
+.blog-post-main .back-to-blog-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--gle-font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--gle-violet);
+  text-decoration: none;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid var(--gle-violet-glass);
+  border-radius: 999px;
+  background: var(--gle-glass-bg-soft);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.25s var(--gle-ease);
+}
+
+.blog-post-main .back-to-blog-btn:hover {
+  color: #fff;
+  background: var(--gle-violet);
+  border-color: var(--gle-violet);
+  transform: translateY(-1px);
+}
+
+/* ---------- Loading state ---------- */
+.blog-post-main .loading-state {
+  text-align: center;
+  padding: 5rem 1rem;
+  color: var(--gle-muted);
+  font-family: var(--gle-font-mono);
+  font-size: 0.85rem;
+}
+
+.blog-post-main .loading-animation {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.blog-post-main .loading-bubble {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gle-violet);
+  opacity: 0.6;
+  animation: gle-bp-bounce 1.2s var(--gle-ease) infinite;
+}
+
+.blog-post-main .loading-bubble:nth-child(2) { animation-delay: 0.2s; }
+.blog-post-main .loading-bubble:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes gle-bp-bounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* ---------- Error state ---------- */
+.blog-post-main .error-state {
+  text-align: center;
+  padding: 4.5rem 1rem;
+}
+
+.blog-post-main .error-state .error-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.blog-post-main .error-state h2 {
+  font-family: var(--gle-font-display);
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--gle-primary);
+  margin: 0 0 0.75rem;
+}
+
+.blog-post-main .error-state p {
+  color: var(--gle-secondary);
+  margin: 0 0 1.75rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .gle-article-container {
+    padding: 0 1rem;
+  }
+  .blog-post-main .post-footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
