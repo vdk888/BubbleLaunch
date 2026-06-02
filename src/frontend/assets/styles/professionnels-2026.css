@@ -447,3 +447,13 @@
      cards stack to a single readable column on phones. */
   .ip-offers-grid { grid-template-columns: 1fr !important; }
 }
+
+/* Hero photo fix (Ricky 2026-06-02): higher specificity to beat glass-lab-editorial.css
+   which loads AFTER this file and otherwise forces object-fit:contain on the hero photo.
+   cover = the rectangular photo fills the rounded .gle-hero-orb (overflow:hidden) so corners round. */
+.gle-hero .gle-hero-orb img,
+.gle-hero-orb img.gle-hero-photo {
+  object-fit: cover !important;
+  width: 100%;
+  height: 100%;
+}
