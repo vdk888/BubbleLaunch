@@ -42,6 +42,7 @@
     googleAdsConversionId: 'AW-18054203382',
     googleAdsConversionLabel: '4Ti9CMLcqq8cEPaP9aBD',
     googleAdsConversionValueEUR: 200,
+    ga4MeasurementId: 'G-T0MQEL0ZG0',
     capiEndpoint: '/api/tracking/capi/event',
   };
 
@@ -158,6 +159,31 @@
         console.warn('[Tracking] CAPI failed:', eventName, result);
       }
     });
+
+    // 3. GA4 (Google Analytics 4) — give the analytics funnel visibility of the
+    //    lead/booking steps (visite → lead → RDV). Meta + Google Ads already get
+    //    these via the calls above; GA4 was previously blind to them.
+    //    Routed with send_to the GA4 stream so the Google Ads tag (AW-…) isn't
+    //    spammed with non-conversion events. PageView is skipped — the GA4 config
+    //    tag already emits page_view, so re-emitting would double-count.
+    if (typeof global.gtag === 'function') {
+      const GA4_EVENT_NAME = { Lead: 'generate_lead', Schedule: 'book_meeting', Contact: 'contact' };
+      const ga4Name = GA4_EVENT_NAME[eventName];
+      if (ga4Name && CONFIG.ga4MeasurementId) {
+        try {
+          global.gtag('event', ga4Name, {
+            send_to: CONFIG.ga4MeasurementId,
+            currency: (opts.customData && opts.customData.currency) || 'EUR',
+            value: (opts.customData && opts.customData.value) || undefined,
+            // Reuse the Meta event_id so a lead can be cross-referenced across tools.
+            event_id: eventId,
+          });
+          console.log('[Tracking] GA4:', ga4Name, '✓');
+        } catch (err) {
+          console.warn('[Tracking] gtag GA4 event error:', err.message);
+        }
+      }
+    }
 
     return eventId;
   }
@@ -329,15 +355,21 @@
   // ─── Auto-wire Calendly CTA clicks ────────────────────────────────────────
 
   /**
-   * Listen for clicks on any `<a data-cta-track="*calendly*">` anchor and fire
+   * Listen for clicks on any Calendly booking anchor and fire
    * Lead (Pixel + CAPI dual tracking) + Google Ads conversion before redirect.
+   *
+   * Match on the href (any link to the booking URL) so EVERY Calendly CTA is
+   * tracked regardless of its data-cta-track name — some booking buttons are
+   * named e.g. `pricing_accompagnement_click` / `pricing_quickstart_click`
+   * (no "calendly" substring) and were previously missed. The data-cta-track
+   * selector is kept as a fallback for any anchor that points elsewhere.
    *
    * Existing markup pattern in BubbleLaunch (no DOM changes needed):
    *   <a href="https://calendly.com/bubbleinvest-ai" target="_blank"
    *      data-cta-track="header_calendly_click">Réserver un diagnostic</a>
    */
   function autoWireCalendlyCtas() {
-    document.querySelectorAll('a[data-cta-track*="calendly"]').forEach((link) => {
+    document.querySelectorAll('a[href*="calendly.com/bubbleinvest-ai"], a[data-cta-track*="calendly"]').forEach((link) => {
       if (link.dataset.bubbleTrackingBound) return;
       link.dataset.bubbleTrackingBound = '1';
 

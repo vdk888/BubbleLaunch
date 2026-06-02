@@ -1,1289 +1,441 @@
-/**
- * Professionnels 2026 — Page-Specific Styles
- * Loaded only on: /professionnels and /en/professionals
- */
+/* ============================================================
+   professionnels-2026.css — "Implémentation pro" (B2B) page styles
+   Ported from the locked mock (implementation-pro.html, 2026-05-25).
+   Loaded only on: /professionnels (and /en/professionals once ported).
 
-/* === CSS VARIABLE OVERRIDES === */
-:root {
-  --secondary: #444444;
-  --muted: #888888;
-  --container-max: 1100px;
-  --container-padding: 1.5rem;
-  --nav-gap: 2rem;
+   Base layout (hero, container, section-*, buttons, atmospheric bg,
+   kanji watermark) is provided by the gle- classes in
+   glass-lab-editorial.css — this file only holds the page-specific
+   ip-* component styles + the hero-orb rounding override.
+
+   CSS variables are remapped from the mock's local names to the
+   design-system --gle-* names:
+     --violet        -> --gle-violet
+     --violet-soft   -> --gle-violet-soft
+     --primary       -> --gle-primary
+     --secondary     -> --gle-secondary
+     --muted         -> --gle-muted
+     --glass-bg      -> --gle-glass-bg
+     --glass-blur    -> --gle-glass-blur
+     --glass-border  -> --gle-glass-border
+     --radius-card   -> --gle-radius-card
+     --font-display  -> --gle-font-display
+     --font-mono     -> --gle-font-mono
+     --font-accent   -> --gle-font-accent
+     --ease          -> --gle-ease
+   ============================================================ */
+
+/* ── Hero orb rounded (mock override) ───────────────────────── */
+.gle-hero-orb {
+  border-radius: 48px;
+  overflow: hidden;
+}
+.gle-hero-orb img {
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* === HERO === */
-.hero {
-  padding: 10rem 0 5rem;
-  background: linear-gradient(180deg, var(--bg-subtle) 0%, var(--bg-white) 100%);
-  border-bottom: 1px solid var(--border);
-}
-
-.hero h1 {
-  font-size: 3.5rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
-  line-height: 1.1;
-}
-
-.hero-subtitle {
-  font-size: 1.25rem;
-  color: var(--secondary);
-  max-width: 600px;
-  margin-bottom: 2rem;
-}
-
-.hero-chat {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.5rem;
-  max-width: 600px;
-  margin-bottom: 2rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-}
-
-.hero-chat-container {
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-
-.hero-chat-input {
-  flex: 1;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: inherit;
-}
-
-.hero-chat-input:focus {
-  outline: none;
-  border-color: var(--purple);
-}
-
-.hero-chat-submit {
-  width: 44px;
-  height: 44px;
-  background: var(--primary);
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-}
-
-.hero-chat-submit svg {
-  color: white;
-}
-
-.hero-chat-submit:hover {
-  background: var(--purple);
-}
-
-.hero-chat-hint {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin: 0;
-}
-
-.hero-cta {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-/* === SERVICES === */
-.services {
-  padding: 5rem 0;
-  background: var(--bg-white);
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.section-header h2 {
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--muted);
-  margin-bottom: 0.5rem;
-}
-
-.section-header h3 {
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.services-grid {
+/* ── Process steps ───────────────────────────────── */
+.ip-process {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-}
-
-/* Sprint 3 Phase 4 (Jade msg 4948) — beige sur beige = pas assez de contraste.
-   Fond plus clair + bordure violet subtile + shadow soft pour ressortir sur le beige body. */
-.service-card {
-  background: #fffaf0;     /* blanc cassé chaud, ressort sur beige body */
-  border: 1px solid rgba(102, 126, 234, 0.10);
-  border-radius: 16px;
-  padding: 2rem;
-  transition: all 0.3s;
-  box-shadow: 0 4px 12px rgba(180, 130, 60, 0.04);
-}
-
-.service-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--purple);
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
-}
-
-.service-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--purple-light);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.service-card h4 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.service-card > p {
-  color: var(--secondary);
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-}
-
-.service-features {
-  list-style: none;
-}
-
-.service-features li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.9rem;
-  color: var(--secondary);
-}
-
-.service-features li:last-child {
-  border-bottom: none;
-}
-
-/* === CARD HIGHLIGHTS (icon-based feature lists) === */
-.card-highlights {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.highlight {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.9rem;
-  color: var(--secondary);
-}
-
-.highlight svg {
-  flex-shrink: 0;
-}
-
-/* === HOW WE WORK === */
-.how-we-work {
-  padding: 5rem 0;
-  background: var(--bg-subtle);
-}
-
-.process-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-
-.process-step {
-  text-align: center;
-}
-
-.process-number {
-  width: 64px;
-  height: 64px;
-  background: var(--bg-white);
-  border: 2px solid var(--border);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 0 auto 1rem;
-  transition: all 0.3s;
-}
-
-.process-step:hover .process-number {
-  border-color: var(--purple);
-  background: var(--purple-light);
-}
-
-.process-step h4 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.process-duration {
-  font-size: 0.85rem;
-  font-weight: 400;
-  color: var(--muted);
-  margin-bottom: 0.75rem;
-}
-
-.process-step p {
-  font-size: 0.9rem;
-  color: var(--secondary);
-}
-
-.process-note {
   margin-top: 3rem;
-  padding: 1.5rem;
-  background: var(--bg-white);
-  border-radius: 12px;
-  border-left: 4px solid var(--purple);
-}
-
-/* === OUTCOME STATEMENT === */
-/* Sprint 3 Phase 4 (Jade msg 4939) — nuit Ghibli au lieu de noir pur, cohérent avec home */
-.outcome-statement {
-  margin-top: 3.5rem;
-  padding: 5rem 0;
-  text-align: center;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(102, 126, 234, 0.18), transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(167, 232, 215, 0.10), transparent 55%),
-    linear-gradient(135deg, var(--night, #1a2440) 0%, var(--night-2, #25325a) 100%);
-  border-radius: 24px;
-  color: #f5f3ed;
-}
-
-.outcome-headline {
-  font-size: 1.75rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: white;
-  margin-bottom: 2.5rem;
-}
-
-.outcome-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  padding: 0 2rem;
-}
-
-.outcome-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 16px;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.4s ease,
-              border-color 0.4s ease;
-}
-
-.outcome-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 0.25);
-}
-
-.outcome-icon {
-  width: 52px;
-  height: 52px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.25rem;
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.outcome-card:hover .outcome-icon {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  color: white;
-}
-
-.outcome-card h4 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 0.5rem;
-  transition: color 0.3s ease;
-}
-
-.outcome-card:hover h4 {
-  color: white;
-}
-
-.outcome-card p {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
-  line-height: 1.6;
-}
-
-/* === FOUNDERS STRIP === */
-.founders-strip {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin: 2.5rem 0;
-}
-
-.founder-card {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 1.5rem;
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.3s ease,
-              border-color 0.3s ease;
   position: relative;
 }
-
-.founder-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-  border-color: rgba(102, 126, 234, 0.3);
+.ip-process-step {
+  padding: 2rem 1.5rem;
+  background: var(--gle-glass-bg);
+  backdrop-filter: blur(var(--gle-glass-blur));
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur));
+  border: 1px solid var(--gle-glass-border);
+  border-radius: var(--gle-radius-card);
+  position: relative;
 }
-
-.founder-photo {
-  width: 80px;
-  height: 80px;
+.ip-process-num {
+  position: absolute;
+  top: -16px;
+  left: 1.5rem;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-  border: 2px solid var(--border);
-  transition: border-color 0.3s ease;
-}
-
-.founder-card:hover .founder-photo {
-  border-color: rgba(102, 126, 234, 0.4);
-}
-
-.founder-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.founder-info h4 {
-  font-size: 1.1rem;
+  background: linear-gradient(135deg, var(--gle-violet) 0%, #5563d8 100%);
+  color: white;
+  font-family: var(--gle-font-display);
   font-weight: 700;
-  color: #333333;
-  margin-bottom: 0.15rem;
-}
-
-.founder-title {
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-  margin-bottom: 0.5rem;
-}
-
-.founder-bg {
-  font-size: 0.9rem;
-  color: #666666;
-  line-height: 1.4;
-  margin: 0;
-}
-
-.founder-bg strong {
-  color: #333333;
-}
-
-.founder-linkedin {
-  color: #0077B5;
-  flex-shrink: 0;
-  opacity: 0.5;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.founder-card:hover .founder-linkedin {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-/* === EXAMPLES === */
-.examples {
-  padding: 5rem 0;
-  background: var(--bg-white);
-}
-
-.examples-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-/* Sprint 3 Phase 4 (Jade msg 4948) — beige sur beige fix */
-.example-card {
-  background: #fffaf0;
-  border: 1px solid rgba(102, 126, 234, 0.10);
-  border-radius: 16px;
-  padding: 2rem;
-  transition: all 0.3s;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 4px 12px rgba(180, 130, 60, 0.04);
-}
-
-.example-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.12);
-}
-
-/* Card header: icon left, tag right */
-.card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-}
-
-.card-icon {
-  width: 48px;
-  height: 48px;
-  background: #F8F8F8;
-  border: 1px solid #EEEEEE;
-  border-radius: 12px;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  color: #333333;
-  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(102, 126, 234, 0.32);
 }
-
-.example-card:hover .card-icon {
-  background: rgba(102, 126, 234, 0.08);
-  border-color: rgba(102, 126, 234, 0.2);
-  color: #667eea;
-}
-
-.example-tag {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: var(--purple-light);
-  color: var(--purple);
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-radius: 50px;
-  white-space: nowrap;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.example-card h4 {
+.ip-process-step h3 {
+  font-family: var(--gle-font-display);
   font-size: 1.15rem;
   font-weight: 700;
+  margin: 0.5rem 0 0.8rem;
+  color: var(--gle-primary);
+}
+.ip-process-step p {
+  color: var(--gle-secondary);
+  font-size: 0.92rem;
+  line-height: 1.55;
   margin-bottom: 0.5rem;
-  color: #333333;
+}
+.ip-process-step .ip-step-detail {
+  font-family: var(--gle-font-mono);
+  font-size: 0.75rem;
+  color: var(--gle-violet);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 1rem;
 }
 
-.card-desc {
-  font-size: 0.9rem;
-  color: #666666;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  flex-grow: 1;
-}
-
-/* Result metrics */
-.card-metrics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.metric {
+/* ── Ghost button (mock .btn-ghost — used inside ip- cards) ── */
+.ip-btn-ghost {
   display: inline-flex;
   align-items: center;
-  padding: 0.35rem 0.75rem;
-  background: rgba(102, 126, 234, 0.08);
-  border: 1px solid rgba(102, 126, 234, 0.15);
-  border-radius: 50px;
-  font-size: 0.8rem;
+  gap: 0.4rem;
+  font-family: var(--gle-font-display);
+  font-size: 0.88rem;
   font-weight: 600;
-  color: #667eea;
+  color: var(--gle-violet);
+  border: 1.5px solid var(--gle-violet);
+  border-radius: 999px;
+  padding: 0.5rem 1.25rem;
+  text-decoration: none;
+  background: transparent;
+  transition: background 0.16s ease, color 0.16s ease;
   white-space: nowrap;
 }
-
-/* === EXAMPLES SLIDER === */
-.examples-slider-wrapper {
-  position: relative;
+.ip-btn-ghost:hover {
+  background: var(--gle-violet);
+  color: white;
 }
 
-.slider-label {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--secondary);
-}
-
-.examples-slider {
-  display: flex;
+/* ── Offers grid (pricing cards) ──────────────── */
+.ip-offers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  margin-top: 3rem;
+  align-items: start;
+}
+.ip-offer-card {
+  padding: 2rem 1.75rem;
+  background: var(--gle-glass-bg);
+  backdrop-filter: blur(var(--gle-glass-blur));
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur));
+  border: 1px solid var(--gle-glass-border);
+  border-radius: var(--gle-radius-card);
+  display: flex;
+  flex-direction: column;
+}
+.ip-offer-card--featured {
+  background: linear-gradient(135deg, var(--gle-violet-soft) 0%, rgba(199, 210, 254, 0.55) 100%);
+  border-color: rgba(102, 126, 234, 0.25);
+  transform: scale(1.02);
+  box-shadow: 0 16px 48px rgba(102, 126, 234, 0.18);
+}
+.ip-offer-badge {
+  display: inline-block;
+  font-family: var(--gle-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+.ip-offer-badge--mint {
+  background: rgba(100, 220, 180, 0.2);
+  color: #1a6b52;
+}
+.ip-offer-badge--violet {
+  background: var(--gle-violet);
+  color: white;
+}
+.ip-offer-badge--peach {
+  background: rgba(252, 176, 100, 0.2);
+  color: #b05a0a;
+}
+.ip-offer-title {
+  font-family: var(--gle-font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gle-primary);
+  margin: 0 0 0.5rem;
+}
+.ip-offer-price {
+  font-family: var(--gle-font-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--gle-primary);
+  margin-bottom: 0.25rem;
+}
+.ip-offer-price-suffix {
+  font-size: 1rem;
+  color: var(--gle-muted);
+  font-weight: 400;
+}
+.ip-offer-subtitle {
+  font-size: 0.88rem;
+  color: var(--gle-secondary);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+.ip-offer-desc {
+  font-size: 0.92rem;
+  color: var(--gle-secondary);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+}
+.ip-offer-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--gle-glass-border);
+  margin: 1rem 0;
+}
+.ip-offer-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  flex: 1;
+}
+.ip-offer-features li {
+  padding: 0.4rem 0;
+  padding-left: 1.6rem;
+  position: relative;
+  color: var(--gle-primary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.ip-offer-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--gle-violet);
+  font-weight: 700;
+}
+.ip-offer-themes {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  flex: 1;
+}
+.ip-offer-themes li {
+  font-family: var(--gle-font-mono);
+  font-size: 0.72rem;
+  color: var(--gle-secondary);
+  padding: 0.3rem 0;
+  padding-left: 1rem;
+  position: relative;
+  line-height: 1.4;
+}
+.ip-offer-themes li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--gle-violet);
+  font-weight: 700;
+}
+.ip-offer-items {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  flex: 1;
+}
+.ip-offer-items li {
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.06);
+  font-size: 0.88rem;
+  color: var(--gle-secondary);
+}
+.ip-offer-items li:last-child {
+  border-bottom: none;
+}
+.ip-offer-items strong {
+  display: block;
+  color: var(--gle-primary);
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+.ip-offer-items span {
+  font-family: var(--gle-font-mono);
+  font-size: 0.68rem;
+  color: var(--gle-muted);
+  letter-spacing: 0.04em;
+}
+.ip-offer-card .gle-btn-primary,
+.ip-offer-card .ip-btn-ghost {
+  width: 100%;
+  justify-content: center;
+  margin-top: auto;
 }
 
-/* Disable snap during programmatic scroll to avoid snap vs scrollTo conflict */
-.examples-slider.no-snap {
-  scroll-snap-type: none;
+/* ── Exemples concrets — photo tiles ───────────── */
+.ip-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.ip-tile {
+  background: var(--gle-glass-bg);
+  backdrop-filter: blur(var(--gle-glass-blur));
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur));
+  border: 1px solid var(--gle-glass-border);
+  border-radius: var(--gle-radius-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.ip-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(102, 126, 234, 0.18);
+}
+.ip-tile-photo {
+  width: 100%;
+  height: 175px;
+  object-fit: cover;
+  display: block;
+}
+.ip-tile-body {
+  padding: 1.4rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.ip-tile-meta {
+  font-family: var(--gle-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--gle-violet);
+  margin-bottom: 0.55rem;
+}
+.ip-tile h3 {
+  font-family: var(--gle-font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.55rem;
+  color: var(--gle-primary);
+}
+.ip-tile p {
+  color: var(--gle-secondary);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  flex: 1;
+  margin: 0;
+}
+.ip-tile-outcome {
+  margin-top: 0.875rem;
+  padding-top: 0.875rem;
+  border-top: 1px dashed rgba(0, 0, 0, 0.08);
+  font-family: var(--gle-font-accent);
+  font-style: italic;
+  color: var(--gle-violet);
+  font-size: 0.88rem;
 }
 
-.examples-slider::-webkit-scrollbar {
+/* ── Calendly (inline, embed réel) ───────────────── */
+.ip-calendly {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1.75rem 2.25rem;
+  background: var(--gle-glass-bg);
+  backdrop-filter: blur(var(--gle-glass-blur));
+  -webkit-backdrop-filter: blur(var(--gle-glass-blur));
+  border: 1px solid var(--gle-glass-border);
+  border-radius: var(--gle-radius-card);
+}
+.ip-calendly-trust {
+  text-align: center;
+  font-family: var(--gle-font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.03em;
+  color: var(--gle-muted);
+  margin-bottom: 1.4rem;
+}
+.ip-calendly-trust strong {
+  color: var(--gle-violet);
+  font-weight: 600;
+}
+.calendly-inline-widget {
+  border-radius: 14px;
+  overflow: hidden;
+  min-width: 320px;
+}
+
+/* ── FAQ ─────────────────────────────────────────── */
+.ip-faq {
+  max-width: 820px;
+  margin: 2.5rem auto 0;
+}
+.ip-faq-item {
+  border: 1px solid var(--gle-glass-border);
+  border-radius: 14px;
+  background: var(--gle-glass-bg);
+  margin-bottom: 0.85rem;
+  overflow: hidden;
+}
+.ip-faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.15rem 1.4rem;
+  font-family: var(--gle-font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--gle-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.ip-faq-item summary::-webkit-details-marker {
   display: none;
 }
-
-.slider-card {
-  flex: 0 0 calc(50% - 0.75rem);
-  scroll-snap-align: start;
+.ip-faq-item summary::after {
+  content: '+';
+  font-family: var(--gle-font-mono);
+  font-size: 1.3rem;
+  color: var(--gle-violet);
+  transition: transform 0.25s var(--gle-ease);
+  flex-shrink: 0;
+}
+.ip-faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+.ip-faq-item .ip-faq-a {
+  padding: 0 1.4rem 1.25rem;
+  color: var(--gle-secondary);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+.ip-faq-item .ip-faq-a strong {
+  color: var(--gle-primary);
 }
 
-.slider-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.slider-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--bg-white);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-}
-
-.slider-btn:hover {
-  border-color: var(--purple);
-  background: var(--purple-light);
-}
-
-.slider-dots {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.slider-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--border);
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.slider-dot.active {
-  background: var(--purple);
-  width: 24px;
-  border-radius: 4px;
-}
-
-/* === WHY BUBBLE === */
-.why-bubble {
-  padding: 5rem 0;
-  background: var(--bg-subtle);
-}
-
-.why-content > p {
-  max-width: 700px;
-  margin: 0 auto 3rem;
+/* ── Final CTA ───────────────────────────────────── */
+.ip-final-cta {
   text-align: center;
-  font-size: 1.1rem;
-  color: var(--secondary);
-}
-
-.differentiation {
-  background: var(--bg-white);
-  border-radius: 16px;
-  padding: 3rem;
-  border: 1px solid var(--border);
-}
-
-.differentiation h4 {
-  text-align: center;
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 2rem;
-}
-
-.differentiation-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-
-.differentiation-item {
-  text-align: center;
-  padding: 1.5rem 1rem;
-  border-radius: 10px;
-  transition: background 0.3s ease, transform 0.3s ease;
-  cursor: default;
-}
-
-.differentiation-item:hover {
-  background: var(--purple-light);
-  transform: translateY(-2px);
-}
-
-.differentiation-item h5 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.differentiation-item p {
-  font-size: 0.9rem;
-  color: var(--secondary);
-}
-
-/* === SOCIAL PROOF === */
-.social-proof {
-  padding: 5rem 0;
-  background: var(--bg-white);
-}
-
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.testimonial-card {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 2rem;
-}
-
-.stars {
-  display: flex;
-  gap: 0.25rem;
-  margin-bottom: 1rem;
-  color: #fbbf24;
-}
-
-.stars svg {
-  width: 16px;
-  height: 16px;
-}
-
-.testimonial-text {
-  font-size: 0.95rem;
-  color: var(--secondary);
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
-}
-
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.testimonial-avatar {
-  width: 40px;
-  height: 40px;
-  background: var(--purple);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.testimonial-info h5 {
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-.testimonial-info p {
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-/* === FAQ === */
-.faq {
-  padding: 5rem 0;
-  background: var(--bg-subtle);
-}
-
-.faq-list {
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
-/* Section subtitle inside FAQ list (5 thematic groups — Jade msg 5184) */
-.faq-list .faq-section-title {
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--purple);
-  margin: 2.5rem 0 0.75rem;
-  padding-left: 0.25rem;
-}
-
-.faq-list .faq-section-title:first-child {
-  margin-top: 0;
-}
-
-.faq-list details {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  overflow: hidden;
-}
-
-.faq-list summary {
-  padding: 1.5rem;
-  font-weight: 600;
-  cursor: pointer;
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.faq-list summary::-webkit-details-marker {
-  display: none;
-}
-
-.faq-list summary::after {
-  content: '+';
-  font-size: 1.5rem;
-  color: var(--muted);
-  transition: transform 0.3s;
-}
-
-.faq-list details[open] summary::after {
-  content: '\2212';
-  color: var(--purple);
-}
-
-.faq-list details p {
-  padding: 0 1.5rem 1.5rem;
-  color: var(--secondary);
-  line-height: 1.7;
-}
-
-/* === FINAL CTA === */
-/* Sprint 3 Phase 4 (Jade msg 4939) — nuit Ghibli au lieu de noir pur */
-.final-cta {
-  padding: 6rem 0;
-  background:
-    radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.20), transparent 55%),
-    radial-gradient(circle at 20% 80%, rgba(167, 232, 215, 0.08), transparent 50%),
-    linear-gradient(135deg, var(--night, #1a2440) 0%, var(--night-2, #25325a) 100%);
-  color: #f5f3ed;
-  text-align: center;
-}
-
-.final-cta-label {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: var(--purple);
-  border-radius: 4px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 1.5rem;
-}
-
-.final-cta h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.final-cta-content > p {
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 3.5rem;
-  font-size: 1.1rem;
-}
-
-/* Dark background button overrides */
-.final-cta .btn-primary {
-  background: white;
-  color: var(--primary);
-  border: 1px solid white;
-}
-
-.final-cta .btn-primary:hover {
-  background: var(--purple);
-  color: white;
-  border-color: var(--purple);
-  transform: translateY(-2px);
-}
-
-.final-cta .btn-secondary {
-  background: transparent;
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.final-cta .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border-color: white;
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 1024px) {
-  .services-grid,
-  .examples-grid,
-  .testimonials-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .process-grid {
-    /* Sprint 3 Phase 7 (Jade msg 4996) — 3 étapes restent en 3 cols sur tablette,
-       pas en 2 (sinon 1 card orpheline en bas, déséquilibré) */
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-  }
-
-  .differentiation-grid {
+/* ── Mobile ──────────────────────────────────────── */
+@media (max-width: 900px) {
+  .ip-process,
+  .ip-tiles,
+  .ip-offers-grid {
     grid-template-columns: 1fr;
   }
-}
 
-@media (max-width: 768px) {
-  .founders-strip {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .founder-card {
-    padding: 1.25rem;
-  }
-
-  .founder-photo {
-    width: 64px;
-    height: 64px;
-  }
-
-  .founder-info h4 {
-    font-size: 1rem;
-  }
-
-  .founder-bg {
-    font-size: 0.85rem;
-  }
-
-  .hero {
-    padding: 7rem 0 3rem;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.1rem;
-  }
-
-  /* Sections: tighter padding */
-  .services,
-  .how-we-work,
-  .examples,
-  .why-bubble,
-  .social-proof,
-  .faq,
-  .final-cta {
-    padding: 3.5rem 0;
-  }
-
-  .section-header {
-    margin-bottom: 2rem;
-  }
-
-  .section-header h3 {
-    font-size: 1.6rem;
-  }
-
-  /* Services → horizontal scroll carousel */
-  .services-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 1rem;
-    padding-bottom: 0.75rem;
-    scrollbar-width: none;
-  }
-
-  .services-grid::-webkit-scrollbar {
-    display: none;
-  }
-
-  .service-card {
-    flex: 0 0 80%;
-    scroll-snap-align: start;
-    padding: 1.5rem;
-  }
-
-  .service-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    margin-bottom: 0.75rem;
-  }
-
-  .service-card h4 {
-    font-size: 1.1rem;
-  }
-
-  .service-card > p {
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-  }
-
-  .service-features li {
-    font-size: 0.85rem;
-    padding: 0.4rem 0;
-  }
-
-  /* Sprint 3 Phase 7 (Jade msg 4996) — process steps en stack vertical sur mobile
-     (mieux que carousel horizontal qui force le scroll). 3 étapes claires, lisibles. */
-  .process-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    max-width: 100%;
-    padding: 0 1rem;
-  }
-
-  .process-step {
-    width: 100%;
-    padding: 1.5rem 1rem;
-    background: var(--card-bg, #f0eee8);
-    border: 1px solid var(--card-border, rgba(0, 0, 0, 0.08));
-    border-radius: 12px;
-  }
-
-  .process-number {
-    width: 52px;
-    height: 52px;
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .process-step h4 {
-    font-size: 1rem;
-  }
-
-  .process-step p {
-    font-size: 0.85rem;
-  }
-
-  .process-note {
-    margin-top: 2rem;
-    padding: 1.25rem;
-    font-size: 0.9rem;
-  }
-
-  .outcome-statement {
-    margin-top: 2.5rem;
-    padding: 3rem 1rem;
-    border-radius: 16px;
-  }
-
-  .outcome-headline {
-    font-size: 1.35rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .outcome-cards {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 0;
-  }
-
-  .outcome-card {
-    padding: 1.5rem 1.25rem;
-  }
-
-  /* Examples → horizontal scroll carousel */
-  .examples-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 1rem;
-    padding-bottom: 0.75rem;
-    scrollbar-width: none;
-  }
-
-  .examples-grid::-webkit-scrollbar {
-    display: none;
-  }
-
-  .example-card {
-    flex: 0 0 80%;
-    scroll-snap-align: start;
-    padding: 1.5rem;
-  }
-
-  .example-card h4 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .card-desc {
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
-  }
-
-  .card-header {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .example-tag {
-    font-size: 0.65rem;
-  }
-
-  .metric {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.6rem;
-  }
-
-  /* Slider: full-width cards on mobile */
-  .slider-card {
-    flex: 0 0 85%;
-  }
-
-  .slider-label {
-    font-size: 0.95rem;
-  }
-
-  /* Differentiation: compact */
-  .differentiation {
-    padding: 2rem 1.5rem;
-    border-radius: 12px;
-  }
-
-  .differentiation h4 {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .differentiation-grid {
-    gap: 1.5rem;
-  }
-
-  .differentiation-item h5 {
-    font-size: 1rem;
-  }
-
-  .differentiation-item p {
-    font-size: 0.85rem;
-  }
-
-  /* Testimonials → horizontal scroll carousel */
-  .testimonials-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 1rem;
-    padding-bottom: 0.75rem;
-    scrollbar-width: none;
-  }
-
-  .testimonials-grid::-webkit-scrollbar {
-    display: none;
-  }
-
-  .testimonial-card {
-    flex: 0 0 80%;
-    scroll-snap-align: start;
-    padding: 1.5rem;
-  }
-
-  .testimonial-text {
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-  }
-
-  /* FAQ: compact */
-  .faq-list summary {
-    padding: 1.25rem;
-    font-size: 0.95rem;
-  }
-
-  .faq-list details p {
-    padding: 0 1.25rem 1.25rem;
-    font-size: 0.9rem;
-  }
-
-  /* Final CTA: compact */
-  .final-cta {
-    padding: 4rem 0;
-  }
-
-  .final-cta h2 {
-    font-size: 1.75rem;
-  }
-
-  .final-cta > p {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero h1 {
-    font-size: 1.75rem;
-  }
-
-  .service-card {
-    flex: 0 0 85%;
-    padding: 1.25rem;
-  }
-
-  .process-step {
-    flex: 0 0 70%;
-  }
-
-  .example-card {
-    flex: 0 0 85%;
-    padding: 1.25rem;
-  }
-
-  .testimonial-card {
-    flex: 0 0 85%;
-    padding: 1.25rem;
-  }
-
-  .slider-card {
-    flex: 0 0 90%;
-  }
-
-  .final-cta h2 {
-    font-size: 1.5rem;
-  }
-
-  .faq-list summary {
-    padding: 1rem;
-    font-size: 0.9rem;
-  }
-}
-
-/* ====================================================
-   SPRINT 1 — Hero trust block (shared with homepage)
-   Added: 2026-05-12 (sprint-1-calendly-b2b)
-   ==================================================== */
-.hero-trust-block {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-top: 1rem;
-  padding: 1rem 1.25rem;
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 16px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  max-width: 760px;
-}
-
-.hero-trust-block .trust-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-size: 0.92rem;
-  color: var(--secondary, #555);
-  line-height: 1.35;
-}
-
-.hero-trust-block .trust-item strong {
-  color: var(--primary, #111);
-  font-weight: 600;
-}
-
-.hero-trust-block .trust-icon {
-  flex-shrink: 0;
-  color: var(--purple, #667eea);
-  opacity: 0.85;
-}
-
-/* Anthropic wordmark next to "Certifications" — Sprint 1 */
-.hero-trust-block .trust-anthropic-logo {
-  height: 18px;
-  width: 128px;
-  margin-left: 0.3rem;
-  vertical-align: middle;
-  display: inline-block;
-  flex-shrink: 0;
-  overflow: visible;
-}
-
-.hero-trust-block .trust-item-anthropic {
-  gap: 0.45rem;
-}
-
-@media (max-width: 768px) {
-  .hero-trust-block {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
-    padding: 1rem;
-  }
-  .hero-trust-block .trust-item {
-    font-size: 0.88rem;
+  .ip-offer-card--featured {
+    transform: none;
   }
 }

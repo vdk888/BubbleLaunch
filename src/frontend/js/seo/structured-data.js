@@ -53,7 +53,7 @@ function createFinancialServiceSchema(lang = "fr") {
     "sameAs": [
       // Add social media profiles when created
       // "https://linkedin.com/company/bubble-invest",
-      // "https://twitter.com/bubbleinvest"
+      // "https://x.com/bubbleinvlabs"
     ],
   };
 }
