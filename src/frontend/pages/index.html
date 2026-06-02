@@ -223,68 +223,6 @@
 </head>
 
 <body>
-  <!-- PATH GATEWAY MODAL (Triggered by CTA buttons) -->
-  <div class="path-gateway gateway-hidden" id="path-gateway" role="dialog" aria-modal="true"
-    aria-label="Choisissez votre parcours">
-    <div class="gateway-bg-layer" aria-hidden="true">
-      <div class="gateway-orb gateway-orb--left"></div>
-      <div class="gateway-orb gateway-orb--right"></div>
-      <div class="gateway-grid-lines" aria-hidden="true"></div>
-    </div>
-    <div class="gateway-inner">
-      <button class="gateway-close" id="gateway-close" aria-label="Fermer">
-        <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24">
-          <path d="M18 6L6 18M6 6l12 12"></path>
-        </svg>
-      </button>
-      <div class="gateway-brand">
-        <img src="/assets/images/bubble-logo-single.svg" alt="Bubble" class="gateway-logo" />
-      </div>
-      <p class="gateway-prompt">Vous êtes...</p>
-      <div class="gateway-cards">
-        <button class="gateway-card" data-href="/particuliers">
-          <div class="gateway-card-icon">
-            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" viewBox="0 0 24 24" width="32">
-              <path d="M12 2v20M2 12h20"></path>
-            </svg>
-          </div>
-          <h2>Particuliers</h2>
-          <p>Agents IA, analyses premium, et tout ce qu'on apprend : partagé sans filtre.</p>
-          <ul class="gateway-features">
-            <li>Agents IA disponibles</li>
-            <li>Analyses &amp; Research Reports</li>
-            <li>Newsletter gratuite</li>
-          </ul>
-          <span class="gateway-card-cta">Explorer <svg fill="none" height="16" stroke="currentColor" stroke-width="2"
-              viewBox="0 0 24 24" width="16">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg></span>
-        </button>
-        <button class="gateway-card" data-href="/professionnels">
-          <div class="gateway-card-icon">
-            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" viewBox="0 0 24 24" width="32">
-              <rect height="14" rx="2" ry="2" width="20" x="2" y="3"></rect>
-              <line x1="8" x2="16" y1="21" y2="21"></line>
-              <line x1="12" x2="12" y1="17" y2="21"></line>
-            </svg>
-          </div>
-          <h2>Professionnels</h2>
-          <p>On implémente l'IA dans votre métier.</p>
-          <ul class="gateway-features">
-            <li>Agents opérationnels en 3 sessions</li>
-            <li>CGP, gestion d'actifs, PME</li>
-            <li>Résultats dès la première semaine</li>
-          </ul>
-          <span class="gateway-card-cta">Découvrir <svg fill="none" height="16" stroke="currentColor" stroke-width="2"
-              viewBox="0 0 24 24" width="16">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg></span>
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- HEADER -->
   <!-- Top strip "Labo ouvert" — Glass Lab Editorial Charte v3 -->
@@ -888,7 +826,6 @@
   <script src="/js/chat-side-panel.js"></script>
   <script src="/js/floating-chat-input.js"></script>
   <script src="/js/animations.js"></script>
-  <script src="/js/gateway.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
   <script src="/js/calendly-integration.js" defer></script>
   <!-- Labs teaser hydration (consumes /api/labs/stats.json) -->
