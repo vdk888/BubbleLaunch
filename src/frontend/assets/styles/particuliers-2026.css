@@ -221,6 +221,26 @@
 }
 .ab-catalog-cta:hover { background: var(--gle-violet); }
 
+/* Two-CTA row on catalog cards (Learn more + Join waitlist) */
+.ab-catalog-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.ab-catalog-ctas .ab-catalog-cta {
+  width: 100%;
+  justify-content: center;
+}
+/* Secondary (waitlist) CTA — outline style next to the primary Learn more */
+.ab-catalog-cta--ghost {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--gle-primary);
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+.ab-catalog-cta--ghost:hover { background: rgba(0, 0, 0, 0.12); }
+
 /* Section formation detail (accompagnement) */
 .ab-formation-detail {
   max-width: 900px;
