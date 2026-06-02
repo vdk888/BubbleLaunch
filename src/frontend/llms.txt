@@ -92,7 +92,7 @@ Geography: France first (Paris-based, remote nationwide), Belgium, Switzerland.
 - Newsletter: https://bubbleinvest.substack.com
 - LinkedIn: https://www.linkedin.com/company/bubble-invest-ai/
 - Instagram: https://instagram.com/behindthebubble.ai
-- X / Twitter: https://x.com/bubbleinvest
+- X / Twitter: https://x.com/bubbleinvlabs
 - GitHub: https://bubbleinvest.org/github
 - Contact (book a call): https://calendly.com/bubbleinvest-ai
 
