@@ -92,6 +92,28 @@
     }
   </style>
 
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
+    });
+    gtag('config', 'G-T0MQEL0ZG0', {
+      'anonymize_ip': true,
+      'cookie_flags': 'SameSite=None;Secure'
+    });
+    // Google Ads conversion tag (Phase 1 marketing — Jade msg 5119-5163, 2026-05-18)
+    // The `gtag` function is shared with GA4 above; both stream through the same gtag.js script.
+    // Ad-related consent (ad_storage, ad_user_data, ad_personalization) is managed by cookie-banner.js.
+    gtag('config', 'AW-18054203382');
+  </script>
+
   <!-- Meta Pixel Code (Jade msg 5024) — consent-gated per RGPD/CNIL (Codex P1) -->
   <script>
   !function(f,b,e,v,n,t,s)
