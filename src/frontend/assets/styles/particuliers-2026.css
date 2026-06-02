@@ -750,3 +750,13 @@
   width: 100%;
   height: 100%;
 }
+
+/* Section 5 "Lire" — the 2 newsletter/Substack cards use an inline grid-template:1fr 1fr.
+   Inline styles beat stylesheet rules, so we need !important to stack them on phone
+   (otherwise the 2nd card overflows off-screen). 2026-06-02 mobile fix (Ricky). */
+@media (max-width: 700px) {
+  .ab-read-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 100% !important;
+  }
+}
