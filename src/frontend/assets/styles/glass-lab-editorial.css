@@ -832,6 +832,7 @@
 .gle-valeur-img {
   width: 100%;
   aspect-ratio: 4/3;
+  border-radius: var(--gle-radius-img);
   overflow: hidden;
 }
 

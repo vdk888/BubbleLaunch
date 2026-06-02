@@ -732,3 +732,11 @@
 .gle-waitlist-submit{white-space:nowrap;}
 .gle-waitlist-note{font-size:.78rem;color:var(--gle-muted);margin-top:.75rem;}
 .gle-waitlist-success{color:var(--gle-mint-deep);font-weight:600;margin-top:1rem;}
+
+/* ── Mobile phone fixes (≤480px) — 2026-06-02 CSS-only mobile pass ── */
+@media (max-width: 480px) {
+  /* Keep the "Labo en direct" terminal feed + routines within the viewport
+     (grid children need min-width:0 to not push past the screen edge). */
+  .ab-lab-feed,
+  .ab-lab-routines { min-width: 0; overflow-x: hidden; }
+}
