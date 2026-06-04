@@ -12,6 +12,14 @@ const MAX_COMPANY_LENGTH = 200;
 // Newsletter profiles (determined by role/profession)
 const NEWSLETTER_PROFILES = ["Tech", "Finance", "Balanced"];
 
+// Map internal profile -> the exact option in the Notion DB select "Votre profil"
+// (DB options are: Tech, Finance, Equilibré). Verified against DB 251cfc52...0e3 on 2026-06-04.
+const PROFILE_TO_NOTION = {
+  Tech: "Tech",
+  Finance: "Finance",
+  Balanced: "Equilibré",
+};
+
 // Valid roles and their profile mappings (Role → Profile)
 const ROLE_TO_PROFILE = {
   risk_manager: "Finance",
@@ -25,17 +33,21 @@ const ROLE_TO_PROFILE = {
   other: "Balanced",
 };
 
-// Role display names for Notion (matching your database select options)
+// Role display names written to the Notion DB select "Rôle".
+// The 4 finance roles + Data Scientist match existing DB options exactly.
+// Tech Professional / Software Engineer / Autre have no DB option yet -> Notion
+// auto-creates them on first write (kept in FR to stay consistent with the other
+// options). Verified against DB 251cfc52...0e3 on 2026-06-04.
 const ROLE_DISPLAY_NAMES = {
   risk_manager: "Risk Manager",
   portfolio_manager: "Portfolio Manager",
   equity_research_analyst: "Equity Research Analyst",
-  other_investment_professional: "Other Investment Professional",
-  non_professional_investor: "Non-Professional Investor",
-  tech_professional: "Tech Professional",
+  other_investment_professional: "Autre Investisseur Professionnel",
+  non_professional_investor: "Investisseur Non Professionnel",
+  tech_professional: "Professionnel Tech",
   data_scientist: "Data Scientist",
-  software_engineer: "Software Engineer",
-  other: "Other",
+  software_engineer: "Développeur / Ingénieur",
+  other: "Autre",
 };
 
 const VALID_ROLES = Object.keys(ROLE_TO_PROFILE);
@@ -106,14 +118,14 @@ async function subscribeNewsletter(req, res) {
         Email: {
           email: sanitizedEmail,
         },
-        Company: {
+        "Votre Entreprise": {
           rich_text: [{ text: { content: sanitizedCompany } }],
         },
-        Role: {
+        "Rôle": {
           select: { name: roleDisplayName },
         },
-        Profile: {
-          select: { name: profile },
+        "Votre profil": {
+          select: { name: PROFILE_TO_NOTION[profile] || profile },
         },
         Source: {
           select: { name: "Newsletter Form" },

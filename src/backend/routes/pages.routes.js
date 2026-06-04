@@ -82,6 +82,10 @@ router.get("/professionnels", (req, res) => {
   res.sendFile(path.join(frPagesDir, "professionnels.html"));
 });
 
+router.get("/newsletter", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "newsletter.html"));
+});
+
 router.get("/a-propos", (req, res) => {
   res.sendFile(path.join(frPagesDir, "a-propos.html"));
 });
@@ -212,6 +216,10 @@ router.get("/en/individuals", (req, res) => {
 
 router.get("/en/professionals", (req, res) => {
   res.sendFile(path.join(enPagesDir, "professionals.html"));
+});
+
+router.get("/en/newsletter", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "newsletter.html"));
 });
 
 router.get("/en/about", (req, res) => {
