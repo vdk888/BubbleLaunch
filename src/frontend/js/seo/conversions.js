@@ -257,6 +257,22 @@
     },
 
     /**
+     * Fire CompleteRegistration — user subscribed to the newsletter.
+     * Dual Pixel + CAPI with a shared event_id; pass the subscriber email so the
+     * server can hash it for high Event Match Quality. Secondary campaign signal
+     * (the primary objective is the diagnostic booking via trackLead/trackSchedule).
+     * @param {object} userData - { email?, firstName?, lastName? }
+     */
+    trackCompleteRegistration(userData = {}) {
+      return fireDualTracking('CompleteRegistration', {
+        ...userData,
+        customData: {
+          content_name: 'Newsletter Behind the Bubble',
+        },
+      });
+    },
+
+    /**
      * Fire Google Ads conversion 'RDV Diagnostic IA'.
      * Separate call (not bundled with fireDualTracking) because Google Ads has its own
      * conversion mechanism via gtag.

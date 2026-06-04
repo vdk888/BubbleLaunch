@@ -874,7 +874,11 @@
                 utm_content: utm.utm_content || ''
               });
             }
-            if (typeof window.fbq === 'function') {
+            // Meta CompleteRegistration via the unified tracker: Pixel + server-side CAPI
+            // with a shared event_id and the email hashed server-side (match quality).
+            if (window.BubbleTracking && typeof window.BubbleTracking.trackCompleteRegistration === 'function') {
+              window.BubbleTracking.trackCompleteRegistration({ email: email });
+            } else if (typeof window.fbq === 'function') {
               window.fbq('track', 'CompleteRegistration', { content_name: 'newsletter' });
             }
           } catch (e2) {}
