@@ -218,6 +218,10 @@ router.get("/en/professionals", (req, res) => {
   res.sendFile(path.join(enPagesDir, "professionals.html"));
 });
 
+router.get("/en/newsletter", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "newsletter.html"));
+});
+
 router.get("/en/about", (req, res) => {
   res.sendFile(path.join(enPagesDir, "about.html"));
 });
