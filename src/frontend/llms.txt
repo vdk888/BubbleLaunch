@@ -129,7 +129,7 @@ No endless slide decks, no six-figure quotes, no army of junior consultants. Bub
 The Quick Start includes 1 custom AI agent, designed specifically for your industry and processes. It covers: a needs assessment, building the agent (automations, routines, integrations with your tools), deployment, and training so you can use it independently, all within 3 sessions.
 
 **Who owns the code deployed at the client's?**
-*You own everything. The code, the agents, the configurations, it's all yours. We sell the setup, the guidance, and the training. After that, you're independent. That's the advantage over a SaaS subscription: no lock-in, no imposed recurring fees.*
+*You pay once, with no subscription or imposed recurring fees, that's the key advantage over SaaS. In practice, your data, your configuration, and the content produced are yours, and your agent runs on your side (locally or on your private server), free for you to use over the long term, without depending on our day-to-day involvement. The agent's underlying engine and code, however, remain our property, as with any software publisher: your package pays for development, setup, and deployment, not a transfer of the source code. For business-critical solutions, a reversibility clause can be arranged to guarantee continuity whatever happens.*
 
 **What happens after the 3 sessions?**
 Support is included in the days following delivery to fix any initial bugs. Beyond that, we remain available for quick interventions on request. A follow-up & maintenance plan is also available for ongoing support, tailored to your needs.
