@@ -177,7 +177,7 @@ We work with small and mid-sized businesses, independent professionals, and regu
 Your agents run either locally on your machine or on a secure private server. Data is processed through leading AI providers (Anthropic, OpenAI) with their standard security protocols. All conversations are archived locally, with the option for automatic backups.
 
 **Who owns the code deployed at the client's?**
-*You own everything. The code, the agents, the configurations, it's all yours. We sell the setup, the guidance, and the training. After that, you're independent. That's the advantage over a SaaS subscription: no lock-in, no imposed recurring fees.*
+*You pay once, with no subscription or imposed recurring fees, that's the key advantage over SaaS. In practice, your data, your configuration, and the content produced are yours, and your agent runs on your side (locally or on your private server), free for you to use over the long term, without depending on our day-to-day involvement. The agent's underlying engine and code, however, remain our property, as with any software publisher: your package pays for development, setup, and deployment, not a transfer of the source code. For business-critical solutions, a reversibility clause can be arranged to guarantee continuity whatever happens.*
 
 **Which AI models do you use?**
 We primarily work with Claude (Anthropic), but remain flexible based on your preferences and constraints. Key point: the agents run on your own subscription (OpenAI, Claude, or other). You keep full control over your costs and your data.
