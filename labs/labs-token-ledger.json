@@ -1,34 +1,34 @@
 {
   "schema": "bubble-labs-token-ledger/v1",
-  "updated_at": "2026-06-17T04:00:23.872728+00:00",
+  "updated_at": "2026-06-18T04:00:22.859836+00:00",
   "source": "claude-code-transcripts",
   "stats": {
-    "turns_counted": 267775,
-    "files_scanned": 2719
+    "turns_counted": 278247,
+    "files_scanned": 2820
   },
   "headline": {
-    "all_time_total": 62980595569,
-    "all_time_input_output": 234792809,
-    "this_year_total": 62980595569,
-    "this_month_total": 26360398127,
-    "this_month_input_output": 136792341
+    "all_time_total": 64637934455,
+    "all_time_input_output": 247533591,
+    "this_year_total": 64637934455,
+    "this_month_total": 28017737013,
+    "this_month_input_output": 149533123
   },
   "all_time": {
-    "input_tokens": 47028521,
-    "output_tokens": 187764288,
-    "cache_creation_input_tokens": 1957082871,
-    "cache_read_input_tokens": 60788719889,
-    "input_output": 234792809,
-    "total": 62980595569
+    "input_tokens": 52775224,
+    "output_tokens": 194758367,
+    "cache_creation_input_tokens": 2038475025,
+    "cache_read_input_tokens": 62351925839,
+    "input_output": 247533591,
+    "total": 64637934455
   },
   "by_year": {
     "2026": {
-      "input_tokens": 47028521,
-      "output_tokens": 187764288,
-      "cache_creation_input_tokens": 1957082871,
-      "cache_read_input_tokens": 60788719889,
-      "input_output": 234792809,
-      "total": 62980595569
+      "input_tokens": 52775224,
+      "output_tokens": 194758367,
+      "cache_creation_input_tokens": 2038475025,
+      "cache_read_input_tokens": 62351925839,
+      "input_output": 247533591,
+      "total": 64637934455
     }
   },
   "by_month": {
@@ -49,30 +49,30 @@
       "total": 35526534145
     },
     "2026-06": {
-      "input_tokens": 43976598,
-      "output_tokens": 92815743,
-      "cache_creation_input_tokens": 899252436,
-      "cache_read_input_tokens": 25324353350,
-      "input_output": 136792341,
-      "total": 26360398127
+      "input_tokens": 49723301,
+      "output_tokens": 99809822,
+      "cache_creation_input_tokens": 980644590,
+      "cache_read_input_tokens": 26887559300,
+      "input_output": 149533123,
+      "total": 28017737013
     }
   },
   "by_agent": {
     "Users-joris-claude-workspaces-Rick-RnD": {
-      "input_tokens": 2730169,
-      "output_tokens": 25443476,
-      "cache_creation_input_tokens": 239101842,
-      "cache_read_input_tokens": 13579558400,
-      "input_output": 28173645,
-      "total": 13846833887
+      "input_tokens": 2899864,
+      "output_tokens": 26622903,
+      "cache_creation_input_tokens": 257513525,
+      "cache_read_input_tokens": 14278910107,
+      "input_output": 29522767,
+      "total": 14565946399
     },
     "claudette": {
-      "input_tokens": 1538771,
-      "output_tokens": 19290417,
-      "cache_creation_input_tokens": 148164719,
-      "cache_read_input_tokens": 5645088250,
-      "input_output": 20829188,
-      "total": 5814082157
+      "input_tokens": 1542099,
+      "output_tokens": 19334729,
+      "cache_creation_input_tokens": 148996288,
+      "cache_read_input_tokens": 5652922467,
+      "input_output": 20876828,
+      "total": 5822795583
     },
     "Users-joris-claude-workspaces-main": {
       "input_tokens": 33624,
@@ -83,20 +83,20 @@
       "total": 5111953841
     },
     "subagents": {
-      "input_tokens": 13891784,
-      "output_tokens": 18382496,
-      "cache_creation_input_tokens": 264891832,
-      "cache_read_input_tokens": 4572558721,
-      "input_output": 32274280,
-      "total": 4869724833
+      "input_tokens": 16161460,
+      "output_tokens": 18725433,
+      "cache_creation_input_tokens": 272237130,
+      "cache_read_input_tokens": 4658076722,
+      "input_output": 34886893,
+      "total": 4965200745
     },
     "bubble-ops-ben": {
-      "input_tokens": 2143595,
-      "output_tokens": 20684590,
-      "cache_creation_input_tokens": 339090040,
-      "cache_read_input_tokens": 3784425558,
-      "input_output": 22828185,
-      "total": 4146343783
+      "input_tokens": 3055025,
+      "output_tokens": 23788067,
+      "cache_creation_input_tokens": 378780992,
+      "cache_read_input_tokens": 4021474007,
+      "input_output": 26843092,
+      "total": 4427098091
     },
     "morty-workspace-projects-bubble-rnd-workspace": {
       "input_tokens": 65708,
@@ -107,12 +107,12 @@
       "total": 3680434748
     },
     "Users-jadethi-viet-lanhoang-claude-workspaces-Miranda-Socials": {
-      "input_tokens": 4805410,
-      "output_tokens": 18672814,
-      "cache_creation_input_tokens": 180028378,
-      "cache_read_input_tokens": 3378169276,
-      "input_output": 23478224,
-      "total": 3581675878
+      "input_tokens": 5333711,
+      "output_tokens": 19296369,
+      "cache_creation_input_tokens": 184077284,
+      "cache_read_input_tokens": 3452204814,
+      "input_output": 24630080,
+      "total": 3660912178
     },
     "morty-workspace-archive-rnd-old-path": {
       "input_tokens": 60545,
@@ -147,12 +147,20 @@
       "total": 2043349436
     },
     "bubble-ops-maya": {
-      "input_tokens": 1954266,
-      "output_tokens": 9702300,
-      "cache_creation_input_tokens": 80784916,
-      "cache_read_input_tokens": 1823366659,
-      "input_output": 11656566,
-      "total": 1915808141
+      "input_tokens": 2071990,
+      "output_tokens": 10378908,
+      "cache_creation_input_tokens": 88398443,
+      "cache_read_input_tokens": 1904127535,
+      "input_output": 12450898,
+      "total": 2004976876
+    },
+    "Users-joris-claude-workspaces-Rick-RnD-prototypes-deepseek-session": {
+      "input_tokens": 16186060,
+      "output_tokens": 3363713,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 1943285632,
+      "input_output": 19549773,
+      "total": 1962835405
     },
     "Users-joris-claude-workspaces-content": {
       "input_tokens": 62564,
@@ -170,14 +178,6 @@
       "input_output": 6133200,
       "total": 1756585644
     },
-    "Users-joris-claude-workspaces-Rick-RnD-prototypes-deepseek-session": {
-      "input_tokens": 14594175,
-      "output_tokens": 2707932,
-      "cache_creation_input_tokens": 0,
-      "cache_read_input_tokens": 1602533632,
-      "input_output": 17302107,
-      "total": 1619835739
-    },
     "Users-joris-claude-workspaces-Miranda-Socials": {
       "input_tokens": 85487,
       "output_tokens": 4305363,
@@ -187,12 +187,12 @@
       "total": 1131096624
     },
     "bubble-ops-tony": {
-      "input_tokens": 685680,
-      "output_tokens": 4295376,
-      "cache_creation_input_tokens": 18166066,
-      "cache_read_input_tokens": 907378202,
-      "input_output": 4981056,
-      "total": 930525324
+      "input_tokens": 794090,
+      "output_tokens": 4502680,
+      "cache_creation_input_tokens": 19639762,
+      "cache_read_input_tokens": 930968275,
+      "input_output": 5296770,
+      "total": 955904807
     },
     "morty": {
       "input_tokens": 1231068,
@@ -219,12 +219,12 @@
       "total": 383727908
     },
     "Users-jadethi-viet-lanhoang-claude-workspaces-bubble-ops-content": {
-      "input_tokens": 126201,
-      "output_tokens": 1374479,
-      "cache_creation_input_tokens": 5581431,
-      "cache_read_input_tokens": 258925955,
-      "input_output": 1500680,
-      "total": 266008066
+      "input_tokens": 171679,
+      "output_tokens": 1485355,
+      "cache_creation_input_tokens": 6452492,
+      "cache_read_input_tokens": 264229932,
+      "input_output": 1657034,
+      "total": 272339458
     },
     "Users-joris-claude-workspaces-fund-control": {
       "input_tokens": 1971,
@@ -251,12 +251,12 @@
       "total": 49551293
     },
     "bubble-ops-accountant": {
-      "input_tokens": 18639,
-      "output_tokens": 140216,
-      "cache_creation_input_tokens": 1067164,
-      "cache_read_input_tokens": 25253635,
-      "input_output": 158855,
-      "total": 26479654
+      "input_tokens": 19332,
+      "output_tokens": 149425,
+      "cache_creation_input_tokens": 1860147,
+      "cache_read_input_tokens": 29250473,
+      "input_output": 168757,
+      "total": 31279377
     },
     "maya": {
       "input_tokens": 99403,
@@ -283,12 +283,12 @@
       "total": 16700710
     },
     "Users-joris-claude-workspaces-Eliot-Security": {
-      "input_tokens": 300,
-      "output_tokens": 45922,
-      "cache_creation_input_tokens": 919385,
-      "cache_read_input_tokens": 8097586,
-      "input_output": 46222,
-      "total": 9063193
+      "input_tokens": 383,
+      "output_tokens": 86515,
+      "cache_creation_input_tokens": 1231864,
+      "cache_read_input_tokens": 13111860,
+      "input_output": 86898,
+      "total": 14430622
     },
     "Users-joris-claude-workspaces-Rick-RnD-projects-caveau": {
       "input_tokens": 181583,
