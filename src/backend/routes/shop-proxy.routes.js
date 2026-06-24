@@ -24,6 +24,11 @@ const SHOP_TARGETS = {
   "local-tts": { base: "https://bubble-sentinel.netlify.app", path: "/local-tts-fr.html", pathEn: "/local-tts.html" },
   "boycott-filter": { base: "https://bubble-sentinel.netlify.app", path: "/boycott-filter-fr.html", pathEn: "/boycott-filter.html" },
   "music-dna": { base: "https://bubble-sentinel.netlify.app", path: "/music-dna.html", pathEn: "/music-dna-en.html" },
+  "voice-assistant": { base: "https://bubble-sentinel.netlify.app", path: "/voice-assistant-fr.html", pathEn: "/voice-assistant.html" },
+  "bubble-ops-loop": { base: "https://bubble-sentinel.netlify.app", path: "/bubble-ops-loop-fr.html", pathEn: "/bubble-ops-loop.html" },
+  "bubble-vps-platform": { base: "https://bubble-sentinel.netlify.app", path: "/bubble-vps-platform-fr.html", pathEn: "/bubble-vps-platform.html" },
+  "bubble-cabinet": { base: "https://bubble-sentinel.netlify.app", path: "/bubble-cabinet-fr.html", pathEn: "/bubble-cabinet.html" },
+  "ben-agent": { base: "https://bubble-sentinel.netlify.app", path: "/ben-agent-fr.html", pathEn: "/ben-agent.html" },
 };
 
 /**
