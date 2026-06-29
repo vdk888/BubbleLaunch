@@ -292,6 +292,7 @@ async function refreshSnapshot() {
     stats: {
       ...STATIC_FALLBACK,
       tokens_this_month: tokens,
+      tokens_this_year: tokensHeadline ? formatTokens(tokensHeadline.this_year_total) : null,
       tokens_all_time: tokensAllTime,
       tokens_status: tokensReason,
       last_updated: new Date().toISOString(),
