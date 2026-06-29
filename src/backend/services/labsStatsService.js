@@ -213,23 +213,59 @@ function formatTokens(n) {
   return Math.round(n);
 }
 
+// Fleet token ledger, published daily to the `data` branch by the VPS
+// aggregator (Claude Code transcripts -> labs-token-ledger.json). This is our
+// REAL build-in-public usage. We read it instead of the Anthropic Admin API,
+// which only sees commercial/API usage (not Claude Code subscription/OAuth).
+const LEDGER_URL =
+  "https://raw.githubusercontent.com/vdk888/BubbleLaunch/data/labs/labs-token-ledger.json";
+
+async function fetchLedgerTokens() {
+  try {
+    const r = await axios.get(LEDGER_URL, {
+      timeout: 8000,
+      headers: { "User-Agent": "BubbleLabsStats/1.0" },
+    });
+    const h = r.data && r.data.headline ? r.data.headline : {};
+    return {
+      tokens: typeof h.this_month_total === "number" ? h.this_month_total : null,
+      all_time: typeof h.all_time_total === "number" ? h.all_time_total : null,
+      headline: r.data && r.data.headline ? r.data.headline : null,
+      reason: "ok",
+    };
+  } catch (err) {
+    return {
+      tokens: null,
+      all_time: null,
+      headline: null,
+      reason: err?.response?.status
+        ? `ledger_${err.response.status}`
+        : err?.code || err?.message || "unknown_error",
+    };
+  }
+}
+
 async function refreshSnapshot() {
   const t0 = Date.now();
   const errors = [];
 
   const [tokensResult, substackItems, githubItems] = await Promise.allSettled([
-    fetchAnthropicTokenUsage(),
+    fetchLedgerTokens(),
     fetchSubstackLatest(5),
     fetchGitHubCommitsLatest(5),
   ]);
 
   let tokens = null;
+  let tokensAllTime = null;
+  let tokensHeadline = null;
   let tokensReason = "unknown";
   if (tokensResult.status === "fulfilled") {
     tokens = formatTokens(tokensResult.value.tokens);
+    tokensAllTime = formatTokens(tokensResult.value.all_time);
+    tokensHeadline = tokensResult.value.headline || null;
     tokensReason = tokensResult.value.reason;
   } else {
-    errors.push({ source: "anthropic_tokens", error: String(tokensResult.reason) });
+    errors.push({ source: "fleet_token_ledger", error: String(tokensResult.reason) });
   }
 
   const substack = substackItems.status === "fulfilled" ? substackItems.value : [];
@@ -256,9 +292,11 @@ async function refreshSnapshot() {
     stats: {
       ...STATIC_FALLBACK,
       tokens_this_month: tokens,
+      tokens_all_time: tokensAllTime,
       tokens_status: tokensReason,
       last_updated: new Date().toISOString(),
     },
+    headline: tokensHeadline,
     feed: merged,
     last_refreshed_at: new Date().toISOString(),
     refresh_errors: errors,
