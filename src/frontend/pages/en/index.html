@@ -398,6 +398,25 @@
       </div>
     </section>
 
+    <!-- AGENT FLEET — what they do -->
+    <section class="gle-section gle-bg-warm-atmospheric" aria-label="What our agents do">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">Our fleet at work</div>
+          <h2 class="gle-section-title">22 agents, one mandate each.</h2>
+          <p class="gle-section-kicker">We don't talk AI in theory. Here's concretely what our agents run every day, on our own operations.</p>
+        </div>
+        <div class="home-fleet-grid">
+          <div class="home-fleet-card"><h3>Investing</h3><p>Runs a real portfolio since 2023, every morning.</p></div>
+          <div class="home-fleet-card"><h3>Monitoring &amp; research</h3><p>Continuously tracks the latest AI and tech advances.</p></div>
+          <div class="home-fleet-card"><h3>Content</h3><p>Writes the newsletter, the analyses and the blog articles.</p></div>
+          <div class="home-fleet-card"><h3>Security</h3><p>Audits the infrastructure every day and raises alerts.</p></div>
+          <div class="home-fleet-card"><h3>R&amp;D &amp; tooling</h3><p>Builds new skills and prototypes, open source.</p></div>
+          <div class="home-fleet-card"><h3>Assistance &amp; coordination</h3><p>Orchestrates tasks, reminders and the team's day-to-day.</p></div>
+        </div>
+      </div>
+    </section>
+
     <!-- LAST-MILE DIAGRAM — section 01 -->
     <section class="gle-section gle-bg-warm-atmospheric" aria-label="Our place in the AI chain">
       <div class="gle-container">
@@ -485,7 +504,7 @@
             </div>
             <div class="gle-valeur-content">
               <h3>Your new employee that lives at your place, ready to work</h3>
-              <p>No opaque SaaS, no lock-in. Your agent runs on your server or on your machines. You keep control, the code, and the key. You walk away autonomous after three weeks.</p>
+              <p>No opaque SaaS, no lock-in. Your agent runs on your server or your machines: your data never leaves your infrastructure. GDPR compliance is built in from day one, a real concern for finance and wealth-management data. You keep control, the code and the key, and you're autonomous within three weeks.</p>
             </div>
           </div>
         </div>
@@ -656,8 +675,15 @@
             </svg>
           </a>
         </div>
-        <p style="text-align: center; margin-top: 1rem; font-size: 0.88rem; color: var(--gle-muted); font-family: var(--gle-font-mono); letter-spacing: 0.04em;">
-          Tokens consumed · active routines · agents in production · in real time
+        <div class="home-live labs-counters-grid" data-labs-counters>
+          <div class="home-live-item"><div class="home-live-num" data-counter-key="agents_in_production" data-counter-format="integer">—</div><div class="home-live-lbl">agents in production</div></div>
+          <div class="home-live-item"><div class="home-live-num" data-counter-key="tokens_this_month" data-counter-format="number">—</div><div class="home-live-lbl">AI tokens used this month</div></div>
+          <div class="home-live-item"><div class="home-live-num" data-counter-key="routines_active" data-counter-format="integer">—</div><div class="home-live-lbl">active routines</div></div>
+          <div class="home-live-item"><div class="home-live-num" data-counter-key="code_shared_percent" data-counter-format="percent">—</div><div class="home-live-lbl">shared code</div></div>
+        </div>
+        <p class="home-live-status">
+          <span class="labs-status-dot" data-status-dot></span>
+          <span data-status-text>Loading…</span>
         </p>
       </div>
     </section>

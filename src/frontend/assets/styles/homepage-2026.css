@@ -2110,3 +2110,48 @@
     margin-right: 0.5rem;
   }
 }
+
+/* --- Home: flotte d'agents (tiles) --- */
+.home-fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.home-fleet-card {
+  background: var(--card-bg);
+  border-radius: var(--gle-radius-card);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md-ghibli, 0 8px 24px rgba(0,0,0,0.04));
+}
+.home-fleet-card h3 { margin: 0 0 0.5rem; font-size: 1.05rem; color: var(--primary); }
+.home-fleet-card p { margin: 0; font-size: 0.95rem; color: var(--secondary); line-height: 1.5; }
+@media (max-width: 900px) { .home-fleet-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .home-fleet-grid { grid-template-columns: 1fr; } }
+
+/* --- Home: compteur live --- */
+.home-live {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.home-live-item { text-align: center; }
+.home-live-num {
+  font-family: var(--font-mono-ghibli, "JetBrains Mono", monospace);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 600;
+  color: var(--primary);
+  line-height: 1.1;
+}
+.home-live-lbl { margin-top: 0.4rem; font-size: 0.82rem; color: var(--muted); letter-spacing: 0.02em; }
+.home-live-status {
+  text-align: center; margin-top: 1.25rem;
+  font-family: var(--font-mono-ghibli, "JetBrains Mono", monospace);
+  font-size: 0.82rem; color: var(--muted);
+}
+.home-live-status .labs-status-dot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--mint); margin-right: 0.5rem; vertical-align: middle;
+}
+@media (max-width: 700px) { .home-live { grid-template-columns: 1fr 1fr; } }
