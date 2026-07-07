@@ -33,6 +33,9 @@
         return Math.round(value).toLocaleString(locale) + '+';
       case 'percent':
         return Math.round(value) + ' %';
+      case 'compact':
+        // Collapsed display for large figures (design policy): 9 841 464 099 → "9,8 Md" (fr) / "9.8B" (en)
+        return new Intl.NumberFormat(locale, { notation: 'compact', maximumFractionDigits: 1 }).format(Math.round(value));
       case 'number':
       default:
         return Math.round(value).toLocaleString(locale);
