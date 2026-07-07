@@ -398,6 +398,25 @@
       </div>
     </section>
 
+    <!-- FLOTTE D'AGENTS — ce qu'ils font -->
+    <section class="gle-section gle-bg-warm-atmospheric" aria-label="Ce que font nos agents">
+      <div class="gle-container">
+        <div class="gle-section-header">
+          <div class="gle-section-num">Notre flotte au travail</div>
+          <h2 class="gle-section-title">22 agents, un mandat chacun.</h2>
+          <p class="gle-section-kicker">On ne parle pas d'IA en théorie. Voici, concrètement, ce que nos agents font tourner tous les jours sur nos propres opérations.</p>
+        </div>
+        <div class="home-fleet-grid">
+          <div class="home-fleet-card"><h3>Investissement</h3><p>Gère un portefeuille réel depuis 2023, tous les matins.</p></div>
+          <div class="home-fleet-card"><h3>Veille &amp; recherche</h3><p>Surveille en continu les dernières avancées IA et tech.</p></div>
+          <div class="home-fleet-card"><h3>Contenu</h3><p>Rédige la newsletter, les analyses et les articles du blog.</p></div>
+          <div class="home-fleet-card"><h3>Sécurité</h3><p>Audite l'infrastructure chaque jour et remonte les alertes.</p></div>
+          <div class="home-fleet-card"><h3>R&amp;D &amp; outils</h3><p>Construit de nouveaux skills et prototypes, en open source.</p></div>
+          <div class="home-fleet-card"><h3>Assistance &amp; coordination</h3><p>Orchestre les tâches, les rappels et le quotidien de l'équipe.</p></div>
+        </div>
+      </div>
+    </section>
+
     <!-- LAST-MILE DIAGRAM — section 01 -->
     <section class="gle-section gle-bg-warm-atmospheric" aria-label="Notre place dans la chaine de l'IA">
       <div class="gle-container">
@@ -485,7 +504,7 @@
             </div>
             <div class="gle-valeur-content">
               <h3>Votre nouvel employé qui vit chez vous, prêt à travailler</h3>
-              <p>Pas de SaaS opaque, pas de lock-in. Votre agent tourne sur votre serveur ou sur vos machines. Vous gardez le contrôle, le code, et la clé. Vous repartez autonomes au bout de trois semaines.</p>
+              <p>Pas de SaaS opaque, pas de lock-in. Votre agent tourne sur votre serveur ou sur vos machines : vos données ne quittent pas votre infrastructure. Conformité RGPD prise en compte dès le premier jour, un vrai sujet pour la finance et les données patrimoniales. Vous gardez le contrôle, le code et la clé, et vous repartez autonomes au bout de trois semaines.</p>
             </div>
           </div>
         </div>
@@ -656,8 +675,15 @@
             </svg>
           </a>
         </div>
-        <p style="text-align: center; margin-top: 1rem; font-size: 0.88rem; color: var(--gle-muted); font-family: var(--gle-font-mono); letter-spacing: 0.04em;">
-          Tokens consommés · routines actives · agents en production · en temps réel
+        <div class="home-live labs-counters-grid" data-labs-counters>
+          <div class="home-live-item"><div class="home-live-num" data-counter-key="agents_in_production" data-counter-format="integer">—</div><div class="home-live-lbl">agents en production</div></div>
+          <div class="home-live-item"><div class="home-live-num" data-counter-key="tokens_this_month" data-counter-format="compact">—</div><div class="home-live-lbl">tokens IA consommés ce mois</div></div>
+          <div class="home-live-item"><div class="home-live-num" data-counter-key="routines_active" data-counter-format="integer">—</div><div class="home-live-lbl">routines actives</div></div>
+          <div class="home-live-item"><div class="home-live-num" data-counter-key="code_shared_percent" data-counter-format="percent">—</div><div class="home-live-lbl">code partagé</div></div>
+        </div>
+        <p class="home-live-status">
+          <span class="labs-status-dot" data-status-dot></span>
+          <span data-status-text>Chargement…</span>
         </p>
       </div>
     </section>
