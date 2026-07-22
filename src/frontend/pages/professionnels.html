@@ -1,66 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-
-  <!-- SEO Meta Tags -->
-  <title>Bubble · Implémentation pro</title>
-  <meta name="description"
-    content="L'IA implémentée pour les pros : agents IA installés sur site ou en local, formés sur vos process. Pour CGP, asset managers, PME. Quick Start dès 2 000 €, diagnostic gratuit, code 100 % à vous." />
-  <meta name="keywords"
-    content="implémentation IA, agents IA entreprise, automatisation CGP, consulting IA finance, agents IA gestion d'actifs, Claude Code installation, automatisation PME, Quick Start agent IA" />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://bubbleinvest.org/professionnels" />
-  <meta property="og:title" content="Bubble · Implémentation pro" />
-  <meta property="og:description"
-    content="Agents IA installés sur vos process. Diagnostic gratuit, Quick Start dès 2 000 €, code 100 % à vous. Pour CGP, asset managers, PME." />
-  <meta property="og:image" content="https://bubbleinvest.org/assets/images/og-professionnels.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Bubble Invest — Implémentez les employés IA qui vous manquent." />
-  <meta property="og:locale" content="fr_FR" />
-  <meta property="og:locale:alternate" content="en_US" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="https://bubbleinvest.org/professionnels" />
-  <meta name="twitter:title" content="Bubble · Implémentation pro" />
-  <meta name="twitter:description"
-    content="Agents IA installés sur vos process. Diagnostic gratuit, Quick Start dès 2 000 €, code 100 % à vous." />
-  <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/og-professionnels.png" />
-
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://bubbleinvest.org/professionnels" />
-
-  <!-- Language Alternates -->
-  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/professionnels" />
-  <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/professionals" />
-  <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/professionnels" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
-
   <!-- LLM discoverability -->
   <link rel="alternate" type="text/plain" href="https://bubbleinvest.org/llms.txt" title="LLM context" />
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="/assets/styles/core-2026.css" />
-  <link rel="stylesheet" href="/assets/styles/professionnels-2026.css" />
+  <!-- SEO -->
+  <link rel="canonical" href="https://bubbleinvest.org/professionnels" />
+  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/professionnels" />
+  <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/professionals" />
+  <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/professionnels" />
+  <!-- Consent styles -->
   <link rel="stylesheet" href="/assets/styles/cookie-banner.css" />
-  <!-- Glass Lab Editorial — Charte v3 (2026-05-22), loads LATE to override legacy where needed -->
-  <link rel="stylesheet" href="/assets/styles/glass-lab-editorial.css" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect" />
-  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-
-  <!-- Google Analytics 4 -->
+  <!-- Google Analytics 4 + Google Ads -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -76,236 +31,9 @@
       'anonymize_ip': true,
       'cookie_flags': 'SameSite=None;Secure'
     });
-    // Google Ads conversion tag (Phase 1 marketing — Jade msg 5119-5163, 2026-05-18)
-    // The `gtag` function is shared with GA4 above; both stream through the same gtag.js script.
-    // Ad-related consent (ad_storage, ad_user_data, ad_personalization) is managed by cookie-banner.js.
     gtag('config', 'AW-18054203382');
   </script>
-
-  <!-- JSON-LD Structured Data: BreadcrumbList -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://bubbleinvest.org/" },
-      { "@type": "ListItem", "position": 2, "name": "Implémentation pro", "item": "https://bubbleinvest.org/professionnels" }
-    ]
-  }
-  </script>
-  <!-- JSON-LD Structured Data: ProfessionalService -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Bubble Invest",
-    "description": "Implémentation d'agents IA sur mesure pour CGP, gestion d'actifs et PME en France. Diagnostic gratuit, Quick Start dès 2 000 €, opérationnel en 3 semaines, code 100 % à vous.",
-    "url": "https://bubbleinvest.org/professionnels",
-    "logo": "https://bubbleinvest.org/assets/images/bubble-logo-single.svg",
-    "image": "https://bubbleinvest.org/assets/images/bubble-logo-single.svg",
-    "priceRange": "€€",
-    "currenciesAccepted": "EUR",
-    "paymentAccepted": "Virement bancaire, Carte bancaire",
-    "areaServed": [
-      { "@type": "Country", "name": "France" },
-      { "@type": "Country", "name": "Belgium" },
-      { "@type": "Country", "name": "Switzerland" }
-    ],
-    "serviceType": ["AI Agent Deployment", "AI Automation Consulting", "Claude Code Installation", "Workflow Automation"],
-    "knowsAbout": ["Intelligence Artificielle", "Agents IA", "Claude Code", "OpenClaw", "Automatisation", "Finance", "Gestion d'actifs", "CGP"],
-    "knowsLanguage": ["fr", "en"],
-    "foundingDate": "2024",
-    "sameAs": [
-      "https://bubbleinvest.substack.com",
-      "https://calendly.com/bubbleinvest-ai"
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "sales",
-      "url": "https://calendly.com/bubbleinvest-ai",
-      "availableLanguage": ["French", "English"]
-    }
-  }
-  </script>
-  <!-- JSON-LD Structured Data: FAQPage (GEO / answer-engine lever — 20 Q&A from locked mock) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Qu'est-ce que Bubble Invest exactement ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Bubble Invest conçoit et installe des agents IA sur mesure pour les professionnels. Notre mission : automatiser vos tâches répétitives, structurer vos données et libérer votre temps pour ce qui compte : votre expertise et vos clients."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Que deviennent mes données ? Sont-elles protégées ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "La protection de vos données est au cœur de notre approche. Vos agents tournent au choix en local sur votre machine ou sur un serveur privé sécurisé, et nous proposons une couche d'anonymisation et de chiffrement qui retire ou masque les données sensibles (noms de clients, numéros de compte, identifiants) avant qu'elles n'atteignent un fournisseur d'IA comme Anthropic. Vous gardez le contrôle total : ce qui est confidentiel ne quitte jamais votre environnement en clair."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "En quoi êtes-vous différents d'un cabinet de conseil classique ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Pas de slides à rallonge, pas de devis à six chiffres, pas d'armée de consultants juniors. On va plus loin que le conseil : on construit et on installe directement un agent IA opérationnel à partir de vos données et de vos outils. Une solution clé en main qui absorbe votre charge de travail dès le premier jour, sans vous rendre dépendants."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Pourquoi vous, et pas un freelance dev IA ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "On combine une double expertise rare : conseil stratégique (finance, process métier) et ingénierie IA. On comprend vos workflows avant même de coder. Et surtout, on utilise nos propres agents au quotidien. Ce qu'on vous vend, on l'utilise nous-mêmes. Plus rapide, plus fiable et moins cher qu'un développeur freelance."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Pourquoi 3 sessions, ni plus ni moins ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Trois sessions, c'est le format optimal : assez pour diagnostiquer vos besoins, construire votre agent et vous former à l'utiliser en autonomie. L'objectif n'est pas de vous rendre dépendants, c'est de vous rendre opérationnels. Et si vous avez besoin de plus, on reste disponibles."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Combien coûte le Quick Start ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Le Quick Start démarre à 2 000 € HT pour un agent IA sur mesure, 3 sessions de travail incluses. Le premier devis est co-construit avec vous selon vos besoins réels. Pour des architectures plus complexes (multi-agents, intégrations avancées), on établit un devis personnalisé."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Que comprend précisément le Quick Start ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Un agent IA sur mesure, conçu pour votre métier et vos process. Il inclut : un diagnostic de vos besoins, la construction de l'agent (automatisations, routines, intégrations à vos outils), son installation, et un accompagnement pratique pour le prendre en main en autonomie, le tout en 3 sessions."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Que se passe-t-il après les 3 sessions ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Un support est inclus dans les jours suivant la livraison pour corriger tout bug initial. Au-delà, on reste disponibles pour des interventions rapides sur devis, et un forfait suivi & maintenance est proposé pour un accompagnement sur la durée, selon vos besoins."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Faites-vous des devis sur mesure au-delà du Quick Start ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Absolument. Au-delà du Quick Start, on conçoit des solutions sur mesure : équipes multi-agents, selfware (outils IA personnels), applications dédiées ou architectures complexes. Chaque projet fait l'objet d'un devis adapté à votre périmètre."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Quel est le délai pour démarrer ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "La première session est gratuite et sans engagement. Après signature, le projet démarre sous 1 à 2 semaines, pour une livraison complète en 3 semaines : un agent clé en main, prêt à l'emploi sur votre serveur ou en local."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Proposez-vous un contrat de maintenance / support ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Oui. Une fois l'agent déployé, on propose des contrats de maintenance adaptés à vos besoins : forfait mensuel sur devis pour un suivi régulier, ou intervention ponctuelle à 500 € HT/jour, avec un délai de réponse garanti sous 24h, à distance ou sur site."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Et si quelque chose casse 6 mois après ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "On reste joignables après la livraison. Nos agents de support sont disponibles pour vous orienter, et notre équipe intervient rapidement si un problème survient, même des mois plus tard."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Sur quels secteurs intervenez-vous ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "On accompagne les petites et moyennes structures, indépendants et professions réglementées, avec un cœur de métier en gestion de patrimoine et asset management. Pourquoi les petites structures ? C'est là que l'IA a le plus d'impact : moins de couches hiérarchiques, moins de logiciels empilés, des résultats visibles immédiatement."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Quel niveau de sécurité garantissez-vous ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Vos agents tournent au choix en local sur votre machine ou sur un serveur privé sécurisé. Les données sont traitées via des fournisseurs d'IA de premier plan (Anthropic, OpenAI) avec leurs protocoles de sécurité standards. Toutes les conversations sont archivées localement, avec possibilité de sauvegardes automatiques."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "À qui appartient le code installé chez vous ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Vous payez une fois, sans abonnement ni frais récurrents imposés : c'est tout l'avantage par rapport à un SaaS. Vos données, votre configuration et les contenus produits vous appartiennent, et votre agent tourne chez vous (en local ou sur votre serveur privé), librement et dans la durée. Le moteur et le code sous-jacent de l'agent restent en revanche notre propriété, comme chez tout éditeur de logiciel : votre forfait rémunère le développement, l'installation et le déploiement, pas une cession du code source. Pour les solutions critiques, une clause de réversibilité peut être prévue."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Quels modèles d'IA utilisez-vous ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Principalement Claude (Anthropic), tout en restant flexibles selon vos préférences. Point important : les agents fonctionnent avec votre propre abonnement (OpenAI, Claude ou autre). Vous gardez le contrôle total sur vos coûts et vos données."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Les agents peuvent-ils tourner sans connexion internet ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Les agents IA nécessitent une connexion internet pour accéder aux modèles de langage. En revanche, certaines automatisations simples et applications personnalisées peuvent tourner en local selon votre configuration."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Politique d'annulation et de remboursement ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "La première session est gratuite et sans engagement. Vous pouvez décider de ne pas poursuivre après cette première rencontre, aucun frais, aucune obligation."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Comment se passe la signature ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Processus simple et transparent : devis et contrat signés électroniquement (Yousign). Le projet démarre dès réception de l'acompte. Des facilités de paiement sont disponibles et définies ensemble en amont."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Accompagnez-vous nos équipes ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Oui, et c'est du concret : pas de slides ni de conférences théoriques, mais des sessions pratiques où l'on apprend en faisant, directement sur votre agent. On ne repart pas tant que votre équipe ne le maîtrise pas. C'est comme accueillir un nouveau collaborateur, déjà opérationnel sur vos process."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Travaillez-vous à distance ou sur site ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Les deux, selon vos préférences et la nature du projet. Basés en région parisienne, on est disponibles partout en France et capables d'opérer entièrement à distance."
-        }
-      }
-    ]
-  }
-  </script>
-
-  <!-- Meta Pixel Code (Jade msg 5024) — consent-gated per RGPD/CNIL (Codex P1) -->
+  <!-- Meta Pixel — consent-gated per RGPD/CNIL -->
   <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -315,634 +43,2985 @@
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
-  // Default: deny consent BEFORE init so the SDK never runs with default granted state
-  // (queued calls are replayed in order when fbevents.js loads — revoke must come first)
   fbq('consent', 'revoke');
   fbq('init', '1553953629409728');
-  // PageView is fired by cookie-banner.js after user opts-in (or auto-fires if consent already granted)
   </script>
-  <!-- noscript fallback intentionally removed: would fire PageView without consent -->
-  <!-- End Meta Pixel Code -->
+
+  <title>Implémentation pro · Bubble.</title>
+  <meta name="description" content="Votre employé IA, formé sur vos process. On le construit, on forme votre équipe. Diagnostic gratuit, Quick Start dès 2 000 €, opérationnel en 3 semaines. Pour CGP, indépendants, PME." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Implémentation pro · Bubble." />
+  <meta property="og:description" content="Votre employé IA, formé sur vos process. On le construit, on forme votre équipe. Diagnostic gratuit, Quick Start dès 2 000 €, opérationnel en 3 semaines." />
+  <meta property="og:url" content="https://bubbleinvest.org/professionnels" />
+  <meta property="og:image" content="https://bubbleinvest.org/assets/images/bubble-og.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Bubble Invest",
+      "url": "https://bubbleinvest.org",
+      "logo": "https://bubbleinvest.org/assets/images/bubble-og.png",
+      "sameAs": [
+        "https://www.linkedin.com/company/bubble-invest-ai/",
+        "https://instagram.com/behindthebubble.ai",
+        "https://bubbleinvest.substack.com"
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Bubble Invest",
+      "url": "https://bubbleinvest.org"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Qu'est-ce que Bubble Invest exactement ?", "acceptedAnswer": {"@type": "Answer", "text": "Bubble Invest construit votre employé IA formé sur vos process, et forme votre équipe à travailler avec lui."}},
+        {"@type": "Question", "name": "Que deviennent mes données ? Sont-elles protégées ?", "acceptedAnswer": {"@type": "Answer", "text": "Vos agents tournent en local ou sur un serveur privé. Nous proposons une couche d'anonymisation qui retire les données sensibles avant qu'elles n'atteignent un fournisseur d'IA tiers."}},
+        {"@type": "Question", "name": "Combien coûte le Quick Start ?", "acceptedAnswer": {"@type": "Answer", "text": "Le Quick Start démarre à 2 000 € HT pour un agent IA sur mesure, 3 sessions de travail incluses."}},
+        {"@type": "Question", "name": "Quel est le délai pour démarrer ?", "acceptedAnswer": {"@type": "Answer", "text": "La première session est gratuite et sans engagement. Après signature, le projet démarre sous 1 à 2 semaines, pour une livraison complète en 3 semaines."}},
+        {"@type": "Question", "name": "À qui appartient le code installé chez vous ?", "acceptedAnswer": {"@type": "Answer", "text": "Vous payez une fois, sans abonnement ni frais récurrents imposés. Vos données, votre configuration et les contenus produits vous appartiennent."}}
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://bubbleinvest.org/"},
+        {"@type": "ListItem", "position": 2, "name": "Implémentation pro", "item": "https://bubbleinvest.org/professionnels"}
+      ]
+    }
+  ]
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Klee+One:wght@400;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
+  <style>
+/* bubble-web.css inlined for standalone rendering */
+/*
+ * bubble-web.css — Bubble Invest shared design system
+ * Extracted faithfully from direction-b-warm-v4.html (client-approved homepage)
+ *
+ * GOOGLE FONTS REQUIRED — add this <link> before this stylesheet in every page <head>:
+ *   <link rel="preconnect" href="https://fonts.googleapis.com" />
+ *   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ *   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Klee+One:wght@400;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
+ *
+ * PAGE-SPECIFIC COMPONENTS (not here — live only on the homepage):
+ *   - .hero-orb / .hero-aura / .hero-orb-fallback (WebGL soap bubble + CSS fallback)
+ *   - .usecases-v2 / .uc-track / .uc-card (En coulisses dark carousel band)
+ *   - .approche-loop-wrap / .loop-canvas-host (Notre approche 3D loop animation)
+ *   - .pricing / .tier (Pricing tiers section)
+ *   - .counters / .counters-grid / .counter (Labo live counters)
+ *   - .hero / .hero-tag / .hero h1 / .hero-ctas (Hero section layout)
+ */
+
+/* ============================================================
+   1. DESIGN TOKENS — CSS custom properties
+   ============================================================ */
+:root {
+  /* Colour palette */
+  --base:   #fdfcf9;        /* warm white — whisper of cream, mostly white */
+  --card:   #ffffff;        /* white surfaces — airy premium contrast */
+  --warm:   #f7f4ee;        /* alt section backgrounds, gentle warm off-white */
+  --ink:    #221d16;        /* primary text / dark surfaces */
+  --muted:  #5b5b62;        /* secondary text */
+  --faint:  #8b8b92;        /* tertiary text, placeholders */
+  --violet: #667eea;        /* primary accent */
+  --violet-soft: rgba(102, 126, 234, .08);  /* tinted fill on violet items */
+  --violet-line: rgba(102, 126, 234, .22);  /* violet borders */
+  --peach:  #ffd9b0;        /* warm gradient endpoint / footer accent */
+  --mint:   #a7e8d7;        /* live dot / positive indicators */
+  --night:  #1a2440;        /* brand night-blue — top strip + footer */
+  --hair:   rgba(14, 14, 16, .10);          /* light dividers */
+  --hair-soft: rgba(14, 14, 16, .06);       /* very subtle dividers */
+
+  /* Typography */
+  --sans:   "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --mono:   "JetBrains Mono", ui-monospace, monospace;
+  --hand:   "Klee One", cursive;
+
+  /* Layout */
+  --maxw:   1180px;
+  --pad:    clamp(1.15rem, 5vw, 2rem);
+
+  /* Shape */
+  --r:      20px;
+  --r-lg:   30px;
+
+  /* Motion */
+  --ease:   cubic-bezier(.16, 1, .3, 1);
+}
+
+/* ============================================================
+   2. BASE RESET + BODY
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--base);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: 2.5px solid var(--violet);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ============================================================
+   3. LAYOUT UTILITIES
+   ============================================================ */
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
+
+.hair {
+  height: 1px;
+  background: var(--hair-soft);
+  border: 0;
+  margin: 0;
+}
+
+/* ============================================================
+   4. TYPOGRAPHY SCALE
+   ============================================================ */
+
+/* Eyebrow / mono label */
+.eyebrow,
+.sec-num {
+  font-family: var(--mono);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: .9rem;
+  display: block;
+}
+
+/* Section heading block */
+.sec-head {
+  max-width: 640px;
+  margin-bottom: 2.6rem;
+}
+.sec-head.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.sec-head h2 {
+  font-size: clamp(1.65rem, 4.6vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.sec-head p {
+  color: var(--muted);
+  margin-top: 1rem;
+  font-size: 1.02rem;
+  max-width: 52ch;
+}
+.sec-head.center p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Page-level headings */
+h1 {
+  font-size: clamp(2rem, 7.4vw, 4.15rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: clamp(1.65rem, 4.6vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+
+/* Handwritten accent (Klee One) */
+.hand {
+  font-family: var(--hand);
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: -.01em;
+  color: var(--violet);
+}
+
+/* ============================================================
+   5. BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 600;
+  font-size: .9rem;
+  border-radius: 44px;
+  padding: .7rem 1.3rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+  white-space: nowrap;
+  font-family: var(--sans);
+  text-decoration: none;
+}
+
+.btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform .3s var(--ease);
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .4) inset, 0 8px 22px -10px rgba(14, 14, 16, .55);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -12px rgba(14, 14, 16, .6);
+}
+.btn-primary:hover svg {
+  transform: translateX(3px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--hair);
+}
+.btn-ghost:hover {
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   6. TOP STRIP (desktop-only announcement bar)
+   ============================================================ */
+.topbar {
+  display: none; /* hidden on mobile to protect above-the-fold */
+  background: var(--night);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  justify-content: center;
+  padding: .5rem var(--pad);
+  flex-wrap: wrap;
+}
+
+.topbar .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 0 0 rgba(167, 232, 215, .7);
+  animation: pulse 2.6s var(--ease) infinite;
+  display: inline-block;
+}
+
+.topbar .sep { opacity: .4; }
+.topbar .dim { opacity: .62; }
+
+@media (min-width: 768px) {
+  .topbar { display: block; }
+}
+
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(167, 232, 215, .55); }
+  70%  { box-shadow: 0 0 0 7px rgba(167, 232, 215, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(167, 232, 215, 0); }
+}
+
+/* ============================================================
+   7. HEADER + NAV + MOBILE MENU
+   ============================================================ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(253, 252, 249, .82);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border-bottom: 1px solid var(--hair-soft);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: 1.24rem;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+.logo svg {
+  width: 26px;
+  height: 26px;
+  color: var(--ink);
+}
+.logo .dot-final { color: var(--violet); }
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.7rem;
+}
+
+.nav-links {
+  display: none;
+  gap: 1.7rem;
+  align-items: center;
+}
+.nav-links a {
+  font-size: .86rem;
+  font-weight: 500;
+  color: var(--muted);
+  transition: color .25s var(--ease);
+}
+.nav-links a:hover { color: var(--ink); }
+
+/* Language switcher */
+.lang {
+  display: flex;
+  align-items: center;
+  gap: .15rem;
+  font-family: var(--mono);
+  font-size: .7rem;
+  font-weight: 500;
+  border: 1px solid var(--hair);
+  border-radius: 40px;
+  padding: .24rem .4rem;
+}
+.lang button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--faint);
+  font-family: inherit;
+  font-size: inherit;
+  padding: .1rem .34rem;
+  border-radius: 40px;
+  transition: .2s var(--ease);
+}
+.lang button.active {
+  background: var(--ink);
+  color: #fff;
+}
+.lang .slash {
+  color: var(--hair);
+  font-size: .6rem;
+}
+
+/* Header CTA button — hidden until 900px */
+.header .btn {
+  display: none;
+  padding: .55rem 1.05rem;
+  font-size: .82rem;
+}
+
+/* Burger button */
+.burger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: .35rem;
+}
+.burger span {
+  width: 22px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: .3s var(--ease);
+}
+.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile overlay menu */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  top: 0;
+  z-index: 60;
+  background: rgba(253, 252, 249, .985);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  padding: 5rem var(--pad) 2rem;
+  gap: .4rem;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .45s var(--ease), opacity .35s var(--ease);
+}
+.mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.mobile-menu a {
+  font-size: 1.35rem;
+  font-weight: 500;
+  padding: .75rem 0;
+  border-bottom: 1px solid var(--hair-soft);
+}
+.mobile-menu .btn {
+  justify-content: center;
+  margin-top: 1.4rem;
+  width: 100%;
+}
+.mobile-menu .lang {
+  align-self: flex-start;
+  margin-top: 1.2rem;
+}
+.mobile-close {
+  position: absolute;
+  top: 1.1rem;
+  right: var(--pad);
+  background: none;
+  border: 0;
+  font-size: 1.7rem;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+/* ============================================================
+   8. SECTION RHYTHM
+   ============================================================ */
+.section {
+  padding: clamp(3.6rem, 9vw, 6.5rem) 0;
+}
+.section.warm {
+  background: var(--warm);
+}
+
+/* ============================================================
+   9. CARD / TILE PATTERNS
+   ============================================================ */
+
+/* Generic card base */
+.card {
+  border: 1px solid var(--hair);
+  border-radius: var(--r);
+  padding: 1.6rem;
+  background: var(--card);
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -24px rgba(14, 14, 16, .28);
+  border-color: var(--violet-line);
+}
+
+/* Marker / icon-badge (gradient square with icon inside) */
+.marker {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  margin-bottom: 1.1rem;
+  background: linear-gradient(135deg, var(--violet), var(--peach));
+  display: grid;
+  place-items: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+.marker svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Pill / tag chip */
+.pill {
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 500;
+  border: 1px solid var(--hair);
+  border-radius: 40px;
+  padding: .42rem .85rem;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+}
+.pill.accent {
+  border-color: var(--violet-line);
+  background: var(--violet-soft);
+  color: var(--violet);
+}
+
+/* Pills container */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+}
+
+/* Quote / editorial callout */
+.why-quote {
+  padding: 1.3rem 1.5rem;
+  border-left: 2px solid var(--violet);
+  font-family: var(--hand);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--violet-soft);
+  border-radius: 0 var(--r) var(--r) 0;
+}
+.why-quote.center {
+  margin: 2.4rem auto 0;
+  max-width: 680px;
+  text-align: center;
+  border-left: 0;
+  border-radius: var(--r);
+  padding: 1.5rem 1.8rem;
+}
+
+/* ============================================================
+   10. SCROLL REVEAL ANIMATION
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   11. FOOTER
+   ============================================================ */
+.footer {
+  background: var(--ink);
+  color: #fff;
+  padding: 3.4rem 0 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.2rem;
+}
+
+.footer .logo { color: #fff; }
+.footer .logo svg { color: #fff; }
+.footer .logo .dot-final { color: var(--peach); }
+
+.footer-brand .tag {
+  font-family: var(--hand);
+  font-size: 1.05rem;
+  opacity: .85;
+  margin-top: .7rem;
+}
+.footer-brand .sub {
+  font-size: .8rem;
+  opacity: .6;
+  margin-top: .4rem;
+}
+
+.socials {
+  display: flex;
+  gap: .8rem;
+  margin-top: 1.2rem;
+}
+.socials a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .16);
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, .75);
+  transition: .25s var(--ease);
+}
+.socials a:hover {
+  background: rgba(255, 255, 255, .1);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.socials svg {
+  width: 16px;
+  height: 16px;
+}
+
+.footer-col h4 {
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .55;
+  margin-bottom: 1rem;
+}
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+}
+.footer-col a {
+  font-size: .88rem;
+  opacity: .8;
+  transition: opacity .2s;
+}
+.footer-col a:hover { opacity: 1; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  margin-top: 2.6rem;
+  padding-top: 1.5rem;
+  font-family: var(--mono);
+  font-size: .72rem;
+  opacity: .55;
+  letter-spacing: .04em;
+}
+
+/* ============================================================
+   12. RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* 600px — stacked → row for CTAs, 4-col counters, founders/values 2-up */
+@media (min-width: 600px) {
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+}
+
+/* 768px — footer 4-col, topbar visible */
+@media (min-width: 768px) {
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+}
+
+/* 900px — show desktop nav, hide burger */
+@media (min-width: 900px) {
+  .nav-links { display: flex; }
+  .header .btn { display: inline-flex; }
+  .burger { display: none; }
+}
+
+/* Reduced motion — disable all animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+</style>
+
+  <style>
+    /* ============================================================
+       PAGE: Implémentation pro — v4
+       Signature moment: numbered process timeline with connector line
+       ============================================================ */
+
+    /* ---- HERO ORB — identical to homepage (direction-b-warm-v4) ---- */
+
+    /* Wrapper: absolutely positioned accent, right of the hero text on desktop.
+       Sized 200–260 px (matches the ~240 px cap on the homepage orb). */
+    .hero-orb-wrap {
+      position: absolute;
+      right: clamp(.5rem, 5vw, 4rem);
+      top: 50%;
+      transform: translateY(-50%);
+      width: clamp(180px, 22vw, 260px);
+      height: clamp(180px, 22vw, 260px);
+      pointer-events: none;
+      z-index: 2;
+      flex-shrink: 0;
+    }
+
+    /* hide on very narrow screens where it would crowd the headline */
+    @media (max-width: 580px) {
+      .hero-orb-wrap { display: none; }
+    }
+
+    /* ---- the homepage orb CSS — verbatim, scoped inside the wrapper ---- */
+
+    /* the signature — living soap bubble (WebGL, with static fallback baked in) */
+    .hero-orb {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      pointer-events: none;
+    }
+    /* airy white halo with a whisper of violet */
+    .hero-orb::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 185%;
+      height: 185%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 46%,
+        rgba(255,255,255,.55) 0%,
+        rgba(196,181,253,.14) 42%,
+        rgba(221,214,254,.08) 60%,
+        rgba(255,255,255,0) 72%);
+      filter: blur(12px);
+      transition: opacity .5s var(--ease);
+    }
+    /* grounding contact shadow beneath the bubble */
+    .hero-orb::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -15%;
+      width: 56%;
+      height: 9%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center,
+        rgba(120,86,74,.20) 0%, rgba(120,86,74,0) 68%);
+      filter: blur(5px);
+      transition: opacity .5s var(--ease);
+    }
+    /* while popped, halo dims and contact shadow lifts */
+    .hero-orb.is-popped::before { opacity: .35; }
+    .hero-orb.is-popped::after  { opacity: 0; }
+    .hero-orb canvas {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 150%;
+      height: 150%;
+      transform: translate(-50%, -50%);
+      display: block;
+      pointer-events: none;
+    }
+    /* circular hit zone — exactly the bubble footprint */
+    .hero-orb .orb-hit {
+      position: absolute;
+      inset: 2%;
+      border-radius: 50%;
+      pointer-events: auto;
+      cursor: pointer;
+      touch-action: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* static fallback — visible by default; fades out once WebGL is live.
+       Also the permanent bubble for reduced-motion / no-WebGL / CDN failure. */
+    .hero-orb-fallback {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 33% 27%, rgba(255,255,255,.95) 0%, rgba(255,255,255,0) 24%),
+        radial-gradient(circle at 70% 76%, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 14%),
+        radial-gradient(circle at 50% 50%,
+          rgba(255,255,255,0) 52%,
+          rgba(255,183,197,.13) 72%,
+          rgba(167,232,215,.20) 84%,
+          rgba(124,108,240,.26) 93%,
+          rgba(196,181,253,.30) 100%);
+      box-shadow:
+        inset 0 0 22px rgba(255,255,255,.32),
+        inset 10px -12px 30px rgba(167,232,215,.22),
+        inset -14px 12px 30px rgba(196,181,253,.28),
+        inset 2px 2px 10px rgba(255,255,255,.5),
+        0 24px 48px -30px rgba(90,80,140,.35);
+      animation: float 7s ease-in-out infinite;
+      transition: opacity .7s var(--ease), visibility .7s;
+    }
+    .hero-orb.is-webgl .hero-orb-fallback { opacity: 0; visibility: hidden; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-12px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-orb-fallback { animation: none; }
+    }
+
+    /* ---- HERO ---- */
+    .pro-hero {
+      padding: clamp(4rem, 10vw, 7.5rem) 0 clamp(3rem, 7vw, 5rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle background aura */
+    .pro-hero::before {
+      content: "";
+      position: absolute;
+      inset: -20% -10%;
+      background: radial-gradient(ellipse 70% 60% at 70% 30%, rgba(102,126,234,.07) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 40% at 20% 80%, rgba(255,217,176,.1) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .pro-hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* on medium+ screens, leave room for the bubble on the right */
+    @media (min-width: 580px) {
+      .pro-hero-text {
+        max-width: calc(100% - clamp(140px, 22vw, 230px));
+      }
+    }
+
+    .pro-hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .pro-hero-tag {
+      font-family: var(--mono);
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--violet);
+      background: var(--violet-soft);
+      border: 1px solid var(--violet-line);
+      border-radius: 40px;
+      padding: .32rem .8rem;
+    }
+
+    .pro-hero h1 {
+      max-width: 17ch;
+      font-size: clamp(2.2rem, 6.5vw, 3.9rem);
+      line-height: 1.07;
+      letter-spacing: -.035em;
+      margin-bottom: 1.5rem;
+    }
+
+    .pro-hero h1 .accent-hand {
+      font-family: var(--hand);
+      font-weight: 600;
+      color: var(--violet);
+      display: inline-block;
+      font-size: 1.05em;
+      letter-spacing: -.02em;
+    }
+
+    .pro-hero-kicker {
+      max-width: 50ch;
+      color: var(--muted);
+      font-size: 1.07rem;
+      line-height: 1.62;
+      margin-bottom: 2.4rem;
+    }
+
+    .pro-hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .9rem;
+      align-items: center;
+    }
+
+    /* Trust bar below hero CTAs */
+    .pro-hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem 1.8rem;
+      margin-top: 2.8rem;
+      padding-top: 2.2rem;
+      border-top: 1px solid var(--hair-soft);
+    }
+
+    .pro-trust-item {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .pro-trust-item .trust-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--mint);
+      flex-shrink: 0;
+    }
+
+    .pro-trust-item strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ---- SECTION NUMBERS (eyebrow) ---- */
+    .sec-num-badge {
+      font-family: var(--mono);
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--violet);
+      display: block;
+      margin-bottom: .9rem;
+    }
+
+    /* ---- PROCESS SECTION — signature moment ---- */
+    /*
+       A clean numbered timeline:
+       - On mobile: vertical stacked steps with a left connector line
+       - On desktop: horizontal 3-step flow with connector dots
+    */
+    .process-grid {
+      position: relative;
+      margin-top: 3rem;
+    }
+
+    /* Mobile: vertical list */
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 0 1.4rem;
+      position: relative;
+    }
+
+    /* connector line between steps */
+    .process-step:not(:last-child) .step-num-col::after {
+      content: "";
+      position: absolute;
+      left: 25px; /* center of the 52px num column */
+      top: 52px;  /* below the circle */
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, var(--violet-line) 0%, var(--hair-soft) 100%);
+      z-index: 0;
+    }
+
+    .step-num-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .step-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1.5px solid var(--violet-line);
+      background: var(--card);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      font-family: var(--mono);
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--violet);
+      transition: background .3s var(--ease), border-color .3s var(--ease);
+    }
+
+    .process-step:hover .step-circle {
+      background: var(--violet-soft);
+      border-color: var(--violet);
+    }
+
+    .step-body {
+      padding: 0 0 3rem;
+    }
+
+    .step-body h3 {
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin: .9rem 0 .55rem;
+      letter-spacing: -.01em;
+    }
+
+    .step-body p {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.6;
+      max-width: 42ch;
+    }
+
+    .step-meta {
+      margin-top: .8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-family: var(--mono);
+      font-size: .64rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      background: var(--warm);
+      border-radius: 40px;
+      padding: .28rem .72rem;
+    }
+
+    /* Desktop: horizontal timeline */
+    @media (min-width: 760px) {
+      .process-steps {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 0;
+      }
+
+      .process-step {
+        flex: 1;
+        grid-template-columns: 1fr;
+        text-align: center;
+        position: relative;
+      }
+
+      /* horizontal connector between steps */
+      .process-step:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 25px; /* center of circle */
+        left: calc(50% + 30px);
+        right: calc(-50% + 30px);
+        height: 1px;
+        background: linear-gradient(90deg, var(--violet-line) 0%, var(--hair) 100%);
+        z-index: 0;
+      }
+
+      /* remove vertical connector on desktop */
+      .process-step:not(:last-child) .step-num-col::after {
+        display: none;
+      }
+
+      .step-num-col {
+        align-items: center;
+      }
+
+      .step-body {
+        padding: 0 1.4rem 0;
+        margin-top: .7rem;
+      }
+
+      .step-body p {
+        max-width: 28ch;
+        margin: 0 auto;
+      }
+
+      .step-body h3 {
+        margin: .7rem 0 .5rem;
+      }
+
+      .step-meta {
+        margin-top: 1rem;
+      }
+    }
+
+    /* ---- OFFER CARDS ---- */
+    .offer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
+      margin-top: 3rem;
+    }
+
+    @media (min-width: 640px) {
+      .offer-grid {
+        grid-template-columns: 1fr 1fr;
+        max-width: 820px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .offer-card {
+      border: 1px solid var(--hair);
+      border-radius: var(--r-lg);
+      padding: 2rem;
+      background: var(--card);
+      position: relative;
+      transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+    }
+
+    .offer-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 44px -22px rgba(14,14,16,.22);
+    }
+
+    /* Featured card: gradient border */
+    .offer-card.featured {
+      border-color: transparent;
+      background: var(--card);
+      box-shadow: 0 0 0 1.5px rgba(102,126,234,.35), 0 8px 32px -14px rgba(102,126,234,.18);
+    }
+
+    .offer-card.featured:hover {
+      box-shadow: 0 0 0 1.5px var(--violet), 0 22px 48px -20px rgba(102,126,234,.3);
+    }
+
+    .offer-badge {
+      font-family: var(--mono);
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border-radius: 40px;
+      padding: .3rem .75rem;
+      display: inline-block;
+      margin-bottom: 1.2rem;
+    }
+
+    .offer-badge.violet {
+      background: var(--violet-soft);
+      color: var(--violet);
+      border: 1px solid var(--violet-line);
+    }
+
+    .offer-badge.peach {
+      background: rgba(255,217,176,.22);
+      color: #b87020;
+      border: 1px solid rgba(255,217,176,.6);
+    }
+
+    .offer-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+      letter-spacing: -.02em;
+    }
+
+    .offer-price {
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: -.04em;
+      color: var(--ink);
+      line-height: 1;
+      margin: .9rem 0 .3rem;
+    }
+
+    .offer-price .suffix {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0;
+    }
+
+    .offer-subtitle {
+      font-size: .82rem;
+      color: var(--faint);
+      font-family: var(--mono);
+      letter-spacing: .04em;
+      margin-bottom: 1.1rem;
+    }
+
+    .offer-desc {
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.58;
+      margin-bottom: 1.4rem;
+    }
+
+    .offer-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .62rem;
+      margin-bottom: 1.7rem;
+      padding: 0;
+    }
+
+    .offer-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .offer-features li::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--violet-soft);
+      border: 1px solid var(--violet-line);
+      flex-shrink: 0;
+      margin-top: .12em;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23667eea' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8l3.5 3.5L13 5'/%3E%3C/svg%3E");
+      background-size: 14px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* ---- MISSION TILES ---- */
+    .tiles-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      margin-top: 2.8rem;
+    }
+
+    @media (min-width: 560px) {
+      .tiles-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (min-width: 900px) {
+      .tiles-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .mission-tile {
+      border: 1px solid var(--hair);
+      border-radius: var(--r);
+      background: var(--card);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+      transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+    }
+
+    .mission-tile:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 36px -20px rgba(14,14,16,.2);
+      border-color: var(--violet-line);
+    }
+
+    .mission-meta {
+      font-family: var(--mono);
+      font-size: .64rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    .mission-tile h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -.01em;
+    }
+
+    .mission-tile p {
+      font-size: .86rem;
+      color: var(--muted);
+      line-height: 1.58;
+      flex: 1;
+    }
+
+    .mission-outcome {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: var(--mono);
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      color: var(--violet);
+      background: var(--violet-soft);
+      border: 1px solid var(--violet-line);
+      border-radius: 40px;
+      padding: .3rem .7rem;
+      align-self: flex-start;
+    }
+
+    /* ---- WHY US (3 columns) ---- */
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
+      margin-top: 2.8rem;
+    }
+
+    @media (min-width: 640px) {
+      .why-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (min-width: 900px) {
+      .why-grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    .why-card {
+      border: 1px solid var(--hair);
+      border-radius: var(--r);
+      background: var(--card);
+      padding: 1.6rem;
+      transition: transform .3s var(--ease), border-color .3s var(--ease);
+    }
+
+    .why-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--violet-line);
+    }
+
+    .why-card .marker {
+      margin-bottom: 1rem;
+    }
+
+    .why-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: .5rem;
+      letter-spacing: -.01em;
+    }
+
+    .why-card p {
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ---- FAQ ACCORDION ---- */
+    .faq-list {
+      margin-top: 2.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--hair-soft);
+    }
+
+    .faq-item:first-child {
+      border-top: 1px solid var(--hair-soft);
+    }
+
+    .faq-item summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 0;
+      font-size: .98rem;
+      font-weight: 500;
+      color: var(--ink);
+      cursor: pointer;
+      list-style: none;
+      line-height: 1.4;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-arrow {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid var(--hair);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: transform .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
+      color: var(--faint);
+    }
+
+    .faq-item[open] .faq-arrow {
+      transform: rotate(180deg);
+      border-color: var(--violet-line);
+      background: var(--violet-soft);
+      color: var(--violet);
+    }
+
+    .faq-item summary:hover .faq-arrow {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .faq-body {
+      padding: 0 0 1.4rem;
+      font-size: .92rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 72ch;
+    }
+
+    .faq-body strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* FAQ 2-col on wide screens */
+    @media (min-width: 900px) {
+      .faq-cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 4rem;
+        align-items: start;
+      }
+
+      .faq-col {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    /* ---- FINAL CTA band ---- */
+    .final-cta-section {
+      background: var(--ink);
+      padding: clamp(3.6rem, 9vw, 5.5rem) 0;
+    }
+
+    .final-cta-inner {
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .final-cta-inner .sec-num-badge {
+      color: rgba(255,255,255,.5);
+    }
+
+    .final-cta-inner h2 {
+      color: #fff;
+      font-size: clamp(1.7rem, 4.5vw, 2.7rem);
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .final-cta-inner h2 .hand {
+      color: var(--peach);
+    }
+
+    .final-cta-inner p {
+      color: rgba(255,255,255,.65);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .final-cta-inner .btn-primary {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 8px 28px -10px rgba(255,255,255,.25);
+      font-size: .95rem;
+      padding: .85rem 1.7rem;
+    }
+
+    .final-cta-inner .btn-primary:hover {
+      background: var(--base);
+      transform: translateY(-2px);
+    }
+
+    .final-cta-trust {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: .9rem 1.8rem;
+      margin-top: 1.8rem;
+    }
+
+    .final-cta-trust span {
+      font-size: .8rem;
+      color: rgba(255,255,255,.45);
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .final-cta-trust span::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--mint);
+    }
+
+    /* ---- FOUNDERS STRIP (social proof) ---- */
+    .founders-strip {
+      background: var(--warm);
+      padding: 2.6rem 0;
+    }
+
+    .founders-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      align-items: flex-start;
+    }
+
+    @media (min-width: 640px) {
+      .founders-inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .founders-text {
+      font-size: .92rem;
+      color: var(--muted);
+      max-width: 54ch;
+      line-height: 1.55;
+    }
+
+    .founders-text strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .founders-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      flex-shrink: 0;
+    }
+
+    /* Active nav link */
+    .nav-links a.active {
+      color: var(--ink);
+      font-weight: 600;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- HEADER -->
-  <!-- Top strip "Labo ouvert" — Glass Lab Editorial Charte v3 -->
-  <div class="gle-top-strip">
-    <div><span class="gle-top-strip-dot"></span>LABO OUVERT</div>
-    <div>·</div>
-    <div>BUILD IN PUBLIC</div>
-    <div>·</div>
-    <div>22+ AGENTS EN PROD</div>
+
+<body>
+
+<!-- TOP STRIP -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span><span class="dot"></span>&nbsp;Labo ouvert</span>
+    <span class="sep">·</span>
+    <span class="dim">Build in public</span>
+    <span class="sep">·</span>
+    <span class="dim">22 agents en production</span>
   </div>
+</div>
 
-  <header class="gle-site-header">
-    <div class="gle-container">
-      <div class="gle-header-inner">
-        <div class="gle-logo-block">
-          <a class="gle-logo logo" href="/">
-            <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-                stroke-linecap="round" stroke-width="6"></circle>
-              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-            </svg>
-            Bubble.
-          </a>
-          <span class="gle-logo-tagline">Investissez dans l'essentiel</span>
-        </div>
+<!-- HEADER -->
+<header class="header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo" aria-label="Bubble, retour à l'accueil">
+      <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"/>
+        <circle cx="59" cy="21" r="6" fill="var(--violet)"/>
+      </svg>
+      Bubble<span class="dot-final">.</span>
+    </a>
 
-        <!-- Mobile hamburger toggle (ID preserve — listener au bas de page) -->
-        <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
-          <span></span><span></span><span></span>
-        </button>
-
-        <nav class="gle-nav">
-          <a href="/a-propos">À Propos</a>
-          <a href="/particuliers">Apprendre &amp; Brancher</a>
-          <a href="/professionnels" class="active" aria-current="page">Implémentation pro</a>
-          <a href="/blog">Blog</a>
-          <div class="lang-switch">
-            <button class="active">FR</button>
-            <span>/</span>
-            <button data-href="/en/professionals">EN</button>
-          </div>
-          <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
-             class="gle-nav-cta nav-cta-calendly" data-cta-track="header_calendly_click">
-            Réserver un diagnostic
-          </a>
-        </nav>
-
+    <nav class="nav" aria-label="Navigation principale">
+      <div class="nav-links">
+        <a href="/a-propos">À propos</a>
+        <a href="/particuliers">Apprendre &amp; brancher</a>
+        <a href="/professionnels" class="active" aria-current="page">Implémentation pro</a>
+        <a href="/blog">Blog</a>
       </div>
-    </div>
-  </header>
-
-  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block — ID preserve) -->
-  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
-    <div class="mobile-nav-content">
-      <a href="/a-propos">À Propos</a>
-      <a href="/particuliers">Apprendre &amp; Brancher</a>
-      <a href="/professionnels" class="active" aria-current="page">Implémentation pro</a>
-      <a href="/blog">Blog</a>
-      <div class="lang-switch">
-        <button class="active">FR</button>
-        <span>/</span>
-        <button data-href="/en/professionals">EN</button>
+      <div class="lang" role="group" aria-label="Choix de langue">
+        <button class="active" aria-pressed="true">FR</button>
+        <span class="slash">/</span>
+        <a href="/en/professionals" style="background:none;border:0;cursor:pointer;color:var(--faint);font-family:inherit;font-size:inherit;padding:.1rem .34rem;border-radius:40px;text-decoration:none;">EN</a>
       </div>
-      <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
-         class="nav-cta-calendly mobile-nav-cta-calendly" data-cta-track="mobile_header_calendly_click">
-        Réserver un diagnostic gratuit (30 min)
-      </a>
-    </div>
-  </div>
-
-  <main>
-    <!-- HERO -->
-    <section class="hero gle-hero gle-bg-warm-atmospheric" aria-label="Introduction">
-      <span class="gle-kanji-watermark gle-kanji-hero-bg" aria-hidden="true">業</span>
-      <div class="gle-container">
-        <div class="gle-hero-grid">
-          <div class="hero-content fade-in">
-            <span class="gle-hero-tag" data-translate="professionnels.hero.tag">CGP · Indépendants · Petites structures</span>
-            <h1 class="gle-hero-title">
-              <span data-translate="professionnels.hero.title_1">Anthropic, Google et OpenAI ont créé le moteur.</span><br>
-              <em data-translate="professionnels.hero.title_2" style="color: #667eea;">Nous, on vous aide à faire le dernier kilomètre.</em>
-            </h1>
-            <p class="gle-hero-kicker" data-translate="professionnels.hero.kicker">
-              Notre force : on comprend votre métier et on maîtrise la stack technique. Nous installons les employés IA qui vous manquent pour faire la différence.
-            </p>
-            <div class="gle-hero-ctas hero-cta-group">
-              <a class="gle-btn-primary btn btn-primary" href="#calendly" data-cta-track="pros_hero_calendly_click">
-                <span data-translate="professionnels.hero.cta_primary">Réserver un diagnostic gratuit</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-              <a class="gle-btn-secondary btn btn-secondary" href="#offre" data-translate="professionnels.hero.cta_secondary">Voir l'offre</a>
-            </div>
-          </div>
-          <div class="gle-hero-orb">
-            <img src="/assets/images/glass-lab/robot_in_nature.png" alt="Un agent IA dans son environnement" loading="eager" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CALENDLY (inline, sous le hero) — campagne centrepiece -->
-    <section id="calendly" class="gle-section gle-bg-cool-atmospheric" aria-label="Réserver un diagnostic gratuit">
-      <div class="gle-container">
-        <div class="gle-section-header">
-          <div class="gle-section-num">Réservez en 30 secondes</div>
-          <h2 class="gle-section-title" data-translate="professionnels.calendly.title">Réservez votre diagnostic gratuit.</h2>
-          <p class="gle-section-kicker" data-translate="professionnels.calendly.kicker">
-            30 minutes, en visio, sans engagement. On regarde vos process actuels et on identifie où un agent IA vous fait gagner du temps, concrètement.
-          </p>
-        </div>
-        <div class="ip-calendly">
-          <p class="ip-calendly-trust" data-translate="professionnels.calendly.trust">
-            Animé par les fondateurs, <strong>Joris</strong> (ex-UBS, 6 ans gestion institutionnelle) &amp; <strong>Jade</strong> (ex-Deloitte) · 22+ agents en prod
-          </p>
-          <!-- Embed Calendly inline réel — auto-rendu par assets.calendly.com/external/widget.js
-               qui détecte tout .calendly-inline-widget[data-url]. Le data-url porte les params
-               de la campagne (hide_gdpr_banner, primary_color). -->
-          <div class="calendly-inline-widget"
-               data-url="https://calendly.com/bubbleinvest-ai?hide_gdpr_banner=1&amp;primary_color=667eea"
-               data-cta-track="pros_inline_embed"
-               style="min-width:320px;height:680px;"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 01 PROCESSUS -->
-    <section class="gle-section gle-bg-warm-atmospheric" aria-label="Notre processus">
-      <div class="gle-container">
-        <div class="gle-section-header">
-          <div class="gle-section-num">01 / Notre processus</div>
-          <h2 class="gle-section-title" data-translate="professionnels.process.title">3 sessions. Vous êtes opérationnels.</h2>
-          <p class="gle-section-kicker" data-translate="professionnels.process.kicker">
-            Diagnostic, installation, accompagnement. Pas de tunnel à 6 mois. Pas de chantier brouillon. Trois rendez-vous structurés, et vous repartez autonomes.
-          </p>
-        </div>
-        <div class="ip-process">
-          <div class="ip-process-step">
-            <div class="ip-process-num">1</div>
-            <h3 data-translate="professionnels.process.step1_title">Diagnostic</h3>
-            <p data-translate="professionnels.process.step1_desc">On comprend votre métier, vos process, votre stack actuelle. On identifie où l'IA apporte le plus de valeur, vite.</p>
-            <div class="ip-step-detail">2h · gratuit · Calendly</div>
-          </div>
-          <div class="ip-process-step">
-            <div class="ip-process-num">2</div>
-            <h3 data-translate="professionnels.process.step2_title">Installation</h3>
-            <p data-translate="professionnels.process.step2_desc">On installe l'agent sur votre serveur ou en local sur vos machines. Vous voyez le code, vous validez chaque skill.</p>
-            <div class="ip-step-detail">1-2 semaines · présentiel ou visio</div>
-          </div>
-          <div class="ip-process-step">
-            <div class="ip-process-num">3</div>
-            <h3 data-translate="professionnels.process.step3_title">Accompagnement</h3>
-            <p data-translate="professionnels.process.step3_desc">On vous accompagne, vous et votre équipe, pour utiliser l'agent et le faire évoluer. Vous repartez autonomes.</p>
-            <div class="ip-step-detail">1 semaine · support de démarrage inclus</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 02 OFFRE -->
-    <section id="offre" class="gle-section gle-bg-cool-atmospheric" aria-label="L'offre">
-      <div class="gle-container">
-        <div class="gle-section-header">
-          <div class="gle-section-num">02 / L'offre</div>
-          <h2 class="gle-section-title" data-translate="professionnels.offer.title">Un format clair pour démarrer.<br>Du sur-mesure pour aller plus loin.</h2>
-          <p class="gle-section-kicker" data-translate="professionnels.offer.kicker">Pas de tunnel à 6 mois ni de facture à 30k€. Un forfait fixe, puis du sur-mesure si vous en avez besoin.</p>
-        </div>
-        <div class="ip-offers-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 760px; margin: 3rem auto 0;">
-
-          <!-- Quick Start (featured) -->
-          <div class="ip-offer-card ip-offer-card--featured">
-            <span class="ip-offer-badge ip-offer-badge--violet" data-translate="professionnels.offer.quickstart_badge">Le plus populaire</span>
-            <h3 class="ip-offer-title" data-translate="professionnels.offer.quickstart_title">Agentic Quick Start</h3>
-            <div class="ip-offer-price">dès 2 000 €<span class="ip-offer-price-suffix"> HT</span></div>
-            <p class="ip-offer-subtitle" data-translate="professionnels.offer.quickstart_subtitle">3 sessions · un agent installé · 2-3 semaines</p>
-            <p class="ip-offer-desc" data-translate="professionnels.offer.quickstart_desc">On installe un agent IA avec 1 ou 2 compétences précises, sur vos vrais documents et workflows.</p>
-            <ul class="ip-offer-features">
-              <li data-translate="professionnels.offer.quickstart_feat1">Diagnostic, installation, accompagnement</li>
-              <li data-translate="professionnels.offer.quickstart_feat2">Sur votre serveur ou en local sur vos machines</li>
-              <li data-translate="professionnels.offer.quickstart_feat3">Code 100 % à vous à la fin, aucun lock-in</li>
-              <li data-translate="professionnels.offer.quickstart_feat4">Support inclus juste après la livraison</li>
-            </ul>
-            <a class="gle-btn-primary btn btn-primary" href="#calendly" data-cta-track="pros_offer_quickstart_calendly_click">
-              <span data-translate="professionnels.offer.quickstart_cta">Réserver un diagnostic gratuit</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-
-          <!-- Sur-mesure -->
-          <div class="ip-offer-card">
-            <span class="ip-offer-badge ip-offer-badge--peach" data-translate="professionnels.offer.custom_badge">Projets complexes</span>
-            <h3 class="ip-offer-title" data-translate="professionnels.offer.custom_title">Sur-mesure</h3>
-            <div class="ip-offer-price" style="font-size: 1.7rem;" data-translate="professionnels.offer.custom_price">Sur devis</div>
-            <p class="ip-offer-subtitle" data-translate="professionnels.offer.custom_subtitle">Devis adapté après le diagnostic</p>
-            <p class="ip-offer-desc" data-translate="professionnels.offer.custom_desc">Pour des intégrations plus poussées : multi-départements, agents métier spécialisés, infrastructure dédiée.</p>
-            <ul class="ip-offer-features">
-              <li data-translate="professionnels.offer.custom_feat1">Périmètre défini ensemble au diagnostic</li>
-              <li data-translate="professionnels.offer.custom_feat2">Forfait suivi &amp; maintenance (sur devis)</li>
-              <li data-translate="professionnels.offer.custom_feat3">Mêmes principes : votre infra, vos données</li>
-              <li>Couche d'anonymisation &amp; chiffrement des données sensibles avant traitement IA (conformité RGPD)</li>
-            </ul>
-            <a class="ip-btn-ghost" href="mailto:contact@bubbleinvest.org" data-cta-track="pros_offer_custom_email_click" data-translate="professionnels.offer.custom_cta">Demander un devis →</a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 EXEMPLES DE MISSIONS -->
-    <section class="gle-section gle-bg-warm-atmospheric" aria-label="Exemples de missions">
-      <div class="gle-container">
-        <div class="gle-section-header">
-          <div class="gle-section-num">03 / Exemples de missions</div>
-          <h2 class="gle-section-title" data-translate="professionnels.examples.title">Le dernier mile entre l'IA et votre métier.</h2>
-        </div>
-        <div class="ip-tiles">
-
-          <!-- Tile 1 — CGP -->
-          <div class="ip-tile">
-            <img class="ip-tile-photo"
-                 src="/assets/images/glass-lab/missions/mission-1.jpg"
-                 alt="Gestion de patrimoine — documents client"
-                 loading="lazy">
-            <div class="ip-tile-body">
-              <div class="ip-tile-meta">CGP · Gestion de Patrimoine</div>
-              <h3 data-translate="professionnels.examples.tile1_title">Note de synthèse client</h3>
-              <p data-translate="professionnels.examples.tile1_desc">L'agent récupère les dossiers KYC, les performances de portefeuille et les actualités fiscales. Note prête avant chaque rendez-vous.</p>
-              <div class="ip-tile-outcome" data-translate="professionnels.examples.tile1_outcome">4h gagnées par RDV · note en 30 secondes</div>
-            </div>
-          </div>
-
-          <!-- Tile 2 — Asset Manager -->
-          <div class="ip-tile">
-            <img class="ip-tile-photo"
-                 src="/assets/images/glass-lab/missions/mission-2.jpg"
-                 alt="Conformité réglementaire — documents AMF"
-                 loading="lazy">
-            <div class="ip-tile-body">
-              <div class="ip-tile-meta">Asset Manager · Conformité</div>
-              <h3 data-translate="professionnels.examples.tile2_title">Veille réglementaire AMF</h3>
-              <p data-translate="professionnels.examples.tile2_desc">Chaque matin l'agent croise les publications AMF, les changements de doctrine et les sanctions. Résumé ciblé sur vos dossiers en cours.</p>
-              <div class="ip-tile-outcome" data-translate="professionnels.examples.tile2_outcome">veille passive · alertes ciblées</div>
-            </div>
-          </div>
-
-          <!-- Tile 3 — PME -->
-          <div class="ip-tile">
-            <img class="ip-tile-photo"
-                 src="/assets/images/glass-lab/missions/mission-3.jpg"
-                 alt="Onboarding client — première réunion"
-                 loading="lazy">
-            <div class="ip-tile-body">
-              <div class="ip-tile-meta">PME · Relation Client</div>
-              <h3 data-translate="professionnels.examples.tile3_title">Onboarding client</h3>
-              <p data-translate="professionnels.examples.tile3_desc">L'agent prend en charge le premier email, l'envoi des contrats, la collecte des documents. Le client suit l'avancée sur un dashboard en temps réel.</p>
-              <div class="ip-tile-outcome" data-translate="professionnels.examples.tile3_outcome">2 jours d'admin → 2h de validation</div>
-            </div>
-          </div>
-
-          <!-- Tile 4 — Gérant de portefeuille -->
-          <div class="ip-tile">
-            <img class="ip-tile-photo"
-                 src="/assets/images/glass-lab/missions/mission-4.jpg"
-                 alt="Briefing marché — graphiques financiers"
-                 loading="lazy">
-            <div class="ip-tile-body">
-              <div class="ip-tile-meta">Gérant de Portefeuille · Finance</div>
-              <h3 data-translate="professionnels.examples.tile4_title">Briefing marché matinal</h3>
-              <p data-translate="professionnels.examples.tile4_desc">À 7h30, l'agent agrège les flux Bloomberg, les publications macro et les mouvements overnight. Brief structuré dans votre inbox avant le premier café.</p>
-              <div class="ip-tile-outcome" data-translate="professionnels.examples.tile4_outcome">45 min de lecture → 5 min de scan</div>
-            </div>
-          </div>
-
-          <!-- Tile 5 — Indépendant -->
-          <div class="ip-tile">
-            <img class="ip-tile-photo"
-                 src="/assets/images/glass-lab/missions/mission-5.jpg"
-                 alt="Community manager — réseaux sociaux"
-                 loading="lazy">
-            <div class="ip-tile-body">
-              <div class="ip-tile-meta">Indépendant · Présence Digitale</div>
-              <h3 data-translate="professionnels.examples.tile5_title">Community Manager multi-plateforme</h3>
-              <p data-translate="professionnels.examples.tile5_desc">L'agent recycle chaque article en threads LinkedIn, posts Instagram et newsletters. Une idée, sept formats, zéro répétition.</p>
-              <div class="ip-tile-outcome" data-translate="professionnels.examples.tile5_outcome">1 contenu → 7 formats · 3h/semaine économisées</div>
-            </div>
-          </div>
-
-          <!-- Tile 6 — SaaS -->
-          <div class="ip-tile">
-            <img class="ip-tile-photo"
-                 src="/assets/images/glass-lab/missions/mission-6.jpg"
-                 alt="Audit de sécurité — infrastructure serveur"
-                 loading="lazy">
-            <div class="ip-tile-body">
-              <div class="ip-tile-meta">SaaS · Infrastructure</div>
-              <h3 data-translate="professionnels.examples.tile6_title">Audit de sécurité hebdomadaire</h3>
-              <p data-translate="professionnels.examples.tile6_desc">Chaque lundi l'agent scanne les CVE récentes, croise avec vos dépendances et génère un rapport de priorités classé par risque réel.</p>
-              <div class="ip-tile-outcome" data-translate="professionnels.examples.tile6_outcome">rapport livré en 4 min · zero backlog ignoré</div>
-            </div>
-          </div>
-
-          <!-- Tile 7 — GDPR anonymisation -->
-          <div class="ip-tile">
-            <img class="ip-tile-photo"
-                 src="/assets/images/glass-lab/missions/mission-7-anonymisation.png"
-                 alt="Anonymisation RGPD avant traitement IA"
-                 loading="lazy">
-            <div class="ip-tile-body">
-              <div class="ip-tile-meta">Conformité · RGPD</div>
-              <h3>Anonymisation avant traitement IA</h3>
-              <p>Un pipeline détecte et masque automatiquement les données sensibles (noms, IBAN, identifiants) avant tout envoi à un LLM. Vous exploitez toute la puissance de l'IA sans jamais exposer de donnée nominative.</p>
-              <div class="ip-tile-outcome">Donnée nominative jamais exposée · conformité RGPD</div>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 04 FAQ -->
-    <section id="faq" class="gle-section gle-bg-warm-atmospheric" aria-label="Questions fréquentes">
-      <div class="gle-container">
-        <div class="gle-section-header">
-          <div class="gle-section-num">04 / Questions fréquentes</div>
-          <h2 class="gle-section-title" data-translate="professionnels.faq.title">Tout ce qu'un pro nous demande.</h2>
-          <p class="gle-section-kicker" data-translate="professionnels.faq.kicker">Approche, offre, prix, sécurité, propriété du code : les réponses directes, sans détour.</p>
-        </div>
-        <div class="ip-faq">
-          <details class="ip-faq-item">
-            <summary>Qu'est-ce que Bubble Invest exactement ?</summary>
-            <div class="ip-faq-a">Bubble Invest conçoit et installe des agents IA sur mesure pour les professionnels. Notre mission : automatiser vos tâches répétitives, structurer vos données et libérer votre temps pour ce qui compte : votre expertise et vos clients.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Que deviennent mes données ? Sont-elles protégées ?</summary>
-            <div class="ip-faq-a">La protection de vos données est au cœur de notre approche. Vos agents tournent au choix en local sur votre machine ou sur un serveur privé sécurisé, et nous proposons une couche d'anonymisation et de chiffrement qui retire ou masque les données sensibles (noms de clients, numéros de compte, identifiants) <strong>avant</strong> qu'elles n'atteignent un fournisseur d'IA comme Anthropic. Vous gardez le contrôle total : ce qui est confidentiel ne quitte jamais votre environnement en clair.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>En quoi êtes-vous différents d'un cabinet de conseil classique ?</summary>
-            <div class="ip-faq-a">Pas de slides à rallonge, pas de devis à six chiffres, pas d'armée de consultants juniors. On va plus loin que le conseil : on construit et on installe directement un agent IA opérationnel à partir de vos données et de vos outils. Une solution clé en main qui absorbe votre charge de travail dès le premier jour, <strong>sans vous rendre dépendants</strong>.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Pourquoi vous, et pas un freelance dev IA ?</summary>
-            <div class="ip-faq-a">On combine une double expertise rare : conseil stratégique (finance, process métier) et ingénierie IA. On comprend vos workflows avant même de coder. Et surtout, on utilise nos propres agents au quotidien. Ce qu'on vous vend, on l'utilise nous-mêmes. Plus rapide, plus fiable et moins cher qu'un développeur freelance.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Pourquoi 3 sessions, ni plus ni moins ?</summary>
-            <div class="ip-faq-a">Trois sessions, c'est le format optimal : assez pour diagnostiquer vos besoins, construire votre agent et vous former à l'utiliser en autonomie. L'objectif n'est pas de vous rendre dépendants, c'est de vous rendre opérationnels. Et si vous avez besoin de plus, on reste disponibles.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Combien coûte le Quick Start ?</summary>
-            <div class="ip-faq-a">Le Quick Start <strong>démarre à 2 000 € HT</strong> pour un agent IA sur mesure, 3 sessions de travail incluses. Le premier devis est co-construit avec vous selon vos besoins réels. Pour des architectures plus complexes (multi-agents, intégrations avancées), on établit un devis personnalisé.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Que comprend précisément le Quick Start ?</summary>
-            <div class="ip-faq-a">Un agent IA sur mesure, conçu pour votre métier et vos process. Il inclut : un diagnostic de vos besoins, la construction de l'agent (automatisations, routines, intégrations à vos outils), son installation, et un accompagnement pratique pour le prendre en main en autonomie, le tout en 3 sessions.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Que se passe-t-il après les 3 sessions ?</summary>
-            <div class="ip-faq-a">Un support est inclus dans les jours suivant la livraison pour corriger tout bug initial. Au-delà, on reste disponibles pour des interventions rapides sur devis, et un forfait suivi & maintenance est proposé pour un accompagnement sur la durée, selon vos besoins.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Faites-vous des devis sur mesure au-delà du Quick Start ?</summary>
-            <div class="ip-faq-a">Absolument. Au-delà du Quick Start, on conçoit des solutions sur mesure : équipes multi-agents, selfware (outils IA personnels), applications dédiées ou architectures complexes. Chaque projet fait l'objet d'un devis adapté à votre périmètre.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Quel est le délai pour démarrer ?</summary>
-            <div class="ip-faq-a">La première session est gratuite et sans engagement. Après signature, le projet démarre sous 1 à 2 semaines, pour une livraison complète en 3 semaines : un agent clé en main, prêt à l'emploi sur votre serveur ou en local.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Proposez-vous un contrat de maintenance / support ?</summary>
-            <div class="ip-faq-a">Oui. Une fois l'agent déployé, on propose des contrats de maintenance adaptés à vos besoins : forfait mensuel sur devis pour un suivi régulier, ou intervention ponctuelle à <strong>500 € HT/jour</strong>, avec un délai de réponse garanti sous 24h, à distance ou sur site.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Et si quelque chose casse 6 mois après ?</summary>
-            <div class="ip-faq-a">On reste joignables après la livraison. Nos agents de support sont disponibles pour vous orienter, et notre équipe intervient rapidement si un problème survient, même des mois plus tard.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Sur quels secteurs intervenez-vous ?</summary>
-            <div class="ip-faq-a">On accompagne les petites et moyennes structures, indépendants et professions réglementées, avec un cœur de métier en <strong>gestion de patrimoine et asset management</strong>. Pourquoi les petites structures ? C'est là que l'IA a le plus d'impact : moins de couches hiérarchiques, moins de logiciels empilés, des résultats visibles immédiatement.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Quel niveau de sécurité garantissez-vous ?</summary>
-            <div class="ip-faq-a">Vos agents tournent au choix en local sur votre machine ou sur un serveur privé sécurisé. Les données sont traitées via des fournisseurs d'IA de premier plan (Anthropic, OpenAI) avec leurs protocoles de sécurité standards. Toutes les conversations sont archivées localement, avec possibilité de sauvegardes automatiques.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>À qui appartient le code installé chez vous ?</summary>
-            <div class="ip-faq-a">Vous payez une fois, sans abonnement ni frais récurrents imposés : c'est tout l'avantage par rapport à un SaaS. Concrètement, vos données, votre configuration et les contenus produits vous appartiennent, et votre agent tourne chez vous (en local ou sur votre serveur privé) — vous l'utilisez librement et dans la durée, sans dépendre de notre présence au quotidien. Le moteur et le code sous-jacent de l'agent restent en revanche notre propriété, comme chez tout éditeur de logiciel : votre forfait rémunère le développement, l'installation et le déploiement, pas une cession du code source. Pour les solutions critiques, une clause de réversibilité peut être prévue afin de garantir la continuité quoi qu'il arrive.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Quels modèles d'IA utilisez-vous ?</summary>
-            <div class="ip-faq-a">Principalement Claude (Anthropic), tout en restant flexibles selon vos préférences. Point important : les agents fonctionnent avec <strong>votre propre abonnement</strong> (OpenAI, Claude ou autre). Vous gardez le contrôle total sur vos coûts et vos données.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Les agents peuvent-ils tourner sans connexion internet ?</summary>
-            <div class="ip-faq-a">Les agents IA nécessitent une connexion internet pour accéder aux modèles de langage. En revanche, certaines automatisations simples et applications personnalisées peuvent tourner en local selon votre configuration.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Politique d'annulation et de remboursement ?</summary>
-            <div class="ip-faq-a">La première session est gratuite et sans engagement. Vous pouvez décider de ne pas poursuivre après cette première rencontre, aucun frais, aucune obligation.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Comment se passe la signature ?</summary>
-            <div class="ip-faq-a">Processus simple et transparent : devis et contrat signés électroniquement (Yousign). Le projet démarre dès réception de l'acompte. Des facilités de paiement sont disponibles et définies ensemble en amont.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Accompagnez-vous nos équipes ?</summary>
-            <div class="ip-faq-a">Oui, et c'est du concret : pas de slides ni de conférences théoriques, mais des sessions pratiques où l'on apprend en faisant, directement sur votre agent. On ne repart pas tant que votre équipe ne le maîtrise pas. C'est comme accueillir un nouveau collaborateur, déjà opérationnel sur vos process.</div>
-          </details>
-          <details class="ip-faq-item">
-            <summary>Travaillez-vous à distance ou sur site ?</summary>
-            <div class="ip-faq-a">Les deux, selon vos préférences et la nature du projet. Basés en région parisienne, on est disponibles partout en France et capables d'opérer entièrement à distance.</div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA FINALE -->
-    <section class="gle-section gle-bg-cool-atmospheric" aria-label="Appel à l'action">
-      <div class="gle-container">
-        <div class="ip-final-cta">
-          <h2 class="gle-section-title" data-translate="professionnels.finalcta.title">Prêt à installer votre premier agent ?</h2>
-          <p class="gle-section-kicker" style="margin-bottom: 2rem;" data-translate="professionnels.finalcta.kicker">Un diagnostic gratuit de 30 minutes suffit pour savoir si c'est fait pour vous.</p>
-          <a class="gle-btn-primary btn btn-primary" href="#calendly" data-cta-track="pros_final_calendly_click">
-            <span data-translate="professionnels.finalcta.cta">Réserver mon diagnostic gratuit</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER (Glass Lab Editorial v3 — structure preserved, restyled) -->
-  <footer class="gle-footer">
-    <div class="gle-container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="logo" href="/" style="font-size: 1.5rem; color: #fff;">
-            <svg fill="none" style="width: 32px; height: 32px;" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-                stroke-linecap="round" stroke-width="6"></circle>
-              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-            </svg>
-            Bubble.
-          </a>
-          <p style="font-family: var(--gle-font-accent); font-style: italic; opacity: 0.85; margin-top: 0.5rem;">Investissez dans l'essentiel.</p>
-          <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.78rem;">L'ère de l'IA a tout changé. Changez avec elle.</p>
-          <div class="social-links">
-            <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank"
-              title="LinkedIn">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank"
-              title="Instagram @behindthebubble.ai">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank"
-              title="Substack @bubbleinvest">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="GitHub" href="/github" title="GitHub">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="X" href="https://x.com/bubbleinvlabs" target="_blank" title="X @bubbleinvlabs">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
-                </path>
-              </svg>
-            </a>
-          </div>
-        </div>
-        <div class="footer-links">
-          <h4>Navigation</h4>
-          <ul>
-            <li><a href="/a-propos">À Propos</a></li>
-            <li><a href="/particuliers">Apprendre &amp; Brancher</a></li>
-            <li><a href="/professionnels">Implémentation pro</a></li>
-            <li><a href="/blog">Blog</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Ressources</h4>
-          <ul>
-            <li><a href="/shop">Boutique</a></li>
-            <li><a href="/labs">Laboratoire</a></li>
-            <li><a href="/professionnels#faq">FAQ</a></li>
-            <li><a href="/newsletter">Newsletter</a></li>
-            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank" data-cta-track="footer_calendly_click">Réserver un diagnostic</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Légal</h4>
-          <ul>
-            <li><a href="/mentions-legales">Mentions légales</a></li>
-            <li><a href="/privacy">Confidentialité</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 Bubble Invest · Transparent by design · Build in public</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Chat Side Panel (slide-in chatbot) -->
-  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
-    <div class="chat-side-panel-header">
-      <div class="chat-side-panel-header-info">
-        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
-        <div class="chat-side-panel-titles">
-          <span class="chat-side-panel-title">Assistant Bubble</span>
-        </div>
-      </div>
-      <div class="chat-side-panel-actions">
-        <button class="chat-side-panel-minimize" aria-label="Réduire le chat" type="button">-</button>
-        <button class="chat-side-panel-close" aria-label="Fermer le chat" type="button">✕</button>
-      </div>
-    </div>
-    <div class="chat-side-panel-messages" role="log" aria-live="polite">
-    </div>
-    <form class="chat-side-panel-input-container" novalidate>
-      <input type="text" class="chat-side-panel-input" placeholder="Posez vos questions..."
-        data-translate-placeholder="floating_input.placeholder" aria-label="Saisissez votre message"
-        autocomplete="off" />
-      <button class="chat-side-panel-send" aria-label="Envoyer le message" type="submit">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M12 21V4" stroke-linecap="round" />
-        </svg>
+      <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener" class="btn btn-primary" data-cta-track="header_calendly_click">Réserver un diagnostic</a>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
       </button>
-    </form>
+    </nav>
   </div>
+</header>
 
-  <!-- Floating Glassmorphism Chat Input -->
-  <div class="floating-chat-input hidden" data-always-visible="false" data-page-context="professionals"
-    data-trigger-selector=".hero" id="floating-chat-input">
-    <div class="floating-input-container">
-      <input aria-label="Posez votre question" class="floating-input-field"
-        placeholder="Pose-moi n'importe quelle question..." type="text"
-        data-translate-placeholder="floating_input.placeholder" />
-      <button aria-label="Envoyer" class="floating-input-submit">
-        <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
-          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-          <path d="M12 21V4" stroke-linecap="round" stroke-width="2"></path>
-        </svg>
-      </button>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Fermer le menu">&times;</button>
+  <a href="/a-propos">À propos</a>
+  <a href="/particuliers">Apprendre &amp; brancher</a>
+  <a href="/professionnels" class="active" aria-current="page">Implémentation pro</a>
+  <a href="/blog">Blog</a>
+  <div class="lang" role="group" aria-label="Choix de langue">
+    <button class="active" aria-pressed="true">FR</button>
+    <span class="slash">/</span>
+    <a href="/en/professionals" style="background:none;border:0;cursor:pointer;color:var(--faint);font-family:inherit;font-size:inherit;padding:.1rem .34rem;border-radius:40px;text-decoration:none;">EN</a>
+  </div>
+  <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener" class="btn btn-primary" data-cta-track="mobile_header_calendly_click">Réserver un diagnostic gratuit (30 min)</a>
+</div>
+
+<!-- PAGE CONTENT -->
+<main>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="pro-hero" aria-label="Introduction">
+    <div class="wrap pro-hero-inner">
+
+      <!-- Iridescent orb accent — identical component to the homepage orb -->
+      <div class="hero-orb-wrap" aria-hidden="true">
+        <div class="hero-orb" id="heroOrb" aria-hidden="true">
+          <div class="hero-orb-fallback"></div>
+        </div>
+      </div>
+
+      <div class="pro-hero-text">
+        <div class="pro-hero-eyebrow reveal">
+          <span class="pro-hero-tag">CGP · Indépendants · PME</span>
+        </div>
+
+        <h1 class="reveal">
+          Votre employé IA,<br>
+          formé sur <span class="accent-hand">vos process.</span>
+        </h1>
+
+        <p class="pro-hero-kicker reveal">
+          Vous utilisez déjà l'IA. Ce qui manque : un agent construit sur votre métier, vos documents, votre façon de travailler. On construit cet employé IA pour vous, et on forme votre équipe pour travailler avec lui. C'est <em>le dernier kilomètre</em> que les grands modèles ne font pas.
+        </p>
+
+        <div class="pro-hero-ctas reveal">
+          <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener" class="btn btn-primary" data-cta-track="pros_hero_calendly_click">
+            Réserver un diagnostic gratuit
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#offre" class="btn btn-ghost">Voir l'offre</a>
+        </div>
+
+        <div class="pro-hero-trust reveal">
+          <div class="pro-trust-item">
+            <span class="trust-dot"></span>
+            <span><strong>Diagnostic gratuit</strong>, sans engagement</span>
+          </div>
+          <div class="pro-trust-item">
+            <span class="trust-dot"></span>
+            <span>Agent opérationnel en <strong>3 semaines</strong></span>
+          </div>
+          <div class="pro-trust-item">
+            <span class="trust-dot"></span>
+            <span>Animé par <strong>Joris</strong> (ex-UBS) et <strong>Jade</strong> (ex-Deloitte)</span>
+          </div>
+          <div class="pro-trust-item">
+            <span class="trust-dot"></span>
+            <span><strong>22+ agents</strong> en production</span>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </div>
+  </section>
 
-  <!-- Scripts -->
+  <!-- ============================================================
+       SECTION 01 — PROCESSUS (signature moment: timeline)
+       ============================================================ -->
+  <section class="section warm" aria-label="Notre processus">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num-badge">01 / Notre processus</span>
+        <h2>3 sessions. Votre agent est prêt à travailler.</h2>
+        <p>On apprend votre métier, on construit l'agent formé sur vos process, on forme votre équipe. Trois rendez-vous structurés, et votre nouvel employé IA est opérationnel.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-steps">
+
+          <!-- Step 1 -->
+          <div class="process-step reveal">
+            <div class="step-num-col">
+              <div class="step-circle">01</div>
+            </div>
+            <div class="step-body">
+              <h3>Diagnostic</h3>
+              <p>On apprend votre métier, vos process, votre façon de travailler. On identifie ensemble ce que votre futur employé IA prend en charge en priorité.</p>
+              <span class="step-meta">2h · gratuit · Calendly</span>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="process-step reveal">
+            <div class="step-num-col">
+              <div class="step-circle">02</div>
+            </div>
+            <div class="step-body">
+              <h3>Construction</h3>
+              <p>On construit l'agent, formé sur vos documents et votre logique métier. Vous voyez chaque compétence, vous validez avant la mise en production.</p>
+              <span class="step-meta">1-2 semaines · présentiel ou visio</span>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="process-step reveal">
+            <div class="step-num-col">
+              <div class="step-circle">03</div>
+            </div>
+            <div class="step-body">
+              <h3>Formation</h3>
+              <p>On forme votre équipe à travailler avec l'agent, en pratique. On ne repart pas tant que tout le monde ne maîtrise pas le nouvel outil.</p>
+              <span class="step-meta">1 semaine · support de démarrage inclus</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 02 — L'OFFRE
+       ============================================================ -->
+  <section id="offre" class="section" aria-label="L'offre">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num-badge">02 / L'offre</span>
+        <h2>Un format clair pour démarrer. Du sur-mesure pour aller plus loin.</h2>
+        <p>Pas de tunnel à 6 mois ni de facture à 30k. Un forfait fixe pour avoir votre premier employé IA opérationnel, puis du sur-mesure si vous souhaitez aller plus loin.</p>
+      </div>
+
+      <div class="offer-grid">
+
+        <!-- Quick Start -->
+        <div class="offer-card featured reveal">
+          <span class="offer-badge violet">Le plus populaire</span>
+          <h3>Agentic Quick Start</h3>
+          <div class="offer-price">dès 2 000 €<span class="suffix"> HT</span></div>
+          <p class="offer-subtitle">3 sessions · un employé IA livré · 2-3 semaines</p>
+          <p class="offer-desc">On construit votre employé IA formé sur vos process, avec 1 ou 2 compétences précises. Formation de votre équipe comprise.</p>
+          <ul class="offer-features">
+            <li>Diagnostic, construction, formation de l'équipe</li>
+            <li>Agent formé sur vos vrais documents et workflows</li>
+            <li>Déployé sur votre serveur ou en local</li>
+            <li>Vous en gardez l'usage, transfert du code en option</li>
+          </ul>
+          <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener" class="btn btn-primary" data-cta-track="pros_offer_calendly_click">
+            Réserver un diagnostic gratuit
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Sur-mesure -->
+        <div class="offer-card reveal">
+          <span class="offer-badge peach">Projets complexes</span>
+          <h3>Sur-mesure</h3>
+          <div class="offer-price" style="font-size:1.6rem">Sur devis</div>
+          <p class="offer-subtitle">Devis adapté après le diagnostic</p>
+          <p class="offer-desc">Pour des intégrations plus poussées : multi-départements, agents métier spécialisés, infrastructure dédiée.</p>
+          <ul class="offer-features">
+            <li>Périmètre défini ensemble au diagnostic</li>
+            <li>Forfait suivi &amp; maintenance (sur devis)</li>
+            <li>Vos données, votre infrastructure</li>
+            <li>Couche d'anonymisation RGPD disponible</li>
+          </ul>
+          <a href="mailto:contact@bubbleinvest.org" class="btn btn-ghost">Demander un devis</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 03 — POURQUOI NOUS
+       ============================================================ -->
+  <section class="section warm" aria-label="Pourquoi Bubble">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num-badge">03 / Pourquoi nous</span>
+        <h2>Double expertise. Zéro dépendance.</h2>
+        <p>Pas de slides à rallonge. Pas d'armée de consultants juniors. On construit votre employé IA et on forme votre équipe, directement.</p>
+      </div>
+
+      <div class="why-grid">
+
+        <div class="why-card reveal">
+          <div class="marker" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M10 2L12.5 7.5H18L13.5 11L15.5 17L10 13.5L4.5 17L6.5 11L2 7.5H7.5L10 2Z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>On maîtrise les deux rives</h3>
+          <p>Conseil stratégique (finance, process métier) et ingénierie IA. On comprend vos workflows avant même de coder.</p>
+        </div>
+
+        <div class="why-card reveal">
+          <div class="marker" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M3 10C3 6.13 6.13 3 10 3s7 3.13 7 7-3.13 7-7 7-7-3.13-7-7Z"/>
+              <path d="M10 7v3l2 2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>On l'utilise nous-mêmes</h3>
+          <p>Ce qu'on vous vend, on l'utilise au quotidien. 22 agents en production dans nos propres workflows. Pas de théorie.</p>
+        </div>
+
+        <div class="why-card reveal">
+          <div class="marker" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M4 10h12M10 4v12" stroke-linecap="round"/>
+              <rect x="3" y="3" width="14" height="14" rx="3"/>
+            </svg>
+          </div>
+          <h3>Aucun lock-in</h3>
+          <p>Vos données, votre configuration, vos contenus vous appartiennent. L'agent tourne chez vous, pas sur nos serveurs.</p>
+        </div>
+
+        <div class="why-card reveal">
+          <div class="marker" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M10 2L2 7v6l8 5 8-5V7L10 2Z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Sécurité native</h3>
+          <p>Vos agents tournent en local ou sur un serveur privé. Couche d'anonymisation RGPD disponible : les données sensibles ne quittent jamais votre environnement en clair.</p>
+        </div>
+
+        <div class="why-card reveal">
+          <div class="marker" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M5 10l3.5 3.5L15 6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Employé IA livré en 3 semaines</h3>
+          <p>Après signature, le projet démarre sous 1 à 2 semaines. En 3 semaines : votre agent construit, déployé, et votre équipe formée pour travailler avec lui.</p>
+        </div>
+
+        <div class="why-card reveal">
+          <div class="marker" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="8" cy="7" r="3"/>
+              <circle cx="14" cy="11" r="3"/>
+              <path d="M2 18c0-3.31 2.69-6 6-6M10 18c0-1.66.67-3.16 1.76-4.24" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Votre équipe, formée et autonome</h3>
+          <p>Pas de slides théoriques : des sessions pratiques où l'on apprend en faisant, directement sur votre agent. On ne repart pas tant que votre équipe ne le maîtrise pas.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 04 — EXEMPLES DE MISSIONS
+       ============================================================ -->
+  <section class="section" aria-label="Exemples de missions">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num-badge">04 / Exemples de missions</span>
+        <h2>Votre employé IA : ce qu'il fait, concrètement.</h2>
+        <p>Des exemples réels, formés sur les process de nos clients. Chaque agent est construit pour un métier précis, pas pour tout faire.</p>
+      </div>
+
+      <div class="tiles-grid">
+
+        <div class="mission-tile reveal">
+          <span class="mission-meta">CGP · Gestion de Patrimoine</span>
+          <h3>Note de synthèse client</h3>
+          <p>L'agent récupère les dossiers KYC, les performances de portefeuille et les actualités fiscales. Note prête avant chaque rendez-vous.</p>
+          <span class="mission-outcome">4h gagnées par RDV</span>
+        </div>
+
+        <div class="mission-tile reveal">
+          <span class="mission-meta">Asset Manager · Conformité</span>
+          <h3>Veille réglementaire AMF</h3>
+          <p>Chaque matin l'agent croise les publications AMF, les changements de doctrine et les sanctions. Résumé ciblé sur vos dossiers en cours.</p>
+          <span class="mission-outcome">Veille passive · alertes ciblées</span>
+        </div>
+
+        <div class="mission-tile reveal">
+          <span class="mission-meta">PME · Relation Client</span>
+          <h3>Onboarding client</h3>
+          <p>L'agent prend en charge le premier email, l'envoi des contrats, la collecte des documents. Le client suit l'avancée sur un dashboard.</p>
+          <span class="mission-outcome">2 jours d'admin. 2h de validation</span>
+        </div>
+
+        <div class="mission-tile reveal">
+          <span class="mission-meta">Gérant de Portefeuille · Finance</span>
+          <h3>Briefing marché matinal</h3>
+          <p>À 7h30, l'agent agrège les flux Bloomberg, les publications macro et les mouvements overnight. Brief structuré dans votre inbox avant le premier café.</p>
+          <span class="mission-outcome">45 min. 5 min de scan</span>
+        </div>
+
+        <div class="mission-tile reveal">
+          <span class="mission-meta">Indépendant · Présence Digitale</span>
+          <h3>Community Manager multi-plateforme</h3>
+          <p>L'agent recycle chaque article en threads LinkedIn, posts Instagram et newsletters. Une idée, sept formats, zéro répétition.</p>
+          <span class="mission-outcome">1 contenu. 7 formats</span>
+        </div>
+
+        <div class="mission-tile reveal">
+          <span class="mission-meta">Conformité · RGPD</span>
+          <h3>Anonymisation avant traitement IA</h3>
+          <p>Un pipeline détecte et masque les données sensibles (noms, IBAN, identifiants) avant tout envoi à un LLM. Toute la puissance de l'IA, sans exposer de données nominatives.</p>
+          <span class="mission-outcome">Conformité RGPD native</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 05 — FAQ
+       ============================================================ -->
+  <section id="faq" class="section warm" aria-label="Questions fréquentes">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num-badge">05 / Questions fréquentes</span>
+        <h2>Tout ce qu'un pro nous demande.</h2>
+        <p>Approche, offre, prix, sécurité, propriété du code : les réponses directes, sans détour.</p>
+      </div>
+
+      <div class="faq-cols">
+        <!-- Column 1 -->
+        <div class="faq-col faq-list reveal">
+
+          <details class="faq-item">
+            <summary>
+              Qu'est-ce que Bubble Invest exactement ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">Bubble Invest construit votre employé IA formé sur vos process, et forme votre équipe à travailler avec lui. Notre mission : vous donner les outils que les grands modèles ne font pas pour vous, adaptés à votre métier, prêts à l'emploi.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Que deviennent mes données ? Sont-elles protégées ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">La protection de vos données est au cœur de notre approche. Vos agents tournent au choix en local sur votre machine ou sur un serveur privé sécurisé. Nous proposons une couche d'anonymisation et de chiffrement qui retire ou masque les données sensibles (noms de clients, numéros de compte, identifiants) <strong>avant</strong> qu'elles n'atteignent un fournisseur d'IA tiers. Selon votre sensibilité, on retient le bon dispositif : plan entreprise sans rétention, pseudonymisation, ou modèle open source hébergé chez vous. Ce qui est confidentiel ne quitte pas votre environnement en clair.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              En quoi êtes-vous différents d'un cabinet de conseil classique ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">Pas de slides à rallonge, pas de devis à six chiffres, pas d'armée de consultants juniors. On va plus loin que le conseil : on construit et on installe directement un agent IA opérationnel à partir de vos données et de vos outils. Une solution clé en main qui absorbe votre charge de travail dès le premier jour, <strong>sans vous rendre dépendants</strong>.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Pourquoi vous, et pas un freelance dev IA ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">On combine une double expertise rare : conseil stratégique (finance, process métier) et ingénierie IA. On comprend vos workflows avant même de coder. Et surtout, on utilise nos propres agents au quotidien. Ce qu'on vous vend, on l'utilise nous-mêmes. Plus rapide, plus fiable et moins cher qu'un développeur freelance.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Combien coûte le Quick Start ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">Le Quick Start <strong>démarre à 2 000 € HT</strong> pour un agent IA sur mesure, 3 sessions de travail incluses. Le premier devis est co-construit avec vous selon vos besoins réels. Pour des architectures plus complexes (multi-agents, intégrations avancées), on établit un devis personnalisé.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Que se passe-t-il après les 3 sessions ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">Un support est inclus dans les jours suivant la livraison pour corriger tout bug initial. Au-delà, on reste disponibles pour des interventions rapides sur devis, et un forfait suivi et maintenance est proposé pour un accompagnement sur la durée, selon vos besoins.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Faites-vous des devis sur mesure au-delà du Quick Start ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">Absolument. Au-delà du Quick Start, on conçoit des solutions sur mesure : équipes multi-agents, selfware (outils IA personnels), applications dédiées ou architectures complexes. Chaque projet fait l'objet d'un devis adapté à votre périmètre.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Proposez-vous un contrat de maintenance ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">Oui. Une fois l'agent déployé, on propose des contrats de maintenance adaptés : forfait mensuel sur devis pour un suivi régulier, ou intervention ponctuelle à <strong>500 € HT/jour</strong>, avec un délai de réponse garanti sous 24h, à distance ou sur site.</div>
+          </details>
+
+        </div>
+
+        <!-- Column 2 -->
+        <div class="faq-col faq-list reveal">
+
+          <details class="faq-item">
+            <summary>
+              Sur quels secteurs intervenez-vous ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">On accompagne les petites et moyennes structures, indépendants et professions réglementées, avec un cœur de métier en <strong>gestion de patrimoine et asset management</strong>. C'est là que l'IA a le plus d'impact : moins de couches hiérarchiques, des résultats visibles immédiatement.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              À qui appartient le code installé chez vous ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">Vous payez une fois, sans abonnement ni frais récurrents imposés. Vos données, votre configuration et les contenus produits vous appartiennent, et votre agent tourne chez vous. Vous en gardez l'usage librement et dans la durée. Le code source sous-jacent de l'agent reste notre propriété, comme chez tout éditeur de logiciel. Pour les solutions critiques, une clause de réversibilité peut être prévue. <strong>Le transfert du code est disponible en option.</strong></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Quels modèles d'IA utilisez-vous ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">Principalement Claude (Anthropic), tout en restant flexibles selon vos préférences. Point important : les agents fonctionnent avec <strong>votre propre abonnement</strong> (OpenAI, Claude ou autre). Vous gardez le contrôle total sur vos coûts et vos données.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Quel est le délai pour démarrer ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">La première session est gratuite et sans engagement. Après signature, le projet démarre sous 1 à 2 semaines, pour une livraison complète en 3 semaines : un agent clé en main, prêt à l'emploi sur votre serveur ou en local.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Comment se passe la signature ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">Processus simple et transparent : devis et contrat signés électroniquement (Yousign). Le projet démarre dès réception de l'acompte. Des facilités de paiement sont disponibles et définies ensemble en amont.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Accompagnez-vous nos équipes ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">Oui, et c'est du concret : pas de slides ni de conférences théoriques, mais des sessions pratiques où l'on apprend en faisant, directement sur votre agent. On ne repart pas tant que votre équipe ne le maîtrise pas. C'est comme accueillir un nouveau collaborateur, déjà opérationnel sur vos process.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Travaillez-vous à distance ou sur site ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">Les deux, selon vos préférences et la nature du projet. Basés en région parisienne, on est disponibles partout en France et capables d'opérer entièrement à distance.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Politique d'annulation et de remboursement ?
+              <span class="faq-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">La première session est gratuite et sans engagement. Vous pouvez décider de ne pas poursuivre après cette première rencontre : aucun frais, aucune obligation.</div>
+          </details>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FINAL CTA (dark band)
+       ============================================================ -->
+  <section id="contact" class="final-cta-section" aria-label="Réserver un diagnostic">
+    <div class="wrap">
+      <div class="final-cta-inner">
+        <span class="sec-num-badge">Première étape gratuite</span>
+        <h2>Prêt à recruter votre premier <span class="hand">employé IA</span> ?</h2>
+        <p>30 minutes pour comprendre vos process et voir ce qu'on peut construire ensemble. Animé par les fondateurs, sans engagement.</p>
+        <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-cta-track="pros_final_calendly_click">
+          Réserver mon diagnostic gratuit
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <div class="final-cta-trust">
+          <span>30 minutes, visio, sans engagement</span>
+          <span>Réponse sous 24h</span>
+          <span>Devis co-construit avec vous</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo" style="font-size:1.4rem" aria-label="Bubble, retour à l'accueil">
+          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:30px;height:30px" aria-hidden="true">
+            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"/>
+            <circle cx="59" cy="21" r="6" fill="var(--peach)"/>
+          </svg>
+          Bubble<span class="dot-final">.</span>
+        </a>
+        <p class="tag">Investissez dans l'essentiel.</p>
+        <p class="sub">L'ère de l'IA a tout changé. Changez avec elle.</p>
+        <div class="socials">
+          <a href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://instagram.com/behindthebubble.ai" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://bubbleinvest.substack.com" target="_blank" rel="noopener" aria-label="Substack">
+            <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+          </a>
+          <a href="https://x.com/bubbleinvlabs" target="_blank" rel="noopener" aria-label="X">
+            <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/a-propos">À propos</a></li>
+          <li><a href="/particuliers">Apprendre &amp; brancher</a></li>
+          <li><a href="/professionnels">Implémentation pro</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/shop">Boutique</a></li>
+          <li><a href="/labs">Laboratoire</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/newsletter">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Légal</h4>
+        <ul>
+          <li><a href="/mentions-legales">Mentions légales</a></li>
+          <li><a href="/confidentialite">Confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Bubble Invest · Transparent by design · Build in public</div>
+  </div>
+</footer>
+
+  <!-- Functional scripts (order matters) -->
   <script src="/js/seo/cookie-banner.js"></script>
-  <!-- Unified conversion tracking (Pixel + CAPI dual tracking + Google Ads conversion) — Phase 1 marketing 2026-05-18 -->
   <script src="/js/seo/conversions.js"></script>
-  <script src="/js/lang-toggle.js"></script>
   <script src="/i18n/translations.js"></script>
-  <script src="/js/bubble-agent-memory.js"></script>
-  <script src="/js/chatbot-animations.js"></script>
-  <script src="/js/chat-side-panel.js"></script>
-  <script src="/js/floating-chat-input.js"></script>
-  <script src="/js/animations.js"></script>
+  <script src="/js/lang-toggle.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
-
-  <!-- Sprint 3 Ghibli Phase 2 — top strip "Labo ouvert" + floating bubbles signature -->
-  <script src="/js/ghibli-chrome.js" defer></script>
-
-  <!-- Calendly — repo integration: popup on calendly.com anchors + booking event tracking.
-       The inline embed under the hero is auto-rendered by Calendly's own widget.js below,
-       which scans for .calendly-inline-widget[data-url] (preserves the campaign data-url params). -->
   <script src="/js/calendly-integration.js" defer></script>
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
-  <!-- Mobile hamburger menu toggle -->
-  <script>
-    (function () {
-      'use strict';
-      const toggle = document.getElementById('hamburger-toggle');
-      const overlay = document.getElementById('mobile-nav-overlay');
-      if (!toggle || !overlay) return;
-      function closeMenu() {
-        overlay.classList.remove('open');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+<!-- ============================================================
+     HERO BUBBLE v3 — photoreal soap bubble (Three.js r160, pinned CDN)
+     Identical component to direction-b-warm-v4.html (homepage).
+     CSS fallback visible by default; WebGL takes over when available.
+     Reduced-motion, no-WebGL, CDN failure -> fallback stays permanently.
+     ============================================================ -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+  }
+}
+</script>
+<script type="module">
+(async function(){
+  "use strict";
+
+  var host = document.getElementById("heroOrb");
+  if (!host) return;
+
+  /* Respect reduced motion: keep the static CSS bubble, load nothing. */
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  /* WebGL pretest before pulling ~600 KB of Three.js. */
+  try {
+    var probe = document.createElement("canvas");
+    if (!(probe.getContext("webgl2") || probe.getContext("webgl"))) return;
+  } catch (e) { return; }
+
+  var THREE;
+  try { THREE = await import("three"); }
+  catch (e) { return; } /* CDN unreachable -> fallback bubble stays */
+
+  /* ---------- renderer ---------- */
+
+  var canvas = document.createElement("canvas");
+  var renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+  } catch (e) { return; }
+  renderer.setClearColor(0x000000, 0);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.0;
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(34, 1, 0.1, 30);
+  camera.position.set(0, 0, 4.7);
+
+  /* ---------- warm garden environment (reflection + refraction) ----------
+     The bubble picks its colours up from the Japanese-garden image injected
+     as window.GARDEN_ENV_DATAURI. PMREM gives smooth roughness-aware
+     reflections. If it fails, we still boot: two lights carry the film. */
+  await new Promise(function(resolve){
+    if (typeof window.GARDEN_ENV_DATAURI !== "string"){ resolve(); return; }
+    new THREE.TextureLoader().load(window.GARDEN_ENV_DATAURI, function(tex){
+      try {
+        tex.mapping = THREE.EquirectangularReflectionMapping;
+        tex.colorSpace = THREE.SRGBColorSpace;
+        var pmrem = new THREE.PMREMGenerator(renderer);
+        var envRT = pmrem.fromEquirectangular(tex);
+        scene.environment = envRT.texture;
+        pmrem.dispose();
+        tex.dispose();
+      } catch (e) { /* env is an upgrade, not a requirement */ }
+      resolve();
+    }, undefined, function(){ resolve(); });
+  });
+
+  /* two "window" lights -> the pair of soft specular hotspots on the film */
+  var key = new THREE.DirectionalLight(0xfff2e2, 2.2);
+  key.position.set(-2.2, 2.6, 2.2);
+  scene.add(key);
+  var fill = new THREE.DirectionalLight(0xd9d2ff, 0.9); /* faint violet fill */
+  fill.position.set(2.6, -1.4, 1.8);
+  scene.add(fill);
+
+  /* ---------- soap-film material ----------
+     MeshPhysicalMaterial: full transmission + thin-film iridescence.
+     DoubleSide matters: three renders the BACK of the film into the
+     transmission buffer, so you see the far side of the bubble through
+     the near side — the classic two-surface soap-bubble read. */
+
+  var film = new THREE.MeshPhysicalMaterial({
+    color: 0xffffff,
+    transmission: 1,
+    thickness: 0.22,
+    roughness: 0.015,
+    metalness: 0,
+    ior: 1.12,
+    transparent: true,
+    opacity: 1,
+    envMapIntensity: 2.0,
+    iridescence: 0.9,
+    iridescenceIOR: 1.33,
+    iridescenceThicknessRange: [200, 560],
+    clearcoat: 0.85,
+    clearcoatRoughness: 0.03,
+    specularIntensity: 1.2,
+    side: THREE.DoubleSide,
+    depthWrite: false
+  });
+
+  var filmU = {
+    uTime:   { value: 0 },
+    uHit:    { value: new THREE.Vector3(0, 0, 1) },
+    uHitAmp: { value: 0 },
+    uWobble: { value: 1 }
+  };
+
+  /* Simplex 3D noise — Ashima Arts / Stefan Gustavson (MIT) + the film
+     displacement: gentle breathing + an elastic ripple around the touch. */
+  var NOISE_GLSL = [
+    "uniform float uTime;",
+    "uniform vec3 uHit;",
+    "uniform float uHitAmp;",
+    "uniform float uWobble;",
+    "varying vec3 vBblDir;",
+    "vec4 bblPermute(vec4 x){ return mod(((x*34.0)+1.0)*x, 289.0); }",
+    "vec4 bblTaylorInvSqrt(vec4 r){ return 1.79284291400159 - 0.85373472095314 * r; }",
+    "float bblSnoise(vec3 v){",
+    "  const vec2 C = vec2(1.0/6.0, 1.0/3.0);",
+    "  const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);",
+    "  vec3 i  = floor(v + dot(v, C.yyy));",
+    "  vec3 x0 = v - i + dot(i, C.xxx);",
+    "  vec3 g  = step(x0.yzx, x0.xyz);",
+    "  vec3 l  = 1.0 - g;",
+    "  vec3 i1 = min(g.xyz, l.zxy);",
+    "  vec3 i2 = max(g.xyz, l.zxy);",
+    "  vec3 x1 = x0 - i1 + 1.0 * C.xxx;",
+    "  vec3 x2 = x0 - i2 + 2.0 * C.xxx;",
+    "  vec3 x3 = x0 - 1.0 + 3.0 * C.xxx;",
+    "  i = mod(i, 289.0);",
+    "  vec4 p = bblPermute(bblPermute(bblPermute(",
+    "             i.z + vec4(0.0, i1.z, i2.z, 1.0))",
+    "           + i.y + vec4(0.0, i1.y, i2.y, 1.0))",
+    "           + i.x + vec4(0.0, i1.x, i2.x, 1.0));",
+    "  float n_ = 1.0/7.0;",
+    "  vec3 ns = n_ * D.wyz - D.xzx;",
+    "  vec4 j  = p - 49.0 * floor(p * ns.z * ns.z);",
+    "  vec4 x_ = floor(j * ns.z);",
+    "  vec4 y_ = floor(j - 7.0 * x_);",
+    "  vec4 x  = x_ * ns.x + ns.yyyy;",
+    "  vec4 y  = y_ * ns.x + ns.yyyy;",
+    "  vec4 h  = 1.0 - abs(x) - abs(y);",
+    "  vec4 b0 = vec4(x.xy, y.xy);",
+    "  vec4 b1 = vec4(x.zw, y.zw);",
+    "  vec4 s0 = floor(b0) * 2.0 + 1.0;",
+    "  vec4 s1 = floor(b1) * 2.0 + 1.0;",
+    "  vec4 sh = -step(h, vec4(0.0));",
+    "  vec4 a0 = b0.xzyw + s0.xzyw * sh.xxyy;",
+    "  vec4 a1 = b1.xzyw + s1.xzyw * sh.zzww;",
+    "  vec3 p0 = vec3(a0.xy, h.x);",
+    "  vec3 p1 = vec3(a0.zw, h.y);",
+    "  vec3 p2 = vec3(a1.xy, h.z);",
+    "  vec3 p3 = vec3(a1.zw, h.w);",
+    "  vec4 norm = bblTaylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2,p2), dot(p3,p3)));",
+    "  p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;",
+    "  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);",
+    "  m = m * m;",
+    "  return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));",
+    "}",
+    "float bubbleDisp( vec3 p ){",
+    "  float t = uTime;",
+    "  float d = 0.003 * bblSnoise( p * 1.2 + vec3( 0.0, t * 0.20, t * 0.12 ) );",
+    "  d += 0.0012 * bblSnoise( p * 2.3 - vec3( t * 0.14, 0.0, t * 0.10 ) );",
+    "  d *= uWobble;",
+    "  float ang = acos( clamp( dot( p, uHit ), -1.0, 1.0 ) );",
+    "  d += cos( ang * 10.0 - t * 7.0 ) * exp( -ang * ang * 2.4 ) * uHitAmp * 0.035;",
+    "  return d;",
+    "}"
+  ].join("\n");
+
+  var NORMAL_GLSL = [
+    "vec3 objectNormal;",
+    "{",
+    "  vec3 dir0 = normalize( position );",
+    "  vec3 tang = normalize( abs( dir0.y ) < 0.99",
+    "    ? cross( dir0, vec3( 0.0, 1.0, 0.0 ) )",
+    "    : cross( dir0, vec3( 1.0, 0.0, 0.0 ) ) );",
+    "  vec3 bitang = normalize( cross( dir0, tang ) );",
+    "  float eps = 0.045;",
+    "  vec3 n1 = normalize( dir0 + tang * eps );",
+    "  vec3 n2 = normalize( dir0 + bitang * eps );",
+    "  vec3 q0 = dir0 * ( 1.0 + bubbleDisp( dir0 ) );",
+    "  vec3 q1 = n1 * ( 1.0 + bubbleDisp( n1 ) );",
+    "  vec3 q2 = n2 * ( 1.0 + bubbleDisp( n2 ) );",
+    "  vec3 nrm = normalize( cross( q1 - q0, q2 - q0 ) );",
+    "  if ( dot( nrm, dir0 ) < 0.0 ) nrm = -nrm;",
+    "  objectNormal = nrm;",
+    "}"
+  ].join("\n");
+
+  var VERTEX_GLSL = [
+    "vec3 transformed;",
+    "{",
+    "  vec3 dirV = normalize( position );",
+    "  vBblDir = dirV;",
+    "  transformed = dirV * ( 1.0 + bubbleDisp( dirV ) );",
+    "}"
+  ].join("\n");
+
+  var FRAG_DECL_GLSL = [
+    "uniform float uTime;",
+    "varying vec3 vBblDir;"
+  ].join("\n");
+
+  var IRID_GLSL = [
+    "#include <lights_physical_fragment>",
+    "#ifdef USE_IRIDESCENCE",
+    "{",
+    "  vec3 bd = normalize( vBblDir );",
+    "  float tI = uTime * 0.14;",
+    "  float sw = sin( bd.x * 1.8 + tI * 1.6 + sin( bd.y * 2.6 - tI ) * 1.1 );",
+    "  sw += 0.5 * sin( ( bd.y + bd.z ) * 2.7 - tI * 1.3 + sin( bd.x * 3.2 + tI ) * 0.7 );",
+    "  sw = sw * 0.3333 + 0.5;",
+    "  float grav = clamp( 0.5 - bd.y * 0.35, 0.0, 1.0 );",
+    "  float hueDrift = 45.0 * sin( uTime * 0.07 );",
+    "  material.iridescenceThickness = mix( 230.0, 520.0, clamp( sw * 0.55 + grav * 0.45, 0.0, 1.0 ) ) + hueDrift;",
+    "}",
+    "#endif"
+  ].join("\n");
+
+  var RIM_GLSL = [
+    "#include <emissivemap_fragment>",
+    "{",
+    "  float fresE = pow( 1.0 - clamp( abs( dot( normalize( vViewPosition ), normal ) ), 0.0, 1.0 ), 3.5 );",
+    "  totalEmissiveRadiance += vec3( 0.82, 0.78, 1.0 ) * fresE * 0.15;",
+    "}"
+  ].join("\n");
+
+  var ALPHA_GLSL = [
+    "#ifdef OPAQUE",
+    "diffuseColor.a = 1.0;",
+    "#endif",
+    "#ifdef USE_TRANSMISSION",
+    "diffuseColor.a *= material.transmissionAlpha;",
+    "#endif",
+    "{",
+    "  float fresA = pow( 1.0 - clamp( abs( dot( normalize( vViewPosition ), normal ) ), 0.0, 1.0 ), 2.0 );",
+    "  float lumA = dot( outgoingLight, vec3( 0.2126, 0.7152, 0.0722 ) );",
+    "  diffuseColor.a = clamp( diffuseColor.a * ( 0.36 + 0.85 * fresA ) + lumA * 0.4, 0.0, 1.0 );",
+    "}",
+    "gl_FragColor = vec4( outgoingLight, diffuseColor.a );"
+  ].join("\n");
+
+  film.onBeforeCompile = function(sh){
+    sh.uniforms.uTime = filmU.uTime;
+    sh.uniforms.uHit = filmU.uHit;
+    sh.uniforms.uHitAmp = filmU.uHitAmp;
+    sh.uniforms.uWobble = filmU.uWobble;
+    sh.vertexShader = sh.vertexShader
+      .replace("#include <common>", NOISE_GLSL + "\n#include <common>")
+      .replace("#include <beginnormal_vertex>", NORMAL_GLSL)
+      .replace("#include <begin_vertex>", VERTEX_GLSL);
+    sh.fragmentShader = sh.fragmentShader
+      .replace("#include <common>", FRAG_DECL_GLSL + "\n#include <common>")
+      .replace("#include <lights_physical_fragment>", IRID_GLSL)
+      .replace("#include <emissivemap_fragment>", RIM_GLSL)
+      .replace("#include <opaque_fragment>", ALPHA_GLSL);
+  };
+  film.customProgramCacheKey = function(){ return "bubble-soap-film-4"; };
+
+  var geometry = new THREE.IcosahedronGeometry(1, 64);
+  var bubble = new THREE.Mesh(geometry, film);
+  var group = new THREE.Group();
+  group.add(bubble);
+  scene.add(group);
+
+  /* ---------- pop burst: iridescent droplets + expanding ripple ---------- */
+
+  var DROPS = 220;
+  var dropGeo = new THREE.BufferGeometry();
+  var dropPos = new Float32Array(DROPS * 3);
+  var dropCol = new Float32Array(DROPS * 3);
+  var dropVel = new Float32Array(DROPS * 3);
+  dropGeo.setAttribute("position", new THREE.BufferAttribute(dropPos, 3).setUsage(THREE.DynamicDrawUsage));
+  dropGeo.setAttribute("color", new THREE.BufferAttribute(dropCol, 3));
+
+  var dropTex = (function(){
+    var c = document.createElement("canvas");
+    c.width = c.height = 64;
+    var g = c.getContext("2d");
+    var grad = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+    grad.addColorStop(0, "rgba(255,255,255,1)");
+    grad.addColorStop(0.4, "rgba(255,255,255,.9)");
+    grad.addColorStop(1, "rgba(255,255,255,0)");
+    g.fillStyle = grad;
+    g.fillRect(0, 0, 64, 64);
+    var t = new THREE.CanvasTexture(c);
+    t.colorSpace = THREE.SRGBColorSpace;
+    return t;
+  })();
+
+  var dropMat = new THREE.PointsMaterial({
+    size: 0.05,
+    map: dropTex,
+    vertexColors: true,
+    transparent: true,
+    depthWrite: false,
+    opacity: 1
+  });
+  var drops = new THREE.Points(dropGeo, dropMat);
+  drops.visible = false;
+  drops.frustumCulled = false;
+  scene.add(drops);
+
+  /* soap palette: violet, sakura pink, mint, peach, sparkle white */
+  var PALETTE = [
+    [0.40, 0.49, 0.92],
+    [1.00, 0.72, 0.77],
+    [0.65, 0.91, 0.84],
+    [1.00, 0.85, 0.69],
+    [0.97, 0.97, 1.00]
+  ];
+
+  var ringMat = new THREE.MeshBasicMaterial({
+    color: 0x9caefb, transparent: true, opacity: 0,
+    depthWrite: false, side: THREE.DoubleSide
+  });
+  var ring = new THREE.Mesh(new THREE.RingGeometry(0.9, 0.96, 72), ringMat);
+  ring.visible = false;
+  scene.add(ring);
+
+  var burstT = -1, ringBase = 1;
+
+  function spawnBurst(radius){
+    for (var i = 0; i < DROPS; i++){
+      var u = Math.random() * 2 - 1;
+      var phi = Math.random() * Math.PI * 2;
+      var s = Math.sqrt(Math.max(0, 1 - u * u));
+      var dx = s * Math.cos(phi), dy = u, dz = s * Math.sin(phi);
+      var r = radius * (0.9 + Math.random() * 0.15);
+      dropPos[i * 3]     = group.position.x + dx * r;
+      dropPos[i * 3 + 1] = group.position.y + dy * r;
+      dropPos[i * 3 + 2] = group.position.z + dz * r;
+      var v = 0.7 + Math.random() * 0.9;
+      dropVel[i * 3]     = dx * v + (Math.random() - 0.5) * 0.3;
+      dropVel[i * 3 + 1] = dy * v + 0.25 + (Math.random() - 0.5) * 0.3;
+      dropVel[i * 3 + 2] = dz * v + (Math.random() - 0.5) * 0.3;
+      var c = PALETTE[(Math.random() * PALETTE.length) | 0];
+      var l = 0.75 + Math.random() * 0.25;
+      dropCol[i * 3]     = c[0] * l;
+      dropCol[i * 3 + 1] = c[1] * l;
+      dropCol[i * 3 + 2] = c[2] * l;
+    }
+    dropGeo.attributes.position.needsUpdate = true;
+    dropGeo.attributes.color.needsUpdate = true;
+    dropMat.opacity = 1;
+    dropMat.size = 0.05;
+    drops.visible = true;
+    ringBase = radius;
+    ring.position.copy(group.position);
+    ring.scale.setScalar(ringBase);
+    ringMat.opacity = 0.55;
+    ring.visible = true;
+    burstT = 0;
+  }
+
+  /* ---------- mount ---------- */
+
+  host.appendChild(canvas);
+
+  var hit = document.createElement("div");
+  hit.className = "orb-hit";
+  host.appendChild(hit);
+
+  function resize(){
+    var w = canvas.clientWidth || 1;
+    var h = canvas.clientHeight || 1;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener("resize", resize);
+
+  /* eased parallax */
+  var targetX = 0, targetY = 0, curX = 0, curY = 0;
+  window.addEventListener("pointermove", function(e){
+    var nx = (e.clientX / window.innerWidth) * 2 - 1;
+    var ny = (e.clientY / window.innerHeight) * 2 - 1;
+    targetY = nx * 0.20;
+    targetX = ny * 0.14;
+  }, { passive: true });
+
+  /* ---------- touch: jelly wobble ---------- */
+
+  var raycaster = new THREE.Raycaster();
+  var ndc = new THREE.Vector2();
+  var sphereHit = new THREE.Sphere(new THREE.Vector3(), 1.06);
+  var hitPoint = new THREE.Vector3();
+  var qWorld = new THREE.Quaternion();
+
+  function pointerToHit(e){
+    var r = canvas.getBoundingClientRect();
+    if (!r.width || !r.height) return null;
+    ndc.x = ((e.clientX - r.left) / r.width) * 2 - 1;
+    ndc.y = -((e.clientY - r.top) / r.height) * 2 + 1;
+    raycaster.setFromCamera(ndc, camera);
+    sphereHit.center.copy(group.position);
+    var p = raycaster.ray.intersectSphere(sphereHit, hitPoint);
+    if (!p) return null;
+    p.sub(group.position).normalize();
+    bubble.getWorldQuaternion(qWorld).invert();
+    p.applyQuaternion(qWorld);
+    return p;
+  }
+
+  var hovering = false, dragging = false;
+  var hoverTarget = 0, hoverAmp = 0;
+  var squash = 0, squashVel = 0;
+  var lastPX = 0, lastPY = 0;
+
+  var leanTX = 0, leanTY = 0, leanX = 0, leanY = 0;
+  function setLean(e){
+    var r = canvas.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    var nx = (e.clientX - (r.left + r.width / 2)) / (r.width * 0.35);
+    var ny = (e.clientY - (r.top + r.height / 2)) / (r.height * 0.35);
+    leanTX = Math.max(-1, Math.min(1, nx));
+    leanTY = Math.max(-1, Math.min(1, ny));
+  }
+  function releaseLean(){ leanTX = 0; leanTY = 0; }
+
+  var downX = 0, downY = 0, dragDist = 0;
+
+  hit.addEventListener("pointerenter", function(e){
+    hovering = true;
+    hoverTarget = e.pointerType === "mouse" ? 0.65 : 0.5;
+    lastPX = e.clientX; lastPY = e.clientY;
+    setLean(e);
+    var p = pointerToHit(e);
+    if (p) filmU.uHit.value.copy(p);
+  });
+  hit.addEventListener("pointerleave", function(){
+    hovering = false;
+    dragging = false;
+    hoverTarget = 0;
+    releaseLean();
+  });
+  hit.addEventListener("pointerdown", function(e){
+    dragging = true;
+    hoverTarget = 1;
+    squashVel += 0.9;
+    lastPX = e.clientX; lastPY = e.clientY;
+    downX = e.clientX; downY = e.clientY; dragDist = 0;
+    setLean(e);
+    try { hit.setPointerCapture(e.pointerId); } catch (err) {}
+    var p = pointerToHit(e);
+    if (p) filmU.uHit.value.copy(p);
+  });
+  window.addEventListener("pointerup", function(e){
+    dragging = false;
+    hoverTarget = hovering ? 0.5 : 0;
+    if (e.pointerType !== "mouse"){ hovering = false; hoverTarget = 0; releaseLean(); }
+  }, { passive: true });
+  hit.addEventListener("pointercancel", function(){
+    dragging = false;
+    hovering = false;
+    hoverTarget = 0;
+    releaseLean();
+  });
+  hit.addEventListener("pointermove", function(e){
+    var p = pointerToHit(e);
+    if (p) filmU.uHit.value.copy(p);
+    if (hovering || dragging) setLean(e);
+    if (dragging){
+      var ddx = e.clientX - downX, ddy = e.clientY - downY;
+      var dd = Math.sqrt(ddx * ddx + ddy * ddy);
+      if (dd > dragDist) dragDist = dd;
+    }
+    var dx = e.clientX - lastPX, dy = e.clientY - lastPY;
+    lastPX = e.clientX; lastPY = e.clientY;
+    var sp = Math.min(Math.sqrt(dx * dx + dy * dy) / 9, 1.8);
+    squashVel += sp * (dragging ? 0.5 : 0.18);
+  }, { passive: true });
+
+  /* ---------- pop -> burst -> reform state machine ---------- */
+
+  var state = "idle", stateT = 0;
+
+  hit.addEventListener("click", function(){
+    if (dragDist > 14) return;
+    if (state === "idle"){ state = "swell"; stateT = 0; }
+  });
+
+  function elasticOut(x){
+    if (x <= 0) return 0;
+    if (x >= 1) return 1;
+    return Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * (2 * Math.PI / 3)) + 1;
+  }
+
+  /* ---------- loop, paused when hidden or off-screen ---------- */
+
+  var clock = new THREE.Clock(false);
+  var elapsed = 23.7;
+  var rafId = 0, inView = true, tabVisible = !document.hidden, booted = false;
+
+  var introT = 0, introDone = false;
+  var rotY = elapsed * 0.11;
+  film.opacity = 0;
+
+  function backOut(x){
+    var c1 = 1.0, c3 = c1 + 1;
+    var u = x - 1;
+    return 1 + c3 * u * u * u + c1 * u * u;
+  }
+
+  function frame(){
+    rafId = requestAnimationFrame(frame);
+    var dt = Math.min(clock.getDelta(), 0.05);
+    elapsed += dt;
+    filmU.uTime.value = elapsed;
+
+    hoverAmp += (hoverTarget - hoverAmp) * Math.min(1, dt * 5);
+    filmU.uHitAmp.value = hoverAmp;
+
+    stateT += dt;
+    var popScale = 1;
+    if (state === "swell"){
+      var sk = Math.min(stateT / 0.14, 1);
+      popScale = 1 + 0.17 * (1 - (1 - sk) * (1 - sk));
+      filmU.uWobble.value = 1 + sk * 2.2;
+      if (sk >= 1){
+        spawnBurst(1.17);
+        bubble.visible = false;
+        host.classList.add("is-popped");
+        state = "gone"; stateT = 0;
+        squash = 0; squashVel = 0; hoverAmp = 0;
       }
-      toggle.addEventListener('click', function () {
-        const isOpen = overlay.classList.toggle('open');
-        toggle.classList.toggle('open', isOpen);
-        toggle.setAttribute('aria-expanded', isOpen);
-        document.body.style.overflow = isOpen ? 'hidden' : '';
+    } else if (state === "gone"){
+      if (stateT >= 1.8){
+        state = "reform"; stateT = 0;
+        bubble.visible = true;
+        film.opacity = 0;
+        host.classList.remove("is-popped");
+      }
+    } else if (state === "reform"){
+      var rk = Math.min(stateT / 0.95, 1);
+      film.opacity = Math.min(1, rk * 1.7);
+      popScale = 0.5 + 0.5 * elasticOut(rk);
+      filmU.uWobble.value = 1 + (1 - rk) * 1.4;
+      if (rk >= 1){
+        state = "idle";
+        film.opacity = 1;
+        filmU.uWobble.value = 1;
+      }
+    } else {
+      filmU.uWobble.value = 1 + hoverAmp * 1.5;
+    }
+
+    var introScale = 1, introLift = 0;
+    if (!introDone){
+      introT += dt;
+      var ik = Math.min(introT / 1.15, 1);
+      var ib = backOut(ik);
+      introScale = 0.6 + 0.4 * ib;
+      introLift = -0.26 * (1 - ib);
+      if (state === "idle") film.opacity = Math.min(1, ik * 2.2);
+      if (ik >= 1){
+        introDone = true;
+        if (state === "idle") film.opacity = 1;
+      }
+    }
+
+    squashVel += (-26 * squash - 6.5 * squashVel) * dt;
+    squash += squashVel * dt;
+    if (squash > 0.24) squash = 0.24;
+    else if (squash < -0.24) squash = -0.24;
+    var breathe = 1 + 0.011 * Math.sin(elapsed * 0.55);
+    var scl = popScale * breathe * introScale;
+    bubble.scale.set(
+      (1 + squash) * scl,
+      (1 - squash * 0.82) * scl,
+      (1 + squash * 0.5) * scl
+    );
+
+    key.position.set(
+      -2.2 + Math.sin(elapsed * 0.13) * 0.55,
+      2.6 + Math.cos(elapsed * 0.10) * 0.45,
+      2.2 + Math.sin(elapsed * 0.08) * 0.3
+    );
+
+    rotY += dt * (0.11 + hoverAmp * 0.30);
+    bubble.rotation.y = rotY;
+    bubble.rotation.x = Math.sin(elapsed * 0.09) * 0.05;
+    curX += (targetX - curX) * 0.035;
+    curY += (targetY - curY) * 0.035;
+    leanX += (leanTX - leanX) * Math.min(1, dt * 6);
+    leanY += (leanTY - leanY) * Math.min(1, dt * 6);
+    group.rotation.x = curX + leanY * hoverAmp * 0.20;
+    group.rotation.y = curY + leanX * hoverAmp * 0.28;
+    group.position.x = leanX * hoverAmp * 0.20;
+    group.position.y = Math.sin(elapsed * 0.5) * 0.06
+                     - leanY * hoverAmp * 0.14
+                     + introLift;
+
+    /* burst update */
+    if (burstT >= 0){
+      burstT += dt;
+      var bk = burstT / 1.25;
+      if (bk >= 1){
+        burstT = -1;
+        drops.visible = false;
+        ring.visible = false;
+      } else {
+        var drag = Math.max(0, 1 - 2.4 * dt);
+        for (var i = 0; i < DROPS; i++){
+          dropVel[i * 3 + 1] -= 1.9 * dt;
+          dropVel[i * 3]     *= drag;
+          dropVel[i * 3 + 1] *= drag;
+          dropVel[i * 3 + 2] *= drag;
+          dropPos[i * 3]     += dropVel[i * 3] * dt;
+          dropPos[i * 3 + 1] += dropVel[i * 3 + 1] * dt;
+          dropPos[i * 3 + 2] += dropVel[i * 3 + 2] * dt;
+        }
+        dropGeo.attributes.position.needsUpdate = true;
+        dropMat.opacity = 1 - bk * bk;
+        dropMat.size = 0.05 * (1 - 0.35 * bk);
+        var rkk = Math.min(burstT / 0.55, 1);
+        var re = 1 - Math.pow(1 - rkk, 3);
+        ring.scale.setScalar(ringBase * (1 + re * 0.28));
+        ringMat.opacity = 0.55 * (1 - rkk);
+        ring.visible = rkk < 1;
+      }
+    }
+
+    renderer.render(scene, camera);
+    if (!booted){ booted = true; host.classList.add("is-webgl"); }
+  }
+
+  function sync(){
+    var run = inView && tabVisible;
+    if (run && !rafId){
+      clock.start();
+      clock.getDelta();
+      rafId = requestAnimationFrame(frame);
+    } else if (!run && rafId){
+      cancelAnimationFrame(rafId);
+      rafId = 0;
+      clock.stop();
+    }
+  }
+  document.addEventListener("visibilitychange", function(){
+    tabVisible = !document.hidden;
+    sync();
+  });
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(function(entries){
+      inView = entries[0].isIntersecting;
+      sync();
+    }, { threshold: 0 }).observe(host);
+  }
+  canvas.addEventListener("webglcontextlost", function(ev){
+    ev.preventDefault();
+    if (rafId){ cancelAnimationFrame(rafId); rafId = 0; }
+    host.classList.remove("is-webgl"); /* fallback fades back in */
+  });
+
+  sync();
+})();
+</script>
+
+<script>
+(function () {
+  "use strict";
+
+  // Mobile menu
+  var burger = document.getElementById("burger"),
+      menu   = document.getElementById("mobileMenu"),
+      close  = document.getElementById("mobileClose");
+
+  function openMenu() {
+    menu.classList.add("open");
+    burger.classList.add("open");
+    burger.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  function closeMenu() {
+    menu.classList.remove("open");
+    burger.classList.remove("open");
+    burger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  burger.addEventListener("click", function () {
+    menu.classList.contains("open") ? closeMenu() : openMenu();
+  });
+  close.addEventListener("click", closeMenu);
+  menu.querySelectorAll("a").forEach(function (a) {
+    a.addEventListener("click", closeMenu);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && menu.classList.contains("open")) closeMenu();
+  });
+
+  // Language toggle (visual only)
+  document.querySelectorAll(".lang").forEach(function (g) {
+    g.querySelectorAll("button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        g.querySelectorAll("button").forEach(function (x) {
+          x.classList.remove("active");
+          x.setAttribute("aria-pressed", "false");
+        });
+        b.classList.add("active");
+        b.setAttribute("aria-pressed", "true");
       });
-      overlay.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', closeMenu);
+    });
+  });
+
+  // Scroll reveal
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.classList.add("in");
+          io.unobserve(en.target);
+        }
       });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
-      });
-      window.addEventListener('resize', function () {
-        if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
-      });
-    })();
-  </script>
+    }, { threshold: .12, rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+  }
+})();
+</script>
+
 </body>
 
+</body>
 </html>
