@@ -291,6 +291,7 @@
 
   async function loadReferences() {
     var referencesGrid = document.getElementById('references-grid');
+    if (!referencesGrid) return;
 
     try {
       var response = await fetch('/api/knowledge-garden/references-by-source-type');

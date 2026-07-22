@@ -8,9 +8,9 @@
   <!-- SEO Meta Tags -->
   <title>Bubble · Blog</title>
   <meta name="description"
-    content="The Bubble Invest blog: analysis, reflections on AI and investing, and build-in-public field notes on the agents we build. Substack newsletter and Knowledge Garden." />
+    content="The Bubble Invest blog: analysis, reflections on AI and investing, and build-in-public field notes on the agents we build. Substack newsletter." />
   <meta name="keywords"
-    content="AI blog, investing blog, AI agents, build in public, Bubble Invest, AI Substack, artificial intelligence analysis, Knowledge Garden" />
+    content="AI blog, investing blog, AI agents, build in public, Bubble Invest, AI Substack, artificial intelligence analysis" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
   <!-- Open Graph / Facebook -->
@@ -611,9 +611,6 @@
   .newsletter-btns .btn { width: 100%; max-width: 320px; justify-content: center; }
   @media (min-width: 600px) { .newsletter-btns { flex-direction: row; justify-content: center; } .newsletter-btns .btn { width: auto; } }
 
-  /* ============================================================
-     KNOWLEDGE GARDEN / REFERENCES (blog-2026.js target: #references-grid)
-  ============================================================ */
   .knowledge-section { padding: clamp(2.5rem, 7vw, 5rem) 0; background: var(--base); border-top: 1px solid var(--hair-soft); }
   #references-grid { margin-top: 1.5rem; }
   .reference-category { margin-bottom: 1.5rem; border: 1px solid var(--hair); border-radius: var(--r); overflow: hidden; background: var(--card); }
@@ -886,20 +883,6 @@
 
   <hr class="hair" />
 
-  <!-- KNOWLEDGE GARDEN / REFERENCES -->
-  <section class="knowledge-section reveal" aria-label="Knowledge Garden — references">
-    <div class="wrap">
-      <div class="articles-section-head">
-        <span class="articles-section-label">Knowledge Garden</span>
-        <span class="articles-count">References &amp; resources</span>
-      </div>
-      <!-- References grid (blog-2026.js target) -->
-      <div id="references-grid" aria-live="polite">
-        <p style="text-align:center;color:var(--muted);font-size:.9rem">Loading references...</p>
-      </div>
-    </div>
-  </section>
-
 </main>
 
 <!-- FOOTER -->
@@ -961,7 +944,7 @@
 <script src="/js/lang-toggle.js"></script>
 <script src="/js/seo/ga4-events.js"></script>
 <script src="/js/calendly-integration.js" defer></script>
-<!-- Blog dynamic hydration — DO NOT REMOVE — populates #featured-post, #blog-grid, #references-grid -->
+<!-- Blog dynamic hydration — DO NOT REMOVE — populates #featured-post, #blog-grid -->
 <script src="/js/blog-2026.js"></script>
 
 <!-- Mobile menu + scroll reveal -->

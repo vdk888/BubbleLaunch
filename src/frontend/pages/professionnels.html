@@ -1541,6 +1541,20 @@ h3 {
       }
     }
 
+    /* Below 900px the two .faq-col blocks stack: kill the 2nd column's
+       top margin (avoids a double gap) and restore its first item's
+       top divider (lost via .faq-item:first-child) so the seam between
+       columns reads like any other item-to-item spacing. */
+    @media (max-width: 899px) {
+      .faq-cols .faq-col.faq-list + .faq-col.faq-list {
+        margin-top: 0;
+      }
+
+      .faq-cols .faq-col.faq-list + .faq-col.faq-list .faq-item:first-child {
+        border-top: 1px solid var(--hair-soft);
+      }
+    }
+
     /* ---- FINAL CTA band ---- */
     .final-cta-section {
       background: var(--ink);
