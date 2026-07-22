@@ -120,13 +120,13 @@
 }
 
 .bubble-cookie-btn--secondary {
-  background: #F3F4F6;
-  color: #4B5563;
-  border: 1px solid #E5E7EB;
+  background: #E5E7EB;
+  color: #1F2937;
+  border: 1px solid #9CA3AF;
 }
 
 .bubble-cookie-btn--secondary:hover {
-  background: #E5E7EB;
+  background: #D1D5DB;
 }
 
 .bubble-cookie-btn--text {
