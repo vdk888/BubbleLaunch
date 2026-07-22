@@ -120,6 +120,20 @@ router.get('/sitemap.xml', async (req, res) => {
         changefreq: 'monthly',
         lastmod: today
       },
+      {
+        fr: '/faq',
+        en: '/en/faq',
+        priority: '0.7',
+        changefreq: 'monthly',
+        lastmod: today
+      },
+      {
+        fr: '/newsletter',
+        en: '/en/newsletter',
+        priority: '0.7',
+        changefreq: 'monthly',
+        lastmod: today
+      },
     ];
 
     const staticEntries = staticPages.flatMap(buildLocalizedEntries);
