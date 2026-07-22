@@ -202,6 +202,14 @@ router.get("/labs", (req, res) => {
   res.sendFile(path.join(frPagesDir, "labs.html"));
 });
 
+router.get("/shop", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "shop.html"));
+});
+
+router.get("/faq", (req, res) => {
+  res.sendFile(path.join(frPagesDir, "faq.html"));
+});
+
 // ============================================
 // ENGLISH PAGES (2026)
 // ============================================
@@ -340,6 +348,10 @@ router.get("/en/github", (req, res) => {
 
 router.get("/en/labs", (req, res) => {
   res.sendFile(path.join(enPagesDir, "labs.html"));
+});
+
+router.get("/en/faq", (req, res) => {
+  res.sendFile(path.join(enPagesDir, "faq.html"));
 });
 
 // ============================================
