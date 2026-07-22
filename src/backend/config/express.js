@@ -45,6 +45,7 @@ function configureExpress(app) {
           "'self'",
           "https://www.google-analytics.com",
           "https://*.google-analytics.com", // Allow all GA4 regions (region1, etc.)
+          "https://*.analytics.google.com", // GA4 /g/collect beacon → regionN.analytics.google.com (distinct from google-analytics.com — Jade localhost console 2026-07-22)
           "https://api.notion.com",
           "https://openrouter.ai",
           "https://cdn.jsdelivr.net", // Allow Chart.js source maps
@@ -54,6 +55,7 @@ function configureExpress(app) {
           "https://connect.facebook.net", // Meta Pixel script + events
           "https://www.googleadservices.com", // Google Ads conversion endpoint (Phase 1 — Jade 2026-05-18)
           "https://googleads.g.doubleclick.net", // Google Ads remarketing endpoint
+          "https://*.doubleclick.net", // Google Ads/GA4 doubleclick collect → ad.doubleclick.net /ccm/s/collect, stats.g., cm.g. (Jade localhost console 2026-07-22)
           "https://www.google.com", // Google Ads 1p-conversion + ccm/collect + rmkt/collect (gtag fires from here, Phase 1 — Jade 2026-05-19)
           "https://www.google.fr", // Google Ads 1p-conversion ccTLD-routed for FR users (Playwright Paris confirmed gtag uses .fr — Phase 1 Jade 2026-05-19)
           "https://pagead2.googlesyndication.com", // Google Ads conversion tracking (gtag/js loads remarketing collector from here, Phase 1 — Jade 2026-05-19)

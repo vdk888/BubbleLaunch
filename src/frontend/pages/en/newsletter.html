@@ -1,66 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-
-  <!-- SEO Meta Tags -->
-  <title>Behind the Bubble · The free AI &amp; finance newsletter</title>
-  <meta name="description"
-    content="Behind the Bubble: Bubble Invest's free newsletter, twice a week. A thesis connecting markets and AI, the real decisions of our investment agent, and a curated watch. Finance, Tech or balanced profiles." />
-  <meta name="keywords"
-    content="AI finance newsletter, AI agents newsletter, AI wealth management, finance automation AI, build in public AI, Behind the Bubble, free AI newsletter" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newsletter · Behind the Bubble · Bubble.</title>
+  <meta name="description" content="Our methods, our analysis, and our investment decisions. For free, whenever we have something worth your time." />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bubbleinvest.org/en/newsletter" />
-  <meta property="og:title" content="Behind the Bubble · The free AI &amp; finance newsletter" />
-  <meta property="og:description"
-    content="Twice a week, for free: a thesis connecting markets and AI, the real decisions of our investment agent, and a curated watch. Finance, Tech or balanced profiles." />
+  <meta property="og:title" content="Behind the Bubble · Free AI &amp; finance newsletter" />
+  <meta property="og:description" content="For free: a thesis connecting markets and AI, the real decisions of our investment agent, and curated picks. Finance, Tech, or Balanced profile." />
   <meta property="og:image" content="https://bubbleinvest.org/assets/images/og-particuliers.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Behind the Bubble — Bubble Invest's AI and finance newsletter." />
+  <meta property="og:image:alt" content="Behind the Bubble · the AI and finance newsletter by Bubble Invest." />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="fr_FR" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://bubbleinvest.org/en/newsletter" />
-  <meta name="twitter:title" content="Behind the Bubble · The free AI &amp; finance newsletter" />
-  <meta name="twitter:description"
-    content="Twice a week, for free: a thesis connecting markets and AI, the real decisions of our investment agent, and a curated watch." />
+  <meta name="twitter:title" content="Behind the Bubble · Free AI &amp; finance newsletter" />
+  <meta name="twitter:description" content="For free: a thesis connecting markets and AI, the real decisions of our investment agent, and curated picks." />
   <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/og-particuliers.png" />
 
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://bubbleinvest.org/en/newsletter" />
-
-  <!-- Language Alternates -->
-  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/newsletter" />
-  <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/newsletter" />
-  <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/newsletter" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Klee+One:wght@400;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
-
   <!-- LLM discoverability -->
   <link rel="alternate" type="text/plain" href="https://bubbleinvest.org/llms.txt" title="LLM context" />
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="/assets/styles/core-2026.css" />
-  <link rel="stylesheet" href="/assets/styles/particuliers-2026.css" />
+  <!-- SEO (per page) -->
+  <link rel="canonical" href="https://bubbleinvest.org/en/newsletter" />
+  <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/newsletter" />
+  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/newsletter" />
+  <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/newsletter" />
+  <!-- Consent styles -->
   <link rel="stylesheet" href="/assets/styles/cookie-banner.css" />
-  <!-- Glass Lab Editorial — Charte v3 (2026-05-22), loads LATE to override legacy where needed -->
-  <link rel="stylesheet" href="/assets/styles/glass-lab-editorial.css" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect" />
-  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-
-  <!-- Google Analytics 4 -->
+  <!-- Google Analytics 4 + Google Ads -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -76,13 +58,45 @@
       'anonymize_ip': true,
       'cookie_flags': 'SameSite=None;Secure'
     });
-    // Google Ads conversion tag (Phase 1 marketing — Jade msg 5119-5163, 2026-05-18)
-    // The `gtag` function is shared with GA4 above; both stream through the same gtag.js script.
-    // Ad-related consent (ad_storage, ad_user_data, ad_personalization) is managed by cookie-banner.js.
     gtag('config', 'AW-18054203382');
   </script>
-
-  <!-- JSON-LD Structured Data: BreadcrumbList -->
+  <!-- Meta Pixel, consent-gated per RGPD/CNIL -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('consent', 'revoke');
+  fbq('init', '1553953629409728');
+  </script>
+  <!-- JSON-LD: Organization + WebSite + BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Bubble Invest",
+    "url": "https://bubbleinvest.org",
+    "logo": "https://bubbleinvest.org/assets/images/bubble-favicon.svg",
+    "sameAs": [
+      "https://www.linkedin.com/company/bubble-invest-ai/",
+      "https://instagram.com/behindthebubble.ai",
+      "https://bubbleinvest.substack.com",
+      "https://x.com/bubbleinvlabs"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Bubble Invest",
+    "url": "https://bubbleinvest.org"
+  }
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -93,807 +107,1003 @@
     ]
   }
   </script>
-  <!-- JSON-LD Structured Data: WebPage -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Behind the Bubble — Newsletter",
-    "url": "https://bubbleinvest.org/en/newsletter",
-    "inLanguage": "en",
-    "description": "Bubble Invest's free newsletter, twice a week: a thesis connecting markets and AI, the real decisions of our investment agent, and a curated watch.",
-    "isPartOf": { "@type": "WebSite", "name": "Bubble Invest", "url": "https://bubbleinvest.org" }
-  }
-  </script>
 
-  <!-- Meta Pixel Code (Jade msg 5024) — consent-gated per RGPD/CNIL (Codex P1) -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  // Default: deny consent BEFORE init so the SDK never runs with default granted state
-  // (queued calls are replayed in order when fbevents.js loads — revoke must come first)
-  fbq('consent', 'revoke');
-  fbq('init', '1553953629409728');
-  // PageView is fired by cookie-banner.js after user opts-in (or auto-fires if consent already granted)
-  </script>
-  <!-- noscript fallback intentionally removed: would fire PageView without consent -->
-  <!-- End Meta Pixel Code -->
-  <!-- Page-scoped styles: newsletter landing (kept local to lower risk; uses charte v3 tokens) -->
   <style>
-    .nl-reassure { margin-top: 1rem; font-size: 0.82rem; opacity: 0.7; max-width: 34rem; }
-    .nl-form-wrap { max-width: 560px; margin: 2.5rem auto 0; }
-    .nl-form {
-      background: var(--gle-glass-bg, rgba(255,255,255,0.55));
-      backdrop-filter: blur(var(--gle-glass-blur, 20px));
-      -webkit-backdrop-filter: blur(var(--gle-glass-blur, 20px));
-      border: 1px solid var(--gle-glass-border, rgba(255,255,255,0.65));
-      border-radius: var(--gle-radius-card, 28px);
-      padding: 2rem 1.75rem;
-      box-shadow: 0 18px 50px rgba(26,36,64,0.10);
-    }
-    .nl-field { margin-bottom: 1.1rem; text-align: left; }
-    .nl-field label {
-      display: block; font-family: var(--gle-font-mono, monospace);
-      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em;
-      color: var(--gle-secondary, #444); margin-bottom: 0.45rem;
-    }
-    .nl-field input, .nl-field select {
-      width: 100%; box-sizing: border-box;
-      font-family: var(--gle-font-body, sans-serif); font-size: 1rem;
-      padding: 0.85rem 1rem; border-radius: 14px;
-      border: 1px solid rgba(26,36,64,0.16);
-      background: rgba(255,255,255,0.85); color: var(--gle-primary, #1a1a1a);
-      transition: border-color .2s var(--gle-ease, ease), box-shadow .2s;
-    }
-    .nl-field input:focus, .nl-field select:focus {
-      outline: none; border-color: var(--gle-mint-deep, #5fb89e);
-      box-shadow: 0 0 0 3px rgba(95,184,158,0.18);
-    }
-    .nl-submit { width: 100%; justify-content: center; margin-top: 0.4rem; cursor: pointer; }
-    .nl-form-note { font-size: 0.74rem; opacity: 0.62; margin: 0.9rem 0 0; line-height: 1.5; }
-    .nl-success {
-      text-align: center; max-width: 560px; margin: 0 auto;
-      background: linear-gradient(135deg, rgba(167,232,215,0.45) 0%, rgba(95,184,158,0.18) 100%);
-      border: 1px solid rgba(95,184,158,0.4);
-      border-radius: var(--gle-radius-card, 28px); padding: 2.5rem 2rem;
-    }
-    .nl-success-icon {
-      width: 56px; height: 56px; margin: 0 auto 1rem; border-radius: 50%;
-      background: var(--gle-mint-deep, #5fb89e); color: #fff;
-      display: flex; align-items: center; justify-content: center; font-size: 1.7rem;
-    }
-    .nl-success h3 { margin: 0 0 0.5rem; font-size: 1.5rem; }
-    .nl-success p { margin: 0 0 1.4rem; opacity: 0.8; }
-    .nl-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;
-      max-width: 920px; margin: 2.5rem auto 0;
-    }
-    .nl-grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .nl-card {
-      background: var(--gle-glass-bg-soft, rgba(255,255,255,0.35));
-      border: 1px solid var(--gle-border, rgba(0,0,0,0.06));
-      border-radius: var(--gle-radius-img, 24px); padding: 1.6rem 1.5rem; text-align: left;
-    }
-    .nl-card-kicker {
-      font-family: var(--gle-font-mono, monospace); font-size: 0.72rem;
-      text-transform: uppercase; letter-spacing: 0.06em;
-      color: var(--gle-mint-deep, #5fb89e); margin-bottom: 0.6rem;
-    }
-    .nl-card p { margin: 0; line-height: 1.55; color: var(--gle-secondary, #444); }
-    .nl-profile {
-      border-radius: var(--gle-radius-img, 24px); padding: 1.8rem 1.5rem; text-align: left;
-      border: 1px solid var(--gle-border, rgba(0,0,0,0.06));
-    }
-    .nl-profile h3 { margin: 0 0 0.6rem; font-size: 1.35rem; }
-    .nl-profile p { margin: 0; line-height: 1.55; color: var(--gle-secondary, #444); }
-    .nl-profile-finance { background: linear-gradient(135deg, rgba(167,232,215,0.35), rgba(255,255,255,0.4)); }
-    .nl-profile-tech { background: linear-gradient(135deg, var(--gle-violet-soft, #c7d2fe), rgba(255,255,255,0.45)); }
-    .nl-profile-balanced { background: linear-gradient(135deg, var(--gle-peach, #FFE4D1), rgba(255,255,255,0.45)); }
-    .nl-substack-callout {
-      max-width: 720px; margin: 0 auto;
-      background: linear-gradient(135deg, var(--gle-violet-soft, #c7d2fe) 0%, rgba(199,210,254,0.55) 100%);
-      border: 1px solid rgba(102,126,234,0.25);
-      border-radius: var(--gle-radius-card, 28px); padding: 2.25rem 2rem;
-    }
-    .nl-cta-pro { text-align: center; max-width: 680px; margin: 0 auto; }
-    @media (max-width: 768px) {
-      .nl-grid, .nl-grid-3 { grid-template-columns: 1fr; }
-    }
+/* ============================================================
+   bubble-web.css -- Bubble Invest shared design system
+   ============================================================ */
+
+/* 1. DESIGN TOKENS */
+:root {
+  --base:         #fdfcf9;
+  --card:         #ffffff;
+  --warm:         #f7f4ee;
+  --ink:          #221d16;
+  --muted:        #5b5b62;
+  --faint:        #8b8b92;
+  --violet:       #667eea;
+  --violet-soft:  rgba(102, 126, 234, .08);
+  --violet-line:  rgba(102, 126, 234, .22);
+  --peach:        #ffd9b0;
+  --mint:         #a7e8d7;
+  --night:        #1a2440;
+  --hair:         rgba(14, 14, 16, .10);
+  --hair-soft:    rgba(14, 14, 16, .06);
+  --sans:         "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --mono:         "JetBrains Mono", ui-monospace, monospace;
+  --hand:         "Klee One", cursive;
+  --maxw:         1180px;
+  --pad:          clamp(1.15rem, 5vw, 2rem);
+  --r:            20px;
+  --r-lg:         30px;
+  --ease:         cubic-bezier(.16, 1, .3, 1);
+}
+
+/* 2. BASE RESET */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--sans);
+  background: var(--base);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 2.5px solid var(--violet); outline-offset: 3px; border-radius: 6px; }
+
+/* 3. LAYOUT UTILITIES */
+.wrap { max-width: var(--maxw); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
+.hair { height: 1px; background: var(--hair-soft); border: 0; margin: 0; }
+
+/* 4. TYPOGRAPHY */
+.eyebrow, .sec-num {
+  font-family: var(--mono);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: .9rem;
+  display: block;
+}
+.sec-head { max-width: 640px; margin-bottom: 2.6rem; }
+.sec-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+.sec-head h2 {
+  font-size: clamp(1.65rem, 4.6vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+.sec-head p { color: var(--muted); margin-top: 1rem; font-size: 1.02rem; max-width: 52ch; }
+.sec-head.center p { margin-left: auto; margin-right: auto; }
+h1 { font-size: clamp(2rem, 7.4vw, 4.15rem); font-weight: 700; line-height: 1.06; letter-spacing: -.035em; text-wrap: balance; }
+h2 { font-size: clamp(1.65rem, 4.6vw, 2.6rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
+h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
+.hand { font-family: var(--hand); font-weight: 600; font-style: normal; letter-spacing: -.01em; color: var(--violet); }
+
+/* 5. BUTTONS */
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-weight: 600; font-size: .9rem; border-radius: 44px;
+  padding: .7rem 1.3rem; cursor: pointer; border: 1px solid transparent;
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+  white-space: nowrap; font-family: var(--sans); text-decoration: none;
+}
+.btn svg { width: 16px; height: 16px; transition: transform .3s var(--ease); }
+.btn-primary {
+  background: var(--ink); color: #fff;
+  box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 8px 22px -10px rgba(14,14,16,.55);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -12px rgba(14,14,16,.6); }
+.btn-primary:hover svg { transform: translateX(3px); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--hair); }
+.btn-ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
+
+/* 6. TOP STRIP */
+.topbar {
+  display: none;
+  background: var(--night); color: #fff;
+  font-family: var(--mono); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase;
+}
+.topbar-inner {
+  display: flex; align-items: center; gap: .85rem;
+  justify-content: center; padding: .5rem var(--pad); flex-wrap: wrap;
+}
+.topbar .dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--mint);
+  box-shadow: 0 0 0 0 rgba(167,232,215,.7);
+  animation: pulse 2.6s var(--ease) infinite; display: inline-block;
+}
+.topbar .sep { opacity: .4; }
+.topbar .dim { opacity: .62; }
+@media (min-width: 768px) { .topbar { display: block; } }
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(167,232,215,.55); }
+  70%  { box-shadow: 0 0 0 7px rgba(167,232,215,0); }
+  100% { box-shadow: 0 0 0 0 rgba(167,232,215,0); }
+}
+
+/* 7. HEADER + NAV + MOBILE MENU */
+.header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(253,252,249,.82);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border-bottom: 1px solid var(--hair-soft);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 58px; }
+.logo { display: flex; align-items: center; gap: .5rem; font-size: 1.24rem; font-weight: 600; letter-spacing: -.02em; color: var(--ink); }
+.logo svg { width: 26px; height: 26px; color: var(--ink); }
+.logo .dot-final { color: var(--violet); }
+.nav { display: flex; align-items: center; gap: 1.7rem; }
+.nav-links { display: none; gap: 1.7rem; align-items: center; }
+.nav-links a { font-size: .86rem; font-weight: 500; color: var(--muted); transition: color .25s var(--ease); }
+.nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--ink); }
+.lang {
+  display: flex; align-items: center; gap: .15rem;
+  font-family: var(--mono); font-size: .7rem; font-weight: 500;
+  border: 1px solid var(--hair); border-radius: 40px; padding: .24rem .4rem;
+}
+.lang button { background: none; border: 0; cursor: pointer; color: var(--faint); font-family: inherit; font-size: inherit; padding: .1rem .34rem; border-radius: 40px; transition: .2s var(--ease); }
+.lang button.active { background: var(--ink); color: #fff; }
+.lang .slash { color: var(--hair); font-size: .6rem; }
+.header .btn { display: none; padding: .55rem 1.05rem; font-size: .82rem; }
+.burger { display: flex; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: .35rem; }
+.burger span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: .3s var(--ease); }
+.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu {
+  position: fixed; inset: 0; top: 0; z-index: 60;
+  background: rgba(253,252,249,.985); backdrop-filter: blur(20px);
+  display: flex; flex-direction: column;
+  padding: 5rem var(--pad) 2rem; gap: .4rem;
+  transform: translateY(-100%); opacity: 0; pointer-events: none;
+  transition: transform .45s var(--ease), opacity .35s var(--ease);
+}
+.mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.mobile-menu a { font-size: 1.35rem; font-weight: 500; padding: .75rem 0; border-bottom: 1px solid var(--hair-soft); }
+.mobile-menu .btn { justify-content: center; margin-top: 1.4rem; width: 100%; }
+.mobile-menu .btn{white-space:normal;height:auto;line-height:1.35;font-size:.85rem;padding:.75rem 1rem}
+.mobile-menu .lang { align-self: flex-start; margin-top: 1.2rem; }
+.mobile-close { position: absolute; top: 1.1rem; right: var(--pad); background: none; border: 0; font-size: 1.7rem; cursor: pointer; color: var(--ink); }
+
+/* 8. SECTION RHYTHM */
+.section { padding: clamp(3.6rem, 9vw, 6.5rem) 0; }
+.section.warm { background: var(--warm); }
+
+/* 9. CARD / TILE PATTERNS */
+.card {
+  border: 1px solid var(--hair); border-radius: var(--r);
+  padding: 1.6rem; background: var(--card);
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -24px rgba(14,14,16,.28); border-color: var(--violet-line); }
+.marker {
+  width: 40px; height: 40px; border-radius: 12px; margin-bottom: 1.1rem;
+  background: linear-gradient(135deg, var(--violet), var(--peach));
+  display: grid; place-items: center; color: #fff; flex-shrink: 0;
+}
+.marker svg { width: 20px; height: 20px; }
+.pill { font-family: var(--mono); font-size: .72rem; font-weight: 500; border: 1px solid var(--hair); border-radius: 40px; padding: .42rem .85rem; color: var(--muted); display: inline-flex; align-items: center; gap: .4rem; }
+.pill.accent { border-color: var(--violet-line); background: var(--violet-soft); color: var(--violet); }
+.pills { display: flex; flex-wrap: wrap; gap: .55rem; }
+.why-quote { padding: 1.3rem 1.5rem; border-left: 2px solid var(--violet); font-family: var(--hand); font-size: 1.15rem; line-height: 1.5; color: var(--ink); background: var(--violet-soft); border-radius: 0 var(--r) var(--r) 0; }
+.why-quote.center { margin: 2.4rem auto 0; max-width: 680px; text-align: center; border-left: 0; border-radius: var(--r); padding: 1.5rem 1.8rem; }
+
+/* 10. SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* 11. FOOTER */
+.footer { background: var(--ink); color: #fff; padding: 3.4rem 0 2rem; }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 2.2rem; }
+.footer .logo { color: #fff; }
+.footer .logo svg { color: #fff; }
+.footer .logo .dot-final { color: var(--peach); }
+.footer-brand .tag { font-family: var(--hand); font-size: 1.05rem; opacity: .85; margin-top: .7rem; }
+.footer-brand .sub { font-size: .8rem; opacity: .6; margin-top: .4rem; }
+.socials { display: flex; gap: .8rem; margin-top: 1.2rem; }
+.socials a { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); display: grid; place-items: center; color: rgba(255,255,255,.75); transition: .25s var(--ease); }
+.socials a:hover { background: rgba(255,255,255,.1); color: #fff; transform: translateY(-2px); }
+.socials svg { width: 16px; height: 16px; }
+.footer-col h4 { font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; opacity: .55; margin-bottom: 1rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .65rem; }
+.footer-col a { font-size: .88rem; opacity: .8; transition: opacity .2s; }
+.footer-col a{padding:.4rem 0;display:inline-block}
+.footer-col a:hover { opacity: 1; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.12); margin-top: 2.6rem; padding-top: 1.5rem; font-family: var(--mono); font-size: .72rem; opacity: .55; letter-spacing: .04em; }
+
+/* 12. RESPONSIVE BREAKPOINTS */
+@media (min-width: 600px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+@media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+@media (min-width: 900px) { .nav-links { display: flex; } .header .btn { display: inline-flex; } .burger { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   PAGE-SPECIFIC: Newsletter signup page
+   ============================================================ */
+
+/* -- Hero -- */
+.nl-hero {
+  padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(2.4rem, 6vw, 4rem);
+  background: var(--base);
+  border-bottom: 1px solid var(--hair-soft);
+}
+.nl-hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.2rem;
+}
+.nl-envelope {
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  margin-bottom: .4rem;
+}
+.nl-envelope svg { width: 52px; height: 52px; }
+.nl-hero h1 {
+  max-width: 22ch;
+  font-size: clamp(2rem, 6.5vw, 3.6rem);
+}
+.nl-hero .nl-sub {
+  color: var(--muted);
+  font-size: clamp(1rem, 2.5vw, 1.13rem);
+  max-width: 50ch;
+  line-height: 1.65;
+}
+.nl-hero .nl-reassurance {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--faint);
+  letter-spacing: .04em;
+  margin-top: .2rem;
+}
+
+/* -- Signup form card -- */
+.nl-form-section {
+  padding: clamp(2.8rem, 7vw, 4.5rem) 0;
+}
+.nl-form-card {
+  background: var(--card);
+  border: 1px solid var(--hair);
+  border-radius: var(--r-lg);
+  padding: clamp(2rem, 6vw, 3rem) clamp(1.5rem, 5vw, 3rem);
+  max-width: 560px;
+  margin: 0 auto;
+  box-shadow: 0 4px 40px -16px rgba(14,14,16,.10);
+}
+.nl-form-card .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+  margin-bottom: 1.4rem;
+}
+.nl-form-card label {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+.nl-form-card input[type="email"] {
+  width: 100%;
+  padding: .75rem 1rem;
+  border: 1px solid var(--hair);
+  border-radius: 12px;
+  font-size: .97rem;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--base);
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+  outline: none;
+}
+.nl-form-card input[type="email"]:focus {
+  border-color: var(--violet-line);
+  box-shadow: 0 0 0 3px var(--violet-soft);
+}
+.nl-form-card input[type="email"]::placeholder { color: var(--faint); }
+
+/* Profile segmented control */
+.profile-group-label {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -.01em;
+  margin-bottom: .55rem;
+  display: block;
+}
+.profile-seg {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+.profile-seg input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.profile-seg label {
+  flex: 1;
+  min-width: 90px;
+  padding: .6rem 1rem;
+  border: 1px solid var(--hair);
+  border-radius: 12px;
+  font-size: .88rem;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color .2s var(--ease), background .2s var(--ease), color .2s var(--ease);
+  background: var(--base);
+}
+.profile-seg input[type="radio"]:checked + label {
+  border-color: var(--violet-line);
+  background: var(--violet-soft);
+  color: var(--violet);
+  font-weight: 600;
+}
+.profile-seg label:hover {
+  border-color: var(--violet-line);
+  color: var(--violet);
+}
+
+/* Submit button */
+.nl-submit {
+  width: 100%;
+  justify-content: center;
+  font-size: 1rem;
+  padding: .9rem 1.5rem;
+  margin-top: 1.6rem;
+  border-radius: 14px;
+}
+
+/* Consent line */
+.nl-consent {
+  font-size: .78rem;
+  color: var(--faint);
+  text-align: center;
+  margin-top: 1rem;
+  line-height: 1.55;
+}
+
+/* Form error */
+.nl-form-error {
+  color: #c0392b;
+  font-size: .82rem;
+  margin: .8rem 0 0;
+}
+
+/* Success state */
+.nl-success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 1rem 0 .5rem;
+}
+.nl-success-icon {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--violet), var(--peach));
+  display: grid; place-items: center; color: #fff;
+}
+.nl-success-icon svg { width: 24px; height: 24px; }
+.nl-success h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+.nl-success p {
+  color: var(--muted);
+  font-size: .96rem;
+  max-width: 36ch;
+  line-height: 1.6;
+}
+.nl-success a {
+  color: var(--violet);
+  font-weight: 500;
+  font-size: .9rem;
+  text-decoration: underline;
+  text-decoration-color: var(--violet-line);
+  text-underline-offset: 3px;
+}
+
+/* -- Content cards section -- */
+.nl-content-section {
+  padding: clamp(3rem, 8vw, 5.5rem) 0;
+  background: var(--warm);
+}
+.nl-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 2.2rem;
+}
+@media (min-width: 600px) {
+  .nl-cards-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 900px) {
+  .nl-cards-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* -- Profiles section -- */
+.nl-profiles-section {
+  padding: clamp(3rem, 8vw, 5.5rem) 0;
+}
+.nl-profiles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 2.2rem;
+}
+@media (min-width: 600px) {
+  .nl-profiles-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 900px) {
+  .nl-profiles-grid { grid-template-columns: repeat(3, 1fr) 1.15fr; }
+}
+.profile-card {
+  border: 1px solid var(--hair);
+  border-radius: var(--r);
+  padding: 1.6rem;
+  background: var(--card);
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+}
+.profile-card:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -24px rgba(14,14,16,.28); border-color: var(--violet-line); }
+.profile-card.substack-card {
+  background: var(--warm);
+  border-color: var(--hair);
+}
+.profile-label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: .55rem;
+  display: block;
+}
+.profile-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: .55rem;
+}
+.profile-card p {
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.6;
+}
+.profile-card .substack-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  margin-top: 1rem;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--ink);
+  border: 1px solid var(--hair);
+  border-radius: 40px;
+  padding: .45rem 1rem;
+  transition: border-color .2s var(--ease), transform .2s var(--ease);
+}
+.profile-card .substack-link:hover {
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+.profile-card .substack-link svg { width: 14px; height: 14px; }
+
+/* -- Closing CTA -- */
+.nl-cta {
+  background: var(--night);
+  color: #fff;
+  padding: clamp(3rem, 8vw, 5rem) 0;
+}
+.nl-cta-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.4rem;
+  max-width: 620px;
+}
+.nl-cta .sec-num {
+  color: var(--peach);
+  opacity: .85;
+}
+.nl-cta h2 {
+  color: #fff;
+  font-size: clamp(1.6rem, 4.4vw, 2.4rem);
+  letter-spacing: -.03em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+.nl-cta h2 .hand { color: var(--peach); }
+.nl-cta p {
+  color: rgba(255,255,255,.72);
+  font-size: 1rem;
+  line-height: 1.65;
+  max-width: 46ch;
+}
+.nl-cta .btn-primary {
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 8px 30px -10px rgba(0,0,0,.4);
+}
+.nl-cta .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px -14px rgba(0,0,0,.5);
+}
   </style>
 </head>
-
 <body>
-  <!-- HEADER -->
-  <!-- Top strip "Lab open" — Glass Lab Editorial Charte v3 -->
-  <div class="gle-top-strip">
-    <div><span class="gle-top-strip-dot"></span>LAB OPEN</div>
-    <div>·</div>
-    <div>BUILD IN PUBLIC</div>
-    <div>·</div>
-    <div>22+ AGENTS IN PROD</div>
+
+<!-- TOP STRIP (desktop-only) -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span><span class="dot"></span>&nbsp;Lab open</span>
+    <span class="sep">·</span>
+    <span class="dim">Build in public</span>
+    <span class="sep">·</span>
+    <span class="dim">22 agents in production</span>
   </div>
+</div>
 
-  <header class="gle-site-header">
-    <div class="gle-container">
-      <div class="gle-header-inner">
-        <div class="gle-logo-block">
-          <a class="gle-logo logo" href="/en/">
-            <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-                stroke-linecap="round" stroke-width="6"></circle>
-              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-            </svg>
-            Bubble.
-          </a>
-          <span class="gle-logo-tagline">Invest in what matters</span>
-        </div>
+<!-- HEADER -->
+<header class="header">
+  <div class="wrap header-inner">
+    <a href="/en/" class="logo" aria-label="Bubble, back to home">
+      <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"/>
+        <circle cx="59" cy="21" r="6" fill="var(--violet)"/>
+      </svg>
+      Bubble<span class="dot-final">.</span>
+    </a>
 
-        <!-- Mobile hamburger toggle (ID preserve — listener au bas de page) -->
-        <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
-          <span></span><span></span><span></span>
-        </button>
-
-        <nav class="gle-nav">
-          <a href="/en/about">About</a>
-          <a href="/en/individuals">Learn &amp; Plug</a>
-          <a href="/en/professionals">Pro implementation</a>
-          <a href="/en/blog">Blog</a>
-          <div class="lang-switch">
-            <button data-href="/newsletter">FR</button>
-            <span>/</span>
-            <button class="active">EN</button>
-          </div>
-          <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
-             class="gle-nav-cta nav-cta-calendly" data-cta-track="header_calendly_click">
-            Book a diagnostic
-          </a>
-        </nav>
-
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-links">
+        <a href="/en/about">About</a>
+        <a href="/en/individuals">Learn &amp; plug in</a>
+        <a href="/en/professionals">Pro implementation</a>
+        <a href="/en/blog">Blog</a>
+        <a href="/en/newsletter" aria-current="page">Newsletter</a>
       </div>
-    </div>
-  </header>
-
-  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block — ID preserve) -->
-  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
-    <div class="mobile-nav-content">
-      <a href="/en/about">About</a>
-      <a href="/en/individuals">Learn &amp; Plug</a>
-      <a href="/en/professionals">Pro implementation</a>
-      <a href="/en/blog">Blog</a>
-      <div class="lang-switch">
-        <button data-href="/newsletter">FR</button>
-        <span>/</span>
-        <button class="active">EN</button>
+      <div class="lang" role="group" aria-label="Language selection">
+        <button aria-pressed="false" data-lang="fr" data-href="/newsletter">FR</button>
+        <span class="slash">/</span>
+        <button class="active" aria-pressed="true" data-lang="en">EN</button>
       </div>
-      <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
-         class="nav-cta-calendly mobile-nav-cta-calendly" data-cta-track="mobile_header_calendly_click">
-        Book a free diagnostic (30 min)
-      </a>
-    </div>
-  </div>
-
-  <main>
-    <!-- HERO -->
-    <section class="hero gle-hero gle-bg-warm-atmospheric" aria-label="Behind the Bubble newsletter">
-      <span class="gle-kanji-watermark gle-kanji-hero-bg" aria-hidden="true">報</span>
-      <div class="gle-container">
-        <div class="gle-hero-grid">
-          <div class="hero-content fade-in">
-            <span class="gle-hero-tag">Newsletter · Free · Twice a week</span>
-            <h1 class="gle-hero-title">
-              <span>Behind the Bubble.</span>
-              <em>AI and finance, no jargon.</em>
-            </h1>
-            <p class="gle-hero-kicker">
-              Before we sell you anything, we give you what we know. Twice a week, for free: a thesis
-              connecting markets and AI, the real decisions of our investment agent, and the watch that
-              actually matters. Numbers and sources included.
-            </p>
-            <div class="gle-hero-ctas hero-cta-group">
-              <a class="gle-btn-primary btn btn-primary" href="#subscribe" data-cta-track="newsletter_hero_subscribe_click">
-                Subscribe for free
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-              <a class="gle-btn-secondary btn btn-secondary" href="#profiles">See the 3 profiles</a>
-            </div>
-            <p class="nl-reassure">No spam. Unsubscribe in one click. We write what we build, not what looks good.</p>
-          </div>
-          <div class="gle-hero-orb">
-            <img src="/assets/images/glass-lab/two_teas_desk.png" alt="The Behind the Bubble newsletter, AI and finance" loading="eager" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SUBSCRIBE -->
-    <section id="subscribe" class="gle-section gle-bg-warm-atmospheric" aria-label="Subscribe to the newsletter">
-      <div class="gle-container">
-        <div class="gle-section-header">
-          <div class="gle-section-num">01 / Subscribe</div>
-          <h2 class="gle-section-title">Get our methods, for free.</h2>
-          <p class="gle-section-kicker">
-            Tell us who you are: we tailor the content to your profile (Finance, Tech or balanced).
-            One email address is all it takes.
-          </p>
-        </div>
-
-        <div class="nl-form-wrap">
-          <form id="nl-form" class="nl-form" novalidate>
-            <div class="nl-field">
-              <label for="nl-email">Your email</label>
-              <input type="email" id="nl-email" name="email" inputmode="email" autocomplete="email"
-                     placeholder="you@firm.com" required aria-required="true" />
-            </div>
-            <div class="nl-field">
-              <label for="nl-profession">Your profile</label>
-              <select id="nl-profession" name="profession" aria-label="Your profile">
-                <option value="" disabled selected>Choose your profile…</option>
-                <optgroup label="Finance">
-                  <option value="portfolio_manager">Portfolio Manager</option>
-                  <option value="risk_manager">Risk Manager</option>
-                  <option value="equity_research_analyst">Equity Research Analyst</option>
-                  <option value="other_investment_professional">Other investment professional</option>
-                </optgroup>
-                <optgroup label="Tech">
-                  <option value="tech_professional">Tech Professional</option>
-                  <option value="software_engineer">Software Engineer / Developer</option>
-                  <option value="data_scientist">Data Scientist</option>
-                </optgroup>
-                <optgroup label="Other">
-                  <option value="non_professional_investor">Individual investor</option>
-                  <option value="other">Other</option>
-                </optgroup>
-              </select>
-            </div>
-            <button type="submit" class="gle-btn-primary nl-submit" data-cta-track="newsletter_form_submit">
-              Subscribe for free
-            </button>
-            <p class="nl-form-note">By subscribing, you agree to receive our emails. Your data stays with us, never sold. Unsubscribe in one click.</p>
-          </form>
-
-          <div id="nl-success" class="nl-success" hidden role="status" aria-live="polite">
-            <div class="nl-success-icon">✓</div>
-            <h3>Welcome to the bubble.</h3>
-            <p id="nl-success-msg">Your subscription is confirmed. First email in the next few days.</p>
-            <a class="gle-btn-secondary" href="/en/professionals" data-cta-track="newsletter_success_to_pro">
-              Discover our pro implementation
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ON THE MENU -->
-    <section class="gle-section gle-bg-warm-atmospheric" aria-label="What you get">
-      <div class="gle-container">
-        <div class="gle-section-header">
-          <div class="gle-section-num">02 / On the menu</div>
-          <h2 class="gle-section-title">What we send you, twice a week.</h2>
-        </div>
-        <div class="nl-grid">
-          <div class="nl-card">
-            <div class="nl-card-kicker">A thesis per edition</div>
-            <p>A strong angle connecting markets and AI. Not recycled news: an argued take, sometimes against the grain.</p>
-          </div>
-          <div class="nl-card">
-            <div class="nl-card-kicker">Markets read</div>
-            <p>Gold, rates, indices, positioning. What we observe and how we position, numbers and sources included.</p>
-          </div>
-          <div class="nl-card">
-            <div class="nl-card-kicker">Our agent, for real</div>
-            <p>The real decisions of our investment agent: what it does, what it refuses, and why. Build in public.</p>
-          </div>
-          <div class="nl-card">
-            <div class="nl-card-kicker">The watch that matters</div>
-            <p>A curated selection across 4 angles: Markets, AI &amp; Tools, Disruption, Reflection. The few links worth your time.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3 PROFILES -->
-    <section id="profiles" class="gle-section gle-bg-warm-atmospheric" aria-label="Three newsletter profiles">
-      <div class="gle-container">
-        <div class="gle-section-header">
-          <div class="gle-section-num">03 / Three profiles</div>
-          <h2 class="gle-section-title">One newsletter, your angle.</h2>
-          <p class="gle-section-kicker">
-            We tailor the content to your job. Pick your profile when you subscribe, we handle the rest.
-          </p>
-        </div>
-        <div class="nl-grid nl-grid-3">
-          <div class="nl-profile nl-profile-finance">
-            <h3>Finance</h3>
-            <p>Markets, macro, positioning and the decisions of our investment agent. For wealth advisors, managers and analysts.</p>
-          </div>
-          <div class="nl-profile nl-profile-tech">
-            <h3>Tech</h3>
-            <p>Advances in agentic AI, the tools we test, our architecture notes in build in public. For those who build.</p>
-          </div>
-          <div class="nl-profile nl-profile-balanced">
-            <h3>Balanced</h3>
-            <p>The bridge between the two: macro made clear, AI made concrete. For the curious on both sides.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SUBSTACK -->
-    <section class="gle-section gle-bg-warm-atmospheric" aria-label="Go further with Substack">
-      <div class="gle-container">
-        <div class="nl-substack-callout">
-          <div>
-            <div class="nl-card-kicker">To go deeper</div>
-            <h3 class="ab-newsletter-title" style="text-align:left;">Substack</h3>
-            <p style="margin:.6rem 0 1.2rem;">
-              The Notion newsletter for the free recap twice a week. Substack for the deep-dive articles
-              (free mix + paid analyses per piece). Many of our readers subscribe to both.
-            </p>
-            <a class="ab-newsletter-cta" href="https://bubbleinvest.substack.com" target="_blank" rel="noopener noreferrer"
-               style="background: var(--gle-primary); color: #f5f3ed;" data-cta-track="newsletter_substack_click">
-              Discover on Substack
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA PRO -->
-    <section class="gle-section gle-bg-warm-atmospheric" aria-label="Free AI diagnostic">
-      <div class="gle-container">
-        <div class="nl-cta-pro">
-          <h2 class="gle-section-title" style="margin-bottom:.6rem;">Want a custom agent?</h2>
-          <p class="gle-section-kicker" style="margin:0 auto 1.4rem;">
-            We install your first AI agents and support your teams in 3 sessions. Founded by an ex-UBS,
-            ex-KPMG and ex-Deloitte team. First call on us.
-          </p>
-          <a class="gle-btn-primary btn btn-primary" href="/en/professionals" data-cta-track="newsletter_cta_pro_click">
-            Book a free diagnostic (30 min)
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- FOOTER (Glass Lab Editorial v3 — structure preserved, restyled) -->
-  <footer class="gle-footer">
-    <div class="gle-container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="logo" href="/en/" style="font-size: 1.5rem; color: #fff;">
-            <svg fill="none" style="width: 32px; height: 32px;" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-                stroke-linecap="round" stroke-width="6"></circle>
-              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-            </svg>
-            Bubble.
-          </a>
-          <p style="font-family: var(--gle-font-accent); font-style: italic; opacity: 0.85; margin-top: 0.5rem;">Invest in what matters.</p>
-          <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.78rem;">The AI era changed everything. Change with it.</p>
-          <div class="social-links">
-            <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank"
-              title="LinkedIn">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank"
-              title="Instagram @behindthebubble.ai">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank"
-              title="Substack @bubbleinvest">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="GitHub" href="/en/github" title="GitHub">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="X" href="https://x.com/bubbleinvlabs" target="_blank" title="X @bubbleinvlabs">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
-                </path>
-              </svg>
-            </a>
-          </div>
-        </div>
-        <div class="footer-links">
-          <h4>Navigation</h4>
-          <ul>
-            <li><a href="/en/about">About</a></li>
-            <li><a href="/en/individuals">Learn &amp; Plug</a></li>
-            <li><a href="/en/professionals">Pro implementation</a></li>
-            <li><a href="/en/blog">Blog</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Resources</h4>
-          <ul>
-            <li><a href="/en/shop">Shop</a></li>
-            <li><a href="/en/labs">Lab</a></li>
-            <li><a href="/en/professionals#faq">FAQ</a></li>
-            <li><a href="/en/newsletter">Newsletter</a></li>
-            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank" data-cta-track="footer_calendly_click">Book a diagnostic</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="/en/legal-notice">Legal notice</a></li>
-            <li><a href="/en/privacy">Privacy</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 Bubble Invest · Transparent by design · Build in public</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Chat Side Panel (slide-in chatbot) -->
-  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
-    <div class="chat-side-panel-header">
-      <div class="chat-side-panel-header-info">
-        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
-        <div class="chat-side-panel-titles">
-          <span class="chat-side-panel-title">Bubble Assistant</span>
-        </div>
-      </div>
-      <div class="chat-side-panel-actions">
-        <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
-        <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
-      </div>
-    </div>
-    <div class="chat-side-panel-messages" role="log" aria-live="polite">
-    </div>
-    <form class="chat-side-panel-input-container" novalidate>
-      <input type="text" class="chat-side-panel-input" placeholder="Ask your questions..."
-        data-translate-placeholder="floating_input.placeholder" aria-label="Type your message"
-        autocomplete="off" />
-      <button class="chat-side-panel-send" aria-label="Send message" type="submit">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M12 21V4" stroke-linecap="round" />
-        </svg>
+      <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-cta-track="header_calendly_click">Book a diagnostic</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
       </button>
-    </form>
+    </nav>
   </div>
+</header>
 
-  <!-- Floating Glassmorphism Chat Input -->
-  <div class="floating-chat-input hidden" data-always-visible="false" data-page-context="investors"
-    data-trigger-selector=".hero" id="floating-chat-input">
-    <div class="floating-input-container">
-      <input aria-label="Ask your question" class="floating-input-field"
-        placeholder="Ask me anything..." type="text"
-        data-translate-placeholder="floating_input.placeholder" />
-      <button aria-label="Send" class="floating-input-submit">
-        <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
-          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-          <path d="M12 21V4" stroke-linecap="round" stroke-width="2"></path>
-        </svg>
-      </button>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+  <a href="/en/about">About</a>
+  <a href="/en/individuals">Learn &amp; plug in</a>
+  <a href="/en/professionals">Pro implementation</a>
+  <a href="/en/blog">Blog</a>
+  <a href="/en/newsletter" aria-current="page">Newsletter</a>
+  <div class="lang" role="group" aria-label="Language selection">
+    <button aria-pressed="false" data-lang="fr" data-href="/newsletter">FR</button>
+    <span class="slash">/</span>
+    <button class="active" aria-pressed="true" data-lang="en">EN</button>
+  </div>
+  <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-cta-track="mobile_header_calendly_click">Book a free diagnostic (30 min)</a>
+</div>
+
+<!-- PAGE CONTENT -->
+<main>
+
+  <!-- HERO -->
+  <section class="nl-hero" aria-labelledby="nl-title">
+    <div class="wrap">
+      <div class="nl-hero-inner reveal">
+        <div class="nl-envelope" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="M3 7l9 6 9-6"/>
+          </svg>
+        </div>
+        <span class="sec-num">Behind the Bubble</span>
+        <h1 id="nl-title">Get our methods, for free.</h1>
+        <p class="nl-sub">Before we ever sell you anything, we give you what we know. For free, whenever we have something worth your time.</p>
+        <p class="nl-reassurance">No spam. Unsubscribe in one click. We write what we build, not what looks good.</p>
+      </div>
     </div>
+  </section>
+
+  <!-- SIGNUP FORM -->
+  <section class="nl-form-section" id="signup" aria-labelledby="form-title">
+    <div class="wrap">
+      <div class="nl-form-card reveal">
+
+        <!-- Form -->
+        <form id="nl-form" novalidate>
+          <div class="form-group">
+            <label for="nlEmail">Your email</label>
+            <input type="email" id="nlEmail" name="email" placeholder="you@firm.com" autocomplete="email" required aria-required="true" />
+          </div>
+
+          <div style="margin-bottom: 1.4rem;">
+            <span class="profile-group-label" id="form-title">Your profile</span>
+            <div class="profile-seg" role="radiogroup" aria-labelledby="form-title">
+              <input type="radio" name="profession" id="pFinance" value="Finance" checked />
+              <label for="pFinance">Finance</label>
+
+              <input type="radio" name="profession" id="pTech" value="Tech" />
+              <label for="pTech">Tech</label>
+
+              <input type="radio" name="profession" id="pEquilibre" value="Balanced" />
+              <label for="pEquilibre">Balanced</label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary nl-submit" data-cta-track="newsletter_form_submit">
+            Subscribe for free
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+
+          <p class="nl-consent">By subscribing, you agree to receive our emails. Your data stays with us, never sold. Unsubscribe in one click.</p>
+        </form>
+
+        <!-- Success state (hidden by default) -->
+        <div class="nl-success" id="nl-success" aria-live="polite" aria-atomic="true" role="status">
+          <div class="nl-success-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <h3>You're in. Welcome to the bubble.</h3>
+          <p id="nl-success-msg">Your subscription is confirmed. You'll get our next edition.</p>
+          <a href="/en/professionals">Explore pro implementation</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT SECTION -->
+  <section class="nl-content-section" aria-labelledby="content-title">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="sec-num">What we send.</span>
+        <h2 id="content-title">Not recycled news. A <span class="hand">crafted</span> read.</h2>
+      </div>
+
+      <div class="nl-cards-grid">
+
+        <div class="card reveal">
+          <div class="marker" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/>
+            </svg>
+          </div>
+          <h3>A strong angle</h3>
+          <p style="color:var(--muted);font-size:.92rem;margin-top:.5rem;line-height:1.6;">A sharp angle that connects markets and AI. Not recycled headlines: a reasoned take, sometimes going against the grain.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="marker" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 14 8 10 12 13 16 7"/>
+              <path d="M2 18h16"/>
+            </svg>
+          </div>
+          <h3>Fundamental research</h3>
+          <p style="color:var(--muted);font-size:.92rem;margin-top:.5rem;line-height:1.6;">Macro, equities, rates, FX, commodities. We do fundamental research like a hedge fund (thesis, valuation, sources), with our AI agents digging continuously.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="marker" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="10" cy="10" r="7"/>
+              <path d="M10 7v3l2 2"/>
+            </svg>
+          </div>
+          <h3>Agent decisions</h3>
+          <p style="color:var(--muted);font-size:.92rem;margin-top:.5rem;line-height:1.6;">The real decisions of our investment agent: what it does, what it declines, and why. Build in public.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="marker" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h12v8H4z"/><path d="M7 12v4M13 12v4M4 16h12"/>
+            </svg>
+          </div>
+          <h3>4-angle selection</h3>
+          <p style="color:var(--muted);font-size:.92rem;margin-top:.5rem;line-height:1.6;">A curated selection across 4 angles: Markets, AI &amp; Tools, Disruption, Reflection. The few links worth your time.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILES SECTION -->
+  <section class="nl-profiles-section" aria-labelledby="profiles-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num">One newsletter, your angle.</span>
+        <h2 id="profiles-title">We tailor the content to your <span class="hand">field</span>.</h2>
+        <p>Pick your profile when you sign up, we handle the rest.</p>
+      </div>
+
+      <div class="nl-profiles-grid">
+
+        <div class="profile-card reveal">
+          <span class="profile-label">Finance</span>
+          <h3>For advisors, portfolio managers, and analysts</h3>
+          <p>Markets, macro, positioning, and the decisions of our investment agent. For advisors, portfolio managers, and analysts.</p>
+        </div>
+
+        <div class="profile-card reveal">
+          <span class="profile-label">Tech</span>
+          <h3>For builders and AI enthusiasts</h3>
+          <p>The latest in agentic AI, the tools we test, and our architecture notes in build-in-public format.</p>
+        </div>
+
+        <div class="profile-card reveal">
+          <span class="profile-label">Balanced</span>
+          <h3>The bridge between both worlds</h3>
+          <p>The bridge between the two: macro made clear, AI made concrete. For people curious about both worlds.</p>
+        </div>
+
+        <div class="profile-card substack-card reveal">
+          <span class="profile-label">Substack</span>
+          <h3>In-depth articles</h3>
+          <p>The newsletter for the free recap. Substack for in-depth articles, a mix of free and paid.</p>
+          <a href="https://bubbleinvest.substack.com" target="_blank" rel="noopener noreferrer" class="substack-link">
+            Read on Substack
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="nl-cta" aria-labelledby="nl-cta-title">
+    <div class="wrap">
+      <div class="nl-cta-inner reveal">
+        <span class="sec-num">Pro implementation</span>
+        <h2 id="nl-cta-title">Want a <span class="hand">custom</span> agent?</h2>
+        <p>We set up your first AI agents and guide your team through it in 3 sessions.</p>
+        <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-cta-track="newsletter_cta_pro_click">
+          Book a free diagnostic (30 min)
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/en/" class="logo" style="font-size:1.4rem" aria-label="Bubble, back to home">
+          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:30px;height:30px" aria-hidden="true">
+            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"/>
+            <circle cx="59" cy="21" r="6" fill="var(--peach)"/>
+          </svg>
+          Bubble<span class="dot-final">.</span>
+        </a>
+        <p class="tag">Invest in what matters.</p>
+        <p class="sub">The AI era changed everything. Change with it.</p>
+        <div class="socials">
+          <a href="https://www.linkedin.com/company/bubble-invest-ai/" aria-label="LinkedIn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://bubbleinvest.substack.com" aria-label="Substack"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></a>
+          <a href="https://x.com/bubbleinvlabs" aria-label="X"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://github.com/vdk888" aria-label="GitHub"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/en/about">About</a></li>
+          <li><a href="/en/individuals">Learn &amp; plug in</a></li>
+          <li><a href="/en/professionals">Pro implementation</a></li>
+          <li><a href="/en/blog">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/en/shop">Shop</a></li>
+          <li><a href="/en/labs">Labs</a></li>
+          <li><a href="/en/faq">FAQ</a></li>
+          <li><a href="/en/newsletter" aria-current="page">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/en/legal-notice">Legal notice</a></li>
+          <li><a href="/en/privacy">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Bubble Invest · Transparent by design · Build in public</div>
   </div>
+</footer>
 
-  <!-- Scripts -->
-  <script src="/js/seo/cookie-banner.js"></script>
-  <!-- Unified conversion tracking (Pixel + CAPI dual tracking + Google Ads conversion) — Phase 1 marketing 2026-05-18 -->
-  <script src="/js/seo/conversions.js"></script>
-  <script src="/js/lang-toggle.js"></script>
-  <script src="/i18n/translations.js"></script>
-  <script src="/js/bubble-agent-memory.js"></script>
-  <script src="/js/chatbot-animations.js"></script>
-  <script src="/js/chat-side-panel.js"></script>
-  <script src="/js/floating-chat-input.js"></script>
-  <script src="/js/animations.js"></script>
-  <script src="/js/seo/ga4-events.js"></script>
+<script>
+(function () {
+  "use strict";
 
-  <!-- Sprint 3 Ghibli Phase 2 — top strip "Lab open" + floating bubbles signature -->
-  <script src="/js/ghibli-chrome.js" defer></script>
+  /* Mobile menu */
+  var burger = document.getElementById("burger"),
+      menu   = document.getElementById("mobileMenu"),
+      close  = document.getElementById("mobileClose");
 
-  <!-- The lab, live — live clock, count-up counters, activity feed.
-       Token counters read from the SAME-ORIGIN endpoint /api/labs/stats.json
-       (headline.this_month_total / headline.this_year_total). Falls back to
-       data-target on any error. -->
-  <script>
-  (function () {
-    // 1. Live Paris clock
-    var clock = document.getElementById('ab-lab-clock');
-    function tick() {
-      if (!clock) return;
-      var t = new Date().toLocaleTimeString('en-GB', {
-        timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit', second: '2-digit'
-      });
-      clock.textContent = t + ' · Paris';
-    }
-    tick(); setInterval(tick, 1000);
+  function openMenu() {
+    menu.classList.add("open");
+    burger.classList.add("open");
+    burger.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  function closeMenu() {
+    menu.classList.remove("open");
+    burger.classList.remove("open");
+    burger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
 
-    // 2. Counters — count up when in view. Token counters pull the REAL figures
-    //    from the same-origin Bubble Labs stats (fallback = data-target).
-    var STATS_URL = '/api/labs/stats.json';
-    function unitOf(n) {
-      if (n >= 1e9) return { d: 1e9, dec: n >= 1e10 ? 1 : 2, lbl: 'B' };
-      if (n >= 1e6) return { d: 1e6, dec: 0, lbl: 'M' };
-      return { d: 1, dec: 0, lbl: '' };
-    }
-    function animate(el) {
-      var target = parseFloat(el.getAttribute('data-target')) || 0;
-      var fmt = el.getAttribute('data-fmt');
-      var suffix = el.getAttribute('data-suffix') || '';
-      var u = fmt === 'tokens' ? unitOf(target) : null;
-      var dur = 1300, t0 = null;
-      function render(v) {
-        if (fmt === 'tokens') {
-          if (u.lbl) {
-            el.innerHTML = (v / u.d).toFixed(u.dec) +
-              '<span class="ab-lab-unit"> ' + u.lbl + '</span>';
-          } else {
-            el.innerHTML = Math.round(v).toLocaleString('en-US');
-          }
-        } else {
-          el.innerHTML = Math.round(v) +
-            (suffix ? '<span class="ab-lab-unit">' + suffix + '</span>' : '');
+  burger.addEventListener("click", function () {
+    menu.classList.contains("open") ? closeMenu() : openMenu();
+  });
+  close.addEventListener("click", closeMenu);
+  menu.querySelectorAll("a").forEach(function (a) {
+    a.addEventListener("click", closeMenu);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && menu.classList.contains("open")) closeMenu();
+  });
+  window.addEventListener("resize", function () {
+    if (window.innerWidth >= 900 && menu.classList.contains("open")) closeMenu();
+  });
+
+  /* Scroll reveal */
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.classList.add("in");
+          io.unobserve(en.target);
         }
-      }
-      function step(ts) {
-        if (!t0) t0 = ts;
-        var p = Math.min((ts - t0) / dur, 1);
-        render(target * (1 - Math.pow(1 - p, 3)));
-        if (p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-    var nums = Array.prototype.slice.call(document.querySelectorAll('.ab-lab-num[data-target]'));
-    var observed = false;
-    function observe() {
-      if (observed) return;
-      observed = true;
-      if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); }
-          });
-        }, { threshold: 0.4 });
-        nums.forEach(function (n) { io.observe(n); });
-      } else {
-        nums.forEach(animate);
-      }
-    }
-    // Fill token counters from the same-origin stats; fall back to data-target on any error.
-    // The endpoint shape is { stats: { tokens_this_month, ... } }. We also look in a
-    // `headline` object as a secondary source in case the payload shape evolves.
-    // (tokens_this_year has no real source today, so that counter keeps its data-target.)
-    fetch(STATS_URL, { cache: 'no-store' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        var s = (d && d.stats) || {};
-        var h = (d && d.headline) || {};
-        nums.forEach(function (el) {
-          var key = el.getAttribute('data-ledger');
-          if (!key) return;
-          var v = (typeof s[key] === 'number') ? s[key] : (typeof h[key] === 'number' ? h[key] : null);
-          if (v !== null && v > 0) {
-            el.setAttribute('data-target', v);
-          }
-        });
-      })
-      .catch(function () {})
-      .then(observe);
-    setTimeout(observe, 2500); // backstop if the fetch hangs
+      });
+    }, { threshold: .12, rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+  }
 
-    // 3. Activity feed — prepend a fresh (anonymised) line every ~9s
-    var log = document.getElementById('ab-lab-log');
-    var pool = [
-      ['Eliot', 'checked the certificates — <span class="ok">OK</span>'],
-      ['Claudette', 'answered a request on Telegram'],
-      ['Rick', 'synced the wiki cache'],
-      ['Ben', 'computed a risk-parity allocation'],
-      ['Miranda', 'scheduled a post for tomorrow'],
-      ['Tony', "aggregated the day's KPIs"],
-      ['Eliot', 'scanned for secrets — <span class="ok">0 leaks</span>'],
-      ['Claudette', 'updated a page on the site']
-    ];
-    var pi = 0;
-    function addLine() {
-      if (!log) return;
-      var hh = new Date().toLocaleTimeString('en-GB', {
-        timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit'
-      });
-      var item = pool[pi % pool.length]; pi++;
-      var li = document.createElement('li');
-      li.innerHTML = '<span class="t">' + hh + '</span> <span class="ag">' + item[0] + '</span> ' + item[1];
-      li.style.opacity = 0;
-      log.insertBefore(li, log.firstChild);
-      requestAnimationFrame(function () { li.style.transition = 'opacity .6s'; li.style.opacity = 1; });
-      var items = log.querySelectorAll('li');
-      if (items.length > 8) log.removeChild(items[items.length - 1]);
-    }
-    setInterval(addLine, 9000);
-  })();
-  </script>
+})();
+</script>
 
-  <!-- Mobile hamburger menu toggle -->
-  <script>
-    (function () {
-      'use strict';
-      const toggle = document.getElementById('hamburger-toggle');
-      const overlay = document.getElementById('mobile-nav-overlay');
-      if (!toggle || !overlay) return;
-      function closeMenu() {
-        overlay.classList.remove('open');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      }
-      toggle.addEventListener('click', function () {
-        const isOpen = overlay.classList.toggle('open');
-        toggle.classList.toggle('open', isOpen);
-        toggle.setAttribute('aria-expanded', isOpen);
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-      });
-      overlay.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', closeMenu);
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
-      });
-      window.addEventListener('resize', function () {
-        if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
-      });
-    })();
-  </script>
+<!-- Newsletter form: POSTs to /api/newsletter/subscribe -- mirrored from FR page -->
+<script>
+(function () {
+  'use strict';
+  var form       = document.getElementById('nl-form');
+  var success    = document.getElementById('nl-success');
+  var successMsg = document.getElementById('nl-success-msg');
+  if (!form || !success) return;
 
-  <!-- Waitlist modal (Portfolio / Community Manager agents — in the works) -->
-  <div class="gle-waitlist-overlay" id="waitlist-overlay" aria-hidden="true">
-    <div class="gle-waitlist-modal" role="dialog" aria-modal="true" aria-labelledby="waitlist-title">
-      <button class="gle-waitlist-close" type="button" aria-label="Close">&times;</button>
-      <h3 class="gle-waitlist-title" id="waitlist-title">Join the waitlist</h3>
-      <p class="gle-waitlist-sub">Agent <strong id="waitlist-agent">—</strong> · in the works. Leave your email and we'll let you know at launch.</p>
-      <form class="gle-waitlist-form" id="waitlist-form" novalidate>
-        <input type="email" class="gle-waitlist-input" id="waitlist-email" placeholder="your@email.com" required aria-label="Your email" />
-        <button type="submit" class="gle-btn-primary gle-waitlist-submit">Sign me up</button>
-      </form>
-      <p class="gle-waitlist-note">No spam. Unsubscribe in one click.</p>
-      <p class="gle-waitlist-success" id="waitlist-success" hidden>✓ Thanks! We'll let you know as soon as the agent is ready.</p>
-    </div>
-  </div>
-  <script>
-  (function(){
-    var ov=document.getElementById('waitlist-overlay'); if(!ov) return;
-    var agentEl=document.getElementById('waitlist-agent'), form=document.getElementById('waitlist-form'),
-        email=document.getElementById('waitlist-email'), ok=document.getElementById('waitlist-success'), agent='';
-    function open(a){agent=a;agentEl.textContent=a;ok.hidden=true;form.style.display='';email.value='';ov.classList.add('open');ov.setAttribute('aria-hidden','false');setTimeout(function(){email.focus();},50);}
-    function close(){ov.classList.remove('open');ov.setAttribute('aria-hidden','true');}
-    document.querySelectorAll('[data-waitlist-agent]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();open(b.getAttribute('data-waitlist-agent'));});});
-    ov.addEventListener('click',function(e){if(e.target===ov)close();});
-    ov.querySelector('.gle-waitlist-close').addEventListener('click',close);
-    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('open'))close();});
-    form.addEventListener('submit',function(e){e.preventDefault();var v=email.value.trim();if(!v||v.indexOf('@')<1){email.focus();return;}
-      var btn=form.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='…';
-      fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:"Waitlist — "+agent,email:v,profile:'curious',comments:'Waitlist agent: '+agent})})
-        .then(function(){}).catch(function(){}).then(function(){form.style.display='none';ok.hidden=false;btn.disabled=false;btn.textContent="Sign me up";});
+  var emailInput = document.getElementById('nlEmail');
+  var submitBtn  = form.querySelector('button[type="submit"]');
+
+  /* Capture UTM params for attribution */
+  var utm = {};
+  try {
+    new URLSearchParams(window.location.search).forEach(function (v, k) {
+      if (k.indexOf('utm_') === 0) utm[k] = v;
     });
-  })();
-  </script>
+  } catch (e) {}
 
-  <!-- Newsletter signup — posts to the existing /api/newsletter/subscribe (Notion + profile segmentation) -->
-  <script>
-  (function () {
-    'use strict';
-    var form = document.getElementById('nl-form');
-    var success = document.getElementById('nl-success');
-    var successMsg = document.getElementById('nl-success-msg');
-    if (!form || !success) return;
+  var profileMessages = {
+    Tech:     "Tech profile: you'll receive the latest in agentic AI and open-source skills.",
+    Finance:  "Finance profile: you'll receive our market analysis and automation methods.",
+    Balanced: "Balanced profile: the best of tech and finance, made clear."
+  };
 
-    var emailInput = document.getElementById('nl-email');
-    var profInput = document.getElementById('nl-profession');
-    var submitBtn = form.querySelector('button[type="submit"]');
-
-    // Capture UTM params (e.g. CREA 4 = utm_source=meta_reciprocity) for attribution.
-    var utm = {};
-    try {
-      new URLSearchParams(window.location.search).forEach(function (v, k) {
-        if (k.indexOf('utm_') === 0) utm[k] = v;
-      });
-    } catch (e) {}
-
-    var profileMessages = {
-      Tech: "Tech profile: you'll get the latest in agentic AI and open-source skills.",
-      Finance: "Finance profile: you'll get our market reads and automation methods.",
-      Balanced: "Balanced profile: the best of tech and finance, made clear."
-    };
-
-    function showError(msg) {
-      var err = form.querySelector('.nl-form-error');
-      if (!err) {
-        err = document.createElement('p');
-        err.className = 'nl-form-error';
-        err.style.cssText = 'color:#c0392b;font-size:0.82rem;margin:0.8rem 0 0;';
-        form.appendChild(err);
-      }
-      err.textContent = msg;
+  function showError(msg) {
+    var err = form.querySelector('.nl-form-error');
+    if (!err) {
+      err = document.createElement('p');
+      err.className = 'nl-form-error';
+      form.appendChild(err);
     }
+    err.textContent = msg;
+  }
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var email = (emailInput.value || '').trim();
-      if (!email || email.indexOf('@') < 1) {
-        showError('Please enter a valid email address.');
-        emailInput.focus();
-        return;
-      }
-      var profession = profInput.value || 'other';
+  function getSelectedProfile() {
+    var checked = form.querySelector('input[name="profession"]:checked');
+    return checked ? checked.value : 'Balanced';
+  }
 
-      submitBtn.disabled = true;
-      var original = submitBtn.textContent;
-      submitBtn.textContent = 'Subscribing…';
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = (emailInput.value || '').trim();
+    if (!email || email.indexOf('@') < 1) {
+      showError('Please enter a valid email address.');
+      emailInput.focus();
+      return;
+    }
+    var profession = getSelectedProfile();
 
-      fetch('/api/newsletter/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, profession: profession })
-      })
-        .then(async function (response) {
-          var data = await response.json();
+    submitBtn.disabled = true;
+    var original = submitBtn.textContent;
+    submitBtn.textContent = 'Subscribing...';
+
+    fetch('/api/newsletter/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, profession: profession })
+    })
+      .then(function (response) {
+        return response.json().then(function (data) {
           if (!response.ok) throw new Error(data.error || 'Something went wrong.');
           return data;
-        })
-        .then(function (data) {
-          try {
-            if (typeof window.gtag === 'function') {
-              window.gtag('event', 'newsletter_signup', {
-                profile: data.profile || 'Balanced',
-                utm_source: utm.utm_source || '',
-                utm_medium: utm.utm_medium || '',
-                utm_campaign: utm.utm_campaign || '',
-                utm_content: utm.utm_content || ''
-              });
-            }
-            if (typeof window.fbq === 'function') {
-              window.fbq('track', 'CompleteRegistration', { content_name: 'newsletter' });
-            }
-          } catch (e2) {}
-
-          form.style.display = 'none';
-          if (successMsg && data.profile && profileMessages[data.profile]) {
-            successMsg.textContent = profileMessages[data.profile] + ' First email in the next few days.';
-          }
-          success.hidden = false;
-          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        })
-        .catch(function (error) {
-          showError(error.message || 'Subscription failed. Please try again in a moment.');
-          submitBtn.disabled = false;
-          submitBtn.textContent = original;
         });
-    });
-  })();
-  </script>
-</body>
+      })
+      .then(function (data) {
+        /* Fire conversion events if consent-gated SDKs are loaded */
+        try {
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'newsletter_signup', {
+              profile: data.profile || profession,
+              utm_source:   utm.utm_source   || '',
+              utm_medium:   utm.utm_medium   || '',
+              utm_campaign: utm.utm_campaign || '',
+              utm_content:  utm.utm_content  || ''
+            });
+          }
+          if (typeof window.fbq === 'function') {
+            window.fbq('track', 'CompleteRegistration', { content_name: 'newsletter' });
+          }
+        } catch (e2) {}
 
+        form.style.display = 'none';
+        if (successMsg && data.profile && profileMessages[data.profile]) {
+          successMsg.textContent = profileMessages[data.profile] + ' First email in the coming days.';
+        }
+        success.style.display = 'flex';
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      })
+      .catch(function (error) {
+        showError(error.message || 'Subscription failed. Please try again in a moment.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = original;
+      });
+  });
+})();
+</script>
+
+  <!-- Functional scripts (order matters) -->
+  <script src="/js/seo/cookie-banner.js"></script>
+  <script src="/js/seo/conversions.js"></script>
+  <script src="/i18n/translations.js"></script>
+  <script src="/js/lang-toggle.js"></script>
+  <script src="/js/seo/ga4-events.js"></script>
+  <script src="/js/calendly-integration.js" defer></script>
+
+</body>
 </html>

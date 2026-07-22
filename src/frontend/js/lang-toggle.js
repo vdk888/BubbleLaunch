@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  document.querySelectorAll('.lang-switch button[data-href]').forEach(function (btn) {
+  document.querySelectorAll('.lang button[data-href], .lang-switch button[data-href]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var href = btn.getAttribute('data-href');
       if (href) {
@@ -17,7 +17,7 @@
   });
 
   // Blog post pages: dynamically resolve slug-based language URLs
-  document.querySelectorAll('.lang-switch button[data-lang-blog]').forEach(function (btn) {
+  document.querySelectorAll('.lang button[data-lang-blog], .lang-switch button[data-lang-blog]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var prefix = btn.getAttribute('data-lang-blog');
       var pathParts = window.location.pathname.split('/');

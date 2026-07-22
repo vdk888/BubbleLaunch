@@ -1,90 +1,41 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-
-  <!-- SEO Meta Tags -->
-  <title>Shop | Agents IA & Articles Premium · Bubble</title>
-  <meta name="description"
-    content="Nos agents IA et articles premium : outils d'investissement, audit de sécurité, analyses approfondies. Construits en public, documentés sans filtre." />
-  <meta name="keywords"
-    content="agents IA, articles premium, investissement IA, audit sécurité Claude, outils IA, bubble invest shop" />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-
-  <!-- hreflang -->
-  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/shop" />
-  <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/shop" />
-  <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/shop" />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://bubbleinvest.org/shop" />
-  <meta property="og:title" content="Shop | Agents IA & Articles Premium · Bubble" />
-  <meta property="og:description"
-    content="Nos agents IA et articles premium. Construits en public, documentés sans filtre." />
-  <meta property="og:image" content="https://bubbleinvest.org/assets/images/og-shop.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Bubble Invest Shop — Agents IA & analyses premium." />
-  <meta property="og:locale" content="fr_FR" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="https://bubbleinvest.org/shop" />
-  <meta name="twitter:title" content="Shop | Agents IA & Articles Premium · Bubble" />
-  <meta name="twitter:description"
-    content="Nos agents IA et articles premium. Construits en public, documentés sans filtre." />
-  <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/og-shop.png" />
-
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://bubbleinvest.org/shop" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boutique : Agents &amp; Skills open source · Bubble.</title>
+  <meta name="description" content="Agents prêts-à-brancher, skills open source gratuits et analyses premium. Des outils qu'on utilise au quotidien, construits et documentés en public." />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="/assets/styles/core-2026.css" />
-  <link rel="stylesheet" href="/assets/styles/shop-2026.css" />
+  <!-- LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="https://bubbleinvest.org/llms.txt" title="LLM context" />
+  <!-- SEO (per page) -->
+  <link rel="canonical" href="https://bubbleinvest.org/shop" />
+  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/shop" />
+  <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/shop" />
+  <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/shop" />
+  <!-- Consent styles -->
   <link rel="stylesheet" href="/assets/styles/cookie-banner.css" />
-  <!-- Glass Lab Editorial — Charte v3 (2026-05-22), loads LATE to override legacy where needed -->
-  <link rel="stylesheet" href="/assets/styles/glass-lab-editorial.css" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect" />
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet" />
-
-  <!-- Google Analytics (with GDPR consent mode) -->
+  <!-- Google Analytics 4 + Google Ads -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
-    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
     gtag('js', new Date());
-    gtag('config', 'G-T0MQEL0ZG0');
-    // Google Ads conversion tag (Phase 1 marketing — Jade msg 5119-5163, 2026-05-18)
-    // The `gtag` function is shared with GA4 above; both stream through the same gtag.js script.
-    // Ad-related consent (ad_storage, ad_user_data, ad_personalization) is managed by cookie-banner.js.
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
+    });
+    gtag('config', 'G-T0MQEL0ZG0', {
+      'anonymize_ip': true,
+      'cookie_flags': 'SameSite=None;Secure'
+    });
     gtag('config', 'AW-18054203382');
   </script>
-
-  <!-- JSON-LD Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://bubbleinvest.org/" },
-      { "@type": "ListItem", "position": 2, "name": "Shop", "item": "https://bubbleinvest.org/shop" }
-    ]
-  }
-  </script>
-
-  <!-- Meta Pixel Code (Jade msg 5024) — consent-gated per RGPD/CNIL (Codex P1) -->
+  <!-- Meta Pixel — consent-gated per RGPD/CNIL -->
   <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -94,521 +45,1302 @@
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
-  // Default: deny consent BEFORE init so the SDK never runs with default granted state
-  // (queued calls are replayed in order when fbevents.js loads — revoke must come first)
   fbq('consent', 'revoke');
   fbq('init', '1553953629409728');
-  // PageView is fired by cookie-banner.js after user opts-in (or auto-fires if consent already granted)
   </script>
-  <!-- noscript fallback intentionally removed: would fire PageView without consent -->
-  <!-- End Meta Pixel Code -->
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://bubbleinvest.org/#organization",
+        "name": "Bubble Invest",
+        "url": "https://bubbleinvest.org",
+        "logo": "https://bubbleinvest.org/assets/images/bubble-favicon.svg",
+        "sameAs": [
+          "https://www.linkedin.com/company/bubble-invest-ai/",
+          "https://instagram.com/behindthebubble.ai",
+          "https://bubbleinvest.substack.com",
+          "https://x.com/bubbleinvlabs"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://bubbleinvest.org/#website",
+        "url": "https://bubbleinvest.org",
+        "name": "Bubble Invest",
+        "publisher": { "@id": "https://bubbleinvest.org/#organization" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://bubbleinvest.org/" },
+          { "@type": "ListItem", "position": 2, "name": "Boutique", "item": "https://bubbleinvest.org/shop" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bubbleinvest.org/shop" />
+  <meta property="og:title" content="Boutique : Agents &amp; Skills open source · Bubble." />
+  <meta property="og:description" content="Agents prêts-à-brancher, skills open source gratuits et analyses premium. Des outils qu'on utilise au quotidien, construits et documentés en public." />
+  <meta property="og:image" content="https://bubbleinvest.org/assets/images/og-shop.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="fr_FR" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://bubbleinvest.org/shop" />
+  <meta name="twitter:title" content="Boutique : Agents &amp; Skills open source · Bubble." />
+  <meta name="twitter:description" content="Agents prêts-à-brancher, skills open source gratuits et analyses premium. Des outils qu'on utilise au quotidien, construits et documentés en public." />
+  <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/og-shop.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Klee+One:wght@400;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   bubble-web.css — inlined for standalone rendering
+   ============================================================ */
+
+/* 1. DESIGN TOKENS */
+:root {
+  --base:        #fdfcf9;
+  --card:        #ffffff;
+  --warm:        #f7f4ee;
+  --ink:         #221d16;
+  --muted:       #5b5b62;
+  --faint:       #8b8b92;
+  --violet:      #667eea;
+  --violet-soft: rgba(102, 126, 234, .08);
+  --violet-line: rgba(102, 126, 234, .22);
+  --peach:       #ffd9b0;
+  --mint:        #a7e8d7;
+  --night:       #1a2440;
+  --hair:        rgba(14, 14, 16, .10);
+  --hair-soft:   rgba(14, 14, 16, .06);
+  --sans:        "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --mono:        "JetBrains Mono", ui-monospace, monospace;
+  --hand:        "Klee One", cursive;
+  --maxw:        1180px;
+  --pad:         clamp(1.15rem, 5vw, 2rem);
+  --r:           20px;
+  --r-lg:        30px;
+  --ease:        cubic-bezier(.16, 1, .3, 1);
+}
+
+/* 2. BASE RESET */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--sans);
+  background: var(--base);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 2.5px solid var(--violet); outline-offset: 3px; border-radius: 6px; }
+
+/* 3. LAYOUT UTILITIES */
+.wrap { max-width: var(--maxw); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
+.hair { height: 1px; background: var(--hair-soft); border: 0; margin: 0; }
+
+/* 4. TYPOGRAPHY */
+.eyebrow, .sec-num {
+  font-family: var(--mono);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: .9rem;
+  display: block;
+}
+.sec-head { max-width: 640px; margin-bottom: 2.6rem; }
+.sec-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+.sec-head h2 {
+  font-size: clamp(1.65rem, 4.6vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+.sec-head p { color: var(--muted); margin-top: 1rem; font-size: 1.02rem; max-width: 52ch; }
+.sec-head.center p { margin-left: auto; margin-right: auto; }
+h1 {
+  font-size: clamp(2rem, 7.4vw, 4.15rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+h2 { font-size: clamp(1.65rem, 4.6vw, 2.6rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
+h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
+.hand { font-family: var(--hand); font-weight: 600; font-style: normal; letter-spacing: -.01em; color: var(--violet); }
+
+/* 5. BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 600;
+  font-size: .9rem;
+  border-radius: 44px;
+  padding: .7rem 1.3rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+  white-space: nowrap;
+  font-family: var(--sans);
+  text-decoration: none;
+}
+.btn svg { width: 16px; height: 16px; transition: transform .3s var(--ease); }
+.btn-primary {
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 8px 22px -10px rgba(14,14,16,.55);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -12px rgba(14,14,16,.6); }
+.btn-primary:hover svg { transform: translateX(3px); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--hair); }
+.btn-ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
+
+/* 6. TOP STRIP */
+.topbar {
+  display: none;
+  background: var(--night);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  justify-content: center;
+  padding: .5rem var(--pad);
+  flex-wrap: wrap;
+}
+.topbar .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 0 0 rgba(167,232,215,.7);
+  animation: pulse 2.6s var(--ease) infinite;
+  display: inline-block;
+}
+.topbar .sep { opacity: .4; }
+.topbar .dim { opacity: .62; }
+@media (min-width: 768px) { .topbar { display: block; } }
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(167,232,215,.55); }
+  70%  { box-shadow: 0 0 0 7px rgba(167,232,215,0); }
+  100% { box-shadow: 0 0 0 0 rgba(167,232,215,0); }
+}
+
+/* 7. HEADER + NAV + MOBILE MENU */
+.header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(253,252,249,.82);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border-bottom: 1px solid var(--hair-soft);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 58px; }
+.logo { display: flex; align-items: center; gap: .5rem; font-size: 1.24rem; font-weight: 600; letter-spacing: -.02em; color: var(--ink); }
+.logo svg { width: 26px; height: 26px; color: var(--ink); }
+.logo .dot-final { color: var(--violet); }
+.nav { display: flex; align-items: center; gap: 1.7rem; }
+.nav-links { display: none; gap: 1.7rem; align-items: center; }
+.nav-links a { font-size: .86rem; font-weight: 500; color: var(--muted); transition: color .25s var(--ease); }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a.active { color: var(--ink); font-weight: 600; }
+.lang {
+  display: flex; align-items: center; gap: .15rem;
+  font-family: var(--mono); font-size: .7rem; font-weight: 500;
+  border: 1px solid var(--hair); border-radius: 40px; padding: .24rem .4rem;
+}
+.lang button { background: none; border: 0; cursor: pointer; color: var(--faint); font-family: inherit; font-size: inherit; padding: .1rem .34rem; border-radius: 40px; transition: .2s var(--ease); }
+.lang button.active { background: var(--ink); color: #fff; }
+.lang .slash { color: var(--hair); font-size: .6rem; }
+.header .btn { display: none; padding: .55rem 1.05rem; font-size: .82rem; }
+.burger { display: flex; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: .35rem; }
+.burger span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: .3s var(--ease); }
+.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu {
+  position: fixed; inset: 0; top: 0; z-index: 60;
+  background: rgba(253,252,249,.985); backdrop-filter: blur(20px);
+  display: flex; flex-direction: column; padding: 5rem var(--pad) 2rem; gap: .4rem;
+  transform: translateY(-100%); opacity: 0; pointer-events: none;
+  transition: transform .45s var(--ease), opacity .35s var(--ease);
+}
+.mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.mobile-menu a { font-size: 1.35rem; font-weight: 500; padding: .75rem 0; border-bottom: 1px solid var(--hair-soft); }
+.mobile-menu .btn { justify-content: center; margin-top: 1.4rem; width: 100%; }
+.mobile-menu .btn{white-space:normal;height:auto;line-height:1.35;font-size:.85rem;padding:.75rem 1rem}
+.mobile-menu .lang { align-self: flex-start; margin-top: 1.2rem; }
+.mobile-close { position: absolute; top: 1.1rem; right: var(--pad); background: none; border: 0; font-size: 1.7rem; cursor: pointer; color: var(--ink); }
+
+/* 8. SECTION RHYTHM */
+.section { padding: clamp(3.6rem, 9vw, 6.5rem) 0; }
+.section.warm { background: var(--warm); }
+
+/* 9. CARD / TILE / MARKER / PILL */
+.card {
+  border: 1px solid var(--hair); border-radius: var(--r); padding: 1.6rem;
+  background: var(--card);
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -24px rgba(14,14,16,.28); border-color: var(--violet-line); }
+.marker {
+  width: 40px; height: 40px; border-radius: 12px; margin-bottom: 1.1rem;
+  background: linear-gradient(135deg, var(--violet), var(--peach));
+  display: grid; place-items: center; color: #fff; flex-shrink: 0;
+}
+.marker svg { width: 20px; height: 20px; }
+.pill {
+  font-family: var(--mono); font-size: .72rem; font-weight: 500;
+  border: 1px solid var(--hair); border-radius: 40px; padding: .42rem .85rem;
+  color: var(--muted); display: inline-flex; align-items: center; gap: .4rem;
+}
+.pill.accent { border-color: var(--violet-line); background: var(--violet-soft); color: var(--violet); }
+.pills { display: flex; flex-wrap: wrap; gap: .55rem; }
+.why-quote {
+  padding: 1.3rem 1.5rem;
+  border-left: 2px solid var(--violet);
+  font-family: var(--hand);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--violet-soft);
+  border-radius: 0 var(--r) var(--r) 0;
+}
+
+/* 10. SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* 11. FOOTER */
+.footer { background: var(--ink); color: #fff; padding: 3.4rem 0 2rem; }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 2.2rem; }
+.footer .logo { color: #fff; }
+.footer .logo svg { color: #fff; }
+.footer .logo .dot-final { color: var(--peach); }
+.footer-brand .tag { font-family: var(--hand); font-size: 1.05rem; opacity: .85; margin-top: .7rem; }
+.footer-brand .sub { font-size: .8rem; opacity: .6; margin-top: .4rem; }
+.socials { display: flex; gap: .8rem; margin-top: 1.2rem; }
+.socials a { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); display: grid; place-items: center; color: rgba(255,255,255,.75); transition: .25s var(--ease); }
+.socials a:hover { background: rgba(255,255,255,.1); color: #fff; transform: translateY(-2px); }
+.socials svg { width: 16px; height: 16px; }
+.footer-col h4 { font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; opacity: .55; margin-bottom: 1rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .65rem; }
+.footer-col a { font-size: .88rem; opacity: .8; transition: opacity .2s; }
+.footer-col a{padding:.4rem 0;display:inline-block}
+.footer-col a:hover { opacity: 1; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.12); margin-top: 2.6rem; padding-top: 1.5rem; font-family: var(--mono); font-size: .72rem; opacity: .55; letter-spacing: .04em; }
+
+/* 12. RESPONSIVE BREAKPOINTS (shared) */
+@media (min-width: 600px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+@media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+@media (min-width: 900px) { .nav-links { display: flex; } .header .btn { display: inline-flex; } .burger { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   BOUTIQUE PAGE — page-specific styles
+   ============================================================ */
+
+/* Hero */
+.boutique-hero {
+  padding: clamp(4rem, 10vw, 7rem) 0 clamp(2.4rem, 6vw, 4rem);
+  background: var(--base);
+  overflow: hidden;
+  position: relative;
+}
+.boutique-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 85% 20%, rgba(102,126,234,.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(255,217,176,.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.boutique-hero-inner {
+  position: relative;
+  display: grid;
+  gap: 2.4rem;
+}
+.boutique-hero .eyebrow { margin-bottom: .7rem; }
+.boutique-hero h1 { max-width: 14ch; }
+.boutique-hero h1 .klee { font-family: var(--hand); font-weight: 600; color: var(--violet); }
+.boutique-hero-sub {
+  font-size: clamp(.95rem, 2.2vw, 1.08rem);
+  color: var(--muted);
+  max-width: 50ch;
+  line-height: 1.65;
+  margin-top: .8rem;
+}
+.boutique-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: .4rem;
+}
+
+/* Category tabs */
+.cat-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: 2rem;
+}
+.cat-tab {
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .52rem 1.1rem;
+  border-radius: 40px;
+  border: 1px solid var(--hair);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: .22s var(--ease);
+}
+.cat-tab:hover { border-color: var(--violet-line); color: var(--violet); }
+.cat-tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+/* Divider strip between hero and content */
+.hero-divider { height: 1px; background: var(--hair-soft); }
+
+/* ---- Agent cards grid ---- */
+.agents-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.4rem;
+}
+@media (min-width: 600px) {
+  .agents-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 900px) {
+  .agents-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Agent card */
+.agent-card {
+  border: 1px solid var(--hair);
+  border-radius: var(--r-lg);
+  padding: 1.8rem 1.6rem 1.5rem;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+  text-decoration: none;
+  color: inherit;
+}
+.agent-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 50px -26px rgba(14,14,16,.3);
+  border-color: var(--violet-line);
+}
+/* Featured card gets gradient border */
+.agent-card.featured {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(135deg, var(--violet), var(--peach)) border-box;
+}
+.agent-card.soon {
+  opacity: .75;
+  pointer-events: none;
+  cursor: default;
+}
+.agent-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .8rem;
+}
+.agent-icon {
+  width: 44px; height: 44px; border-radius: 14px;
+  background: linear-gradient(135deg, var(--violet), var(--peach));
+  display: grid; place-items: center; color: #fff; flex-shrink: 0;
+}
+.agent-icon svg { width: 22px; height: 22px; }
+.agent-badge {
+  font-family: var(--mono);
+  font-size: .64rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .3rem .7rem;
+  border-radius: 40px;
+  flex-shrink: 0;
+}
+.badge-sub  { background: var(--violet-soft); color: var(--violet); border: 1px solid var(--violet-line); }
+.badge-soon { background: var(--warm); color: var(--faint); border: 1px solid var(--hair); }
+.agent-card h3 { font-size: 1.05rem; font-weight: 600; letter-spacing: -.01em; }
+.agent-card-desc { font-size: .875rem; color: var(--muted); line-height: 1.6; flex: 1; }
+.agent-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+.agent-tag {
+  font-family: var(--mono);
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  padding: .28rem .65rem;
+  border-radius: 40px;
+  border: 1px solid var(--hair);
+  color: var(--faint);
+  text-transform: uppercase;
+}
+.agent-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
+  padding-top: .6rem;
+  border-top: 1px solid var(--hair-soft);
+  margin-top: auto;
+}
+.agent-price {
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+.agent-price span {
+  font-size: .78rem;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0;
+}
+.agent-price-soon {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--faint);
+}
+.agent-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--violet);
+  transition: gap .2s var(--ease);
+}
+.agent-cta svg { width: 14px; height: 14px; }
+.agent-card:hover .agent-cta { gap: .55rem; }
+
+/* ---- Skills open source grid ---- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+@media (min-width: 640px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 900px) {
+  .skills-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.skill-card {
+  border: 1px solid var(--hair);
+  border-radius: var(--r);
+  padding: 1.5rem 1.4rem 1.3rem;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+  text-decoration: none;
+  color: inherit;
+}
+.skill-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -20px rgba(14,14,16,.22);
+  border-color: var(--violet-line);
+}
+.skill-card-top {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+}
+.skill-icon {
+  width: 38px; height: 38px; border-radius: 12px;
+  background: var(--warm);
+  border: 1px solid var(--hair);
+  display: grid; place-items: center; color: var(--muted); flex-shrink: 0;
+}
+.skill-icon svg { width: 18px; height: 18px; }
+.skill-badge-free {
+  font-family: var(--mono);
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .25rem .6rem;
+  border-radius: 40px;
+  background: rgba(167,232,215,.18);
+  color: #1a8f72;
+  border: 1px solid rgba(167,232,215,.5);
+}
+.skill-card h3 { font-size: 1rem; font-weight: 600; }
+.skill-card-desc { font-size: .865rem; color: var(--muted); line-height: 1.58; flex: 1; }
+/* Install snippet */
+.skill-install {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  background: var(--warm);
+  border: 1px solid var(--hair);
+  border-radius: 10px;
+  padding: .6rem .9rem;
+  margin-top: .2rem;
+}
+.skill-install code {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--ink);
+  flex: 1;
+  letter-spacing: .02em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.skill-copy {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--faint);
+  padding: 0;
+  display: grid; place-items: center;
+  transition: color .2s;
+  flex-shrink: 0;
+}
+.skill-copy:hover { color: var(--violet); }
+.skill-copy svg { width: 14px; height: 14px; }
+.skill-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+}
+.skill-price-free {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #1a8f72;
+}
+.skill-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--muted);
+  transition: color .2s, gap .2s var(--ease);
+}
+.skill-link svg { width: 12px; height: 12px; }
+.skill-card:hover .skill-link { color: var(--ink); gap: .45rem; }
+
+/* ---- Articles section ---- */
+.articles-callout {
+  border: 1px solid var(--hair);
+  border-radius: var(--r-lg);
+  padding: 2.2rem 2rem;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+@media (min-width: 700px) {
+  .articles-callout {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+}
+.articles-callout-text { flex: 1; }
+.articles-callout-text h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: .5rem; }
+.articles-callout-text p { font-size: .9rem; color: var(--muted); max-width: 46ch; }
+.articles-callout .btn-primary { flex-shrink: 0; }
+
+/* ---- Trust strip ---- */
+.trust-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.4rem;
+}
+@media (min-width: 600px) { .trust-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.trust-item {
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+  padding: 1.5rem 1.3rem;
+  border: 1px solid var(--hair-soft);
+  border-radius: var(--r);
+  background: var(--card);
+}
+.trust-item .trust-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--violet-soft);
+  display: grid; place-items: center; color: var(--violet);
+}
+.trust-icon svg { width: 18px; height: 18px; }
+.trust-item h4 { font-size: .95rem; font-weight: 600; }
+.trust-item p { font-size: .85rem; color: var(--muted); line-height: 1.55; }
+
+/* ---- CTA bottom ---- */
+.cta-bottom {
+  text-align: center;
+  padding: clamp(3.2rem, 8vw, 5.5rem) 0;
+  background: var(--warm);
+}
+.cta-bottom h2 {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  margin-bottom: .9rem;
+  text-wrap: balance;
+}
+.cta-bottom p { color: var(--muted); font-size: 1rem; max-width: 46ch; margin: 0 auto 2rem; }
+.cta-btns { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
+
+/* Sticky section nav (desktop) */
+@media (min-width: 900px) {
+  .section-nav {
+    position: sticky;
+    top: 59px;
+    z-index: 40;
+    background: rgba(253,252,249,.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--hair-soft);
+    padding: 0;
+  }
+  .section-nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    height: 44px;
+    overflow-x: auto;
+  }
+  .section-nav-inner a {
+    font-size: .78rem;
+    font-weight: 500;
+    font-family: var(--mono);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--faint);
+    padding: 0 1.2rem;
+    height: 100%;
+    display: flex; align-items: center;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: .22s var(--ease);
+  }
+  .section-nav-inner a:hover { color: var(--ink); }
+  .section-nav-inner a.active-nav { color: var(--ink); border-bottom-color: var(--violet); }
+}
+@media (max-width: 899px) {
+  .section-nav { display: none; }
+}
+</style>
 </head>
+<body>
 
-<body class="gle-body">
-  <!-- HEADER -->
-  <!-- Top strip "Labo ouvert" — Glass Lab Editorial Charte v3 -->
-  <div class="gle-top-strip">
-    <div><span class="gle-top-strip-dot"></span>LABO OUVERT</div>
-    <div>·</div>
-    <div>BUILD IN PUBLIC</div>
-    <div>·</div>
-    <div>22+ AGENTS EN PROD</div>
+<!-- TOP STRIP -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span><span class="dot"></span>&nbsp;Labo ouvert</span>
+    <span class="sep">·</span>
+    <span class="dim">Build in public</span>
+    <span class="sep">·</span>
+    <span class="dim">22 agents en production</span>
   </div>
+</div>
 
-  <header class="gle-site-header">
-    <div class="gle-container">
-      <div class="gle-header-inner">
-        <div class="gle-logo-block">
-          <a class="gle-logo logo" href="/">
-            <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-                stroke-linecap="round" stroke-width="6"></circle>
-              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-            </svg>
-            Bubble.
+<!-- HEADER -->
+<header class="header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo" aria-label="Bubble, retour à l'accueil">
+      <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"/>
+        <circle cx="59" cy="21" r="6" fill="var(--violet)"/>
+      </svg>
+      Bubble<span class="dot-final">.</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <div class="nav-links">
+        <a href="/a-propos">À propos</a>
+        <a href="/particuliers">Apprendre &amp; brancher</a>
+        <a href="/professionnels">Implémentation pro</a>
+        <a href="/blog">Blog</a>
+        <a href="/shop" class="active" aria-current="page">Boutique</a>
+      </div>
+      <div class="lang" role="group" aria-label="Choix de langue">
+        <button class="active" aria-pressed="true">FR</button>
+        <span class="slash">/</span>
+        <button aria-pressed="false" data-href="/en/shop">EN</button>
+      </div>
+      <a href="https://calendly.com/bubbleinvest-ai" class="btn btn-primary" target="_blank" rel="noopener" data-cta-track="header_calendly_click">Réserver un diagnostic</a>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Fermer le menu">&times;</button>
+  <a href="/a-propos">À propos</a>
+  <a href="/particuliers">Apprendre &amp; brancher</a>
+  <a href="/professionnels">Implémentation pro</a>
+  <a href="/blog">Blog</a>
+  <a href="/shop" aria-current="page">Boutique</a>
+  <div class="lang" role="group" aria-label="Choix de langue">
+    <button class="active" aria-pressed="true">FR</button>
+    <span class="slash">/</span>
+    <button aria-pressed="false" data-href="/en/shop">EN</button>
+  </div>
+  <a href="https://calendly.com/bubbleinvest-ai" class="btn btn-primary" target="_blank" rel="noopener" data-cta-track="mobile_header_calendly_click">Réserver un diagnostic gratuit (30 min)</a>
+</div>
+
+<main>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="boutique-hero">
+    <div class="wrap boutique-hero-inner">
+      <div class="reveal">
+        <span class="eyebrow">Boutique</span>
+        <h1>Outils &amp; analyses <span class="klee">construits en public</span></h1>
+        <p class="boutique-hero-sub">
+          On construit nos propres agents IA. Certains, on les partage. Les skills open source sont gratuits, les agents tournent en abonnement. Aucune promesse que l'on ne tient pas.
+        </p>
+        <div class="boutique-hero-ctas">
+          <a href="#agents" class="btn btn-primary" data-cta-track="hero_agents_click">
+            Agents prêts-à-brancher
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <span class="gle-logo-tagline">Investissez dans l'essentiel</span>
+          <a href="#skills" class="btn btn-ghost">Skills open source (gratuits)</a>
         </div>
-
-        <!-- Mobile hamburger toggle (ID preserve — listener au bas de page) -->
-        <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
-          <span></span><span></span><span></span>
-        </button>
-
-        <nav class="gle-nav">
-          <a href="/a-propos">À Propos</a>
-          <a href="/particuliers">Apprendre &amp; Brancher</a>
-          <a href="/professionnels">Implémentation pro</a>
-          <a href="/blog">Blog</a>
-          <a class="active" aria-current="page" href="/shop">Boutique</a>
-          <div class="lang-switch">
-            <button class="active">FR</button>
-            <span>/</span>
-            <button data-href="/en/shop">EN</button>
-          </div>
-          <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
-            class="gle-nav-cta nav-cta-calendly" data-cta-track="header_calendly_click">
-            Réserver un diagnostic
+        <div class="cat-tabs" role="tablist" aria-label="Filtrer par catégorie">
+          <button class="cat-tab active" data-filter="all" role="tab" aria-selected="true">Tout</button>
+          <button class="cat-tab" data-filter="agents" role="tab" aria-selected="false">Agents</button>
+          <button class="cat-tab" data-filter="skills" role="tab" aria-selected="false">Skills</button>
+          <a href="https://bubble-articles.netlify.app" class="cat-tab" target="_blank" rel="noopener" style="text-decoration:none">
+            Articles
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:-1px;margin-left:3px;display:inline"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
           </a>
-        </nav>
-
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block — ID preserve) -->
-  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
-    <div class="mobile-nav-content">
-      <a href="/a-propos">À Propos</a>
-      <a href="/particuliers">Apprendre &amp; Brancher</a>
-      <a href="/professionnels">Implémentation pro</a>
-      <a href="/blog">Blog</a>
-      <a class="active" aria-current="page" href="/shop">Boutique</a>
-      <div class="lang-switch">
-        <button class="active">FR</button>
-        <span>/</span>
-        <button data-href="/en/shop">EN</button>
-      </div>
-      <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
-         class="nav-cta-calendly mobile-nav-cta-calendly" data-cta-track="mobile_header_calendly_click">
-        Réserver un diagnostic gratuit (30 min)
-      </a>
-    </div>
-  </div>
-
-  <main>
-  <!-- HERO -->
-  <section class="shop-hero gle-hero gle-bg-warm-atmospheric">
-    <span class="gle-kanji-watermark gle-kanji-hero-bg" aria-hidden="true">店</span>
-    <div class="container gle-container">
-      <h1 class="fade-in">Nos outils & articles</h1>
-      <p class="shop-hero-subtitle fade-in fade-in-delay-1">On construit nos propres agents IA. Certains, on les partage. Nos articles premium, c'est ce qu'on aurait aimé lire ailleurs et qu'on n'a pas trouvé.</p>
-      <div class="shop-tabs fade-in fade-in-delay-2">
-        <button class="shop-tab active" data-filter="all">Tout</button>
-        <button class="shop-tab" data-filter="agent">Agents</button>
-        <button class="shop-tab" data-filter="tool">Outils gratuits</button>
-        <a class="shop-tab shop-tab-external" href="https://bubble-articles.netlify.app" target="_blank" rel="noopener">Articles <svg fill="none" height="12" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="12" style="vertical-align: -1px; margin-left: 2px;"><path d="M7 17L17 7M17 7H8M17 7V16"></path></svg></a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- AGENTS -->
-  <section class="shop-section gle-section gle-bg-cool-atmospheric" id="agents">
-    <div class="container gle-container">
-      <div class="section-header fade-in">
-        <h2>Agents IA</h2>
-        <h3>Des outils qu'on utilise au quotidien</h3>
-      </div>
-      <div class="shop-grid fade-in">
+  <hr class="hero-divider" />
 
-        <!-- Sentinel -->
-        <a class="shop-card" href="https://bubble-sentinel.netlify.app" data-type="agent">
-          <div class="shop-card-badge">Agent</div>
-          <div class="shop-card-icon">
-            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" viewBox="0 0 24 24" width="32">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
+  <!-- STICKY SECTION NAV (desktop only) -->
+  <nav class="section-nav" aria-label="Navigation sections">
+    <div class="wrap section-nav-inner">
+      <a href="#agents" class="active-nav">Agents</a>
+      <a href="#skills">Skills open source</a>
+      <a href="#articles">Articles premium</a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       AGENTS PRÊTS-À-BRANCHER
+       ============================================================ -->
+  <section class="section" id="agents">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num">01 / Agents</span>
+        <h2>Agents prêts-à-brancher</h2>
+        <p>Des agents qu'on fait tourner nous-mêmes. Abonnement mensuel, annulation à tout moment. Vous branchez sur votre infra, l'agent fait le travail.</p>
+      </div>
+
+      <div class="agents-grid">
+
+        <!-- Bubble Sentinel — live, featured -->
+        <a class="agent-card featured reveal" href="https://bubble-sentinel.netlify.app" target="_blank" rel="noopener">
+          <div class="agent-card-top">
+            <div class="agent-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <span class="agent-badge badge-sub">Abonnement</span>
           </div>
           <h3>Bubble Sentinel</h3>
-          <p class="shop-card-desc">Audit de sécurité automatisé pour vos agents Claude Code. Détection de tampering, scan de secrets, vérification de CVE. 5 modules, zéro dépendance externe.</p>
-          <div class="shop-card-features">
-            <span>Scan de secrets</span>
-            <span>Audit CVE</span>
-            <span>Anti-tampering</span>
-            <span>Claude Code</span>
+          <p class="agent-card-desc">Audit de sécurité automatisé pour vos agents Claude Code. Détection de tampering, scan de secrets, vérification de CVE. 5 modules, zéro dépendance externe. Le même agent qui surveille notre propre infrastructure.</p>
+          <div class="agent-tags">
+            <span class="agent-tag">Scan secrets</span>
+            <span class="agent-tag">CVE</span>
+            <span class="agent-tag">Anti-tampering</span>
+            <span class="agent-tag">Claude Code</span>
           </div>
-          <div class="shop-card-footer">
-            <div class="shop-card-price">29&euro;<span>/mois</span></div>
-            <div class="shop-card-action">Découvrir <svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
+          <div class="agent-card-footer">
+            <div class="agent-price">19&euro;<span>/mois</span></div>
+            <span class="agent-cta">
+              Découvrir
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
           </div>
         </a>
 
-        <!-- Agent Invest (coming soon) -->
-        <a class="shop-card shop-card-soon" href="/shop/invest" data-type="agent">
-          <div class="shop-card-badge badge-soon">Bientôt</div>
-          <div class="shop-card-icon">
-            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" viewBox="0 0 24 24" width="32">
-              <path d="M3 3v18h18"></path>
-              <path d="M18 17V9"></path>
-              <path d="M13 17V5"></path>
-              <path d="M8 17v-3"></path>
-            </svg>
+        <!-- Gérant de portefeuille — coming soon -->
+        <div class="agent-card soon reveal">
+          <div class="agent-card-top">
+            <div class="agent-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>
+              </svg>
+            </div>
+            <span class="agent-badge badge-soon">Bientôt</span>
           </div>
           <h3>Gérant de portefeuille</h3>
-          <p class="shop-card-desc">Notre agent d'investissement : risk parity, détection de régime, rééquilibrage automatique. Le même que celui qui gère notre portefeuille.</p>
-          <div class="shop-card-features">
-            <span>Risk parity</span>
-            <span>Détection régime</span>
-            <span>Auto-rebalancing</span>
+          <p class="agent-card-desc">Notre agent d'investissement : risk parity, détection de régime, rééquilibrage automatique. Le même que celui qui gère notre portefeuille. Abonnement, pas une vente. Vous gardez la main sur vos comptes.</p>
+          <div class="agent-tags">
+            <span class="agent-tag">Risk parity</span>
+            <span class="agent-tag">Détection régime</span>
+            <span class="agent-tag">Rebalancing</span>
           </div>
-          <div class="shop-card-footer">
-            <div class="shop-card-price shop-card-price-soon">En développement</div>
-            <div class="shop-card-action">En savoir plus <svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
+          <div class="agent-card-footer">
+            <div class="agent-price-soon">En développement</div>
+            <a class="btn btn-ghost" href="https://app.notion.com/p/c4863a4c346c47fdbb0a6c9f50b09b4f?v=e68afe713e4646358e4e2c5c393e822f&source=copy_link" target="_blank" rel="noopener" data-waitlist-agent="gerant-portefeuille" style="font-size:.8rem;padding:.5rem 1rem">
+              Rejoindre la liste d'attente
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
           </div>
-        </a>
+        </div>
 
-        <!-- Community Manager (coming soon) -->
-        <a class="shop-card shop-card-soon" href="/shop/community" data-type="agent">
-          <div class="shop-card-badge badge-soon">Bientôt</div>
-          <div class="shop-card-icon">
-            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" viewBox="0 0 24 24" width="32">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            </svg>
+        <!-- Community Manager — coming soon -->
+        <div class="agent-card soon reveal">
+          <div class="agent-card-top">
+            <div class="agent-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <span class="agent-badge badge-soon">Bientôt</span>
           </div>
           <h3>Community Manager</h3>
-          <p class="shop-card-desc">Il rédige vos posts LinkedIn, crée vos carrousels Instagram, et surveille votre secteur. Rien ne part sans votre accord. Le même agent qui gère nos propres réseaux.</p>
-          <div class="shop-card-features">
-            <span>LinkedIn</span>
-            <span>Instagram</span>
-            <span>Veille sectorielle</span>
+          <p class="agent-card-desc">Il rédige vos posts LinkedIn, crée vos carrousels Instagram, surveille votre secteur. Rien ne part sans votre accord. Le même agent qui anime nos propres réseaux sociaux.</p>
+          <div class="agent-tags">
+            <span class="agent-tag">LinkedIn</span>
+            <span class="agent-tag">Instagram</span>
+            <span class="agent-tag">Veille</span>
           </div>
-          <div class="shop-card-footer">
-            <div class="shop-card-price shop-card-price-soon">En développement</div>
-            <div class="shop-card-action">En savoir plus <svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
+          <div class="agent-card-footer">
+            <div class="agent-price-soon">En développement</div>
+            <a class="btn btn-ghost" href="https://app.notion.com/p/c4863a4c346c47fdbb0a6c9f50b09b4f?v=e68afe713e4646358e4e2c5c393e822f&source=copy_link" target="_blank" rel="noopener" data-waitlist-agent="community-manager" style="font-size:.8rem;padding:.5rem 1rem">
+              Rejoindre la liste d'attente
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
           </div>
-        </a>
+        </div>
 
+      </div><!-- /.agents-grid -->
+
+      <!-- Quote editoriale -->
+      <div class="why-quote reveal" style="margin-top:2.6rem; max-width:600px">
+        Chaque agent qu'on vend, on l'utilise d'abord. Ce qu'on partage, c'est ce qui tourne vraiment.
       </div>
     </div>
   </section>
 
-  <!-- OUTILS GRATUITS -->
-  <section class="shop-section gle-section gle-bg-warm-atmospheric" id="tools">
-    <div class="container gle-container">
-      <div class="section-header fade-in">
-        <h2>Outils gratuits</h2>
-        <h3>Open source, 100% local, prêts à l'emploi</h3>
+  <hr class="hair" />
+
+  <!-- ============================================================
+       SKILLS OPEN SOURCE
+       ============================================================ -->
+  <section class="section warm" id="skills">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num">02 / Skills open source</span>
+        <h2>Skills open source</h2>
+        <p>Des skills Claude Code publiés sous licence MIT. Gratuits, 100% locaux, installables en une commande. Le code est sur GitHub, lisez-le.</p>
       </div>
-      <div class="shop-grid fade-in">
+
+      <div class="skills-grid">
 
         <!-- Local TTS -->
-        <a class="shop-card" href="/shop/local-tts" data-type="tool">
-          <div class="shop-card-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Gratuit</div>
-          <div class="shop-card-icon">
-            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" viewBox="0 0 24 24" width="32">
-              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-              <line x1="12" y1="19" x2="12" y2="23"></line>
-              <line x1="8" y1="23" x2="16" y2="23"></line>
-            </svg>
+        <a class="skill-card reveal" href="/shop/local-tts">
+          <div class="skill-card-top">
+            <div class="skill-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+            </div>
+            <h3>Local TTS</h3>
+            <span class="skill-badge-free">Gratuit</span>
           </div>
-          <h3>Local TTS</h3>
-          <p class="shop-card-desc">Synthèse vocale locale pour Claude Code. 30 langues, design de voix, clonage vocal à partir de 3 secondes. 100% hors-ligne, zéro coût. Propulsé par VoxCPM2.</p>
-          <div class="shop-card-features">
-            <span>30 langues</span>
-            <span>Voice cloning</span>
-            <span>Open source</span>
-            <span>Claude Code</span>
+          <p class="skill-card-desc">Synthèse vocale locale pour Claude Code. 30 langues, clonage vocal à partir de 3 secondes. 100% hors-ligne, zéro coût, propulsé par VoxCPM2.</p>
+          <div class="skill-install">
+            <code>/install local-tts</code>
+            <button class="skill-copy" aria-label="Copier la commande d'installation" type="button" data-cmd="/install local-tts">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
           </div>
-          <div class="shop-card-footer">
-            <div class="shop-card-price" style="color:#10b981">Gratuit</div>
-            <div class="shop-card-action">Découvrir <svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
+          <div class="skill-card-footer">
+            <span class="skill-price-free">Gratuit</span>
+            <span class="skill-link">
+              GitHub
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+            </span>
           </div>
         </a>
 
         <!-- Boycott Filter -->
-        <a class="shop-card" href="/shop/boycott-filter" data-type="tool">
-          <div class="shop-card-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Gratuit</div>
-          <div class="shop-card-icon">
-            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" viewBox="0 0 24 24" width="32">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-            </svg>
+        <a class="skill-card reveal" href="/shop/boycott-filter">
+          <div class="skill-card-top">
+            <div class="skill-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+              </svg>
+            </div>
+            <h3>Boycott Filter</h3>
+            <span class="skill-badge-free">Gratuit</span>
           </div>
-          <h3>Boycott Filter</h3>
-          <p class="shop-card-desc">Dites à votre agent quelles marques éviter. Extension Chrome qui vous rappelle pourquoi vous les détestez, avec vos propres mots. 100% local, open source.</p>
-          <div class="shop-card-features">
-            <span>Extension Chrome</span>
-            <span>100% local</span>
-            <span>Open source</span>
+          <p class="skill-card-desc">Dites à votre agent quelles marques éviter. Extension Chrome qui vous rappelle pourquoi vous les détestez, avec vos propres mots. 100% local, open source.</p>
+          <div class="skill-install">
+            <code>/install boycott-filter</code>
+            <button class="skill-copy" aria-label="Copier la commande d'installation" type="button" data-cmd="/install boycott-filter">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
           </div>
-          <div class="shop-card-footer">
-            <div class="shop-card-price" style="color:#10b981">Gratuit</div>
-            <div class="shop-card-action">Découvrir <svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
+          <div class="skill-card-footer">
+            <span class="skill-price-free">Gratuit</span>
+            <span class="skill-link">
+              GitHub
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+            </span>
           </div>
         </a>
 
         <!-- Music DNA -->
-        <a class="shop-card" href="/shop/music-dna" data-type="tool">
-          <div class="shop-card-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Gratuit</div>
-          <div class="shop-card-icon">
-            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" viewBox="0 0 24 24" width="32">
-              <path d="M9 18V5l12-2v13"></path>
-              <circle cx="6" cy="18" r="3"></circle>
-              <circle cx="18" cy="16" r="3"></circle>
-            </svg>
+        <a class="skill-card reveal" href="/shop/music-dna">
+          <div class="skill-card-top">
+            <div class="skill-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
+              </svg>
+            </div>
+            <h3>Music DNA</h3>
+            <span class="skill-badge-free">Gratuit</span>
           </div>
-          <h3>Music DNA</h3>
-          <p class="shop-card-desc">Analyse tes tracks (BPM, tonalité, mood), génère des prompts Suno v5 optimisés, édite et merge tes audios. 100% dans le navigateur. Open source.</p>
-          <div class="shop-card-features">
-            <span>Analyse audio</span>
-            <span>Prompts Suno v5</span>
-            <span>Editor audio</span>
-            <span>YouTube import</span>
+          <p class="skill-card-desc">Analyse vos tracks (BPM, tonalité, mood), génère des prompts Suno v5 optimisés, édite et merge vos audios. 100% dans le navigateur, import YouTube inclus.</p>
+          <div class="skill-install">
+            <code>/install music-dna</code>
+            <button class="skill-copy" aria-label="Copier la commande d'installation" type="button" data-cmd="/install music-dna">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
           </div>
-          <div class="shop-card-footer">
-            <div class="shop-card-price" style="color:#10b981">Gratuit</div>
-            <div class="shop-card-action">Découvrir <svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
+          <div class="skill-card-footer">
+            <span class="skill-price-free">Gratuit</span>
+            <span class="skill-link">
+              GitHub
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+            </span>
           </div>
         </a>
 
-      </div>
+      </div><!-- /.skills-grid -->
+
+      <p class="reveal" style="margin-top:1.8rem; font-size:.85rem; color:var(--faint); font-family:var(--mono); letter-spacing:.04em;">
+        LICENCE MIT · Code source disponible sur GitHub · Contributions bienvenues
+      </p>
     </div>
   </section>
 
-  <!-- WHY US -->
-  <section class="shop-trust gle-section gle-bg-cool-atmospheric">
-    <div class="container gle-container">
-      <div class="shop-trust-grid fade-in">
-        <div class="shop-trust-item">
-          <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" viewBox="0 0 24 24" width="24">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-          </svg>
-          <h4>Build in public</h4>
-          <p>Chaque outil qu'on vend, on l'utilise. Chaque décision est documentée.</p>
-        </div>
-        <div class="shop-trust-item">
-          <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" viewBox="0 0 24 24" width="24">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-          </svg>
-          <h4>Pas de promesses vides</h4>
-          <p>On publie nos résultats : ce qui marche, ce qui casse, et comment on corrige.</p>
-        </div>
-        <div class="shop-trust-item">
-          <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" viewBox="0 0 24 24" width="24">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-          </svg>
-          <h4>Paiement sécurisé</h4>
-          <p>Stripe pour tous les paiements. Pas de stockage de données bancaires de notre côté.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <hr class="hair" />
 
-  <!-- CTA -->
-  <section class="cta-section gle-section gle-bg-warm-atmospheric">
-    <div class="container gle-container">
-      <h2>Une question ? Envie de creuser ?</h2>
-      <p>Retrouvez toutes nos analyses sur le blog ou explorez nos contenus gratuits.</p>
-      <div class="cta-buttons">
-        <a class="gle-btn-primary btn btn-primary" href="/blog">Lire le blog <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
-        <a class="gle-btn-secondary btn btn-secondary" href="/particuliers">Contenus gratuits</a>
+  <!-- ============================================================
+       ARTICLES PREMIUM
+       ============================================================ -->
+  <section class="section" id="articles">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num">03 / Articles</span>
+        <h2>Analyses premium</h2>
+        <p>Des articles qu'on aurait aimé lire ailleurs et qu'on n'a pas trouvés. Finance, IA, infrastructure. Sans filtre.</p>
       </div>
-    </div>
-  </section>
-  </main>
 
-  <!-- FOOTER -->
-  <footer class="gle-footer">
-    <div class="gle-container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="logo" href="/" style="font-size: 1.5rem; color: #fff;">
-            <svg fill="none" style="width: 32px; height: 32px;" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-                stroke-linecap="round" stroke-width="6"></circle>
-              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-            </svg>
-            Bubble.
-          </a>
-          <p style="font-family: var(--gle-font-accent); font-style: italic; opacity: 0.85; margin-top: 0.5rem;">Investissez dans l'essentiel.</p>
-          <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.78rem;">L'ère de l'IA a tout changé. Changez avec elle.</p>
-          <div class="social-links">
-            <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" title="LinkedIn">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
-            </a>
-            <a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank" title="Instagram">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
-            </a>
-            <a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank" title="Substack">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"></path></svg>
-            </a>
-            <a aria-label="GitHub" href="/github" title="GitHub">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
-            </a>
-            <a aria-label="X" href="https://x.com/bubbleinvlabs" target="_blank" title="X">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
-            </a>
+      <div class="articles-callout reveal">
+        <div class="articles-callout-text">
+          <h3>Contenus approfondis, construits en public</h3>
+          <p>Stratégies d'investissement, architecture d'agents, retours d'expérience. Chaque article est documenté avec nos résultats réels : ce qui marche, ce qui casse, comment on corrige.</p>
+          <div class="pills" style="margin-top:.9rem">
+            <span class="pill accent">Finance</span>
+            <span class="pill">Infrastructure IA</span>
+            <span class="pill">Build in public</span>
+            <span class="pill">Agents Claude Code</span>
           </div>
         </div>
-        <div class="footer-links">
-          <h4>Navigation</h4>
-          <ul>
-            <li><a href="/a-propos">À Propos</a></li>
-            <li><a href="/particuliers">Apprendre &amp; Brancher</a></li>
-            <li><a href="/professionnels">Implémentation pro</a></li>
-            <li><a href="/blog">Blog</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Ressources</h4>
-          <ul>
-            <li><a href="/shop">Boutique</a></li>
-            <li><a href="/labs">Le labo</a></li>
-            <li><a href="/newsletter">Newsletter</a></li>
-            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank" data-cta-track="footer_calendly_click">Nous contacter</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Légal</h4>
-          <ul>
-            <li><a href="/mentions-legales">Mentions légales</a></li>
-            <li><a href="/privacy">Confidentialité</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Bubble Invest · Transparent by design · Build in public</p>
+        <a href="https://bubble-articles.netlify.app" class="btn btn-primary" target="_blank" rel="noopener">
+          Lire les analyses
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </a>
       </div>
     </div>
-  </footer>
+  </section>
 
-  <!-- Chat Side Panel (slide-in chatbot) -->
-  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
-    <div class="chat-side-panel-header">
-      <div class="chat-side-panel-header-info">
-        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
-        <div class="chat-side-panel-titles">
-          <span class="chat-side-panel-title">Assistant Bubble</span>
+  <hr class="hair" />
+
+  <!-- ============================================================
+       TRUST STRIP
+       ============================================================ -->
+  <section class="section warm">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="sec-num">Pourquoi nous faire confiance</span>
+        <h2>Pas de promesses vides</h2>
+        <p>Ce qu'on vend, on l'utilise. Ce qu'on documente, c'est réel.</p>
+      </div>
+
+      <div class="trust-grid">
+        <div class="trust-item reveal">
+          <div class="trust-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <h4>Build in public</h4>
+          <p>Chaque outil qu'on partage, on l'utilise au quotidien. Chaque décision de design est documentée sur le blog.</p>
+        </div>
+        <div class="trust-item reveal">
+          <div class="trust-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h4>Résultats publiés</h4>
+          <p>On publie ce qui marche et ce qui casse. Pas de communication marketing sur nos propres outils.</p>
+        </div>
+        <div class="trust-item reveal">
+          <div class="trust-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <h4>Paiement sécurisé</h4>
+          <p>Stripe pour tous les paiements. Aucune donnée bancaire stockée de notre côté. Annulation à tout moment.</p>
         </div>
       </div>
-      <div class="chat-side-panel-actions">
-        <button class="chat-side-panel-minimize" aria-label="Réduire le chat" type="button">-</button>
-        <button class="chat-side-panel-close" aria-label="Fermer le chat" type="button">✕</button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BOTTOM
+       ============================================================ -->
+  <section class="cta-bottom">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="sec-num" style="text-align:center; display:block; margin-bottom:.6rem">Une question ?</span>
+        <h2>Besoin d'un outil sur mesure&nbsp;?</h2>
+        <p>Si aucun de nos produits ne correspond exactement à votre besoin, on peut construire quelque chose ensemble. C'est notre métier.</p>
+        <div class="cta-btns">
+          <a href="https://calendly.com/bubbleinvest-ai" class="btn btn-primary" target="_blank" rel="noopener" data-cta-track="bottom_calendly_click">
+            Réserver un diagnostic gratuit
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/blog" class="btn btn-ghost">Lire le blog</a>
+        </div>
       </div>
     </div>
-    <div class="chat-side-panel-messages" role="log" aria-live="polite">
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo" style="font-size:1.4rem" aria-label="Bubble, retour à l'accueil">
+          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:30px;height:30px" aria-hidden="true">
+            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"/>
+            <circle cx="59" cy="21" r="6" fill="var(--peach)"/>
+          </svg>
+          Bubble<span class="dot-final">.</span>
+        </a>
+        <p class="tag">Investissez dans l'essentiel.</p>
+        <p class="sub">L'ère de l'IA a tout changé. Changez avec elle.</p>
+        <div class="socials">
+          <a href="https://www.linkedin.com/company/bubble-invest-ai/" aria-label="LinkedIn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://bubbleinvest.substack.com" aria-label="Substack"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></a>
+          <a href="https://x.com/bubbleinvlabs" aria-label="X"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://github.com/vdk888" aria-label="GitHub"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/a-propos">À propos</a></li>
+          <li><a href="/particuliers">Apprendre &amp; brancher</a></li>
+          <li><a href="/professionnels">Implémentation pro</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/shop">Boutique</a></li>
+          <li><a href="/labs">Laboratoire</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/newsletter">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Légal</h4>
+        <ul>
+          <li><a href="/mentions-legales">Mentions légales</a></li>
+          <li><a href="/privacy">Confidentialité</a></li>
+        </ul>
+      </div>
     </div>
-    <form class="chat-side-panel-input-container" novalidate>
-      <input type="text" class="chat-side-panel-input" placeholder="Posez vos questions..."
-        data-translate-placeholder="floating_input.placeholder" aria-label="Saisissez votre message"
-        autocomplete="off" />
-      <button class="chat-side-panel-send" aria-label="Envoyer le message" type="submit">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M12 21V4" stroke-linecap="round" />
-        </svg>
-      </button>
-    </form>
+    <div class="footer-bottom">© 2026 Bubble Invest · Transparent by design · Build in public</div>
   </div>
+</footer>
 
-  <!-- Floating Glassmorphism Chat Input -->
-  <div class="floating-chat-input hidden" data-always-visible="false" data-page-context="shop"
-    data-trigger-selector=".shop-hero" id="floating-chat-input">
-    <div class="floating-input-container">
-      <input aria-label="Posez votre question" class="floating-input-field"
-        placeholder="Pose-moi n'importe quelle question..." type="text"
-        data-translate-placeholder="floating_input.placeholder" />
-      <button aria-label="Envoyer" class="floating-input-submit">
-        <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
-          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-          <path d="M12 21V4" stroke-linecap="round" stroke-width="2"></path>
-        </svg>
-      </button>
-    </div>
-  </div>
+<script>
+(function () {
+  "use strict";
 
-  <!-- Scripts -->
-  <script src="/js/seo/cookie-banner.js"></script>
-  <!-- Unified conversion tracking (Pixel + CAPI dual tracking + Google Ads conversion) — Phase 1 marketing 2026-05-18 -->
-  <script src="/js/seo/conversions.js"></script>
-  <script src="/js/lang-toggle.js"></script>
-  <script src="/i18n/translations.js"></script>
-  <script src="/js/bubble-agent-memory.js"></script>
-  <script src="/js/chatbot-animations.js"></script>
-  <script src="/js/chat-side-panel.js"></script>
-  <script src="/js/floating-chat-input.js"></script>
-  <script src="/js/animations.js"></script>
-  <script src="/js/seo/ga4-events.js"></script>
+  // Mobile menu
+  var burger = document.getElementById("burger"),
+      menu   = document.getElementById("mobileMenu"),
+      close  = document.getElementById("mobileClose");
 
-  <!-- Sprint 3 Ghibli Phase 2 — top strip "Labo ouvert" + floating bubbles signature -->
-  <script src="/js/ghibli-chrome.js" defer></script>
+  function openMenu() {
+    menu.classList.add("open");
+    burger.classList.add("open");
+    burger.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  function closeMenu() {
+    menu.classList.remove("open");
+    burger.classList.remove("open");
+    burger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+  burger.addEventListener("click", function () {
+    menu.classList.contains("open") ? closeMenu() : openMenu();
+  });
+  close.addEventListener("click", closeMenu);
+  menu.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", closeMenu); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && menu.classList.contains("open")) closeMenu();
+  });
+  window.addEventListener("resize", function () {
+    if (window.innerWidth >= 901 && menu.classList.contains("open")) closeMenu();
+  });
 
-  <!-- Calendly — repo integration: popup on calendly.com anchors + booking event tracking. -->
-  <script src="/js/calendly-integration.js" defer></script>
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
-  <!-- Shop filter tabs -->
-  <script>
-    (function () {
-      'use strict';
-      const tabs = document.querySelectorAll('.shop-tab');
-      const cards = document.querySelectorAll('.shop-card, .shop-card-soon');
-      const sections = document.querySelectorAll('.shop-section');
-
-      tabs.forEach(function (tab) {
-        // External links (e.g. Articles → bubble-articles.netlify.app) navigate away;
-        // skip filter logic entirely so the shop layout doesn't collapse.
-        if (tab.classList.contains('shop-tab-external')) return;
-
-        tab.addEventListener('click', function () {
-          tabs.forEach(function (t) { t.classList.remove('active'); });
-          tab.classList.add('active');
-
-          const filter = tab.dataset.filter;
-
-          if (filter === 'all') {
-            sections.forEach(function (s) { s.style.display = ''; });
-            cards.forEach(function (c) { c.style.display = ''; });
-          } else {
-            sections.forEach(function (s) {
-              const sectionCards = s.querySelectorAll('[data-type]');
-              const hasMatch = Array.from(sectionCards).some(function (c) { return c.dataset.type === filter; });
-              s.style.display = hasMatch ? '' : 'none';
-            });
-            cards.forEach(function (c) {
-              if (c.dataset.type) {
-                c.style.display = c.dataset.type === filter ? '' : 'none';
-              }
-            });
-          }
-        });
-      });
-    })();
-  </script>
-
-  <!-- Mobile hamburger menu toggle -->
-  <script>
-    (function () {
-      'use strict';
-      const toggle = document.getElementById('hamburger-toggle');
-      const overlay = document.getElementById('mobile-nav-overlay');
-      if (!toggle || !overlay) return;
-      function closeMenu() {
-        overlay.classList.remove('open');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+  // Category tab filter
+  var tabs  = document.querySelectorAll(".cat-tab[data-filter]");
+  var agentSection = document.getElementById("agents");
+  var skillSection = document.getElementById("skills");
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      tabs.forEach(function (t) { t.classList.remove("active"); t.setAttribute("aria-selected", "false"); });
+      tab.classList.add("active"); tab.setAttribute("aria-selected", "true");
+      var f = tab.dataset.filter;
+      if (f === "all") {
+        agentSection.style.display = ""; skillSection.style.display = "";
+      } else if (f === "agents") {
+        agentSection.style.display = ""; skillSection.style.display = "none";
+      } else if (f === "skills") {
+        agentSection.style.display = "none"; skillSection.style.display = "";
       }
-      toggle.addEventListener('click', function () {
-        const isOpen = overlay.classList.toggle('open');
-        toggle.classList.toggle('open', isOpen);
-        toggle.setAttribute('aria-expanded', isOpen);
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-      });
-      overlay.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', closeMenu);
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
-      });
-      window.addEventListener('resize', function () {
-        if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
-      });
-    })();
-  </script>
-</body>
+    });
+  });
 
+  // Copy install command
+  document.querySelectorAll(".skill-copy").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      var cmd = btn.dataset.cmd;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(cmd).then(function () {
+          var svg = btn.innerHTML;
+          btn.innerHTML = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color:var(--mint)"><polyline points="20 6 9 17 4 12"/></svg>';
+          setTimeout(function () { btn.innerHTML = svg; }, 1600);
+        });
+      }
+    });
+  });
+
+  // Scroll reveal
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: .12, rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+  }
+
+  // Sticky section nav highlight
+  var navLinks = document.querySelectorAll(".section-nav-inner a");
+  var sections = [
+    document.getElementById("agents"),
+    document.getElementById("skills"),
+    document.getElementById("articles")
+  ];
+  if (navLinks.length && sections[0]) {
+    var sio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          navLinks.forEach(function (l) { l.classList.remove("active-nav"); });
+          var href = "#" + en.target.id;
+          var active = document.querySelector('.section-nav-inner a[href="' + href + '"]');
+          if (active) active.classList.add("active-nav");
+        }
+      });
+    }, { threshold: .25 });
+    sections.forEach(function (s) { if (s) sio.observe(s); });
+  }
+})();
+</script>
+
+  <!-- Functional scripts (order matters) -->
+  <script src="/js/seo/cookie-banner.js"></script>
+  <script src="/js/seo/conversions.js"></script>
+  <script src="/i18n/translations.js"></script>
+  <script src="/js/lang-toggle.js"></script>
+  <script src="/js/seo/ga4-events.js"></script>
+  <script src="/js/calendly-integration.js" defer></script>
+
+</body>
 </html>

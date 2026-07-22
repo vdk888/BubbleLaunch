@@ -120,13 +120,13 @@
 }
 
 .bubble-cookie-btn--secondary {
-  background: #F3F4F6;
-  color: #4B5563;
-  border: 1px solid #E5E7EB;
+  background: #E5E7EB;
+  color: #1F2937;
+  border: 1px solid #9CA3AF;
 }
 
 .bubble-cookie-btn--secondary:hover {
-  background: #E5E7EB;
+  background: #D1D5DB;
 }
 
 .bubble-cookie-btn--text {
@@ -197,6 +197,19 @@
   opacity: 0;
   width: 0;
   height: 0;
+}
+
+/* Enlarge the tap target on touch screens without changing the visual size.
+   The switch is 48x24, well under the ~44px guideline, so taps missed it on
+   phones (Jade, iPhone pass). The transparent ::after extends the label's
+   clickable area; clicking it still toggles the wrapped checkbox. */
+.bubble-cookie-switch::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  left: -6px;
+  right: -6px;
 }
 
 .bubble-cookie-slider {

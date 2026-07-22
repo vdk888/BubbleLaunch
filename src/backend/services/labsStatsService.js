@@ -51,6 +51,7 @@ const STATIC_FALLBACK = {
   experience_years: 12,
   code_shared_percent: 100,
   conflicts_of_interest_percent: 0,
+  repos_total: 88, // jadehng + vdk888 (public + private), fixed for now; live GitHub count = TODO
 };
 
 // Refresh interval. "5 * * * *" = top of every hour at xx:05 UTC.

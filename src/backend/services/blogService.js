@@ -276,7 +276,7 @@ async function extractPageContentAsHtml(pageId) {
     }
 }
 
-async function getPublishedPosts() {
+async function getNotionPosts() {
     if (isBlogConfigured) {
         try {
             const response = await notion.databases.query({
@@ -363,8 +363,121 @@ async function getPublishedPosts() {
     return cachedPosts;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Substack feed — surfaced alongside CMS posts so the blog shows ALL articles
+// most-recent-first, not just Notion ones (Jade 2026-07-22). The frontend
+// (blog-2026.js) already sorts by date and renders a Substack badge + external
+// link for any post whose URL is a substack.com link, so we only need to feed
+// the RSS items in with the same post shape. Non-fatal: if Substack is
+// unreachable, the blog still renders the Notion posts.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const SUBSTACK_FEED_URL = "https://bubbleinvest.substack.com/feed";
+
+function decodeEntities(str) {
+    if (!str) return "";
+    return String(str)
+        .replace(/&#x([0-9a-fA-F]+);/g, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+        .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(parseInt(d, 10)))
+        .replace(/&nbsp;/g, " ")
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;|&apos;/g, "'")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&amp;/g, "&");
+}
+
+function stripHtml(str) {
+    return decodeEntities(String(str || "").replace(/<[^>]*>/g, " ")).replace(/\s+/g, " ").trim();
+}
+
+function matchTag(block, tag) {
+    const re = new RegExp(`<${tag}>\\s*(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?\\s*</${tag}>`, "i");
+    const m = block.match(re);
+    return m ? m[1] : "";
+}
+
+/**
+ * Fetch the latest Substack posts as blog-post-shaped objects.
+ * Returns [] on any error (caller treats Substack as best-effort).
+ */
+async function fetchSubstackPosts(limit = 20) {
+    try {
+        const res = await fetch(SUBSTACK_FEED_URL, {
+            headers: { "User-Agent": "BubbleInvestBlog/1.0" },
+        });
+        if (!res.ok) return [];
+        const xml = await res.text();
+        const items = [];
+        const itemRe = /<item>([\s\S]*?)<\/item>/g;
+        let m;
+        while ((m = itemRe.exec(xml)) !== null && items.length < limit) {
+            const block = m[1];
+            const title = decodeEntities(matchTag(block, "title")).trim();
+            const link = (matchTag(block, "link") || "").trim();
+            const pubDate = matchTag(block, "pubDate").trim();
+            const summary = stripHtml(matchTag(block, "description")).slice(0, 220);
+            const enc = block.match(/<enclosure[^>]*\burl=["']([^"']+)["']/i);
+            const img = enc ? enc[1].replace(/&amp;/g, "&") : null;
+            if (!link || !title) continue;
+            let publishedDate = null;
+            if (pubDate) {
+                const d = new Date(pubDate);
+                if (!isNaN(d.getTime())) publishedDate = d.toISOString();
+            }
+            items.push({
+                id: "substack:" + link,
+                title: { fr: title, en: title },
+                slug: null,
+                summary: { fr: summary, en: summary },
+                publishedDate,
+                featuredImage: img,
+                url: link,
+                urlEn: link,
+                status: "Published",
+                isPinned: false,
+                isExternal: true,
+                tags: [],
+            });
+        }
+        return items;
+    } catch (e) {
+        console.error("[BlogService] Substack fetch failed:", e.message);
+        return [];
+    }
+}
+
+function normalizeUrl(u) {
+    if (!u) return null;
+    try {
+        const x = new URL(u, SITE_ORIGIN);
+        return (x.hostname + x.pathname).replace(/\/+$/, "").toLowerCase();
+    } catch (e) {
+        return String(u).replace(/\/+$/, "").toLowerCase();
+    }
+}
+
+/**
+ * Public list: Notion CMS posts + Substack RSS posts, deduped by URL.
+ * Sorting/pinning is handled client-side (blog-2026.js) by publishedDate.
+ */
+async function getPublishedPosts() {
+    const posts = await getNotionPosts();
+    const source = posts._source;
+    let merged = Array.isArray(posts) ? posts.slice() : [];
+    const substack = await fetchSubstackPosts(20);
+    if (substack.length) {
+        const existing = new Set(merged.map((p) => normalizeUrl(p.url)).filter(Boolean));
+        for (const s of substack) {
+            if (!existing.has(normalizeUrl(s.url))) merged.push(s);
+        }
+    }
+    merged._source = source;
+    return merged;
+}
+
 async function getPostBySlug(slug) {
-    const posts = await getPublishedPosts();
+    const posts = await getNotionPosts();
     const post = posts.find(p => p.slug === slug);
     if (!post) return null;
     try {

@@ -1,465 +1,1242 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Lab, Live · Bubble Invest</title>
+  <meta name="description" content="Build in public: live counters of our AI activity, recent publications, open-source skills. Everything is public, everything updates automatically." />
+  <meta name="keywords" content="bubble labs, dogfooding AI, AI agent stats, tokens AI, build in public, AI agents in production, transparency" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
-  <title>The Lab · Bubble Invest — Live stats on our AI operations</title>
-  <meta name="description"
-    content="Bubble Labs: live counters of our AI implementation activity. Tokens consumed this month, active routines, public skills, latest publications. Everything is public, everything updates automatically.">
-  <meta name="keywords"
-    content="bubble labs, AI dogfooding, AI agent stats, AI tokens, build in public, AI agents in production, transparency">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <link rel="canonical" href="https://bubbleinvest.org/en/labs">
-  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/labs">
-  <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/labs">
-  <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/labs">
-  <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg">
-
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://bubbleinvest.org/en/labs">
-  <meta property="og:title" content="The Lab · Bubble Invest — Live AI agent stats">
-  <meta property="og:description"
-    content="Live counters of our AI implementation activity. Tokens, routines, skills, publications — everything is public and automatic.">
-  <meta property="og:image" content="https://bubbleinvest.org/assets/images/og-labs.png">
-  <meta property="og:locale" content="en_US">
-
-  <link rel="alternate" type="text/plain" href="https://bubbleinvest.org/llms.txt" title="LLM context">
-  <link rel="alternate" type="application/json" href="https://bubbleinvest.org/api/labs/stats.json"
-    title="Live labs stats">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/styles/core-2026.css">
-  <link rel="stylesheet" href="/assets/styles/labs-2026.css">
-  <link rel="stylesheet" href="/assets/styles/cookie-banner.css">
-  <!-- Glass Lab Editorial — Charte v3 (2026-05-22), loads LATE to override legacy where needed -->
-  <link rel="stylesheet" href="/assets/styles/glass-lab-editorial.css">
-
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
+  <!-- LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="https://bubbleinvest.org/llms.txt" title="LLM context" />
+  <!-- Direct JSON endpoint LLM agents can poll without parsing HTML -->
+  <link rel="alternate" type="application/json" href="https://bubbleinvest.org/api/labs/stats.json" title="Live labs stats" />
+  <!-- SEO (per page) -->
+  <link rel="canonical" href="https://bubbleinvest.org/en/labs" />
+  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/labs" />
+  <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/labs" />
+  <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/labs" />
+  <!-- Consent styles -->
+  <link rel="stylesheet" href="/assets/styles/cookie-banner.css" />
+  <!-- Google Analytics 4 + Google Ads -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied' });
-    gtag('config', 'G-T0MQEL0ZG0');
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
+    });
+    gtag('config', 'G-T0MQEL0ZG0', {
+      'anonymize_ip': true,
+      'cookie_flags': 'SameSite=None;Secure'
+    });
     gtag('config', 'AW-18054203382');
   </script>
+  <!-- Meta Pixel, consent-gated per RGPD/CNIL -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('consent', 'revoke');
+  fbq('init', '1553953629409728');
+  </script>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bubbleinvest.org/en/labs" />
+  <meta property="og:title" content="The Lab, Live · Bubble Invest" />
+  <meta property="og:description" content="Build in public: live counters of our AI activity, recent publications, open-source skills. Everything is public, everything updates automatically." />
+  <meta property="og:image" content="https://bubbleinvest.org/assets/images/og-en-home.png" />
+  <meta property="og:locale" content="en_US" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Lab, Live · Bubble Invest" />
+  <meta name="twitter:description" content="Build in public: live counters of our AI activity, recent publications, open-source skills." />
+  <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/og-en-home.png" />
 
+  <!-- JSON-LD: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Bubble Invest",
+    "url": "https://bubbleinvest.org",
+    "logo": "https://bubbleinvest.org/assets/images/bubble-favicon.svg",
+    "sameAs": [
+      "https://www.linkedin.com/company/bubble-invest-ai/",
+      "https://bubbleinvest.substack.com",
+      "https://x.com/bubbleinvlabs",
+      "https://github.com/bubbleinvest"
+    ]
+  }
+  </script>
+  <!-- JSON-LD: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Bubble Invest",
+    "url": "https://bubbleinvest.org",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://bubbleinvest.org/en/blog?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <!-- JSON-LD: BreadcrumbList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bubbleinvest.org/en/" },
-      { "@type": "ListItem", "position": 2, "name": "The Lab", "item": "https://bubbleinvest.org/en/labs" }
+      { "@type": "ListItem", "position": 2, "name": "Lab", "item": "https://bubbleinvest.org/en/labs" }
     ]
   }
   </script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Dataset",
-    "name": "Bubble Labs — live stats and activity feed",
-    "description": "Aggregate counters and activity feed from Bubble Invest's AI operations: monthly token consumption, active routines, published skills, latest articles and code commits. Updated hourly.",
-    "url": "https://bubbleinvest.org/en/labs",
-    "distribution": {
-      "@type": "DataDownload",
-      "encodingFormat": "application/json",
-      "contentUrl": "https://bubbleinvest.org/api/labs/stats.json"
-    },
-    "creator": {
-      "@type": "Organization",
-      "name": "Bubble Invest",
-      "url": "https://bubbleinvest.org"
-    },
-    "license": "https://bubbleinvest.org/en/privacy",
-    "keywords": "AI agents, dogfooding, build in public, transparency, live operations"
-  }
-  </script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Klee+One:wght@400;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
 
-  <script>
-    !function (f, b, e, v, n, t, s) {
-      if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) };
-      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-      n.queue = []; t = b.createElement(e); t.async = !0;
-      t.src = v; s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s)
-    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('consent', 'revoke');
-    fbq('init', '1553953629409728');
-  </script>
+  <style>
+/* ============================================================
+   bubble-web.css — inlined (self-contained build)
+   ============================================================ */
+
+/* 1. DESIGN TOKENS */
+:root {
+  --base:        #fdfcf9;
+  --card:        #ffffff;
+  --warm:        #f7f4ee;
+  --ink:         #221d16;
+  --muted:       #5b5b62;
+  --faint:       #8b8b92;
+  --violet:      #667eea;
+  --violet-soft: rgba(102, 126, 234, .08);
+  --violet-line: rgba(102, 126, 234, .22);
+  --peach:       #ffd9b0;
+  --mint:        #a7e8d7;
+  --night:       #1a2440;
+  --hair:        rgba(14, 14, 16, .10);
+  --hair-soft:   rgba(14, 14, 16, .06);
+  --sans:  "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --mono:  "JetBrains Mono", ui-monospace, monospace;
+  --hand:  "Klee One", cursive;
+  --maxw:  1180px;
+  --pad:   clamp(1.15rem, 5vw, 2rem);
+  --r:     20px;
+  --r-lg:  30px;
+  --ease:  cubic-bezier(.16, 1, .3, 1);
+}
+
+/* 2. RESET */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--sans);
+  background: var(--base);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 2.5px solid var(--violet); outline-offset: 3px; border-radius: 6px; }
+
+/* 3. LAYOUT */
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
+.hair { height: 1px; background: var(--hair-soft); border: 0; margin: 0; }
+
+/* 4. TYPOGRAPHY */
+.eyebrow, .sec-num {
+  font-family: var(--mono);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: .9rem;
+  display: block;
+}
+.sec-head { max-width: 640px; margin-bottom: 2.6rem; }
+.sec-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+.sec-head h2 {
+  font-size: clamp(1.65rem, 4.6vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+.sec-head p { color: var(--muted); margin-top: 1rem; font-size: 1.02rem; max-width: 52ch; }
+.sec-head.center p { margin-left: auto; margin-right: auto; }
+h1 { font-size: clamp(2rem, 7.4vw, 4.15rem); font-weight: 700; line-height: 1.06; letter-spacing: -.035em; text-wrap: balance; }
+h2 { font-size: clamp(1.65rem, 4.6vw, 2.6rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
+h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
+.hand { font-family: var(--hand); font-weight: 600; font-style: normal; letter-spacing: -.01em; color: var(--violet); }
+
+/* 5. BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 600;
+  font-size: .9rem;
+  border-radius: 44px;
+  padding: .7rem 1.3rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+  white-space: nowrap;
+  font-family: var(--sans);
+  text-decoration: none;
+}
+.btn svg { width: 16px; height: 16px; transition: transform .3s var(--ease); }
+.btn-primary { background: var(--ink); color: #fff; box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 8px 22px -10px rgba(14,14,16,.55); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -12px rgba(14,14,16,.6); }
+.btn-primary:hover svg { transform: translateX(3px); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--hair); }
+.btn-ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
+
+/* 6. TOP STRIP */
+.topbar { display: none; background: var(--night); color: #fff; font-family: var(--mono); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; }
+.topbar-inner { display: flex; align-items: center; gap: .85rem; justify-content: center; padding: .5rem var(--pad); flex-wrap: wrap; }
+.topbar .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 0 rgba(167,232,215,.7); animation: pulse 2.6s var(--ease) infinite; display: inline-block; }
+.topbar .sep { opacity: .4; }
+.topbar .dim { opacity: .62; }
+@media (min-width: 768px) { .topbar { display: block; } }
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(167,232,215,.55); }
+  70%  { box-shadow: 0 0 0 7px rgba(167,232,215,0); }
+  100% { box-shadow: 0 0 0 0 rgba(167,232,215,0); }
+}
+
+/* 7. HEADER + NAV */
+.header { position: sticky; top: 0; z-index: 50; background: rgba(253,252,249,.82); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border-bottom: 1px solid var(--hair-soft); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 58px; }
+.logo { display: flex; align-items: center; gap: .5rem; font-size: 1.24rem; font-weight: 600; letter-spacing: -.02em; color: var(--ink); }
+.logo svg { width: 26px; height: 26px; color: var(--ink); }
+.logo .dot-final { color: var(--violet); }
+.nav { display: flex; align-items: center; gap: 1.7rem; }
+.nav-links { display: none; gap: 1.7rem; align-items: center; }
+.nav-links a { font-size: .86rem; font-weight: 500; color: var(--muted); transition: color .25s var(--ease); }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a.active { color: var(--ink); }
+.lang { display: flex; align-items: center; gap: .15rem; font-family: var(--mono); font-size: .7rem; font-weight: 500; border: 1px solid var(--hair); border-radius: 40px; padding: .24rem .4rem; }
+.lang button { background: none; border: 0; cursor: pointer; color: var(--faint); font-family: inherit; font-size: inherit; padding: .1rem .34rem; border-radius: 40px; transition: .2s var(--ease); }
+.lang button.active { background: var(--ink); color: #fff; }
+.lang .slash { color: var(--hair); font-size: .6rem; }
+.header .btn { display: none; padding: .55rem 1.05rem; font-size: .82rem; }
+.burger { display: flex; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: .35rem; }
+.burger span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: .3s var(--ease); }
+.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu { position: fixed; inset: 0; top: 0; z-index: 60; background: rgba(253,252,249,.985); backdrop-filter: blur(20px); display: flex; flex-direction: column; padding: 5rem var(--pad) 2rem; gap: .4rem; transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform .45s var(--ease), opacity .35s var(--ease); }
+.mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.mobile-menu a { font-size: 1.35rem; font-weight: 500; padding: .75rem 0; border-bottom: 1px solid var(--hair-soft); }
+.mobile-menu .btn { justify-content: center; margin-top: 1.4rem; width: 100%; }
+.mobile-menu .btn{white-space:normal;height:auto;line-height:1.35;font-size:.85rem;padding:.75rem 1rem}
+.mobile-menu .lang { align-self: flex-start; margin-top: 1.2rem; }
+.mobile-close { position: absolute; top: 1.1rem; right: var(--pad); background: none; border: 0; font-size: 1.7rem; cursor: pointer; color: var(--ink); }
+
+/* 8. SECTION RHYTHM */
+.section { padding: clamp(3.6rem, 9vw, 6.5rem) 0; }
+.section.warm { background: var(--warm); }
+
+/* 9. CARD / TILE */
+.card { border: 1px solid var(--hair); border-radius: var(--r); padding: 1.6rem; background: var(--card); transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease); }
+.card:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -24px rgba(14,14,16,.28); border-color: var(--violet-line); }
+.marker { width: 40px; height: 40px; border-radius: 12px; margin-bottom: 1.1rem; background: linear-gradient(135deg, var(--violet), var(--peach)); display: grid; place-items: center; color: #fff; flex-shrink: 0; }
+.marker svg { width: 20px; height: 20px; }
+.pill { font-family: var(--mono); font-size: .72rem; font-weight: 500; border: 1px solid var(--hair); border-radius: 40px; padding: .42rem .85rem; color: var(--muted); display: inline-flex; align-items: center; gap: .4rem; }
+.pill.accent { border-color: var(--violet-line); background: var(--violet-soft); color: var(--violet); }
+.pills { display: flex; flex-wrap: wrap; gap: .55rem; }
+.why-quote { padding: 1.3rem 1.5rem; border-left: 2px solid var(--violet); font-family: var(--hand); font-size: 1.15rem; line-height: 1.5; color: var(--ink); background: var(--violet-soft); border-radius: 0 var(--r) var(--r) 0; }
+.why-quote.center { margin: 2.4rem auto 0; max-width: 680px; text-align: center; border-left: 0; border-radius: var(--r); padding: 1.5rem 1.8rem; }
+
+/* 10. SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* 11. FOOTER */
+.footer { background: var(--ink); color: #fff; padding: 3.4rem 0 2rem; }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 2.2rem; }
+.footer .logo { color: #fff; }
+.footer .logo svg { color: #fff; }
+.footer .logo .dot-final { color: var(--peach); }
+.footer-brand .tag { font-family: var(--hand); font-size: 1.05rem; opacity: .85; margin-top: .7rem; }
+.footer-brand .sub { font-size: .8rem; opacity: .6; margin-top: .4rem; }
+.socials { display: flex; gap: .8rem; margin-top: 1.2rem; }
+.socials a { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); display: grid; place-items: center; color: rgba(255,255,255,.75); transition: .25s var(--ease); }
+.socials a:hover { background: rgba(255,255,255,.1); color: #fff; transform: translateY(-2px); }
+.socials svg { width: 16px; height: 16px; }
+.footer-col h4 { font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; opacity: .55; margin-bottom: 1rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .65rem; }
+.footer-col a { font-size: .88rem; opacity: .8; transition: opacity .2s; }
+.footer-col a{padding:.4rem 0;display:inline-block}
+.footer-col a:hover { opacity: 1; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.12); margin-top: 2.6rem; padding-top: 1.5rem; font-family: var(--mono); font-size: .72rem; opacity: .55; letter-spacing: .04em; }
+
+/* 12. RESPONSIVE */
+@media (min-width: 600px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+@media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+@media (min-width: 900px) { .nav-links { display: flex; } .header .btn { display: inline-flex; } .burger { display: none; } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } .reveal { opacity: 1; transform: none; } }
+
+/* ============================================================
+   PAGE-SPECIFIC: Labs v4
+   ============================================================ */
+
+/* -- HERO -- */
+.labs-hero {
+  padding: clamp(3.6rem, 9vw, 6.5rem) 0 clamp(2.5rem, 6vw, 4rem);
+  position: relative;
+  overflow: hidden;
+}
+
+/* faint soap-bubble watermark */
+.labs-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -80px;
+  width: min(480px, 90vw);
+  height: min(480px, 90vw);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 40%,
+    rgba(102, 126, 234, .08) 0%,
+    rgba(255, 217, 176, .06) 55%,
+    transparent 75%
+  );
+  pointer-events: none;
+}
+
+.labs-hero-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.labs-hero-label {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+
+.labs-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 0 0 rgba(167, 232, 215, .7);
+  animation: pulse 2.6s var(--ease) infinite;
+  flex-shrink: 0;
+}
+
+.labs-hero h1 {
+  max-width: 14ch;
+}
+
+.labs-hero h1 .hand {
+  display: inline;
+}
+
+.labs-hero-kicker {
+  font-size: clamp(1rem, 2.4vw, 1.14rem);
+  color: var(--muted);
+  max-width: 52ch;
+  line-height: 1.65;
+}
+
+.labs-hero-meta {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--faint);
+  letter-spacing: .05em;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .4rem .75rem;
+}
+
+.labs-hero-meta a {
+  color: var(--violet);
+  transition: opacity .2s;
+}
+.labs-hero-meta a:hover { opacity: .75; }
+.labs-hero-meta .sep { opacity: .35; }
+
+/* -- COUNTERS BAND (dark, like "En coulisses") -- */
+.labs-counters-band {
+  background: var(--night);
+  padding: clamp(2.8rem, 7vw, 5rem) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle iridescent accent line at top */
+.labs-counters-band::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--violet), var(--peach), transparent);
+}
+
+.labs-counters-band::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--violet), var(--peach), transparent);
+}
+
+.counters-band-head {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin-bottom: 2.4rem;
+}
+
+.counters-band-head .sec-num {
+  color: var(--mint);
+  margin-bottom: 0;
+}
+
+.counters-band-head h2 {
+  color: #fff;
+  font-size: clamp(1.35rem, 3.8vw, 2rem);
+}
+
+.counters-band-head p {
+  color: rgba(255, 255, 255, .55);
+  font-size: .92rem;
+  max-width: 52ch;
+}
+
+.counters-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(255, 255, 255, .08);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+@media (min-width: 600px) {
+  .counters-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.counter-cell {
+  background: rgba(255, 255, 255, .03);
+  padding: 1.8rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  transition: background .25s var(--ease);
+}
+
+.counter-cell:hover {
+  background: rgba(255, 255, 255, .07);
+}
+
+.counter-num {
+  font-family: var(--mono);
+  font-size: clamp(2rem, 5.5vw, 2.8rem);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -.03em;
+}
+
+.counter-num .unit {
+  font-size: .55em;
+  font-weight: 500;
+  color: var(--peach);
+  letter-spacing: 0;
+  margin-left: .1em;
+}
+
+.counter-lbl {
+  font-size: .8rem;
+  color: rgba(255, 255, 255, .52);
+  line-height: 1.4;
+  max-width: 16ch;
+}
+
+/* -- ACTIVITY FEED (warm section) -- */
+.labs-feed-section {
+  background: var(--warm);
+  padding: clamp(3.6rem, 9vw, 6.5rem) 0;
+}
+
+.feed-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 0;
+}
+
+@media (min-width: 720px) {
+  .feed-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 1020px) {
+  .feed-grid { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+.feed-card {
+  border: 1px solid var(--hair);
+  border-radius: var(--r);
+  padding: 1.4rem 1.5rem;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+}
+.feed-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -24px rgba(14, 14, 16, .22);
+  border-color: var(--violet-line);
+}
+
+.feed-card-type {
+  font-family: var(--mono);
+  font-size: .64rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  align-self: flex-start;
+  padding: .3rem .6rem;
+  border-radius: 40px;
+  border: 1px solid;
+}
+
+/* Approach : violet */
+.feed-type-approche {
+  color: var(--violet);
+  border-color: var(--violet-line);
+  background: var(--violet-soft);
+}
+/* Reflection : peach */
+.feed-type-reflexion {
+  color: #b56a1e;
+  border-color: rgba(255, 168, 76, .32);
+  background: rgba(255, 217, 176, .22);
+}
+/* Skill : mint */
+.feed-type-skill {
+  color: #0a9a6a;
+  border-color: rgba(16, 185, 129, .3);
+  background: rgba(167, 232, 215, .22);
+}
+/* Newsletter : night */
+.feed-type-newsletter {
+  color: var(--night);
+  border-color: rgba(26, 36, 64, .22);
+  background: rgba(26, 36, 64, .07);
+}
+
+.feed-type-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.feed-card h3 {
+  font-size: .98rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.feed-card p {
+  font-size: .86rem;
+  color: var(--muted);
+  line-height: 1.55;
+  flex: 1;
+}
+
+.feed-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: .6rem;
+  border-top: 1px solid var(--hair-soft);
+}
+
+.feed-card-date {
+  font-family: var(--mono);
+  font-size: .65rem;
+  color: var(--faint);
+  letter-spacing: .04em;
+}
+
+.feed-card-link {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--violet);
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  transition: gap .2s var(--ease);
+}
+.feed-card-link:hover { gap: .5rem; }
+.feed-card-link svg { width: 13px; height: 13px; }
+
+.feed-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 2.2rem;
+}
+
+/* -- WHY SECTION (base bg) -- */
+.labs-why-section {
+  padding: clamp(3.6rem, 9vw, 6.5rem) 0;
+}
+
+.why-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.6rem;
+}
+
+@media (min-width: 720px) {
+  .why-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 1020px) {
+  .why-grid { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+.why-card {
+  border: 1px solid var(--hair);
+  border-radius: var(--r);
+  padding: 1.8rem;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+}
+.why-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -24px rgba(14,14,16,.22);
+  border-color: var(--violet-line);
+}
+
+.why-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.why-card p {
+  font-size: .9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* -- FINAL CTA (warm) -- */
+.labs-cta-section {
+  background: var(--warm);
+  padding: clamp(3.6rem, 9vw, 6.5rem) 0;
+}
+
+.labs-cta-inner {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.labs-cta-inner .sec-num { margin-bottom: 0; }
+
+.labs-cta-inner h2 {
+  font-size: clamp(1.55rem, 4.2vw, 2.4rem);
+}
+
+.labs-cta-inner p {
+  color: var(--muted);
+  font-size: 1.02rem;
+  max-width: 44ch;
+}
+
+.labs-cta-inner .btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  justify-content: center;
+  margin-top: .4rem;
+}
+
+  </style>
 </head>
+<body>
 
-<body class="gle-body">
-  <!-- HEADER -->
-  <!-- Top strip "Lab open" — Glass Lab Editorial Charte v3 -->
-  <div class="gle-top-strip">
-    <div><span class="gle-top-strip-dot"></span>LAB OPEN</div>
-    <div>·</div>
-    <div>BUILD IN PUBLIC</div>
-    <div>·</div>
-    <div>22+ AGENTS IN PROD</div>
+<!-- TOP STRIP -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span><span class="dot"></span>&nbsp;Lab open</span>
+    <span class="sep">·</span>
+    <span class="dim">Build in public</span>
+    <span class="sep">·</span>
+    <span class="dim">22 agents in production</span>
   </div>
+</div>
 
-  <header class="gle-site-header">
-    <div class="gle-container">
-      <div class="gle-header-inner">
-        <div class="gle-logo-block">
-          <a class="gle-logo logo" href="/en/">
-            <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-                stroke-linecap="round" stroke-width="6"></circle>
-              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-            </svg>
-            Bubble.
-          </a>
-          <span class="gle-logo-tagline">Invest in what matters</span>
-        </div>
+<!-- HEADER -->
+<header class="header">
+  <div class="wrap header-inner">
+    <a href="/en/" class="logo" aria-label="Bubble, back to home">
+      <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"/>
+        <circle cx="59" cy="21" r="6" fill="var(--violet)"/>
+      </svg>
+      Bubble<span class="dot-final">.</span>
+    </a>
 
-        <!-- Mobile hamburger toggle (ID preserve — listener au bas de page) -->
-        <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
-          <span></span><span></span><span></span>
-        </button>
-
-        <nav class="gle-nav">
-          <a href="/en/about">About</a>
-          <a href="/en/individuals">Learn &amp; Plug In</a>
-          <a href="/en/professionals">Pro implementation</a>
-          <a href="/en/blog">Blog</a>
-          <a class="active" aria-current="page" href="/en/labs">The Lab</a>
-          <div class="lang-switch">
-            <button data-href="/labs">FR</button>
-            <span>/</span>
-            <button class="active">EN</button>
-          </div>
-          <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
-            class="gle-nav-cta nav-cta-calendly" data-cta-track="header_calendly_click">
-            Book a diagnostic
-          </a>
-        </nav>
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-links">
+        <a href="/en/about">About</a>
+        <a href="/en/individuals">Learn &amp; plug in</a>
+        <a href="/en/professionals">Pro implementation</a>
+        <a href="/en/blog">Blog</a>
+        <a href="/en/labs" class="active" aria-current="page">The lab</a>
       </div>
-    </div>
-  </header>
-
-  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block — ID preserve) -->
-  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
-    <div class="mobile-nav-content">
-      <a href="/en/about">About</a>
-      <a href="/en/individuals">Learn &amp; Plug In</a>
-      <a href="/en/professionals">Pro implementation</a>
-      <a href="/en/blog">Blog</a>
-      <a class="active" aria-current="page" href="/en/labs">The Lab</a>
-      <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
-         class="nav-cta-calendly mobile-nav-cta-calendly" data-cta-track="mobile_header_calendly_click">
-        Book a free diagnostic (30 min)
-      </a>
-    </div>
-  </div>
-
-  <main>
-
-    <section class="labs-hero gle-hero gle-bg-warm-atmospheric" aria-label="Lab introduction">
-      <span class="gle-kanji-watermark gle-kanji-hero-bg" aria-hidden="true">研</span>
-      <div class="container gle-container">
-        <div class="labs-hero-label">
-          <span class="labs-hero-num">01</span>
-          <span class="labs-hero-tag">Open laboratory</span>
-        </div>
-        <h1 class="labs-hero-title">Bubble's lab, in real numbers and real time.</h1>
-        <p class="labs-hero-kicker">
-          We build AI agents, run them on our own operations, and share everything. Here's what's running here right
-          now.
-        </p>
-        <p class="labs-hero-meta">
-          Updated automatically every hour ·
-          <a href="/api/labs/stats.json" target="_blank" rel="noopener">Raw JSON data →</a>
-        </p>
+      <div class="lang" role="group" aria-label="Language selection">
+        <button aria-pressed="false" data-lang="fr" data-href="/labs">FR</button>
+        <span class="slash">/</span>
+        <button class="active" aria-pressed="true" data-lang="en">EN</button>
       </div>
-    </section>
-
-    <section class="labs-counters gle-section gle-bg-cool-atmospheric" id="counters" aria-label="Live counters">
-      <div class="container gle-container">
-        <h2 class="section-title">Live counters</h2>
-        <p class="section-kicker">
-          What we consume, what's running, what we publish. Real, aggregated numbers. No internal names exposed.
-        </p>
-        <div class="labs-counters-grid" data-labs-counters>
-          <div class="labs-counter">
-            <div class="labs-counter-num" data-counter-key="tokens_this_month" data-counter-format="compact">—</div>
-            <div class="labs-counter-lbl">
-              <abbr title="Total input and output tokens consumed this month by our AI agents on the Anthropic API. One token = about 4 characters. This measures the real intensity of our dogfooding.">
-                AI tokens consumed this month
-              </abbr>
-            </div>
-          </div>
-          <div class="labs-counter">
-            <div class="labs-counter-num" data-counter-key="routines_active" data-counter-format="integer">—</div>
-            <div class="labs-counter-lbl">
-              <abbr title="A routine is an AI agent that runs automatically at regular intervals (e.g., daily at 10 PM, or hourly). We don't publish internal names for confidentiality, just the active count.">
-                active routines
-              </abbr>
-            </div>
-          </div>
-          <div class="labs-counter">
-            <div class="labs-counter-num" data-counter-key="skills_public" data-counter-format="integer">—</div>
-            <div class="labs-counter-lbl">
-              <abbr title="A skill is a specific capability an AI agent can invoke (generate an image, transcribe audio, audit a repo, etc.). The ones shown here are the public skills shared open source.">
-                public skills
-              </abbr>
-            </div>
-          </div>
-          <div class="labs-counter">
-            <div class="labs-counter-num" data-counter-key="agents_in_production" data-counter-format="integer">—</div>
-            <div class="labs-counter-lbl">
-              <abbr title="Number of distinct AI agents running daily on our internal operations. Each has a specific mandate (finance, security, content, research, etc.).">
-                agents in production
-              </abbr>
-            </div>
-          </div>
-          <div class="labs-counter">
-            <div class="labs-counter-num" data-counter-key="experience_years" data-counter-format="integer-plus">—</div>
-            <div class="labs-counter-lbl">
-              <abbr title="Cumulative years of founders' experience in institutional finance: Joris ex-UBS (6 years, institutional asset management and investment banking) + Jade ex-KPMG and ex-Deloitte (6 years, Big Four audit and consulting).">
-                yrs finance XP
-              </abbr>
-            </div>
-          </div>
-          <div class="labs-counter">
-            <div class="labs-counter-num" data-counter-key="code_shared_percent" data-counter-format="percent">—</div>
-            <div class="labs-counter-lbl">
-              <abbr title="All code we produce for our operations is shared publicly (skills on GitHub, blog with examples, llms.txt). No proprietary lock-in.">
-                code shared
-              </abbr>
-            </div>
-          </div>
-        </div>
-        <p class="labs-counters-footer">
-          <span class="labs-status-dot" data-status-dot></span>
-          <span data-status-text>Loading…</span>
-        </p>
-      </div>
-    </section>
-
-    <section class="labs-feed gle-section gle-bg-warm-atmospheric" id="feed" aria-label="Recent public activity">
-      <div class="container gle-container">
-        <h2 class="section-title">Live, in the lab</h2>
-        <p class="section-kicker">
-          Latest public outputs from our agents and the team: Substack articles, GitHub commits, published skills.
-          Filtered to exclude automatic technical commits.
-        </p>
-        <ol class="labs-feed-list" data-labs-feed>
-          <li class="labs-feed-empty">Loading recent activity…</li>
-        </ol>
-        <div class="labs-feed-cta">
-          <a class="btn btn-primary" href="https://bubbleinvest.substack.com" target="_blank" rel="noopener noreferrer">
-            Everything on Substack
-          </a>
-          <a class="btn btn-ghost" href="/en/github" target="_blank" rel="noopener noreferrer">
-            All public code on GitHub
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="labs-method gle-section gle-bg-cool-atmospheric" id="method" aria-label="Why we share everything">
-      <div class="container gle-container">
-        <h2 class="section-title">Why we expose all of this</h2>
-        <div class="labs-method-grid">
-          <article class="labs-method-card">
-            <h3>Transparency by default</h3>
-            <p>AI consulting firms keep their methods private. We expose ours in real time. If you see what we consume
-              and produce, you know who you're talking to before even booking the diagnostic.</p>
-          </article>
-          <article class="labs-method-card">
-            <h3>Proof through doing</h3>
-            <p>The 22+ agents running here are the same kind of thing we install at our clients': daily automation,
-              briefings, audits, drafting. We don't sell a promise, we sell what we use every day.</p>
-          </article>
-          <article class="labs-method-card">
-            <h3>For agents, not just humans</h3>
-            <p>This page is also structured to be readable by ChatGPT, Claude, Perplexity, and other LLMs. The
-              <code>/api/labs/stats.json</code> endpoint is public. Our <a href="/llms.txt">llms.txt</a> lists all the
-              machine-friendly context.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="final-cta gle-section gle-bg-warm-atmospheric" id="calendly">
-      <div class="container gle-container">
-        <div class="final-cta-content">
-          <span class="final-cta-label">First contact</span>
-          <h2>Want us to install the same kind of lab at your place?</h2>
-          <p>3 sessions, €2,000 excl. VAT, we install and we train. First call is free, 30 minutes, no commitment.</p>
-          <a class="gle-btn-primary btn btn-primary" href="https://calendly.com/bubbleinvest-ai" rel="noopener noreferrer"
-            data-cta-track="labs_final_calendly_click">
-            Book a free diagnostic (30 min)
-            <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="gle-footer">
-    <div class="gle-container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="logo" href="/en/" style="font-size: 1.5rem; color: #fff;">
-            <svg fill="none" style="width: 32px; height: 32px;" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-                stroke-linecap="round" stroke-width="6"></circle>
-              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-            </svg>
-            Bubble.
-          </a>
-          <p style="font-family: var(--gle-font-accent); font-style: italic; opacity: 0.85; margin-top: 0.5rem;">Invest in what matters.</p>
-          <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.78rem;">The AI era changed everything. Change with it.</p>
-          <div class="social-links">
-            <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank" title="LinkedIn"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a>
-            <a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank" title="Instagram @behindthebubble.ai"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
-            <a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank" title="Substack @bubbleinvest"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"></path></svg></a>
-            <a aria-label="GitHub" href="/en/github" title="GitHub"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg></a>
-            <a aria-label="X" href="https://x.com/bubbleinvlabs" target="_blank" title="X @bubbleinvlabs"><svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
-          </div>
-        </div>
-        <div class="footer-links">
-          <h4>Navigation</h4>
-          <ul>
-            <li><a href="/en/about">About</a></li>
-            <li><a href="/en/individuals">Learn &amp; Plug In</a></li>
-            <li><a href="/en/professionals">Pro implementation</a></li>
-            <li><a href="/en/blog">Blog</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Resources</h4>
-          <ul>
-            <li><a href="/en/shop">Shop</a></li>
-            <li><a href="/en/labs">The Lab</a></li>
-            <li><a href="/en/newsletter">Newsletter</a></li>
-            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank" data-cta-track="footer_calendly_click">Contact us</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="/en/legal-notice">Legal notice</a></li>
-            <li><a href="/en/privacy">Privacy</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 Bubble Invest · Transparent by design · Build in public</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Chat Side Panel (slide-in chatbot) -->
-  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
-    <div class="chat-side-panel-header">
-      <div class="chat-side-panel-header-info">
-        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
-        <div class="chat-side-panel-titles">
-          <span class="chat-side-panel-title">Bubble Assistant</span>
-        </div>
-      </div>
-      <div class="chat-side-panel-actions">
-        <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
-        <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
-      </div>
-    </div>
-    <div class="chat-side-panel-messages" role="log" aria-live="polite">
-    </div>
-    <form class="chat-side-panel-input-container" novalidate>
-      <input type="text" class="chat-side-panel-input" placeholder="Ask your questions..."
-        data-translate-placeholder="floating_input.placeholder" aria-label="Type your message"
-        autocomplete="off" />
-      <button class="chat-side-panel-send" aria-label="Send message" type="submit">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M12 21V4" stroke-linecap="round" />
-        </svg>
+      <a href="https://calendly.com/bubbleinvest-ai" class="btn btn-primary" target="_blank" rel="noopener" data-cta-track="header_calendly_click">Book a diagnostic</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
       </button>
-    </form>
+    </nav>
   </div>
+</header>
 
-  <!-- Floating Glassmorphism Chat Input -->
-  <div class="floating-chat-input hidden" data-always-visible="false" data-page-context="labs"
-    data-trigger-selector=".labs-hero" id="floating-chat-input">
-    <div class="floating-input-container">
-      <input aria-label="Ask your question" class="floating-input-field"
-        placeholder="Ask me anything..." type="text"
-        data-translate-placeholder="floating_input.placeholder" />
-      <button aria-label="Send" class="floating-input-submit">
-        <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
-          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-          <path d="M12 21V4" stroke-linecap="round" stroke-width="2"></path>
-        </svg>
-      </button>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Main menu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+  <a href="/en/about">About</a>
+  <a href="/en/individuals">Learn &amp; plug in</a>
+  <a href="/en/professionals">Pro implementation</a>
+  <a href="/en/blog">Blog</a>
+  <a href="/en/labs" class="active" aria-current="page">The lab</a>
+  <div class="lang" role="group" aria-label="Language selection">
+    <button aria-pressed="false" data-lang="fr" data-href="/labs">FR</button>
+    <span class="slash">/</span>
+    <button class="active" aria-pressed="true" data-lang="en">EN</button>
+  </div>
+  <a href="https://calendly.com/bubbleinvest-ai" class="btn btn-primary" target="_blank" rel="noopener" data-cta-track="mobile_header_calendly_click">Book a free diagnostic (30 min)</a>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- ======= HERO ======= -->
+  <section class="labs-hero" aria-labelledby="labs-hero-title">
+    <div class="wrap">
+      <div class="labs-hero-inner">
+
+        <div class="labs-hero-label reveal">
+          <span class="labs-live-dot" aria-hidden="true"></span>
+          <span class="sec-num" style="margin-bottom:0">Lab open · Build in public</span>
+        </div>
+
+        <h1 id="labs-hero-title" class="reveal" style="transition-delay:.08s">
+          The lab, <span class="hand">live</span>.
+        </h1>
+
+        <p class="labs-hero-kicker reveal" style="transition-delay:.14s">
+          Before we install AI for our clients, we run our own company on AI agents, every day.
+        </p>
+
+        <p class="labs-hero-meta reveal" style="transition-delay:.2s">
+          <span>Aggregated data, no internal names</span>
+          <span class="sep">·</span>
+          <a href="https://bubbleinvest.org/api/labs/stats.json" target="_blank" rel="noopener">Raw JSON data</a>
+          <span class="sep">·</span>
+          <a href="https://bubbleinvest.org/llms.txt" target="_blank" rel="noopener">llms.txt</a>
+        </p>
+
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Scripts -->
+  <!-- ======= LIVE COUNTERS (dark band) ======= -->
+  <section class="labs-counters-band" aria-labelledby="counters-title">
+    <div class="wrap">
+
+      <div class="counters-band-head reveal">
+        <span class="sec-num">Live counters</span>
+        <h2 id="counters-title">What's running, what we publish.</h2>
+        <p>Real numbers, aggregated. No internal names exposed.</p>
+      </div>
+
+      <div class="counters-grid reveal" style="transition-delay:.1s" data-labs-counters>
+
+        <div class="counter-cell">
+          <div class="counter-num" data-counter-key="agents_in_production" data-counter-format="integer">22<span class="unit">agents</span></div>
+          <div class="counter-lbl">in production (multiple instances)</div>
+        </div>
+
+        <div class="counter-cell">
+          <div class="counter-num" data-counter-key="tokens_this_year" data-counter-format="compact">+105<span class="unit">Bn</span></div>
+          <div class="counter-lbl">tokens consumed in 2026</div>
+        </div>
+
+        <div class="counter-cell">
+          <div class="counter-num" data-counter-key="skills_public" data-counter-format="integer">14<span class="unit">skills</span></div>
+          <div class="counter-lbl">open source, published</div>
+        </div>
+
+        <div class="counter-cell">
+          <div class="counter-num" data-counter-key="repos_total" data-counter-format="integer">88<span class="unit">repos</span></div>
+          <div class="counter-lbl">public and private</div>
+        </div>
+
+      </div>
+
+      <p style="margin-top:1.6rem; font-family:var(--mono); font-size:.68rem; color:rgba(255,255,255,.38); letter-spacing:.06em;" class="reveal" style="transition-delay:.2s">
+        <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--mint);margin-right:.5em;vertical-align:middle;box-shadow:0 0 0 3px rgba(167,232,215,.2);"></span>
+        Updated continuously · aggregated automatically
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ======= PUBLICATIONS FEED ======= -->
+  <section class="labs-feed-section" aria-labelledby="feed-title">
+    <div class="wrap">
+
+      <div class="sec-head reveal">
+        <span class="sec-num">What we publish</span>
+        <h2 id="feed-title">From the lab, right now.</h2>
+        <p>Our methods, our thinking, our open-source skills, our newsletter. Everything is public, everything is up to date.</p>
+      </div>
+
+      <div class="feed-grid">
+
+        <!-- APPROACH 1 -->
+        <article class="feed-card reveal">
+          <div class="feed-card-type feed-type-approche">
+            <span class="feed-type-dot" aria-hidden="true"></span>
+            Approach
+          </div>
+          <h3>Our open-source skills: what they do and how to connect them</h3>
+          <p>A complete tour of our reusable building blocks: what they're for, and how to wire them into your own tools.</p>
+          <div class="feed-card-footer">
+            <a href="/en/blog/nos-skills-open-source" class="feed-card-link" aria-label="Read the article on our skills">
+              Read
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- APPROACH 2 -->
+        <article class="feed-card reveal" style="transition-delay:.06s">
+          <div class="feed-card-type feed-type-approche">
+            <span class="feed-type-dot" aria-hidden="true"></span>
+            Approach
+          </div>
+          <h3>How we run a company on AI agents</h3>
+          <p>Research, briefs, audits, writing: what our agents handle every day, and what we keep in human hands.</p>
+          <div class="feed-card-footer">
+            <a href="/en/blog/comment-on-fait-tourner-une-entreprise-avec-des-agents-ia" class="feed-card-link" aria-label="Read the article on our organisation">
+              Read
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- APPROACH 3 -->
+        <article class="feed-card reveal" style="transition-delay:.12s">
+          <div class="feed-card-type feed-type-approche">
+            <span class="feed-type-dot" aria-hidden="true"></span>
+            Approach
+          </div>
+          <h3>The last mile: our method</h3>
+          <p>Between a tool that exists and a tool that actually gets used, there's real work. Here's how we close that gap for our clients.</p>
+          <div class="feed-card-footer">
+            <a href="/en/blog/le-dernier-kilometre-notre-methode" class="feed-card-link" aria-label="Read the article on our method">
+              Read
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- REFLECTION 1 -->
+        <article class="feed-card reveal">
+          <div class="feed-card-type feed-type-reflexion">
+            <span class="feed-type-dot" aria-hidden="true"></span>
+            Reflection
+          </div>
+          <h3>Why you're afraid for your job (and that's normal)</h3>
+          <p>The fear isn't irrational, it's misdirected. What's actually changing for knowledge workers, without the catastrophizing.</p>
+          <div class="feed-card-footer">
+            <a href="/en/blog" class="feed-card-link" aria-label="Read the reflection">
+              Read
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- REFLECTION 2 -->
+        <article class="feed-card reveal" style="transition-delay:.06s">
+          <div class="feed-card-type feed-type-reflexion">
+            <span class="feed-type-dot" aria-hidden="true"></span>
+            Reflection
+          </div>
+          <h3>We are the jobs to be destroyed</h3>
+          <p>What Anthropic's automation study actually says about our roles, without catastrophizing or denial.</p>
+          <div class="feed-card-footer">
+            <a href="/en/blog" class="feed-card-link" aria-label="Read the reflection">
+              Read
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- REFLECTION 3 -->
+        <article class="feed-card reveal" style="transition-delay:.12s">
+          <div class="feed-card-type feed-type-reflexion">
+            <span class="feed-type-dot" aria-hidden="true"></span>
+            Reflection
+          </div>
+          <h3>How six years on a trading floor taught me to sleep at night</h3>
+          <p>Six years on a trading floor, one lesson on risk, uncertainty, and why you sleep better when the process holds.</p>
+          <div class="feed-card-footer">
+            <a href="/en/blog" class="feed-card-link" aria-label="Read the reflection">
+              Read
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- REFLECTION 4 -->
+        <article class="feed-card reveal">
+          <div class="feed-card-type feed-type-reflexion">
+            <span class="feed-type-dot" aria-hidden="true"></span>
+            Reflection
+          </div>
+          <h3>Apple kept its 2024 promise. In 2026.</h3>
+          <p>A tech promise kept two years late, and what it reveals about the real pace of AI.</p>
+          <div class="feed-card-footer">
+            <a href="/en/blog" class="feed-card-link" aria-label="Read the reflection">
+              Read
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- REFLECTION 5 -->
+        <article class="feed-card reveal" style="transition-delay:.06s">
+          <div class="feed-card-type feed-type-reflexion">
+            <span class="feed-type-dot" aria-hidden="true"></span>
+            Reflection
+          </div>
+          <h3>Why Google's keynote changes everything and nothing at once</h3>
+          <p>Nothing genuinely new was invented that evening. And that's precisely what deserves attention. A breakdown of the general acceleration.</p>
+          <div class="feed-card-footer">
+            <a href="/en/blog" class="feed-card-link" aria-label="Read the reflection">
+              Read
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- SKILL 1 -->
+        <article class="feed-card reveal" style="transition-delay:.12s">
+          <div class="feed-card-type feed-type-skill">
+            <span class="feed-type-dot" aria-hidden="true"></span>
+            Skill
+          </div>
+          <h3>Voice Transcribe: local audio transcription, no API key needed</h3>
+          <p>Ogg, WAV, MP3, FLAC transcribed offline. Automatic FR / EN language detection, zero network dependency.</p>
+          <div class="feed-card-footer">
+            <a href="/en/shop" class="feed-card-link" aria-label="See the skill in the shop">
+              See the skill
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- SKILL 2 -->
+        <article class="feed-card reveal">
+          <div class="feed-card-type feed-type-skill">
+            <span class="feed-type-dot" aria-hidden="true"></span>
+            Skill
+          </div>
+          <h3>Telegram Reporter: get your briefs delivered directly to Telegram</h3>
+          <p>The shared building block used by all our agents to send alerts, summaries, and daily briefs to a dedicated channel.</p>
+          <div class="feed-card-footer">
+            <a href="/en/shop" class="feed-card-link" aria-label="See the skill in the shop">
+              See the skill
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- SKILL 3 -->
+        <article class="feed-card reveal" style="transition-delay:.06s">
+          <div class="feed-card-type feed-type-skill">
+            <span class="feed-type-dot" aria-hidden="true"></span>
+            Skill
+          </div>
+          <h3>Generate an image: custom visuals straight from your agents</h3>
+          <p>Produce brand illustrations and visuals directly inside your workflows, without leaving your working environment.</p>
+          <div class="feed-card-footer">
+            <a href="/en/shop" class="feed-card-link" aria-label="See the skill in the shop">
+              See the skill
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- NEWSLETTER 1 -->
+        <article class="feed-card reveal" style="transition-delay:.12s">
+          <div class="feed-card-type feed-type-newsletter">
+            <span class="feed-type-dot" aria-hidden="true"></span>
+            Newsletter
+          </div>
+          <h3>Behind the Bubble: our behind the scenes, twice a week</h3>
+          <p>Research, essays, lessons from the agents we build. Our latest issues, free and to the point.</p>
+          <div class="feed-card-footer">
+            <a href="https://bubbleinvest.substack.com" class="feed-card-link" target="_blank" rel="noopener" aria-label="Read the Behind the Bubble newsletter on Substack">
+              Read on Substack
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="feed-ctas reveal">
+        <a href="/en/blog" class="btn btn-primary" data-cta-track="labs_feed_blog_click">
+          See all our thinking
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="https://bubbleinvest.substack.com" class="btn btn-ghost" target="_blank" rel="noopener" data-cta-track="labs_feed_substack_click">
+          Read on Substack
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======= WHY WE SHARE ======= -->
+  <section class="labs-why-section" aria-labelledby="why-title">
+    <div class="wrap">
+
+      <div class="sec-head reveal">
+        <span class="sec-num">Philosophy</span>
+        <h2 id="why-title">Why we share everything.</h2>
+      </div>
+
+      <div class="why-grid">
+
+        <article class="why-card reveal">
+          <div class="marker" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/>
+            </svg>
+          </div>
+          <h3>Transparency by default</h3>
+          <p>Consulting firms keep their methods private. We expose ours in real time. Before you even book a diagnostic, you know exactly who you're talking to.</p>
+        </article>
+
+        <article class="why-card reveal" style="transition-delay:.08s">
+          <div class="marker" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M4 16 L10 4 L16 16"/><path d="M6.5 12h7"/>
+            </svg>
+          </div>
+          <h3>Proof by doing</h3>
+          <p>The agents running here are identical to what we deploy for clients: daily automation, briefings, audits, writing. We sell what we use every day.</p>
+        </article>
+
+        <article class="why-card reveal" style="transition-delay:.16s">
+          <div class="marker" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="3" y="5" width="14" height="10" rx="2"/><path d="M7 9h6M7 12h4"/>
+            </svg>
+          </div>
+          <h3>Built for agents, not just humans</h3>
+          <p>This page is structured to be readable by ChatGPT, Claude, Perplexity. The <code style="font-family:var(--mono);font-size:.85em;color:var(--violet)">/api/labs/stats.json</code> endpoint is public. Our <a href="https://bubbleinvest.org/llms.txt" style="color:var(--violet)">llms.txt</a> lists all machine-friendly context.</p>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======= FINAL CTA ======= -->
+  <section class="labs-cta-section" id="contact" aria-labelledby="cta-title">
+    <div class="wrap">
+      <div class="labs-cta-inner reveal">
+        <span class="sec-num">First contact</span>
+        <h2 id="cta-title">Want a lab like this for your team?</h2>
+        <p>3 sessions, setup and training included. First appointment free, 30 minutes, no commitment.</p>
+        <div class="btn-row">
+          <a href="https://calendly.com/bubbleinvest-ai" class="btn btn-primary" target="_blank" rel="noopener" data-cta-track="labs_final_calendly_click">
+            Book a free diagnostic
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="/en/professionals" class="btn btn-ghost">See the full offer</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/en/" class="logo" style="font-size:1.4rem" aria-label="Bubble Invest, back to home">
+          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:30px;height:30px" aria-hidden="true">
+            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"/>
+            <circle cx="59" cy="21" r="6" fill="var(--peach)"/>
+          </svg>
+          Bubble<span class="dot-final">.</span>
+        </a>
+        <p class="tag">Invest in what matters.</p>
+        <p class="sub">The AI era changed everything. Change with it.</p>
+        <div class="socials">
+          <a href="https://www.linkedin.com/company/bubble-invest-ai/" aria-label="LinkedIn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://bubbleinvest.substack.com" aria-label="Substack"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></a>
+          <a href="https://x.com/bubbleinvlabs" aria-label="X"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://github.com/vdk888" aria-label="GitHub"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/en/about">About</a></li>
+          <li><a href="/en/individuals">Learn &amp; plug in</a></li>
+          <li><a href="/en/professionals">Pro implementation</a></li>
+          <li><a href="/en/blog">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/en/shop">Shop</a></li>
+          <li><a href="/en/labs" aria-current="page">Lab</a></li>
+          <li><a href="/en/faq">FAQ</a></li>
+          <li><a href="https://bubbleinvest.substack.com">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/en/legal-notice">Legal notice</a></li>
+          <li><a href="/en/privacy">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Bubble Invest · Transparent by design · Build in public</div>
+  </div>
+</footer>
+
+<!-- INLINE SCRIPTS (mobile menu + reveal) -->
+<script>
+(function () {
+  "use strict";
+
+  // Mobile menu
+  var burger = document.getElementById("burger"),
+      menu   = document.getElementById("mobileMenu"),
+      close  = document.getElementById("mobileClose");
+
+  function openMenu() {
+    menu.classList.add("open");
+    burger.classList.add("open");
+    burger.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  function closeMenu() {
+    menu.classList.remove("open");
+    burger.classList.remove("open");
+    burger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  burger.addEventListener("click", function () {
+    menu.classList.contains("open") ? closeMenu() : openMenu();
+  });
+  close.addEventListener("click", closeMenu);
+  menu.querySelectorAll("a").forEach(function (a) {
+    a.addEventListener("click", closeMenu);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && menu.classList.contains("open")) closeMenu();
+  });
+
+  // Scroll reveal
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.classList.add("in");
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: .12, rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+  }
+})();
+</script>
+
+  <!-- Functional scripts (order matters) -->
   <script src="/js/seo/cookie-banner.js"></script>
   <script src="/js/seo/conversions.js"></script>
-  <script src="/js/lang-toggle.js"></script>
   <script src="/i18n/translations.js"></script>
-  <script src="/js/bubble-agent-memory.js"></script>
-  <script src="/js/chatbot-animations.js"></script>
-  <script src="/js/chat-side-panel.js"></script>
-  <script src="/js/floating-chat-input.js"></script>
-  <script src="/js/animations.js"></script>
+  <script src="/js/lang-toggle.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
-  <!-- Live labs dashboard renderer (fills data-labs-* counters + feed from /api/labs/stats.json) -->
-  <script src="/js/labs.js"></script>
-
-  <!-- Sprint 3 Ghibli Phase 2 — top strip "Lab open" + floating bubbles signature -->
-  <script src="/js/ghibli-chrome.js" defer></script>
-
-  <!-- Calendly — repo integration: popup on calendly.com anchors + booking event tracking. -->
   <script src="/js/calendly-integration.js" defer></script>
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
-  <!-- Mobile hamburger menu toggle -->
-  <script>
-    (function () {
-      'use strict';
-      const toggle = document.getElementById('hamburger-toggle');
-      const overlay = document.getElementById('mobile-nav-overlay');
-      if (!toggle || !overlay) return;
-      function closeMenu() {
-        overlay.classList.remove('open');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      }
-      toggle.addEventListener('click', function () {
-        const isOpen = overlay.classList.toggle('open');
-        toggle.classList.toggle('open', isOpen);
-        toggle.setAttribute('aria-expanded', isOpen);
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-      });
-      overlay.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', closeMenu);
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
-      });
-      window.addEventListener('resize', function () {
-        if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
-      });
-    })();
-  </script>
+  <!-- page-specific: /js/labs.js on labs only -->
+  <script src="/js/labs.js" defer></script>
 </body>
-
 </html>

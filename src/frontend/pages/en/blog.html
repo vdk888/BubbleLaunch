@@ -8,9 +8,9 @@
   <!-- SEO Meta Tags -->
   <title>Bubble · Blog</title>
   <meta name="description"
-    content="The Bubble Invest blog: analysis, reflections on AI and investing, and build-in-public field notes on the agents we build. Substack newsletter and Knowledge Garden." />
+    content="The Bubble Invest blog: analysis, reflections on AI and investing, and build-in-public field notes on the agents we build. Substack newsletter." />
   <meta name="keywords"
-    content="AI blog, investing blog, AI agents, build in public, Bubble Invest, AI Substack, artificial intelligence analysis, Knowledge Garden" />
+    content="AI blog, investing blog, AI agents, build in public, Bubble Invest, AI Substack, artificial intelligence analysis" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
   <!-- Open Graph / Facebook -->
@@ -19,10 +19,10 @@
   <meta property="og:title" content="Bubble · Blog" />
   <meta property="og:description"
     content="Our analysis, reflections on AI and investing, and field notes on the agents we build." />
-  <meta property="og:image" content="https://bubbleinvest.org/assets/images/og-blog.png" />
+  <meta property="og:image" content="https://bubbleinvest.org/assets/images/og-en-home.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Bubble Invest — The blog. We document everything." />
+  <meta property="og:image:alt" content="Bubble Invest · The blog. We document everything." />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="fr_FR" />
 
@@ -32,14 +32,14 @@
   <meta name="twitter:title" content="Bubble · Blog" />
   <meta name="twitter:description"
     content="Our analysis, reflections on AI and investing, and field notes on the agents we build." />
-  <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/og-blog.png" />
+  <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/og-en-home.png" />
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://bubbleinvest.org/en/blog" />
 
   <!-- Language Alternates -->
-  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/blog" />
   <link rel="alternate" hreflang="en" href="https://bubbleinvest.org/en/blog" />
+  <link rel="alternate" hreflang="fr" href="https://bubbleinvest.org/blog" />
   <link rel="alternate" hreflang="x-default" href="https://bubbleinvest.org/blog" />
 
   <!-- Favicon -->
@@ -48,17 +48,13 @@
   <!-- LLM discoverability -->
   <link rel="alternate" type="text/plain" href="https://bubbleinvest.org/llms.txt" title="LLM context" />
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="/assets/styles/core-2026.css" />
-  <link rel="stylesheet" href="/assets/styles/blog-glass-2026.css" />
+  <!-- Consent styles -->
   <link rel="stylesheet" href="/assets/styles/cookie-banner.css" />
-  <!-- Glass Lab Editorial — Charte v3 (2026-05-22), loads LATE to override legacy where needed -->
-  <link rel="stylesheet" href="/assets/styles/glass-lab-editorial.css" />
 
-  <!-- Fonts -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Klee+One:wght@400;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
 
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0MQEL0ZG0"></script>
@@ -76,10 +72,21 @@
       'anonymize_ip': true,
       'cookie_flags': 'SameSite=None;Secure'
     });
-    // Google Ads conversion tag (Phase 1 marketing — Jade msg 5119-5163, 2026-05-18)
-    // The `gtag` function is shared with GA4 above; both stream through the same gtag.js script.
-    // Ad-related consent (ad_storage, ad_user_data, ad_personalization) is managed by cookie-banner.js.
     gtag('config', 'AW-18054203382');
+  </script>
+
+  <!-- Meta Pixel Code — consent-gated per RGPD/CNIL -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('consent', 'revoke');
+  fbq('init', '1553953629409728');
   </script>
 
   <!-- JSON-LD Structured Data: Blog -->
@@ -95,7 +102,7 @@
     "isPartOf": { "@type": "WebSite", "name": "Bubble Invest", "url": "https://bubbleinvest.org" }
   }
   </script>
-  <!-- JSON-LD Structured Data: BreadcrumbList -->
+  <!-- JSON-LD: BreadcrumbList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -107,869 +114,897 @@
   }
   </script>
 
-  <!-- Meta Pixel Code (Jade msg 5024) — consent-gated per RGPD/CNIL (Codex P1) -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  // Default: deny consent BEFORE init so the SDK never runs with default granted state
-  // (queued calls are replayed in order when fbevents.js loads — revoke must come first)
-  fbq('consent', 'revoke');
-  fbq('init', '1553953629409728');
-  // PageView is fired by cookie-banner.js after user opts-in (or auto-fires if consent already granted)
-  </script>
-  <!-- noscript fallback intentionally removed: would fire PageView without consent -->
-  <!-- End Meta Pixel Code -->
+  <style>
+  /* ============================================================
+     B-WARM v4 DESIGN TOKENS
+  ============================================================ */
+  :root {
+    --base:         #fdfcf9;
+    --card:         #ffffff;
+    --warm:         #f7f4ee;
+    --ink:          #221d16;
+    --muted:        #5b5b62;
+    --faint:        #8b8b92;
+    --violet:       #667eea;
+    --violet-soft:  rgba(102,126,234,.08);
+    --violet-line:  rgba(102,126,234,.22);
+    --peach:        #ffd9b0;
+    --mint:         #a7e8d7;
+    --night:        #1a2440;
+    --hair:         rgba(14,14,16,.10);
+    --hair-soft:    rgba(14,14,16,.06);
+
+    --sans:  "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    --mono:  "JetBrains Mono", ui-monospace, monospace;
+    --hand:  "Klee One", cursive;
+
+    --maxw: 1180px;
+    --pad:  clamp(1.15rem, 5vw, 2rem);
+    --r:    20px;
+    --r-lg: 30px;
+    --ease: cubic-bezier(.16,1,.3,1);
+  }
+
+  /* ============================================================
+     BASE
+  ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: var(--sans);
+    background: var(--base);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  :focus-visible { outline: 2.5px solid var(--violet); outline-offset: 3px; border-radius: 6px; }
+
+  /* ============================================================
+     LAYOUT
+  ============================================================ */
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding-left: var(--pad);
+    padding-right: var(--pad);
+  }
+  .hair { height: 1px; background: var(--hair-soft); border: 0; margin: 0; }
+
+  /* ============================================================
+     TYPOGRAPHY
+  ============================================================ */
+  .eyebrow, .sec-num {
+    font-family: var(--mono);
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--violet);
+    margin-bottom: .9rem;
+    display: block;
+  }
+  .sec-head { max-width: 640px; margin-bottom: 2.6rem; }
+  .sec-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .sec-head h2 { font-size: clamp(1.65rem, 4.6vw, 2.6rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; text-wrap: balance; }
+  .sec-head p { color: var(--muted); margin-top: 1rem; font-size: 1.02rem; max-width: 52ch; }
+  .sec-head.center p { margin-left: auto; margin-right: auto; }
+
+  h1 { font-size: clamp(2rem, 7.4vw, 4.15rem); font-weight: 700; line-height: 1.06; letter-spacing: -.035em; text-wrap: balance; }
+  h2 { font-size: clamp(1.65rem, 4.6vw, 2.6rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
+  h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
+
+  .hand { font-family: var(--hand); font-weight: 600; font-style: normal; letter-spacing: -.01em; color: var(--violet); }
+
+  /* ============================================================
+     BUTTONS
+  ============================================================ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-weight: 600;
+    font-size: .9rem;
+    border-radius: 44px;
+    padding: .7rem 1.3rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+    white-space: nowrap;
+    font-family: var(--sans);
+    text-decoration: none;
+  }
+  .btn svg { width: 16px; height: 16px; transition: transform .3s var(--ease); }
+  .btn-primary {
+    background: var(--ink);
+    color: #fff;
+    box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 8px 22px -10px rgba(14,14,16,.55);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -12px rgba(14,14,16,.6); }
+  .btn-primary:hover svg { transform: translateX(3px); }
+  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--hair); }
+  .btn-ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
+
+  /* ============================================================
+     TOP STRIP
+  ============================================================ */
+  .topbar {
+    display: none;
+    background: var(--night);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: .62rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    justify-content: center;
+    padding: .5rem var(--pad);
+    flex-wrap: wrap;
+  }
+  .topbar .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--mint);
+    box-shadow: 0 0 0 0 rgba(167,232,215,.7);
+    animation: pulse 2.6s var(--ease) infinite;
+    display: inline-block;
+  }
+  .topbar .sep { opacity: .4; }
+  .topbar .dim { opacity: .62; }
+  @media (min-width: 768px) { .topbar { display: block; } }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(167,232,215,.55); }
+    70%  { box-shadow: 0 0 0 7px rgba(167,232,215,0); }
+    100% { box-shadow: 0 0 0 0 rgba(167,232,215,0); }
+  }
+
+  /* ============================================================
+     HEADER + NAV + MOBILE MENU
+  ============================================================ */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(253,252,249,.82);
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    border-bottom: 1px solid var(--hair-soft);
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 58px; }
+  .logo { display: flex; align-items: center; gap: .5rem; font-size: 1.24rem; font-weight: 600; letter-spacing: -.02em; color: var(--ink); }
+  .logo svg { width: 26px; height: 26px; color: var(--ink); }
+  .logo .dot-final { color: var(--violet); }
+  .nav { display: flex; align-items: center; gap: 1.7rem; }
+  .nav-links { display: none; gap: 1.7rem; align-items: center; }
+  .nav-links a { font-size: .86rem; font-weight: 500; color: var(--muted); transition: color .25s var(--ease); }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a.active { color: var(--ink); font-weight: 600; }
+  .lang { display: flex; align-items: center; gap: .15rem; font-family: var(--mono); font-size: .7rem; font-weight: 500; border: 1px solid var(--hair); border-radius: 40px; padding: .24rem .4rem; }
+  .lang button { background: none; border: 0; cursor: pointer; color: var(--faint); font-family: inherit; font-size: inherit; padding: .1rem .34rem; border-radius: 40px; transition: .2s var(--ease); }
+  .lang button.active { background: var(--ink); color: #fff; }
+  .lang .slash { color: var(--hair); font-size: .6rem; }
+  .header .btn { display: none; padding: .55rem 1.05rem; font-size: .82rem; }
+  .burger { display: flex; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: .35rem; }
+  .burger span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: .3s var(--ease); }
+  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    top: 0;
+    z-index: 60;
+    background: rgba(253,252,249,.985);
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    padding: 5rem var(--pad) 2rem;
+    gap: .4rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .45s var(--ease), opacity .35s var(--ease);
+  }
+  .mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+  .mobile-menu a { font-size: 1.35rem; font-weight: 500; padding: .75rem 0; border-bottom: 1px solid var(--hair-soft); }
+  .mobile-menu .btn { justify-content: center; margin-top: 1.4rem; width: 100%; }
+.mobile-menu .btn{white-space:normal;height:auto;line-height:1.35;font-size:.85rem;padding:.75rem 1rem}
+  .mobile-menu .lang { align-self: flex-start; margin-top: 1.2rem; }
+  .mobile-close { position: absolute; top: 1.1rem; right: var(--pad); background: none; border: 0; font-size: 1.7rem; cursor: pointer; color: var(--ink); }
+  @media (min-width: 900px) {
+    .nav-links { display: flex; }
+    .header .btn { display: inline-flex; }
+    .burger { display: none; }
+  }
+
+  /* ============================================================
+     FOOTER
+  ============================================================ */
+  .footer { background: var(--ink); color: #fff; padding: 3.4rem 0 2rem; }
+  .footer-grid { display: grid; grid-template-columns: 1fr; gap: 2.2rem; }
+  .footer .logo { color: #fff; }
+  .footer .logo svg { color: #fff; }
+  .footer .logo .dot-final { color: var(--peach); }
+  .footer-brand .tag { font-family: var(--hand); font-size: 1.05rem; opacity: .85; margin-top: .7rem; }
+  .footer-brand .sub { font-size: .8rem; opacity: .6; margin-top: .4rem; }
+  .socials { display: flex; gap: .8rem; margin-top: 1.2rem; }
+  .socials a { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); display: grid; place-items: center; color: rgba(255,255,255,.75); transition: .25s var(--ease); }
+  .socials a:hover { background: rgba(255,255,255,.1); color: #fff; transform: translateY(-2px); }
+  .socials svg { width: 16px; height: 16px; }
+  .footer-col h4 { font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; opacity: .55; margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .65rem; }
+  .footer-col a { font-size: .88rem; opacity: .8; transition: opacity .2s; }
+.footer-col a{padding:.4rem 0;display:inline-block}
+  .footer-col a:hover { opacity: 1; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,.12); margin-top: 2.6rem; padding-top: 1.5rem; font-family: var(--mono); font-size: .72rem; opacity: .55; letter-spacing: .04em; }
+  @media (min-width: 600px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+  @media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+
+  /* ============================================================
+     SCROLL REVEAL
+  ============================================================ */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+
+  /* ============================================================
+     BLOG HERO
+  ============================================================ */
+  .blog-hero {
+    background: var(--base);
+    padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(2rem, 5vw, 3.5rem);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .blog-hero-aura {
+    position: absolute;
+    left: 50%; top: -20%;
+    width: min(700px, 130vw);
+    height: min(700px, 130vw);
+    transform: translateX(-50%);
+    background: radial-gradient(circle at 50% 42%,
+      rgba(102,126,234,.13) 0%,
+      rgba(255,217,176,.10) 42%,
+      rgba(255,255,255,0) 66%);
+    filter: blur(8px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blog-hero .wrap { position: relative; z-index: 1; }
+  .blog-hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-family: var(--mono);
+    font-size: .66rem;
+    font-weight: 500;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--violet);
+    border: 1px solid var(--violet-line);
+    background: var(--violet-soft);
+    padding: .4rem .85rem;
+    border-radius: 40px;
+    margin-bottom: 1.5rem;
+  }
+  .blog-hero h1 {
+    font-size: clamp(1.9rem, 6vw, 3.4rem);
+    font-weight: 700;
+    letter-spacing: -.035em;
+    line-height: 1.08;
+    max-width: 18ch;
+    margin: 0 auto .85rem;
+    text-wrap: balance;
+  }
+  .blog-hero-kicker {
+    font-size: clamp(.95rem, 2.2vw, 1.1rem);
+    color: var(--muted);
+    max-width: 46ch;
+    margin: 0 auto 1.8rem;
+    line-height: 1.65;
+  }
+  .blog-cadence {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    font-family: var(--mono);
+    font-size: .65rem;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .blog-cadence-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--mint);
+    box-shadow: 0 0 0 0 rgba(167,232,215,.7);
+    animation: pulse-mint 2.6s var(--ease) infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse-mint {
+    0%   { box-shadow: 0 0 0 0 rgba(167,232,215,.55); }
+    70%  { box-shadow: 0 0 0 7px rgba(167,232,215,0); }
+    100% { box-shadow: 0 0 0 0 rgba(167,232,215,0); }
+  }
+
+  /* ============================================================
+     STATS BAR
+  ============================================================ */
+  .blog-stats { padding: 1.6rem 0; border-bottom: 1px solid var(--hair-soft); background: var(--base); }
+  .stats-inner { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+  .stat-item { display: flex; flex-direction: column; align-items: center; gap: .2rem; }
+  .stat-num { font-family: var(--mono); font-size: 1.35rem; font-weight: 600; color: var(--ink); letter-spacing: -.02em; line-height: 1; }
+  .stat-num .unit { font-size: .8rem; color: var(--violet); font-weight: 500; }
+  .stat-label { font-family: var(--mono); font-size: .6rem; font-weight: 500; text-transform: uppercase; letter-spacing: .1em; color: var(--faint); }
+  .stats-sep { width: 1px; height: 2rem; background: var(--hair); }
+  @media (max-width: 480px) { .stats-sep { display: none; } .stats-inner { gap: 1.4rem; } }
+
+  /* ============================================================
+     CATEGORY FILTERS
+  ============================================================ */
+  .blog-filters-bar { padding: 1.5rem 0 0; border-bottom: 1px solid var(--hair-soft); }
+  .blog-filters-bar .wrap { display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; }
+  .filter-label { font-family: var(--mono); font-size: .62rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-right: .3rem; white-space: nowrap; }
+  .filter-btn { font-family: var(--mono); font-size: .68rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); background: none; border: 1px solid var(--hair); border-radius: 40px; padding: .42rem .85rem; cursor: pointer; transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease); line-height: 1; }
+  .filter-btn:hover { color: var(--ink); border-color: var(--hair); background: var(--warm); }
+  .filter-btn.active { color: var(--violet); border-color: var(--violet-line); background: var(--violet-soft); }
+  @media (max-width: 599px) {
+    .blog-filters-bar .wrap { flex-wrap: nowrap; overflow-x: auto; padding-bottom: .85rem; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .blog-filters-bar .wrap::-webkit-scrollbar { display: none; }
+    .filter-label { display: none; }
+  }
+
+  /* ============================================================
+     MAIN BLOG SECTION
+  ============================================================ */
+  .blog-main { padding: clamp(2.5rem, 7vw, 5rem) 0; background: var(--base); }
+  .articles-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1.6rem; }
+  .articles-section-label { font-family: var(--mono); font-size: .7rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--violet); }
+  .articles-count { font-family: var(--mono); font-size: .62rem; color: var(--faint); letter-spacing: .06em; }
+
+  /* ============================================================
+     CATEGORY CHIP
+  ============================================================ */
+  .cat-chip {
+    font-family: var(--mono);
+    font-size: .62rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: .3rem .65rem;
+    border-radius: 40px;
+    border: 1px solid var(--violet-line);
+    background: var(--violet-soft);
+    color: var(--violet);
+    white-space: nowrap;
+  }
+  .cat-chip.invest { border-color: rgba(255,168,76,.3); background: rgba(255,168,76,.07); color: #c97a10; }
+  .cat-chip.tech { border-color: rgba(16,185,129,.3); background: rgba(16,185,129,.07); color: #0a9a6a; }
+  .cat-chip.reflexion { border-color: rgba(255,168,76,.32); background: rgba(255,217,176,.22); color: #b56a1e; }
+  .article-date { font-family: var(--mono); font-size: .65rem; font-weight: 400; color: var(--faint); letter-spacing: .04em; }
+
+  /* ============================================================
+     EVERGREEN FEATURED TILES (static, 3-up grid)
+  ============================================================ */
+  .featured-row { display: grid; grid-template-columns: 1fr; gap: 1.2rem; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+  @media (min-width: 720px) { .featured-row { grid-template-columns: repeat(3, 1fr); } }
+  .featured-tile { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--hair); border-radius: var(--r-lg); overflow: hidden; text-decoration: none; color: inherit; transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease); }
+  .featured-tile:hover { transform: translateY(-3px); box-shadow: 0 16px 40px -12px rgba(14,14,16,.14); border-color: var(--violet-line); }
+  .featured-tile-top { aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--violet-soft), rgba(255,217,176,.18)); position: relative; }
+  .featured-tile-top svg { width: 40px; height: 40px; color: var(--violet); opacity: .55; stroke-width: 1.5; }
+  .featured-tile-badge { position: absolute; top: .85rem; left: .85rem; font-family: var(--mono); font-size: .58rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #fff; background: linear-gradient(135deg, var(--violet), var(--peach)); border-radius: 40px; padding: .3rem .7rem; }
+  .featured-tile-body { padding: 1.2rem 1.3rem 1.5rem; display: flex; flex-direction: column; gap: .6rem; flex: 1; }
+  .featured-tile-body h3 { font-size: 1.05rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.3; color: var(--ink); }
+  .featured-tile-body p { font-size: .86rem; color: var(--muted); line-height: 1.6; flex: 1; }
+  .featured-tile-cta { display: inline-flex; align-items: center; gap: .35rem; font-size: .82rem; font-weight: 600; color: var(--violet); margin-top: auto; transition: gap .25s var(--ease); }
+  .featured-tile:hover .featured-tile-cta { gap: .6rem; }
+  .featured-tile-cta svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* ============================================================
+     DYNAMIC SECTION: featured post (blog-2026.js target)
+  ============================================================ */
+  #featured-post { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+
+  /* featured-card emitted by blog-2026.js */
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    background: var(--card);
+    border: 1px solid var(--hair);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+  }
+  .featured-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px -12px rgba(14,14,16,.14); border-color: var(--violet-line); }
+  .featured-image { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: linear-gradient(135deg, var(--violet-soft), rgba(255,217,176,.15)); flex-shrink: 0; }
+  .featured-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s var(--ease); }
+  .featured-card:hover .featured-image img { transform: scale(1.03); }
+  .featured-content { padding: 1.5rem 1.5rem 2rem; display: flex; flex-direction: column; gap: .75rem; }
+  .featured-tag { font-family: var(--mono); font-size: .62rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #fff; background: linear-gradient(135deg, var(--violet), var(--peach)); border-radius: 40px; padding: .35rem .75rem; display: inline-block; align-self: flex-start; }
+  .featured-content h2 { font-size: clamp(1.25rem, 3.2vw, 1.75rem); font-weight: 700; letter-spacing: -.025em; line-height: 1.22; color: var(--ink); }
+  .featured-content p { font-size: .93rem; color: var(--muted); line-height: 1.65; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .featured-meta { display: flex; align-items: center; gap: .65rem; flex-wrap: wrap; justify-content: space-between; }
+  .featured-meta time { font-family: var(--mono); font-size: .65rem; color: var(--faint); }
+  .featured-meta span { font-size: .85rem; font-weight: 600; color: var(--violet); }
+  .substack-badge { position: absolute; bottom: .85rem; right: .85rem; width: 28px; height: 28px; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(14,14,16,.15); }
+  .substack-badge svg { width: 14px; height: 14px; color: #f08c24; }
+  @media (min-width: 720px) {
+    .featured-card { grid-template-columns: 1.1fr 1fr; }
+    .featured-image { aspect-ratio: auto; height: 100%; min-height: 340px; }
+    .featured-content { padding: 2rem 2.2rem 2.2rem; justify-content: center; }
+  }
+
+  /* ============================================================
+     DYNAMIC GRID: blog-grid (blog-2026.js target)
+     Emits .blog-card elements
+  ============================================================ */
+  #blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  @media (min-width: 540px) { #blog-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { #blog-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--hair);
+    border-radius: var(--r);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+  }
+  .blog-card:hover { transform: translateY(-3px); box-shadow: 0 14px 36px -10px rgba(14,14,16,.12); border-color: var(--violet-line); }
+  .blog-card-image { aspect-ratio: 16 / 9; overflow: hidden; background: linear-gradient(135deg, var(--violet-soft), rgba(255,217,176,.12)); position: relative; flex-shrink: 0; }
+  .blog-card-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s var(--ease); }
+  .blog-card:hover .blog-card-image img { transform: scale(1.04); }
+  .blog-card-category { position: absolute; top: .7rem; left: .7rem; font-family: var(--mono); font-size: .58rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--violet); border: 1px solid var(--violet-line); background: rgba(253,252,249,.9); border-radius: 40px; padding: .25rem .6rem; backdrop-filter: blur(4px); }
+  .blog-card-content { padding: 1.1rem 1.2rem 1.4rem; display: flex; flex-direction: column; gap: .6rem; flex: 1; }
+  .blog-card-meta { display: flex; align-items: center; gap: .55rem; }
+  .blog-card-meta time { font-family: var(--mono); font-size: .64rem; color: var(--faint); }
+  .blog-card h3 { font-size: 1rem; font-weight: 600; letter-spacing: -.01em; line-height: 1.38; color: var(--ink); }
+  .blog-card p { font-size: .86rem; color: var(--muted); line-height: 1.58; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; flex: 1; }
+  .blog-card-cta { display: inline-flex; align-items: center; gap: .3rem; font-size: .8rem; font-weight: 600; color: var(--violet); margin-top: auto; padding-top: .2rem; transition: gap .25s var(--ease); }
+  .blog-card:hover .blog-card-cta { gap: .5rem; }
+
+  /* ============================================================
+     LOAD MORE CONTAINER (blog-2026.js target)
+  ============================================================ */
+  #load-more-container { text-align: center; margin-top: 2.5rem; display: none; }
+  #btn-load-more { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--sans); font-weight: 600; font-size: .9rem; background: transparent; color: var(--ink); border: 1px solid var(--hair); border-radius: 44px; padding: .7rem 1.3rem; cursor: pointer; transition: border-color .2s var(--ease), transform .2s var(--ease); }
+  #btn-load-more:hover { border-color: var(--ink); transform: translateY(-1px); }
+  #btn-load-more.hidden { display: none; }
+  #btn-load-more svg { width: 16px; height: 16px; }
+
+  /* ============================================================
+     STATE ELEMENTS (blog-2026.js targets)
+  ============================================================ */
+  #loading-state { text-align: center; padding: 3rem 0; color: var(--muted); font-family: var(--mono); font-size: .85rem; }
+  #empty-state { text-align: center; padding: 3rem 0; display: none; }
+  #empty-state h3 { font-size: 1.1rem; color: var(--ink); margin-bottom: .5rem; }
+  #empty-state p { font-size: .9rem; color: var(--muted); }
+
+  /* ============================================================
+     NEWSLETTER BLOCK
+  ============================================================ */
+  .blog-newsletter { background: var(--warm); border-top: 1px solid var(--hair-soft); border-bottom: 1px solid var(--hair-soft); padding: clamp(3rem, 8vw, 5rem) 0; }
+  .blog-newsletter .sec-head { margin-bottom: 1.6rem; }
+  .newsletter-icon { margin: 0 auto 1.4rem; display: grid; place-items: center; color: var(--ink); }
+  .newsletter-icon svg { width: 46px; height: 46px; stroke-width: 1.5; }
+  .newsletter-btns { display: flex; flex-direction: column; align-items: center; gap: .75rem; margin-top: 1.8rem; }
+  .newsletter-btns .btn { width: 100%; max-width: 320px; justify-content: center; }
+  @media (min-width: 600px) { .newsletter-btns { flex-direction: row; justify-content: center; } .newsletter-btns .btn { width: auto; } }
+
+  .knowledge-section { padding: clamp(2.5rem, 7vw, 5rem) 0; background: var(--base); border-top: 1px solid var(--hair-soft); }
+  #references-grid { margin-top: 1.5rem; }
+  .reference-category { margin-bottom: 1.5rem; border: 1px solid var(--hair); border-radius: var(--r); overflow: hidden; background: var(--card); }
+  .category-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; cursor: pointer; transition: background .2s; }
+  .category-header:hover { background: var(--warm); }
+  .category-title { display: flex; align-items: center; gap: .6rem; font-size: .9rem; font-weight: 600; color: var(--ink); }
+  .category-icon { display: flex; align-items: center; color: var(--violet); }
+  .category-count { font-family: var(--mono); font-size: .7rem; color: var(--faint); margin-left: .3rem; }
+  .category-toggle svg { color: var(--muted); transition: transform .25s var(--ease); }
+  .reference-category.collapsed .category-toggle svg { transform: rotate(-90deg); }
+  .reference-category.collapsed .category-content { display: none; }
+  .category-content { border-top: 1px solid var(--hair-soft); padding: 1.2rem; }
+  .references-inner-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 600px) { .references-inner-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .references-inner-grid { grid-template-columns: repeat(3, 1fr); } }
+  .reference-card { border: 1px solid var(--hair); border-radius: var(--r); padding: 1.1rem; background: var(--base); display: flex; flex-direction: column; gap: .5rem; transition: border-color .2s var(--ease), box-shadow .2s var(--ease); }
+  .reference-card:hover { border-color: var(--violet-line); box-shadow: 0 4px 16px -4px rgba(102,126,234,.1); }
+  .reference-header { font-family: var(--mono); font-size: .6rem; letter-spacing: .08em; text-transform: uppercase; }
+  .reference-title { font-size: .9rem; font-weight: 600; color: var(--ink); line-height: 1.4; }
+  a.reference-title:hover { color: var(--violet); }
+  .reference-author { font-size: .8rem; color: var(--muted); }
+  .reference-summary { font-size: .8rem; color: var(--muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .reference-hashtags { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .hashtag { font-family: var(--mono); font-size: .6rem; color: var(--violet); background: var(--violet-soft); border: 1px solid var(--violet-line); border-radius: 40px; padding: .2rem .5rem; }
+  .reference-footer { padding-top: .5rem; border-top: 1px solid var(--hair-soft); }
+  .reference-link-indicator { display: inline-flex; align-items: center; gap: .4rem; font-size: .78rem; font-weight: 600; color: var(--violet); transition: gap .2s var(--ease); }
+  .reference-link-indicator:hover { gap: .6rem; }
+  </style>
 </head>
 
 <body>
-  <!-- HEADER -->
-  <!-- Top strip "Open lab" — Glass Lab Editorial Charte v3 -->
-  <div class="gle-top-strip">
-    <div><span class="gle-top-strip-dot"></span>OPEN LAB</div>
-    <div>·</div>
-    <div>BUILD IN PUBLIC</div>
-    <div>·</div>
-    <div>22+ AGENTS IN PROD</div>
+
+<!-- TOP STRIP -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span><span class="dot"></span>&nbsp;Lab open</span>
+    <span class="sep">·</span>
+    <span class="dim">Build in public</span>
+    <span class="sep">·</span>
+    <span class="dim">22 agents in production</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="wrap header-inner">
+    <a href="/en/" class="logo" aria-label="Bubble, back to home">
+      <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"/>
+        <circle cx="59" cy="21" r="6" fill="var(--violet)"/>
+      </svg>
+      Bubble<span class="dot-final">.</span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-links">
+        <a href="/en/about">About</a>
+        <a href="/en/individuals">Learn &amp; plug in</a>
+        <a href="/en/professionals">Pro implementation</a>
+        <a href="/en/blog" class="active" aria-current="page">Blog</a>
+        <div class="lang" role="group" aria-label="Language selection">
+          <button data-href="/blog" aria-pressed="false">FR</button>
+          <span class="slash">/</span>
+          <button class="active" aria-pressed="true">EN</button>
+        </div>
+      </div>
+      <a href="https://calendly.com/bubbleinvest-ai" class="btn btn-primary" target="_blank" rel="noopener" data-cta-track="header_calendly_click">Book a diagnostic</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+  <a href="/en/about">About</a>
+  <a href="/en/individuals">Learn &amp; plug in</a>
+  <a href="/en/professionals">Pro implementation</a>
+  <a href="/en/blog" aria-current="page">Blog</a>
+  <div class="lang" role="group" aria-label="Language selection">
+    <button data-href="/blog" aria-pressed="false">FR</button>
+    <span class="slash">/</span>
+    <button class="active" aria-pressed="true">EN</button>
+  </div>
+  <a href="https://calendly.com/bubbleinvest-ai" class="btn btn-primary" target="_blank" rel="noopener" data-cta-track="mobile_header_calendly_click">Book a free diagnostic (30 min)</a>
+</div>
+
+<main>
+
+  <!-- BLOG HERO -->
+  <section class="blog-hero" aria-label="Behind the Bubble, the blog">
+    <div class="blog-hero-aura" aria-hidden="true"></div>
+    <div class="wrap">
+      <span class="blog-hero-eyebrow">Behind the Bubble</span>
+      <h1>The blog.<br><span class="hand">We document everything.</span></h1>
+      <p class="blog-hero-kicker">
+        Our analyses, our thinking on AI and investing,
+        and our real experience building agents.
+      </p>
+      <div class="blog-cadence">
+        <span class="blog-cadence-dot" aria-hidden="true"></span>
+        2x a week
+        <span style="opacity:.35;margin:0 .1rem">·</span>
+        Free
+        <span style="opacity:.35;margin:0 .1rem">·</span>
+        No fluff
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="blog-stats reveal" aria-label="By the numbers">
+    <div class="wrap">
+      <div class="stats-inner">
+        <div class="stat-item">
+          <span class="stat-num">30<span class="unit">+</span></span>
+          <span class="stat-label">Articles</span>
+        </div>
+        <div class="stats-sep" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-num">2<span class="unit">x</span></span>
+          <span class="stat-label">Per week</span>
+        </div>
+        <div class="stats-sep" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-num">2</span>
+          <span class="stat-label">Categories</span>
+        </div>
+        <div class="stats-sep" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-num">100<span class="unit">%</span></span>
+          <span class="stat-label">Free</span>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <header class="gle-site-header">
-    <div class="gle-container">
-      <div class="gle-header-inner">
-        <div class="gle-logo-block">
-          <a class="gle-logo logo" href="/en/">
-            <svg fill="none" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-                stroke-linecap="round" stroke-width="6"></circle>
-              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-            </svg>
-            Bubble.
-          </a>
-          <span class="gle-logo-tagline">Invest in what matters</span>
-        </div>
+  <!-- CATEGORY FILTERS -->
+  <div class="blog-filters-bar" role="navigation" aria-label="Filter by category">
+    <div class="wrap">
+      <span class="filter-label">Filter</span>
+      <button class="filter-btn active" data-cat="all">All</button>
+      <button class="filter-btn" data-cat="approche">Our approach</button>
+      <button class="filter-btn" data-cat="reflexion">Essays</button>
+    </div>
+  </div>
 
-        <!-- Mobile hamburger toggle (ID preserve — listener au bas de page) -->
-        <button class="hamburger-toggle" id="hamburger-toggle" aria-label="Menu" type="button">
-          <span></span><span></span><span></span>
+  <!-- ARTICLES MAIN SECTION -->
+  <section class="blog-main" aria-label="All articles">
+    <div class="wrap">
+
+      <!-- EVERGREEN FEATURED TILES — static, on-site articles -->
+      <div class="articles-section-head">
+        <span class="articles-section-label">Our approach</span>
+        <span class="articles-count">In-depth articles</span>
+      </div>
+
+      <div class="featured-row">
+        <a href="/en/blog/le-dernier-kilometre-notre-methode" class="featured-tile reveal" data-cat="approche" aria-label="The last mile: our method for connecting AI to your business">
+          <div class="featured-tile-top">
+            <span class="featured-tile-badge">Approach</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+          </div>
+          <div class="featured-tile-body">
+            <h3>The last mile: our method for connecting AI to your business</h3>
+            <p>Large AI models are impressive, but generalist. The difference lies in the last mile: adapting to your processes, your vocabulary, your regulatory constraints. Here is our three-phase method.</p>
+            <span class="featured-tile-cta">Read the article
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="/en/blog/comment-on-fait-tourner-une-entreprise-avec-des-agents-ia" class="featured-tile reveal" style="transition-delay:.06s" data-cat="approche" aria-label="How we run a company with AI agents">
+          <div class="featured-tile-top">
+            <span class="featured-tile-badge">Approach</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="featured-tile-body">
+            <h3>How we run a company with AI agents</h3>
+            <p>Bubble runs its operations with roughly 22 AI agents in production, each with a precise role. This piece describes the concrete organisation: team, governance loop, and guardrails.</p>
+            <span class="featured-tile-cta">Read the article
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="/en/blog/nos-skills-open-source" class="featured-tile reveal" style="transition-delay:.12s" data-cat="approche" aria-label="Our open-source skills: what they do and how to install them">
+          <div class="featured-tile-top">
+            <span class="featured-tile-badge">Approach</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h13M13 6l6 6-6 6M21 4v16"/></svg>
+          </div>
+          <div class="featured-tile-body">
+            <h3>Our open-source skills: what they do and how to install them</h3>
+            <p>Bubble publishes its Claude Code skills under the MIT licence. Here is what they actually do, why we share them, and how to install them in one command.</p>
+            <span class="featured-tile-cta">Read the article
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+      </div>
+
+      <!-- DYNAMIC ARTICLES FROM NOTION CMS -->
+      <div class="articles-section-head">
+        <span class="articles-section-label">Our thinking</span>
+        <span class="articles-count">From the Notion CMS</span>
+      </div>
+
+      <!-- Loading state -->
+      <div id="loading-state" aria-live="polite">Loading articles...</div>
+
+      <!-- Empty / error state -->
+      <div id="empty-state" role="status">
+        <h3>No articles yet</h3>
+        <p>Our first articles are on their way. Stay tuned.</p>
+      </div>
+
+      <!-- Featured post (first CMS article, large card) -->
+      <div id="featured-post" aria-label="Featured article"></div>
+
+      <!-- Remaining CMS articles grid -->
+      <div id="blog-grid" aria-label="Articles grid"></div>
+
+      <!-- Load more -->
+      <div id="load-more-container">
+        <button id="btn-load-more" type="button" class="hidden">
+          <span>Load more articles</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </button>
-
-        <nav class="gle-nav">
-          <a href="/en/about">About</a>
-          <a href="/en/individuals">Learn &amp; Plug</a>
-          <a href="/en/professionals">Pro implementation</a>
-          <a href="/en/blog" class="active" aria-current="page">Blog</a>
-          <div class="lang-switch">
-            <button data-href="/blog">FR</button>
-            <span>/</span>
-            <button class="active">EN</button>
-          </div>
-          <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
-             class="gle-nav-cta nav-cta-calendly" data-cta-track="header_calendly_click">
-            Book a diagnostic
-          </a>
-        </nav>
-
       </div>
-    </div>
-  </header>
 
-  <!-- Mobile nav overlay (outside header to avoid backdrop-filter containing block — ID preserve) -->
-  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
-    <div class="mobile-nav-content">
-      <a href="/en/about">About</a>
-      <a href="/en/individuals">Learn &amp; Plug</a>
-      <a href="/en/professionals">Pro implementation</a>
-      <a href="/en/blog" class="active" aria-current="page">Blog</a>
-      <div class="lang-switch">
-        <button data-href="/blog">FR</button>
-        <span>/</span>
-        <button class="active">EN</button>
+      <!-- Link to Substack archives (static, separate from dynamic grid) -->
+      <div style="text-align:center;margin-top:2.5rem" class="reveal">
+        <a href="https://bubbleinvest.substack.com" target="_blank" rel="noopener" class="btn btn-ghost">
+          Browse the archives on Substack
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
       </div>
-      <a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener noreferrer"
-         class="nav-cta-calendly mobile-nav-cta-calendly" data-cta-track="mobile_header_calendly_click">
-        Book a free diagnostic (30 min)
-      </a>
-    </div>
-  </div>
-
-  <main>
-    <!-- HERO -->
-    <section class="hero gle-hero gle-bg-warm-atmospheric" aria-label="Introduction" style="padding: 5rem 0 4rem;">
-      <span class="gle-kanji-watermark gle-kanji-hero-bg" aria-hidden="true">書</span>
-      <div class="gle-container">
-        <div style="max-width: 780px; margin: 0 auto; text-align: center;">
-          <span class="gle-hero-tag" data-translate="blog.hero.tag">Behind the Bubble</span>
-          <h1 class="gle-hero-title" style="font-size: clamp(2.1rem, 4.2vw, 3.3rem);">
-            <span data-translate="blog.hero.title_1">The blog.</span><br>
-            <em data-translate="blog.hero.title_2">We document everything.</em>
-          </h1>
-          <p class="gle-hero-kicker" style="max-width: 600px; margin: 1.5rem auto 0;" data-translate="blog.hero.kicker">
-            Our analysis, our reflections on AI and investing, our field notes on the agents we build.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ARTICLES -->
-    <section class="gle-section gle-bg-warm-atmospheric" aria-label="All our articles" style="padding: 4rem 0 5rem;">
-      <div class="gle-container">
-        <div class="gle-section-header">
-          <div class="gle-section-num">01 / All our articles</div>
-        </div>
-
-        <div class="bl-filters">
-          <button class="bl-filter active" data-cat="all" data-translate="blog.filter.all">All</button>
-          <button class="bl-filter" data-cat="ia" data-translate="blog.filter.ia">AI &amp; Agents</button>
-          <button class="bl-filter" data-cat="invest" data-translate="blog.filter.invest">Investing</button>
-          <button class="bl-filter" data-cat="tech" data-translate="blog.filter.tech">Tech</button>
-          <button class="bl-filter" data-cat="bulle" data-translate="blog.filter.bulle">Bubble ↗ Audiences</button>
-        </div>
-
-        <!-- TODO(wiring): replace static cards with dynamic Substack RSS + Notion Tracker render -->
-    <!-- DATA:BEGIN — remplacé par generate_blog_html.js -->
-    <div class="bl-articles" id="bl-articles-grid">
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/pourquoi-la-keynote-de-google-change?r=78b2yb&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!A0P-!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3de43813-3c6e-40bf-9c29-5e59a1b6e8fe_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-05-21">21 mai 2026</time>
-          </div>
-          <h3 class="bl-article-title">Pourquoi la keynote de Google change tout et rien à la fois</h3>
-          <p class="bl-article-excerpt">Hier soir, Sundar Pichai n'a rien inventé. Et c'est précisément ce qui devrait vous tenir éveillés cette nuit.</p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/le-syndrome-de-monet-ce-que-notre" target="_blank" rel="noopener" data-cat="bulle">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!59La!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F62f1ff19-41f1-4419-8d7a-e4146f8f33f4_809x970.jpeg" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-bulle">Bubble ↗ Audiences</span>
-            <time datetime="2026-05-14">14 mai 2026</time>
-          </div>
-          <h3 class="bl-article-title">Le syndrome de Monet : ce que notre détestation de l'IA révèle vraiment</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/le-comptable-interieur-lalgorithme" target="_blank" rel="noopener" data-cat="bulle">
-        <div class="bl-article-img"><img src="https://substack-post-media.s3.amazonaws.com/public/images/92960c1a-3492-4ef0-b64c-531a53cee387_1024x1024.jpeg" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-bulle">Bubble ↗ Audiences</span>
-            <time datetime="2026-04-21">21 avr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Le comptable intérieur : l'algorithme minimal de la reconnaissance</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/le-fosse-que-lia-ne-detruit-pas-elle" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!gm_M!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9e8e14b5-8eb0-4ffe-9fec-e7c06b3d34a3_1024x1024.jpeg" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-04-19">19 avr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Le fossé que l'IA ne détruit pas, elle le creuse</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/nous-sommes-les-emplois-a-detruire" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!pqAp!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F529a70e8-4a8a-428e-97de-5f90cec2d7dc_1024x1024.jpeg" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-04-18">18 avr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Nous sommes les emplois à détruire — étude Anthropic sur l'automatisation des cols blancs</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/nous-sommes-tous-devenus-gerants" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!q22s!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F29c2526e-b3dd-4598-b8d9-bf71dfdc6402_1024x1024.jpeg" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-04-17">17 avr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Nous sommes tous devenus gérants de tokens : l'économie post-2025</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/lethique-comme-moat-ce-que-295-de" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!Lobc!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1b93c18d-007e-4979-b950-a1f43d7c87b0_1024x1024.jpeg" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-04-16">16 avr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">L'Éthique comme Moat : ce que +295% de désinstallations dit du futur de la confiance</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/83-ce-que-lia-depasse-quand-elle" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!BVeg!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe695b42b-285e-4b69-8e0b-d4ae57918b65_1024x1024.jpeg" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-04-14">14 avr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">83% : ce que l'IA dépasse quand elle dépasse les humains</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/qui-appuie-sur-le-bouton-f70" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!rEtg!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F94e46a19-1412-4457-b646-f03212202402_1024x1024.jpeg" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-04-13">13 avr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Qui appuie sur le bouton ?</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/pourquoi-vous-nacheterez-jamais-votre" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!5NiE!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4252675f-ea7e-4006-b605-98df2447d37d_1456x816.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-04-06">6 avr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Pourquoi vous n'achèterez jamais votre robot domestique</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://substack.com/@bubbleinvest/note/c-236655180?r=78b2yb&amp;utm_source=notes-share-action&amp;utm_medium=web" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img bl-article-img-fallback">研</div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-04-01">1 avr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">On a migré 4 agents IA vers Claude Code : ce qu'on a cassé, gardé, et compris</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/que-faire-de-tout-ce-temps-libre" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!jOnF!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F387a00c2-4d6d-45af-85f3-4e85da6f8d96_1408x768.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-03-09">9 mars 2026</time>
-          </div>
-          <h3 class="bl-article-title">Que faire de tout ce temps libre ? (post AI economics ) - part 1</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/le-robot-humanoide-247-la-fin-silencieuse" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!RlYI!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F084cbe57-c4c1-4139-bee8-932baf7cdca3_1408x768.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-03-06">6 mars 2026</time>
-          </div>
-          <h3 class="bl-article-title">Le robot humanoïde 24/7 : la fin silencieuse du travail physique</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/ce-que-lia-ne-peut-pas-te-voler" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!GJRg!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbc6ef536-2ad4-4cf4-bfc6-bfd636ae5295_1280x1014.jpeg" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-03-05">5 mars 2026</time>
-          </div>
-          <h3 class="bl-article-title">Ce que l'IA ne peut pas te voler</h3>
-          <p class="bl-article-excerpt">Il y a quelques semaines, j'ai eu une conversation avec une artiste. Peintre, illustratrice, elle travaille depuis des années à construire un style reconnaissable, une voix visuelle à elle. Et depuis l'émergence des outils de génération d'images (Midjourney, Stable Diffusion, DALL-E), elle est en colère. Pas légèrement irritée. En colère. &quot;Ils volent le travail des artistes. Ils s'entraînent sur nos œuvres sans notre consentement. Ils détruisent nos revenus.&quot; Je comprends la colère. Elle est humaine, elle est instinctive. Mais je pense qu'elle est mal dirigée. Parce que la vraie question n'est pas &quot;l'IA va-t-elle remplacer les artistes ?&quot; La vraie question, celle que presque personne ne pose, c'est : qu'est-ce qu'un artiste, exactement ? Et si on commence par là, on découvre quelque chose d'inconfortable : l'IA ne menace pas les artistes. Elle menace une confusion que le capitalisme a patiemment installée dans nos esprits depuis deux siècles, cette confusion entre l'art et le travail artistique rémunéré. Ce sont deux choses radicalement différentes. Et les démêler change tout. L'art, dans son sens le plus profond, échappe à trois définitions qu'on lui colle trop facilement : la beauté de l'objet produit, la maîtrise technique du geste, et (c'est là où ça devient vraiment intéressant) la capacité à créer des émotions dans un public. Ce dernier point mérite qu'on s'y arrête, parce qu'il est contre-intuitif. Donald Trump remplit des stades. Il crée des émotions intenses, de l'enthousiasme, de la ferveur, parfois de la rage. Est-il un artiste ? Non. Un publicitaire qui conçoit une campagne qui te fait pleurer en trente secondes est-il un artiste ?…</p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/pourquoi-le-saas-na-plus-de-sens" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!r_vh!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8cc564ff-6c8e-4b3a-a70b-b3e3a7e48c30_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-03-01">1 mars 2026</time>
-          </div>
-          <h3 class="bl-article-title">Pourquoi le SaaS n'a plus de sens en 2026 — et ce qu'on construit à la place</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/ghost-gdp-quand-la-croissance-na" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!u-js!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4c162e24-f2b6-4e1b-b97c-0a3813c8d7f9_1200x627.jpeg" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-28">28 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Ghost GDP — quand la croissance n'a plus besoin de consommateurs</h3>
-          <p class="bl-article-excerpt">Il y a une question d’examen de première année d’économie que la plupart des analystes semblent avoir oubliée : Si la production devient quasi gratuite, qui a encore un revenu pour acheter quoi que ce soit ? L’économie moderne fonctionne en boucle. Le travail rémunéré finance la consommation. La consommation finance les revenus des entreprises. Ces revenus financent l’investissement. L’investissement finance la productivité. Et la productivité finance, à son tour, encore plus de productivité. C’est un feedback loop au sens de Munger : un cercle vertueux tant que tout le monde y participe, et un cercle vicieux dès qu’un maillon saute. Quand le travail humain se déprécie, ce n’est pas un indicateur qui bouge sur un tableau de bord. C’est le carburant de toute la boucle qui se raréfie. Comme un moteur qu’on perfectionnerait à l’infini, mais dont on oublierait de remplir le réservoir. Alex Wissner-Gross, physicien et informaticien passé par Harvard et le MIT, auteur de The Innermost Loop et l’un des rares esprits capables de parler simultanément d’économie post-scarcité et de fonds souverains, a une formule pour décrire ce moment : on vit dans la science non-fiction . Le présent est devenu tellement extraordinaire qu’on a cessé de le trouver extraordinaire. Ce qui, quand on y pense, est peut-être le signe le plus clair que quelque chose de fondamental a changé. Cet article n’est pas sur Terminator. Il est sur un risque plus banal, plus silencieux, et donc infiniment plus probable : le découplage . Un monde où l’économie humaine et l’économie des machines cessent, lentement, de se parler.…</p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/apple-et-la-guerre-des-gateways-pourquoi" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!jTIY!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6eaf016c-173e-44d1-9866-f7787fd36acb_1408x768.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-27">27 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Apple et la guerre des gateways : pourquoi le &quot;retardataire&quot; de l'IA pourrait sortir par le haut</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/ce-que-tu-moffres-quand-tu-moffres?utm_campaign=post-expanded-share&amp;utm_medium=post%20viewer" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!WJ6t!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24acd9eb-31a2-47d9-9a64-3560a0149165_1408x768.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-24">24 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Ce que tu m'offres quand tu m'offres ton temps</h3>
-          <p class="bl-article-excerpt">Le patron et les 600 messages Il y a quelques semaines, une histoire a fait le tour des réseaux sociaux chinois. Un chef d’entreprise avait utilisé un outil d’IA pour envoyer des vœux de Nouvel An personnalisés à chacun de ses 600 employés. Des messages adaptés au rôle de chacun, à ses performances, à son parcours dans l’entreprise. Pas un copié-collé générique : quelque chose qui ressemblait, en surface, à une attention réelle. Les employés ont été touchés. Certains l’ont dit à leurs collègues. L’ambiance dans l’entreprise a changé, au moins pour quelques jours. Puis le patron a posté sur les réseaux pour expliquer son workflow. Et la backlash a été massive. Les gens ont parlé de “sincérité bon marché.” De vide derrière l’apparence. D’une attention qui n’en était pas une. Et pourtant, les mêmes personnes qui avaient été émues l’étaient restées quelques heures plus tôt, avant de savoir. Les mots n’avaient pas changé. Le sentiment qu’ils avaient d’abord ressenti était réel. Ce qui avait changé, c’était leur connaissance de l’origine du geste. Cette histoire soulève une question que l’essor de l’IA va rendre de plus en plus pressante : qu’est-ce qui donne de la valeur à un geste humain ? Et si ce n’est pas la qualité du résultat, alors qu’est-ce que c’est ? La théorie du temps irréversible Il y a une réponse qui me semble juste, même si elle paraît simple au premier abord. Quand quelqu’un t’écrit un message de Nouvel An, même court, même maladroit, la valeur de ce message ne tient pas à sa formulation.…</p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/le-futur-ou-va-t-on-et-comment-se?r=78b2yb&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!Ri5m!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feb80c01e-ee01-448d-87f9-420a7ad1b9c0_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-23">23 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">06 - IA : Le Futur - Où Va-t-on ? (Substack)</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/2025-quand-lia-a-pris-litteralement?r=78b2yb&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!iXSG!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fefab47b9-70a0-4439-83c0-dddf3eb90db4_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-21">21 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">05 - IA : Computer Use - L'IA Prend ENFIN le Contrôle (Substack)</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/focus-sur-notion-ia-loutil-qui-booste?r=78b2yb&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!H6Ew!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fee1faead-9f4b-4ba6-9671-eb16729bea6e_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-19">19 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">04 - IA : Notion, Votre OS Personnel (Substack)</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/pourquoi-les-vues-ia-valent-plus" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!6v6t!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4bb737e1-d1b3-4d1d-b746-35085b60ecbd_1024x1024.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-17">17 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Pourquoi les Vues IA Valent Plus que les Vues Humaines</h3>
-          <p class="bl-article-excerpt">En 2024, pour la première fois en dix ans de mesure, le trafic automatisé a dépassé le trafic humain sur Internet. 51% de tout ce qui circule sur le web n'est pas généré par un humain derrière un écran. C'est le chiffre du rapport Imperva 2025, publié par Thales, et il a provoqué exactement la réaction qu'on attendait : la panique. &quot;Les bots envahissent Internet !&quot; &quot;Les métriques sont faussées !&quot; &quot;On ne peut plus faire confiance aux analytics !&quot; Les marketeurs se sont arraché les cheveux. Les éditeurs de contenu ont vu leurs chiffres d'audience devenir suspects. Les régies pub ont commencé à transpirer. Et une question obsédante a commencé à hanter les réunions produit de toutes les boîtes media du monde : si la moitié de mon audience n'est pas humaine, est-ce que mon contenu a encore de la valeur ? La réponse courte : oui. Et probablement plus qu'avant. Je sais que c'est contre-intuitif. On a été dressés, pendant 15 ans d'économie de l'attention, à croire que les &quot;vues&quot; sont la métrique reine, et que les vues non-humaines sont par définition du bruit. Mais cette croyance repose sur une confusion que presque personne ne prend la peine de clarifier. Une confusion entre deux types de trafic qui n'ont absolument rien en commun : les crawlers et les agents.…</p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/quand-i-robot-nest-plus-tres-loin?r=78b2yb&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!QJUG!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F87872abb-625a-4edb-a4c3-f9a09fd4423c_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-17">17 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">03 - IA : Tool Use &amp; Agents (Substack)</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/lechelle-de-labstraction-pourquoi" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!qpJ9!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd2e136db-7c1c-4ded-99a4-1e2aac3c2b9a_1200x627.jpeg" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-16">16 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">L'Échelle de l'Abstraction : Pourquoi l'App Store de l'IA est déjà mort</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/ia-lexplosion-des-capacites-2023?r=78b2yb&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!Nif1!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd098f7d9-5b59-415b-8cea-b14ee999dd8e_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-15">15 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">02 - IA : L'Explosion des Capacités (Substack)</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/retour-sur-le-moment-chatgpt-quand?r=78b2yb&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!_LHx!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8c530f94-2977-428e-8304-f47a18264a18_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-13">13 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">01 - IA : Le Moment ChatGPT (Substack)</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/quand-morningstar-valide-notre-vision" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!shIH!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fee880c1d-2f09-4de3-92be-dc88e84fdb35_1200x627.jpeg" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-12">12 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Pourquoi ton 100% MSCI World te coûte de la performance</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/de-terminator-a-chatgpt-retour-sur?r=78b2yb&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!sS5M!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8a40135f-425b-4ea9-9cc4-81d407408a28_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-12">12 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">00 - IA : De Terminator à ChatGPT (Substack)</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/quand-morningstar-valide-notre-vision" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!shIH!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fee880c1d-2f09-4de3-92be-dc88e84fdb35_1200x627.jpeg" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-11">11 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Behind the Bubble : Morningstar valide notre vision (IA + Robo-Advisors)</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.org/blog/risk-parity-enfin-une-explication-claire-et-guide-pratique" target="_blank" rel="noopener" data-cat="invest">
-        <div class="bl-article-img bl-article-img-fallback">市</div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-invest">Investing</span>
-            <time datetime="2026-02-11">11 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Risk Parity : Enfin une Explication Claire et Guide Pratique</h3>
-          <p class="bl-article-excerpt">Le Risk Parity pour les gens normaux : un guide en langage clair pour répartir le risque plutôt que seulement le capital, avec des exemples simples, ses avantages et ses limites, et comment l’intégrer à votre portefeuille avec Bubble, sans écrire une seule formule.</p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.substack.com/p/vibe-working-your-portfolio-la-fin?r=78b2yb" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!9E25!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5b396614-e809-4c65-8c0e-7ec3f1d3b54a_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-10">10 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Vibe Working Your Portfolio : La Fin de l'Excel Working en Investissement</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/lart-du-jardinier-comment-equilibrer?r=78b2yb&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!H4Lo!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2284d85f-64ea-4851-ae07-40dfd51a8979_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-09">9 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">06 - L'Art du Jardinier : Équilibrer Votre Écosystème (Substack)</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/les-saisons-de-linvestissement-quand?r=78b2yb&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!Synt!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0df3de39-b4ad-4e95-b850-dbe4ae2d7340_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-07">7 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">05 - Les Saisons du Jardin : Quand Planter, Quand Récolter ? (Substack)</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/devenir-botaniste-apprendre-a-reconnaitre?r=78b2yb&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!B1N6!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feec54944-c0ef-4f86-9602-bd2c41b26784_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-05">5 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">04 - Devenir Botaniste : Apprendre à Reconnaître les Bonnes Plantes (Substack)</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/composer-votre-jardin-comment-repartir?r=78b2yb&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!OjhF!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3eef634b-86e7-4de2-a161-a3a7c3b7bd17_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-03">3 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">03 - Composer Votre Jardin : Quelle Place Pour Chaque Plante ? (Substack)</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/planter-vos-premieres-graines-investir?r=78b2yb&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!NHLA!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F34dc6bad-0616-4bbc-83a2-1a2db65427b4_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-02-01">1 févr. 2026</time>
-          </div>
-          <h3 class="bl-article-title">02 - Planter Vos Premières Graines : Investir dans les ETF (Substack)</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/votre-tout-premier-placement-comment?r=78b2yb&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!hopa!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7b61b689-7036-4a02-959d-8febbf424f80_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-01-30">30 janv. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Le tout Premier Placement Sécurisé (Substack)</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/investir-cest-comme-planter-des-graines?r=78b2yb&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!XbNZ!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1b0d226a-8e32-41ee-af77-3667e11e4f94_1024x608.png" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-01-28">28 janv. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Comprendre les Placements : Actions &amp; Obligations (Version Substack)</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://open.substack.com/pub/bubbleinvest/p/behind-the-bubble?utm_campaign=post-expanded-share&amp;utm_medium=post%20viewer" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img"><img src="https://substackcdn.com/image/fetch/$s_!DLR7!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4588465a-7e31-426a-82f3-697d15a2d70f_1019x651.jpeg" alt="" loading="lazy" /></div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-01-20">20 janv. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Bienvenue dans le Bubble Knowledge Garden : Pourquoi on fait tout ça</h3>
-          <p class="bl-article-excerpt"></p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.org/blog/course-l-ia-en-entreprise-pourquoi-bubble-construit-depuis-2023-une-ai-entreprise" target="_blank" rel="noopener" data-cat="ia">
-        <div class="bl-article-img bl-article-img-fallback">研</div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-ia">AI &amp; Agents</span>
-            <time datetime="2026-01-15">15 janv. 2026</time>
-          </div>
-          <h3 class="bl-article-title">Course à l’IA en entreprise : pourquoi Bubble construit depuis 2023 une AI entreprise</h3>
-          <p class="bl-article-excerpt">Article d’opinion inspiré du rapport « The State of Enterprise AI » d’OpenAI : comment l’IA devient l’infrastructure invisible des entreprises, pourquoi un fossé se creuse entre pionniers et retardataires, et comment Bubble a choisi dès 2023 de fonctionner comme une « entreprise IA » en s’appuyant à fond sur les agents IA, l’automatisation et des copilotes internes, dans le produit comme dans l’organisation (et même dans la vie perso).</p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
-
-      <a class="bl-article" href="https://bubbleinvest.org/blog/le-crime-de-ceux-qui-savaient" target="_blank" rel="noopener" data-cat="invest">
-        <div class="bl-article-img bl-article-img-fallback">市</div>
-        <div class="bl-article-body">
-          <div class="bl-article-meta">
-            <span class="bl-tag tag-invest">Investing</span>
-            <time datetime="2025-11-25">25 nov. 2025</time>
-          </div>
-          <h3 class="bl-article-title">Le Crime de Ceux Qui Savaient</h3>
-          <p class="bl-article-excerpt">Un petit déplacement moral, des conséquences immenses : le vrai crime n’est pas l’ignorance, mais le fait de savoir et de choisir quand même d’exploiter ceux qui ne savent pas. Ce texte montre comment l’asymétrie d’information a structuré le pouvoir dans l’histoire, comment l’IA est en train de briser ce schéma, et pourquoi experts comme non‑experts doivent maintenant choisir : continuer le jeu de l’extraction, ou utiliser ces nouveaux outils pour rendre l’exploitation obsolète.</p>
-          <div class="bl-article-cta">Read more →</div>
-        </div>
-      </a>
 
     </div>
-    <!-- DATA:END -->
-      </div>
-    </section>
+  </section>
 
-  </main>
+  <hr class="hair" />
 
-  <!-- FOOTER (Glass Lab Editorial v3 — structure preserved, restyled) -->
-  <footer class="gle-footer">
-    <div class="gle-container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="logo" href="/en/" style="font-size: 1.5rem; color: #fff;">
-            <svg fill="none" style="width: 32px; height: 32px;" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10"
-                stroke-linecap="round" stroke-width="6"></circle>
-              <circle cx="59" cy="21" fill="currentColor" r="6"></circle>
-            </svg>
-            Bubble.
-          </a>
-          <p style="font-family: var(--gle-font-accent); font-style: italic; opacity: 0.85; margin-top: 0.5rem;">Invest in what matters.</p>
-          <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.78rem;">The AI era changed everything. Change with it.</p>
-          <div class="social-links">
-            <a aria-label="LinkedIn" href="https://www.linkedin.com/company/bubble-invest-ai/" target="_blank"
-              title="LinkedIn">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="Instagram" href="https://instagram.com/behindthebubble.ai" target="_blank"
-              title="Instagram @behindthebubble.ai">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="Substack" href="https://bubbleinvest.substack.com" target="_blank"
-              title="Substack @bubbleinvest">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="GitHub" href="/en/github" title="GitHub">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
-                </path>
-              </svg>
-            </a>
-            <a aria-label="X" href="https://x.com/bubbleinvlabs" target="_blank" title="X @bubbleinvlabs">
-              <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
-                <path
-                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
-                </path>
-              </svg>
-            </a>
-          </div>
-        </div>
-        <div class="footer-links">
-          <h4>Navigation</h4>
-          <ul>
-            <li><a href="/en/about">About</a></li>
-            <li><a href="/en/individuals">Learn &amp; Plug</a></li>
-            <li><a href="/en/professionals">Pro implementation</a></li>
-            <li><a href="/en/blog">Blog</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Resources</h4>
-          <ul>
-            <li><a href="/en/shop">Shop</a></li>
-            <li><a href="/en/labs">Lab</a></li>
-            <li><a href="/en/professionals#faq">FAQ</a></li>
-            <li><a href="/en/newsletter">Newsletter</a></li>
-            <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank" data-cta-track="footer_calendly_click">Book a diagnostic</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="/en/legal-notice">Legal Notice</a></li>
-            <li><a href="/en/privacy">Privacy</a></li>
-          </ul>
-        </div>
+  <!-- NEWSLETTER BLOCK -->
+  <section class="blog-newsletter reveal" aria-label="Subscribe to the Behind the Bubble newsletter">
+    <div class="wrap">
+      <div class="sec-head center">
+        <span class="sec-num">Behind the Bubble</span>
+        <h2>What we learn, what we think. Free.</h2>
+        <p>Technical research, essays, market analysis. Twice a week, no fluff.</p>
       </div>
-      <div class="footer-bottom">
-        <p>© 2026 Bubble Invest · Transparent by design · Build in public</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Chat Side Panel (slide-in chatbot) -->
-  <div id="chat-side-panel" class="chat-side-panel" aria-hidden="true">
-    <div class="chat-side-panel-header">
-      <div class="chat-side-panel-header-info">
-        <img src="/assets/images/bubble-favicon.svg" class="chat-side-panel-icon" alt="Bubble" width="20" height="20" />
-        <div class="chat-side-panel-titles">
-          <span class="chat-side-panel-title">Bubble Assistant</span>
-        </div>
-      </div>
-      <div class="chat-side-panel-actions">
-        <button class="chat-side-panel-minimize" aria-label="Minimize chat" type="button">-</button>
-        <button class="chat-side-panel-close" aria-label="Close chat" type="button">✕</button>
-      </div>
-    </div>
-    <div class="chat-side-panel-messages" role="log" aria-live="polite">
-    </div>
-    <form class="chat-side-panel-input-container" novalidate>
-      <input type="text" class="chat-side-panel-input" placeholder="Ask your questions..."
-        data-translate-placeholder="floating_input.placeholder" aria-label="Type your message"
-        autocomplete="off" />
-      <button class="chat-side-panel-send" aria-label="Send message" type="submit">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M12 21V4" stroke-linecap="round" />
+      <div class="newsletter-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="2"/>
+          <path d="M3 7l9 6 9-6"/>
         </svg>
-      </button>
-    </form>
-  </div>
-
-  <!-- Floating Glassmorphism Chat Input -->
-  <div class="floating-chat-input hidden" data-always-visible="false" data-page-context="blog"
-    data-trigger-selector=".hero" id="floating-chat-input">
-    <div class="floating-input-container">
-      <input aria-label="Ask your question" class="floating-input-field"
-        placeholder="Ask me anything..." type="text"
-        data-translate-placeholder="floating_input.placeholder" />
-      <button aria-label="Send" class="floating-input-submit">
-        <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20">
-          <path d="M5 10L12 3L19 10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-          <path d="M12 21V4" stroke-linecap="round" stroke-width="2"></path>
-        </svg>
-      </button>
+      </div>
+      <div class="newsletter-btns">
+        <a href="/en/newsletter" class="btn btn-primary" target="_blank" rel="noopener" data-cta-track="newsletter_subscribe_click">
+          Subscribe to the newsletter
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://bubbleinvest.substack.com" class="btn btn-ghost" target="_blank" rel="noopener">
+          Browse the Substack archives
+        </a>
+      </div>
     </div>
+  </section>
+
+  <hr class="hair" />
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/en/" class="logo" style="font-size:1.4rem" aria-label="Bubble, back to home">
+          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:30px;height:30px" aria-hidden="true">
+            <circle cx="36" cy="41" r="26" stroke="currentColor" stroke-dasharray="145 29" stroke-dashoffset="10" stroke-linecap="round" stroke-width="6"/>
+            <circle cx="59" cy="21" r="6" fill="var(--peach)"/>
+          </svg>
+          Bubble<span class="dot-final">.</span>
+        </a>
+        <p class="tag">Invest in what matters.</p>
+        <p class="sub">The AI era changed everything. Change with it.</p>
+        <div class="socials">
+          <a href="https://www.linkedin.com/company/bubble-invest-ai/" aria-label="LinkedIn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://bubbleinvest.substack.com" aria-label="Substack"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></a>
+          <a href="https://x.com/bubbleinvlabs" aria-label="X"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://github.com/vdk888" aria-label="GitHub"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/en/about">About</a></li>
+          <li><a href="/en/individuals">Learn &amp; plug in</a></li>
+          <li><a href="/en/professionals">Pro implementation</a></li>
+          <li><a href="/en/blog">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/en/shop">Shop</a></li>
+          <li><a href="/en/labs">Lab</a></li>
+          <li><a href="/en/professionals#faq">FAQ</a></li>
+          <li><a href="/en/newsletter">Newsletter</a></li>
+          <li><a href="https://calendly.com/bubbleinvest-ai" target="_blank" rel="noopener" data-cta-track="footer_calendly_click">Book a diagnostic</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/en/legal-notice">Legal Notice</a></li>
+          <li><a href="/en/privacy">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Bubble Invest · Transparent by design · Build in public</div>
   </div>
+</footer>
 
-  <!-- Scripts -->
-  <script src="/js/seo/cookie-banner.js"></script>
-  <!-- Unified conversion tracking (Pixel + CAPI dual tracking + Google Ads conversion) — Phase 1 marketing 2026-05-18 -->
-  <script src="/js/seo/conversions.js"></script>
-  <script src="/js/lang-toggle.js"></script>
-  <script src="/i18n/translations.js"></script>
-  <script src="/js/bubble-agent-memory.js"></script>
-  <script src="/js/chatbot-animations.js"></script>
-  <script src="/js/chat-side-panel.js"></script>
-  <script src="/js/floating-chat-input.js"></script>
-  <script src="/js/animations.js"></script>
-  <script src="/js/seo/ga4-events.js"></script>
+<!-- Scripts -->
+<script src="/js/seo/cookie-banner.js"></script>
+<script src="/js/seo/conversions.js"></script>
+<script src="/i18n/translations.js"></script>
+<script src="/js/lang-toggle.js"></script>
+<script src="/js/seo/ga4-events.js"></script>
+<script src="/js/calendly-integration.js" defer></script>
+<!-- Blog dynamic hydration — DO NOT REMOVE — populates #featured-post, #blog-grid -->
+<script src="/js/blog-2026.js"></script>
 
-  <!-- Sprint 3 Ghibli Phase 2 — top strip "Labo ouvert" + floating bubbles signature -->
-  <script src="/js/ghibli-chrome.js" defer></script>
+<!-- Mobile menu + scroll reveal -->
+<script>
+(function () {
+  "use strict";
 
-  <!-- Category filter (static markup) — ported from locked mock.
-       TODO(wiring): when the grid becomes dynamic (Substack RSS + Notion),
-       re-bind this against the rendered cards. -->
-  <script>
-    document.querySelectorAll('.bl-filter').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.bl-filter').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const cat = btn.dataset.cat;
-        document.querySelectorAll('#bl-articles-grid .bl-article').forEach(card => {
-          card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
-        });
+  /* Mobile menu */
+  var burger = document.getElementById("burger"),
+      menu   = document.getElementById("mobileMenu"),
+      close  = document.getElementById("mobileClose");
+
+  function openMenu() { menu.classList.add("open"); burger.classList.add("open"); burger.setAttribute("aria-expanded", "true"); document.body.style.overflow = "hidden"; }
+  function closeMenu() { menu.classList.remove("open"); burger.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); document.body.style.overflow = ""; }
+
+  burger.addEventListener("click", function () { menu.classList.contains("open") ? closeMenu() : openMenu(); });
+  close.addEventListener("click", closeMenu);
+  menu.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", closeMenu); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menu.classList.contains("open")) closeMenu(); });
+  window.addEventListener("resize", function () { if (window.innerWidth >= 900 && menu.classList.contains("open")) closeMenu(); });
+
+  /* Language toggle */
+  document.querySelectorAll(".lang").forEach(function (g) {
+    g.querySelectorAll("button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var href = b.getAttribute("data-href");
+        if (href) { window.location.href = href; return; }
+        g.querySelectorAll("button").forEach(function (x) { x.classList.remove("active"); x.setAttribute("aria-pressed", "false"); });
+        b.classList.add("active");
+        b.setAttribute("aria-pressed", "true");
       });
     });
-  </script>
+  });
 
-  <!-- Mobile hamburger menu toggle -->
-  <script>
-    (function () {
-      'use strict';
-      const toggle = document.getElementById('hamburger-toggle');
-      const overlay = document.getElementById('mobile-nav-overlay');
-      if (!toggle || !overlay) return;
-      function closeMenu() {
-        overlay.classList.remove('open');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      }
-      toggle.addEventListener('click', function () {
-        const isOpen = overlay.classList.toggle('open');
-        toggle.classList.toggle('open', isOpen);
-        toggle.setAttribute('aria-expanded', isOpen);
-        document.body.style.overflow = isOpen ? 'hidden' : '';
+  /* Category filter (applies to static featured tiles only; dynamic cards filtered by blog-2026.js) */
+  var filterBtns = document.querySelectorAll(".filter-btn");
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      filterBtns.forEach(function (b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+      var cat = btn.getAttribute("data-cat");
+      document.querySelectorAll(".featured-tile[data-cat]").forEach(function (card) {
+        card.style.display = (cat === "all" || card.getAttribute("data-cat") === cat) ? "" : "none";
       });
-      overlay.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', closeMenu);
+    });
+  });
+
+  /* Scroll reveal */
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
       });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
-      });
-      window.addEventListener('resize', function () {
-        if (window.innerWidth >= 901 && overlay.classList.contains('open')) closeMenu();
-      });
-    })();
-  </script>
+    }, { threshold: .08, rootMargin: "0px 0px -4% 0px" });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+  }
+})();
+</script>
+
 </body>
-
 </html>
