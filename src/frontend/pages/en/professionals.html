@@ -949,9 +949,18 @@ h3 {
       flex-shrink: 0;
     }
 
-    /* hide on very narrow screens where it would crowd the headline */
+    /* On phones the absolute orb would overlap the headline, so drop it into
+       normal flow (centered, above the text) at a phone-appropriate size —
+       keeps the signature animation on mobile (Jade: distinctive even on
+       mobile, 2026-07-22) instead of hiding it. */
     @media (max-width: 580px) {
-      .hero-orb-wrap { display: none; }
+      .hero-orb-wrap {
+        position: static;
+        transform: none;
+        width: clamp(150px, 44vw, 200px);
+        height: clamp(150px, 44vw, 200px);
+        margin: 0 auto clamp(1.25rem, 5vw, 2rem);
+      }
     }
 
     /* ---- the homepage orb CSS — verbatim, scoped inside the wrapper ---- */
