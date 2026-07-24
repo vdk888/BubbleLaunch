@@ -4,15 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shop: AI Agents on Subscription · Bubble.</title>
-  <meta name="description" content="Plug-and-play agents and premium analyses. Tools we use every day, built and documented in public." />
-  <meta name="keywords" content="AI agents, open-source skills, premium articles, AI investing, Claude security audit, AI tools, bubble invest shop" />
+  <meta name="description" content="Plug-and-play agents on subscription. Tools we use every day, built and documented in public." />
+  <meta name="keywords" content="AI agents, open-source skills, AI investing, Claude security audit, AI tools, bubble invest shop" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bubbleinvest.org/en/shop" />
   <meta property="og:title" content="Shop: AI Agents on Subscription · Bubble." />
-  <meta property="og:description" content="Plug-and-play agents and premium analyses. Tools we use every day, built and documented in public." />
+  <meta property="og:description" content="Plug-and-play agents on subscription. Tools we use every day, built and documented in public." />
   <meta property="og:image" content="https://bubbleinvest.org/assets/images/og-en-shop.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -24,7 +24,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://bubbleinvest.org/en/shop" />
   <meta name="twitter:title" content="Shop: AI Agents on Subscription · Bubble." />
-  <meta name="twitter:description" content="Plug-and-play agents and premium analyses. Tools we use every day, built and documented in public." />
+  <meta name="twitter:description" content="Plug-and-play agents on subscription. Tools we use every day, built and documented in public." />
   <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/og-en-shop.png" />
 
   <!-- Favicon -->
@@ -855,7 +855,7 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
     <div class="wrap boutique-hero-inner">
       <div class="reveal">
         <span class="eyebrow">Shop</span>
-        <h1>Tools &amp; analyses <span class="klee">built in public</span></h1>
+        <h1>Tools <span class="klee">built in public</span></h1>
         <p class="boutique-hero-sub">
           We build our own agents. Some we share on subscription, with no promises we cannot keep.
         </p>
@@ -868,10 +868,6 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
         <div class="cat-tabs" role="tablist" aria-label="Filter by category">
           <button class="cat-tab active" data-filter="all" role="tab" aria-selected="true">All</button>
           <button class="cat-tab" data-filter="agents" role="tab" aria-selected="false">Agents</button>
-          <a href="https://bubble-articles.netlify.app" class="cat-tab" target="_blank" rel="noopener" style="text-decoration:none">
-            Articles
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:-1px;margin-left:3px;display:inline"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-          </a>
         </div>
       </div>
     </div>
@@ -883,7 +879,6 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
   <nav class="section-nav" aria-label="Section navigation">
     <div class="wrap section-nav-inner">
       <a href="#agents" class="active-nav">Agents</a>
-      <a href="#articles">Premium analyses</a>
     </div>
   </nav>
 
@@ -984,38 +979,6 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
       <!-- Editorial quote -->
       <div class="why-quote reveal" style="margin-top:2.6rem; max-width:600px">
         Every agent we sell, we use first. What we share is what actually runs.
-      </div>
-    </div>
-  </section>
-
-  <hr class="hair" />
-
-  <!-- ============================================================
-       PREMIUM ANALYSES
-       ============================================================ -->
-  <section class="section" id="articles">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <span class="sec-num">03 / Articles</span>
-        <h2>Premium analyses</h2>
-        <p>Articles we wished existed elsewhere and couldn't find. Finance, AI, infrastructure. No filter.</p>
-      </div>
-
-      <div class="articles-callout reveal">
-        <div class="articles-callout-text">
-          <h3>In-depth content, built in public</h3>
-          <p>Investment strategies, agent architecture, field reports. Each article is documented with our real results: what works, what breaks, how we fix it.</p>
-          <div class="pills" style="margin-top:.9rem">
-            <span class="pill accent">Finance</span>
-            <span class="pill">AI Infrastructure</span>
-            <span class="pill">Build in public</span>
-            <span class="pill">Claude Code agents</span>
-          </div>
-        </div>
-        <a href="https://bubble-articles.netlify.app" class="btn btn-primary" target="_blank" rel="noopener" data-cta-track="articles_read_click">
-          Read the analyses
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </a>
       </div>
     </div>
   </section>
@@ -1215,8 +1178,7 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
   // Sticky section nav highlight
   var navLinks = document.querySelectorAll(".section-nav-inner a");
   var sections = [
-    document.getElementById("agents"),
-    document.getElementById("articles")
+    document.getElementById("agents")
   ];
   if (navLinks.length && sections[0]) {
     var sio = new IntersectionObserver(function (entries) {

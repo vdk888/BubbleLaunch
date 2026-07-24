@@ -10,14 +10,11 @@ const router = express.Router();
  * under the bubbleinvest.org domain.
  *
  * Mapping:
- *   /shop/articles  → bubble-articles.netlify.app
  *   /shop/sentinel  → bubble-sentinel.netlify.app
- *   /shop/articles/* → bubble-articles.netlify.app/*
  *   /shop/sentinel/* → bubble-sentinel.netlify.app/*
  */
 
 const SHOP_TARGETS = {
-  articles: { base: "https://bubble-articles.netlify.app", path: "/", pathEn: "/" },
   sentinel: { base: "https://bubble-sentinel.netlify.app", path: "/sentinel.html", pathEn: "/sentinel-en.html" },
   invest: { base: "https://bubble-sentinel.netlify.app", path: "/invest.html", pathEn: "/invest-en.html" },
   community: { base: "https://bubble-sentinel.netlify.app", path: "/community.html", pathEn: "/community-en.html" },
@@ -91,10 +88,6 @@ function proxyToNetlify(targetBase, subPath, req, res) {
         proxyRes.on("end", () => {
           // Rewrite absolute Netlify URLs to relative /shop/ paths
           body = body.replace(
-            /https?:\/\/bubble-articles\.netlify\.app/g,
-            "/shop/articles"
-          );
-          body = body.replace(
             /https?:\/\/bubble-sentinel\.netlify\.app/g,
             "/shop/sentinel"
           );
@@ -138,7 +131,7 @@ function proxyToNetlify(targetBase, subPath, req, res) {
   });
 }
 
-// /shop → serve the global shop landing page (lists all agents, tools, articles)
+// /shop → serve the global shop landing page (lists all agents)
 router.get("/", (req, res) => {
   const path = require("path");
   res.sendFile(path.join(__dirname, "../../frontend/pages/shop.html"));

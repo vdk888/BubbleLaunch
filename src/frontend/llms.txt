@@ -28,8 +28,6 @@ We build AI agents for our own operations and share publicly. Free content is ou
 
 **Shop (https://bubbleinvest.org/shop):**
 - AI agents plug-and-play (subscription model)
-- Premium research reports (one-shot purchases, individual stock analyses)
-- Premium articles (one-shot, in-depth)
 - Skills library on Claude Skills marketplaces (free + premium)
 
 ### For Professionals (B2B — consulting on-site)
