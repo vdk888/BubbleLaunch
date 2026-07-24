@@ -21,14 +21,6 @@ const SHOP_TARGETS = {
   sentinel: { base: "https://bubble-sentinel.netlify.app", path: "/sentinel.html", pathEn: "/sentinel-en.html" },
   invest: { base: "https://bubble-sentinel.netlify.app", path: "/invest.html", pathEn: "/invest-en.html" },
   community: { base: "https://bubble-sentinel.netlify.app", path: "/community.html", pathEn: "/community-en.html" },
-  "local-tts": { base: "https://bubble-sentinel.netlify.app", path: "/local-tts-fr.html", pathEn: "/local-tts.html" },
-  "boycott-filter": { base: "https://bubble-sentinel.netlify.app", path: "/boycott-filter-fr.html", pathEn: "/boycott-filter.html" },
-  "music-dna": { base: "https://bubble-sentinel.netlify.app", path: "/music-dna.html", pathEn: "/music-dna-en.html" },
-  "voice-assistant": { base: "https://bubble-sentinel.netlify.app", path: "/voice-assistant-fr.html", pathEn: "/voice-assistant.html" },
-  "bubble-ops-loop": { base: "https://bubble-sentinel.netlify.app", path: "/bubble-ops-loop-fr.html", pathEn: "/bubble-ops-loop.html" },
-  "bubble-vps-platform": { base: "https://bubble-sentinel.netlify.app", path: "/bubble-vps-platform-fr.html", pathEn: "/bubble-vps-platform.html" },
-  "bubble-cabinet": { base: "https://bubble-sentinel.netlify.app", path: "/bubble-cabinet-fr.html", pathEn: "/bubble-cabinet.html" },
-  "ben-agent": { base: "https://bubble-sentinel.netlify.app", path: "/ben-agent-fr.html", pathEn: "/ben-agent.html" },
 };
 
 /**
@@ -130,8 +122,6 @@ function proxyToNetlify(targetBase, subPath, req, res) {
           body = body.replace(/href=["']\/sentinel\.html["']/g, 'href="/shop/sentinel"');
           body = body.replace(/href=["']\/invest\.html["']/g, 'href="/shop/invest"');
           body = body.replace(/href=["']\/community\.html["']/g, 'href="/shop/community"');
-          body = body.replace(/href=["']\/local-tts\.html["']/g, 'href="/shop/local-tts"');
-          body = body.replace(/href=["']\/boycott-filter\.html["']/g, 'href="/shop/boycott-filter"');
 
           res.send(body);
         });
