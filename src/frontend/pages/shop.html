@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Boutique : Agents IA en abonnement · Bubble.</title>
-  <meta name="description" content="Agents prêts-à-brancher en abonnement. Des outils qu'on utilise au quotidien, construits et documentés en public." />
+  <title>Boutique : Agents, outils, analyses · Bubble.</title>
+  <meta name="description" content="Des agents IA en abonnement, des outils gratuits en open source, et nos analyses. Tout ce qu'on construit, au même endroit." />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/bubble-favicon.svg" />
@@ -87,8 +87,8 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bubbleinvest.org/shop" />
-  <meta property="og:title" content="Boutique : Agents IA en abonnement · Bubble." />
-  <meta property="og:description" content="Agents prêts-à-brancher en abonnement. Des outils qu'on utilise au quotidien, construits et documentés en public." />
+  <meta property="og:title" content="Boutique : Agents, outils, analyses · Bubble." />
+  <meta property="og:description" content="Des agents IA en abonnement, des outils gratuits en open source, et nos analyses. Tout ce qu'on construit, au même endroit." />
   <meta property="og:image" content="https://bubbleinvest.org/assets/images/og-shop.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -96,8 +96,8 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://bubbleinvest.org/shop" />
-  <meta name="twitter:title" content="Boutique : Agents IA en abonnement · Bubble." />
-  <meta name="twitter:description" content="Agents prêts-à-brancher en abonnement. Des outils qu'on utilise au quotidien, construits et documentés en public." />
+  <meta name="twitter:title" content="Boutique : Agents, outils, analyses · Bubble." />
+  <meta name="twitter:description" content="Des agents IA en abonnement, des outils gratuits en open source, et nos analyses. Tout ce qu'on construit, au même endroit." />
   <meta name="twitter:image" content="https://bubbleinvest.org/assets/images/og-shop.png" />
 
   <!-- Google Fonts -->
@@ -836,19 +836,16 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
     <div class="wrap boutique-hero-inner">
       <div class="reveal">
         <span class="eyebrow">Boutique</span>
-        <h1>Outils <span class="klee">construits en public</span></h1>
+        <h1>Nos agents. <span class="klee">Nos outils.</span></h1>
         <p class="boutique-hero-sub">
-          On construit nos propres agents IA. Certains, on les partage en abonnement, sans promesse que l'on ne tient pas.
+          Des agents IA en abonnement, qu'on fait tourner nous-mêmes. Des outils et des analyses, en accès libre.
         </p>
         <div class="boutique-hero-ctas">
           <a href="#agents" class="btn btn-primary" data-cta-track="hero_agents_click">
             Agents prêts-à-brancher
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-        </div>
-        <div class="cat-tabs" role="tablist" aria-label="Filtrer par catégorie">
-          <button class="cat-tab active" data-filter="all" role="tab" aria-selected="true">Tout</button>
-          <button class="cat-tab" data-filter="agents" role="tab" aria-selected="false">Agents</button>
+          <a href="#skills" class="btn btn-ghost">Outils gratuits</a>
         </div>
       </div>
     </div>
@@ -860,6 +857,8 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
   <nav class="section-nav" aria-label="Navigation sections">
     <div class="wrap section-nav-inner">
       <a href="#agents" class="active-nav">Agents</a>
+      <a href="#skills">Skills</a>
+      <a href="#articles">Articles</a>
     </div>
   </nav>
 
@@ -877,7 +876,7 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
       <div class="agents-grid">
 
         <!-- Bubble Sentinel — live, featured -->
-        <a class="agent-card featured reveal" href="https://bubble-sentinel.netlify.app" target="_blank" rel="noopener">
+        <a class="agent-card featured reveal" href="/shop/sentinel">
           <div class="agent-card-top">
             <div class="agent-icon">
               <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -960,6 +959,60 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
       <!-- Quote editoriale -->
       <div class="why-quote reveal" style="margin-top:2.6rem; max-width:600px">
         Chaque agent qu'on vend, on l'utilise d'abord. Ce qu'on partage, c'est ce qui tourne vraiment.
+      </div>
+    </div>
+  </section>
+
+  <hr class="hair" />
+
+  <!-- ============================================================
+       SKILLS OPEN-SOURCE
+       ============================================================ -->
+  <section class="section warm" id="skills">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num">02 / Gratuit</span>
+        <h2>Skills open-source</h2>
+        <p>Nos outils, gratuits et publics — clonez-les depuis GitHub.</p>
+      </div>
+      <div class="reveal" style="max-width:640px">
+        <div class="pills" style="margin-bottom:1.6rem">
+          <span class="pill">local-tts</span>
+          <span class="pill">boycott-filter</span>
+          <span class="pill">music-dna</span>
+        </div>
+        <a href="https://github.com/vdk888/bubble-skills" class="btn btn-ghost" target="_blank" rel="noopener" data-cta-track="skills_github_click">
+          Voir sur GitHub
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hair" />
+
+  <!-- ============================================================
+       ANALYSES & ARTICLES
+       ============================================================ -->
+  <section class="section" id="articles">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num">03 / Analyses</span>
+        <h2>Analyses &amp; articles</h2>
+        <p>Gratuit sur le blog, ou l'abonnement Substack à 6&nbsp;€/mois pour tout.</p>
+      </div>
+      <div class="articles-callout reveal">
+        <div class="articles-callout-text">
+          <h3>Nos analyses, où vous voulez</h3>
+          <p>Les articles sont gratuits sur le blog. L'abonnement Substack débloque tout, investment cases inclus, pour 6&nbsp;€/mois.</p>
+        </div>
+        <div class="cta-btns" style="justify-content:flex-start">
+          <a href="/blog" class="btn btn-ghost">Lire le blog</a>
+          <a href="https://bubbleinvest.substack.com" class="btn btn-primary" target="_blank" rel="noopener" data-cta-track="shop_substack_click">
+            S'abonner sur Substack
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -1159,9 +1212,11 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
   // Sticky section nav highlight
   var navLinks = document.querySelectorAll(".section-nav-inner a");
   var sections = [
-    document.getElementById("agents")
-  ];
-  if (navLinks.length && sections[0]) {
+    document.getElementById("agents"),
+    document.getElementById("skills"),
+    document.getElementById("articles")
+  ].filter(Boolean);
+  if (navLinks.length && sections.length) {
     var sio = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) {
