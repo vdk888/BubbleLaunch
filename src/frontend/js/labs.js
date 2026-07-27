@@ -22,32 +22,42 @@
   // Formatters
   // ──────────────────────────────────────────────────────────
 
-  function formatByType(value, type) {
+  function formatByType(value, type, prefix) {
     if (value === null || value === undefined) return '—';
     const lang = document.documentElement.lang || 'fr';
     const locale = lang.startsWith('en') ? 'en-US' : 'fr-FR';
+    const p = prefix || '';
     switch (type) {
       case 'integer':
-        return Math.round(value).toLocaleString(locale);
+        return p + Math.round(value).toLocaleString(locale);
       case 'integer-plus':
-        return Math.round(value).toLocaleString(locale) + '+';
+        return p + Math.round(value).toLocaleString(locale) + '+';
       case 'percent':
-        return Math.round(value) + ' %';
+        return p + Math.round(value) + ' %';
       case 'compact':
         // Collapsed display for large figures (design policy): 9 841 464 099 → "9,8 Md" (fr) / "9.8B" (en)
-        return new Intl.NumberFormat(locale, { notation: 'compact', maximumFractionDigits: 1 }).format(Math.round(value));
+        return p + new Intl.NumberFormat(locale, { notation: 'compact', maximumFractionDigits: 1 }).format(Math.round(value));
       case 'number':
       default:
-        return Math.round(value).toLocaleString(locale);
+        return p + Math.round(value).toLocaleString(locale);
     }
   }
 
   // Ease-out cubic for the count-up animation
   function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
 
-  function animateCounter(el, finalValue, formatType) {
+  // Some counters carry a trailing <span class="unit">...</span> inside the
+  // counter element (e.g. "111<span class="unit">Md</span>"). Writing to
+  // el.textContent wipes that child out, so we detach it up front and
+  // re-append it after every text update instead of losing it silently.
+  function animateCounter(el, finalValue, formatType, prefix) {
+    const unitEl = el.querySelector('.unit');
+    function setText(text) {
+      el.textContent = text;
+      if (unitEl) el.appendChild(unitEl);
+    }
     if (finalValue === null || finalValue === undefined) {
-      el.textContent = '—';
+      setText('—');
       return;
     }
     const start = performance.now();
@@ -55,9 +65,9 @@
       const elapsed = now - start;
       const t = Math.min(elapsed / COUNT_UP_DURATION_MS, 1);
       const current = finalValue * easeOutCubic(t);
-      el.textContent = formatByType(current, formatType);
+      setText(formatByType(current, formatType, prefix));
       if (t < 1) requestAnimationFrame(tick);
-      else el.textContent = formatByType(finalValue, formatType);
+      else setText(formatByType(finalValue, formatType, prefix));
     }
     requestAnimationFrame(tick);
   }
@@ -71,20 +81,21 @@
     counters.forEach((el) => {
       const key = el.getAttribute('data-counter-key');
       const formatType = el.getAttribute('data-counter-format') || 'integer';
+      const prefix = el.getAttribute('data-counter-prefix') || '';
       const value = stats && stats[key] !== undefined ? stats[key] : null;
       // Trigger animation when in viewport (IntersectionObserver), otherwise immediately
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              animateCounter(el, value, formatType);
+              animateCounter(el, value, formatType, prefix);
               io.disconnect();
             }
           });
         }, { threshold: 0.3 });
         io.observe(el);
       } else {
-        animateCounter(el, value, formatType);
+        animateCounter(el, value, formatType, prefix);
       }
     });
   }

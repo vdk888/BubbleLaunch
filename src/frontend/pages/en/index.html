@@ -1093,8 +1093,8 @@ img{max-width:100%;display:block}
       <div class="counters-live"><span class="dot"></span> The lab, live</div>
       <div class="counters-grid">
         <div class="counter"><div class="num" data-counter-key="agents_in_production" data-counter-format="integer">22</div><div class="lbl">agents in production</div></div>
-        <div class="counter"><div class="num" data-counter-key="tokens_this_year" data-counter-format="compact">+105<span class="unit">Bn</span></div><div class="lbl">tokens in 2026</div></div>
-        <div class="counter"><div class="num" data-counter-key="skills_public" data-counter-format="integer">14</div><div class="lbl">open source skills</div></div>
+        <div class="counter"><div class="num" data-counter-key="tokens_this_year" data-counter-format="compact" data-counter-prefix="+">+111<span class="unit">Bn</span></div><div class="lbl">tokens in 2026</div></div>
+        <div class="counter"><div class="num" data-counter-key="skills_public" data-counter-format="integer">19</div><div class="lbl">open source skills</div></div>
         <div class="counter"><div class="num" data-counter-key="repos_total" data-counter-format="integer">88</div><div class="lbl">repos (public + private)</div></div>
       </div>
     </div>
@@ -2986,6 +2986,7 @@ img{max-width:100%;display:block}
   <script src="/js/lang-toggle.js"></script>
   <script src="/js/seo/ga4-events.js"></script>
   <script src="/js/calendly-integration.js" defer></script>
-  <!-- page-specific: /js/labs.js on labs only -->
+  <!-- page-specific: /js/labs.js also used on homepage for live counters -->
+  <script src="/js/labs.js" defer></script>
 </body>
 </html>
