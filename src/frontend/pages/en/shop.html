@@ -681,6 +681,21 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
 .skill-link svg { width: 12px; height: 12px; }
 .skill-card:hover .skill-link { color: var(--ink); gap: .45rem; }
 
+/* Skills catalog grouping */
+.skills-category { margin-bottom: 2.4rem; }
+.skills-category:last-of-type { margin-bottom: 0; }
+.skills-category-label {
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--hair-soft);
+}
+
 /* ---- Articles section ---- */
 .articles-callout {
   border: 1px solid var(--hair);
@@ -992,11 +1007,238 @@ h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
       <div class="sec-head reveal">
         <span class="sec-num">02 / Free</span>
         <h2>Open-source skills</h2>
-        <p>Our open-source tools, free and public — 19 open-source skills. The bubble-skills GitHub repo is the source of truth: browse them all, clone what you want.</p>
+        <p>The full catalog of our open-source tools, free and public — 19 skills, grouped by category. Public code on GitHub, no strings attached.</p>
       </div>
-      <div class="reveal" style="max-width:640px;display:flex;gap:.75rem;flex-wrap:wrap">
+
+      <div class="skills-category reveal">
+        <div class="skills-category-label">Automation</div>
+        <div class="skills-grid">
+          <a href="https://github.com/vdk888/bubble-skills/tree/main/telegram-reporter" target="_blank" rel="noopener" class="skill-card">
+            <h3>Telegram Reporter</h3>
+            <p class="skill-card-desc">Sends Telegram messages from any script or cron job via curl. Bot token read from a config file.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+          <a href="https://github.com/vdk888/bubble-skills/tree/main/scheduled-task-creation" target="_blank" rel="noopener" class="skill-card">
+            <h3>Scheduled Task Creation</h3>
+            <p class="skill-card-desc">Step-by-step guide for creating and debugging Claude Desktop scheduled tasks (local routines).</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+          <a href="https://github.com/vdk888/bubble-skills/tree/main/deepseek-brain" target="_blank" rel="noopener" class="skill-card">
+            <h3>DeepSeek Brain</h3>
+            <p class="skill-card-desc">Switches a Claude Code agent's LLM backend to DeepSeek. Change models without touching your code.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+          <a href="https://github.com/vdk888/bubble-skills/tree/main/cron-postflight" target="_blank" rel="noopener" class="skill-card">
+            <h3>Cron Postflight</h3>
+            <p class="skill-card-desc">Post-flight scaffolding for scheduled tasks: audit-log row, git commit + push with lane discipline, notification send.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="skills-category reveal">
+        <div class="skills-category-label">Content</div>
+        <div class="skills-grid">
+          <a href="https://github.com/vdk888/bubble-skills/tree/main/publish-substack-note" target="_blank" rel="noopener" class="skill-card">
+            <h3>Publish Substack Note</h3>
+            <p class="skill-card-desc">Publish a short-form Substack Note with an optional hero image via the Claude-in-Chrome extension (Playwright gets a 403 on Substack).</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+          <a href="https://github.com/vdk888/bubble-skills/tree/main/publish-substack-post" target="_blank" rel="noopener" class="skill-card">
+            <h3>Publish Substack Post</h3>
+            <p class="skill-card-desc">Publish or schedule a long-form Substack Post with inline images, hero image, and subscribe button, via a logged-in Playwright browser profile.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="skills-category reveal">
+        <div class="skills-category-label">Media</div>
+        <div class="skills-grid">
+          <a href="https://github.com/vdk888/bubble-skills/tree/main/suno-extract" target="_blank" rel="noopener" class="skill-card">
+            <h3>Suno Extract</h3>
+            <p class="skill-card-desc">Fetches the MP3 of any Suno track via the public API. No key required.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+          <a href="https://github.com/vdk888/bubble-skills/tree/main/generate-image" target="_blank" rel="noopener" class="skill-card">
+            <h3>Generate Image</h3>
+            <p class="skill-card-desc">Generates images locally with FLUX.2 Klein on Apple Silicon. Free, offline, no API required.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+          <a href="https://github.com/vdk888/bubble-skills/tree/main/voice-transcribe" target="_blank" rel="noopener" class="skill-card">
+            <h3>Voice Transcribe</h3>
+            <p class="skill-card-desc">Transcribes voice notes and audio files to text, locally and offline (whisper.cpp). Telegram .oga, wav, mp3, flac.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+          <a href="https://github.com/vdk888/bubble-skills/tree/main/longform-video" target="_blank" rel="noopener" class="skill-card">
+            <h3>Longform Video</h3>
+            <p class="skill-card-desc">Turns an article into a 1-to-5-minute landscape video with audio narration. From text to video in one command.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+          <a href="https://github.com/vdk888/local-tts" target="_blank" rel="noopener" class="skill-card">
+            <h3>Local TTS</h3>
+            <p class="skill-card-desc">Local text-to-speech (VoxCPM2, 30 languages, voice cloning). Free, offline, Apple Silicon.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+          <a href="https://github.com/vdk888/live-surtitles" target="_blank" rel="noopener" class="skill-card">
+            <h3>Live Surtitles</h3>
+            <p class="skill-card-desc">Self-hosted real-time surtitle system for live theater — translated/transcribed subtitles synced to the performance.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="skills-category reveal">
+        <div class="skills-category-label">Productivity</div>
+        <div class="skills-grid">
+          <a href="https://github.com/vdk888/bubble-skills/tree/main/notion-linker" target="_blank" rel="noopener" class="skill-card">
+            <h3>Notion Linker</h3>
+            <p class="skill-card-desc">Automatically links published content (articles, posts) back to project rows in a Notion database.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+          <a href="https://github.com/vdk888/bubble-skills/tree/main/notion-reader" target="_blank" rel="noopener" class="skill-card">
+            <h3>Notion Reader</h3>
+            <p class="skill-card-desc">Query a Notion database or page from any script. Token in config, IDs via environment variables.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+          <a href="https://github.com/vdk888/boycott-filter" target="_blank" rel="noopener" class="skill-card">
+            <h3>Boycott Filter</h3>
+            <p class="skill-card-desc">Tell your agent which brands to avoid. A Chrome extension alerts you on their pages with your own reasons.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+          <a href="https://github.com/Bubble-invest/audio-listener" target="_blank" rel="noopener" class="skill-card">
+            <h3>Voice Assistant</h3>
+            <p class="skill-card-desc">Speak out loud to your entire AI agent team. Local Whisper and text-to-speech, using your own voice.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="skills-category reveal">
+        <div class="skills-category-label">Research</div>
+        <div class="skills-grid">
+          <a href="https://github.com/vdk888/bubble-skills/tree/main/fund-source-verification" target="_blank" rel="noopener" class="skill-card">
+            <h3>Fund Source Verification</h3>
+            <p class="skill-card-desc">Source-tier classification and independent-verification rubric before acting on any external signal. Tier gating, corroboration math, paywall discipline.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+          <a href="https://github.com/vdk888/bubble-skills/tree/main/fund-thesis-format" target="_blank" rel="noopener" class="skill-card">
+            <h3>Fund Thesis Format</h3>
+            <p class="skill-card-desc">A canonical 7-part investment thesis structure (claim, mechanism, fit, invalidation, sizing, asymmetry, conviction levers), at three depths.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="skills-category reveal">
+        <div class="skills-category-label">Sales</div>
+        <div class="skills-grid">
+          <a href="https://github.com/vdk888/bubble-skills/tree/main/prospect-research" target="_blank" rel="noopener" class="skill-card">
+            <h3>Prospect Research</h3>
+            <p class="skill-card-desc">Builds or refreshes a structured research capsule for any sales prospect: background, pain points, recent signals, three outreach angles. Read-only, never sends or posts anything.</p>
+            <div class="skill-card-footer">
+              <span class="skill-link">
+                View repo
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal" style="max-width:640px;display:flex;gap:.75rem;flex-wrap:wrap;margin-top:2rem">
         <a href="https://github.com/vdk888/bubble-skills" class="btn btn-ghost" target="_blank" rel="noopener" data-cta-track="skills_github_click">
-          View on GitHub
+          All on GitHub
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="/en/labs" class="btn btn-ghost" data-cta-track="skills_labs_click">
