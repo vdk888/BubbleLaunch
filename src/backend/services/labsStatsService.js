@@ -47,7 +47,7 @@ const PUBLIC_ROUTINE_COUNT_HINT = 43; // matches our internal count as of 2026-0
 const STATIC_FALLBACK = {
   agents_in_production: 22, // bubble + claudette + argus + miranda + sentinel + ...
   routines_active: PUBLIC_ROUTINE_COUNT_HINT,
-  skills_public: 14, // counted from ~/.claude/skills/ (publishable subset)
+  skills_public: 19, // bubble-skills marketplace.json plugins minus framework+security categories
   experience_years: 12,
   code_shared_percent: 100,
   conflicts_of_interest_percent: 0,
