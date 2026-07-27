@@ -1,3 +1,10 @@
+:root {
+  /* The banner referenced var(--purple) but it was never defined anywhere,
+     so the primary button's gradient was invalid -> white text on white =
+     invisible 'Tout accepter'. Defined here to the site's violet. */
+  --purple: #667eea;
+}
+
 /**
  * Modern Cookie Consent Banner Styles
  * Responsive, accessible, and elegant
