@@ -232,6 +232,8 @@ test("blocks direct and encoded static source paths before express.static", asyn
       "/newsletter-editions%2Fmanifest.json",
       "/newsletter-editions%252Fmanifest.json",
       "/NEWSLETTER-EDITIONS%255cmanifest.json",
+      "//newsletter-editions/manifest.json",
+      "/%2fnewsletter-editions/manifest.json",
     ]) {
       assert.equal((await fetch(base + sourcePath)).status, 404);
     }

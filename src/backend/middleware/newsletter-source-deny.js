@@ -1,7 +1,10 @@
 function isNewsletterSourcePath(originalUrl) {
   let candidate = String(originalUrl || "").split("?", 1)[0];
   for (let pass = 0; pass < 3; pass += 1) {
-    const normalized = candidate.replaceAll("\\", "/").toLowerCase();
+    const normalized = candidate
+      .replaceAll("\\", "/")
+      .replace(/\/{2,}/g, "/")
+      .toLowerCase();
     if (
       normalized === "/newsletter-editions" ||
       normalized.startsWith("/newsletter-editions/")
