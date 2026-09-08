@@ -14,6 +14,7 @@ const shopProxyRoutes = require("./shop-proxy.routes");
 const sitemapRoutes = require("./sitemap.routes");
 const trackingRoutes = require("./tracking.routes");
 const labsRoutes = require("./labs.routes");
+const { createNewsletterArchiveRouter } = require("./newsletter-archive.routes");
 
 /**
  * SEO Routes
@@ -38,6 +39,10 @@ router.use("/api", labsRoutes);
  * Shop Proxy Routes (Netlify → bubbleinvest.org/shop/*)
  */
 router.use("/shop", shopProxyRoutes);
+
+// Hidden direct-link editions. Keep this before the generic page router; the
+// signup page at exactly /newsletter remains owned by pagesRoutes.
+router.use("/", createNewsletterArchiveRouter());
 
 /**
  * Page Routes (HTML serving)

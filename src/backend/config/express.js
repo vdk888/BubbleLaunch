@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const helmet = require("helmet");
 const sessionMiddleware = require("../middleware/session");
+const { denyNewsletterSource } = require("../middleware/newsletter-source-deny");
 
 /**
  * Configure Express middleware
@@ -124,6 +125,11 @@ function configureExpress(app) {
     res.type('text/plain');
     res.sendFile(path.join(__dirname, '../../frontend/llms-full.txt'));
   });
+
+  // Newsletter source documents and their manifest are never public static
+  // paths. Approved editions are served only through the strict permalink
+  // router after manifest/hash/profile validation.
+  app.use(denyNewsletterSource);
 
   // Serve static files (CSS, JS, images) but not index.html
   app.use(

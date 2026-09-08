@@ -1,0 +1,28 @@
+function isNewsletterSourcePath(originalUrl) {
+  let candidate = String(originalUrl || "").split("?", 1)[0];
+  for (let pass = 0; pass < 3; pass += 1) {
+    const normalized = candidate
+      .replaceAll("\\", "/")
+      .replace(/\/{2,}/g, "/")
+      .toLowerCase();
+    const segments = normalized.split("/").filter(Boolean);
+    if (segments.includes("newsletter-editions")) {
+      return true;
+    }
+    try {
+      const decoded = decodeURIComponent(candidate);
+      if (decoded === candidate) break;
+      candidate = decoded;
+    } catch (_error) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function denyNewsletterSource(req, res, next) {
+  if (isNewsletterSourcePath(req.originalUrl)) return res.sendStatus(404);
+  return next();
+}
+
+module.exports = { denyNewsletterSource, isNewsletterSourcePath };
