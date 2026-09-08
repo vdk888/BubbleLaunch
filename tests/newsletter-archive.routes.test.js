@@ -79,6 +79,26 @@ async function withServer(router, callback) {
   }
 }
 
+function rawStatus(base, requestPath) {
+  const target = new URL(base);
+  return new Promise((resolve, reject) => {
+    const request = http.request(
+      {
+        hostname: target.hostname,
+        port: target.port,
+        method: "GET",
+        path: requestPath,
+      },
+      (response) => {
+        response.resume();
+        response.on("end", () => resolve(response.statusCode));
+      }
+    );
+    request.on("error", reject);
+    request.end();
+  });
+}
+
 test("serves only manifest-listed, hash-matched profile permalinks", async (t) => {
   const { root, editions } = await fixture();
   t.after(() => fsp.rm(root, { recursive: true, force: true }));
@@ -237,5 +257,14 @@ test("blocks direct and encoded static source paths before express.static", asyn
     ]) {
       assert.equal((await fetch(base + sourcePath)).status, 404);
     }
+    for (const rawPath of [
+      "/ignored/../newsletter-editions/manifest.json",
+      "/%2e/newsletter-editions/manifest.json",
+      "/ignored/%2e%2e/newsletter-editions/manifest.json",
+      "/ignored/%252e%252e%252fnewsletter-editions/manifest.json",
+    ]) {
+      assert.equal(await rawStatus(base, rawPath), 404);
+    }
+    assert.equal(await rawStatus(base, "/assets/styles/core-2026.css"), 200);
   });
 });

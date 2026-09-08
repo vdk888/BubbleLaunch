@@ -5,10 +5,8 @@ function isNewsletterSourcePath(originalUrl) {
       .replaceAll("\\", "/")
       .replace(/\/{2,}/g, "/")
       .toLowerCase();
-    if (
-      normalized === "/newsletter-editions" ||
-      normalized.startsWith("/newsletter-editions/")
-    ) {
+    const segments = normalized.split("/").filter(Boolean);
+    if (segments.includes("newsletter-editions")) {
       return true;
     }
     try {
