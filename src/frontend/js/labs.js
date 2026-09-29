@@ -53,6 +53,16 @@
   function animateCounter(el, finalValue, formatType, prefix) {
     const unitEl = el.querySelector('.unit');
     function setText(text) {
+      // 'compact' output carries its own suffix ("142,9 Md" / "142.9B"). Move
+      // that suffix into the styled .unit span instead of appending the static
+      // fallback after it, which rendered "Md Md".
+      if (unitEl && formatType === 'compact') {
+        const m = /^(.*?[\d.,])\s*([^\d\s.,]+)$/.exec(text);
+        el.textContent = m ? m[1] : text;
+        unitEl.textContent = m ? m[2] : '';
+        el.appendChild(unitEl);
+        return;
+      }
       el.textContent = text;
       if (unitEl) el.appendChild(unitEl);
     }
