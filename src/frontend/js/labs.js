@@ -51,7 +51,9 @@
   // el.textContent wipes that child out, so we detach it up front and
   // re-append it after every text update instead of losing it silently.
   function animateCounter(el, finalValue, formatType, prefix) {
-    const unitEl = el.querySelector('.unit');
+    // 'compact' output already carries its own suffix ("142,9 Md" / "142.9B"),
+    // so the static fallback unit must not be re-appended (it showed "Md Md").
+    const unitEl = formatType === 'compact' ? null : el.querySelector('.unit');
     function setText(text) {
       el.textContent = text;
       if (unitEl) el.appendChild(unitEl);

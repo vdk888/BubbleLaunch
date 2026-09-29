@@ -142,7 +142,9 @@ router.get('/sitemap.xml', async (req, res) => {
     let blogPages = [];
     try {
       const posts = await blogService.getPublishedPosts();
-      blogPages = posts.flatMap(post => {
+      // External posts (Substack RSS) have no local slug: listing them produced
+      // /blog/null and /en/blog/null entries that 404 (sitemap audit 2026-09-28).
+      blogPages = posts.filter(post => post.slug && !post.isExternal).flatMap(post => {
         const lastmod = post.publishedDate
           ? new Date(post.publishedDate).toISOString().split('T')[0]
           : today;
