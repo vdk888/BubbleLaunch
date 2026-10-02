@@ -1,34 +1,34 @@
 {
   "schema": "bubble-labs-token-ledger/v1",
-  "updated_at": "2026-10-01T04:01:08.569019+00:00",
+  "updated_at": "2026-10-02T04:01:08.437802+00:00",
   "source": "claude-code-transcripts",
   "stats": {
-    "turns_counted": 608090,
-    "files_scanned": 6161
+    "turns_counted": 608137,
+    "files_scanned": 6163
   },
   "headline": {
-    "all_time_total": 146507186828,
-    "all_time_input_output": 544186857,
-    "this_year_total": 146507186828,
-    "this_month_total": 0,
-    "this_month_input_output": 0
+    "all_time_total": 146527841724,
+    "all_time_input_output": 544222263,
+    "this_year_total": 146527841724,
+    "this_month_total": 20654896,
+    "this_month_input_output": 35406
   },
   "all_time": {
-    "input_tokens": 150469609,
-    "output_tokens": 393717248,
-    "cache_creation_input_tokens": 4749809346,
-    "cache_read_input_tokens": 141213190625,
-    "input_output": 544186857,
-    "total": 146507186828
+    "input_tokens": 150469707,
+    "output_tokens": 393752556,
+    "cache_creation_input_tokens": 4753112234,
+    "cache_read_input_tokens": 141230507227,
+    "input_output": 544222263,
+    "total": 146527841724
   },
   "by_year": {
     "2026": {
-      "input_tokens": 150469609,
-      "output_tokens": 393717248,
-      "cache_creation_input_tokens": 4749809346,
-      "cache_read_input_tokens": 141213190625,
-      "input_output": 544186857,
-      "total": 146507186828
+      "input_tokens": 150469707,
+      "output_tokens": 393752556,
+      "cache_creation_input_tokens": 4753112234,
+      "cache_read_input_tokens": 141230507227,
+      "input_output": 544222263,
+      "total": 146527841724
     }
   },
   "by_month": {
@@ -79,6 +79,14 @@
       "cache_read_input_tokens": 29883967332,
       "input_output": 89847274,
       "total": 31287362292
+    },
+    "2026-10": {
+      "input_tokens": 98,
+      "output_tokens": 35308,
+      "cache_creation_input_tokens": 3302888,
+      "cache_read_input_tokens": 17316602,
+      "input_output": 35406,
+      "total": 20654896
     }
   },
   "by_agent": {
@@ -99,12 +107,12 @@
       "total": 27658133987
     },
     "Users-joris-claude-workspaces-Tony-CEO": {
-      "input_tokens": 2675704,
-      "output_tokens": 65942798,
-      "cache_creation_input_tokens": 458345374,
-      "cache_read_input_tokens": 25474095092,
-      "input_output": 68618502,
-      "total": 26001058968
+      "input_tokens": 2675754,
+      "output_tokens": 65963104,
+      "cache_creation_input_tokens": 458862521,
+      "cache_read_input_tokens": 25476872647,
+      "input_output": 68638858,
+      "total": 26004374026
     },
     "Users-jadethi-viet-lanhoang-claude-workspaces-bubble-ops-content": {
       "input_tokens": 2089012,
@@ -123,12 +131,12 @@
       "total": 6272409758
     },
     "Users-jade-thi-viet-lanhoang-claude-workspaces-ellie": {
-      "input_tokens": 189499,
-      "output_tokens": 19127855,
-      "cache_creation_input_tokens": 201536459,
-      "cache_read_input_tokens": 5093278898,
-      "input_output": 19317354,
-      "total": 5314132711
+      "input_tokens": 189519,
+      "output_tokens": 19133783,
+      "cache_creation_input_tokens": 202874883,
+      "cache_read_input_tokens": 5098848040,
+      "input_output": 19323302,
+      "total": 5321046225
     },
     "Users-joris-claude-workspaces-main": {
       "input_tokens": 33624,
@@ -139,12 +147,12 @@
       "total": 5111953841
     },
     "Users-jade-thi-viet-lanhoang-claude-workspaces-bubble-ops-accountant": {
-      "input_tokens": 684704,
-      "output_tokens": 10937986,
-      "cache_creation_input_tokens": 335390922,
-      "cache_read_input_tokens": 3746849839,
-      "input_output": 11622690,
-      "total": 4093863451
+      "input_tokens": 684732,
+      "output_tokens": 10947060,
+      "cache_creation_input_tokens": 336838239,
+      "cache_read_input_tokens": 3755819744,
+      "input_output": 11631792,
+      "total": 4104289775
     },
     "Users-jadethi-viet-lanhoang-claude-workspaces-Miranda-Socials": {
       "input_tokens": 9126094,
